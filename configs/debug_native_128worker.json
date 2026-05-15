@@ -1,0 +1,46 @@
+{
+  "run_name": "debug_native_128worker",
+  "stop_env_steps": 16384,
+  "checkpoint_every_iters": 999,
+
+  "env": {
+    "backend": "native",
+    "disable_env_checking": false
+  },
+
+  "parallel": {
+    "ray_num_cpus": 148,
+    "object_store_memory": 8589934592,
+
+    "reserve_cpus": 16,
+    "num_tsc_workers": 128,
+    "num_envs_per_tsc_worker": 1,
+    "num_cpus_per_tsc_worker": 1,
+
+    "sample_timeout_s": 4800.0,
+    "max_requests_in_flight_per_tsc_worker": 1,
+    "rollout_fragment_length": "auto",
+    "batch_mode": "truncate_episodes"
+  },
+
+  "learner": {
+    "num_learners": 1,
+    "num_cpus_per_learner": 8,
+    "num_gpus_per_learner": 0
+  },
+
+  "sac": {
+    "num_steps_sampled_before_learning_starts": 3000,
+    "train_batch_size_per_learner": 4096,
+    "replay_buffer_config": {
+      "type": "PrioritizedEpisodeReplayBuffer",
+      "capacity": 500000,
+      "alpha": 0.6,
+      "beta": 0.4
+    }
+  },
+
+  "reporting": {
+    "min_sample_timesteps_per_iteration": 1000
+  }
+}

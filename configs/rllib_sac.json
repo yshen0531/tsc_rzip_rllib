@@ -1,0 +1,81 @@
+{
+  "run_name": "rllib_sac_tsc_rzip",
+  "train_config": "configs/train_reach_hold_400_curriculum.json",
+  "seed": 42,
+  "stop_env_steps": 2000000,
+  "checkpoint_every_iters": 20,
+  "log_root": "ray_results",
+  "checkpoint_root": "ray_checkpoints",
+  "log_level": "INFO",
+
+  "env": {
+    "backend": "native",
+    "disable_env_checking": false
+  },
+
+  "parallel": {
+    "ray_address": null,
+    "ray_num_cpus": null,
+    "local_mode": false,
+    "include_dashboard": false,
+
+    "num_tsc_workers": "auto:0.75",
+    "reserve_cpus": 4,
+    "num_cpus_per_tsc_worker": 1,
+    "num_envs_per_tsc_worker": 1,
+
+    "num_cpus_for_main_process": 1,
+    "sample_timeout_s": 300.0,
+    "max_requests_in_flight_per_tsc_worker": 1,
+    "rollout_fragment_length": "auto",
+    "batch_mode": "truncate_episodes"
+  },
+
+  "learner": {
+    "num_learners": 1,
+    "num_cpus_per_learner": 2,
+    "num_gpus_per_learner": 0
+  },
+
+  "sac": {
+    "gamma": 0.995,
+    "tau": 0.005,
+    "n_step": 1,
+
+    "actor_lr": 0.00003,
+    "critic_lr": 0.0003,
+    "alpha_lr": 0.0003,
+    "initial_alpha": 1.0,
+    "target_entropy": "auto",
+
+    "twin_q": true,
+    "grad_clip": 10.0,
+    "clip_actions": true,
+
+    "num_steps_sampled_before_learning_starts": 10000,
+    "train_batch_size_per_learner": 1024,
+    "training_intensity": 1.0,
+
+    "replay_buffer_config": {
+      "type": "PrioritizedEpisodeReplayBuffer",
+      "capacity": 200000,
+      "alpha": 0.6,
+      "beta": 0.4
+    },
+
+    "store_buffer_in_checkpoints": false
+  },
+
+  "model": {
+    "fcnet_hiddens": [512, 512, 256],
+    "fcnet_activation": "swish",
+    "fcnet_use_layernorm": true,
+    "head_fcnet_hiddens": [256],
+    "head_fcnet_activation": "swish"
+  },
+
+  "reporting": {
+    "min_time_s_per_iteration": 1.0,
+    "min_sample_timesteps_per_iteration": 100
+  }
+}

@@ -1,0 +1,20 @@
+# Single-command CPU-only install:
+#   pip install -r requirements.txt
+#
+# Tsinghua mirror is used to avoid slow/timeout downloads from files.pythonhosted.org.
+# If you are on a network where this mirror is slow, delete the first two lines.
+-i https://pypi.tuna.tsinghua.edu.cn/simple
+--trusted-host pypi.tuna.tsinghua.edu.cn
+
+# CPU-only PyTorch wheels. No CUDA/GPU packages.
+--extra-index-url https://download.pytorch.org/whl/cpu
+--trusted-host download.pytorch.org
+
+torch==2.7.0+cpu
+ray[rllib]==2.55.1
+gymnasium
+numpy
+pandas
+scipy
+matplotlib
+tensorboard
