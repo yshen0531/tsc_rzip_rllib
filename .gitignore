@@ -7,7 +7,7 @@ __pycache__/
 *$py.class
 
 # Customized
-legacy/
+legacy/4
 rl_logs/
 eval_logs/
 ray_results/
