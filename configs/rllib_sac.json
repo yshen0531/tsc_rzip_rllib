@@ -1,13 +1,12 @@
 {
-  "run_name": "b8_fixed_target_1ms_sac",
-  "train_config": "configs/train_b8_fixed_target_1ms.json",
+  "run_name": "b81_fixed_target_1ms_sac",
+  "train_config": "configs/train_b81_fixed_target_1ms.json",
   "seed": 42,
   "stop_env_steps": 100000,
   "checkpoint_every_iters": 10,
   "log_root": "ray_results",
   "checkpoint_root": "ray_checkpoints",
   "log_level": "INFO",
-
   "env": {
     "backend": "native",
     "disable_env_checking": false,
@@ -17,69 +16,64 @@
       "terminate_on_nonfinite": true
     }
   },
-
   "parallel": {
     "ray_address": null,
     "ray_num_cpus": 112,
     "local_mode": false,
     "include_dashboard": false,
     "object_store_memory": 6442450944,
-
     "num_tsc_workers": 96,
     "reserve_cpus": 12,
     "num_cpus_per_tsc_worker": 1,
     "num_envs_per_tsc_worker": 1,
-
     "num_cpus_for_main_process": 1,
     "sample_timeout_s": 3600.0,
     "max_requests_in_flight_per_tsc_worker": 1,
     "rollout_fragment_length": "auto",
     "batch_mode": "truncate_episodes"
   },
-
   "learner": {
     "num_learners": 1,
     "num_cpus_per_learner": 6,
     "num_gpus_per_learner": 0
   },
-
   "sac": {
     "gamma": 0.997,
     "tau": 0.005,
     "n_step": 1,
-
-    "actor_lr": 0.00003,
+    "actor_lr": 3e-05,
     "critic_lr": 0.0003,
     "alpha_lr": 0.0003,
     "initial_alpha": 1.0,
     "target_entropy": "auto",
-
     "twin_q": true,
     "grad_clip": 10.0,
     "clip_actions": true,
-
     "num_steps_sampled_before_learning_starts": 5000,
     "train_batch_size_per_learner": 4096,
     "training_intensity": 1.0,
-
     "replay_buffer_config": {
       "type": "PrioritizedEpisodeReplayBuffer",
       "capacity": 500000,
       "alpha": 0.6,
       "beta": 0.4
     },
-
     "store_buffer_in_checkpoints": false
   },
-
   "model": {
-    "fcnet_hiddens": [512, 512, 512, 256],
+    "fcnet_hiddens": [
+      512,
+      512,
+      512,
+      256
+    ],
     "fcnet_activation": "swish",
     "fcnet_use_layernorm": true,
-    "head_fcnet_hiddens": [256],
+    "head_fcnet_hiddens": [
+      256
+    ],
     "head_fcnet_activation": "swish"
   },
-
   "reporting": {
     "min_time_s_per_iteration": 1.0,
     "min_sample_timesteps_per_iteration": 1000

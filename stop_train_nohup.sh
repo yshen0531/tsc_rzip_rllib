@@ -2,25 +2,22 @@
 set -euo pipefail
 
 cd "$(dirname "$0")"
-
 PID_FILE="logs/pids/latest.pid"
 
 if [[ ! -f "$PID_FILE" && ! -L "$PID_FILE" ]]; then
   echo "No latest PID file found: $PID_FILE"
-  echo "You can inspect manually with:"
+  echo "Manual inspect:"
   echo "  ps -u \$USER -f | grep -E 'train_rllib_sac.py|ray|gotsc' | grep -v grep"
   exit 0
 fi
 
 PID="$(cat "$PID_FILE")"
-
 if [[ -z "$PID" ]]; then
   echo "PID file is empty: $PID_FILE"
   exit 1
 fi
 
 echo "Stopping training PID: $PID"
-
 if kill -0 "$PID" 2>/dev/null; then
   kill "$PID" || true
   sleep 5

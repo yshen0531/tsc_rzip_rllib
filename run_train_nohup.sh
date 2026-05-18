@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-CONFIG="${1:-configs/train_b8_96worker_100k.json}"
+CONFIG="${1:-configs/train_b81_96worker_100k.json}"
 
 LOG_DIR="logs/nohup"
 PID_DIR="logs/pids"
@@ -20,11 +20,10 @@ echo "Log:    $LOG_FILE"
 echo "PID:    $PID_FILE"
 
 nohup bash run_train_native.sh "$CONFIG" > "$LOG_FILE" 2>&1 < /dev/null &
-
 PID=$!
 echo "$PID" > "$PID_FILE"
-ln -sfn "$PID_FILE" "${PID_DIR}/latest.pid"
-ln -sfn "$LOG_FILE" "${LOG_DIR}/latest.log"
+ln -sfn "$(basename "$PID_FILE")" "${PID_DIR}/latest.pid"
+ln -sfn "$(basename "$LOG_FILE")" "${LOG_DIR}/latest.log"
 
 echo "Started."
 echo "PID: $PID"

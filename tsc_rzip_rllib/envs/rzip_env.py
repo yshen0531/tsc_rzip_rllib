@@ -15,7 +15,7 @@ from tsc_rzip_rllib.core.runner import TSCConfig, TSCStepRunner
 class TscRzipEnv(gym.Env):
     """Gymnasium environment for TSC-based R/Z/Ip fixed-target reach-hold control.
 
-    B8 design goals:
+    B8.1 design goals:
       * 1 ms control step, 100 ms reach deadline;
       * error + velocity damping + overshoot penalty, not just position error;
       * deployable observation only includes a scalar total vessel-current proxy;
@@ -57,8 +57,8 @@ class TscRzipEnv(gym.Env):
         history_include_action: bool = True,
         history_include_vessel_current: bool = True,
         w_r: float = 1.0,
-        w_z: float = 1.3,
-        w_ip: float = 0.25,
+        w_z: float = 2.0,
+        w_ip: float = 0.5,
         w_action: float = 1.0e-2,
         w_current: float = 1.0e-4,
         w_action_saturation: float = 8.0e-2,
@@ -72,13 +72,20 @@ class TscRzipEnv(gym.Env):
         w_ip_guard: float = 0.5,
         ip_guard_a: float = 2500.0,
         reach_deadline_step: int = 100,
-        reach_success_r_tol: float = 0.035,
-        reach_success_z_tol: float = 0.035,
-        reach_success_ip_tol: float = 1500.0,
-        fast_reach_bonus: float = 120.0,
+        reach_success_r_tol: float = 0.008,
+        reach_success_z_tol: float = 0.008,
+        reach_success_ip_tol: float = 800.0,
+        reach_success_velocity_norm_max: float = 0.8,
+        fast_reach_bonus: float = 0.0,
         w_reach_progress: float = 0.35,
-        w_pre_hold_tracking_boost: float = 0.7,
+        w_pre_hold_tracking_boost: float = 1.0,
+        w_error_growth: float = 1.2,
+        w_error_growth_near_target: float = 1.0,
+        error_growth_near_norm: float = 4.0,
+        error_growth_deadline_multiplier: float = 1.5,
         hold_start_step: int = 100,
+        hold_ramp_start_step: int = 80,
+        hold_ramp_end_step: int = 120,
         w_hold_r: float = 4.0,
         w_hold_z: float = 4.5,
         w_hold_ip: float = 0.6,
@@ -170,11 +177,18 @@ class TscRzipEnv(gym.Env):
         self.reach_success_r_tol = float(reach_success_r_tol)
         self.reach_success_z_tol = float(reach_success_z_tol)
         self.reach_success_ip_tol = float(reach_success_ip_tol)
+        self.reach_success_velocity_norm_max = float(reach_success_velocity_norm_max)
         self.fast_reach_bonus = float(fast_reach_bonus)
         self.w_reach_progress = float(w_reach_progress)
         self.w_pre_hold_tracking_boost = float(w_pre_hold_tracking_boost)
+        self.w_error_growth = float(w_error_growth)
+        self.w_error_growth_near_target = float(w_error_growth_near_target)
+        self.error_growth_near_norm = float(error_growth_near_norm)
+        self.error_growth_deadline_multiplier = float(error_growth_deadline_multiplier)
 
         self.hold_start_step = int(hold_start_step)
+        self.hold_ramp_start_step = int(hold_ramp_start_step)
+        self.hold_ramp_end_step = max(int(hold_ramp_end_step), self.hold_ramp_start_step + 1)
         self.w_hold_r = float(w_hold_r)
         self.w_hold_z = float(w_hold_z)
         self.w_hold_ip = float(w_hold_ip)
@@ -257,6 +271,7 @@ class TscRzipEnv(gym.Env):
         self.episode_max_vessel_abs_sum_a = 0.0
         self.episode_max_velocity_norm = 0.0
         self.episode_overshoot_count = 0
+        self.last_velocity_norm = 0.0
 
         self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(self._obs_dim(),), dtype=np.float32)
         self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(14,), dtype=np.float32)
@@ -328,6 +343,7 @@ class TscRzipEnv(gym.Env):
         self.episode_max_vessel_abs_sum_a = 0.0
         self.episode_max_velocity_norm = 0.0
         self.episode_overshoot_count = 0
+        self.last_velocity_norm = 0.0
 
         episode_name = f"{self.worker_id}_episode_{uuid.uuid4().hex[:12]}"
         self.last_state = runner.reset(episode_name=episode_name)
@@ -353,13 +369,14 @@ class TscRzipEnv(gym.Env):
 
             derivative_norm = self._normalized_derivatives(state)
             derivative_norm_mag = float(np.linalg.norm(derivative_norm))
+            self.last_velocity_norm = derivative_norm_mag
             self._update_episode_extrema(state, derivative_norm=derivative_norm_mag)
             self._update_hold_windows(state, action, derivative_norm_mag)
 
             obs = self._obs(state, action_norm=action)
             reward, reward_terms = self._reward(obs, action, state, derivative_norm)
 
-            if self.first_reach_step is None and self._is_reached(state):
+            if self.first_reach_step is None and self._is_reached(state, derivative_norm_mag):
                 self.first_reach_step = self.step_count
 
             tsc_failed = bool(state.get("abnormal", False))
@@ -539,9 +556,26 @@ class TscRzipEnv(gym.Env):
         self.hold_vessel_total_abs_window.append(abs(float(state.get("vessel_current_total_a", 0.0))))
         self.hold_vessel_abs_sum_window.append(float(state.get("vessel_current_abs_sum_a", 0.0)))
 
-    def _is_reached(self, state: Dict[str, Any]) -> bool:
+    def _is_reached(self, state: Dict[str, Any], velocity_norm: float | None = None) -> bool:
+        """Strict reach predicate used for first-reach timing and fast-reach bonus.
+
+        B8.1 intentionally requires each physical channel to be inside its own
+        tolerance.  A scalar weighted norm alone can mark a near-initial state as
+        "reached" even when one channel, especially Z, is still visibly wrong.
+        If velocity_norm is provided, the state must also be slow enough; this
+        prevents rewarding a high-inertia pass through the target.
+        """
         r_error, z_error, ip_error = self._raw_errors(state)
-        return bool(abs(r_error) <= self.reach_success_r_tol and abs(z_error) <= self.reach_success_z_tol and abs(ip_error) <= self.reach_success_ip_tol)
+        err_ok = (
+            abs(r_error) <= self.reach_success_r_tol
+            and abs(z_error) <= self.reach_success_z_tol
+            and abs(ip_error) <= self.reach_success_ip_tol
+        )
+        if not err_ok:
+            return False
+        if velocity_norm is None:
+            return True
+        return bool(float(velocity_norm) <= self.reach_success_velocity_norm_max)
 
     def _is_quality_success(self, state: Dict[str, Any]) -> bool:
         r_error, z_error, ip_error = self._raw_errors(state)
@@ -582,6 +616,19 @@ class TscRzipEnv(gym.Env):
             and stats["hold_window_max_vessel_total_abs_a"] <= self.hold_success_vessel_total_a_max
             and stats["hold_window_max_vessel_abs_sum_a"] <= self.hold_success_vessel_abs_sum_a_max
         )
+
+    def _hold_weight(self) -> float:
+        """Smoothly transition from reach to hold penalties.
+
+        Hard switching exactly at 100 ms can give weak early shaping followed by
+        a sudden reward cliff.  A linear 80--120 ms ramp starts braking before
+        the deadline and makes the hold objective continuous.
+        """
+        if self.step_count <= self.hold_ramp_start_step:
+            return 0.0
+        if self.step_count >= self.hold_ramp_end_step:
+            return 1.0
+        return float((self.step_count - self.hold_ramp_start_step) / max(1, self.hold_ramp_end_step - self.hold_ramp_start_step))
 
     @staticmethod
     def _guard_penalty(error_abs: float, threshold: float, weight: float) -> float:
@@ -632,9 +679,16 @@ class TscRzipEnv(gym.Env):
         ip_guard_penalty = self._guard_penalty(abs(ip_error_raw), self.ip_guard_a, self.w_ip_guard)
 
         error_score_now = self._error_score(state)
-        reach_progress_bonus = 0.0 if self.prev_error_score is None else self.w_reach_progress * max(self.prev_error_score - error_score_now, 0.0)
+        raw_progress = 0.0 if self.prev_error_score is None else self.prev_error_score - error_score_now
+        reach_progress_bonus = self.w_reach_progress * max(raw_progress, 0.0)
+        error_growth = max(-raw_progress, 0.0)
+        near_growth_gain = 1.0 if err_norm2 <= self.error_growth_near_norm**2 else 0.0
+        deadline_gain = self.error_growth_deadline_multiplier if self.step_count <= self.reach_deadline_step else 1.0
+        error_growth_penalty = deadline_gain * (self.w_error_growth + self.w_error_growth_near_target * near_growth_gain) * error_growth
+
+        strict_reached_now = self._is_reached(state, float(np.linalg.norm(derivative_norm)))
         fast_reach_bonus_now = 0.0
-        if not self.fast_reach_bonus_given and self.step_count <= self.reach_deadline_step and self._is_reached(state):
+        if not self.fast_reach_bonus_given and self.step_count <= self.reach_deadline_step and strict_reached_now:
             fast_reach_bonus_now = self.fast_reach_bonus
             self.fast_reach_bonus_given = True
 
@@ -651,16 +705,11 @@ class TscRzipEnv(gym.Env):
             + self.w_vessel_delta * vessel_delta_norm**2
         )
 
-        hold_phase = self.step_count >= self.hold_start_step
-        hold_tracking_penalty = 0.0
-        hold_action_penalty = 0.0
-        hold_current_drift_penalty = 0.0
-        hold_vessel_penalty = 0.0
-        if hold_phase:
-            hold_tracking_penalty = self.w_hold_r * float(r_err**2) + self.w_hold_z * float(z_err**2) + self.w_hold_ip * float(ip_err**2)
-            hold_action_penalty = self.w_hold_action * float(np.mean(action_abs**2))
-            hold_current_drift_penalty = self.w_hold_current_drift * float(np.sum(np.maximum(current_util - self.current_soft_limit, 0.0) ** 2))
-            hold_vessel_penalty = self.w_hold_vessel_multiplier * vessel_penalty_raw
+        hold_weight = self._hold_weight()
+        hold_tracking_penalty = hold_weight * (self.w_hold_r * float(r_err**2) + self.w_hold_z * float(z_err**2) + self.w_hold_ip * float(ip_err**2))
+        hold_action_penalty = hold_weight * self.w_hold_action * float(np.mean(action_abs**2))
+        hold_current_drift_penalty = hold_weight * self.w_hold_current_drift * float(np.sum(np.maximum(current_util - self.current_soft_limit, 0.0) ** 2))
+        hold_vessel_penalty = hold_weight * self.w_hold_vessel_multiplier * vessel_penalty_raw
 
         reward = (
             - tracking_penalty
@@ -668,6 +717,7 @@ class TscRzipEnv(gym.Env):
             - deriv_penalty_base
             - deriv_penalty_near
             - overshoot_penalty
+            - error_growth_penalty
             - action_penalty
             - delta_action_penalty
             - current_penalty
@@ -693,6 +743,9 @@ class TscRzipEnv(gym.Env):
             "deriv_penalty_near": float(deriv_penalty_near),
             "near_target_gain": float(near_target_gain),
             "overshoot_penalty": float(overshoot_penalty),
+            "error_growth_penalty": float(error_growth_penalty),
+            "error_growth": float(error_growth),
+            "strict_reached_now": float(strict_reached_now),
             "action_penalty": float(action_penalty),
             "delta_action_penalty": float(delta_action_penalty),
             "current_penalty": float(current_penalty),
@@ -705,7 +758,8 @@ class TscRzipEnv(gym.Env):
             "hold_vessel_penalty": float(hold_vessel_penalty),
             "reach_progress_bonus": float(reach_progress_bonus),
             "fast_reach_bonus_now": float(fast_reach_bonus_now),
-            "hold_phase": float(hold_phase),
+            "hold_weight": float(hold_weight),
+            "hold_phase": float(hold_weight >= 1.0),
             "hold_tracking_penalty": float(hold_tracking_penalty),
             "hold_action_penalty": float(hold_action_penalty),
             "hold_current_drift_penalty": float(hold_current_drift_penalty),
@@ -745,12 +799,14 @@ class TscRzipEnv(gym.Env):
             "terminal_Z_error_norm": float(err[1]),
             "terminal_Ip_error_norm": float(err[2]),
             "terminal_current_util_max": float(np.max(current_util)),
+            "terminal_velocity_norm": float(self.last_velocity_norm),
             "terminal_vessel_current_total_a": float(state.get("vessel_current_total_a", 0.0)),
             "terminal_vessel_current_abs_sum_a": float(state.get("vessel_current_abs_sum_a", 0.0)),
             "terminal_vessel_current_rms_a": float(state.get("vessel_current_rms_a", 0.0)),
             "terminal_vessel_current_max_abs_a": float(state.get("vessel_current_max_abs_a", 0.0)),
             "time_to_first_reach_step": -1 if self.first_reach_step is None else int(self.first_reach_step),
             "time_to_stable_hold_step": -1 if self.first_stable_hold_step is None else int(self.first_stable_hold_step),
+            "reach_success_velocity_norm_max": float(self.reach_success_velocity_norm_max),
             "episode_max_abs_R_error": float(self.episode_max_abs_R_error),
             "episode_max_abs_Z_error": float(self.episode_max_abs_Z_error),
             "episode_max_abs_Ip_error": float(self.episode_max_abs_Ip_error),
@@ -784,7 +840,7 @@ class TscRzipEnv(gym.Env):
             "R_error_norm": float(err[0]),
             "Z_error_norm": float(err[1]),
             "Ip_error_norm": float(err[2]),
-            "velocity_norm": float(self.episode_max_velocity_norm),
+            "velocity_norm": float(self.last_velocity_norm),
             "vessel_current_total_a": float(state.get("vessel_current_total_a", 0.0)),
             "vessel_current_signed_sum_a": float(state.get("vessel_current_signed_sum_a", 0.0)),
             "vessel_current_abs_sum_a": float(state.get("vessel_current_abs_sum_a", 0.0)),

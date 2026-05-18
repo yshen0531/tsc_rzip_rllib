@@ -39,4 +39,4 @@ echo "============================"
 
 python scripts/train_rllib_sac.py \
   --config configs/rllib_sac.json \
-  --override "${1:-configs/train_b8_96worker_100k.json}"
+  --override "${1:-configs/train_b81_96worker_100k.json}"
