@@ -1,16 +1,15 @@
 from __future__ import annotations
 
-from pathlib import Path
 from typing import Any
 
 from tsc_rzip_rllib.envs.rzip_env import TscRzipEnv
 
 
 def env_kwargs_from_train_config(train_cfg: dict[str, Any], worker_id: str) -> dict[str, Any]:
-    """Build TscRzipEnv kwargs from the old SB3-style train config.
+    """Build TscRzipEnv kwargs from project JSON config.
 
-    This function is intentionally kept inside the new project so the RLlib
-    project does not import anything from the old sibling tsc_rzip_rl project.
+    This file intentionally lives inside the new project so runtime never imports
+    from the old sibling tsc_rzip_rl tree.
     """
     target = train_cfg["target"]
     ep = train_cfg["episode"]
@@ -40,6 +39,12 @@ def env_kwargs_from_train_config(train_cfg: dict[str, Any], worker_id: str) -> d
         include_vessel_current=obs_cfg.get("include_vessel_current", True),
         time_fraction_denominator_steps=obs_cfg.get("time_fraction_denominator_steps", None),
         clip_time_fraction=obs_cfg.get("clip_time_fraction", True),
+        include_history_stack=obs_cfg.get("include_history_stack", True),
+        history_stack_steps=obs_cfg.get("history_stack_steps", 8),
+        history_include_error=obs_cfg.get("history_include_error", True),
+        history_include_derivative=obs_cfg.get("history_include_derivative", True),
+        history_include_action=obs_cfg.get("history_include_action", True),
+        history_include_vessel_current=obs_cfg.get("history_include_vessel_current", True),
 
         w_r=rew["w_r"],
         w_z=rew["w_z"],
@@ -57,36 +62,52 @@ def env_kwargs_from_train_config(train_cfg: dict[str, Any], worker_id: str) -> d
         w_ip_guard=rew.get("w_ip_guard", 0.5),
         ip_guard_a=rew.get("ip_guard_a", 2500.0),
 
-        reach_deadline_step=rew.get("reach_deadline_step", 60),
-        reach_success_r_tol=rew.get("reach_success_r_tol", 0.045),
-        reach_success_z_tol=rew.get("reach_success_z_tol", 0.045),
-        reach_success_ip_tol=rew.get("reach_success_ip_tol", 1800.0),
+        reach_deadline_step=rew.get("reach_deadline_step", 100),
+        reach_success_r_tol=rew.get("reach_success_r_tol", 0.035),
+        reach_success_z_tol=rew.get("reach_success_z_tol", 0.035),
+        reach_success_ip_tol=rew.get("reach_success_ip_tol", 1500.0),
         fast_reach_bonus=rew.get("fast_reach_bonus", 120.0),
         w_reach_progress=rew.get("w_reach_progress", 0.35),
         w_pre_hold_tracking_boost=rew.get("w_pre_hold_tracking_boost", 0.7),
 
-        hold_start_step=rew.get("hold_start_step", 120),
+        hold_start_step=rew.get("hold_start_step", 100),
         w_hold_r=rew.get("w_hold_r", 4.0),
-        w_hold_z=rew.get("w_hold_z", 4.0),
-        w_hold_ip=rew.get("w_hold_ip", 0.4),
-        w_hold_action=rew.get("w_hold_action", 0.05),
-        w_delta_action=rew.get("w_delta_action", 0.03),
+        w_hold_z=rew.get("w_hold_z", 4.5),
+        w_hold_ip=rew.get("w_hold_ip", 0.6),
+        w_hold_action=rew.get("w_hold_action", 0.08),
+        w_delta_action=rew.get("w_delta_action", 0.05),
         w_hold_current_drift=rew.get("w_hold_current_drift", 0.12),
-        hold_success_bonus=rew.get("hold_success_bonus", 700.0),
-        hold_eval_window_steps=rew.get("hold_eval_window_steps", 100),
-        hold_success_r_tol=rew.get("hold_success_r_tol", 0.04),
-        hold_success_z_tol=rew.get("hold_success_z_tol", 0.04),
-        hold_success_ip_tol=rew.get("hold_success_ip_tol", 1200.0),
-        hold_success_action_mean_abs_max=rew.get("hold_success_action_mean_abs_max", 0.40),
-        hold_success_current_util_max=rew.get("hold_success_current_util_max", 0.8),
+
+        w_derivative=rew.get("w_derivative", 0.25),
+        w_near_target_derivative=rew.get("w_near_target_derivative", 0.75),
+        near_target_norm_sigma=rew.get("near_target_norm_sigma", 1.0),
+        w_overshoot=rew.get("w_overshoot", 1.2),
+        overshoot_near_norm=rew.get("overshoot_near_norm", 2.0),
+        w_vessel_total=rew.get("w_vessel_total", 0.04),
+        w_vessel_abs_sum=rew.get("w_vessel_abs_sum", 0.01),
+        w_vessel_rms=rew.get("w_vessel_rms", 0.08),
+        w_vessel_max_abs=rew.get("w_vessel_max_abs", 0.08),
+        w_vessel_delta=rew.get("w_vessel_delta", 0.03),
+        w_hold_vessel_multiplier=rew.get("w_hold_vessel_multiplier", 4.0),
+
+        hold_success_bonus=rew.get("hold_success_bonus", 900.0),
+        hold_eval_window_steps=rew.get("hold_eval_window_steps", 80),
+        hold_success_r_tol=rew.get("hold_success_r_tol", 0.025),
+        hold_success_z_tol=rew.get("hold_success_z_tol", 0.025),
+        hold_success_ip_tol=rew.get("hold_success_ip_tol", 900.0),
+        hold_success_velocity_norm_max=rew.get("hold_success_velocity_norm_max", 0.35),
+        hold_success_action_mean_abs_max=rew.get("hold_success_action_mean_abs_max", 0.25),
+        hold_success_current_util_max=rew.get("hold_success_current_util_max", 0.78),
+        hold_success_vessel_total_a_max=rew.get("hold_success_vessel_total_a_max", 8000.0),
+        hold_success_vessel_abs_sum_a_max=rew.get("hold_success_vessel_abs_sum_a_max", 80000.0),
 
         failure_penalty=failure.get("failure_penalty", -1000.0),
         failure_penalty_per_remaining_step=failure.get("failure_penalty_per_remaining_step", -5.0),
         survival_bonus=failure.get("survival_bonus", 100.0),
         quality_success_bonus=failure.get("quality_success_bonus", failure.get("success_bonus", 500.0)),
-        quality_success_r_tol=failure.get("quality_success_r_tol", 0.05),
-        quality_success_z_tol=failure.get("quality_success_z_tol", 0.05),
-        quality_success_ip_tol=failure.get("quality_success_ip_tol", 1500.0),
+        quality_success_r_tol=failure.get("quality_success_r_tol", 0.04),
+        quality_success_z_tol=failure.get("quality_success_z_tol", 0.04),
+        quality_success_ip_tol=failure.get("quality_success_ip_tol", 1200.0),
         quality_success_max_r_error=failure.get("quality_success_max_r_error", 0.08),
         quality_success_max_z_error=failure.get("quality_success_max_z_error", 0.08),
         quality_success_max_ip_error=failure.get("quality_success_max_ip_error", 2500.0),

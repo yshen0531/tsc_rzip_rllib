@@ -35,31 +35,38 @@ def _try_float(x: str) -> float | None:
     return v
 
 
-def read_total_vessel_current_csv(
+def read_vessel_current_summary_csv(
     path: Path,
     *,
     column_name: str = "cwire(ka)",
-    aggregation: str = "signed_sum",
+    observation_aggregation: str = "signed_sum",
     raw_to_a: float = 1000.0,
-) -> float:
-    """Read total vessel/wire current from TSC wire_currents.csv and return Ampere.
+) -> Dict[str, float]:
+    """Read TSC wire/vessel currents and return low-dimensional summaries in Ampere.
+
+    The deployable observation should normally use only one scalar, the signed
+    or configured total current.  For training-time reward/diagnostics we also
+    expose abs_sum/rms/max_abs.  These privileged summaries are not required at
+    deployment unless the PCS has a vessel-current observer.
 
     Expected TSC header:
         i/j, xwire, zwire, cwire(ka), cwire0(ka), diff, volts, t-f1
-
-    We intentionally read exactly column_name, default "cwire(ka)".
-    If that exact column is missing, raise an error instead of guessing.
     """
     path = Path(path)
     if not path.exists():
-        return 0.0
+        return {
+            "vessel_current_total_a": 0.0,
+            "vessel_current_signed_sum_a": 0.0,
+            "vessel_current_abs_sum_a": 0.0,
+            "vessel_current_rms_a": 0.0,
+            "vessel_current_max_abs_a": 0.0,
+        }
 
     try:
         df = pd.read_csv(path, skipinitialspace=True)
     except Exception as exc:
         raise RuntimeError(f"Failed to read vessel current CSV: {path}") from exc
 
-    # Normalize only whitespace around column names; do not fuzzy-match.
     df.columns = [str(c).strip() for c in df.columns]
     column_name = str(column_name).strip()
 
@@ -69,26 +76,57 @@ def read_total_vessel_current_csv(
             f"Available columns: {list(df.columns)}"
         )
 
-    vals = pd.to_numeric(df[column_name], errors="coerce").dropna().to_numpy(dtype=float)
+    vals_raw = pd.to_numeric(df[column_name], errors="coerce").dropna().to_numpy(dtype=float)
+    if vals_raw.size == 0:
+        vals_a = np.zeros(1, dtype=float)
+    else:
+        vals_a = vals_raw * float(raw_to_a)
 
-    if vals.size == 0:
-        return 0.0
+    signed_sum_a = float(np.sum(vals_a))
+    abs_sum_a = float(np.sum(np.abs(vals_a)))
+    rms_a = float(np.sqrt(np.mean(vals_a**2))) if vals_a.size else 0.0
+    max_abs_a = float(np.max(np.abs(vals_a))) if vals_a.size else 0.0
 
-    aggregation = str(aggregation).strip().lower()
-
-    if aggregation == "signed_sum":
-        total_raw = float(np.sum(vals))
-    elif aggregation == "abs_sum":
-        total_raw = float(np.sum(np.abs(vals)))
+    obs_agg = str(observation_aggregation).strip().lower()
+    if obs_agg == "signed_sum":
+        total_a = signed_sum_a
+    elif obs_agg == "abs_sum":
+        total_a = abs_sum_a
+    elif obs_agg == "rms":
+        total_a = rms_a
+    elif obs_agg == "max_abs":
+        total_a = max_abs_a
     else:
         raise ValueError(
-            "vessel_current_aggregation must be either "
-            f"'signed_sum' or 'abs_sum', got {aggregation!r}"
+            "vessel_current_observation_aggregation must be one of "
+            f"'signed_sum', 'abs_sum', 'rms', 'max_abs', got {obs_agg!r}"
         )
 
-    # cwire(ka) -> A
-    return total_raw * float(raw_to_a)
+    return {
+        "vessel_current_total_a": float(total_a),
+        "vessel_current_signed_sum_a": signed_sum_a,
+        "vessel_current_abs_sum_a": abs_sum_a,
+        "vessel_current_rms_a": rms_a,
+        "vessel_current_max_abs_a": max_abs_a,
+    }
 
+
+def read_total_vessel_current_csv(
+    path: Path,
+    *,
+    column_name: str = "cwire(ka)",
+    aggregation: str = "signed_sum",
+    raw_to_a: float = 1000.0,
+) -> float:
+    """Backward-compatible scalar vessel-current reader."""
+    return float(
+        read_vessel_current_summary_csv(
+            path,
+            column_name=column_name,
+            observation_aggregation=aggregation,
+            raw_to_a=raw_to_a,
+        )["vessel_current_total_a"]
+    )
 
 @dataclass
 class TSCConfig:
@@ -118,6 +156,7 @@ class TSCConfig:
     vessel_current_column: str = "cwire(ka)"
     vessel_current_raw_to_a: float = 1000.0
     vessel_current_aggregation: str = "signed_sum"
+    vessel_current_observation_aggregation: str = "signed_sum"
 
     coil_names_display_order: list[str] = field(default_factory=lambda: DISPLAY_COIL_NAMES.copy())
     coil_names_tsc_order: list[str] = field(default_factory=lambda: TSC_COIL_NAMES.copy())
@@ -165,6 +204,7 @@ class TSCConfig:
             vessel_current_column=str(data.get("vessel_current_column", "cwire(ka)")),
             vessel_current_raw_to_a=float(data.get("vessel_current_raw_to_a", 1000.0)),
             vessel_current_aggregation=str(data.get("vessel_current_aggregation", "signed_sum")),
+            vessel_current_observation_aggregation=str(data.get("vessel_current_observation_aggregation", data.get("vessel_current_aggregation", "signed_sum"))),
             coil_names_display_order=data["coil_names_display_order"],
             coil_names_tsc_order=data["coil_names_tsc_order"],
             turns_display_order=data["turns_display_order"],
@@ -208,9 +248,14 @@ class TSCConfig:
         if self.vessel_current_raw_to_a <= 0:
             raise ValueError("vessel_current_raw_to_a must be positive.")
 
-        if self.vessel_current_aggregation not in {"signed_sum", "abs_sum"}:
+        if self.vessel_current_aggregation not in {"signed_sum", "abs_sum", "rms", "max_abs"}:
             raise ValueError(
-                "vessel_current_aggregation must be either 'signed_sum' or 'abs_sum'."
+                "vessel_current_aggregation must be one of signed_sum, abs_sum, rms, max_abs."
+            )
+
+        if self.vessel_current_observation_aggregation not in {"signed_sum", "abs_sum", "rms", "max_abs"}:
+            raise ValueError(
+                "vessel_current_observation_aggregation must be one of signed_sum, abs_sum, rms, max_abs."
             )
 
         if not self.vessel_current_column.strip():
@@ -467,15 +512,16 @@ class TSCStepRunner:
         else:
             r_state, z_state = g["rc"], g["zc"]
 
-        vessel_current_total_a = read_total_vessel_current_csv(
+        vessel_summary = read_vessel_current_summary_csv(
             folder / "wire_currents.csv",
             column_name=self.cfg.vessel_current_column,
-            aggregation=self.cfg.vessel_current_aggregation,
+            observation_aggregation=self.cfg.vessel_current_observation_aggregation,
             raw_to_a=self.cfg.vessel_current_raw_to_a,
         )
 
         abnormal = self._has_abnormal(folder / "outputa")
-        if not np.all(np.isfinite([r_state, z_state, g["ip"], vessel_current_total_a])):
+        finite_check = [r_state, z_state, g["ip"]] + list(vessel_summary.values())
+        if not np.all(np.isfinite(finite_check)):
             abnormal = True
 
         return {
@@ -486,8 +532,8 @@ class TSCStepRunner:
             "Z": float(z_state),
             "Ip": float(g["ip"]),
 
-            # Total vessel/wire current proxy, unit A.
-            "vessel_current_total_a": float(vessel_current_total_a),
+            # Deployable scalar vessel/wire-current observation proxy, unit A.
+            **vessel_summary,
 
             "currents_kat_tsc": currents_kat_tsc.astype(float),
             "currents_a_tsc": currents_a_tsc.astype(float),

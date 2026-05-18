@@ -1,0 +1,161 @@
+{
+  "env_config": "configs/tsc_low_field_side_118.json",
+
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+
+  "episode": {
+    "max_episode_steps": 250
+  },
+
+  "normalization": {
+    "r_scale": 0.05,
+    "z_scale": 0.05,
+    "ip_scale": 30000.0,
+    "current_scale_a": 1000.0,
+    "r_velocity_scale": 1.0,
+    "z_velocity_scale": 1.0,
+    "ip_derivative_scale": 100000.0,
+    "vessel_current_scale_a": 100000.0
+  },
+
+  "observation": {
+    "include_derivatives": true,
+    "include_error_history": true,
+    "include_previous_action": true,
+    "include_time_fraction": true,
+    "include_vessel_current": true,
+    "time_fraction_denominator_steps": 100,
+    "clip_time_fraction": true,
+
+    "include_history_stack": true,
+    "history_stack_steps": 8,
+    "history_include_error": true,
+    "history_include_derivative": true,
+    "history_include_action": true,
+    "history_include_vessel_current": true
+  },
+
+  "reward": {
+    "w_r": 1.0,
+    "w_z": 1.3,
+    "w_ip": 0.25,
+
+    "w_action": 0.012,
+    "w_current": 0.0001,
+    "w_action_saturation": 0.08,
+    "action_soft_limit": 0.75,
+
+    "w_current_limit": 20.0,
+    "current_soft_limit": 0.72,
+
+    "w_r_guard": 2.0,
+    "r_guard_m": 0.08,
+    "w_z_guard": 2.0,
+    "z_guard_m": 0.08,
+    "w_ip_guard": 0.5,
+    "ip_guard_a": 2500.0,
+
+    "reach_deadline_step": 100,
+    "reach_success_r_tol": 0.035,
+    "reach_success_z_tol": 0.035,
+    "reach_success_ip_tol": 1500.0,
+    "fast_reach_bonus": 120.0,
+    "w_reach_progress": 0.35,
+    "w_pre_hold_tracking_boost": 0.7,
+
+    "w_derivative": 0.25,
+    "w_near_target_derivative": 0.75,
+    "near_target_norm_sigma": 1.0,
+    "w_overshoot": 1.2,
+    "overshoot_near_norm": 2.0,
+
+    "w_vessel_total": 0.04,
+    "w_vessel_abs_sum": 0.01,
+    "w_vessel_rms": 0.08,
+    "w_vessel_max_abs": 0.08,
+    "w_vessel_delta": 0.03,
+    "w_hold_vessel_multiplier": 4.0,
+
+    "hold_start_step": 100,
+    "w_hold_r": 4.0,
+    "w_hold_z": 4.5,
+    "w_hold_ip": 0.6,
+    "w_hold_action": 0.08,
+    "w_delta_action": 0.05,
+    "w_hold_current_drift": 0.12,
+
+    "hold_success_bonus": 900.0,
+    "hold_eval_window_steps": 80,
+    "hold_success_r_tol": 0.025,
+    "hold_success_z_tol": 0.025,
+    "hold_success_ip_tol": 900.0,
+    "hold_success_velocity_norm_max": 0.35,
+    "hold_success_action_mean_abs_max": 0.25,
+    "hold_success_current_util_max": 0.78,
+    "hold_success_vessel_total_a_max": 8000.0,
+    "hold_success_vessel_abs_sum_a_max": 80000.0
+  },
+
+  "curriculum": {
+    "hold_success": {
+      "enabled": true,
+      "stages": [
+        {
+          "until_env_steps": 80000,
+          "hold_success_r_tol": 0.055,
+          "hold_success_z_tol": 0.055,
+          "hold_success_ip_tol": 2200.0,
+          "hold_success_velocity_norm_max": 0.70,
+          "hold_success_action_mean_abs_max": 0.45,
+          "hold_success_current_util_max": 0.90,
+          "hold_success_vessel_total_a_max": 20000.0,
+          "hold_success_vessel_abs_sum_a_max": 160000.0
+        },
+        {
+          "until_env_steps": 200000,
+          "hold_success_r_tol": 0.040,
+          "hold_success_z_tol": 0.040,
+          "hold_success_ip_tol": 1500.0,
+          "hold_success_velocity_norm_max": 0.50,
+          "hold_success_action_mean_abs_max": 0.35,
+          "hold_success_current_util_max": 0.84,
+          "hold_success_vessel_total_a_max": 12000.0,
+          "hold_success_vessel_abs_sum_a_max": 110000.0
+        },
+        {
+          "until_env_steps": 999999999,
+          "hold_success_r_tol": 0.025,
+          "hold_success_z_tol": 0.025,
+          "hold_success_ip_tol": 900.0,
+          "hold_success_velocity_norm_max": 0.35,
+          "hold_success_action_mean_abs_max": 0.25,
+          "hold_success_current_util_max": 0.78,
+          "hold_success_vessel_total_a_max": 8000.0,
+          "hold_success_vessel_abs_sum_a_max": 80000.0
+        }
+      ]
+    }
+  },
+
+  "failure": {
+    "failure_penalty": -1000.0,
+    "failure_penalty_per_remaining_step": -5.0,
+
+    "survival_bonus": 100.0,
+    "quality_success_bonus": 500.0,
+
+    "quality_success_r_tol": 0.04,
+    "quality_success_z_tol": 0.04,
+    "quality_success_ip_tol": 1200.0,
+
+    "quality_success_max_r_error": 0.08,
+    "quality_success_max_z_error": 0.08,
+    "quality_success_max_ip_error": 2500.0,
+
+    "terminate_on_tsc_failure": true
+  }
+}

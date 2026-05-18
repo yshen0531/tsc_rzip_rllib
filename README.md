@@ -1,115 +1,115 @@
-# tsc_rzip_rllib
+# tsc_rzip_rllib — B8 fixed-target 1 ms reach-hold
 
-Standalone RLlib SAC project for TSC-based tokamak R-Z-Ip control.
-
-This project is intended to sit next to the old `tsc_rzip_rl` project:
+Standalone RLlib SAC project for TSC-based tokamak R-Z-Ip control.  This package is meant to sit next to the old `tsc_rzip_rl` directory and does **not** import code from it at runtime.
 
 ```text
 /home/yangshen0711/tsc_all/
-  tsc_rzip_rl/        # old project, not imported by this project
-  tsc_rzip_rllib/     # this new project
+  tsc_rzip_rl/        # old project, not imported
+  tsc_rzip_rllib/     # this project
   tsc_simulation/     # shared TSC tree, unchanged
 ```
 
-The old TSC runner/environment logic has been copied into this package and
-imports have been renamed to `tsc_rzip_rllib.*`. Runtime code does not import
-`tsc_rzip_rl`.
+## What changed in the B8 version
+
+B8 is aimed at fixed-target reach-hold control with a 1 ms control cycle and a 100 ms reach deadline.
+
+Key changes:
+
+1. `configs/tsc_low_field_side_118.json`
+   - `dt_ms` changed to `1`.
+   - Coil slew rate remains `0.3 A/ms`, therefore action=1 now corresponds to `0.3 A/step` single-turn current increment.
+
+2. `configs/train_b8_fixed_target_1ms.json`
+   - New default training task.
+   - Fixed target remains `R=0.75, Z=0, Ip=29779.724 A`.
+   - Episode length is `250 ms` / `250 steps`.
+   - Reach deadline is `100 ms`.
+   - Hold starts at `100 ms` and is evaluated over an `80 ms` window.
+
+3. Observation upgrade
+   - Keeps deployable scalar vessel-current observation only: `vessel_current_total_a`.
+   - Adds short history stack for MLP policy memory: recent errors, derivatives, previous actions, and scalar vessel-current proxy.
+   - Does **not** expose full vessel-current distribution to the policy.
+
+4. Reward upgrade
+   - Error tracking: R/Z/Ip.
+   - Damping: penalizes R/Z/Ip normalized velocity, especially near target.
+   - Overshoot: penalizes fast target crossing near target.
+   - Action quietness: penalizes action and action change, especially during hold.
+   - Coil limits: penalizes soft current/action saturation.
+   - Vessel-current penalty: observation uses total scalar only, while reward/diagnostics can use richer TSC summaries: signed total, abs-sum, rms, and max-abs.
+   - Hold success now requires small error, small velocity, small action, acceptable coil utilization, and low residual vessel current.
+
+5. Runtime robustness
+   - `run_train_native.sh` raises soft `ulimit` where possible, uses short `/tmp/ry_$USER` Ray temp path, and limits BLAS/OpenMP/Torch thread fan-out.
+   - `scripts/train_rllib_sac.py` also sets CPU-cluster thread defaults before importing Ray.
 
 ## Install
 
-No `pyproject.toml` is needed. Install dependencies only with:
-
 ```bash
+cd /home/yangshen0711/tsc_all/tsc_rzip_rllib
+python3.12 -m venv venv
+source venv/bin/activate
+pip install -U pip setuptools wheel
 pip install -r requirements.txt
 ```
 
-`requirements.txt` installs CPU-only PyTorch and RLlib. No GPU/CUDA dependency is used.
-
-If you are on Linux cluster and the Tsinghua mirror is slow, delete these two
-lines from `requirements.txt`:
-
-```text
--i https://pypi.tuna.tsinghua.edu.cn/simple
---trusted-host pypi.tuna.tsinghua.edu.cn
-```
-
-## Smoke test without TSC
+If torch is not installed in your environment, install CPU torch separately:
 
 ```bash
-bash run_debug_mock.sh
+pip install torch --index-url https://download.pytorch.org/whl/cpu
 ```
 
-On Windows PowerShell, for mock testing:
-
-```powershell
-$env:PYTHONPATH = (Get-Location).Path
-python scripts/train_rllib_sac.py --config configs/rllib_sac.json --override configs/debug_mock.json
-```
-
-## Native TSC training
-
-The default config assumes:
-
-```text
-TSC_ALL_ROOT=/home/yangshen0711/tsc_all
-TSC executable: $TSC_ALL_ROOT/tsc_simulation/TSC-PCS/gotsc
-Simulation root: $TSC_ALL_ROOT/tsc_simulation/HH70-PCS-ENV-LOW-FIELD-SIDE-118
-```
-
-If your shared TSC tree differs, edit `configs/tsc_low_field_side_118.json` or set:
+## Quick mock test
 
 ```bash
-export TSC_ALL_ROOT=/home/yangshen0711/tsc_all
+./run_debug_native.sh configs/debug_b8_mock.json
 ```
 
-Run:
+## Train B8 fixed target with 96 workers
 
 ```bash
-bash run_train.sh
+./run_train_native.sh configs/train_b8_96worker_100k.json
 ```
 
-The number of parallel TSC workers is controlled in `configs/rllib_sac.json`:
-
-```json
-"parallel": {
-  "num_tsc_workers": "auto:0.75",
-  "reserve_cpus": 4,
-  "num_envs_per_tsc_worker": 1
-}
-```
-
-Examples:
-
-```json
-"num_tsc_workers": 64
-```
-
-```json
-"num_tsc_workers": 128
-```
-
-```json
-"num_tsc_workers": "auto:0.70"
-```
-
-No separate `cluster_128.json`, `cluster_192.json`, `run_train_128.sh`, or
-`run_train_192.sh` is needed.
-
-## Check process fan-out
+Equivalent:
 
 ```bash
-python scripts/inspect_parallel.py
+./run_train.sh
 ```
 
-## Important parallelism rule
+## Monitor
 
-Keep:
-
-```json
-"num_envs_per_tsc_worker": 1
+```bash
+watch -n 10 'echo threads=$(ps -u $USER -L --no-headers | wc -l); echo procs=$(ps -u $USER --no-headers | wc -l); ray status | sed -n "1,40p"'
 ```
 
-for native TSC. This maps to RLlib `num_envs_per_env_runner=1`, so each Ray
-EnvRunner owns one independent TSC environment and one isolated TSC workspace.
-Do not pack multiple TSC envs into the same EnvRunner unless you deliberately
-want vectorized waiting behavior inside that worker.
+Check errors:
+
+```bash
+grep -RniE "nonfinite|sanitized|terminated_by_finite_guard|traceback|exception|error|failed|timeout|pthread_create|Resource temporarily unavailable" \
+  /tmp/ry_${USER}/session_latest/logs | head -100
+```
+
+Analyze a run:
+
+```bash
+latest=$(ls -td ray_results/train_b8_fixed_target_1ms_96worker_100k_* | head -1)
+python scripts/analyze_rllib_run.py "$latest"
+```
+
+Evaluate a checkpoint:
+
+```bash
+python scripts/eval_rllib_checkpoint.py \
+  --config configs/rllib_sac.json \
+  --checkpoint ray_checkpoints/<run>/final \
+  --episodes 3 \
+  --out eval_b8_rollout.csv
+```
+
+This writes both `eval_b8_rollout.csv` and `eval_b8_rollout.summary.json`.
+
+## Notes on vessel-current observability
+
+Deployment observation intentionally contains only a scalar total vessel-current proxy, because the real controller may only have access to a total vessel-current estimate.  Reward and diagnostics may use richer TSC-only summaries because reward is not deployed as a sensor input.

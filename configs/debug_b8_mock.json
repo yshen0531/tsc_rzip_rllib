@@ -1,36 +1,31 @@
 {
-  "run_name": "debug_native_4worker",
-  "stop_env_steps": 400,
-  "checkpoint_every_iters": 1,
-
+  "run_name": "debug_b8_mock",
+  "stop_env_steps": 2000,
+  "checkpoint_every_iters": 2,
   "env": {
-    "backend": "native",
-    "disable_env_checking": false
+    "backend": "mock",
+    "disable_env_checking": false,
+    "mock_config": {
+      "max_episode_steps": 80,
+      "noise": 0.0
+    }
   },
-
   "parallel": {
-    "ray_num_cpus": 6,
-    "object_store_memory": 536870912,
-
+    "ray_num_cpus": 2,
+    "object_store_memory": 268435456,
     "reserve_cpus": 1,
-    "num_tsc_workers": 4,
+    "num_tsc_workers": 1,
     "num_envs_per_tsc_worker": 1,
     "num_cpus_per_tsc_worker": 1,
-
-    "sample_timeout_s": 900.0,
-    "max_requests_in_flight_per_tsc_worker": 1,
-    "rollout_fragment_length": "auto",
-    "batch_mode": "truncate_episodes"
+    "sample_timeout_s": 60.0
   },
-
   "learner": {
     "num_learners": 1,
     "num_cpus_per_learner": 1,
     "num_gpus_per_learner": 0
   },
-
   "sac": {
-    "num_steps_sampled_before_learning_starts": 100,
+    "num_steps_sampled_before_learning_starts": 200,
     "train_batch_size_per_learner": 128,
     "replay_buffer_config": {
       "type": "PrioritizedEpisodeReplayBuffer",
@@ -39,7 +34,6 @@
       "beta": 0.4
     }
   },
-
   "reporting": {
     "min_sample_timesteps_per_iteration": 20
   }

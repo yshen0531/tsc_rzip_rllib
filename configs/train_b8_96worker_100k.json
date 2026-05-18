@@ -1,0 +1,5 @@
+{
+  "run_name": "train_b8_fixed_target_1ms_96worker_100k",
+  "stop_env_steps": 100000,
+  "checkpoint_every_iters": 10
+}

@@ -13,11 +13,8 @@
   },
 
   "parallel": {
-    "ray_num_cpus": 2,
-    "object_store_memory": 268435456,
-
     "reserve_cpus": 1,
-    "num_tsc_workers": 1,
+    "num_tsc_workers": 2,
     "num_envs_per_tsc_worker": 1,
     "num_cpus_per_tsc_worker": 1,
     "sample_timeout_s": 60.0

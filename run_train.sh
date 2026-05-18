@@ -1,20 +1,3 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-cd "$(dirname "$0")"
-
-export PYTHONPATH="$PWD:${PYTHONPATH:-}"
-
-export RAY_TMPDIR="${RAY_TMPDIR:-/tmp/ry_${USER}}"
-export TMPDIR="${TMPDIR:-${RAY_TMPDIR}/tmp}"
-
-mkdir -p "$RAY_TMPDIR"
-mkdir -p "$TMPDIR"
-
-export OMP_NUM_THREADS=1
-export MKL_NUM_THREADS=1
-export OPENBLAS_NUM_THREADS=1
-export NUMEXPR_NUM_THREADS=1
-
-python scripts/train_rllib_sac.py \
-  --config configs/rllib_sac.json
+exec "$(dirname "$0")/run_train_native.sh" "${1:-configs/train_b8_96worker_100k.json}"

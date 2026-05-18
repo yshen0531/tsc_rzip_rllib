@@ -15,12 +15,7 @@ PROJECT_DIR = Path(__file__).resolve().parents[1]
 if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 
-# ---------------------------------------------------------------------------
-# CPU-cluster safety defaults.
-# These must be set before importing Ray/Torch/NumPy-heavy workers.
-# They prevent each Ray worker from spawning many BLAS/OpenMP/PyTorch threads.
-# Shell scripts may override them explicitly.
-# ---------------------------------------------------------------------------
+# CPU-cluster safety defaults. Set before importing Ray/Torch-heavy modules.
 os.environ.setdefault("OMP_NUM_THREADS", "1")
 os.environ.setdefault("MKL_NUM_THREADS", "1")
 os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
@@ -414,19 +409,14 @@ def main():
         encoding="utf-8",
     )
 
-    # Ray runtime temp directory.
-    # Use a short path because Ray creates UNIX sockets under this directory.
-    # Long project paths can exceed the AF_UNIX socket path length limit.
+    # Ray runtime temp directory. Keep it short because Ray creates UNIX sockets under it.
     ray_tmpdir = os.environ.get("RAY_TMPDIR")
     if not ray_tmpdir:
-        user = os.environ.get("USER", "user")
-        ray_tmpdir = f"/tmp/ry_{user}"
-
+        ray_tmpdir = f"/tmp/ry_{os.environ.get('USER', 'user')}"
     tmpdir = os.environ.get("TMPDIR")
     if not tmpdir:
         tmpdir = os.path.join(ray_tmpdir, "tmp")
         os.environ["TMPDIR"] = tmpdir
-
     Path(ray_tmpdir).mkdir(parents=True, exist_ok=True)
     Path(tmpdir).mkdir(parents=True, exist_ok=True)
 
@@ -436,12 +426,8 @@ def main():
         "ignore_reinit_error": True,
         "_temp_dir": str(Path(ray_tmpdir).resolve()),
     }
-
-    # Debug/small-node safety: avoid Ray object store taking too much /dev/shm.
-    # 256 MiB is enough for debug_mock. Increase this for real large training if needed.
     if pcfg.get("object_store_memory", None) is not None:
         ray_init_kwargs["object_store_memory"] = int(pcfg["object_store_memory"])
-
     if pcfg.get("ray_address"):
         ray_init_kwargs["address"] = pcfg["ray_address"]
     if pcfg.get("ray_num_cpus") is not None:
