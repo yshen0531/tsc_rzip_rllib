@@ -11,6 +11,7 @@ legacy/
 rl_logs/
 eval_logs/
 ray_results/
+logs/
 
 
 # Distribution / packaging
