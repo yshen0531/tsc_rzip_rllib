@@ -15,9 +15,9 @@ from tsc_rzip_rllib.core.runner import TSCConfig, TSCStepRunner
 class TscRzipEnv(gym.Env):
     """Gymnasium environment for TSC-based R/Z/Ip fixed-target reach-hold control.
 
-    B8.1 design goals:
-      * 1 ms control step, 100 ms reach deadline;
-      * error + velocity damping + overshoot penalty, not just position error;
+    B8.2-RL design goals:
+      * 1 ms control step, curriculum from easier reach/hold to 100 ms deadline;
+      * dense signed progress shaping + error/velocity/overshoot penalties;
       * deployable observation only includes a scalar total vessel-current proxy;
       * reward/diagnostics may use richer TSC vessel-current summaries;
       * short history stack gives an MLP enough local memory without recurrent SAC.
@@ -47,6 +47,8 @@ class TscRzipEnv(gym.Env):
         include_error_history: bool = True,
         include_previous_action: bool = True,
         include_time_fraction: bool = True,
+        include_deadline_fraction: bool = False,
+        include_hold_weight: bool = False,
         include_vessel_current: bool = True,
         time_fraction_denominator_steps: int | None = None,
         clip_time_fraction: bool = True,
@@ -78,6 +80,7 @@ class TscRzipEnv(gym.Env):
         reach_success_velocity_norm_max: float = 0.8,
         fast_reach_bonus: float = 0.0,
         w_reach_progress: float = 0.35,
+        signed_progress_reward: bool = False,
         w_pre_hold_tracking_boost: float = 1.0,
         w_error_growth: float = 1.2,
         w_error_growth_near_target: float = 1.0,
@@ -146,6 +149,8 @@ class TscRzipEnv(gym.Env):
         self.include_error_history = bool(include_error_history)
         self.include_previous_action = bool(include_previous_action)
         self.include_time_fraction = bool(include_time_fraction)
+        self.include_deadline_fraction = bool(include_deadline_fraction)
+        self.include_hold_weight = bool(include_hold_weight)
         self.include_vessel_current = bool(include_vessel_current)
         self.time_fraction_denominator_steps = None if time_fraction_denominator_steps is None else int(time_fraction_denominator_steps)
         self.clip_time_fraction = bool(clip_time_fraction)
@@ -180,6 +185,7 @@ class TscRzipEnv(gym.Env):
         self.reach_success_velocity_norm_max = float(reach_success_velocity_norm_max)
         self.fast_reach_bonus = float(fast_reach_bonus)
         self.w_reach_progress = float(w_reach_progress)
+        self.signed_progress_reward = bool(signed_progress_reward)
         self.w_pre_hold_tracking_boost = float(w_pre_hold_tracking_boost)
         self.w_error_growth = float(w_error_growth)
         self.w_error_growth_near_target = float(w_error_growth_near_target)
@@ -285,6 +291,10 @@ class TscRzipEnv(gym.Env):
         if self.include_previous_action:
             dim += 14
         if self.include_time_fraction:
+            dim += 1
+        if self.include_deadline_fraction:
+            dim += 1
+        if self.include_hold_weight:
             dim += 1
         if self.include_vessel_current:
             dim += 1
@@ -469,6 +479,10 @@ class TscRzipEnv(gym.Env):
         tf = self.step_count / max(1, denom)
         return float(min(tf, 1.0) if self.clip_time_fraction else tf)
 
+    def _deadline_fraction_value(self) -> float:
+        tf = self.step_count / max(1, int(self.reach_deadline_step))
+        return float(min(tf, 1.0) if self.clip_time_fraction else tf)
+
     def _vessel_total_norm(self, state: Dict[str, Any]) -> float:
         return float(state.get("vessel_current_total_a", 0.0)) / self.vessel_current_scale_a
 
@@ -510,6 +524,10 @@ class TscRzipEnv(gym.Env):
             parts.append(np.asarray(action_norm, dtype=float).copy())
         if self.include_time_fraction:
             parts.append(np.asarray([self._time_fraction_value()], dtype=float))
+        if self.include_deadline_fraction:
+            parts.append(np.asarray([self._deadline_fraction_value()], dtype=float))
+        if self.include_hold_weight:
+            parts.append(np.asarray([self._hold_weight()], dtype=float))
         if self.include_vessel_current:
             parts.append(np.asarray([self._vessel_total_norm(state)], dtype=float))
         if self.include_history_stack and self.history_stack_steps > 0:
@@ -680,7 +698,13 @@ class TscRzipEnv(gym.Env):
 
         error_score_now = self._error_score(state)
         raw_progress = 0.0 if self.prev_error_score is None else self.prev_error_score - error_score_now
-        reach_progress_bonus = self.w_reach_progress * max(raw_progress, 0.0)
+        if self.signed_progress_reward:
+            # B8.2-RL: dense directional signal. Positive when moving toward the
+            # target, negative when drifting away. This is not an action prior; it
+            # only tells SAC whether the current transition improved the state.
+            reach_progress_bonus = self.w_reach_progress * raw_progress
+        else:
+            reach_progress_bonus = self.w_reach_progress * max(raw_progress, 0.0)
         error_growth = max(-raw_progress, 0.0)
         near_growth_gain = 1.0 if err_norm2 <= self.error_growth_near_norm**2 else 0.0
         deadline_gain = self.error_growth_deadline_multiplier if self.step_count <= self.reach_deadline_step else 1.0
@@ -745,6 +769,8 @@ class TscRzipEnv(gym.Env):
             "overshoot_penalty": float(overshoot_penalty),
             "error_growth_penalty": float(error_growth_penalty),
             "error_growth": float(error_growth),
+            "raw_progress": float(raw_progress),
+            "signed_progress_reward": float(self.signed_progress_reward),
             "strict_reached_now": float(strict_reached_now),
             "action_penalty": float(action_penalty),
             "delta_action_penalty": float(delta_action_penalty),

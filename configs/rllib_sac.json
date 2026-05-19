@@ -1,9 +1,9 @@
 {
-  "run_name": "b81_fixed_target_1ms_sac",
-  "train_config": "configs/train_b81_fixed_target_1ms.json",
+  "run_name": "train_b82_rl_curriculum_96worker_2m",
+  "train_config": "configs/train_b82_fixed_target_1ms.json",
   "seed": 42,
-  "stop_env_steps": 100000,
-  "checkpoint_every_iters": 10,
+  "stop_env_steps": 2000000,
+  "checkpoint_every_iters": 25,
   "log_root": "ray_results",
   "checkpoint_root": "ray_checkpoints",
   "log_level": "INFO",
@@ -44,17 +44,17 @@
     "actor_lr": 3e-05,
     "critic_lr": 0.0003,
     "alpha_lr": 0.0003,
-    "initial_alpha": 1.0,
+    "initial_alpha": 2.0,
     "target_entropy": "auto",
     "twin_q": true,
     "grad_clip": 10.0,
     "clip_actions": true,
-    "num_steps_sampled_before_learning_starts": 5000,
+    "num_steps_sampled_before_learning_starts": 50000,
     "train_batch_size_per_learner": 4096,
     "training_intensity": 1.0,
     "replay_buffer_config": {
       "type": "PrioritizedEpisodeReplayBuffer",
-      "capacity": 500000,
+      "capacity": 2000000,
       "alpha": 0.6,
       "beta": 0.4
     },
@@ -65,17 +65,19 @@
       512,
       512,
       512,
+      512,
       256
     ],
     "fcnet_activation": "swish",
     "fcnet_use_layernorm": true,
     "head_fcnet_hiddens": [
+      256,
       256
     ],
     "head_fcnet_activation": "swish"
   },
   "reporting": {
     "min_time_s_per_iteration": 1.0,
-    "min_sample_timesteps_per_iteration": 1000
+    "min_sample_timesteps_per_iteration": 2000
   }
 }

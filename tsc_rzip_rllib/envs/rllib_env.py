@@ -32,6 +32,8 @@ class RllibTscRzipEnv(gym.Env):
         self.seed_base = int(self.env_config.get("seed", 42))
         self.local_env_steps = 0
         self.episode_idx = 0
+        self.curriculum_stage_index = -1
+        self.curriculum_stage_name = ""
 
         guard_cfg = dict(self.env_config.get("finite_guard", {}))
         self.enable_finite_guard = bool(guard_cfg.get("enabled", True))
@@ -122,6 +124,17 @@ class RllibTscRzipEnv(gym.Env):
         info["rllib_local_env_steps"] = self.local_env_steps
         if self.backend == "native":
             for name in [
+                "reach_deadline_step",
+                "hold_ramp_start_step",
+                "hold_ramp_end_step",
+                "hold_start_step",
+                "w_reach_progress",
+                "w_action",
+                "w_delta_action",
+                "w_vessel_total",
+                "w_vessel_abs_sum",
+                "w_hold_action",
+                "w_hold_vessel_multiplier",
                 "hold_success_r_tol",
                 "hold_success_z_tol",
                 "hold_success_ip_tol",
@@ -132,7 +145,60 @@ class RllibTscRzipEnv(gym.Env):
                 "hold_success_vessel_abs_sum_a_max",
             ]:
                 info[f"curriculum_{name}"] = float(getattr(self.env, name, 0.0))
+            info["curriculum_stage_index"] = int(self.curriculum_stage_index)
+            info["curriculum_stage_name"] = str(self.curriculum_stage_name)
         return info
+
+    def _apply_attribute_curriculum(self) -> None:
+        """Apply generic per-worker local-step curriculum to env attributes.
+
+        This keeps the policy-learning problem RL-based: no action prior or
+        demonstration is injected.  The stages only change task/reward difficulty
+        (deadline, progress weight, hold strictness, etc.) using local env steps.
+        With many EnvRunners, set `until_local_steps` in configs rather than
+        aggregate env steps.
+        """
+        if self.backend != "native":
+            return
+        train_cfg = self.env_config.get("train_config", {})
+        cur = train_cfg.get("curriculum", {}).get("env_attributes", {})
+        if not cur.get("enabled", False):
+            return
+        stages = list(cur.get("stages", []))
+        if not stages:
+            return
+
+        selected = stages[-1]
+        selected_idx = len(stages) - 1
+        for i, stage in enumerate(stages):
+            until = int(stage.get("until_local_steps", stage.get("until_env_steps", 10**18)))
+            if self.local_env_steps < until:
+                selected = stage
+                selected_idx = i
+                break
+
+        self.curriculum_stage_index = int(selected_idx)
+        self.curriculum_stage_name = str(selected.get("name", f"stage_{selected_idx}"))
+
+        params = dict(selected.get("env_params", {}))
+        # Also allow flat stage keys for convenience, excluding control keys.
+        for k, v in selected.items():
+            if k not in {"name", "until_local_steps", "until_env_steps", "env_params"}:
+                params.setdefault(k, v)
+
+        for name, value in params.items():
+            if hasattr(self.env, name):
+                current = getattr(self.env, name)
+                try:
+                    if isinstance(current, bool):
+                        casted = bool(value)
+                    elif isinstance(current, int) and not isinstance(current, bool):
+                        casted = int(value)
+                    else:
+                        casted = float(value)
+                    setattr(self.env, name, casted)
+                except Exception:
+                    setattr(self.env, name, value)
 
     def _apply_hold_curriculum(self) -> None:
         if self.backend != "native":
@@ -155,6 +221,7 @@ class RllibTscRzipEnv(gym.Env):
 
     def reset(self, *, seed=None, options=None):
         self.episode_idx += 1
+        self._apply_attribute_curriculum()
         self._apply_hold_curriculum()
         if seed is None:
             seed = self.seed_base + 100000 * self.worker_index + 1000 * self.vector_index + self.episode_idx
@@ -167,6 +234,7 @@ class RllibTscRzipEnv(gym.Env):
         return obs, info
 
     def step(self, action):
+        self._apply_attribute_curriculum()
         self._apply_hold_curriculum()
         pre_info: dict[str, Any] = {}
         safe_action, bad_action = self._sanitize_action(action, pre_info)

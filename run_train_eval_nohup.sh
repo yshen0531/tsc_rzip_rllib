@@ -10,15 +10,17 @@ mkdir -p "$LOG_DIR" "$PID_DIR"
 
 STAMP="$(date +%Y%m%d_%H%M%S)"
 CONFIG_BASENAME="$(basename "$CONFIG" .json)"
-LOG_FILE="${LOG_DIR}/${CONFIG_BASENAME}_${STAMP}.log"
-PID_FILE="${PID_DIR}/${CONFIG_BASENAME}_${STAMP}.pid"
+LOG_FILE="${LOG_DIR}/${CONFIG_BASENAME}_train_eval_${STAMP}.log"
+PID_FILE="${PID_DIR}/${CONFIG_BASENAME}_train_eval_${STAMP}.pid"
 
-echo "Starting nohup training..."
+echo "Starting B8.2 train + eval with nohup..."
 echo "Config: $CONFIG"
 echo "Log:    $LOG_FILE"
 echo "PID:    $PID_FILE"
+echo
 
-nohup setsid bash run_train_native.sh "$CONFIG" > "$LOG_FILE" 2>&1 < /dev/null &
+# run_train_eval_native.sh does train -> analyze -> eval in one foreground process.
+nohup setsid bash run_train_eval_native.sh "$CONFIG" > "$LOG_FILE" 2>&1 < /dev/null &
 PID=$!
 echo "$PID" > "$PID_FILE"
 ln -sfn "$(basename "$PID_FILE")" "${PID_DIR}/latest.pid"
