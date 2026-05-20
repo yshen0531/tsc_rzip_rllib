@@ -323,6 +323,12 @@ class TscRzipEnv(gym.Env):
         super().reset(seed=seed)
         runner = self._ensure_runner()
 
+        # If the previous episode ended but was not explicitly cleaned up
+        # (for example, external evaluation stopped early), remove it before
+        # creating the next episode directory.  Normal training episodes are
+        # also cleaned immediately when terminated/truncated in step().
+        runner.cleanup_episode_workspace(failed=False, reason="reset_before_new_episode")
+
         self.step_count = 0
         self.episode_return = 0.0
         self.prev_raw_values = None
@@ -430,6 +436,10 @@ class TscRzipEnv(gym.Env):
 
             if terminated or truncated:
                 info.update(self._terminal_info(state, tsc_failed, survived_episode, quality_success, hold_success))
+                runner.cleanup_episode_workspace(
+                    failed=bool(tsc_failed),
+                    reason=str(info.get("failure_reason", "") or state.get("done_reason", "")),
+                )
             return obs, reward, terminated, truncated, info
 
         except Exception as exc:
@@ -450,6 +460,10 @@ class TscRzipEnv(gym.Env):
                 "worker_id": self.worker_id,
             })
             info.update(self._terminal_info(self.last_state, True, False, False, False))
+            try:
+                runner.cleanup_episode_workspace(failed=True, reason=repr(exc))
+            except Exception:
+                pass
             return obs, reward, True, False, info
 
     def _raw_values(self, state: Dict[str, Any]) -> np.ndarray:
@@ -916,6 +930,10 @@ class TscRzipEnv(gym.Env):
 
     def close(self):
         if self.runner is not None:
+            # Best-effort cleanup of any still-active episode plus the private
+            # copied TSC workdir.  This keeps interrupted eval/train runs from
+            # leaving large workspaces behind.
+            self.runner.cleanup_episode_workspace(failed=False, reason="env_close")
             self.runner.cleanup_runtime_workspace()
             self.runner = None
         super().close()

@@ -270,5 +270,21 @@
     "quality_success_max_z_error": 0.18,
     "quality_success_max_ip_error": 3500.0,
     "terminate_on_tsc_failure": true
+  },
+  "runtime": {
+    "runs_root": "/tmp/{USER}/tsc_rzip_rllib/{RUN_ID}/runs",
+    "tsc_workspace_root": "/tmp/{USER}/tsc_rzip_rllib/{RUN_ID}/tsc_workspaces",
+    "cleanup_episode_dir": true,
+    "keep_failed_episode_dir": true,
+    "keep_last_n_failed_episode_dirs": 20,
+    "keep_episode_restart_files": false,
+    "keep_tsc_workspace": false,
+    "keep_runtime_tsc_outputs": false,
+    "disk_watchdog": {
+      "enabled": true,
+      "check_every_iters": 1,
+      "min_free_gb": 10.0,
+      "min_inode_free_percent": 1.0
+    }
   }
 }

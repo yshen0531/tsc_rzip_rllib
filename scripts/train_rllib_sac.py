@@ -5,6 +5,7 @@ import argparse
 import copy
 import json
 import os
+import shutil
 import sys
 import time
 from datetime import datetime
@@ -108,6 +109,74 @@ def json_safe(obj: Any) -> Any:
         return str(obj)
 
 
+def statvfs_inode_free_fraction(path: Path) -> tuple[int, int, float]:
+    """Return free inodes, total inodes, and free fraction for a path."""
+    st = os.statvfs(str(path))
+    total = int(st.f_files)
+    free = int(st.f_favail)
+    frac = float(free / total) if total > 0 else 1.0
+    return free, total, frac
+
+
+def disk_health_report(paths: list[Path]) -> list[dict[str, Any]]:
+    """Collect disk byte/inode status for unique filesystem paths."""
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for raw in paths:
+        try:
+            path = Path(raw).expanduser()
+            path.mkdir(parents=True, exist_ok=True)
+            resolved = str(path.resolve())
+            usage = shutil.disk_usage(path)
+            free_inodes, total_inodes, inode_free_frac = statvfs_inode_free_fraction(path)
+        except Exception as exc:
+            out.append({"path": str(raw), "error": repr(exc)})
+            continue
+
+        # Avoid printing duplicate entries when several paths live on the same
+        # filesystem but keep the path label useful for debugging.
+        key = resolved
+        if key in seen:
+            continue
+        seen.add(key)
+
+        out.append(
+            {
+                "path": resolved,
+                "free_bytes": int(usage.free),
+                "total_bytes": int(usage.total),
+                "used_bytes": int(usage.used),
+                "free_gb": float(usage.free / (1024**3)),
+                "used_percent": float(100.0 * usage.used / max(usage.total, 1)),
+                "free_inodes": int(free_inodes),
+                "total_inodes": int(total_inodes),
+                "inode_free_percent": float(100.0 * inode_free_frac),
+            }
+        )
+    return out
+
+
+def disk_watchdog_triggered(paths: list[Path], cfg: dict[str, Any]) -> tuple[bool, list[dict[str, Any]]]:
+    """Return (triggered, report) for disk/inode guardrail checks."""
+    if not bool(cfg.get("enabled", True)):
+        return False, []
+
+    min_free_gb = float(cfg.get("min_free_gb", 80.0))
+    min_inode_free_percent = float(cfg.get("min_inode_free_percent", 5.0))
+    report = disk_health_report(paths)
+
+    triggered = False
+    for item in report:
+        if "error" in item:
+            triggered = True
+            continue
+        if float(item["free_gb"]) < min_free_gb:
+            triggered = True
+        if float(item["inode_free_percent"]) < min_inode_free_percent:
+            triggered = True
+    return triggered, report
+
+
 def expand_macros(obj: Any, macros: dict[str, str]) -> Any:
     if isinstance(obj, str):
         out = os.path.expandvars(obj)
@@ -173,6 +242,9 @@ def prepare_train_config(
     macros = {
         "PROJECT_DIR": str(project_dir),
         "TSC_ALL_ROOT": str(tsc_all_root),
+        "RUN_DIR": str(run_dir),
+        "RUN_ID": str(run_dir.name),
+        "USER": os.environ.get("USER", "user"),
     }
 
     train_cfg = expand_macros(train_cfg, macros)
@@ -183,6 +255,26 @@ def prepare_train_config(
 
     tsc_cfg = load_json(env_config_path)
     tsc_cfg = expand_macros(tsc_cfg, macros)
+
+    # Runtime storage overrides.  Long TSC trainings generate large per-episode
+    # workspaces.  Keep these under /tmp or scratch by default and clean normal
+    # episodes immediately; retain only a bounded number of failed episodes.
+    runtime_cfg = dict(train_cfg.get("runtime", {}))
+    if runtime_cfg:
+        if runtime_cfg.get("runs_root") is not None:
+            tsc_cfg["run_root"] = runtime_cfg["runs_root"]
+        if runtime_cfg.get("tsc_workspace_root") is not None:
+            tsc_cfg["tsc_workspace_root"] = runtime_cfg["tsc_workspace_root"]
+        for key in [
+            "cleanup_episode_dir",
+            "keep_failed_episode_dir",
+            "keep_last_n_failed_episode_dirs",
+            "keep_episode_restart_files",
+            "keep_tsc_workspace",
+            "keep_runtime_tsc_outputs",
+        ]:
+            if key in runtime_cfg:
+                tsc_cfg[key] = runtime_cfg[key]
 
     runtime_cfg_dir = run_dir / "resolved_configs"
     runtime_cfg_dir.mkdir(parents=True, exist_ok=True)
@@ -409,6 +501,25 @@ def main():
         encoding="utf-8",
     )
 
+    resolved_tsc_cfg = load_json(Path(train_cfg["env_config"]))
+    runtime_cfg = dict(train_cfg.get("runtime", {}))
+    watchdog_cfg = dict(runtime_cfg.get("disk_watchdog", {}))
+    disk_watch_paths = [
+        run_dir,
+        ckpt_dir,
+        Path(resolved_tsc_cfg.get("run_root", project_dir / "runs")),
+        Path(resolved_tsc_cfg.get("tsc_workspace_root", project_dir / "tsc_workspaces")),
+    ]
+    disk_watch_paths = [p if p.is_absolute() else project_dir / p for p in disk_watch_paths]
+    initial_disk_report = disk_health_report(disk_watch_paths)
+    (run_dir / "disk_health_initial.json").write_text(
+        json.dumps(initial_disk_report, indent=2),
+        encoding="utf-8",
+    )
+    print("========== initial disk health ==========")
+    print(json.dumps(initial_disk_report, indent=2))
+    print("=========================================")
+
     # Ray runtime temp directory. Keep it short because Ray creates UNIX sockets under it.
     ray_tmpdir = os.environ.get("RAY_TMPDIR")
     if not ray_tmpdir:
@@ -500,6 +611,20 @@ def main():
             )
             with result_jsonl.open("a", encoding="utf-8") as f:
                 f.write(json.dumps(json_safe(result), ensure_ascii=False) + "\n")
+
+            check_every = int(watchdog_cfg.get("check_every_iters", 1))
+            if check_every > 0 and iteration % check_every == 0:
+                disk_bad, disk_report = disk_watchdog_triggered(disk_watch_paths, watchdog_cfg)
+                (run_dir / "disk_health_latest.json").write_text(
+                    json.dumps(disk_report, indent=2),
+                    encoding="utf-8",
+                )
+                if disk_bad:
+                    print("[disk watchdog] low disk/inode condition detected. Saving checkpoint and stopping gracefully.")
+                    print(json.dumps(disk_report, indent=2))
+                    last_checkpoint = save_algo(algo, ckpt_dir / f"disk_watchdog_iter_{iteration:06d}")
+                    print(f"[disk watchdog checkpoint] {last_checkpoint}")
+                    break
 
             if iteration % checkpoint_every_iters == 0:
                 last_checkpoint = save_algo(algo, ckpt_dir / f"iter_{iteration:06d}")

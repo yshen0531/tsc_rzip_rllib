@@ -3,6 +3,10 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
+# Train phase must not inherit eval Ray tmp settings from an interactive shell.
+export RAY_TMPDIR="/tmp/ry_${USER}"
+export TMPDIR="${RAY_TMPDIR}/tmp"
+
 CONFIG="${1:-configs/train_b82_96worker_2m.json}"
 EVAL_EPISODES="${EVAL_EPISODES:-5}"
 EVAL_MAX_STEPS="${EVAL_MAX_STEPS:-0}"

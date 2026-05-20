@@ -152,6 +152,14 @@ class TSCConfig:
     keep_tsc_workspace: bool = False
     keep_runtime_tsc_outputs: bool = False
 
+    # Long-training runtime storage policy.  Normal episode directories can be
+    # huge because TSC writes restart and diagnostic files at every control step.
+    # By default, delete successful/normal episode folders as soon as the episode
+    # ends.  Failed episodes may be kept, but only the most recent N are retained.
+    cleanup_episode_dir: bool = True
+    keep_failed_episode_dir: bool = True
+    keep_last_n_failed_episode_dirs: int = 20
+
     # Vessel-current observation policy
     vessel_current_column: str = "cwire(ka)"
     vessel_current_raw_to_a: float = 1000.0
@@ -201,6 +209,9 @@ class TSCConfig:
             keep_episode_restart_files=bool(data.get("keep_episode_restart_files", False)),
             keep_tsc_workspace=bool(data.get("keep_tsc_workspace", False)),
             keep_runtime_tsc_outputs=bool(data.get("keep_runtime_tsc_outputs", False)),
+            cleanup_episode_dir=bool(data.get("cleanup_episode_dir", True)),
+            keep_failed_episode_dir=bool(data.get("keep_failed_episode_dir", True)),
+            keep_last_n_failed_episode_dirs=int(data.get("keep_last_n_failed_episode_dirs", 20)),
             vessel_current_column=str(data.get("vessel_current_column", "cwire(ka)")),
             vessel_current_raw_to_a=float(data.get("vessel_current_raw_to_a", 1000.0)),
             vessel_current_aggregation=str(data.get("vessel_current_aggregation", "signed_sum")),
@@ -247,6 +258,9 @@ class TSCConfig:
 
         if self.vessel_current_raw_to_a <= 0:
             raise ValueError("vessel_current_raw_to_a must be positive.")
+
+        if self.keep_last_n_failed_episode_dirs < 0:
+            raise ValueError("keep_last_n_failed_episode_dirs must be >= 0.")
 
         if self.vessel_current_aggregation not in {"signed_sum", "abs_sum", "rms", "max_abs"}:
             raise ValueError(
@@ -417,6 +431,62 @@ class TSCStepRunner:
         if self.cfg.isolate_tsc_workdir and not self.keep_workspace:
             if self.runtime_tsc_dir.exists():
                 shutil.rmtree(self.runtime_tsc_dir, ignore_errors=True)
+
+    def cleanup_episode_workspace(self, *, failed: bool = False, reason: str = "") -> None:
+        """Cleanup the current per-episode directory according to config policy.
+
+        Normal episodes are deleted immediately to prevent long trainings from
+        filling /home with thousands of TSC restart/output folders.  Failed
+        episodes can be kept for debugging, but only the most recent
+        keep_last_n_failed_episode_dirs directories containing a failure marker
+        are retained.  Cleanup is best-effort and must never crash training.
+        """
+        episode_dir = self.episode_dir
+        self.episode_dir = None
+        self.current_folder = None
+        self.current_time_ms = None
+
+        if episode_dir is None or not Path(episode_dir).exists():
+            return
+
+        episode_dir = Path(episode_dir)
+        try:
+            if failed and self.cfg.keep_failed_episode_dir and self.cfg.keep_last_n_failed_episode_dirs > 0:
+                marker = episode_dir / "_FAILED_REASON.txt"
+                marker.write_text(str(reason or self.done_reason or "failed"), encoding="utf-8", errors="ignore")
+                self._prune_failed_episode_dirs()
+                return
+
+            if self.cfg.cleanup_episode_dir:
+                shutil.rmtree(episode_dir, ignore_errors=True)
+        except Exception:
+            # Never let cleanup failure crash a worker. Disk watchdog will catch
+            # persistent cleanup problems at the training loop level.
+            pass
+
+    def _prune_failed_episode_dirs(self) -> None:
+        keep_n = int(self.cfg.keep_last_n_failed_episode_dirs)
+        if keep_n < 0:
+            keep_n = 0
+
+        run_root = self.cfg.resolved_run_root()
+        if not run_root.exists():
+            return
+
+        failed_dirs: list[Path] = []
+        try:
+            for marker in run_root.glob("*/_FAILED_REASON.txt"):
+                if marker.parent.is_dir():
+                    failed_dirs.append(marker.parent)
+        except Exception:
+            return
+
+        failed_dirs.sort(key=lambda p: p.stat().st_mtime if p.exists() else 0.0, reverse=True)
+        for old_dir in failed_dirs[keep_n:]:
+            try:
+                shutil.rmtree(old_dir, ignore_errors=True)
+            except Exception:
+                pass
 
     def _safe_unlink(self, path: Path) -> None:
         """Delete one file if it exists. Cleanup failure must never crash training."""
