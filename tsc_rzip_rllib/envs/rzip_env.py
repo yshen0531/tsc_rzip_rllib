@@ -15,7 +15,7 @@ from tsc_rzip_rllib.core.runner import TSCConfig, TSCStepRunner
 class TscRzipEnv(gym.Env):
     """Gymnasium environment for TSC-based R/Z/Ip fixed-target reach-hold control.
 
-    B8.2-RL design goals:
+    B8.3-RL design goals:
       * 1 ms control step, curriculum from easier reach/hold to 100 ms deadline;
       * dense signed progress shaping + error/velocity/overshoot penalties;
       * deployable observation only includes a scalar total vessel-current proxy;
@@ -713,7 +713,7 @@ class TscRzipEnv(gym.Env):
         error_score_now = self._error_score(state)
         raw_progress = 0.0 if self.prev_error_score is None else self.prev_error_score - error_score_now
         if self.signed_progress_reward:
-            # B8.2-RL: dense directional signal. Positive when moving toward the
+            # B8.3-RL: dense directional signal. Positive when moving toward the
             # target, negative when drifting away. This is not an action prior; it
             # only tells SAC whether the current transition improved the state.
             reach_progress_bonus = self.w_reach_progress * raw_progress

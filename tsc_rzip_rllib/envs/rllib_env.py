@@ -11,6 +11,35 @@ from tsc_rzip_rllib.envs.factory import make_tsc_rzip_env
 from tsc_rzip_rllib.envs.mock_rzip_env import MockRzipEnv
 
 
+def _clamp_worker_threads() -> None:
+    """Best-effort per-Ray-worker numerical thread clamp.
+
+    The launcher exports OMP/MKL/OPENBLAS/TORCH limits before Ray starts,
+    but Ray workers may import Torch/Numpy in fresh processes.  Calling this
+    early inside each EnvRunner keeps rollout workers from multiplying CPU
+    threads per TSC instance.
+    """
+    for key in [
+        "OMP_NUM_THREADS",
+        "MKL_NUM_THREADS",
+        "OPENBLAS_NUM_THREADS",
+        "NUMEXPR_NUM_THREADS",
+        "TORCH_NUM_THREADS",
+        "TORCH_NUM_INTEROP_THREADS",
+        "VECLIB_MAXIMUM_THREADS",
+        "BLIS_NUM_THREADS",
+        "RAYON_NUM_THREADS",
+    ]:
+        os.environ.setdefault(key, "1")
+    try:
+        import torch
+
+        torch.set_num_threads(1)
+        torch.set_num_interop_threads(1)
+    except Exception:
+        pass
+
+
 class RllibTscRzipEnv(gym.Env):
     """RLlib-facing env wrapper.
 
@@ -25,6 +54,7 @@ class RllibTscRzipEnv(gym.Env):
 
     def __init__(self, env_config: dict[str, Any]):
         super().__init__()
+        _clamp_worker_threads()
         self.env_config = dict(env_config)
         self.backend = str(self.env_config.get("backend", "native")).lower()
         self.worker_index = int(getattr(env_config, "worker_index", self.env_config.get("worker_index", 0)))
@@ -34,6 +64,9 @@ class RllibTscRzipEnv(gym.Env):
         self.episode_idx = 0
         self.curriculum_stage_index = -1
         self.curriculum_stage_name = ""
+        self.curriculum_progress_steps = 0
+        self.curriculum_unit = "local_env_steps"
+        self.curriculum_num_workers = int(self.env_config.get("num_workers_for_curriculum", 1) or 1)
 
         guard_cfg = dict(self.env_config.get("finite_guard", {}))
         self.enable_finite_guard = bool(guard_cfg.get("enabled", True))
@@ -147,16 +180,67 @@ class RllibTscRzipEnv(gym.Env):
                 info[f"curriculum_{name}"] = float(getattr(self.env, name, 0.0))
             info["curriculum_stage_index"] = int(self.curriculum_stage_index)
             info["curriculum_stage_name"] = str(self.curriculum_stage_name)
+            info["curriculum_progress_steps"] = int(self.curriculum_progress_steps)
+            info["curriculum_unit"] = str(self.curriculum_unit)
+            info["curriculum_num_workers"] = int(self.curriculum_num_workers)
         return info
 
-    def _apply_attribute_curriculum(self) -> None:
-        """Apply generic per-worker local-step curriculum to env attributes.
+    def _curriculum_effective_steps(self, cur: dict[str, Any]) -> int:
+        """Return stage-selection step count.
 
-        This keeps the policy-learning problem RL-based: no action prior or
-        demonstration is injected.  The stages only change task/reward difficulty
-        (deadline, progress weight, hold strictness, etc.) using local env steps.
-        With many EnvRunners, set `until_local_steps` in configs rather than
-        aggregate env steps.
+        B8.2 used per-worker local steps, which made curricula depend on the
+        number of EnvRunners.  B8.3 supports global env-step thresholds by
+        multiplying the local steps seen by this EnvRunner by the resolved
+        number of sampling workers.  This makes stage timing stable when we
+        move from 96 to 192 TSC workers.
+        """
+        unit = str(cur.get("unit", cur.get("curriculum_unit", "local_env_steps"))).lower()
+        self.curriculum_unit = unit
+        if unit in {"global_env_steps", "env_steps", "aggregate_env_steps"}:
+            return int(self.local_env_steps * max(1, self.curriculum_num_workers))
+        return int(self.local_env_steps)
+
+    def _select_curriculum_stage(self, stages: list[dict[str, Any]], cur: dict[str, Any]):
+        if not stages:
+            return None, -1, 0
+        effective_steps = self._curriculum_effective_steps(cur)
+
+        force_name = cur.get("force_stage_name")
+        force_index = cur.get("force_stage_index")
+        if force_name is not None:
+            for i, stage in enumerate(stages):
+                if str(stage.get("name", f"stage_{i}")) == str(force_name):
+                    return stage, i, effective_steps
+        if force_index is not None:
+            idx = max(0, min(int(force_index), len(stages) - 1))
+            return stages[idx], idx, effective_steps
+
+        selected = stages[-1]
+        selected_idx = len(stages) - 1
+        for i, stage in enumerate(stages):
+            if "until_global_env_steps" in stage:
+                until = int(stage["until_global_env_steps"])
+            elif "until_env_steps" in stage:
+                until = int(stage["until_env_steps"])
+            elif "until_local_steps" in stage:
+                # Legacy local-step stages still work.
+                local_until = int(stage["until_local_steps"])
+                until = local_until if self.curriculum_unit == "local_env_steps" else local_until * max(1, self.curriculum_num_workers)
+            else:
+                until = 10**18
+            if effective_steps < until:
+                selected = stage
+                selected_idx = i
+                break
+        return selected, selected_idx, effective_steps
+
+    def _apply_attribute_curriculum(self) -> None:
+        """Apply task/reward curriculum to env attributes.
+
+        B8.3 supports global env-step thresholds so the same curriculum schedule
+        remains meaningful when changing the number of EnvRunners.  No action
+        priors or demonstrations are injected; stages only change task/reward
+        difficulty.
         """
         if self.backend != "native":
             return
@@ -168,22 +252,23 @@ class RllibTscRzipEnv(gym.Env):
         if not stages:
             return
 
-        selected = stages[-1]
-        selected_idx = len(stages) - 1
-        for i, stage in enumerate(stages):
-            until = int(stage.get("until_local_steps", stage.get("until_env_steps", 10**18)))
-            if self.local_env_steps < until:
-                selected = stage
-                selected_idx = i
-                break
+        selected, selected_idx, effective_steps = self._select_curriculum_stage(stages, cur)
+        if selected is None:
+            return
 
         self.curriculum_stage_index = int(selected_idx)
         self.curriculum_stage_name = str(selected.get("name", f"stage_{selected_idx}"))
+        self.curriculum_progress_steps = int(effective_steps)
 
         params = dict(selected.get("env_params", {}))
-        # Also allow flat stage keys for convenience, excluding control keys.
         for k, v in selected.items():
-            if k not in {"name", "until_local_steps", "until_env_steps", "env_params"}:
+            if k not in {
+                "name",
+                "until_local_steps",
+                "until_env_steps",
+                "until_global_env_steps",
+                "env_params",
+            }:
                 params.setdefault(k, v)
 
         for name, value in params.items():
@@ -210,12 +295,9 @@ class RllibTscRzipEnv(gym.Env):
         stages = list(cur.get("stages", []))
         if not stages:
             return
-        selected = stages[-1]
-        for stage in stages:
-            until = int(stage.get("until_env_steps", stage.get("until_local_steps", 10**18)))
-            if self.local_env_steps < until:
-                selected = stage
-                break
+        selected, _, _ = self._select_curriculum_stage(stages, cur)
+        if selected is None:
+            return
         for name, base in self._base_hold.items():
             setattr(self.env, name, float(selected.get(name, base)))
 

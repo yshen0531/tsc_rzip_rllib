@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-CONFIG="${1:-configs/train_b82_96worker_2m.json}"
+CONFIG="${1:-configs/train_b83_192worker_5m.json}"
 
 # Infer requested worker count from the merged RLlib config for the nproc fuse.
 # This does not control Ray parallelism; it only sets a safe user-task soft limit.
@@ -58,6 +58,7 @@ export MKL_NUM_THREADS=1
 export OPENBLAS_NUM_THREADS=1
 export NUMEXPR_NUM_THREADS=1
 export TORCH_NUM_THREADS=1
+export TORCH_NUM_INTEROP_THREADS=1
 export VECLIB_MAXIMUM_THREADS=1
 export BLIS_NUM_THREADS=1
 export RAYON_NUM_THREADS=1

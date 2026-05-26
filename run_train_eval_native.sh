@@ -7,8 +7,9 @@ cd "$(dirname "$0")"
 export RAY_TMPDIR="/tmp/ry_${USER}"
 export TMPDIR="${RAY_TMPDIR}/tmp"
 
-CONFIG="${1:-configs/train_b82_96worker_2m.json}"
+CONFIG="${1:-configs/train_b83_192worker_5m.json}"
 EVAL_EPISODES="${EVAL_EPISODES:-5}"
+EVAL_STAGES="${EVAL_STAGES:-stage0 stage1 stage2 final}"
 EVAL_MAX_STEPS="${EVAL_MAX_STEPS:-0}"
 STAMP="$(date +%Y%m%d_%H%M%S)"
 
@@ -36,6 +37,7 @@ echo "========== train+eval =========="
 echo "CONFIG        = $CONFIG"
 echo "RUN_NAME      = $RUN_NAME"
 echo "EVAL_EPISODES = $EVAL_EPISODES"
+echo "EVAL_STAGES   = $EVAL_STAGES"
 echo "STAMP         = $STAMP"
 echo "================================"
 
@@ -57,22 +59,26 @@ echo "Final checkpoint:   $CKPT"
 echo "========== analyze train run =========="
 python scripts/analyze_rllib_run.py "$RUN_DIR" | tee "$RUN_DIR/analyze_rllib_run.txt"
 
-echo "========== eval final checkpoint =========="
-ray stop --force >/dev/null 2>&1 || true
-export RAY_TMPDIR="/tmp/ry_eval_${USER}"
-export TMPDIR="${RAY_TMPDIR}/tmp"
-rm -rf "$RAY_TMPDIR"
-mkdir -p "$TMPDIR" eval_results
+echo "========== eval checkpoints by fixed curriculum stage =========="
+mkdir -p eval_results
+for STAGE in $EVAL_STAGES; do
+  echo "----- eval stage: $STAGE -----"
+  ray stop --force >/dev/null 2>&1 || true
+  export RAY_TMPDIR="/tmp/ry_eval_${USER}_${STAGE}"
+  export TMPDIR="${RAY_TMPDIR}/tmp"
+  rm -rf "$RAY_TMPDIR"
+  mkdir -p "$TMPDIR"
 
-EVAL_OUT="eval_results/${RUN_NAME}_${STAMP}_final_eval.csv"
-EVAL_CMD=(python scripts/eval_rllib_checkpoint.py --config configs/rllib_sac.json --override "$CONFIG" --checkpoint "$CKPT" --episodes "$EVAL_EPISODES" --out "$EVAL_OUT")
-if [[ "$EVAL_MAX_STEPS" != "0" ]]; then
-  EVAL_CMD+=(--max-steps "$EVAL_MAX_STEPS")
-fi
-"${EVAL_CMD[@]}"
+  EVAL_OUT="eval_results/${RUN_NAME}_${STAMP}_${STAGE}_eval.csv"
+  EVAL_CMD=(python scripts/eval_rllib_checkpoint.py --config configs/rllib_sac.json --override "$CONFIG" --checkpoint "$CKPT" --episodes "$EVAL_EPISODES" --out "$EVAL_OUT" --eval-stage "$STAGE")
+  if [[ "$EVAL_MAX_STEPS" != "0" ]]; then
+    EVAL_CMD+=(--max-steps "$EVAL_MAX_STEPS")
+  fi
+  "${EVAL_CMD[@]}"
+done
 
 echo "========== done =========="
 echo "Run dir:    $RUN_DIR"
 echo "Checkpoint: $CKPT"
-echo "Eval CSV:   $EVAL_OUT"
-echo "Eval JSON:  ${EVAL_OUT%.csv}.summary.json"
+echo "Eval stages: $EVAL_STAGES"
+echo "Eval files prefix: eval_results/${RUN_NAME}_${STAMP}_<stage>_eval.csv"

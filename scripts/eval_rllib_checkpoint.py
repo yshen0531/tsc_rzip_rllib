@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import csv
 import json
 import os
@@ -53,6 +54,9 @@ EVAL_KEYS = [
     "vessel_penalty_raw", "hold_vessel_penalty", "action_penalty",
     "delta_action_penalty", "hold_weight", "fast_reach_bonus_now",
     "strict_reached_now", "reach_progress_bonus",
+    "curriculum_stage_index", "curriculum_stage_name", "curriculum_progress_steps",
+    "curriculum_reach_deadline_step", "curriculum_hold_start_step",
+    "curriculum_hold_ramp_start_step", "curriculum_hold_ramp_end_step",
 ]
 
 
@@ -85,6 +89,56 @@ def make_eval_rllib_config(rllib_cfg: dict[str, Any], *, ray_cpus: int, object_s
         "num_gpus_per_learner": 0,
     })
     return cfg
+
+
+def _stage_label(stage: dict[str, Any], idx: int) -> str:
+    return str(stage.get("name", f"stage{idx}"))
+
+
+def apply_eval_stage(train_cfg: dict[str, Any], eval_stage: str | None) -> tuple[dict[str, Any], str]:
+    """Return train config with curriculum fixed to one stage for evaluation.
+
+    Training may use a curriculum.  Evaluation should be interpretable, so this
+    function disables curriculum and applies one selected stage's env_params to
+    the base reward/task attributes.
+    """
+    cfg = copy.deepcopy(train_cfg)
+    stage_req = (eval_stage or "final").strip()
+    if stage_req.lower() in {"none", "curriculum", "as_train", "train"}:
+        return cfg, "as_train_curriculum"
+
+    stages = list(cfg.get("curriculum", {}).get("env_attributes", {}).get("stages", []))
+    if not stages:
+        return cfg, "no_curriculum_stages"
+
+    key = stage_req.lower()
+    if key in {"final", "strict", "last", "stage3"}:
+        idx = len(stages) - 1
+    elif key.startswith("stage") and key[5:].isdigit():
+        idx = max(0, min(int(key[5:]), len(stages) - 1))
+    elif key.isdigit():
+        idx = max(0, min(int(key), len(stages) - 1))
+    else:
+        idx = None
+        for i, st in enumerate(stages):
+            name = _stage_label(st, i)
+            if stage_req == name or key == name.lower():
+                idx = i
+                break
+        if idx is None:
+            raise ValueError(f"Unknown eval stage {eval_stage!r}; available: {[ _stage_label(s, i) for i, s in enumerate(stages) ]}")
+
+    stage = stages[idx]
+    params = dict(stage.get("env_params", {}))
+    for k, v in stage.items():
+        if k not in {"name", "until_local_steps", "until_env_steps", "until_global_env_steps", "env_params"}:
+            params.setdefault(k, v)
+
+    cfg.setdefault("reward", {}).update(params)
+    cfg.setdefault("curriculum", {}).setdefault("env_attributes", {})["enabled"] = False
+    cfg["eval_stage_name"] = _stage_label(stage, idx)
+    cfg["eval_stage_index"] = int(idx)
+    return cfg, cfg["eval_stage_name"]
 
 
 def build_algo_compat(config):
@@ -252,6 +306,7 @@ def main() -> None:
     p.add_argument("--ray-cpus", type=int, default=4)
     p.add_argument("--object-store-memory", type=int, default=536870912)
     p.add_argument("--max-steps", type=int, default=None)
+    p.add_argument("--eval-stage", default="final", help="final/stage0/stage1/stage2/stage3/name/none")
     args = p.parse_args()
 
     cfg_path = Path(args.config)
@@ -269,6 +324,12 @@ def main() -> None:
     eval_dir = PROJECT_DIR / "eval_runs" / (Path(args.out).stem + "_resolved")
     eval_dir.mkdir(parents=True, exist_ok=True)
     train_cfg = prepare_train_config(project_dir=PROJECT_DIR, run_dir=eval_dir, rllib_cfg=rllib_cfg, train_override=None)
+    train_cfg, eval_stage_name = apply_eval_stage(train_cfg, args.eval_stage)
+    (eval_dir / "eval_train_config.used.json").write_text(
+        json.dumps(train_cfg, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    print(f"Eval stage fixed to: {eval_stage_name}")
 
     ray_tmpdir = os.environ.get("RAY_TMPDIR", f"/tmp/ry_eval_{os.environ.get('USER','user')}")
     tmpdir = os.environ.get("TMPDIR", str(Path(ray_tmpdir) / "tmp"))
@@ -291,6 +352,18 @@ def main() -> None:
         _temp_dir=str(Path(ray_tmpdir).resolve()),
         num_cpus=args.ray_cpus,
         object_store_memory=args.object_store_memory,
+        runtime_env={
+            "env_vars": {
+                "OMP_NUM_THREADS": os.environ.get("OMP_NUM_THREADS", "1"),
+                "MKL_NUM_THREADS": os.environ.get("MKL_NUM_THREADS", "1"),
+                "OPENBLAS_NUM_THREADS": os.environ.get("OPENBLAS_NUM_THREADS", "1"),
+                "NUMEXPR_NUM_THREADS": os.environ.get("NUMEXPR_NUM_THREADS", "1"),
+                "TORCH_NUM_THREADS": os.environ.get("TORCH_NUM_THREADS", "1"),
+                "TORCH_NUM_INTEROP_THREADS": os.environ.get("TORCH_NUM_INTEROP_THREADS", "1"),
+                "BLIS_NUM_THREADS": os.environ.get("BLIS_NUM_THREADS", "1"),
+                "RAYON_NUM_THREADS": os.environ.get("RAYON_NUM_THREADS", "1"),
+            }
+        },
     )
 
     algo = None
@@ -313,6 +386,7 @@ def main() -> None:
             "seed": args.seed,
             "run_id": "eval_rollout",
             "worker_id": f"eval_worker_pid{os.getpid()}",
+            "num_workers_for_curriculum": 1,
         })
 
         all_rows: list[dict[str, Any]] = []
@@ -372,6 +446,7 @@ def main() -> None:
 
         aggregate = {
             "checkpoint": str(Path(args.checkpoint)),
+            "eval_stage": str(eval_stage_name),
             "episodes": summaries,
             "mean_return": float(np.mean([s["episode_return"] for s in summaries])) if summaries else None,
             "mean_len": float(np.mean([s["episode_len"] for s in summaries])) if summaries else None,

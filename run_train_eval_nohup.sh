@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-CONFIG="${1:-configs/train_b82_96worker_2m.json}"
+CONFIG="${1:-configs/train_b83_192worker_5m.json}"
 LOG_DIR="logs/nohup"
 PID_DIR="logs/pids"
 mkdir -p "$LOG_DIR" "$PID_DIR"
@@ -13,7 +13,7 @@ CONFIG_BASENAME="$(basename "$CONFIG" .json)"
 LOG_FILE="${LOG_DIR}/${CONFIG_BASENAME}_train_eval_${STAMP}.log"
 PID_FILE="${PID_DIR}/${CONFIG_BASENAME}_train_eval_${STAMP}.pid"
 
-echo "Starting B8.2 train + eval with nohup..."
+echo "Starting B8.3 train + multi-stage eval with nohup..."
 echo "Config: $CONFIG"
 echo "Log:    $LOG_FILE"
 echo "PID:    $PID_FILE"

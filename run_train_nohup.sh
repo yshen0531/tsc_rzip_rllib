@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-CONFIG="${1:-configs/train_b82_96worker_2m.json}"
+CONFIG="${1:-configs/train_b83_192worker_5m.json}"
 LOG_DIR="logs/nohup"
 PID_DIR="logs/pids"
 mkdir -p "$LOG_DIR" "$PID_DIR"

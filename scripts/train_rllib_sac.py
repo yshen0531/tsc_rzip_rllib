@@ -177,6 +177,60 @@ def disk_watchdog_triggered(paths: list[Path], cfg: dict[str, Any]) -> tuple[boo
     return triggered, report
 
 
+def count_user_processes_threads(user: str | None = None) -> dict[str, Any]:
+    """Return best-effort user process/thread counts using /bin/ps.
+
+    This watchdog catches runaway Ray/Python worker thread growth before it can
+    make interactive SSH login unreliable.  If ps is unavailable, returns an
+    error but does not stop training by itself.
+    """
+    import subprocess
+
+    user = user or os.environ.get("USER", "")
+    out: dict[str, Any] = {"user": user}
+    try:
+        procs = subprocess.check_output(["ps", "-u", user, "--no-headers"], text=True, stderr=subprocess.DEVNULL)
+        threads = subprocess.check_output(["ps", "-u", user, "-L", "--no-headers"], text=True, stderr=subprocess.DEVNULL)
+        out["processes"] = len([x for x in procs.splitlines() if x.strip()])
+        out["threads"] = len([x for x in threads.splitlines() if x.strip()])
+    except Exception as exc:
+        out["error"] = repr(exc)
+    return out
+
+
+def resource_watchdog_triggered(cfg: dict[str, Any]) -> tuple[bool, dict[str, Any]]:
+    if not bool(cfg.get("enabled", False)):
+        return False, {}
+    report = count_user_processes_threads(str(cfg.get("user", os.environ.get("USER", ""))))
+    triggered = False
+    if "error" not in report:
+        max_threads = int(cfg.get("max_user_threads", 0) or 0)
+        max_processes = int(cfg.get("max_user_processes", 0) or 0)
+        if max_threads > 0 and int(report.get("threads", 0)) >= max_threads:
+            triggered = True
+            report["trigger_reason"] = f"threads >= {max_threads}"
+        if max_processes > 0 and int(report.get("processes", 0)) >= max_processes:
+            triggered = True
+            report["trigger_reason"] = f"processes >= {max_processes}"
+    return triggered, report
+
+
+def ray_worker_env_vars() -> dict[str, str]:
+    """Thread limiting environment variables propagated into Ray workers."""
+    return {
+        "OMP_NUM_THREADS": os.environ.get("OMP_NUM_THREADS", "1"),
+        "MKL_NUM_THREADS": os.environ.get("MKL_NUM_THREADS", "1"),
+        "OPENBLAS_NUM_THREADS": os.environ.get("OPENBLAS_NUM_THREADS", "1"),
+        "NUMEXPR_NUM_THREADS": os.environ.get("NUMEXPR_NUM_THREADS", "1"),
+        "TORCH_NUM_THREADS": os.environ.get("TORCH_NUM_THREADS", "1"),
+        "TORCH_NUM_INTEROP_THREADS": os.environ.get("TORCH_NUM_INTEROP_THREADS", "1"),
+        "VECLIB_MAXIMUM_THREADS": os.environ.get("VECLIB_MAXIMUM_THREADS", "1"),
+        "BLIS_NUM_THREADS": os.environ.get("BLIS_NUM_THREADS", "1"),
+        "RAYON_NUM_THREADS": os.environ.get("RAYON_NUM_THREADS", "1"),
+        "RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO": os.environ.get("RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO", "0"),
+    }
+
+
 def expand_macros(obj: Any, macros: dict[str, str]) -> Any:
     if isinstance(obj, str):
         out = os.path.expandvars(obj)
@@ -323,6 +377,7 @@ def build_config(rllib_cfg: dict[str, Any], train_cfg: dict[str, Any], run_id: s
         "train_config": train_cfg,
         "mock_config": env_cfg.get("mock_config", {}),
         "run_id": run_id,
+        "num_workers_for_curriculum": int(num_tsc_workers),
     }
 
     config = (
@@ -504,6 +559,7 @@ def main():
     resolved_tsc_cfg = load_json(Path(train_cfg["env_config"]))
     runtime_cfg = dict(train_cfg.get("runtime", {}))
     watchdog_cfg = dict(runtime_cfg.get("disk_watchdog", {}))
+    resource_watchdog_cfg = dict(runtime_cfg.get("resource_watchdog", {}))
     disk_watch_paths = [
         run_dir,
         ckpt_dir,
@@ -519,6 +575,15 @@ def main():
     print("========== initial disk health ==========")
     print(json.dumps(initial_disk_report, indent=2))
     print("=========================================")
+    if bool(resource_watchdog_cfg.get("enabled", False)):
+        initial_resource_report = count_user_processes_threads()
+        (run_dir / "resource_health_initial.json").write_text(
+            json.dumps(initial_resource_report, indent=2),
+            encoding="utf-8",
+        )
+        print("========== initial resource health ==========")
+        print(json.dumps(initial_resource_report, indent=2))
+        print("=============================================")
 
     # Ray runtime temp directory. Keep it short because Ray creates UNIX sockets under it.
     ray_tmpdir = os.environ.get("RAY_TMPDIR")
@@ -543,6 +608,8 @@ def main():
         ray_init_kwargs["address"] = pcfg["ray_address"]
     if pcfg.get("ray_num_cpus") is not None:
         ray_init_kwargs["num_cpus"] = int(pcfg["ray_num_cpus"])
+    # Ensure Ray workers inherit the same CPU-thread clamps as the driver.
+    ray_init_kwargs["runtime_env"] = {"env_vars": ray_worker_env_vars()}
 
     print("========== Ray init ==========")
     print(f"RAY_TMPDIR          = {ray_tmpdir}")
@@ -624,6 +691,21 @@ def main():
                     print(json.dumps(disk_report, indent=2))
                     last_checkpoint = save_algo(algo, ckpt_dir / f"disk_watchdog_iter_{iteration:06d}")
                     print(f"[disk watchdog checkpoint] {last_checkpoint}")
+                    break
+
+            resource_check_every = int(resource_watchdog_cfg.get("check_every_iters", 1))
+            if resource_check_every > 0 and iteration % resource_check_every == 0:
+                resource_bad, resource_report = resource_watchdog_triggered(resource_watchdog_cfg)
+                if resource_report:
+                    (run_dir / "resource_health_latest.json").write_text(
+                        json.dumps(resource_report, indent=2),
+                        encoding="utf-8",
+                    )
+                if resource_bad:
+                    print("[resource watchdog] process/thread condition detected. Saving checkpoint and stopping gracefully.")
+                    print(json.dumps(resource_report, indent=2))
+                    last_checkpoint = save_algo(algo, ckpt_dir / f"resource_watchdog_iter_{iteration:06d}")
+                    print(f"[resource watchdog checkpoint] {last_checkpoint}")
                     break
 
             if iteration % checkpoint_every_iters == 0:
