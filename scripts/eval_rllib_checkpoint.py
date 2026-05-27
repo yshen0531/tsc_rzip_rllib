@@ -172,44 +172,86 @@ def _tensor_to_numpy(x):
     return np.asarray(x)
 
 
-def _extract_action_from_rlmodule_output(module, out):
+def _get_dist_cls(module, *, action_mode: str):
+    """Return an RLlib action distribution class for inference/exploration."""
+    candidates = []
+    if action_mode == "stochastic":
+        candidates.extend([
+            "get_exploration_action_dist_cls",
+            "get_inference_action_dist_cls",
+            "action_dist_cls",
+        ])
+    else:
+        candidates.extend([
+            "get_inference_action_dist_cls",
+            "get_exploration_action_dist_cls",
+            "action_dist_cls",
+        ])
+
+    for name in candidates:
+        if not hasattr(module, name):
+            continue
+        obj = getattr(module, name)
+        try:
+            return obj() if callable(obj) and name.startswith("get_") else obj
+        except Exception:
+            continue
+    return None
+
+
+def _extract_action_from_rlmodule_output(module, out, *, action_mode: str):
+    """Extract either deterministic or stochastic action from RLModule output.
+
+    For deterministic eval we intentionally use the distribution's deterministic
+    sample/mean when available.  For stochastic eval we sample from the
+    exploration distribution without converting it to deterministic.
+    """
     actions_key = getattr(Columns, "ACTIONS", "actions")
     dist_inputs_key = getattr(Columns, "ACTION_DIST_INPUTS", "action_dist_inputs")
 
+    # Some forward_exploration implementations already emit sampled actions.
+    # For stochastic mode, this direct output is exactly what we want.  For
+    # deterministic mode, forward_inference commonly emits deterministic actions.
     if isinstance(out, dict) and actions_key in out:
         return _tensor_to_numpy(out[actions_key])[0]
 
     if isinstance(out, dict) and dist_inputs_key in out:
         logits = out[dist_inputs_key]
-        dist_cls = None
-        if hasattr(module, "get_inference_action_dist_cls"):
-            dist_cls = module.get_inference_action_dist_cls()
-        elif hasattr(module, "action_dist_cls"):
-            dist_cls = module.action_dist_cls
+        dist_cls = _get_dist_cls(module, action_mode=action_mode)
         if dist_cls is None:
             raise RuntimeError("RLModule returned distribution inputs, but no distribution class was found.")
+
         dist = dist_cls.from_logits(logits) if hasattr(dist_cls, "from_logits") else dist_cls(logits)
-        if hasattr(dist, "to_deterministic"):
-            dist = dist.to_deterministic()
-        if hasattr(dist, "deterministic_sample"):
-            action = dist.deterministic_sample()
+
+        if action_mode == "deterministic":
+            if hasattr(dist, "to_deterministic"):
+                dist = dist.to_deterministic()
+            if hasattr(dist, "deterministic_sample"):
+                action = dist.deterministic_sample()
+            else:
+                action = dist.sample()
         else:
             action = dist.sample()
         return _tensor_to_numpy(action)[0]
 
     raise RuntimeError(
-        "Could not extract action from RLModule.forward_inference output. "
+        "Could not extract action from RLModule output. "
         f"type={type(out)}, keys={list(out.keys()) if isinstance(out, dict) else None}"
     )
 
 
-def compute_action_compat(algo, obs: np.ndarray) -> np.ndarray:
+def compute_action_compat(algo, obs: np.ndarray, *, action_mode: str = "deterministic") -> np.ndarray:
     module = _get_default_module(algo)
     obs = np.asarray(obs, dtype=np.float32).reshape(-1)
     obs_t = torch.as_tensor(obs[None, :], dtype=torch.float32)
+
     with torch.no_grad():
-        out = module.forward_inference({"obs": obs_t})
-    action = _extract_action_from_rlmodule_output(module, out)
+        if action_mode == "stochastic" and hasattr(module, "forward_exploration"):
+            out = module.forward_exploration({"obs": obs_t})
+        else:
+            out = module.forward_inference({"obs": obs_t})
+
+    action = _extract_action_from_rlmodule_output(module, out, action_mode=action_mode)
     action = np.asarray(action, dtype=np.float32).reshape(-1)
     action = np.nan_to_num(action, nan=0.0, posinf=1.0, neginf=-1.0)
     return np.clip(action, -1.0, 1.0)
@@ -307,7 +349,16 @@ def main() -> None:
     p.add_argument("--object-store-memory", type=int, default=536870912)
     p.add_argument("--max-steps", type=int, default=None)
     p.add_argument("--eval-stage", default="final", help="final/stage0/stage1/stage2/stage3/name/none")
+    p.add_argument(
+        "--action-mode",
+        default="deterministic",
+        choices=["deterministic", "stochastic"],
+        help="deterministic uses forward_inference/mean-like action; stochastic samples from exploration distribution",
+    )
+    p.add_argument("--stochastic", action="store_true", help="Alias for --action-mode stochastic")
     args = p.parse_args()
+    if args.stochastic:
+        args.action_mode = "stochastic"
 
     cfg_path = Path(args.config)
     if not cfg_path.is_absolute():
@@ -342,6 +393,7 @@ def main() -> None:
     print(f"TMPDIR                 = {tmpdir}")
     print(f"ray_cpus               = {args.ray_cpus}")
     print(f"object_store_memory    = {args.object_store_memory}")
+    print(f"action_mode            = {args.action_mode}")
     print("local_mode             = disabled; Ray no longer supports ray.init(local_mode=True)")
     print("===================================")
 
@@ -401,7 +453,7 @@ def main() -> None:
             terminated = truncated = False
             step = 0
             while not (terminated or truncated) and step < max_steps:
-                action = compute_action_compat(algo, obs)
+                action = compute_action_compat(algo, obs, action_mode=args.action_mode)
                 obs, reward, terminated, truncated, info = env.step(action)
                 ep_ret += float(reward)
                 info = dict(info or {})
@@ -412,6 +464,8 @@ def main() -> None:
                     "episode_return_so_far": float(ep_ret),
                     "terminated": bool(terminated),
                     "truncated": bool(truncated),
+                    "action_mode": args.action_mode,
+                    "eval_stage": eval_stage_name,
                     "action_mean_abs": float(np.mean(np.abs(action))),
                     "action_max_abs": float(np.max(np.abs(action))),
                 }
@@ -447,6 +501,7 @@ def main() -> None:
         aggregate = {
             "checkpoint": str(Path(args.checkpoint)),
             "eval_stage": str(eval_stage_name),
+            "action_mode": str(args.action_mode),
             "episodes": summaries,
             "mean_return": float(np.mean([s["episode_return"] for s in summaries])) if summaries else None,
             "mean_len": float(np.mean([s["episode_len"] for s in summaries])) if summaries else None,
