@@ -1,0 +1,60 @@
+{
+  "run_name": "train_b85_asym_recurrent_mpo_192worker_1m_probe",
+  "train_config": "configs/train_b85_mpo_fixed_target_1ms.json",
+  "seed": 42,
+  "stop_env_steps": 1000000,
+  "checkpoint_every_iters": 10,
+  "log_root": "ray_results",
+  "checkpoint_root": "mpo_checkpoints",
+  "env": {
+    "backend": "native",
+    "finite_guard": {
+      "enabled": true,
+      "nonfinite_penalty": -10000.0,
+      "terminate_on_nonfinite": true
+    }
+  },
+  "parallel": {
+    "ray_address": null,
+    "ray_num_cpus": 200,
+    "include_dashboard": false,
+    "object_store_memory": 8589934592,
+    "num_tsc_workers": 192,
+    "num_cpus_per_tsc_worker": 1,
+    "sample_timeout_s": 3600.0,
+    "fragment_steps": 32,
+    "actor_sync_interval_iters": 1,
+    "rollout_deterministic": false
+  },
+  "learner": {"num_gpus": 0},
+  "model": {
+    "activation": "silu",
+    "actor_gru_hidden": 128,
+    "critic_gru_hidden": 256,
+    "actor_mlp_hiddens": [256, 256],
+    "critic_mlp_hiddens": [512, 512],
+    "log_std_min": -5.0,
+    "log_std_max": 1.0
+  },
+  "privileged": {"include_currents": true, "current_scale_a": 1000.0, "clip": 50.0},
+  "replay": {"capacity_fragments": 60000},
+  "mpo": {
+    "gamma": 0.997,
+    "tau": 0.005,
+    "actor_lr": 0.0001,
+    "critic_lr": 0.0003,
+    "eta_lr": 0.001,
+    "eta_init": 1.0,
+    "eta_min": 0.001,
+    "eta_epsilon": 0.10,
+    "kl_target": 0.02,
+    "kl_coeff": 3.0,
+    "entropy_coeff": 0.001,
+    "grad_clip": 10.0,
+    "warmup_steps": 100000,
+    "batch_size": 256,
+    "sequence_len": 32,
+    "updates_per_iter": 64,
+    "num_action_samples": 32
+  }
+}
