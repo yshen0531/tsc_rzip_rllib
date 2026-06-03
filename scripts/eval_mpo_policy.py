@@ -55,6 +55,39 @@ def default_macros(run_id: str) -> dict[str, str]:
     }
 
 
+def piecewise_constant_schedule(schedule, step: int, default: float) -> float:
+    if not schedule:
+        return float(default)
+    pairs = []
+    for item in schedule:
+        try:
+            if isinstance(item, dict):
+                pairs.append((int(item.get("step", item.get("env_steps", 0))), float(item.get("value", item.get("scale")))))
+            else:
+                pairs.append((int(item[0]), float(item[1])))
+        except Exception:
+            continue
+    if not pairs:
+        return float(default)
+    pairs.sort(key=lambda x: x[0])
+    out = float(default)
+    for threshold, value in pairs:
+        if int(step) >= threshold:
+            out = float(value)
+        else:
+            break
+    return float(out)
+
+
+def checkpoint_action_scale(saved_cfg: dict[str, Any], payload: dict[str, Any]) -> float:
+    mpo_cfg = saved_cfg.get("mpo", {})
+    default = float(mpo_cfg.get("actor_output_scale", mpo_cfg.get("actor_output_scale_init", payload.get("action_scale", 1.0))))
+    stats = payload.get("stats", {}) if isinstance(payload.get("stats", {}), dict) else {}
+    step = int(stats.get("env_steps", 0))
+    return piecewise_constant_schedule(mpo_cfg.get("actor_output_scale_schedule", None), step, default)
+
+
+
 def resolve_path_maybe_relative(path_text: str, *, base_dir: Path = PROJECT_DIR) -> Path:
     p = Path(str(path_text)).expanduser()
     if not p.is_absolute():
@@ -167,6 +200,8 @@ def main():
     )
     actor.load_state_dict(payload["actor"])
     actor.eval()
+    action_scale = checkpoint_action_scale(saved_cfg, payload)
+    print(f"Eval action_scale={action_scale}")
 
     rows = []
     summaries = []
@@ -181,7 +216,12 @@ def main():
         last_info = dict(info or {})
         while not done:
             with torch.no_grad():
-                a, hidden = actor.act_step(torch.as_tensor(obs, dtype=torch.float32), hidden, deterministic=(args.action_mode == "deterministic"))
+                a, hidden = actor.act_step(
+                    torch.as_tensor(obs, dtype=torch.float32),
+                    hidden,
+                    deterministic=(args.action_mode == "deterministic"),
+                    action_scale=action_scale,
+                )
             action = a.cpu().numpy().reshape(-1).astype(np.float32)
             next_obs, reward, terminated, truncated, info = env.step(action)
             done = bool(terminated or truncated)
@@ -249,6 +289,7 @@ def main():
         "quality_success_rate": float(np.mean([x["quality_success"] for x in summaries])) if summaries else 0.0,
         "action_mode": args.action_mode,
         "eval_stage": args.eval_stage,
+        "action_scale": float(action_scale),
         "out_csv": str(out),
     }
     with open(out.with_suffix(out.suffix + ".summary.json"), "w", encoding="utf-8") as f:

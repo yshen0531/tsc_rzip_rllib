@@ -94,23 +94,34 @@ class RecurrentGaussianActor(nn.Module):
         obs_seq: torch.Tensor,
         hidden: torch.Tensor | None = None,
         deterministic: bool = False,
+        action_scale: float | torch.Tensor = 1.0,
     ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
         dist, mean, log_std, h = self.distribution(obs_seq, hidden)
         if deterministic:
             pre_tanh = mean
         else:
             pre_tanh = dist.rsample()
-        action = torch.tanh(pre_tanh)
+        action = torch.tanh(pre_tanh) * action_scale
+        # The constant log(action_scale) term is omitted because action_scale is
+        # externally scheduled and independent of policy parameters.  Keeping the
+        # same tanh-Gaussian likelihood preserves the MPO weighted M-step while
+        # hard-limiting the action actually sent to the plant.
         logp = tanh_gaussian_log_prob(pre_tanh, mean, log_std)
         return action, logp, h, mean, log_std
 
     @torch.no_grad()
-    def act_step(self, obs: torch.Tensor, hidden: torch.Tensor | None, deterministic: bool = False):
+    def act_step(
+        self,
+        obs: torch.Tensor,
+        hidden: torch.Tensor | None,
+        deterministic: bool = False,
+        action_scale: float | torch.Tensor = 1.0,
+    ):
         if obs.ndim == 1:
             obs = obs.view(1, 1, -1)
         elif obs.ndim == 2:
             obs = obs.unsqueeze(1)
-        action, _, h, _, _ = self.sample(obs, hidden, deterministic=deterministic)
+        action, _, h, _, _ = self.sample(obs, hidden, deterministic=deterministic, action_scale=action_scale)
         return action[:, -1, :], h
 
 

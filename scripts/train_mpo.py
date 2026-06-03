@@ -5,6 +5,7 @@ import argparse
 import copy
 import csv
 import json
+import math
 import os
 import shutil
 import sys
@@ -195,6 +196,44 @@ def disk_health_report(paths: list[Path]) -> list[dict[str, Any]]:
     return out
 
 
+def piecewise_constant_schedule(schedule: Any, step: int, default: float) -> float:
+    """Return the last value whose threshold step has been reached.
+
+    Accepts [[step, value], ...] or [{"step": ..., "value": ...}, ...].
+    This is intentionally piecewise-constant so it is easy to reason about
+    safety limits in control experiments.
+    """
+    if not schedule:
+        return float(default)
+    pairs: list[tuple[int, float]] = []
+    for item in schedule:
+        try:
+            if isinstance(item, dict):
+                pairs.append((int(item.get("step", item.get("env_steps", 0))), float(item.get("value", item.get("scale")))))
+            else:
+                pairs.append((int(item[0]), float(item[1])))
+        except Exception:
+            continue
+    if not pairs:
+        return float(default)
+    pairs.sort(key=lambda x: x[0])
+    out = float(default)
+    for threshold, value in pairs:
+        if int(step) >= int(threshold):
+            out = float(value)
+        else:
+            break
+    return float(out)
+
+
+def clip_loss_if_configured(loss: torch.Tensor, clip_range: Any | None) -> torch.Tensor:
+    if clip_range is None:
+        return loss
+    lo, hi = float(clip_range[0]), float(clip_range[1])
+    return torch.clamp(loss, lo, hi)
+
+
+
 @ray.remote
 class MpoRolloutWorker:
     def __init__(self, worker_index: int, cfg: dict[str, Any], actor_state: dict[str, Any] | None = None):
@@ -240,6 +279,7 @@ class MpoRolloutWorker:
         if actor_state is not None:
             self.actor.load_state_dict(actor_state)
         self.actor.eval()
+        self.action_scale = float(cfg.get("mpo", {}).get("actor_output_scale_init", 1.0))
         self.hidden = self.actor.init_hidden(1)
         self.obs, self.info = self.env.reset(seed=seed)
         self.obs = np.asarray(self.obs, dtype=np.float32).reshape(-1)
@@ -258,9 +298,14 @@ class MpoRolloutWorker:
             clip=self.priv_clip,
         )
 
-    def set_actor_weights(self, state: dict[str, Any]) -> None:
+    def set_actor_weights(self, state: dict[str, Any], action_scale: float | None = None) -> None:
         self.actor.load_state_dict(state)
         self.actor.eval()
+        if action_scale is not None:
+            self.action_scale = float(action_scale)
+
+    def set_action_scale(self, action_scale: float) -> None:
+        self.action_scale = float(action_scale)
 
     def rollout(self, fragment_steps: int, deterministic: bool = False) -> dict[str, Any]:
         obs_l, priv_l, act_l, rew_l, done_l, nobs_l, npriv_l, mask_l, info_l = [], [], [], [], [], [], [], [], []
@@ -269,7 +314,9 @@ class MpoRolloutWorker:
         for _ in range(int(fragment_steps)):
             obs_t = torch.as_tensor(self.obs, dtype=torch.float32)
             with torch.no_grad():
-                action_t, self.hidden = self.actor.act_step(obs_t, self.hidden, deterministic=deterministic)
+                action_t, self.hidden = self.actor.act_step(
+                    obs_t, self.hidden, deterministic=deterministic, action_scale=self.action_scale
+                )
             action = action_t.cpu().numpy().reshape(-1).astype(np.float32)
             next_obs, reward, terminated, truncated, info = self.env.step(action)
             done = bool(terminated or truncated)
@@ -392,6 +439,75 @@ class MpoLearner:
         self.target_noise = float(mpo_cfg.get("target_policy_noise", 0.0))
         self.target_noise_clip = float(mpo_cfg.get("target_noise_clip", 0.3))
 
+        # B85-stable: damp the two failure modes seen in B85-current:
+        #   (1) critic/Q scale growth; (2) deterministic action saturation.
+        self.critic_loss_type = str(mpo_cfg.get("critic_loss", "mse")).lower()
+        self.huber_delta = float(mpo_cfg.get("huber_delta", 10.0))
+        self.reward_scale = float(mpo_cfg.get("reward_scale", 1.0))
+        self.reward_clip = mpo_cfg.get("reward_clip", None)
+        self.target_q_clip = mpo_cfg.get("target_q_clip", None)
+        self.eta_max = mpo_cfg.get("eta_max", None)
+        self.actor_action_l2_coeff = float(mpo_cfg.get("actor_action_l2_coeff", 0.0))
+        self.actor_action_saturation_coeff = float(mpo_cfg.get("actor_action_saturation_coeff", 0.0))
+        self.actor_action_soft_limit = float(mpo_cfg.get("actor_action_soft_limit", 0.75))
+        self.e_step_center_q = bool(mpo_cfg.get("e_step_center_q", True))
+        self.e_step_normalize_q = bool(mpo_cfg.get("e_step_normalize_q", True))
+        self.e_step_q_clip = float(mpo_cfg.get("e_step_q_clip", 8.0))
+
+        # B85c conservative actor controls.  These are intentionally actor-side,
+        # not only reward-side, because B85-stable still pushed deterministic
+        # actions into the 0.8--0.9 range even after reward penalties.
+        self.actor_update_every = max(1, int(mpo_cfg.get("actor_update_every", 1)))
+        self.policy_loss_clip = mpo_cfg.get("policy_loss_clip", None)
+        self.action_scale_default = float(mpo_cfg.get("actor_output_scale", mpo_cfg.get("actor_output_scale_init", 1.0)))
+        self.action_scale_schedule = mpo_cfg.get("actor_output_scale_schedule", None)
+        self.action_scale = float(self.action_scale_default)
+        self.update_count = 0
+
+    def set_env_steps(self, env_steps: int) -> None:
+        self.action_scale = piecewise_constant_schedule(
+            self.action_scale_schedule, int(env_steps), self.action_scale_default
+        )
+
+    def _clamp_eta_(self) -> None:
+        if self.eta_max is None:
+            return
+        eta_max = max(float(self.eta_max), self.eta_min + 1.0e-6)
+        # eta = softplus(log_eta) + eta_min; inverse softplus for clamp.
+        max_raw = eta_max - self.eta_min
+        inv = math.log(math.expm1(max_raw)) if max_raw < 50.0 else max_raw
+        with torch.no_grad():
+            self.log_eta.clamp_(max=inv)
+
+    def _apply_reward_and_target_scaling(self, reward: torch.Tensor, target_q: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        r = reward * self.reward_scale
+        if self.reward_clip is not None:
+            lo, hi = float(self.reward_clip[0]), float(self.reward_clip[1])
+            r = torch.clamp(r, lo, hi)
+        tq = target_q
+        if self.target_q_clip is not None:
+            lo, hi = float(self.target_q_clip[0]), float(self.target_q_clip[1])
+            tq = torch.clamp(tq, lo, hi)
+        return r, tq
+
+    def _td_loss(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:
+        if self.critic_loss_type in {"huber", "smooth_l1", "smoothl1"}:
+            try:
+                return F.huber_loss(pred, target, reduction="none", delta=self.huber_delta)
+            except TypeError:
+                return F.smooth_l1_loss(pred, target, reduction="none", beta=self.huber_delta)
+        return (pred - target).pow(2)
+
+    def _prepare_e_step_q(self, q_cand: torch.Tensor, mask: torch.Tensor) -> torch.Tensor:
+        q = q_cand.detach()
+        if self.e_step_center_q:
+            q = q - q.mean(dim=-1, keepdim=True)
+        if self.e_step_normalize_q:
+            q = q / torch.clamp(q.std(dim=-1, keepdim=True), min=1.0e-3)
+        if self.e_step_q_clip > 0.0:
+            q = torch.clamp(q, -self.e_step_q_clip, self.e_step_q_clip)
+        return q * mask.unsqueeze(-1)
+
     def actor_state_cpu(self) -> dict[str, Any]:
         return {k: v.detach().cpu() for k, v in self.actor.state_dict().items()}
 
@@ -412,16 +528,20 @@ class MpoLearner:
 
         # Critic update.
         with torch.no_grad():
-            next_action, _, _, _, _ = self.actor.sample(next_obs, deterministic=False)
+            next_action, _, _, _, _ = self.actor.sample(next_obs, deterministic=False, action_scale=self.action_scale)
             if self.target_noise > 0.0:
                 noise = torch.randn_like(next_action) * self.target_noise
                 noise = noise.clamp(-self.target_noise_clip, self.target_noise_clip)
                 next_action = (next_action + noise).clamp(-1.0, 1.0)
             target_q = torch.min(self.tq1(next_obs, next_priv, next_action), self.tq2(next_obs, next_priv, next_action))
-            y = reward + self.gamma * (1.0 - done) * target_q
+            scaled_reward, target_q = self._apply_reward_and_target_scaling(reward, target_q)
+            y = scaled_reward + self.gamma * (1.0 - done) * target_q
+            if self.target_q_clip is not None:
+                lo, hi = float(self.target_q_clip[0]), float(self.target_q_clip[1])
+                y = torch.clamp(y, lo, hi)
         q1 = self.q1(obs, priv, action)
         q2 = self.q2(obs, priv, action)
-        critic_loss = (((q1 - y).pow(2) + (q2 - y).pow(2)) * mask).sum() / mask_sum
+        critic_loss = ((self._td_loss(q1, y) + self._td_loss(q2, y)) * mask).sum() / mask_sum
         self.critic_opt.zero_grad(set_to_none=True)
         critic_loss.backward()
         torch.nn.utils.clip_grad_norm_(list(self.q1.parameters()) + list(self.q2.parameters()), self.grad_clip)
@@ -435,7 +555,7 @@ class MpoLearner:
             eps = torch.randn(B, T, self.num_action_samples, A, device=self.device)
             old_std = old_log_std.exp().unsqueeze(2)
             pre_tanh = old_mean.unsqueeze(2) + old_std * eps
-            cand_action = torch.tanh(pre_tanh)
+            cand_action = torch.tanh(pre_tanh) * self.action_scale
             obs_rep = obs.unsqueeze(2).expand(B, T, self.num_action_samples, obs.shape[-1]).permute(0, 2, 1, 3).reshape(B * self.num_action_samples, T, obs.shape[-1])
             priv_rep = priv.unsqueeze(2).expand(B, T, self.num_action_samples, priv.shape[-1]).permute(0, 2, 1, 3).reshape(B * self.num_action_samples, T, priv.shape[-1])
             act_rep = cand_action.permute(0, 2, 1, 3).reshape(B * self.num_action_samples, T, A)
@@ -444,18 +564,21 @@ class MpoLearner:
             q_cand = q_cand * mask.unsqueeze(-1)
 
         eta = F.softplus(self.log_eta) + self.eta_min
-        q_det = q_cand.detach()
-        # Dual objective for eta: eta*eps + eta*E[logmeanexp(Q/eta)]
-        lse = torch.logsumexp(q_det / eta, dim=-1) - np.log(self.num_action_samples)
+        q_e = self._prepare_e_step_q(q_cand, mask)
+        # Dual objective for eta: eta*eps + eta*E[logmeanexp(A/eta)].
+        # B85-stable uses centered/normalized candidate advantages A to prevent
+        # absolute Q-scale growth from driving eta and actor updates into a saturated policy.
+        lse = torch.logsumexp(q_e / eta, dim=-1) - np.log(self.num_action_samples)
         eta_loss = (eta * self.eta_epsilon + eta * ((lse * mask).sum() / mask_sum))
         self.eta_opt.zero_grad(set_to_none=True)
         eta_loss.backward()
+        torch.nn.utils.clip_grad_norm_([self.log_eta], self.grad_clip)
         self.eta_opt.step()
+        self._clamp_eta_()
         eta_used = (F.softplus(self.log_eta) + self.eta_min).detach()
 
         with torch.no_grad():
-            weights = torch.softmax(q_cand / eta_used, dim=-1)  # [B,T,K]
-            cand_action_detached = cand_action.detach()
+            weights = torch.softmax(q_e / eta_used, dim=-1)  # [B,T,K]
             pre_tanh_detached = pre_tanh.detach()
             old_mean_detached = old_mean.detach()
             old_log_std_detached = old_log_std.detach()
@@ -465,17 +588,25 @@ class MpoLearner:
         new_log_std_k = new_log_std.unsqueeze(2).expand_as(pre_tanh_detached)
         logp_new = tanh_gaussian_log_prob(pre_tanh_detached, new_mean_k, new_log_std_k)  # [B,T,K]
         policy_loss_raw = -((weights * logp_new).sum(dim=-1) * mask).sum() / mask_sum
+        policy_loss_used = clip_loss_if_configured(policy_loss_raw, self.policy_loss_clip)
         kl = gaussian_kl(old_mean_detached, old_log_std_detached, new_mean, new_log_std)
         kl_mean = (kl * mask).sum() / mask_sum
         # Penalize only KL above target, leaving small useful updates alone.
         kl_penalty = self.kl_coeff * torch.relu(kl_mean - self.kl_target).pow(2)
         entropy = (0.5 + 0.5 * np.log(2.0 * np.pi) + new_log_std).sum(dim=-1)
         entropy_mean = (entropy * mask).sum() / mask_sum
-        actor_loss = policy_loss_raw + kl_penalty - self.entropy_coeff * entropy_mean
-        self.actor_opt.zero_grad(set_to_none=True)
-        actor_loss.backward()
-        torch.nn.utils.clip_grad_norm_(self.actor.parameters(), self.grad_clip)
-        self.actor_opt.step()
+        mean_action = torch.tanh(new_mean) * self.action_scale
+        actor_action_l2 = self.actor_action_l2_coeff * ((mean_action.pow(2).mean(dim=-1) * mask).sum() / mask_sum)
+        sat_excess = torch.relu(mean_action.abs() - self.actor_action_soft_limit)
+        actor_action_saturation = self.actor_action_saturation_coeff * ((sat_excess.pow(2).mean(dim=-1) * mask).sum() / mask_sum)
+        actor_loss = policy_loss_used + kl_penalty - self.entropy_coeff * entropy_mean + actor_action_l2 + actor_action_saturation
+        self.update_count += 1
+        actor_update_applied = (self.update_count % self.actor_update_every == 0)
+        if actor_update_applied:
+            self.actor_opt.zero_grad(set_to_none=True)
+            actor_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.actor.parameters(), self.grad_clip)
+            self.actor_opt.step()
 
         soft_update(self.tq1, self.q1, self.tau)
         soft_update(self.tq2, self.q2, self.tau)
@@ -486,6 +617,7 @@ class MpoLearner:
             "critic_loss": float(critic_loss.detach().cpu()),
             "actor_loss": float(actor_loss.detach().cpu()),
             "policy_loss_raw": float(policy_loss_raw.detach().cpu()),
+            "policy_loss_used": float(policy_loss_used.detach().cpu()),
             "kl_mean": float(kl_mean.detach().cpu()),
             "entropy_mean": float(entropy_mean.detach().cpu()),
             "eta": float((F.softplus(self.log_eta) + self.eta_min).detach().cpu()),
@@ -493,6 +625,14 @@ class MpoLearner:
             "q_mean": float(q_mean.detach().cpu()),
             "target_q_mean": float(target_mean.detach().cpu()),
             "candidate_q_mean": float(((q_cand.detach() * mask.unsqueeze(-1)).sum() / (mask_sum * self.num_action_samples)).cpu()),
+            "candidate_adv_mean": float(((q_e.detach() * mask.unsqueeze(-1)).sum() / (mask_sum * self.num_action_samples)).cpu()),
+            "candidate_adv_std": float(torch.std(q_e.detach()[mask.unsqueeze(-1).expand_as(q_e) > 0.5]).cpu()) if torch.any(mask > 0.5) else 0.0,
+            "actor_action_l2_penalty": float(actor_action_l2.detach().cpu()),
+            "actor_action_saturation_penalty": float(actor_action_saturation.detach().cpu()),
+            "actor_mean_abs_action": float(((mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
+            "actor_action_scale": float(self.action_scale),
+            "actor_update_applied": float(actor_update_applied),
+            "critic_loss_type": 1.0 if self.critic_loss_type in {"huber", "smooth_l1", "smoothl1"} else 0.0,
         }
 
     def save_checkpoint(self, path: Path, stats: dict[str, Any]) -> None:
@@ -507,6 +647,8 @@ class MpoLearner:
             "critic_opt": self.critic_opt.state_dict(),
             "eta_opt": self.eta_opt.state_dict(),
             "log_eta": self.log_eta.detach().cpu(),
+            "action_scale": float(self.action_scale),
+            "update_count": int(self.update_count),
             "stats": json_safe(stats),
             "config": json_safe(self.cfg),
         }
@@ -575,6 +717,138 @@ def summarize_episodes(episodes: list[dict[str, Any]]) -> dict[str, Any]:
     return out
 
 
+def force_stage_for_eval(train_cfg: dict[str, Any], stage_name: str | None) -> dict[str, Any]:
+    if not stage_name or stage_name == "default":
+        return json.loads(json.dumps(train_cfg))
+    cfg = json.loads(json.dumps(train_cfg))
+    cur = cfg.get("curriculum", {}).get("env_attributes", {})
+    stages = list(cur.get("stages", []))
+    aliases = {"final": "stage3", "strict": "stage3"}
+    target = aliases.get(str(stage_name), str(stage_name))
+    match = None
+    for st in stages:
+        name = str(st.get("name", ""))
+        if target == name or name.startswith(target) or target in name:
+            match = st
+    if match is None:
+        raise ValueError(f"Cannot find eval stage {stage_name!r} in train_config curriculum")
+    cfg.setdefault("curriculum", {}).setdefault("env_attributes", {})["enabled"] = False
+    cfg.setdefault("reward", {}).update(dict(match.get("env_params", {})))
+    return cfg
+
+
+def run_online_deterministic_probe(
+    cfg: dict[str, Any], learner: MpoLearner, *, iteration: int, env_steps: int, seed: int, stage: str
+) -> dict[str, Any]:
+    """Run one deterministic final-stage episode in-process for early diagnosis.
+
+    This is intentionally single-episode for the user's fixed target deterministic
+    plant; repeated episodes would be identical unless explicit randomization is
+    added.
+    """
+    train_cfg = force_stage_for_eval(cfg["train_config_resolved"], stage)
+    env_cfg = {
+        "backend": cfg.get("env", {}).get("backend", "native"),
+        "train_config": train_cfg,
+        "seed": int(seed),
+        "worker_index": int(cfg.get("parallel", {}).get("num_tsc_workers", 192)) + 10000 + int(iteration),
+        "vector_index": 0,
+        "num_workers_for_curriculum": 1,
+        "finite_guard": cfg.get("env", {}).get("finite_guard", {"enabled": True}),
+    }
+    env = RllibTscRzipEnv(env_cfg)
+    obs, info = env.reset(seed=int(seed))
+    obs = np.asarray(obs, dtype=np.float32).reshape(-1)
+    hidden = learner.actor.init_hidden(1, device=learner.device)
+    total = 0.0
+    steps = 0
+    action_abs: list[float] = []
+    max_abs = 0.0
+    last_info = dict(info or {})
+    learner.actor.eval()
+    try:
+        done = False
+        while not done:
+            with torch.no_grad():
+                a, hidden = learner.actor.act_step(
+                    torch.as_tensor(obs, dtype=torch.float32, device=learner.device),
+                    hidden,
+                    deterministic=True,
+                    action_scale=float(learner.action_scale),
+                )
+            action = a.detach().cpu().numpy().reshape(-1).astype(np.float32)
+            next_obs, reward, terminated, truncated, info = env.step(action)
+            done = bool(terminated or truncated)
+            total += float(reward)
+            steps += 1
+            action_abs.append(float(np.mean(np.abs(action))))
+            max_abs = max(max_abs, float(np.max(np.abs(action))))
+            obs = np.asarray(next_obs, dtype=np.float32).reshape(-1)
+            last_info = dict(info or {})
+    finally:
+        try:
+            env.close()
+        except Exception:
+            pass
+    def f(key: str, fallback: str | None = None, default: float = 0.0) -> float:
+        try:
+            if key in last_info:
+                return float(last_info.get(key))
+            if fallback is not None:
+                return float(last_info.get(fallback, default))
+            return float(default)
+        except Exception:
+            return float(default)
+    return {
+        "eval_final_det_iteration": int(iteration),
+        "eval_final_det_env_steps": int(env_steps),
+        "eval_final_det_return": float(total),
+        "eval_final_det_len": int(steps),
+        "eval_final_det_hold_success": float(bool(last_info.get("hold_success", False))),
+        "eval_final_det_quality_success": float(bool(last_info.get("quality_success", False))),
+        "eval_final_det_first_reach": int(last_info.get("time_to_first_reach_step", last_info.get("first_reach_step", -1))),
+        "eval_final_det_stable_hold": int(last_info.get("time_to_stable_hold_step", last_info.get("first_stable_hold_step", -1))),
+        "eval_final_det_terminal_R_error": f("terminal_R_error", "R_error"),
+        "eval_final_det_terminal_Z_error": f("terminal_Z_error", "Z_error"),
+        "eval_final_det_terminal_Ip_error": f("terminal_Ip_error", "Ip_error"),
+        "eval_final_det_terminal_velocity_norm": f("terminal_velocity_norm", "velocity_norm"),
+        "eval_final_det_mean_abs_action": float(np.mean(action_abs)) if action_abs else 0.0,
+        "eval_final_det_max_abs_action": float(max_abs),
+        "eval_final_det_action_scale": float(learner.action_scale),
+    }
+
+
+def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dict[str, Any], bad_probe_count: int) -> tuple[bool, int, str]:
+    esc = cfg.get("early_stop", {})
+    if not bool(esc.get("enabled", False)):
+        return False, bad_probe_count, "disabled"
+    if int(iteration) < int(esc.get("min_iteration", 0)):
+        return False, bad_probe_count, "below_min_iteration"
+    bad = False
+    reasons = []
+    if float(probe.get("eval_final_det_hold_success", 0.0)) <= 0.0:
+        if int(probe.get("eval_final_det_first_reach", -1)) < 0:
+            ma = float(probe.get("eval_final_det_mean_abs_action", 0.0))
+            thr = float(esc.get("bad_if_no_first_reach_and_mean_action_gt", 0.60))
+            if ma > thr:
+                bad = True
+                reasons.append(f"no_first_reach_and_mean_action>{thr}")
+        z_abs = abs(float(probe.get("eval_final_det_terminal_Z_error", 0.0)))
+        z_thr = float(esc.get("bad_if_z_abs_gt", 1.0e9))
+        if z_abs > z_thr:
+            bad = True
+            reasons.append(f"z_abs>{z_thr}")
+    if bad:
+        bad_probe_count += 1
+    else:
+        bad_probe_count = 0
+    req = int(esc.get("require_consecutive_bad_probes", 2))
+    if bad_probe_count >= req:
+        return True, bad_probe_count, ";".join(reasons) or "bad_probe"
+    return False, bad_probe_count, ";".join(reasons) if bad else "ok"
+
+
+
 def main():
     ap = argparse.ArgumentParser(description="Train B85 Asymmetric Recurrent MPO for TSC R/Z/Ip control.")
     ap.add_argument("--config", required=True, help="MPO training config JSON.")
@@ -633,6 +907,7 @@ def main():
     obs_dim, priv_dim, action_dim = infer_spaces(cfg)
     device = "cuda" if (torch.cuda.is_available() and int(cfg.get("learner", {}).get("num_gpus", 0)) > 0) else "cpu"
     learner = MpoLearner(cfg, obs_dim, priv_dim, action_dim, device=device)
+    learner.set_env_steps(0)
     if args.resume:
         payload = torch.load(Path(args.resume) / "mpo_checkpoint.pt", map_location=device)
         learner.actor.load_state_dict(payload["actor"])
@@ -640,6 +915,17 @@ def main():
         learner.q2.load_state_dict(payload["q2"])
         learner.tq1.load_state_dict(payload.get("tq1", payload["q1"]))
         learner.tq2.load_state_dict(payload.get("tq2", payload["q2"]))
+        if "actor_opt" in payload:
+            try:
+                learner.actor_opt.load_state_dict(payload["actor_opt"])
+                learner.critic_opt.load_state_dict(payload["critic_opt"])
+                learner.eta_opt.load_state_dict(payload["eta_opt"])
+            except Exception as exc:
+                print(f"Warning: optimizer state not restored cleanly: {exc}")
+        if "log_eta" in payload:
+            with torch.no_grad():
+                learner.log_eta.copy_(payload["log_eta"].to(device))
+        learner.update_count = int(payload.get("update_count", 0))
         print(f"Resumed MPO checkpoint: {args.resume}")
 
     replay_cfg = cfg.get("replay", {})
@@ -648,6 +934,7 @@ def main():
     fragment_steps = int(par.get("fragment_steps", 32))
     rollout_deterministic = bool(par.get("rollout_deterministic", False))
     workers = [MpoRolloutWorker.options(num_cpus=float(par.get("num_cpus_per_tsc_worker", 1))).remote(i, cfg, learner.actor_state_cpu()) for i in range(num_workers)]
+    ray.get([w.set_action_scale.remote(float(learner.action_scale)) for w in workers])
 
     stop_env_steps = int(cfg.get("stop_env_steps", 5_000_000))
     warmup_steps = int(cfg.get("mpo", {}).get("warmup_steps", 100_000))
@@ -655,6 +942,11 @@ def main():
     seq_len = int(cfg.get("mpo", {}).get("sequence_len", 32))
     updates_per_iter = int(cfg.get("mpo", {}).get("updates_per_iter", 64))
     checkpoint_every_iters = int(cfg.get("checkpoint_every_iters", 25))
+    probe_cfg = cfg.get("deterministic_probe", {})
+    probe_enabled = bool(probe_cfg.get("enabled", False))
+    probe_every_iters = int(probe_cfg.get("every_iters", checkpoint_every_iters if checkpoint_every_iters > 0 else 25))
+    probe_stage = str(probe_cfg.get("eval_stage", "final"))
+    probe_seed = int(probe_cfg.get("seed", 12345))
     sync_every_iters = int(cfg.get("parallel", {}).get("actor_sync_interval_iters", 1))
     results_path = run_dir / "train_results.jsonl"
     csv_path = run_dir / "train_results.csv"
@@ -664,6 +956,7 @@ def main():
     start_time = time.time()
     pending = {w.rollout.remote(fragment_steps, rollout_deterministic): w for w in workers}
     last_actor_state = learner.actor_state_cpu()
+    bad_probe_count = 0
 
     try:
         while total_steps < stop_env_steps:
@@ -688,13 +981,17 @@ def main():
                 pending[w.rollout.remote(fragment_steps, rollout_deterministic)] = w
 
             losses = []
+            learner.set_env_steps(total_steps)
             if total_steps >= warmup_steps and replay.can_sample(batch_size, seq_len):
                 for _ in range(updates_per_iter):
                     batch = replay.sample(batch_size=batch_size, seq_len=seq_len)
                     losses.append(learner.update(batch))
                 if iteration % sync_every_iters == 0:
                     last_actor_state = learner.actor_state_cpu()
-                    ray.get([w.set_actor_weights.remote(last_actor_state) for w in workers])
+                    ray.get([w.set_actor_weights.remote(last_actor_state, float(learner.action_scale)) for w in workers])
+            elif iteration % sync_every_iters == 0:
+                # Keep rollout workers' hard action scale schedule synchronized even during warmup.
+                ray.get([w.set_action_scale.remote(float(learner.action_scale)) for w in workers])
 
             loss_mean = {}
             if losses:
@@ -712,10 +1009,27 @@ def main():
                 "fragment_mean_reward": float(np.mean(frag_rewards)) if frag_rewards else 0.0,
                 "fragment_mean_abs_action": float(np.mean(frag_actions)) if frag_actions else 0.0,
                 "updates_this_iter": int(len(losses)),
+                "actor_action_scale": float(learner.action_scale),
                 **{f"learner/{k}": v for k, v in loss_mean.items()},
                 **{f"replay/{k}": v for k, v in replay.stats().items()},
                 **ep_summary,
             }
+            if probe_enabled and probe_every_iters > 0 and iteration % probe_every_iters == 0:
+                try:
+                    probe = run_online_deterministic_probe(
+                        cfg, learner, iteration=iteration, env_steps=total_steps,
+                        seed=probe_seed, stage=probe_stage
+                    )
+                    stop_now, bad_probe_count, reason = should_early_stop_from_probe(cfg, iteration, probe, bad_probe_count)
+                    result.update(probe)
+                    result["early_stop_bad_probe_count"] = int(bad_probe_count)
+                    result["early_stop_reason"] = str(reason)
+                    result["early_stop_triggered"] = bool(stop_now)
+                except Exception as exc:
+                    result["eval_final_det_error"] = repr(exc)
+                    stop_now = False
+            else:
+                stop_now = False
             with open(results_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(json_safe(result), ensure_ascii=False) + "\n")
             if csv_fields is None:
@@ -732,6 +1046,9 @@ def main():
             print(json.dumps(json_safe(result), ensure_ascii=False), flush=True)
             if checkpoint_every_iters > 0 and iteration % checkpoint_every_iters == 0:
                 learner.save_checkpoint(ckpt_dir / f"iter_{iteration:06d}", result)
+            if bool(result.get("early_stop_triggered", False)):
+                print(f"B85c early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
+                break
             if total_steps >= stop_env_steps:
                 break
     finally:

@@ -3,7 +3,7 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export TSC_ALL_ROOT="${TSC_ALL_ROOT:-$(dirname "$PROJECT_DIR")}"
 
-CONFIG=${1:-configs/mpo_b85_recurrent_192worker_5m.json}
+CONFIG=${1:-configs/mpo_b85_stable_recurrent_192worker_1m_probe.json}
 CHECKPOINT=${2:?"checkpoint dir required, e.g. mpo_checkpoints/<run>/final"}
 OUT=${3:-eval_results/mpo_eval.csv}
 STAGE=${4:-final}
