@@ -226,11 +226,39 @@ def piecewise_constant_schedule(schedule: Any, step: int, default: float) -> flo
     return float(out)
 
 
-def clip_loss_if_configured(loss: torch.Tensor, clip_range: Any | None) -> torch.Tensor:
-    if clip_range is None:
-        return loss
-    lo, hi = float(clip_range[0]), float(clip_range[1])
-    return torch.clamp(loss, lo, hi)
+def bounded_policy_loss(
+    loss: torch.Tensor,
+    clip_range: Any | None = None,
+    lower: float | None = None,
+    upper: float | None = None,
+) -> torch.Tensor:
+    """Asymmetric scalar policy-loss bound for MPO actor updates.
+
+    B85c used a symmetric torch.clamp(policy_loss_raw, -5, 5).  That is
+    dangerous for this experiment: when policy_loss_raw stays above +5 the
+    clamp has zero gradient and the actor mean is driven toward zero only by
+    regularization.  B86 keeps the positive-loss gradient alive by default
+    and clips only the aggressive negative direction.
+
+    Backward compatibility: if clip_range is supplied, it is still accepted,
+    but B86 configs should use policy_loss_lower_clip / policy_loss_upper_clip.
+    Set policy_loss_upper_clip to null to avoid the B85c no-op failure mode.
+    """
+    if clip_range is not None:
+        # Legacy configs.  Preserve old behavior unless explicit lower/upper
+        # keys are also supplied.
+        if lower is None:
+            lower = float(clip_range[0])
+        if upper is None and len(clip_range) > 1 and clip_range[1] is not None:
+            upper = float(clip_range[1])
+    out = loss
+    if lower is not None:
+        lo = torch.as_tensor(float(lower), dtype=loss.dtype, device=loss.device)
+        out = torch.maximum(out, lo)
+    if upper is not None:
+        hi = torch.as_tensor(float(upper), dtype=loss.dtype, device=loss.device)
+        out = torch.minimum(out, hi)
+    return out
 
 
 
@@ -454,11 +482,14 @@ class MpoLearner:
         self.e_step_normalize_q = bool(mpo_cfg.get("e_step_normalize_q", True))
         self.e_step_q_clip = float(mpo_cfg.get("e_step_q_clip", 8.0))
 
-        # B85c conservative actor controls.  These are intentionally actor-side,
-        # not only reward-side, because B85-stable still pushed deterministic
-        # actions into the 0.8--0.9 range even after reward penalties.
+        # B86 balanced actor controls.  These are intentionally actor-side,
+        # not only reward-side: B85-stable pushed actions too high, while B85c
+        # clipped positive policy-loss gradients and collapsed deterministic mean
+        # actions back to no-op.
         self.actor_update_every = max(1, int(mpo_cfg.get("actor_update_every", 1)))
         self.policy_loss_clip = mpo_cfg.get("policy_loss_clip", None)
+        self.policy_loss_lower_clip = mpo_cfg.get("policy_loss_lower_clip", None)
+        self.policy_loss_upper_clip = mpo_cfg.get("policy_loss_upper_clip", None)
         self.action_scale_default = float(mpo_cfg.get("actor_output_scale", mpo_cfg.get("actor_output_scale_init", 1.0)))
         self.action_scale_schedule = mpo_cfg.get("actor_output_scale_schedule", None)
         self.action_scale = float(self.action_scale_default)
@@ -588,7 +619,7 @@ class MpoLearner:
         new_log_std_k = new_log_std.unsqueeze(2).expand_as(pre_tanh_detached)
         logp_new = tanh_gaussian_log_prob(pre_tanh_detached, new_mean_k, new_log_std_k)  # [B,T,K]
         policy_loss_raw = -((weights * logp_new).sum(dim=-1) * mask).sum() / mask_sum
-        policy_loss_used = clip_loss_if_configured(policy_loss_raw, self.policy_loss_clip)
+        policy_loss_used = bounded_policy_loss(policy_loss_raw, self.policy_loss_clip, self.policy_loss_lower_clip, self.policy_loss_upper_clip)
         kl = gaussian_kl(old_mean_detached, old_log_std_detached, new_mean, new_log_std)
         kl_mean = (kl * mask).sum() / mask_sum
         # Penalize only KL above target, leaving small useful updates alone.
@@ -618,6 +649,8 @@ class MpoLearner:
             "actor_loss": float(actor_loss.detach().cpu()),
             "policy_loss_raw": float(policy_loss_raw.detach().cpu()),
             "policy_loss_used": float(policy_loss_used.detach().cpu()),
+            "policy_loss_lower_clip": float(self.policy_loss_lower_clip) if self.policy_loss_lower_clip is not None else float("nan"),
+            "policy_loss_upper_clip": float(self.policy_loss_upper_clip) if self.policy_loss_upper_clip is not None else float("nan"),
             "kl_mean": float(kl_mean.detach().cpu()),
             "entropy_mean": float(entropy_mean.detach().cpu()),
             "eta": float((F.softplus(self.log_eta) + self.eta_min).detach().cpu()),
@@ -737,21 +770,29 @@ def force_stage_for_eval(train_cfg: dict[str, Any], stage_name: str | None) -> d
     return cfg
 
 
-def run_online_deterministic_probe(
-    cfg: dict[str, Any], learner: MpoLearner, *, iteration: int, env_steps: int, seed: int, stage: str
+def run_online_policy_probe(
+    cfg: dict[str, Any],
+    learner: MpoLearner,
+    *,
+    iteration: int,
+    env_steps: int,
+    seed: int,
+    stage: str,
+    deterministic: bool,
+    prefix: str,
 ) -> dict[str, Any]:
-    """Run one deterministic final-stage episode in-process for early diagnosis.
+    """Run one final-stage episode in-process for online diagnosis.
 
-    This is intentionally single-episode for the user's fixed target deterministic
-    plant; repeated episodes would be identical unless explicit randomization is
-    added.
+    Deterministic probe is the deployable policy check.  Optional stochastic
+    probe helps distinguish "the distribution can sometimes find useful
+    actions" from "the deterministic mean is stuck/no-op".
     """
     train_cfg = force_stage_for_eval(cfg["train_config_resolved"], stage)
     env_cfg = {
         "backend": cfg.get("env", {}).get("backend", "native"),
         "train_config": train_cfg,
         "seed": int(seed),
-        "worker_index": int(cfg.get("parallel", {}).get("num_tsc_workers", 192)) + 10000 + int(iteration),
+        "worker_index": int(cfg.get("parallel", {}).get("num_tsc_workers", 192)) + 10000 + int(iteration) + (0 if deterministic else 5000),
         "vector_index": 0,
         "num_workers_for_curriculum": 1,
         "finite_guard": cfg.get("env", {}).get("finite_guard", {"enabled": True}),
@@ -773,7 +814,7 @@ def run_online_deterministic_probe(
                 a, hidden = learner.actor.act_step(
                     torch.as_tensor(obs, dtype=torch.float32, device=learner.device),
                     hidden,
-                    deterministic=True,
+                    deterministic=bool(deterministic),
                     action_scale=float(learner.action_scale),
                 )
             action = a.detach().cpu().numpy().reshape(-1).astype(np.float32)
@@ -790,6 +831,7 @@ def run_online_deterministic_probe(
             env.close()
         except Exception:
             pass
+
     def f(key: str, fallback: str | None = None, default: float = 0.0) -> float:
         try:
             if key in last_info:
@@ -799,23 +841,42 @@ def run_online_deterministic_probe(
             return float(default)
         except Exception:
             return float(default)
+
     return {
-        "eval_final_det_iteration": int(iteration),
-        "eval_final_det_env_steps": int(env_steps),
-        "eval_final_det_return": float(total),
-        "eval_final_det_len": int(steps),
-        "eval_final_det_hold_success": float(bool(last_info.get("hold_success", False))),
-        "eval_final_det_quality_success": float(bool(last_info.get("quality_success", False))),
-        "eval_final_det_first_reach": int(last_info.get("time_to_first_reach_step", last_info.get("first_reach_step", -1))),
-        "eval_final_det_stable_hold": int(last_info.get("time_to_stable_hold_step", last_info.get("first_stable_hold_step", -1))),
-        "eval_final_det_terminal_R_error": f("terminal_R_error", "R_error"),
-        "eval_final_det_terminal_Z_error": f("terminal_Z_error", "Z_error"),
-        "eval_final_det_terminal_Ip_error": f("terminal_Ip_error", "Ip_error"),
-        "eval_final_det_terminal_velocity_norm": f("terminal_velocity_norm", "velocity_norm"),
-        "eval_final_det_mean_abs_action": float(np.mean(action_abs)) if action_abs else 0.0,
-        "eval_final_det_max_abs_action": float(max_abs),
-        "eval_final_det_action_scale": float(learner.action_scale),
+        f"{prefix}_iteration": int(iteration),
+        f"{prefix}_env_steps": int(env_steps),
+        f"{prefix}_return": float(total),
+        f"{prefix}_len": int(steps),
+        f"{prefix}_hold_success": float(bool(last_info.get("hold_success", False))),
+        f"{prefix}_quality_success": float(bool(last_info.get("quality_success", False))),
+        f"{prefix}_first_reach": int(last_info.get("time_to_first_reach_step", last_info.get("first_reach_step", -1))),
+        f"{prefix}_stable_hold": int(last_info.get("time_to_stable_hold_step", last_info.get("first_stable_hold_step", -1))),
+        f"{prefix}_terminal_R_error": f("terminal_R_error", "R_error"),
+        f"{prefix}_terminal_Z_error": f("terminal_Z_error", "Z_error"),
+        f"{prefix}_terminal_Ip_error": f("terminal_Ip_error", "Ip_error"),
+        f"{prefix}_terminal_velocity_norm": f("terminal_velocity_norm", "velocity_norm"),
+        f"{prefix}_mean_abs_action": float(np.mean(action_abs)) if action_abs else 0.0,
+        f"{prefix}_max_abs_action": float(max_abs),
+        f"{prefix}_action_scale": float(learner.action_scale),
     }
+
+
+def run_online_deterministic_probe(
+    cfg: dict[str, Any], learner: MpoLearner, *, iteration: int, env_steps: int, seed: int, stage: str
+) -> dict[str, Any]:
+    return run_online_policy_probe(
+        cfg, learner, iteration=iteration, env_steps=env_steps, seed=seed,
+        stage=stage, deterministic=True, prefix="eval_final_det"
+    )
+
+
+def run_online_stochastic_probe(
+    cfg: dict[str, Any], learner: MpoLearner, *, iteration: int, env_steps: int, seed: int, stage: str
+) -> dict[str, Any]:
+    return run_online_policy_probe(
+        cfg, learner, iteration=iteration, env_steps=env_steps, seed=seed,
+        stage=stage, deterministic=False, prefix="eval_final_stoch"
+    )
 
 
 def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dict[str, Any], bad_probe_count: int) -> tuple[bool, int, str]:
@@ -829,10 +890,17 @@ def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dic
     if float(probe.get("eval_final_det_hold_success", 0.0)) <= 0.0:
         if int(probe.get("eval_final_det_first_reach", -1)) < 0:
             ma = float(probe.get("eval_final_det_mean_abs_action", 0.0))
-            thr = float(esc.get("bad_if_no_first_reach_and_mean_action_gt", 0.60))
-            if ma > thr:
+            if bool(esc.get("bad_if_no_first_reach_after_min_iter", False)):
                 bad = True
-                reasons.append(f"no_first_reach_and_mean_action>{thr}")
+                reasons.append("no_first_reach")
+            thr_hi = esc.get("bad_if_no_first_reach_and_mean_action_gt", None)
+            if thr_hi is not None and ma > float(thr_hi):
+                bad = True
+                reasons.append(f"no_first_reach_and_mean_action>{float(thr_hi)}")
+            thr_lo = esc.get("bad_if_no_first_reach_and_mean_action_lt", None)
+            if thr_lo is not None and ma < float(thr_lo):
+                bad = True
+                reasons.append(f"no_first_reach_and_mean_action<{float(thr_lo)}")
         z_abs = abs(float(probe.get("eval_final_det_terminal_Z_error", 0.0)))
         z_thr = float(esc.get("bad_if_z_abs_gt", 1.0e9))
         if z_abs > z_thr:
@@ -850,7 +918,7 @@ def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dic
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Train B85 Asymmetric Recurrent MPO for TSC R/Z/Ip control.")
+    ap = argparse.ArgumentParser(description="Train B86 Balanced Recurrent MPO for TSC R/Z/Ip control.")
     ap.add_argument("--config", required=True, help="MPO training config JSON.")
     ap.add_argument("--override", default=None, help="Optional JSON override.")
     ap.add_argument("--resume", default=None, help="Optional checkpoint directory containing mpo_checkpoint.pt.")
@@ -947,6 +1015,11 @@ def main():
     probe_every_iters = int(probe_cfg.get("every_iters", checkpoint_every_iters if checkpoint_every_iters > 0 else 25))
     probe_stage = str(probe_cfg.get("eval_stage", "final"))
     probe_seed = int(probe_cfg.get("seed", 12345))
+    stoch_probe_cfg = cfg.get("stochastic_probe", {})
+    stoch_probe_enabled = bool(stoch_probe_cfg.get("enabled", False))
+    stoch_probe_every_iters = int(stoch_probe_cfg.get("every_iters", probe_every_iters))
+    stoch_probe_stage = str(stoch_probe_cfg.get("eval_stage", probe_stage))
+    stoch_probe_seed = int(stoch_probe_cfg.get("seed", probe_seed + 1000))
     sync_every_iters = int(cfg.get("parallel", {}).get("actor_sync_interval_iters", 1))
     results_path = run_dir / "train_results.jsonl"
     csv_path = run_dir / "train_results.csv"
@@ -1014,22 +1087,32 @@ def main():
                 **{f"replay/{k}": v for k, v in replay.stats().items()},
                 **ep_summary,
             }
+            stop_now = False
+            probe_for_early_stop = None
             if probe_enabled and probe_every_iters > 0 and iteration % probe_every_iters == 0:
                 try:
                     probe = run_online_deterministic_probe(
                         cfg, learner, iteration=iteration, env_steps=total_steps,
                         seed=probe_seed, stage=probe_stage
                     )
-                    stop_now, bad_probe_count, reason = should_early_stop_from_probe(cfg, iteration, probe, bad_probe_count)
+                    probe_for_early_stop = probe
                     result.update(probe)
-                    result["early_stop_bad_probe_count"] = int(bad_probe_count)
-                    result["early_stop_reason"] = str(reason)
-                    result["early_stop_triggered"] = bool(stop_now)
                 except Exception as exc:
                     result["eval_final_det_error"] = repr(exc)
-                    stop_now = False
-            else:
-                stop_now = False
+            if stoch_probe_enabled and stoch_probe_every_iters > 0 and iteration % stoch_probe_every_iters == 0:
+                try:
+                    stoch_probe = run_online_stochastic_probe(
+                        cfg, learner, iteration=iteration, env_steps=total_steps,
+                        seed=stoch_probe_seed + iteration, stage=stoch_probe_stage
+                    )
+                    result.update(stoch_probe)
+                except Exception as exc:
+                    result["eval_final_stoch_error"] = repr(exc)
+            if probe_for_early_stop is not None:
+                stop_now, bad_probe_count, reason = should_early_stop_from_probe(cfg, iteration, probe_for_early_stop, bad_probe_count)
+                result["early_stop_bad_probe_count"] = int(bad_probe_count)
+                result["early_stop_reason"] = str(reason)
+                result["early_stop_triggered"] = bool(stop_now)
             with open(results_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(json_safe(result), ensure_ascii=False) + "\n")
             if csv_fields is None:
@@ -1047,7 +1130,7 @@ def main():
             if checkpoint_every_iters > 0 and iteration % checkpoint_every_iters == 0:
                 learner.save_checkpoint(ckpt_dir / f"iter_{iteration:06d}", result)
             if bool(result.get("early_stop_triggered", False)):
-                print(f"B85c early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
+                print(f"B86 early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
                 break
             if total_steps >= stop_env_steps:
                 break
