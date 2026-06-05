@@ -842,6 +842,20 @@ def run_online_policy_probe(
         except Exception:
             return float(default)
 
+    r_err = f("terminal_R_error", "R_error")
+    z_err = f("terminal_Z_error", "Z_error")
+    ip_err = f("terminal_Ip_error", "Ip_error")
+    mean_action = float(np.mean(action_abs)) if action_abs else 0.0
+    esc = cfg.get("early_stop", {})
+    score_r_ref = max(float(esc.get("score_r_ref", 0.05)), 1.0e-12)
+    score_z_ref = max(float(esc.get("score_z_ref", 0.05)), 1.0e-12)
+    score_ip_ref = max(float(esc.get("score_ip_ref", 3000.0)), 1.0e-12)
+    score_ip_weight = float(esc.get("score_ip_weight", 0.2))
+    score_action_weight = float(esc.get("score_action_weight", 0.2))
+    shape_score = abs(r_err) / score_r_ref + abs(z_err) / score_z_ref
+    ip_score = abs(ip_err) / score_ip_ref
+    relaxed_score = shape_score + score_ip_weight * ip_score + score_action_weight * mean_action
+
     return {
         f"{prefix}_iteration": int(iteration),
         f"{prefix}_env_steps": int(env_steps),
@@ -851,12 +865,15 @@ def run_online_policy_probe(
         f"{prefix}_quality_success": float(bool(last_info.get("quality_success", False))),
         f"{prefix}_first_reach": int(last_info.get("time_to_first_reach_step", last_info.get("first_reach_step", -1))),
         f"{prefix}_stable_hold": int(last_info.get("time_to_stable_hold_step", last_info.get("first_stable_hold_step", -1))),
-        f"{prefix}_terminal_R_error": f("terminal_R_error", "R_error"),
-        f"{prefix}_terminal_Z_error": f("terminal_Z_error", "Z_error"),
-        f"{prefix}_terminal_Ip_error": f("terminal_Ip_error", "Ip_error"),
+        f"{prefix}_terminal_R_error": float(r_err),
+        f"{prefix}_terminal_Z_error": float(z_err),
+        f"{prefix}_terminal_Ip_error": float(ip_err),
         f"{prefix}_terminal_velocity_norm": f("terminal_velocity_norm", "velocity_norm"),
-        f"{prefix}_mean_abs_action": float(np.mean(action_abs)) if action_abs else 0.0,
+        f"{prefix}_mean_abs_action": float(mean_action),
         f"{prefix}_max_abs_action": float(max_abs),
+        f"{prefix}_shape_score": float(shape_score),
+        f"{prefix}_ip_score": float(ip_score),
+        f"{prefix}_relaxed_score": float(relaxed_score),
         f"{prefix}_action_scale": float(learner.action_scale),
     }
 
@@ -885,11 +902,20 @@ def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dic
         return False, bad_probe_count, "disabled"
     if int(iteration) < int(esc.get("min_iteration", 0)):
         return False, bad_probe_count, "below_min_iteration"
+
+    first_reach = int(probe.get("eval_final_det_first_reach", -1))
+    hold_success = float(probe.get("eval_final_det_hold_success", 0.0)) > 0.0
+    ma = float(probe.get("eval_final_det_mean_abs_action", 0.0))
+    r = float(probe.get("eval_final_det_terminal_R_error", 0.0))
+    z = float(probe.get("eval_final_det_terminal_Z_error", 0.0))
+    ip = float(probe.get("eval_final_det_terminal_Ip_error", 0.0))
+    shape_score = float(probe.get("eval_final_det_shape_score", abs(r) / max(float(esc.get("score_r_ref", 0.05)), 1e-12) + abs(z) / max(float(esc.get("score_z_ref", 0.05)), 1e-12)))
+    relaxed_score = float(probe.get("eval_final_det_relaxed_score", shape_score + float(esc.get("score_ip_weight", 0.2)) * abs(ip) / max(float(esc.get("score_ip_ref", 3000.0)), 1e-12)))
+
     bad = False
-    reasons = []
-    if float(probe.get("eval_final_det_hold_success", 0.0)) <= 0.0:
-        if int(probe.get("eval_final_det_first_reach", -1)) < 0:
-            ma = float(probe.get("eval_final_det_mean_abs_action", 0.0))
+    reasons: list[str] = []
+    if not hold_success:
+        if first_reach < 0:
             if bool(esc.get("bad_if_no_first_reach_after_min_iter", False)):
                 bad = True
                 reasons.append("no_first_reach")
@@ -901,11 +927,23 @@ def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dic
             if thr_lo is not None and ma < float(thr_lo):
                 bad = True
                 reasons.append(f"no_first_reach_and_mean_action<{float(thr_lo)}")
-        z_abs = abs(float(probe.get("eval_final_det_terminal_Z_error", 0.0)))
-        z_thr = float(esc.get("bad_if_z_abs_gt", 1.0e9))
-        if z_abs > z_thr:
+        z_thr = esc.get("bad_if_z_abs_gt", None)
+        if z_thr is not None and abs(z) > float(z_thr):
             bad = True
-            reasons.append(f"z_abs>{z_thr}")
+            reasons.append(f"z_abs>{float(z_thr)}")
+        r_neg_thr = esc.get("bad_if_r_error_lt", None)
+        if r_neg_thr is not None and r < float(r_neg_thr):
+            bad = True
+            reasons.append(f"r_error<{float(r_neg_thr)}")
+        shape_thr = esc.get("bad_if_shape_score_gt", None)
+        if shape_thr is not None and shape_score > float(shape_thr):
+            bad = True
+            reasons.append(f"shape_score>{float(shape_thr)}")
+        relaxed_thr = esc.get("bad_if_relaxed_score_gt", None)
+        if relaxed_thr is not None and relaxed_score > float(relaxed_thr):
+            bad = True
+            reasons.append(f"relaxed_score>{float(relaxed_thr)}")
+
     if bad:
         bad_probe_count += 1
     else:
@@ -916,9 +954,8 @@ def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dic
     return False, bad_probe_count, ";".join(reasons) if bad else "ok"
 
 
-
 def main():
-    ap = argparse.ArgumentParser(description="Train B86 Balanced Recurrent MPO for TSC R/Z/Ip control.")
+    ap = argparse.ArgumentParser(description="Train B87 Shape-First Relaxed-Ip Recurrent MPO for TSC R/Z/Ip control.")
     ap.add_argument("--config", required=True, help="MPO training config JSON.")
     ap.add_argument("--override", default=None, help="Optional JSON override.")
     ap.add_argument("--resume", default=None, help="Optional checkpoint directory containing mpo_checkpoint.pt.")
@@ -1130,7 +1167,7 @@ def main():
             if checkpoint_every_iters > 0 and iteration % checkpoint_every_iters == 0:
                 learner.save_checkpoint(ckpt_dir / f"iter_{iteration:06d}", result)
             if bool(result.get("early_stop_triggered", False)):
-                print(f"B86 early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
+                print(f"B87 early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
                 break
             if total_steps >= stop_env_steps:
                 break
@@ -1144,7 +1181,7 @@ def main():
             json.dump(disk_health_report([run_dir, ckpt_dir, Path(os.environ["RAY_TMPDIR"])]), f, indent=2)
         ray.shutdown()
 
-    print(f"B85 MPO training finished. run_dir={run_dir} checkpoint_dir={ckpt_dir}")
+    print(f"B87 MPO training finished. run_dir={run_dir} checkpoint_dir={ckpt_dir}")
 
 
 if __name__ == "__main__":

@@ -100,6 +100,29 @@ class TscRzipEnv(gym.Env):
         near_target_norm_sigma: float = 1.0,
         w_overshoot: float = 1.2,
         overshoot_near_norm: float = 2.0,
+        # B87 shape-first relaxed-Ip shaping. These terms are optional and
+        # default to zero so older configs remain compatible.
+        w_rz_max_error: float = 0.0,
+        w_hold_rz_max_error: float = 0.0,
+        rz_max_error_r_ref: float = 0.05,
+        rz_max_error_z_ref: float = 0.05,
+        w_max_error: float = 0.0,
+        max_error_r_ref: float = 0.05,
+        max_error_z_ref: float = 0.05,
+        max_error_ip_ref: float = 6000.0,
+        w_negative_r_bias: float = 0.0,
+        negative_r_bias_threshold_m: float = -0.05,
+        w_z_zero_cross_overshoot: float = 0.0,
+        w_ip_zero_cross_overshoot: float = 0.0,
+        zero_cross_near_rz_m: float = 0.20,
+        zero_cross_near_ip_a: float = 6000.0,
+        early_drift_protect_until_step: int = 0,
+        w_early_rz_drift: float = 0.0,
+        early_rz_drift_r_ref: float = 0.04,
+        early_rz_drift_z_ref: float = 0.04,
+        w_shape_score: float = 0.0,
+        shape_score_r_ref: float = 0.05,
+        shape_score_z_ref: float = 0.05,
         w_vessel_total: float = 0.04,
         w_vessel_abs_sum: float = 0.01,
         w_vessel_rms: float = 0.08,
@@ -207,6 +230,29 @@ class TscRzipEnv(gym.Env):
         self.near_target_norm_sigma = max(float(near_target_norm_sigma), 1.0e-9)
         self.w_overshoot = float(w_overshoot)
         self.overshoot_near_norm = float(overshoot_near_norm)
+
+        self.w_rz_max_error = float(w_rz_max_error)
+        self.w_hold_rz_max_error = float(w_hold_rz_max_error)
+        self.rz_max_error_r_ref = max(float(rz_max_error_r_ref), 1.0e-12)
+        self.rz_max_error_z_ref = max(float(rz_max_error_z_ref), 1.0e-12)
+        self.w_max_error = float(w_max_error)
+        self.max_error_r_ref = max(float(max_error_r_ref), 1.0e-12)
+        self.max_error_z_ref = max(float(max_error_z_ref), 1.0e-12)
+        self.max_error_ip_ref = max(float(max_error_ip_ref), 1.0e-12)
+        self.w_negative_r_bias = float(w_negative_r_bias)
+        self.negative_r_bias_threshold_m = float(negative_r_bias_threshold_m)
+        self.w_z_zero_cross_overshoot = float(w_z_zero_cross_overshoot)
+        self.w_ip_zero_cross_overshoot = float(w_ip_zero_cross_overshoot)
+        self.zero_cross_near_rz_m = max(float(zero_cross_near_rz_m), 1.0e-12)
+        self.zero_cross_near_ip_a = max(float(zero_cross_near_ip_a), 1.0e-12)
+        self.early_drift_protect_until_step = int(early_drift_protect_until_step)
+        self.w_early_rz_drift = float(w_early_rz_drift)
+        self.early_rz_drift_r_ref = max(float(early_rz_drift_r_ref), 1.0e-12)
+        self.early_rz_drift_z_ref = max(float(early_rz_drift_z_ref), 1.0e-12)
+        self.w_shape_score = float(w_shape_score)
+        self.shape_score_r_ref = max(float(shape_score_r_ref), 1.0e-12)
+        self.shape_score_z_ref = max(float(shape_score_z_ref), 1.0e-12)
+        self.initial_raw_errors: Optional[np.ndarray] = None
 
         self.w_vessel_total = float(w_vessel_total)
         self.w_vessel_abs_sum = float(w_vessel_abs_sum)
@@ -334,6 +380,7 @@ class TscRzipEnv(gym.Env):
         self.prev_raw_values = None
         self.prev_tracking_errors = None
         self.prev_error_score = None
+        self.initial_raw_errors = None
         self.prev_action_norm = np.zeros(14, dtype=float)
         self.prev_vessel_total_a = 0.0
         self.fast_reach_bonus_given = False
@@ -363,6 +410,7 @@ class TscRzipEnv(gym.Env):
 
         episode_name = f"{self.worker_id}_episode_{uuid.uuid4().hex[:12]}"
         self.last_state = runner.reset(episode_name=episode_name)
+        self.initial_raw_errors = np.asarray(self._raw_errors(self.last_state), dtype=float)
         self._update_episode_extrema(self.last_state, derivative_norm=0.0)
         self.prev_error_score = self._error_score(self.last_state)
         self.last_obs = self._obs(self.last_state, action_norm=self.prev_action_norm)
@@ -681,6 +729,61 @@ class TscRzipEnv(gym.Env):
         jump = np.abs(err_now - err_prev)
         return float(self.w_overshoot * np.sum((jump[active]) ** 2))
 
+    @staticmethod
+    def _linear_max_error(values: tuple[float, ...]) -> float:
+        return float(max(values)) if values else 0.0
+
+    def _rz_max_error_penalty(self, r_error_raw: float, z_error_raw: float, hold_weight: float) -> tuple[float, float, float]:
+        rz_max = self._linear_max_error((abs(r_error_raw) / self.rz_max_error_r_ref, abs(z_error_raw) / self.rz_max_error_z_ref))
+        base = self.w_rz_max_error * rz_max
+        hold = hold_weight * self.w_hold_rz_max_error * rz_max
+        return float(base + hold), float(rz_max), float(hold)
+
+    def _all_max_error_penalty(self, r_error_raw: float, z_error_raw: float, ip_error_raw: float) -> tuple[float, float]:
+        max_err = self._linear_max_error((
+            abs(r_error_raw) / self.max_error_r_ref,
+            abs(z_error_raw) / self.max_error_z_ref,
+            abs(ip_error_raw) / self.max_error_ip_ref,
+        ))
+        return float(self.w_max_error * max_err), float(max_err)
+
+    def _negative_r_bias_penalty(self, r_error_raw: float) -> float:
+        # Penalize the specific bad mode observed in B86: R drifts monotonically negative.
+        excess = max(self.negative_r_bias_threshold_m - float(r_error_raw), 0.0)
+        if excess <= 0.0:
+            return 0.0
+        ref = max(abs(self.negative_r_bias_threshold_m), 1.0e-12)
+        return float(self.w_negative_r_bias * (excess / ref) ** 2)
+
+    def _zero_cross_penalties(self, r_error_raw: float, z_error_raw: float, ip_error_raw: float) -> tuple[float, float]:
+        if self.prev_raw_values is None:
+            return 0.0, 0.0
+        prev_err = np.asarray(self.prev_raw_values, dtype=float) - self.target
+        z_prev = float(prev_err[1])
+        ip_prev = float(prev_err[2])
+        z_pen = 0.0
+        ip_pen = 0.0
+        if np.sign(z_prev) != np.sign(float(z_error_raw)) and max(abs(z_prev), abs(z_error_raw)) <= self.zero_cross_near_rz_m:
+            # Penalize the post-crossing magnitude. This is a B87-specific brake for
+            # the iter100 pattern: Z goes through zero around 220 ms and keeps going.
+            z_pen = self.w_z_zero_cross_overshoot * (abs(float(z_error_raw)) / self.zero_cross_near_rz_m) ** 2
+        if np.sign(ip_prev) != np.sign(float(ip_error_raw)) and max(abs(ip_prev), abs(ip_error_raw)) <= self.zero_cross_near_ip_a:
+            ip_pen = self.w_ip_zero_cross_overshoot * (abs(float(ip_error_raw)) / self.zero_cross_near_ip_a) ** 2
+        return float(z_pen), float(ip_pen)
+
+    def _early_rz_drift_penalty(self, r_error_raw: float, z_error_raw: float) -> float:
+        if self.initial_raw_errors is None or self.early_drift_protect_until_step <= 0:
+            return 0.0
+        if self.step_count > self.early_drift_protect_until_step:
+            return 0.0
+        dr = abs(float(r_error_raw) - float(self.initial_raw_errors[0])) / self.early_rz_drift_r_ref
+        dz = abs(float(z_error_raw) - float(self.initial_raw_errors[1])) / self.early_rz_drift_z_ref
+        return float(self.w_early_rz_drift * (dr**2 + dz**2))
+
+    def _shape_score_penalty(self, r_error_raw: float, z_error_raw: float) -> tuple[float, float]:
+        shape_score = abs(float(r_error_raw)) / self.shape_score_r_ref + abs(float(z_error_raw)) / self.shape_score_z_ref
+        return float(self.w_shape_score * shape_score), float(shape_score)
+
     def _reward(self, obs: np.ndarray, action: np.ndarray, state: Dict[str, Any], derivative_norm: np.ndarray) -> tuple[float, Dict[str, float]]:
         err = self._tracking_errors(state)
         r_err, z_err, ip_err = err
@@ -709,6 +812,14 @@ class TscRzipEnv(gym.Env):
         r_guard_penalty = self._guard_penalty(abs(r_error_raw), self.r_guard_m, self.w_r_guard)
         z_guard_penalty = self._guard_penalty(abs(z_error_raw), self.z_guard_m, self.w_z_guard)
         ip_guard_penalty = self._guard_penalty(abs(ip_error_raw), self.ip_guard_a, self.w_ip_guard)
+
+        hold_weight = self._hold_weight()
+        rz_max_error_penalty, rz_max_error, hold_rz_max_error_penalty = self._rz_max_error_penalty(r_error_raw, z_error_raw, hold_weight)
+        all_max_error_penalty, all_max_error = self._all_max_error_penalty(r_error_raw, z_error_raw, ip_error_raw)
+        negative_r_bias_penalty = self._negative_r_bias_penalty(r_error_raw)
+        z_zero_cross_penalty, ip_zero_cross_penalty = self._zero_cross_penalties(r_error_raw, z_error_raw, ip_error_raw)
+        early_rz_drift_penalty = self._early_rz_drift_penalty(r_error_raw, z_error_raw)
+        shape_score_penalty, shape_score = self._shape_score_penalty(r_error_raw, z_error_raw)
 
         error_score_now = self._error_score(state)
         raw_progress = 0.0 if self.prev_error_score is None else self.prev_error_score - error_score_now
@@ -743,7 +854,6 @@ class TscRzipEnv(gym.Env):
             + self.w_vessel_delta * vessel_delta_norm**2
         )
 
-        hold_weight = self._hold_weight()
         hold_tracking_penalty = hold_weight * (self.w_hold_r * float(r_err**2) + self.w_hold_z * float(z_err**2) + self.w_hold_ip * float(ip_err**2))
         hold_action_penalty = hold_weight * self.w_hold_action * float(np.mean(action_abs**2))
         hold_current_drift_penalty = hold_weight * self.w_hold_current_drift * float(np.sum(np.maximum(current_util - self.current_soft_limit, 0.0) ** 2))
@@ -764,6 +874,13 @@ class TscRzipEnv(gym.Env):
             - r_guard_penalty
             - z_guard_penalty
             - ip_guard_penalty
+            - rz_max_error_penalty
+            - all_max_error_penalty
+            - negative_r_bias_penalty
+            - z_zero_cross_penalty
+            - ip_zero_cross_penalty
+            - early_rz_drift_penalty
+            - shape_score_penalty
             - vessel_penalty_raw
             - hold_tracking_penalty
             - hold_action_penalty
@@ -794,6 +911,17 @@ class TscRzipEnv(gym.Env):
             "r_guard_penalty": float(r_guard_penalty),
             "z_guard_penalty": float(z_guard_penalty),
             "ip_guard_penalty": float(ip_guard_penalty),
+            "rz_max_error_penalty": float(rz_max_error_penalty),
+            "rz_max_error": float(rz_max_error),
+            "hold_rz_max_error_penalty": float(hold_rz_max_error_penalty),
+            "all_max_error_penalty": float(all_max_error_penalty),
+            "all_max_error": float(all_max_error),
+            "negative_r_bias_penalty": float(negative_r_bias_penalty),
+            "z_zero_cross_penalty": float(z_zero_cross_penalty),
+            "ip_zero_cross_penalty": float(ip_zero_cross_penalty),
+            "early_rz_drift_penalty": float(early_rz_drift_penalty),
+            "shape_score_penalty": float(shape_score_penalty),
+            "shape_score": float(shape_score),
             "vessel_penalty_raw": float(vessel_penalty_raw),
             "hold_vessel_penalty": float(hold_vessel_penalty),
             "reach_progress_bonus": float(reach_progress_bonus),

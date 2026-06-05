@@ -3,7 +3,7 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export TSC_ALL_ROOT="${TSC_ALL_ROOT:-$(dirname "$PROJECT_DIR")}"
 
-CONFIG=${1:-configs/mpo_b86_balanced_recurrent_192worker_1m_probe.json}
+CONFIG=${1:-configs/mpo_b87_shape_first_relaxed_ip_recurrent_192worker_1m_probe.json}
 OVERRIDE=${2:-}
 
 export PYTHONPATH="$PWD:${PYTHONPATH:-}"
