@@ -955,7 +955,7 @@ def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dic
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Train B87 Shape-First Relaxed-Ip Recurrent MPO for TSC R/Z/Ip control.")
+    ap = argparse.ArgumentParser(description="Train recurrent MPO for TSC R/Z/Ip control (B88 z-recovery relaxed-Ip-lite compatible).")
     ap.add_argument("--config", required=True, help="MPO training config JSON.")
     ap.add_argument("--override", default=None, help="Optional JSON override.")
     ap.add_argument("--resume", default=None, help="Optional checkpoint directory containing mpo_checkpoint.pt.")
@@ -1167,7 +1167,7 @@ def main():
             if checkpoint_every_iters > 0 and iteration % checkpoint_every_iters == 0:
                 learner.save_checkpoint(ckpt_dir / f"iter_{iteration:06d}", result)
             if bool(result.get("early_stop_triggered", False)):
-                print(f"B87 early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
+                print(f"MPO early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
                 break
             if total_steps >= stop_env_steps:
                 break
@@ -1181,7 +1181,7 @@ def main():
             json.dump(disk_health_report([run_dir, ckpt_dir, Path(os.environ["RAY_TMPDIR"])]), f, indent=2)
         ray.shutdown()
 
-    print(f"B87 MPO training finished. run_dir={run_dir} checkpoint_dir={ckpt_dir}")
+    print(f"MPO training finished. run_dir={run_dir} checkpoint_dir={ckpt_dir}")
 
 
 if __name__ == "__main__":

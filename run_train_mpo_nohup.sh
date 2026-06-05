@@ -3,7 +3,7 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export TSC_ALL_ROOT="${TSC_ALL_ROOT:-$(dirname "$PROJECT_DIR")}"
 
-CONFIG=${1:-configs/mpo_b87_shape_first_relaxed_ip_recurrent_192worker_1m_probe.json}
+CONFIG=${1:-configs/mpo_b88_z_recovery_relaxed_ip_recurrent_192worker_1m_probe.json}
 OVERRIDE=${2:-}
 STAMP=$(date +%Y%m%d_%H%M%S)
 mkdir -p logs/nohup logs/pids
@@ -18,6 +18,6 @@ fi
 PID=$!
 echo "$PID" > logs/pids/latest_train_mpo.pid
 
-echo "Started B87 shape-first relaxed-Ip MPO training. pid=$PID"
+echo "Started B88 z-recovery relaxed-Ip-lite MPO training. pid=$PID"
 echo "Log: $LOG"
 echo "Follow: tail -f logs/nohup/latest_mpo.log"

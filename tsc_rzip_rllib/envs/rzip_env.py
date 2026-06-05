@@ -100,7 +100,7 @@ class TscRzipEnv(gym.Env):
         near_target_norm_sigma: float = 1.0,
         w_overshoot: float = 1.2,
         overshoot_near_norm: float = 2.0,
-        # B87 shape-first relaxed-Ip shaping. These terms are optional and
+        # B87/B88 shape and recovery shaping. These terms are optional and
         # default to zero so older configs remain compatible.
         w_rz_max_error: float = 0.0,
         w_hold_rz_max_error: float = 0.0,
@@ -123,6 +123,14 @@ class TscRzipEnv(gym.Env):
         w_shape_score: float = 0.0,
         shape_score_r_ref: float = 0.05,
         shape_score_z_ref: float = 0.05,
+        # B88 Z-recovery shaping: explicitly reward reducing |Z_error|.
+        w_z_signed_progress: float = 0.0,
+        w_z_signed_progress_early: float = 0.0,
+        z_signed_progress_ref: float = 0.05,
+        z_signed_progress_early_until_step: int = 160,
+        z_signed_progress_clip: float = 2.0,
+        early_rz_drift_enable_z_abs_lt: float = -1.0,
+        z_zero_cross_enable_abs_lt: float = -1.0,
         w_vessel_total: float = 0.04,
         w_vessel_abs_sum: float = 0.01,
         w_vessel_rms: float = 0.08,
@@ -252,6 +260,13 @@ class TscRzipEnv(gym.Env):
         self.w_shape_score = float(w_shape_score)
         self.shape_score_r_ref = max(float(shape_score_r_ref), 1.0e-12)
         self.shape_score_z_ref = max(float(shape_score_z_ref), 1.0e-12)
+        self.w_z_signed_progress = float(w_z_signed_progress)
+        self.w_z_signed_progress_early = float(w_z_signed_progress_early)
+        self.z_signed_progress_ref = max(float(z_signed_progress_ref), 1.0e-12)
+        self.z_signed_progress_early_until_step = int(z_signed_progress_early_until_step)
+        self.z_signed_progress_clip = max(float(z_signed_progress_clip), 0.0)
+        self.early_rz_drift_enable_z_abs_lt = float(early_rz_drift_enable_z_abs_lt)
+        self.z_zero_cross_enable_abs_lt = float(z_zero_cross_enable_abs_lt)
         self.initial_raw_errors: Optional[np.ndarray] = None
 
         self.w_vessel_total = float(w_vessel_total)
@@ -763,10 +778,14 @@ class TscRzipEnv(gym.Env):
         ip_prev = float(prev_err[2])
         z_pen = 0.0
         ip_pen = 0.0
-        if np.sign(z_prev) != np.sign(float(z_error_raw)) and max(abs(z_prev), abs(z_error_raw)) <= self.zero_cross_near_rz_m:
-            # Penalize the post-crossing magnitude. This is a B87-specific brake for
-            # the iter100 pattern: Z goes through zero around 220 ms and keeps going.
-            z_pen = self.w_z_zero_cross_overshoot * (abs(float(z_error_raw)) / self.zero_cross_near_rz_m) ** 2
+        z_cross_limit = self.zero_cross_near_rz_m
+        if self.z_zero_cross_enable_abs_lt > 0.0:
+            z_cross_limit = min(z_cross_limit, self.z_zero_cross_enable_abs_lt)
+        if np.sign(z_prev) != np.sign(float(z_error_raw)) and max(abs(z_prev), abs(z_error_raw)) <= z_cross_limit:
+            # Brake Z overshoot only close to zero. B88 must first recover vertical
+            # control from the +0.25 m error state, so this should not suppress
+            # large corrective Z motion.
+            z_pen = self.w_z_zero_cross_overshoot * (abs(float(z_error_raw)) / max(z_cross_limit, 1.0e-12)) ** 2
         if np.sign(ip_prev) != np.sign(float(ip_error_raw)) and max(abs(ip_prev), abs(ip_error_raw)) <= self.zero_cross_near_ip_a:
             ip_pen = self.w_ip_zero_cross_overshoot * (abs(float(ip_error_raw)) / self.zero_cross_near_ip_a) ** 2
         return float(z_pen), float(ip_pen)
@@ -776,6 +795,8 @@ class TscRzipEnv(gym.Env):
             return 0.0
         if self.step_count > self.early_drift_protect_until_step:
             return 0.0
+        if self.early_rz_drift_enable_z_abs_lt > 0.0 and abs(float(z_error_raw)) > self.early_rz_drift_enable_z_abs_lt:
+            return 0.0
         dr = abs(float(r_error_raw) - float(self.initial_raw_errors[0])) / self.early_rz_drift_r_ref
         dz = abs(float(z_error_raw) - float(self.initial_raw_errors[1])) / self.early_rz_drift_z_ref
         return float(self.w_early_rz_drift * (dr**2 + dz**2))
@@ -783,6 +804,20 @@ class TscRzipEnv(gym.Env):
     def _shape_score_penalty(self, r_error_raw: float, z_error_raw: float) -> tuple[float, float]:
         shape_score = abs(float(r_error_raw)) / self.shape_score_r_ref + abs(float(z_error_raw)) / self.shape_score_z_ref
         return float(self.w_shape_score * shape_score), float(shape_score)
+
+    def _z_signed_progress_bonus(self, z_error_raw: float) -> tuple[float, float]:
+        if self.prev_raw_values is None:
+            return 0.0, 0.0
+        prev_err = np.asarray(self.prev_raw_values, dtype=float) - self.target
+        z_prev_abs = abs(float(prev_err[1]))
+        z_now_abs = abs(float(z_error_raw))
+        progress = (z_prev_abs - z_now_abs) / self.z_signed_progress_ref
+        if self.z_signed_progress_clip > 0.0:
+            progress = float(np.clip(progress, -self.z_signed_progress_clip, self.z_signed_progress_clip))
+        weight = self.w_z_signed_progress
+        if self.step_count <= self.z_signed_progress_early_until_step:
+            weight += self.w_z_signed_progress_early
+        return float(weight * progress), float(progress)
 
     def _reward(self, obs: np.ndarray, action: np.ndarray, state: Dict[str, Any], derivative_norm: np.ndarray) -> tuple[float, Dict[str, float]]:
         err = self._tracking_errors(state)
@@ -820,6 +855,7 @@ class TscRzipEnv(gym.Env):
         z_zero_cross_penalty, ip_zero_cross_penalty = self._zero_cross_penalties(r_error_raw, z_error_raw, ip_error_raw)
         early_rz_drift_penalty = self._early_rz_drift_penalty(r_error_raw, z_error_raw)
         shape_score_penalty, shape_score = self._shape_score_penalty(r_error_raw, z_error_raw)
+        z_signed_progress_bonus, z_signed_progress = self._z_signed_progress_bonus(z_error_raw)
 
         error_score_now = self._error_score(state)
         raw_progress = 0.0 if self.prev_error_score is None else self.prev_error_score - error_score_now
@@ -887,6 +923,7 @@ class TscRzipEnv(gym.Env):
             - hold_current_drift_penalty
             - hold_vessel_penalty
             + reach_progress_bonus
+            + z_signed_progress_bonus
             + fast_reach_bonus_now
         )
 
@@ -925,6 +962,8 @@ class TscRzipEnv(gym.Env):
             "vessel_penalty_raw": float(vessel_penalty_raw),
             "hold_vessel_penalty": float(hold_vessel_penalty),
             "reach_progress_bonus": float(reach_progress_bonus),
+            "z_signed_progress_bonus": float(z_signed_progress_bonus),
+            "z_signed_progress": float(z_signed_progress),
             "fast_reach_bonus_now": float(fast_reach_bonus_now),
             "hold_weight": float(hold_weight),
             "hold_phase": float(hold_weight >= 1.0),
