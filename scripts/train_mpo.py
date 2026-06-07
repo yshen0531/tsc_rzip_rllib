@@ -303,11 +303,16 @@ class MpoRolloutWorker:
             activation=str(m_cfg.get("activation", "silu")),
             log_std_min=float(m_cfg.get("log_std_min", -5.0)),
             log_std_max=float(m_cfg.get("log_std_max", 1.0)),
+            physics_blend=m_cfg.get("physics_blend", None),
         )
         if actor_state is not None:
             self.actor.load_state_dict(actor_state)
         self.actor.eval()
         self.action_scale = float(cfg.get("mpo", {}).get("actor_output_scale_init", 1.0))
+        phys_cfg = cfg.get("model", {}).get("physics_blend", {})
+        self.physics_blend_alpha = float(phys_cfg.get("alpha_init", phys_cfg.get("alpha", 0.0)))
+        if hasattr(self.actor, "set_physics_blend_alpha"):
+            self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
         self.hidden = self.actor.init_hidden(1)
         self.obs, self.info = self.env.reset(seed=seed)
         self.obs = np.asarray(self.obs, dtype=np.float32).reshape(-1)
@@ -326,14 +331,22 @@ class MpoRolloutWorker:
             clip=self.priv_clip,
         )
 
-    def set_actor_weights(self, state: dict[str, Any], action_scale: float | None = None) -> None:
+    def set_actor_weights(self, state: dict[str, Any], action_scale: float | None = None, physics_blend_alpha: float | None = None) -> None:
         self.actor.load_state_dict(state)
         self.actor.eval()
         if action_scale is not None:
             self.action_scale = float(action_scale)
+        if physics_blend_alpha is not None:
+            self.physics_blend_alpha = float(physics_blend_alpha)
+            if hasattr(self.actor, "set_physics_blend_alpha"):
+                self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
 
-    def set_action_scale(self, action_scale: float) -> None:
+    def set_action_scale(self, action_scale: float, physics_blend_alpha: float | None = None) -> None:
         self.action_scale = float(action_scale)
+        if physics_blend_alpha is not None:
+            self.physics_blend_alpha = float(physics_blend_alpha)
+            if hasattr(self.actor, "set_physics_blend_alpha"):
+                self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
 
     def rollout(self, fragment_steps: int, deterministic: bool = False) -> dict[str, Any]:
         obs_l, priv_l, act_l, rew_l, done_l, nobs_l, npriv_l, mask_l, info_l = [], [], [], [], [], [], [], [], []
@@ -429,6 +442,7 @@ class MpoLearner:
             activation=str(m_cfg.get("activation", "silu")),
             log_std_min=float(m_cfg.get("log_std_min", -5.0)),
             log_std_max=float(m_cfg.get("log_std_max", 1.0)),
+            physics_blend=m_cfg.get("physics_blend", None),
         ).to(self.device)
         self.q1 = RecurrentQCritic(
             obs_dim,
@@ -493,12 +507,25 @@ class MpoLearner:
         self.action_scale_default = float(mpo_cfg.get("actor_output_scale", mpo_cfg.get("actor_output_scale_init", 1.0)))
         self.action_scale_schedule = mpo_cfg.get("actor_output_scale_schedule", None)
         self.action_scale = float(self.action_scale_default)
+
+        phys_cfg = m_cfg.get("physics_blend", {})
+        self.physics_blend_alpha_default = float(phys_cfg.get("alpha", phys_cfg.get("alpha_init", 0.0)))
+        self.physics_blend_alpha_schedule = phys_cfg.get("alpha_schedule", None)
+        self.physics_blend_alpha = float(self.physics_blend_alpha_default)
+        if hasattr(self.actor, "set_physics_blend_alpha"):
+            self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+
         self.update_count = 0
 
     def set_env_steps(self, env_steps: int) -> None:
         self.action_scale = piecewise_constant_schedule(
             self.action_scale_schedule, int(env_steps), self.action_scale_default
         )
+        self.physics_blend_alpha = piecewise_constant_schedule(
+            self.physics_blend_alpha_schedule, int(env_steps), self.physics_blend_alpha_default
+        )
+        if hasattr(self.actor, "set_physics_blend_alpha"):
+            self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
 
     def _clamp_eta_(self) -> None:
         if self.eta_max is None:
@@ -582,14 +609,15 @@ class MpoLearner:
         with torch.no_grad():
             old_dist, old_mean, old_log_std, _ = self.actor.distribution(obs)
             # Candidate pre-tanh samples: [B,T,K,A]
-            B, T, A = old_mean.shape
-            eps = torch.randn(B, T, self.num_action_samples, A, device=self.device)
+            B, T, latent_dim = old_mean.shape
+            eps = torch.randn(B, T, self.num_action_samples, latent_dim, device=self.device)
             old_std = old_log_std.exp().unsqueeze(2)
             pre_tanh = old_mean.unsqueeze(2) + old_std * eps
-            cand_action = torch.tanh(pre_tanh) * self.action_scale
+            cand_action = self.actor.action_from_pre_tanh(pre_tanh, action_scale=self.action_scale)
             obs_rep = obs.unsqueeze(2).expand(B, T, self.num_action_samples, obs.shape[-1]).permute(0, 2, 1, 3).reshape(B * self.num_action_samples, T, obs.shape[-1])
             priv_rep = priv.unsqueeze(2).expand(B, T, self.num_action_samples, priv.shape[-1]).permute(0, 2, 1, 3).reshape(B * self.num_action_samples, T, priv.shape[-1])
-            act_rep = cand_action.permute(0, 2, 1, 3).reshape(B * self.num_action_samples, T, A)
+            action_dim = cand_action.shape[-1]
+            act_rep = cand_action.permute(0, 2, 1, 3).reshape(B * self.num_action_samples, T, action_dim)
             q_cand = torch.min(self.q1(obs_rep, priv_rep, act_rep), self.q2(obs_rep, priv_rep, act_rep))
             q_cand = q_cand.reshape(B, self.num_action_samples, T).permute(0, 2, 1)  # [B,T,K]
             q_cand = q_cand * mask.unsqueeze(-1)
@@ -626,7 +654,12 @@ class MpoLearner:
         kl_penalty = self.kl_coeff * torch.relu(kl_mean - self.kl_target).pow(2)
         entropy = (0.5 + 0.5 * np.log(2.0 * np.pi) + new_log_std).sum(dim=-1)
         entropy_mean = (entropy * mask).sum() / mask_sum
-        mean_action = torch.tanh(new_mean) * self.action_scale
+        mean_components = self.actor.action_components_from_pre_tanh(new_mean)
+        mean_action_unscaled = mean_components["blended_action"]
+        mean_action = mean_action_unscaled * self.action_scale
+        raw_mean_action = mean_components["raw_action"] * self.action_scale
+        phys_mean_action = mean_components["physics_action"] * self.action_scale
+        mode_coeff = mean_components["mode_coeff"]
         actor_action_l2 = self.actor_action_l2_coeff * ((mean_action.pow(2).mean(dim=-1) * mask).sum() / mask_sum)
         sat_excess = torch.relu(mean_action.abs() - self.actor_action_soft_limit)
         actor_action_saturation = self.actor_action_saturation_coeff * ((sat_excess.pow(2).mean(dim=-1) * mask).sum() / mask_sum)
@@ -663,7 +696,11 @@ class MpoLearner:
             "actor_action_l2_penalty": float(actor_action_l2.detach().cpu()),
             "actor_action_saturation_penalty": float(actor_action_saturation.detach().cpu()),
             "actor_mean_abs_action": float(((mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
+            "actor_raw_mean_abs_action": float(((raw_mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
+            "actor_physics_mean_abs_action": float(((phys_mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
+            "actor_mode_coeff_mean_abs": float(((mode_coeff.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()) if mode_coeff.numel() > 0 else 0.0,
             "actor_action_scale": float(self.action_scale),
+            "actor_physics_blend_alpha": float(self.physics_blend_alpha),
             "actor_update_applied": float(actor_update_applied),
             "critic_loss_type": 1.0 if self.critic_loss_type in {"huber", "smooth_l1", "smoothl1"} else 0.0,
         }
@@ -681,6 +718,7 @@ class MpoLearner:
             "eta_opt": self.eta_opt.state_dict(),
             "log_eta": self.log_eta.detach().cpu(),
             "action_scale": float(self.action_scale),
+            "physics_blend_alpha": float(self.physics_blend_alpha),
             "update_count": int(self.update_count),
             "stats": json_safe(stats),
             "config": json_safe(self.cfg),
@@ -875,6 +913,7 @@ def run_online_policy_probe(
         f"{prefix}_ip_score": float(ip_score),
         f"{prefix}_relaxed_score": float(relaxed_score),
         f"{prefix}_action_scale": float(learner.action_scale),
+        f"{prefix}_physics_blend_alpha": float(getattr(learner, "physics_blend_alpha", 0.0)),
     }
 
 
@@ -1098,10 +1137,10 @@ def main():
                     losses.append(learner.update(batch))
                 if iteration % sync_every_iters == 0:
                     last_actor_state = learner.actor_state_cpu()
-                    ray.get([w.set_actor_weights.remote(last_actor_state, float(learner.action_scale)) for w in workers])
+                    ray.get([w.set_actor_weights.remote(last_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha)) for w in workers])
             elif iteration % sync_every_iters == 0:
                 # Keep rollout workers' hard action scale schedule synchronized even during warmup.
-                ray.get([w.set_action_scale.remote(float(learner.action_scale)) for w in workers])
+                ray.get([w.set_action_scale.remote(float(learner.action_scale), float(learner.physics_blend_alpha)) for w in workers])
 
             loss_mean = {}
             if losses:
@@ -1120,6 +1159,7 @@ def main():
                 "fragment_mean_abs_action": float(np.mean(frag_actions)) if frag_actions else 0.0,
                 "updates_this_iter": int(len(losses)),
                 "actor_action_scale": float(learner.action_scale),
+                "actor_physics_blend_alpha": float(learner.physics_blend_alpha),
                 **{f"learner/{k}": v for k, v in loss_mean.items()},
                 **{f"replay/{k}": v for k, v in replay.stats().items()},
                 **ep_summary,

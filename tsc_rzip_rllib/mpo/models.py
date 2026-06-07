@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import math
-from typing import Iterable
+from typing import Iterable, Any
 
 import torch
 import torch.nn as nn
@@ -31,11 +31,67 @@ def mlp(sizes: Iterable[int], activation: str = "silu", *, last_activation: bool
     return nn.Sequential(*layers)
 
 
+def default_physics_mode_matrix(action_dim: int) -> tuple[list[str], torch.Tensor]:
+    """Default B89 physics-informed action modes for the 14D CSPF action order.
+
+    Action order assumed by the current TSC-RZIP setup:
+      CS1U, CS1L, CS2U, CS2L, CS3U, CS3L, CS4U, CS4L,
+      PF2U, PF2L, PF3U, PF3L, PF4U, PF4L
+
+    The signs of the mode coefficients are learned by the actor.  These rows only
+    encode weak structural priors: U/L differential channels for vertical/shape
+    asymmetry and U/L common channels for flux/radial/Ip-like corrections.
+    """
+    if int(action_dim) != 14:
+        return [], torch.zeros(0, int(action_dim), dtype=torch.float32)
+
+    rows: list[list[float]] = []
+    names: list[str] = []
+
+    def add(name: str, vals: dict[int, float]):
+        row = [0.0] * 14
+        for k, v in vals.items():
+            row[int(k)] = float(v)
+        rows.append(row)
+        names.append(name)
+
+    # Strongest vertical/shape prior from high-Z PF U/L differential channels.
+    add("pf_vertical_diff", {8: 1.0, 9: -1.0, 10: 0.89, 11: -0.89, 12: 0.44, 13: -0.44})
+    # Weaker CS differential vertical auxiliary prior.
+    add("cs_aux_vertical_diff", {0: 0.20, 1: -0.20, 2: 0.50, 3: -0.50, 4: 0.80, 5: -0.80, 6: 1.0, 7: -1.0})
+    # Outer common PF channel for radial/shape/flux trim.
+    add("outer_pf_common_shape", {8: 0.33, 9: 0.33, 10: 0.78, 11: 0.78, 12: 1.0, 13: 1.0})
+    # CS common flux/Ip-like weak guard channel.
+    add("cs_common_flux", {0: 0.70, 1: 0.70, 2: 0.85, 3: 0.85, 4: 1.0, 5: 1.0, 6: 0.85, 7: 0.85})
+    # Mixed Z-shape mode: high-Z PF differential plus a small outer common counter-term.
+    add("mixed_pf_z_shape", {8: 0.80, 9: -0.80, 10: 0.80, 11: -0.80, 12: -0.35, 13: -0.35})
+
+    return names, torch.tensor(rows, dtype=torch.float32)
+
+
+def build_mode_matrix(action_dim: int, physics_blend: dict[str, Any] | None) -> tuple[list[str], torch.Tensor]:
+    cfg = physics_blend or {}
+    if not bool(cfg.get("enabled", False)):
+        return [], torch.zeros(0, int(action_dim), dtype=torch.float32)
+    if "mode_matrix" in cfg and cfg["mode_matrix"]:
+        mat = torch.tensor(cfg["mode_matrix"], dtype=torch.float32)
+        names = [str(x) for x in cfg.get("mode_names", [f"mode_{i}" for i in range(mat.shape[0])])]
+    else:
+        names, mat = default_physics_mode_matrix(int(action_dim))
+    if mat.ndim != 2 or mat.shape[1] != int(action_dim):
+        raise ValueError(f"physics_blend.mode_matrix must have shape [mode_dim,{action_dim}], got {tuple(mat.shape)}")
+    if bool(cfg.get("normalize_modes", False)) and mat.numel() > 0:
+        denom = torch.clamp(mat.abs().amax(dim=1, keepdim=True), min=1.0e-12)
+        mat = mat / denom
+    return names, mat
+
+
 class RecurrentGaussianActor(nn.Module):
     """Deployable recurrent actor.
 
-    Input is deployable observation only.  It outputs a tanh-squashed Gaussian
-    action distribution in normalized [-1, 1]^action_dim.
+    B89 optionally augments the raw 14D action head with a weak physics-informed
+    mode head.  The actor still learns all mode coefficients and all raw residuals;
+    physics only defines a fixed action subspace prior.
     """
 
     def __init__(
@@ -47,6 +103,7 @@ class RecurrentGaussianActor(nn.Module):
         activation: str = "silu",
         log_std_min: float = LOG_STD_MIN,
         log_std_max: float = LOG_STD_MAX,
+        physics_blend: dict[str, Any] | None = None,
     ):
         super().__init__()
         self.obs_dim = int(obs_dim)
@@ -54,11 +111,24 @@ class RecurrentGaussianActor(nn.Module):
         self.hidden_size = int(hidden_size)
         self.log_std_min = float(log_std_min)
         self.log_std_max = float(log_std_max)
+
+        pcfg = physics_blend or {}
+        mode_names, mode_matrix = build_mode_matrix(self.action_dim, pcfg)
+        self.physics_blend_enabled = bool(pcfg.get("enabled", False)) and mode_matrix.numel() > 0
+        self.physics_mode_names = mode_names
+        self.physics_mode_dim = int(mode_matrix.shape[0]) if self.physics_blend_enabled else 0
+        self.latent_dim = self.action_dim + self.physics_mode_dim
+        self.physics_mode_scale = float(pcfg.get("mode_scale", 1.0))
+        self.physics_action_clip = float(pcfg.get("physics_action_clip", 1.0))
+        self.raw_action_scale = float(pcfg.get("raw_action_scale", 1.0))
+        self.register_buffer("physics_mode_matrix", mode_matrix if self.physics_blend_enabled else torch.zeros(0, self.action_dim))
+        self.register_buffer("physics_blend_alpha", torch.tensor(float(pcfg.get("alpha_init", pcfg.get("alpha", 0.0))), dtype=torch.float32))
+
         self.gru = nn.GRU(input_size=self.obs_dim, hidden_size=self.hidden_size, batch_first=True)
         self.trunk = mlp([self.hidden_size, *map(int, mlp_hiddens)], activation=activation, last_activation=True)
         last = int(mlp_hiddens[-1]) if mlp_hiddens else self.hidden_size
-        self.mean = nn.Linear(last, self.action_dim)
-        self.log_std = nn.Linear(last, self.action_dim)
+        self.mean = nn.Linear(last, self.latent_dim)
+        self.log_std = nn.Linear(last, self.latent_dim)
         self._init_weights()
 
     def _init_weights(self):
@@ -71,6 +141,10 @@ class RecurrentGaussianActor(nn.Module):
 
     def init_hidden(self, batch_size: int, device: torch.device | str | None = None) -> torch.Tensor:
         return torch.zeros(1, int(batch_size), self.hidden_size, device=device)
+
+    def set_physics_blend_alpha(self, alpha: float) -> None:
+        with torch.no_grad():
+            self.physics_blend_alpha.fill_(float(alpha))
 
     def forward(
         self,
@@ -89,6 +163,32 @@ class RecurrentGaussianActor(nn.Module):
         mean, log_std, h = self.forward(obs_seq, hidden)
         return Normal(mean, log_std.exp()), mean, log_std, h
 
+    def action_components_from_pre_tanh(self, pre_tanh: torch.Tensor) -> dict[str, torch.Tensor]:
+        raw_pre = pre_tanh[..., : self.action_dim]
+        raw_action = torch.tanh(raw_pre) * self.raw_action_scale
+        if self.physics_blend_enabled and self.physics_mode_dim > 0:
+            mode_pre = pre_tanh[..., self.action_dim : self.action_dim + self.physics_mode_dim]
+            mode_coeff = torch.tanh(mode_pre) * self.physics_mode_scale
+            physics_action = torch.matmul(mode_coeff, self.physics_mode_matrix.to(dtype=pre_tanh.dtype, device=pre_tanh.device))
+            if self.physics_action_clip > 0:
+                physics_action = torch.clamp(physics_action, -self.physics_action_clip, self.physics_action_clip)
+            alpha = torch.clamp(self.physics_blend_alpha.to(dtype=pre_tanh.dtype, device=pre_tanh.device), 0.0, 1.0)
+            blended = (1.0 - alpha) * raw_action + alpha * physics_action
+        else:
+            mode_coeff = pre_tanh.new_zeros(*pre_tanh.shape[:-1], 0)
+            physics_action = pre_tanh.new_zeros(*pre_tanh.shape[:-1], self.action_dim)
+            blended = raw_action
+        blended = torch.clamp(blended, -1.0, 1.0)
+        return {
+            "raw_action": raw_action,
+            "physics_action": physics_action,
+            "mode_coeff": mode_coeff,
+            "blended_action": blended,
+        }
+
+    def action_from_pre_tanh(self, pre_tanh: torch.Tensor, action_scale: float | torch.Tensor = 1.0) -> torch.Tensor:
+        return self.action_components_from_pre_tanh(pre_tanh)["blended_action"] * action_scale
+
     def sample(
         self,
         obs_seq: torch.Tensor,
@@ -101,11 +201,9 @@ class RecurrentGaussianActor(nn.Module):
             pre_tanh = mean
         else:
             pre_tanh = dist.rsample()
-        action = torch.tanh(pre_tanh) * action_scale
+        action = self.action_from_pre_tanh(pre_tanh, action_scale=action_scale)
         # The constant log(action_scale) term is omitted because action_scale is
-        # externally scheduled and independent of policy parameters.  Keeping the
-        # same tanh-Gaussian likelihood preserves the MPO weighted M-step while
-        # hard-limiting the action actually sent to the plant.
+        # externally scheduled and independent of policy parameters.
         logp = tanh_gaussian_log_prob(pre_tanh, mean, log_std)
         return action, logp, h, mean, log_std
 
@@ -128,7 +226,7 @@ class RecurrentGaussianActor(nn.Module):
 class RecurrentQCritic(nn.Module):
     """Asymmetric recurrent critic.
 
-    Critic sees deployable obs + critic-only privileged features + action.
+    Critic sees deployable obs + critic-only privileged features + final action.
     """
 
     def __init__(
@@ -192,7 +290,7 @@ def tanh_gaussian_log_prob_from_action(action: torch.Tensor, mean: torch.Tensor,
 
 
 def gaussian_kl(old_mean: torch.Tensor, old_log_std: torch.Tensor, new_mean: torch.Tensor, new_log_std: torch.Tensor) -> torch.Tensor:
-    """KL(old || new) for diagonal Gaussians, summed over action dim."""
+    """KL(old || new) for diagonal Gaussians, summed over latent dim."""
     old_var = torch.exp(2.0 * old_log_std)
     new_var = torch.exp(2.0 * new_log_std)
     kl = new_log_std - old_log_std + (old_var + (old_mean - new_mean).pow(2)) / (2.0 * new_var + EPS) - 0.5

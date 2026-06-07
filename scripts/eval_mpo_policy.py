@@ -87,6 +87,15 @@ def checkpoint_action_scale(saved_cfg: dict[str, Any], payload: dict[str, Any]) 
     return piecewise_constant_schedule(mpo_cfg.get("actor_output_scale_schedule", None), step, default)
 
 
+def checkpoint_physics_blend_alpha(saved_cfg: dict[str, Any], payload: dict[str, Any]) -> float:
+    model_cfg = saved_cfg.get("model", {})
+    phys_cfg = model_cfg.get("physics_blend", {}) if isinstance(model_cfg, dict) else {}
+    default = float(phys_cfg.get("alpha", phys_cfg.get("alpha_init", payload.get("physics_blend_alpha", 0.0))))
+    stats = payload.get("stats", {}) if isinstance(payload.get("stats", {}), dict) else {}
+    step = int(stats.get("env_steps", 0))
+    return piecewise_constant_schedule(phys_cfg.get("alpha_schedule", None), step, default)
+
+
 
 def resolve_path_maybe_relative(path_text: str, *, base_dir: Path = PROJECT_DIR) -> Path:
     p = Path(str(path_text)).expanduser()
@@ -197,11 +206,15 @@ def main():
         activation=str(m_cfg.get("activation", "silu")),
         log_std_min=float(m_cfg.get("log_std_min", -5.0)),
         log_std_max=float(m_cfg.get("log_std_max", 1.0)),
+        physics_blend=m_cfg.get("physics_blend", None),
     )
     actor.load_state_dict(payload["actor"])
     actor.eval()
     action_scale = checkpoint_action_scale(saved_cfg, payload)
-    print(f"Eval action_scale={action_scale}")
+    physics_blend_alpha = checkpoint_physics_blend_alpha(saved_cfg, payload)
+    if hasattr(actor, "set_physics_blend_alpha"):
+        actor.set_physics_blend_alpha(physics_blend_alpha)
+    print(f"Eval action_scale={action_scale} physics_blend_alpha={physics_blend_alpha}")
 
     rows = []
     summaries = []
@@ -233,6 +246,7 @@ def main():
                 "truncated": bool(truncated),
                 "action_mode": args.action_mode,
                 "eval_stage": args.eval_stage,
+                "physics_blend_alpha": float(physics_blend_alpha),
                 "R_error": scalar_info(info, "R_error"),
                 "Z_error": scalar_info(info, "Z_error"),
                 "Ip_error": scalar_info(info, "Ip_error"),
@@ -290,6 +304,7 @@ def main():
         "action_mode": args.action_mode,
         "eval_stage": args.eval_stage,
         "action_scale": float(action_scale),
+        "physics_blend_alpha": float(physics_blend_alpha),
         "out_csv": str(out),
     }
     with open(out.with_suffix(out.suffix + ".summary.json"), "w", encoding="utf-8") as f:

@@ -1,0 +1,272 @@
+{
+  "run_name": "train_b89_physics_blended_raw_mpo_192worker_1m_probe",
+  "train_config": "configs/train_b89_physics_blended_raw_mpo_fixed_target_1ms.json",
+  "seed": 42,
+  "stop_env_steps": 1000000,
+  "checkpoint_every_iters": 25,
+  "log_root": "ray_results",
+  "checkpoint_root": "mpo_checkpoints",
+  "env": {
+    "backend": "native",
+    "finite_guard": {
+      "enabled": true,
+      "nonfinite_penalty": -10000.0,
+      "terminate_on_nonfinite": true
+    }
+  },
+  "parallel": {
+    "ray_address": null,
+    "ray_num_cpus": 200,
+    "include_dashboard": false,
+    "object_store_memory": 8589934592,
+    "num_tsc_workers": 192,
+    "num_cpus_per_tsc_worker": 1,
+    "sample_timeout_s": 3600.0,
+    "fragment_steps": 32,
+    "actor_sync_interval_iters": 1,
+    "rollout_deterministic": false
+  },
+  "learner": {
+    "num_gpus": 0
+  },
+  "model": {
+    "activation": "silu",
+    "actor_gru_hidden": 128,
+    "critic_gru_hidden": 256,
+    "actor_mlp_hiddens": [
+      256,
+      256
+    ],
+    "critic_mlp_hiddens": [
+      512,
+      512
+    ],
+    "log_std_min": -3.5,
+    "log_std_max": -0.5,
+    "physics_blend": {
+      "enabled": true,
+      "alpha_init": 0.4,
+      "alpha_schedule": [
+        [
+          0,
+          0.4
+        ],
+        [
+          300000,
+          0.35
+        ],
+        [
+          700000,
+          0.25
+        ]
+      ],
+      "mode_scale": 1.0,
+      "raw_action_scale": 1.0,
+      "physics_action_clip": 1.0,
+      "normalize_modes": false,
+      "mode_names": [
+        "pf_vertical_diff",
+        "cs_aux_vertical_diff",
+        "outer_pf_common_shape",
+        "cs_common_flux",
+        "mixed_pf_z_shape"
+      ],
+      "mode_matrix": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1.0,
+          -1.0,
+          0.89,
+          -0.89,
+          0.44,
+          -0.44
+        ],
+        [
+          0.2,
+          -0.2,
+          0.5,
+          -0.5,
+          0.8,
+          -0.8,
+          1.0,
+          -1.0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.33,
+          0.33,
+          0.78,
+          0.78,
+          1.0,
+          1.0
+        ],
+        [
+          0.7,
+          0.7,
+          0.85,
+          0.85,
+          1.0,
+          1.0,
+          0.85,
+          0.85,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.8,
+          -0.8,
+          0.8,
+          -0.8,
+          -0.35,
+          -0.35
+        ]
+      ],
+      "description": "B89 weak physics-informed action prior. Actor still learns mode coefficients and raw residual in original 14D action space."
+    }
+  },
+  "privileged": {
+    "include_currents": true,
+    "current_scale_a": 1000.0,
+    "clip": 50.0,
+    "keys": [
+      "R_error_norm",
+      "Z_error_norm",
+      "Ip_error_norm",
+      "velocity_norm",
+      "vessel_current_total_a",
+      "vessel_current_signed_sum_a",
+      "vessel_current_abs_sum_a",
+      "vessel_current_rms_a",
+      "vessel_current_max_abs_a",
+      "current_util_max",
+      "episode_max_abs_R_error",
+      "episode_max_abs_Z_error",
+      "episode_max_abs_Ip_error",
+      "episode_max_current_util",
+      "episode_max_velocity_norm",
+      "episode_max_vessel_total_abs_a",
+      "episode_max_vessel_abs_sum_a",
+      "raw_progress",
+      "error_growth",
+      "tracking_penalty",
+      "hold_weight"
+    ]
+  },
+  "replay": {
+    "capacity_fragments": 80000
+  },
+  "mpo": {
+    "gamma": 0.997,
+    "tau": 0.005,
+    "actor_lr": 1e-05,
+    "critic_lr": 0.0001,
+    "eta_lr": 5e-05,
+    "eta_init": 1.0,
+    "eta_min": 0.001,
+    "eta_epsilon": 0.35,
+    "kl_target": 0.004,
+    "kl_coeff": 25.0,
+    "entropy_coeff": 0.002,
+    "grad_clip": 5.0,
+    "warmup_steps": 120000,
+    "batch_size": 256,
+    "sequence_len": 32,
+    "updates_per_iter": 24,
+    "num_action_samples": 16,
+    "target_policy_noise": 0.0,
+    "target_noise_clip": 0.3,
+    "eta_max": 3.0,
+    "critic_loss": "huber",
+    "huber_delta": 10.0,
+    "reward_scale": 0.05,
+    "reward_clip": [
+      -500.0,
+      100.0
+    ],
+    "target_q_clip": [
+      -2000.0,
+      200.0
+    ],
+    "actor_action_l2_coeff": 0.02,
+    "actor_action_saturation_coeff": 20.0,
+    "actor_action_soft_limit": 0.45,
+    "e_step_center_q": true,
+    "e_step_normalize_q": true,
+    "e_step_q_clip": 4.0,
+    "actor_update_every": 4,
+    "policy_loss_clip": null,
+    "actor_output_scale": 0.45,
+    "actor_output_scale_init": 0.45,
+    "actor_output_scale_schedule": [
+      [
+        0,
+        0.45
+      ],
+      [
+        300000,
+        0.55
+      ]
+    ],
+    "policy_loss_lower_clip": -8.0,
+    "policy_loss_upper_clip": null
+  },
+  "deterministic_probe": {
+    "enabled": true,
+    "every_iters": 25,
+    "eval_stage": "final",
+    "seed": 12345
+  },
+  "early_stop": {
+    "enabled": true,
+    "min_iteration": 75,
+    "require_consecutive_bad_probes": 2,
+    "bad_if_no_first_reach_after_min_iter": false,
+    "bad_if_no_first_reach_and_mean_action_gt": 0.65,
+    "bad_if_no_first_reach_and_mean_action_lt": 0.02,
+    "bad_if_z_abs_gt": 0.22,
+    "bad_if_r_error_lt": -0.15,
+    "score_r_ref": 0.05,
+    "score_z_ref": 0.05,
+    "score_ip_ref": 3000.0,
+    "score_ip_weight": 0.1,
+    "score_action_weight": 0.2
+  },
+  "stochastic_probe": {
+    "enabled": true,
+    "every_iters": 25,
+    "eval_stage": "final",
+    "seed": 22345
+  }
+}
