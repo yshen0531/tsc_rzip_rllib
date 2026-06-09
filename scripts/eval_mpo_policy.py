@@ -178,6 +178,74 @@ def scalar_info(info: dict[str, Any], key: str, default: float = 0.0) -> float:
         return float(default)
 
 
+def sanitize_metric_name(name: str) -> str:
+    out = []
+    for ch in str(name):
+        if ch.isalnum() or ch in {"_", "-"}:
+            out.append(ch)
+        else:
+            out.append("_")
+    return "".join(out).strip("_") or "unnamed"
+
+
+def action_names_from_cfg(cfg: dict[str, Any], action_dim: int) -> list[str]:
+    train_cfg = cfg.get("train_config_resolved", {}) if isinstance(cfg, dict) else {}
+    env_path = train_cfg.get("env_config") if isinstance(train_cfg, dict) else None
+    names: list[str] = []
+    if env_path:
+        try:
+            env_cfg = load_json(resolve_path_maybe_relative(str(env_path), base_dir=PROJECT_DIR))
+            names = [str(x) for x in env_cfg.get("coil_names_display_order", [])]
+        except Exception:
+            names = []
+    if len(names) != int(action_dim):
+        names = [f"a{i:02d}" for i in range(int(action_dim))]
+    return [sanitize_metric_name(x) for x in names]
+
+
+def info_float(info: dict[str, Any] | None, key: str, default: float = 0.0) -> float:
+    try:
+        if info is None:
+            return float(default)
+        return float(info.get(key, default))
+    except Exception:
+        return float(default)
+
+
+def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, reward_params: dict[str, Any] | None) -> tuple[float, dict[str, float]]:
+    rp = reward_params or {}
+    extra_cfg = rp.get("extra_reward_shaping", {}) if isinstance(rp.get("extra_reward_shaping", {}), dict) else {}
+    if extra_cfg and not bool(extra_cfg.get("enabled", True)):
+        return float(reward), {}
+    shaped = float(reward)
+    out: dict[str, float] = {}
+    w_pos = float(rp.get("w_z_positive_bias", 0.0) or 0.0)
+    if w_pos > 0.0:
+        z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
+        deadband = float(rp.get("z_pos_deadband_m", 0.03) or 0.0)
+        ref = max(float(rp.get("z_pos_ref_m", 0.05) or 0.05), 1.0e-12)
+        power = float(rp.get("z_pos_power", 2.0) or 2.0)
+        z_pos = max(0.0, z_err - deadband)
+        penalty = w_pos * (z_pos / ref) ** power
+        shaped -= penalty
+        out["extra_z_positive_bias_penalty"] = float(penalty)
+        out["extra_z_positive_bias_active"] = float(z_pos > 0.0)
+    return float(shaped), out
+
+
+def actor_pre_tanh_step(actor: RecurrentGaussianActor, obs: torch.Tensor, hidden: torch.Tensor | None, *, deterministic: bool):
+    if obs.ndim == 1:
+        obs_seq = obs.view(1, 1, -1)
+    elif obs.ndim == 2:
+        obs_seq = obs.unsqueeze(1)
+    else:
+        obs_seq = obs
+    dist, mean, _log_std, h = actor.distribution(obs_seq, hidden)
+    pre_tanh = mean if deterministic else dist.rsample()
+    comps = actor.action_components_from_pre_tanh(pre_tanh)
+    return pre_tanh, comps, h
+
+
 def main():
     ap = argparse.ArgumentParser(description="Evaluate B85 MPO recurrent actor checkpoint.")
     ap.add_argument("--config", required=True)
@@ -194,7 +262,18 @@ def main():
     payload = torch.load(Path(args.checkpoint) / "mpo_checkpoint.pt", map_location="cpu")
     saved_cfg = payload.get("config", cfg)
     # Use current cfg env paths but saved model dimensions.
-    env = make_env(cfg, args.seed, args.eval_stage)
+    eval_train_cfg = force_stage(cfg["train_config_resolved"], args.eval_stage)
+    env_cfg = {
+        "backend": cfg.get("env", {}).get("backend", "native"),
+        "train_config": eval_train_cfg,
+        "seed": int(args.seed),
+        "worker_index": 0,
+        "vector_index": 0,
+        "num_workers_for_curriculum": 1,
+        "finite_guard": cfg.get("env", {}).get("finite_guard", {"enabled": True}),
+    }
+    env = RllibTscRzipEnv(env_cfg)
+    reward_params = dict(eval_train_cfg.get("reward", {}))
     obs_dim = int(np.prod(env.observation_space.shape))
     action_dim = int(np.prod(env.action_space.shape))
     m_cfg = saved_cfg.get("model", cfg.get("model", {}))
@@ -215,6 +294,8 @@ def main():
     if hasattr(actor, "set_physics_blend_alpha"):
         actor.set_physics_blend_alpha(physics_blend_alpha)
     print(f"Eval action_scale={action_scale} physics_blend_alpha={physics_blend_alpha}")
+    coil_names = action_names_from_cfg(cfg, action_dim)
+    mode_names = [sanitize_metric_name(x) for x in getattr(actor, "physics_mode_names", [])]
 
     rows = []
     summaries = []
@@ -227,25 +308,41 @@ def main():
         step = 0
         action_abs = []
         last_info = dict(info or {})
+        last_terminated = False
+        last_truncated = False
         while not done:
             with torch.no_grad():
-                a, hidden = actor.act_step(
+                _pre_tanh, comps, hidden = actor_pre_tanh_step(
+                    actor,
                     torch.as_tensor(obs, dtype=torch.float32),
                     hidden,
                     deterministic=(args.action_mode == "deterministic"),
-                    action_scale=action_scale,
                 )
-            action = a.cpu().numpy().reshape(-1).astype(np.float32)
-            next_obs, reward, terminated, truncated, info = env.step(action)
+                action_t = comps["blended_action"] * float(action_scale)
+                raw_t = comps["raw_action"] * float(action_scale)
+                physics_t = comps["physics_action"] * float(action_scale)
+                mode_t = comps["mode_coeff"]
+            action = action_t[:, -1, :].cpu().numpy().reshape(-1).astype(np.float32)
+            raw_action = raw_t[:, -1, :].cpu().numpy().reshape(-1)
+            physics_action = physics_t[:, -1, :].cpu().numpy().reshape(-1)
+            mode_coeff = mode_t[:, -1, :].cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
+            next_obs, reward_env, terminated, truncated, info = env.step(action)
+            info = dict(info or {})
+            reward, extra_reward_info = apply_extra_reward_shaping(float(reward_env), info, reward_params)
+            info.update(extra_reward_info)
             done = bool(terminated or truncated)
+            last_terminated = bool(terminated)
+            last_truncated = bool(truncated)
             row = {
                 "episode": ep,
                 "step": step,
                 "reward": float(reward),
+                "reward_env": float(reward_env),
                 "terminated": bool(terminated),
                 "truncated": bool(truncated),
                 "action_mode": args.action_mode,
                 "eval_stage": args.eval_stage,
+                "action_scale": float(action_scale),
                 "physics_blend_alpha": float(physics_blend_alpha),
                 "R_error": scalar_info(info, "R_error"),
                 "Z_error": scalar_info(info, "Z_error"),
@@ -256,7 +353,14 @@ def main():
                 "vessel_current_total_a": scalar_info(info, "vessel_current_total_a"),
                 "vessel_current_abs_sum_a": scalar_info(info, "vessel_current_abs_sum_a"),
                 "current_util_max": scalar_info(info, "current_util_max"),
+                "extra_z_positive_bias_penalty": float(info.get("extra_z_positive_bias_penalty", 0.0)),
             }
+            for i, cname in enumerate(coil_names):
+                row[f"action/{cname}"] = float(action[i])
+                row[f"raw_action/{cname}"] = float(raw_action[i])
+                row[f"physics_action/{cname}"] = float(physics_action[i])
+            for i, mname in enumerate(mode_names):
+                row[f"mode_coeff/{mname}"] = float(mode_coeff[i])
             rows.append(row)
             total += float(reward)
             action_abs.append(float(np.mean(np.abs(action))))
@@ -267,8 +371,8 @@ def main():
             "episode": ep,
             "episode_return": float(total),
             "episode_len": int(step),
-            "terminated": bool(last_info.get("terminated", False)),
-            "truncated": True,
+            "terminated": bool(last_terminated),
+            "truncated": bool(last_truncated),
             "hold_success": bool(last_info.get("hold_success", False)),
             "quality_success": bool(last_info.get("quality_success", False)),
             "is_success": bool(last_info.get("is_success", False)),
@@ -282,6 +386,7 @@ def main():
             "max_abs_action": float(max([r["max_abs_action"] for r in rows if r["episode"] == ep], default=0.0)),
             "terminal_vessel_current_total_a": scalar_info(last_info, "terminal_vessel_current_total_a", scalar_info(last_info, "vessel_current_total_a")),
             "terminal_vessel_current_abs_sum_a": scalar_info(last_info, "terminal_vessel_current_abs_sum_a", scalar_info(last_info, "vessel_current_abs_sum_a")),
+            "terminal_extra_z_positive_bias_penalty": float(last_info.get("extra_z_positive_bias_penalty", 0.0)),
         }
         summaries.append(summ)
         print(f"[eval episode {ep}] return={summ['episode_return']:.3f} len={step} hold={summ['hold_success']} first_reach={summ['time_to_first_reach_step']} stable={summ['time_to_stable_hold_step']}")
@@ -291,7 +396,12 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     if rows:
         with open(out, "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+            fieldnames = []
+            for row in rows:
+                for key in row.keys():
+                    if key not in fieldnames:
+                        fieldnames.append(key)
+            writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
             writer.writeheader()
             writer.writerows(rows)
     summary = {

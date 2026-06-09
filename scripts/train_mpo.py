@@ -226,6 +226,158 @@ def piecewise_constant_schedule(schedule: Any, step: int, default: float) -> flo
     return float(out)
 
 
+
+def sanitize_metric_name(name: str) -> str:
+    out = []
+    for ch in str(name):
+        if ch.isalnum() or ch in {"_", "-"}:
+            out.append(ch)
+        else:
+            out.append("_")
+    return "".join(out).strip("_") or "unnamed"
+
+
+def action_names_from_cfg(cfg: dict[str, Any], action_dim: int) -> list[str]:
+    train_cfg = cfg.get("train_config_resolved", {}) if isinstance(cfg, dict) else {}
+    env_path = train_cfg.get("env_config") if isinstance(train_cfg, dict) else None
+    names: list[str] = []
+    if env_path:
+        try:
+            env_cfg = load_json(resolve_path_maybe_relative(str(env_path), base_dir=PROJECT_DIR))
+            names = [str(x) for x in env_cfg.get("coil_names_display_order", [])]
+        except Exception:
+            names = []
+    if len(names) != int(action_dim):
+        names = [f"a{i:02d}" for i in range(int(action_dim))]
+    return [sanitize_metric_name(x) for x in names]
+
+
+def stage_env_params_for_steps(train_cfg: dict[str, Any], env_steps: int) -> dict[str, Any]:
+    """Return curriculum env_params active at a given global env-step count.
+
+    This mirrors the piecewise curriculum style used by the environment configs and
+    is also used by the lightweight extra reward wrapper below.  If no curriculum
+    is enabled, it returns an empty dict.
+    """
+    cur = train_cfg.get("curriculum", {}).get("env_attributes", {}) if isinstance(train_cfg, dict) else {}
+    if not bool(cur.get("enabled", False)):
+        return {}
+    stages = list(cur.get("stages", []))
+    if not stages:
+        return {}
+    step = int(env_steps)
+    for st in stages:
+        try:
+            until = int(st.get("until_global_env_steps", 0))
+        except Exception:
+            until = 0
+        if step < until:
+            return dict(st.get("env_params", {}))
+    return dict(stages[-1].get("env_params", {}))
+
+
+def reward_params_for_global_steps(train_cfg: dict[str, Any], env_steps: int) -> dict[str, Any]:
+    params = dict(train_cfg.get("reward", {})) if isinstance(train_cfg, dict) else {}
+    params.update(stage_env_params_for_steps(train_cfg, env_steps))
+    return params
+
+
+def info_float(info: dict[str, Any] | None, key: str, default: float = 0.0) -> float:
+    try:
+        if info is None:
+            return float(default)
+        return float(info.get(key, default))
+    except Exception:
+        return float(default)
+
+
+def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, reward_params: dict[str, Any] | None) -> tuple[float, dict[str, float]]:
+    """Apply B90 wrapper-side reward terms that are not guaranteed in older env code.
+
+    The main new term is one-sided positive-Z bias suppression.  It is deliberately
+    implemented outside RllibTscRzipEnv so B90 can run immediately with the current
+    environment package.  If the environment later implements the same keys natively,
+    set extra_reward_shaping.enabled=false to avoid double counting.
+    """
+    rp = reward_params or {}
+    extra_cfg = rp.get("extra_reward_shaping", {}) if isinstance(rp.get("extra_reward_shaping", {}), dict) else {}
+    if extra_cfg and not bool(extra_cfg.get("enabled", True)):
+        return float(reward), {}
+
+    shaped = float(reward)
+    out: dict[str, float] = {}
+
+    w_pos = float(rp.get("w_z_positive_bias", 0.0) or 0.0)
+    if w_pos > 0.0:
+        z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
+        deadband = float(rp.get("z_pos_deadband_m", 0.03) or 0.0)
+        ref = max(float(rp.get("z_pos_ref_m", 0.05) or 0.05), 1.0e-12)
+        power = float(rp.get("z_pos_power", 2.0) or 2.0)
+        z_pos = max(0.0, z_err - deadband)
+        penalty = w_pos * (z_pos / ref) ** power
+        shaped -= penalty
+        out["extra_z_positive_bias_penalty"] = float(penalty)
+        out["extra_z_positive_bias_active"] = float(z_pos > 0.0)
+
+    return float(shaped), out
+
+
+def write_dynamic_csv(csv_path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
+    tmp_path = csv_path.with_suffix(csv_path.suffix + ".tmp")
+    with open(tmp_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(rows)
+    os.replace(tmp_path, csv_path)
+
+
+def actor_pre_tanh_step(actor: RecurrentGaussianActor, obs: torch.Tensor, hidden: torch.Tensor | None, *, deterministic: bool):
+    if obs.ndim == 1:
+        obs_seq = obs.view(1, 1, -1)
+    elif obs.ndim == 2:
+        obs_seq = obs.unsqueeze(1)
+    else:
+        obs_seq = obs
+    dist, mean, _log_std, h = actor.distribution(obs_seq, hidden)
+    pre_tanh = mean if deterministic else dist.rsample()
+    comps = actor.action_components_from_pre_tanh(pre_tanh)
+    return pre_tanh, comps, h
+
+
+def add_actor_component_diagnostics(
+    out: dict[str, Any],
+    *,
+    prefix: str,
+    actor: RecurrentGaussianActor,
+    action_sum: np.ndarray | None,
+    action_abs_sum: np.ndarray | None,
+    raw_sum: np.ndarray | None,
+    raw_abs_sum: np.ndarray | None,
+    physics_sum: np.ndarray | None,
+    physics_abs_sum: np.ndarray | None,
+    mode_sum: np.ndarray | None,
+    mode_abs_sum: np.ndarray | None,
+    n: int,
+    coil_names: list[str],
+) -> None:
+    if n <= 0 or action_sum is None:
+        return
+    denom = float(max(n, 1))
+    for i, name in enumerate(coil_names):
+        out[f"{prefix}_action_mean/{name}"] = float(action_sum[i] / denom)
+        out[f"{prefix}_action_abs_mean/{name}"] = float(action_abs_sum[i] / denom)
+        if raw_sum is not None:
+            out[f"{prefix}_raw_action_mean/{name}"] = float(raw_sum[i] / denom)
+            out[f"{prefix}_raw_action_abs_mean/{name}"] = float(raw_abs_sum[i] / denom)
+        if physics_sum is not None:
+            out[f"{prefix}_physics_action_mean/{name}"] = float(physics_sum[i] / denom)
+            out[f"{prefix}_physics_action_abs_mean/{name}"] = float(physics_abs_sum[i] / denom)
+    names = [sanitize_metric_name(x) for x in getattr(actor, "physics_mode_names", [])]
+    if mode_sum is not None and mode_sum.size > 0:
+        for i, name in enumerate(names):
+            out[f"{prefix}_mode_coeff_mean/{name}"] = float(mode_sum[i] / denom)
+            out[f"{prefix}_mode_coeff_abs_mean/{name}"] = float(mode_abs_sum[i] / denom)
+
 def bounded_policy_loss(
     loss: torch.Tensor,
     clip_range: Any | None = None,
@@ -274,6 +426,8 @@ class MpoRolloutWorker:
         torch.set_num_interop_threads(1)
 
         train_cfg = dict(cfg["train_config_resolved"])
+        self.train_cfg = train_cfg
+        self.reward_params = reward_params_for_global_steps(self.train_cfg, 0)
         par = cfg.get("parallel", {})
         env_cfg = {
             "backend": cfg.get("env", {}).get("backend", "native"),
@@ -331,7 +485,17 @@ class MpoRolloutWorker:
             clip=self.priv_clip,
         )
 
-    def set_actor_weights(self, state: dict[str, Any], action_scale: float | None = None, physics_blend_alpha: float | None = None) -> None:
+    def set_reward_params(self, reward_params: dict[str, Any] | None = None) -> None:
+        if reward_params is not None:
+            self.reward_params = dict(reward_params)
+
+    def set_actor_weights(
+        self,
+        state: dict[str, Any],
+        action_scale: float | None = None,
+        physics_blend_alpha: float | None = None,
+        reward_params: dict[str, Any] | None = None,
+    ) -> None:
         self.actor.load_state_dict(state)
         self.actor.eval()
         if action_scale is not None:
@@ -340,13 +504,20 @@ class MpoRolloutWorker:
             self.physics_blend_alpha = float(physics_blend_alpha)
             if hasattr(self.actor, "set_physics_blend_alpha"):
                 self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+        self.set_reward_params(reward_params)
 
-    def set_action_scale(self, action_scale: float, physics_blend_alpha: float | None = None) -> None:
+    def set_action_scale(
+        self,
+        action_scale: float,
+        physics_blend_alpha: float | None = None,
+        reward_params: dict[str, Any] | None = None,
+    ) -> None:
         self.action_scale = float(action_scale)
         if physics_blend_alpha is not None:
             self.physics_blend_alpha = float(physics_blend_alpha)
             if hasattr(self.actor, "set_physics_blend_alpha"):
                 self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+        self.set_reward_params(reward_params)
 
     def rollout(self, fragment_steps: int, deterministic: bool = False) -> dict[str, Any]:
         obs_l, priv_l, act_l, rew_l, done_l, nobs_l, npriv_l, mask_l, info_l = [], [], [], [], [], [], [], [], []
@@ -359,7 +530,12 @@ class MpoRolloutWorker:
                     obs_t, self.hidden, deterministic=deterministic, action_scale=self.action_scale
                 )
             action = action_t.cpu().numpy().reshape(-1).astype(np.float32)
-            next_obs, reward, terminated, truncated, info = self.env.step(action)
+            next_obs, reward_env, terminated, truncated, info = self.env.step(action)
+            info = dict(info or {})
+            reward, extra_reward_info = apply_extra_reward_shaping(float(reward_env), info, self.reward_params)
+            info.update(extra_reward_info)
+            info["reward_env"] = float(reward_env)
+            info["reward_shaped"] = float(reward)
             done = bool(terminated or truncated)
             next_obs_arr = np.asarray(next_obs, dtype=np.float32).reshape(-1)
             next_priv = self._priv(info)
@@ -469,6 +645,7 @@ class MpoLearner:
         self.log_eta = torch.nn.Parameter(torch.tensor(float(np.log(np.exp(float(mpo_cfg.get("eta_init", 1.0))) - 1.0)), device=self.device))
         self.eta_opt = torch.optim.Adam([self.log_eta], lr=float(mpo_cfg.get("eta_lr", 1e-3)))
         self.action_dim = int(action_dim)
+        self.coil_names = action_names_from_cfg(cfg, self.action_dim)
         self.gamma = float(mpo_cfg.get("gamma", 0.997))
         self.tau = float(mpo_cfg.get("tau", 0.005))
         self.grad_clip = float(mpo_cfg.get("grad_clip", 10.0))
@@ -677,6 +854,25 @@ class MpoLearner:
         with torch.no_grad():
             q_mean = ((q1 + q2) * 0.5 * mask).sum() / mask_sum
             target_mean = (y * mask).sum() / mask_sum
+            diag: dict[str, float] = {}
+            coil_names = self.coil_names
+            mask_col = mask.unsqueeze(-1)
+            for label, tensor in [
+                ("actor_action", mean_action),
+                ("actor_raw_action", raw_mean_action),
+                ("actor_physics_action", phys_mean_action),
+            ]:
+                signed = (tensor * mask_col).sum(dim=(0, 1)) / mask_sum
+                abs_mean = (tensor.abs() * mask_col).sum(dim=(0, 1)) / mask_sum
+                for i, cname in enumerate(coil_names[: tensor.shape[-1]]):
+                    diag[f"{label}_mean/{cname}"] = float(signed[i].detach().cpu())
+                    diag[f"{label}_abs_mean/{cname}"] = float(abs_mean[i].detach().cpu())
+            if mode_coeff.numel() > 0:
+                mode_signed = (mode_coeff * mask_col).sum(dim=(0, 1)) / mask_sum
+                mode_abs = (mode_coeff.abs() * mask_col).sum(dim=(0, 1)) / mask_sum
+                for i, name in enumerate([sanitize_metric_name(x) for x in self.actor.physics_mode_names]):
+                    diag[f"actor_mode_coeff_mean/{name}"] = float(mode_signed[i].detach().cpu())
+                    diag[f"actor_mode_coeff_abs_mean/{name}"] = float(mode_abs[i].detach().cpu())
         return {
             "critic_loss": float(critic_loss.detach().cpu()),
             "actor_loss": float(actor_loss.detach().cpu()),
@@ -703,6 +899,7 @@ class MpoLearner:
             "actor_physics_blend_alpha": float(self.physics_blend_alpha),
             "actor_update_applied": float(actor_update_applied),
             "critic_loss_type": 1.0 if self.critic_loss_type in {"huber", "smooth_l1", "smoothl1"} else 0.0,
+            **diag,
         }
 
     def save_checkpoint(self, path: Path, stats: dict[str, Any]) -> None:
@@ -844,24 +1041,54 @@ def run_online_policy_probe(
     action_abs: list[float] = []
     max_abs = 0.0
     last_info = dict(info or {})
+    reward_params = dict(train_cfg.get("reward", {}))
+    coil_names = action_names_from_cfg(cfg, learner.action_dim)
+    action_sum = np.zeros(learner.action_dim, dtype=np.float64)
+    action_abs_sum = np.zeros(learner.action_dim, dtype=np.float64)
+    raw_sum = np.zeros(learner.action_dim, dtype=np.float64)
+    raw_abs_sum = np.zeros(learner.action_dim, dtype=np.float64)
+    physics_sum = np.zeros(learner.action_dim, dtype=np.float64)
+    physics_abs_sum = np.zeros(learner.action_dim, dtype=np.float64)
+    mode_dim = int(getattr(learner.actor, "physics_mode_dim", 0))
+    mode_sum = np.zeros(mode_dim, dtype=np.float64)
+    mode_abs_sum = np.zeros(mode_dim, dtype=np.float64)
     learner.actor.eval()
     try:
         done = False
         while not done:
             with torch.no_grad():
-                a, hidden = learner.actor.act_step(
+                pre_tanh, comps, hidden = actor_pre_tanh_step(
+                    learner.actor,
                     torch.as_tensor(obs, dtype=torch.float32, device=learner.device),
                     hidden,
                     deterministic=bool(deterministic),
-                    action_scale=float(learner.action_scale),
                 )
-            action = a.detach().cpu().numpy().reshape(-1).astype(np.float32)
-            next_obs, reward, terminated, truncated, info = env.step(action)
+                action_tensor = comps["blended_action"] * float(learner.action_scale)
+                raw_tensor = comps["raw_action"] * float(learner.action_scale)
+                physics_tensor = comps["physics_action"] * float(learner.action_scale)
+                mode_tensor = comps["mode_coeff"]
+            action = action_tensor[:, -1, :].detach().cpu().numpy().reshape(-1).astype(np.float32)
+            raw_action = raw_tensor[:, -1, :].detach().cpu().numpy().reshape(-1)
+            physics_action = physics_tensor[:, -1, :].detach().cpu().numpy().reshape(-1)
+            mode_coeff = mode_tensor[:, -1, :].detach().cpu().numpy().reshape(-1) if mode_dim > 0 else np.zeros(0)
+            next_obs, reward_env, terminated, truncated, info = env.step(action)
+            info = dict(info or {})
+            reward, extra_reward_info = apply_extra_reward_shaping(float(reward_env), info, reward_params)
+            info.update(extra_reward_info)
             done = bool(terminated or truncated)
             total += float(reward)
             steps += 1
             action_abs.append(float(np.mean(np.abs(action))))
             max_abs = max(max_abs, float(np.max(np.abs(action))))
+            action_sum += action
+            action_abs_sum += np.abs(action)
+            raw_sum += raw_action
+            raw_abs_sum += np.abs(raw_action)
+            physics_sum += physics_action
+            physics_abs_sum += np.abs(physics_action)
+            if mode_dim > 0:
+                mode_sum += mode_coeff
+                mode_abs_sum += np.abs(mode_coeff)
             obs = np.asarray(next_obs, dtype=np.float32).reshape(-1)
             last_info = dict(info or {})
     finally:
@@ -894,7 +1121,7 @@ def run_online_policy_probe(
     ip_score = abs(ip_err) / score_ip_ref
     relaxed_score = shape_score + score_ip_weight * ip_score + score_action_weight * mean_action
 
-    return {
+    out = {
         f"{prefix}_iteration": int(iteration),
         f"{prefix}_env_steps": int(env_steps),
         f"{prefix}_return": float(total),
@@ -915,6 +1142,23 @@ def run_online_policy_probe(
         f"{prefix}_action_scale": float(learner.action_scale),
         f"{prefix}_physics_blend_alpha": float(getattr(learner, "physics_blend_alpha", 0.0)),
     }
+    add_actor_component_diagnostics(
+        out,
+        prefix=prefix,
+        actor=learner.actor,
+        action_sum=action_sum,
+        action_abs_sum=action_abs_sum,
+        raw_sum=raw_sum,
+        raw_abs_sum=raw_abs_sum,
+        physics_sum=physics_sum,
+        physics_abs_sum=physics_abs_sum,
+        mode_sum=mode_sum,
+        mode_abs_sum=mode_abs_sum,
+        n=steps,
+        coil_names=coil_names,
+    )
+    out[f"{prefix}_extra_z_positive_bias_penalty_last"] = float(last_info.get("extra_z_positive_bias_penalty", 0.0))
+    return out
 
 
 def run_online_deterministic_probe(
@@ -1051,6 +1295,8 @@ def main():
     obs_dim, priv_dim, action_dim = infer_spaces(cfg)
     device = "cuda" if (torch.cuda.is_available() and int(cfg.get("learner", {}).get("num_gpus", 0)) > 0) else "cpu"
     learner = MpoLearner(cfg, obs_dim, priv_dim, action_dim, device=device)
+    resume_env_steps = 0
+    resume_iteration = 0
     learner.set_env_steps(0)
     if args.resume:
         payload = torch.load(Path(args.resume) / "mpo_checkpoint.pt", map_location=device)
@@ -1070,7 +1316,11 @@ def main():
             with torch.no_grad():
                 learner.log_eta.copy_(payload["log_eta"].to(device))
         learner.update_count = int(payload.get("update_count", 0))
-        print(f"Resumed MPO checkpoint: {args.resume}")
+        stats = payload.get("stats", {}) if isinstance(payload.get("stats", {}), dict) else {}
+        resume_env_steps = int(stats.get("env_steps", payload.get("env_steps", 0)) or 0)
+        resume_iteration = int(stats.get("training_iteration", 0) or 0)
+        learner.set_env_steps(resume_env_steps)
+        print(f"Resumed MPO checkpoint: {args.resume} env_steps={resume_env_steps} iteration={resume_iteration}")
 
     replay_cfg = cfg.get("replay", {})
     replay = SequenceReplayBuffer(capacity_fragments=int(replay_cfg.get("capacity_fragments", 100000)), seed=int(cfg.get("seed", 42)))
@@ -1078,7 +1328,11 @@ def main():
     fragment_steps = int(par.get("fragment_steps", 32))
     rollout_deterministic = bool(par.get("rollout_deterministic", False))
     workers = [MpoRolloutWorker.options(num_cpus=float(par.get("num_cpus_per_tsc_worker", 1))).remote(i, cfg, learner.actor_state_cpu()) for i in range(num_workers)]
-    ray.get([w.set_action_scale.remote(float(learner.action_scale)) for w in workers])
+    current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], resume_env_steps)
+    ray.get([
+        w.set_action_scale.remote(float(learner.action_scale), float(learner.physics_blend_alpha), current_reward_params)
+        for w in workers
+    ])
 
     stop_env_steps = int(cfg.get("stop_env_steps", 5_000_000))
     warmup_steps = int(cfg.get("mpo", {}).get("warmup_steps", 100_000))
@@ -1099,9 +1353,10 @@ def main():
     sync_every_iters = int(cfg.get("parallel", {}).get("actor_sync_interval_iters", 1))
     results_path = run_dir / "train_results.jsonl"
     csv_path = run_dir / "train_results.csv"
-    csv_fields = None
-    total_steps = 0
-    iteration = 0
+    csv_fields: list[str] = []
+    csv_rows: list[dict[str, Any]] = []
+    total_steps = int(resume_env_steps)
+    iteration = int(resume_iteration)
     start_time = time.time()
     pending = {w.rollout.remote(fragment_steps, rollout_deterministic): w for w in workers}
     last_actor_state = learner.actor_state_cpu()
@@ -1137,10 +1392,18 @@ def main():
                     losses.append(learner.update(batch))
                 if iteration % sync_every_iters == 0:
                     last_actor_state = learner.actor_state_cpu()
-                    ray.get([w.set_actor_weights.remote(last_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha)) for w in workers])
+                    current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
+                    ray.get([
+                        w.set_actor_weights.remote(last_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha), current_reward_params)
+                        for w in workers
+                    ])
             elif iteration % sync_every_iters == 0:
-                # Keep rollout workers' hard action scale schedule synchronized even during warmup.
-                ray.get([w.set_action_scale.remote(float(learner.action_scale), float(learner.physics_blend_alpha)) for w in workers])
+                # Keep rollout workers' hard schedules synchronized even during warmup.
+                current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
+                ray.get([
+                    w.set_action_scale.remote(float(learner.action_scale), float(learner.physics_blend_alpha), current_reward_params)
+                    for w in workers
+                ])
 
             loss_mean = {}
             if losses:
@@ -1190,20 +1453,23 @@ def main():
                 result["early_stop_bad_probe_count"] = int(bad_probe_count)
                 result["early_stop_reason"] = str(reason)
                 result["early_stop_triggered"] = bool(stop_now)
+            safe_result = json_safe(result)
             with open(results_path, "a", encoding="utf-8") as f:
-                f.write(json.dumps(json_safe(result), ensure_ascii=False) + "\n")
-            if csv_fields is None:
-                csv_fields = list(result.keys())
-                with open(csv_path, "w", newline="", encoding="utf-8") as f:
-                    writer = csv.DictWriter(f, fieldnames=csv_fields, extrasaction="ignore")
-                    writer.writeheader()
-                    writer.writerow(result)
+                f.write(json.dumps(safe_result, ensure_ascii=False) + "\n")
+            csv_rows.append(safe_result)
+            added_fields = False
+            for key in safe_result.keys():
+                if key not in csv_fields:
+                    csv_fields.append(str(key))
+                    added_fields = True
+            if added_fields or not csv_path.exists():
+                write_dynamic_csv(csv_path, csv_rows, csv_fields)
             else:
                 with open(csv_path, "a", newline="", encoding="utf-8") as f:
                     writer = csv.DictWriter(f, fieldnames=csv_fields, extrasaction="ignore")
-                    writer.writerow(result)
+                    writer.writerow(safe_result)
 
-            print(json.dumps(json_safe(result), ensure_ascii=False), flush=True)
+            print(json.dumps(safe_result, ensure_ascii=False), flush=True)
             if checkpoint_every_iters > 0 and iteration % checkpoint_every_iters == 0:
                 learner.save_checkpoint(ckpt_dir / f"iter_{iteration:06d}", result)
             if bool(result.get("early_stop_triggered", False)):

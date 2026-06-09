@@ -32,7 +32,7 @@ def mlp(sizes: Iterable[int], activation: str = "silu", *, last_activation: bool
 
 
 def default_physics_mode_matrix(action_dim: int) -> tuple[list[str], torch.Tensor]:
-    """Default B89 physics-informed action modes for the 14D CSPF action order.
+    """Default B90 split physics-informed action modes for the 14D CSPF action order.
 
     Action order assumed by the current TSC-RZIP setup:
       CS1U, CS1L, CS2U, CS2L, CS3U, CS3L, CS4U, CS4L,
@@ -55,8 +55,13 @@ def default_physics_mode_matrix(action_dim: int) -> tuple[list[str], torch.Tenso
         rows.append(row)
         names.append(name)
 
-    # Strongest vertical/shape prior from high-Z PF U/L differential channels.
-    add("pf_vertical_diff", {8: 1.0, 9: -1.0, 10: 0.89, 11: -0.89, 12: 0.44, 13: -0.44})
+    # B90 default: split high-Z PF U/L differential channels so the learner can
+    # discover which PF pair actually moves Z in the useful direction.
+    add("pf2_vertical_diff", {8: 1.0, 9: -1.0})
+    add("pf3_vertical_diff", {10: 1.0, 11: -1.0})
+    add("pf4_vertical_diff", {12: 1.0, 13: -1.0})
+    add("pf23_vertical_diff", {8: 0.8, 9: -0.8, 10: 1.0, 11: -1.0})
+    add("pf34_vertical_diff", {10: 1.0, 11: -1.0, 12: 0.6, 13: -0.6})
     # Weaker CS differential vertical auxiliary prior.
     add("cs_aux_vertical_diff", {0: 0.20, 1: -0.20, 2: 0.50, 3: -0.50, 4: 0.80, 5: -0.80, 6: 1.0, 7: -1.0})
     # Outer common PF channel for radial/shape/flux trim.
@@ -64,7 +69,7 @@ def default_physics_mode_matrix(action_dim: int) -> tuple[list[str], torch.Tenso
     # CS common flux/Ip-like weak guard channel.
     add("cs_common_flux", {0: 0.70, 1: 0.70, 2: 0.85, 3: 0.85, 4: 1.0, 5: 1.0, 6: 0.85, 7: 0.85})
     # Mixed Z-shape mode: high-Z PF differential plus a small outer common counter-term.
-    add("mixed_pf_z_shape", {8: 0.80, 9: -0.80, 10: 0.80, 11: -0.80, 12: -0.35, 13: -0.35})
+    add("mixed_pf_z_shape", {8: 0.60, 9: -0.60, 10: 0.80, 11: -0.80, 12: -0.25, 13: -0.25})
 
     return names, torch.tensor(rows, dtype=torch.float32)
 
@@ -89,7 +94,7 @@ def build_mode_matrix(action_dim: int, physics_blend: dict[str, Any] | None) -> 
 class RecurrentGaussianActor(nn.Module):
     """Deployable recurrent actor.
 
-    B89 optionally augments the raw 14D action head with a weak physics-informed
+    Optionally augment the raw 14D action head with a weak physics-informed
     mode head.  The actor still learns all mode coefficients and all raw residuals;
     physics only defines a fixed action subspace prior.
     """

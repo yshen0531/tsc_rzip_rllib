@@ -3,8 +3,9 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export TSC_ALL_ROOT="${TSC_ALL_ROOT:-$(dirname "$PROJECT_DIR")}"
 
-CONFIG=${1:-configs/mpo_b89_physics_blended_raw_recurrent_192worker_1m_probe.json}
+CONFIG=${1:-configs/mpo_b90_split_vertical_posz_recurrent_192worker_1p5m_probe.json}
 OVERRIDE=${2:-}
+RESUME=${3:-}
 
 export PYTHONPATH="$PWD:${PYTHONPATH:-}"
 
@@ -36,6 +37,9 @@ fi
 CMD=(python scripts/train_mpo.py --config "$CONFIG")
 if [[ -n "$OVERRIDE" ]]; then
   CMD+=(--override "$OVERRIDE")
+fi
+if [[ -n "$RESUME" ]]; then
+  CMD+=(--resume "$RESUME")
 fi
 
 echo "[run_train_mpo_native] CONFIG=$CONFIG"
