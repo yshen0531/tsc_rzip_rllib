@@ -39,6 +39,10 @@ if [[ -n "$OVERRIDE" ]]; then
   CMD+=(--override "$OVERRIDE")
 fi
 if [[ -n "$RESUME" ]]; then
+  if [[ ! -f "$RESUME/mpo_checkpoint.pt" ]]; then
+    echo "ERROR: resume checkpoint not found: $RESUME/mpo_checkpoint.pt" >&2
+    exit 2
+  fi
   CMD+=(--resume "$RESUME")
 fi
 

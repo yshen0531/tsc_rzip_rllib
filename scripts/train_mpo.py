@@ -1246,6 +1246,12 @@ def main():
 
     cfg_path = Path(args.config)
     cfg = load_merged_json(cfg_path, Path(args.override) if args.override else None)
+    if args.resume:
+        resume_path = Path(args.resume).expanduser()
+        ckpt_file = resume_path / "mpo_checkpoint.pt"
+        if not ckpt_file.exists():
+            raise FileNotFoundError(f"Resume checkpoint not found: {ckpt_file}")
+        cfg["resume_checkpoint"] = str(resume_path)
 
     run_dir, ckpt_dir, run_name = build_run_dirs(cfg, cfg_path)
     cfg["resolved_run_name"] = run_name
@@ -1335,6 +1341,14 @@ def main():
     ])
 
     stop_env_steps = int(cfg.get("stop_env_steps", 5_000_000))
+    if args.resume and stop_env_steps <= resume_env_steps:
+        raise ValueError(
+            f"stop_env_steps={stop_env_steps} must be larger than resumed env_steps={resume_env_steps}. "
+            "Use a resume config/override with a larger stop_env_steps."
+        )
+    if args.resume:
+        print(f"Resume target: continue from env_steps={resume_env_steps} to stop_env_steps={stop_env_steps} "
+              f"(~{stop_env_steps - resume_env_steps} additional env steps).", flush=True)
     warmup_steps = int(cfg.get("mpo", {}).get("warmup_steps", 100_000))
     batch_size = int(cfg.get("mpo", {}).get("batch_size", 256))
     seq_len = int(cfg.get("mpo", {}).get("sequence_len", 32))
