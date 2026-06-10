@@ -292,12 +292,12 @@ def info_float(info: dict[str, Any] | None, key: str, default: float = 0.0) -> f
 
 
 def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, reward_params: dict[str, Any] | None) -> tuple[float, dict[str, float]]:
-    """Apply B90 wrapper-side reward terms that are not guaranteed in older env code.
+    """Apply wrapper-side reward terms that are not guaranteed in older env code.
 
-    The main new term is one-sided positive-Z bias suppression.  It is deliberately
-    implemented outside RllibTscRzipEnv so B90 can run immediately with the current
-    environment package.  If the environment later implements the same keys natively,
-    set extra_reward_shaping.enabled=false to avoid double counting.
+    B90 added one-sided positive-Z suppression.  B91 keeps that term but gates it
+    when R has already drifted too far inward, and adds a stronger one-sided
+    negative-R corridor penalty.  Keeping this outside RllibTscRzipEnv lets the
+    experiment run immediately with the existing environment package.
     """
     rp = reward_params or {}
     extra_cfg = rp.get("extra_reward_shaping", {}) if isinstance(rp.get("extra_reward_shaping", {}), dict) else {}
@@ -306,15 +306,36 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
 
     shaped = float(reward)
     out: dict[str, float] = {}
+    r_err = info_float(info, "R_error", info_float(info, "terminal_R_error", 0.0))
+    z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
 
-    w_pos = float(rp.get("w_z_positive_bias", 0.0) or 0.0)
-    if w_pos > 0.0:
-        z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
+    # B91: strong one-sided penalty for excessive inward radial drift.
+    w_r_neg = float(rp.get("w_r_negative_bias_strong", 0.0) or 0.0)
+    if w_r_neg > 0.0:
+        deadband = float(rp.get("r_neg_deadband_m", 0.10) or 0.0)
+        ref = max(float(rp.get("r_neg_ref_m", 0.05) or 0.05), 1.0e-12)
+        power = float(rp.get("r_neg_power", 2.0) or 2.0)
+        r_neg = max(0.0, -r_err - deadband)
+        penalty = w_r_neg * (r_neg / ref) ** power
+        shaped -= penalty
+        out["extra_r_negative_bias_penalty"] = float(penalty)
+        out["extra_r_negative_bias_active"] = float(r_neg > 0.0)
+
+    # B91: positive-Z penalty remains useful, but it should stop fighting the
+    # radial corridor once R is already too negative.
+    w_pos_base = float(rp.get("w_z_positive_bias", 0.0) or 0.0)
+    w_pos_eff = w_pos_base
+    gate_threshold = rp.get("z_pos_gate_r_threshold_m", None)
+    if gate_threshold is not None and r_err < float(gate_threshold):
+        w_pos_eff *= float(rp.get("z_pos_gate_multiplier", 1.0) or 1.0)
+    out["extra_z_positive_bias_weight_effective"] = float(w_pos_eff)
+
+    if w_pos_eff > 0.0:
         deadband = float(rp.get("z_pos_deadband_m", 0.03) or 0.0)
         ref = max(float(rp.get("z_pos_ref_m", 0.05) or 0.05), 1.0e-12)
         power = float(rp.get("z_pos_power", 2.0) or 2.0)
         z_pos = max(0.0, z_err - deadband)
-        penalty = w_pos * (z_pos / ref) ** power
+        penalty = w_pos_eff * (z_pos / ref) ** power
         shaped -= penalty
         out["extra_z_positive_bias_penalty"] = float(penalty)
         out["extra_z_positive_bias_active"] = float(z_pos > 0.0)
@@ -1158,6 +1179,8 @@ def run_online_policy_probe(
         coil_names=coil_names,
     )
     out[f"{prefix}_extra_z_positive_bias_penalty_last"] = float(last_info.get("extra_z_positive_bias_penalty", 0.0))
+    out[f"{prefix}_extra_z_positive_bias_weight_effective_last"] = float(last_info.get("extra_z_positive_bias_weight_effective", 0.0))
+    out[f"{prefix}_extra_r_negative_bias_penalty_last"] = float(last_info.get("extra_r_negative_bias_penalty", 0.0))
     return out
 
 
@@ -1307,6 +1330,10 @@ def main():
     if args.resume:
         payload = torch.load(Path(args.resume) / "mpo_checkpoint.pt", map_location=device)
         learner.actor.load_state_dict(payload["actor"])
+        if bool(cfg.get("model", {}).get("physics_blend", {}).get("force_config_after_resume", True)):
+            if hasattr(learner.actor, "reset_physics_modes_from_config"):
+                learner.actor.reset_physics_modes_from_config(cfg.get("model", {}).get("physics_blend", None))
+                print("Applied current config physics_blend/mode_scales after checkpoint load.", flush=True)
         learner.q1.load_state_dict(payload["q1"])
         learner.q2.load_state_dict(payload["q2"])
         learner.tq1.load_state_dict(payload.get("tq1", payload["q1"]))

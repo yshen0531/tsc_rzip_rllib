@@ -219,14 +219,32 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
         return float(reward), {}
     shaped = float(reward)
     out: dict[str, float] = {}
-    w_pos = float(rp.get("w_z_positive_bias", 0.0) or 0.0)
-    if w_pos > 0.0:
-        z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
+    r_err = info_float(info, "R_error", info_float(info, "terminal_R_error", 0.0))
+    z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
+
+    w_r_neg = float(rp.get("w_r_negative_bias_strong", 0.0) or 0.0)
+    if w_r_neg > 0.0:
+        deadband = float(rp.get("r_neg_deadband_m", 0.10) or 0.0)
+        ref = max(float(rp.get("r_neg_ref_m", 0.05) or 0.05), 1.0e-12)
+        power = float(rp.get("r_neg_power", 2.0) or 2.0)
+        r_neg = max(0.0, -r_err - deadband)
+        penalty = w_r_neg * (r_neg / ref) ** power
+        shaped -= penalty
+        out["extra_r_negative_bias_penalty"] = float(penalty)
+        out["extra_r_negative_bias_active"] = float(r_neg > 0.0)
+
+    w_pos_base = float(rp.get("w_z_positive_bias", 0.0) or 0.0)
+    w_pos_eff = w_pos_base
+    gate_threshold = rp.get("z_pos_gate_r_threshold_m", None)
+    if gate_threshold is not None and r_err < float(gate_threshold):
+        w_pos_eff *= float(rp.get("z_pos_gate_multiplier", 1.0) or 1.0)
+    out["extra_z_positive_bias_weight_effective"] = float(w_pos_eff)
+    if w_pos_eff > 0.0:
         deadband = float(rp.get("z_pos_deadband_m", 0.03) or 0.0)
         ref = max(float(rp.get("z_pos_ref_m", 0.05) or 0.05), 1.0e-12)
         power = float(rp.get("z_pos_power", 2.0) or 2.0)
         z_pos = max(0.0, z_err - deadband)
-        penalty = w_pos * (z_pos / ref) ** power
+        penalty = w_pos_eff * (z_pos / ref) ** power
         shaped -= penalty
         out["extra_z_positive_bias_penalty"] = float(penalty)
         out["extra_z_positive_bias_active"] = float(z_pos > 0.0)
@@ -288,6 +306,12 @@ def main():
         physics_blend=m_cfg.get("physics_blend", None),
     )
     actor.load_state_dict(payload["actor"])
+    # When evaluating a B91 run resumed from a B90 checkpoint, saved checkpoints
+    # normally contain the B91 config.  This optional refresh is also useful for
+    # direct diagnostic evaluation of an older checkpoint under a newer config.
+    if bool(cfg.get("model", {}).get("physics_blend", {}).get("force_config_after_resume", False)):
+        if hasattr(actor, "reset_physics_modes_from_config"):
+            actor.reset_physics_modes_from_config(cfg.get("model", {}).get("physics_blend", None))
     actor.eval()
     action_scale = checkpoint_action_scale(saved_cfg, payload)
     physics_blend_alpha = checkpoint_physics_blend_alpha(saved_cfg, payload)
@@ -354,6 +378,8 @@ def main():
                 "vessel_current_abs_sum_a": scalar_info(info, "vessel_current_abs_sum_a"),
                 "current_util_max": scalar_info(info, "current_util_max"),
                 "extra_z_positive_bias_penalty": float(info.get("extra_z_positive_bias_penalty", 0.0)),
+                "extra_z_positive_bias_weight_effective": float(info.get("extra_z_positive_bias_weight_effective", 0.0)),
+                "extra_r_negative_bias_penalty": float(info.get("extra_r_negative_bias_penalty", 0.0)),
             }
             for i, cname in enumerate(coil_names):
                 row[f"action/{cname}"] = float(action[i])
@@ -387,6 +413,8 @@ def main():
             "terminal_vessel_current_total_a": scalar_info(last_info, "terminal_vessel_current_total_a", scalar_info(last_info, "vessel_current_total_a")),
             "terminal_vessel_current_abs_sum_a": scalar_info(last_info, "terminal_vessel_current_abs_sum_a", scalar_info(last_info, "vessel_current_abs_sum_a")),
             "terminal_extra_z_positive_bias_penalty": float(last_info.get("extra_z_positive_bias_penalty", 0.0)),
+            "terminal_extra_z_positive_bias_weight_effective": float(last_info.get("extra_z_positive_bias_weight_effective", 0.0)),
+            "terminal_extra_r_negative_bias_penalty": float(last_info.get("extra_r_negative_bias_penalty", 0.0)),
         }
         summaries.append(summ)
         print(f"[eval episode {ep}] return={summ['episode_return']:.3f} len={step} hold={summ['hold_success']} first_reach={summ['time_to_first_reach_step']} stable={summ['time_to_stable_hold_step']}")

@@ -85,6 +85,26 @@ def build_mode_matrix(action_dim: int, physics_blend: dict[str, Any] | None) -> 
         names, mat = default_physics_mode_matrix(int(action_dim))
     if mat.ndim != 2 or mat.shape[1] != int(action_dim):
         raise ValueError(f"physics_blend.mode_matrix must have shape [mode_dim,{action_dim}], got {tuple(mat.shape)}")
+    if len(names) != int(mat.shape[0]):
+        names = [f"mode_{i}" for i in range(int(mat.shape[0]))]
+
+    # Optional per-mode gain.  This is deliberately implemented as a matrix-row
+    # scale rather than a new learnable parameter, so B91 remains checkpoint-
+    # compatible with B90 as long as the number of modes is unchanged.
+    mode_scales = cfg.get("mode_scales", None)
+    if isinstance(mode_scales, dict) and mat.numel() > 0:
+        scale_vec = torch.ones(int(mat.shape[0]), dtype=torch.float32)
+        for i, name in enumerate(names):
+            if name in mode_scales:
+                scale_vec[i] = float(mode_scales[name])
+        mat = mat * scale_vec.view(-1, 1)
+    elif isinstance(mode_scales, (list, tuple)) and mat.numel() > 0:
+        if len(mode_scales) != int(mat.shape[0]):
+            raise ValueError(
+                f"physics_blend.mode_scales list must have length {int(mat.shape[0])}, got {len(mode_scales)}"
+            )
+        mat = mat * torch.tensor(mode_scales, dtype=torch.float32).view(-1, 1)
+
     if bool(cfg.get("normalize_modes", False)) and mat.numel() > 0:
         denom = torch.clamp(mat.abs().amax(dim=1, keepdim=True), min=1.0e-12)
         mat = mat / denom
@@ -150,6 +170,35 @@ class RecurrentGaussianActor(nn.Module):
     def set_physics_blend_alpha(self, alpha: float) -> None:
         with torch.no_grad():
             self.physics_blend_alpha.fill_(float(alpha))
+
+    def reset_physics_modes_from_config(self, physics_blend: dict[str, Any] | None) -> None:
+        """Refresh fixed physics-mode buffers from the currently requested config.
+
+        This is useful when B91 resumes from a B90 checkpoint: the trainable actor
+        parameters are compatible, but state_dict loading also restores the old
+        physics_mode_matrix buffer.  Re-applying the config after load ensures
+        mode_scales/matrix edits actually take effect.
+        """
+        pcfg = physics_blend or {}
+        mode_names, mode_matrix = build_mode_matrix(self.action_dim, pcfg)
+        enabled = bool(pcfg.get("enabled", False)) and mode_matrix.numel() > 0
+        expected_dim = self.physics_mode_dim
+        new_dim = int(mode_matrix.shape[0]) if enabled else 0
+        if new_dim != expected_dim:
+            raise ValueError(
+                f"Cannot reset physics modes with different mode_dim: checkpoint actor has {expected_dim}, "
+                f"config requests {new_dim}. Start from scratch or keep mode count unchanged."
+            )
+        self.physics_blend_enabled = bool(enabled)
+        self.physics_mode_names = mode_names
+        self.physics_mode_scale = float(pcfg.get("mode_scale", 1.0))
+        self.physics_action_clip = float(pcfg.get("physics_action_clip", 1.0))
+        self.raw_action_scale = float(pcfg.get("raw_action_scale", 1.0))
+        with torch.no_grad():
+            if enabled:
+                self.physics_mode_matrix.copy_(mode_matrix.to(
+                    dtype=self.physics_mode_matrix.dtype, device=self.physics_mode_matrix.device
+                ))
 
     def forward(
         self,
