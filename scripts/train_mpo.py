@@ -292,13 +292,42 @@ def info_float(info: dict[str, Any] | None, key: str, default: float = 0.0) -> f
         return float(default)
 
 
-def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, reward_params: dict[str, Any] | None) -> tuple[float, dict[str, float]]:
+def mode_coeff_lookup(mode_names: list[str] | None, mode_coeff: Any | None) -> dict[str, float]:
+    """Return sanitized mode coefficient lookup for reward shaping diagnostics."""
+    if mode_names is None or mode_coeff is None:
+        return {}
+    try:
+        arr = np.asarray(mode_coeff, dtype=np.float64).reshape(-1)
+    except Exception:
+        return {}
+    out: dict[str, float] = {}
+    for i, raw_name in enumerate(list(mode_names)):
+        if i >= arr.size:
+            break
+        out[sanitize_metric_name(str(raw_name))] = float(arr[i])
+    return out
+
+
+def apply_extra_reward_shaping(
+    reward: float,
+    info: dict[str, Any] | None,
+    reward_params: dict[str, Any] | None,
+    *,
+    prev_info: dict[str, Any] | None = None,
+    mode_names: list[str] | None = None,
+    mode_coeff: Any | None = None,
+) -> tuple[float, dict[str, float]]:
     """Apply wrapper-side reward terms that are not guaranteed in older env code.
 
-    B90 added one-sided positive-Z suppression.  B91 keeps that term but gates it
-    when R has already drifted too far inward, and adds a stronger one-sided
-    negative-R corridor penalty.  Keeping this outside RllibTscRzipEnv lets the
-    experiment run immediately with the existing environment package.
+    B90 added one-sided positive-Z suppression. B91 added a stronger one-sided
+    negative-R corridor and gated the Z penalty when R was already too inward.
+
+    B92 keeps those useful terms and adds two missing pieces exposed by B91:
+    (1) a signed progress term that rewards moving negative R_error back toward 0,
+        rather than merely penalizing the final inward offset;
+    (2) optional direct penalties on selected physics-mode coefficients, because
+        B91 reduced common-mode matrix scales but the actor simply drove the
+        corresponding coefficients close to saturation.
     """
     rp = reward_params or {}
     extra_cfg = rp.get("extra_reward_shaping", {}) if isinstance(rp.get("extra_reward_shaping", {}), dict) else {}
@@ -309,8 +338,9 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
     out: dict[str, float] = {}
     r_err = info_float(info, "R_error", info_float(info, "terminal_R_error", 0.0))
     z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
+    prev_r_err = info_float(prev_info, "R_error", info_float(prev_info, "terminal_R_error", r_err))
 
-    # B91: strong one-sided penalty for excessive inward radial drift.
+    # B91/B92: strong one-sided penalty for excessive inward radial drift.
     w_r_neg = float(rp.get("w_r_negative_bias_strong", 0.0) or 0.0)
     if w_r_neg > 0.0:
         deadband = float(rp.get("r_neg_deadband_m", 0.10) or 0.0)
@@ -321,6 +351,24 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
         shaped -= penalty
         out["extra_r_negative_bias_penalty"] = float(penalty)
         out["extra_r_negative_bias_active"] = float(r_neg > 0.0)
+        out["extra_r_negative_bias_margin_m"] = float(r_neg)
+
+    # B92: signed progress for negative R.  If R_error is already too negative,
+    # reward steps that increase R_error toward zero and penalize steps that move
+    # further inward. This helps escape the B91 plateau around R_error=-0.17 m.
+    w_r_prog = float(rp.get("w_r_negative_progress", 0.0) or 0.0)
+    if w_r_prog > 0.0:
+        enable_m = float(rp.get("r_negative_progress_enable_m", -0.08) or -0.08)
+        ref = max(float(rp.get("r_negative_progress_ref_m", 0.03) or 0.03), 1.0e-12)
+        clip = float(rp.get("r_negative_progress_clip", 2.5) or 2.5)
+        active = (r_err < enable_m) or (prev_r_err < enable_m)
+        progress_m = r_err - prev_r_err  # positive means R_error moved toward zero.
+        progress_norm = float(np.clip(progress_m / ref, -clip, clip)) if active else 0.0
+        bonus = w_r_prog * progress_norm
+        shaped += bonus
+        out["extra_r_negative_progress_bonus"] = float(bonus)
+        out["extra_r_negative_progress_m"] = float(progress_m)
+        out["extra_r_negative_progress_active"] = float(bool(active))
 
     # B91: positive-Z penalty remains useful, but it should stop fighting the
     # radial corridor once R is already too negative.
@@ -341,8 +389,36 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
         out["extra_z_positive_bias_penalty"] = float(penalty)
         out["extra_z_positive_bias_active"] = float(z_pos > 0.0)
 
-    return float(shaped), out
+    # B92: direct common-mode coefficient penalties.  These are optional and only
+    # applied when mode coefficients are available from the actor diagnostics.
+    coeffs = mode_coeff_lookup(mode_names, mode_coeff)
+    common_names_raw = rp.get("common_mode_coeff_names", ["outer_pf_common_shape", "cs_common_flux"])
+    if isinstance(common_names_raw, str):
+        common_names = [common_names_raw]
+    else:
+        common_names = list(common_names_raw or [])
+    common_names = [sanitize_metric_name(str(x)) for x in common_names]
+    selected = [coeffs[name] for name in common_names if name in coeffs]
+    if selected:
+        vals = np.asarray(selected, dtype=np.float64)
+        l2 = float(np.mean(vals ** 2))
+        w_l2 = float(rp.get("w_common_mode_coeff_l2", 0.0) or 0.0)
+        if w_l2 > 0.0:
+            penalty = w_l2 * l2
+            shaped -= penalty
+            out["extra_common_mode_coeff_l2_penalty"] = float(penalty)
+        soft_limit = float(rp.get("common_mode_coeff_soft_limit", 1.0) or 1.0)
+        w_sat = float(rp.get("w_common_mode_coeff_saturation", 0.0) or 0.0)
+        sat_excess = np.maximum(0.0, np.abs(vals) - soft_limit)
+        sat = float(np.mean(sat_excess ** 2))
+        if w_sat > 0.0:
+            penalty = w_sat * sat
+            shaped -= penalty
+            out["extra_common_mode_coeff_saturation_penalty"] = float(penalty)
+        out["extra_common_mode_coeff_abs_mean"] = float(np.mean(np.abs(vals)))
+        out["extra_common_mode_coeff_abs_max"] = float(np.max(np.abs(vals)))
 
+    return float(shaped), out
 
 def write_dynamic_csv(csv_path: Path, rows: list[dict[str, Any]], fields: list[str]) -> None:
     tmp_path = csv_path.with_suffix(csv_path.suffix + ".tmp")
@@ -547,14 +623,22 @@ class MpoRolloutWorker:
         action_abs = []
         for _ in range(int(fragment_steps)):
             obs_t = torch.as_tensor(self.obs, dtype=torch.float32)
+            prev_info = dict(self.info or {})
             with torch.no_grad():
-                action_t, self.hidden = self.actor.act_step(
-                    obs_t, self.hidden, deterministic=deterministic, action_scale=self.action_scale
+                _pre_tanh, comps, self.hidden = actor_pre_tanh_step(
+                    self.actor, obs_t, self.hidden, deterministic=deterministic
                 )
+                action_t = comps["blended_action"] * float(self.action_scale)
+                mode_t = comps["mode_coeff"]
             action = action_t.cpu().numpy().reshape(-1).astype(np.float32)
+            mode_names = [sanitize_metric_name(x) for x in getattr(self.actor, "physics_mode_names", [])]
+            mode_coeff = mode_t[:, -1, :].detach().cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
             next_obs, reward_env, terminated, truncated, info = self.env.step(action)
             info = dict(info or {})
-            reward, extra_reward_info = apply_extra_reward_shaping(float(reward_env), info, self.reward_params)
+            reward, extra_reward_info = apply_extra_reward_shaping(
+                float(reward_env), info, self.reward_params,
+                prev_info=prev_info, mode_names=mode_names, mode_coeff=mode_coeff,
+            )
             info.update(extra_reward_info)
             info["reward_env"] = float(reward_env)
             info["reward_shaped"] = float(reward)
@@ -578,6 +662,7 @@ class MpoRolloutWorker:
             env_steps += 1
             self.obs = next_obs_arr
             self.priv = next_priv
+            self.info = info
 
             if done:
                 ep = {
@@ -1092,6 +1177,7 @@ def run_online_policy_probe(
     try:
         done = False
         while not done:
+            prev_info = dict(last_info or {})
             with torch.no_grad():
                 pre_tanh, comps, hidden = actor_pre_tanh_step(
                     learner.actor,
@@ -1109,7 +1195,12 @@ def run_online_policy_probe(
             mode_coeff = mode_tensor[:, -1, :].detach().cpu().numpy().reshape(-1) if mode_dim > 0 else np.zeros(0)
             next_obs, reward_env, terminated, truncated, info = env.step(action)
             info = dict(info or {})
-            reward, extra_reward_info = apply_extra_reward_shaping(float(reward_env), info, reward_params)
+            reward, extra_reward_info = apply_extra_reward_shaping(
+                float(reward_env), info, reward_params,
+                prev_info=prev_info,
+                mode_names=[sanitize_metric_name(x) for x in getattr(learner.actor, "physics_mode_names", [])],
+                mode_coeff=mode_coeff,
+            )
             info.update(extra_reward_info)
             done = bool(terminated or truncated)
             total += float(reward)
@@ -1196,6 +1287,11 @@ def run_online_policy_probe(
     out[f"{prefix}_extra_z_positive_bias_penalty_last"] = float(last_info.get("extra_z_positive_bias_penalty", 0.0))
     out[f"{prefix}_extra_z_positive_bias_weight_effective_last"] = float(last_info.get("extra_z_positive_bias_weight_effective", 0.0))
     out[f"{prefix}_extra_r_negative_bias_penalty_last"] = float(last_info.get("extra_r_negative_bias_penalty", 0.0))
+    out[f"{prefix}_extra_r_negative_progress_bonus_last"] = float(last_info.get("extra_r_negative_progress_bonus", 0.0))
+    out[f"{prefix}_extra_r_negative_progress_m_last"] = float(last_info.get("extra_r_negative_progress_m", 0.0))
+    out[f"{prefix}_extra_common_mode_coeff_l2_penalty_last"] = float(last_info.get("extra_common_mode_coeff_l2_penalty", 0.0))
+    out[f"{prefix}_extra_common_mode_coeff_saturation_penalty_last"] = float(last_info.get("extra_common_mode_coeff_saturation_penalty", 0.0))
+    out[f"{prefix}_extra_common_mode_coeff_abs_mean_last"] = float(last_info.get("extra_common_mode_coeff_abs_mean", 0.0))
     return out
 
 
@@ -1320,7 +1416,7 @@ def main():
     par = cfg.get("parallel", {})
     ray_num_cpus = int(par.get("ray_num_cpus", min(available_cpu_count(), 200)))
     object_store_memory = int(par.get("object_store_memory", 8 * 1024**3))
-    print("========== B91/B90 MPO Ray init =========", flush=True)
+    print("========== B92/B91/B90 MPO Ray init =========", flush=True)
     print(f"run_name         = {run_name}", flush=True)
     print(f"ray_num_cpus     = {ray_num_cpus}", flush=True)
     print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}", flush=True)

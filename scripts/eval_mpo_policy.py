@@ -212,7 +212,30 @@ def info_float(info: dict[str, Any] | None, key: str, default: float = 0.0) -> f
         return float(default)
 
 
-def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, reward_params: dict[str, Any] | None) -> tuple[float, dict[str, float]]:
+def mode_coeff_lookup(mode_names: list[str] | None, mode_coeff: Any | None) -> dict[str, float]:
+    if mode_names is None or mode_coeff is None:
+        return {}
+    try:
+        arr = np.asarray(mode_coeff, dtype=np.float64).reshape(-1)
+    except Exception:
+        return {}
+    out: dict[str, float] = {}
+    for i, raw_name in enumerate(list(mode_names)):
+        if i >= arr.size:
+            break
+        out[sanitize_metric_name(str(raw_name))] = float(arr[i])
+    return out
+
+
+def apply_extra_reward_shaping(
+    reward: float,
+    info: dict[str, Any] | None,
+    reward_params: dict[str, Any] | None,
+    *,
+    prev_info: dict[str, Any] | None = None,
+    mode_names: list[str] | None = None,
+    mode_coeff: Any | None = None,
+) -> tuple[float, dict[str, float]]:
     rp = reward_params or {}
     extra_cfg = rp.get("extra_reward_shaping", {}) if isinstance(rp.get("extra_reward_shaping", {}), dict) else {}
     if extra_cfg and not bool(extra_cfg.get("enabled", True)):
@@ -221,6 +244,7 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
     out: dict[str, float] = {}
     r_err = info_float(info, "R_error", info_float(info, "terminal_R_error", 0.0))
     z_err = info_float(info, "Z_error", info_float(info, "terminal_Z_error", 0.0))
+    prev_r_err = info_float(prev_info, "R_error", info_float(prev_info, "terminal_R_error", r_err))
 
     w_r_neg = float(rp.get("w_r_negative_bias_strong", 0.0) or 0.0)
     if w_r_neg > 0.0:
@@ -232,6 +256,21 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
         shaped -= penalty
         out["extra_r_negative_bias_penalty"] = float(penalty)
         out["extra_r_negative_bias_active"] = float(r_neg > 0.0)
+        out["extra_r_negative_bias_margin_m"] = float(r_neg)
+
+    w_r_prog = float(rp.get("w_r_negative_progress", 0.0) or 0.0)
+    if w_r_prog > 0.0:
+        enable_m = float(rp.get("r_negative_progress_enable_m", -0.08) or -0.08)
+        ref = max(float(rp.get("r_negative_progress_ref_m", 0.03) or 0.03), 1.0e-12)
+        clip = float(rp.get("r_negative_progress_clip", 2.5) or 2.5)
+        active = (r_err < enable_m) or (prev_r_err < enable_m)
+        progress_m = r_err - prev_r_err
+        progress_norm = float(np.clip(progress_m / ref, -clip, clip)) if active else 0.0
+        bonus = w_r_prog * progress_norm
+        shaped += bonus
+        out["extra_r_negative_progress_bonus"] = float(bonus)
+        out["extra_r_negative_progress_m"] = float(progress_m)
+        out["extra_r_negative_progress_active"] = float(bool(active))
 
     w_pos_base = float(rp.get("w_z_positive_bias", 0.0) or 0.0)
     w_pos_eff = w_pos_base
@@ -248,8 +287,34 @@ def apply_extra_reward_shaping(reward: float, info: dict[str, Any] | None, rewar
         shaped -= penalty
         out["extra_z_positive_bias_penalty"] = float(penalty)
         out["extra_z_positive_bias_active"] = float(z_pos > 0.0)
-    return float(shaped), out
 
+    coeffs = mode_coeff_lookup(mode_names, mode_coeff)
+    common_names_raw = rp.get("common_mode_coeff_names", ["outer_pf_common_shape", "cs_common_flux"])
+    if isinstance(common_names_raw, str):
+        common_names = [common_names_raw]
+    else:
+        common_names = list(common_names_raw or [])
+    common_names = [sanitize_metric_name(str(x)) for x in common_names]
+    selected = [coeffs[name] for name in common_names if name in coeffs]
+    if selected:
+        vals = np.asarray(selected, dtype=np.float64)
+        l2 = float(np.mean(vals ** 2))
+        w_l2 = float(rp.get("w_common_mode_coeff_l2", 0.0) or 0.0)
+        if w_l2 > 0.0:
+            penalty = w_l2 * l2
+            shaped -= penalty
+            out["extra_common_mode_coeff_l2_penalty"] = float(penalty)
+        soft_limit = float(rp.get("common_mode_coeff_soft_limit", 1.0) or 1.0)
+        w_sat = float(rp.get("w_common_mode_coeff_saturation", 0.0) or 0.0)
+        sat_excess = np.maximum(0.0, np.abs(vals) - soft_limit)
+        sat = float(np.mean(sat_excess ** 2))
+        if w_sat > 0.0:
+            penalty = w_sat * sat
+            shaped -= penalty
+            out["extra_common_mode_coeff_saturation_penalty"] = float(penalty)
+        out["extra_common_mode_coeff_abs_mean"] = float(np.mean(np.abs(vals)))
+        out["extra_common_mode_coeff_abs_max"] = float(np.max(np.abs(vals)))
+    return float(shaped), out
 
 def actor_pre_tanh_step(actor: RecurrentGaussianActor, obs: torch.Tensor, hidden: torch.Tensor | None, *, deterministic: bool):
     if obs.ndim == 1:
@@ -335,6 +400,7 @@ def main():
         last_terminated = False
         last_truncated = False
         while not done:
+            prev_info = dict(last_info or {})
             with torch.no_grad():
                 _pre_tanh, comps, hidden = actor_pre_tanh_step(
                     actor,
@@ -352,7 +418,10 @@ def main():
             mode_coeff = mode_t[:, -1, :].cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
             next_obs, reward_env, terminated, truncated, info = env.step(action)
             info = dict(info or {})
-            reward, extra_reward_info = apply_extra_reward_shaping(float(reward_env), info, reward_params)
+            reward, extra_reward_info = apply_extra_reward_shaping(
+                float(reward_env), info, reward_params,
+                prev_info=prev_info, mode_names=mode_names, mode_coeff=mode_coeff,
+            )
             info.update(extra_reward_info)
             done = bool(terminated or truncated)
             last_terminated = bool(terminated)
@@ -380,6 +449,11 @@ def main():
                 "extra_z_positive_bias_penalty": float(info.get("extra_z_positive_bias_penalty", 0.0)),
                 "extra_z_positive_bias_weight_effective": float(info.get("extra_z_positive_bias_weight_effective", 0.0)),
                 "extra_r_negative_bias_penalty": float(info.get("extra_r_negative_bias_penalty", 0.0)),
+                "extra_r_negative_progress_bonus": float(info.get("extra_r_negative_progress_bonus", 0.0)),
+                "extra_r_negative_progress_m": float(info.get("extra_r_negative_progress_m", 0.0)),
+                "extra_common_mode_coeff_l2_penalty": float(info.get("extra_common_mode_coeff_l2_penalty", 0.0)),
+                "extra_common_mode_coeff_saturation_penalty": float(info.get("extra_common_mode_coeff_saturation_penalty", 0.0)),
+                "extra_common_mode_coeff_abs_mean": float(info.get("extra_common_mode_coeff_abs_mean", 0.0)),
             }
             for i, cname in enumerate(coil_names):
                 row[f"action/{cname}"] = float(action[i])
@@ -415,6 +489,11 @@ def main():
             "terminal_extra_z_positive_bias_penalty": float(last_info.get("extra_z_positive_bias_penalty", 0.0)),
             "terminal_extra_z_positive_bias_weight_effective": float(last_info.get("extra_z_positive_bias_weight_effective", 0.0)),
             "terminal_extra_r_negative_bias_penalty": float(last_info.get("extra_r_negative_bias_penalty", 0.0)),
+            "terminal_extra_r_negative_progress_bonus": float(last_info.get("extra_r_negative_progress_bonus", 0.0)),
+            "terminal_extra_r_negative_progress_m": float(last_info.get("extra_r_negative_progress_m", 0.0)),
+            "terminal_extra_common_mode_coeff_l2_penalty": float(last_info.get("extra_common_mode_coeff_l2_penalty", 0.0)),
+            "terminal_extra_common_mode_coeff_saturation_penalty": float(last_info.get("extra_common_mode_coeff_saturation_penalty", 0.0)),
+            "terminal_extra_common_mode_coeff_abs_mean": float(last_info.get("extra_common_mode_coeff_abs_mean", 0.0)),
         }
         summaries.append(summ)
         print(f"[eval episode {ep}] return={summ['episode_return']:.3f} len={step} hold={summ['hold_success']} first_reach={summ['time_to_first_reach_step']} stable={summ['time_to_stable_hold_step']}")
