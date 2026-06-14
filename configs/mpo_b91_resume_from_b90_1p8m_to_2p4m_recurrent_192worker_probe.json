@@ -365,13 +365,13 @@
     ],
     "checkpoint_compatibility": "mode count remains 9, so B91 can resume from B90/B90-resume checkpoints; scripts/train_mpo.py reapplies current physics mode matrix after load."
   },
-  "resume_checkpoint": "mpo_checkpoints/train_b90_resume_to_1p8m_from_iter200_split_vertical_posz_mpo_192worker_probe_20260609_183139/final",
+  "resume_checkpoint": "mpo_checkpoints/train_b90_resume_to_1p8m_from_iter200_split_vertical_posz_mpo_192worker_probe_20260609_183139/iter_000275",
   "resume_notes": {
     "expected_source_run": "train_b90_resume_to_1p8m_from_iter200_split_vertical_posz_mpo_192worker_probe_20260609_183139",
-    "expected_checkpoint": "mpo_checkpoints/train_b90_resume_to_1p8m_from_iter200_split_vertical_posz_mpo_192worker_probe_20260609_183139/final",
+    "expected_checkpoint": "mpo_checkpoints/train_b90_resume_to_1p8m_from_iter200_split_vertical_posz_mpo_192worker_probe_20260609_183139/iter_000275",
     "resume_env_steps_expected": 1800192,
     "target_stop_env_steps": 2400000,
     "why": "Start from the B90-resume policy that already controls Z, then use B91 reward/mode scaling to pull R back outward.",
-    "available_saved_checkpoints_note": "B90-resume used checkpoint_every_iters=25 and ended at iteration 293, so regular iter checkpoints exist at 225/250/275; use final/ for the actual run-end state, or iter_000275 as fallback."
+    "available_saved_checkpoints_note": "B90-resume periodic checkpoints exist at iter_000225, iter_000250, iter_000275. B91 v3 intentionally defaults to iter_000275, not final/, because final/ availability/behavior was uncertain in the user run."
   }
 }

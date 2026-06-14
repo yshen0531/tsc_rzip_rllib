@@ -7,6 +7,14 @@ RESUME="${3:-}"
 
 cd "$(dirname "$0")"
 
+# Ray starts many Python worker processes. These limits must be raised before
+# launching Python so the driver and Ray workers inherit them.
+echo "[run_train_b91_native] limit before set: ulimit -u=$(ulimit -u) ulimit -n=$(ulimit -n)"
+ulimit -u 30000 || true
+ulimit -n 4096 || true
+echo "[run_train_b91_native] limit after set : ulimit -u=$(ulimit -u) ulimit -n=$(ulimit -n)"
+cat /proc/$$/limits | egrep "processes|open files" || true
+
 if [[ -n "${RESUME}" ]]; then
   if [[ ! -f "${RESUME}/mpo_checkpoint.pt" ]]; then
     echo "[run_train_b91_native] ERROR: resume checkpoint not found: ${RESUME}/mpo_checkpoint.pt" >&2
@@ -29,7 +37,7 @@ if [[ -z "${RAY_TMPDIR:-}" ]]; then
 fi
 mkdir -p "${RAY_TMPDIR}"
 
-cmd=(python scripts/train_mpo.py --config "${CONFIG}")
+cmd=(python -u scripts/train_mpo.py --config "${CONFIG}")
 if [[ -n "${OVERRIDE}" ]]; then
   cmd+=(--override "${OVERRIDE}")
 fi

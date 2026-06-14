@@ -54,4 +54,14 @@ If the checkpoint directory differs:
 
 ## Correction: B90-resume checkpoint path
 
-B90-resume stopped at iteration 293 but checkpoint_every_iters=25, so the periodic checkpoint directories are iter_000225, iter_000250, and iter_000275. The run-end state is saved under final/. The B91 resume script now defaults to the final/ checkpoint. If final/ is unavailable, use iter_000275 explicitly as the second argument.
+B90-resume stopped at iteration 293 but checkpoint_every_iters=25, so the periodic checkpoint directories are iter_000225, iter_000250, and iter_000275. Although a final/ directory may exist, B91 v3 intentionally defaults to iter_000275 to avoid relying on final/.
+
+
+## B91 v3 startup-limit fix
+
+- Default resume checkpoint is now `iter_000275`, not `final/`.
+- `run_train_b91_native.sh` now raises and prints shell limits before launching Python:
+  - `ulimit -u 30000`
+  - `ulimit -n 4096`
+- `scripts/train_mpo.py` keeps unbuffered progress prints around `ray.init()` and infers spaces without calling `env.reset()`.
+- Intended usage: resume B91 from B90-resume `iter_000275` with 192 workers after verifying Ray can initialize at `num_cpus=192` under the raised limits.

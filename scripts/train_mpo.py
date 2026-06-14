@@ -7,6 +7,7 @@ import csv
 import json
 import math
 import os
+import resource
 import shutil
 import sys
 import time
@@ -947,6 +948,16 @@ class MpoLearner:
 
 
 def infer_spaces(cfg: dict[str, Any]) -> tuple[int, int, int]:
+    """Infer observation/action/privileged dimensions without running TSC.
+
+    B91-hotfix: the previous implementation called ``env.reset()`` here.
+    For this TSC backend, reset may launch/prepare a real TSC episode before
+    Ray rollout workers are created.  If that serial preflight blocks, the run
+    appears to hang after ``Started a local Ray instance`` and no
+    ``train_results.jsonl`` is ever written.  The Gym spaces are already
+    constructed by ``RllibTscRzipEnv.__init__``, so a reset is unnecessary for
+    dimension inference.
+    """
     env_cfg = {
         "backend": cfg.get("env", {}).get("backend", "native"),
         "train_config": cfg["train_config_resolved"],
@@ -957,13 +968,17 @@ def infer_spaces(cfg: dict[str, Any]) -> tuple[int, int, int]:
         "finite_guard": cfg.get("env", {}).get("finite_guard", {"enabled": True}),
     }
     env = RllibTscRzipEnv(env_cfg)
-    obs, info = env.reset(seed=int(cfg.get("seed", 42)))
-    obs_dim = int(np.prod(env.observation_space.shape))
-    action_dim = int(np.prod(env.action_space.shape))
-    p_cfg = cfg.get("privileged", {})
-    priv_dim = privileged_dim(p_cfg.get("keys"), include_currents=bool(p_cfg.get("include_currents", True)))
-    env.close()
-    return obs_dim, priv_dim, action_dim
+    try:
+        obs_dim = int(np.prod(env.observation_space.shape))
+        action_dim = int(np.prod(env.action_space.shape))
+        p_cfg = cfg.get("privileged", {})
+        priv_dim = privileged_dim(p_cfg.get("keys"), include_currents=bool(p_cfg.get("include_currents", True)))
+        return obs_dim, priv_dim, action_dim
+    finally:
+        try:
+            env.close()
+        except Exception:
+            pass
 
 
 def build_run_dirs(cfg: dict[str, Any], config_path: Path) -> tuple[Path, Path, str]:
@@ -1305,12 +1320,17 @@ def main():
     par = cfg.get("parallel", {})
     ray_num_cpus = int(par.get("ray_num_cpus", min(available_cpu_count(), 200)))
     object_store_memory = int(par.get("object_store_memory", 8 * 1024**3))
-    print("========== B85 MPO Ray init ==========")
-    print(f"run_name         = {run_name}")
-    print(f"ray_num_cpus     = {ray_num_cpus}")
-    print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}")
-    print(f"num_tsc_workers  = {par.get('num_tsc_workers')}")
-    print("======================================")
+    print("========== B91/B90 MPO Ray init =========", flush=True)
+    print(f"run_name         = {run_name}", flush=True)
+    print(f"ray_num_cpus     = {ray_num_cpus}", flush=True)
+    print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}", flush=True)
+    print(f"num_tsc_workers  = {par.get('num_tsc_workers')}", flush=True)
+    print("======================================", flush=True)
+    print("[python limits before ray.init]", flush=True)
+    print(f"  pid = {os.getpid()}", flush=True)
+    print(f"  RLIMIT_NPROC = {resource.getrlimit(resource.RLIMIT_NPROC)}", flush=True)
+    print(f"  RLIMIT_NOFILE = {resource.getrlimit(resource.RLIMIT_NOFILE)}", flush=True)
+    print("[train_mpo] before ray.init", flush=True)
     ray.init(
         address=par.get("ray_address", None),
         num_cpus=ray_num_cpus if par.get("ray_address", None) is None else None,
@@ -1321,13 +1341,17 @@ def main():
         runtime_env={"env_vars": ray_worker_env_vars()},
     )
 
+    print("[train_mpo] after ray.init; inferring spaces without env.reset", flush=True)
     obs_dim, priv_dim, action_dim = infer_spaces(cfg)
+    print(f"[train_mpo] spaces: obs_dim={obs_dim} priv_dim={priv_dim} action_dim={action_dim}", flush=True)
     device = "cuda" if (torch.cuda.is_available() and int(cfg.get("learner", {}).get("num_gpus", 0)) > 0) else "cpu"
+    print(f"[train_mpo] constructing learner on device={device}", flush=True)
     learner = MpoLearner(cfg, obs_dim, priv_dim, action_dim, device=device)
     resume_env_steps = 0
     resume_iteration = 0
     learner.set_env_steps(0)
     if args.resume:
+        print(f"[train_mpo] loading resume checkpoint: {Path(args.resume) / 'mpo_checkpoint.pt'}", flush=True)
         payload = torch.load(Path(args.resume) / "mpo_checkpoint.pt", map_location=device)
         learner.actor.load_state_dict(payload["actor"])
         if bool(cfg.get("model", {}).get("physics_blend", {}).get("force_config_after_resume", True)):
@@ -1353,19 +1377,22 @@ def main():
         resume_env_steps = int(stats.get("env_steps", payload.get("env_steps", 0)) or 0)
         resume_iteration = int(stats.get("training_iteration", 0) or 0)
         learner.set_env_steps(resume_env_steps)
-        print(f"Resumed MPO checkpoint: {args.resume} env_steps={resume_env_steps} iteration={resume_iteration}")
+        print(f"Resumed MPO checkpoint: {args.resume} env_steps={resume_env_steps} iteration={resume_iteration}", flush=True)
 
     replay_cfg = cfg.get("replay", {})
     replay = SequenceReplayBuffer(capacity_fragments=int(replay_cfg.get("capacity_fragments", 100000)), seed=int(cfg.get("seed", 42)))
     num_workers = int(par.get("num_tsc_workers", 192))
     fragment_steps = int(par.get("fragment_steps", 32))
     rollout_deterministic = bool(par.get("rollout_deterministic", False))
+    print(f"[train_mpo] creating {num_workers} rollout workers", flush=True)
     workers = [MpoRolloutWorker.options(num_cpus=float(par.get("num_cpus_per_tsc_worker", 1))).remote(i, cfg, learner.actor_state_cpu()) for i in range(num_workers)]
     current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], resume_env_steps)
+    print("[train_mpo] synchronizing initial action_scale/alpha/reward params to workers", flush=True)
     ray.get([
         w.set_action_scale.remote(float(learner.action_scale), float(learner.physics_blend_alpha), current_reward_params)
         for w in workers
     ])
+    print("[train_mpo] workers ready; entering rollout loop", flush=True)
 
     stop_env_steps = int(cfg.get("stop_env_steps", 5_000_000))
     if args.resume and stop_env_steps <= resume_env_steps:
@@ -1399,6 +1426,7 @@ def main():
     total_steps = int(resume_env_steps)
     iteration = int(resume_iteration)
     start_time = time.time()
+    print("[train_mpo] submitting first rollout batch", flush=True)
     pending = {w.rollout.remote(fragment_steps, rollout_deterministic): w for w in workers}
     last_actor_state = learner.actor_state_cpu()
     bad_probe_count = 0
