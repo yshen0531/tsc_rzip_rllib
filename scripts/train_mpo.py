@@ -308,6 +308,44 @@ def mode_coeff_lookup(mode_names: list[str] | None, mode_coeff: Any | None) -> d
     return out
 
 
+def mode_name_to_index_map(mode_names: list[str] | tuple[str, ...] | None) -> dict[str, int]:
+    out: dict[str, int] = {}
+    for i, name in enumerate(list(mode_names or [])):
+        out[sanitize_metric_name(str(name))] = int(i)
+        out[str(name)] = int(i)
+    return out
+
+
+def build_mode_weight_vector(
+    mode_names: list[str] | tuple[str, ...] | None,
+    raw: Any,
+    *,
+    default: float = 0.0,
+    device: torch.device | str | None = None,
+) -> torch.Tensor:
+    names = list(mode_names or [])
+    vec = torch.full((len(names),), float(default), dtype=torch.float32, device=device)
+    if not names or raw is None:
+        return vec
+    if isinstance(raw, dict):
+        idx = mode_name_to_index_map(names)
+        for k, v in raw.items():
+            key = sanitize_metric_name(str(k))
+            if key in idx:
+                vec[idx[key]] = float(v)
+            elif str(k) in idx:
+                vec[idx[str(k)]] = float(v)
+    elif isinstance(raw, (list, tuple)):
+        if len(raw) != len(names):
+            raise ValueError(f"mode weight list must have length {len(names)}, got {len(raw)}")
+        vec = torch.tensor([float(x) for x in raw], dtype=torch.float32, device=device)
+    else:
+        val = float(raw)
+        if len(names) > 0:
+            vec.fill_(val)
+    return vec
+
+
 def apply_extra_reward_shaping(
     reward: float,
     info: dict[str, Any] | None,
@@ -792,6 +830,25 @@ class MpoLearner:
         self.action_scale_schedule = mpo_cfg.get("actor_output_scale_schedule", None)
         self.action_scale = float(self.action_scale_default)
 
+        # B93 actor-side mode regularization.  B92's reward-side common-mode
+        # penalties were visible in rollout diagnostics but did not stop the mode
+        # head from saturating.  These terms act directly on the actor loss.
+        mode_names = [sanitize_metric_name(x) for x in getattr(self.actor, "physics_mode_names", [])]
+        self.actor_mode_coeff_l2_weights = build_mode_weight_vector(
+            mode_names, mpo_cfg.get("actor_mode_coeff_l2", None), default=0.0, device=self.device
+        )
+        sat_cfg = mpo_cfg.get("actor_mode_coeff_saturation", {}) or {}
+        if not isinstance(sat_cfg, dict):
+            sat_cfg = {"coeff": float(sat_cfg)}
+        sat_names = sat_cfg.get("names", mode_names)
+        if isinstance(sat_names, str):
+            sat_names = [sat_names]
+        sat_weight_raw = {name: float(sat_cfg.get("coeff", 0.0) or 0.0) for name in list(sat_names or [])}
+        self.actor_mode_coeff_sat_weights = build_mode_weight_vector(
+            mode_names, sat_weight_raw, default=0.0, device=self.device
+        )
+        self.actor_mode_coeff_sat_soft_limit = float(sat_cfg.get("soft_limit", 1.0) or 1.0)
+
         phys_cfg = m_cfg.get("physics_blend", {})
         self.physics_blend_alpha_default = float(phys_cfg.get("alpha", phys_cfg.get("alpha_init", 0.0)))
         self.physics_blend_alpha_schedule = phys_cfg.get("alpha_schedule", None)
@@ -944,10 +1001,30 @@ class MpoLearner:
         raw_mean_action = mean_components["raw_action"] * self.action_scale
         phys_mean_action = mean_components["physics_action"] * self.action_scale
         mode_coeff = mean_components["mode_coeff"]
+        mode_coeff_raw = mean_components.get("mode_coeff_raw", mode_coeff)
         actor_action_l2 = self.actor_action_l2_coeff * ((mean_action.pow(2).mean(dim=-1) * mask).sum() / mask_sum)
         sat_excess = torch.relu(mean_action.abs() - self.actor_action_soft_limit)
         actor_action_saturation = self.actor_action_saturation_coeff * ((sat_excess.pow(2).mean(dim=-1) * mask).sum() / mask_sum)
-        actor_loss = policy_loss_used + kl_penalty - self.entropy_coeff * entropy_mean + actor_action_l2 + actor_action_saturation
+        actor_mode_coeff_l2 = torch.zeros((), dtype=mean_action.dtype, device=self.device)
+        actor_mode_coeff_saturation = torch.zeros((), dtype=mean_action.dtype, device=self.device)
+        if mode_coeff_raw.numel() > 0:
+            mask_mode = mask.unsqueeze(-1)
+            l2_w = self.actor_mode_coeff_l2_weights.to(dtype=mode_coeff_raw.dtype, device=mode_coeff_raw.device)
+            if torch.any(l2_w > 0):
+                actor_mode_coeff_l2 = ((mode_coeff_raw.pow(2) * l2_w.view(1, 1, -1)) * mask_mode).sum() / mask_sum
+            sat_w = self.actor_mode_coeff_sat_weights.to(dtype=mode_coeff_raw.dtype, device=mode_coeff_raw.device)
+            if torch.any(sat_w > 0):
+                sat_excess_mode = torch.relu(mode_coeff_raw.abs() - self.actor_mode_coeff_sat_soft_limit)
+                actor_mode_coeff_saturation = ((sat_excess_mode.pow(2) * sat_w.view(1, 1, -1)) * mask_mode).sum() / mask_sum
+        actor_loss = (
+            policy_loss_used
+            + kl_penalty
+            - self.entropy_coeff * entropy_mean
+            + actor_action_l2
+            + actor_action_saturation
+            + actor_mode_coeff_l2
+            + actor_mode_coeff_saturation
+        )
         self.update_count += 1
         actor_update_applied = (self.update_count % self.actor_update_every == 0)
         if actor_update_applied:
@@ -977,9 +1054,13 @@ class MpoLearner:
             if mode_coeff.numel() > 0:
                 mode_signed = (mode_coeff * mask_col).sum(dim=(0, 1)) / mask_sum
                 mode_abs = (mode_coeff.abs() * mask_col).sum(dim=(0, 1)) / mask_sum
+                mode_raw_signed = (mode_coeff_raw * mask_col).sum(dim=(0, 1)) / mask_sum
+                mode_raw_abs = (mode_coeff_raw.abs() * mask_col).sum(dim=(0, 1)) / mask_sum
                 for i, name in enumerate([sanitize_metric_name(x) for x in self.actor.physics_mode_names]):
                     diag[f"actor_mode_coeff_mean/{name}"] = float(mode_signed[i].detach().cpu())
                     diag[f"actor_mode_coeff_abs_mean/{name}"] = float(mode_abs[i].detach().cpu())
+                    diag[f"actor_mode_coeff_raw_mean/{name}"] = float(mode_raw_signed[i].detach().cpu())
+                    diag[f"actor_mode_coeff_raw_abs_mean/{name}"] = float(mode_raw_abs[i].detach().cpu())
         return {
             "critic_loss": float(critic_loss.detach().cpu()),
             "actor_loss": float(actor_loss.detach().cpu()),
@@ -998,10 +1079,14 @@ class MpoLearner:
             "candidate_adv_std": float(torch.std(q_e.detach()[mask.unsqueeze(-1).expand_as(q_e) > 0.5]).cpu()) if torch.any(mask > 0.5) else 0.0,
             "actor_action_l2_penalty": float(actor_action_l2.detach().cpu()),
             "actor_action_saturation_penalty": float(actor_action_saturation.detach().cpu()),
+            "actor_mode_coeff_l2_penalty": float(actor_mode_coeff_l2.detach().cpu()),
+            "actor_mode_coeff_saturation_penalty": float(actor_mode_coeff_saturation.detach().cpu()),
+            "actor_mode_coeff_saturation_soft_limit": float(self.actor_mode_coeff_sat_soft_limit),
             "actor_mean_abs_action": float(((mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
             "actor_raw_mean_abs_action": float(((raw_mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
             "actor_physics_mean_abs_action": float(((phys_mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
             "actor_mode_coeff_mean_abs": float(((mode_coeff.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()) if mode_coeff.numel() > 0 else 0.0,
+            "actor_mode_coeff_raw_mean_abs": float(((mode_coeff_raw.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()) if mode_coeff_raw.numel() > 0 else 0.0,
             "actor_action_scale": float(self.action_scale),
             "actor_physics_blend_alpha": float(self.physics_blend_alpha),
             "actor_update_applied": float(actor_update_applied),

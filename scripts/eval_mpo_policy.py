@@ -412,10 +412,12 @@ def main():
                 raw_t = comps["raw_action"] * float(action_scale)
                 physics_t = comps["physics_action"] * float(action_scale)
                 mode_t = comps["mode_coeff"]
+                mode_raw_t = comps.get("mode_coeff_raw", mode_t)
             action = action_t[:, -1, :].cpu().numpy().reshape(-1).astype(np.float32)
             raw_action = raw_t[:, -1, :].cpu().numpy().reshape(-1)
             physics_action = physics_t[:, -1, :].cpu().numpy().reshape(-1)
             mode_coeff = mode_t[:, -1, :].cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
+            mode_coeff_raw = mode_raw_t[:, -1, :].cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
             next_obs, reward_env, terminated, truncated, info = env.step(action)
             info = dict(info or {})
             reward, extra_reward_info = apply_extra_reward_shaping(
@@ -461,6 +463,7 @@ def main():
                 row[f"physics_action/{cname}"] = float(physics_action[i])
             for i, mname in enumerate(mode_names):
                 row[f"mode_coeff/{mname}"] = float(mode_coeff[i])
+                row[f"mode_coeff_raw/{mname}"] = float(mode_coeff_raw[i])
             rows.append(row)
             total += float(reward)
             action_abs.append(float(np.mean(np.abs(action))))

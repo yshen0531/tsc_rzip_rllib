@@ -111,6 +111,35 @@ def build_mode_matrix(action_dim: int, physics_blend: dict[str, Any] | None) -> 
     return names, mat
 
 
+def build_mode_coeff_scales(mode_names: list[str], mode_dim: int, physics_blend: dict[str, Any] | None) -> torch.Tensor:
+    """Build actor-side per-mode coefficient scales.
+
+    B93 uses this as a direct structural gate on selected physics-mode coefficients.
+    Unlike ``mode_scales`` in ``build_mode_matrix`` (which scales action-space rows),
+    these scales are applied to the learned mode coefficients before the physics
+    action is formed.  The buffer is non-persistent so older B90/B91/B92 checkpoints
+    can be resumed without state_dict key mismatches; it is always rebuilt from the
+    current config via ``reset_physics_modes_from_config`` after checkpoint loading.
+    """
+    pcfg = physics_blend or {}
+    mode_dim = int(mode_dim)
+    scales = torch.ones(mode_dim, dtype=torch.float32)
+    raw = pcfg.get("mode_coeff_scales", None)
+    if mode_dim <= 0 or raw is None:
+        return scales
+    if isinstance(raw, dict):
+        for i, name in enumerate(mode_names):
+            if str(name) in raw:
+                scales[i] = float(raw[str(name)])
+    elif isinstance(raw, (list, tuple)):
+        if len(raw) != mode_dim:
+            raise ValueError(f"physics_blend.mode_coeff_scales list must have length {mode_dim}, got {len(raw)}")
+        scales = torch.tensor([float(x) for x in raw], dtype=torch.float32)
+    else:
+        raise TypeError("physics_blend.mode_coeff_scales must be a dict, list, tuple, or null")
+    return torch.clamp(scales, min=0.0)
+
+
 class RecurrentGaussianActor(nn.Module):
     """Deployable recurrent actor.
 
@@ -147,6 +176,8 @@ class RecurrentGaussianActor(nn.Module):
         self.physics_action_clip = float(pcfg.get("physics_action_clip", 1.0))
         self.raw_action_scale = float(pcfg.get("raw_action_scale", 1.0))
         self.register_buffer("physics_mode_matrix", mode_matrix if self.physics_blend_enabled else torch.zeros(0, self.action_dim))
+        coeff_scales = build_mode_coeff_scales(self.physics_mode_names, self.physics_mode_dim, pcfg) if self.physics_blend_enabled else torch.zeros(0, dtype=torch.float32)
+        self.register_buffer("physics_mode_coeff_scales", coeff_scales, persistent=False)
         self.register_buffer("physics_blend_alpha", torch.tensor(float(pcfg.get("alpha_init", pcfg.get("alpha", 0.0))), dtype=torch.float32))
 
         self.gru = nn.GRU(input_size=self.obs_dim, hidden_size=self.hidden_size, batch_first=True)
@@ -194,10 +225,19 @@ class RecurrentGaussianActor(nn.Module):
         self.physics_mode_scale = float(pcfg.get("mode_scale", 1.0))
         self.physics_action_clip = float(pcfg.get("physics_action_clip", 1.0))
         self.raw_action_scale = float(pcfg.get("raw_action_scale", 1.0))
+        coeff_scales = build_mode_coeff_scales(mode_names, new_dim, pcfg) if enabled else torch.zeros(0, dtype=torch.float32)
         with torch.no_grad():
             if enabled:
                 self.physics_mode_matrix.copy_(mode_matrix.to(
                     dtype=self.physics_mode_matrix.dtype, device=self.physics_mode_matrix.device
+                ))
+                if self.physics_mode_coeff_scales.shape[0] != coeff_scales.shape[0]:
+                    raise ValueError(
+                        f"Cannot reset physics coefficient scales with different mode_dim: "
+                        f"buffer has {self.physics_mode_coeff_scales.shape[0]}, config requests {coeff_scales.shape[0]}"
+                    )
+                self.physics_mode_coeff_scales.copy_(coeff_scales.to(
+                    dtype=self.physics_mode_coeff_scales.dtype, device=self.physics_mode_coeff_scales.device
                 ))
 
     def forward(
@@ -222,13 +262,16 @@ class RecurrentGaussianActor(nn.Module):
         raw_action = torch.tanh(raw_pre) * self.raw_action_scale
         if self.physics_blend_enabled and self.physics_mode_dim > 0:
             mode_pre = pre_tanh[..., self.action_dim : self.action_dim + self.physics_mode_dim]
-            mode_coeff = torch.tanh(mode_pre) * self.physics_mode_scale
+            mode_coeff_raw = torch.tanh(mode_pre) * self.physics_mode_scale
+            coeff_scales = self.physics_mode_coeff_scales.to(dtype=pre_tanh.dtype, device=pre_tanh.device)
+            mode_coeff = mode_coeff_raw * coeff_scales
             physics_action = torch.matmul(mode_coeff, self.physics_mode_matrix.to(dtype=pre_tanh.dtype, device=pre_tanh.device))
             if self.physics_action_clip > 0:
                 physics_action = torch.clamp(physics_action, -self.physics_action_clip, self.physics_action_clip)
             alpha = torch.clamp(self.physics_blend_alpha.to(dtype=pre_tanh.dtype, device=pre_tanh.device), 0.0, 1.0)
             blended = (1.0 - alpha) * raw_action + alpha * physics_action
         else:
+            mode_coeff_raw = pre_tanh.new_zeros(*pre_tanh.shape[:-1], 0)
             mode_coeff = pre_tanh.new_zeros(*pre_tanh.shape[:-1], 0)
             physics_action = pre_tanh.new_zeros(*pre_tanh.shape[:-1], self.action_dim)
             blended = raw_action
@@ -237,6 +280,7 @@ class RecurrentGaussianActor(nn.Module):
             "raw_action": raw_action,
             "physics_action": physics_action,
             "mode_coeff": mode_coeff,
+            "mode_coeff_raw": mode_coeff_raw,
             "blended_action": blended,
         }
 
