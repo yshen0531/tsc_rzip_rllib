@@ -346,6 +346,53 @@ def build_mode_weight_vector(
     return vec
 
 
+
+
+def build_action_pair_indices(
+    action_names: list[str] | tuple[str, ...] | None,
+    raw_pairs: Any,
+    *,
+    default_pairs: list[tuple[str, str]] | None = None,
+) -> list[tuple[int, int, str]]:
+    """Resolve action-name pairs to index pairs for actor-side diagnostics/penalties.
+
+    Accepts pairs as either coil-name strings (recommended) or integer indices.  Names are
+    sanitized in the same way as CSV metric names, so ``PF2U`` and ``PF2U `` are safe.
+    Returns tuples ``(i, j, label)`` where label is safe for metric keys.
+    """
+    names = [sanitize_metric_name(x) for x in list(action_names or [])]
+    idx = {name: i for i, name in enumerate(names)}
+    pairs = raw_pairs
+    if pairs is None:
+        pairs = default_pairs or []
+    out: list[tuple[int, int, str]] = []
+    for pair in list(pairs or []):
+        try:
+            if isinstance(pair, dict):
+                a = pair.get("u", pair.get("upper", pair.get("a", pair.get("left"))))
+                b = pair.get("l", pair.get("lower", pair.get("b", pair.get("right"))))
+                label = pair.get("name", None)
+            else:
+                a, b = pair[0], pair[1]
+                label = pair[2] if len(pair) > 2 else None
+            if isinstance(a, int) and isinstance(b, int):
+                ia, ib = int(a), int(b)
+                if ia < 0 or ib < 0 or ia >= len(names) or ib >= len(names):
+                    continue
+                la, lb = names[ia], names[ib]
+            else:
+                la = sanitize_metric_name(str(a))
+                lb = sanitize_metric_name(str(b))
+                if la not in idx or lb not in idx:
+                    continue
+                ia, ib = idx[la], idx[lb]
+            if label is None:
+                label = f"{la}_minus_{lb}"
+            out.append((ia, ib, sanitize_metric_name(str(label))))
+        except Exception:
+            continue
+    return out
+
 def apply_extra_reward_shaping(
     reward: float,
     info: dict[str, Any] | None,
@@ -849,6 +896,25 @@ class MpoLearner:
         )
         self.actor_mode_coeff_sat_soft_limit = float(sat_cfg.get("soft_limit", 1.0) or 1.0)
 
+        # B94: actor-side raw PF vertical-difference guard.  B93 successfully
+        # limited common-mode coefficients, but the raw branch learned a similar
+        # inward-biased PF U/L differential pattern.  This regularizer acts
+        # directly on the deterministic raw residual action, optionally only when
+        # the normalized observation indicates R_error is already too negative.
+        raw_pf_cfg = mpo_cfg.get("actor_raw_pf_vertical_diff_when_r_neg", {}) or {}
+        if not isinstance(raw_pf_cfg, dict):
+            raw_pf_cfg = {"coeff": float(raw_pf_cfg)}
+        self.actor_raw_pf_vertical_diff_coeff = float(raw_pf_cfg.get("coeff", 0.0) or 0.0)
+        self.actor_raw_pf_vertical_diff_threshold_m = float(raw_pf_cfg.get("r_threshold_m", -0.10) or -0.10)
+        self.actor_raw_pf_vertical_diff_obs_index = int(raw_pf_cfg.get("obs_r_error_index", 0) or 0)
+        self.actor_raw_pf_vertical_diff_obs_scale_m = float(raw_pf_cfg.get("obs_r_error_scale_m", 0.05) or 0.05)
+        self.actor_raw_pf_vertical_diff_use_r_gate = bool(raw_pf_cfg.get("use_r_gate", True))
+        self.actor_raw_pf_vertical_diff_pairs = build_action_pair_indices(
+            self.coil_names,
+            raw_pf_cfg.get("pairs", None),
+            default_pairs=[("PF2U", "PF2L"), ("PF3U", "PF3L"), ("PF4U", "PF4L")],
+        )
+
         phys_cfg = m_cfg.get("physics_blend", {})
         self.physics_blend_alpha_default = float(phys_cfg.get("alpha", phys_cfg.get("alpha_init", 0.0)))
         self.physics_blend_alpha_schedule = phys_cfg.get("alpha_schedule", None)
@@ -1016,6 +1082,29 @@ class MpoLearner:
             if torch.any(sat_w > 0):
                 sat_excess_mode = torch.relu(mode_coeff_raw.abs() - self.actor_mode_coeff_sat_soft_limit)
                 actor_mode_coeff_saturation = ((sat_excess_mode.pow(2) * sat_w.view(1, 1, -1)) * mask_mode).sum() / mask_sum
+
+        actor_raw_pf_vertical_diff_penalty = torch.zeros((), dtype=mean_action.dtype, device=self.device)
+        actor_raw_pf_vertical_diff_active_frac = torch.zeros((), dtype=mean_action.dtype, device=self.device)
+        actor_raw_pf_vertical_diff_mean_sq = torch.zeros((), dtype=mean_action.dtype, device=self.device)
+        if self.actor_raw_pf_vertical_diff_coeff > 0.0 and self.actor_raw_pf_vertical_diff_pairs:
+            pair_terms = []
+            for ia, ib, _label in self.actor_raw_pf_vertical_diff_pairs:
+                if ia < raw_mean_action.shape[-1] and ib < raw_mean_action.shape[-1]:
+                    # Half-difference keeps the scale comparable to a single coil action.
+                    pair_terms.append(0.5 * (raw_mean_action[..., ia] - raw_mean_action[..., ib]))
+            if pair_terms:
+                pair_stack = torch.stack(pair_terms, dim=-1)
+                pair_sq = pair_stack.pow(2).mean(dim=-1)
+                gate = mask
+                if self.actor_raw_pf_vertical_diff_use_r_gate:
+                    ridx = int(self.actor_raw_pf_vertical_diff_obs_index)
+                    if 0 <= ridx < obs.shape[-1]:
+                        r_err_m = obs[..., ridx] * self.actor_raw_pf_vertical_diff_obs_scale_m
+                        gate = gate * (r_err_m < self.actor_raw_pf_vertical_diff_threshold_m).to(dtype=mask.dtype)
+                gate_sum = torch.clamp(gate.sum(), min=1.0)
+                actor_raw_pf_vertical_diff_mean_sq = (pair_sq * gate).sum() / gate_sum
+                actor_raw_pf_vertical_diff_penalty = self.actor_raw_pf_vertical_diff_coeff * actor_raw_pf_vertical_diff_mean_sq
+                actor_raw_pf_vertical_diff_active_frac = gate.sum() / mask_sum
         actor_loss = (
             policy_loss_used
             + kl_penalty
@@ -1024,6 +1113,7 @@ class MpoLearner:
             + actor_action_saturation
             + actor_mode_coeff_l2
             + actor_mode_coeff_saturation
+            + actor_raw_pf_vertical_diff_penalty
         )
         self.update_count += 1
         actor_update_applied = (self.update_count % self.actor_update_every == 0)
@@ -1051,6 +1141,12 @@ class MpoLearner:
                 for i, cname in enumerate(coil_names[: tensor.shape[-1]]):
                     diag[f"{label}_mean/{cname}"] = float(signed[i].detach().cpu())
                     diag[f"{label}_abs_mean/{cname}"] = float(abs_mean[i].detach().cpu())
+            if self.actor_raw_pf_vertical_diff_pairs:
+                for ia, ib, label in self.actor_raw_pf_vertical_diff_pairs:
+                    if ia < raw_mean_action.shape[-1] and ib < raw_mean_action.shape[-1]:
+                        diff = 0.5 * (raw_mean_action[..., ia] - raw_mean_action[..., ib])
+                        diag[f"actor_raw_pf_vertical_diff_mean/{label}"] = float(((diff * mask).sum() / mask_sum).detach().cpu())
+                        diag[f"actor_raw_pf_vertical_diff_abs_mean/{label}"] = float(((diff.abs() * mask).sum() / mask_sum).detach().cpu())
             if mode_coeff.numel() > 0:
                 mode_signed = (mode_coeff * mask_col).sum(dim=(0, 1)) / mask_sum
                 mode_abs = (mode_coeff.abs() * mask_col).sum(dim=(0, 1)) / mask_sum
@@ -1082,6 +1178,10 @@ class MpoLearner:
             "actor_mode_coeff_l2_penalty": float(actor_mode_coeff_l2.detach().cpu()),
             "actor_mode_coeff_saturation_penalty": float(actor_mode_coeff_saturation.detach().cpu()),
             "actor_mode_coeff_saturation_soft_limit": float(self.actor_mode_coeff_sat_soft_limit),
+            "actor_raw_pf_vertical_diff_penalty": float(actor_raw_pf_vertical_diff_penalty.detach().cpu()),
+            "actor_raw_pf_vertical_diff_mean_sq": float(actor_raw_pf_vertical_diff_mean_sq.detach().cpu()),
+            "actor_raw_pf_vertical_diff_active_frac": float(actor_raw_pf_vertical_diff_active_frac.detach().cpu()),
+            "actor_raw_pf_vertical_diff_coeff": float(self.actor_raw_pf_vertical_diff_coeff),
             "actor_mean_abs_action": float(((mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
             "actor_raw_mean_abs_action": float(((raw_mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
             "actor_physics_mean_abs_action": float(((phys_mean_action.abs().mean(dim=-1) * mask).sum() / mask_sum).detach().cpu()),
@@ -1501,7 +1601,7 @@ def main():
     par = cfg.get("parallel", {})
     ray_num_cpus = int(par.get("ray_num_cpus", min(available_cpu_count(), 200)))
     object_store_memory = int(par.get("object_store_memory", 8 * 1024**3))
-    print("========== B92/B91/B90 MPO Ray init =========", flush=True)
+    print("========== B94/B93/B92/B91/B90 MPO Ray init =========", flush=True)
     print(f"run_name         = {run_name}", flush=True)
     print(f"ray_num_cpus     = {ray_num_cpus}", flush=True)
     print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}", flush=True)
