@@ -159,6 +159,9 @@ def force_stage(train_cfg: dict[str, Any], stage_name: str | None) -> dict[str, 
 
 def make_env(cfg: dict[str, Any], seed: int, stage: str | None):
     train_cfg = force_stage(cfg["train_config_resolved"], stage)
+    if isinstance(train_cfg.get("target_randomization", None), dict):
+        train_cfg["target_randomization"]["enabled"] = False
+        train_cfg["target_randomization"]["eval_disabled"] = True
     env_cfg = {
         "backend": cfg.get("env", {}).get("backend", "native"),
         "train_config": train_cfg,

@@ -283,6 +283,160 @@ def reward_params_for_global_steps(train_cfg: dict[str, Any], env_steps: int) ->
     return params
 
 
+def fixed_target_from_train_cfg(train_cfg: dict[str, Any]) -> dict[str, float]:
+    """Return the nominal fixed target used for deterministic eval.
+
+    B95 trains with per-episode randomized command targets, but fixed-target
+    probes/eval must stay anchored to the original design point.
+    """
+    tgt = train_cfg.get("target", {}) if isinstance(train_cfg, dict) else {}
+    return {
+        "R": float(tgt.get("R", 0.75)),
+        "Z": float(tgt.get("Z", 0.0)),
+        "Ip": float(tgt.get("Ip", 29779.724)),
+    }
+
+
+def target_randomization_params_for_global_steps(train_cfg: dict[str, Any], env_steps: int) -> dict[str, Any]:
+    """Return the active B95 target-randomization stage.
+
+    The schedule uses absolute global env-step thresholds so that resume runs
+    from B93/B94 checkpoints enter the intended B95 stage immediately instead
+    of replaying a small-step curriculum from zero.
+    """
+    cfg = train_cfg.get("target_randomization", {}) if isinstance(train_cfg, dict) else {}
+    if not isinstance(cfg, dict) or not bool(cfg.get("enabled", False)):
+        return {"enabled": False, "stage_name": "off"}
+    out = dict(cfg)
+    stages = list(cfg.get("stages", []) or [])
+    selected = None
+    if stages:
+        for st in stages:
+            if not isinstance(st, dict):
+                continue
+            selected = st
+            until = st.get("until_global_env_steps", None)
+            if until is None or int(env_steps) < int(until):
+                break
+        if selected is not None:
+            for k, v in selected.items():
+                if k not in {"name", "until_global_env_steps"}:
+                    out[k] = v
+            out["stage_name"] = str(selected.get("name", "unnamed"))
+            out["until_global_env_steps"] = selected.get("until_global_env_steps", None)
+    out["enabled"] = True
+    return out
+
+
+def _sample_scalar_from_range(rng: np.random.Generator, value: Any, fallback: float) -> float:
+    try:
+        if isinstance(value, (list, tuple)) and len(value) >= 2:
+            lo, hi = float(value[0]), float(value[1])
+            if hi < lo:
+                lo, hi = hi, lo
+            return float(rng.uniform(lo, hi))
+        return float(value)
+    except Exception:
+        return float(fallback)
+
+
+def sample_target_from_params(
+    rng: np.random.Generator,
+    base_target: dict[str, float],
+    params: dict[str, Any] | None,
+) -> dict[str, float]:
+    """Sample one per-episode command target.
+
+    Supported forms per key X in {R,Z,Ip}:
+      - "X_range": [absolute_min, absolute_max]
+      - "X_delta_range": [delta_min, delta_max] relative to base target
+      - "X_delta_abs": d, shorthand for [-d,+d]
+    Missing keys fall back to the fixed base target.
+    """
+    p = params if isinstance(params, dict) else {}
+    if not bool(p.get("enabled", False)):
+        return dict(base_target)
+    out = dict(base_target)
+    for key in ("R", "Z", "Ip"):
+        base = float(base_target[key])
+        if f"{key}_range" in p:
+            out[key] = _sample_scalar_from_range(rng, p.get(f"{key}_range"), base)
+        elif f"{key}_delta_range" in p:
+            delta = _sample_scalar_from_range(rng, p.get(f"{key}_delta_range"), 0.0)
+            out[key] = float(base + delta)
+        elif f"{key}_delta_abs" in p:
+            d = abs(float(p.get(f"{key}_delta_abs", 0.0) or 0.0))
+            out[key] = float(base + rng.uniform(-d, d))
+    return out
+
+
+def apply_target_to_train_config(train_cfg: dict[str, Any], target: dict[str, float]) -> None:
+    train_cfg.setdefault("target", {})["R"] = float(target["R"])
+    train_cfg.setdefault("target", {})["Z"] = float(target["Z"])
+    train_cfg.setdefault("target", {})["Ip"] = float(target["Ip"])
+
+
+def _try_update_target_dict(obj: Any, target: dict[str, float]) -> None:
+    if isinstance(obj, dict):
+        obj.setdefault("target", {})["R"] = float(target["R"])
+        obj.setdefault("target", {})["Z"] = float(target["Z"])
+        obj.setdefault("target", {})["Ip"] = float(target["Ip"])
+
+
+def apply_target_to_env_object(env: Any, target: dict[str, float]) -> None:
+    """Best-effort target injection for the current env instance.
+
+    The native env usually receives target through train_config.  This helper
+    also updates common attribute names so B95 remains robust if the env cached
+    target values during construction.  Missing attributes are ignored.
+    """
+    seen: set[int] = set()
+    stack: list[Any] = [env]
+    for attr in ("unwrapped", "env", "base_env"):
+        try:
+            x = getattr(env, attr, None)
+            if x is not None:
+                stack.append(x)
+        except Exception:
+            pass
+    while stack:
+        obj = stack.pop()
+        if obj is None or id(obj) in seen:
+            continue
+        seen.add(id(obj))
+        for cfg_attr in ("train_config", "train_cfg", "cfg", "config", "env_config"):
+            try:
+                _try_update_target_dict(getattr(obj, cfg_attr, None), target)
+            except Exception:
+                pass
+        for attr, val in [
+            ("target_R", target["R"]), ("target_Z", target["Z"]), ("target_Ip", target["Ip"]),
+            ("R_target", target["R"]), ("Z_target", target["Z"]), ("Ip_target", target["Ip"]),
+        ]:
+            try:
+                if hasattr(obj, attr):
+                    setattr(obj, attr, float(val))
+            except Exception:
+                pass
+        try:
+            tgt_obj = getattr(obj, "target", None)
+            if isinstance(tgt_obj, dict):
+                tgt_obj.update({"R": float(target["R"]), "Z": float(target["Z"]), "Ip": float(target["Ip"])})
+        except Exception:
+            pass
+
+
+def target_info_fields(target: dict[str, float], params: dict[str, Any] | None = None) -> dict[str, Any]:
+    p = params if isinstance(params, dict) else {}
+    return {
+        "target_R": float(target["R"]),
+        "target_Z": float(target["Z"]),
+        "target_Ip": float(target["Ip"]),
+        "target_randomization_enabled": bool(p.get("enabled", False)),
+        "target_randomization_stage": str(p.get("stage_name", "off")),
+    }
+
+
 def info_float(info: dict[str, Any] | None, key: str, default: float = 0.0) -> float:
     try:
         if info is None:
@@ -608,9 +762,16 @@ class MpoRolloutWorker:
         torch.set_num_threads(1)
         torch.set_num_interop_threads(1)
 
-        train_cfg = dict(cfg["train_config_resolved"])
+        train_cfg = copy.deepcopy(cfg["train_config_resolved"])
         self.train_cfg = train_cfg
         self.reward_params = reward_params_for_global_steps(self.train_cfg, 0)
+        self.base_target = fixed_target_from_train_cfg(self.train_cfg)
+        self.target_rng = np.random.default_rng(seed + 7919)
+        self.target_randomization_params = target_randomization_params_for_global_steps(self.train_cfg, 0)
+        self.current_target = sample_target_from_params(
+            self.target_rng, self.base_target, self.target_randomization_params
+        )
+        apply_target_to_train_config(self.train_cfg, self.current_target)
         par = cfg.get("parallel", {})
         env_cfg = {
             "backend": cfg.get("env", {}).get("backend", "native"),
@@ -622,6 +783,7 @@ class MpoRolloutWorker:
             "finite_guard": cfg.get("env", {}).get("finite_guard", {"enabled": True}),
         }
         self.env = RllibTscRzipEnv(env_cfg)
+        apply_target_to_env_object(self.env, self.current_target)
         self.obs_dim = int(np.prod(self.env.observation_space.shape))
         self.action_dim = int(np.prod(self.env.action_space.shape))
         p_cfg = cfg.get("privileged", {})
@@ -652,11 +814,39 @@ class MpoRolloutWorker:
             self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
         self.hidden = self.actor.init_hidden(1)
         self.obs, self.info = self.env.reset(seed=seed)
+        self.info = dict(self.info or {})
+        self.info.update(target_info_fields(self.current_target, self.target_randomization_params))
         self.obs = np.asarray(self.obs, dtype=np.float32).reshape(-1)
         self.priv = self._priv(self.info)
         self.episode_return = 0.0
         self.episode_len = 0
         self.completed_episodes: list[dict[str, Any]] = []
+
+    def set_target_randomization_params(self, params: dict[str, Any] | None = None) -> None:
+        if params is not None:
+            self.target_randomization_params = dict(params)
+
+    def _sample_and_apply_episode_target(self) -> dict[str, float]:
+        self.current_target = sample_target_from_params(
+            self.target_rng, self.base_target, self.target_randomization_params
+        )
+        apply_target_to_train_config(self.train_cfg, self.current_target)
+        apply_target_to_env_object(self.env, self.current_target)
+        return self.current_target
+
+    def _reset_env_for_next_episode(self, seed: int | None = None) -> None:
+        self._sample_and_apply_episode_target()
+        if seed is None:
+            self.obs, self.info = self.env.reset()
+        else:
+            self.obs, self.info = self.env.reset(seed=seed)
+        self.info = dict(self.info or {})
+        self.info.update(target_info_fields(self.current_target, self.target_randomization_params))
+        self.obs = np.asarray(self.obs, dtype=np.float32).reshape(-1)
+        self.priv = self._priv(self.info)
+        self.hidden = self.actor.init_hidden(1)
+        self.episode_return = 0.0
+        self.episode_len = 0
 
     def _priv(self, info: dict[str, Any] | None) -> np.ndarray:
         return build_privileged_vector(
@@ -678,6 +868,7 @@ class MpoRolloutWorker:
         action_scale: float | None = None,
         physics_blend_alpha: float | None = None,
         reward_params: dict[str, Any] | None = None,
+        target_randomization_params: dict[str, Any] | None = None,
     ) -> None:
         self.actor.load_state_dict(state)
         self.actor.eval()
@@ -688,12 +879,14 @@ class MpoRolloutWorker:
             if hasattr(self.actor, "set_physics_blend_alpha"):
                 self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
         self.set_reward_params(reward_params)
+        self.set_target_randomization_params(target_randomization_params)
 
     def set_action_scale(
         self,
         action_scale: float,
         physics_blend_alpha: float | None = None,
         reward_params: dict[str, Any] | None = None,
+        target_randomization_params: dict[str, Any] | None = None,
     ) -> None:
         self.action_scale = float(action_scale)
         if physics_blend_alpha is not None:
@@ -701,6 +894,7 @@ class MpoRolloutWorker:
             if hasattr(self.actor, "set_physics_blend_alpha"):
                 self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
         self.set_reward_params(reward_params)
+        self.set_target_randomization_params(target_randomization_params)
 
     def rollout(self, fragment_steps: int, deterministic: bool = False) -> dict[str, Any]:
         obs_l, priv_l, act_l, rew_l, done_l, nobs_l, npriv_l, mask_l, info_l = [], [], [], [], [], [], [], [], []
@@ -720,6 +914,7 @@ class MpoRolloutWorker:
             mode_coeff = mode_t[:, -1, :].detach().cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
             next_obs, reward_env, terminated, truncated, info = self.env.step(action)
             info = dict(info or {})
+            info.update(target_info_fields(self.current_target, self.target_randomization_params))
             reward, extra_reward_info = apply_extra_reward_shaping(
                 float(reward_env), info, self.reward_params,
                 prev_info=prev_info, mode_names=mode_names, mode_coeff=mode_coeff,
@@ -761,14 +956,12 @@ class MpoRolloutWorker:
                     "terminal_Z_error": float(info.get("terminal_Z_error", info.get("Z_error", 0.0))),
                     "terminal_Ip_error": float(info.get("terminal_Ip_error", info.get("Ip_error", 0.0))),
                     "mean_abs_action_fragment": float(np.mean(action_abs)) if action_abs else 0.0,
+                    "target_R": float(self.current_target.get("R", 0.0)),
+                    "target_Z": float(self.current_target.get("Z", 0.0)),
+                    "target_Ip": float(self.current_target.get("Ip", 0.0)),
                 }
                 self.completed_episodes.append(ep)
-                self.obs, self.info = self.env.reset()
-                self.obs = np.asarray(self.obs, dtype=np.float32).reshape(-1)
-                self.priv = self._priv(self.info)
-                self.hidden = self.actor.init_hidden(1)
-                self.episode_return = 0.0
-                self.episode_len = 0
+                self._reset_env_for_next_episode()
 
         episodes = self.completed_episodes
         self.completed_episodes = []
@@ -1278,6 +1471,9 @@ def summarize_episodes(episodes: list[dict[str, Any]]) -> dict[str, Any]:
         "terminal_Z_error",
         "terminal_Ip_error",
         "mean_abs_action_fragment",
+        "target_R",
+        "target_Z",
+        "target_Ip",
     ]:
         vals = []
         for ep in episodes:
@@ -1329,6 +1525,9 @@ def run_online_policy_probe(
     actions" from "the deterministic mean is stuck/no-op".
     """
     train_cfg = force_stage_for_eval(cfg["train_config_resolved"], stage)
+    if isinstance(train_cfg.get("target_randomization", None), dict):
+        train_cfg["target_randomization"]["enabled"] = False
+        train_cfg["target_randomization"]["eval_disabled"] = True
     env_cfg = {
         "backend": cfg.get("env", {}).get("backend", "native"),
         "train_config": train_cfg,
@@ -1668,9 +1867,14 @@ def main():
     print(f"[train_mpo] creating {num_workers} rollout workers", flush=True)
     workers = [MpoRolloutWorker.options(num_cpus=float(par.get("num_cpus_per_tsc_worker", 1))).remote(i, cfg, learner.actor_state_cpu()) for i in range(num_workers)]
     current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], resume_env_steps)
-    print("[train_mpo] synchronizing initial action_scale/alpha/reward params to workers", flush=True)
+    current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], resume_env_steps)
+    print("[train_mpo] synchronizing initial action_scale/alpha/reward/target-randomization params to workers", flush=True)
+    print(f"[train_mpo] target_randomization_stage={current_target_randomization_params.get('stage_name', 'off')} enabled={current_target_randomization_params.get('enabled', False)}", flush=True)
     ray.get([
-        w.set_action_scale.remote(float(learner.action_scale), float(learner.physics_blend_alpha), current_reward_params)
+        w.set_action_scale.remote(
+            float(learner.action_scale), float(learner.physics_blend_alpha),
+            current_reward_params, current_target_randomization_params,
+        )
         for w in workers
     ])
     print("[train_mpo] workers ready; entering rollout loop", flush=True)
@@ -1743,15 +1947,23 @@ def main():
                 if iteration % sync_every_iters == 0:
                     last_actor_state = learner.actor_state_cpu()
                     current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
+                    current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
                     ray.get([
-                        w.set_actor_weights.remote(last_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha), current_reward_params)
+                        w.set_actor_weights.remote(
+                            last_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha),
+                            current_reward_params, current_target_randomization_params,
+                        )
                         for w in workers
                     ])
             elif iteration % sync_every_iters == 0:
                 # Keep rollout workers' hard schedules synchronized even during warmup.
                 current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
+                current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
                 ray.get([
-                    w.set_action_scale.remote(float(learner.action_scale), float(learner.physics_blend_alpha), current_reward_params)
+                    w.set_action_scale.remote(
+                        float(learner.action_scale), float(learner.physics_blend_alpha),
+                        current_reward_params, current_target_randomization_params,
+                    )
                     for w in workers
                 ])
 
@@ -1773,6 +1985,8 @@ def main():
                 "updates_this_iter": int(len(losses)),
                 "actor_action_scale": float(learner.action_scale),
                 "actor_physics_blend_alpha": float(learner.physics_blend_alpha),
+                "target_randomization_stage": str(target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps).get("stage_name", "off")),
+                "target_randomization_enabled": bool(target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps).get("enabled", False)),
                 **{f"learner/{k}": v for k, v in loss_mean.items()},
                 **{f"replay/{k}": v for k, v in replay.stats().items()},
                 **ep_summary,
