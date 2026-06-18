@@ -297,16 +297,52 @@ def fixed_target_from_train_cfg(train_cfg: dict[str, Any]) -> dict[str, float]:
     }
 
 
-def target_randomization_params_for_global_steps(train_cfg: dict[str, Any], env_steps: int) -> dict[str, Any]:
-    """Return the active B95 target-randomization stage.
+def _clamp01(x: Any, default: float = 0.0) -> float:
+    try:
+        return float(np.clip(float(x), 0.0, 1.0))
+    except Exception:
+        return float(default)
 
-    The schedule uses absolute global env-step thresholds so that resume runs
-    from B93/B94 checkpoints enter the intended B95 stage immediately instead
-    of replaying a small-step curriculum from zero.
+
+def _scheduled_fixed_probability(cfg: dict[str, Any], env_steps: int, default: float = 0.0) -> float:
+    """Return fixed-target probability from an optional absolute-step schedule."""
+    p = _clamp01(cfg.get("fixed_probability", default), default)
+    sched = cfg.get("fixed_probability_schedule", None)
+    if isinstance(sched, (list, tuple)):
+        try:
+            pairs = []
+            for item in sched:
+                if isinstance(item, dict):
+                    step = int(item.get("global_env_steps", item.get("step", 0)))
+                    prob = _clamp01(item.get("fixed_probability", item.get("probability", p)), p)
+                else:
+                    step = int(item[0])
+                    prob = _clamp01(item[1], p)
+                pairs.append((step, prob))
+            pairs.sort(key=lambda x: x[0])
+            for step, prob in pairs:
+                if int(env_steps) >= step:
+                    p = prob
+        except Exception:
+            pass
+    return float(p)
+
+
+def target_randomization_params_for_global_steps(train_cfg: dict[str, Any], env_steps: int) -> dict[str, Any]:
+    """Return the active target-randomization / fixed-random mix stage.
+
+    B95 used 100% randomized per-episode command targets.  B96 keeps the same
+    target injection mechanism but treats random targets as a regularizer:
+    each episode is fixed-target with probability ``fixed_probability`` and is
+    sampled from an outward-biased random target range otherwise.
+
+    The schedule uses absolute global env-step thresholds so resume runs from
+    B95/B93 checkpoints enter the intended stage immediately.
     """
     cfg = train_cfg.get("target_randomization", {}) if isinstance(train_cfg, dict) else {}
     if not isinstance(cfg, dict) or not bool(cfg.get("enabled", False)):
-        return {"enabled": False, "stage_name": "off"}
+        return {"enabled": False, "stage_name": "off", "fixed_probability": 1.0}
+
     out = dict(cfg)
     stages = list(cfg.get("stages", []) or [])
     selected = None
@@ -324,9 +360,14 @@ def target_randomization_params_for_global_steps(train_cfg: dict[str, Any], env_
                     out[k] = v
             out["stage_name"] = str(selected.get("name", "unnamed"))
             out["until_global_env_steps"] = selected.get("until_global_env_steps", None)
+    else:
+        out["stage_name"] = str(out.get("stage_name", "no_stage"))
+
+    # Either a stage-level fixed_probability or a global fixed_probability_schedule
+    # can be used.  The schedule is applied last so it can override broad defaults.
+    out["fixed_probability"] = _scheduled_fixed_probability(out, env_steps, default=float(out.get("fixed_probability", 0.0) or 0.0))
     out["enabled"] = True
     return out
-
 
 def _sample_scalar_from_range(rng: np.random.Generator, value: Any, fallback: float) -> float:
     try:
@@ -351,11 +392,24 @@ def sample_target_from_params(
       - "X_range": [absolute_min, absolute_max]
       - "X_delta_range": [delta_min, delta_max] relative to base target
       - "X_delta_abs": d, shorthand for [-d,+d]
-    Missing keys fall back to the fixed base target.
+
+    B96 extension:
+      - "fixed_probability": with this probability, return the fixed base target
+        instead of a random one.  This lets random targets act as a regularizer
+        while keeping the deployment target prominent in training.
     """
     p = params if isinstance(params, dict) else {}
-    if not bool(p.get("enabled", False)):
-        return dict(base_target)
+    enabled = bool(p.get("enabled", False))
+    fixed_prob = _clamp01(p.get("fixed_probability", 0.0), 0.0) if enabled else 1.0
+
+    use_fixed = (not enabled) or (rng.random() < fixed_prob)
+    if use_fixed:
+        out = dict(base_target)
+        out["__target_is_fixed"] = True
+        out["__target_source"] = "fixed"
+        out["__target_fixed_probability"] = float(fixed_prob)
+        return out
+
     out = dict(base_target)
     for key in ("R", "Z", "Ip"):
         base = float(base_target[key])
@@ -367,8 +421,10 @@ def sample_target_from_params(
         elif f"{key}_delta_abs" in p:
             d = abs(float(p.get(f"{key}_delta_abs", 0.0) or 0.0))
             out[key] = float(base + rng.uniform(-d, d))
+    out["__target_is_fixed"] = False
+    out["__target_source"] = "random"
+    out["__target_fixed_probability"] = float(fixed_prob)
     return out
-
 
 def apply_target_to_train_config(train_cfg: dict[str, Any], target: dict[str, float]) -> None:
     train_cfg.setdefault("target", {})["R"] = float(target["R"])
@@ -428,12 +484,17 @@ def apply_target_to_env_object(env: Any, target: dict[str, float]) -> None:
 
 def target_info_fields(target: dict[str, float], params: dict[str, Any] | None = None) -> dict[str, Any]:
     p = params if isinstance(params, dict) else {}
+    is_fixed = bool(target.get("__target_is_fixed", not bool(p.get("enabled", False))))
+    fixed_prob = float(target.get("__target_fixed_probability", p.get("fixed_probability", 1.0 if is_fixed else 0.0)) or 0.0)
     return {
         "target_R": float(target["R"]),
         "target_Z": float(target["Z"]),
         "target_Ip": float(target["Ip"]),
         "target_randomization_enabled": bool(p.get("enabled", False)),
         "target_randomization_stage": str(p.get("stage_name", "off")),
+        "target_fixed_probability": float(fixed_prob),
+        "target_is_fixed": bool(is_fixed),
+        "target_source": str(target.get("__target_source", "fixed" if is_fixed else "random")),
     }
 
 
@@ -959,6 +1020,9 @@ class MpoRolloutWorker:
                     "target_R": float(self.current_target.get("R", 0.0)),
                     "target_Z": float(self.current_target.get("Z", 0.0)),
                     "target_Ip": float(self.current_target.get("Ip", 0.0)),
+                    "target_is_fixed": bool(self.current_target.get("__target_is_fixed", False)),
+                    "target_fixed_probability": float(self.current_target.get("__target_fixed_probability", 0.0)),
+                    "target_source_random": float(not bool(self.current_target.get("__target_is_fixed", False))),
                 }
                 self.completed_episodes.append(ep)
                 self._reset_env_for_next_episode()
@@ -1474,6 +1538,9 @@ def summarize_episodes(episodes: list[dict[str, Any]]) -> dict[str, Any]:
         "target_R",
         "target_Z",
         "target_Ip",
+        "target_is_fixed",
+        "target_fixed_probability",
+        "target_source_random",
     ]:
         vals = []
         for ep in episodes:
@@ -1484,6 +1551,42 @@ def summarize_episodes(episodes: list[dict[str, Any]]) -> dict[str, Any]:
                 vals.append(float(v))
         if vals:
             out[f"episode_{key}_mean"] = float(np.mean(vals))
+
+    # B96: separate fixed-target and random-target episode diagnostics.
+    # The mixed curriculum uses random targets as a regularizer, so the aggregate
+    # episode mean can hide whether fixed deployment episodes are improving.
+    fixed_eps = [ep for ep in episodes if bool(ep.get("target_is_fixed", False))]
+    random_eps = [ep for ep in episodes if not bool(ep.get("target_is_fixed", False))]
+    out["episode_fixed_target_count"] = int(len(fixed_eps))
+    out["episode_random_target_count"] = int(len(random_eps))
+    out["episode_fixed_target_frac"] = float(len(fixed_eps) / max(len(episodes), 1))
+    out["episode_random_target_frac"] = float(len(random_eps) / max(len(episodes), 1))
+
+    def add_group(prefix: str, subset: list[dict[str, Any]]) -> None:
+        if not subset:
+            return
+        for gkey in [
+            "episode_return",
+            "terminal_R_error",
+            "terminal_Z_error",
+            "terminal_Ip_error",
+            "mean_abs_action_fragment",
+            "target_R",
+            "target_Z",
+            "target_Ip",
+        ]:
+            gvals = []
+            for ep in subset:
+                v = ep.get(gkey)
+                if isinstance(v, bool):
+                    gvals.append(float(v))
+                elif isinstance(v, (int, float)) and np.isfinite(v):
+                    gvals.append(float(v))
+            if gvals:
+                out[f"episode_{prefix}_{gkey}_mean"] = float(np.mean(gvals))
+
+    add_group("fixed", fixed_eps)
+    add_group("random", random_eps)
     return out
 
 
@@ -1987,6 +2090,7 @@ def main():
                 "actor_physics_blend_alpha": float(learner.physics_blend_alpha),
                 "target_randomization_stage": str(target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps).get("stage_name", "off")),
                 "target_randomization_enabled": bool(target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps).get("enabled", False)),
+                "target_fixed_probability": float(target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps).get("fixed_probability", 0.0)),
                 **{f"learner/{k}": v for k, v in loss_mean.items()},
                 **{f"replay/{k}": v for k, v in replay.stats().items()},
                 **ep_summary,

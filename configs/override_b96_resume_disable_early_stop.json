@@ -1,0 +1,6 @@
+{
+  "early_stop": {
+    "enabled": false
+  },
+  "description": "B96 override: keep early_stop disabled for fixed/random mixed curriculum diagnostic."
+}
