@@ -331,13 +331,14 @@ def _scheduled_fixed_probability(cfg: dict[str, Any], env_steps: int, default: f
 def target_randomization_params_for_global_steps(train_cfg: dict[str, Any], env_steps: int) -> dict[str, Any]:
     """Return the active target-randomization / fixed-random mix stage.
 
-    B95 used 100% randomized per-episode command targets.  B96 keeps the same
-    target injection mechanism but treats random targets as a regularizer:
-    each episode is fixed-target with probability ``fixed_probability`` and is
-    sampled from an outward-biased random target range otherwise.
+    B97 uses the same per-episode command-target injection mechanism, but the
+    default training distribution is fixed-core: most episodes use the fixed
+    deployment target and a small minority use symmetric local jitter.  This is
+    meant to prepare a goal-ready backbone without reintroducing one-sided
+    target bias.
 
-    The schedule uses absolute global env-step thresholds so resume runs from
-    B95/B93 checkpoints enter the intended stage immediately.
+    The schedule uses absolute global env-step thresholds when stages are
+    provided, so resume runs enter the intended stage immediately.
     """
     cfg = train_cfg.get("target_randomization", {}) if isinstance(train_cfg, dict) else {}
     if not isinstance(cfg, dict) or not bool(cfg.get("enabled", False)):
@@ -393,10 +394,10 @@ def sample_target_from_params(
       - "X_delta_range": [delta_min, delta_max] relative to base target
       - "X_delta_abs": d, shorthand for [-d,+d]
 
-    B96 extension:
+    B96/B97 extension:
       - "fixed_probability": with this probability, return the fixed base target
-        instead of a random one.  This lets random targets act as a regularizer
-        while keeping the deployment target prominent in training.
+        instead of a random one.  This lets local target jitter act as a
+        regularizer while keeping the deployment target prominent in training.
     """
     p = params if isinstance(params, dict) else {}
     enabled = bool(p.get("enabled", False))
@@ -1552,9 +1553,9 @@ def summarize_episodes(episodes: list[dict[str, Any]]) -> dict[str, Any]:
         if vals:
             out[f"episode_{key}_mean"] = float(np.mean(vals))
 
-    # B96: separate fixed-target and random-target episode diagnostics.
-    # The mixed curriculum uses random targets as a regularizer, so the aggregate
-    # episode mean can hide whether fixed deployment episodes are improving.
+    # B96/B97: separate fixed-target and jitter/random-target episode diagnostics.
+    # The fixed-core curriculum uses local target jitter as a regularizer, so the
+    # aggregate episode mean can hide whether fixed deployment episodes improve.
     fixed_eps = [ep for ep in episodes if bool(ep.get("target_is_fixed", False))]
     random_eps = [ep for ep in episodes if not bool(ep.get("target_is_fixed", False))]
     out["episode_fixed_target_count"] = int(len(fixed_eps))
@@ -1620,6 +1621,7 @@ def run_online_policy_probe(
     stage: str,
     deterministic: bool,
     prefix: str,
+    target_override: dict[str, float] | None = None,
 ) -> dict[str, Any]:
     """Run one final-stage episode in-process for online diagnosis.
 
@@ -1631,6 +1633,15 @@ def run_online_policy_probe(
     if isinstance(train_cfg.get("target_randomization", None), dict):
         train_cfg["target_randomization"]["enabled"] = False
         train_cfg["target_randomization"]["eval_disabled"] = True
+    if target_override is not None:
+        # B97 local-grid eval: probe a nearby commanded target while keeping
+        # rollout/eval otherwise deterministic and target-randomization disabled.
+        base_target = fixed_target_from_train_cfg(train_cfg)
+        probe_target = dict(base_target)
+        for key in ("R", "Z", "Ip"):
+            if key in target_override:
+                probe_target[key] = float(target_override[key])
+        apply_target_to_train_config(train_cfg, probe_target)
     env_cfg = {
         "backend": cfg.get("env", {}).get("backend", "native"),
         "train_config": train_cfg,
@@ -1755,6 +1766,9 @@ def run_online_policy_probe(
         f"{prefix}_relaxed_score": float(relaxed_score),
         f"{prefix}_action_scale": float(learner.action_scale),
         f"{prefix}_physics_blend_alpha": float(getattr(learner, "physics_blend_alpha", 0.0)),
+        f"{prefix}_target_R": float(train_cfg.get("target", {}).get("R", 0.75)),
+        f"{prefix}_target_Z": float(train_cfg.get("target", {}).get("Z", 0.0)),
+        f"{prefix}_target_Ip": float(train_cfg.get("target", {}).get("Ip", 29779.724)),
     }
     add_actor_component_diagnostics(
         out,
@@ -1798,6 +1812,117 @@ def run_online_stochastic_probe(
         cfg, learner, iteration=iteration, env_steps=env_steps, seed=seed,
         stage=stage, deterministic=False, prefix="eval_final_stoch"
     )
+
+
+
+
+def _local_grid_values(grid_cfg: dict[str, Any], base_target: dict[str, float]) -> list[dict[str, float]]:
+    """Build a small local target grid around the fixed deployment target.
+
+    B97 uses this only for online diagnosis.  It does not change training data.
+    The grid checks whether the policy reacts continuously and in the correct
+    direction near the fixed target before full variable-target training.
+    """
+    if not isinstance(grid_cfg, dict) or not bool(grid_cfg.get("enabled", False)):
+        return []
+    r_vals = list(grid_cfg.get("R_values", []))
+    z_vals = list(grid_cfg.get("Z_values", []))
+    ip_vals = list(grid_cfg.get("Ip_values", []))
+    if not r_vals:
+        r_vals = [float(base_target["R"])]
+    if not z_vals:
+        z_vals = [float(base_target["Z"])]
+    if not ip_vals:
+        ip_vals = [float(base_target["Ip"])]
+    max_points = int(grid_cfg.get("max_points", 27) or 27)
+    out: list[dict[str, float]] = []
+    for r in r_vals:
+        for z in z_vals:
+            for ip in ip_vals:
+                out.append({"R": float(r), "Z": float(z), "Ip": float(ip)})
+                if len(out) >= max_points:
+                    return out
+    return out
+
+
+def run_online_local_target_grid_probe(
+    cfg: dict[str, Any],
+    learner: MpoLearner,
+    *,
+    iteration: int,
+    env_steps: int,
+    seed: int,
+    stage: str,
+) -> dict[str, Any]:
+    """Run deterministic fixed-stage probes over a small local target grid.
+
+    Results are summarized to compact metrics so train_results.csv remains
+    manageable.  Per-point values are also emitted with stable labels.
+    """
+    grid_cfg = cfg.get("local_target_grid_probe", {}) or {}
+    if not isinstance(grid_cfg, dict) or not bool(grid_cfg.get("enabled", False)):
+        return {}
+    base_target = fixed_target_from_train_cfg(cfg.get("train_config_resolved", {}))
+    targets = _local_grid_values(grid_cfg, base_target)
+    if not targets:
+        return {}
+
+    r_errs: list[float] = []
+    z_errs: list[float] = []
+    ip_errs: list[float] = []
+    returns: list[float] = []
+    shape_scores: list[float] = []
+    out: dict[str, Any] = {
+        "eval_grid_iteration": int(iteration),
+        "eval_grid_env_steps": int(env_steps),
+        "eval_grid_num_points": int(len(targets)),
+    }
+    for i, tgt in enumerate(targets):
+        pfx = f"eval_grid_p{i:02d}"
+        try:
+            res = run_online_policy_probe(
+                cfg,
+                learner,
+                iteration=iteration,
+                env_steps=env_steps,
+                seed=int(seed) + 97 * i,
+                stage=stage,
+                deterministic=True,
+                prefix=pfx,
+                target_override=tgt,
+            )
+            out.update(res)
+            r = float(res.get(f"{pfx}_terminal_R_error", np.nan))
+            z = float(res.get(f"{pfx}_terminal_Z_error", np.nan))
+            ip = float(res.get(f"{pfx}_terminal_Ip_error", np.nan))
+            ret = float(res.get(f"{pfx}_return", np.nan))
+            sc = float(res.get(f"{pfx}_shape_score", np.nan))
+            if np.isfinite(r): r_errs.append(r)
+            if np.isfinite(z): z_errs.append(z)
+            if np.isfinite(ip): ip_errs.append(ip)
+            if np.isfinite(ret): returns.append(ret)
+            if np.isfinite(sc): shape_scores.append(sc)
+        except Exception as exc:
+            out[f"{pfx}_error"] = repr(exc)
+            out[f"{pfx}_target_R"] = float(tgt["R"])
+            out[f"{pfx}_target_Z"] = float(tgt["Z"])
+            out[f"{pfx}_target_Ip"] = float(tgt["Ip"])
+
+    def add_stats(name: str, vals: list[float]) -> None:
+        if not vals:
+            return
+        arr = np.asarray(vals, dtype=np.float64)
+        out[f"eval_grid_{name}_mean"] = float(np.mean(arr))
+        out[f"eval_grid_{name}_abs_mean"] = float(np.mean(np.abs(arr)))
+        out[f"eval_grid_{name}_max_abs"] = float(np.max(np.abs(arr)))
+        out[f"eval_grid_{name}_std"] = float(np.std(arr))
+
+    add_stats("R_error", r_errs)
+    add_stats("Z_error", z_errs)
+    add_stats("Ip_error", ip_errs)
+    add_stats("return", returns)
+    add_stats("shape_score", shape_scores)
+    return out
 
 
 def should_early_stop_from_probe(cfg: dict[str, Any], iteration: int, probe: dict[str, Any], bad_probe_count: int) -> tuple[bool, int, str]:
@@ -2006,6 +2131,11 @@ def main():
     stoch_probe_every_iters = int(stoch_probe_cfg.get("every_iters", probe_every_iters))
     stoch_probe_stage = str(stoch_probe_cfg.get("eval_stage", probe_stage))
     stoch_probe_seed = int(stoch_probe_cfg.get("seed", probe_seed + 1000))
+    grid_probe_cfg = cfg.get("local_target_grid_probe", {}) or {}
+    grid_probe_enabled = bool(grid_probe_cfg.get("enabled", False))
+    grid_probe_every_iters = int(grid_probe_cfg.get("every_iters", probe_every_iters))
+    grid_probe_stage = str(grid_probe_cfg.get("eval_stage", probe_stage))
+    grid_probe_seed = int(grid_probe_cfg.get("seed", probe_seed + 2000))
     sync_every_iters = int(cfg.get("parallel", {}).get("actor_sync_interval_iters", 1))
     results_path = run_dir / "train_results.jsonl"
     csv_path = run_dir / "train_results.csv"
@@ -2116,6 +2246,15 @@ def main():
                     result.update(stoch_probe)
                 except Exception as exc:
                     result["eval_final_stoch_error"] = repr(exc)
+            if grid_probe_enabled and grid_probe_every_iters > 0 and iteration % grid_probe_every_iters == 0:
+                try:
+                    grid_probe = run_online_local_target_grid_probe(
+                        cfg, learner, iteration=iteration, env_steps=total_steps,
+                        seed=grid_probe_seed + iteration, stage=grid_probe_stage
+                    )
+                    result.update(grid_probe)
+                except Exception as exc:
+                    result["eval_grid_error"] = repr(exc)
             if probe_for_early_stop is not None:
                 stop_now, bad_probe_count, reason = should_early_stop_from_probe(cfg, iteration, probe_for_early_stop, bad_probe_count)
                 result["early_stop_bad_probe_count"] = int(bad_probe_count)
