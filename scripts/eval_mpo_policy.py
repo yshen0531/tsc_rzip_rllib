@@ -319,6 +319,83 @@ def apply_extra_reward_shaping(
         out["extra_common_mode_coeff_abs_max"] = float(np.max(np.abs(vals)))
     return float(shaped), out
 
+def fixed_target_from_train_cfg(train_cfg: dict[str, Any]) -> dict[str, float]:
+    tgt = train_cfg.get("target", {}) if isinstance(train_cfg, dict) else {}
+    return {
+        "R": float(tgt.get("R", 0.75)),
+        "Z": float(tgt.get("Z", 0.0)),
+        "Ip": float(tgt.get("Ip", 29779.724)),
+    }
+
+
+def goal_conditioning_cfg(cfg: dict[str, Any] | None) -> dict[str, Any]:
+    if not isinstance(cfg, dict):
+        return {}
+    raw = cfg.get("goal_conditioning", None)
+    if raw is None:
+        raw = cfg.get("model", {}).get("goal_conditioning", None)
+    return dict(raw or {}) if isinstance(raw, dict) else {}
+
+
+def goal_conditioning_enabled(cfg: dict[str, Any] | None) -> bool:
+    gc = goal_conditioning_cfg(cfg)
+    return bool(gc.get("enabled", False)) and bool(gc.get("append_to_observation", True))
+
+
+def goal_feature_names_from_cfg(cfg: dict[str, Any] | None) -> list[str]:
+    if not goal_conditioning_enabled(cfg):
+        return []
+    feats = goal_conditioning_cfg(cfg).get("features", None)
+    if not feats:
+        feats = ["target_R_delta_norm", "target_Z_delta_norm", "target_Ip_delta_norm"]
+    return [str(x) for x in feats]
+
+
+def goal_feature_dim_from_cfg(cfg: dict[str, Any] | None) -> int:
+    return len(goal_feature_names_from_cfg(cfg))
+
+
+def goal_features_for_target(target: dict[str, float], base_target: dict[str, float], cfg: dict[str, Any] | None) -> np.ndarray:
+    names = goal_feature_names_from_cfg(cfg)
+    if not names:
+        return np.zeros(0, dtype=np.float32)
+    gc = goal_conditioning_cfg(cfg)
+    scales = dict(gc.get("scales", {}) or {})
+    r_scale = max(abs(float(scales.get("R_scale_m", gc.get("R_scale_m", 0.05)))), 1.0e-12)
+    z_scale = max(abs(float(scales.get("Z_scale_m", gc.get("Z_scale_m", 0.05)))), 1.0e-12)
+    ip_scale = max(abs(float(scales.get("Ip_scale_a", gc.get("Ip_scale_a", 3000.0)))), 1.0e-12)
+    vals = {
+        "target_R_delta_norm": (float(target["R"]) - float(base_target["R"])) / r_scale,
+        "target_Z_delta_norm": (float(target["Z"]) - float(base_target["Z"])) / z_scale,
+        "target_Z_norm": float(target["Z"]) / z_scale,
+        "target_Ip_delta_norm": (float(target["Ip"]) - float(base_target["Ip"])) / ip_scale,
+        "target_R_norm": (float(target["R"]) - 0.75) / r_scale,
+        "target_Ip_norm": (float(target["Ip"]) - 29779.724) / ip_scale,
+    }
+    return np.asarray([float(vals.get(name, 0.0)) for name in names], dtype=np.float32)
+
+
+def augment_observation_with_goal(obs: Any, target: dict[str, float], base_target: dict[str, float], cfg: dict[str, Any] | None) -> np.ndarray:
+    arr = np.asarray(obs, dtype=np.float32).reshape(-1)
+    feats = goal_features_for_target(target, base_target, cfg)
+    if feats.size <= 0:
+        return arr
+    return np.concatenate([arr, feats.astype(np.float32)], axis=0).astype(np.float32)
+
+
+def adapt_actor_state_for_obs_dim(actor: RecurrentGaussianActor, saved_state: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
+    current = actor.state_dict()
+    out = {k: v.clone() for k, v in current.items()}
+    for k, v in saved_state.items():
+        if k not in out:
+            continue
+        if tuple(out[k].shape) == tuple(v.shape):
+            out[k] = v.to(dtype=out[k].dtype)
+        elif k == "gru.weight_ih_l0" and out[k].ndim == 2 and v.ndim == 2 and out[k].shape[0] == v.shape[0] and out[k].shape[1] >= v.shape[1]:
+            out[k][:, : v.shape[1]] = v.to(dtype=out[k].dtype)
+    return out
+
+
 def actor_pre_tanh_step(actor: RecurrentGaussianActor, obs: torch.Tensor, hidden: torch.Tensor | None, *, deterministic: bool):
     if obs.ndim == 1:
         obs_seq = obs.view(1, 1, -1)
@@ -360,7 +437,11 @@ def main():
     }
     env = RllibTscRzipEnv(env_cfg)
     reward_params = dict(eval_train_cfg.get("reward", {}))
-    obs_dim = int(np.prod(env.observation_space.shape))
+    base_target = fixed_target_from_train_cfg(eval_train_cfg)
+    eval_target = dict(base_target)
+    eval_target["__target_is_fixed"] = True
+    env_obs_dim = int(np.prod(env.observation_space.shape))
+    obs_dim = env_obs_dim + goal_feature_dim_from_cfg(cfg)
     action_dim = int(np.prod(env.action_space.shape))
     m_cfg = saved_cfg.get("model", cfg.get("model", {}))
     actor = RecurrentGaussianActor(
@@ -373,7 +454,13 @@ def main():
         log_std_max=float(m_cfg.get("log_std_max", 1.0)),
         physics_blend=m_cfg.get("physics_blend", None),
     )
-    actor.load_state_dict(payload["actor"])
+    saved_actor_state = payload["actor"]
+    saved_obs_dim = int(saved_actor_state.get("gru.weight_ih_l0", torch.empty(0, 0)).shape[1])
+    if saved_obs_dim and saved_obs_dim != obs_dim:
+        actor.load_state_dict(adapt_actor_state_for_obs_dim(actor, saved_actor_state), strict=True)
+        print(f"Adapted actor checkpoint for eval obs_dim {saved_obs_dim} -> {obs_dim}")
+    else:
+        actor.load_state_dict(saved_actor_state)
     # When evaluating a B91 run resumed from a B90 checkpoint, saved checkpoints
     # normally contain the B91 config.  This optional refresh is also useful for
     # direct diagnostic evaluation of an older checkpoint under a newer config.
@@ -392,8 +479,8 @@ def main():
     rows = []
     summaries = []
     for ep in range(int(args.episodes)):
-        obs, info = env.reset(seed=args.seed + ep)
-        obs = np.asarray(obs, dtype=np.float32).reshape(-1)
+        raw_obs, info = env.reset(seed=args.seed + ep)
+        obs = augment_observation_with_goal(raw_obs, eval_target, base_target, cfg)
         hidden = actor.init_hidden(1)
         done = False
         total = 0.0
@@ -440,6 +527,10 @@ def main():
                 "truncated": bool(truncated),
                 "action_mode": args.action_mode,
                 "eval_stage": args.eval_stage,
+                "target_R": float(eval_target["R"]),
+                "target_Z": float(eval_target["Z"]),
+                "target_Ip": float(eval_target["Ip"]),
+                "goal_feature_dim": int(goal_feature_dim_from_cfg(cfg)),
                 "action_scale": float(action_scale),
                 "physics_blend_alpha": float(physics_blend_alpha),
                 "R_error": scalar_info(info, "R_error"),
@@ -470,7 +561,7 @@ def main():
             rows.append(row)
             total += float(reward)
             action_abs.append(float(np.mean(np.abs(action))))
-            obs = np.asarray(next_obs, dtype=np.float32).reshape(-1)
+            obs = augment_observation_with_goal(next_obs, eval_target, base_target, cfg)
             last_info = dict(info or {})
             step += 1
         summ = {

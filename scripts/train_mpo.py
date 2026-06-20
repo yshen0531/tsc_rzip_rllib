@@ -498,6 +498,182 @@ def target_info_fields(target: dict[str, float], params: dict[str, Any] | None =
         "target_source": str(target.get("__target_source", "fixed" if is_fixed else "random")),
     }
 
+def goal_conditioning_cfg(cfg: dict[str, Any] | None) -> dict[str, Any]:
+    """Return goal-conditioning config.
+
+    B98 explicitly appends command-target features to the deployable observation.
+    This is different from previous B95/B97 target randomization, where the actor
+    could only infer command changes indirectly through error terms.  The default
+    features are small normalized deltas around the fixed deployment target.
+    """
+    if not isinstance(cfg, dict):
+        return {}
+    raw = cfg.get("goal_conditioning", None)
+    if raw is None:
+        raw = cfg.get("model", {}).get("goal_conditioning", None)
+    return dict(raw or {}) if isinstance(raw, dict) else {}
+
+
+def goal_conditioning_enabled(cfg: dict[str, Any] | None) -> bool:
+    gc = goal_conditioning_cfg(cfg)
+    return bool(gc.get("enabled", False)) and bool(gc.get("append_to_observation", True))
+
+
+def goal_feature_names_from_cfg(cfg: dict[str, Any] | None) -> list[str]:
+    gc = goal_conditioning_cfg(cfg)
+    if not goal_conditioning_enabled(cfg):
+        return []
+    feats = gc.get("features", None)
+    if not feats:
+        feats = ["target_R_delta_norm", "target_Z_delta_norm", "target_Ip_delta_norm"]
+    return [str(x) for x in feats]
+
+
+def goal_feature_dim_from_cfg(cfg: dict[str, Any] | None) -> int:
+    return len(goal_feature_names_from_cfg(cfg))
+
+
+def goal_feature_scales_from_cfg(cfg: dict[str, Any] | None) -> dict[str, float]:
+    gc = goal_conditioning_cfg(cfg)
+    scales = dict(gc.get("scales", {}) or {})
+    return {
+        "R_scale_m": float(scales.get("R_scale_m", gc.get("R_scale_m", 0.05))),
+        "Z_scale_m": float(scales.get("Z_scale_m", gc.get("Z_scale_m", 0.05))),
+        "Ip_scale_a": float(scales.get("Ip_scale_a", gc.get("Ip_scale_a", 3000.0))),
+    }
+
+
+def goal_features_for_target(
+    target: dict[str, float],
+    base_target: dict[str, float],
+    cfg: dict[str, Any] | None,
+) -> np.ndarray:
+    names = goal_feature_names_from_cfg(cfg)
+    if not names:
+        return np.zeros(0, dtype=np.float32)
+    sc = goal_feature_scales_from_cfg(cfg)
+    r_scale = max(abs(float(sc.get("R_scale_m", 0.05))), 1.0e-12)
+    z_scale = max(abs(float(sc.get("Z_scale_m", 0.05))), 1.0e-12)
+    ip_scale = max(abs(float(sc.get("Ip_scale_a", 3000.0))), 1.0e-12)
+    vals = {
+        "target_R_delta_norm": (float(target["R"]) - float(base_target["R"])) / r_scale,
+        "target_Z_delta_norm": (float(target["Z"]) - float(base_target["Z"])) / z_scale,
+        "target_Z_norm": float(target["Z"]) / z_scale,
+        "target_Ip_delta_norm": (float(target["Ip"]) - float(base_target["Ip"])) / ip_scale,
+        "target_R_norm": (float(target["R"]) - 0.75) / r_scale,
+        "target_Ip_norm": (float(target["Ip"]) - 29779.724) / ip_scale,
+        "target_is_fixed": 1.0 if bool(target.get("__target_is_fixed", False)) else 0.0,
+        "target_source_random": 0.0 if bool(target.get("__target_is_fixed", False)) else 1.0,
+    }
+    return np.asarray([float(vals.get(name, 0.0)) for name in names], dtype=np.float32)
+
+
+def augment_observation_with_goal(
+    obs: Any,
+    target: dict[str, float],
+    base_target: dict[str, float],
+    cfg: dict[str, Any] | None,
+) -> np.ndarray:
+    arr = np.asarray(obs, dtype=np.float32).reshape(-1)
+    feats = goal_features_for_target(target, base_target, cfg)
+    if feats.size <= 0:
+        return arr
+    return np.concatenate([arr, feats.astype(np.float32)], axis=0).astype(np.float32)
+
+
+def add_goal_conditioning_info_fields(
+    out: dict[str, Any],
+    target: dict[str, float],
+    base_target: dict[str, float],
+    cfg: dict[str, Any] | None,
+    prefix: str = "goal",
+) -> None:
+    feats = goal_features_for_target(target, base_target, cfg)
+    names = goal_feature_names_from_cfg(cfg)
+    out[f"{prefix}_conditioning_enabled"] = bool(goal_conditioning_enabled(cfg))
+    out[f"{prefix}_feature_dim"] = int(len(names))
+    for name, val in zip(names, feats.tolist()):
+        out[f"{prefix}_feature/{sanitize_metric_name(name)}"] = float(val)
+
+
+def _copy_overlapping_(dst: torch.Tensor, src: torch.Tensor) -> torch.Tensor:
+    out = dst.clone()
+    slices = tuple(slice(0, min(int(a), int(b))) for a, b in zip(out.shape, src.shape))
+    if len(slices) == out.ndim and out.ndim == src.ndim:
+        out[slices] = src[slices].to(dtype=out.dtype, device=out.device)
+    return out
+
+
+def adapt_actor_state_for_obs_dim(
+    actor: RecurrentGaussianActor,
+    saved_state: dict[str, torch.Tensor],
+) -> tuple[dict[str, torch.Tensor], dict[str, Any]]:
+    """Adapt actor state when B98 appends goal features to the observation.
+
+    Only the GRU input weight changes shape.  Existing observation columns are
+    copied exactly, while new goal-feature columns keep the freshly initialized
+    weights, making the resume checkpoint-compatible but initially behavior-close
+    to the old fixed-target policy.
+    """
+    current = actor.state_dict()
+    out = {k: v.clone() for k, v in current.items()}
+    adapted: list[str] = []
+    skipped: list[str] = []
+    for k, v in saved_state.items():
+        if k not in out:
+            skipped.append(k)
+            continue
+        if tuple(out[k].shape) == tuple(v.shape):
+            out[k] = v.to(dtype=out[k].dtype)
+        elif k == "gru.weight_ih_l0" and out[k].ndim == 2 and v.ndim == 2 and out[k].shape[0] == v.shape[0] and out[k].shape[1] >= v.shape[1]:
+            out[k][:, : v.shape[1]] = v.to(dtype=out[k].dtype)
+            adapted.append(k)
+        else:
+            skipped.append(k)
+    return out, {"adapted": adapted, "skipped": skipped}
+
+
+def adapt_critic_state_for_obs_dim(
+    critic: RecurrentQCritic,
+    saved_state: dict[str, torch.Tensor],
+    *,
+    old_obs_dim: int,
+    new_obs_dim: int,
+    priv_dim: int,
+    action_dim: int,
+) -> tuple[dict[str, torch.Tensor], dict[str, Any]]:
+    """Adapt critic GRU input weights for obs_dim expansion.
+
+    Critic input layout is [obs, privileged, action].  B98 inserts goal features
+    at the end of obs, so privileged/action columns shift right by goal_dim.
+    """
+    current = critic.state_dict()
+    out = {k: v.clone() for k, v in current.items()}
+    adapted: list[str] = []
+    skipped: list[str] = []
+    goal_dim = int(new_obs_dim) - int(old_obs_dim)
+    for k, v in saved_state.items():
+        if k not in out:
+            skipped.append(k)
+            continue
+        if tuple(out[k].shape) == tuple(v.shape):
+            out[k] = v.to(dtype=out[k].dtype)
+        elif k == "gru.weight_ih_l0" and out[k].ndim == 2 and v.ndim == 2 and out[k].shape[0] == v.shape[0] and goal_dim >= 0:
+            new_w = out[k]
+            old_w = v.to(dtype=new_w.dtype)
+            old_tail = int(priv_dim) + int(action_dim)
+            if old_w.shape[1] == int(old_obs_dim) + old_tail and new_w.shape[1] == int(new_obs_dim) + old_tail:
+                new_w[:, :old_obs_dim] = old_w[:, :old_obs_dim]
+                new_w[:, new_obs_dim:new_obs_dim + old_tail] = old_w[:, old_obs_dim:old_obs_dim + old_tail]
+                adapted.append(k)
+            else:
+                new_w = _copy_overlapping_(new_w, old_w)
+                adapted.append(k + "_overlap")
+            out[k] = new_w
+        else:
+            skipped.append(k)
+    return out, {"adapted": adapted, "skipped": skipped}
+
 
 def info_float(info: dict[str, Any] | None, key: str, default: float = 0.0) -> float:
     try:
@@ -828,6 +1004,8 @@ class MpoRolloutWorker:
         self.train_cfg = train_cfg
         self.reward_params = reward_params_for_global_steps(self.train_cfg, 0)
         self.base_target = fixed_target_from_train_cfg(self.train_cfg)
+        self.goal_feature_dim = goal_feature_dim_from_cfg(self.cfg)
+        self.goal_feature_names = goal_feature_names_from_cfg(self.cfg)
         self.target_rng = np.random.default_rng(seed + 7919)
         self.target_randomization_params = target_randomization_params_for_global_steps(self.train_cfg, 0)
         self.current_target = sample_target_from_params(
@@ -846,7 +1024,8 @@ class MpoRolloutWorker:
         }
         self.env = RllibTscRzipEnv(env_cfg)
         apply_target_to_env_object(self.env, self.current_target)
-        self.obs_dim = int(np.prod(self.env.observation_space.shape))
+        self.env_obs_dim = int(np.prod(self.env.observation_space.shape))
+        self.obs_dim = int(self.env_obs_dim + self.goal_feature_dim)
         self.action_dim = int(np.prod(self.env.action_space.shape))
         p_cfg = cfg.get("privileged", {})
         self.priv_keys = p_cfg.get("keys")
@@ -875,10 +1054,11 @@ class MpoRolloutWorker:
         if hasattr(self.actor, "set_physics_blend_alpha"):
             self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
         self.hidden = self.actor.init_hidden(1)
-        self.obs, self.info = self.env.reset(seed=seed)
+        raw_obs, self.info = self.env.reset(seed=seed)
         self.info = dict(self.info or {})
         self.info.update(target_info_fields(self.current_target, self.target_randomization_params))
-        self.obs = np.asarray(self.obs, dtype=np.float32).reshape(-1)
+        add_goal_conditioning_info_fields(self.info, self.current_target, self.base_target, self.cfg)
+        self.obs = augment_observation_with_goal(raw_obs, self.current_target, self.base_target, self.cfg)
         self.priv = self._priv(self.info)
         self.episode_return = 0.0
         self.episode_len = 0
@@ -899,12 +1079,13 @@ class MpoRolloutWorker:
     def _reset_env_for_next_episode(self, seed: int | None = None) -> None:
         self._sample_and_apply_episode_target()
         if seed is None:
-            self.obs, self.info = self.env.reset()
+            raw_obs, self.info = self.env.reset()
         else:
-            self.obs, self.info = self.env.reset(seed=seed)
+            raw_obs, self.info = self.env.reset(seed=seed)
         self.info = dict(self.info or {})
         self.info.update(target_info_fields(self.current_target, self.target_randomization_params))
-        self.obs = np.asarray(self.obs, dtype=np.float32).reshape(-1)
+        add_goal_conditioning_info_fields(self.info, self.current_target, self.base_target, self.cfg)
+        self.obs = augment_observation_with_goal(raw_obs, self.current_target, self.base_target, self.cfg)
         self.priv = self._priv(self.info)
         self.hidden = self.actor.init_hidden(1)
         self.episode_return = 0.0
@@ -976,7 +1157,6 @@ class MpoRolloutWorker:
             mode_coeff = mode_t[:, -1, :].detach().cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
             next_obs, reward_env, terminated, truncated, info = self.env.step(action)
             info = dict(info or {})
-            info.update(target_info_fields(self.current_target, self.target_randomization_params))
             reward, extra_reward_info = apply_extra_reward_shaping(
                 float(reward_env), info, self.reward_params,
                 prev_info=prev_info, mode_names=mode_names, mode_coeff=mode_coeff,
@@ -985,7 +1165,9 @@ class MpoRolloutWorker:
             info["reward_env"] = float(reward_env)
             info["reward_shaped"] = float(reward)
             done = bool(terminated or truncated)
-            next_obs_arr = np.asarray(next_obs, dtype=np.float32).reshape(-1)
+            info.update(target_info_fields(self.current_target, self.target_randomization_params))
+            add_goal_conditioning_info_fields(info, self.current_target, self.base_target, self.cfg)
+            next_obs_arr = augment_observation_with_goal(next_obs, self.current_target, self.base_target, self.cfg)
             next_priv = self._priv(info)
 
             obs_l.append(self.obs.copy())
@@ -1497,7 +1679,7 @@ def infer_spaces(cfg: dict[str, Any]) -> tuple[int, int, int]:
     }
     env = RllibTscRzipEnv(env_cfg)
     try:
-        obs_dim = int(np.prod(env.observation_space.shape))
+        obs_dim = int(np.prod(env.observation_space.shape)) + goal_feature_dim_from_cfg(cfg)
         action_dim = int(np.prod(env.action_space.shape))
         p_cfg = cfg.get("privileged", {})
         priv_dim = privileged_dim(p_cfg.get("keys"), include_currents=bool(p_cfg.get("include_currents", True)))
@@ -1633,15 +1815,18 @@ def run_online_policy_probe(
     if isinstance(train_cfg.get("target_randomization", None), dict):
         train_cfg["target_randomization"]["enabled"] = False
         train_cfg["target_randomization"]["eval_disabled"] = True
+    base_target = fixed_target_from_train_cfg(train_cfg)
+    probe_target = dict(base_target)
+    probe_target["__target_is_fixed"] = True
+    probe_target["__target_source"] = "fixed_eval"
+    probe_target["__target_fixed_probability"] = 1.0
     if target_override is not None:
-        # B97 local-grid eval: probe a nearby commanded target while keeping
+        # B98 local-grid eval: probe a nearby commanded target while keeping
         # rollout/eval otherwise deterministic and target-randomization disabled.
-        base_target = fixed_target_from_train_cfg(train_cfg)
-        probe_target = dict(base_target)
         for key in ("R", "Z", "Ip"):
             if key in target_override:
                 probe_target[key] = float(target_override[key])
-        apply_target_to_train_config(train_cfg, probe_target)
+    apply_target_to_train_config(train_cfg, probe_target)
     env_cfg = {
         "backend": cfg.get("env", {}).get("backend", "native"),
         "train_config": train_cfg,
@@ -1652,8 +1837,11 @@ def run_online_policy_probe(
         "finite_guard": cfg.get("env", {}).get("finite_guard", {"enabled": True}),
     }
     env = RllibTscRzipEnv(env_cfg)
-    obs, info = env.reset(seed=int(seed))
-    obs = np.asarray(obs, dtype=np.float32).reshape(-1)
+    raw_obs, info = env.reset(seed=int(seed))
+    info = dict(info or {})
+    info.update(target_info_fields(probe_target, {"enabled": False, "fixed_probability": 1.0, "stage_name": "eval_fixed"}))
+    add_goal_conditioning_info_fields(info, probe_target, base_target, cfg)
+    obs = augment_observation_with_goal(raw_obs, probe_target, base_target, cfg)
     hidden = learner.actor.init_hidden(1, device=learner.device)
     total = 0.0
     steps = 0
@@ -1714,7 +1902,9 @@ def run_online_policy_probe(
             if mode_dim > 0:
                 mode_sum += mode_coeff
                 mode_abs_sum += np.abs(mode_coeff)
-            obs = np.asarray(next_obs, dtype=np.float32).reshape(-1)
+            info.update(target_info_fields(probe_target, {"enabled": False, "fixed_probability": 1.0, "stage_name": "eval_fixed"}))
+            add_goal_conditioning_info_fields(info, probe_target, base_target, cfg)
+            obs = augment_observation_with_goal(next_obs, probe_target, base_target, cfg)
             last_info = dict(info or {})
     finally:
         try:
@@ -1872,6 +2062,10 @@ def run_online_local_target_grid_probe(
     ip_errs: list[float] = []
     returns: list[float] = []
     shape_scores: list[float] = []
+    target_rs: list[float] = []
+    target_zs: list[float] = []
+    terminal_rs: list[float] = []
+    terminal_zs: list[float] = []
     out: dict[str, Any] = {
         "eval_grid_iteration": int(iteration),
         "eval_grid_env_steps": int(env_steps),
@@ -1902,6 +2096,11 @@ def run_online_local_target_grid_probe(
             if np.isfinite(ip): ip_errs.append(ip)
             if np.isfinite(ret): returns.append(ret)
             if np.isfinite(sc): shape_scores.append(sc)
+            if np.isfinite(r) and np.isfinite(z):
+                target_rs.append(float(tgt["R"]))
+                target_zs.append(float(tgt["Z"]))
+                terminal_rs.append(float(tgt["R"] + r))
+                terminal_zs.append(float(tgt["Z"] + z))
         except Exception as exc:
             out[f"{pfx}_error"] = repr(exc)
             out[f"{pfx}_target_R"] = float(tgt["R"])
@@ -1922,6 +2121,27 @@ def run_online_local_target_grid_probe(
     add_stats("Ip_error", ip_errs)
     add_stats("return", returns)
     add_stats("shape_score", shape_scores)
+
+    # B98 goal-readiness diagnostics: finite-difference sensitivity of terminal
+    # actual position to commanded target.  A fixed-template policy gives values
+    # close to zero; a goal-conditioned local policy should have positive values.
+    def _slope(xs: list[float], ys: list[float]) -> float:
+        if len(xs) < 2:
+            return float("nan")
+        x = np.asarray(xs, dtype=np.float64)
+        y = np.asarray(ys, dtype=np.float64)
+        vx = float(np.var(x))
+        if vx <= 1.0e-16:
+            return float("nan")
+        return float(np.cov(x, y, bias=True)[0, 1] / vx)
+
+    if target_rs and terminal_rs:
+        out["eval_grid_R_target_to_terminal_R_slope"] = _slope(target_rs, terminal_rs)
+        out["eval_grid_Z_target_to_terminal_Z_slope"] = _slope(target_zs, terminal_zs)
+        out["eval_grid_terminal_R_mean"] = float(np.mean(np.asarray(terminal_rs, dtype=np.float64)))
+        out["eval_grid_terminal_Z_mean"] = float(np.mean(np.asarray(terminal_zs, dtype=np.float64)))
+        out["eval_grid_terminal_R_std"] = float(np.std(np.asarray(terminal_rs, dtype=np.float64)))
+        out["eval_grid_terminal_Z_std"] = float(np.std(np.asarray(terminal_zs, dtype=np.float64)))
     return out
 
 
@@ -2061,22 +2281,53 @@ def main():
     if args.resume:
         print(f"[train_mpo] loading resume checkpoint: {Path(args.resume) / 'mpo_checkpoint.pt'}", flush=True)
         payload = torch.load(Path(args.resume) / "mpo_checkpoint.pt", map_location=device)
-        learner.actor.load_state_dict(payload["actor"])
+        saved_actor_state = payload["actor"]
+        saved_actor_obs_dim = int(saved_actor_state.get("gru.weight_ih_l0", torch.empty(0, 0)).shape[1])
+        new_actor_obs_dim = int(getattr(learner.actor, "obs_dim", obs_dim))
+        obs_dim_changed = bool(saved_actor_obs_dim and saved_actor_obs_dim != new_actor_obs_dim)
+        if obs_dim_changed:
+            adapted_actor, actor_adapt_info = adapt_actor_state_for_obs_dim(learner.actor, saved_actor_state)
+            learner.actor.load_state_dict(adapted_actor, strict=True)
+            print(
+                f"Adapted actor checkpoint for obs_dim {saved_actor_obs_dim} -> {new_actor_obs_dim}; "
+                f"adapted={actor_adapt_info.get('adapted')} skipped={actor_adapt_info.get('skipped')[:8]}",
+                flush=True,
+            )
+        else:
+            learner.actor.load_state_dict(saved_actor_state)
         if bool(cfg.get("model", {}).get("physics_blend", {}).get("force_config_after_resume", True)):
             if hasattr(learner.actor, "reset_physics_modes_from_config"):
                 learner.actor.reset_physics_modes_from_config(cfg.get("model", {}).get("physics_blend", None))
                 print("Applied current config physics_blend/mode_scales after checkpoint load.", flush=True)
-        learner.q1.load_state_dict(payload["q1"])
-        learner.q2.load_state_dict(payload["q2"])
-        learner.tq1.load_state_dict(payload.get("tq1", payload["q1"]))
-        learner.tq2.load_state_dict(payload.get("tq2", payload["q2"]))
-        if "actor_opt" in payload:
+
+        def _load_critic_compat(module, state, label: str):
+            if obs_dim_changed:
+                adapted, info = adapt_critic_state_for_obs_dim(
+                    module, state, old_obs_dim=saved_actor_obs_dim, new_obs_dim=new_actor_obs_dim,
+                    priv_dim=priv_dim, action_dim=action_dim,
+                )
+                module.load_state_dict(adapted, strict=True)
+                print(
+                    f"Adapted {label} checkpoint for obs_dim {saved_actor_obs_dim} -> {new_actor_obs_dim}; "
+                    f"adapted={info.get('adapted')} skipped={info.get('skipped')[:8]}",
+                    flush=True,
+                )
+            else:
+                module.load_state_dict(state)
+
+        _load_critic_compat(learner.q1, payload["q1"], "q1")
+        _load_critic_compat(learner.q2, payload["q2"], "q2")
+        _load_critic_compat(learner.tq1, payload.get("tq1", payload["q1"]), "tq1")
+        _load_critic_compat(learner.tq2, payload.get("tq2", payload["q2"]), "tq2")
+        if "actor_opt" in payload and not obs_dim_changed:
             try:
                 learner.actor_opt.load_state_dict(payload["actor_opt"])
                 learner.critic_opt.load_state_dict(payload["critic_opt"])
                 learner.eta_opt.load_state_dict(payload["eta_opt"])
             except Exception as exc:
                 print(f"Warning: optimizer state not restored cleanly: {exc}")
+        elif obs_dim_changed:
+            print("Optimizer states are intentionally not restored because B98 expanded observation inputs.", flush=True)
         if "log_eta" in payload:
             with torch.no_grad():
                 learner.log_eta.copy_(payload["log_eta"].to(device))
