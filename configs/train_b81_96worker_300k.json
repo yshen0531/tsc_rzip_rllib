@@ -1,5 +1,0 @@
-{
-  "run_name": "train_b81_96worker_300k",
-  "stop_env_steps": 300000,
-  "checkpoint_every_iters": 10
-}

@@ -1,6 +1,0 @@
-{
-  "early_stop": {
-    "enabled": false
-  },
-  "description": "B94 resume override: keep early-stop disabled for diagnostic run."
-}

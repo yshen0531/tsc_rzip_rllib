@@ -1,6 +1,0 @@
-{
-  "early_stop": {
-    "enabled": false
-  },
-  "description": "B97 override: keep early_stop disabled for fixed-core goal-ready diagnostic."
-}

@@ -47,6 +47,7 @@ from tsc_rzip_rllib.mpo.models import (
 )
 from tsc_rzip_rllib.mpo.privileged import build_privileged_vector, privileged_dim
 from tsc_rzip_rllib.mpo.replay import SequenceReplayBuffer
+from tsc_rzip_rllib.mpo.constrained_dual import MultiplicativeDuals
 from tsc_rzip_rllib.utils.config import deep_update, load_json
 
 
@@ -497,6 +498,94 @@ def target_info_fields(target: dict[str, float], params: dict[str, Any] | None =
         "target_is_fixed": bool(is_fixed),
         "target_source": str(target.get("__target_source", "fixed" if is_fixed else "random")),
     }
+
+
+
+def constrained_cfg(cfg: dict[str, Any] | None) -> dict[str, Any]:
+    raw = (cfg or {}).get("constrained_mpo", {}) if isinstance(cfg, dict) else {}
+    return dict(raw or {}) if isinstance(raw, dict) else {}
+
+
+def cost_configs_from_cfg(cfg: dict[str, Any] | None) -> list[dict[str, Any]]:
+    ccfg = constrained_cfg(cfg)
+    raw_costs = ccfg.get("costs", [])
+    if not raw_costs:
+        raw_costs = [
+            {"name": "R", "type": "abs_error", "info_key": "R_error", "tol": 0.03, "clip": 20.0},
+            {"name": "Z", "type": "abs_error", "info_key": "Z_error", "tol": 0.03, "clip": 20.0},
+            {"name": "Ip", "type": "abs_error", "info_key": "Ip_error", "tol": 3500.0, "clip": 20.0},
+            {"name": "action", "type": "mean_abs_action", "target": 0.35, "clip": 20.0},
+            {"name": "vessel", "type": "info_deadzone", "info_key": "vessel_current_abs_sum_a", "target": 220000.0, "clip": 20.0},
+        ]
+    out = []
+    for c in raw_costs:
+        if not isinstance(c, dict):
+            continue
+        cc = dict(c)
+        cc["name"] = sanitize_metric_name(str(cc.get("name", cc.get("info_key", f"cost{len(out)}"))))
+        out.append(cc)
+    return out
+
+
+def cost_names_from_cfg(cfg: dict[str, Any] | None) -> list[str]:
+    return [sanitize_metric_name(c.get("name", f"cost{i}")) for i, c in enumerate(cost_configs_from_cfg(cfg))]
+
+
+def compute_constraint_cost_vector(
+    info: dict[str, Any] | None,
+    action: Any | None,
+    cfg: dict[str, Any] | None,
+) -> np.ndarray:
+    """Compute nonnegative instantaneous constraint-cost vector.
+
+    These are engineering-spec violations, not reward weights.  B99 uses learned
+    dual variables to determine their effective pressure on the actor.
+    """
+    info = dict(info or {})
+    try:
+        act = np.asarray(action, dtype=np.float32).reshape(-1)
+    except Exception:
+        act = np.zeros(0, dtype=np.float32)
+    vals: list[float] = []
+    for c in cost_configs_from_cfg(cfg):
+        typ = str(c.get("type", "abs_error")).lower()
+        val = 0.0
+        if typ == "abs_error":
+            key = str(c.get("info_key", c.get("key", c.get("name", ""))))
+            raw = abs(info_float(info, key, info_float(info, "terminal_" + key, 0.0)))
+            tol = max(abs(float(c.get("tol", c.get("target", 1.0)) or 1.0)), 1.0e-12)
+            val = max(0.0, raw - tol) / tol
+        elif typ == "squared_abs_error":
+            key = str(c.get("info_key", c.get("key", c.get("name", ""))))
+            raw = abs(info_float(info, key, info_float(info, "terminal_" + key, 0.0)))
+            tol = max(abs(float(c.get("tol", c.get("target", 1.0)) or 1.0)), 1.0e-12)
+            val = (max(0.0, raw - tol) / tol) ** 2
+        elif typ == "mean_abs_action":
+            mean_abs = float(np.mean(np.abs(act))) if act.size else 0.0
+            target = max(abs(float(c.get("target", 0.35) or 0.35)), 1.0e-12)
+            val = max(0.0, mean_abs - target) / target
+        elif typ == "max_abs_action":
+            max_abs = float(np.max(np.abs(act))) if act.size else 0.0
+            target = max(abs(float(c.get("target", 0.75) or 0.75)), 1.0e-12)
+            val = max(0.0, max_abs - target) / target
+        elif typ == "info_deadzone":
+            key = str(c.get("info_key", c.get("key", c.get("name", ""))))
+            raw = abs(info_float(info, key, 0.0))
+            target = max(abs(float(c.get("target", 1.0) or 1.0)), 1.0e-12)
+            val = max(0.0, raw - target) / target
+        elif typ == "info_abs_scaled":
+            key = str(c.get("info_key", c.get("key", c.get("name", ""))))
+            scale = max(abs(float(c.get("scale", 1.0) or 1.0)), 1.0e-12)
+            val = abs(info_float(info, key, 0.0)) / scale
+        else:
+            key = str(c.get("info_key", c.get("key", c.get("name", ""))))
+            scale = max(abs(float(c.get("scale", 1.0) or 1.0)), 1.0e-12)
+            val = max(0.0, info_float(info, key, 0.0)) / scale
+        clip = c.get("clip", None)
+        if clip is not None:
+            val = min(float(val), float(clip))
+        vals.append(float(val))
+    return np.asarray(vals, dtype=np.float32)
 
 def goal_conditioning_cfg(cfg: dict[str, Any] | None) -> dict[str, Any]:
     """Return goal-conditioning config.
@@ -1140,7 +1229,7 @@ class MpoRolloutWorker:
         self.set_target_randomization_params(target_randomization_params)
 
     def rollout(self, fragment_steps: int, deterministic: bool = False) -> dict[str, Any]:
-        obs_l, priv_l, act_l, rew_l, done_l, nobs_l, npriv_l, mask_l, info_l = [], [], [], [], [], [], [], [], []
+        obs_l, priv_l, act_l, rew_l, done_l, cost_l, nobs_l, npriv_l, mask_l, info_l = [], [], [], [], [], [], [], [], [], []
         env_steps = 0
         action_abs = []
         for _ in range(int(fragment_steps)):
@@ -1164,6 +1253,9 @@ class MpoRolloutWorker:
             info.update(extra_reward_info)
             info["reward_env"] = float(reward_env)
             info["reward_shaped"] = float(reward)
+            cost_vec = compute_constraint_cost_vector(info, action, self.cfg)
+            for cname, cval in zip(cost_names_from_cfg(self.cfg), cost_vec.tolist()):
+                info[f"constraint_cost/{cname}"] = float(cval)
             done = bool(terminated or truncated)
             info.update(target_info_fields(self.current_target, self.target_randomization_params))
             add_goal_conditioning_info_fields(info, self.current_target, self.base_target, self.cfg)
@@ -1175,6 +1267,7 @@ class MpoRolloutWorker:
             act_l.append(action.copy())
             rew_l.append(float(reward))
             done_l.append(float(done))
+            cost_l.append(cost_vec.copy())
             nobs_l.append(next_obs_arr.copy())
             npriv_l.append(next_priv.copy())
             mask_l.append(1.0)
@@ -1218,6 +1311,7 @@ class MpoRolloutWorker:
             "action": np.asarray(act_l, dtype=np.float32),
             "reward": np.asarray(rew_l, dtype=np.float32),
             "done": np.asarray(done_l, dtype=np.float32),
+            "cost": np.asarray(cost_l, dtype=np.float32),
             "next_obs": np.asarray(nobs_l, dtype=np.float32),
             "next_priv": np.asarray(npriv_l, dtype=np.float32),
             "mask": np.asarray(mask_l, dtype=np.float32),
@@ -1272,8 +1366,46 @@ class MpoLearner:
         self.tq2 = copy.deepcopy(self.q2).to(self.device)
         hard_update(self.tq1, self.q1)
         hard_update(self.tq2, self.q2)
+
+        # B99: constrained goal-conditioned MPO.  The original reward critic is
+        # kept as the task/return critic, while each engineering constraint gets
+        # a separate cost critic.  Effective tradeoff weights are learned dual
+        # variables, not hand-picked scalar reward weights.
+        self.cost_names = cost_names_from_cfg(cfg)
+        self.cost_dim = int(len(self.cost_names))
+        self.cost_q1 = torch.nn.ModuleDict()
+        self.cost_q2 = torch.nn.ModuleDict()
+        self.tcost_q1 = torch.nn.ModuleDict()
+        self.tcost_q2 = torch.nn.ModuleDict()
+        for cname in self.cost_names:
+            c1 = RecurrentQCritic(
+                obs_dim, priv_dim, action_dim,
+                hidden_size=int(m_cfg.get("critic_gru_hidden", 256)),
+                mlp_hiddens=list(m_cfg.get("critic_mlp_hiddens", [512, 512])),
+                activation=str(m_cfg.get("activation", "silu")),
+            ).to(self.device)
+            c2 = RecurrentQCritic(
+                obs_dim, priv_dim, action_dim,
+                hidden_size=int(m_cfg.get("critic_gru_hidden", 256)),
+                mlp_hiddens=list(m_cfg.get("critic_mlp_hiddens", [512, 512])),
+                activation=str(m_cfg.get("activation", "silu")),
+            ).to(self.device)
+            self.cost_q1[cname] = c1
+            self.cost_q2[cname] = c2
+            self.tcost_q1[cname] = copy.deepcopy(c1).to(self.device)
+            self.tcost_q2[cname] = copy.deepcopy(c2).to(self.device)
+            hard_update(self.tcost_q1[cname], self.cost_q1[cname])
+            hard_update(self.tcost_q2[cname], self.cost_q2[cname])
+        self.duals = MultiplicativeDuals(cfg.get("constrained_mpo", {}).get("duals", {}), self.cost_names)
+        self.cost_critic_loss_coeff = float(cfg.get("constrained_mpo", {}).get("cost_critic_loss_coeff", 1.0))
+        self.cost_actor_coeff = float(cfg.get("constrained_mpo", {}).get("actor_cost_coeff", 1.0))
+        self.cost_target_clip = cfg.get("constrained_mpo", {}).get("cost_target_clip", None)
+
         self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=float(mpo_cfg.get("actor_lr", 1e-4)))
-        self.critic_opt = torch.optim.Adam(list(self.q1.parameters()) + list(self.q2.parameters()), lr=float(mpo_cfg.get("critic_lr", 3e-4)))
+        critic_params = list(self.q1.parameters()) + list(self.q2.parameters())
+        for m in list(self.cost_q1.values()) + list(self.cost_q2.values()):
+            critic_params += list(m.parameters())
+        self.critic_opt = torch.optim.Adam(critic_params, lr=float(mpo_cfg.get("critic_lr", 3e-4)))
         self.log_eta = torch.nn.Parameter(torch.tensor(float(np.log(np.exp(float(mpo_cfg.get("eta_init", 1.0))) - 1.0)), device=self.device))
         self.eta_opt = torch.optim.Adam([self.log_eta], lr=float(mpo_cfg.get("eta_lr", 1e-3)))
         self.action_dim = int(action_dim)
@@ -1426,6 +1558,14 @@ class MpoLearner:
         action = b["action"]
         reward = b["reward"]
         done = b["done"]
+        cost = b.get("cost", torch.zeros((*reward.shape, 0), dtype=torch.float32, device=self.device))
+        if cost.ndim != 3:
+            cost = torch.zeros((*reward.shape, 0), dtype=torch.float32, device=self.device)
+        if cost.shape[-1] < self.cost_dim:
+            pad = torch.zeros((*cost.shape[:-1], self.cost_dim - cost.shape[-1]), dtype=cost.dtype, device=cost.device)
+            cost = torch.cat([cost, pad], dim=-1)
+        elif cost.shape[-1] > self.cost_dim:
+            cost = cost[..., :self.cost_dim]
         next_obs = b["next_obs"]
         next_priv = b["next_priv"]
         mask = b["mask"]
@@ -1446,10 +1586,28 @@ class MpoLearner:
                 y = torch.clamp(y, lo, hi)
         q1 = self.q1(obs, priv, action)
         q2 = self.q2(obs, priv, action)
-        critic_loss = ((self._td_loss(q1, y) + self._td_loss(q2, y)) * mask).sum() / mask_sum
+        reward_critic_loss = ((self._td_loss(q1, y) + self._td_loss(q2, y)) * mask).sum() / mask_sum
+        cost_critic_loss = torch.zeros((), dtype=reward_critic_loss.dtype, device=self.device)
+        cost_q_current: list[torch.Tensor] = []
+        if self.cost_dim > 0:
+            with torch.no_grad():
+                for i, cname in enumerate(self.cost_names):
+                    tqc = torch.min(self.tcost_q1[cname](next_obs, next_priv, next_action), self.tcost_q2[cname](next_obs, next_priv, next_action))
+                    cy = cost[..., i] + self.gamma * (1.0 - done) * tqc
+                    if self.cost_target_clip is not None:
+                        lo, hi = float(self.cost_target_clip[0]), float(self.cost_target_clip[1])
+                        cy = torch.clamp(cy, lo, hi)
+                    cq1 = self.cost_q1[cname](obs, priv, action)
+                    cq2 = self.cost_q2[cname](obs, priv, action)
+                    cost_q_current.append(torch.min(cq1, cq2))
+                    cost_critic_loss = cost_critic_loss + ((self._td_loss(cq1, cy) + self._td_loss(cq2, cy)) * mask).sum() / mask_sum
+        critic_loss = reward_critic_loss + self.cost_critic_loss_coeff * cost_critic_loss
         self.critic_opt.zero_grad(set_to_none=True)
         critic_loss.backward()
-        torch.nn.utils.clip_grad_norm_(list(self.q1.parameters()) + list(self.q2.parameters()), self.grad_clip)
+        critic_params = list(self.q1.parameters()) + list(self.q2.parameters())
+        for m in list(self.cost_q1.values()) + list(self.cost_q2.values()):
+            critic_params += list(m.parameters())
+        torch.nn.utils.clip_grad_norm_(critic_params, self.grad_clip)
         self.critic_opt.step()
 
         # MPO E-step temperature update and M-step actor update.
@@ -1545,6 +1703,18 @@ class MpoLearner:
                 actor_raw_pf_vertical_diff_mean_sq = (pair_sq * gate).sum() / gate_sum
                 actor_raw_pf_vertical_diff_penalty = self.actor_raw_pf_vertical_diff_coeff * actor_raw_pf_vertical_diff_mean_sq
                 actor_raw_pf_vertical_diff_active_frac = gate.sum() / mask_sum
+        actor_cost_penalty = torch.zeros((), dtype=mean_action.dtype, device=self.device)
+        actor_cost_values = torch.zeros((self.cost_dim,), dtype=mean_action.dtype, device=self.device)
+        dual_values = self.duals.values_tensor(device=self.device, dtype=mean_action.dtype) if self.cost_dim > 0 else torch.zeros(0, device=self.device)
+        if self.cost_dim > 0:
+            vals = []
+            for i, cname in enumerate(self.cost_names):
+                c_q = torch.min(self.cost_q1[cname](obs, priv, mean_action), self.cost_q2[cname](obs, priv, mean_action))
+                c_mean = (c_q * mask).sum() / mask_sum
+                vals.append(c_mean)
+            actor_cost_values = torch.stack(vals)
+            actor_cost_penalty = self.cost_actor_coeff * torch.sum(dual_values * actor_cost_values)
+
         actor_loss = (
             policy_loss_used
             + kl_penalty
@@ -1554,6 +1724,7 @@ class MpoLearner:
             + actor_mode_coeff_l2
             + actor_mode_coeff_saturation
             + actor_raw_pf_vertical_diff_penalty
+            + actor_cost_penalty
         )
         self.update_count += 1
         actor_update_applied = (self.update_count % self.actor_update_every == 0)
@@ -1563,8 +1734,22 @@ class MpoLearner:
             torch.nn.utils.clip_grad_norm_(self.actor.parameters(), self.grad_clip)
             self.actor_opt.step()
 
+        # Dual variables are updated from observed instantaneous costs.  They are
+        # not reward weights; they are learned Lagrange multipliers for the
+        # constraint costs specified in the config.
+        with torch.no_grad():
+            if self.cost_dim > 0:
+                observed_cost_mean = ((cost * mask.unsqueeze(-1)).sum(dim=(0, 1)) / mask_sum).detach()
+                dual_metrics = self.duals.update(observed_cost_mean)
+            else:
+                observed_cost_mean = torch.zeros(0, device=self.device)
+                dual_metrics = {}
+
         soft_update(self.tq1, self.q1, self.tau)
         soft_update(self.tq2, self.q2, self.tau)
+        for cname in self.cost_names:
+            soft_update(self.tcost_q1[cname], self.cost_q1[cname], self.tau)
+            soft_update(self.tcost_q2[cname], self.cost_q2[cname], self.tau)
         with torch.no_grad():
             q_mean = ((q1 + q2) * 0.5 * mask).sum() / mask_sum
             target_mean = (y * mask).sum() / mask_sum
@@ -1599,7 +1784,10 @@ class MpoLearner:
                     diag[f"actor_mode_coeff_raw_abs_mean/{name}"] = float(mode_raw_abs[i].detach().cpu())
         return {
             "critic_loss": float(critic_loss.detach().cpu()),
+            "reward_critic_loss": float(reward_critic_loss.detach().cpu()),
+            "cost_critic_loss": float(cost_critic_loss.detach().cpu()),
             "actor_loss": float(actor_loss.detach().cpu()),
+            "actor_cost_penalty": float(actor_cost_penalty.detach().cpu()),
             "policy_loss_raw": float(policy_loss_raw.detach().cpu()),
             "policy_loss_used": float(policy_loss_used.detach().cpu()),
             "policy_loss_lower_clip": float(self.policy_loss_lower_clip) if self.policy_loss_lower_clip is not None else float("nan"),
@@ -1631,6 +1819,9 @@ class MpoLearner:
             "actor_physics_blend_alpha": float(self.physics_blend_alpha),
             "actor_update_applied": float(actor_update_applied),
             "critic_loss_type": 1.0 if self.critic_loss_type in {"huber", "smooth_l1", "smoothl1"} else 0.0,
+            **{f"cost/observed_{name}": float(observed_cost_mean[i].detach().cpu()) for i, name in enumerate(self.cost_names)},
+            **{f"cost/actor_q_{name}": float(actor_cost_values[i].detach().cpu()) for i, name in enumerate(self.cost_names)},
+            **{k: float(v) for k, v in dual_metrics.items()},
             **diag,
         }
 
@@ -1642,6 +1833,12 @@ class MpoLearner:
             "q2": self.q2.state_dict(),
             "tq1": self.tq1.state_dict(),
             "tq2": self.tq2.state_dict(),
+            "cost_q1": {k: v.state_dict() for k, v in self.cost_q1.items()},
+            "cost_q2": {k: v.state_dict() for k, v in self.cost_q2.items()},
+            "tcost_q1": {k: v.state_dict() for k, v in self.tcost_q1.items()},
+            "tcost_q2": {k: v.state_dict() for k, v in self.tcost_q2.items()},
+            "duals": self.duals.state_dict(),
+            "cost_names": list(self.cost_names),
             "actor_opt": self.actor_opt.state_dict(),
             "critic_opt": self.critic_opt.state_dict(),
             "eta_opt": self.eta_opt.state_dict(),
@@ -2248,7 +2445,7 @@ def main():
     par = cfg.get("parallel", {})
     ray_num_cpus = int(par.get("ray_num_cpus", min(available_cpu_count(), 200)))
     object_store_memory = int(par.get("object_store_memory", 8 * 1024**3))
-    print("========== B94/B93/B92/B91/B90 MPO Ray init =========", flush=True)
+    print("========== B99 constrained goal-conditioned MPO Ray init =========", flush=True)
     print(f"run_name         = {run_name}", flush=True)
     print(f"ray_num_cpus     = {ray_num_cpus}", flush=True)
     print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}", flush=True)
@@ -2319,6 +2516,15 @@ def main():
         _load_critic_compat(learner.q2, payload["q2"], "q2")
         _load_critic_compat(learner.tq1, payload.get("tq1", payload["q1"]), "tq1")
         _load_critic_compat(learner.tq2, payload.get("tq2", payload["q2"]), "tq2")
+        # B99 checkpoint resume: cost critics and dual variables exist only in
+        # B99+ checkpoints.  Older B98/B97 checkpoints intentionally skip them.
+        for key, modules in [("cost_q1", learner.cost_q1), ("cost_q2", learner.cost_q2), ("tcost_q1", learner.tcost_q1), ("tcost_q2", learner.tcost_q2)]:
+            if isinstance(payload.get(key), dict):
+                for cname, state in payload[key].items():
+                    if cname in modules:
+                        modules[cname].load_state_dict(state)
+        if "duals" in payload:
+            learner.duals.load_state_dict(payload.get("duals"))
         if "actor_opt" in payload and not obs_dim_changed:
             try:
                 learner.actor_opt.load_state_dict(payload["actor_opt"])
