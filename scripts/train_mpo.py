@@ -1399,7 +1399,19 @@ class MpoLearner:
         self.duals = MultiplicativeDuals(cfg.get("constrained_mpo", {}).get("duals", {}), self.cost_names)
         self.cost_critic_loss_coeff = float(cfg.get("constrained_mpo", {}).get("cost_critic_loss_coeff", 1.0))
         self.cost_actor_coeff = float(cfg.get("constrained_mpo", {}).get("actor_cost_coeff", 1.0))
-        self.cost_target_clip = cfg.get("constrained_mpo", {}).get("cost_target_clip", None)
+        c_mpo_cfg = cfg.get("constrained_mpo", {}) if isinstance(cfg.get("constrained_mpo", {}), dict) else {}
+        self.cost_target_clip = c_mpo_cfg.get("cost_target_clip", None)
+        # B99.1 stability controls: cost values are nonnegative by definition,
+        # but unconstrained neural cost critics can predict negative Q-costs.
+        # The actor and target-cost bootstrap therefore use a smooth nonnegative
+        # transform to avoid rewarding the actor for exploiting negative cost-Q.
+        self.cost_q_nonnegative_actor = str(c_mpo_cfg.get("cost_q_nonnegative_actor", "softplus")).lower()
+        self.cost_q_nonnegative_target = str(c_mpo_cfg.get("cost_q_nonnegative_target", "softplus")).lower()
+        self.dual_update_warmup_env_steps = int(c_mpo_cfg.get("dual_update_warmup_env_steps", 300000) or 0)
+        self.dual_update_ramp_env_steps = int(c_mpo_cfg.get("dual_update_ramp_env_steps", 600000) or 0)
+        self.dual_actor_warmup_env_steps = int(c_mpo_cfg.get("dual_actor_warmup_env_steps", 300000) or 0)
+        self.dual_actor_ramp_env_steps = int(c_mpo_cfg.get("dual_actor_ramp_env_steps", 600000) or 0)
+        self.current_env_steps = 0
 
         self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=float(mpo_cfg.get("actor_lr", 1e-4)))
         critic_params = list(self.q1.parameters()) + list(self.q2.parameters())
@@ -1497,6 +1509,7 @@ class MpoLearner:
         self.update_count = 0
 
     def set_env_steps(self, env_steps: int) -> None:
+        self.current_env_steps = int(env_steps)
         self.action_scale = piecewise_constant_schedule(
             self.action_scale_schedule, int(env_steps), self.action_scale_default
         )
@@ -1505,6 +1518,28 @@ class MpoLearner:
         )
         if hasattr(self.actor, "set_physics_blend_alpha"):
             self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+
+    @staticmethod
+    def _ramp01(env_steps: int, warmup: int, ramp: int) -> float:
+        if env_steps < warmup:
+            return 0.0
+        if ramp <= 0:
+            return 1.0
+        return float(min(1.0, max(0.0, (env_steps - warmup) / float(ramp))))
+
+    def _dual_actor_scale(self) -> float:
+        return self._ramp01(self.current_env_steps, self.dual_actor_warmup_env_steps, self.dual_actor_ramp_env_steps)
+
+    def _dual_update_scale(self) -> float:
+        return self._ramp01(self.current_env_steps, self.dual_update_warmup_env_steps, self.dual_update_ramp_env_steps)
+
+    def _nonnegative_cost_q(self, x: torch.Tensor, mode: str) -> torch.Tensor:
+        mode = (mode or "none").lower()
+        if mode in {"softplus", "sp"}:
+            return F.softplus(x)
+        if mode in {"clamp", "relu"}:
+            return torch.clamp(x, min=0.0)
+        return x
 
     def _clamp_eta_(self) -> None:
         if self.eta_max is None:
@@ -1592,7 +1627,8 @@ class MpoLearner:
         if self.cost_dim > 0:
             with torch.no_grad():
                 for i, cname in enumerate(self.cost_names):
-                    tqc = torch.min(self.tcost_q1[cname](next_obs, next_priv, next_action), self.tcost_q2[cname](next_obs, next_priv, next_action))
+                    tqc_raw = torch.min(self.tcost_q1[cname](next_obs, next_priv, next_action), self.tcost_q2[cname](next_obs, next_priv, next_action))
+                    tqc = self._nonnegative_cost_q(tqc_raw, self.cost_q_nonnegative_target)
                     cy = cost[..., i] + self.gamma * (1.0 - done) * tqc
                     if self.cost_target_clip is not None:
                         lo, hi = float(self.cost_target_clip[0]), float(self.cost_target_clip[1])
@@ -1705,15 +1741,20 @@ class MpoLearner:
                 actor_raw_pf_vertical_diff_active_frac = gate.sum() / mask_sum
         actor_cost_penalty = torch.zeros((), dtype=mean_action.dtype, device=self.device)
         actor_cost_values = torch.zeros((self.cost_dim,), dtype=mean_action.dtype, device=self.device)
+        actor_cost_values_raw = torch.zeros((self.cost_dim,), dtype=mean_action.dtype, device=self.device)
         dual_values = self.duals.values_tensor(device=self.device, dtype=mean_action.dtype) if self.cost_dim > 0 else torch.zeros(0, device=self.device)
+        dual_actor_scale = float(self._dual_actor_scale())
         if self.cost_dim > 0:
             vals = []
+            raw_vals = []
             for i, cname in enumerate(self.cost_names):
-                c_q = torch.min(self.cost_q1[cname](obs, priv, mean_action), self.cost_q2[cname](obs, priv, mean_action))
-                c_mean = (c_q * mask).sum() / mask_sum
-                vals.append(c_mean)
+                c_q_raw = torch.min(self.cost_q1[cname](obs, priv, mean_action), self.cost_q2[cname](obs, priv, mean_action))
+                c_q = self._nonnegative_cost_q(c_q_raw, self.cost_q_nonnegative_actor)
+                raw_vals.append((c_q_raw * mask).sum() / mask_sum)
+                vals.append((c_q * mask).sum() / mask_sum)
+            actor_cost_values_raw = torch.stack(raw_vals)
             actor_cost_values = torch.stack(vals)
-            actor_cost_penalty = self.cost_actor_coeff * torch.sum(dual_values * actor_cost_values)
+            actor_cost_penalty = self.cost_actor_coeff * float(dual_actor_scale) * torch.sum(dual_values * actor_cost_values)
 
         actor_loss = (
             policy_loss_used
@@ -1738,9 +1779,13 @@ class MpoLearner:
         # not reward weights; they are learned Lagrange multipliers for the
         # constraint costs specified in the config.
         with torch.no_grad():
+            dual_update_scale = float(self._dual_update_scale())
             if self.cost_dim > 0:
                 observed_cost_mean = ((cost * mask.unsqueeze(-1)).sum(dim=(0, 1)) / mask_sum).detach()
-                dual_metrics = self.duals.update(observed_cost_mean)
+                if dual_update_scale > 0.0:
+                    dual_metrics = self.duals.update(observed_cost_mean, rate_scale=dual_update_scale)
+                else:
+                    dual_metrics = self.duals.as_metrics(prefix="dual")
             else:
                 observed_cost_mean = torch.zeros(0, device=self.device)
                 dual_metrics = {}
@@ -1788,6 +1833,8 @@ class MpoLearner:
             "cost_critic_loss": float(cost_critic_loss.detach().cpu()),
             "actor_loss": float(actor_loss.detach().cpu()),
             "actor_cost_penalty": float(actor_cost_penalty.detach().cpu()),
+            "dual_actor_scale": float(dual_actor_scale),
+            "dual_update_scale": float(dual_update_scale),
             "policy_loss_raw": float(policy_loss_raw.detach().cpu()),
             "policy_loss_used": float(policy_loss_used.detach().cpu()),
             "policy_loss_lower_clip": float(self.policy_loss_lower_clip) if self.policy_loss_lower_clip is not None else float("nan"),
@@ -1821,6 +1868,7 @@ class MpoLearner:
             "critic_loss_type": 1.0 if self.critic_loss_type in {"huber", "smooth_l1", "smoothl1"} else 0.0,
             **{f"cost/observed_{name}": float(observed_cost_mean[i].detach().cpu()) for i, name in enumerate(self.cost_names)},
             **{f"cost/actor_q_{name}": float(actor_cost_values[i].detach().cpu()) for i, name in enumerate(self.cost_names)},
+            **{f"cost/actor_q_raw_{name}": float(actor_cost_values_raw[i].detach().cpu()) for i, name in enumerate(self.cost_names)},
             **{k: float(v) for k, v in dual_metrics.items()},
             **diag,
         }
@@ -1971,20 +2019,39 @@ def summarize_episodes(episodes: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def force_stage_for_eval(train_cfg: dict[str, Any], stage_name: str | None) -> dict[str, Any]:
+    """Return a deterministic eval config for a requested curriculum stage.
+
+    B99 exposed a fragile assumption: online probes asked for stage="final",
+    while the new curriculum used descriptive names without "stage3".  B99.1
+    treats final/strict as an alias for the last configured stage when no exact
+    match exists, so new experiments do not silently lose all eval probes.
+    """
     if not stage_name or stage_name == "default":
         return json.loads(json.dumps(train_cfg))
     cfg = json.loads(json.dumps(train_cfg))
     cur = cfg.get("curriculum", {}).get("env_attributes", {})
     stages = list(cur.get("stages", []))
-    aliases = {"final": "stage3", "strict": "stage3"}
-    target = aliases.get(str(stage_name), str(stage_name))
+    aliases = {"final": "stage3", "strict": "stage3", "last": "stage3"}
+    raw_stage_name = str(stage_name)
+    target = aliases.get(raw_stage_name, raw_stage_name)
     match = None
     for st in stages:
         name = str(st.get("name", ""))
         if target == name or name.startswith(target) or target in name:
             match = st
+    if match is None and raw_stage_name in {"final", "strict", "last"} and stages:
+        match = stages[-1]
+    if match is None and stages:
+        # Last-resort convenience: integer stage index such as "0", "1", "2".
+        try:
+            idx = int(raw_stage_name)
+            if 0 <= idx < len(stages):
+                match = stages[idx]
+        except Exception:
+            pass
     if match is None:
-        raise ValueError(f"Cannot find eval stage {stage_name!r} in train_config curriculum")
+        available = [str(st.get("name", "")) for st in stages]
+        raise ValueError(f"Cannot find eval stage {stage_name!r}; available stages={available}")
     cfg.setdefault("curriculum", {}).setdefault("env_attributes", {})["enabled"] = False
     cfg.setdefault("reward", {}).update(dict(match.get("env_params", {})))
     return cfg
@@ -2445,7 +2512,7 @@ def main():
     par = cfg.get("parallel", {})
     ray_num_cpus = int(par.get("ray_num_cpus", min(available_cpu_count(), 200)))
     object_store_memory = int(par.get("object_store_memory", 8 * 1024**3))
-    print("========== B99 constrained goal-conditioned MPO Ray init =========", flush=True)
+    print("========== B99.1 10ms constrained goal-conditioned MPO Ray init =========", flush=True)
     print(f"run_name         = {run_name}", flush=True)
     print(f"ray_num_cpus     = {ray_num_cpus}", flush=True)
     print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}", flush=True)

@@ -53,7 +53,7 @@ class MultiplicativeDuals:
     def targets_tensor(self, *, device: torch.device | str, dtype: torch.dtype = torch.float32) -> torch.Tensor:
         return torch.tensor([self.state[n].target for n in self.names], dtype=dtype, device=device)
 
-    def update(self, observed: np.ndarray | list[float] | torch.Tensor) -> dict[str, float]:
+    def update(self, observed: np.ndarray | list[float] | torch.Tensor, *, rate_scale: float = 1.0) -> dict[str, float]:
         if isinstance(observed, torch.Tensor):
             arr = observed.detach().cpu().numpy().astype(float).reshape(-1)
         else:
@@ -62,8 +62,9 @@ class MultiplicativeDuals:
             if i >= arr.size or not np.isfinite(arr[i]):
                 continue
             st = self.state[name]
-            # Multiplicative update: lambda *= exp(lr * violation).
-            new_value = st.value * math.exp(st.lr * (float(arr[i]) - st.target))
+            # Multiplicative update: lambda *= exp(rate_scale * lr * violation).
+            rs = max(0.0, float(rate_scale))
+            new_value = st.value * math.exp(rs * st.lr * (float(arr[i]) - st.target))
             st.value = float(min(max(new_value, st.min_value), st.max_value))
         return self.as_metrics(prefix="dual")
 

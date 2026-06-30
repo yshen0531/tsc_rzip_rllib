@@ -3,7 +3,7 @@
   "simulation_root": "{TSC_ALL_ROOT}/tsc_simulation/HH70-PCS-ENV-LOW-FIELD-SIDE-118",
   "start_folder": "1100ms",
   "run_root": "{PROJECT_DIR}/runs",
-  "dt_ms": 1,
+  "dt_ms": 10,
   "state_rz_source": "magaxis",
   "tsc_timeout_s": 120.0,
   "isolate_tsc_workdir": true,
@@ -107,5 +107,6 @@
     200.0,
     200.0
   ],
-  "vessel_current_observation_aggregation": "signed_sum"
+  "vessel_current_observation_aggregation": "signed_sum",
+  "description": "B99.1: 10 ms TSC command period. TSC restart rows provide current and next current; TSC linearly interpolates between nodes. Slew limit is therefore 0.3 A/ms * 10 ms = 3 A per RL step."
 }

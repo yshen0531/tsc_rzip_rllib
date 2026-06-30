@@ -138,24 +138,34 @@ def load_cfg(config: Path, override: Path | None = None) -> dict[str, Any]:
 
 def force_stage(train_cfg: dict[str, Any], stage_name: str | None) -> dict[str, Any]:
     if not stage_name or stage_name == "default":
-        return train_cfg
+        return json.loads(json.dumps(train_cfg))
     cfg = json.loads(json.dumps(train_cfg))
     cur = cfg.get("curriculum", {}).get("env_attributes", {})
     stages = list(cur.get("stages", []))
-    aliases = {"final": "stage3", "strict": "stage3"}
-    target = aliases.get(stage_name, stage_name)
+    raw_stage_name = str(stage_name)
+    aliases = {"final": "stage3", "strict": "stage3", "last": "stage3"}
+    target = aliases.get(raw_stage_name, raw_stage_name)
     match = None
     for st in stages:
         name = str(st.get("name", ""))
         if target == name or name.startswith(target) or target in name:
             match = st
+    if match is None and raw_stage_name in {"final", "strict", "last"} and stages:
+        match = stages[-1]
+    if match is None and stages:
+        try:
+            idx = int(raw_stage_name)
+            if 0 <= idx < len(stages):
+                match = stages[idx]
+        except Exception:
+            pass
     if match is None:
-        raise ValueError(f"Cannot find eval stage {stage_name!r} in train_config curriculum")
+        available = [str(st.get("name", "")) for st in stages]
+        raise ValueError(f"Cannot find eval stage {stage_name!r}; available stages={available}")
     cfg.setdefault("curriculum", {}).setdefault("env_attributes", {})["enabled"] = False
     cfg.setdefault("reward", {}).update(dict(match.get("env_params", {})))
     print(f"Eval stage fixed to: {match.get('name')}")
     return cfg
-
 
 def make_env(cfg: dict[str, Any], seed: int, stage: str | None):
     train_cfg = force_stage(cfg["train_config_resolved"], stage)

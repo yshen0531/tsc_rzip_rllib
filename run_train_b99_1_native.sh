@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-CONFIG="${1:-configs/mpo_b99_constrained_goal_from_scratch_192worker_probe.json}"
+CONFIG="${1:-configs/mpo_b99_1_constrained_goal_10ms_128worker_probe.json}"
 OVERRIDE="${2:-}"
 RESUME="${3:-}"
 
 cd "$(dirname "$0")"
 
-echo "[run_train_b99_native] limit before set: ulimit -u=$(ulimit -u) ulimit -n=$(ulimit -n)"
+echo "[run_train_b99_1_native] limit before set: ulimit -u=$(ulimit -u) ulimit -n=$(ulimit -n)"
 ulimit -u 30000 || true
-ulimit -n 4096 || true
-echo "[run_train_b99_native] limit after set : ulimit -u=$(ulimit -u) ulimit -n=$(ulimit -n)"
+ulimit -n 65535 || ulimit -n 4096 || true
+echo "[run_train_b99_1_native] limit after set : ulimit -u=$(ulimit -u) ulimit -n=$(ulimit -n)"
 cat /proc/$$/limits | egrep "processes|open files" || true
 
 if [[ -n "${RESUME}" ]]; then
   if [[ ! -f "${RESUME}/mpo_checkpoint.pt" ]]; then
-    echo "[run_train_b99_native] ERROR: resume checkpoint not found: ${RESUME}/mpo_checkpoint.pt" >&2
+    echo "[run_train_b99_1_native] ERROR: resume checkpoint not found: ${RESUME}/mpo_checkpoint.pt" >&2
     exit 2
   fi
 fi
@@ -32,7 +32,7 @@ export RAYON_NUM_THREADS=${RAYON_NUM_THREADS:-1}
 export RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=${RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO:-0}
 
 if [[ -z "${RAY_TMPDIR:-}" ]]; then
-  export RAY_TMPDIR="/tmp/ray_${USER}_b99_${RANDOM}"
+  export RAY_TMPDIR="/tmp/ray_${USER}_b991_${RANDOM}"
 fi
 mkdir -p "${RAY_TMPDIR}"
 
@@ -44,9 +44,9 @@ if [[ -n "${RESUME}" ]]; then
   cmd+=(--resume "${RESUME}")
 fi
 
-echo "[run_train_b99_native] CONFIG=${CONFIG}"
-echo "[run_train_b99_native] OVERRIDE=${OVERRIDE}"
-echo "[run_train_b99_native] RESUME=${RESUME}"
-echo "[run_train_b99_native] RAY_TMPDIR=${RAY_TMPDIR}"
-echo "[run_train_b99_native] CMD=${cmd[*]}"
+echo "[run_train_b99_1_native] CONFIG=${CONFIG}"
+echo "[run_train_b99_1_native] OVERRIDE=${OVERRIDE}"
+echo "[run_train_b99_1_native] RESUME=${RESUME}"
+echo "[run_train_b99_1_native] RAY_TMPDIR=${RAY_TMPDIR}"
+echo "[run_train_b99_1_native] CMD=${cmd[*]}"
 exec "${cmd[@]}"

@@ -89,20 +89,30 @@ def force_stage(train_cfg: dict[str, Any], stage_name: str | None) -> dict[str, 
     cfg = json.loads(json.dumps(train_cfg))
     cur = cfg.get("curriculum", {}).get("env_attributes", {})
     stages = list(cur.get("stages", []))
-    aliases = {"final": "stage3", "strict": "stage3"}
-    target = aliases.get(str(stage_name), str(stage_name))
+    raw_stage_name = str(stage_name)
+    aliases = {"final": "stage3", "strict": "stage3", "last": "stage3"}
+    target = aliases.get(raw_stage_name, raw_stage_name)
     match = None
     for st in stages:
         name = str(st.get("name", ""))
         if target == name or name.startswith(target) or target in name:
             match = st
+    if match is None and raw_stage_name in {"final", "strict", "last"} and stages:
+        match = stages[-1]
+    if match is None and stages:
+        try:
+            idx = int(raw_stage_name)
+            if 0 <= idx < len(stages):
+                match = stages[idx]
+        except Exception:
+            pass
     if match is None:
-        raise ValueError(f"Cannot find eval stage {stage_name!r}")
+        available = [str(st.get("name", "")) for st in stages]
+        raise ValueError(f"Cannot find eval stage {stage_name!r}; available stages={available}")
     cfg.setdefault("curriculum", {}).setdefault("env_attributes", {})["enabled"] = False
     cfg.setdefault("reward", {}).update(dict(match.get("env_params", {})))
     print(f"Probe stage fixed to: {match.get('name')}")
     return cfg
-
 
 def scalar(info: dict[str, Any], key: str, default: float = 0.0) -> float:
     try:
