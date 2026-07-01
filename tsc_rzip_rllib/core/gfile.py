@@ -25,11 +25,19 @@ def _parse_fixed_width_floats(line: str, width: int = 16) -> list[float]:
 
 
 def parse_gfile(path: str | Path) -> Dict[str, Any]:
-    """Parse the GEQDSK subset needed for RZIP control visualization.
+    """Parse the GEQDSK subset needed for RZIP control and diagnostics.
 
-    Returns psi grid, magnetic axis, plasma current, current centroid, wall and
-    limiter traces when available.  The sign convention follows the uploaded
-    legacy code: ``psiaux`` is kept in TSC/GEQDSK units for plotting.
+    Important GEQDSK convention used by TSC/EFIT-style files:
+    after qpsi there is usually an integer line ``nbbbs limitr``.
+    ``nbbbs`` is the number of plasma-boundary outline points; ``limitr`` is
+    the number of limiter/wall outline points.
+
+    Older versions of this project exposed the first outline as ``xplot/zplot``
+    and called the count ``nlimiter``.  That was numerically useful but
+    semantically confusing.  This parser now exposes explicit aliases:
+    ``boundary_R/boundary_Z`` for the plasma boundary and
+    ``limiter_R/limiter_Z`` for the limiter/wall trace, while preserving
+    ``xplot/zplot`` and ``rwall/zwall`` for backward compatibility.
     """
     path = Path(path)
     lines = path.read_text(errors="ignore").splitlines()
@@ -92,19 +100,27 @@ def parse_gfile(path: str | Path) -> Dict[str, Any]:
     psiaux = psi_flat.reshape((nz, nx))
     qpsi, _ = take(nx)
 
-    nlimiter = nwall = 0
+    # GEQDSK standard: nbbbs is the number of boundary points and limitr is
+    # the number of limiter/wall points.  Keep old aliases below for
+    # compatibility with plotting code, but do not confuse the two traces.
+    nbbbs = limitr = 0
+    boundary_R = boundary_Z = limiter_R = limiter_Z = np.array([])
     xplot = zplot = rwall = zwall = np.array([])
     if idx < len(rows) and len(rows[idx]) >= 2:
-        nlimiter, nwall = int(rows[idx][0]), int(rows[idx][1])
+        nbbbs, limitr = int(rows[idx][0]), int(rows[idx][1])
         idx += 1
-        if nlimiter > 0:
-            lim, _ = take(nlimiter * 2)
-            lim = lim.reshape((nlimiter, 2))
-            xplot, zplot = lim[:, 0], lim[:, 1]
-        if nwall > 0:
-            wall, _ = take(nwall * 2)
-            wall = wall.reshape((nwall, 2))
-            rwall, zwall = wall[:, 0], wall[:, 1]
+        if nbbbs > 0:
+            bnd, _ = take(nbbbs * 2)
+            bnd = bnd.reshape((nbbbs, 2))
+            boundary_R, boundary_Z = bnd[:, 0], bnd[:, 1]
+            # Backward-compatible historical aliases.
+            xplot, zplot = boundary_R, boundary_Z
+        if limitr > 0:
+            lim, _ = take(limitr * 2)
+            lim = lim.reshape((limitr, 2))
+            limiter_R, limiter_Z = lim[:, 0], lim[:, 1]
+            # Backward-compatible historical aliases.
+            rwall, zwall = limiter_R, limiter_Z
 
     r = np.linspace(ccon, ccon + rdim, nx)
     z = np.linspace(zmid - zdim / 2.0, zmid + zdim / 2.0, nz)
@@ -155,8 +171,17 @@ def parse_gfile(path: str | Path) -> Dict[str, Any]:
         "z": z,
         "rr": rr,
         "zz": zz,
-        "nlimiter": nlimiter,
-        "nwall": nwall,
+        # Explicit GEQDSK names.
+        "nbbbs": nbbbs,
+        "limitr": limitr,
+        "boundary_R": boundary_R,
+        "boundary_Z": boundary_Z,
+        "limiter_R": limiter_R,
+        "limiter_Z": limiter_Z,
+
+        # Backward-compatible aliases used by older plotting/env code.
+        "nlimiter": nbbbs,
+        "nwall": limitr,
         "xplot": xplot,
         "zplot": zplot,
         "rwall": rwall,

@@ -33,16 +33,41 @@
     "history_include_action": true,
     "history_include_vessel_current": true,
     "include_deadline_fraction": true,
-    "include_hold_weight": true
+    "include_hold_weight": true,
+    "include_boundary_extrema": true,
+    "boundary_source": "gfile_boundary",
+    "boundary_r_ref": 0.75,
+    "boundary_z_ref": 0.0,
+    "boundary_r_scale": 0.2,
+    "boundary_z_scale": 0.2,
+    "boundary_width_ref": 0.0,
+    "boundary_height_ref": 0.0,
+    "boundary_width_scale": 0.4,
+    "boundary_height_scale": 0.6,
+    "boundary_min_points": 4,
+    "boundary_clip": 20.0,
+    "boundary_contact_enabled": false,
+    "boundary_feature_dim": 9,
+    "boundary_feature_order": [
+      "R_left_norm",
+      "R_right_norm",
+      "Z_bottom_norm",
+      "Z_top_norm",
+      "R_center_norm",
+      "Z_center_norm",
+      "width_norm",
+      "height_norm",
+      "boundary_valid"
+    ]
   },
   "reward": {
     "w_r": 1.0,
     "w_z": 1.0,
     "w_ip": 0.02,
-    "w_action": 0.02,
+    "w_action": 0.01,
     "w_current": 0.0001,
-    "w_action_saturation": 6.0,
-    "action_soft_limit": 0.6,
+    "w_action_saturation": 0.0,
+    "action_soft_limit": 1.0,
     "w_current_limit": 18.0,
     "current_soft_limit": 0.78,
     "w_r_guard": 1.0,
@@ -73,16 +98,16 @@
     "w_hold_r": 1.5,
     "w_hold_z": 1.5,
     "w_hold_ip": 0.02,
-    "w_hold_action": 0.35,
-    "w_delta_action": 0.04,
+    "w_hold_action": 0.08,
+    "w_delta_action": 0.02,
     "w_hold_current_drift": 0.08,
     "hold_success_bonus": 900.0,
     "hold_eval_window_steps": 8,
     "hold_success_r_tol": 0.08,
     "hold_success_z_tol": 0.08,
     "hold_success_ip_tol": 4000.0,
-    "hold_success_velocity_norm_max": 0.95,
-    "hold_success_action_mean_abs_max": 0.55,
+    "hold_success_velocity_norm_max": 1.0,
+    "hold_success_action_mean_abs_max": 0.6,
     "hold_success_current_util_max": 0.92,
     "hold_success_vessel_total_a_max": 30000.0,
     "hold_success_vessel_abs_sum_a_max": 220000.0,
@@ -152,7 +177,8 @@
     ],
     "w_common_mode_coeff_l2": 0.0,
     "w_common_mode_coeff_saturation": 0.0,
-    "common_mode_coeff_soft_limit": 0.65
+    "common_mode_coeff_soft_limit": 0.65,
+    "max_episode_steps": 65
   },
   "curriculum": {
     "hold_success": {
@@ -163,16 +189,16 @@
       "enabled": true,
       "stages": [
         {
-          "name": "stage0_b99_1_500ms_fixed70_local30",
-          "until_global_env_steps": 300000,
+          "name": "stage0_b99_2_500ms_fixed70_local30_full_action",
+          "until_global_env_steps": 500000,
           "env_params": {
             "w_r": 1.0,
             "w_z": 1.0,
             "w_ip": 0.02,
-            "w_action": 0.02,
+            "w_action": 0.01,
             "w_current": 0.0001,
-            "w_action_saturation": 6.0,
-            "action_soft_limit": 0.6,
+            "w_action_saturation": 0.0,
+            "action_soft_limit": 1.0,
             "w_current_limit": 18.0,
             "current_soft_limit": 0.78,
             "w_r_guard": 1.0,
@@ -203,8 +229,8 @@
             "w_hold_r": 1.5,
             "w_hold_z": 1.5,
             "w_hold_ip": 0.02,
-            "w_hold_action": 0.35,
-            "w_delta_action": 0.04,
+            "w_hold_action": 0.08,
+            "w_delta_action": 0.02,
             "w_hold_current_drift": 0.08,
             "hold_success_bonus": 900.0,
             "hold_eval_window_steps": 8,
@@ -282,20 +308,21 @@
             ],
             "w_common_mode_coeff_l2": 0.0,
             "w_common_mode_coeff_saturation": 0.0,
-            "common_mode_coeff_soft_limit": 0.65
+            "common_mode_coeff_soft_limit": 0.65,
+            "max_episode_steps": 65
           }
         },
         {
-          "name": "stage1_b99_1_400ms_fixed50_local50",
-          "until_global_env_steps": 900000,
+          "name": "stage1_b99_2_400ms_fixed50_local50_full_action",
+          "until_global_env_steps": 999999999999,
           "env_params": {
             "w_r": 1.0,
             "w_z": 1.0,
             "w_ip": 0.02,
-            "w_action": 0.02,
+            "w_action": 0.01,
             "w_current": 0.0001,
-            "w_action_saturation": 6.0,
-            "action_soft_limit": 0.6,
+            "w_action_saturation": 0.0,
+            "action_soft_limit": 1.0,
             "w_current_limit": 18.0,
             "current_soft_limit": 0.78,
             "w_r_guard": 1.0,
@@ -326,8 +353,8 @@
             "w_hold_r": 1.5,
             "w_hold_z": 1.5,
             "w_hold_ip": 0.02,
-            "w_hold_action": 0.35,
-            "w_delta_action": 0.04,
+            "w_hold_action": 0.08,
+            "w_delta_action": 0.02,
             "w_hold_current_drift": 0.08,
             "hold_success_bonus": 900.0,
             "hold_eval_window_steps": 8,
@@ -405,135 +432,13 @@
             ],
             "w_common_mode_coeff_l2": 0.0,
             "w_common_mode_coeff_saturation": 0.0,
-            "common_mode_coeff_soft_limit": 0.65
-          }
-        },
-        {
-          "name": "stage2_b99_1_300ms_refocus_fixed80_local20",
-          "until_global_env_steps": 999999999999,
-          "env_params": {
-            "w_r": 1.0,
-            "w_z": 1.0,
-            "w_ip": 0.02,
-            "w_action": 0.02,
-            "w_current": 0.0001,
-            "w_action_saturation": 6.0,
-            "action_soft_limit": 0.6,
-            "w_current_limit": 18.0,
-            "current_soft_limit": 0.78,
-            "w_r_guard": 1.0,
-            "r_guard_m": 0.13,
-            "w_z_guard": 2.0,
-            "z_guard_m": 0.08,
-            "w_ip_guard": 0.1,
-            "ip_guard_a": 6000.0,
-            "reach_deadline_step": 30,
-            "reach_success_r_tol": 0.03,
-            "reach_success_z_tol": 0.03,
-            "reach_success_ip_tol": 3000.0,
-            "fast_reach_bonus": 0.0,
-            "w_reach_progress": 4.0,
-            "w_pre_hold_tracking_boost": 0.4,
-            "w_derivative": 0.2,
-            "w_near_target_derivative": 0.9,
-            "near_target_norm_sigma": 1.5,
-            "w_overshoot": 1.0,
-            "overshoot_near_norm": 3.0,
-            "w_vessel_total": 0.016,
-            "w_vessel_abs_sum": 0.001,
-            "w_vessel_rms": 0.01,
-            "w_vessel_max_abs": 0.01,
-            "w_vessel_delta": 0.01,
-            "w_hold_vessel_multiplier": 1.5,
-            "hold_start_step": 35,
-            "w_hold_r": 1.5,
-            "w_hold_z": 1.5,
-            "w_hold_ip": 0.02,
-            "w_hold_action": 0.35,
-            "w_delta_action": 0.04,
-            "w_hold_current_drift": 0.08,
-            "hold_success_bonus": 900.0,
-            "hold_eval_window_steps": 8,
-            "hold_success_r_tol": 0.055,
-            "hold_success_z_tol": 0.055,
-            "hold_success_ip_tol": 4000.0,
-            "hold_success_velocity_norm_max": 0.75,
-            "hold_success_action_mean_abs_max": 0.45,
-            "hold_success_current_util_max": 0.92,
-            "hold_success_vessel_total_a_max": 30000.0,
-            "hold_success_vessel_abs_sum_a_max": 220000.0,
-            "reach_success_velocity_norm_max": 1.0,
-            "w_error_growth": 3.0,
-            "w_error_growth_near_target": 2.0,
-            "error_growth_near_norm": 5.0,
-            "error_growth_deadline_multiplier": 3.0,
-            "hold_ramp_start_step": 24,
-            "hold_ramp_end_step": 35,
-            "signed_progress_reward": true,
-            "failure_penalty": -8000.0,
-            "failure_penalty_per_remaining_step": -60.0,
-            "survival_bonus": 100.0,
-            "quality_success_bonus": 500.0,
-            "quality_success_ip_tol": 3000.0,
-            "quality_success_max_ip_error": 6000.0,
-            "w_negative_r_bias": 0.3,
-            "negative_r_bias_threshold_m": -0.13,
-            "w_rz_max_error": 0.0,
-            "w_hold_rz_max_error": 0.0,
-            "rz_max_error_r_ref": 0.05,
-            "rz_max_error_z_ref": 0.05,
-            "w_max_error": 0.05,
-            "max_error_r_ref": 0.05,
-            "max_error_z_ref": 0.05,
-            "max_error_ip_ref": 6000.0,
-            "w_z_zero_cross_overshoot": 1.2,
-            "w_ip_zero_cross_overshoot": 0.05,
-            "zero_cross_near_rz_m": 0.2,
-            "zero_cross_near_ip_a": 6000.0,
-            "early_drift_protect_until_step": 8,
-            "w_early_rz_drift": 0.0,
-            "early_rz_drift_r_ref": 0.04,
-            "early_rz_drift_z_ref": 0.04,
-            "w_shape_score": 0.0,
-            "shape_score_r_ref": 0.05,
-            "shape_score_z_ref": 0.05,
-            "early_rz_drift_enable_z_abs_lt": 0.08,
-            "w_z_signed_progress": 14.0,
-            "w_z_signed_progress_early": 14.0,
-            "z_signed_progress_ref": 0.05,
-            "z_signed_progress_early_until_step": 12,
-            "z_signed_progress_clip": 2.5,
-            "z_zero_cross_enable_abs_lt": 0.06,
-            "extra_reward_shaping": {
-              "enabled": false,
-              "description": "B99.1: one-sided B91-B98 shaping remains disabled; constraints are handled by learned dual variables."
-            },
-            "w_z_positive_bias": 0.0,
-            "z_pos_deadband_m": 0.04,
-            "z_pos_ref_m": 0.05,
-            "z_pos_power": 2.0,
-            "z_pos_gate_r_threshold_m": -0.12,
-            "z_pos_gate_multiplier": 0.35,
-            "w_r_negative_bias_strong": 0.0,
-            "r_neg_deadband_m": 0.08,
-            "r_neg_ref_m": 0.04,
-            "r_neg_power": 2.0,
-            "w_r_negative_progress": 0.0,
-            "r_negative_progress_enable_m": -0.09,
-            "r_negative_progress_ref_m": 0.03,
-            "r_negative_progress_clip": 2.5,
-            "common_mode_coeff_names": [
-              "outer_pf_common_shape",
-              "cs_common_flux"
-            ],
-            "w_common_mode_coeff_l2": 0.0,
-            "w_common_mode_coeff_saturation": 0.0,
-            "common_mode_coeff_soft_limit": 0.65
+            "common_mode_coeff_soft_limit": 0.65,
+            "max_episode_steps": 60
           }
         }
       ],
       "unit": "global_env_steps",
-      "description": "B94 curriculum inherits B92/B93 R-progress shaping; actor-side constraints are handled in MPO config."
+      "description": "B99.2 uses only 500 ms and 400 ms stages; the B99.1 300 ms refocus stage is intentionally disabled because it destabilized Z."
     }
   },
   "failure": {
@@ -571,29 +476,15 @@
       "max_user_processes": 9000
     }
   },
-  "b85_notes": {
-    "algorithm": "B93 Actor-Limited Physics Modes MPO",
-    "diagnosis": "B92 reward-side R/common-mode penalties did not break the R=-0.17m plateau; B93 adds actor-side mode coefficient gates and actor-loss regularization."
-  },
-  "description": "B99.1 from-scratch constrained goal-conditioned MPO with 10 ms TSC command period and 500->400->300 ms reach curriculum.",
-  "b94_notes": {
-    "algorithm": "B94 Vertical/Raw-Guard Physics-Blended MPO",
-    "diagnosis": "B93 fixed common-mode saturation and improved R from about -0.174 m to -0.160 m, but PF vertical difference modes and the raw residual branch still maintained inward radial bias.",
-    "changes": "Reward curriculum is mostly inherited; actor-side constraints are configured in the B94 MPO config."
-  },
-  "b95_notes": {
-    "base": "B95/B96 train config lineage with intermediate mode gates and light raw PF vertical guard.",
-    "purpose": "Keep fixed target as the dominant training task while adding only small symmetric local target jitter for future goal-conditioned training.",
-    "eval": "Online probes and eval scripts keep the original fixed target R=0.75, Z=0, Ip=29779.724 unless local-grid eval explicitly overrides it for diagnostics."
-  },
+  "description": "B99.2 gfilefix fast from-scratch 10 ms goal-conditioned training with compact plasma-boundary extrema from GEQDSK nbbbs/boundary_R,Z, full 3 A/step action authority, 500/400 ms two-stage curriculum, and no contact features.",
   "target_randomization": {
     "enabled": true,
     "mode": "per_episode_fixed_random_mix",
-    "description": "B99.1 10 ms curriculum: stabilize with 500 ms reach, then adapt goals at 400 ms, then refocus fixed/local at 300 ms.",
+    "description": "B99.2 target mix: two-stage fixed/local symmetric training. No contact features, no 300 ms refocus.",
     "stages": [
       {
-        "name": "stage0_b99_1_500ms_fixed70_local30",
-        "until_global_env_steps": 300000,
+        "name": "stage0_b99_2_500ms_fixed70_local30_full_action",
+        "until_global_env_steps": 500000,
         "fixed_probability": 0.7,
         "R_range": [
           0.735,
@@ -609,8 +500,8 @@
         ]
       },
       {
-        "name": "stage1_b99_1_400ms_fixed50_local50",
-        "until_global_env_steps": 900000,
+        "name": "stage1_b99_2_400ms_fixed50_local50_full_action",
+        "until_global_env_steps": 999999999999,
         "fixed_probability": 0.5,
         "R_range": [
           0.72,
@@ -624,44 +515,7 @@
           -2500,
           2500
         ]
-      },
-      {
-        "name": "stage2_b99_1_300ms_refocus_fixed80_local20",
-        "until_global_env_steps": 999999999999,
-        "fixed_probability": 0.8,
-        "R_range": [
-          0.74,
-          0.76
-        ],
-        "Z_range": [
-          -0.025,
-          0.025
-        ],
-        "Ip_delta_range": [
-          -1000,
-          1000
-        ]
       }
-    ]
-  },
-  "b97_notes": {
-    "resume": "Default B97 resumes from B95 iter_000550, not final. B95 is a more balanced fixed-target backbone than B96.",
-    "purpose": "Return from repair-style reward/gate iteration to fixed-core, goal-ready RL training before future variable-target training.",
-    "main_changes": [
-      "Fixed target is sampled in 85% of training episodes.",
-      "The remaining 15% use small symmetric local jitter around the deployment target.",
-      "No outward-R or downward-Z one-sided target bias is used.",
-      "B95 mode gates are retained and raw PF vertical guard is weakened slightly to avoid over-constraining Z.",
-      "Online local 3x3 target-grid eval is added in the MPO config, not as training data."
-    ]
-  },
-  "b98_notes": {
-    "resume": "Default B98 resumes from B97 iter_000575, not final.",
-    "purpose": "Make the policy explicitly goal-conditioned before wider variable-target training. Previous B97 local grid showed target_R was effectively ignored without target command features.",
-    "main_changes": [
-      "Training target distribution is symmetric and local, not one-sided.",
-      "Fixed target remains 50% of episodes to preserve the current deployment point.",
-      "No additional one-sided R/Z reward patch is added here."
     ]
   },
   "control_period": {
@@ -669,6 +523,23 @@
     "tsc_restart_dt_ms": 10,
     "current_slew_a_per_ms": 0.3,
     "max_delta_a_per_policy_step": 3.0,
-    "interpolation_assumption": "TSC card 15 receives current and next current at adjacent times; TSC linearly interpolates between nodes, so a 3 A node-to-node change over 10 ms respects 0.3 A/ms."
+    "interpolation_assumption": "TSC card 15 receives current and next current at adjacent times; TSC linearly interpolates between nodes, so a 3 A node-to-node change over 10 ms respects 0.3 A/ms.",
+    "b99_2_action_authority": "actor_output_scale=1.0 from start, so each coil can use the full +/-3 A per 10 ms step allowed by the slew limiter."
+  },
+  "b99_2_notes": {
+    "purpose": "Fast training-oriented B99.2: from scratch, 10 ms, full 3 A/step action authority, 192 workers, low probe overhead, compact boundary extrema observation, no contact features.",
+    "removed": [
+      "B99.1 stage2 300 ms refocus",
+      "online local grid probe",
+      "stochastic probe",
+      "actor output scale schedule limiting actions",
+      "contact features"
+    ],
+    "kept": [
+      "goal-conditioned observation",
+      "cost-Q softplus",
+      "mild constrained dual diagnostics",
+      "TSC linear interpolation assumption"
+    ]
   }
 }

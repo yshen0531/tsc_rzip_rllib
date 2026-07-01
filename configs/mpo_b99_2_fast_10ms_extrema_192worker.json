@@ -1,9 +1,9 @@
 {
-  "run_name": "train_b99_1_constrained_goal_10ms_from_scratch_mpo_128worker_probe",
-  "train_config": "configs/train_b99_1_constrained_goal_from_scratch_10ms.json",
+  "run_name": "train_b99_2_fast_10ms_extrema_from_scratch_mpo_192worker",
+  "train_config": "configs/train_b99_2_fast_10ms_extrema_from_scratch.json",
   "seed": 42,
   "stop_env_steps": 1600000,
-  "checkpoint_every_iters": 25,
+  "checkpoint_every_iters": 100,
   "log_root": "ray_results",
   "checkpoint_root": "mpo_checkpoints",
   "env": {
@@ -16,10 +16,10 @@
   },
   "parallel": {
     "ray_address": null,
-    "ray_num_cpus": 136,
+    "ray_num_cpus": 208,
     "include_dashboard": false,
     "object_store_memory": 8589934592,
-    "num_tsc_workers": 128,
+    "num_tsc_workers": 192,
     "num_cpus_per_tsc_worker": 1,
     "sample_timeout_s": 3600.0,
     "fragment_steps": 32,
@@ -60,7 +60,7 @@
         "Z_scale_m": 0.04,
         "Ip_scale_a": 2500.0
       },
-      "description": "B99 goal-conditioned policy: explicit command target deltas are present from the start of training."
+      "description": "B99.2 explicit command features plus env-level compact boundary extrema. No contact features."
     }
   },
   "privileged": {
@@ -126,34 +126,17 @@
       -2500.0,
       250.0
     ],
-    "actor_action_l2_coeff": 0.005,
-    "actor_action_saturation_coeff": 6.0,
-    "actor_action_soft_limit": 0.5,
+    "actor_action_l2_coeff": 0.0,
+    "actor_action_saturation_coeff": 0.0,
+    "actor_action_soft_limit": 1.0,
     "e_step_center_q": true,
     "e_step_normalize_q": true,
     "e_step_q_clip": 4.0,
     "actor_update_every": 2,
     "policy_loss_clip": null,
-    "actor_output_scale": 0.25,
-    "actor_output_scale_init": 0.25,
-    "actor_output_scale_schedule": [
-      [
-        0,
-        0.25
-      ],
-      [
-        300000,
-        0.35
-      ],
-      [
-        900000,
-        0.45
-      ],
-      [
-        1400000,
-        0.55
-      ]
-    ],
+    "actor_output_scale": 1.0,
+    "actor_output_scale_init": 1.0,
+    "actor_output_scale_schedule": null,
     "policy_loss_lower_clip": -15.0,
     "policy_loss_upper_clip": null,
     "actor_mode_coeff_l2": {},
@@ -169,7 +152,7 @@
   },
   "deterministic_probe": {
     "enabled": true,
-    "every_iters": 25,
+    "every_iters": 100,
     "eval_stage": "final",
     "seed": 12345
   },
@@ -178,15 +161,15 @@
     "note": "B99 from-scratch algorithmic run; do not stop before target-sensitivity diagnostics are available."
   },
   "stochastic_probe": {
-    "enabled": true,
-    "every_iters": 25,
+    "enabled": false,
+    "every_iters": 0,
     "eval_stage": "final",
     "seed": 22345
   },
-  "description": "B99.1 from-scratch constrained goal-conditioned MPO: 10 ms TSC command period, 500->400->300 ms reach curriculum, safer dual warmup, nonnegative cost-Q actor/target, 128 workers.",
+  "description": "B99.2 fast from-scratch goal-conditioned constrained MPO: 10 ms, full 3 A/step action authority, 192 workers, compact boundary extrema observation, no online grid probe, final grid only.",
   "local_target_grid_probe": {
-    "enabled": true,
-    "every_iters": 25,
+    "enabled": false,
+    "every_iters": 0,
     "eval_stage": "final",
     "seed": 33345,
     "R_values": [
@@ -208,9 +191,9 @@
   },
   "constrained_mpo": {
     "enabled": true,
-    "description": "B99.1 safer constrained goal-conditioned MPO. Costs remain engineering-spec violations; learned duals are warmed up/ramped instead of dominating from step zero.",
-    "actor_cost_coeff": 0.01,
-    "cost_critic_loss_coeff": 0.1,
+    "description": "B99.2 keeps cost-Q softplus but makes dual pressure mild. Full action authority is available from step 0; action minimization is not allowed to dominate early learning.",
+    "actor_cost_coeff": 0.003,
+    "cost_critic_loss_coeff": 0.05,
     "cost_target_clip": [
       0.0,
       80.0
@@ -220,15 +203,15 @@
         "name": "R",
         "type": "abs_error",
         "info_key": "R_error",
-        "tol": 0.04,
-        "clip": 8.0
+        "tol": 0.05,
+        "clip": 6.0
       },
       {
         "name": "Z",
         "type": "abs_error",
         "info_key": "Z_error",
-        "tol": 0.04,
-        "clip": 8.0
+        "tol": 0.05,
+        "clip": 6.0
       },
       {
         "name": "Ip",
@@ -240,8 +223,8 @@
       {
         "name": "action",
         "type": "mean_abs_action",
-        "target": 0.5,
-        "clip": 8.0
+        "target": 0.8,
+        "clip": 5.0
       },
       {
         "name": "vessel",
@@ -252,49 +235,58 @@
       }
     ],
     "duals": {
-      "init": 0.05,
-      "target": 0.4,
-      "lr": 0.001,
+      "init": 0.02,
+      "target": 0.5,
+      "lr": 0.0005,
       "min": 0.0,
-      "max": 8.0,
+      "max": 5.0,
       "per_cost": {
         "R": {
-          "init": 0.15,
-          "target": 0.5,
-          "lr": 0.002,
-          "max": 15.0
+          "init": 0.05,
+          "target": 0.7,
+          "lr": 0.0005,
+          "max": 5.0
         },
         "Z": {
-          "init": 0.15,
-          "target": 0.5,
-          "lr": 0.002,
-          "max": 15.0
+          "init": 0.05,
+          "target": 0.7,
+          "lr": 0.0005,
+          "max": 5.0
         },
         "Ip": {
-          "init": 0.08,
-          "target": 0.4,
-          "lr": 0.0015,
-          "max": 8.0
+          "init": 0.03,
+          "target": 0.5,
+          "lr": 0.0004,
+          "max": 4.0
         },
         "action": {
-          "init": 0.04,
-          "target": 0.12,
-          "lr": 0.001,
-          "max": 5.0
+          "init": 0.01,
+          "target": 0.6,
+          "lr": 0.00025,
+          "max": 2.0
         },
         "vessel": {
-          "init": 0.04,
-          "target": 0.1,
-          "lr": 0.001,
-          "max": 5.0
+          "init": 0.02,
+          "target": 0.3,
+          "lr": 0.00035,
+          "max": 3.0
         }
       }
     },
     "cost_q_nonnegative_actor": "softplus",
     "cost_q_nonnegative_target": "softplus",
-    "dual_actor_warmup_env_steps": 200000,
-    "dual_actor_ramp_env_steps": 400000,
-    "dual_update_warmup_env_steps": 250000,
-    "dual_update_ramp_env_steps": 500000
+    "dual_actor_warmup_env_steps": 300000,
+    "dual_actor_ramp_env_steps": 900000,
+    "dual_update_warmup_env_steps": 400000,
+    "dual_update_ramp_env_steps": 1000000
+  },
+  "final_evaluation": {
+    "enabled": true,
+    "deterministic_fixed": true,
+    "stochastic_fixed": false,
+    "grid": true,
+    "eval_stage": "final",
+    "seed": 92345,
+    "description": "Run full fixed + 3x3 local target grid once at the end. No repeated stochastic probes because TSC dynamics are deterministic."
   }
 }

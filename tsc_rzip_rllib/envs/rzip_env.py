@@ -43,6 +43,18 @@ class TscRzipEnv(gym.Env):
         z_velocity_scale: float = 1.0,
         ip_derivative_scale: float = 1.0e5,
         vessel_current_scale_a: float = 1.0e5,
+        include_boundary_extrema: bool = False,
+        boundary_source: str = "gfile_boundary",
+        boundary_r_ref: float = 0.75,
+        boundary_z_ref: float = 0.0,
+        boundary_r_scale: float = 0.20,
+        boundary_z_scale: float = 0.20,
+        boundary_width_ref: float = 0.0,
+        boundary_height_ref: float = 0.0,
+        boundary_width_scale: float = 0.40,
+        boundary_height_scale: float = 0.60,
+        boundary_min_points: int = 4,
+        boundary_clip: float = 20.0,
         include_derivatives: bool = True,
         include_error_history: bool = True,
         include_previous_action: bool = True,
@@ -175,6 +187,18 @@ class TscRzipEnv(gym.Env):
         self.z_velocity_scale = float(z_velocity_scale)
         self.ip_derivative_scale = float(ip_derivative_scale)
         self.vessel_current_scale_a = float(vessel_current_scale_a)
+        self.include_boundary_extrema = bool(include_boundary_extrema)
+        self.boundary_source = str(boundary_source or "gfile_boundary")
+        self.boundary_r_ref = float(boundary_r_ref)
+        self.boundary_z_ref = float(boundary_z_ref)
+        self.boundary_r_scale = max(abs(float(boundary_r_scale)), 1.0e-12)
+        self.boundary_z_scale = max(abs(float(boundary_z_scale)), 1.0e-12)
+        self.boundary_width_ref = float(boundary_width_ref)
+        self.boundary_height_ref = float(boundary_height_ref)
+        self.boundary_width_scale = max(abs(float(boundary_width_scale)), 1.0e-12)
+        self.boundary_height_scale = max(abs(float(boundary_height_scale)), 1.0e-12)
+        self.boundary_min_points = max(2, int(boundary_min_points))
+        self.boundary_clip = float(boundary_clip)
 
         self.include_derivatives = bool(include_derivatives)
         self.include_error_history = bool(include_error_history)
@@ -359,6 +383,10 @@ class TscRzipEnv(gym.Env):
             dim += 1
         if self.include_vessel_current:
             dim += 1
+        if self.include_boundary_extrema:
+            # 8 compact extrema/size features + 1 validity mask.  Contact/regime
+            # indicators are intentionally not included in B99.2.
+            dim += 9
         if self.include_history_stack and self.history_stack_steps > 0:
             dim += self.history_stack_steps * self.history_feature_dim
         return dim
@@ -563,6 +591,100 @@ class TscRzipEnv(gym.Env):
     def _vessel_total_norm(self, state: Dict[str, Any]) -> float:
         return float(state.get("vessel_current_total_a", 0.0)) / self.vessel_current_scale_a
 
+
+    def _boundary_points(self, state: Dict[str, Any]) -> tuple[np.ndarray, np.ndarray, str, bool]:
+        """Return plasma-boundary point arrays when they are available.
+
+        B99.2 intentionally uses only compact extrema features and no contact
+        information.  We do not invent a boundary: if TSC/CCD boundary points are
+        unavailable, boundary_valid=0 and the appended extrema values are zero.
+
+        Supported sources, in priority order:
+          * state["boundary_R"/"boundary_Z"] or state["boundary_r"/"boundary_z"]
+          * state["gfile"]["boundary_R"/"boundary_Z"] for TSC/GEQDSK nbbbs
+            plasma-boundary outline points.
+          * historical alias state["gfile"]["xplot"/"zplot"] when present.
+
+        We deliberately do not use limiter_R/limiter_Z or rwall/zwall here.
+        Those are limiter/wall traces, not plasma-boundary observations.
+        """
+        candidates: list[tuple[Any, Any, str]] = []
+        for rk, zk in [("boundary_R", "boundary_Z"), ("boundary_r", "boundary_z"), ("R_boundary", "Z_boundary")]:
+            if rk in state and zk in state:
+                candidates.append((state.get(rk), state.get(zk), f"state/{rk},{zk}"))
+        g = state.get("gfile", {}) if isinstance(state.get("gfile", {}), dict) else {}
+        if self.boundary_source in {"gfile_boundary", "gfile_boundary", "auto", "gfile", "xplot_zplot"}:
+            if "boundary_R" in g and "boundary_Z" in g:
+                candidates.append((g.get("boundary_R"), g.get("boundary_Z"), "gfile/boundary_R,boundary_Z"))
+            if "xplot" in g and "zplot" in g:
+                candidates.append((g.get("xplot"), g.get("zplot"), "gfile/xplot,zplot(alias)"))
+        for rr, zz, source in candidates:
+            try:
+                r = np.asarray(rr, dtype=float).reshape(-1)
+                z = np.asarray(zz, dtype=float).reshape(-1)
+            except Exception:
+                continue
+            if r.size != z.size or r.size < self.boundary_min_points:
+                continue
+            mask = np.isfinite(r) & np.isfinite(z)
+            r = r[mask]
+            z = z[mask]
+            if r.size >= self.boundary_min_points:
+                return r, z, source, True
+        return np.zeros(0, dtype=float), np.zeros(0, dtype=float), "unavailable", False
+
+    def _boundary_extrema_raw(self, state: Dict[str, Any]) -> Dict[str, float | str]:
+        r, z, source, valid = self._boundary_points(state)
+        if not valid:
+            return {
+                "boundary_valid": 0.0,
+                "boundary_source": source,
+                "boundary_num_points": 0.0,
+                "boundary_R_left": 0.0,
+                "boundary_R_right": 0.0,
+                "boundary_Z_bottom": 0.0,
+                "boundary_Z_top": 0.0,
+                "boundary_R_center": 0.0,
+                "boundary_Z_center": 0.0,
+                "boundary_width": 0.0,
+                "boundary_height": 0.0,
+            }
+        r_left = float(np.min(r))
+        r_right = float(np.max(r))
+        z_bottom = float(np.min(z))
+        z_top = float(np.max(z))
+        return {
+            "boundary_valid": 1.0,
+            "boundary_source": source,
+            "boundary_num_points": float(r.size),
+            "boundary_R_left": r_left,
+            "boundary_R_right": r_right,
+            "boundary_Z_bottom": z_bottom,
+            "boundary_Z_top": z_top,
+            "boundary_R_center": 0.5 * (r_left + r_right),
+            "boundary_Z_center": 0.5 * (z_bottom + z_top),
+            "boundary_width": r_right - r_left,
+            "boundary_height": z_top - z_bottom,
+        }
+
+    def _boundary_extrema_obs(self, state: Dict[str, Any]) -> np.ndarray:
+        raw = self._boundary_extrema_raw(state)
+        valid = float(raw.get("boundary_valid", 0.0))
+        if valid <= 0.0:
+            return np.zeros(9, dtype=float)
+        vals = np.asarray([
+            (float(raw["boundary_R_left"]) - self.boundary_r_ref) / self.boundary_r_scale,
+            (float(raw["boundary_R_right"]) - self.boundary_r_ref) / self.boundary_r_scale,
+            (float(raw["boundary_Z_bottom"]) - self.boundary_z_ref) / self.boundary_z_scale,
+            (float(raw["boundary_Z_top"]) - self.boundary_z_ref) / self.boundary_z_scale,
+            (float(raw["boundary_R_center"]) - self.boundary_r_ref) / self.boundary_r_scale,
+            (float(raw["boundary_Z_center"]) - self.boundary_z_ref) / self.boundary_z_scale,
+            (float(raw["boundary_width"]) - self.boundary_width_ref) / self.boundary_width_scale,
+            (float(raw["boundary_height"]) - self.boundary_height_ref) / self.boundary_height_scale,
+            valid,
+        ], dtype=float)
+        return np.clip(vals, -self.boundary_clip, self.boundary_clip)
+
     def _history_feature(self, state: Dict[str, Any], action_norm: np.ndarray, derivative_norm: np.ndarray) -> np.ndarray:
         parts: list[np.ndarray] = []
         if self.history_include_error:
@@ -607,6 +729,8 @@ class TscRzipEnv(gym.Env):
             parts.append(np.asarray([self._hold_weight()], dtype=float))
         if self.include_vessel_current:
             parts.append(np.asarray([self._vessel_total_norm(state)], dtype=float))
+        if self.include_boundary_extrema:
+            parts.append(self._boundary_extrema_obs(state))
         if self.include_history_stack and self.history_stack_steps > 0:
             parts.append(self._history_stack_obs())
         obs = np.concatenate(parts)
@@ -1090,6 +1214,9 @@ class TscRzipEnv(gym.Env):
             "terminal_current_util_max": 0.0,
             "terminal_vessel_current_total_a": 0.0,
         }
+        if self.include_boundary_extrema:
+            for bk, bv in self._boundary_extrema_raw(state).items():
+                info[bk] = bv
         info.update(self._hold_window_stats())
         for k, v in self.last_reward_terms.items():
             info[k] = v

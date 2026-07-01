@@ -1229,9 +1229,11 @@ class MpoRolloutWorker:
         self.set_target_randomization_params(target_randomization_params)
 
     def rollout(self, fragment_steps: int, deterministic: bool = False) -> dict[str, Any]:
+        frag_t0 = time.time()
         obs_l, priv_l, act_l, rew_l, done_l, cost_l, nobs_l, npriv_l, mask_l, info_l = [], [], [], [], [], [], [], [], [], []
         env_steps = 0
         action_abs = []
+        env_step_wall_times: list[float] = []
         for _ in range(int(fragment_steps)):
             obs_t = torch.as_tensor(self.obs, dtype=torch.float32)
             prev_info = dict(self.info or {})
@@ -1244,7 +1246,9 @@ class MpoRolloutWorker:
             action = action_t.cpu().numpy().reshape(-1).astype(np.float32)
             mode_names = [sanitize_metric_name(x) for x in getattr(self.actor, "physics_mode_names", [])]
             mode_coeff = mode_t[:, -1, :].detach().cpu().numpy().reshape(-1) if len(mode_names) > 0 else np.zeros(0)
+            step_t0 = time.time()
             next_obs, reward_env, terminated, truncated, info = self.env.step(action)
+            env_step_wall_times.append(time.time() - step_t0)
             info = dict(info or {})
             reward, extra_reward_info = apply_extra_reward_shaping(
                 float(reward_env), info, self.reward_params,
@@ -1320,6 +1324,9 @@ class MpoRolloutWorker:
             "env_steps": int(env_steps),
             "fragment_mean_reward": float(np.mean(rew_l)) if rew_l else 0.0,
             "fragment_mean_abs_action": float(np.mean(action_abs)) if action_abs else 0.0,
+            "fragment_wall_s": float(time.time() - frag_t0),
+            "env_step_wall_s_mean": float(np.mean(env_step_wall_times)) if env_step_wall_times else 0.0,
+            "env_step_wall_s_max": float(np.max(env_step_wall_times)) if env_step_wall_times else 0.0,
             "episodes": episodes,
         }
 
@@ -2512,7 +2519,7 @@ def main():
     par = cfg.get("parallel", {})
     ray_num_cpus = int(par.get("ray_num_cpus", min(available_cpu_count(), 200)))
     object_store_memory = int(par.get("object_store_memory", 8 * 1024**3))
-    print("========== B99.1 10ms constrained goal-conditioned MPO Ray init =========", flush=True)
+    print("========== B99.2 fast 10ms extrema goal-conditioned MPO Ray init =========", flush=True)
     print(f"run_name         = {run_name}", flush=True)
     print(f"ray_num_cpus     = {ray_num_cpus}", flush=True)
     print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}", flush=True)
@@ -2678,24 +2685,43 @@ def main():
             iteration += 1
             iter_t0 = time.time()
             # Collect one fragment from every worker per iteration.
+            collect_t0 = time.time()
+            ray_wait_s = 0.0
+            ray_get_s = 0.0
+            resubmit_s = 0.0
             episodes: list[dict[str, Any]] = []
             frag_rewards = []
             frag_actions = []
+            frag_wall_s = []
+            frag_env_step_mean_s = []
+            frag_env_step_max_s = []
             for _ in range(num_workers):
+                wait_t0 = time.time()
                 ready, _ = ray.wait(list(pending.keys()), num_returns=1, timeout=float(par.get("sample_timeout_s", 3600.0)))
+                ray_wait_s += time.time() - wait_t0
                 if not ready:
                     raise TimeoutError("Timed out waiting for rollout fragment")
                 ref = ready[0]
                 w = pending.pop(ref)
+                get_t0 = time.time()
                 data = ray.get(ref)
+                ray_get_s += time.time() - get_t0
                 replay.add_from_dict(data)
                 total_steps += int(data.get("env_steps", 0))
                 frag_rewards.append(float(data.get("fragment_mean_reward", 0.0)))
                 frag_actions.append(float(data.get("fragment_mean_abs_action", 0.0)))
+                frag_wall_s.append(float(data.get("fragment_wall_s", 0.0)))
+                frag_env_step_mean_s.append(float(data.get("env_step_wall_s_mean", 0.0)))
+                frag_env_step_max_s.append(float(data.get("env_step_wall_s_max", 0.0)))
                 episodes.extend(list(data.get("episodes", [])))
+                submit_t0 = time.time()
                 pending[w.rollout.remote(fragment_steps, rollout_deterministic)] = w
+                resubmit_s += time.time() - submit_t0
+            collect_s = time.time() - collect_t0
 
             losses = []
+            learner_t0 = time.time()
+            actor_sync_s = 0.0
             learner.set_env_steps(total_steps)
             if total_steps >= warmup_steps and replay.can_sample(batch_size, seq_len):
                 for _ in range(updates_per_iter):
@@ -2705,6 +2731,7 @@ def main():
                     last_actor_state = learner.actor_state_cpu()
                     current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
                     current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
+                    sync_t0 = time.time()
                     ray.get([
                         w.set_actor_weights.remote(
                             last_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha),
@@ -2712,10 +2739,12 @@ def main():
                         )
                         for w in workers
                     ])
+                    actor_sync_s += time.time() - sync_t0
             elif iteration % sync_every_iters == 0:
                 # Keep rollout workers' hard schedules synchronized even during warmup.
                 current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
                 current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
+                sync_t0 = time.time()
                 ray.get([
                     w.set_action_scale.remote(
                         float(learner.action_scale), float(learner.physics_blend_alpha),
@@ -2723,6 +2752,8 @@ def main():
                     )
                     for w in workers
                 ])
+                actor_sync_s += time.time() - sync_t0
+            learner_update_s = time.time() - learner_t0
 
             loss_mean = {}
             if losses:
@@ -2737,6 +2768,16 @@ def main():
                 "time_total_s": float(elapsed),
                 "time_this_iter_s": float(time.time() - iter_t0),
                 "env_steps_per_s_total": float(total_steps / max(elapsed, 1.0e-9)),
+                "timing/rollout_collect_s": float(collect_s),
+                "timing/ray_wait_s": float(ray_wait_s),
+                "timing/ray_get_s": float(ray_get_s),
+                "timing/resubmit_s": float(resubmit_s),
+                "timing/learner_update_s": float(learner_update_s),
+                "timing/actor_sync_s": float(actor_sync_s),
+                "worker/fragment_wall_s_mean": float(np.mean(frag_wall_s)) if frag_wall_s else 0.0,
+                "worker/fragment_wall_s_max": float(np.max(frag_wall_s)) if frag_wall_s else 0.0,
+                "worker/env_step_wall_s_mean": float(np.mean(frag_env_step_mean_s)) if frag_env_step_mean_s else 0.0,
+                "worker/env_step_wall_s_max": float(np.max(frag_env_step_max_s)) if frag_env_step_max_s else 0.0,
                 "fragment_mean_reward": float(np.mean(frag_rewards)) if frag_rewards else 0.0,
                 "fragment_mean_abs_action": float(np.mean(frag_actions)) if frag_actions else 0.0,
                 "updates_this_iter": int(len(losses)),
@@ -2751,6 +2792,7 @@ def main():
             }
             stop_now = False
             probe_for_early_stop = None
+            eval_t0 = time.time()
             if probe_enabled and probe_every_iters > 0 and iteration % probe_every_iters == 0:
                 try:
                     probe = run_online_deterministic_probe(
@@ -2779,11 +2821,13 @@ def main():
                     result.update(grid_probe)
                 except Exception as exc:
                     result["eval_grid_error"] = repr(exc)
+            result["timing/eval_probe_s"] = float(time.time() - eval_t0)
             if probe_for_early_stop is not None:
                 stop_now, bad_probe_count, reason = should_early_stop_from_probe(cfg, iteration, probe_for_early_stop, bad_probe_count)
                 result["early_stop_bad_probe_count"] = int(bad_probe_count)
                 result["early_stop_reason"] = str(reason)
                 result["early_stop_triggered"] = bool(stop_now)
+            io_t0 = time.time()
             safe_result = json_safe(result)
             with open(results_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps(safe_result, ensure_ascii=False) + "\n")
@@ -2800,15 +2844,56 @@ def main():
                     writer = csv.DictWriter(f, fieldnames=csv_fields, extrasaction="ignore")
                     writer.writerow(safe_result)
 
-            print(json.dumps(safe_result, ensure_ascii=False), flush=True)
+            result["timing/log_write_s"] = float(time.time() - io_t0)
+            print(json.dumps(json_safe(result), ensure_ascii=False), flush=True)
             if checkpoint_every_iters > 0 and iteration % checkpoint_every_iters == 0:
+                ckpt_t0 = time.time()
                 learner.save_checkpoint(ckpt_dir / f"iter_{iteration:06d}", result)
+                result["timing/checkpoint_s"] = float(time.time() - ckpt_t0)
             if bool(result.get("early_stop_triggered", False)):
                 print(f"MPO early stop triggered at iter={iteration}: {result.get('early_stop_reason')}", flush=True)
                 break
             if total_steps >= stop_env_steps:
                 break
     finally:
+        final_eval_cfg = cfg.get("final_evaluation", {}) or {}
+        if bool(final_eval_cfg.get("enabled", False)):
+            final_summary: dict[str, Any] = {
+                "training_iteration": int(iteration),
+                "env_steps": int(total_steps),
+                "final_evaluation": True,
+            }
+            final_t0 = time.time()
+            try:
+                if bool(final_eval_cfg.get("deterministic_fixed", True)):
+                    final_summary.update(run_online_deterministic_probe(
+                        cfg, learner, iteration=iteration, env_steps=total_steps,
+                        seed=int(final_eval_cfg.get("seed", 92345)),
+                        stage=str(final_eval_cfg.get("eval_stage", "final")),
+                    ))
+                if bool(final_eval_cfg.get("stochastic_fixed", False)):
+                    final_summary.update(run_online_stochastic_probe(
+                        cfg, learner, iteration=iteration, env_steps=total_steps,
+                        seed=int(final_eval_cfg.get("seed", 92345)) + 1000,
+                        stage=str(final_eval_cfg.get("eval_stage", "final")),
+                    ))
+                if bool(final_eval_cfg.get("grid", True)):
+                    final_summary.update(run_online_local_target_grid_probe(
+                        cfg, learner, iteration=iteration, env_steps=total_steps,
+                        seed=int(final_eval_cfg.get("seed", 92345)) + 2000,
+                        stage=str(final_eval_cfg.get("eval_stage", "final")),
+                    ))
+            except Exception as exc:
+                final_summary["final_eval_error"] = repr(exc)
+            final_summary["timing/final_eval_s"] = float(time.time() - final_t0)
+            with open(run_dir / "final_eval_summary.json", "w", encoding="utf-8") as f:
+                json.dump(json_safe(final_summary), f, indent=2, ensure_ascii=False)
+            try:
+                with open(results_path, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(json_safe(final_summary), ensure_ascii=False) + "\n")
+            except Exception:
+                pass
+            print(json.dumps(json_safe(final_summary), ensure_ascii=False), flush=True)
         try:
             ray.get([w.close.remote() for w in workers], timeout=60)
         except Exception:
