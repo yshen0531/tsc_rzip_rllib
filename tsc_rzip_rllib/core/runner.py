@@ -152,6 +152,15 @@ class TSCConfig:
     keep_tsc_workspace: bool = False
     keep_runtime_tsc_outputs: bool = False
 
+    # B99.3 runtime-only mode.  In training we only need the current TSC state,
+    # not one large historical folder per RL control step.  When enabled, TSC
+    # runs in the private runtime_tsc_dir and the restart file is rolled forward
+    # in place.  Current geqdsk/outputa are still generated and read immediately.
+    runtime_only_fast_mode: bool = False
+    save_step_artifacts: bool = True
+    save_artifacts_on_error: bool = True
+    save_artifacts_every_n_steps: int = 0
+
     # Long-training runtime storage policy.  Normal episode directories can be
     # huge because TSC writes restart and diagnostic files at every control step.
     # By default, delete successful/normal episode folders as soon as the episode
@@ -209,6 +218,10 @@ class TSCConfig:
             keep_episode_restart_files=bool(data.get("keep_episode_restart_files", False)),
             keep_tsc_workspace=bool(data.get("keep_tsc_workspace", False)),
             keep_runtime_tsc_outputs=bool(data.get("keep_runtime_tsc_outputs", False)),
+            runtime_only_fast_mode=bool(data.get("runtime_only_fast_mode", False)),
+            save_step_artifacts=bool(data.get("save_step_artifacts", True)),
+            save_artifacts_on_error=bool(data.get("save_artifacts_on_error", True)),
+            save_artifacts_every_n_steps=int(data.get("save_artifacts_every_n_steps", 0)),
             cleanup_episode_dir=bool(data.get("cleanup_episode_dir", True)),
             keep_failed_episode_dir=bool(data.get("keep_failed_episode_dir", True)),
             keep_last_n_failed_episode_dirs=int(data.get("keep_last_n_failed_episode_dirs", 20)),
@@ -261,6 +274,9 @@ class TSCConfig:
 
         if self.keep_last_n_failed_episode_dirs < 0:
             raise ValueError("keep_last_n_failed_episode_dirs must be >= 0.")
+
+        if self.save_artifacts_every_n_steps < 0:
+            raise ValueError("save_artifacts_every_n_steps must be >= 0.")
 
         if self.vessel_current_aggregation not in {"signed_sum", "abs_sum", "rms", "max_abs"}:
             raise ValueError(
@@ -346,6 +362,8 @@ class TSCStepRunner:
         self.current_folder: Optional[Path] = None
         self.current_time_ms: Optional[int] = None
         self.done_reason: Optional[str] = None
+        self.local_step_index: int = 0
+        self.last_step_timing: Dict[str, float] = {}
 
         self.runtime_tsc_dir: Path = self._prepare_runtime_tsc_dir()
         self.runtime_executable: Path = self._resolve_runtime_executable()
@@ -445,6 +463,7 @@ class TSCStepRunner:
         self.episode_dir = None
         self.current_folder = None
         self.current_time_ms = None
+        self.local_step_index = 0
 
         if episode_dir is None or not Path(episode_dir).exists():
             return
@@ -521,9 +540,9 @@ class TSCStepRunner:
 
         self._safe_unlink(previous_folder / "sprsina")
 
-    def _cleanup_runtime_tsc_io(self) -> None:
+    def _cleanup_runtime_tsc_io(self, *, force: bool = False) -> None:
         """Remove per-step runtime I/O files from the private TSC workdir after collection."""
-        if self.cfg.keep_runtime_tsc_outputs:
+        if self.cfg.keep_runtime_tsc_outputs and not force:
             return
 
         for name in [
@@ -550,6 +569,30 @@ class TSCStepRunner:
         episode_name = episode_name or datetime.now().strftime("episode_%Y%m%d_%H%M%S")
         self.episode_dir = self.cfg.resolved_run_root() / episode_name
         self.episode_dir.mkdir(parents=True, exist_ok=True)
+        self.current_time_ms = self._folder_time_ms(self.cfg.start_folder)
+        self.done_reason = None
+        self.local_step_index = 0
+        self.last_step_timing = {}
+
+        if self.cfg.runtime_only_fast_mode:
+            t0 = datetime.now()
+            self._cleanup_runtime_tsc_io(force=True)
+            copy_t0 = datetime.now()
+            # Minimal current-state inputs/outputs needed for the first observation.
+            # geqdsk/outputa/coil/wire are read by read_state(); inputa/sprsina are
+            # needed by the first TSC restart step.  Missing optional outputs are
+            # allowed only if read_state() does not require them in the user's setup.
+            for name in ["inputa", "sprsina", "geqdsk", "outputa", "coil_currents.csv", "wire_currents.csv"]:
+                src_file = src / name
+                if src_file.exists():
+                    shutil.copy2(src_file, self.runtime_tsc_dir / name)
+                elif name in {"inputa", "sprsina", "geqdsk", "coil_currents.csv"}:
+                    raise FileNotFoundError(f"required runtime-only reset file missing: {src_file}")
+            self.current_folder = self.runtime_tsc_dir
+            dt = (datetime.now() - t0).total_seconds()
+            copy_dt = (datetime.now() - copy_t0).total_seconds()
+            self.last_step_timing = {"reset_total_s": float(dt), "reset_copy_inputs_s": float(copy_dt), "runtime_only": 1.0}
+            return self.read_state()
 
         dst = self.episode_dir / self.cfg.start_folder
         if dst.exists():
@@ -557,8 +600,6 @@ class TSCStepRunner:
         shutil.copytree(src, dst)
 
         self.current_folder = dst
-        self.current_time_ms = self._folder_time_ms(self.cfg.start_folder)
-        self.done_reason = None
         return self.read_state()
 
     def read_state(self) -> Dict[str, Any]:
@@ -596,7 +637,7 @@ class TSCStepRunner:
 
         return {
             "folder": folder,
-            "time_ms": self._folder_time_ms(folder.name),
+            "time_ms": int(self.current_time_ms) if (self.cfg.runtime_only_fast_mode and self.current_time_ms is not None) else self._folder_time_ms(folder.name),
 
             "R": float(r_state),
             "Z": float(z_state),
@@ -612,16 +653,22 @@ class TSCStepRunner:
             "currents_a_display": tsc_to_display(currents_a_tsc).astype(float),
 
             "gfile": g,
+            "runner_timing": dict(self.last_step_timing),
+            "runtime_only_fast_mode": bool(self.cfg.runtime_only_fast_mode),
             "abnormal": bool(abnormal),
             "done_reason": "outputa abnormal exit or non-finite state" if abnormal else "",
         }
 
     def step_current_a(self, next_current_a_tsc: np.ndarray) -> Dict[str, Any]:
         """Input next-step single-turn coil currents, unit A, TSC order."""
+        step_wall_t0 = datetime.now()
+        timing: Dict[str, float] = {"runtime_only": 1.0 if self.cfg.runtime_only_fast_mode else 0.0}
         if self.current_folder is None or self.current_time_ms is None or self.episode_dir is None:
             raise RuntimeError("call reset() before step_current_a()")
 
+        read0_t0 = datetime.now()
         state = self.read_state()
+        timing["read_state_before_s"] = float((datetime.now() - read0_t0).total_seconds())
         now_current_kat_tsc = state["currents_kat_tsc"]
 
         next_current_a_tsc = np.asarray(next_current_a_tsc, dtype=float)
@@ -637,6 +684,7 @@ class TSCStepRunner:
         # Only here do we convert A to kA-turn for TSC.
         next_current_kat_tsc = self.current_a_to_kat(next_current_a_tsc, self.turns_tsc)
 
+        write_t0 = datetime.now()
         shape_cards = read_card_first_values(self.current_folder / "inputa", [90, 91, 92, 93, 94, 95])
         rows = build_restart_rows(
             current_time_ms=self.current_time_ms,
@@ -646,14 +694,25 @@ class TSCStepRunner:
             shape_card_values=shape_cards,
         )
         generate_restart_inputa_file(self.current_folder / "inputa", rows)
+        timing["write_input_s"] = float((datetime.now() - write_t0).total_seconds())
 
-        self._copy_runtime_inputs(self.current_folder)
+        copy_in_t0 = datetime.now()
+        if not self.cfg.runtime_only_fast_mode:
+            self._copy_runtime_inputs(self.current_folder)
+        timing["copy_runtime_inputs_s"] = float((datetime.now() - copy_in_t0).total_seconds())
+
+        run_t0 = datetime.now()
         returncode, stdout, stderr = self._run_tsc()
+        timing["gotsc_subprocess_s"] = float((datetime.now() - run_t0).total_seconds())
 
         if returncode != 0:
             self.done_reason = f"TSC returned non-zero code {returncode}"
+            timing["step_total_s"] = float((datetime.now() - step_wall_t0).total_seconds())
+            self.last_step_timing = timing
+            self._save_runtime_artifacts_on_error("nonzero_returncode")
             return {
                 **state,
+                "runner_timing": dict(timing),
                 "abnormal": True,
                 "done_reason": self.done_reason,
                 "returncode": returncode,
@@ -662,35 +721,75 @@ class TSCStepRunner:
             }
 
         previous_folder = self.current_folder
-
         self.current_time_ms += self.cfg.dt_ms
-        next_folder = self.episode_dir / f"{self.current_time_ms}ms"
+        self.local_step_index += 1
 
-        try:
-            self._collect_runtime_outputs(next_folder)
-        except Exception as exc:
-            self.done_reason = f"TSC output collection failed: {repr(exc)}"
-            return {
-                **state,
-                "abnormal": True,
-                "done_reason": self.done_reason,
-                "returncode": returncode,
-                "stdout": stdout,
-                "stderr": stderr,
-            }
+        if self.cfg.runtime_only_fast_mode:
+            restart_t0 = datetime.now()
+            try:
+                self._roll_runtime_restart_forward()
+            except Exception as exc:
+                self.done_reason = f"TSC restart update failed: {repr(exc)}"
+                timing["restart_update_s"] = float((datetime.now() - restart_t0).total_seconds())
+                timing["step_total_s"] = float((datetime.now() - step_wall_t0).total_seconds())
+                self.last_step_timing = timing
+                self._save_runtime_artifacts_on_error("restart_update_failed")
+                return {
+                    **state,
+                    "runner_timing": dict(timing),
+                    "abnormal": True,
+                    "done_reason": self.done_reason,
+                    "returncode": returncode,
+                    "stdout": stdout,
+                    "stderr": stderr,
+                }
+            timing["restart_update_s"] = float((datetime.now() - restart_t0).total_seconds())
 
-        self.current_folder = next_folder
+            save_t0 = datetime.now()
+            self._maybe_save_runtime_step_artifacts()
+            timing["save_artifacts_s"] = float((datetime.now() - save_t0).total_seconds())
+            self.current_folder = self.runtime_tsc_dir
+        else:
+            next_folder = self.episode_dir / f"{self.current_time_ms}ms"
+            collect_t0 = datetime.now()
+            try:
+                self._collect_runtime_outputs(next_folder)
+            except Exception as exc:
+                self.done_reason = f"TSC output collection failed: {repr(exc)}"
+                timing["collect_outputs_s"] = float((datetime.now() - collect_t0).total_seconds())
+                timing["step_total_s"] = float((datetime.now() - step_wall_t0).total_seconds())
+                self.last_step_timing = timing
+                self._save_runtime_artifacts_on_error("collect_outputs_failed")
+                return {
+                    **state,
+                    "runner_timing": dict(timing),
+                    "abnormal": True,
+                    "done_reason": self.done_reason,
+                    "returncode": returncode,
+                    "stdout": stdout,
+                    "stderr": stderr,
+                }
+            timing["collect_outputs_s"] = float((datetime.now() - collect_t0).total_seconds())
+            self.current_folder = next_folder
 
+        read1_t0 = datetime.now()
+        self.last_step_timing = timing
         new_state = self.read_state()
+        timing["read_state_after_s"] = float((datetime.now() - read1_t0).total_seconds())
+        timing["step_total_s"] = float((datetime.now() - step_wall_t0).total_seconds())
+        self.last_step_timing = timing
+        new_state["runner_timing"] = dict(timing)
         new_state.update({"returncode": returncode, "stdout": stdout, "stderr": stderr})
 
-        # Cleanup only after new_state is readable and current_folder has valid sprsina.
-        self._cleanup_previous_episode_restart(previous_folder, self.current_folder)
-        self._cleanup_runtime_tsc_io()
+        if not self.cfg.runtime_only_fast_mode:
+            # Cleanup only after new_state is readable and current_folder has valid sprsina.
+            self._cleanup_previous_episode_restart(previous_folder, self.current_folder)
+            self._cleanup_runtime_tsc_io()
 
         if new_state["abnormal"]:
             self.done_reason = new_state.get("done_reason", "") or "TSC outputa contains abnormal exit"
             new_state["done_reason"] = self.done_reason
+            self._save_runtime_artifacts_on_error("abnormal_output")
 
         return new_state
 
@@ -737,6 +836,56 @@ class TSCStepRunner:
             shutil.copy2(sprsoua, dst / "sprsina")
         else:
             raise FileNotFoundError(f"TSC did not produce restart file: {sprsoua}")
+
+    def _roll_runtime_restart_forward(self) -> None:
+        """Update runtime sprsina from the just-produced sprsoua.
+
+        B99.3 intentionally uses copy2 rather than os.replace for the first
+        runtime-only version.  This keeps sprsoua available for debugging and
+        avoids relying on undocumented TSC file-retention assumptions.
+        """
+        sprsoua = self.runtime_tsc_dir / "sprsoua"
+        if not sprsoua.exists():
+            raise FileNotFoundError(f"TSC did not produce restart file: {sprsoua}")
+        shutil.copy2(sprsoua, self.runtime_tsc_dir / "sprsina")
+
+    def _runtime_artifact_dir(self, tag: str) -> Path:
+        base = self.episode_dir or self.cfg.resolved_run_root()
+        return Path(base) / f"runtime_artifacts_{tag}_{self.current_time_ms}ms"
+
+    def _copy_runtime_artifacts_to(self, dst: Path) -> None:
+        dst.mkdir(parents=True, exist_ok=True)
+        for name in [
+            "inputa",
+            "sprsina",
+            "sprsoua",
+            "geqdsk",
+            "outputa",
+            "tsc.cgm",
+            "coil_currents.csv",
+            "wire_currents.csv",
+        ]:
+            src = self.runtime_tsc_dir / name
+            if src.exists():
+                shutil.copy2(src, dst / name)
+
+    def _maybe_save_runtime_step_artifacts(self) -> None:
+        if not self.cfg.runtime_only_fast_mode:
+            return
+        if self.cfg.save_step_artifacts:
+            self._copy_runtime_artifacts_to(self._runtime_artifact_dir("step"))
+            return
+        n = int(self.cfg.save_artifacts_every_n_steps)
+        if n > 0 and self.local_step_index > 0 and self.local_step_index % n == 0:
+            self._copy_runtime_artifacts_to(self._runtime_artifact_dir("sample"))
+
+    def _save_runtime_artifacts_on_error(self, tag: str) -> None:
+        if not self.cfg.save_artifacts_on_error:
+            return
+        try:
+            self._copy_runtime_artifacts_to(self._runtime_artifact_dir(f"failed_{tag}"))
+        except Exception:
+            pass
 
     def _run_tsc(self) -> tuple[int, str, str]:
         env = os.environ.copy()

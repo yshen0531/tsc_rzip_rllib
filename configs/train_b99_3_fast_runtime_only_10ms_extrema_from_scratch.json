@@ -1,5 +1,5 @@
 {
-  "env_config": "configs/tsc_low_field_side_118.json",
+  "env_config": "configs/tsc_low_field_side_118_runtime_only.json",
   "target": {
     "R": 0.75,
     "Z": 0.0,
@@ -476,14 +476,14 @@
       "max_user_processes": 9000
     }
   },
-  "description": "B99.2 gfilefix fast from-scratch 10 ms goal-conditioned training with compact plasma-boundary extrema from GEQDSK nbbbs/boundary_R,Z, full 3 A/step action authority, 500/400 ms two-stage curriculum, and no contact features.",
+  "description": "B99.3: same RL curriculum as B99.2 gfilefix, plus runtime-only TSC file flow and 224 workers in MPO config. Compact extrema still come from GEQDSK nbbbs plasma boundary; contact remains disabled.",
   "target_randomization": {
     "enabled": true,
     "mode": "per_episode_fixed_random_mix",
     "description": "B99.2 target mix: two-stage fixed/local symmetric training. No contact features, no 300 ms refocus.",
     "stages": [
       {
-        "name": "stage0_b99_2_500ms_fixed70_local30_full_action",
+        "name": "stage0_b99_3_500ms_fixed70_local30_full_action",
         "until_global_env_steps": 500000,
         "fixed_probability": 0.7,
         "R_range": [
@@ -500,7 +500,7 @@
         ]
       },
       {
-        "name": "stage1_b99_2_400ms_fixed50_local50_full_action",
+        "name": "stage1_b99_3_400ms_fixed50_local50_full_action",
         "until_global_env_steps": 999999999999,
         "fixed_probability": 0.5,
         "R_range": [

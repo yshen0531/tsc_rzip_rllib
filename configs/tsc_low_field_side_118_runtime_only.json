@@ -10,7 +10,7 @@
   "tsc_workspace_root": "{PROJECT_DIR}/tsc_workspaces",
   "keep_episode_restart_files": false,
   "keep_tsc_workspace": false,
-  "keep_runtime_tsc_outputs": false,
+  "keep_runtime_tsc_outputs": true,
   "vessel_current_column": "cwire(ka)",
   "vessel_current_raw_to_a": 1000.0,
   "vessel_current_aggregation": "signed_sum",
@@ -108,5 +108,9 @@
     200.0
   ],
   "vessel_current_observation_aggregation": "signed_sum",
-  "description": "B99.1: 10 ms TSC command period. TSC restart rows provide current and next current; TSC linearly interpolates between nodes. Slew limit is therefore 0.3 A/ms * 10 ms = 3 A per RL step."
+  "description": "B99.1: 10 ms TSC command period. TSC restart rows provide current and next current; TSC linearly interpolates between nodes. Slew limit is therefore 0.3 A/ms * 10 ms = 3 A per RL step. B99.3 runtime_only_fast_mode: train reads current runtime/geqdsk but does not archive every step folder.",
+  "runtime_only_fast_mode": true,
+  "save_step_artifacts": false,
+  "save_artifacts_on_error": true,
+  "save_artifacts_every_n_steps": 0
 }

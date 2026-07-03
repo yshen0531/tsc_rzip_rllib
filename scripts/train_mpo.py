@@ -1309,6 +1309,25 @@ class MpoRolloutWorker:
 
         episodes = self.completed_episodes
         self.completed_episodes = []
+
+        # Fragment-level diagnostic aggregation.  Keep this small and numeric;
+        # strings such as boundary_source are represented by explicit numeric
+        # flags (boundary_source_is_gfile) from the environment.
+        diag_prefixes = ("boundary_", "runner_timing/", "runtime_only_fast_mode")
+        diag_values: dict[str, list[float]] = {}
+        for inf in info_l:
+            for k, v in inf.items():
+                if not any(str(k).startswith(pref) for pref in diag_prefixes):
+                    continue
+                if isinstance(v, bool):
+                    fv = float(v)
+                elif isinstance(v, (int, float)) and np.isfinite(float(v)):
+                    fv = float(v)
+                else:
+                    continue
+                diag_values.setdefault(str(k), []).append(fv)
+        fragment_info_means = {k: float(np.mean(vs)) for k, vs in diag_values.items() if vs}
+        fragment_info_maxs = {k: float(np.max(vs)) for k, vs in diag_values.items() if vs}
         return {
             "obs": np.asarray(obs_l, dtype=np.float32),
             "priv": np.asarray(priv_l, dtype=np.float32),
@@ -1327,6 +1346,8 @@ class MpoRolloutWorker:
             "fragment_wall_s": float(time.time() - frag_t0),
             "env_step_wall_s_mean": float(np.mean(env_step_wall_times)) if env_step_wall_times else 0.0,
             "env_step_wall_s_max": float(np.max(env_step_wall_times)) if env_step_wall_times else 0.0,
+            "fragment_info_means": fragment_info_means,
+            "fragment_info_maxs": fragment_info_maxs,
             "episodes": episodes,
         }
 
@@ -1594,6 +1615,8 @@ class MpoLearner:
         return {k: torch.as_tensor(v, dtype=torch.float32, device=self.device) for k, v in batch.items()}
 
     def update(self, batch_np: dict[str, np.ndarray]) -> dict[str, float]:
+        update_total_t0 = time.time()
+        t_stage = update_total_t0
         b = self._to_torch(batch_np)
         obs = b["obs"]
         priv = b["priv"]
@@ -1612,6 +1635,8 @@ class MpoLearner:
         next_priv = b["next_priv"]
         mask = b["mask"]
         mask_sum = torch.clamp(mask.sum(), min=1.0)
+        timing_to_torch_s = time.time() - t_stage
+        t_stage = time.time()
 
         # Critic update.
         with torch.no_grad():
@@ -1652,6 +1677,8 @@ class MpoLearner:
             critic_params += list(m.parameters())
         torch.nn.utils.clip_grad_norm_(critic_params, self.grad_clip)
         self.critic_opt.step()
+        timing_critic_s = time.time() - t_stage
+        t_stage = time.time()
 
         # MPO E-step temperature update and M-step actor update.
         with torch.no_grad():
@@ -1669,6 +1696,8 @@ class MpoLearner:
             q_cand = torch.min(self.q1(obs_rep, priv_rep, act_rep), self.q2(obs_rep, priv_rep, act_rep))
             q_cand = q_cand.reshape(B, self.num_action_samples, T).permute(0, 2, 1)  # [B,T,K]
             q_cand = q_cand * mask.unsqueeze(-1)
+        timing_candidate_q_s = time.time() - t_stage
+        t_stage = time.time()
 
         eta = F.softplus(self.log_eta) + self.eta_min
         q_e = self._prepare_e_step_q(q_cand, mask)
@@ -1683,6 +1712,8 @@ class MpoLearner:
         self.eta_opt.step()
         self._clamp_eta_()
         eta_used = (F.softplus(self.log_eta) + self.eta_min).detach()
+        timing_eta_s = time.time() - t_stage
+        t_stage = time.time()
 
         with torch.no_grad():
             weights = torch.softmax(q_e / eta_used, dim=-1)  # [B,T,K]
@@ -1774,6 +1805,8 @@ class MpoLearner:
             + actor_raw_pf_vertical_diff_penalty
             + actor_cost_penalty
         )
+        timing_actor_loss_s = time.time() - t_stage
+        t_stage = time.time()
         self.update_count += 1
         actor_update_applied = (self.update_count % self.actor_update_every == 0)
         if actor_update_applied:
@@ -1781,6 +1814,8 @@ class MpoLearner:
             actor_loss.backward()
             torch.nn.utils.clip_grad_norm_(self.actor.parameters(), self.grad_clip)
             self.actor_opt.step()
+        timing_actor_opt_s = time.time() - t_stage
+        t_stage = time.time()
 
         # Dual variables are updated from observed instantaneous costs.  They are
         # not reward weights; they are learned Lagrange multipliers for the
@@ -1796,12 +1831,16 @@ class MpoLearner:
             else:
                 observed_cost_mean = torch.zeros(0, device=self.device)
                 dual_metrics = {}
+        timing_dual_s = time.time() - t_stage
+        t_stage = time.time()
 
         soft_update(self.tq1, self.q1, self.tau)
         soft_update(self.tq2, self.q2, self.tau)
         for cname in self.cost_names:
             soft_update(self.tcost_q1[cname], self.cost_q1[cname], self.tau)
             soft_update(self.tcost_q2[cname], self.cost_q2[cname], self.tau)
+        timing_target_update_s = time.time() - t_stage
+        t_stage = time.time()
         with torch.no_grad():
             q_mean = ((q1 + q2) * 0.5 * mask).sum() / mask_sum
             target_mean = (y * mask).sum() / mask_sum
@@ -1872,6 +1911,15 @@ class MpoLearner:
             "actor_action_scale": float(self.action_scale),
             "actor_physics_blend_alpha": float(self.physics_blend_alpha),
             "actor_update_applied": float(actor_update_applied),
+            "timing_update_total_s": float(time.time() - update_total_t0),
+            "timing_to_torch_s": float(timing_to_torch_s),
+            "timing_critic_s": float(timing_critic_s),
+            "timing_candidate_q_s": float(timing_candidate_q_s),
+            "timing_eta_s": float(timing_eta_s),
+            "timing_actor_loss_s": float(timing_actor_loss_s),
+            "timing_actor_opt_s": float(timing_actor_opt_s),
+            "timing_dual_s": float(timing_dual_s),
+            "timing_target_update_s": float(timing_target_update_s),
             "critic_loss_type": 1.0 if self.critic_loss_type in {"huber", "smooth_l1", "smoothl1"} else 0.0,
             **{f"cost/observed_{name}": float(observed_cost_mean[i].detach().cpu()) for i, name in enumerate(self.cost_names)},
             **{f"cost/actor_q_{name}": float(actor_cost_values[i].detach().cpu()) for i, name in enumerate(self.cost_names)},
@@ -2695,6 +2743,8 @@ def main():
             frag_wall_s = []
             frag_env_step_mean_s = []
             frag_env_step_max_s = []
+            frag_info_means: dict[str, list[float]] = {}
+            frag_info_maxs: dict[str, list[float]] = {}
             for _ in range(num_workers):
                 wait_t0 = time.time()
                 ready, _ = ray.wait(list(pending.keys()), num_returns=1, timeout=float(par.get("sample_timeout_s", 3600.0)))
@@ -2713,6 +2763,12 @@ def main():
                 frag_wall_s.append(float(data.get("fragment_wall_s", 0.0)))
                 frag_env_step_mean_s.append(float(data.get("env_step_wall_s_mean", 0.0)))
                 frag_env_step_max_s.append(float(data.get("env_step_wall_s_max", 0.0)))
+                for mk, mv in dict(data.get("fragment_info_means", {}) or {}).items():
+                    if isinstance(mv, (int, float)) and np.isfinite(float(mv)):
+                        frag_info_means.setdefault(str(mk), []).append(float(mv))
+                for mk, mv in dict(data.get("fragment_info_maxs", {}) or {}).items():
+                    if isinstance(mv, (int, float)) and np.isfinite(float(mv)):
+                        frag_info_maxs.setdefault(str(mk), []).append(float(mv))
                 episodes.extend(list(data.get("episodes", [])))
                 submit_t0 = time.time()
                 pending[w.rollout.remote(fragment_steps, rollout_deterministic)] = w
@@ -2721,16 +2777,26 @@ def main():
 
             losses = []
             learner_t0 = time.time()
-            actor_sync_s = 0.0
+            learner_train_s = 0.0
+            learner_sample_batch_s = 0.0
+            learner_update_call_s = 0.0
+            worker_param_rpc_s = 0.0
+            pipeline_wait_s = 0.0
             learner.set_env_steps(total_steps)
+            current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
+            current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
             if total_steps >= warmup_steps and replay.can_sample(batch_size, seq_len):
+                train_t0 = time.time()
                 for _ in range(updates_per_iter):
+                    sample_t0 = time.time()
                     batch = replay.sample(batch_size=batch_size, seq_len=seq_len)
+                    learner_sample_batch_s += time.time() - sample_t0
+                    upd_t0 = time.time()
                     losses.append(learner.update(batch))
+                    learner_update_call_s += time.time() - upd_t0
+                learner_train_s = time.time() - train_t0
                 if iteration % sync_every_iters == 0:
                     last_actor_state = learner.actor_state_cpu()
-                    current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
-                    current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
                     sync_t0 = time.time()
                     ray.get([
                         w.set_actor_weights.remote(
@@ -2739,21 +2805,27 @@ def main():
                         )
                         for w in workers
                     ])
-                    actor_sync_s += time.time() - sync_t0
+                    worker_param_rpc_s += time.time() - sync_t0
             elif iteration % sync_every_iters == 0:
-                # Keep rollout workers' hard schedules synchronized even during warmup.
-                current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
-                current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
-                sync_t0 = time.time()
-                ray.get([
-                    w.set_action_scale.remote(
-                        float(learner.action_scale), float(learner.physics_blend_alpha),
-                        current_reward_params, current_target_randomization_params,
-                    )
-                    for w in workers
-                ])
-                actor_sync_s += time.time() - sync_t0
-            learner_update_s = time.time() - learner_t0
+                # During warmup the actor weights and scale normally do not change.
+                # Skipping this RPC avoids a misleading pipeline-wait timing block.
+                # If future schedules change action_scale during warmup, force sync by
+                # setting parallel.force_warmup_param_sync=true.
+                if bool(cfg.get("parallel", {}).get("force_warmup_param_sync", False)):
+                    sync_t0 = time.time()
+                    ray.get([
+                        w.set_action_scale.remote(
+                            float(learner.action_scale), float(learner.physics_blend_alpha),
+                            current_reward_params, current_target_randomization_params,
+                        )
+                        for w in workers
+                    ])
+                    worker_param_rpc_s += time.time() - sync_t0
+            learner_total_s = time.time() - learner_t0
+            pipeline_wait_s = max(0.0, worker_param_rpc_s - 0.0)  # RPC may include Ray actor queue wait behind rollout.
+            # Backward-compatible names for older CSV readers; prefer the B99.3 names below.
+            actor_sync_s = worker_param_rpc_s
+            learner_update_s = learner_total_s
 
             loss_mean = {}
             if losses:
@@ -2774,10 +2846,18 @@ def main():
                 "timing/resubmit_s": float(resubmit_s),
                 "timing/learner_update_s": float(learner_update_s),
                 "timing/actor_sync_s": float(actor_sync_s),
+                "timing/learner_total_s": float(learner_total_s),
+                "timing/learner_train_s": float(learner_train_s),
+                "timing/learner_sample_batch_s": float(learner_sample_batch_s),
+                "timing/learner_update_call_s": float(learner_update_call_s),
+                "timing/worker_param_rpc_s": float(worker_param_rpc_s),
+                "timing/pipeline_wait_s": float(pipeline_wait_s),
                 "worker/fragment_wall_s_mean": float(np.mean(frag_wall_s)) if frag_wall_s else 0.0,
                 "worker/fragment_wall_s_max": float(np.max(frag_wall_s)) if frag_wall_s else 0.0,
                 "worker/env_step_wall_s_mean": float(np.mean(frag_env_step_mean_s)) if frag_env_step_mean_s else 0.0,
                 "worker/env_step_wall_s_max": float(np.max(frag_env_step_max_s)) if frag_env_step_max_s else 0.0,
+                **{f"worker/{k}_mean": float(np.mean(vs)) for k, vs in frag_info_means.items() if vs},
+                **{f"worker/{k}_max": float(np.max(vs)) for k, vs in frag_info_maxs.items() if vs},
                 "fragment_mean_reward": float(np.mean(frag_rewards)) if frag_rewards else 0.0,
                 "fragment_mean_abs_action": float(np.mean(frag_actions)) if frag_actions else 0.0,
                 "updates_this_iter": int(len(losses)),

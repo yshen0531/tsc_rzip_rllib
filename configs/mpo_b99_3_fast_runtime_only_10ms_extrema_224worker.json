@@ -1,6 +1,6 @@
 {
-  "run_name": "train_b99_2_fast_10ms_extrema_from_scratch_mpo_192worker",
-  "train_config": "configs/train_b99_2_fast_10ms_extrema_from_scratch.json",
+  "run_name": "train_b99_3_fast_runtime_only_10ms_extrema_from_scratch_mpo_224worker",
+  "train_config": "configs/train_b99_3_fast_runtime_only_10ms_extrema_from_scratch.json",
   "seed": 42,
   "stop_env_steps": 1600000,
   "checkpoint_every_iters": 100,
@@ -16,15 +16,16 @@
   },
   "parallel": {
     "ray_address": null,
-    "ray_num_cpus": 208,
+    "ray_num_cpus": 240,
     "include_dashboard": false,
     "object_store_memory": 8589934592,
-    "num_tsc_workers": 192,
+    "num_tsc_workers": 224,
     "num_cpus_per_tsc_worker": 1,
     "sample_timeout_s": 3600.0,
     "fragment_steps": 32,
     "actor_sync_interval_iters": 1,
-    "rollout_deterministic": false
+    "rollout_deterministic": false,
+    "force_warmup_param_sync": false
   },
   "learner": {
     "num_gpus": 0
@@ -288,5 +289,6 @@
     "eval_stage": "final",
     "seed": 92345,
     "description": "Run full fixed + 3x3 local target grid once at the end. No repeated stochastic probes because TSC dynamics are deterministic."
-  }
+  },
+  "tsc_config": "configs/tsc_low_field_side_118_runtime_only.json"
 }

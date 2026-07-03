@@ -638,7 +638,9 @@ class TscRzipEnv(gym.Env):
         if not valid:
             return {
                 "boundary_valid": 0.0,
+                "boundary_missing": 1.0,
                 "boundary_source": source,
+                "boundary_source_is_gfile": 0.0,
                 "boundary_num_points": 0.0,
                 "boundary_R_left": 0.0,
                 "boundary_R_right": 0.0,
@@ -655,7 +657,9 @@ class TscRzipEnv(gym.Env):
         z_top = float(np.max(z))
         return {
             "boundary_valid": 1.0,
+            "boundary_missing": 0.0,
             "boundary_source": source,
+            "boundary_source_is_gfile": 1.0 if str(source).startswith("gfile/") else 0.0,
             "boundary_num_points": float(r.size),
             "boundary_R_left": r_left,
             "boundary_R_right": r_right,
@@ -1217,6 +1221,13 @@ class TscRzipEnv(gym.Env):
         if self.include_boundary_extrema:
             for bk, bv in self._boundary_extrema_raw(state).items():
                 info[bk] = bv
+        runner_timing = state.get("runner_timing", {})
+        if isinstance(runner_timing, dict):
+            for tk, tv in runner_timing.items():
+                if isinstance(tv, (int, float, bool)) and np.isfinite(float(tv)):
+                    info[f"runner_timing/{tk}"] = float(tv)
+        if "runtime_only_fast_mode" in state:
+            info["runtime_only_fast_mode"] = float(bool(state.get("runtime_only_fast_mode", False)))
         info.update(self._hold_window_stats())
         for k, v in self.last_reward_terms.items():
             info[k] = v
