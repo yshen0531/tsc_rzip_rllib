@@ -1,5 +1,5 @@
 {
-  "env_config": "configs/tsc_low_field_side_118_runtime_only.json",
+  "env_config": "configs/tsc_low_field_side_118_runtime_only_b99_4.json",
   "target": {
     "R": 0.75,
     "Z": 0.0,
@@ -189,8 +189,8 @@
       "enabled": true,
       "stages": [
         {
-          "name": "stage0_b99_2_500ms_fixed70_local30_full_action",
-          "until_global_env_steps": 500000,
+          "name": "stage0_b99_4_500ms_fixed70_local30_stabilized_actor_dual_hold_until_stop",
+          "until_global_env_steps": 999999999999,
           "env_params": {
             "w_r": 1.0,
             "w_z": 1.0,
@@ -311,134 +311,10 @@
             "common_mode_coeff_soft_limit": 0.65,
             "max_episode_steps": 65
           }
-        },
-        {
-          "name": "stage1_b99_2_400ms_fixed50_local50_full_action",
-          "until_global_env_steps": 999999999999,
-          "env_params": {
-            "w_r": 1.0,
-            "w_z": 1.0,
-            "w_ip": 0.02,
-            "w_action": 0.01,
-            "w_current": 0.0001,
-            "w_action_saturation": 0.0,
-            "action_soft_limit": 1.0,
-            "w_current_limit": 18.0,
-            "current_soft_limit": 0.78,
-            "w_r_guard": 1.0,
-            "r_guard_m": 0.13,
-            "w_z_guard": 2.0,
-            "z_guard_m": 0.08,
-            "w_ip_guard": 0.1,
-            "ip_guard_a": 6000.0,
-            "reach_deadline_step": 40,
-            "reach_success_r_tol": 0.035,
-            "reach_success_z_tol": 0.035,
-            "reach_success_ip_tol": 3000.0,
-            "fast_reach_bonus": 0.0,
-            "w_reach_progress": 4.0,
-            "w_pre_hold_tracking_boost": 0.4,
-            "w_derivative": 0.2,
-            "w_near_target_derivative": 0.9,
-            "near_target_norm_sigma": 1.5,
-            "w_overshoot": 1.0,
-            "overshoot_near_norm": 3.0,
-            "w_vessel_total": 0.016,
-            "w_vessel_abs_sum": 0.001,
-            "w_vessel_rms": 0.01,
-            "w_vessel_max_abs": 0.01,
-            "w_vessel_delta": 0.01,
-            "w_hold_vessel_multiplier": 1.5,
-            "hold_start_step": 45,
-            "w_hold_r": 1.5,
-            "w_hold_z": 1.5,
-            "w_hold_ip": 0.02,
-            "w_hold_action": 0.08,
-            "w_delta_action": 0.02,
-            "w_hold_current_drift": 0.08,
-            "hold_success_bonus": 900.0,
-            "hold_eval_window_steps": 8,
-            "hold_success_r_tol": 0.065,
-            "hold_success_z_tol": 0.065,
-            "hold_success_ip_tol": 4000.0,
-            "hold_success_velocity_norm_max": 0.75,
-            "hold_success_action_mean_abs_max": 0.45,
-            "hold_success_current_util_max": 0.92,
-            "hold_success_vessel_total_a_max": 30000.0,
-            "hold_success_vessel_abs_sum_a_max": 220000.0,
-            "reach_success_velocity_norm_max": 1.0,
-            "w_error_growth": 3.0,
-            "w_error_growth_near_target": 2.0,
-            "error_growth_near_norm": 5.0,
-            "error_growth_deadline_multiplier": 3.0,
-            "hold_ramp_start_step": 32,
-            "hold_ramp_end_step": 45,
-            "signed_progress_reward": true,
-            "failure_penalty": -8000.0,
-            "failure_penalty_per_remaining_step": -60.0,
-            "survival_bonus": 100.0,
-            "quality_success_bonus": 500.0,
-            "quality_success_ip_tol": 3000.0,
-            "quality_success_max_ip_error": 6000.0,
-            "w_negative_r_bias": 0.3,
-            "negative_r_bias_threshold_m": -0.13,
-            "w_rz_max_error": 0.0,
-            "w_hold_rz_max_error": 0.0,
-            "rz_max_error_r_ref": 0.05,
-            "rz_max_error_z_ref": 0.05,
-            "w_max_error": 0.05,
-            "max_error_r_ref": 0.05,
-            "max_error_z_ref": 0.05,
-            "max_error_ip_ref": 6000.0,
-            "w_z_zero_cross_overshoot": 1.2,
-            "w_ip_zero_cross_overshoot": 0.05,
-            "zero_cross_near_rz_m": 0.2,
-            "zero_cross_near_ip_a": 6000.0,
-            "early_drift_protect_until_step": 10,
-            "w_early_rz_drift": 0.0,
-            "early_rz_drift_r_ref": 0.04,
-            "early_rz_drift_z_ref": 0.04,
-            "w_shape_score": 0.0,
-            "shape_score_r_ref": 0.05,
-            "shape_score_z_ref": 0.05,
-            "early_rz_drift_enable_z_abs_lt": 0.08,
-            "w_z_signed_progress": 14.0,
-            "w_z_signed_progress_early": 14.0,
-            "z_signed_progress_ref": 0.05,
-            "z_signed_progress_early_until_step": 15,
-            "z_signed_progress_clip": 2.5,
-            "z_zero_cross_enable_abs_lt": 0.06,
-            "extra_reward_shaping": {
-              "enabled": false,
-              "description": "B99.1: one-sided B91-B98 shaping remains disabled; constraints are handled by learned dual variables."
-            },
-            "w_z_positive_bias": 0.0,
-            "z_pos_deadband_m": 0.04,
-            "z_pos_ref_m": 0.05,
-            "z_pos_power": 2.0,
-            "z_pos_gate_r_threshold_m": -0.12,
-            "z_pos_gate_multiplier": 0.35,
-            "w_r_negative_bias_strong": 0.0,
-            "r_neg_deadband_m": 0.08,
-            "r_neg_ref_m": 0.04,
-            "r_neg_power": 2.0,
-            "w_r_negative_progress": 0.0,
-            "r_negative_progress_enable_m": -0.09,
-            "r_negative_progress_ref_m": 0.03,
-            "r_negative_progress_clip": 2.5,
-            "common_mode_coeff_names": [
-              "outer_pf_common_shape",
-              "cs_common_flux"
-            ],
-            "w_common_mode_coeff_l2": 0.0,
-            "w_common_mode_coeff_saturation": 0.0,
-            "common_mode_coeff_soft_limit": 0.65,
-            "max_episode_steps": 60
-          }
         }
       ],
       "unit": "global_env_steps",
-      "description": "B99.2 uses only 500 ms and 400 ms stages; the B99.1 300 ms refocus stage is intentionally disabled because it destabilized Z."
+      "description": "B99.4 holds only the 500 ms stage until stop. Stage1 400 ms is disabled because B99.3 did not stabilize stage0."
     }
   },
   "failure": {
@@ -476,15 +352,15 @@
       "max_user_processes": 9000
     }
   },
-  "description": "B99.3: same RL curriculum as B99.2 gfilefix, plus runtime-only TSC file flow and 224 workers in MPO config. Compact extrema still come from GEQDSK nbbbs plasma boundary; contact remains disabled.",
+  "description": "B99.4: stabilized actor-dual version. Same 10 ms TSC control and runtime-only file flow as B99.3, but stage0 is extended/held through the run so the 500 ms target is learned before trying harder 400 ms curriculum. No contact features and no directional R/Z hand patch.",
   "target_randomization": {
     "enabled": true,
     "mode": "per_episode_fixed_random_mix",
-    "description": "B99.2 target mix: two-stage fixed/local symmetric training. No contact features, no 300 ms refocus.",
+    "description": "B99.4 keeps the B99.3 stage0 fixed/local target mix only. No automatic transition to the wider/harder 400 ms stage.",
     "stages": [
       {
-        "name": "stage0_b99_3_500ms_fixed70_local30_full_action",
-        "until_global_env_steps": 500000,
+        "name": "stage0_b99_4_500ms_fixed70_local30_stabilized_actor_dual_hold_until_stop",
+        "until_global_env_steps": 999999999999,
         "fixed_probability": 0.7,
         "R_range": [
           0.735,
@@ -498,23 +374,6 @@
           -1500,
           1500
         ]
-      },
-      {
-        "name": "stage1_b99_3_400ms_fixed50_local50_full_action",
-        "until_global_env_steps": 999999999999,
-        "fixed_probability": 0.5,
-        "R_range": [
-          0.72,
-          0.78
-        ],
-        "Z_range": [
-          -0.06,
-          0.06
-        ],
-        "Ip_delta_range": [
-          -2500,
-          2500
-        ]
       }
     ]
   },
@@ -524,22 +383,32 @@
     "current_slew_a_per_ms": 0.3,
     "max_delta_a_per_policy_step": 3.0,
     "interpolation_assumption": "TSC card 15 receives current and next current at adjacent times; TSC linearly interpolates between nodes, so a 3 A node-to-node change over 10 ms respects 0.3 A/ms.",
-    "b99_2_action_authority": "actor_output_scale=1.0 from start, so each coil can use the full +/-3 A per 10 ms step allowed by the slew limiter."
+    "b99_4_action_authority": "actor_output_scale=1.0 from start, so each coil can use the full +/-3 A per 10 ms step allowed by the slew limiter."
   },
-  "b99_2_notes": {
-    "purpose": "Fast training-oriented B99.2: from scratch, 10 ms, full 3 A/step action authority, 192 workers, low probe overhead, compact boundary extrema observation, no contact features.",
-    "removed": [
-      "B99.1 stage2 300 ms refocus",
-      "online local grid probe",
-      "stochastic probe",
-      "actor output scale schedule limiting actions",
-      "contact features"
-    ],
+  "b99_4_notes": {
+    "purpose": "Stabilize from-scratch goal-conditioned MPO after B99.3 showed large-action biased policy with R/Z/Ip all drifting.",
     "kept": [
-      "goal-conditioned observation",
-      "cost-Q softplus",
-      "mild constrained dual diagnostics",
-      "TSC linear interpolation assumption"
+      "runtime_only_fast_mode",
+      "GEQDSK nbbbs plasma-boundary extrema",
+      "10 ms control period",
+      "full +/-3 A per step action authority",
+      "final grid only"
+    ],
+    "changed": [
+      "workers 224 -> 192",
+      "stage1 disabled; stage0 held until stop",
+      "actor_update_every 2 -> 4",
+      "policy_loss_lower_clip -15 -> -10",
+      "dual/cost pressure starts at 100k",
+      "mild actor action L2/saturation regularization"
+    ],
+    "not_added": [
+      "directional R/Z hand patch",
+      "contact features",
+      "full 36-point boundary",
+      "20 ms control period",
+      "symlink workspace",
+      "persistent TSC daemon"
     ]
   }
 }

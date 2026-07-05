@@ -2567,7 +2567,7 @@ def main():
     par = cfg.get("parallel", {})
     ray_num_cpus = int(par.get("ray_num_cpus", min(available_cpu_count(), 200)))
     object_store_memory = int(par.get("object_store_memory", 8 * 1024**3))
-    print("========== B99.2 fast 10ms extrema goal-conditioned MPO Ray init =========", flush=True)
+    print(f"========== {cfg.get('banner', 'MPO Ray init')} =========", flush=True)
     print(f"run_name         = {run_name}", flush=True)
     print(f"ray_num_cpus     = {ray_num_cpus}", flush=True)
     print(f"RAY_TMPDIR       = {os.environ['RAY_TMPDIR']}", flush=True)

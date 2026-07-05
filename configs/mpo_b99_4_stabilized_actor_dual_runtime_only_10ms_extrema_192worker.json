@@ -1,9 +1,9 @@
 {
-  "run_name": "train_b99_3_fast_runtime_only_10ms_extrema_from_scratch_mpo_224worker",
-  "train_config": "configs/train_b99_3_fast_runtime_only_10ms_extrema_from_scratch.json",
+  "run_name": "train_b99_4_stabilized_actor_dual_runtime_only_10ms_extrema_from_scratch_mpo_192worker",
+  "train_config": "configs/train_b99_4_stabilized_actor_dual_runtime_only_10ms_extrema_from_scratch.json",
   "seed": 42,
-  "stop_env_steps": 1600000,
-  "checkpoint_every_iters": 100,
+  "stop_env_steps": 1000000,
+  "checkpoint_every_iters": 50,
   "log_root": "ray_results",
   "checkpoint_root": "mpo_checkpoints",
   "env": {
@@ -16,10 +16,10 @@
   },
   "parallel": {
     "ray_address": null,
-    "ray_num_cpus": 240,
+    "ray_num_cpus": 208,
     "include_dashboard": false,
     "object_store_memory": 8589934592,
-    "num_tsc_workers": 224,
+    "num_tsc_workers": 192,
     "num_cpus_per_tsc_worker": 1,
     "sample_timeout_s": 3600.0,
     "fragment_steps": 32,
@@ -61,7 +61,7 @@
         "Z_scale_m": 0.04,
         "Ip_scale_a": 2500.0
       },
-      "description": "B99.2 explicit command features plus env-level compact boundary extrema. No contact features."
+      "description": "B99.4 keeps B99.3 explicit target features plus compact GEQDSK plasma-boundary extrema. No contact features."
     }
   },
   "privileged": {
@@ -127,18 +127,18 @@
       -2500.0,
       250.0
     ],
-    "actor_action_l2_coeff": 0.0,
-    "actor_action_saturation_coeff": 0.0,
-    "actor_action_soft_limit": 1.0,
+    "actor_action_l2_coeff": 0.003,
+    "actor_action_saturation_coeff": 0.005,
+    "actor_action_soft_limit": 0.85,
     "e_step_center_q": true,
     "e_step_normalize_q": true,
     "e_step_q_clip": 4.0,
-    "actor_update_every": 2,
+    "actor_update_every": 4,
     "policy_loss_clip": null,
     "actor_output_scale": 1.0,
     "actor_output_scale_init": 1.0,
     "actor_output_scale_schedule": null,
-    "policy_loss_lower_clip": -15.0,
+    "policy_loss_lower_clip": -10.0,
     "policy_loss_upper_clip": null,
     "actor_mode_coeff_l2": {},
     "actor_mode_coeff_saturation": {
@@ -167,7 +167,7 @@
     "eval_stage": "final",
     "seed": 22345
   },
-  "description": "B99.2 fast from-scratch goal-conditioned constrained MPO: 10 ms, full 3 A/step action authority, 192 workers, compact boundary extrema observation, no online grid probe, final grid only.",
+  "description": "B99.4 stabilized actor-dual run: keeps B99.3 runtime-only/gfile-boundary/timing fixes, returns to 192 workers, keeps 10 ms and full +/-3 A/step authority, but slows actor updates, enables dual/cost pressure earlier, adds mild actor-side action regularization, and holds stage0 until stop. No directional R/Z hand patch.",
   "local_target_grid_probe": {
     "enabled": false,
     "every_iters": 0,
@@ -192,8 +192,8 @@
   },
   "constrained_mpo": {
     "enabled": true,
-    "description": "B99.2 keeps cost-Q softplus but makes dual pressure mild. Full action authority is available from step 0; action minimization is not allowed to dominate early learning.",
-    "actor_cost_coeff": 0.003,
+    "description": "B99.4 keeps constrained MPO but makes R/Z/Ip/action costs affect the actor much earlier. This is not a directional controller patch; it is a generic learned-constraint stabilizer.",
+    "actor_cost_coeff": 0.01,
     "cost_critic_loss_coeff": 0.05,
     "cost_target_clip": [
       0.0,
@@ -243,28 +243,28 @@
       "max": 5.0,
       "per_cost": {
         "R": {
-          "init": 0.05,
+          "init": 0.08,
           "target": 0.7,
-          "lr": 0.0005,
-          "max": 5.0
+          "lr": 0.0008,
+          "max": 6.0
         },
         "Z": {
-          "init": 0.05,
+          "init": 0.08,
           "target": 0.7,
-          "lr": 0.0005,
-          "max": 5.0
+          "lr": 0.0008,
+          "max": 6.0
         },
         "Ip": {
-          "init": 0.03,
+          "init": 0.04,
           "target": 0.5,
-          "lr": 0.0004,
+          "lr": 0.0005,
           "max": 4.0
         },
         "action": {
-          "init": 0.01,
+          "init": 0.02,
           "target": 0.6,
-          "lr": 0.00025,
-          "max": 2.0
+          "lr": 0.0004,
+          "max": 3.0
         },
         "vessel": {
           "init": 0.02,
@@ -276,10 +276,10 @@
     },
     "cost_q_nonnegative_actor": "softplus",
     "cost_q_nonnegative_target": "softplus",
-    "dual_actor_warmup_env_steps": 300000,
-    "dual_actor_ramp_env_steps": 900000,
-    "dual_update_warmup_env_steps": 400000,
-    "dual_update_ramp_env_steps": 1000000
+    "dual_actor_warmup_env_steps": 100000,
+    "dual_actor_ramp_env_steps": 400000,
+    "dual_update_warmup_env_steps": 100000,
+    "dual_update_ramp_env_steps": 500000
   },
   "final_evaluation": {
     "enabled": true,
@@ -288,7 +288,8 @@
     "grid": true,
     "eval_stage": "final",
     "seed": 92345,
-    "description": "Run full fixed + 3x3 local target grid once at the end. No repeated stochastic probes because TSC dynamics are deterministic."
+    "description": "B99.4 final fixed + 3x3 local grid only; no repeated grid probe during training."
   },
-  "tsc_config": "configs/tsc_low_field_side_118_runtime_only.json"
+  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_4.json",
+  "banner": "B99.4 stabilized actor-dual runtime-only 10ms extrema MPO Ray init"
 }
