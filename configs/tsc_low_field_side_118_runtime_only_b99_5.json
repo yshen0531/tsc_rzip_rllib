@@ -108,7 +108,7 @@
     200.0
   ],
   "vessel_current_observation_aggregation": "signed_sum",
-  "description": "B99.4 runtime-only TSC config. TSC command period remains 10 ms and slew remains 0.3 A/ms, so each coil can change +/-3 A per RL step. Training reads current runtime/geqdsk for plasma boundary but does not archive every step folder. No symlink workspace.",
+  "description": "B99.5 uses the same runtime-only TSC execution as B99.4; no symlink/persistent daemon changes.",
   "runtime_only_fast_mode": true,
   "save_step_artifacts": false,
   "save_artifacts_on_error": true,

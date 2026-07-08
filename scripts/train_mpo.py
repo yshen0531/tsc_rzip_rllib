@@ -540,12 +540,33 @@ def compute_constraint_cost_vector(
 
     These are engineering-spec violations, not reward weights.  B99 uses learned
     dual variables to determine their effective pressure on the actor.
+
+    B99.5 adds a ``max_abs_error_late_terminal`` cost type for R/Z/Ip.  It keeps
+    the same cost dimensions (R, Z, Ip) while making late-hold and terminal errors
+    visible to the duals/actor earlier.  This is deliberately symmetric in the
+    sign of the error: it is not a directional hand controller.
     """
     info = dict(info or {})
     try:
         act = np.asarray(action, dtype=np.float32).reshape(-1)
     except Exception:
         act = np.zeros(0, dtype=np.float32)
+
+    def _excess_abs(raw_value: float, tol_value: float, power: float = 1.0) -> float:
+        tol_value = max(abs(float(tol_value)), 1.0e-12)
+        excess = max(0.0, abs(float(raw_value)) - tol_value) / tol_value
+        return float(excess ** max(float(power), 1.0e-12))
+
+    def _late_gate(c: dict[str, Any]) -> float:
+        # Prefer the environment's smooth hold ramp when present; also support a
+        # time-fraction ramp so the cost works even if hold_weight is absent.
+        hold_gate = float(np.clip(info_float(info, "hold_weight", 0.0), 0.0, 1.0))
+        tf = float(info_float(info, "time_fraction", 0.0))
+        start = float(c.get("late_start_fraction", c.get("late_start_time_fraction", 0.55)) or 0.55)
+        ramp = max(float(c.get("late_ramp_fraction", 0.15) or 0.15), 1.0e-12)
+        time_gate = float(np.clip((tf - start) / ramp, 0.0, 1.0))
+        return float(max(hold_gate, time_gate))
+
     vals: list[float] = []
     for c in cost_configs_from_cfg(cfg):
         typ = str(c.get("type", "abs_error")).lower()
@@ -560,6 +581,33 @@ def compute_constraint_cost_vector(
             raw = abs(info_float(info, key, info_float(info, "terminal_" + key, 0.0)))
             tol = max(abs(float(c.get("tol", c.get("target", 1.0)) or 1.0)), 1.0e-12)
             val = (max(0.0, raw - tol) / tol) ** 2
+        elif typ in {"max_abs_error_late_terminal", "late_terminal_abs_error", "abs_error_max_late_terminal"}:
+            key = str(c.get("info_key", c.get("key", c.get("name", ""))))
+            base_tol = float(c.get("tol", c.get("target", 1.0)) or 1.0)
+            base_power = float(c.get("power", 1.0) or 1.0)
+            current_raw = info_float(info, key, 0.0)
+            base_val = _excess_abs(current_raw, base_tol, base_power)
+
+            late_tol = float(c.get("late_tol", base_tol) or base_tol)
+            late_power = float(c.get("late_power", base_power) or base_power)
+            late_multiplier = float(c.get("late_multiplier", 1.0) or 1.0)
+            late_val = late_multiplier * _late_gate(c) * _excess_abs(current_raw, late_tol, late_power)
+
+            term_key = str(c.get("terminal_info_key", "terminal_" + key))
+            terminal_active = info_float(info, "terminal_time_ms", 0.0) > 0.0
+            terminal_val = 0.0
+            if terminal_active:
+                terminal_tol = float(c.get("terminal_tol", late_tol) or late_tol)
+                terminal_power = float(c.get("terminal_power", late_power) or late_power)
+                terminal_multiplier = float(c.get("terminal_multiplier", late_multiplier) or late_multiplier)
+                terminal_raw = info_float(info, term_key, current_raw)
+                terminal_val = terminal_multiplier * _excess_abs(terminal_raw, terminal_tol, terminal_power)
+
+            combine = str(c.get("combine", "max")).lower()
+            if combine in {"sum", "add"}:
+                val = base_val + late_val + terminal_val
+            else:
+                val = max(base_val, late_val, terminal_val)
         elif typ == "mean_abs_action":
             mean_abs = float(np.mean(np.abs(act))) if act.size else 0.0
             target = max(abs(float(c.get("target", 0.35) or 0.35)), 1.0e-12)

@@ -1,5 +1,5 @@
 {
-  "env_config": "configs/tsc_low_field_side_118_runtime_only_b99_4.json",
+  "env_config": "configs/tsc_low_field_side_118_runtime_only_b99_5.json",
   "target": {
     "R": 0.75,
     "Z": 0.0,
@@ -189,7 +189,7 @@
       "enabled": true,
       "stages": [
         {
-          "name": "stage0_b99_4_500ms_fixed70_local30_stabilized_actor_dual_hold_until_stop",
+          "name": "stage0_b99_5_500ms_fixed70_local30_terminal_late_cost_hold_until_stop",
           "until_global_env_steps": 999999999999,
           "env_params": {
             "w_r": 1.0,
@@ -314,7 +314,7 @@
         }
       ],
       "unit": "global_env_steps",
-      "description": "B99.4 holds only the 500 ms stage until stop. Stage1 400 ms is disabled because B99.3 did not stabilize stage0."
+      "description": "B99.5 holds only the 500 ms stage until stop. Stage1 400 ms is disabled because B99.3 did not stabilize stage0."
     }
   },
   "failure": {
@@ -352,14 +352,14 @@
       "max_user_processes": 9000
     }
   },
-  "description": "B99.4: stabilized actor-dual version. Same 10 ms TSC control and runtime-only file flow as B99.3, but stage0 is extended/held through the run so the 500 ms target is learned before trying harder 400 ms curriculum. No contact features and no directional R/Z hand patch.",
+  "description": "B99.5 train config: B99.4 runtime-only stage0 retained; actor/dual stabilization plus symmetric terminal/late costs are configured in MPO JSON.",
   "target_randomization": {
     "enabled": true,
     "mode": "per_episode_fixed_random_mix",
-    "description": "B99.4 keeps the B99.3 stage0 fixed/local target mix only. No automatic transition to the wider/harder 400 ms stage.",
+    "description": "B99.5 keeps the B99.3 stage0 fixed/local target mix only. No automatic transition to the wider/harder 400 ms stage.",
     "stages": [
       {
-        "name": "stage0_b99_4_500ms_fixed70_local30_stabilized_actor_dual_hold_until_stop",
+        "name": "stage0_b99_5_500ms_fixed70_local30_terminal_late_cost_hold_until_stop",
         "until_global_env_steps": 999999999999,
         "fixed_probability": 0.7,
         "R_range": [
@@ -383,32 +383,18 @@
     "current_slew_a_per_ms": 0.3,
     "max_delta_a_per_policy_step": 3.0,
     "interpolation_assumption": "TSC card 15 receives current and next current at adjacent times; TSC linearly interpolates between nodes, so a 3 A node-to-node change over 10 ms respects 0.3 A/ms.",
-    "b99_4_action_authority": "actor_output_scale=1.0 from start, so each coil can use the full +/-3 A per 10 ms step allowed by the slew limiter."
+    "b99_5_action_authority": "actor_output_scale=1.0 from start, so each coil can use the full +/-3 A per 10 ms step allowed by the slew limiter."
   },
-  "b99_4_notes": {
-    "purpose": "Stabilize from-scratch goal-conditioned MPO after B99.3 showed large-action biased policy with R/Z/Ip all drifting.",
-    "kept": [
-      "runtime_only_fast_mode",
-      "GEQDSK nbbbs plasma-boundary extrema",
-      "10 ms control period",
-      "full +/-3 A per step action authority",
-      "final grid only"
+  "b99_5_notes": {
+    "purpose": "Escape B99.4 stable biased basin: R≈-0.16 m, Z≈-0.14 m, Ip≈-400~-550 A.",
+    "changes": [
+      "No stage1",
+      "No directional R/Z patch",
+      "Terminal/late cost is handled in constrained_mpo cost type",
+      "checkpoint_every_iters=25",
+      "actor_update_every=6",
+      "policy_loss_lower_clip=-8"
     ],
-    "changed": [
-      "workers 224 -> 192",
-      "stage1 disabled; stage0 held until stop",
-      "actor_update_every 2 -> 4",
-      "policy_loss_lower_clip -15 -> -10",
-      "dual/cost pressure starts at 100k",
-      "mild actor action L2/saturation regularization"
-    ],
-    "not_added": [
-      "directional R/Z hand patch",
-      "contact features",
-      "full 36-point boundary",
-      "20 ms control period",
-      "symlink workspace",
-      "persistent TSC daemon"
-    ]
+    "runtime": "Same runtime_only_fast_mode as B99.4."
   }
 }
