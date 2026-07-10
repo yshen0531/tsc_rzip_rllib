@@ -2121,6 +2121,35 @@ def summarize_episodes(episodes: list[dict[str, Any]]) -> dict[str, Any]:
     return out
 
 
+
+def compute_checkpoint_error_score(result: dict[str, Any], cfg: dict[str, Any] | None) -> float:
+    """Return a lower-is-better deployment error score for best checkpointing.
+
+    This is a logging/checkpoint selection helper only; it does not affect RL
+    rewards, costs, or actor updates.  B99.6 adds it because B99.5 reached its
+    best policy around iter36--37 but sparse checkpointing missed that region.
+    """
+    raw = cfg or {}
+    refs = raw.get("error_score_refs", {}) if isinstance(raw.get("error_score_refs", {}), dict) else {}
+    weights = raw.get("weights", {}) if isinstance(raw.get("weights", {}), dict) else {}
+    r_ref = max(abs(float(refs.get("R_m", 0.05) or 0.05)), 1.0e-12)
+    z_ref = max(abs(float(refs.get("Z_m", 0.05) or 0.05)), 1.0e-12)
+    ip_ref = max(abs(float(refs.get("Ip_a", 1500.0) or 1500.0)), 1.0e-12)
+    act_ref = max(abs(float(refs.get("action_mean_abs", 0.5) or 0.5)), 1.0e-12)
+    wr = float(weights.get("R", 1.0) or 1.0)
+    wz = float(weights.get("Z", 1.0) or 1.0)
+    wi = float(weights.get("Ip", 1.0) or 1.0)
+    wa = float(weights.get("action", 0.0) or 0.0)
+
+    r = abs(float(result.get("episode_terminal_R_error_mean", result.get("episode_fixed_terminal_R_error_mean", 0.0)) or 0.0))
+    z = abs(float(result.get("episode_terminal_Z_error_mean", result.get("episode_fixed_terminal_Z_error_mean", 0.0)) or 0.0))
+    ip = abs(float(result.get("episode_terminal_Ip_error_mean", result.get("episode_fixed_terminal_Ip_error_mean", 0.0)) or 0.0))
+    act = abs(float(result.get("episode_mean_abs_action_fragment_mean", result.get("fragment_mean_abs_action", 0.0)) or 0.0))
+    score = wr * (r / r_ref) + wz * (z / z_ref) + wi * (ip / ip_ref) + wa * (act / act_ref)
+    if not np.isfinite(score):
+        return float("inf")
+    return float(score)
+
 def force_stage_for_eval(train_cfg: dict[str, Any], stage_name: str | None) -> dict[str, Any]:
     """Return a deterministic eval config for a requested curriculum stage.
 
@@ -2687,15 +2716,36 @@ def main():
         _load_critic_compat(learner.tq1, payload.get("tq1", payload["q1"]), "tq1")
         _load_critic_compat(learner.tq2, payload.get("tq2", payload["q2"]), "tq2")
         # B99 checkpoint resume: cost critics and dual variables exist only in
-        # B99+ checkpoints.  Older B98/B97 checkpoints intentionally skip them.
-        for key, modules in [("cost_q1", learner.cost_q1), ("cost_q2", learner.cost_q2), ("tcost_q1", learner.tcost_q1), ("tcost_q2", learner.tcost_q2)]:
-            if isinstance(payload.get(key), dict):
-                for cname, state in payload[key].items():
-                    if cname in modules:
-                        modules[cname].load_state_dict(state)
-        if "duals" in payload:
-            learner.duals.load_state_dict(payload.get("duals"))
-        if "actor_opt" in payload and not obs_dim_changed:
+        # B99+ checkpoints.  B99.6 adds explicit resume controls because it
+        # intentionally changes cost definitions while resuming B99.5 iter25.
+        resume_cfg = cfg.get("resume", {}) if isinstance(cfg.get("resume", {}), dict) else {}
+        load_cost_critics = bool(resume_cfg.get("load_cost_critics", True))
+        if load_cost_critics:
+            for key, modules in [("cost_q1", learner.cost_q1), ("cost_q2", learner.cost_q2), ("tcost_q1", learner.tcost_q1), ("tcost_q2", learner.tcost_q2)]:
+                if isinstance(payload.get(key), dict):
+                    for cname, state in payload[key].items():
+                        if cname in modules:
+                            modules[cname].load_state_dict(state)
+        else:
+            print("Resume: cost critics are kept at current-config initialization (load_cost_critics=false).", flush=True)
+
+        dual_mode = str(resume_cfg.get("dual_load_mode", "full")).lower()
+        if "duals" in payload and dual_mode not in {"none", "ignore", "fresh"}:
+            saved_duals = payload.get("duals")
+            if dual_mode in {"values_only_current_config", "value_only_current_config", "values_only"} and isinstance(saved_duals, dict):
+                current_duals = learner.duals.state_dict()
+                for dname, saved in saved_duals.items():
+                    if dname in current_duals and isinstance(saved, dict) and "value" in saved:
+                        current_duals[dname]["value"] = float(saved["value"])
+                learner.duals.load_state_dict(current_duals)
+                print("Resume: loaded dual lambda values only; current config target/lr/min/max reapplied.", flush=True)
+            else:
+                learner.duals.load_state_dict(saved_duals)
+        elif dual_mode in {"none", "ignore", "fresh"}:
+            print("Resume: dual variables are kept at current-config initialization.", flush=True)
+
+        restore_optim = bool(resume_cfg.get("restore_optimizer_state", True))
+        if "actor_opt" in payload and not obs_dim_changed and restore_optim:
             try:
                 learner.actor_opt.load_state_dict(payload["actor_opt"])
                 learner.critic_opt.load_state_dict(payload["critic_opt"])
@@ -2703,11 +2753,17 @@ def main():
             except Exception as exc:
                 print(f"Warning: optimizer state not restored cleanly: {exc}")
         elif obs_dim_changed:
-            print("Optimizer states are intentionally not restored because B98 expanded observation inputs.", flush=True)
+            print("Optimizer states are intentionally not restored because observation inputs changed.", flush=True)
+        else:
+            print("Resume: optimizer states are reset from current config (restore_optimizer_state=false).", flush=True)
         if "log_eta" in payload:
             with torch.no_grad():
                 learner.log_eta.copy_(payload["log_eta"].to(device))
-        learner.update_count = int(payload.get("update_count", 0))
+        if bool(resume_cfg.get("reset_update_count", False)):
+            learner.update_count = 0
+            print("Resume: update_count reset to 0 for the current actor_update_every schedule.", flush=True)
+        else:
+            learner.update_count = int(payload.get("update_count", 0))
         stats = payload.get("stats", {}) if isinstance(payload.get("stats", {}), dict) else {}
         resume_env_steps = int(stats.get("env_steps", payload.get("env_steps", 0)) or 0)
         resume_iteration = int(stats.get("training_iteration", 0) or 0)
@@ -2775,6 +2831,9 @@ def main():
     pending = {w.rollout.remote(fragment_steps, rollout_deterministic): w for w in workers}
     last_actor_state = learner.actor_state_cpu()
     bad_probe_count = 0
+    best_cfg = cfg.get("best_checkpoint", {}) if isinstance(cfg.get("best_checkpoint", {}), dict) else {}
+    best_error_score = float("inf")
+    best_return = -float("inf")
 
     try:
         while total_steps < stop_env_steps:
@@ -2955,6 +3014,29 @@ def main():
                 result["early_stop_bad_probe_count"] = int(bad_probe_count)
                 result["early_stop_reason"] = str(reason)
                 result["early_stop_triggered"] = bool(stop_now)
+            best_t0 = time.time()
+            result["best/error_score"] = compute_checkpoint_error_score(result, best_cfg)
+            min_eps_best = int(best_cfg.get("min_episodes_completed", 1) or 1)
+            has_eps_best = int(result.get("episodes_completed", 0) or 0) >= min_eps_best
+            if bool(best_cfg.get("enabled", False)) and has_eps_best:
+                if bool(best_cfg.get("save_best_by_error_score", True)) and result["best/error_score"] < best_error_score:
+                    best_error_score = float(result["best/error_score"])
+                    result["best/error_score_improved"] = True
+                    result["best/error_score_best_so_far"] = float(best_error_score)
+                    learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_error_score", "best_error_score")), result)
+                else:
+                    result["best/error_score_improved"] = False
+                    result["best/error_score_best_so_far"] = float(best_error_score)
+                ep_ret = float(result.get("episode_episode_return_mean", -float("inf")) or -float("inf"))
+                if bool(best_cfg.get("save_best_by_return", False)) and np.isfinite(ep_ret) and ep_ret > best_return:
+                    best_return = float(ep_ret)
+                    result["best/return_improved"] = True
+                    result["best/return_best_so_far"] = float(best_return)
+                    learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_return", "best_return")), result)
+                else:
+                    result["best/return_improved"] = False
+                    result["best/return_best_so_far"] = float(best_return)
+            result["timing/best_checkpoint_s"] = float(time.time() - best_t0)
             io_t0 = time.time()
             safe_result = json_safe(result)
             with open(results_path, "a", encoding="utf-8") as f:
