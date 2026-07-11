@@ -1,6 +1,6 @@
 {
-  "run_name": "train_b99_6_resume_b99_5_iter25_actor_slow_ip_tight_runtime_only_mpo_192worker",
-  "train_config": "configs/train_b99_6_resume_b99_5_iter25_actor_slow_ip_tight_runtime_only.json",
+  "run_name": "train_b99_7_resume_b99_6_best_error_actor_freeze_runtime_only_mpo_192worker",
+  "train_config": "configs/train_b99_7_resume_b99_6_best_error_actor_freeze_runtime_only.json",
   "seed": 42,
   "stop_env_steps": 1000000,
   "checkpoint_every_iters": 10,
@@ -61,9 +61,9 @@
         "Z_scale_m": 0.04,
         "Ip_scale_a": 2500.0
       },
-      "description": "B99.6 keeps B99.5 explicit target features plus compact GEQDSK plasma-boundary extrema. No contact features."
+      "description": "B99.7 keeps explicit target features plus compact GEQDSK plasma-boundary extrema. No contact features."
     },
-    "observation_description": "B99.6 keeps explicit target features plus compact GEQDSK plasma-boundary extrema. No contact features."
+    "observation_description": "B99.7 keeps explicit target features plus compact GEQDSK plasma-boundary extrema. No contact features."
   },
   "privileged": {
     "include_currents": true,
@@ -128,18 +128,18 @@
       -2500.0,
       250.0
     ],
-    "actor_action_l2_coeff": 0.008,
-    "actor_action_saturation_coeff": 0.015,
-    "actor_action_soft_limit": 0.75,
+    "actor_action_l2_coeff": 0.012,
+    "actor_action_saturation_coeff": 0.025,
+    "actor_action_soft_limit": 0.7,
     "e_step_center_q": true,
     "e_step_normalize_q": true,
     "e_step_q_clip": 4.0,
-    "actor_update_every": 8,
+    "actor_update_every": 16,
     "policy_loss_clip": null,
     "actor_output_scale": 1.0,
     "actor_output_scale_init": 1.0,
     "actor_output_scale_schedule": null,
-    "policy_loss_lower_clip": -5.0,
+    "policy_loss_lower_clip": -2.5,
     "policy_loss_upper_clip": null,
     "actor_mode_coeff_l2": {},
     "actor_mode_coeff_saturation": {
@@ -150,7 +150,9 @@
     "actor_raw_pf_vertical_diff_when_r_neg": {
       "enabled": false,
       "coeff": 0.0
-    }
+    },
+    "actor_freeze_until_env_steps": 0,
+    "actor_freeze_eta": true
   },
   "deterministic_probe": {
     "enabled": true,
@@ -168,7 +170,7 @@
     "eval_stage": "final",
     "seed": 22345
   },
-  "description": "B99.6 resumes from the promising B99.5 iter25 checkpoint, slows actor updates further, tightens Ip late/terminal cost, strengthens terminal R/Z cost, and saves dense/best checkpoints to preserve mid-run good policies.",
+  "description": "B99.7 resumes from the B99.6 best_error_score checkpoint, freezes actor updates for a short catch-up window, keeps critic/cost-critic/dual learning, then resumes very conservative actor updates to preserve the mid-run good policy instead of overshooting it.",
   "local_target_grid_probe": {
     "enabled": false,
     "every_iters": 0,
@@ -193,7 +195,7 @@
   },
   "constrained_mpo": {
     "enabled": true,
-    "description": "B99.6 resumes B99.5 iter25 and further slows actor/template growth. R/Z terminal costs are strengthened, Ip late/terminal tolerance is tightened, and dual metadata is reapplied from current config after checkpoint load.",
+    "description": "B99.7 keeps B99.6 terminal/late constrained costs but resumes from B99.6 best_error_score and freezes actor updates for a critic/cost/dual catch-up window.",
     "actor_cost_coeff": 0.03,
     "cost_critic_loss_coeff": 0.05,
     "cost_target_clip": [
@@ -325,10 +327,10 @@
     "grid": true,
     "eval_stage": "final",
     "seed": 92345,
-    "description": "B99.5 final fixed + 3x3 local grid only; no repeated grid probe during training."
+    "description": "B99.7 final fixed + 3x3 local grid only; no repeated grid probe during training."
   },
-  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_5.json",
-  "banner": "B99.6 resume-B99.5-iter25 actor-slow terminal/late cost runtime-only 10ms extrema MPO Ray init",
+  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_7.json",
+  "banner": "B99.7 resume-B99.6-best-error actor-freeze runtime-only 10ms extrema MPO Ray init",
   "best_checkpoint": {
     "enabled": true,
     "save_best_by_error_score": true,
@@ -347,13 +349,17 @@
       "action": 0.2
     },
     "directory_error_score": "best_error_score",
-    "directory_return": "best_return"
+    "directory_return": "best_return",
+    "stop_if_no_best_error_improvement_iters": 30,
+    "description": "B99.7 seeds best_error_score from the resume checkpoint and stops if no new best is found for 30 iterations."
   },
   "resume": {
-    "description": "Scheme B: resume from B99.5 iter25. Restore actor/reward critic/eta/log_eta; reset optimizer state; keep dual values but reapply current config targets/lr/max; do not load stale cost critics because cost definitions changed.",
+    "description": "Scheme B99.7: resume from B99.6 best_error_score. Preserve the good actor/reward critic, reset optimizer momentum, do not load old cost critics unless explicitly requested, seed the new run best checkpoint from the resume checkpoint, and freeze actor/eta updates for 120k env steps so critic/cost/dual can catch up.",
     "restore_optimizer_state": false,
     "load_cost_critics": false,
     "dual_load_mode": "values_only_current_config",
-    "reset_update_count": true
+    "reset_update_count": true,
+    "actor_freeze_after_resume_env_steps": 120000,
+    "seed_best_checkpoint_from_resume": true
   }
 }

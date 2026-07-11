@@ -1,5 +1,5 @@
 {
-  "env_config": "configs/tsc_low_field_side_118_runtime_only_b99_6.json",
+  "env_config": "configs/tsc_low_field_side_118_runtime_only_b99_7.json",
   "target": {
     "R": 0.75,
     "Z": 0.0,
@@ -352,7 +352,7 @@
       "max_user_processes": 9000
     }
   },
-  "description": "B99.6 training config: same stage0-only runtime-only environment as B99.5, intended for resume from B99.5 iter25 checkpoint.",
+  "description": "B99.7 training config: same stage0-only runtime-only environment as B99.6, intended for resume from B99.6 best_error_score checkpoint with actor freeze/catch-up.",
   "target_randomization": {
     "enabled": true,
     "mode": "per_episode_fixed_random_mix",

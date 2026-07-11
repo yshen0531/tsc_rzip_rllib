@@ -1530,6 +1530,12 @@ class MpoLearner:
         # clipped positive policy-loss gradients and collapsed deterministic mean
         # actions back to no-op.
         self.actor_update_every = max(1, int(mpo_cfg.get("actor_update_every", 1)))
+        # B99.7: optional actor freeze after resume.  During the freeze window
+        # critic/cost-critic/dual updates continue, but actor parameters (and
+        # optionally eta) are not updated.  This is intended to preserve a good
+        # best-error policy while the value/cost estimates catch up around it.
+        self.actor_freeze_until_env_steps = int(mpo_cfg.get("actor_freeze_until_env_steps", 0) or 0)
+        self.actor_freeze_eta = bool(mpo_cfg.get("actor_freeze_eta", True))
         self.policy_loss_clip = mpo_cfg.get("policy_loss_clip", None)
         self.policy_loss_lower_clip = mpo_cfg.get("policy_loss_lower_clip", None)
         self.policy_loss_upper_clip = mpo_cfg.get("policy_loss_upper_clip", None)
@@ -1594,6 +1600,12 @@ class MpoLearner:
         )
         if hasattr(self.actor, "set_physics_blend_alpha"):
             self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+
+    def set_actor_freeze_until(self, env_steps: int) -> None:
+        self.actor_freeze_until_env_steps = max(0, int(env_steps))
+
+    def actor_is_frozen(self) -> bool:
+        return int(self.current_env_steps) < int(self.actor_freeze_until_env_steps)
 
     @staticmethod
     def _ramp01(env_steps: int, warmup: int, ramp: int) -> float:
@@ -1749,16 +1761,19 @@ class MpoLearner:
 
         eta = F.softplus(self.log_eta) + self.eta_min
         q_e = self._prepare_e_step_q(q_cand, mask)
+        actor_frozen = bool(self.actor_is_frozen())
         # Dual objective for eta: eta*eps + eta*E[logmeanexp(A/eta)].
         # B85-stable uses centered/normalized candidate advantages A to prevent
         # absolute Q-scale growth from driving eta and actor updates into a saturated policy.
         lse = torch.logsumexp(q_e / eta, dim=-1) - np.log(self.num_action_samples)
         eta_loss = (eta * self.eta_epsilon + eta * ((lse * mask).sum() / mask_sum))
-        self.eta_opt.zero_grad(set_to_none=True)
-        eta_loss.backward()
-        torch.nn.utils.clip_grad_norm_([self.log_eta], self.grad_clip)
-        self.eta_opt.step()
-        self._clamp_eta_()
+        eta_update_applied = not (actor_frozen and self.actor_freeze_eta)
+        if eta_update_applied:
+            self.eta_opt.zero_grad(set_to_none=True)
+            eta_loss.backward()
+            torch.nn.utils.clip_grad_norm_([self.log_eta], self.grad_clip)
+            self.eta_opt.step()
+            self._clamp_eta_()
         eta_used = (F.softplus(self.log_eta) + self.eta_min).detach()
         timing_eta_s = time.time() - t_stage
         t_stage = time.time()
@@ -1856,7 +1871,8 @@ class MpoLearner:
         timing_actor_loss_s = time.time() - t_stage
         t_stage = time.time()
         self.update_count += 1
-        actor_update_applied = (self.update_count % self.actor_update_every == 0)
+        actor_update_due = (self.update_count % self.actor_update_every == 0)
+        actor_update_applied = bool(actor_update_due and not actor_frozen)
         if actor_update_applied:
             self.actor_opt.zero_grad(set_to_none=True)
             actor_loss.backward()
@@ -1959,6 +1975,11 @@ class MpoLearner:
             "actor_action_scale": float(self.action_scale),
             "actor_physics_blend_alpha": float(self.physics_blend_alpha),
             "actor_update_applied": float(actor_update_applied),
+            "actor_update_due": float(actor_update_due),
+            "actor_frozen": float(actor_frozen),
+            "actor_freeze_until_env_steps": float(self.actor_freeze_until_env_steps),
+            "actor_freeze_remaining_env_steps": float(max(0, int(self.actor_freeze_until_env_steps) - int(self.current_env_steps))),
+            "eta_update_applied": float(eta_update_applied),
             "timing_update_total_s": float(time.time() - update_total_t0),
             "timing_to_torch_s": float(timing_to_torch_s),
             "timing_critic_s": float(timing_critic_s),
@@ -2673,6 +2694,8 @@ def main():
     learner = MpoLearner(cfg, obs_dim, priv_dim, action_dim, device=device)
     resume_env_steps = 0
     resume_iteration = 0
+    resume_payload_stats: dict[str, Any] = {}
+    resume_cfg_global: dict[str, Any] = cfg.get("resume", {}) if isinstance(cfg.get("resume", {}), dict) else {}
     learner.set_env_steps(0)
     if args.resume:
         print(f"[train_mpo] loading resume checkpoint: {Path(args.resume) / 'mpo_checkpoint.pt'}", flush=True)
@@ -2718,7 +2741,7 @@ def main():
         # B99 checkpoint resume: cost critics and dual variables exist only in
         # B99+ checkpoints.  B99.6 adds explicit resume controls because it
         # intentionally changes cost definitions while resuming B99.5 iter25.
-        resume_cfg = cfg.get("resume", {}) if isinstance(cfg.get("resume", {}), dict) else {}
+        resume_cfg = resume_cfg_global
         load_cost_critics = bool(resume_cfg.get("load_cost_critics", True))
         if load_cost_critics:
             for key, modules in [("cost_q1", learner.cost_q1), ("cost_q2", learner.cost_q2), ("tcost_q1", learner.tcost_q1), ("tcost_q2", learner.tcost_q2)]:
@@ -2767,7 +2790,16 @@ def main():
         stats = payload.get("stats", {}) if isinstance(payload.get("stats", {}), dict) else {}
         resume_env_steps = int(stats.get("env_steps", payload.get("env_steps", 0)) or 0)
         resume_iteration = int(stats.get("training_iteration", 0) or 0)
+        resume_payload_stats = dict(stats)
         learner.set_env_steps(resume_env_steps)
+        freeze_after = int(resume_cfg.get("actor_freeze_after_resume_env_steps", 0) or 0)
+        if freeze_after > 0:
+            learner.set_actor_freeze_until(resume_env_steps + freeze_after)
+            print(
+                f"Resume: actor frozen until env_steps={learner.actor_freeze_until_env_steps} "
+                f"({freeze_after} additional env steps after resume).",
+                flush=True,
+            )
         print(f"Resumed MPO checkpoint: {args.resume} env_steps={resume_env_steps} iteration={resume_iteration}", flush=True)
 
     replay_cfg = cfg.get("replay", {})
@@ -2834,6 +2866,39 @@ def main():
     best_cfg = cfg.get("best_checkpoint", {}) if isinstance(cfg.get("best_checkpoint", {}), dict) else {}
     best_error_score = float("inf")
     best_return = -float("inf")
+    best_no_improve_iters = 0
+    if args.resume and bool(resume_cfg_global.get("seed_best_checkpoint_from_resume", False)):
+        seeded = False
+        try:
+            seed_score = float(resume_payload_stats.get("best/error_score", resume_payload_stats.get("best/error_score_best_so_far", float("inf"))))
+        except Exception:
+            seed_score = float("inf")
+        if np.isfinite(seed_score):
+            best_error_score = seed_score
+            seed_stats = dict(resume_payload_stats)
+            seed_stats.setdefault("training_iteration", int(resume_iteration))
+            seed_stats.setdefault("env_steps", int(resume_env_steps))
+            seed_stats["best/error_score"] = float(seed_score)
+            seed_stats["best/error_score_best_so_far"] = float(seed_score)
+            seed_stats["best/error_score_improved"] = True
+            seed_stats["resume_seeded_best_error_score"] = True
+            if bool(best_cfg.get("enabled", False)) and bool(best_cfg.get("save_best_by_error_score", True)):
+                learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_error_score", "best_error_score")), seed_stats)
+                seeded = True
+        try:
+            seed_return = float(resume_payload_stats.get("episode_episode_return_mean", -float("inf")))
+        except Exception:
+            seed_return = -float("inf")
+        if np.isfinite(seed_return):
+            best_return = seed_return
+            if bool(best_cfg.get("enabled", False)) and bool(best_cfg.get("save_best_by_return", False)):
+                seed_stats_ret = dict(resume_payload_stats)
+                seed_stats_ret["best/return_best_so_far"] = float(seed_return)
+                seed_stats_ret["best/return_improved"] = True
+                seed_stats_ret["resume_seeded_best_return"] = True
+                learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_return", "best_return")), seed_stats_ret)
+        if seeded:
+            print(f"Seeded new run best_error_score from resume checkpoint: {best_error_score:.6g}", flush=True)
 
     try:
         while total_steps < stop_env_steps:
@@ -3021,10 +3086,12 @@ def main():
             if bool(best_cfg.get("enabled", False)) and has_eps_best:
                 if bool(best_cfg.get("save_best_by_error_score", True)) and result["best/error_score"] < best_error_score:
                     best_error_score = float(result["best/error_score"])
+                    best_no_improve_iters = 0
                     result["best/error_score_improved"] = True
                     result["best/error_score_best_so_far"] = float(best_error_score)
                     learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_error_score", "best_error_score")), result)
                 else:
+                    best_no_improve_iters += 1
                     result["best/error_score_improved"] = False
                     result["best/error_score_best_so_far"] = float(best_error_score)
                 ep_ret = float(result.get("episode_episode_return_mean", -float("inf")) or -float("inf"))
@@ -3036,6 +3103,13 @@ def main():
                 else:
                     result["best/return_improved"] = False
                     result["best/return_best_so_far"] = float(best_return)
+                result["best/error_score_iters_since_improvement"] = int(best_no_improve_iters)
+                stop_no_improve = int(best_cfg.get("stop_if_no_best_error_improvement_iters", 0) or 0)
+                if stop_no_improve > 0 and best_no_improve_iters >= stop_no_improve:
+                    stop_now = True
+                    prev_reason = str(result.get("early_stop_reason", "ok"))
+                    result["early_stop_reason"] = (prev_reason + ";" if prev_reason not in {"", "ok"} else "") + f"no_best_error_improvement_{best_no_improve_iters}_iters"
+                    result["early_stop_triggered"] = True
             result["timing/best_checkpoint_s"] = float(time.time() - best_t0)
             io_t0 = time.time()
             safe_result = json_safe(result)
