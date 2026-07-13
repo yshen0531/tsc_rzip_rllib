@@ -1536,6 +1536,15 @@ class MpoLearner:
         # best-error policy while the value/cost estimates catch up around it.
         self.actor_freeze_until_env_steps = int(mpo_cfg.get("actor_freeze_until_env_steps", 0) or 0)
         self.actor_freeze_eta = bool(mpo_cfg.get("actor_freeze_eta", True))
+        # B99.8 actor guard: independent of the initial time-based freeze.
+        # The main loop can temporarily disallow actor/eta updates based on
+        # reliable deterministic eval probes, while keeping critic/cost/dual
+        # updates alive.  This is intentionally a learner-side gate so all
+        # actor updates, including eta if actor_freeze_eta=true, share one
+        # safety switch.
+        self.actor_guard_enabled = bool(mpo_cfg.get("actor_guard_enabled", False))
+        self.actor_guard_update_allowed = not self.actor_guard_enabled
+        self.actor_guard_reason = "disabled" if not self.actor_guard_enabled else "waiting_for_reliable_eval"
         self.policy_loss_clip = mpo_cfg.get("policy_loss_clip", None)
         self.policy_loss_lower_clip = mpo_cfg.get("policy_loss_lower_clip", None)
         self.policy_loss_upper_clip = mpo_cfg.get("policy_loss_upper_clip", None)
@@ -1604,8 +1613,14 @@ class MpoLearner:
     def set_actor_freeze_until(self, env_steps: int) -> None:
         self.actor_freeze_until_env_steps = max(0, int(env_steps))
 
+    def set_actor_guard_update_allowed(self, allowed: bool, reason: str = "") -> None:
+        self.actor_guard_update_allowed = bool(allowed)
+        self.actor_guard_reason = str(reason or ("allowed" if allowed else "guard_blocked"))
+
     def actor_is_frozen(self) -> bool:
-        return int(self.current_env_steps) < int(self.actor_freeze_until_env_steps)
+        time_frozen = int(self.current_env_steps) < int(self.actor_freeze_until_env_steps)
+        guard_frozen = bool(self.actor_guard_enabled and not self.actor_guard_update_allowed)
+        return bool(time_frozen or guard_frozen)
 
     @staticmethod
     def _ramp01(env_steps: int, warmup: int, ramp: int) -> float:
@@ -1670,6 +1685,38 @@ class MpoLearner:
 
     def actor_state_cpu(self) -> dict[str, Any]:
         return {k: v.detach().cpu() for k, v in self.actor.state_dict().items()}
+
+    def restore_actor_policy_from_checkpoint(self, checkpoint_dir: Path | str) -> dict[str, float]:
+        """Restore deployable policy parts from an MPO checkpoint.
+
+        B99.8 uses this for actor-guard rollback.  Only actor/log_eta/action-scale
+        style policy state is restored; reward/cost critics, optimizer momentum,
+        replay and duals are intentionally left unchanged so critic/cost/dual can
+        keep improving around the protected policy.
+        """
+        ckpt_path = Path(checkpoint_dir) / "mpo_checkpoint.pt"
+        payload = torch.load(ckpt_path, map_location=self.device)
+        actor_state = payload.get("actor")
+        if not isinstance(actor_state, dict):
+            raise ValueError(f"Checkpoint has no actor state: {ckpt_path}")
+        self.actor.load_state_dict(actor_state, strict=True)
+        if "log_eta" in payload:
+            with torch.no_grad():
+                val = payload["log_eta"]
+                if not torch.is_tensor(val):
+                    val = torch.as_tensor(val, dtype=self.log_eta.dtype)
+                self.log_eta.copy_(val.to(device=self.device, dtype=self.log_eta.dtype))
+                self._clamp_eta_()
+        if "action_scale" in payload:
+            self.action_scale = float(payload.get("action_scale"))
+        if "physics_blend_alpha" in payload:
+            self.physics_blend_alpha = float(payload.get("physics_blend_alpha"))
+            if hasattr(self.actor, "set_physics_blend_alpha"):
+                self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+        return {
+            "restored_action_scale": float(self.action_scale),
+            "restored_physics_blend_alpha": float(self.physics_blend_alpha),
+        }
 
     def _to_torch(self, batch: dict[str, np.ndarray]) -> dict[str, torch.Tensor]:
         return {k: torch.as_tensor(v, dtype=torch.float32, device=self.device) for k, v in batch.items()}
@@ -1979,6 +2026,16 @@ class MpoLearner:
             "actor_frozen": float(actor_frozen),
             "actor_freeze_until_env_steps": float(self.actor_freeze_until_env_steps),
             "actor_freeze_remaining_env_steps": float(max(0, int(self.actor_freeze_until_env_steps) - int(self.current_env_steps))),
+            "actor_guard_enabled": float(self.actor_guard_enabled),
+            "actor_guard_update_allowed": float(self.actor_guard_update_allowed),
+            # Numeric reason code for CSV-friendly diagnostics:
+            # 0 disabled/allowed, 1 initial_freeze, 2 waiting_eval, 3 trial_window, 4 degraded_restored, 9 other.
+            "actor_guard_reason_code": float({
+                "disabled": 0, "allowed": 0, "initial_freeze": 1,
+                "waiting_for_reliable_eval": 2, "waiting_eval": 2,
+                "trial_window": 3, "eval_improved_trial": 3, "eval_close_trial": 3,
+                "degraded_restored": 4,
+            }.get(str(self.actor_guard_reason), 9)),
             "eta_update_applied": float(eta_update_applied),
             "timing_update_total_s": float(time.time() - update_total_t0),
             "timing_to_torch_s": float(timing_to_torch_s),
@@ -2170,6 +2227,64 @@ def compute_checkpoint_error_score(result: dict[str, Any], cfg: dict[str, Any] |
     if not np.isfinite(score):
         return float("inf")
     return float(score)
+
+
+
+def compute_prefixed_probe_error_score(probe: dict[str, Any], prefix: str, cfg: dict[str, Any] | None) -> float:
+    """Lower-is-better deterministic-probe score used by B99.8 guard/best.
+
+    Unlike rollout episode summaries, this is based on an explicit deterministic
+    in-process probe.  It is therefore far less vulnerable to the B99.7 failure
+    mode where three very short rollout episodes produced a fake best score.
+    """
+    raw = cfg or {}
+    refs = raw.get("error_score_refs", {}) if isinstance(raw.get("error_score_refs", {}), dict) else {}
+    weights = raw.get("weights", {}) if isinstance(raw.get("weights", {}), dict) else {}
+    r_ref = max(abs(float(refs.get("R_m", 0.05) or 0.05)), 1.0e-12)
+    z_ref = max(abs(float(refs.get("Z_m", 0.05) or 0.05)), 1.0e-12)
+    ip_ref = max(abs(float(refs.get("Ip_a", 5000.0) or 5000.0)), 1.0e-12)
+    act_ref = max(abs(float(refs.get("action_mean_abs", 0.5) or 0.5)), 1.0e-12)
+    wr = float(weights.get("R", 1.0) or 1.0)
+    wz = float(weights.get("Z", 1.0) or 1.0)
+    wi = float(weights.get("Ip", 0.1) or 0.0)
+    wa = float(weights.get("action", 0.0) or 0.0)
+    r = abs(float(probe.get(f"{prefix}_terminal_R_error", 0.0) or 0.0))
+    z = abs(float(probe.get(f"{prefix}_terminal_Z_error", 0.0) or 0.0))
+    ip = abs(float(probe.get(f"{prefix}_terminal_Ip_error", 0.0) or 0.0))
+    act = abs(float(probe.get(f"{prefix}_mean_abs_action", 0.0) or 0.0))
+    score = wr * (r / r_ref) + wz * (z / z_ref) + wi * (ip / ip_ref) + wa * (act / act_ref)
+    if not np.isfinite(score):
+        return float("inf")
+    return float(score)
+
+
+def prefixed_probe_is_reliable(probe: dict[str, Any], prefix: str, cfg: dict[str, Any] | None) -> tuple[bool, str]:
+    """Return whether a deterministic probe is safe to use for guard/best.
+
+    The defaults deliberately reject short/failed probes because B99.7 showed
+    that very short rollout episodes can create fake excellent terminal errors.
+    """
+    raw = cfg or {}
+    try:
+        min_len = int(raw.get("min_len", 50) or 0)
+        max_action = raw.get("max_mean_abs_action", None)
+        max_score = raw.get("max_score", None)
+        length = int(probe.get(f"{prefix}_len", 0) or 0)
+        if length < min_len:
+            return False, f"len<{min_len}"
+        for key in ["terminal_R_error", "terminal_Z_error", "terminal_Ip_error", "mean_abs_action"]:
+            val = float(probe.get(f"{prefix}_{key}", float("nan")))
+            if not np.isfinite(val):
+                return False, f"nonfinite_{key}"
+        if max_action is not None and float(probe.get(f"{prefix}_mean_abs_action", 0.0) or 0.0) > float(max_action):
+            return False, "mean_abs_action_too_high"
+        if max_score is not None:
+            score = compute_prefixed_probe_error_score(probe, prefix, raw)
+            if score > float(max_score):
+                return False, "score_too_high"
+        return True, "ok"
+    except Exception as exc:
+        return False, f"error:{exc}"
 
 def force_stage_for_eval(train_cfg: dict[str, Any], stage_name: str | None) -> dict[str, Any]:
     """Return a deterministic eval config for a requested curriculum stage.
@@ -2867,6 +2982,34 @@ def main():
     best_error_score = float("inf")
     best_return = -float("inf")
     best_no_improve_iters = 0
+    best_no_improve_evals = 0
+    # B99.8: actor guard uses reliable deterministic eval probes, not rollout
+    # episode summaries, to decide best checkpoints and whether actor updates
+    # may continue.  A small trial window is allowed only after an improved or
+    # still-close eval; degraded evals restore the protected best actor.
+    actor_guard_cfg = cfg.get("actor_guard", {}) if isinstance(cfg.get("actor_guard", {}), dict) else {}
+    actor_guard_enabled = bool(actor_guard_cfg.get("enabled", False))
+    guard_eval_cfg = actor_guard_cfg.get("eval", {}) if isinstance(actor_guard_cfg.get("eval", {}), dict) else {}
+    guard_prefix = str(guard_eval_cfg.get("prefix", "eval_guard_det"))
+    guard_eval_every_iters = int(guard_eval_cfg.get("every_iters", 5) or 0)
+    guard_eval_stage = str(guard_eval_cfg.get("eval_stage", probe_stage))
+    guard_eval_seed = int(guard_eval_cfg.get("seed", probe_seed + 7000))
+    guard_score_cfg = actor_guard_cfg.get("score", best_cfg) if isinstance(actor_guard_cfg.get("score", best_cfg), dict) else best_cfg
+    guard_reliable_cfg = actor_guard_cfg.get("reliable_eval", {}) if isinstance(actor_guard_cfg.get("reliable_eval", {}), dict) else {}
+    guard_min_delta = float(actor_guard_cfg.get("improvement_min_delta", 0.02) or 0.0)
+    guard_close_rel = float(actor_guard_cfg.get("allow_if_within_rel_margin", 0.08) or 0.0)
+    guard_close_abs = float(actor_guard_cfg.get("allow_if_within_abs_margin", 0.35) or 0.0)
+    guard_trial_after_improve = int(actor_guard_cfg.get("trial_update_iters_after_improvement", 2) or 0)
+    guard_trial_if_close = int(actor_guard_cfg.get("trial_update_iters_if_close", 1) or 0)
+    guard_restore_on_degrade = bool(actor_guard_cfg.get("restore_best_on_degrade", True))
+    actor_guard_allowed_until_iter = -1
+    actor_guard_last_score = float("inf")
+    actor_guard_last_reliable = False
+    actor_guard_last_reason = "not_evaluated"
+    actor_guard_last_restored = False
+    best_ckpt_error_dir = ckpt_dir / str(best_cfg.get("directory_error_score", "best_error_score"))
+    if actor_guard_enabled:
+        learner.set_actor_guard_update_allowed(False, "waiting_for_reliable_eval")
     if args.resume and bool(resume_cfg_global.get("seed_best_checkpoint_from_resume", False)):
         seeded = False
         try:
@@ -2899,10 +3042,20 @@ def main():
                 learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_return", "best_return")), seed_stats_ret)
         if seeded:
             print(f"Seeded new run best_error_score from resume checkpoint: {best_error_score:.6g}", flush=True)
+            if actor_guard_enabled and str(best_cfg.get("score_source", "rollout")).lower() in {"guard_eval", "eval", "deterministic_eval"}:
+                # The resume checkpoint may have been scored with an older rollout-based
+                # formula.  Keep the checkpoint protected on disk, but require the
+                # first reliable B99.8 deterministic guard eval to seed the comparable
+                # in-run best score.
+                best_error_score = float("inf")
+                best_no_improve_iters = 0
+                best_no_improve_evals = 0
+                print("B99.8: protected resume checkpoint saved, but comparable best_error_score will be seeded by the first reliable guard eval.", flush=True)
 
     try:
         while total_steps < stop_env_steps:
             iteration += 1
+            actor_guard_last_restored = False
             iter_t0 = time.time()
             # Collect one fragment from every worker per iteration.
             collect_t0 = time.time()
@@ -2955,6 +3108,13 @@ def main():
             worker_param_rpc_s = 0.0
             pipeline_wait_s = 0.0
             learner.set_env_steps(total_steps)
+            if actor_guard_enabled:
+                if int(total_steps) < int(learner.actor_freeze_until_env_steps):
+                    learner.set_actor_guard_update_allowed(False, "initial_freeze")
+                elif int(iteration) <= int(actor_guard_allowed_until_iter):
+                    learner.set_actor_guard_update_allowed(True, "trial_window")
+                else:
+                    learner.set_actor_guard_update_allowed(False, "waiting_eval")
             current_reward_params = reward_params_for_global_steps(cfg["train_config_resolved"], total_steps)
             current_target_randomization_params = target_randomization_params_for_global_steps(cfg["train_config_resolved"], total_steps)
             if total_steps >= warmup_steps and replay.can_sample(batch_size, seq_len):
@@ -3041,6 +3201,12 @@ def main():
                 **{f"learner/{k}": v for k, v in loss_mean.items()},
                 **{f"replay/{k}": v for k, v in replay.stats().items()},
                 **ep_summary,
+                "actor_guard/enabled": bool(actor_guard_enabled),
+                "actor_guard/allowed_until_iter": int(actor_guard_allowed_until_iter),
+                "actor_guard/last_score": float(actor_guard_last_score),
+                "actor_guard/last_reliable": bool(actor_guard_last_reliable),
+                "actor_guard/last_reason": str(actor_guard_last_reason),
+                "actor_guard/last_restored": bool(actor_guard_last_restored),
             }
             stop_now = False
             probe_for_early_stop = None
@@ -3073,6 +3239,26 @@ def main():
                     result.update(grid_probe)
                 except Exception as exc:
                     result["eval_grid_error"] = repr(exc)
+            guard_probe = None
+            if actor_guard_enabled and guard_eval_every_iters > 0 and iteration % guard_eval_every_iters == 0:
+                try:
+                    guard_probe = run_online_policy_probe(
+                        cfg, learner, iteration=iteration, env_steps=total_steps,
+                        seed=guard_eval_seed + iteration, stage=guard_eval_stage,
+                        deterministic=True, prefix=guard_prefix
+                    )
+                    result.update(guard_probe)
+                    guard_score = compute_prefixed_probe_error_score(guard_probe, guard_prefix, guard_score_cfg)
+                    guard_reliable, guard_reason = prefixed_probe_is_reliable(guard_probe, guard_prefix, {**guard_score_cfg, **guard_reliable_cfg})
+                    result["actor_guard/eval_score"] = float(guard_score)
+                    result["actor_guard/eval_reliable"] = bool(guard_reliable)
+                    result["actor_guard/eval_reliable_reason"] = str(guard_reason)
+                    actor_guard_last_score = float(guard_score)
+                    actor_guard_last_reliable = bool(guard_reliable)
+                    actor_guard_last_reason = str(guard_reason)
+                except Exception as exc:
+                    result["actor_guard/eval_error"] = repr(exc)
+                    guard_probe = None
             result["timing/eval_probe_s"] = float(time.time() - eval_t0)
             if probe_for_early_stop is not None:
                 stop_now, bad_probe_count, reason = should_early_stop_from_probe(cfg, iteration, probe_for_early_stop, bad_probe_count)
@@ -3080,36 +3266,114 @@ def main():
                 result["early_stop_reason"] = str(reason)
                 result["early_stop_triggered"] = bool(stop_now)
             best_t0 = time.time()
-            result["best/error_score"] = compute_checkpoint_error_score(result, best_cfg)
-            min_eps_best = int(best_cfg.get("min_episodes_completed", 1) or 1)
-            has_eps_best = int(result.get("episodes_completed", 0) or 0) >= min_eps_best
-            if bool(best_cfg.get("enabled", False)) and has_eps_best:
-                if bool(best_cfg.get("save_best_by_error_score", True)) and result["best/error_score"] < best_error_score:
-                    best_error_score = float(result["best/error_score"])
-                    best_no_improve_iters = 0
-                    result["best/error_score_improved"] = True
-                    result["best/error_score_best_so_far"] = float(best_error_score)
-                    learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_error_score", "best_error_score")), result)
+            best_score_source = str(best_cfg.get("score_source", "rollout")).lower()
+            result["best/error_score_source"] = best_score_source
+            result["best/error_score_best_so_far"] = float(best_error_score)
+            result["best/error_score_improved"] = False
+            result["best/error_score_reliable"] = False
+            result["actor_guard/restored_best_actor"] = False
+
+            if bool(best_cfg.get("enabled", False)) and best_score_source in {"guard_eval", "eval", "deterministic_eval"}:
+                # B99.8 path: best checkpoint and no-improvement stop are based only
+                # on reliable deterministic guard probes.  Rollout episode statistics
+                # are still logged, but cannot overwrite best_error_score.
+                if guard_probe is not None and bool(result.get("actor_guard/eval_reliable", False)):
+                    score = float(result.get("actor_guard/eval_score", float("inf")))
+                    result["best/error_score"] = float(score)
+                    result["best/error_score_reliable"] = True
+                    improved = bool(score < (best_error_score - guard_min_delta))
+                    close_to_best = bool(np.isfinite(best_error_score) and score <= best_error_score * (1.0 + guard_close_rel) + guard_close_abs)
+                    if bool(best_cfg.get("save_best_by_error_score", True)) and (improved or not np.isfinite(best_error_score)):
+                        best_error_score = float(score)
+                        best_no_improve_iters = 0
+                        best_no_improve_evals = 0
+                        result["best/error_score_improved"] = True
+                        result["best/error_score_best_so_far"] = float(best_error_score)
+                        result["actor_guard/action"] = "improved_allow_trial"
+                        actor_guard_allowed_until_iter = max(actor_guard_allowed_until_iter, iteration + guard_trial_after_improve)
+                        learner.save_checkpoint(best_ckpt_error_dir, result)
+                    else:
+                        best_no_improve_evals += 1
+                        best_no_improve_iters += 1
+                        result["best/error_score_improved"] = False
+                        result["best/error_score_best_so_far"] = float(best_error_score)
+                        if close_to_best:
+                            result["actor_guard/action"] = "close_allow_trial"
+                            actor_guard_allowed_until_iter = max(actor_guard_allowed_until_iter, iteration + guard_trial_if_close)
+                        else:
+                            result["actor_guard/action"] = "degraded_freeze"
+                            actor_guard_allowed_until_iter = -1
+                            if guard_restore_on_degrade and (best_ckpt_error_dir / "mpo_checkpoint.pt").exists():
+                                try:
+                                    restore_stats = learner.restore_actor_policy_from_checkpoint(best_ckpt_error_dir)
+                                    result.update({f"actor_guard/{k}": v for k, v in restore_stats.items()})
+                                    result["actor_guard/restored_best_actor"] = True
+                                    actor_guard_last_restored = True
+                                    learner.set_actor_guard_update_allowed(False, "degraded_restored")
+                                    # Queue a sync to all workers.  It may wait behind already-running
+                                    # rollout tasks, but prevents the restored policy from being ignored
+                                    # for subsequent fragments.
+                                    sync_t0 = time.time()
+                                    restored_actor_state = learner.actor_state_cpu()
+                                    ray.get([
+                                        w.set_actor_weights.remote(
+                                            restored_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha),
+                                            current_reward_params, current_target_randomization_params,
+                                        )
+                                        for w in workers
+                                    ])
+                                    result["timing/actor_guard_restore_sync_s"] = float(time.time() - sync_t0)
+                                    last_actor_state = restored_actor_state
+                                except Exception as exc:
+                                    result["actor_guard/restore_error"] = repr(exc)
+                    result["best/error_score_iters_since_improvement"] = int(best_no_improve_evals)
+                    result["actor_guard/allowed_until_iter"] = int(actor_guard_allowed_until_iter)
+                    result["actor_guard/best_score"] = float(best_error_score)
+                    stop_no_improve = int(best_cfg.get("stop_if_no_best_error_improvement_evals", best_cfg.get("stop_if_no_best_error_improvement_iters", 0)) or 0)
+                    if stop_no_improve > 0 and best_no_improve_evals >= stop_no_improve:
+                        stop_now = True
+                        prev_reason = str(result.get("early_stop_reason", "ok"))
+                        result["early_stop_reason"] = (prev_reason + ";" if prev_reason not in {"", "ok"} else "") + f"no_reliable_best_eval_improvement_{best_no_improve_evals}_evals"
+                        result["early_stop_triggered"] = True
                 else:
-                    best_no_improve_iters += 1
-                    result["best/error_score_improved"] = False
+                    result["best/error_score"] = float("inf")
                     result["best/error_score_best_so_far"] = float(best_error_score)
-                ep_ret = float(result.get("episode_episode_return_mean", -float("inf")) or -float("inf"))
-                if bool(best_cfg.get("save_best_by_return", False)) and np.isfinite(ep_ret) and ep_ret > best_return:
-                    best_return = float(ep_ret)
-                    result["best/return_improved"] = True
-                    result["best/return_best_so_far"] = float(best_return)
-                    learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_return", "best_return")), result)
-                else:
-                    result["best/return_improved"] = False
-                    result["best/return_best_so_far"] = float(best_return)
-                result["best/error_score_iters_since_improvement"] = int(best_no_improve_iters)
-                stop_no_improve = int(best_cfg.get("stop_if_no_best_error_improvement_iters", 0) or 0)
-                if stop_no_improve > 0 and best_no_improve_iters >= stop_no_improve:
-                    stop_now = True
-                    prev_reason = str(result.get("early_stop_reason", "ok"))
-                    result["early_stop_reason"] = (prev_reason + ";" if prev_reason not in {"", "ok"} else "") + f"no_best_error_improvement_{best_no_improve_iters}_iters"
-                    result["early_stop_triggered"] = True
+                    result["best/error_score_iters_since_improvement"] = int(best_no_improve_evals)
+            else:
+                # Legacy rollout-statistics path retained for older configs.
+                result["best/error_score"] = compute_checkpoint_error_score(result, best_cfg)
+                min_eps_best = int(best_cfg.get("min_episodes_completed", 1) or 1)
+                min_len_best = float(best_cfg.get("min_episode_len_mean", 0.0) or 0.0)
+                has_eps_best = int(result.get("episodes_completed", 0) or 0) >= min_eps_best
+                has_len_best = float(result.get("episode_episode_len_mean", 0.0) or 0.0) >= min_len_best
+                if bool(best_cfg.get("enabled", False)) and has_eps_best and has_len_best:
+                    if bool(best_cfg.get("save_best_by_error_score", True)) and result["best/error_score"] < best_error_score:
+                        best_error_score = float(result["best/error_score"])
+                        best_no_improve_iters = 0
+                        result["best/error_score_improved"] = True
+                        result["best/error_score_best_so_far"] = float(best_error_score)
+                        learner.save_checkpoint(best_ckpt_error_dir, result)
+                    else:
+                        best_no_improve_iters += 1
+                        result["best/error_score_improved"] = False
+                        result["best/error_score_best_so_far"] = float(best_error_score)
+                    result["best/error_score_iters_since_improvement"] = int(best_no_improve_iters)
+                    stop_no_improve = int(best_cfg.get("stop_if_no_best_error_improvement_iters", 0) or 0)
+                    if stop_no_improve > 0 and best_no_improve_iters >= stop_no_improve:
+                        stop_now = True
+                        prev_reason = str(result.get("early_stop_reason", "ok"))
+                        result["early_stop_reason"] = (prev_reason + ";" if prev_reason not in {"", "ok"} else "") + f"no_best_error_improvement_{best_no_improve_iters}_iters"
+                        result["early_stop_triggered"] = True
+
+            ep_ret = float(result.get("episode_episode_return_mean", -float("inf")) or -float("inf"))
+            if bool(best_cfg.get("enabled", False)) and bool(best_cfg.get("save_best_by_return", False)) and np.isfinite(ep_ret) and ep_ret > best_return:
+                best_return = float(ep_ret)
+                result["best/return_improved"] = True
+                result["best/return_best_so_far"] = float(best_return)
+                learner.save_checkpoint(ckpt_dir / str(best_cfg.get("directory_return", "best_return")), result)
+            else:
+                result["best/return_improved"] = False
+                result["best/return_best_so_far"] = float(best_return)
             result["timing/best_checkpoint_s"] = float(time.time() - best_t0)
             io_t0 = time.time()
             safe_result = json_safe(result)
@@ -3167,6 +3431,31 @@ def main():
                         seed=int(final_eval_cfg.get("seed", 92345)) + 2000,
                         stage=str(final_eval_cfg.get("eval_stage", "final")),
                     ))
+                if bool(final_eval_cfg.get("best_error_score", True)):
+                    best_dir = ckpt_dir / str((cfg.get("best_checkpoint", {}) or {}).get("directory_error_score", "best_error_score"))
+                    if (best_dir / "mpo_checkpoint.pt").exists():
+                        latest_actor_state = {k: v.detach().clone() for k, v in learner.actor.state_dict().items()}
+                        latest_log_eta = learner.log_eta.detach().clone()
+                        latest_action_scale = float(learner.action_scale)
+                        latest_alpha = float(getattr(learner, "physics_blend_alpha", 0.0))
+                        try:
+                            learner.restore_actor_policy_from_checkpoint(best_dir)
+                            final_summary.update(run_online_policy_probe(
+                                cfg, learner, iteration=iteration, env_steps=total_steps,
+                                seed=int(final_eval_cfg.get("seed", 92345)) + 3000,
+                                stage=str(final_eval_cfg.get("eval_stage", "final")),
+                                deterministic=True, prefix="eval_best_error_det"
+                            ))
+                        finally:
+                            learner.actor.load_state_dict(latest_actor_state, strict=True)
+                            with torch.no_grad():
+                                learner.log_eta.copy_(latest_log_eta.to(device=learner.device, dtype=learner.log_eta.dtype))
+                            learner.action_scale = latest_action_scale
+                            learner.physics_blend_alpha = latest_alpha
+                            if hasattr(learner.actor, "set_physics_blend_alpha"):
+                                learner.actor.set_physics_blend_alpha(latest_alpha)
+                    else:
+                        final_summary["eval_best_error_det_error"] = f"missing checkpoint: {best_dir}"
             except Exception as exc:
                 final_summary["final_eval_error"] = repr(exc)
             final_summary["timing/final_eval_s"] = float(time.time() - final_t0)

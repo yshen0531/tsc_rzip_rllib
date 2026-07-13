@@ -1,6 +1,6 @@
 {
-  "run_name": "train_b99_7_resume_b99_6_best_error_actor_freeze_runtime_only_mpo_192worker",
-  "train_config": "configs/train_b99_7_resume_b99_6_best_error_actor_freeze_runtime_only.json",
+  "run_name": "train_b99_8_resume_b99_6_best_error_actor_guard_ip_relaxed_runtime_only_mpo_192worker",
+  "train_config": "configs/train_b99_8_resume_b99_6_best_error_actor_guard_ip_relaxed_runtime_only.json",
   "seed": 42,
   "stop_env_steps": 1000000,
   "checkpoint_every_iters": 10,
@@ -99,7 +99,7 @@
   "mpo": {
     "gamma": 0.9704,
     "tau": 0.005,
-    "actor_lr": 5e-05,
+    "actor_lr": 3e-05,
     "critic_lr": 0.0002,
     "eta_lr": 0.0001,
     "eta_init": 1.0,
@@ -134,12 +134,12 @@
     "e_step_center_q": true,
     "e_step_normalize_q": true,
     "e_step_q_clip": 4.0,
-    "actor_update_every": 16,
+    "actor_update_every": 32,
     "policy_loss_clip": null,
     "actor_output_scale": 1.0,
     "actor_output_scale_init": 1.0,
     "actor_output_scale_schedule": null,
-    "policy_loss_lower_clip": -2.5,
+    "policy_loss_lower_clip": -1.0,
     "policy_loss_upper_clip": null,
     "actor_mode_coeff_l2": {},
     "actor_mode_coeff_saturation": {
@@ -152,17 +152,23 @@
       "coeff": 0.0
     },
     "actor_freeze_until_env_steps": 0,
-    "actor_freeze_eta": true
+    "actor_freeze_eta": true,
+    "actor_guard_enabled": true
   },
   "deterministic_probe": {
-    "enabled": true,
+    "enabled": false,
     "every_iters": 100,
     "eval_stage": "final",
     "seed": 12345
   },
   "early_stop": {
     "enabled": false,
-    "note": "B99 from-scratch algorithmic run; do not stop before target-sensitivity diagnostics are available."
+    "note": "B99.8 uses actor_guard reliable deterministic eval for guard/best; legacy early_stop disabled.",
+    "score_r_ref": 0.05,
+    "score_z_ref": 0.05,
+    "score_ip_ref": 5000.0,
+    "score_ip_weight": 0.05,
+    "score_action_weight": 0.1
   },
   "stochastic_probe": {
     "enabled": false,
@@ -170,7 +176,7 @@
     "eval_stage": "final",
     "seed": 22345
   },
-  "description": "B99.7 resumes from the B99.6 best_error_score checkpoint, freezes actor updates for a short catch-up window, keeps critic/cost-critic/dual learning, then resumes very conservative actor updates to preserve the mid-run good policy instead of overshooting it.",
+  "description": "B99.8 resumes from B99.6 best_error_score, relaxes Ip priority because TSC heating/current evolution can dominate Ip, extends actor freeze, and adds a deterministic-eval actor guard: only bounded trial actor updates are allowed after reliable eval improvement or near-best eval; degraded eval restores the protected best actor.",
   "local_target_grid_probe": {
     "enabled": false,
     "every_iters": 0,
@@ -195,7 +201,7 @@
   },
   "constrained_mpo": {
     "enabled": true,
-    "description": "B99.7 keeps B99.6 terminal/late constrained costs but resumes from B99.6 best_error_score and freezes actor updates for a critic/cost/dual catch-up window.",
+    "description": "B99.8 keeps R/Z terminal-late constraints strong, but relaxes Ip priority because TSC heating/current evolution can dominate Ip; Ip is monitored but no longer a hard driver.",
     "actor_cost_coeff": 0.03,
     "cost_critic_loss_coeff": 0.05,
     "cost_target_clip": [
@@ -246,19 +252,19 @@
         "type": "max_abs_error_late_terminal",
         "info_key": "Ip_error",
         "terminal_info_key": "terminal_Ip_error",
-        "tol": 5000.0,
-        "late_tol": 1500.0,
-        "terminal_tol": 1500.0,
+        "tol": 8000.0,
+        "late_tol": 5000.0,
+        "terminal_tol": 5000.0,
         "late_start_fraction": 0.55,
         "late_ramp_fraction": 0.15,
-        "late_multiplier": 1.5,
-        "terminal_multiplier": 2.5,
+        "late_multiplier": 0.6,
+        "terminal_multiplier": 0.8,
         "power": 1.0,
         "late_power": 1.0,
         "terminal_power": 1.0,
         "combine": "max",
-        "clip": 8.0,
-        "description": "B99.6 tightens late/terminal Ip cost so -2000 A drift is no longer nearly free."
+        "clip": 3.0,
+        "description": "B99.8 relaxed Ip cost: allow ~1000 A and even several kA error when R/Z are better; monitor Ip without letting it dominate actor."
       },
       {
         "name": "action",
@@ -294,10 +300,10 @@
           "max": 8.0
         },
         "Ip": {
-          "init": 0.05,
-          "target": 0.35,
-          "lr": 0.0008,
-          "max": 5.0
+          "init": 0.01,
+          "target": 1.0,
+          "lr": 0.0002,
+          "max": 1.0
         },
         "action": {
           "init": 0.02,
@@ -325,41 +331,78 @@
     "deterministic_fixed": true,
     "stochastic_fixed": false,
     "grid": true,
+    "best_error_score": true,
     "eval_stage": "final",
     "seed": 92345,
-    "description": "B99.7 final fixed + 3x3 local grid only; no repeated grid probe during training."
+    "description": "B99.8 final eval evaluates latest and protected best_error_score actor."
   },
-  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_7.json",
-  "banner": "B99.7 resume-B99.6-best-error actor-freeze runtime-only 10ms extrema MPO Ray init",
+  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_8.json",
+  "banner": "B99.8 resume-B99.6-best-error actor-guard Ip-relaxed runtime-only 10ms extrema MPO Ray init",
   "best_checkpoint": {
     "enabled": true,
+    "score_source": "guard_eval",
     "save_best_by_error_score": true,
-    "save_best_by_return": true,
-    "min_episodes_completed": 1,
+    "save_best_by_return": false,
+    "min_episodes_completed": 30,
+    "min_episode_len_mean": 30,
     "error_score_refs": {
       "R_m": 0.05,
       "Z_m": 0.05,
-      "Ip_a": 1500.0,
+      "Ip_a": 5000.0,
       "action_mean_abs": 0.5
     },
     "weights": {
       "R": 1.0,
       "Z": 1.0,
-      "Ip": 1.0,
-      "action": 0.2
+      "Ip": 0.08,
+      "action": 0.1
     },
     "directory_error_score": "best_error_score",
     "directory_return": "best_return",
-    "stop_if_no_best_error_improvement_iters": 30,
-    "description": "B99.7 seeds best_error_score from the resume checkpoint and stops if no new best is found for 30 iterations."
+    "stop_if_no_best_error_improvement_evals": 12,
+    "description": "B99.8 best checkpoint uses reliable deterministic guard eval only; rollout episode summaries cannot overwrite best_error_score."
   },
   "resume": {
-    "description": "Scheme B99.7: resume from B99.6 best_error_score. Preserve the good actor/reward critic, reset optimizer momentum, do not load old cost critics unless explicitly requested, seed the new run best checkpoint from the resume checkpoint, and freeze actor/eta updates for 120k env steps so critic/cost/dual can catch up.",
+    "description": "B99.8: resume from B99.6 best_error_score; reset optimizer/cost critics as before; protect the resume actor, freeze actor longer, then actor guard permits only bounded trial updates based on reliable deterministic eval.",
     "restore_optimizer_state": false,
     "load_cost_critics": false,
     "dual_load_mode": "values_only_current_config",
     "reset_update_count": true,
-    "actor_freeze_after_resume_env_steps": 120000,
+    "actor_freeze_after_resume_env_steps": 220000,
     "seed_best_checkpoint_from_resume": true
+  },
+  "actor_guard": {
+    "enabled": true,
+    "description": "Scheme C: permit actor updates only as bounded trials after reliable deterministic eval improvement or near-best eval; freeze and optionally restore best on degradation.",
+    "eval": {
+      "every_iters": 5,
+      "eval_stage": "final",
+      "seed": 22345,
+      "prefix": "eval_guard_det"
+    },
+    "score": {
+      "error_score_refs": {
+        "R_m": 0.05,
+        "Z_m": 0.05,
+        "Ip_a": 5000.0,
+        "action_mean_abs": 0.5
+      },
+      "weights": {
+        "R": 1.0,
+        "Z": 1.0,
+        "Ip": 0.08,
+        "action": 0.1
+      }
+    },
+    "reliable_eval": {
+      "min_len": 50,
+      "max_mean_abs_action": 0.55
+    },
+    "improvement_min_delta": 0.02,
+    "allow_if_within_rel_margin": 0.08,
+    "allow_if_within_abs_margin": 0.35,
+    "trial_update_iters_after_improvement": 2,
+    "trial_update_iters_if_close": 1,
+    "restore_best_on_degrade": true
   }
 }
