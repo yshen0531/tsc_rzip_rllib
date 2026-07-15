@@ -108,7 +108,7 @@
     200.0
   ],
   "vessel_current_observation_aggregation": "signed_sum",
-  "description": "B99.7 uses the same runtime-only TSC execution as B99.6; no symlink/persistent daemon changes.",
+  "description": "B99.9 keeps the verified B99.8 runtime-only TSC execution path; no symlink or persistent-daemon change.",
   "runtime_only_fast_mode": true,
   "save_step_artifacts": false,
   "save_artifacts_on_error": true,

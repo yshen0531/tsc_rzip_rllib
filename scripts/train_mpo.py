@@ -1489,13 +1489,16 @@ class MpoLearner:
         self.dual_actor_ramp_env_steps = int(c_mpo_cfg.get("dual_actor_ramp_env_steps", 600000) or 0)
         self.current_env_steps = 0
 
-        self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=float(mpo_cfg.get("actor_lr", 1e-4)))
+        self.actor_lr = float(mpo_cfg.get("actor_lr", 1e-4))
+        self.critic_lr = float(mpo_cfg.get("critic_lr", 3e-4))
+        self.eta_lr = float(mpo_cfg.get("eta_lr", 1e-3))
+        self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=self.actor_lr)
         critic_params = list(self.q1.parameters()) + list(self.q2.parameters())
         for m in list(self.cost_q1.values()) + list(self.cost_q2.values()):
             critic_params += list(m.parameters())
-        self.critic_opt = torch.optim.Adam(critic_params, lr=float(mpo_cfg.get("critic_lr", 3e-4)))
+        self.critic_opt = torch.optim.Adam(critic_params, lr=self.critic_lr)
         self.log_eta = torch.nn.Parameter(torch.tensor(float(np.log(np.exp(float(mpo_cfg.get("eta_init", 1.0))) - 1.0)), device=self.device))
-        self.eta_opt = torch.optim.Adam([self.log_eta], lr=float(mpo_cfg.get("eta_lr", 1e-3)))
+        self.eta_opt = torch.optim.Adam([self.log_eta], lr=self.eta_lr)
         self.action_dim = int(action_dim)
         self.coil_names = action_names_from_cfg(cfg, self.action_dim)
         self.gamma = float(mpo_cfg.get("gamma", 0.997))
@@ -1545,6 +1548,11 @@ class MpoLearner:
         self.actor_guard_enabled = bool(mpo_cfg.get("actor_guard_enabled", False))
         self.actor_guard_update_allowed = not self.actor_guard_enabled
         self.actor_guard_reason = "disabled" if not self.actor_guard_enabled else "waiting_for_reliable_eval"
+        # B99.9 transactional guard can freeze dual adaptation while critics keep
+        # learning.  This prevents the B99.8 wind-up where actor was frozen but
+        # R/Z lambdas continued integrating constraint violations.
+        self.dual_updates_enabled = True
+        self.dual_update_reason = "enabled"
         self.policy_loss_clip = mpo_cfg.get("policy_loss_clip", None)
         self.policy_loss_lower_clip = mpo_cfg.get("policy_loss_lower_clip", None)
         self.policy_loss_upper_clip = mpo_cfg.get("policy_loss_upper_clip", None)
@@ -1617,6 +1625,60 @@ class MpoLearner:
         self.actor_guard_update_allowed = bool(allowed)
         self.actor_guard_reason = str(reason or ("allowed" if allowed else "guard_blocked"))
 
+    def set_dual_updates_enabled(self, enabled: bool, reason: str = "") -> None:
+        self.dual_updates_enabled = bool(enabled)
+        self.dual_update_reason = str(reason or ("enabled" if enabled else "guard_frozen"))
+
+    def reset_actor_optimizer(self) -> None:
+        """Reset Adam state after accepting an interpolated line-search step.
+
+        Adam moments from the full proposal are not consistent with a fractional
+        parameter interpolation.  Starting fresh is safer than carrying momentum
+        from a step that was only partially accepted.
+        """
+        self.actor_opt = torch.optim.Adam(self.actor.parameters(), lr=self.actor_lr)
+
+    def snapshot_policy_transaction(self) -> dict[str, Any]:
+        """Capture all policy-side state needed for exact transaction rollback."""
+        return {
+            "actor": {k: v.detach().clone() for k, v in self.actor.state_dict().items()},
+            "log_eta": self.log_eta.detach().clone(),
+            "actor_opt": copy.deepcopy(self.actor_opt.state_dict()),
+            "eta_opt": copy.deepcopy(self.eta_opt.state_dict()),
+            "update_count": int(self.update_count),
+            "action_scale": float(self.action_scale),
+            "physics_blend_alpha": float(self.physics_blend_alpha),
+        }
+
+    def restore_policy_transaction(self, snapshot: dict[str, Any], *, restore_optimizers: bool = True) -> None:
+        self.actor.load_state_dict(snapshot["actor"], strict=True)
+        with torch.no_grad():
+            self.log_eta.copy_(snapshot["log_eta"].to(device=self.device, dtype=self.log_eta.dtype))
+            self._clamp_eta_()
+        self.update_count = int(snapshot.get("update_count", self.update_count))
+        self.action_scale = float(snapshot.get("action_scale", self.action_scale))
+        self.physics_blend_alpha = float(snapshot.get("physics_blend_alpha", self.physics_blend_alpha))
+        if hasattr(self.actor, "set_physics_blend_alpha"):
+            self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+        if restore_optimizers:
+            self.actor_opt.load_state_dict(copy.deepcopy(snapshot["actor_opt"]))
+            self.eta_opt.load_state_dict(copy.deepcopy(snapshot["eta_opt"]))
+
+    @staticmethod
+    def interpolate_actor_states(
+        base_state: dict[str, torch.Tensor], proposal_state: dict[str, torch.Tensor], alpha: float
+    ) -> dict[str, torch.Tensor]:
+        """Interpolate trainable actor state; preserve non-floating buffers safely."""
+        out: dict[str, torch.Tensor] = {}
+        a = float(alpha)
+        for key, base in base_state.items():
+            prop = proposal_state[key]
+            if torch.is_floating_point(base):
+                out[key] = base + a * (prop - base)
+            else:
+                out[key] = prop.clone() if a >= 1.0 else base.clone()
+        return out
+
     def actor_is_frozen(self) -> bool:
         time_frozen = int(self.current_env_steps) < int(self.actor_freeze_until_env_steps)
         guard_frozen = bool(self.actor_guard_enabled and not self.actor_guard_update_allowed)
@@ -1686,13 +1748,18 @@ class MpoLearner:
     def actor_state_cpu(self) -> dict[str, Any]:
         return {k: v.detach().cpu() for k, v in self.actor.state_dict().items()}
 
-    def restore_actor_policy_from_checkpoint(self, checkpoint_dir: Path | str) -> dict[str, float]:
-        """Restore deployable policy parts from an MPO checkpoint.
+    def restore_actor_policy_from_checkpoint(
+        self,
+        checkpoint_dir: Path | str,
+        *,
+        restore_actor_optimizer: bool = False,
+        restore_eta_optimizer: bool = False,
+        restore_update_count: bool = False,
+    ) -> dict[str, float]:
+        """Restore policy state from a checkpoint.
 
-        B99.8 uses this for actor-guard rollback.  Only actor/log_eta/action-scale
-        style policy state is restored; reward/cost critics, optimizer momentum,
-        replay and duals are intentionally left unchanged so critic/cost/dual can
-        keep improving around the protected policy.
+        B99.9 can restore optimizer/update-count state for exact rollback or keep
+        fresh optimizers when importing a protected actor on top of newer critics.
         """
         ckpt_path = Path(checkpoint_dir) / "mpo_checkpoint.pt"
         payload = torch.load(ckpt_path, map_location=self.device)
@@ -1713,6 +1780,12 @@ class MpoLearner:
             self.physics_blend_alpha = float(payload.get("physics_blend_alpha"))
             if hasattr(self.actor, "set_physics_blend_alpha"):
                 self.actor.set_physics_blend_alpha(self.physics_blend_alpha)
+        if restore_actor_optimizer and isinstance(payload.get("actor_opt"), dict):
+            self.actor_opt.load_state_dict(payload["actor_opt"])
+        if restore_eta_optimizer and isinstance(payload.get("eta_opt"), dict):
+            self.eta_opt.load_state_dict(payload["eta_opt"])
+        if restore_update_count:
+            self.update_count = int(payload.get("update_count", self.update_count))
         return {
             "restored_action_scale": float(self.action_scale),
             "restored_physics_blend_alpha": float(self.physics_blend_alpha),
@@ -1721,7 +1794,15 @@ class MpoLearner:
     def _to_torch(self, batch: dict[str, np.ndarray]) -> dict[str, torch.Tensor]:
         return {k: torch.as_tensor(v, dtype=torch.float32, device=self.device) for k, v in batch.items()}
 
-    def update(self, batch_np: dict[str, np.ndarray]) -> dict[str, float]:
+    def update(
+        self,
+        batch_np: dict[str, np.ndarray],
+        *,
+        force_actor_update: bool = False,
+        suppress_actor_update: bool = False,
+        allow_eta_update: bool | None = None,
+        allow_dual_update: bool | None = None,
+    ) -> dict[str, float]:
         update_total_t0 = time.time()
         t_stage = update_total_t0
         b = self._to_torch(batch_np)
@@ -1808,13 +1889,16 @@ class MpoLearner:
 
         eta = F.softplus(self.log_eta) + self.eta_min
         q_e = self._prepare_e_step_q(q_cand, mask)
-        actor_frozen = bool(self.actor_is_frozen())
+        actor_frozen = bool(self.actor_is_frozen()) and not bool(force_actor_update)
         # Dual objective for eta: eta*eps + eta*E[logmeanexp(A/eta)].
         # B85-stable uses centered/normalized candidate advantages A to prevent
         # absolute Q-scale growth from driving eta and actor updates into a saturated policy.
         lse = torch.logsumexp(q_e / eta, dim=-1) - np.log(self.num_action_samples)
         eta_loss = (eta * self.eta_epsilon + eta * ((lse * mask).sum() / mask_sum))
-        eta_update_applied = not (actor_frozen and self.actor_freeze_eta)
+        if allow_eta_update is None:
+            eta_update_applied = not (actor_frozen and self.actor_freeze_eta)
+        else:
+            eta_update_applied = bool(allow_eta_update)
         if eta_update_applied:
             self.eta_opt.zero_grad(set_to_none=True)
             eta_loss.backward()
@@ -1918,8 +2002,8 @@ class MpoLearner:
         timing_actor_loss_s = time.time() - t_stage
         t_stage = time.time()
         self.update_count += 1
-        actor_update_due = (self.update_count % self.actor_update_every == 0)
-        actor_update_applied = bool(actor_update_due and not actor_frozen)
+        actor_update_due = bool(force_actor_update or (self.update_count % self.actor_update_every == 0))
+        actor_update_applied = bool(actor_update_due and not actor_frozen and not suppress_actor_update)
         if actor_update_applied:
             self.actor_opt.zero_grad(set_to_none=True)
             actor_loss.backward()
@@ -1933,6 +2017,9 @@ class MpoLearner:
         # constraint costs specified in the config.
         with torch.no_grad():
             dual_update_scale = float(self._dual_update_scale())
+            dual_allowed = self.dual_updates_enabled if allow_dual_update is None else bool(allow_dual_update)
+            if not dual_allowed:
+                dual_update_scale = 0.0
             if self.cost_dim > 0:
                 observed_cost_mean = ((cost * mask.unsqueeze(-1)).sum(dim=(0, 1)) / mask_sum).detach()
                 if dual_update_scale > 0.0:
@@ -2023,6 +2110,8 @@ class MpoLearner:
             "actor_physics_blend_alpha": float(self.physics_blend_alpha),
             "actor_update_applied": float(actor_update_applied),
             "actor_update_due": float(actor_update_due),
+            "actor_update_forced": float(bool(force_actor_update)),
+            "actor_update_suppressed": float(bool(suppress_actor_update)),
             "actor_frozen": float(actor_frozen),
             "actor_freeze_until_env_steps": float(self.actor_freeze_until_env_steps),
             "actor_freeze_remaining_env_steps": float(max(0, int(self.actor_freeze_until_env_steps) - int(self.current_env_steps))),
@@ -2037,6 +2126,8 @@ class MpoLearner:
                 "degraded_restored": 4,
             }.get(str(self.actor_guard_reason), 9)),
             "eta_update_applied": float(eta_update_applied),
+            "dual_updates_enabled": float(self.dual_updates_enabled),
+            "dual_update_allowed_effective": float(dual_update_scale > 0.0),
             "timing_update_total_s": float(time.time() - update_total_t0),
             "timing_to_torch_s": float(timing_to_torch_s),
             "timing_critic_s": float(timing_critic_s),
@@ -2258,6 +2349,173 @@ def compute_prefixed_probe_error_score(probe: dict[str, Any], prefix: str, cfg: 
     return float(score)
 
 
+def compute_transaction_probe_score(probe: dict[str, Any], prefix: str, cfg: dict[str, Any] | None) -> float:
+    """R/Z- and hold-dominant score for B99.9 transactional policy trials.
+
+    Terminal errors alone were misleading in B99.6--B99.8.  This score gives
+    most weight to late-window RMS R/Z error, then terminal R/Z error, with
+    small velocity/action penalties and deliberately weak Ip influence.
+    """
+    raw = cfg or {}
+    refs = raw.get("refs", {}) if isinstance(raw.get("refs", {}), dict) else {}
+    weights = raw.get("weights", {}) if isinstance(raw.get("weights", {}), dict) else {}
+
+    def ref(name: str, default: float) -> float:
+        return max(abs(float(refs.get(name, default) or default)), 1.0e-12)
+
+    def val(name: str, default: float = 0.0) -> float:
+        try:
+            out = float(probe.get(f"{prefix}_{name}", default))
+            return out if np.isfinite(out) else float("inf")
+        except Exception:
+            return float("inf")
+
+    terminal_r = abs(val("terminal_R_error")) / ref("terminal_R_m", 0.05)
+    terminal_z = abs(val("terminal_Z_error")) / ref("terminal_Z_m", 0.05)
+    late_r = abs(val("late_R_rms")) / ref("late_R_m", 0.05)
+    late_z = abs(val("late_Z_rms")) / ref("late_Z_m", 0.05)
+    late_velocity = abs(val("late_velocity_mean")) / ref("velocity_norm", 1.0)
+    ip = abs(val("terminal_Ip_error")) / ref("Ip_a", 5000.0)
+    action = abs(val("late_mean_abs_action", val("mean_abs_action"))) / ref("action_mean_abs", 0.5)
+    hold_fraction = min(1.0, max(0.0, val("late_hold_fraction", 0.0)))
+    hold_deficit = 1.0 - hold_fraction
+
+    score = (
+        float(weights.get("terminal_R", 0.25)) * terminal_r
+        + float(weights.get("terminal_Z", 0.25)) * terminal_z
+        + float(weights.get("late_R", 0.75)) * late_r
+        + float(weights.get("late_Z", 0.75)) * late_z
+        + float(weights.get("velocity", 0.10)) * late_velocity
+        + float(weights.get("hold_deficit", 0.25)) * hold_deficit
+        + float(weights.get("Ip", 0.03)) * ip
+        + float(weights.get("action", 0.05)) * action
+    )
+    return float(score) if np.isfinite(score) else float("inf")
+
+
+def transaction_probe_is_reliable(
+    probe: dict[str, Any], prefix: str, cfg: dict[str, Any] | None
+) -> tuple[bool, str]:
+    raw = cfg or {}
+    min_len = int(raw.get("min_len", 60) or 0)
+    min_late_steps = int(raw.get("min_late_steps", 15) or 0)
+    max_action = float(raw.get("max_mean_abs_action", 0.55) or 0.55)
+    length = int(probe.get(f"{prefix}_len", 0) or 0)
+    late_steps = int(probe.get(f"{prefix}_late_steps", 0) or 0)
+    if length < min_len:
+        return False, f"len<{min_len}"
+    if late_steps < min_late_steps:
+        return False, f"late_steps<{min_late_steps}"
+    required = [
+        "terminal_R_error", "terminal_Z_error", "terminal_Ip_error",
+        "late_R_rms", "late_Z_rms", "late_velocity_mean",
+        "late_mean_abs_action", "late_hold_fraction",
+    ]
+    for key in required:
+        try:
+            if not np.isfinite(float(probe.get(f"{prefix}_{key}", float("nan")))):
+                return False, f"nonfinite_{key}"
+        except Exception:
+            return False, f"invalid_{key}"
+    if float(probe.get(f"{prefix}_mean_abs_action", 0.0) or 0.0) > max_action:
+        return False, "mean_abs_action_too_high"
+    return True, "ok"
+
+
+def compact_transaction_probe(probe: dict[str, Any], prefix: str) -> dict[str, Any]:
+    names = [
+        "return", "len", "hold_success", "quality_success", "first_reach", "stable_hold",
+        "terminal_R_error", "terminal_Z_error", "terminal_Ip_error", "terminal_velocity_norm",
+        "late_R_abs_mean", "late_Z_abs_mean", "late_Ip_abs_mean",
+        "late_R_rms", "late_Z_rms", "late_velocity_mean", "late_mean_abs_action",
+        "late_hold_fraction", "mean_abs_action", "max_abs_action",
+        "target_R", "target_Z", "target_Ip",
+    ]
+    return {name: probe.get(f"{prefix}_{name}") for name in names}
+
+
+def transaction_scenarios_from_cfg(cfg: dict[str, Any]) -> list[dict[str, Any]]:
+    txn = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
+    scenarios = txn.get("scenarios", []) if isinstance(txn.get("scenarios", []), list) else []
+    if not scenarios:
+        scenarios = [
+            {"name": "fixed", "seed": 33101, "R_delta": 0.0, "Z_delta": 0.0, "Ip_delta": 0.0},
+            {"name": "lowR_highZ", "seed": 33102, "R_delta": -0.01, "Z_delta": 0.02, "Ip_delta": 0.0},
+            {"name": "highR_lowZ", "seed": 33103, "R_delta": 0.01, "Z_delta": -0.02, "Ip_delta": 0.0},
+        ]
+    out: list[dict[str, Any]] = []
+    for i, raw in enumerate(scenarios):
+        if not isinstance(raw, dict):
+            continue
+        out.append({
+            "name": sanitize_metric_name(str(raw.get("name", f"scenario_{i}"))),
+            "seed": int(raw.get("seed", 33101 + i)),
+            "R_delta": float(raw.get("R_delta", 0.0) or 0.0),
+            "Z_delta": float(raw.get("Z_delta", 0.0) or 0.0),
+            "Ip_delta": float(raw.get("Ip_delta", 0.0) or 0.0),
+        })
+    return out
+
+
+def aggregate_transaction_scores(scores: list[float], worst_weight: float) -> float:
+    arr = np.asarray(scores, dtype=np.float64)
+    if arr.size == 0 or not np.all(np.isfinite(arr)):
+        return float("inf")
+    return float(np.mean(arr) + float(worst_weight) * np.max(arr))
+
+
+def evaluate_transaction_scenarios(
+    cfg: dict[str, Any],
+    learner: MpoLearner,
+    *,
+    iteration: int,
+    env_steps: int,
+    scenarios: list[dict[str, Any]],
+    scenario_names: set[str] | None = None,
+) -> dict[str, Any]:
+    txn = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
+    score_cfg = txn.get("score", {}) if isinstance(txn.get("score", {}), dict) else {}
+    reliable_cfg = txn.get("reliable_eval", {}) if isinstance(txn.get("reliable_eval", {}), dict) else {}
+    stage = str(txn.get("eval_stage", "final"))
+    prefix = "txn_eval"
+    base_target = fixed_target_from_train_cfg(cfg.get("train_config_resolved", {}))
+    details: dict[str, Any] = {}
+    scores: list[float] = []
+    all_reliable = True
+    for sc in scenarios:
+        name = str(sc["name"])
+        if scenario_names is not None and name not in scenario_names:
+            continue
+        target = {
+            "R": float(base_target["R"]) + float(sc.get("R_delta", 0.0)),
+            "Z": float(base_target["Z"]) + float(sc.get("Z_delta", 0.0)),
+            "Ip": float(base_target["Ip"]) + float(sc.get("Ip_delta", 0.0)),
+        }
+        probe = run_online_policy_probe(
+            cfg,
+            learner,
+            iteration=iteration,
+            env_steps=env_steps,
+            seed=int(sc["seed"]),
+            stage=stage,
+            deterministic=True,
+            prefix=prefix,
+            target_override=target,
+        )
+        score = compute_transaction_probe_score(probe, prefix, score_cfg)
+        reliable, reason = transaction_probe_is_reliable(probe, prefix, reliable_cfg)
+        compact = compact_transaction_probe(probe, prefix)
+        compact.update({"score": float(score), "reliable": bool(reliable), "reliable_reason": str(reason)})
+        details[name] = compact
+        scores.append(float(score))
+        all_reliable = bool(all_reliable and reliable)
+    return {
+        "details": details,
+        "scores": scores,
+        "all_reliable": bool(all_reliable and len(scores) > 0),
+    }
+
+
 def prefixed_probe_is_reliable(probe: dict[str, Any], prefix: str, cfg: dict[str, Any] | None) -> tuple[bool, str]:
     """Return whether a deterministic probe is safe to use for guard/best.
 
@@ -2378,6 +2636,10 @@ def run_online_policy_probe(
     total = 0.0
     steps = 0
     action_abs: list[float] = []
+    r_error_hist: list[float] = []
+    z_error_hist: list[float] = []
+    ip_error_hist: list[float] = []
+    velocity_hist: list[float] = []
     max_abs = 0.0
     last_info = dict(info or {})
     reward_params = dict(train_cfg.get("reward", {}))
@@ -2424,6 +2686,16 @@ def run_online_policy_probe(
             total += float(reward)
             steps += 1
             action_abs.append(float(np.mean(np.abs(action))))
+            def _finite_info_value(key: str, fallback: float = 0.0) -> float:
+                try:
+                    value = float(info.get(key, fallback))
+                    return value if np.isfinite(value) else float(fallback)
+                except Exception:
+                    return float(fallback)
+            r_error_hist.append(_finite_info_value("R_error"))
+            z_error_hist.append(_finite_info_value("Z_error"))
+            ip_error_hist.append(_finite_info_value("Ip_error"))
+            velocity_hist.append(_finite_info_value("velocity_norm"))
             max_abs = max(max_abs, float(np.max(np.abs(action))))
             action_sum += action
             action_abs_sum += np.abs(action)
@@ -2468,6 +2740,44 @@ def run_online_policy_probe(
     ip_score = abs(ip_err) / score_ip_ref
     relaxed_score = shape_score + score_ip_weight * ip_score + score_action_weight * mean_action
 
+    txn_cfg = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
+    probe_metrics_cfg = txn_cfg.get("probe_metrics", {}) if isinstance(txn_cfg.get("probe_metrics", {}), dict) else {}
+    late_start_fraction = float(probe_metrics_cfg.get("late_start_fraction", 0.65) or 0.65)
+    late_start_fraction = min(0.95, max(0.0, late_start_fraction))
+    late_start = min(max(0, int(math.floor(steps * late_start_fraction))), max(0, steps - 1)) if steps > 0 else 0
+    r_arr = np.asarray(r_error_hist, dtype=np.float64)
+    z_arr = np.asarray(z_error_hist, dtype=np.float64)
+    ip_arr = np.asarray(ip_error_hist, dtype=np.float64)
+    vel_arr = np.asarray(velocity_hist, dtype=np.float64)
+    act_arr = np.asarray(action_abs, dtype=np.float64)
+    r_late = r_arr[late_start:] if r_arr.size else np.zeros(0, dtype=np.float64)
+    z_late = z_arr[late_start:] if z_arr.size else np.zeros(0, dtype=np.float64)
+    ip_late = ip_arr[late_start:] if ip_arr.size else np.zeros(0, dtype=np.float64)
+    vel_late = vel_arr[late_start:] if vel_arr.size else np.zeros(0, dtype=np.float64)
+    act_late = act_arr[late_start:] if act_arr.size else np.zeros(0, dtype=np.float64)
+
+    def _mean_abs(arr: np.ndarray) -> float:
+        return float(np.mean(np.abs(arr))) if arr.size else float("inf")
+
+    def _rms(arr: np.ndarray) -> float:
+        return float(np.sqrt(np.mean(np.square(arr)))) if arr.size else float("inf")
+
+    reward_eval_cfg = dict(train_cfg.get("reward", {}) or {})
+    hold_r_tol = float(probe_metrics_cfg.get("hold_r_tol", reward_eval_cfg.get("hold_success_r_tol", 0.08)) or 0.08)
+    hold_z_tol = float(probe_metrics_cfg.get("hold_z_tol", reward_eval_cfg.get("hold_success_z_tol", 0.08)) or 0.08)
+    hold_vel_max = float(probe_metrics_cfg.get("hold_velocity_norm_max", reward_eval_cfg.get("hold_success_velocity_norm_max", 1.0)) or 1.0)
+    hold_action_max = float(probe_metrics_cfg.get("hold_action_mean_abs_max", reward_eval_cfg.get("hold_success_action_mean_abs_max", 0.6)) or 0.6)
+    if r_late.size and z_late.size and vel_late.size and act_late.size:
+        hold_mask = (
+            (np.abs(r_late) <= hold_r_tol)
+            & (np.abs(z_late) <= hold_z_tol)
+            & (vel_late <= hold_vel_max)
+            & (act_late <= hold_action_max)
+        )
+        late_hold_fraction = float(np.mean(hold_mask.astype(np.float64)))
+    else:
+        late_hold_fraction = 0.0
+
     out = {
         f"{prefix}_iteration": int(iteration),
         f"{prefix}_env_steps": int(env_steps),
@@ -2481,6 +2791,18 @@ def run_online_policy_probe(
         f"{prefix}_terminal_Z_error": float(z_err),
         f"{prefix}_terminal_Ip_error": float(ip_err),
         f"{prefix}_terminal_velocity_norm": f("terminal_velocity_norm", "velocity_norm"),
+        f"{prefix}_late_start_step": int(late_start),
+        f"{prefix}_late_steps": int(r_late.size),
+        f"{prefix}_late_R_abs_mean": _mean_abs(r_late),
+        f"{prefix}_late_Z_abs_mean": _mean_abs(z_late),
+        f"{prefix}_late_Ip_abs_mean": _mean_abs(ip_late),
+        f"{prefix}_late_R_rms": _rms(r_late),
+        f"{prefix}_late_Z_rms": _rms(z_late),
+        f"{prefix}_late_velocity_mean": float(np.mean(vel_late)) if vel_late.size else float("inf"),
+        f"{prefix}_late_mean_abs_action": float(np.mean(act_late)) if act_late.size else float("inf"),
+        f"{prefix}_late_hold_fraction": float(late_hold_fraction),
+        f"{prefix}_max_abs_R_error": float(np.max(np.abs(r_arr))) if r_arr.size else float("inf"),
+        f"{prefix}_max_abs_Z_error": float(np.max(np.abs(z_arr))) if z_arr.size else float("inf"),
         f"{prefix}_mean_abs_action": float(mean_action),
         f"{prefix}_max_abs_action": float(max_abs),
         f"{prefix}_shape_score": float(shape_score),
@@ -2516,6 +2838,229 @@ def run_online_policy_probe(
     out[f"{prefix}_extra_common_mode_coeff_saturation_penalty_last"] = float(last_info.get("extra_common_mode_coeff_saturation_penalty", 0.0))
     out[f"{prefix}_extra_common_mode_coeff_abs_mean_last"] = float(last_info.get("extra_common_mode_coeff_abs_mean", 0.0))
     return out
+
+
+def transaction_eval_cache(
+    eval_result: dict[str, Any], *, worst_weight: float
+) -> dict[str, Any]:
+    details = dict(eval_result.get("details", {}) or {})
+    score_map = {name: float(item.get("score", float("inf"))) for name, item in details.items()}
+    aggregate = aggregate_transaction_scores(list(score_map.values()), worst_weight)
+    return {
+        "details": details,
+        "score_map": score_map,
+        "aggregate": float(aggregate),
+        "all_reliable": bool(eval_result.get("all_reliable", False)),
+    }
+
+
+def run_transactional_actor_trial(
+    cfg: dict[str, Any],
+    learner: MpoLearner,
+    replay: SequenceReplayBuffer,
+    *,
+    batch_size: int,
+    seq_len: int,
+    iteration: int,
+    env_steps: int,
+    baseline_cache: dict[str, Any] | None,
+) -> tuple[dict[str, Any] | None, dict[str, Any]]:
+    """Perform one B99.9 safe actor transaction.
+
+    One forced actor optimizer proposal is generated from replay.  Candidate
+    parameter steps (including a small reverse step) are evaluated immediately
+    in the real deterministic TSC environment.  Only a multi-scenario aggregate
+    improvement is committed; otherwise actor, eta, optimizer states, and update
+    count are restored exactly.
+    """
+    txn = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
+    scenarios = transaction_scenarios_from_cfg(cfg)
+    if not scenarios:
+        return baseline_cache, {"status": "error", "reason": "no_scenarios"}
+    base_name = str(txn.get("selection_scenario", scenarios[0]["name"]))
+    scenario_names = {str(sc["name"]) for sc in scenarios}
+    if base_name not in scenario_names:
+        base_name = str(scenarios[0]["name"])
+    validation_names = scenario_names - {base_name}
+    worst_weight = float(txn.get("aggregate_worst_weight", 0.5) or 0.0)
+    selection_min_delta = float(txn.get("selection_min_delta", 0.01) or 0.0)
+    accept_min_delta = float(txn.get("accept_min_delta", 0.02) or 0.0)
+    max_scenario_regression = float(txn.get("max_scenario_regression", 0.05) or 0.0)
+    alphas = [float(x) for x in list(txn.get("candidate_alphas", [-0.25, 0.125, 0.25, 0.5, 1.0]))]
+    metrics: dict[str, Any] = {
+        "status": "started",
+        "base_scenario": base_name,
+        "candidate_count": len(alphas),
+        "candidate_alphas": list(alphas),
+    }
+    trial_t0 = time.time()
+
+    if baseline_cache is None:
+        baseline_eval = evaluate_transaction_scenarios(
+            cfg, learner, iteration=iteration, env_steps=env_steps, scenarios=scenarios
+        )
+        baseline_cache = transaction_eval_cache(baseline_eval, worst_weight=worst_weight)
+        metrics["baseline_initialized"] = True
+    else:
+        metrics["baseline_initialized"] = False
+    if not bool(baseline_cache.get("all_reliable", False)):
+        metrics.update({
+            "status": "baseline_unreliable",
+            "baseline_aggregate": float(baseline_cache.get("aggregate", float("inf"))),
+            "timing_s": float(time.time() - trial_t0),
+        })
+        return baseline_cache, metrics
+
+    baseline_score_map = dict(baseline_cache.get("score_map", {}) or {})
+    baseline_base_score = float(baseline_score_map.get(base_name, float("inf")))
+    metrics["baseline_aggregate"] = float(baseline_cache["aggregate"])
+    metrics["baseline_base_score"] = baseline_base_score
+
+    snapshot = learner.snapshot_policy_transaction()
+    base_actor_state = {k: v.detach().clone() for k, v in snapshot["actor"].items()}
+    try:
+        batch = replay.sample(batch_size=batch_size, seq_len=seq_len)
+        learner.actor.train()
+        proposal_metrics = learner.update(
+            batch,
+            force_actor_update=True,
+            suppress_actor_update=False,
+            allow_eta_update=False,
+            allow_dual_update=False,
+        )
+        if float(proposal_metrics.get("actor_update_applied", 0.0)) < 0.5:
+            raise RuntimeError("forced actor proposal did not execute")
+        proposal_state = {k: v.detach().clone() for k, v in learner.actor.state_dict().items()}
+        delta_sq = 0.0
+        for key, base in base_actor_state.items():
+            prop = proposal_state[key]
+            if torch.is_floating_point(base):
+                delta_sq += float(torch.sum((prop - base).double().pow(2)).detach().cpu())
+        metrics["proposal_delta_l2"] = float(math.sqrt(max(0.0, delta_sq)))
+        for key in [
+            "actor_loss", "policy_loss_raw", "policy_loss_used", "actor_cost_penalty",
+            "kl_mean", "actor_mean_abs_action", "eta", "q_mean",
+        ]:
+            if key in proposal_metrics:
+                metrics[f"proposal/{key}"] = float(proposal_metrics[key])
+
+        # Proposal critic update is intentionally retained, but all policy-side
+        # state is restored before real-environment candidate evaluation.
+        learner.restore_policy_transaction(snapshot, restore_optimizers=True)
+
+        candidate_records: list[dict[str, Any]] = []
+        best_record: dict[str, Any] | None = None
+        for alpha in alphas:
+            candidate_state = learner.interpolate_actor_states(base_actor_state, proposal_state, alpha)
+            learner.actor.load_state_dict(candidate_state, strict=True)
+            eval_one = evaluate_transaction_scenarios(
+                cfg,
+                learner,
+                iteration=iteration,
+                env_steps=env_steps,
+                scenarios=scenarios,
+                scenario_names={base_name},
+            )
+            cache_one = transaction_eval_cache(eval_one, worst_weight=0.0)
+            detail = dict(cache_one.get("details", {}).get(base_name, {}) or {})
+            record = {
+                "alpha": float(alpha),
+                "score": float(cache_one.get("score_map", {}).get(base_name, float("inf"))),
+                "reliable": bool(cache_one.get("all_reliable", False)),
+                "terminal_R_error": detail.get("terminal_R_error"),
+                "terminal_Z_error": detail.get("terminal_Z_error"),
+                "terminal_Ip_error": detail.get("terminal_Ip_error"),
+                "late_R_rms": detail.get("late_R_rms"),
+                "late_Z_rms": detail.get("late_Z_rms"),
+                "late_hold_fraction": detail.get("late_hold_fraction"),
+                "mean_abs_action": detail.get("mean_abs_action"),
+            }
+            candidate_records.append(record)
+            if record["reliable"] and (best_record is None or record["score"] < best_record["score"]):
+                best_record = record
+
+        metrics["candidates"] = candidate_records
+        learner.restore_policy_transaction(snapshot, restore_optimizers=True)
+
+        if best_record is None:
+            metrics.update({"status": "rejected", "reason": "no_reliable_candidate"})
+            return baseline_cache, metrics
+        if not (float(best_record["score"]) <= baseline_base_score - selection_min_delta):
+            metrics.update({
+                "status": "rejected",
+                "reason": "no_base_scenario_improvement",
+                "selected_alpha": float(best_record["alpha"]),
+                "selected_base_score": float(best_record["score"]),
+            })
+            return baseline_cache, metrics
+
+        selected_alpha = float(best_record["alpha"])
+        selected_state = learner.interpolate_actor_states(base_actor_state, proposal_state, selected_alpha)
+        learner.actor.load_state_dict(selected_state, strict=True)
+        validation_eval = evaluate_transaction_scenarios(
+            cfg,
+            learner,
+            iteration=iteration,
+            env_steps=env_steps,
+            scenarios=scenarios,
+            scenario_names=validation_names,
+        ) if validation_names else {"details": {}, "scores": [], "all_reliable": True}
+
+        combined_details = {base_name: {
+            **{k: v for k, v in best_record.items() if k not in {"alpha", "reliable"}},
+            "reliable": bool(best_record["reliable"]),
+        }}
+        combined_details.update(dict(validation_eval.get("details", {}) or {}))
+        candidate_cache = transaction_eval_cache(
+            {
+                "details": combined_details,
+                "all_reliable": bool(best_record["reliable"] and validation_eval.get("all_reliable", True)),
+            },
+            worst_weight=worst_weight,
+        )
+        scenario_regressions = {
+            name: float(candidate_cache["score_map"].get(name, float("inf")) - baseline_score_map.get(name, float("inf")))
+            for name in scenario_names
+        }
+        max_regression = max(scenario_regressions.values()) if scenario_regressions else float("inf")
+        aggregate_improvement = float(baseline_cache["aggregate"] - candidate_cache["aggregate"])
+        accepted = bool(
+            candidate_cache["all_reliable"]
+            and aggregate_improvement >= accept_min_delta
+            and max_regression <= max_scenario_regression
+        )
+        metrics.update({
+            "selected_alpha": selected_alpha,
+            "selected_base_score": float(best_record["score"]),
+            "candidate_aggregate": float(candidate_cache["aggregate"]),
+            "aggregate_improvement": aggregate_improvement,
+            "max_scenario_regression": float(max_regression),
+            "scenario_regressions": scenario_regressions,
+            "candidate_details": combined_details,
+        })
+        if accepted:
+            # Candidate weights are already active.  A fractional/interpolated
+            # step cannot consistently inherit full-proposal Adam moments, so
+            # start the next transaction with fresh actor optimizer state.
+            learner.update_count = int(snapshot.get("update_count", learner.update_count)) + 1
+            learner.reset_actor_optimizer()
+            metrics.update({
+                "status": "accepted",
+                "reason": "multi_scenario_improved",
+                "actor_optimizer_reset": True,
+            })
+            baseline_cache = candidate_cache
+            return baseline_cache, metrics
+
+        learner.restore_policy_transaction(snapshot, restore_optimizers=True)
+        metrics.update({"status": "rejected", "reason": "multi_scenario_acceptance_failed"})
+        return baseline_cache, metrics
+    except Exception as exc:
+        learner.restore_policy_transaction(snapshot, restore_optimizers=True)
+        metrics.update({"status": "error", "reason": repr(exc)})
+        return baseline_cache, metrics
+    finally:
+        metrics["timing_s"] = float(time.time() - trial_t0)
 
 
 def run_online_deterministic_probe(
@@ -2739,7 +3284,8 @@ def main():
     ap = argparse.ArgumentParser(description="Train recurrent MPO for TSC R/Z/Ip control (B88 z-recovery relaxed-Ip-lite compatible).")
     ap.add_argument("--config", required=True, help="MPO training config JSON.")
     ap.add_argument("--override", default=None, help="Optional JSON override.")
-    ap.add_argument("--resume", default=None, help="Optional checkpoint directory containing mpo_checkpoint.pt.")
+    ap.add_argument("--resume", default=None, help="Base checkpoint for critics/cost critics and training counters.")
+    ap.add_argument("--policy-resume", default=None, help="Optional protected policy checkpoint whose actor/log_eta override the base checkpoint.")
     args = ap.parse_args()
 
     cfg_path = Path(args.config)
@@ -2750,6 +3296,12 @@ def main():
         if not ckpt_file.exists():
             raise FileNotFoundError(f"Resume checkpoint not found: {ckpt_file}")
         cfg["resume_checkpoint"] = str(resume_path)
+    if args.policy_resume:
+        policy_resume_path = Path(args.policy_resume).expanduser()
+        policy_ckpt_file = policy_resume_path / "mpo_checkpoint.pt"
+        if not policy_ckpt_file.exists():
+            raise FileNotFoundError(f"Policy resume checkpoint not found: {policy_ckpt_file}")
+        cfg["policy_resume_checkpoint"] = str(policy_resume_path)
 
     run_dir, ckpt_dir, run_name = build_run_dirs(cfg, cfg_path)
     cfg["resolved_run_name"] = run_name
@@ -2882,18 +3434,32 @@ def main():
         elif dual_mode in {"none", "ignore", "fresh"}:
             print("Resume: dual variables are kept at current-config initialization.", flush=True)
 
-        restore_optim = bool(resume_cfg.get("restore_optimizer_state", True))
-        if "actor_opt" in payload and not obs_dim_changed and restore_optim:
-            try:
-                learner.actor_opt.load_state_dict(payload["actor_opt"])
-                learner.critic_opt.load_state_dict(payload["critic_opt"])
-                learner.eta_opt.load_state_dict(payload["eta_opt"])
-            except Exception as exc:
-                print(f"Warning: optimizer state not restored cleanly: {exc}")
-        elif obs_dim_changed:
-            print("Optimizer states are intentionally not restored because observation inputs changed.", flush=True)
+        restore_optim_default = bool(resume_cfg.get("restore_optimizer_state", True))
+        restore_actor_optim = bool(resume_cfg.get("restore_actor_optimizer_state", restore_optim_default))
+        restore_critic_optim = bool(resume_cfg.get("restore_critic_optimizer_state", restore_optim_default))
+        restore_eta_optim = bool(resume_cfg.get("restore_eta_optimizer_state", restore_optim_default))
+        if not obs_dim_changed:
+            if restore_actor_optim and isinstance(payload.get("actor_opt"), dict):
+                try:
+                    learner.actor_opt.load_state_dict(payload["actor_opt"])
+                except Exception as exc:
+                    print(f"Warning: actor optimizer state not restored cleanly: {exc}")
+            if restore_critic_optim and isinstance(payload.get("critic_opt"), dict):
+                try:
+                    learner.critic_opt.load_state_dict(payload["critic_opt"])
+                except Exception as exc:
+                    print(f"Warning: critic optimizer state not restored cleanly: {exc}")
+            if restore_eta_optim and isinstance(payload.get("eta_opt"), dict):
+                try:
+                    learner.eta_opt.load_state_dict(payload["eta_opt"])
+                except Exception as exc:
+                    print(f"Warning: eta optimizer state not restored cleanly: {exc}")
+            print(
+                f"Resume optimizer states: actor={restore_actor_optim} critic={restore_critic_optim} eta={restore_eta_optim}",
+                flush=True,
+            )
         else:
-            print("Resume: optimizer states are reset from current config (restore_optimizer_state=false).", flush=True)
+            print("Optimizer states are intentionally not restored because observation inputs changed.", flush=True)
         if "log_eta" in payload:
             with torch.no_grad():
                 learner.log_eta.copy_(payload["log_eta"].to(device))
@@ -2916,6 +3482,37 @@ def main():
                 flush=True,
             )
         print(f"Resumed MPO checkpoint: {args.resume} env_steps={resume_env_steps} iteration={resume_iteration}", flush=True)
+
+    if args.policy_resume:
+        policy_cfg = resume_cfg_global.get("policy_override", {}) if isinstance(resume_cfg_global.get("policy_override", {}), dict) else {}
+        print(f"[train_mpo] overriding protected policy from: {Path(args.policy_resume) / 'mpo_checkpoint.pt'}", flush=True)
+        policy_payload = torch.load(Path(args.policy_resume) / "mpo_checkpoint.pt", map_location=device)
+        learner.restore_actor_policy_from_checkpoint(
+            args.policy_resume,
+            restore_actor_optimizer=bool(policy_cfg.get("restore_actor_optimizer", False)),
+            restore_eta_optimizer=bool(policy_cfg.get("restore_eta_optimizer", False)),
+            restore_update_count=bool(policy_cfg.get("restore_update_count", False)),
+        )
+        if bool(policy_cfg.get("load_dual_values", True)) and isinstance(policy_payload.get("duals"), dict):
+            current_duals = learner.duals.state_dict()
+            for dname, saved in policy_payload["duals"].items():
+                if dname in current_duals and isinstance(saved, dict) and "value" in saved:
+                    current_duals[dname]["value"] = float(saved["value"])
+            learner.duals.load_state_dict(current_duals)
+            print("Policy override: loaded protected checkpoint dual values with current config targets/lr/bounds.", flush=True)
+        if bool(policy_cfg.get("reset_actor_optimizer", True)):
+            learner.reset_actor_optimizer()
+            print("Policy override: actor optimizer reset to remove stale/rejected momentum.", flush=True)
+        if bool(policy_cfg.get("reset_eta_optimizer", True)):
+            learner.eta_opt = torch.optim.Adam([learner.log_eta], lr=learner.eta_lr)
+            print("Policy override: eta optimizer reset.", flush=True)
+        if bool(policy_cfg.get("reset_update_count", True)):
+            learner.update_count = 0
+        learner.set_env_steps(resume_env_steps)
+        print(
+            f"Protected policy override complete; base counters remain env_steps={resume_env_steps} iteration={resume_iteration}",
+            flush=True,
+        )
 
     replay_cfg = cfg.get("replay", {})
     replay = SequenceReplayBuffer(capacity_fragments=int(replay_cfg.get("capacity_fragments", 100000)), seed=int(cfg.get("seed", 42)))
@@ -3008,6 +3605,32 @@ def main():
     actor_guard_last_reason = "not_evaluated"
     actor_guard_last_restored = False
     best_ckpt_error_dir = ckpt_dir / str(best_cfg.get("directory_error_score", "best_error_score"))
+
+    # B99.9 transactional actor guard.  Regular learner updates are critic-only;
+    # actor changes happen solely inside explicit proposal/eval/accept transactions.
+    txn_cfg = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
+    txn_enabled = bool(txn_cfg.get("enabled", False))
+    txn_critic_settle_iters = int(txn_cfg.get("critic_settle_iters", 5) or 0)
+    txn_trial_every_iters = max(1, int(txn_cfg.get("trial_every_iters", 5) or 1))
+    txn_max_trials = int(txn_cfg.get("max_trials", 12) or 0)
+    txn_max_consecutive_rejections = int(txn_cfg.get("max_consecutive_rejections", 6) or 0)
+    txn_freeze_duals = bool(txn_cfg.get("freeze_dual_updates", True))
+    txn_baseline_cache: dict[str, Any] | None = None
+    txn_attempts = 0
+    txn_accepted = 0
+    txn_rejected = 0
+    txn_consecutive_rejections = 0
+    txn_best_aggregate = float("inf")
+    txn_last_metrics: dict[str, Any] = {}
+    txn_log_path = run_dir / "actor_transactions.jsonl"
+    if txn_enabled:
+        learner.set_actor_guard_update_allowed(False, "transactional_only")
+        learner.set_dual_updates_enabled(not txn_freeze_duals, "transactional_anti_windup" if txn_freeze_duals else "enabled")
+        print(
+            f"B99.9 transactional actor guard enabled: settle_iters={txn_critic_settle_iters} "
+            f"trial_every_iters={txn_trial_every_iters} freeze_duals={txn_freeze_duals}",
+            flush=True,
+        )
     if actor_guard_enabled:
         learner.set_actor_guard_update_allowed(False, "waiting_for_reliable_eval")
     if args.resume and bool(resume_cfg_global.get("seed_best_checkpoint_from_resume", False)):
@@ -3124,7 +3747,12 @@ def main():
                     batch = replay.sample(batch_size=batch_size, seq_len=seq_len)
                     learner_sample_batch_s += time.time() - sample_t0
                     upd_t0 = time.time()
-                    losses.append(learner.update(batch))
+                    losses.append(learner.update(
+                        batch,
+                        suppress_actor_update=bool(txn_enabled),
+                        allow_eta_update=False if txn_enabled else None,
+                        allow_dual_update=False if (txn_enabled and txn_freeze_duals) else None,
+                    ))
                     learner_update_call_s += time.time() - upd_t0
                 learner_train_s = time.time() - train_t0
                 if iteration % sync_every_iters == 0:
@@ -3158,6 +3786,98 @@ def main():
             # Backward-compatible names for older CSV readers; prefer the B99.3 names below.
             actor_sync_s = worker_param_rpc_s
             learner_update_s = learner_total_s
+
+            txn_metrics_this_iter: dict[str, Any] = {}
+            txn_timing_s = 0.0
+            txn_trigger_iter0 = int(resume_iteration) + int(txn_critic_settle_iters)
+            txn_due = bool(
+                txn_enabled
+                and total_steps >= warmup_steps
+                and replay.can_sample(batch_size, seq_len)
+                and iteration >= txn_trigger_iter0
+                and ((iteration - txn_trigger_iter0) % txn_trial_every_iters == 0)
+                and (txn_max_trials <= 0 or txn_attempts < txn_max_trials)
+            )
+            if txn_due:
+                txn_attempts += 1
+                txn_t0 = time.time()
+                txn_baseline_cache, txn_metrics_this_iter = run_transactional_actor_trial(
+                    cfg,
+                    learner,
+                    replay,
+                    batch_size=batch_size,
+                    seq_len=seq_len,
+                    iteration=iteration,
+                    env_steps=total_steps,
+                    baseline_cache=txn_baseline_cache,
+                )
+                txn_timing_s = float(time.time() - txn_t0)
+                txn_last_metrics = dict(txn_metrics_this_iter)
+                txn_status = str(txn_metrics_this_iter.get("status", "unknown"))
+                if (
+                    txn_baseline_cache is not None
+                    and bool(txn_baseline_cache.get("all_reliable", False))
+                    and np.isfinite(float(txn_baseline_cache.get("aggregate", float("inf"))))
+                ):
+                    current_agg = float(txn_baseline_cache["aggregate"])
+                    if not np.isfinite(txn_best_aggregate):
+                        txn_best_aggregate = current_agg
+                    # The first reliable baseline is protected before any future trial.
+                    if not (best_ckpt_error_dir / "mpo_checkpoint.pt").exists():
+                        seed_stats = {
+                            "training_iteration": int(iteration),
+                            "env_steps": int(total_steps),
+                            "transactional_guard_seed_baseline": True,
+                            "best/error_score": current_agg,
+                            "best/error_score_best_so_far": current_agg,
+                        }
+                        learner.save_checkpoint(best_ckpt_error_dir, seed_stats)
+                        txn_best_aggregate = current_agg
+                if txn_status == "accepted":
+                    txn_accepted += 1
+                    txn_consecutive_rejections = 0
+                    current_agg = float(txn_baseline_cache.get("aggregate", float("inf"))) if txn_baseline_cache else float("inf")
+                    learner.save_checkpoint(ckpt_dir / "accepted_latest", {
+                        "training_iteration": int(iteration),
+                        "env_steps": int(total_steps),
+                        "transactional_guard": json_safe(txn_metrics_this_iter),
+                        "best/error_score": current_agg,
+                    })
+                    if current_agg < txn_best_aggregate - float(txn_cfg.get("best_min_delta", 0.01) or 0.0):
+                        txn_best_aggregate = current_agg
+                        learner.save_checkpoint(best_ckpt_error_dir, {
+                            "training_iteration": int(iteration),
+                            "env_steps": int(total_steps),
+                            "transactional_guard": json_safe(txn_metrics_this_iter),
+                            "best/error_score": current_agg,
+                            "best/error_score_best_so_far": current_agg,
+                            "best/error_score_source": "transactional_multiscenario_eval",
+                        })
+                    # Workers may still be completing one old-policy fragment.  The
+                    # queued sync applies the accepted actor before subsequent rollout.
+                    last_actor_state = learner.actor_state_cpu()
+                    sync_t0 = time.time()
+                    ray.get([
+                        w.set_actor_weights.remote(
+                            last_actor_state, float(learner.action_scale), float(learner.physics_blend_alpha),
+                            current_reward_params, current_target_randomization_params,
+                        )
+                        for w in workers
+                    ])
+                    worker_param_rpc_s += time.time() - sync_t0
+                elif txn_status in {"rejected", "error", "baseline_unreliable"}:
+                    txn_rejected += 1
+                    txn_consecutive_rejections += 1
+                with open(txn_log_path, "a", encoding="utf-8") as f:
+                    f.write(json.dumps(json_safe({
+                        "training_iteration": int(iteration),
+                        "env_steps": int(total_steps),
+                        **txn_metrics_this_iter,
+                    }), ensure_ascii=False) + "\n")
+
+            # Include any post-transaction worker synchronization in the timing aliases.
+            actor_sync_s = worker_param_rpc_s
+            pipeline_wait_s = max(0.0, worker_param_rpc_s)
 
             loss_mean = {}
             if losses:
@@ -3207,9 +3927,35 @@ def main():
                 "actor_guard/last_reliable": bool(actor_guard_last_reliable),
                 "actor_guard/last_reason": str(actor_guard_last_reason),
                 "actor_guard/last_restored": bool(actor_guard_last_restored),
+                "actor_txn/enabled": bool(txn_enabled),
+                "actor_txn/due": bool(txn_due),
+                "actor_txn/attempts": int(txn_attempts),
+                "actor_txn/accepted": int(txn_accepted),
+                "actor_txn/rejected": int(txn_rejected),
+                "actor_txn/consecutive_rejections": int(txn_consecutive_rejections),
+                "actor_txn/best_aggregate": float(txn_best_aggregate),
+                "actor_txn/baseline_aggregate": float(txn_baseline_cache.get("aggregate", float("inf"))) if txn_baseline_cache else float("inf"),
+                "actor_txn/status": str(txn_metrics_this_iter.get("status", "not_due")),
+                "actor_txn/reason": str(txn_metrics_this_iter.get("reason", "not_due")),
+                "actor_txn/selected_alpha": float(txn_metrics_this_iter.get("selected_alpha", float("nan"))),
+                "actor_txn/aggregate_improvement": float(txn_metrics_this_iter.get("aggregate_improvement", float("nan"))),
+                "actor_txn/max_scenario_regression": float(txn_metrics_this_iter.get("max_scenario_regression", float("nan"))),
+                "timing/actor_transaction_s": float(txn_timing_s),
             }
+            if txn_metrics_this_iter:
+                result["actor_txn/detail"] = json_safe(txn_metrics_this_iter)
             stop_now = False
             probe_for_early_stop = None
+            if txn_enabled:
+                if txn_max_consecutive_rejections > 0 and txn_consecutive_rejections >= txn_max_consecutive_rejections:
+                    stop_now = True
+                    result["early_stop_triggered"] = True
+                    result["early_stop_reason"] = f"transactional_actor_{txn_consecutive_rejections}_consecutive_rejections"
+                if txn_max_trials > 0 and txn_attempts >= txn_max_trials:
+                    stop_now = True
+                    result["early_stop_triggered"] = True
+                    prev = str(result.get("early_stop_reason", ""))
+                    result["early_stop_reason"] = (prev + ";" if prev else "") + f"transactional_actor_max_trials_{txn_max_trials}"
             eval_t0 = time.time()
             if probe_enabled and probe_every_iters > 0 and iteration % probe_every_iters == 0:
                 try:
@@ -3364,6 +4110,16 @@ def main():
                         prev_reason = str(result.get("early_stop_reason", "ok"))
                         result["early_stop_reason"] = (prev_reason + ";" if prev_reason not in {"", "ok"} else "") + f"no_best_error_improvement_{best_no_improve_iters}_iters"
                         result["early_stop_triggered"] = True
+
+            if txn_enabled:
+                result["best/error_score_source"] = "transactional_multiscenario_eval"
+                result["best/error_score"] = float(txn_baseline_cache.get("aggregate", float("inf"))) if txn_baseline_cache else float("inf")
+                result["best/error_score_best_so_far"] = float(txn_best_aggregate)
+                result["best/error_score_improved"] = bool(
+                    txn_metrics_this_iter.get("status") == "accepted"
+                    and float(txn_baseline_cache.get("aggregate", float("inf"))) <= float(txn_best_aggregate) + 1.0e-12
+                ) if txn_baseline_cache else False
+                result["best/error_score_reliable"] = bool(txn_baseline_cache and txn_baseline_cache.get("all_reliable", False))
 
             ep_ret = float(result.get("episode_episode_return_mean", -float("inf")) or -float("inf"))
             if bool(best_cfg.get("enabled", False)) and bool(best_cfg.get("save_best_by_return", False)) and np.isfinite(ep_ret) and ep_ret > best_return:

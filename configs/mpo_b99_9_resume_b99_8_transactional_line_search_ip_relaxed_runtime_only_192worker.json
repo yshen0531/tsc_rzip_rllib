@@ -1,9 +1,9 @@
 {
-  "run_name": "train_b99_8_resume_b99_6_best_error_actor_guard_ip_relaxed_runtime_only_mpo_192worker",
-  "train_config": "configs/train_b99_8_resume_b99_6_best_error_actor_guard_ip_relaxed_runtime_only.json",
+  "run_name": "train_b99_9_resume_b99_8_transactional_line_search_ip_relaxed_runtime_only_mpo_192worker",
+  "train_config": "configs/train_b99_9_transactional_line_search_ip_relaxed_runtime_only.json",
   "seed": 42,
-  "stop_env_steps": 1000000,
-  "checkpoint_every_iters": 10,
+  "stop_env_steps": 1200000,
+  "checkpoint_every_iters": 5,
   "log_root": "ray_results",
   "checkpoint_root": "mpo_checkpoints",
   "env": {
@@ -99,7 +99,7 @@
   "mpo": {
     "gamma": 0.9704,
     "tau": 0.005,
-    "actor_lr": 3e-05,
+    "actor_lr": 2e-05,
     "critic_lr": 0.0002,
     "eta_lr": 0.0001,
     "eta_init": 1.0,
@@ -153,7 +153,7 @@
     },
     "actor_freeze_until_env_steps": 0,
     "actor_freeze_eta": true,
-    "actor_guard_enabled": true
+    "actor_guard_enabled": false
   },
   "deterministic_probe": {
     "enabled": false,
@@ -163,7 +163,7 @@
   },
   "early_stop": {
     "enabled": false,
-    "note": "B99.8 uses actor_guard reliable deterministic eval for guard/best; legacy early_stop disabled.",
+    "note": "B99.9 uses transactional multi-scenario deterministic TSC acceptance and transaction-based stopping; legacy probe early-stop is disabled.",
     "score_r_ref": 0.05,
     "score_z_ref": 0.05,
     "score_ip_ref": 5000.0,
@@ -176,7 +176,7 @@
     "eval_stage": "final",
     "seed": 22345
   },
-  "description": "B99.8 resumes from B99.6 best_error_score, relaxes Ip priority because TSC heating/current evolution can dominate Ip, extends actor freeze, and adds a deterministic-eval actor guard: only bounded trial actor updates are allowed after reliable eval improvement or near-best eval; degraded eval restores the protected best actor.",
+  "description": "B99.9 imports mature B99.8 critics plus the protected reliable-best actor, freezes ordinary actor/eta/dual updates, and permits policy changes only through transactional bidirectional actor proposals that are immediately accepted or fully rolled back using deterministic multi-scenario TSC evaluation.",
   "local_target_grid_probe": {
     "enabled": false,
     "every_iters": 0,
@@ -201,7 +201,7 @@
   },
   "constrained_mpo": {
     "enabled": true,
-    "description": "B99.8 keeps R/Z terminal-late constraints strong, but relaxes Ip priority because TSC heating/current evolution can dominate Ip; Ip is monitored but no longer a hard driver.",
+    "description": "B99.9 keeps R/Z terminal-late constraints strong, keeps Ip as a broad soft monitor, and freezes dual integration during guarded transactional policy improvement.",
     "actor_cost_coeff": 0.03,
     "cost_critic_loss_coeff": 0.05,
     "cost_target_clip": [
@@ -226,7 +226,7 @@
         "terminal_power": 1.0,
         "combine": "max",
         "clip": 10.0,
-        "description": "B99.6 symmetric terminal/late cost: stronger terminal multiplier to keep R/Z from sliding after mid-run good states."
+        "description": "B99.9 symmetric terminal/late R/Z cost retained for critic learning and actor proposal construction."
       },
       {
         "name": "Z",
@@ -245,7 +245,7 @@
         "terminal_power": 1.0,
         "combine": "max",
         "clip": 10.0,
-        "description": "B99.6 symmetric terminal/late cost: stronger terminal multiplier to keep R/Z from sliding after mid-run good states."
+        "description": "B99.9 symmetric terminal/late R/Z cost retained for critic learning and actor proposal construction."
       },
       {
         "name": "Ip",
@@ -264,7 +264,7 @@
         "terminal_power": 1.0,
         "combine": "max",
         "clip": 3.0,
-        "description": "B99.8 relaxed Ip cost: allow ~1000 A and even several kA error when R/Z are better; monitor Ip without letting it dominate actor."
+        "description": "B99.9 relaxed Ip cost: tolerate ~1000 A and even several kA error when R/Z and hold behavior improve; retain only a broad safety monitor."
       },
       {
         "name": "action",
@@ -334,75 +334,118 @@
     "best_error_score": true,
     "eval_stage": "final",
     "seed": 92345,
-    "description": "B99.8 final eval evaluates latest and protected best_error_score actor."
+    "description": "Evaluate latest accepted policy and protected transactional best_error_score policy."
   },
-  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_8.json",
-  "banner": "B99.8 resume-B99.6-best-error actor-guard Ip-relaxed runtime-only 10ms extrema MPO Ray init",
+  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_9.json",
+  "banner": "B99.9 resume-B99.8 transactional bidirectional line-search Ip-relaxed runtime-only 10ms extrema MPO Ray init",
   "best_checkpoint": {
-    "enabled": true,
-    "score_source": "guard_eval",
-    "save_best_by_error_score": true,
-    "save_best_by_return": false,
-    "min_episodes_completed": 30,
-    "min_episode_len_mean": 30,
-    "error_score_refs": {
-      "R_m": 0.05,
-      "Z_m": 0.05,
-      "Ip_a": 5000.0,
-      "action_mean_abs": 0.5
-    },
-    "weights": {
-      "R": 1.0,
-      "Z": 1.0,
-      "Ip": 0.08,
-      "action": 0.1
-    },
+    "enabled": false,
     "directory_error_score": "best_error_score",
     "directory_return": "best_return",
-    "stop_if_no_best_error_improvement_evals": 12,
-    "description": "B99.8 best checkpoint uses reliable deterministic guard eval only; rollout episode summaries cannot overwrite best_error_score."
+    "description": "B99.9 best_error_score is written only by transactional multi-scenario acceptance; legacy rollout/periodic guard best selection is disabled."
   },
   "resume": {
-    "description": "B99.8: resume from B99.6 best_error_score; reset optimizer/cost critics as before; protect the resume actor, freeze actor longer, then actor guard permits only bounded trial updates based on reliable deterministic eval.",
+    "description": "Base checkpoint supplies mature B99.8 reward/cost critics and counters. --policy-resume supplies protected reliable-best actor/log_eta and moderate dual values. Replay is rebuilt.",
+    "load_cost_critics": true,
+    "dual_load_mode": "none",
     "restore_optimizer_state": false,
-    "load_cost_critics": false,
-    "dual_load_mode": "values_only_current_config",
+    "restore_actor_optimizer_state": false,
+    "restore_critic_optimizer_state": true,
+    "restore_eta_optimizer_state": false,
     "reset_update_count": true,
-    "actor_freeze_after_resume_env_steps": 220000,
-    "seed_best_checkpoint_from_resume": true
+    "actor_freeze_after_resume_env_steps": 0,
+    "seed_best_checkpoint_from_resume": false,
+    "policy_override": {
+      "restore_actor_optimizer": false,
+      "restore_eta_optimizer": false,
+      "restore_update_count": false,
+      "load_dual_values": true,
+      "reset_actor_optimizer": true,
+      "reset_eta_optimizer": true,
+      "reset_update_count": true
+    }
   },
   "actor_guard": {
+    "enabled": false,
+    "description": "Replaced by B99.9 transactional_actor_guard."
+  },
+  "transactional_actor_guard": {
     "enabled": true,
-    "description": "Scheme C: permit actor updates only as bounded trials after reliable deterministic eval improvement or near-best eval; freeze and optionally restore best on degradation.",
-    "eval": {
-      "every_iters": 5,
-      "eval_stage": "final",
-      "seed": 22345,
-      "prefix": "eval_guard_det"
+    "description": "One forced MPO actor proposal per trial; evaluate bidirectional fractional steps in real deterministic TSC; accept only multi-scenario improvement, otherwise restore actor, eta, Adam states, and update_count exactly.",
+    "critic_settle_iters": 5,
+    "trial_every_iters": 5,
+    "max_trials": 12,
+    "max_consecutive_rejections": 6,
+    "freeze_dual_updates": true,
+    "eval_stage": "final",
+    "selection_scenario": "fixed",
+    "candidate_alphas": [
+      -0.25,
+      0.125,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "selection_min_delta": 0.01,
+    "accept_min_delta": 0.02,
+    "max_scenario_regression": 0.05,
+    "aggregate_worst_weight": 0.5,
+    "best_min_delta": 0.01,
+    "scenarios": [
+      {
+        "name": "fixed",
+        "seed": 33101,
+        "R_delta": 0.0,
+        "Z_delta": 0.0,
+        "Ip_delta": 0.0
+      },
+      {
+        "name": "lowR_highZ",
+        "seed": 33102,
+        "R_delta": -0.01,
+        "Z_delta": 0.02,
+        "Ip_delta": 0.0
+      },
+      {
+        "name": "highR_lowZ",
+        "seed": 33103,
+        "R_delta": 0.01,
+        "Z_delta": -0.02,
+        "Ip_delta": 0.0
+      }
+    ],
+    "probe_metrics": {
+      "late_start_fraction": 0.65,
+      "hold_r_tol": 0.08,
+      "hold_z_tol": 0.08,
+      "hold_velocity_norm_max": 1.0,
+      "hold_action_mean_abs_max": 0.6
+    },
+    "reliable_eval": {
+      "min_len": 60,
+      "min_late_steps": 15,
+      "max_mean_abs_action": 0.55
     },
     "score": {
-      "error_score_refs": {
-        "R_m": 0.05,
-        "Z_m": 0.05,
+      "refs": {
+        "terminal_R_m": 0.05,
+        "terminal_Z_m": 0.05,
+        "late_R_m": 0.05,
+        "late_Z_m": 0.05,
+        "velocity_norm": 1.0,
         "Ip_a": 5000.0,
         "action_mean_abs": 0.5
       },
       "weights": {
-        "R": 1.0,
-        "Z": 1.0,
-        "Ip": 0.08,
-        "action": 0.1
+        "terminal_R": 0.25,
+        "terminal_Z": 0.25,
+        "late_R": 0.75,
+        "late_Z": 0.75,
+        "velocity": 0.1,
+        "hold_deficit": 0.25,
+        "Ip": 0.03,
+        "action": 0.05
       }
-    },
-    "reliable_eval": {
-      "min_len": 50,
-      "max_mean_abs_action": 0.55
-    },
-    "improvement_min_delta": 0.02,
-    "allow_if_within_rel_margin": 0.08,
-    "allow_if_within_abs_margin": 0.35,
-    "trial_update_iters_after_improvement": 2,
-    "trial_update_iters_if_close": 1,
-    "restore_best_on_degrade": true
+    }
   }
 }
