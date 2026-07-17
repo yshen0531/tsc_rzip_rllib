@@ -1,0 +1,114 @@
+{
+  "run_name": "stage1_controllability_100ms",
+  "output_root": "stage1_runs",
+  "train_config": "configs/train_stage1_controllability_100ms.json",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "parallel": {
+    "n_workers": 192,
+    "ray_tmpdir": "/tmp/rm1000"
+  },
+  "scan": {
+    "horizon_steps": 10,
+    "baseline_repeats": 3,
+    "injection_steps": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "amplitude_fractions": [
+      0.5,
+      1.0
+    ],
+    "description": "At every 10 ms control instant, apply one signed normalized action increment to one TSC-order coil and then hold zero increments. The resulting current offset persists, matching the actual delta-current action semantics. Both signs and two amplitudes are used to fit a local derivative and quantify nonlinearity."
+  },
+  "analysis": {
+    "r_scale_m": 0.08,
+    "z_scale_m": 0.08,
+    "ip_scale_a": 8000.0,
+    "ip_weight": 0.15,
+    "mode_energy_target": 0.99,
+    "singular_ratio_floor": 0.001,
+    "max_recommended_modes": 8,
+    "reachable_set_directions": 72,
+    "reachable_set_ip_tolerance_a": 8000.0,
+    "reliability": {
+      "max_baseline_R_spread_m": 0.0001,
+      "max_baseline_Z_spread_m": 0.0001,
+      "max_baseline_Ip_spread_a": 50.0,
+      "max_failed_scan_fraction": 0.02,
+      "max_median_nonlinearity": 0.2,
+      "max_p90_nonlinearity": 0.4,
+      "max_relative_pre_injection_leakage": 0.05
+    }
+  },
+  "optimization": {
+    "tracking_steps": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "tracking_step_weights": [
+      0.25,
+      0.4,
+      0.6,
+      0.8,
+      1.0
+    ],
+    "velocity_steps": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "velocity_weight": 0.18,
+    "r_velocity_scale_m_per_s": 1.0,
+    "z_velocity_scale_m_per_s": 1.0,
+    "action_increment_l2": 0.001,
+    "current_deviation_l2": 1e-05,
+    "mode_coefficient_bound_a": 12.0,
+    "max_iterations": 1200,
+    "ftol": 1e-10,
+    "mode_counts": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      14
+    ],
+    "target_fractions": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "full_14d_identity": true
+  },
+  "validation": {
+    "max_base_candidates": 4,
+    "best_per_mode_count": 1,
+    "explicit_candidate_labels": [],
+    "sequence_scales": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "late_window_steps": 4,
+    "promising_distance_reduction": 0.5,
+    "description": "The best linearly predicted sequences are replayed in the real TSC environment. Real TSC, not the linear model, determines the Gate-A verdict.",
+    "gate_ip_tolerance_a": 10000.0
+  }
+}

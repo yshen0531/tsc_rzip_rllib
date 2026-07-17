@@ -108,7 +108,7 @@
     200.0
   ],
   "vessel_current_observation_aggregation": "signed_sum",
-  "description": "B99.10 train-first keeps the verified B99.8/B99.9 runtime-only TSC path; no symlink, daemon, or delayed-shutdown change.",
+  "description": "Stage-1 runtime-only TSC configuration for 100 ms controllability and reachability experiments. Immediate external termination is not intercepted.",
   "runtime_only_fast_mode": true,
   "save_step_artifacts": false,
   "save_artifacts_on_error": true,
