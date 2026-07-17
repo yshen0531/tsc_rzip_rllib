@@ -608,6 +608,29 @@ def compute_constraint_cost_vector(
                 val = base_val + late_val + terminal_val
             else:
                 val = max(base_val, late_val, terminal_val)
+
+            # B99.10 train-first: optionally fold a late/terminal auxiliary
+            # engineering signal (normally R/Z velocity) into the existing R/Z
+            # cost dimensions.  This keeps the cost-critic output shape fully
+            # compatible with B99.9 checkpoints while teaching actor proposals
+            # that lower position error with excessive crossing speed is not a
+            # valid improvement.
+            aux_key = c.get("aux_info_key", None)
+            if aux_key:
+                aux_key = str(aux_key)
+                aux_tol = max(abs(float(c.get("aux_tol", 1.0) or 1.0)), 1.0e-12)
+                aux_power = max(float(c.get("aux_power", 2.0) or 2.0), 1.0e-12)
+                aux_weight = float(c.get("aux_weight", 0.0) or 0.0)
+                aux_raw = abs(info_float(info, aux_key, 0.0))
+                aux_excess = max(0.0, aux_raw - aux_tol) / aux_tol
+                aux_late = _late_gate(c) * aux_excess**aux_power
+                aux_terminal = 0.0
+                if terminal_active:
+                    aux_term_key = str(c.get("aux_terminal_info_key", "terminal_" + aux_key))
+                    aux_term_raw = abs(info_float(info, aux_term_key, aux_raw))
+                    aux_term_tol = max(abs(float(c.get("aux_terminal_tol", aux_tol) or aux_tol)), 1.0e-12)
+                    aux_terminal = (max(0.0, aux_term_raw - aux_term_tol) / aux_term_tol) ** aux_power
+                val += aux_weight * max(aux_late, aux_terminal)
         elif typ == "mean_abs_action":
             mean_abs = float(np.mean(np.abs(act))) if act.size else 0.0
             target = max(abs(float(c.get("target", 0.35) or 0.35)), 1.0e-12)
@@ -2146,6 +2169,14 @@ class MpoLearner:
         }
 
     def save_checkpoint(self, path: Path, stats: dict[str, Any]) -> None:
+        """Save a checkpoint without requiring graceful shutdown.
+
+        B99.10 intentionally does not intercept SIGTERM/SIGKILL: the user must
+        be able to stop the job immediately.  To reduce the chance that an
+        abrupt stop corrupts the last good checkpoint, write new payloads to
+        same-directory temporary files and atomically replace the public files
+        only after each temporary file is fully flushed.
+        """
         path.mkdir(parents=True, exist_ok=True)
         payload = {
             "actor": self.actor.state_dict(),
@@ -2169,9 +2200,32 @@ class MpoLearner:
             "stats": json_safe(stats),
             "config": json_safe(self.cfg),
         }
-        torch.save(payload, path / "mpo_checkpoint.pt")
-        with open(path / "checkpoint_info.json", "w", encoding="utf-8") as f:
-            json.dump(json_safe(stats), f, indent=2, ensure_ascii=False)
+        pid = os.getpid()
+        pt_path = path / "mpo_checkpoint.pt"
+        info_path = path / "checkpoint_info.json"
+        pt_tmp = path / f".mpo_checkpoint.pt.tmp.{pid}"
+        info_tmp = path / f".checkpoint_info.json.tmp.{pid}"
+        try:
+            with open(pt_tmp, "wb") as f:
+                torch.save(payload, f)
+                f.flush()
+                os.fsync(f.fileno())
+            # The checkpoint payload contains its own stats and is the source
+            # of truth. Replace it first; an immediate stop can at worst leave
+            # the human-readable JSON one save behind, never a partial .pt.
+            os.replace(pt_tmp, pt_path)
+            with open(info_tmp, "w", encoding="utf-8") as f:
+                json.dump(json_safe(stats), f, indent=2, ensure_ascii=False)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(info_tmp, info_path)
+        finally:
+            for tmp in (pt_tmp, info_tmp):
+                try:
+                    if tmp.exists():
+                        tmp.unlink()
+                except Exception:
+                    pass
 
 
 def infer_spaces(cfg: dict[str, Any]) -> tuple[int, int, int]:
@@ -2350,11 +2404,13 @@ def compute_prefixed_probe_error_score(probe: dict[str, Any], prefix: str, cfg: 
 
 
 def compute_transaction_probe_score(probe: dict[str, Any], prefix: str, cfg: dict[str, Any] | None) -> float:
-    """R/Z- and hold-dominant score for B99.9 transactional policy trials.
+    """Hold-aware deterministic score for B99.10 actor transactions.
 
-    Terminal errors alone were misleading in B99.6--B99.8.  This score gives
-    most weight to late-window RMS R/Z error, then terminal R/Z error, with
-    small velocity/action penalties and deliberately weak Ip influence.
+    B99.9 safely reduced terminal/late R/Z error but could accept candidates
+    whose target-crossing speed worsened while hard hold metrics stayed at zero.
+    B99.10 therefore adds continuous soft-hold distance, relaxed-tube fractions,
+    longest relaxed streak, late velocity RMS, and minimum-distance velocity.
+    Ip remains deliberately weak.
     """
     raw = cfg or {}
     refs = raw.get("refs", {}) if isinstance(raw.get("refs", {}), dict) else {}
@@ -2374,21 +2430,38 @@ def compute_transaction_probe_score(probe: dict[str, Any], prefix: str, cfg: dic
     terminal_z = abs(val("terminal_Z_error")) / ref("terminal_Z_m", 0.05)
     late_r = abs(val("late_R_rms")) / ref("late_R_m", 0.05)
     late_z = abs(val("late_Z_rms")) / ref("late_Z_m", 0.05)
-    late_velocity = abs(val("late_velocity_mean")) / ref("velocity_norm", 1.0)
+    late_velocity_mean = abs(val("late_velocity_mean")) / ref("velocity_norm", 1.0)
+    late_velocity_rms = abs(val("late_velocity_rms")) / ref("velocity_norm", 1.0)
+    terminal_velocity = abs(val("terminal_velocity_norm")) / ref("velocity_norm", 1.0)
+    min_distance_velocity = abs(val("min_distance_velocity")) / ref("velocity_norm", 1.0)
+    soft_distance_mean = abs(val("late_normalized_distance_mean")) / ref("soft_distance", 1.0)
+    soft_distance_p90 = abs(val("late_normalized_distance_p90")) / ref("soft_distance", 1.0)
+    within_3 = min(1.0, max(0.0, val("late_fraction_within_3x", 0.0)))
+    within_2 = min(1.0, max(0.0, val("late_fraction_within_2x", 0.0)))
+    within_1 = min(1.0, max(0.0, val("late_fraction_within_1x", 0.0)))
+    longest_2 = min(1.0, max(0.0, val("late_longest_streak_within_2x_fraction", 0.0)))
+    hard_hold = min(1.0, max(0.0, val("late_hold_fraction", 0.0)))
     ip = abs(val("terminal_Ip_error")) / ref("Ip_a", 5000.0)
     action = abs(val("late_mean_abs_action", val("mean_abs_action"))) / ref("action_mean_abs", 0.5)
-    hold_fraction = min(1.0, max(0.0, val("late_hold_fraction", 0.0)))
-    hold_deficit = 1.0 - hold_fraction
 
     score = (
-        float(weights.get("terminal_R", 0.25)) * terminal_r
-        + float(weights.get("terminal_Z", 0.25)) * terminal_z
-        + float(weights.get("late_R", 0.75)) * late_r
-        + float(weights.get("late_Z", 0.75)) * late_z
-        + float(weights.get("velocity", 0.10)) * late_velocity
-        + float(weights.get("hold_deficit", 0.25)) * hold_deficit
-        + float(weights.get("Ip", 0.03)) * ip
-        + float(weights.get("action", 0.05)) * action
+        float(weights.get("terminal_R", 0.20)) * terminal_r
+        + float(weights.get("terminal_Z", 0.20)) * terminal_z
+        + float(weights.get("late_R", 0.55)) * late_r
+        + float(weights.get("late_Z", 0.55)) * late_z
+        + float(weights.get("soft_distance_mean", 0.30)) * soft_distance_mean
+        + float(weights.get("soft_distance_p90", 0.20)) * soft_distance_p90
+        + float(weights.get("within_3x_deficit", 0.10)) * (1.0 - within_3)
+        + float(weights.get("within_2x_deficit", 0.20)) * (1.0 - within_2)
+        + float(weights.get("within_1x_deficit", 0.10)) * (1.0 - within_1)
+        + float(weights.get("longest_2x_deficit", 0.15)) * (1.0 - longest_2)
+        + float(weights.get("hard_hold_deficit", 0.10)) * (1.0 - hard_hold)
+        + float(weights.get("late_velocity_mean", 0.12)) * late_velocity_mean
+        + float(weights.get("late_velocity_rms", 0.18)) * late_velocity_rms
+        + float(weights.get("terminal_velocity", 0.08)) * terminal_velocity
+        + float(weights.get("min_distance_velocity", 0.12)) * min_distance_velocity
+        + float(weights.get("Ip", 0.02)) * ip
+        + float(weights.get("action", 0.04)) * action
     )
     return float(score) if np.isfinite(score) else float("inf")
 
@@ -2408,7 +2481,11 @@ def transaction_probe_is_reliable(
         return False, f"late_steps<{min_late_steps}"
     required = [
         "terminal_R_error", "terminal_Z_error", "terminal_Ip_error",
-        "late_R_rms", "late_Z_rms", "late_velocity_mean",
+        "terminal_velocity_norm", "late_R_rms", "late_Z_rms",
+        "late_velocity_mean", "late_velocity_rms", "min_distance_velocity",
+        "late_normalized_distance_mean", "late_normalized_distance_p90",
+        "late_fraction_within_3x", "late_fraction_within_2x",
+        "late_fraction_within_1x", "late_longest_streak_within_2x_fraction",
         "late_mean_abs_action", "late_hold_fraction",
     ]
     for key in required:
@@ -2427,34 +2504,59 @@ def compact_transaction_probe(probe: dict[str, Any], prefix: str) -> dict[str, A
         "return", "len", "hold_success", "quality_success", "first_reach", "stable_hold",
         "terminal_R_error", "terminal_Z_error", "terminal_Ip_error", "terminal_velocity_norm",
         "late_R_abs_mean", "late_Z_abs_mean", "late_Ip_abs_mean",
-        "late_R_rms", "late_Z_rms", "late_velocity_mean", "late_mean_abs_action",
-        "late_hold_fraction", "mean_abs_action", "max_abs_action",
-        "target_R", "target_Z", "target_Ip",
+        "late_R_rms", "late_Z_rms", "late_velocity_mean", "late_velocity_rms",
+        "late_mean_abs_action", "late_hold_fraction",
+        "late_normalized_distance_mean", "late_normalized_distance_p90",
+        "late_fraction_within_3x", "late_fraction_within_2x", "late_fraction_within_1x",
+        "late_longest_streak_within_3x", "late_longest_streak_within_2x",
+        "late_longest_streak_within_1x", "late_longest_streak_within_2x_fraction",
+        "min_normalized_distance", "min_distance_velocity",
+        "mean_abs_action", "max_abs_action", "target_R", "target_Z", "target_Ip",
     ]
     return {name: probe.get(f"{prefix}_{name}") for name in names}
 
 
-def transaction_scenarios_from_cfg(cfg: dict[str, Any]) -> list[dict[str, Any]]:
-    txn = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
-    scenarios = txn.get("scenarios", []) if isinstance(txn.get("scenarios", []), list) else []
-    if not scenarios:
-        scenarios = [
-            {"name": "fixed", "seed": 33101, "R_delta": 0.0, "Z_delta": 0.0, "Ip_delta": 0.0},
-            {"name": "lowR_highZ", "seed": 33102, "R_delta": -0.01, "Z_delta": 0.02, "Ip_delta": 0.0},
-            {"name": "highR_lowZ", "seed": 33103, "R_delta": 0.01, "Z_delta": -0.02, "Ip_delta": 0.0},
-        ]
+def _normalize_transaction_scenarios(raw_scenarios: Any, *, seed0: int) -> list[dict[str, Any]]:
+    scenarios = raw_scenarios if isinstance(raw_scenarios, list) else []
     out: list[dict[str, Any]] = []
     for i, raw in enumerate(scenarios):
         if not isinstance(raw, dict):
             continue
         out.append({
             "name": sanitize_metric_name(str(raw.get("name", f"scenario_{i}"))),
-            "seed": int(raw.get("seed", 33101 + i)),
+            "seed": int(raw.get("seed", seed0 + i)),
             "R_delta": float(raw.get("R_delta", 0.0) or 0.0),
             "Z_delta": float(raw.get("Z_delta", 0.0) or 0.0),
             "Ip_delta": float(raw.get("Ip_delta", 0.0) or 0.0),
         })
     return out
+
+
+def transaction_scenario_groups_from_cfg(cfg: dict[str, Any]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Return lightweight online scenarios and low-frequency audit scenarios.
+
+    B99.10 train-first normally evaluates every proposal on fixed plus one hard
+    nearby target.  The remaining local grid is reserved for every-N-accepted
+    audits, so real-TSC compute primarily trains the controller instead of
+    repeatedly certifying the same small policy step.
+    """
+    txn = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
+    online = _normalize_transaction_scenarios(txn.get("online_scenarios", []), seed0=35101)
+    audit = _normalize_transaction_scenarios(txn.get("audit_scenarios", []), seed0=35201)
+    if not online:
+        online = [
+            {"name": "fixed", "seed": 35101, "R_delta": 0.0, "Z_delta": 0.0, "Ip_delta": 0.0},
+            {"name": "highR_lowZ", "seed": 35102, "R_delta": 0.01, "Z_delta": -0.02, "Ip_delta": 0.0},
+        ]
+    # De-duplicate audit names already present online.
+    online_names = {str(x["name"]) for x in online}
+    audit = [x for x in audit if str(x["name"]) not in online_names]
+    return online, audit
+
+
+def transaction_scenarios_from_cfg(cfg: dict[str, Any]) -> list[dict[str, Any]]:
+    online, audit = transaction_scenario_groups_from_cfg(cfg)
+    return online + audit
 
 
 def aggregate_transaction_scores(scores: list[float], worst_weight: float) -> float:
@@ -2514,7 +2616,6 @@ def evaluate_transaction_scenarios(
         "scores": scores,
         "all_reliable": bool(all_reliable and len(scores) > 0),
     }
-
 
 def prefixed_probe_is_reliable(probe: dict[str, Any], prefix: str, cfg: dict[str, Any] | None) -> tuple[bool, str]:
     """Return whether a deterministic probe is safe to use for guard/best.
@@ -2767,6 +2868,17 @@ def run_online_policy_probe(
     hold_z_tol = float(probe_metrics_cfg.get("hold_z_tol", reward_eval_cfg.get("hold_success_z_tol", 0.08)) or 0.08)
     hold_vel_max = float(probe_metrics_cfg.get("hold_velocity_norm_max", reward_eval_cfg.get("hold_success_velocity_norm_max", 1.0)) or 1.0)
     hold_action_max = float(probe_metrics_cfg.get("hold_action_mean_abs_max", reward_eval_cfg.get("hold_success_action_mean_abs_max", 0.6)) or 0.6)
+    def _longest_true_streak(mask: np.ndarray) -> int:
+        best = 0
+        cur = 0
+        for flag in mask.astype(bool):
+            if flag:
+                cur += 1
+                best = max(best, cur)
+            else:
+                cur = 0
+        return int(best)
+
     if r_late.size and z_late.size and vel_late.size and act_late.size:
         hold_mask = (
             (np.abs(r_late) <= hold_r_tol)
@@ -2775,8 +2887,34 @@ def run_online_policy_probe(
             & (act_late <= hold_action_max)
         )
         late_hold_fraction = float(np.mean(hold_mask.astype(np.float64)))
+        normalized_distance = np.sqrt(
+            np.square(r_late / max(abs(hold_r_tol), 1.0e-12))
+            + np.square(z_late / max(abs(hold_z_tol), 1.0e-12))
+        )
+        within_1 = normalized_distance <= 1.0
+        within_2 = normalized_distance <= 2.0
+        within_3 = normalized_distance <= 3.0
+        streak_1 = _longest_true_streak(within_1)
+        streak_2 = _longest_true_streak(within_2)
+        streak_3 = _longest_true_streak(within_3)
+        min_idx = int(np.argmin(normalized_distance))
+        min_normalized_distance = float(normalized_distance[min_idx])
+        min_distance_velocity = float(vel_late[min_idx])
+        late_normalized_distance_mean = float(np.mean(normalized_distance))
+        late_normalized_distance_p90 = float(np.percentile(normalized_distance, 90.0))
+        late_fraction_within_1x = float(np.mean(within_1.astype(np.float64)))
+        late_fraction_within_2x = float(np.mean(within_2.astype(np.float64)))
+        late_fraction_within_3x = float(np.mean(within_3.astype(np.float64)))
     else:
         late_hold_fraction = 0.0
+        streak_1 = streak_2 = streak_3 = 0
+        min_normalized_distance = float("inf")
+        min_distance_velocity = float("inf")
+        late_normalized_distance_mean = float("inf")
+        late_normalized_distance_p90 = float("inf")
+        late_fraction_within_1x = 0.0
+        late_fraction_within_2x = 0.0
+        late_fraction_within_3x = 0.0
 
     out = {
         f"{prefix}_iteration": int(iteration),
@@ -2799,8 +2937,20 @@ def run_online_policy_probe(
         f"{prefix}_late_R_rms": _rms(r_late),
         f"{prefix}_late_Z_rms": _rms(z_late),
         f"{prefix}_late_velocity_mean": float(np.mean(vel_late)) if vel_late.size else float("inf"),
+        f"{prefix}_late_velocity_rms": _rms(vel_late),
         f"{prefix}_late_mean_abs_action": float(np.mean(act_late)) if act_late.size else float("inf"),
         f"{prefix}_late_hold_fraction": float(late_hold_fraction),
+        f"{prefix}_late_normalized_distance_mean": float(late_normalized_distance_mean),
+        f"{prefix}_late_normalized_distance_p90": float(late_normalized_distance_p90),
+        f"{prefix}_late_fraction_within_3x": float(late_fraction_within_3x),
+        f"{prefix}_late_fraction_within_2x": float(late_fraction_within_2x),
+        f"{prefix}_late_fraction_within_1x": float(late_fraction_within_1x),
+        f"{prefix}_late_longest_streak_within_3x": int(streak_3),
+        f"{prefix}_late_longest_streak_within_2x": int(streak_2),
+        f"{prefix}_late_longest_streak_within_1x": int(streak_1),
+        f"{prefix}_late_longest_streak_within_2x_fraction": float(streak_2 / max(1, int(r_late.size))),
+        f"{prefix}_min_normalized_distance": float(min_normalized_distance),
+        f"{prefix}_min_distance_velocity": float(min_distance_velocity),
         f"{prefix}_max_abs_R_error": float(np.max(np.abs(r_arr))) if r_arr.size else float("inf"),
         f"{prefix}_max_abs_Z_error": float(np.max(np.abs(z_arr))) if z_arr.size else float("inf"),
         f"{prefix}_mean_abs_action": float(mean_action),
@@ -2854,6 +3004,107 @@ def transaction_eval_cache(
     }
 
 
+def _transaction_cache_for_names(
+    details: dict[str, Any], names: set[str], *, worst_weight: float
+) -> dict[str, Any]:
+    selected = {name: dict(details[name]) for name in names if name in details}
+    score_map = {name: float(item.get("score", float("inf"))) for name, item in selected.items()}
+    reliable = bool(len(selected) == len(names) and all(bool(item.get("reliable", False)) for item in selected.values()))
+    return {
+        "details": selected,
+        "score_map": score_map,
+        "aggregate": aggregate_transaction_scores(list(score_map.values()), worst_weight),
+        "all_reliable": reliable,
+    }
+
+
+def _merge_transaction_eval_details(base: dict[str, Any] | None, extra: dict[str, Any]) -> dict[str, Any]:
+    out = dict((base or {}).get("details", {}) or {})
+    out.update(dict(extra.get("details", {}) or {}))
+    return out
+
+
+def _transaction_velocity_regressions(
+    baseline_details: dict[str, Any], candidate_details: dict[str, Any]
+) -> dict[str, Any]:
+    fields = ["terminal_velocity_norm", "late_velocity_mean", "late_velocity_rms", "min_distance_velocity"]
+    per_scenario: dict[str, dict[str, float]] = {}
+    maxima = {field: -float("inf") for field in fields}
+    for name, cand in candidate_details.items():
+        base = dict(baseline_details.get(name, {}) or {})
+        row: dict[str, float] = {}
+        for field in fields:
+            try:
+                delta = float(cand.get(field, float("inf"))) - float(base.get(field, float("inf")))
+            except Exception:
+                delta = float("inf")
+            row[field] = float(delta)
+            maxima[field] = max(maxima[field], float(delta))
+        per_scenario[name] = row
+    return {"per_scenario": per_scenario, "maxima": maxima}
+
+
+def _candidate_passes_velocity_gates(regressions: dict[str, Any], gates: dict[str, Any]) -> tuple[bool, list[str]]:
+    mapping = {
+        "terminal_velocity_norm": float(gates.get("max_terminal_velocity_regression", 0.03) or 0.0),
+        "late_velocity_mean": float(gates.get("max_late_velocity_mean_regression", 0.02) or 0.0),
+        "late_velocity_rms": float(gates.get("max_late_velocity_rms_regression", 0.02) or 0.0),
+        "min_distance_velocity": float(gates.get("max_min_distance_velocity_regression", 0.03) or 0.0),
+    }
+    reasons: list[str] = []
+    maxima = dict(regressions.get("maxima", {}) or {})
+    for field, limit in mapping.items():
+        value = float(maxima.get(field, float("inf")))
+        if not np.isfinite(value) or value > limit:
+            reasons.append(f"{field}:{value:.6g}>{limit:.6g}")
+    return len(reasons) == 0, reasons
+
+
+def _dedupe_sorted_alphas(values: list[float], *, min_alpha: float, max_alpha: float) -> list[float]:
+    out: list[float] = []
+    for raw in sorted(float(v) for v in values):
+        v = min(max(float(raw), float(min_alpha)), float(max_alpha))
+        if abs(v) < 1.0e-9:
+            continue
+        if not any(abs(v - old) < 1.0e-9 for old in out):
+            out.append(v)
+    return out
+
+
+def next_adaptive_transaction_alphas(
+    cfg: dict[str, Any], current: list[float], *, selected_alpha: float | None, accepted: bool
+) -> tuple[list[float], str]:
+    txn = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
+    adaptive = txn.get("adaptive_alpha", {}) if isinstance(txn.get("adaptive_alpha", {}), dict) else {}
+    min_alpha = float(adaptive.get("min_alpha", -2.0) or -2.0)
+    max_alpha = float(adaptive.get("max_alpha", 1.0) or 1.0)
+    positive_sentinel = float(adaptive.get("positive_sentinel", 0.25) or 0.25)
+    neg = sorted([a for a in current if a < 0.0])
+    if not neg:
+        neg = [-1.0, -0.5, -0.25, -0.125]
+    if not accepted or selected_alpha is None or not np.isfinite(float(selected_alpha)):
+        # Trust-region contraction after a failed transaction.
+        contracted = [0.5 * a for a in neg]
+        return _dedupe_sorted_alphas(contracted + [positive_sentinel], min_alpha=min_alpha, max_alpha=max_alpha), "contract_after_reject"
+
+    a = float(selected_alpha)
+    if a > 0.0:
+        span = max(0.25, abs(a))
+        vals = [-span, -0.5 * span, 0.5 * span, span]
+        return _dedupe_sorted_alphas(vals, min_alpha=min_alpha, max_alpha=max_alpha), "positive_sentinel_won_restore_bidirectional"
+
+    most_negative = min(neg)
+    if abs(a - most_negative) < 1.0e-9 and most_negative > min_alpha + 1.0e-9:
+        expanded = [max(min_alpha, 2.0 * a), a, 0.5 * a, positive_sentinel]
+        return _dedupe_sorted_alphas(expanded, min_alpha=min_alpha, max_alpha=max_alpha), "expand_negative_boundary"
+
+    # Interior optimum: shrink a four-point local bracket around the accepted
+    # negative step; keep one positive sentinel without turning line search into
+    # the main compute consumer.
+    local = [1.5 * a, a, 0.5 * a, positive_sentinel]
+    return _dedupe_sorted_alphas(local, min_alpha=min_alpha, max_alpha=max_alpha), "refine_around_negative"
+
+
 def run_transactional_actor_trial(
     cfg: dict[str, Any],
     learner: MpoLearner,
@@ -2864,56 +3115,101 @@ def run_transactional_actor_trial(
     iteration: int,
     env_steps: int,
     baseline_cache: dict[str, Any] | None,
+    candidate_alphas: list[float] | None = None,
+    accepted_count: int = 0,
 ) -> tuple[dict[str, Any] | None, dict[str, Any]]:
-    """Perform one B99.9 safe actor transaction.
+    """Perform one train-first lightweight actor transaction.
 
-    One forced actor optimizer proposal is generated from replay.  Candidate
-    parameter steps (including a small reverse step) are evaluated immediately
-    in the real deterministic TSC environment.  Only a multi-scenario aggregate
-    improvement is committed; otherwise actor, eta, optimizer states, and update
-    count are restored exactly.
+    Four candidates are ranked on the fixed target.  The best viable candidate
+    is normally checked only on the fixed target plus one difficult neighbour.
+    Every ``full_audit_every_accepted`` accepted updates, the same candidate must
+    also pass the remaining local target grid.  Failed rank-1 validation falls
+    through to rank 2; no unvalidated actor state is committed.
     """
     txn = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
-    scenarios = transaction_scenarios_from_cfg(cfg)
-    if not scenarios:
-        return baseline_cache, {"status": "error", "reason": "no_scenarios"}
-    base_name = str(txn.get("selection_scenario", scenarios[0]["name"]))
-    scenario_names = {str(sc["name"]) for sc in scenarios}
-    if base_name not in scenario_names:
-        base_name = str(scenarios[0]["name"])
-    validation_names = scenario_names - {base_name}
+    online_scenarios, audit_scenarios = transaction_scenario_groups_from_cfg(cfg)
+    if not online_scenarios:
+        return baseline_cache, {"status": "error", "reason": "no_online_scenarios"}
+
+    all_scenarios = online_scenarios + audit_scenarios
+    scenario_by_name = {str(sc["name"]): sc for sc in all_scenarios}
+    base_name = str(txn.get("selection_scenario", online_scenarios[0]["name"]))
+    online_names = {str(sc["name"]) for sc in online_scenarios}
+    if base_name not in online_names:
+        base_name = str(online_scenarios[0]["name"])
+    online_validation_names = online_names - {base_name}
+
+    audit_every = max(0, int(txn.get("full_audit_every_accepted", 3) or 0))
+    next_accepted_index = int(accepted_count) + 1
+    audit_due = bool(audit_scenarios and audit_every > 0 and next_accepted_index % audit_every == 0)
+    audit_names = {str(sc["name"]) for sc in audit_scenarios} if audit_due else set()
+    active_names = online_names | audit_names
+
     worst_weight = float(txn.get("aggregate_worst_weight", 0.5) or 0.0)
-    selection_min_delta = float(txn.get("selection_min_delta", 0.01) or 0.0)
-    accept_min_delta = float(txn.get("accept_min_delta", 0.02) or 0.0)
-    max_scenario_regression = float(txn.get("max_scenario_regression", 0.05) or 0.0)
-    alphas = [float(x) for x in list(txn.get("candidate_alphas", [-0.25, 0.125, 0.25, 0.5, 1.0]))]
+    audit_worst_weight = float(txn.get("audit_aggregate_worst_weight", worst_weight) or 0.0)
+    selection_min_delta = float(txn.get("selection_min_delta", 0.004) or 0.0)
+    accept_min_delta = float(txn.get("accept_min_delta", 0.010) or 0.0)
+    audit_accept_min_delta = float(txn.get("audit_accept_min_delta", 0.008) or 0.0)
+    max_scenario_regression = float(txn.get("max_scenario_regression", 0.015) or 0.0)
+    audit_max_scenario_regression = float(txn.get("audit_max_scenario_regression", 0.02) or 0.0)
+    max_full_validations = max(1, int(txn.get("max_full_validation_candidates", 2) or 1))
+    velocity_gates = txn.get("velocity_gates", {}) if isinstance(txn.get("velocity_gates", {}), dict) else {}
+    alphas = [float(x) for x in (candidate_alphas if candidate_alphas is not None else list(txn.get("candidate_alphas", [-1.0, -0.5, -0.25, 0.25])))]
     metrics: dict[str, Any] = {
         "status": "started",
         "base_scenario": base_name,
         "candidate_count": len(alphas),
         "candidate_alphas": list(alphas),
+        "audit_due": bool(audit_due),
+        "next_accepted_index": int(next_accepted_index),
+        "online_scenarios": sorted(online_names),
+        "audit_scenarios": sorted(audit_names),
     }
     trial_t0 = time.time()
 
-    if baseline_cache is None:
+    # Evaluate only missing active baseline scenarios.  A normal accepted update
+    # intentionally drops old audit details because they belong to the previous
+    # actor and must not be reused during the next audit.
+    baseline_details = dict((baseline_cache or {}).get("details", {}) or {})
+    missing_names = active_names - set(baseline_details)
+    if missing_names:
         baseline_eval = evaluate_transaction_scenarios(
-            cfg, learner, iteration=iteration, env_steps=env_steps, scenarios=scenarios
+            cfg, learner, iteration=iteration, env_steps=env_steps,
+            scenarios=all_scenarios, scenario_names=missing_names,
         )
-        baseline_cache = transaction_eval_cache(baseline_eval, worst_weight=worst_weight)
-        metrics["baseline_initialized"] = True
+        baseline_details = _merge_transaction_eval_details({"details": baseline_details}, baseline_eval)
+        metrics["baseline_initialized_scenarios"] = sorted(missing_names)
     else:
-        metrics["baseline_initialized"] = False
-    if not bool(baseline_cache.get("all_reliable", False)):
+        metrics["baseline_initialized_scenarios"] = []
+
+    baseline_online = _transaction_cache_for_names(baseline_details, online_names, worst_weight=worst_weight)
+    baseline_active = _transaction_cache_for_names(
+        baseline_details, active_names,
+        worst_weight=audit_worst_weight if audit_due else worst_weight,
+    )
+    # Public aggregate remains the comparable two-scenario online score even on
+    # audit transactions.  Audit aggregate is recorded separately.
+    baseline_cache = {
+        "details": {name: baseline_details[name] for name in active_names if name in baseline_details},
+        "score_map": dict(baseline_online.get("score_map", {})),
+        "aggregate": float(baseline_online.get("aggregate", float("inf"))),
+        "all_reliable": bool(baseline_online.get("all_reliable", False)),
+        "audit_aggregate": float(baseline_active.get("aggregate", float("inf"))) if audit_due else None,
+        "audit_all_reliable": bool(baseline_active.get("all_reliable", False)) if audit_due else None,
+    }
+    if not baseline_online["all_reliable"] or (audit_due and not baseline_active["all_reliable"]):
         metrics.update({
             "status": "baseline_unreliable",
-            "baseline_aggregate": float(baseline_cache.get("aggregate", float("inf"))),
+            "baseline_aggregate": float(baseline_online["aggregate"]),
+            "baseline_audit_aggregate": float(baseline_active["aggregate"]) if audit_due else None,
             "timing_s": float(time.time() - trial_t0),
         })
         return baseline_cache, metrics
 
-    baseline_score_map = dict(baseline_cache.get("score_map", {}) or {})
+    baseline_score_map = dict(baseline_details and {name: float(item.get("score", float("inf"))) for name, item in baseline_details.items()} or {})
     baseline_base_score = float(baseline_score_map.get(base_name, float("inf")))
-    metrics["baseline_aggregate"] = float(baseline_cache["aggregate"])
+    metrics["baseline_aggregate"] = float(baseline_online["aggregate"])
+    metrics["baseline_audit_aggregate"] = float(baseline_active["aggregate"]) if audit_due else None
     metrics["baseline_base_score"] = baseline_base_score
 
     snapshot = learner.snapshot_policy_transaction()
@@ -2944,116 +3240,172 @@ def run_transactional_actor_trial(
             if key in proposal_metrics:
                 metrics[f"proposal/{key}"] = float(proposal_metrics[key])
 
-        # Proposal critic update is intentionally retained, but all policy-side
-        # state is restored before real-environment candidate evaluation.
         learner.restore_policy_transaction(snapshot, restore_optimizers=True)
 
         candidate_records: list[dict[str, Any]] = []
-        best_record: dict[str, Any] | None = None
+        candidate_states: dict[float, dict[str, torch.Tensor]] = {}
         for alpha in alphas:
             candidate_state = learner.interpolate_actor_states(base_actor_state, proposal_state, alpha)
+            candidate_states[float(alpha)] = candidate_state
             learner.actor.load_state_dict(candidate_state, strict=True)
             eval_one = evaluate_transaction_scenarios(
-                cfg,
-                learner,
-                iteration=iteration,
-                env_steps=env_steps,
-                scenarios=scenarios,
-                scenario_names={base_name},
+                cfg, learner, iteration=iteration, env_steps=env_steps,
+                scenarios=all_scenarios, scenario_names={base_name},
             )
             cache_one = transaction_eval_cache(eval_one, worst_weight=0.0)
             detail = dict(cache_one.get("details", {}).get(base_name, {}) or {})
-            record = {
+            score = float(cache_one.get("score_map", {}).get(base_name, float("inf")))
+            candidate_records.append({
                 "alpha": float(alpha),
-                "score": float(cache_one.get("score_map", {}).get(base_name, float("inf"))),
+                "score": score,
+                "fixed_improvement": float(baseline_base_score - score),
                 "reliable": bool(cache_one.get("all_reliable", False)),
-                "terminal_R_error": detail.get("terminal_R_error"),
-                "terminal_Z_error": detail.get("terminal_Z_error"),
-                "terminal_Ip_error": detail.get("terminal_Ip_error"),
-                "late_R_rms": detail.get("late_R_rms"),
-                "late_Z_rms": detail.get("late_Z_rms"),
-                "late_hold_fraction": detail.get("late_hold_fraction"),
-                "mean_abs_action": detail.get("mean_abs_action"),
-            }
-            candidate_records.append(record)
-            if record["reliable"] and (best_record is None or record["score"] < best_record["score"]):
-                best_record = record
-
-        metrics["candidates"] = candidate_records
-        learner.restore_policy_transaction(snapshot, restore_optimizers=True)
-
-        if best_record is None:
-            metrics.update({"status": "rejected", "reason": "no_reliable_candidate"})
-            return baseline_cache, metrics
-        if not (float(best_record["score"]) <= baseline_base_score - selection_min_delta):
-            metrics.update({
-                "status": "rejected",
-                "reason": "no_base_scenario_improvement",
-                "selected_alpha": float(best_record["alpha"]),
-                "selected_base_score": float(best_record["score"]),
+                **{k: detail.get(k) for k in [
+                    "terminal_R_error", "terminal_Z_error", "terminal_Ip_error",
+                    "terminal_velocity_norm", "late_R_rms", "late_Z_rms",
+                    "late_velocity_mean", "late_velocity_rms", "min_distance_velocity",
+                    "late_normalized_distance_mean", "late_normalized_distance_p90",
+                    "late_fraction_within_3x", "late_fraction_within_2x",
+                    "late_fraction_within_1x", "late_longest_streak_within_2x_fraction",
+                    "late_hold_fraction", "mean_abs_action",
+                ]},
             })
+
+        learner.restore_policy_transaction(snapshot, restore_optimizers=True)
+        ranked = sorted(
+            [r for r in candidate_records if r["reliable"] and r["fixed_improvement"] >= selection_min_delta],
+            key=lambda r: float(r["score"]),
+        )
+        metrics["candidates"] = candidate_records
+        metrics["ranked_candidate_alphas"] = [float(r["alpha"]) for r in ranked]
+        if not ranked:
+            metrics.update({"status": "rejected", "reason": "no_fixed_scenario_improvement"})
             return baseline_cache, metrics
 
-        selected_alpha = float(best_record["alpha"])
-        selected_state = learner.interpolate_actor_states(base_actor_state, proposal_state, selected_alpha)
-        learner.actor.load_state_dict(selected_state, strict=True)
-        validation_eval = evaluate_transaction_scenarios(
-            cfg,
-            learner,
-            iteration=iteration,
-            env_steps=env_steps,
-            scenarios=scenarios,
-            scenario_names=validation_names,
-        ) if validation_names else {"details": {}, "scores": [], "all_reliable": True}
+        validation_attempts: list[dict[str, Any]] = []
+        accepted_payload: tuple[dict[str, Any], dict[str, Any], dict[str, Any]] | None = None
+        for rank, record in enumerate(ranked[:max_full_validations], start=1):
+            alpha = float(record["alpha"])
+            learner.actor.load_state_dict(candidate_states[alpha], strict=True)
+            validation_eval = evaluate_transaction_scenarios(
+                cfg, learner, iteration=iteration, env_steps=env_steps,
+                scenarios=all_scenarios, scenario_names=online_validation_names,
+            ) if online_validation_names else {"details": {}, "scores": [], "all_reliable": True}
+            fixed_detail = {k: v for k, v in record.items() if k not in {"alpha", "reliable", "fixed_improvement"}}
+            fixed_detail["reliable"] = bool(record["reliable"])
+            combined_details = {base_name: fixed_detail}
+            combined_details.update(dict(validation_eval.get("details", {}) or {}))
+            online_cache = _transaction_cache_for_names(combined_details, online_names, worst_weight=worst_weight)
+            online_regressions = {
+                name: float(online_cache["score_map"].get(name, float("inf")) - baseline_score_map.get(name, float("inf")))
+                for name in online_names
+            }
+            online_max_regression = max(online_regressions.values()) if online_regressions else float("inf")
+            online_improvement = float(baseline_online["aggregate"] - online_cache["aggregate"])
+            velocity_regressions = _transaction_velocity_regressions(
+                {name: baseline_details[name] for name in online_names}, combined_details
+            )
+            velocity_ok, velocity_reasons = _candidate_passes_velocity_gates(velocity_regressions, velocity_gates)
+            online_ok = bool(
+                online_cache["all_reliable"]
+                and online_improvement >= accept_min_delta
+                and online_max_regression <= max_scenario_regression
+                and velocity_ok
+            )
 
-        combined_details = {base_name: {
-            **{k: v for k, v in best_record.items() if k not in {"alpha", "reliable"}},
-            "reliable": bool(best_record["reliable"]),
-        }}
-        combined_details.update(dict(validation_eval.get("details", {}) or {}))
-        candidate_cache = transaction_eval_cache(
-            {
-                "details": combined_details,
-                "all_reliable": bool(best_record["reliable"] and validation_eval.get("all_reliable", True)),
-            },
-            worst_weight=worst_weight,
-        )
-        scenario_regressions = {
-            name: float(candidate_cache["score_map"].get(name, float("inf")) - baseline_score_map.get(name, float("inf")))
-            for name in scenario_names
-        }
-        max_regression = max(scenario_regressions.values()) if scenario_regressions else float("inf")
-        aggregate_improvement = float(baseline_cache["aggregate"] - candidate_cache["aggregate"])
-        accepted = bool(
-            candidate_cache["all_reliable"]
-            and aggregate_improvement >= accept_min_delta
-            and max_regression <= max_scenario_regression
-        )
+            audit_cache = None
+            audit_improvement = None
+            audit_max_regression = None
+            audit_regressions = None
+            if online_ok and audit_due:
+                audit_eval = evaluate_transaction_scenarios(
+                    cfg, learner, iteration=iteration, env_steps=env_steps,
+                    scenarios=all_scenarios, scenario_names=audit_names,
+                )
+                combined_details.update(dict(audit_eval.get("details", {}) or {}))
+                audit_cache = _transaction_cache_for_names(combined_details, active_names, worst_weight=audit_worst_weight)
+                audit_regressions = {
+                    name: float(audit_cache["score_map"].get(name, float("inf")) - baseline_score_map.get(name, float("inf")))
+                    for name in active_names
+                }
+                audit_max_regression = max(audit_regressions.values()) if audit_regressions else float("inf")
+                audit_improvement = float(baseline_active["aggregate"] - audit_cache["aggregate"])
+                all_velocity_regressions = _transaction_velocity_regressions(
+                    {name: baseline_details[name] for name in active_names}, combined_details
+                )
+                audit_velocity_ok, audit_velocity_reasons = _candidate_passes_velocity_gates(all_velocity_regressions, velocity_gates)
+                velocity_regressions = all_velocity_regressions
+                velocity_ok = bool(audit_velocity_ok)
+                velocity_reasons = audit_velocity_reasons
+                online_ok = bool(
+                    audit_cache["all_reliable"]
+                    and audit_improvement >= audit_accept_min_delta
+                    and audit_max_regression <= audit_max_scenario_regression
+                    and audit_velocity_ok
+                )
+
+            attempt = {
+                "rank": int(rank),
+                "alpha": alpha,
+                "online_candidate_aggregate": float(online_cache["aggregate"]),
+                "online_aggregate_improvement": float(online_improvement),
+                "online_max_scenario_regression": float(online_max_regression),
+                "online_scenario_regressions": online_regressions,
+                "audit_due": bool(audit_due),
+                "audit_candidate_aggregate": None if audit_cache is None else float(audit_cache["aggregate"]),
+                "audit_aggregate_improvement": audit_improvement,
+                "audit_max_scenario_regression": audit_max_regression,
+                "audit_scenario_regressions": audit_regressions,
+                "velocity_regressions": velocity_regressions,
+                "velocity_gate_ok": bool(velocity_ok),
+                "velocity_gate_reasons": velocity_reasons,
+                "accepted": bool(online_ok),
+            }
+            validation_attempts.append(attempt)
+            if online_ok:
+                final_details = combined_details if audit_due else {name: combined_details[name] for name in online_names}
+                accepted_cache = {
+                    "details": final_details,
+                    "score_map": dict(online_cache["score_map"]),
+                    "aggregate": float(online_cache["aggregate"]),
+                    "all_reliable": bool(online_cache["all_reliable"]),
+                    "audit_aggregate": None if audit_cache is None else float(audit_cache["aggregate"]),
+                    "audit_all_reliable": None if audit_cache is None else bool(audit_cache["all_reliable"]),
+                }
+                accepted_payload = (record, accepted_cache, attempt)
+                break
+            learner.restore_policy_transaction(snapshot, restore_optimizers=True)
+
+        metrics["validation_attempts"] = validation_attempts
+        if accepted_payload is None:
+            learner.restore_policy_transaction(snapshot, restore_optimizers=True)
+            metrics.update({"status": "rejected", "reason": "no_ranked_candidate_passed_lightweight_validation"})
+            return baseline_cache, metrics
+
+        record, candidate_cache, attempt = accepted_payload
+        selected_alpha = float(record["alpha"])
+        learner.actor.load_state_dict(candidate_states[selected_alpha], strict=True)
+        learner.update_count = int(snapshot.get("update_count", learner.update_count)) + 1
+        learner.reset_actor_optimizer()
         metrics.update({
             "selected_alpha": selected_alpha,
-            "selected_base_score": float(best_record["score"]),
+            "selected_base_score": float(record["score"]),
             "candidate_aggregate": float(candidate_cache["aggregate"]),
-            "aggregate_improvement": aggregate_improvement,
-            "max_scenario_regression": float(max_regression),
-            "scenario_regressions": scenario_regressions,
-            "candidate_details": combined_details,
+            "aggregate_improvement": float(attempt["online_aggregate_improvement"]),
+            "max_scenario_regression": float(attempt["online_max_scenario_regression"]),
+            "scenario_regressions": attempt["online_scenario_regressions"],
+            "audit_aggregate": attempt["audit_candidate_aggregate"],
+            "audit_aggregate_improvement": attempt["audit_aggregate_improvement"],
+            "audit_max_scenario_regression": attempt["audit_max_scenario_regression"],
+            "audit_scenario_regressions": attempt["audit_scenario_regressions"],
+            "velocity_regressions": attempt["velocity_regressions"],
+            "candidate_details": dict(candidate_cache.get("details", {}) or {}),
+            "selected_rank": int(attempt["rank"]),
+            "status": "accepted",
+            "reason": "train_first_audit_safe" if audit_due else "train_first_fixed_plus_hard_safe",
+            "actor_optimizer_reset": True,
         })
-        if accepted:
-            # Candidate weights are already active.  A fractional/interpolated
-            # step cannot consistently inherit full-proposal Adam moments, so
-            # start the next transaction with fresh actor optimizer state.
-            learner.update_count = int(snapshot.get("update_count", learner.update_count)) + 1
-            learner.reset_actor_optimizer()
-            metrics.update({
-                "status": "accepted",
-                "reason": "multi_scenario_improved",
-                "actor_optimizer_reset": True,
-            })
-            baseline_cache = candidate_cache
-            return baseline_cache, metrics
-
-        learner.restore_policy_transaction(snapshot, restore_optimizers=True)
-        metrics.update({"status": "rejected", "reason": "multi_scenario_acceptance_failed"})
+        baseline_cache = candidate_cache
         return baseline_cache, metrics
     except Exception as exc:
         learner.restore_policy_transaction(snapshot, restore_optimizers=True)
@@ -3362,6 +3714,7 @@ def main():
     resume_env_steps = 0
     resume_iteration = 0
     resume_payload_stats: dict[str, Any] = {}
+    policy_resume_payload_stats: dict[str, Any] = {}
     resume_cfg_global: dict[str, Any] = cfg.get("resume", {}) if isinstance(cfg.get("resume", {}), dict) else {}
     learner.set_env_steps(0)
     if args.resume:
@@ -3487,6 +3840,7 @@ def main():
         policy_cfg = resume_cfg_global.get("policy_override", {}) if isinstance(resume_cfg_global.get("policy_override", {}), dict) else {}
         print(f"[train_mpo] overriding protected policy from: {Path(args.policy_resume) / 'mpo_checkpoint.pt'}", flush=True)
         policy_payload = torch.load(Path(args.policy_resume) / "mpo_checkpoint.pt", map_location=device)
+        policy_resume_payload_stats = dict(policy_payload.get("stats", {}) or {}) if isinstance(policy_payload.get("stats", {}), dict) else {}
         learner.restore_actor_policy_from_checkpoint(
             args.policy_resume,
             restore_actor_optimizer=bool(policy_cfg.get("restore_actor_optimizer", False)),
@@ -3606,7 +3960,7 @@ def main():
     actor_guard_last_restored = False
     best_ckpt_error_dir = ckpt_dir / str(best_cfg.get("directory_error_score", "best_error_score"))
 
-    # B99.9 transactional actor guard.  Regular learner updates are critic-only;
+    # B99.10 adaptive transactional actor guard.  Regular learner updates are critic-only;
     # actor changes happen solely inside explicit proposal/eval/accept transactions.
     txn_cfg = cfg.get("transactional_actor_guard", {}) if isinstance(cfg.get("transactional_actor_guard", {}), dict) else {}
     txn_enabled = bool(txn_cfg.get("enabled", False))
@@ -3620,14 +3974,55 @@ def main():
     txn_accepted = 0
     txn_rejected = 0
     txn_consecutive_rejections = 0
+    txn_consecutive_small_improvements = 0
+    txn_small_improvement_threshold = float(txn_cfg.get("small_improvement_threshold", 0.01) or 0.0)
+    txn_max_consecutive_small_improvements = int(txn_cfg.get("max_consecutive_small_improvements", 3) or 0)
+    txn_candidate_alphas = [float(x) for x in list(txn_cfg.get("candidate_alphas", [-1.0, -0.5, -0.25, -0.125, 0.25]))]
+    txn_alpha_mode = "initial"
     txn_best_aggregate = float("inf")
+    if bool(txn_cfg.get("resume_transaction_state_from_policy", True)) and (policy_resume_payload_stats or resume_payload_stats):
+        # Actor weights always come from policy-resume, but transaction counters
+        # and the adaptive bracket should come from the newest completed stats.
+        # This preserves rejected-trial contractions recorded in a later periodic
+        # checkpoint without ever importing its unaccepted actor.
+        state_stats = policy_resume_payload_stats
+        try:
+            base_iter = int(resume_payload_stats.get("training_iteration", -1) or -1)
+            policy_iter = int(policy_resume_payload_stats.get("training_iteration", -1) or -1)
+            if resume_payload_stats.get("actor_txn/current_candidate_alphas") is not None and base_iter >= policy_iter:
+                state_stats = resume_payload_stats
+        except Exception:
+            pass
+        saved_txn = policy_resume_payload_stats.get("transactional_guard", {})
+        if not isinstance(saved_txn, dict):
+            saved_txn = {}
+        saved_alphas = state_stats.get("actor_txn/current_candidate_alphas")
+        if saved_alphas is None:
+            saved_alphas = saved_txn.get("next_candidate_alphas")
+        if isinstance(saved_alphas, list) and saved_alphas:
+            try:
+                txn_candidate_alphas = [float(x) for x in saved_alphas]
+                txn_alpha_mode = str(state_stats.get("actor_txn/adaptive_alpha_mode", saved_txn.get("adaptive_alpha_mode", "resumed")))
+            except Exception:
+                pass
+        try:
+            txn_attempts = int(state_stats.get("actor_txn/attempts", 0) or 0)
+            txn_accepted = int(state_stats.get("actor_txn/accepted", 0) or 0)
+            txn_rejected = int(state_stats.get("actor_txn/rejected", 0) or 0)
+            txn_consecutive_rejections = int(state_stats.get("actor_txn/consecutive_rejections", 0) or 0)
+            txn_consecutive_small_improvements = int(state_stats.get("actor_txn/consecutive_small_improvements", 0) or 0)
+            saved_best = float(state_stats.get("actor_txn/best_aggregate", policy_resume_payload_stats.get("best/error_score", float("inf"))))
+            if np.isfinite(saved_best):
+                txn_best_aggregate = saved_best
+        except Exception:
+            pass
     txn_last_metrics: dict[str, Any] = {}
     txn_log_path = run_dir / "actor_transactions.jsonl"
     if txn_enabled:
         learner.set_actor_guard_update_allowed(False, "transactional_only")
         learner.set_dual_updates_enabled(not txn_freeze_duals, "transactional_anti_windup" if txn_freeze_duals else "enabled")
         print(
-            f"B99.9 transactional actor guard enabled: settle_iters={txn_critic_settle_iters} "
+            f"B99.10 adaptive transactional actor guard enabled: settle_iters={txn_critic_settle_iters} "
             f"trial_every_iters={txn_trial_every_iters} freeze_duals={txn_freeze_duals}",
             flush=True,
         )
@@ -3810,6 +4205,8 @@ def main():
                     iteration=iteration,
                     env_steps=total_steps,
                     baseline_cache=txn_baseline_cache,
+                    candidate_alphas=txn_candidate_alphas,
+                    accepted_count=txn_accepted,
                 )
                 txn_timing_s = float(time.time() - txn_t0)
                 txn_last_metrics = dict(txn_metrics_this_iter)
@@ -3836,11 +4233,29 @@ def main():
                 if txn_status == "accepted":
                     txn_accepted += 1
                     txn_consecutive_rejections = 0
+                    improvement = float(txn_metrics_this_iter.get("aggregate_improvement", float("nan")))
+                    if np.isfinite(improvement) and improvement < txn_small_improvement_threshold:
+                        txn_consecutive_small_improvements += 1
+                    else:
+                        txn_consecutive_small_improvements = 0
+                    selected_alpha = float(txn_metrics_this_iter.get("selected_alpha", float("nan")))
+                    txn_candidate_alphas, txn_alpha_mode = next_adaptive_transaction_alphas(
+                        cfg, txn_candidate_alphas, selected_alpha=selected_alpha, accepted=True
+                    )
+                    txn_metrics_this_iter["next_candidate_alphas"] = list(txn_candidate_alphas)
+                    txn_metrics_this_iter["adaptive_alpha_mode"] = str(txn_alpha_mode)
                     current_agg = float(txn_baseline_cache.get("aggregate", float("inf"))) if txn_baseline_cache else float("inf")
                     learner.save_checkpoint(ckpt_dir / "accepted_latest", {
                         "training_iteration": int(iteration),
                         "env_steps": int(total_steps),
                         "transactional_guard": json_safe(txn_metrics_this_iter),
+                        "actor_txn/attempts": int(txn_attempts),
+                        "actor_txn/accepted": int(txn_accepted),
+                        "actor_txn/rejected": int(txn_rejected),
+                        "actor_txn/consecutive_rejections": int(txn_consecutive_rejections),
+                        "actor_txn/consecutive_small_improvements": int(txn_consecutive_small_improvements),
+                        "actor_txn/current_candidate_alphas": json_safe(txn_candidate_alphas),
+                        "actor_txn/adaptive_alpha_mode": str(txn_alpha_mode),
                         "best/error_score": current_agg,
                     })
                     if current_agg < txn_best_aggregate - float(txn_cfg.get("best_min_delta", 0.01) or 0.0):
@@ -3849,9 +4264,16 @@ def main():
                             "training_iteration": int(iteration),
                             "env_steps": int(total_steps),
                             "transactional_guard": json_safe(txn_metrics_this_iter),
+                            "actor_txn/attempts": int(txn_attempts),
+                            "actor_txn/accepted": int(txn_accepted),
+                            "actor_txn/rejected": int(txn_rejected),
+                            "actor_txn/consecutive_rejections": int(txn_consecutive_rejections),
+                            "actor_txn/consecutive_small_improvements": int(txn_consecutive_small_improvements),
+                            "actor_txn/current_candidate_alphas": json_safe(txn_candidate_alphas),
+                            "actor_txn/adaptive_alpha_mode": str(txn_alpha_mode),
                             "best/error_score": current_agg,
                             "best/error_score_best_so_far": current_agg,
-                            "best/error_score_source": "transactional_multiscenario_eval",
+                            "best/error_score_source": "transactional_fixed_plus_hard_eval",
                         })
                     # Workers may still be completing one old-policy fragment.  The
                     # queued sync applies the accepted actor before subsequent rollout.
@@ -3868,12 +4290,20 @@ def main():
                 elif txn_status in {"rejected", "error", "baseline_unreliable"}:
                     txn_rejected += 1
                     txn_consecutive_rejections += 1
+                    txn_consecutive_small_improvements = 0
+                    txn_candidate_alphas, txn_alpha_mode = next_adaptive_transaction_alphas(
+                        cfg, txn_candidate_alphas, selected_alpha=None, accepted=False
+                    )
+                    txn_metrics_this_iter["next_candidate_alphas"] = list(txn_candidate_alphas)
+                    txn_metrics_this_iter["adaptive_alpha_mode"] = str(txn_alpha_mode)
                 with open(txn_log_path, "a", encoding="utf-8") as f:
                     f.write(json.dumps(json_safe({
                         "training_iteration": int(iteration),
                         "env_steps": int(total_steps),
                         **txn_metrics_this_iter,
                     }), ensure_ascii=False) + "\n")
+                    f.flush()
+                    os.fsync(f.fileno())
 
             # Include any post-transaction worker synchronization in the timing aliases.
             actor_sync_s = worker_param_rpc_s
@@ -3933,13 +4363,22 @@ def main():
                 "actor_txn/accepted": int(txn_accepted),
                 "actor_txn/rejected": int(txn_rejected),
                 "actor_txn/consecutive_rejections": int(txn_consecutive_rejections),
+                "actor_txn/consecutive_small_improvements": int(txn_consecutive_small_improvements),
+                "actor_txn/current_candidate_alphas": json_safe(txn_candidate_alphas),
+                "actor_txn/adaptive_alpha_mode": str(txn_alpha_mode),
                 "actor_txn/best_aggregate": float(txn_best_aggregate),
                 "actor_txn/baseline_aggregate": float(txn_baseline_cache.get("aggregate", float("inf"))) if txn_baseline_cache else float("inf"),
                 "actor_txn/status": str(txn_metrics_this_iter.get("status", "not_due")),
                 "actor_txn/reason": str(txn_metrics_this_iter.get("reason", "not_due")),
                 "actor_txn/selected_alpha": float(txn_metrics_this_iter.get("selected_alpha", float("nan"))),
+                "actor_txn/selected_rank": int(txn_metrics_this_iter.get("selected_rank", -1) or -1),
+                "actor_txn/validation_candidates_tried": int(len(txn_metrics_this_iter.get("validation_attempts", []) or [])),
                 "actor_txn/aggregate_improvement": float(txn_metrics_this_iter.get("aggregate_improvement", float("nan"))),
                 "actor_txn/max_scenario_regression": float(txn_metrics_this_iter.get("max_scenario_regression", float("nan"))),
+                "actor_txn/audit_due": bool(txn_metrics_this_iter.get("audit_due", False)),
+                "actor_txn/audit_aggregate": float(txn_metrics_this_iter.get("audit_aggregate", float("nan"))) if txn_metrics_this_iter.get("audit_aggregate") is not None else float("nan"),
+                "actor_txn/audit_aggregate_improvement": float(txn_metrics_this_iter.get("audit_aggregate_improvement", float("nan"))) if txn_metrics_this_iter.get("audit_aggregate_improvement") is not None else float("nan"),
+                "actor_txn/audit_max_scenario_regression": float(txn_metrics_this_iter.get("audit_max_scenario_regression", float("nan"))) if txn_metrics_this_iter.get("audit_max_scenario_regression") is not None else float("nan"),
                 "timing/actor_transaction_s": float(txn_timing_s),
             }
             if txn_metrics_this_iter:
@@ -3956,6 +4395,16 @@ def main():
                     result["early_stop_triggered"] = True
                     prev = str(result.get("early_stop_reason", ""))
                     result["early_stop_reason"] = (prev + ";" if prev else "") + f"transactional_actor_max_trials_{txn_max_trials}"
+                if (
+                    txn_max_consecutive_small_improvements > 0
+                    and txn_consecutive_small_improvements >= txn_max_consecutive_small_improvements
+                ):
+                    stop_now = True
+                    result["early_stop_triggered"] = True
+                    prev = str(result.get("early_stop_reason", ""))
+                    result["early_stop_reason"] = (prev + ";" if prev else "") + (
+                        f"transactional_actor_{txn_consecutive_small_improvements}_consecutive_small_improvements"
+                    )
             eval_t0 = time.time()
             if probe_enabled and probe_every_iters > 0 and iteration % probe_every_iters == 0:
                 try:
@@ -4112,7 +4561,7 @@ def main():
                         result["early_stop_triggered"] = True
 
             if txn_enabled:
-                result["best/error_score_source"] = "transactional_multiscenario_eval"
+                result["best/error_score_source"] = "transactional_fixed_plus_hard_eval"
                 result["best/error_score"] = float(txn_baseline_cache.get("aggregate", float("inf"))) if txn_baseline_cache else float("inf")
                 result["best/error_score_best_so_far"] = float(txn_best_aggregate)
                 result["best/error_score_improved"] = bool(

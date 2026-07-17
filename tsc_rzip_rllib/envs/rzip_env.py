@@ -112,6 +112,20 @@ class TscRzipEnv(gym.Env):
         near_target_norm_sigma: float = 1.0,
         w_overshoot: float = 1.2,
         overshoot_near_norm: float = 2.0,
+        # B99.10 train-first symmetric R/Z shaping.  These terms align the
+        # critic reward with the deterministic late/hold transaction score.
+        w_soft_rz_distance: float = 0.0,
+        soft_rz_r_tol_m: float = 0.08,
+        soft_rz_z_tol_m: float = 0.08,
+        soft_rz_distance_clip: float = 6.0,
+        soft_rz_phase_floor: float = 0.25,
+        w_soft_rz_progress: float = 0.0,
+        soft_rz_progress_ref: float = 0.10,
+        soft_rz_progress_clip: float = 1.5,
+        w_soft_rz_outward_velocity: float = 0.0,
+        w_soft_rz_near_velocity: float = 0.0,
+        soft_rz_velocity_sigma: float = 3.0,
+        soft_rz_velocity_ref_m_per_s: float = 1.0,
         # B87/B88 shape and recovery shaping. These terms are optional and
         # default to zero so older configs remain compatible.
         w_rz_max_error: float = 0.0,
@@ -262,6 +276,19 @@ class TscRzipEnv(gym.Env):
         self.near_target_norm_sigma = max(float(near_target_norm_sigma), 1.0e-9)
         self.w_overshoot = float(w_overshoot)
         self.overshoot_near_norm = float(overshoot_near_norm)
+
+        self.w_soft_rz_distance = float(w_soft_rz_distance)
+        self.soft_rz_r_tol_m = max(abs(float(soft_rz_r_tol_m)), 1.0e-9)
+        self.soft_rz_z_tol_m = max(abs(float(soft_rz_z_tol_m)), 1.0e-9)
+        self.soft_rz_distance_clip = max(float(soft_rz_distance_clip), 1.0)
+        self.soft_rz_phase_floor = float(np.clip(soft_rz_phase_floor, 0.0, 1.0))
+        self.w_soft_rz_progress = float(w_soft_rz_progress)
+        self.soft_rz_progress_ref = max(abs(float(soft_rz_progress_ref)), 1.0e-9)
+        self.soft_rz_progress_clip = max(abs(float(soft_rz_progress_clip)), 0.0)
+        self.w_soft_rz_outward_velocity = float(w_soft_rz_outward_velocity)
+        self.w_soft_rz_near_velocity = float(w_soft_rz_near_velocity)
+        self.soft_rz_velocity_sigma = max(abs(float(soft_rz_velocity_sigma)), 1.0e-9)
+        self.soft_rz_velocity_ref_m_per_s = max(abs(float(soft_rz_velocity_ref_m_per_s)), 1.0e-9)
 
         self.w_rz_max_error = float(w_rz_max_error)
         self.w_hold_rz_max_error = float(w_hold_rz_max_error)
@@ -947,6 +974,73 @@ class TscRzipEnv(gym.Env):
             weight += self.w_z_signed_progress_early
         return float(weight * progress), float(progress)
 
+    def _soft_rz_distance(self, r_error_raw: float, z_error_raw: float) -> float:
+        return float(np.hypot(
+            float(r_error_raw) / self.soft_rz_r_tol_m,
+            float(z_error_raw) / self.soft_rz_z_tol_m,
+        ))
+
+    def _soft_rz_reward_terms(
+        self,
+        r_error_raw: float,
+        z_error_raw: float,
+        derivative_norm: np.ndarray,
+        hold_weight: float,
+    ) -> dict[str, float]:
+        """Continuous symmetric reach/brake/hold signal used by B99.10.
+
+        The old B99.9 reward had a strong Z-only signed-progress term while the
+        real-TSC transaction score was symmetric in R/Z and late-window hold
+        quality.  This helper supplies the same actor/critic training path with
+        a balanced distance signal, direct distance progress, outward-motion
+        rejection, and smooth near-target braking.
+        """
+        distance = self._soft_rz_distance(r_error_raw, z_error_raw)
+        phase = self.soft_rz_phase_floor + (1.0 - self.soft_rz_phase_floor) * float(np.clip(hold_weight, 0.0, 1.0))
+        distance_penalty = self.w_soft_rz_distance * phase * min(distance, self.soft_rz_distance_clip)
+
+        previous_distance = distance
+        if self.prev_raw_values is not None:
+            prev_err = np.asarray(self.prev_raw_values, dtype=float) - self.target
+            previous_distance = self._soft_rz_distance(float(prev_err[0]), float(prev_err[1]))
+        progress = (previous_distance - distance) / self.soft_rz_progress_ref
+        if self.soft_rz_progress_clip > 0.0:
+            progress = float(np.clip(progress, -self.soft_rz_progress_clip, self.soft_rz_progress_clip))
+        # Keep a useful reach signal from the beginning, then emphasize it late.
+        progress_phase = 0.5 + 0.5 * float(np.clip(hold_weight, 0.0, 1.0))
+        progress_bonus = self.w_soft_rz_progress * progress_phase * progress
+
+        rz_velocity = np.asarray([
+            float(derivative_norm[0]) * self.r_velocity_scale,
+            float(derivative_norm[1]) * self.z_velocity_scale,
+        ], dtype=float)
+        rz_velocity_norm = float(np.linalg.norm(rz_velocity))
+        error_raw = np.asarray([float(r_error_raw), float(z_error_raw)], dtype=float)
+        error_raw_norm = float(np.linalg.norm(error_raw))
+        radial_velocity = 0.0
+        if error_raw_norm > 1.0e-12:
+            radial_velocity = float(np.dot(error_raw / error_raw_norm, rz_velocity))
+        outward_velocity = max(radial_velocity, 0.0) / self.soft_rz_velocity_ref_m_per_s
+        outward_velocity_penalty = self.w_soft_rz_outward_velocity * phase * outward_velocity**2
+
+        near_gain = float(np.exp(-((distance / self.soft_rz_velocity_sigma) ** 2)))
+        near_velocity_scaled = rz_velocity_norm / self.soft_rz_velocity_ref_m_per_s
+        near_velocity_penalty = self.w_soft_rz_near_velocity * phase * near_gain * near_velocity_scaled**2
+
+        return {
+            "soft_rz_distance": float(distance),
+            "soft_rz_previous_distance": float(previous_distance),
+            "soft_rz_phase": float(phase),
+            "soft_rz_distance_penalty": float(distance_penalty),
+            "soft_rz_progress": float(progress),
+            "soft_rz_progress_bonus": float(progress_bonus),
+            "rz_velocity_norm": float(rz_velocity_norm),
+            "soft_rz_radial_velocity": float(radial_velocity),
+            "soft_rz_outward_velocity_penalty": float(outward_velocity_penalty),
+            "soft_rz_near_gain": float(near_gain),
+            "soft_rz_near_velocity_penalty": float(near_velocity_penalty),
+        }
+
     def _reward(self, obs: np.ndarray, action: np.ndarray, state: Dict[str, Any], derivative_norm: np.ndarray) -> tuple[float, Dict[str, float]]:
         err = self._tracking_errors(state)
         r_err, z_err, ip_err = err
@@ -977,6 +1071,9 @@ class TscRzipEnv(gym.Env):
         ip_guard_penalty = self._guard_penalty(abs(ip_error_raw), self.ip_guard_a, self.w_ip_guard)
 
         hold_weight = self._hold_weight()
+        soft_rz_terms = self._soft_rz_reward_terms(
+            r_error_raw, z_error_raw, derivative_norm, hold_weight
+        )
         rz_max_error_penalty, rz_max_error, hold_rz_max_error_penalty = self._rz_max_error_penalty(r_error_raw, z_error_raw, hold_weight)
         all_max_error_penalty, all_max_error = self._all_max_error_penalty(r_error_raw, z_error_raw, ip_error_raw)
         negative_r_bias_penalty = self._negative_r_bias_penalty(r_error_raw)
@@ -1030,6 +1127,9 @@ class TscRzipEnv(gym.Env):
             - deriv_penalty_near
             - overshoot_penalty
             - error_growth_penalty
+            - soft_rz_terms["soft_rz_distance_penalty"]
+            - soft_rz_terms["soft_rz_outward_velocity_penalty"]
+            - soft_rz_terms["soft_rz_near_velocity_penalty"]
             - action_penalty
             - delta_action_penalty
             - current_penalty
@@ -1051,6 +1151,7 @@ class TscRzipEnv(gym.Env):
             - hold_current_drift_penalty
             - hold_vessel_penalty
             + reach_progress_bonus
+            + soft_rz_terms["soft_rz_progress_bonus"]
             + z_signed_progress_bonus
             + fast_reach_bonus_now
         )
@@ -1093,6 +1194,7 @@ class TscRzipEnv(gym.Env):
             "z_signed_progress_bonus": float(z_signed_progress_bonus),
             "z_signed_progress": float(z_signed_progress),
             "fast_reach_bonus_now": float(fast_reach_bonus_now),
+            **soft_rz_terms,
             "hold_weight": float(hold_weight),
             "hold_phase": float(hold_weight >= 1.0),
             "hold_tracking_penalty": float(hold_tracking_penalty),
@@ -1135,6 +1237,8 @@ class TscRzipEnv(gym.Env):
             "terminal_Ip_error_norm": float(err[2]),
             "terminal_current_util_max": float(np.max(current_util)),
             "terminal_velocity_norm": float(self.last_velocity_norm),
+            "terminal_rz_velocity_norm": float(self.last_reward_terms.get("rz_velocity_norm", self.last_velocity_norm)),
+            "terminal_soft_rz_distance": float(self.last_reward_terms.get("soft_rz_distance", self._soft_rz_distance(r_error, z_error))),
             "terminal_vessel_current_total_a": float(state.get("vessel_current_total_a", 0.0)),
             "terminal_vessel_current_abs_sum_a": float(state.get("vessel_current_abs_sum_a", 0.0)),
             "terminal_vessel_current_rms_a": float(state.get("vessel_current_rms_a", 0.0)),

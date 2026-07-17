@@ -1,9 +1,9 @@
 {
-  "run_name": "train_b99_9_resume_b99_8_transactional_line_search_ip_relaxed_runtime_only_mpo_192worker",
-  "train_config": "configs/train_b99_9_transactional_line_search_ip_relaxed_runtime_only.json",
+  "run_name": "train_b99_10_resume_b99_9_train_first_light_transaction_runtime_only_mpo_192worker",
+  "train_config": "configs/train_b99_10_train_first_soft_hold_runtime_only.json",
   "seed": 42,
-  "stop_env_steps": 1200000,
-  "checkpoint_every_iters": 5,
+  "stop_env_steps": 1500000,
+  "checkpoint_every_iters": 3,
   "log_root": "ray_results",
   "checkpoint_root": "mpo_checkpoints",
   "env": {
@@ -163,7 +163,7 @@
   },
   "early_stop": {
     "enabled": false,
-    "note": "B99.9 uses transactional multi-scenario deterministic TSC acceptance and transaction-based stopping; legacy probe early-stop is disabled.",
+    "note": "B99.10 train-first uses lightweight transactional acceptance and low-frequency seven-scenario audits; legacy probe early-stop is disabled.",
     "score_r_ref": 0.05,
     "score_z_ref": 0.05,
     "score_ip_ref": 5000.0,
@@ -176,7 +176,7 @@
     "eval_stage": "final",
     "seed": 22345
   },
-  "description": "B99.9 imports mature B99.8 critics plus the protected reliable-best actor, freezes ordinary actor/eta/dual updates, and permits policy changes only through transactional bidirectional actor proposals that are immediately accepted or fully rolled back using deterministic multi-scenario TSC evaluation.",
+  "description": "B99.10 train-first resumes B99.9 accepted actor and mature critics, aligns critic learning with symmetric R/Z soft distance, approach and braking, and uses a lightweight fixed-plus-hard transaction with a low-frequency seven-scenario audit. Ordinary actor/dual updates remain suppressed and immediate hard stop remains supported.",
   "local_target_grid_probe": {
     "enabled": false,
     "every_iters": 0,
@@ -201,7 +201,7 @@
   },
   "constrained_mpo": {
     "enabled": true,
-    "description": "B99.9 keeps R/Z terminal-late constraints strong, keeps Ip as a broad soft monitor, and freezes dual integration during guarded transactional policy improvement.",
+    "description": "B99.10 train-first keeps the five B99.9 cost dimensions checkpoint-compatible, adds a small late R/Z velocity auxiliary inside the existing R/Z costs, keeps Ip broad, and freezes dual integration during policy transactions.",
     "actor_cost_coeff": 0.03,
     "cost_critic_loss_coeff": 0.05,
     "cost_target_clip": [
@@ -226,7 +226,13 @@
         "terminal_power": 1.0,
         "combine": "max",
         "clip": 10.0,
-        "description": "B99.9 symmetric terminal/late R/Z cost retained for critic learning and actor proposal construction."
+        "description": "Symmetric late/terminal position cost with a small R/Z-velocity auxiliary folded into the same checkpoint-compatible cost dimension.",
+        "aux_info_key": "rz_velocity_norm",
+        "aux_terminal_info_key": "terminal_rz_velocity_norm",
+        "aux_tol": 0.75,
+        "aux_terminal_tol": 0.8,
+        "aux_power": 2.0,
+        "aux_weight": 0.2
       },
       {
         "name": "Z",
@@ -245,7 +251,13 @@
         "terminal_power": 1.0,
         "combine": "max",
         "clip": 10.0,
-        "description": "B99.9 symmetric terminal/late R/Z cost retained for critic learning and actor proposal construction."
+        "description": "Symmetric late/terminal position cost with a small R/Z-velocity auxiliary folded into the same checkpoint-compatible cost dimension.",
+        "aux_info_key": "rz_velocity_norm",
+        "aux_terminal_info_key": "terminal_rz_velocity_norm",
+        "aux_tol": 0.75,
+        "aux_terminal_tol": 0.8,
+        "aux_power": 2.0,
+        "aux_weight": 0.2
       },
       {
         "name": "Ip",
@@ -264,7 +276,7 @@
         "terminal_power": 1.0,
         "combine": "max",
         "clip": 3.0,
-        "description": "B99.9 relaxed Ip cost: tolerate ~1000 A and even several kA error when R/Z and hold behavior improve; retain only a broad safety monitor."
+        "description": "B99.10 relaxed Ip cost: tolerate ~1000 A and even several kA error when R/Z and hold behavior improve; retain only a broad safety monitor."
       },
       {
         "name": "action",
@@ -336,21 +348,21 @@
     "seed": 92345,
     "description": "Evaluate latest accepted policy and protected transactional best_error_score policy."
   },
-  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_9.json",
-  "banner": "B99.9 resume-B99.8 transactional bidirectional line-search Ip-relaxed runtime-only 10ms extrema MPO Ray init",
+  "tsc_config": "configs/tsc_low_field_side_118_runtime_only_b99_10.json",
+  "banner": "B99.10 train-first resume-B99.9 symmetric soft-RZ reward lightweight transaction low-frequency audit runtime-only 10ms extrema MPO Ray init",
   "best_checkpoint": {
     "enabled": false,
     "directory_error_score": "best_error_score",
     "directory_return": "best_return",
-    "description": "B99.9 best_error_score is written only by transactional multi-scenario acceptance; legacy rollout/periodic guard best selection is disabled."
+    "description": "B99.10 best_error_score is written only by reliable adaptive transactional multi-scenario acceptance; legacy rollout best selection is disabled."
   },
   "resume": {
-    "description": "Base checkpoint supplies mature B99.8 reward/cost critics and counters. --policy-resume supplies protected reliable-best actor/log_eta and moderate dual values. Replay is rebuilt.",
+    "description": "Base checkpoint supplies B99.9 reward/cost critic weights and counters; critic optimizer momentum is reset because B99.10 changes the training reward. --policy-resume supplies the B99.9 accepted_latest actor/log_eta and protected dual values. Replay is rebuilt and critics settle for ten iterations before the first transaction.",
     "load_cost_critics": true,
     "dual_load_mode": "none",
     "restore_optimizer_state": false,
     "restore_actor_optimizer_state": false,
-    "restore_critic_optimizer_state": true,
+    "restore_critic_optimizer_state": false,
     "restore_eta_optimizer_state": false,
     "reset_update_count": true,
     "actor_freeze_after_resume_env_steps": 0,
@@ -367,53 +379,86 @@
   },
   "actor_guard": {
     "enabled": false,
-    "description": "Replaced by B99.9 transactional_actor_guard."
+    "description": "Replaced by B99.10 transactional_actor_guard."
   },
   "transactional_actor_guard": {
     "enabled": true,
-    "description": "One forced MPO actor proposal per trial; evaluate bidirectional fractional steps in real deterministic TSC; accept only multi-scenario improvement, otherwise restore actor, eta, Adam states, and update_count exactly.",
-    "critic_settle_iters": 5,
-    "trial_every_iters": 5,
-    "max_trials": 12,
-    "max_consecutive_rejections": 6,
+    "description": "Train-first lightweight transaction: rank four alphas on fixed, validate the best (and only if needed second-best) on fixed plus the hardest nearby target, and run the remaining five local scenarios only before every third accepted update.",
+    "critic_settle_iters": 10,
+    "trial_every_iters": 6,
+    "max_trials": 10,
+    "max_consecutive_rejections": 3,
     "freeze_dual_updates": true,
     "eval_stage": "final",
     "selection_scenario": "fixed",
     "candidate_alphas": [
+      -1.0,
+      -0.5,
       -0.25,
-      0.125,
-      0.25,
-      0.5,
-      1.0
+      0.25
     ],
-    "selection_min_delta": 0.01,
-    "accept_min_delta": 0.02,
-    "max_scenario_regression": 0.05,
+    "selection_min_delta": 0.004,
+    "accept_min_delta": 0.01,
+    "max_scenario_regression": 0.015,
     "aggregate_worst_weight": 0.5,
-    "best_min_delta": 0.01,
-    "scenarios": [
+    "best_min_delta": 0.004,
+    "online_scenarios": [
       {
         "name": "fixed",
-        "seed": 33101,
+        "seed": 35101,
         "R_delta": 0.0,
         "Z_delta": 0.0,
         "Ip_delta": 0.0
       },
       {
-        "name": "lowR_highZ",
-        "seed": 33102,
-        "R_delta": -0.01,
-        "Z_delta": 0.02,
-        "Ip_delta": 0.0
-      },
-      {
         "name": "highR_lowZ",
-        "seed": 33103,
+        "seed": 35102,
         "R_delta": 0.01,
         "Z_delta": -0.02,
         "Ip_delta": 0.0
       }
     ],
+    "full_audit_every_accepted": 3,
+    "audit_scenarios": [
+      {
+        "name": "R_low",
+        "seed": 35201,
+        "R_delta": -0.01,
+        "Z_delta": 0.0,
+        "Ip_delta": 0.0
+      },
+      {
+        "name": "R_high",
+        "seed": 35202,
+        "R_delta": 0.01,
+        "Z_delta": 0.0,
+        "Ip_delta": 0.0
+      },
+      {
+        "name": "Z_low",
+        "seed": 35203,
+        "R_delta": 0.0,
+        "Z_delta": -0.02,
+        "Ip_delta": 0.0
+      },
+      {
+        "name": "Z_high",
+        "seed": 35204,
+        "R_delta": 0.0,
+        "Z_delta": 0.02,
+        "Ip_delta": 0.0
+      },
+      {
+        "name": "lowR_highZ",
+        "seed": 35205,
+        "R_delta": -0.01,
+        "Z_delta": 0.02,
+        "Ip_delta": 0.0
+      }
+    ],
+    "audit_accept_min_delta": 0.006,
+    "audit_max_scenario_regression": 0.02,
+    "audit_aggregate_worst_weight": 0.5,
     "probe_metrics": {
       "late_start_fraction": 0.65,
       "hold_r_tol": 0.08,
@@ -432,20 +477,46 @@
         "terminal_Z_m": 0.05,
         "late_R_m": 0.05,
         "late_Z_m": 0.05,
+        "soft_distance": 1.0,
         "velocity_norm": 1.0,
         "Ip_a": 5000.0,
         "action_mean_abs": 0.5
       },
       "weights": {
-        "terminal_R": 0.25,
-        "terminal_Z": 0.25,
-        "late_R": 0.75,
-        "late_Z": 0.75,
-        "velocity": 0.1,
-        "hold_deficit": 0.25,
-        "Ip": 0.03,
-        "action": 0.05
+        "terminal_R": 0.1,
+        "terminal_Z": 0.1,
+        "late_R": 0.3,
+        "late_Z": 0.3,
+        "soft_distance_mean": 0.5,
+        "soft_distance_p90": 0.0,
+        "within_3x_deficit": 0.0,
+        "within_2x_deficit": 0.25,
+        "within_1x_deficit": 0.0,
+        "longest_2x_deficit": 0.0,
+        "hard_hold_deficit": 0.0,
+        "late_velocity_mean": 0.0,
+        "late_velocity_rms": 0.2,
+        "terminal_velocity": 0.05,
+        "min_distance_velocity": 0.0,
+        "Ip": 0.02,
+        "action": 0.03
       }
-    }
+    },
+    "small_improvement_threshold": 0.008,
+    "max_consecutive_small_improvements": 3,
+    "max_full_validation_candidates": 2,
+    "adaptive_alpha": {
+      "enabled": true,
+      "min_alpha": -2.0,
+      "max_alpha": 1.0,
+      "positive_sentinel": 0.25
+    },
+    "velocity_gates": {
+      "max_terminal_velocity_regression": 0.05,
+      "max_late_velocity_mean_regression": 0.03,
+      "max_late_velocity_rms_regression": 0.03,
+      "max_min_distance_velocity_regression": 0.05
+    },
+    "resume_transaction_state_from_policy": true
   }
 }

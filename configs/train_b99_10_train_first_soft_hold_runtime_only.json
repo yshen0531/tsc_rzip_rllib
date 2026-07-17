@@ -1,5 +1,5 @@
 {
-  "env_config": "configs/tsc_low_field_side_118_runtime_only_b99_9.json",
+  "env_config": "configs/tsc_low_field_side_118_runtime_only_b99_10_train_first.json",
   "target": {
     "R": 0.75,
     "Z": 0.0,
@@ -125,7 +125,7 @@
     "quality_success_bonus": 500.0,
     "quality_success_ip_tol": 6000.0,
     "quality_success_max_ip_error": 10000.0,
-    "w_negative_r_bias": 0.3,
+    "w_negative_r_bias": 0.0,
     "negative_r_bias_threshold_m": -0.13,
     "w_rz_max_error": 0.0,
     "w_hold_rz_max_error": 0.0,
@@ -135,7 +135,7 @@
     "max_error_r_ref": 0.05,
     "max_error_z_ref": 0.05,
     "max_error_ip_ref": 10000.0,
-    "w_z_zero_cross_overshoot": 1.2,
+    "w_z_zero_cross_overshoot": 0.5,
     "w_ip_zero_cross_overshoot": 0.01,
     "zero_cross_near_rz_m": 0.2,
     "zero_cross_near_ip_a": 10000.0,
@@ -147,8 +147,8 @@
     "shape_score_r_ref": 0.05,
     "shape_score_z_ref": 0.05,
     "early_rz_drift_enable_z_abs_lt": 0.08,
-    "w_z_signed_progress": 14.0,
-    "w_z_signed_progress_early": 14.0,
+    "w_z_signed_progress": 0.0,
+    "w_z_signed_progress_early": 0.0,
     "z_signed_progress_ref": 0.05,
     "z_signed_progress_early_until_step": 18,
     "z_signed_progress_clip": 2.5,
@@ -178,7 +178,19 @@
     "w_common_mode_coeff_l2": 0.0,
     "w_common_mode_coeff_saturation": 0.0,
     "common_mode_coeff_soft_limit": 0.65,
-    "max_episode_steps": 65
+    "max_episode_steps": 65,
+    "w_soft_rz_distance": 0.35,
+    "soft_rz_r_tol_m": 0.08,
+    "soft_rz_z_tol_m": 0.08,
+    "soft_rz_distance_clip": 6.0,
+    "soft_rz_phase_floor": 0.25,
+    "w_soft_rz_progress": 2.0,
+    "soft_rz_progress_ref": 0.1,
+    "soft_rz_progress_clip": 1.5,
+    "w_soft_rz_outward_velocity": 0.25,
+    "w_soft_rz_near_velocity": 0.45,
+    "soft_rz_velocity_sigma": 3.0,
+    "soft_rz_velocity_ref_m_per_s": 1.0
   },
   "curriculum": {
     "hold_success": {
@@ -189,7 +201,7 @@
       "enabled": true,
       "stages": [
         {
-          "name": "stage0_b99_9_500ms_fixed70_local30_transactional_actor_ip_relaxed_hold_until_stop",
+          "name": "stage0_b99_10_train_first_500ms_fixed80_local20_symmetric_soft_hold",
           "until_global_env_steps": 999999999999,
           "env_params": {
             "w_r": 1.0,
@@ -256,7 +268,7 @@
             "quality_success_bonus": 500.0,
             "quality_success_ip_tol": 6000.0,
             "quality_success_max_ip_error": 10000.0,
-            "w_negative_r_bias": 0.3,
+            "w_negative_r_bias": 0.0,
             "negative_r_bias_threshold_m": -0.13,
             "w_rz_max_error": 0.0,
             "w_hold_rz_max_error": 0.0,
@@ -266,7 +278,7 @@
             "max_error_r_ref": 0.05,
             "max_error_z_ref": 0.05,
             "max_error_ip_ref": 10000.0,
-            "w_z_zero_cross_overshoot": 1.2,
+            "w_z_zero_cross_overshoot": 0.5,
             "w_ip_zero_cross_overshoot": 0.01,
             "zero_cross_near_rz_m": 0.2,
             "zero_cross_near_ip_a": 10000.0,
@@ -278,8 +290,8 @@
             "shape_score_r_ref": 0.05,
             "shape_score_z_ref": 0.05,
             "early_rz_drift_enable_z_abs_lt": 0.08,
-            "w_z_signed_progress": 14.0,
-            "w_z_signed_progress_early": 14.0,
+            "w_z_signed_progress": 0.0,
+            "w_z_signed_progress_early": 0.0,
             "z_signed_progress_ref": 0.05,
             "z_signed_progress_early_until_step": 18,
             "z_signed_progress_clip": 2.5,
@@ -309,12 +321,24 @@
             "w_common_mode_coeff_l2": 0.0,
             "w_common_mode_coeff_saturation": 0.0,
             "common_mode_coeff_soft_limit": 0.65,
-            "max_episode_steps": 65
+            "max_episode_steps": 65,
+            "w_soft_rz_distance": 0.35,
+            "soft_rz_r_tol_m": 0.08,
+            "soft_rz_z_tol_m": 0.08,
+            "soft_rz_distance_clip": 6.0,
+            "soft_rz_phase_floor": 0.25,
+            "w_soft_rz_progress": 2.0,
+            "soft_rz_progress_ref": 0.1,
+            "soft_rz_progress_clip": 1.5,
+            "w_soft_rz_outward_velocity": 0.25,
+            "w_soft_rz_near_velocity": 0.45,
+            "soft_rz_velocity_sigma": 3.0,
+            "soft_rz_velocity_ref_m_per_s": 1.0
           }
         }
       ],
       "unit": "global_env_steps",
-      "description": "B99.9 remains on the 500 ms stage only. Stage1 is disabled until reliable deterministic multi-scenario evaluation shows stable R/Z hold."
+      "description": "B99.10 train-first stays on the 500 ms stage. Soft R/Z distance, balanced progress and near-target braking are part of the critic training reward; stage1 remains disabled until deterministic hold improves."
     }
   },
   "failure": {
@@ -352,23 +376,23 @@
       "max_user_processes": 9000
     }
   },
-  "description": "B99.9 stage0-only train config. R/Z and stable hold dominate; Ip is a weak soft monitor because TSC heating/current evolution can determine Ip.",
+  "description": "B99.10 stage0-only train config. R/Z and stable hold dominate; Ip is a weak soft monitor because TSC heating/current evolution can determine Ip.",
   "target_randomization": {
     "enabled": true,
     "mode": "per_episode_fixed_random_mix",
-    "description": "B99.9 keeps the stage0 fixed70/local30 R/Z mix. Ip remains randomized only mildly and is weakly weighted.",
+    "description": "B99.10 train-first concentrates replay on the deployment target (80%) while retaining 20% mild local goal jitter for goal-conditioned robustness.",
     "stages": [
       {
-        "name": "stage0_b99_9_500ms_fixed70_local30_transactional_actor_ip_relaxed_hold_until_stop",
+        "name": "stage0_b99_10_train_first_fixed80_local20",
         "until_global_env_steps": 999999999999,
-        "fixed_probability": 0.7,
+        "fixed_probability": 0.8,
         "R_range": [
-          0.735,
-          0.765
+          0.74,
+          0.76
         ],
         "Z_range": [
-          -0.035,
-          0.035
+          -0.025,
+          0.025
         ],
         "Ip_delta_range": [
           -1500,
@@ -396,5 +420,6 @@
       "policy_loss_lower_clip=-8"
     ],
     "runtime": "Same runtime_only_fast_mode as B99.4."
-  }
+  },
+  "run_name": "b99_10_train_first_soft_hold_runtime_only"
 }
