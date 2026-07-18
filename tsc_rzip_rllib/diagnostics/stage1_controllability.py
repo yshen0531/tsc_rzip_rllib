@@ -721,7 +721,18 @@ def svd_diagnostics(response: np.ndarray, cfg: dict[str, Any]) -> dict[str, Any]
     singular_ratio_floor = float(analysis.get("singular_ratio_floor", 1e-3))
     k_energy = int(np.searchsorted(cumulative, energy_target) + 1)
     k_ratio = int(np.sum(s / max(float(s[0]), 1e-30) >= singular_ratio_floor))
-    recommended_k = max(1, min(int(analysis.get("max_recommended_modes", 8)), max(k_energy, k_ratio)))
+    recommendation_rule = str(analysis.get("mode_recommendation_rule", "legacy_max")).lower()
+    if recommendation_rule == "energy_only":
+        raw_recommended = k_energy
+    elif recommendation_rule == "ratio_only":
+        raw_recommended = k_ratio
+    elif recommendation_rule == "min_energy_ratio":
+        raw_recommended = min(k_energy, max(k_ratio, 1))
+    elif recommendation_rule == "legacy_max":
+        raw_recommended = max(k_energy, k_ratio)
+    else:
+        raise ValueError(f"unsupported analysis.mode_recommendation_rule={recommendation_rule!r}")
+    recommended_k = max(1, min(int(analysis.get("max_recommended_modes", 8)), raw_recommended))
 
     pair_rows = []
     for name, vector in pair_mode_library_tsc().items():
@@ -845,6 +856,8 @@ def compute_terminal_reachable_set(
 
     target_inside = False
     hull_vertices: list[int] = []
+    target_distance_to_hull_m = float("nan")
+    nearest_hull_point: list[float] | None = None
     if len(points) >= 3:
         pts = np.asarray([[x["R"], x["Z"]] for x in points], dtype=float)
         try:
@@ -852,6 +865,26 @@ def compute_terminal_reachable_set(
             hull_vertices = [int(x) for x in hull.vertices]
             # scipy hull equations are n.x + b <= 0 inside.
             target_inside = bool(np.all(hull.equations[:, :2] @ target[:2] + hull.equations[:, 2] <= 1e-9))
+            if target_inside:
+                target_distance_to_hull_m = 0.0
+                nearest_hull_point = target[:2].tolist()
+            else:
+                ordered = pts[np.asarray(hull_vertices, dtype=int)]
+                best_distance = float("inf")
+                best_point = None
+                for index in range(len(ordered)):
+                    start = ordered[index]
+                    end = ordered[(index + 1) % len(ordered)]
+                    direction = end - start
+                    denominator = float(direction @ direction)
+                    fraction = 0.0 if denominator <= 0.0 else float(np.clip(((target[:2] - start) @ direction) / denominator, 0.0, 1.0))
+                    candidate = start + fraction * direction
+                    distance = float(np.linalg.norm(target[:2] - candidate))
+                    if distance < best_distance:
+                        best_distance = distance
+                        best_point = candidate
+                target_distance_to_hull_m = best_distance
+                nearest_hull_point = None if best_point is None else np.asarray(best_point, dtype=float).tolist()
         except Exception:
             # A rank-one actuator projection legitimately produces a line rather
             # than a 2-D polygon.  Report it without aborting the full analysis.
@@ -862,6 +895,8 @@ def compute_terminal_reachable_set(
         "points": points,
         "failed_directions": failed,
         "target_inside_local_linear_RZ_projection": target_inside,
+        "target_distance_to_sampled_hull_m": target_distance_to_hull_m,
+        "nearest_sampled_hull_point_RZ": nearest_hull_point,
         "hull_vertex_indices": hull_vertices,
         "baseline_terminal": {"R": float(baseline_terminal[0]), "Z": float(baseline_terminal[1]), "Ip": float(baseline_terminal[2])},
         "target": {"R": float(target[0]), "Z": float(target[1]), "Ip": float(target[2])},
@@ -1166,23 +1201,41 @@ def generate_validation_plots(
         import matplotlib.pyplot as plt
     except Exception:
         return
-    successful = [r for r in validation_rows if r.get("success")]
+    successful = [row for row in validation_rows if row.get("success")]
     if not successful:
         return
-    successful = sorted(successful, key=lambda x: x["min_normalized_RZ_distance"])
-    labels = [f"{x['candidate_label']}\nscale={x['sequence_scale']}" for x in successful]
-    values = [x["min_normalized_RZ_distance"] for x in successful]
-    plt.figure(figsize=(max(9, len(labels) * 0.8), 5))
-    plt.bar(np.arange(len(labels)), values)
-    plt.axhline(1.0, linestyle="--", label="1x tube")
-    plt.axhline(2.0, linestyle=":", label="2x tube")
+    plot_metric = str(
+        resolved.cfg.get("validation", {}).get(
+            "plot_distance_metric",
+            "min_normalized_RZ_distance_after_step0",
+        )
+    )
+    successful = sorted(successful, key=lambda row: safe_float(row.get(plot_metric), float("inf")))
+    labels = [f"{row.get('candidate_label')}\nscale={row.get('sequence_scale')}" for row in successful]
+
+    if plot_metric == "terminal_RZ_euclidean_error_m":
+        values = [1000.0 * safe_float(row.get(plot_metric), float("nan")) for row in successful]
+        plt.figure(figsize=(max(9, len(labels) * 0.8), 5))
+        plt.bar(np.arange(len(labels)), values)
+        for tolerance in resolved.cfg.get("validation", {}).get("tolerance_boxes_m", [0.03, 0.04]):
+            tolerance_mm = 1000.0 * float(tolerance)
+            plt.axhline(tolerance_mm, linestyle="--", label=f"{tolerance_mm:g} mm reference")
+        plt.ylabel("Terminal Euclidean R/Z error (mm)")
+        title = "Real-TSC terminal R/Z error (step 0 excluded from reach metrics)"
+    else:
+        values = [safe_float(row.get(plot_metric), float("nan")) for row in successful]
+        plt.figure(figsize=(max(9, len(labels) * 0.8), 5))
+        plt.bar(np.arange(len(labels)), values)
+        plt.axhline(1.0, linestyle="--", label="1x tube")
+        plt.axhline(2.0, linestyle=":", label="2x tube")
+        plt.ylabel(plot_metric)
+        title = "Real-TSC validation of optimized 100 ms sequences"
     plt.xticks(np.arange(len(labels)), labels, rotation=60, ha="right")
-    plt.ylabel("Minimum normalized R/Z distance")
-    plt.title("Real-TSC validation of optimized 100 ms sequences")
+    plt.title(title)
     plt.grid(True, axis="y")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(resolved.paths.validation_dir / "validation_min_distance.png", dpi=180)
+    plt.savefig(resolved.paths.validation_dir / "validation_distance_summary.png", dpi=180)
     plt.close()
 
 def candidate_rows(candidate: dict[str, Any]) -> list[dict[str, Any]]:
@@ -1360,6 +1413,8 @@ def run_analysis(resolved: ResolvedStage1Config) -> dict[str, Any]:
         },
         "reachable_set_100ms": {
             "target_inside_local_linear_RZ_projection": reachable["target_inside_local_linear_RZ_projection"],
+            "target_distance_to_sampled_hull_m": reachable.get("target_distance_to_sampled_hull_m"),
+            "nearest_sampled_hull_point_RZ": reachable.get("nearest_sampled_hull_point_RZ"),
             "failed_directions": reachable["failed_directions"],
             "terminal_ip_tolerance_a": reachable["terminal_ip_tolerance_a"],
         },
@@ -1377,12 +1432,14 @@ def run_analysis(resolved: ResolvedStage1Config) -> dict[str, Any]:
 def select_validation_candidates(resolved: ResolvedStage1Config) -> list[dict[str, Any]]:
     cfg = resolved.cfg
     validation = cfg["validation"]
-    all_candidates = []
+    all_candidates: list[dict[str, Any]] = []
+    by_label: dict[str, dict[str, Any]] = {}
     for path in sorted(resolved.paths.candidate_dir.glob("*.json")):
         payload = read_json(path)
         payload["_path"] = str(path)
         if payload.get("success"):
             all_candidates.append(payload)
+            by_label[str(payload["label"])] = payload
     if not all_candidates:
         raise RuntimeError("no successful optimized candidates found")
     all_candidates.sort(
@@ -1393,29 +1450,43 @@ def select_validation_candidates(resolved: ResolvedStage1Config) -> list[dict[st
         )
     )
 
+    explicit_labels = [str(x) for x in validation.get("explicit_candidate_labels", [])]
+    strict_explicit_only = bool(validation.get("strict_explicit_only", False))
     selected: list[dict[str, Any]] = []
-    labels = set(validation.get("explicit_candidate_labels", []))
-    for c in all_candidates:
-        if c["label"] in labels:
-            selected.append(c)
-    best_per_mode = int(validation.get("best_per_mode_count", 1))
-    if best_per_mode > 0:
-        counts: dict[int, int] = {}
-        for c in all_candidates:
-            n = int(c["n_modes"])
-            if counts.get(n, 0) < best_per_mode:
-                selected.append(c)
-                counts[n] = counts.get(n, 0) + 1
-    max_base = int(validation.get("max_base_candidates", 4))
-    dedup: dict[str, dict[str, Any]] = {c["label"]: c for c in selected}
-    if len(dedup) < max_base:
-        for c in all_candidates:
-            dedup.setdefault(c["label"], c)
-            if len(dedup) >= max_base:
-                break
-    selected = list(dedup.values())[:max_base]
+    missing = [label for label in explicit_labels if label not in by_label]
+    if missing:
+        raise RuntimeError(
+            "requested validation candidates are missing or optimizer-unsuccessful: "
+            + ", ".join(missing)
+        )
+    for label in explicit_labels:
+        selected.append(by_label[label])
+
+    if not strict_explicit_only:
+        best_per_mode = int(validation.get("best_per_mode_count", 1))
+        if best_per_mode > 0:
+            counts: dict[int, int] = {}
+            for candidate in all_candidates:
+                n_modes = int(candidate["n_modes"])
+                if counts.get(n_modes, 0) < best_per_mode:
+                    selected.append(candidate)
+                    counts[n_modes] = counts.get(n_modes, 0) + 1
+        max_base = int(validation.get("max_base_candidates", 4))
+        dedup: dict[str, dict[str, Any]] = {str(c["label"]): c for c in selected}
+        if len(dedup) < max_base:
+            for candidate in all_candidates:
+                dedup.setdefault(str(candidate["label"]), candidate)
+                if len(dedup) >= max_base:
+                    break
+        selected = list(dedup.values())[:max_base]
+    else:
+        # Preserve the explicit order so the resulting run is deterministic and
+        # easy to audit.  Stage1.1 uses exactly SVD2/SVD3/SVD4.
+        selected = [by_label[label] for label in explicit_labels]
 
     scales = [float(x) for x in validation.get("sequence_scales", [0.5, 0.75, 1.0])]
+    if not scales:
+        raise ValueError("validation.sequence_scales must not be empty")
     specs: list[dict[str, Any]] = []
     horizon = int(cfg["scan"]["horizon_steps"])
     for candidate in selected:
@@ -1423,6 +1494,8 @@ def select_validation_candidates(resolved: ResolvedStage1Config) -> list[dict[st
         if action.shape != (horizon, 14):
             raise ValueError(f"candidate {candidate['label']} has wrong action shape {action.shape}")
         for scale in scales:
+            if not 0.0 < scale <= 1.0:
+                raise ValueError(f"validation scale must be in (0,1], got {scale}")
             validation_id = f"{candidate['label']}_scale{scale:.3f}".replace(".", "p")
             specs.append(
                 {
@@ -1430,13 +1503,14 @@ def select_validation_candidates(resolved: ResolvedStage1Config) -> list[dict[st
                     "validation_id": validation_id,
                     "experiment_id": validation_id,
                     "candidate_label": candidate["label"],
+                    "candidate_n_modes": int(candidate["n_modes"]),
+                    "candidate_target_fraction": float(candidate["target_fraction"]),
                     "sequence_scale": scale,
                     "horizon_steps": horizon,
                     "action_sequence_norm_tsc": np.clip(scale * action, -1.0, 1.0).tolist(),
                 }
             )
     return specs
-
 
 def run_validation_experiment(env: Any, spec: dict[str, Any]) -> dict[str, Any]:
     started = time.time()
@@ -1510,71 +1584,214 @@ def _ray_validation_actor_class():
     return RayValidationWorker
 
 
+def _first_true_step(mask: np.ndarray, *, start_step: int = 0) -> int:
+    mask = np.asarray(mask, dtype=bool)
+    start = max(0, int(start_step))
+    indices = np.flatnonzero(mask[start:])
+    return int(indices[0] + start) if len(indices) else -1
+
+
+def _longest_true_streak(mask: np.ndarray, *, start_step: int = 0) -> int:
+    mask = np.asarray(mask, dtype=bool)
+    longest = 0
+    current = 0
+    for value in mask[max(0, int(start_step)) :]:
+        if bool(value):
+            current += 1
+            longest = max(longest, current)
+        else:
+            current = 0
+    return int(longest)
+
+
+def _trailing_true_streak(mask: np.ndarray, *, start_step: int = 0) -> int:
+    count = 0
+    values = np.asarray(mask, dtype=bool)[max(0, int(start_step)) :]
+    for value in values[::-1]:
+        if not bool(value):
+            break
+        count += 1
+    return int(count)
+
+
+def _tolerance_key(tol_m: float) -> str:
+    mm = int(round(float(tol_m) * 1000.0))
+    return f"{mm}mm"
+
+
 def validation_metrics(result: dict[str, Any], cfg: dict[str, Any], env_cfg: dict[str, Any]) -> dict[str, Any]:
     target = np.asarray([cfg["target"]["R"], cfg["target"]["Z"], cfg["target"]["Ip"]], dtype=float)
     trajectory = result.get("trajectory", [])
     if not trajectory:
         return {
             "validation_id": result.get("experiment_id"),
+            "candidate_label": result.get("spec", {}).get("candidate_label"),
             "success": False,
             "failure_reason": result.get("failure_reason", "empty trajectory"),
         }
     y = np.asarray([[x["R"], x["Z"], x["Ip"]] for x in trajectory], dtype=float)
     errors = y - target[None, :]
+    euclidean_rz = np.linalg.norm(errors[:, :2], axis=1)
     r_tol = float(cfg["analysis"].get("r_scale_m", 0.08))
     z_tol = float(cfg["analysis"].get("z_scale_m", 0.08))
-    dist = np.sqrt((errors[:, 0] / r_tol) ** 2 + (errors[:, 1] / z_tol) ** 2)
+    normalized_distance = np.sqrt((errors[:, 0] / r_tol) ** 2 + (errors[:, 1] / z_tol) ** 2)
     dt_s = float(env_cfg["dt_ms"]) / 1000.0
     velocity = np.zeros((len(y), 2), dtype=float)
     if len(y) > 1:
         velocity[1:] = np.diff(y[:, :2], axis=0) / dt_s
     velocity_norm = np.linalg.norm(velocity, axis=1)
     late_n = min(int(cfg["validation"].get("late_window_steps", 4)), len(y))
-    late = slice(len(y) - late_n, len(y))
+    late_start = len(y) - late_n
+    late = slice(late_start, len(y))
+    closest_after0_index = int(np.argmin(euclidean_rz[1:]) + 1) if len(y) > 1 else 0
+
     currents = np.asarray([x["currents_a_display"] for x in trajectory], dtype=float)
     min_i = np.asarray(env_cfg["min_current_a_display_order"], dtype=float)
     max_i = np.asarray(env_cfg["max_current_a_display_order"], dtype=float)
     center = 0.5 * (min_i + max_i)
     half = 0.5 * (max_i - min_i)
     current_util = np.max(np.abs((currents - center[None, :]) / np.maximum(half[None, :], 1e-9)))
-    tube_1x_rz = (np.abs(errors[:, 0]) <= r_tol) & (np.abs(errors[:, 1]) <= z_tol)
-    tube_2x_rz = (np.abs(errors[:, 0]) <= 2 * r_tol) & (np.abs(errors[:, 1]) <= 2 * z_tol)
+
     gate_ip_tolerance = float(cfg["validation"].get("gate_ip_tolerance_a", 10000.0))
     ip_safe = np.abs(errors[:, 2]) <= gate_ip_tolerance
+    tube_1x_rz = (np.abs(errors[:, 0]) <= r_tol) & (np.abs(errors[:, 1]) <= z_tol)
+    tube_2x_rz = (np.abs(errors[:, 0]) <= 2.0 * r_tol) & (np.abs(errors[:, 1]) <= 2.0 * z_tol)
     tube_1x = tube_1x_rz & ip_safe
     tube_2x = tube_2x_rz & ip_safe
-    initial_dist = float(dist[0])
-    return {
+    initial_dist = float(normalized_distance[0])
+
+    row: dict[str, Any] = {
         "validation_id": result.get("experiment_id"),
         "candidate_label": result.get("spec", {}).get("candidate_label"),
+        "candidate_n_modes": result.get("spec", {}).get("candidate_n_modes"),
+        "candidate_target_fraction": result.get("spec", {}).get("candidate_target_fraction"),
         "sequence_scale": result.get("spec", {}).get("sequence_scale"),
         "success": bool(result.get("success", False)),
         "failure_reason": result.get("failure_reason", ""),
+        "n_trajectory_steps": int(len(y)),
         "terminal_R_error_m": float(errors[-1, 0]),
         "terminal_Z_error_m": float(errors[-1, 1]),
         "terminal_Ip_error_A": float(errors[-1, 2]),
-        "terminal_normalized_RZ_distance": float(dist[-1]),
-        "min_normalized_RZ_distance": float(np.min(dist)),
-        "relative_distance_reduction": float((initial_dist - np.min(dist)) / max(initial_dist, 1e-12)),
-        "first_step_within_2x_RZ_only": int(np.where(tube_2x_rz)[0][0]) if np.any(tube_2x_rz) else -1,
-        "first_step_within_1x_RZ_only": int(np.where(tube_1x_rz)[0][0]) if np.any(tube_1x_rz) else -1,
-        "first_step_within_2x": int(np.where(tube_2x)[0][0]) if np.any(tube_2x) else -1,
-        "first_step_within_1x": int(np.where(tube_1x)[0][0]) if np.any(tube_1x) else -1,
+        "terminal_RZ_euclidean_error_m": float(euclidean_rz[-1]),
+        "terminal_RZ_box_max_error_m": float(np.max(np.abs(errors[-1, :2]))),
+        "terminal_normalized_RZ_distance": float(normalized_distance[-1]),
+        "min_normalized_RZ_distance": float(np.min(normalized_distance)),
+        "min_normalized_RZ_distance_after_step0": float(np.min(normalized_distance[1:])) if len(y) > 1 else float(normalized_distance[0]),
+        "min_RZ_euclidean_error_after_step0_m": float(np.min(euclidean_rz[1:])) if len(y) > 1 else float(euclidean_rz[0]),
+        "closest_step_after_step0": closest_after0_index,
+        "closest_velocity_after_step0_m_per_s": float(velocity_norm[closest_after0_index]),
+        "relative_distance_reduction": float((initial_dist - np.min(normalized_distance)) / max(initial_dist, 1e-12)),
+        "relative_distance_reduction_after_step0": float((initial_dist - np.min(normalized_distance[1:])) / max(initial_dist, 1e-12)) if len(y) > 1 else 0.0,
+        "first_step_within_2x_RZ_only": _first_true_step(tube_2x_rz, start_step=0),
+        "first_step_within_1x_RZ_only": _first_true_step(tube_1x_rz, start_step=0),
+        "first_step_within_2x": _first_true_step(tube_2x, start_step=0),
+        "first_step_within_1x": _first_true_step(tube_1x, start_step=0),
+        "first_step_after_step0_within_2x": _first_true_step(tube_2x, start_step=1),
+        "first_step_after_step0_within_1x": _first_true_step(tube_1x, start_step=1),
         "terminal_within_2x_RZ_only": bool(tube_2x_rz[-1]),
         "terminal_within_1x_RZ_only": bool(tube_1x_rz[-1]),
         "terminal_within_2x": bool(tube_2x[-1]),
         "terminal_within_1x": bool(tube_1x[-1]),
         "gate_ip_tolerance_A": gate_ip_tolerance,
+        "terminal_Ip_safe": bool(ip_safe[-1]),
+        "late_Ip_safe_fraction": float(np.mean(ip_safe[late])),
         "late_fraction_within_2x": float(np.mean(tube_2x[late])),
         "late_fraction_within_1x": float(np.mean(tube_1x[late])),
         "late_R_rms_m": float(np.sqrt(np.mean(errors[late, 0] ** 2))),
         "late_Z_rms_m": float(np.sqrt(np.mean(errors[late, 1] ** 2))),
+        "late_RZ_euclidean_rms_m": float(np.sqrt(np.mean(np.sum(errors[late, :2] ** 2, axis=1)))),
         "terminal_velocity_m_per_s": float(velocity_norm[-1]),
         "max_velocity_m_per_s": float(np.max(velocity_norm)),
+        "late_velocity_mean_m_per_s": float(np.mean(velocity_norm[late])),
         "late_velocity_rms_m_per_s": float(np.sqrt(np.mean(velocity_norm[late] ** 2))),
         "max_current_utilization": float(current_util),
         "wall_time_s": float(result.get("wall_time_s", 0.0)),
     }
+
+    tolerances = [float(x) for x in cfg["validation"].get("tolerance_boxes_m", [0.02, 0.03, 0.04, 0.08])]
+    for tol_m in tolerances:
+        key = _tolerance_key(tol_m)
+        inside_rz = (np.abs(errors[:, 0]) <= tol_m) & (np.abs(errors[:, 1]) <= tol_m)
+        inside = inside_rz & ip_safe
+        row[f"first_step_after_step0_within_{key}"] = _first_true_step(inside, start_step=1)
+        row[f"ever_after_step0_within_{key}"] = bool(np.any(inside[1:])) if len(inside) > 1 else False
+        row[f"terminal_within_{key}"] = bool(inside[-1])
+        row[f"late_fraction_within_{key}"] = float(np.mean(inside[late]))
+        row[f"longest_streak_after_step0_within_{key}_steps"] = _longest_true_streak(inside, start_step=1)
+        row[f"trailing_streak_within_{key}_steps"] = _trailing_true_streak(inside, start_step=1)
+    return row
+
+
+def _attach_linear_prediction_metrics(
+    resolved: ResolvedStage1Config,
+    rows: list[dict[str, Any]],
+) -> None:
+    by_label: dict[str, dict[str, Any]] = {}
+    for path in resolved.paths.candidate_dir.glob("*.json"):
+        try:
+            candidate = read_json(path)
+        except Exception:
+            continue
+        by_label[str(candidate.get("label"))] = candidate
+    baseline_path = resolved.paths.analysis_dir / "baseline_trajectory.csv"
+    if not baseline_path.exists():
+        return
+    with open(baseline_path, newline="", encoding="utf-8") as handle:
+        baseline_rows = list(csv.DictReader(handle))
+    for row in rows:
+        label = str(row.get("candidate_label") or "")
+        candidate = by_label.get(label)
+        if candidate is None or row.get("sequence_scale") is None:
+            continue
+        scale = float(row["sequence_scale"])
+        predicted = candidate.get("predicted_trajectory", [])
+        if not predicted or len(baseline_rows) != len(predicted):
+            continue
+        pred_y = []
+        for base_row, cand_row in zip(baseline_rows, predicted):
+            base = np.asarray([float(base_row["R"]), float(base_row["Z"]), float(base_row["Ip"])])
+            full = np.asarray([float(cand_row["R"]), float(cand_row["Z"]), float(cand_row["Ip"])])
+            pred_y.append(base + scale * (full - base))
+        pred_y = np.asarray(pred_y, dtype=float)
+        target = np.asarray(
+            [resolved.cfg["target"]["R"], resolved.cfg["target"]["Z"], resolved.cfg["target"]["Ip"]],
+            dtype=float,
+        )
+        pred_error = pred_y[-1] - target
+        row["predicted_terminal_R_error_m"] = float(pred_error[0])
+        row["predicted_terminal_Z_error_m"] = float(pred_error[1])
+        row["predicted_terminal_Ip_error_A"] = float(pred_error[2])
+        row["model_real_terminal_R_error_m"] = float(row["terminal_R_error_m"] - pred_error[0])
+        row["model_real_terminal_Z_error_m"] = float(row["terminal_Z_error_m"] - pred_error[1])
+        row["model_real_terminal_Ip_error_A"] = float(row["terminal_Ip_error_A"] - pred_error[2])
+
+
+def _attach_zero_action_comparisons(rows: list[dict[str, Any]]) -> None:
+    baseline = next((row for row in rows if row.get("candidate_label") == "zero_action_baseline"), None)
+    if baseline is None or not baseline.get("success"):
+        return
+    baseline_terminal = safe_float(baseline.get("terminal_RZ_euclidean_error_m"), float("nan"))
+    baseline_late = safe_float(baseline.get("late_RZ_euclidean_rms_m"), float("nan"))
+    baseline_velocity = safe_float(baseline.get("terminal_velocity_m_per_s"), float("nan"))
+    for row in rows:
+        terminal = safe_float(row.get("terminal_RZ_euclidean_error_m"), float("nan"))
+        late_rms = safe_float(row.get("late_RZ_euclidean_rms_m"), float("nan"))
+        terminal_velocity = safe_float(row.get("terminal_velocity_m_per_s"), float("nan"))
+        row["terminal_RZ_reduction_vs_zero_action_fraction"] = (
+            float((baseline_terminal - terminal) / max(baseline_terminal, 1e-12))
+            if math.isfinite(terminal) and math.isfinite(baseline_terminal)
+            else float("nan")
+        )
+        row["late_RZ_rms_reduction_vs_zero_action_fraction"] = (
+            float((baseline_late - late_rms) / max(baseline_late, 1e-12))
+            if math.isfinite(late_rms) and math.isfinite(baseline_late)
+            else float("nan")
+        )
+        row["terminal_velocity_change_vs_zero_action_m_per_s"] = (
+            float(terminal_velocity - baseline_velocity)
+            if math.isfinite(terminal_velocity) and math.isfinite(baseline_velocity)
+            else float("nan")
+        )
 
 
 def run_validation(resolved: ResolvedStage1Config, *, backend: str = "ray", resume: bool = True) -> dict[str, Any]:
@@ -1587,7 +1804,7 @@ def run_validation(resolved: ResolvedStage1Config, *, backend: str = "ray", resu
             continue
         pending.append(spec)
 
-    if backend == "serial":
+    if backend == "serial" and pending:
         worker = LocalValidationWorker(resolved.train_cfg, "stage1_validation_serial")
         try:
             for idx, spec in enumerate(pending, start=1):
@@ -1613,9 +1830,7 @@ def run_validation(resolved: ResolvedStage1Config, *, backend: str = "ray", resu
             )
         Actor = _ray_validation_actor_class()
         actors = [Actor.remote(resolved.train_cfg, f"stage1_val_{i:03d}") for i in range(n_workers)]
-        refs = {
-            actors[idx % n_workers].run_validation.remote(spec): spec for idx, spec in enumerate(pending)
-        }
+        refs = {actors[idx % n_workers].run_validation.remote(spec): spec for idx, spec in enumerate(pending)}
         done_count = 0
         try:
             while refs:
@@ -1645,18 +1860,39 @@ def run_validation(resolved: ResolvedStage1Config, *, backend: str = "ray", resu
                     ray.kill(actor, no_restart=True)
                 except Exception:
                     pass
-    elif backend != "ray":
+    elif pending and backend not in {"ray", "serial"}:
         raise ValueError("backend must be 'ray' or 'serial'")
 
-    results = []
-    for path in sorted(resolved.paths.validation_dir.glob("*.json.gz")):
-        payload = read_json_gz(path)
-        results.append(validation_metrics(payload, resolved.cfg, resolved.env_cfg))
+    results: list[dict[str, Any]] = []
+    for spec in specs:
+        path = resolved.paths.validation_dir / f"{spec['validation_id']}.json.gz"
+        if path.exists():
+            payload = read_json_gz(path)
+            results.append(validation_metrics(payload, resolved.cfg, resolved.env_cfg))
+
+    # Use an already completed baseline rollout rather than spending another
+    # real-TSC episode.  This also guarantees an apples-to-apples zero-action
+    # comparison with the identified response model.
+    baseline_path = resolved.paths.raw_dir / "baseline_r00.json.gz"
+    if baseline_path.exists():
+        baseline_payload = read_json_gz(baseline_path)
+        baseline_payload = copy.deepcopy(baseline_payload)
+        baseline_payload["experiment_id"] = "zero_action_baseline"
+        baseline_payload["spec"] = {
+            "kind": "reference_baseline",
+            "candidate_label": "zero_action_baseline",
+            "sequence_scale": 0.0,
+        }
+        results.append(validation_metrics(baseline_payload, resolved.cfg, resolved.env_cfg))
+
+    _attach_linear_prediction_metrics(resolved, results)
+    _attach_zero_action_comparisons(results)
     results.sort(
-        key=lambda x: (
-            not bool(x.get("success")),
-            safe_float(x.get("min_normalized_RZ_distance"), float("inf")),
-            safe_float(x.get("terminal_normalized_RZ_distance"), float("inf")),
+        key=lambda row: (
+            row.get("candidate_label") == "zero_action_baseline",
+            not bool(row.get("success")),
+            safe_float(row.get("terminal_RZ_euclidean_error_m"), float("inf")),
+            safe_float(row.get("terminal_velocity_m_per_s"), float("inf")),
         )
     )
     write_csv(resolved.paths.validation_dir / "validation_summary.csv", results)
@@ -1666,46 +1902,161 @@ def run_validation(resolved: ResolvedStage1Config, *, backend: str = "ray", resu
     atomic_write_text(resolved.paths.run_dir / "STAGE1_REPORT.md", render_stage1_report(resolved, results, verdict))
     return verdict
 
-
 def build_gate_a_verdict(resolved: ResolvedStage1Config, rows: list[dict[str, Any]]) -> dict[str, Any]:
-    successful = [r for r in rows if r.get("success")]
-    reached_1x = [r for r in successful if r.get("first_step_within_1x", -1) >= 0]
-    terminal_1x = [r for r in successful if r.get("terminal_within_1x")]
-    reached_2x = [r for r in successful if r.get("first_step_within_2x", -1) >= 0]
-    reduction_threshold = float(resolved.cfg["validation"].get("promising_distance_reduction", 0.5))
-    promising = [r for r in successful if safe_float(r.get("relative_distance_reduction"), 0.0) >= reduction_threshold]
-    if terminal_1x:
-        status = "PASS_TERMINAL_1X"
-        interpretation = "At least one real-TSC sequence is inside the 1x R/Z target tube at 100 ms."
-    elif reached_1x:
-        status = "PASS_REACHED_1X_TRANSIENT"
-        interpretation = "At least one real-TSC sequence reaches the 1x tube, but does not remain there at 100 ms."
-    elif reached_2x:
-        status = "PROMISING_REACHED_2X"
-        interpretation = "No 1x reach yet, but at least one real-TSC sequence reaches the relaxed 2x tube."
+    validation_cfg = resolved.cfg["validation"]
+    gate_mode = str(validation_cfg.get("gate_mode", "legacy_80mm"))
+    successful = [
+        row for row in rows
+        if row.get("success") and row.get("candidate_label") != "zero_action_baseline"
+    ]
+    baseline = next((row for row in rows if row.get("candidate_label") == "zero_action_baseline"), None)
+
+    if gate_mode != "stage1_1_precise_hold":
+        reached_1x = [row for row in successful if row.get("first_step_after_step0_within_1x", -1) >= 0]
+        terminal_1x = [row for row in successful if row.get("terminal_within_1x")]
+        reached_2x = [row for row in successful if row.get("first_step_after_step0_within_2x", -1) >= 0]
+        reduction_threshold = float(validation_cfg.get("promising_distance_reduction", 0.5))
+        promising = [
+            row for row in successful
+            if safe_float(row.get("terminal_RZ_reduction_vs_zero_action_fraction"), 0.0) >= reduction_threshold
+        ]
+        if terminal_1x:
+            status = "PASS_TERMINAL_1X"
+            interpretation = "At least one real-TSC sequence is inside the 1x R/Z target tube at 100 ms."
+        elif reached_1x:
+            status = "PASS_REACHED_1X_TRANSIENT"
+            interpretation = "At least one real-TSC sequence reaches the 1x tube after step 0."
+        elif reached_2x:
+            status = "PROMISING_REACHED_2X"
+            interpretation = "No 1x reach yet, but at least one real-TSC sequence reaches the relaxed 2x tube."
+        elif promising:
+            status = "PROMISING_LARGE_REDUCTION"
+            interpretation = "No target-tube reach, but a real-TSC candidate substantially improves on zero action."
+        else:
+            status = "FAIL_OR_INCONCLUSIVE"
+            interpretation = "No validated sequence reaches the relaxed tube or improves enough over zero action."
+        best = min(
+            successful,
+            key=lambda row: (
+                safe_float(row.get("terminal_RZ_euclidean_error_m"), float("inf")),
+                safe_float(row.get("terminal_velocity_m_per_s"), float("inf")),
+            ),
+            default=None,
+        )
+        return {
+            "status": status,
+            "interpretation": interpretation,
+            "n_validations": len(successful),
+            "n_successful_tsc": len(successful),
+            "best_validation": best,
+            "zero_action_baseline": baseline,
+            "gate_mode": gate_mode,
+        }
+
+    primary_tol = float(validation_cfg.get("primary_tolerance_m", 0.03))
+    relaxed_tol = float(validation_cfg.get("relaxed_tolerance_m", 0.04))
+    primary_key = _tolerance_key(primary_tol)
+    relaxed_key = _tolerance_key(relaxed_tol)
+    required_trailing = int(validation_cfg.get("required_terminal_streak_steps", 3))
+    terminal_velocity_max = float(validation_cfg.get("terminal_velocity_max_m_per_s", 0.10))
+    late_velocity_rms_max = float(validation_cfg.get("late_velocity_rms_max_m_per_s", 0.10))
+    reduction_threshold = float(validation_cfg.get("promising_distance_reduction", 0.50))
+
+    def speed_ok(row: dict[str, Any]) -> bool:
+        return (
+            safe_float(row.get("terminal_velocity_m_per_s"), float("inf")) <= terminal_velocity_max
+            and safe_float(row.get("late_velocity_rms_m_per_s"), float("inf")) <= late_velocity_rms_max
+        )
+
+    def position_ok(row: dict[str, Any], key: str) -> bool:
+        return (
+            bool(row.get(f"terminal_within_{key}"))
+            and int(row.get(f"trailing_streak_within_{key}_steps", 0)) >= required_trailing
+            and bool(row.get("terminal_Ip_safe"))
+        )
+
+    precise_pass = [row for row in successful if position_ok(row, primary_key) and speed_ok(row)]
+    relaxed_pass = [row for row in successful if position_ok(row, relaxed_key) and speed_ok(row)]
+    primary_position_only = [row for row in successful if position_ok(row, primary_key)]
+    promising = [
+        row for row in successful
+        if safe_float(row.get("terminal_RZ_reduction_vs_zero_action_fraction"), -float("inf")) >= reduction_threshold
+    ]
+
+    if precise_pass:
+        status = f"PASS_PRECISE_HOLD_{primary_key.upper()}"
+        interpretation = (
+            f"A real-TSC sequence ends with at least {required_trailing} consecutive steps inside the "
+            f"±{primary_key} box while meeting both terminal and late-velocity limits."
+        )
+        candidates_for_best = precise_pass
+    elif relaxed_pass:
+        status = f"PASS_DAMPED_HOLD_{relaxed_key.upper()}"
+        interpretation = (
+            f"No candidate passes the ±{primary_key} precise-hold gate, but at least one passes the "
+            f"damped ±{relaxed_key} gate."
+        )
+        candidates_for_best = relaxed_pass
+    elif primary_position_only:
+        status = f"PASS_POSITION_{primary_key.upper()}_SPEED_FAIL"
+        interpretation = (
+            f"At least one candidate satisfies the ±{primary_key} terminal-position/streak requirement, "
+            "but none meets the damping limits."
+        )
+        candidates_for_best = primary_position_only
     elif promising:
-        status = "PROMISING_LARGE_REDUCTION"
-        interpretation = "No target-tube reach, but a real-TSC candidate reduces normalized R/Z distance substantially."
+        status = "PROMISING_STRONG_DRIFT_SUPPRESSION"
+        interpretation = (
+            "No candidate passes the precise or relaxed damped-hold gate, but at least one reduces "
+            "terminal R/Z distance substantially relative to zero action."
+        )
+        candidates_for_best = promising
     else:
         status = "FAIL_OR_INCONCLUSIVE"
-        interpretation = "No validated real-TSC sequence reaches the relaxed tube or produces the required distance reduction."
-    best = successful[0] if successful else None
+        interpretation = (
+            "No validated low-dimensional candidate passes the hold gates or provides sufficient "
+            "drift suppression relative to zero action."
+        )
+        candidates_for_best = successful
+
+    best = min(
+        candidates_for_best,
+        key=lambda row: (
+            safe_float(row.get("terminal_RZ_euclidean_error_m"), float("inf")),
+            safe_float(row.get("terminal_velocity_m_per_s"), float("inf")),
+            safe_float(row.get("late_velocity_rms_m_per_s"), float("inf")),
+        ),
+        default=None,
+    )
     return {
         "status": status,
         "interpretation": interpretation,
-        "n_validations": len(rows),
+        "gate_mode": gate_mode,
+        "n_validations": len(successful),
         "n_successful_tsc": len(successful),
-        "n_reached_1x": len(reached_1x),
-        "n_terminal_1x": len(terminal_1x),
-        "n_reached_2x": len(reached_2x),
+        "n_precise_hold": len(precise_pass),
+        "n_relaxed_hold": len(relaxed_pass),
+        "n_primary_position_only": len(primary_position_only),
+        "n_promising_drift_suppression": len(promising),
         "best_validation": best,
+        "zero_action_baseline": baseline,
         "gate_definition": {
-            "r_1x_m": float(resolved.cfg["analysis"].get("r_scale_m", 0.08)),
-            "z_1x_m": float(resolved.cfg["analysis"].get("z_scale_m", 0.08)),
+            "primary_tolerance_m": primary_tol,
+            "relaxed_tolerance_m": relaxed_tol,
+            "required_terminal_streak_steps": required_trailing,
+            "terminal_velocity_max_m_per_s": terminal_velocity_max,
+            "late_velocity_rms_max_m_per_s": late_velocity_rms_max,
+            "gate_ip_tolerance_a": float(validation_cfg.get("gate_ip_tolerance_a", 10000.0)),
+            "step0_excluded_from_reach_and_streak": True,
             "horizon_steps": int(resolved.cfg["scan"]["horizon_steps"]),
             "dt_ms": int(resolved.env_cfg["dt_ms"]),
         },
     }
+
+
+def _format_metric(value: Any, scale: float = 1.0, digits: int = 3) -> str:
+    number = safe_float(value, float("nan"))
+    return f"{number * scale:.{digits}f}" if math.isfinite(number) else "n/a"
 
 
 def render_stage1_report(
@@ -1716,49 +2067,87 @@ def render_stage1_report(
     analysis_path = resolved.paths.analysis_dir / "analysis_summary.json"
     analysis = read_json(analysis_path) if analysis_path.exists() else {}
     best = verdict.get("best_validation") or {}
+    baseline = verdict.get("zero_action_baseline") or {}
+    stage_label = str(resolved.cfg.get("stage_label", "Stage 1"))
     lines = [
-        "# Stage 1 — TSC/RZIP controllability and 100 ms reachability report",
+        f"# {stage_label} — controllability supplement report",
         "",
         f"- Verdict: **{verdict['status']}**",
         f"- Interpretation: {verdict['interpretation']}",
-        f"- Real-TSC validations: {verdict['n_successful_tsc']} successful / {verdict['n_validations']} total",
+        f"- Successful candidate validations: `{verdict.get('n_successful_tsc', 0)}`",
         "",
-        "## Baseline",
+        "## Identification reliability",
         "",
-        f"- Initial state: `{analysis.get('baseline', {}).get('initial_state')}`",
-        f"- Zero-action terminal state: `{analysis.get('baseline', {}).get('terminal_state')}`",
-        f"- Baseline repeat spread: `{analysis.get('baseline', {}).get('max_repeat_spread')}`",
+        f"- Successful scan experiments: `{analysis.get('scan_experiments_successful')}`",
+        f"- Failed scan experiments: `{analysis.get('scan_experiments_failed')}`",
+        f"- Reliability verdict: `{analysis.get('identification_reliability', {}).get('reliable')}`",
+        f"- Recommended mode count: `{analysis.get('svd', {}).get('recommended_mode_count')}`",
         "",
-        "## Local system identification",
+        "## Zero-action reference",
         "",
-        f"- Recommended spatial coil-mode count: `{analysis.get('svd', {}).get('recommended_mode_count')}`",
-        f"- Singular values: `{analysis.get('svd', {}).get('singular_values')}`",
-        f"- Median response-fit nonlinearity residual: `{analysis.get('response_fit', {}).get('median_relative_nonlinearity_residual')}`",
+        f"- Terminal R error: `{_format_metric(baseline.get('terminal_R_error_m'), 1000.0)}` mm",
+        f"- Terminal Z error: `{_format_metric(baseline.get('terminal_Z_error_m'), 1000.0)}` mm",
+        f"- Terminal Euclidean R/Z error: `{_format_metric(baseline.get('terminal_RZ_euclidean_error_m'), 1000.0)}` mm",
+        f"- Terminal velocity: `{_format_metric(baseline.get('terminal_velocity_m_per_s'))}` m/s",
         "",
-        "## Best nonlinear TSC validation",
+        "## Best Stage1.1 real-TSC candidate",
         "",
         f"- Candidate: `{best.get('candidate_label')}`",
         f"- Sequence scale: `{best.get('sequence_scale')}`",
-        f"- Terminal R error: `{best.get('terminal_R_error_m')}` m",
-        f"- Terminal Z error: `{best.get('terminal_Z_error_m')}` m",
-        f"- Minimum normalized R/Z distance: `{best.get('min_normalized_RZ_distance')}`",
-        f"- Terminal normalized R/Z distance: `{best.get('terminal_normalized_RZ_distance')}`",
-        f"- First step within 2x tube: `{best.get('first_step_within_2x')}`",
-        f"- First step within 1x tube: `{best.get('first_step_within_1x')}`",
-        f"- Terminal velocity: `{best.get('terminal_velocity_m_per_s')}` m/s",
+        f"- Terminal R error: `{_format_metric(best.get('terminal_R_error_m'), 1000.0)}` mm",
+        f"- Terminal Z error: `{_format_metric(best.get('terminal_Z_error_m'), 1000.0)}` mm",
+        f"- Terminal Euclidean R/Z error: `{_format_metric(best.get('terminal_RZ_euclidean_error_m'), 1000.0)}` mm",
+        f"- Terminal velocity: `{_format_metric(best.get('terminal_velocity_m_per_s'))}` m/s",
+        f"- Late velocity RMS: `{_format_metric(best.get('late_velocity_rms_m_per_s'))}` m/s",
+        f"- Terminal distance reduction vs zero action: `{_format_metric(best.get('terminal_RZ_reduction_vs_zero_action_fraction'), 100.0, 1)}`%",
         "",
-        "## Interpretation rules",
+        "## Candidate comparison",
         "",
-        "- PASS_TERMINAL_1X: a real-TSC candidate is inside the 1x tube at 100 ms.",
-        "- PASS_REACHED_1X_TRANSIENT: a candidate reaches the 1x tube but does not remain there.",
-        "- PROMISING_REACHED_2X: a candidate reaches the 2x tube.",
-        "- PROMISING_LARGE_REDUCTION: substantial real-TSC distance reduction without tube entry.",
-        "- FAIL_OR_INCONCLUSIVE: current local model/action limits/horizon do not produce enough progress.",
-        "",
-        "The real-TSC validation is the source of truth; the local linear prediction is diagnostic only.",
+        "| Candidate | Scale | Terminal error (mm) | Terminal velocity (m/s) | Late velocity RMS (m/s) | trailing ±30 mm steps | Reduction vs zero |",
+        "|---|---:|---:|---:|---:|---:|---:|",
     ]
+    candidate_rows = [
+        row for row in validation_rows
+        if row.get("success") and row.get("candidate_label") != "zero_action_baseline"
+    ]
+    candidate_rows.sort(key=lambda row: (int(row.get("candidate_n_modes") or 99), float(row.get("sequence_scale") or 0.0)))
+    for row in candidate_rows:
+        lines.append(
+            "| {label} | {scale:.2f} | {dist} | {vel} | {late_vel} | {streak} | {reduction}% |".format(
+                label=row.get("candidate_label"),
+                scale=float(row.get("sequence_scale") or 0.0),
+                dist=_format_metric(row.get("terminal_RZ_euclidean_error_m"), 1000.0),
+                vel=_format_metric(row.get("terminal_velocity_m_per_s")),
+                late_vel=_format_metric(row.get("late_velocity_rms_m_per_s")),
+                streak=int(row.get("trailing_streak_within_30mm_steps", 0)),
+                reduction=_format_metric(row.get("terminal_RZ_reduction_vs_zero_action_fraction"), 100.0, 1),
+            )
+        )
+    lines.extend(
+        [
+            "",
+            "## Gate rules",
+            "",
+            "- Step 0 is excluded from reach and consecutive-stay metrics.",
+            "- Precise pass: terminal and required trailing steps inside ±30 mm, terminal velocity ≤0.10 m/s, late velocity RMS ≤0.10 m/s.",
+            "- Relaxed damped pass: the same damping requirements inside ±40 mm.",
+            "- Position-only means the trajectory reaches/stays in the position tube but is still moving too quickly.",
+            "- Real TSC is the source of truth; local-linear predictions are diagnostic only.",
+        ]
+    )
+    reference_path = resolved.paths.run_dir / "source_reference" / "validation_summary_strict.csv"
+    if reference_path.exists():
+        lines.extend(
+            [
+                "",
+                "## Read-only Stage1 reference",
+                "",
+                "The original full14/SVD5/SVD6/SVD8 real-TSC results were re-scored with the same strict metrics and are stored at:",
+                "",
+                f"`{reference_path.relative_to(resolved.paths.run_dir)}`",
+            ]
+        )
     return "\n".join(lines) + "\n"
-
 
 # -----------------------------------------------------------------------------
 # Synthetic self-test (no TSC)
