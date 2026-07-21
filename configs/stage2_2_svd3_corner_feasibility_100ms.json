@@ -1,0 +1,209 @@
+{
+  "stage_label": "Stage 2.2",
+  "run_name": "stage2_2_svd3_corner_feasibility_100ms",
+  "output_root": "stage2_2_runs",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Use the exact validated Stage1.1/Stage2 runtime physics. External SIGKILL cannot be intercepted."
+  },
+  "parallel": {
+    "n_workers": 96,
+    "ray_tmpdir": "/tmp/stage2_2"
+  },
+  "trajectory": {
+    "horizon_ms": 100,
+    "horizon_steps": 10,
+    "n_modes": 3,
+    "node_count": 5,
+    "node_steps": [0, 2, 4, 6, 9],
+    "coefficient_lower": [-2.6, -2.6, -0.9],
+    "coefficient_upper": [2.6, 2.6, 0.9],
+    "seed_scale_profiles": {
+      "early_strong_late_soft": [1.0, 1.0, 1.0, 0.98, 0.92, 0.82, 0.7, 0.58, 0.48, 0.4],
+      "moderate_taper": [0.9, 0.9, 0.9, 0.88, 0.84, 0.78, 0.7, 0.64, 0.58, 0.54],
+      "late_brake_search_seed": [1.0, 1.0, 0.98, 0.92, 0.82, 0.68, 0.5, 0.32, 0.16, 0.0]
+    },
+    "description": "The validated first three SVD modes and five-node 100 ms parameterization are unchanged. Stage2.2 searches the strict-feasibility corner and permits small changes at node step 2 in addition to the final three nodes."
+  },
+  "linear_prefilter": {
+    "r_scale_m": 0.03,
+    "z_scale_m": 0.03,
+    "ip_scale_a": 10000.0,
+    "random_keep_fraction": 0.5,
+    "weights": {
+      "late_position": 1.0,
+      "terminal_position": 0.5,
+      "terminal_ip": 0.05,
+      "action_rms": 0.01,
+      "delta_action_rms": 0.02,
+      "repair": 2.0
+    },
+    "description": "The local-linear R/Z/Ip model remains a weak ranking aid only. Real TSC alone decides position, speed and hold."
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "normalization_r_m": 0.03,
+    "normalization_z_m": 0.03,
+    "required_terminal_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_tolerance_a": 10000.0,
+    "promising_distance_reduction": 0.5,
+    "description": "Hard success is identical to Stage2 and Stage2.1: the last three samples must remain inside the +/-30 mm rectangular R/Z box, terminal and late RMS speeds must each be <=0.10 m/s, and terminal Ip must be safe."
+  },
+  "objective": {
+    "non_strict_offset": 1000000.0,
+    "max_violation_weight": 100000.0,
+    "sum_violation_weight": 4000.0,
+    "l2_violation_weight": 1000.0,
+    "quality_weights": {
+      "final3_box_core": 2.0,
+      "final3_box_mean_core": 0.8,
+      "terminal_box_core": 0.6,
+      "terminal_velocity_core": 0.5,
+      "late_velocity_core": 1.5,
+      "terminal_ip_core": 0.05,
+      "action_rms": 0.02,
+      "delta_action_rms": 0.04,
+      "repair": 2.0
+    },
+    "description": "Stage2.2 does not rank non-strict candidates by the old gate tier. It lexicographically approximates feasibility by minimizing the largest normalized strict-constraint violation, then total and L2 violation. Any real strict pass outranks every non-strict point."
+  },
+  "archives": {
+    "damped_capacity": 40,
+    "precise_capacity": 40,
+    "corner_capacity": 64,
+    "strict_capacity": 16,
+    "minimum_vector_distance": 0.012,
+    "damped_final3_box_limit_m": 0.036,
+    "precise_final3_box_limit_m": 0.033,
+    "precise_terminal_box_limit_m": 0.0305,
+    "precise_terminal_velocity_cap_m_per_s": 0.2,
+    "precise_late_velocity_cap_m_per_s": 0.22,
+    "corner_max_violation_limit": 0.25,
+    "description": "Damped candidates obey the exact 0.10 m/s speed limits. Precise candidates retain the low-position-error transition front with explicit speed caps. The corner archive is ranked directly by strict feasibility violation."
+  },
+  "search": {
+    "population_size": 96,
+    "max_generations": 6,
+    "random_seed": 20260722,
+    "proposal_pool_multiplier": 4,
+    "fixed_node_indices": [0],
+    "active_node_indices": [1, 2, 3, 4],
+    "family_quotas": {
+      "anchors": 12,
+      "multi_center_probes": 24,
+      "corner_local": 24,
+      "boundary_bridge": 18,
+      "trust_mix": 12,
+      "random_local": 6
+    },
+    "unranked_fraction_by_family": {
+      "corner_local": 0.4,
+      "boundary_bridge": 0.5,
+      "trust_mix": 0.5,
+      "random_local": 1.0
+    },
+    "local_std_by_node_mode": [
+      [0.006, 0.006, 0.003],
+      [0.025, 0.025, 0.01],
+      [0.055, 0.055, 0.022],
+      [0.07, 0.07, 0.028],
+      [0.07, 0.07, 0.028]
+    ],
+    "probe_delta_by_node_mode": [
+      [0.0, 0.0, 0.0],
+      [0.018, 0.018, 0.008],
+      [0.035, 0.035, 0.015],
+      [0.045, 0.045, 0.018],
+      [0.045, 0.045, 0.018]
+    ],
+    "bridge_noise_by_node_mode": [
+      [0.0, 0.0, 0.0],
+      [0.008, 0.008, 0.004],
+      [0.018, 0.018, 0.008],
+      [0.025, 0.025, 0.01],
+      [0.025, 0.025, 0.01]
+    ],
+    "random_radius_by_node_mode": [
+      [0.004, 0.004, 0.002],
+      [0.04, 0.04, 0.016],
+      [0.09, 0.09, 0.035],
+      [0.11, 0.11, 0.04],
+      [0.11, 0.11, 0.04]
+    ],
+    "covariance_diagonal_shrinkage": 0.35,
+    "covariance_eigen_floor": 0.00002,
+    "covariance_eigen_ceiling": 0.03,
+    "archive_elite_count": 24,
+    "initial_trust_scale": 1.0,
+    "minimum_trust_scale": 0.35,
+    "trust_shrink_on_improvement": 0.9,
+    "trust_shrink_without_improvement": 0.78,
+    "meaningful_improvement": 0.00001,
+    "strict_patience_generations": 1,
+    "description": "A 96-candidate trust-region search around three independently selected near-corner centers. Twelve active variables cover nodes at steps 2,4,6,9; the step-0 node is effectively fixed."
+  },
+  "surrogate": {
+    "enabled": true,
+    "ridge_alpha": 1.0,
+    "minimum_samples": 768,
+    "minimum_generation_folds": 8,
+    "minimum_r2_final3_box": 0.5,
+    "maximum_mae_final3_box_m": 0.0015,
+    "minimum_r2_terminal_velocity": 0.1,
+    "maximum_mae_terminal_velocity": 0.06,
+    "minimum_r2_late_velocity": 0.1,
+    "maximum_mae_late_velocity": 0.04,
+    "ranking_weight_max_violation": 1000.0,
+    "ranking_weight_sum_violation": 40.0,
+    "ranking_weight_linear_score": 0.01,
+    "description": "Three validated pure-NumPy ridge models predict the final-three box error, terminal speed and late speed only for proposal ranking. Leave-one-generation-out checks are mandatory; no surrogate can declare a hard gate."
+  },
+  "optimization": {
+    "algorithm": "stage2_2_corner_feasibility_trust_search",
+    "population_size": 96,
+    "proposal_pool_size": 384,
+    "elite_count": 24,
+    "max_generations": 6,
+    "random_seed": 20260722,
+    "initial_mean_seed": "svd3_uniform_0.85",
+    "initial_std_by_mode": [0.2, 0.2, 0.08],
+    "initial_std_node_multiplier": [0.2, 0.5, 0.8, 1.0, 1.0],
+    "antithetic_sampling": true,
+    "mean_update_fraction": 0.7,
+    "covariance_update_fraction": 0.55,
+    "covariance_diagonal_shrinkage": 0.35,
+    "covariance_eigen_floor": 0.00002,
+    "covariance_eigen_ceiling": 0.03,
+    "meaningful_improvement": 0.00001,
+    "early_stop_patience_generations": 1,
+    "cross_tier_elite_fraction": 0.25,
+    "description": "Compatibility block required by the bundled Stage2 loader. Stage2.2 uses the separate search block above."
+  },
+  "confirmation": {
+    "max_unique_candidates": 8,
+    "repeats_per_candidate": 3,
+    "strict_candidates": 3,
+    "corner_candidates": 5,
+    "speed_safe_candidates": 2,
+    "position_front_candidates": 2,
+    "gate_hall_candidates": 2,
+    "description": "Confirmation is category-aware rather than gate-tier-only. It includes strict, minimum-violation, speed-safe boundary, position-front and legacy gate-front candidates, deduplicated to at most eight vectors and repeated three times."
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 600.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "description": "All temporary TSC runtime and episode directories remain below /tmp/tsc_workspace and are promptly deleted."
+  }
+}
