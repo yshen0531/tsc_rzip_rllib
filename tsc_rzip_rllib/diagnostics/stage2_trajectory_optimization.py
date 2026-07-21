@@ -693,6 +693,43 @@ def _close_ray_actors(actors: list[Any], *, timeout_s: float) -> None:
             pass
 
 
+def _persist_evaluation_result(
+    path: Path,
+    *,
+    spec: dict[str, Any],
+    result: dict[str, Any],
+) -> dict[str, Any]:
+    """Persist one result without allowing a malformed payload to kill the wave.
+
+    Evaluation specs are validated before Ray starts.  A remaining serialization
+    failure therefore indicates a non-finite/unsupported value produced by the
+    environment result.  Store a standards-compliant failure record and continue
+    processing the other candidates instead of losing an entire expensive wave.
+    """
+    try:
+        base.atomic_write_json_gz(path, result)
+        return result
+    except (TypeError, ValueError) as exc:
+        failure = {
+            "schema_version": 2,
+            "experiment_id": str(spec.get("experiment_id", "unknown")),
+            "spec": base.json_safe_value(spec, nonfinite="null"),
+            "success": False,
+            "failure_reason": f"result serialization rejected: {exc}",
+            "serialization_error": repr(exc),
+            "original_success": bool(result.get("success", False)),
+            "original_failure_reason": str(result.get("failure_reason", "")),
+            "trajectory": [],
+        }
+        base.atomic_write_json_gz(path, failure)
+        print(
+            f"[Stage2 evaluation] {spec.get('experiment_id')} stored as failure because "
+            f"the result was not strict-JSON serializable: {exc}",
+            flush=True,
+        )
+        return failure
+
+
 def evaluate_specs(
     ctx: Stage2Context,
     specs: list[dict[str, Any]],
@@ -702,6 +739,17 @@ def evaluate_specs(
     resume: bool,
 ) -> list[dict[str, Any]]:
     output_dir.mkdir(parents=True, exist_ok=True)
+    # Catch programmer/configuration errors before launching any costly TSC
+    # workers.  This specifically prevents optional NaN metadata in a spec from
+    # surviving until the first completed confirmation rollout is serialized.
+    base.assert_json_finite(specs, context="Stage2 evaluation specs")
+    experiment_ids = [str(spec.get("experiment_id", "")) for spec in specs]
+    if any(not experiment_id for experiment_id in experiment_ids):
+        raise ValueError("every Stage2 evaluation spec must have a non-empty experiment_id")
+    if len(set(experiment_ids)) != len(experiment_ids):
+        raise ValueError("Stage2 evaluation specs contain duplicate experiment_id values")
+    for stale in output_dir.glob("*.json.gz.tmp.*"):
+        stale.unlink(missing_ok=True)
     pending = []
     for spec in specs:
         path = output_dir / f"{spec['experiment_id']}.json.gz"
@@ -713,7 +761,11 @@ def evaluate_specs(
         try:
             for index, spec in enumerate(pending, start=1):
                 result = worker.evaluate(spec)
-                base.atomic_write_json_gz(output_dir / f"{spec['experiment_id']}.json.gz", result)
+                _persist_evaluation_result(
+                    output_dir / f"{spec['experiment_id']}.json.gz",
+                    spec=spec,
+                    result=result,
+                )
                 print(f"[Stage2 evaluation] {index}/{len(pending)}", flush=True)
         finally:
             worker.close()
@@ -758,7 +810,11 @@ def evaluate_specs(
                             "traceback": traceback.format_exc(),
                             "trajectory": [],
                         }
-                    base.atomic_write_json_gz(output_dir / f"{spec['experiment_id']}.json.gz", result)
+                    _persist_evaluation_result(
+                        output_dir / f"{spec['experiment_id']}.json.gz",
+                        spec=spec,
+                        result=result,
+                    )
                     done_count += 1
                     print(f"[Stage2 evaluation] {done_count}/{len(pending)}", flush=True)
         finally:

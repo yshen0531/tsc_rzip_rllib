@@ -31,37 +31,144 @@ from tsc_rzip_rllib.core.coil_order import (
 # -----------------------------------------------------------------------------
 
 
+def _json_path(parent: str, key: Any) -> str:
+    if isinstance(key, int):
+        return f"{parent}[{key}]"
+    text = str(key)
+    if text.isidentifier():
+        return f"{parent}.{text}"
+    return f"{parent}[{text!r}]"
+
+
+def json_safe_value(
+    value: Any,
+    *,
+    nonfinite: str = "raise",
+    path: str = "$",
+) -> Any:
+    """Return a standards-compliant JSON value.
+
+    ``json`` accepts NaN/Infinity by default even though they are not valid JSON.
+    The Stage2/Stage2.1 result files are long-lived checkpoints, so silently
+    emitting those tokens is unsafe.  ``nonfinite='raise'`` is used for all
+    persisted artifacts.  ``nonfinite='null'`` exists only for legacy recovery
+    and failure diagnostics where preserving the rest of a record is preferable
+    to aborting a whole 192-worker wave.
+    """
+    if nonfinite not in {"raise", "null"}:
+        raise ValueError("nonfinite must be 'raise' or 'null'")
+    if value is None or isinstance(value, (str, bool, int)):
+        return value
+    if isinstance(value, Path):
+        return str(value)
+    if isinstance(value, np.ndarray):
+        return json_safe_value(value.tolist(), nonfinite=nonfinite, path=path)
+    if isinstance(value, np.bool_):
+        return bool(value)
+    if isinstance(value, np.integer):
+        return int(value)
+    if isinstance(value, (float, np.floating)):
+        number = float(value)
+        if math.isfinite(number):
+            return number
+        if nonfinite == "null":
+            return None
+        raise ValueError(f"non-finite JSON number at {path}: {number!r}")
+    if isinstance(value, dict):
+        output: dict[Any, Any] = {}
+        for key, item in value.items():
+            if not isinstance(key, (str, int, float, bool)) and key is not None:
+                raise TypeError(f"unsupported JSON object key at {path}: {type(key).__name__}")
+            if isinstance(key, float) and not math.isfinite(key):
+                if nonfinite == "null":
+                    key = "null"
+                else:
+                    raise ValueError(f"non-finite JSON object key at {path}: {key!r}")
+            output[key] = json_safe_value(
+                item,
+                nonfinite=nonfinite,
+                path=_json_path(path, key),
+            )
+        return output
+    if isinstance(value, (list, tuple)):
+        return [
+            json_safe_value(item, nonfinite=nonfinite, path=_json_path(path, index))
+            for index, item in enumerate(value)
+        ]
+    raise TypeError(f"unsupported JSON value at {path}: {type(value).__name__}")
+
+
+def assert_json_finite(payload: Any, *, context: str = "payload") -> None:
+    try:
+        json_safe_value(payload, nonfinite="raise")
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{context} is not strict-JSON serializable: {exc}") from exc
+
+
+def _legacy_json_constant(_: str) -> None:
+    # Older Stage2.1 snapshots used Python's permissive NaN tokens.  Convert
+    # them to null on read so a fixed release can resume and repair the run.
+    return None
+
+
 def atomic_write_text(path: Path, text: str) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + f".tmp.{os.getpid()}")
-    with open(tmp, "w", encoding="utf-8") as f:
-        f.write(text)
-        f.flush()
-        os.fsync(f.fileno())
-    os.replace(tmp, path)
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            f.write(text)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, path)
+    except Exception:
+        tmp.unlink(missing_ok=True)
+        raise
 
 
 def atomic_write_json(path: Path, payload: Any, *, indent: int = 2) -> None:
-    atomic_write_text(path, json.dumps(payload, indent=indent, ensure_ascii=False, allow_nan=False))
+    safe_payload = json_safe_value(payload, nonfinite="raise")
+    atomic_write_text(
+        path,
+        json.dumps(safe_payload, indent=indent, ensure_ascii=False, allow_nan=False),
+    )
 
 
 def atomic_write_json_gz(path: Path, payload: Any) -> None:
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + f".tmp.{os.getpid()}")
-    with gzip.open(tmp, "wt", encoding="utf-8") as f:
-        json.dump(payload, f, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
-    os.replace(tmp, path)
+    safe_payload = json_safe_value(payload, nonfinite="raise")
+    try:
+        with gzip.open(tmp, "wt", encoding="utf-8") as f:
+            json.dump(
+                safe_payload,
+                f,
+                ensure_ascii=False,
+                allow_nan=False,
+                separators=(",", ":"),
+            )
+        os.replace(tmp, path)
+    except Exception:
+        tmp.unlink(missing_ok=True)
+        raise
 
 
-def read_json(path: Path | str) -> dict[str, Any]:
-    return json.loads(Path(path).read_text(encoding="utf-8"))
+def read_json_any(path: Path | str) -> Any:
+    return json.loads(
+        Path(path).read_text(encoding="utf-8"),
+        parse_constant=_legacy_json_constant,
+    )
+
+
+def read_json(path: Path | str) -> Any:
+    # Historical callers use this helper for both JSON objects and JSON arrays.
+    return read_json_any(path)
 
 
 def read_json_gz(path: Path | str) -> Any:
     with gzip.open(path, "rt", encoding="utf-8") as f:
-        return json.load(f)
+        return json.load(f, parse_constant=_legacy_json_constant)
 
 
 def sha256_file(path: Path | str) -> str:
@@ -294,20 +401,41 @@ def _state_record(env: Any, step_index: int, action_tsc: np.ndarray) -> dict[str
     if state is None:
         raise RuntimeError("environment has no last_state")
     timing = state.get("runner_timing", {}) or {}
+    scalars = {
+        "R": safe_float(state.get("R")),
+        "Z": safe_float(state.get("Z")),
+        "Ip": safe_float(state.get("Ip")),
+        "vessel_current_total_a": safe_float(state.get("vessel_current_total_a", 0.0)),
+        "vessel_current_abs_sum_a": safe_float(state.get("vessel_current_abs_sum_a", 0.0)),
+        "vessel_current_rms_a": safe_float(state.get("vessel_current_rms_a", 0.0)),
+        "vessel_current_max_abs_a": safe_float(state.get("vessel_current_max_abs_a", 0.0)),
+    }
+    nonfinite = [name for name, value in scalars.items() if not math.isfinite(value)]
+    if nonfinite:
+        raise ValueError(
+            f"environment state contains non-finite scalar(s) at step {step_index}: {nonfinite}"
+        )
+    currents_tsc = ensure_finite_array(
+        f"currents_a_tsc at step {step_index}", state["currents_a_tsc"]
+    )
+    currents_display = ensure_finite_array(
+        f"currents_a_display at step {step_index}", state["currents_a_display"]
+    )
+    action = ensure_finite_array(f"action_tsc at step {step_index}", action_tsc)
+    if currents_tsc.shape != (14,) or currents_display.shape != (14,) or action.shape != (14,):
+        raise ValueError(
+            "environment state/action shape mismatch at step "
+            f"{step_index}: tsc={currents_tsc.shape}, display={currents_display.shape}, "
+            f"action={action.shape}"
+        )
     return {
         "step_index": int(step_index),
         "time_ms": int(state.get("time_ms", -1)),
-        "R": float(state["R"]),
-        "Z": float(state["Z"]),
-        "Ip": float(state["Ip"]),
-        "vessel_current_total_a": float(state.get("vessel_current_total_a", 0.0)),
-        "vessel_current_abs_sum_a": float(state.get("vessel_current_abs_sum_a", 0.0)),
-        "vessel_current_rms_a": float(state.get("vessel_current_rms_a", 0.0)),
-        "vessel_current_max_abs_a": float(state.get("vessel_current_max_abs_a", 0.0)),
-        "currents_a_tsc": np.asarray(state["currents_a_tsc"], dtype=float).tolist(),
-        "currents_a_display": np.asarray(state["currents_a_display"], dtype=float).tolist(),
-        "action_norm_tsc": np.asarray(action_tsc, dtype=float).tolist(),
-        "action_norm_display": tsc_to_display(np.asarray(action_tsc, dtype=float)).tolist(),
+        **scalars,
+        "currents_a_tsc": currents_tsc.tolist(),
+        "currents_a_display": currents_display.tolist(),
+        "action_norm_tsc": action.tolist(),
+        "action_norm_display": tsc_to_display(action).tolist(),
         "abnormal": bool(state.get("abnormal", False)),
         "gotsc_subprocess_s": safe_float(timing.get("gotsc_subprocess_s"), 0.0),
         "step_total_s": safe_float(timing.get("step_total_s"), 0.0),
@@ -856,7 +984,7 @@ def compute_terminal_reachable_set(
 
     target_inside = False
     hull_vertices: list[int] = []
-    target_distance_to_hull_m = float("nan")
+    target_distance_to_hull_m: float | None = None
     nearest_hull_point: list[float] | None = None
     if len(points) >= 3:
         pts = np.asarray([[x["R"], x["Z"]] for x in points], dtype=float)
@@ -883,7 +1011,7 @@ def compute_terminal_reachable_set(
                     if distance < best_distance:
                         best_distance = distance
                         best_point = candidate
-                target_distance_to_hull_m = best_distance
+                target_distance_to_hull_m = float(best_distance)
                 nearest_hull_point = None if best_point is None else np.asarray(best_point, dtype=float).tolist()
         except Exception:
             # A rank-one actuator projection legitimately produces a line rather
@@ -1780,17 +1908,17 @@ def _attach_zero_action_comparisons(rows: list[dict[str, Any]]) -> None:
         row["terminal_RZ_reduction_vs_zero_action_fraction"] = (
             float((baseline_terminal - terminal) / max(baseline_terminal, 1e-12))
             if math.isfinite(terminal) and math.isfinite(baseline_terminal)
-            else float("nan")
+            else None
         )
         row["late_RZ_rms_reduction_vs_zero_action_fraction"] = (
             float((baseline_late - late_rms) / max(baseline_late, 1e-12))
             if math.isfinite(late_rms) and math.isfinite(baseline_late)
-            else float("nan")
+            else None
         )
         row["terminal_velocity_change_vs_zero_action_m_per_s"] = (
             float(terminal_velocity - baseline_velocity)
             if math.isfinite(terminal_velocity) and math.isfinite(baseline_velocity)
-            else float("nan")
+            else None
         )
 
 

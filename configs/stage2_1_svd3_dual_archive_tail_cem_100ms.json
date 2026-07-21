@@ -130,8 +130,14 @@
     "minimum_vector_distance": 0.035,
     "damped_box_limit_m": 0.045,
     "precise_box_limit_m": 0.03,
-    "speed_margin_factor": 1.05,
-    "description": "Damped and precise-but-underdamped families are retained independently so one family cannot eliminate the other through tier spacing."
+    "speed_margin_factor": 1.0,
+    "description": "The damped archive is strictly speed-safe under the unchanged 0.10 m/s limits. The precise archive retains 30 mm position candidates but ranks them with explicit velocity penalties so near-damped precise trajectories are favored.",
+    "precise_score_weights": {
+      "terminal_box": 8.0,
+      "late_position": 3.0,
+      "terminal_velocity": 0.5,
+      "late_velocity": 1.5
+    }
   },
   "search": {
     "population_size": 192,

@@ -1,69 +1,73 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export OMP_NUM_THREADS="${OMP_NUM_THREADS:-1}"
-export MKL_NUM_THREADS="${MKL_NUM_THREADS:-1}"
-export OPENBLAS_NUM_THREADS="${OPENBLAS_NUM_THREADS:-1}"
-export NUMEXPR_NUM_THREADS="${NUMEXPR_NUM_THREADS:-1}"
-export VECLIB_MAXIMUM_THREADS="${VECLIB_MAXIMUM_THREADS:-1}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=scripts/stage2_1_shell_common.sh
+source "${SCRIPT_DIR}/scripts/stage2_1_shell_common.sh"
+stage21_project_init
+stage21_find_python
+stage21_runtime_env
 
-PROJECT_DIR="${PROJECT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
-cd "${PROJECT_DIR}"
-export PROJECT_DIR
-export TSC_ALL_ROOT="${TSC_ALL_ROOT:-$(cd "${PROJECT_DIR}/.." && pwd)}"
-export PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
+CONFIG="${STAGE2_1_CONFIG:-${PROJECT_DIR}/configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json}"
+CONFIG="$(stage21_abspath "${CONFIG}")"
+[[ -f "${CONFIG}" ]] || stage21_die "Stage2.1 config not found: ${CONFIG}"
 
-PYTHON_BIN="${PYTHON_BIN:-${TSC_ALL_ROOT}/tsc_simulation/venv_simu/bin/python}"
-CONFIG="${STAGE2_1_CONFIG:-configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json}"
-SOURCE_STAGE1_1_RUN="${SOURCE_STAGE1_1_RUN:-}"
-SOURCE_STAGE2_RUN="${SOURCE_STAGE2_RUN:-}"
-export SOURCE_STAGE1_1_RUN SOURCE_STAGE2_RUN
+COMMAND="${STAGE2_1_COMMAND:-all}"
+case "${COMMAND}" in
+  prepare|generation|optimize|confirm|analyze|all) ;;
+  *) stage21_die "invalid STAGE2_1_COMMAND=${COMMAND}" ;;
+esac
+BACKEND="${STAGE2_1_BACKEND:-ray}"
+case "${BACKEND}" in ray|serial) ;; *) stage21_die "invalid STAGE2_1_BACKEND=${BACKEND}" ;; esac
 
-if [[ -z "${SOURCE_STAGE1_1_RUN}" || ! -d "${SOURCE_STAGE1_1_RUN}" ]]; then
-  echo "ERROR: export SOURCE_STAGE1_1_RUN=/absolute/path/to/completed_stage1_1_run" >&2
-  exit 2
+RESUME="${STAGE2_1_RESUME:-0}"
+case "${RESUME}" in 0|1) ;; *) stage21_die "STAGE2_1_RESUME must be 0 or 1" ;; esac
+
+if [[ -n "${STAGE2_1_RUN_DIR:-}" ]]; then
+  RUN_DIR="$(stage21_abspath "${STAGE2_1_RUN_DIR}")"
+else
+  STAMP="$(date -u +%Y%m%d_%H%M%S)"
+  RUN_DIR="${PROJECT_DIR}/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_${STAMP}"
+  suffix=0
+  while [[ -e "${RUN_DIR}" ]]; do
+    suffix=$((suffix + 1))
+    RUN_DIR="${PROJECT_DIR}/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_${STAMP}_${suffix}"
+  done
 fi
-if [[ -z "${SOURCE_STAGE2_RUN}" || ! -d "${SOURCE_STAGE2_RUN}" ]]; then
-  echo "ERROR: export SOURCE_STAGE2_RUN=/absolute/path/to/completed_stage2_run" >&2
-  exit 2
+export STAGE2_1_RUN_DIR="${RUN_DIR}"
+mkdir -p "${PROJECT_DIR}/stage2_1_runs" "${PROJECT_DIR}/logs/nohup"
+
+if [[ "${RESUME}" == "1" ]]; then
+  [[ -f "${RUN_DIR}/stage2_1_state.json" ]] || \
+    stage21_die "resume requested but state is missing: ${RUN_DIR}/stage2_1_state.json"
+  stage21_sources_from_existing_run "${RUN_DIR}"
+else
+  if [[ -d "${RUN_DIR}" ]] && find "${RUN_DIR}" -mindepth 1 -maxdepth 1 -print -quit | grep -q .; then
+    stage21_die "fresh run directory is not empty: ${RUN_DIR}. Use a new path or set STAGE2_1_RESUME=1"
+  fi
+  mkdir -p "${RUN_DIR}"
 fi
-if [[ ! -x "${PYTHON_BIN}" ]]; then
-  echo "ERROR: Python interpreter not executable: ${PYTHON_BIN}" >&2
-  exit 2
-fi
-if [[ ! -f "${CONFIG}" ]]; then
-  echo "ERROR: Stage2.1 config not found: ${CONFIG}" >&2
-  exit 2
-fi
 
-export STAGE2_WORKERS="${STAGE2_WORKERS:-192}"
-export STAGE2_TSC_WORKSPACE_ROOT="${STAGE2_TSC_WORKSPACE_ROOT:-/tmp/tsc_workspace}"
-export STAGE2_TSC_RUN_ROOT="${STAGE2_TSC_RUN_ROOT:-${STAGE2_TSC_WORKSPACE_ROOT}/episode_runs}"
-export RAY_TMPDIR="${RAY_TMPDIR:-/tmp/stage2_1_$(id -u)}"
-
-mkdir -p "${STAGE2_TSC_WORKSPACE_ROOT}" "${STAGE2_TSC_RUN_ROOT}" "${RAY_TMPDIR}" stage2_1_runs logs/nohup
-ulimit -n 1048576 2>/dev/null || true
-ulimit -u 262144 2>/dev/null || true
-
-cleanup_runtime() {
-  set +e
-  ray stop --force >/dev/null 2>&1 || true
-  rm -rf "${RAY_TMPDIR}" 2>/dev/null || true
-  mkdir -p "${STAGE2_TSC_WORKSPACE_ROOT}" "${STAGE2_TSC_RUN_ROOT}"
-  find "${STAGE2_TSC_WORKSPACE_ROOT}" -mindepth 1 -maxdepth 1 \
-    \( -name 'stage2_*' -o -name 'stage2_1_*' \) -exec rm -rf {} + 2>/dev/null || true
-  find "${STAGE2_TSC_RUN_ROOT}" -mindepth 1 -maxdepth 1 -exec rm -rf {} + 2>/dev/null || true
-}
-trap cleanup_runtime EXIT INT TERM
-
-# A new Stage2.1 run is intentionally created every time this script is used.
-cleanup_runtime
-mkdir -p "${RAY_TMPDIR}" "${STAGE2_TSC_RUN_ROOT}"
-
-STAMP="$(date -u +%Y%m%d_%H%M%S)"
-RUN_DIR="${STAGE2_1_RUN_DIR:-${PROJECT_DIR}/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_${STAMP}}"
-mkdir -p "${RUN_DIR}"
+stage21_detect_source_stage2
+stage21_detect_source_stage1
 printf '%s\n' "${RUN_DIR}" > "${PROJECT_DIR}/stage2_1_runs/latest_stage2_1_run.txt"
+
+cleanup_on_exit() {
+  local status=$?
+  trap - EXIT
+  set +e
+  stage21_ray_stop
+  stage21_cleanup_runtime
+  exit "${status}"
+}
+trap cleanup_on_exit EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+# Stage2/Stage2.1 are not designed to share one local Ray runtime concurrently.
+stage21_ray_stop
+stage21_cleanup_runtime
+mkdir -p "${TMPDIR}" "${STAGE2_TSC_RUN_ROOT}"
 
 cat <<EOF
 [Stage2.1] user=$(id -un) host=$(hostname) pwd=${PROJECT_DIR}
@@ -71,19 +75,30 @@ cat <<EOF
 [Stage2.1] source_stage2_run=${SOURCE_STAGE2_RUN}
 [Stage2.1] run_dir=${RUN_DIR}
 [Stage2.1] config=${CONFIG}
+[Stage2.1] command=${COMMAND}
+[Stage2.1] backend=${BACKEND}
+[Stage2.1] resume=${RESUME}
 [Stage2.1] workers=${STAGE2_WORKERS}
+[Stage2.1] python=${PYTHON_BIN}
 [Stage2.1] RAY_TMPDIR=${RAY_TMPDIR}
 [Stage2.1] TSC_WORKSPACE_ROOT=${STAGE2_TSC_WORKSPACE_ROOT}
 [Stage2.1] TSC_RUN_ROOT=${STAGE2_TSC_RUN_ROOT}
+[Stage2.1] Complete standalone source tree: no Git, network, or external base tree is used.
 [Stage2.1] 3 validated SVD modes x 5 nodes = 15 variables; search concentrates on the final 9.
 [Stage2.1] The Stage2 30 mm hard gate is unchanged. Dual archives and smooth tube excess alter ranking only.
 [Stage2.1] SIGKILL cannot be intercepted. Completed candidate JSON files remain resumable.
 EOF
 
-"${PYTHON_BIN}" -u scripts/stage2_1_trajectory_optimization.py all \
-  --config "${CONFIG}" \
-  --source-run "${SOURCE_STAGE1_1_RUN}" \
-  --source-stage2-run "${SOURCE_STAGE2_RUN}" \
-  --run-dir "${RUN_DIR}" \
-  --backend ray \
-  --no-resume
+ARGS=(
+  "${COMMAND}"
+  --config "${CONFIG}"
+  --source-run "${SOURCE_STAGE1_1_RUN}"
+  --source-stage2-run "${SOURCE_STAGE2_RUN}"
+  --run-dir "${RUN_DIR}"
+  --backend "${BACKEND}"
+)
+if [[ "${RESUME}" != "1" ]]; then
+  ARGS+=(--no-resume)
+fi
+
+"${PYTHON_BIN}" -u "${PROJECT_DIR}/scripts/stage2_1_trajectory_optimization.py" "${ARGS[@]}"

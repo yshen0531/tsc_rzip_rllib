@@ -5,7 +5,12 @@ from __future__ import annotations
 
 import argparse
 import os
+import sys
 from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
 from tsc_rzip_rllib.diagnostics.stage2_1_trajectory_optimization import execute
 
@@ -34,7 +39,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--source-stage2-run",
         default=os.environ.get("SOURCE_STAGE2_RUN"),
-        help="Completed Stage2 run whose 1536 real-TSC results seed Stage2.1.",
+        help="Completed Stage2 run whose real-TSC results seed Stage2.1.",
     )
     parser.add_argument(
         "--run-dir",
@@ -45,7 +50,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--no-resume",
         action="store_true",
-        help="Require a brand-new Stage2.1 state. Completed candidate files are otherwise resumable.",
+        help="Require a brand-new Stage2.1 state. Omit this flag to resume completed candidate files.",
     )
     return parser
 

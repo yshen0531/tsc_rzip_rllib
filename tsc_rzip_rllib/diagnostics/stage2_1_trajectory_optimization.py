@@ -1,10 +1,11 @@
 """Stage2.1 dual-archive local trajectory optimization.
 
-This module is an overlay on top of the validated Stage2 implementation in
-``tsc_rzip_rllib.diagnostics.stage2_trajectory_optimization``.  It deliberately
-reuses the existing Stage1.1 loader, SVD-mode decoder, real-TSC evaluator and
-workspace cleanup path.  Stage2.1 changes the search and the continuous
-objective, but it does *not* change the hard 30 mm/velocity/Ip success gate.
+This module builds on the validated Stage2 implementation in
+``tsc_rzip_rllib.diagnostics.stage2_trajectory_optimization``.  The standalone
+Stage2.1 package physically includes that implementation and reuses its
+Stage1.1 loader, SVD-mode decoder, real-TSC evaluator and workspace cleanup
+path.  Stage2.1 changes the search and the continuous objective, but it does
+*not* change the hard 30 mm/velocity/Ip success gate.
 
 Main changes from Stage2
 ------------------------
@@ -20,17 +21,13 @@ Main changes from Stage2
 
 from __future__ import annotations
 
-import argparse
 import copy
 import csv
-import gzip
 import hashlib
 import json
 import math
 import os
-import random
 import shutil
-import sys
 import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -39,10 +36,11 @@ from typing import Any, Iterable, Sequence
 
 import numpy as np
 
+from tsc_rzip_rllib.diagnostics import stage1_controllability as jsonio
 from tsc_rzip_rllib.diagnostics import stage2_trajectory_optimization as s2
 
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 3
 STATE_FILENAME = "stage2_1_state.json"
 MANIFEST_FILENAME = "stage2_1_manifest.json"
 SOURCE_COPY_DIRNAME = "source_stage2_reference"
@@ -58,7 +56,7 @@ _REQUIRED_BASE_SYMBOLS = (
 for _symbol in _REQUIRED_BASE_SYMBOLS:
     if not hasattr(s2, _symbol):
         raise ImportError(
-            "Stage2.1 requires the feat2-cem Stage2 implementation; missing "
+            "The standalone Stage2.1 tree is incomplete; missing bundled Stage2 symbol "
             f"tsc_rzip_rllib.diagnostics.stage2_trajectory_optimization.{_symbol}"
         )
 
@@ -72,53 +70,40 @@ def utc_timestamp() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
 
 
-def _json_default(value: Any) -> Any:
-    if isinstance(value, Path):
-        return str(value)
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    if isinstance(value, (np.floating,)):
-        return float(value)
-    if isinstance(value, (np.integer,)):
-        return int(value)
-    if isinstance(value, (np.bool_,)):
-        return bool(value)
-    raise TypeError(f"Object of type {type(value).__name__} is not JSON serializable")
-
-
 def read_json(path: Path) -> dict[str, Any]:
-    with path.open("r", encoding="utf-8") as handle:
-        payload = json.load(handle)
+    payload = jsonio.read_json(path)
     if not isinstance(payload, dict):
         raise TypeError(f"Expected JSON object in {path}")
     return payload
 
 
+def read_json_any(path: Path) -> Any:
+    return jsonio.read_json_any(path)
+
+
 def atomic_write_json(path: Path, payload: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(path.name + f".tmp.{os.getpid()}")
-    with tmp.open("w", encoding="utf-8") as handle:
-        json.dump(payload, handle, indent=2, ensure_ascii=False, default=_json_default)
-        handle.write("\n")
-        handle.flush()
-        os.fsync(handle.fileno())
-    os.replace(tmp, path)
+    jsonio.atomic_write_json(path, payload)
 
 
 def read_json_gz(path: Path) -> dict[str, Any]:
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        payload = json.load(handle)
+    payload = jsonio.read_json_gz(path)
     if not isinstance(payload, dict):
         raise TypeError(f"Expected compressed JSON object in {path}")
     return payload
 
 
 def atomic_write_json_gz(path: Path, payload: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(path.name + f".tmp.{os.getpid()}")
-    with gzip.open(tmp, "wt", encoding="utf-8") as handle:
-        json.dump(payload, handle, ensure_ascii=False, default=_json_default)
-    os.replace(tmp, path)
+    jsonio.atomic_write_json_gz(path, payload)
+
+
+def strict_json_text(payload: Any, *, indent: int = 2) -> str:
+    safe = jsonio.json_safe_value(payload, nonfinite="raise")
+    return json.dumps(
+        safe,
+        indent=indent,
+        ensure_ascii=False,
+        allow_nan=False,
+    )
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -128,9 +113,11 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 def _csv_value(value: Any) -> Any:
     if isinstance(value, (dict, list, tuple, np.ndarray)):
-        return json.dumps(value, ensure_ascii=False, separators=(",", ":"), default=_json_default)
-    if isinstance(value, (np.floating,)):
-        return float(value)
+        safe = jsonio.json_safe_value(value, nonfinite="null")
+        return json.dumps(safe, ensure_ascii=False, allow_nan=False, separators=(",", ":"))
+    if isinstance(value, (float, np.floating)):
+        number = float(value)
+        return number if math.isfinite(number) else ""
     if isinstance(value, (np.integer,)):
         return int(value)
     if isinstance(value, (np.bool_,)):
@@ -165,9 +152,24 @@ def _as_float(value: Any, default: float = math.nan) -> float:
     try:
         if value is None or value == "":
             return default
-        return float(value)
+        number = float(value)
     except (TypeError, ValueError):
         return default
+    return number if math.isfinite(number) else default
+
+
+def _finite_or_none(value: Any) -> float | None:
+    number = _as_float(value, math.nan)
+    return float(number) if math.isfinite(number) else None
+
+
+def _finite_values(values: Iterable[Any]) -> list[float]:
+    output: list[float] = []
+    for value in values:
+        number = _finite_or_none(value)
+        if number is not None:
+            output.append(number)
+    return output
 
 
 def _as_int(value: Any, default: int = 0) -> int:
@@ -216,6 +218,82 @@ def _clip_vector(ctx: Any, vector: np.ndarray) -> np.ndarray:
         np.asarray(ctx.coefficient_lower, dtype=float),
         np.asarray(ctx.coefficient_upper, dtype=float),
     )
+
+
+def validate_stage21_config(ctx: Any) -> None:
+    """Fail early when a configuration violates the fixed Stage2.1 design."""
+    trajectory = ctx.cfg["trajectory"]
+    if int(trajectory.get("n_modes", -1)) != 3:
+        raise ValueError("Stage2.1 requires exactly the first three validated SVD modes")
+    if int(trajectory.get("node_count", -1)) != 5:
+        raise ValueError("Stage2.1 requires exactly five time nodes")
+    if list(trajectory.get("node_steps", [])) != [0, 2, 4, 6, 9]:
+        raise ValueError("Stage2.1 requires node_steps [0, 2, 4, 6, 9]")
+    if len(ctx.coefficient_lower) != 15 or len(ctx.coefficient_upper) != 15:
+        raise ValueError("Stage2.1 requires a 15-dimensional parameter vector")
+
+    search = ctx.cfg["search"]
+    population = int(search.get("population_size", 0))
+    quotas = {str(key): int(value) for key, value in search.get("family_quotas", {}).items()}
+    required_families = {
+        "anchors",
+        "sensitivity",
+        "damped_tail",
+        "precise_tail",
+        "bridge",
+        "global",
+        "random_tail",
+    }
+    if set(quotas) != required_families:
+        raise ValueError(f"Stage2.1 family_quotas must contain exactly {sorted(required_families)}")
+    if population <= 0 or sum(quotas.values()) != population:
+        raise ValueError("Stage2.1 family quotas must sum exactly to population_size")
+    tail_nodes = [int(value) for value in search.get("tail_node_indices", [])]
+    early_nodes = [int(value) for value in search.get("early_node_indices", [])]
+    if tail_nodes != [2, 3, 4] or early_nodes != [0, 1]:
+        raise ValueError("Stage2.1 search must keep early nodes [0,1] and tail nodes [2,3,4]")
+    expected_sensitivity = 2 * 3 * len(tail_nodes)
+    if quotas["sensitivity"] != expected_sensitivity:
+        raise ValueError(
+            f"sensitivity quota must be {expected_sensitivity} for +/- probes of all nine tail variables"
+        )
+    for key in (
+        "early_node_std_by_mode",
+        "tail_std_by_mode",
+        "random_tail_radius_by_mode",
+        "bridge_noise_by_mode",
+        "sensitivity_delta_by_mode",
+    ):
+        values = np.asarray(search.get(key, []), dtype=float)
+        if values.shape != (3,) or np.any(values < 0.0) or not np.all(np.isfinite(values)):
+            raise ValueError(f"search.{key} must contain three finite non-negative values")
+    multipliers = np.asarray(search.get("tail_node_std_multiplier", []), dtype=float)
+    if multipliers.shape != (3,) or np.any(multipliers <= 0.0):
+        raise ValueError("search.tail_node_std_multiplier must contain three positive values")
+
+    archives = ctx.cfg.get("archives", {})
+    if not math.isclose(float(archives.get("speed_margin_factor", 1.0)), 1.0, rel_tol=0.0, abs_tol=1e-12):
+        raise ValueError("archives.speed_margin_factor must be 1.0; the damped archive must obey the hard speed limits")
+    for key in ("damped_capacity", "precise_capacity"):
+        if int(archives.get(key, 0)) <= 0:
+            raise ValueError(f"archives.{key} must be positive")
+    precise_weights = archives.get("precise_score_weights", {})
+    for key in ("terminal_box", "late_position", "terminal_velocity", "late_velocity"):
+        value = float(precise_weights.get(key, math.nan))
+        if not math.isfinite(value) or value < 0.0:
+            raise ValueError(f"archives.precise_score_weights.{key} must be finite and non-negative")
+
+    gate = ctx.cfg["gate"]
+    if int(gate.get("required_terminal_streak_steps", 0)) <= 0:
+        raise ValueError("gate.required_terminal_streak_steps must be positive")
+    if int(gate.get("late_window_steps", 0)) <= 0:
+        raise ValueError("gate.late_window_steps must be positive")
+    if int(ctx.cfg["objective"].get("tube_window_steps", 0)) <= 0:
+        raise ValueError("objective.tube_window_steps must be positive")
+
+    confirmation = ctx.cfg.get("confirmation", {})
+    if int(confirmation.get("top_k_candidates", 0)) <= 0 or int(confirmation.get("repeats_per_candidate", 0)) <= 0:
+        raise ValueError("confirmation top_k_candidates and repeats_per_candidate must be positive")
 
 
 # ---------------------------------------------------------------------------
@@ -294,13 +372,20 @@ def _validate_source_compatibility(ctx: Any, source_cfg: dict[str, Any]) -> None
             raise ValueError(f"Stage2.1 trajectory {key} differs from source Stage2")
     if list(lhs_traj["node_steps"]) != list(rhs_traj["node_steps"]):
         raise ValueError("Stage2.1 node_steps differ from source Stage2")
-    # The hard gate is intentionally immutable.
+    for key in ("coefficient_lower", "coefficient_upper"):
+        lhs = np.asarray(lhs_traj[key], dtype=float)
+        rhs = np.asarray(rhs_traj[key], dtype=float)
+        if lhs.shape != rhs.shape or not np.allclose(lhs, rhs, rtol=0.0, atol=1e-12):
+            raise ValueError(f"Stage2.1 trajectory {key} differs from source Stage2")
+    # The hard gate is intentionally immutable.  late_window_steps is included
+    # because it changes the definition of the late-velocity RMS.
     for key in (
         "precise_tolerance_m",
         "relaxed_tolerance_m",
         "required_terminal_streak_steps",
         "terminal_velocity_max_m_per_s",
         "late_velocity_rms_max_m_per_s",
+        "late_window_steps",
         "ip_tolerance_a",
     ):
         lhs = float(ctx.cfg["gate"][key])
@@ -316,6 +401,25 @@ def _record_from_csv_row(row: dict[str, Any], *, source_run: Path | None) -> dic
         vector = _parse_vector(row.get("parameter_vector"))
     except Exception:
         return None
+    terminal_r = _finite_or_none(row.get("terminal_R_error_m"))
+    terminal_z = _finite_or_none(row.get("terminal_Z_error_m"))
+    terminal_ip = _finite_or_none(row.get("terminal_Ip_error_A"))
+    terminal_euclidean = _finite_or_none(row.get("terminal_RZ_euclidean_error_m"))
+    terminal_box = _finite_or_none(row.get("terminal_RZ_box_max_error_m"))
+    late_position = _finite_or_none(row.get("late_RZ_euclidean_rms_m"))
+    terminal_velocity = _finite_or_none(row.get("terminal_velocity_m_per_s"))
+    late_velocity = _finite_or_none(row.get("late_velocity_rms_m_per_s"))
+    if terminal_r is None or terminal_z is None or terminal_ip is None:
+        return None
+    if terminal_euclidean is None:
+        terminal_euclidean = float(math.hypot(terminal_r, terminal_z))
+    if terminal_box is None:
+        terminal_box = float(max(abs(terminal_r), abs(terminal_z)))
+    # Archive scoring and speed safety both depend on these real-TSC metrics.
+    # Reject an incomplete successful row instead of storing NaN in long-lived
+    # state and discovering it during a later JSON write.
+    if late_position is None or terminal_velocity is None or late_velocity is None:
+        return None
     record = {
         "candidate_id": str(row.get("candidate_id", vector_digest(vector, "source"))),
         "generation": _as_int(row.get("generation"), -1),
@@ -327,14 +431,14 @@ def _record_from_csv_row(row: dict[str, Any], *, source_run: Path | None) -> dic
         "gate_label": str(row.get("gate_label", "")),
         "strict_gate_pass": _as_bool(row.get("strict_gate_pass"), False),
         "relaxed_gate_pass": _as_bool(row.get("relaxed_gate_pass"), False),
-        "terminal_R_error_m": _as_float(row.get("terminal_R_error_m")),
-        "terminal_Z_error_m": _as_float(row.get("terminal_Z_error_m")),
-        "terminal_Ip_error_A": _as_float(row.get("terminal_Ip_error_A")),
-        "terminal_RZ_euclidean_error_m": _as_float(row.get("terminal_RZ_euclidean_error_m")),
-        "terminal_RZ_box_max_error_m": _as_float(row.get("terminal_RZ_box_max_error_m")),
-        "late_RZ_euclidean_rms_m": _as_float(row.get("late_RZ_euclidean_rms_m")),
-        "terminal_velocity_m_per_s": _as_float(row.get("terminal_velocity_m_per_s")),
-        "late_velocity_rms_m_per_s": _as_float(row.get("late_velocity_rms_m_per_s")),
+        "terminal_R_error_m": terminal_r,
+        "terminal_Z_error_m": terminal_z,
+        "terminal_Ip_error_A": terminal_ip,
+        "terminal_RZ_euclidean_error_m": terminal_euclidean,
+        "terminal_RZ_box_max_error_m": terminal_box,
+        "late_RZ_euclidean_rms_m": late_position,
+        "terminal_velocity_m_per_s": terminal_velocity,
+        "late_velocity_rms_m_per_s": late_velocity,
         "trailing_streak_within_30mm_steps": _as_int(
             row.get("trailing_streak_within_30mm_steps"), 0
         ),
@@ -345,10 +449,6 @@ def _record_from_csv_row(row: dict[str, Any], *, source_run: Path | None) -> dic
         "continuous_objective": _as_float(row.get("continuous_objective"), 1e12),
         "linear_prefilter_score": _as_float(row.get("linear_prefilter_score"), 1e12),
     }
-    if not math.isfinite(record["terminal_RZ_box_max_error_m"]):
-        record["terminal_RZ_box_max_error_m"] = max(
-            abs(record["terminal_R_error_m"]), abs(record["terminal_Z_error_m"])
-        )
     return record
 
 
@@ -381,6 +481,7 @@ def initialize_stage21_run(ctx: Any, source: SourceStage2Data) -> Stage21Paths:
     # Keep the exact validated Stage2 environment/runtime setup.
     s2.initialize_stage2_run(ctx)
     paths = Stage21Paths.from_context(ctx)
+    atomic_write_json(paths.run_dir / "stage2_1_config.resolved.json", ctx.cfg)
     for path in (
         paths.generations,
         paths.evaluations,
@@ -618,11 +719,46 @@ def _precise_archive_score(record: dict[str, Any], cfg: dict[str, Any]) -> float
     late_pos = _finite(record.get("late_RZ_euclidean_rms_m"), 1.0)
     terminal_v = _finite(record.get("terminal_velocity_m_per_s"), 10.0)
     late_v = _finite(record.get("late_velocity_rms_m_per_s"), 10.0)
+    weights = cfg.get("archives", {}).get("precise_score_weights", {})
     return float(
-        8.0 * (box / tol) ** 2
-        + 3.0 * (late_pos / tol) ** 2
-        + 0.30 * (terminal_v / float(gate["terminal_velocity_max_m_per_s"])) ** 2
-        + 0.45 * (late_v / float(gate["late_velocity_rms_max_m_per_s"])) ** 2
+        float(weights.get("terminal_box", 8.0)) * (box / tol) ** 2
+        + float(weights.get("late_position", 3.0)) * (late_pos / tol) ** 2
+        + float(weights.get("terminal_velocity", 0.5))
+        * (terminal_v / float(gate["terminal_velocity_max_m_per_s"])) ** 2
+        + float(weights.get("late_velocity", 1.5))
+        * (late_v / float(gate["late_velocity_rms_max_m_per_s"])) ** 2
+    )
+
+
+def _strict_speed_safe(record: dict[str, Any], cfg: dict[str, Any]) -> bool:
+    gate = cfg["gate"]
+    return bool(
+        _finite(record.get("terminal_velocity_m_per_s"), 1e9)
+        <= float(gate["terminal_velocity_max_m_per_s"])
+        and _finite(record.get("late_velocity_rms_m_per_s"), 1e9)
+        <= float(gate["late_velocity_rms_max_m_per_s"])
+        and abs(_finite(record.get("terminal_Ip_error_A"), 1e12))
+        <= float(gate["ip_tolerance_a"])
+    )
+
+
+def _sensitivity_center_record(
+    damped_archive: Sequence[dict[str, Any]], cfg: dict[str, Any]
+) -> dict[str, Any]:
+    """Choose the speed-safe candidate closest to the strict 30 mm boundary."""
+    speed_safe = [row for row in damped_archive if _strict_speed_safe(row, cfg)]
+    candidates = speed_safe or list(damped_archive)
+    if not candidates:
+        raise RuntimeError("The damped archive is empty")
+    tol = float(cfg["gate"]["precise_tolerance_m"])
+    return min(
+        candidates,
+        key=lambda row: (
+            max(_finite(row.get("terminal_RZ_box_max_error_m"), 1e9) - tol, 0.0),
+            _finite(row.get("late_velocity_rms_m_per_s"), 1e9),
+            _finite(row.get("terminal_velocity_m_per_s"), 1e9),
+            _finite(row.get("damped_archive_score"), 1e30),
+        ),
     )
 
 
@@ -755,6 +891,8 @@ def surrogate_features(vectors: np.ndarray, lower: np.ndarray, upper: np.ndarray
     x = np.asarray(vectors, dtype=float)
     if x.ndim == 1:
         x = x[None, :]
+    if x.ndim != 2 or x.shape[1] != 15:
+        raise ValueError(f"velocity surrogate expects shape (n, 15), received {x.shape}")
     center = 0.5 * (lower + upper)
     half = np.maximum(0.5 * (upper - lower), 1e-9)
     z = (x - center[None, :]) / half[None, :]
@@ -793,7 +931,12 @@ def _ridge_fit(x: np.ndarray, y: np.ndarray, alpha: float) -> dict[str, Any]:
     design = np.column_stack([np.ones(len(xs)), xs])
     penalty = np.eye(design.shape[1]) * float(alpha)
     penalty[0, 0] = 0.0
-    coefficient = np.linalg.solve(design.T @ design + penalty, design.T @ y)
+    normal = design.T @ design + penalty
+    rhs = design.T @ y
+    try:
+        coefficient = np.linalg.solve(normal, rhs)
+    except np.linalg.LinAlgError:
+        coefficient, *_ = np.linalg.lstsq(normal, rhs, rcond=None)
     return {
         "feature_mean": mean,
         "feature_scale": scale,
@@ -969,11 +1112,22 @@ def initial_state(ctx: Any, source: SourceStage2Data) -> dict[str, Any]:
         fallback_covariance=source_covariance,
         cfg=ctx.cfg,
     )
+    source_best_vector = source.state.get("best_vector")
+    if source_best_vector is None:
+        source_best_vector = archives["damped"][0]["vector"]
+    source_best_vector = _parse_vector(source_best_vector).tolist()
+    source_best_candidate_id = str(
+        source.state.get("best_experiment_id")
+        or source.state.get("best_candidate_id")
+        or archives["damped"][0].get("candidate_id", "source_stage2_best")
+    )
     return {
         "schema_version": SCHEMA_VERSION,
         "stage": "Stage2.1",
         "generation": 0,
         "source_stage2_run": str(source.run_dir),
+        "source_stage2_best_candidate_id": source_best_candidate_id,
+        "source_stage2_best_vector": source_best_vector,
         "global_mean": source_mean.tolist(),
         "global_covariance": source_covariance.tolist(),
         "damped_mean": damped_mean.tolist(),
@@ -1153,6 +1307,8 @@ def _apply_surrogate_ranking(
     rows: list[dict[str, Any]],
     surrogate: dict[str, Any],
 ) -> None:
+    if not rows:
+        return
     vectors = np.vstack([_parse_vector(row["vector"]) for row in rows])
     pred_terminal, pred_late = surrogate_predict(ctx, surrogate, vectors)
     cfg = ctx.cfg["surrogate"]
@@ -1171,8 +1327,8 @@ def _apply_surrogate_ranking(
             row["predicted_late_velocity_rms_m_per_s"] = float(pred_late[index])
             row["proposal_rank_score"] = float(linear_score + velocity_score)
         else:
-            row["predicted_terminal_velocity_m_per_s"] = math.nan
-            row["predicted_late_velocity_rms_m_per_s"] = math.nan
+            row["predicted_terminal_velocity_m_per_s"] = None
+            row["predicted_late_velocity_rms_m_per_s"] = None
             row["proposal_rank_score"] = linear_score
 
 
@@ -1180,36 +1336,50 @@ def _anchor_rows(ctx: Any, state: dict[str, Any], quota: int) -> list[dict[str, 
     damped = list(state["archives"]["damped"])
     precise = list(state["archives"]["precise"])
     rows: list[dict[str, Any]] = []
-    # Prefer boundary-near damped candidates, then all available precise candidates.
-    for index, record in enumerate(damped[: max(6, quota // 2)]):
-        rows.append(_candidate_row(ctx, _parse_vector(record["vector"]), f"damped_archive_{index:02d}", "anchor_damped"))
-    for index, record in enumerate(precise[: max(3, quota // 3)]):
-        rows.append(_candidate_row(ctx, _parse_vector(record["vector"]), f"precise_archive_{index:02d}", "anchor_precise"))
+
+    def add(vector: Any, source_name: str, source_type: str) -> None:
+        nonlocal rows
+        candidate = _candidate_row(ctx, _parse_vector(vector), source_name, source_type)
+        rows = _dedupe_candidate_rows([*rows, candidate])
+
+    # Always retain the source Stage2 winner, the current speed-safe strict-boundary
+    # center, and the leading members of both archives.
+    if state.get("source_stage2_best_vector") is not None:
+        add(
+            state["source_stage2_best_vector"],
+            str(state.get("source_stage2_best_candidate_id", "source_stage2_best")),
+            "anchor_source_stage2_best",
+        )
+    if damped:
+        center = _sensitivity_center_record(damped, ctx.cfg)
+        add(center["vector"], str(center.get("candidate_id", "strict_boundary_center")), "anchor_boundary")
+        add(damped[0]["vector"], str(damped[0].get("candidate_id", "damped_best")), "anchor_damped")
+    if precise:
+        add(precise[0]["vector"], str(precise[0].get("candidate_id", "precise_best")), "anchor_precise")
     if state.get("best_vector") is not None:
-        rows.insert(0, _candidate_row(ctx, _parse_vector(state["best_vector"]), "stage2_1_best", "anchor_best"))
-    rows = _dedupe_candidate_rows(rows)
-    # Fill the fixed anchor quota deterministically with additional damped archive
-    # members and validated Stage1.1 seed vectors.
+        add(state["best_vector"], str(state.get("best_candidate_id", "stage2_1_best")), "anchor_best")
+
+    for index, record in enumerate(damped):
+        if len(rows) >= max(7, quota // 2):
+            break
+        add(record["vector"], f"damped_archive_{index:02d}", "anchor_damped")
+    for index, record in enumerate(precise):
+        if len(rows) >= max(10, (3 * quota) // 4):
+            break
+        add(record["vector"], f"precise_archive_{index:02d}", "anchor_precise")
+
+    for seed_name in ("svd3_uniform_0.75", "svd3_uniform_0.85", "svd3_uniform_1.00"):
+        if len(rows) >= quota:
+            break
+        if seed_name in getattr(ctx, "seed_vectors", {}):
+            add(ctx.seed_vectors[seed_name], seed_name, "anchor_seed")
+
+    for index, record in enumerate(damped):
+        if len(rows) >= quota:
+            break
+        add(record["vector"], f"damped_archive_fill_{index:02d}", "anchor_damped")
     if len(rows) < quota:
-        for index, record in enumerate(damped):
-            candidate = _candidate_row(
-                ctx,
-                _parse_vector(record["vector"]),
-                f"damped_archive_fill_{index:02d}",
-                "anchor_damped",
-            )
-            rows = _dedupe_candidate_rows([*rows, candidate])
-            if len(rows) >= quota:
-                break
-    if len(rows) < quota:
-        for seed_name in ("svd3_uniform_0.75", "svd3_uniform_0.85", "svd3_uniform_1.00"):
-            if seed_name not in getattr(ctx, "seed_vectors", {}):
-                continue
-            rows = _dedupe_candidate_rows(
-                [*rows, _candidate_row(ctx, ctx.seed_vectors[seed_name], seed_name, "anchor_seed")]
-            )
-            if len(rows) >= quota:
-                break
+        raise RuntimeError(f"Could construct only {len(rows)} unique anchors, expected {quota}")
     return rows[:quota]
 
 
@@ -1246,7 +1416,8 @@ def build_generation_manifest(
 
     # Eighteen exact +/- finite-difference probes around the best damped candidate:
     # 9 tail variables x 2 signs.
-    center = _parse_vector(damped_archive[0]["vector"]).reshape(5, 3)
+    sensitivity_center = _sensitivity_center_record(damped_archive, cfg)
+    center = _parse_vector(sensitivity_center["vector"]).reshape(5, 3)
     sensitivity_rows: list[dict[str, Any]] = []
     delta_mode = np.asarray(search["sensitivity_delta_by_mode"], dtype=float)
     for node_index in _node_indices(cfg, "tail_node_indices"):
@@ -1258,7 +1429,10 @@ def build_generation_manifest(
                     _candidate_row(
                         ctx,
                         nodes.reshape(-1),
-                        f"tail_fd_n{node_index}_m{mode_index}_{'p' if sign > 0 else 'm'}",
+                        (
+                            f"tail_fd_{sensitivity_center.get('candidate_id', 'center')}_"
+                            f"n{node_index}_m{mode_index}_{'p' if sign > 0 else 'm'}"
+                        ),
                         "sensitivity",
                     )
                 )
@@ -1375,6 +1549,8 @@ def build_generation_manifest(
         "population_size": population,
         "family_quotas": quota,
         "surrogate_enabled": bool(surrogate.get("enabled")),
+        "sensitivity_center_candidate_id": str(sensitivity_center.get("candidate_id", "")),
+        "sensitivity_center_vector": _parse_vector(sensitivity_center["vector"]).tolist(),
         "surrogate_validation": {
             key: value
             for key, value in surrogate.items()
@@ -1412,14 +1588,15 @@ def candidate_specs_from_manifest(ctx: Any, manifest: dict[str, Any]) -> list[di
                 "predicted_terminal_R_error_m": float(row["predicted_terminal_R_error_m"]),
                 "predicted_terminal_Z_error_m": float(row["predicted_terminal_Z_error_m"]),
                 "predicted_terminal_Ip_error_A": float(row["predicted_terminal_Ip_error_A"]),
-                "predicted_terminal_velocity_m_per_s": _as_float(
+                "predicted_terminal_velocity_m_per_s": _finite_or_none(
                     row.get("predicted_terminal_velocity_m_per_s")
                 ),
-                "predicted_late_velocity_rms_m_per_s": _as_float(
+                "predicted_late_velocity_rms_m_per_s": _finite_or_none(
                     row.get("predicted_late_velocity_rms_m_per_s")
                 ),
             }
         )
+    jsonio.assert_json_finite(specs, context="Stage2.1 generation specs")
     return specs
 
 
@@ -1465,11 +1642,20 @@ def summarize_generation(
                 "source_name": candidate["source_name"],
                 "source_type": candidate["source_type"],
                 "linear_prefilter_score": float(candidate["linear_prefilter_score"]),
-                "proposal_rank_score": _as_float(candidate.get("proposal_rank_score")),
-                "predicted_terminal_velocity_m_per_s": _as_float(
+                "proposal_rank_score": _finite_or_none(candidate.get("proposal_rank_score")),
+                "predicted_terminal_R_error_m": float(
+                    candidate["predicted_terminal_R_error_m"]
+                ),
+                "predicted_terminal_Z_error_m": float(
+                    candidate["predicted_terminal_Z_error_m"]
+                ),
+                "predicted_terminal_Ip_error_A": float(
+                    candidate["predicted_terminal_Ip_error_A"]
+                ),
+                "predicted_terminal_velocity_m_per_s": _finite_or_none(
                     candidate.get("predicted_terminal_velocity_m_per_s")
                 ),
-                "predicted_late_velocity_rms_m_per_s": _as_float(
+                "predicted_late_velocity_rms_m_per_s": _finite_or_none(
                     candidate.get("predicted_late_velocity_rms_m_per_s")
                 ),
                 "parameter_vector": vector.tolist(),
@@ -1496,7 +1682,9 @@ def _record_from_stage21_row(row: dict[str, Any], run_dir: Path) -> dict[str, An
         "stage2_1_tube_excess_terminal",
         "stage2_1_continuous_objective",
     ):
-        record[key] = _as_float(row.get(key))
+        value = _finite_or_none(row.get(key))
+        if value is not None:
+            record[key] = value
     return record
 
 
@@ -1631,7 +1819,7 @@ def update_state(
 def aggregate_generation_rows(paths: Stage21Paths) -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in sorted(paths.generations.glob("gen_*/generation_results.json")):
-        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload = read_json_any(path)
         if isinstance(payload, list):
             rows.extend(dict(row) for row in payload)
     return rows
@@ -1667,7 +1855,7 @@ def run_one_generation(
     state["last_generation_wall_time_s"] = float(time.monotonic() - wall_start)
     atomic_write_json(paths.state, state)
     print(
-        json.dumps(
+        strict_json_text(
             {
                 "stage": "Stage2.1",
                 "generation": int(manifest["generation"]),
@@ -1692,9 +1880,7 @@ def run_one_generation(
                 "next_generation": state["generation"],
                 "finished": state["finished"],
                 "stop_reason": state["stop_reason"],
-            },
-            indent=2,
-            ensure_ascii=False,
+            }
         ),
         flush=True,
     )
@@ -1758,6 +1944,12 @@ def run_confirmation(
     for rank, row in enumerate(candidates, start=1):
         vector = _parse_vector(row["parameter_vector"])
         decoded = s2.decode_vector(ctx, vector)
+        # Recompute these finite linear diagnostics from the vector instead of
+        # relying on historical generation-row metadata.  Earlier Stage2.1
+        # rows did not copy the three fields, so _as_float(missing) produced NaN
+        # inside the confirmation spec and the strict base writer failed only
+        # after the first expensive TSC repeat completed.
+        linear = s2.linear_prefilter_metrics(ctx, decoded)
         for repeat in range(repeats):
             experiment_id = f"s21confirm_rank{rank:02d}_{row['candidate_id']}_r{repeat:02d}"
             specs.append(
@@ -1777,12 +1969,19 @@ def run_confirmation(
                     "mode_coefficients": decoded["mode_coefficients"].tolist(),
                     "action_sequence_norm_tsc": decoded["action_norm_tsc"].tolist(),
                     "action_sequence_norm_display": decoded["action_norm_display"].tolist(),
-                    "linear_prefilter_score": float(row["linear_prefilter_score"]),
-                    "predicted_terminal_R_error_m": _as_float(row.get("predicted_terminal_R_error_m")),
-                    "predicted_terminal_Z_error_m": _as_float(row.get("predicted_terminal_Z_error_m")),
-                    "predicted_terminal_Ip_error_A": _as_float(row.get("predicted_terminal_Ip_error_A")),
+                    "linear_prefilter_score": float(linear["linear_prefilter_score"]),
+                    "predicted_terminal_R_error_m": float(
+                        linear["predicted_terminal_R_error_m"]
+                    ),
+                    "predicted_terminal_Z_error_m": float(
+                        linear["predicted_terminal_Z_error_m"]
+                    ),
+                    "predicted_terminal_Ip_error_A": float(
+                        linear["predicted_terminal_Ip_error_A"]
+                    ),
                 }
             )
+    jsonio.assert_json_finite(specs, context="Stage2.1 confirmation specs")
     results = s2.evaluate_specs(
         ctx,
         specs,
@@ -1815,6 +2014,15 @@ def run_confirmation(
     for rank, candidate in enumerate(candidates, start=1):
         candidate_rows = [row for row in metric_rows if row["candidate_id"] == candidate["candidate_id"]]
         successful = [row for row in candidate_rows if _as_bool(row.get("success"), False)]
+        terminal_errors = _finite_values(
+            row.get("terminal_RZ_euclidean_error_m") for row in successful
+        )
+        terminal_velocities = _finite_values(
+            row.get("terminal_velocity_m_per_s") for row in successful
+        )
+        late_velocities = _finite_values(
+            row.get("late_velocity_rms_m_per_s") for row in successful
+        )
         summary_rows.append(
             {
                 "candidate_id": candidate["candidate_id"],
@@ -1826,19 +2034,15 @@ def run_confirmation(
                 "all_repeats_relaxed_gate": len(successful) == repeats
                 and all(_as_bool(row.get("relaxed_gate_pass"), False) for row in successful),
                 "worst_gate_tier": max((_as_int(row.get("gate_tier"), 99) for row in candidate_rows), default=99),
-                "mean_terminal_RZ_error_m": float(
-                    np.mean([_as_float(row.get("terminal_RZ_euclidean_error_m")) for row in successful])
-                )
-                if successful
-                else math.nan,
-                "max_terminal_velocity_m_per_s": max(
-                    (_as_float(row.get("terminal_velocity_m_per_s"), 1e9) for row in successful),
-                    default=math.nan,
-                ),
-                "max_late_velocity_rms_m_per_s": max(
-                    (_as_float(row.get("late_velocity_rms_m_per_s"), 1e9) for row in successful),
-                    default=math.nan,
-                ),
+                "mean_terminal_RZ_error_m": float(np.mean(terminal_errors))
+                if terminal_errors
+                else None,
+                "max_terminal_velocity_m_per_s": max(terminal_velocities)
+                if terminal_velocities
+                else None,
+                "max_late_velocity_rms_m_per_s": max(late_velocities)
+                if late_velocities
+                else None,
             }
         )
     write_csv(paths.confirmations / "confirmation_summary.csv", summary_rows)
@@ -1856,7 +2060,7 @@ def run_confirmation(
         "candidate_summaries": summary_rows,
     }
     atomic_write_json(paths.confirmations / "stage2_1_verdict.json", verdict)
-    print(json.dumps(verdict, indent=2, ensure_ascii=False), flush=True)
+    print(strict_json_text(verdict), flush=True)
     return verdict
 
 
@@ -1867,36 +2071,50 @@ def _plot_analysis(ctx: Any, rows: list[dict[str, Any]], best_result: dict[str, 
         print(f"[Stage2.1 analysis] matplotlib unavailable; plots skipped: {exc}", flush=True)
         return
     if rows:
-        x = [_as_float(row.get("terminal_RZ_euclidean_error_m")) * 1000.0 for row in rows]
-        y = [_as_float(row.get("late_velocity_rms_m_per_s")) for row in rows]
-        tier = [_as_int(row.get("gate_tier"), 99) for row in rows]
-        plt.figure(figsize=(8, 6))
-        scatter = plt.scatter(x, y, c=tier, s=15, alpha=0.65)
-        plt.axvline(30.0, linestyle="--", linewidth=1)
-        plt.axvline(40.0, linestyle="--", linewidth=1)
-        plt.axhline(float(ctx.cfg["gate"]["late_velocity_rms_max_m_per_s"]), linestyle="--", linewidth=1)
-        plt.xlabel("Terminal R-Z Euclidean error [mm]")
-        plt.ylabel("Late velocity RMS [m/s]")
-        plt.title("Stage2.1 accuracy-damping map")
-        plt.colorbar(scatter, label="Gate tier")
-        plt.tight_layout()
-        plt.savefig(paths.analysis / "accuracy_damping_scatter.png", dpi=160)
-        plt.close()
+        scatter_rows = []
+        for row in rows:
+            terminal_error = _finite_or_none(row.get("terminal_RZ_euclidean_error_m"))
+            late_velocity = _finite_or_none(row.get("late_velocity_rms_m_per_s"))
+            if terminal_error is None or late_velocity is None:
+                continue
+            scatter_rows.append((terminal_error * 1000.0, late_velocity, _as_int(row.get("gate_tier"), 99)))
+        if scatter_rows:
+            plt.figure(figsize=(8, 6))
+            scatter = plt.scatter(
+                [row[0] for row in scatter_rows],
+                [row[1] for row in scatter_rows],
+                c=[row[2] for row in scatter_rows],
+                s=15,
+                alpha=0.65,
+            )
+            plt.axvline(30.0, linestyle="--", linewidth=1)
+            plt.axvline(40.0, linestyle="--", linewidth=1)
+            plt.axhline(float(ctx.cfg["gate"]["late_velocity_rms_max_m_per_s"]), linestyle="--", linewidth=1)
+            plt.xlabel("Terminal R-Z Euclidean error [mm]")
+            plt.ylabel("Late velocity RMS [m/s]")
+            plt.title("Stage2.1 accuracy-damping map")
+            plt.colorbar(scatter, label="Gate tier")
+            plt.tight_layout()
+            plt.savefig(paths.analysis / "accuracy_damping_scatter.png", dpi=160)
+            plt.close()
 
         by_generation: dict[int, float] = {}
         for row in rows:
             generation = _as_int(row.get("generation"), 0)
-            score = _as_float(row.get("selection_score"), 1e30)
+            score = _finite_or_none(row.get("selection_score"))
+            if score is None:
+                continue
             by_generation[generation] = min(by_generation.get(generation, 1e30), score)
-        plt.figure(figsize=(8, 5))
-        generations = sorted(by_generation)
-        plt.plot(generations, [by_generation[g] for g in generations], marker="o")
-        plt.xlabel("Generation")
-        plt.ylabel("Best selection score")
-        plt.title("Stage2.1 best objective by generation")
-        plt.tight_layout()
-        plt.savefig(paths.analysis / "objective_by_generation.png", dpi=160)
-        plt.close()
+        if by_generation:
+            plt.figure(figsize=(8, 5))
+            generations = sorted(by_generation)
+            plt.plot(generations, [by_generation[g] for g in generations], marker="o")
+            plt.xlabel("Generation")
+            plt.ylabel("Best selection score")
+            plt.title("Stage2.1 best objective by generation")
+            plt.tight_layout()
+            plt.savefig(paths.analysis / "objective_by_generation.png", dpi=160)
+            plt.close()
 
     if best_result and best_result.get("success") and best_result.get("trajectory"):
         trajectory = best_result["trajectory"]
@@ -2005,7 +2223,7 @@ def analyze_stage21(ctx: Any, source: SourceStage2Data, paths: Stage21Paths) -> 
             ]
         )
     (paths.run_dir / "STAGE2_1_REPORT.md").write_text("\n".join(report_lines) + "\n", encoding="utf-8")
-    print(json.dumps(summary, indent=2, ensure_ascii=False), flush=True)
+    print(strict_json_text(summary), flush=True)
     return summary
 
 
@@ -2068,20 +2286,21 @@ def execute(
 ) -> Any:
     if command == "self-test":
         result = synthetic_self_test()
-        print(json.dumps(result, indent=2), flush=True)
+        print(strict_json_text(result), flush=True)
         return result
     ctx = s2.load_stage2_config(
         config_path,
         source_run=source_stage1_1_run,
         run_dir_override=run_dir,
     )
+    validate_stage21_config(ctx)
     source = load_source_stage2(ctx, source_stage2_run)
     paths = initialize_stage21_run(ctx, source)
     load_or_initialize_state(ctx, source, paths, no_resume=no_resume)
     resume = not no_resume
     if command == "prepare":
         result = read_json(paths.state)
-        print(json.dumps(result, indent=2, ensure_ascii=False), flush=True)
+        print(strict_json_text(result), flush=True)
         return result
     if command == "generation":
         return run_one_generation(ctx, source, paths, backend=backend, resume=resume)
@@ -2116,4 +2335,5 @@ __all__ = [
     "stage21_metrics",
     "surrogate_features",
     "synthetic_self_test",
+    "validate_stage21_config",
 ]
