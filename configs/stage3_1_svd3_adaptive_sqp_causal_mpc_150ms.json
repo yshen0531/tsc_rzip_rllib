@@ -1,0 +1,397 @@
+{
+  "stage_label": "Stage 3.1",
+  "run_name": "stage3_1_svd3_adaptive_sqp_causal_mpc_150ms",
+  "output_root": "stage3_1_runs",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Reuse the validated 10 ms runtime-only TSC environment and the completed Stage3.0 run. No Stage3.0 screen is repeated."
+  },
+  "parallel": {
+    "n_workers": 96,
+    "ray_tmpdir": "/tmp/stage3_1"
+  },
+  "trajectory": {
+    "horizon_ms": 150,
+    "horizon_steps": 15,
+    "n_modes": 3,
+    "variable_steps": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "frozen_action_steps": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "coefficient_lower": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper": [
+      2.6,
+      2.6,
+      0.9
+    ],
+    "description": "Stage3.1 inherits real-TSC Stage3.0 candidates, freezes steps 0-7, and optimizes seven independent three-mode controls at steps 8-14 (21 variables)."
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "allowed_arrival_steps": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_tolerance_a": 10000.0,
+    "description": "The Stage3.0 30 mm / 0.10 m/s / Ip hard gate is unchanged. Arrival at 120-150 ms must persist through 150 ms."
+  },
+  "objective": {
+    "non_strict_offset": 1000000.0,
+    "max_violation_weight": 100000.0,
+    "sum_violation_weight": 4000.0,
+    "l2_violation_weight": 1000.0,
+    "quality_weights": {
+      "position_core": 2.0,
+      "velocity_core": 1.5,
+      "terminal_ip_core": 0.05,
+      "arrival_time_core": 0.15,
+      "action_rms": 0.02,
+      "delta_action_rms": 0.04,
+      "repair": 2.0
+    }
+  },
+  "source": {
+    "minimum_successful_stage3_0_rows": 300,
+    "require_completed_optimization": true,
+    "require_controller_identification": true,
+    "description": "Stage3.1 starts from the completed Stage3.0 420-trajectory catalog and never re-runs its 96-candidate screen."
+  },
+  "sqp": {
+    "max_rounds": 6,
+    "centers_per_round": 2,
+    "variables": 21,
+    "probe_delta_by_step_mode": [
+      [
+        0.014,
+        0.014,
+        0.005
+      ],
+      [
+        0.02,
+        0.02,
+        0.007
+      ],
+      [
+        0.03,
+        0.03,
+        0.011
+      ],
+      [
+        0.04,
+        0.04,
+        0.014
+      ],
+      [
+        0.05,
+        0.05,
+        0.018
+      ],
+      [
+        0.05,
+        0.05,
+        0.018
+      ],
+      [
+        0.05,
+        0.05,
+        0.018
+      ]
+    ],
+    "trust_radius_by_step_mode": [
+      [
+        0.08,
+        0.08,
+        0.028
+      ],
+      [
+        0.12,
+        0.12,
+        0.042
+      ],
+      [
+        0.18,
+        0.18,
+        0.065
+      ],
+      [
+        0.22,
+        0.22,
+        0.08
+      ],
+      [
+        0.24,
+        0.24,
+        0.085
+      ],
+      [
+        0.24,
+        0.24,
+        0.085
+      ],
+      [
+        0.24,
+        0.24,
+        0.085
+      ]
+    ],
+    "initial_trust_scale": 1.0,
+    "minimum_trust_scale": 0.25,
+    "maximum_trust_scale": 3.0,
+    "trust_expand_factor": 1.35,
+    "trust_hold_factor": 1.0,
+    "trust_shrink_poor_ratio": 0.65,
+    "trust_shrink_rejected": 0.5,
+    "ratio_poor_threshold": 0.25,
+    "ratio_expand_threshold": 0.75,
+    "boundary_fraction_for_expand": 0.85,
+    "meaningful_improvement": 0.0001,
+    "max_rounds_without_improvement": 2,
+    "center_minimum_distance": 0.04,
+    "force_distinct_nominal_rounds": 2,
+    "alternative_nominal_max_factor_after_forced_rounds": 3.0,
+    "proposal_step_scales": [
+      0.5,
+      1.0,
+      1.5
+    ],
+    "proposals_per_center": 15,
+    "linear_solver": {
+      "softplus_beta": 80.0,
+      "delta_l2": 0.035,
+      "trajectory_smoothness": 0.025,
+      "max_iterations": 600,
+      "profiles": {
+        "balanced": {
+          "position": 1.2,
+          "velocity": 1.0,
+          "tube_excess": 4.0
+        },
+        "position": {
+          "position": 2.8,
+          "velocity": 0.75,
+          "tube_excess": 8.0
+        },
+        "damping": {
+          "position": 0.9,
+          "velocity": 2.5,
+          "tube_excess": 2.5
+        }
+      },
+      "proposal_requests": [
+        {
+          "endpoint_step": 12,
+          "profile": "balanced",
+          "step_scale": 0.5
+        },
+        {
+          "endpoint_step": 12,
+          "profile": "balanced",
+          "step_scale": 1.0
+        },
+        {
+          "endpoint_step": 12,
+          "profile": "balanced",
+          "step_scale": 1.5
+        },
+        {
+          "endpoint_step": 13,
+          "profile": "balanced",
+          "step_scale": 0.5
+        },
+        {
+          "endpoint_step": 13,
+          "profile": "balanced",
+          "step_scale": 1.0
+        },
+        {
+          "endpoint_step": 13,
+          "profile": "balanced",
+          "step_scale": 1.5
+        },
+        {
+          "endpoint_step": 14,
+          "profile": "balanced",
+          "step_scale": 0.5
+        },
+        {
+          "endpoint_step": 14,
+          "profile": "balanced",
+          "step_scale": 1.0
+        },
+        {
+          "endpoint_step": 14,
+          "profile": "balanced",
+          "step_scale": 1.5
+        },
+        {
+          "endpoint_step": 15,
+          "profile": "balanced",
+          "step_scale": 0.5
+        },
+        {
+          "endpoint_step": 15,
+          "profile": "balanced",
+          "step_scale": 1.0
+        },
+        {
+          "endpoint_step": 15,
+          "profile": "balanced",
+          "step_scale": 1.5
+        },
+        {
+          "endpoint_step": 14,
+          "profile": "position",
+          "step_scale": 1.5
+        },
+        {
+          "endpoint_step": 15,
+          "profile": "position",
+          "step_scale": 1.5
+        },
+        {
+          "endpoint_step": 15,
+          "profile": "damping",
+          "step_scale": 1.0
+        }
+      ]
+    },
+    "description": "Each round runs 84 real-TSC finite differences around two 21-variable centers and 30 real-TSC SQP/extrapolation proposals. Trust radii expand, hold, or shrink from measured model agreement instead of shrinking after every improvement."
+  },
+  "controller_identification": {
+    "enabled": true,
+    "probe_delta_by_step_mode": [
+      [
+        0.009,
+        0.009,
+        0.0035
+      ],
+      [
+        0.013,
+        0.013,
+        0.0045
+      ],
+      [
+        0.018,
+        0.018,
+        0.0065
+      ],
+      [
+        0.022,
+        0.022,
+        0.008
+      ],
+      [
+        0.026,
+        0.026,
+        0.0095
+      ],
+      [
+        0.026,
+        0.026,
+        0.0095
+      ],
+      [
+        0.026,
+        0.026,
+        0.0095
+      ]
+    ],
+    "minimum_reliable_columns": 15,
+    "description": "Identify a final 35x21 real-TSC Jacobian around the best nominal after adaptive SQP.",
+    "maximum_recenter_passes": 1
+  },
+  "mpc": {
+    "enabled": true,
+    "output_scales": {
+      "R_m": 0.03,
+      "Z_m": 0.03,
+      "vR_m_per_s": 0.1,
+      "vZ_m_per_s": 0.1,
+      "Ip_A": 10000.0
+    },
+    "output_weights": {
+      "R": 1.0,
+      "Z": 1.0,
+      "vR": 0.8,
+      "vZ": 0.8,
+      "Ip": 0.05
+    },
+    "ridge_lambda": 0.08,
+    "svd_relative_cutoff": 0.001,
+    "maximum_normalized_condition": 1000000.0,
+    "control_scale_from_trust_radius": 1.0,
+    "per_step_feedback_limit_by_mode": [
+      0.12,
+      0.12,
+      0.045
+    ],
+    "controller_scales": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "target_shift_m": 0.002,
+    "disturbance_mode_amplitude": 0.04,
+    "disturbance_step": 10,
+    "scenarios": [
+      "nominal",
+      "target_R_plus",
+      "target_R_minus",
+      "target_Z_plus",
+      "target_Z_minus",
+      "target_RZ_plus",
+      "disturbance_mode1_plus",
+      "disturbance_mode1_minus"
+    ],
+    "description": "Export dimensionless truncated-SVD/ridge batch and time-indexed causal gains, then run 24 real-TSC fixed-scenario/target-shift/disturbance rollouts. This is a causal feedback POC, not robustness validation."
+  },
+  "confirmation": {
+    "max_unique_candidates": 8,
+    "repeats_per_candidate": 3,
+    "strict_candidates": 3,
+    "corner_candidates": 4,
+    "speed_safe_candidates": 2,
+    "relaxed_candidates": 2,
+    "different_nominal_candidates": 2,
+    "description": "Category-aware deterministic replay. Repetition confirms reproducibility only."
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 600.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "description": "All temporary TSC runtime and episode directories remain under /tmp and are deleted promptly."
+  }
+}

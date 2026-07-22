@@ -1,0 +1,258 @@
+{
+  "schema_version": 6,
+  "package_name": "stage3_1_complete_standalone",
+  "package_role": "Complete standalone Stage2/Stage2.1/Stage2.2/Stage3.0 base plus Stage3.1 adaptive real-TSC SQP, dimensionless 35x21 identification, and limited causal-feedback POC",
+  "created_utc": "20260721_163706",
+  "complete_standalone": true,
+  "requires_git": false,
+  "requires_network": false,
+  "requires_external_base_tree": false,
+  "supported_installation": "Preserve stage1_1_runs/stage2_runs/stage2_1_runs/stage2_2_runs/stage3_0_runs; delete configs/scripts/tests/tsc_rzip_rllib; extract at project root; verify; launch Stage3.1.",
+  "base_code": {
+    "stage3_0_complete_standalone_archive": "stage3_0_complete_standalone.zip",
+    "stage3_0_complete_standalone_sha256": "746afc36f34d1b9fa76d8a48ba73124bb9fe695de8a7628c2cbe1eda8cf70e0a",
+    "inherits_stage2_1_strict_json_nan_safety": true,
+    "hard_spatial_speed_ip_gate_changed_from_stage3_0": false,
+    "stage3_0_screen_repeated": false
+  },
+  "source_results_used_for_design_and_validation": {
+    "stage3_0_results_archive": "stage3_0_runs.zip",
+    "stage3_0_results_archive_sha256": "b3d7148132022e73b9e91fc23c4d9b20dfe04f2080ec5cb8a446322a788f9b37",
+    "stage2_2_results_archive": "stage2_2_runs.zip",
+    "stage2_2_results_archive_sha256": "a5206e6ca940dab66b3d37d86d3e75802be83fe41fbf130654c640299956ade0",
+    "stage3_0_real_tsc_optimization_and_identification_rows": 420,
+    "stage3_0_confirmation_rows": 12,
+    "stage3_0_tsc_failures": 0,
+    "stage3_0_strict_candidates": 0,
+    "stage3_0_relaxed_candidates": 45,
+    "stage3_0_best_candidate": "s30r999p_3d650586695d1458",
+    "stage3_0_best_sustained_box_max_m": 0.0347830175,
+    "stage3_0_best_post_arrival_velocity_rms_m_per_s": 0.07380439887524418,
+    "stage3_0_best_maximum_normalized_violation": 0.15943391666666673,
+    "stage3_0_final_verdict": "PASS_DAMPED_HOLD_40MM_120_150MS_CONFIRMED_ONLY"
+  },
+  "stage3_1": {
+    "schema_version": 1,
+    "control_dt_ms": 10,
+    "episode_horizon_ms": 150,
+    "episode_actions": 15,
+    "episode_states": 16,
+    "allowed_arrival_relative_ms": [
+      120,
+      130,
+      140,
+      150
+    ],
+    "validated_svd_modes": 3,
+    "frozen_action_steps": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "independent_control_steps": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "modes_per_step": 3,
+    "parameter_dimension": 21,
+    "coefficient_lower_by_mode": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper_by_mode": [
+      2.6,
+      2.6,
+      0.9
+    ],
+    "hard_gate": {
+      "R_abs_max_m": 0.03,
+      "Z_abs_max_m": 0.03,
+      "required_arrival_streak_samples": 3,
+      "persistence_required_through_150ms": true,
+      "endpoint_RZ_speed_max_m_per_s": 0.1,
+      "endpoint_late_RZ_speed_rms_max_m_per_s": 0.1,
+      "post_arrival_RZ_speed_rms_max_m_per_s": 0.1,
+      "final_RZ_speed_max_m_per_s": 0.1,
+      "sustained_Ip_abs_error_max_A": 10000.0,
+      "relaxed_RZ_box_m": 0.04
+    },
+    "adaptive_sqp": {
+      "maximum_rounds": 6,
+      "no_improvement_patience_rounds": 2,
+      "centers_per_round": 2,
+      "different_nominal_forced_rounds": 2,
+      "real_tsc_finite_difference_probes_per_center": 42,
+      "real_tsc_finite_difference_probes_per_round": 84,
+      "real_tsc_sqp_proposals_per_center": 15,
+      "real_tsc_sqp_proposals_per_round": 30,
+      "total_real_tsc_candidates_per_round": 114,
+      "proposal_step_scales": [
+        0.5,
+        1.0,
+        1.5
+      ],
+      "jacobian_shape": [
+        35,
+        21
+      ],
+      "trust_initial_scale": 1.0,
+      "trust_minimum_scale": 0.25,
+      "trust_maximum_scale": 3.0,
+      "trust_expand_factor": 1.35,
+      "trust_hold_factor": 1.0,
+      "trust_poor_ratio_shrink": 0.65,
+      "trust_rejected_shrink": 0.5,
+      "trust_ratio_same_requested_endpoint": true,
+      "trust_keying": "slot+nominal with nominal and slot fallbacks",
+      "unavailable_jacobian_policy": "diagnostic denominator is JSON null and unavailable control variables are fixed at zero in SQP"
+    },
+    "source_integrity": {
+      "content_based_sha256_inventory": true,
+      "inventory_integration_file_count": 435,
+      "inventory_integration_total_bytes": 10857893,
+      "inventory_integration_digest": "7de4a06af4bcc4573c19298cc60af92f407ef19ae2c132d7d4f48b63965e4021",
+      "resume_rejects_changed_source_content": true,
+      "all_stage3_0_result_paths_checked_before_runtime": true
+    },
+    "controller_identification": {
+      "real_tsc_probes": 42,
+      "optional_recenter_passes": 1,
+      "maximum_real_tsc_probes": 84,
+      "jacobian_shape": [
+        35,
+        21
+      ],
+      "output_normalization": {
+        "R_m": 0.03,
+        "Z_m": 0.03,
+        "vR_m_per_s": 0.1,
+        "vZ_m_per_s": 0.1,
+        "Ip_A": 10000.0
+      },
+      "regularization": "truncated SVD plus ridge",
+      "time_indexed_causal_gain_steps": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "online_feedback_validated": false,
+      "deployment_status": "OFFLINE_DIMENSIONLESS_CAUSAL_MPC_POC_ONLY"
+    },
+    "limited_feedback_poc": {
+      "scenarios": [
+        "nominal",
+        "target_R_plus",
+        "target_R_minus",
+        "target_Z_plus",
+        "target_Z_minus",
+        "target_RZ_plus",
+        "disturbance_mode1_plus",
+        "disturbance_mode1_minus"
+      ],
+      "controller_scales": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "real_tsc_rollouts": 24,
+      "target_shift_m": 0.002,
+      "mode1_disturbance_amplitude": 0.04,
+      "online_feedback_validated": false,
+      "robustness_validated": false,
+      "scale_selection": "one globally fixed positive scale is selected across all scenarios; never per-scenario"
+    },
+    "confirmation": {
+      "maximum_unique_candidates": 8,
+      "repeats_per_candidate": 3,
+      "maximum_real_tsc_runs": 24,
+      "strict_verdict": "PASS_PRECISE_HOLD_30MM_120_150MS_CONFIRMED",
+      "reproducibility_not_robustness": true
+    },
+    "maximum_real_tsc_workload": 816,
+    "maximum_ray_workers": 96,
+    "final_task_guardrail": "A fixed-state nominal and limited feedback POC are not the final controller. Final success requires causal feedback across initial states, targets, noise, delay, eddy/vessel state, and plant variation before behavior cloning, DAgger, or bounded residual RL."
+  },
+  "real_history_prepare_validation": {
+    "completed_stage3_0_source_loaded": true,
+    "source_rows": 420,
+    "source_unique_vectors": 420,
+    "initial_best_candidate": "s30r999p_3d650586695d1458",
+    "initial_best_max_violation": 0.15943391666666673,
+    "round_zero_primary_nominal": "nominal_05_s22g000_571ab4a158d29207",
+    "round_zero_secondary_nominal": "nominal_07_s22g005_a2acc95ca222cec3",
+    "round_zero_secondary_is_different_nominal": true,
+    "probe_manifest_candidates": 84,
+    "probe_manifest_unique_ids": 84,
+    "sqp_manifest_candidates": 30,
+    "all_specs_strict_json_safe": true,
+    "stage3_0_action_sequence_exactly_reproduced": true
+  },
+  "local_validation": {
+    "python_compileall": true,
+    "all_config_json_parse": true,
+    "all_shell_bash_n": true,
+    "complete_unittest_suite_passed": 64,
+    "stage3_1_specific_tests_passed": 21,
+    "stage2_stage2_1_stage2_2_stage3_0_regressions_included": true,
+    "source_content_fingerprint_tested": true,
+    "coefficient_bound_inward_secant_probes_tested": true,
+    "partial_jacobian_json_null_tested": true,
+    "unavailable_jacobian_variables_frozen_in_sqp_tested": true,
+    "strict_json_nonfinite_rejection_tested": true,
+    "trust_ratio_same_endpoint_tested": true,
+    "feedback_open_loop_action_reconstruction_tested": true,
+    "real_source_prepare_and_84_probe_generation_tested": true,
+    "end_to_end_no_gotsc_mock_round": {
+      "probe_records": 84,
+      "jacobians": 2,
+      "sqp_step_records": 30,
+      "adaptive_trust_state_persisted": true,
+      "scientific_control_claim": false
+    },
+    "fresh_empty_directory_extraction_and_package_verification": "performed and passed",
+    "global_feedback_scale_selection_tested": true,
+    "fresh_extract_complete_unittest_suite_passed": 64,
+    "fresh_extract_real_source_prepare_rows": 420,
+    "fresh_extract_real_source_fingerprint": "7de4a06af4bcc4573c19298cc60af92f407ef19ae2c132d7d4f48b63965e4021"
+  },
+  "runtime_boundary": "Not executed in this environment against the user's working gotsc binary as a real Stage3.1 campaign. No strict pass, real trust expansion, causal-feedback pass, online MPC validation, or robustness is claimed in advance.",
+  "documentation": [
+    "STAGE3_1_README.md",
+    "STAGE3_1_CHANGELOG.md",
+    "STAGE3_1_VALIDATION_AUDIT.md"
+  ],
+  "stage3_1_code_files": [
+    "configs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms.json",
+    "scripts/stage3_1_shell_common.sh",
+    "scripts/stage3_1_adaptive_sqp_mpc.py",
+    "tsc_rzip_rllib/diagnostics/stage3_1_adaptive_sqp_mpc.py",
+    "tests/test_stage3_1_adaptive_sqp_mpc.py",
+    "run_stage3_1_svd3_adaptive_sqp_mpc_native.sh",
+    "run_stage3_1_svd3_adaptive_sqp_mpc_nohup.sh",
+    "run_stage3_1_prepare_only.sh",
+    "run_stage3_1_one_round_native.sh",
+    "run_stage3_1_identify_only.sh",
+    "run_stage3_1_feedback_only.sh",
+    "run_stage3_1_confirm_only.sh",
+    "run_stage3_1_analyze_only.sh",
+    "run_stage3_1_self_test.sh",
+    "run_stage3_1_verify_package.sh",
+    "run_stop_stage3_1_now.sh"
+  ],
+  "package_file_count_excluding_SHA256SUMS": 102
+}
