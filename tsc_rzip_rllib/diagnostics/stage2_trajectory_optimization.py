@@ -22,6 +22,7 @@ from tsc_rzip_rllib.core.coil_order import (
     tsc_matrix_to_display,
 )
 from tsc_rzip_rllib.diagnostics import stage1_controllability as base
+from tsc_rzip_rllib.utils.ray_runtime import ensure_ray_worker_plan
 
 
 @dataclass(frozen=True)
@@ -773,16 +774,15 @@ def evaluate_specs(
         import ray
         parallel = ctx.cfg.get("parallel", {})
         requested = int(os.environ.get("STAGE2_WORKERS", parallel.get("n_workers", 192)))
-        n_workers = max(1, min(requested, len(pending)))
         ray_tmpdir = os.environ.get("RAY_TMPDIR", parallel.get("ray_tmpdir", "")) or None
-        if not ray.is_initialized():
-            ray.init(
-                num_cpus=n_workers,
-                include_dashboard=False,
-                ignore_reinit_error=True,
-                _temp_dir=ray_tmpdir,
-                log_to_driver=False,
-            )
+        plan = ensure_ray_worker_plan(
+            ray,
+            requested_workers=requested,
+            pending_tasks=len(pending),
+            ray_tmpdir=ray_tmpdir,
+            log_prefix="[Stage2 evaluation]",
+        )
+        n_workers = plan.actor_count
         Actor = _ray_worker_class()
         actors = [Actor.remote(ctx.train_cfg, f"stage2_{i:03d}") for i in range(n_workers)]
         refs = {

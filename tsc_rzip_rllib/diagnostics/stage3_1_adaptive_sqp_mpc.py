@@ -42,6 +42,7 @@ import numpy as np
 from tsc_rzip_rllib.diagnostics import stage1_controllability as jsonio
 from tsc_rzip_rllib.diagnostics import stage2_trajectory_optimization as s2
 from tsc_rzip_rllib.diagnostics import stage3_0_tail_sqp as s30
+from tsc_rzip_rllib.utils.ray_runtime import ensure_ray_worker_plan
 
 
 SCHEMA_VERSION = 1
@@ -2473,10 +2474,15 @@ def evaluate_feedback_specs(
         import ray
 
         requested = int(os.environ.get("STAGE3_1_WORKERS", ctx.cfg.get("parallel", {}).get("n_workers", 96)))
-        n_workers = max(1, min(requested, len(pending)))
         ray_tmpdir = os.environ.get("RAY_TMPDIR", ctx.cfg.get("parallel", {}).get("ray_tmpdir", "")) or None
-        if not ray.is_initialized():
-            ray.init(num_cpus=n_workers, include_dashboard=False, ignore_reinit_error=True, _temp_dir=ray_tmpdir, log_to_driver=False)
+        plan = ensure_ray_worker_plan(
+            ray,
+            requested_workers=requested,
+            pending_tasks=len(pending),
+            ray_tmpdir=ray_tmpdir,
+            log_prefix="[Stage3.1 feedback]",
+        )
+        n_workers = plan.actor_count
         Actor = _feedback_ray_actor_class()
         actors = [
             Actor.remote(payload, bundle, center_payload, nominal_y, nominal_velocity, f"stage31_feedback_{i:03d}")

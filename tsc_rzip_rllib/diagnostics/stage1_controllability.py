@@ -24,6 +24,7 @@ from tsc_rzip_rllib.core.coil_order import (
     tsc_matrix_to_display,
     tsc_to_display,
 )
+from tsc_rzip_rllib.utils.ray_runtime import ensure_ray_worker_plan
 
 
 # -----------------------------------------------------------------------------
@@ -584,17 +585,16 @@ def run_scan(resolved: ResolvedStage1Config, *, backend: str = "ray", resume: bo
         import ray
 
         parallel = cfg.get("parallel", {})
-        n_workers = int(os.environ.get("STAGE1_WORKERS", parallel.get("n_workers", 192)))
-        n_workers = max(1, min(n_workers, len(pending)))
+        requested = int(os.environ.get("STAGE1_WORKERS", parallel.get("n_workers", 192)))
         ray_tmpdir = os.environ.get("RAY_TMPDIR", parallel.get("ray_tmpdir", "")) or None
-        if not ray.is_initialized():
-            ray.init(
-                num_cpus=n_workers,
-                include_dashboard=False,
-                ignore_reinit_error=True,
-                _temp_dir=ray_tmpdir,
-                log_to_driver=False,
-            )
+        plan = ensure_ray_worker_plan(
+            ray,
+            requested_workers=requested,
+            pending_tasks=len(pending),
+            ray_tmpdir=ray_tmpdir,
+            log_prefix="[stage1 scan]",
+        )
+        n_workers = plan.actor_count
         Actor = _ray_actor_class()
         actors = [Actor.remote(resolved.train_cfg, f"stage1_scan_{i:03d}") for i in range(n_workers)]
         refs: dict[Any, dict[str, Any]] = {}
@@ -1945,17 +1945,16 @@ def run_validation(resolved: ResolvedStage1Config, *, backend: str = "ray", resu
         import ray
 
         parallel = resolved.cfg.get("parallel", {})
-        n_workers = int(os.environ.get("STAGE1_WORKERS", parallel.get("n_workers", 192)))
-        n_workers = max(1, min(n_workers, len(pending)))
+        requested = int(os.environ.get("STAGE1_WORKERS", parallel.get("n_workers", 192)))
         ray_tmpdir = os.environ.get("RAY_TMPDIR", parallel.get("ray_tmpdir", "")) or None
-        if not ray.is_initialized():
-            ray.init(
-                num_cpus=n_workers,
-                include_dashboard=False,
-                ignore_reinit_error=True,
-                _temp_dir=ray_tmpdir,
-                log_to_driver=False,
-            )
+        plan = ensure_ray_worker_plan(
+            ray,
+            requested_workers=requested,
+            pending_tasks=len(pending),
+            ray_tmpdir=ray_tmpdir,
+            log_prefix="[stage1 validation]",
+        )
+        n_workers = plan.actor_count
         Actor = _ray_validation_actor_class()
         actors = [Actor.remote(resolved.train_cfg, f"stage1_val_{i:03d}") for i in range(n_workers)]
         refs = {actors[idx % n_workers].run_validation.remote(spec): spec for idx, spec in enumerate(pending)}
