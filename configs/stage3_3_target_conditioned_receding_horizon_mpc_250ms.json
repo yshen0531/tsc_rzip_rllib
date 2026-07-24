@@ -1,0 +1,1152 @@
+{
+  "stage_label": "Stage 3.3",
+  "run_name": "stage3_3_target_conditioned_receding_horizon_mpc_250ms",
+  "output_root": "stage3_3_runs",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Build target-conditioned real-TSC nominal trajectories and validate a per-step receding-horizon bounded least-squares MPC around the Stage3.2 full-horizon Jacobian."
+  },
+  "parallel": {
+    "n_workers": 96,
+    "ray_tmpdir": "/tmp/stage3_3"
+  },
+  "trajectory": {
+    "horizon_steps": 25,
+    "horizon_ms": 250,
+    "n_modes": 3,
+    "coefficient_lower": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper": [
+      2.6,
+      2.6,
+      0.9
+    ]
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "allowed_arrival_steps": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "hold_through_step": 25,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    },
+    "description": "R/Z/speed hard gate is unchanged from Stage3.2. Explicit Ip tracking remains separate from the 10 kA safety limit; its three tracking tolerances are doubled for the TSC additional-heating setup."
+  },
+  "target_library": {
+    "maximum_targets": 24,
+    "targets": [
+      {
+        "task_id": "nominal",
+        "R_offset_m": 0,
+        "Z_offset_m": 0,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "nominal",
+        "description": ""
+      },
+      {
+        "task_id": "R_p5mm",
+        "R_offset_m": 0.005,
+        "Z_offset_m": 0,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "R_p10mm",
+        "R_offset_m": 0.01,
+        "Z_offset_m": 0,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "R_m5mm",
+        "R_offset_m": -0.005,
+        "Z_offset_m": 0,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "R_m10mm",
+        "R_offset_m": -0.01,
+        "Z_offset_m": 0,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Z_m2mm",
+        "R_offset_m": 0,
+        "Z_offset_m": -0.002,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Z_m5mm",
+        "R_offset_m": 0,
+        "Z_offset_m": -0.005,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Z_m10mm",
+        "R_offset_m": 0,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Z_p2mm",
+        "R_offset_m": 0,
+        "Z_offset_m": 0.002,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Z_p5mm",
+        "R_offset_m": 0,
+        "Z_offset_m": 0.005,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Z_p10mm",
+        "R_offset_m": 0,
+        "Z_offset_m": 0.01,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "RZ_p5_m5mm",
+        "R_offset_m": 0.005,
+        "Z_offset_m": -0.005,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "RZ_p10_m10mm",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "RZ_m5_m5mm",
+        "R_offset_m": -0.005,
+        "Z_offset_m": -0.005,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "RZ_m5_p5mm",
+        "R_offset_m": -0.005,
+        "Z_offset_m": 0.005,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "RZ_p5_p5mm",
+        "R_offset_m": 0.005,
+        "Z_offset_m": 0.005,
+        "Ip_offset_A": 0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Ip_m500A",
+        "R_offset_m": 0,
+        "Z_offset_m": 0,
+        "Ip_offset_A": -500.0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Ip_p500A",
+        "R_offset_m": 0,
+        "Z_offset_m": 0,
+        "Ip_offset_A": 500.0,
+        "mandatory": false,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Ip_m1000A",
+        "R_offset_m": 0,
+        "Z_offset_m": 0,
+        "Ip_offset_A": -1000.0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      },
+      {
+        "task_id": "Ip_p1000A",
+        "R_offset_m": 0,
+        "Z_offset_m": 0,
+        "Ip_offset_A": 1000.0,
+        "mandatory": true,
+        "category": "target",
+        "description": ""
+      }
+    ]
+  },
+  "warmstart": {
+    "correction_scales": [
+      0.0,
+      0.5,
+      0.75,
+      1.0,
+      1.25
+    ],
+    "tracking_states": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "control_radius_by_step_mode": [
+      [
+        0.12,
+        0.12,
+        0.04
+      ],
+      [
+        0.12,
+        0.12,
+        0.04
+      ],
+      [
+        0.12,
+        0.12,
+        0.04
+      ],
+      [
+        0.12,
+        0.12,
+        0.04
+      ],
+      [
+        0.12,
+        0.12,
+        0.04
+      ],
+      [
+        0.18,
+        0.18,
+        0.06
+      ],
+      [
+        0.18,
+        0.18,
+        0.06
+      ],
+      [
+        0.18,
+        0.18,
+        0.06
+      ],
+      [
+        0.35,
+        0.35,
+        0.12
+      ],
+      [
+        0.35,
+        0.35,
+        0.12
+      ],
+      [
+        0.35,
+        0.35,
+        0.12
+      ],
+      [
+        0.35,
+        0.35,
+        0.12
+      ],
+      [
+        0.35,
+        0.35,
+        0.12
+      ],
+      [
+        0.35,
+        0.35,
+        0.12
+      ],
+      [
+        0.35,
+        0.35,
+        0.12
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ],
+      [
+        0.4,
+        0.4,
+        0.14
+      ]
+    ],
+    "ridge_lambda": 0.05,
+    "temporal_smoothness": 0.06,
+    "correction_energy": 0.02,
+    "solver_tolerance": 1e-10,
+    "solver_max_iterations": 600
+  },
+  "refinement": {
+    "max_rounds": 2,
+    "maximum_targets_per_round": 12,
+    "refine_optional_targets": true,
+    "reduced_rank": 12,
+    "probe_scale": 0.24,
+    "reduced_trust_radius": 0.85,
+    "minimum_reliable_directions": 7,
+    "maximum_probe_relative_residual": 0.45,
+    "ridge_lambda": 0.07,
+    "solver_tolerance": 1e-10,
+    "solver_max_iterations": 500,
+    "tracking_states": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "control_radius_by_step_mode": [
+      [
+        0.1,
+        0.1,
+        0.035
+      ],
+      [
+        0.1,
+        0.1,
+        0.035
+      ],
+      [
+        0.1,
+        0.1,
+        0.035
+      ],
+      [
+        0.1,
+        0.1,
+        0.035
+      ],
+      [
+        0.1,
+        0.1,
+        0.035
+      ],
+      [
+        0.16,
+        0.16,
+        0.055
+      ],
+      [
+        0.16,
+        0.16,
+        0.055
+      ],
+      [
+        0.16,
+        0.16,
+        0.055
+      ],
+      [
+        0.28,
+        0.28,
+        0.1
+      ],
+      [
+        0.28,
+        0.28,
+        0.1
+      ],
+      [
+        0.28,
+        0.28,
+        0.1
+      ],
+      [
+        0.28,
+        0.28,
+        0.1
+      ],
+      [
+        0.28,
+        0.28,
+        0.1
+      ],
+      [
+        0.28,
+        0.28,
+        0.1
+      ],
+      [
+        0.28,
+        0.28,
+        0.1
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ],
+      [
+        0.32,
+        0.32,
+        0.115
+      ]
+    ],
+    "state_weights": [
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.1,
+      0.3,
+      0.3,
+      0.3,
+      0.8,
+      0.8,
+      0.8,
+      2.0,
+      2.0,
+      2.0,
+      2.0,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5,
+      1.5
+    ],
+    "profiles": {
+      "balanced": {
+        "R": 2.0,
+        "Z": 2.0,
+        "vR": 0.8,
+        "vZ": 0.8,
+        "Ip": 0.6
+      },
+      "position": {
+        "R": 4.0,
+        "Z": 4.0,
+        "vR": 0.5,
+        "vZ": 0.5,
+        "Ip": 0.5
+      },
+      "damping": {
+        "R": 1.4,
+        "Z": 1.4,
+        "vR": 2.5,
+        "vZ": 2.5,
+        "Ip": 0.4
+      },
+      "ip": {
+        "R": 1.4,
+        "Z": 1.4,
+        "vR": 0.6,
+        "vZ": 0.6,
+        "Ip": 3.0
+      }
+    },
+    "proposal_requests": [
+      {
+        "profile": "balanced",
+        "step_scale": 0.5
+      },
+      {
+        "profile": "balanced",
+        "step_scale": 1.0
+      },
+      {
+        "profile": "balanced",
+        "step_scale": 1.5
+      },
+      {
+        "profile": "position",
+        "step_scale": 0.5
+      },
+      {
+        "profile": "position",
+        "step_scale": 1.0
+      },
+      {
+        "profile": "position",
+        "step_scale": 1.5
+      },
+      {
+        "profile": "damping",
+        "step_scale": 0.75
+      },
+      {
+        "profile": "damping",
+        "step_scale": 1.25
+      },
+      {
+        "profile": "ip",
+        "step_scale": 1.0
+      }
+    ],
+    "model_revision": "dimensionless_central_difference_source_prior_v2",
+    "probe_bound_margin": 0.95,
+    "minimum_probe_coordinate": 0.0001,
+    "quality_profile": "balanced",
+    "minimum_normalized_probe_signal": 0.02,
+    "curvature_ratio_soft_limit": 1.0,
+    "prior_difference_soft_limit": 2.0,
+    "residual_ratio_soft_limit": 0.5,
+    "measurement_blend_floor": 0.35,
+    "measurement_blend_ceiling": 0.95,
+    "minimum_measured_direction_scale": 0.25,
+    "source_prior_direction_scale": 0.12,
+    "minimum_confidence_for_measured_reliable": 0.2,
+    "minimum_measured_directions": 1,
+    "minimum_usable_directions": 4,
+    "minimum_normalized_model_rank": 2
+  },
+  "mpc": {
+    "allow_incomplete_library": false,
+    "library_neighbors": 4,
+    "target_distance_scales": [
+      0.01,
+      0.01,
+      1000.0
+    ],
+    "inverse_distance_power": 2.0,
+    "output_scales": {
+      "R_m": 0.03,
+      "Z_m": 0.03,
+      "vR_m_per_s": 0.1,
+      "vZ_m_per_s": 0.1,
+      "Ip_A": 1000.0
+    },
+    "output_weights": {
+      "R": 2.2,
+      "Z": 2.2,
+      "vR": 0.9,
+      "vZ": 0.9,
+      "Ip": 0.7
+    },
+    "integral_measurement_gain": [
+      0.4,
+      0.4,
+      0.0,
+      0.0,
+      0.28
+    ],
+    "integral_decay": 0.9,
+    "per_step_feedback_limit_by_mode": [
+      0.2,
+      0.2,
+      0.07
+    ],
+    "per_step_correction_rate_limit_by_mode": [
+      0.08,
+      0.08,
+      0.025
+    ],
+    "controller_scales": [
+      0.5,
+      1.0,
+      1.5
+    ],
+    "future_discount": 0.985,
+    "hold_weight_start_state": 12,
+    "hold_weight_multiplier": 2.2,
+    "ridge_lambda": 0.08,
+    "future_correction_smoothness": 0.08,
+    "first_action_rate_weight": 0.2,
+    "solver_tolerance": 1e-08,
+    "solver_max_iterations": 250,
+    "calibration_scenarios": [
+      {
+        "scenario": "nominal",
+        "category": "nominal",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_R_p5mm",
+        "category": "target",
+        "target_R_offset_m": 0.005,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_R_p10mm",
+        "category": "target",
+        "target_R_offset_m": 0.01,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_Z_m2mm",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": -0.002,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_Z_m5mm",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": -0.005,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_Z_m10mm",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": -0.01,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_RZ_p5_m5mm",
+        "category": "target",
+        "target_R_offset_m": 0.005,
+        "target_Z_offset_m": -0.005,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_RZ_p10_m10mm",
+        "category": "target",
+        "target_R_offset_m": 0.01,
+        "target_Z_offset_m": -0.01,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_Ip_m1000A",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": -1000,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "target_Ip_p1000A",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 1000,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "disturbance_m1_m_s04",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 4,
+          "mode": 0,
+          "amplitude": -0.08
+        },
+        "description": ""
+      },
+      {
+        "scenario": "disturbance_m1_p_s04",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 4,
+          "mode": 0,
+          "amplitude": 0.08
+        },
+        "description": ""
+      },
+      {
+        "scenario": "disturbance_m2_m_s08",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 8,
+          "mode": 1,
+          "amplitude": -0.08
+        },
+        "description": ""
+      },
+      {
+        "scenario": "disturbance_m2_p_s08",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 8,
+          "mode": 1,
+          "amplitude": 0.08
+        },
+        "description": ""
+      },
+      {
+        "scenario": "disturbance_m3_m_s08",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 8,
+          "mode": 2,
+          "amplitude": -0.04
+        },
+        "description": ""
+      },
+      {
+        "scenario": "disturbance_m3_p_s08",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 8,
+          "mode": 2,
+          "amplitude": 0.04
+        },
+        "description": ""
+      }
+    ],
+    "holdout_scenarios": [
+      {
+        "scenario": "holdout_R_p2p5mm",
+        "category": "target",
+        "target_R_offset_m": 0.0025,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_R_p7p5mm",
+        "category": "target",
+        "target_R_offset_m": 0.0075,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_R_m7p5mm",
+        "category": "target",
+        "target_R_offset_m": -0.0075,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_Z_m1mm",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": -0.001,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_Z_m3p5mm",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": -0.0035,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_Z_m7p5mm",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": -0.0075,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_Z_p7p5mm",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0.0075,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_RZ_p2p5_m2p5mm",
+        "category": "target",
+        "target_R_offset_m": 0.0025,
+        "target_Z_offset_m": -0.0025,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_RZ_p7p5_m7p5mm",
+        "category": "target",
+        "target_R_offset_m": 0.0075,
+        "target_Z_offset_m": -0.0075,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_RZ_m7p5_p7p5mm",
+        "category": "target",
+        "target_R_offset_m": -0.0075,
+        "target_Z_offset_m": 0.0075,
+        "target_Ip_offset_A": 0,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_Ip_m750A",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": -750,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_Ip_p750A",
+        "category": "target",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 750,
+        "disturbance": null,
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m1_m_s00",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 0,
+          "mode": 0,
+          "amplitude": -0.08
+        },
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m1_p_s00",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 0,
+          "mode": 0,
+          "amplitude": 0.08
+        },
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m1_m_s10",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 10,
+          "mode": 0,
+          "amplitude": -0.12
+        },
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m1_p_s10",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 10,
+          "mode": 0,
+          "amplitude": 0.12
+        },
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m2_m_s16",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 16,
+          "mode": 1,
+          "amplitude": -0.1
+        },
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m2_p_s16",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 16,
+          "mode": 1,
+          "amplitude": 0.1
+        },
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m3_m_s20",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 20,
+          "mode": 2,
+          "amplitude": -0.05
+        },
+        "description": ""
+      },
+      {
+        "scenario": "holdout_disturbance_m3_p_s20",
+        "category": "disturbance",
+        "target_R_offset_m": 0,
+        "target_Z_offset_m": 0,
+        "target_Ip_offset_A": 0,
+        "disturbance": {
+          "step": 20,
+          "mode": 2,
+          "amplitude": 0.05
+        },
+        "description": ""
+      }
+    ],
+    "calibration_validation": {
+      "maximum_lost_baseline_pass_scenarios": 0,
+      "minimum_tracking_pass_fraction": 0.85,
+      "minimum_recovered_scenarios": 1,
+      "minimum_median_signed_margin_gain": 0.0,
+      "minimum_worst_case_signed_margin_gain": -0.03
+    },
+    "holdout_validation": {
+      "maximum_lost_baseline_pass_scenarios": 1,
+      "minimum_tracking_pass_fraction": 0.75,
+      "minimum_recovery_fraction": 0.4,
+      "minimum_median_signed_margin_gain": 0.0,
+      "minimum_worst_case_signed_margin_gain": -0.05
+    }
+  },
+  "confirmation": {
+    "mandatory_target_repeats": 2,
+    "optional_target_repeats": 1,
+    "minimum_optional_target_pass_fraction": 0.65,
+    "mpc_repeats": 2,
+    "minimum_mpc_scenario_pass_fraction": 0.8,
+    "mpc_scenarios": [
+      "nominal",
+      "target_R_p10mm",
+      "target_Z_m10mm",
+      "target_RZ_p10_m10mm",
+      "target_Ip_m1000A",
+      "target_Ip_p1000A",
+      "holdout_R_p7p5mm",
+      "holdout_Z_m7p5mm",
+      "holdout_RZ_p7p5_m7p5mm",
+      "holdout_disturbance_m1_p_s10"
+    ]
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "actor_close_timeout_s": 900.0
+  }
+}
