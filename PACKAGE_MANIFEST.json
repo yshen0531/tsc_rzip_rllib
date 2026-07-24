@@ -1,88 +1,119 @@
 {
-  "schema_version": 3,
-  "package_name": "stage3_3_complete_standalone_ip_tracking_2x_lean_refinement_fix",
-  "stage": "Stage3.3",
-  "created_utc": "20260723_143103",
+  "schema_version": 1,
+  "package_name": "stage3_4_complete_standalone_late_arrival_350ms_lean",
+  "stage": "Stage3.4",
+  "created_utc": "20260724_021009",
   "complete_standalone": true,
   "lean_delivery": true,
   "requires_git": false,
   "requires_network": false,
   "requires_external_base_tree": false,
   "base_code_package": {
-    "filename": "stage3_3_complete_standalone_ip_tracking_2x_lean.zip",
-    "sha256": "60c94ff6ff9d2709012eafbb915c692817c86ea9174bfdce83091a048d773058"
+    "filename": "stage3_3_complete_standalone_ip_tracking_2x_lean_refinement_fix.zip",
+    "sha256": "09e75d1df2f9ddff30705e07285c9b92826b24f62ed536f826e56d96b2842e6b"
   },
   "integration_result_source": {
-    "filename": "stage3_2_runs(1).zip",
-    "sha256": "d701a6c7ab9320faee3fbebe6a2f8b0ac5f80e0ba7cf06fdd75f71f75a0f9e3a",
-    "source_run_basename": "stage3_2_svd3_margin_long_hold_causal_mpc_250ms_20260722_073932",
-    "required_verdict": "PASS_PRECISE_HOLD_30MM_250MS_OPEN_LOOP_CONFIRMED_FEEDBACK_NOT_VALIDATED",
-    "source_controller_jacobian_shape": [
-      125,
-      75
-    ],
-    "source_fingerprint_observed_in_integration": "960a34ac567f81e913fb625a5176075e39b61612c34aebb425b47992f0c4b78b"
+    "filename": "stage3_3_runs.zip",
+    "sha256": "52411f32774e29744e0f38860dbbfef5789c1acfe343970c1f5a8d551c596675",
+    "source_run_basename": "stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331",
+    "source_verdict": "TARGET_CONDITIONED_LIBRARY_INCOMPLETE_MPC_NOT_VALIDATED",
+    "source_target_entries": 20,
+    "source_tracking_pass_entries": 14,
+    "source_mandatory_pass": 5,
+    "source_mandatory_total": 10,
+    "source_late_arrival_recomputed_final_pass_by_250ms": 8,
+    "source_late_arrival_recomputed_final_total": 10,
+    "prepare_integration": "passed against the uploaded Stage3.3 and historical result chain"
   },
   "method": {
-    "controller": "target-conditioned nominal library plus per-step receding-horizon bounded least-squares MPC POC",
-    "horizon_steps": 25,
+    "controller": "ordered late-arrival target continuation, globally cached real-TSC reduced-space refinement, then target-conditioned per-step receding-horizon MPC POC",
     "dt_ms": 10,
-    "horizon_ms": 250,
+    "horizon_steps": 35,
+    "horizon_ms": 350,
     "n_svd_modes": 3,
-    "control_dimension": 75,
-    "target_library_tasks": 20,
-    "mandatory_target_tasks": 10,
-    "warmstart_candidates": 100,
-    "reduced_refinement_rank": 12,
-    "controller_scales": [
-      0.5,
-      1.0,
-      1.5
+    "control_dimension": 105,
+    "allowed_arrival_ms": [
+      120,
+      130,
+      140,
+      150,
+      160,
+      170,
+      180,
+      190,
+      200,
+      210,
+      220,
+      230,
+      240,
+      250
     ],
-    "calibration_scenarios": 16,
-    "holdout_scenarios": 20,
-    "confirmation_scenarios": 10,
-    "maximum_real_tsc_rollouts": 1046,
-    "reduced_refinement_model": "dimensionless curvature-aware central/secant fit plus conservative Stage3.2 real-TSC Jacobian prior"
+    "latest_allowed_arrival_ms": 250,
+    "hold_through_ms": 350,
+    "minimum_followup_hold_ms_after_latest_arrival": 100,
+    "continuation_tasks": 16,
+    "final_mandatory_tasks": 10,
+    "support_milestone_tasks": 6,
+    "reduced_refinement_rank": 18,
+    "maximum_refinement_rounds_per_task": 5,
+    "real_tsc_probes_per_refinement_round": 36,
+    "real_tsc_proposals_per_refinement_round": 12,
+    "full_identification_jacobian_shape": [
+      175,
+      105
+    ],
+    "full_identification_rollouts": 210,
+    "physical_cache_key": "clipped 105-D control vector only",
+    "physical_cache_reused_across_targets_and_logical_phases": true,
+    "positive_feedback_scale_required_for_mpc_selection": true,
+    "logical_rollout_upper_bound_without_cache_or_early_stopping": 4474
   },
-  "hard_gate_changed_from_stage3_2": false,
+  "continuation_design": {
+    "single_axis_milestones": [
+      "R +5 -> +7.5 -> +10 mm",
+      "Z -2 -> -3.5 -> -5 -> -7.5 -> -10 mm"
+    ],
+    "coupled_milestones": [
+      "R+5/Z-2 -> R+5/Z-3.5 -> R+5/Z-5",
+      "R+5/Z-5 -> R+7.5/Z-7.5 -> R+10/Z-10"
+    ],
+    "source_stage3_2_jacobian_warmstart": true,
+    "target_specific_real_tsc_refinement": true,
+    "internal_margin_goal": {
+      "nominal_sustained_box_m": 0.02,
+      "final_target_sustained_box_m": 0.025,
+      "support_sustained_box_m": 0.028,
+      "post_arrival_velocity_rms_m_per_s": 0.07,
+      "note": "Hard-pass candidates continue refining toward a more centered, higher-margin library; failure to reach the internal goal does not erase a valid hard pass."
+    }
+  },
+  "hard_gate_changed_from_stage3_3": false,
+  "hard_numeric_thresholds_changed_from_stage3_3": false,
+  "timing_requirement_changed_from_stage3_3": true,
+  "timing_change": {
+    "previous_latest_arrival_ms": 150,
+    "new_latest_arrival_ms": 250,
+    "previous_hold_through_ms": 250,
+    "new_hold_through_ms": 350
+  },
   "hard_gate": {
     "R_box_tolerance_m": 0.03,
     "Z_box_tolerance_m": 0.03,
     "endpoint_velocity_max_m_per_s": 0.1,
     "late_velocity_rms_max_m_per_s": 0.1,
-    "Ip_safety_tolerance_A": 10000.0,
-    "allowed_arrival_ms": [
-      120,
-      130,
-      140,
-      150
-    ],
-    "hold_through_ms": 250
+    "Ip_safety_tolerance_A": 10000.0
   },
-  "explicit_ip_tracking_gate_added": true,
   "ip_tracking_revision": "2x_for_tsc_additional_heating",
   "ip_tracking_gate": {
     "terminal_abs_tolerance_A": 2000.0,
     "hold_rms_tolerance_A": 2400.0,
     "sustained_max_tolerance_A": 4000.0
   },
-  "ip_tracking_change": {
-    "reason": "TSC additional heating; all three explicit Ip tracking tolerances are doubled from the initial Stage3.3 proposal.",
-    "previous_values_A": {
-      "terminal_abs_tolerance_A": 1000.0,
-      "hold_rms_tolerance_A": 1200.0,
-      "sustained_max_tolerance_A": 2000.0
-    },
-    "Ip_safety_tolerance_A_unchanged": 10000.0,
-    "target_library_Ip_offsets_unchanged": true,
-    "mpc_Ip_normalization_and_weighting_unchanged": true,
-    "old_threshold_run_resume_allowed": false
-  },
   "ray_capacity_policy": "configured campaign capacity; variable-size waves cannot undersize later waves",
   "strict_json": true,
   "resume_supported": true,
-  "resume_constraint": "Runs created with the same doubled Ip-tracking revision may be resumed. The refinement model revision is upgraded in-place and completed warm-start/probe trajectories are reused.",
+  "source_content_fingerprint_on_resume": true,
+  "online_mpc_deployment_ready": false,
   "initial_state_robustness_validated": false,
   "plant_parameter_robustness_validated": false,
   "noise_delay_robustness_validated": false,
@@ -90,25 +121,25 @@
   "residual_rl_primary_controller": false,
   "residual_rl_status": "not started; bounded and secondary after a validated causal feedback baseline",
   "validation": {
-    "stage3_3_unittest_count": 24,
-    "complete_unittest_count": 116,
+    "stage3_4_unittest_count": 12,
+    "complete_unittest_count": 128,
     "python_compileall": "passed",
     "config_json_parse": "passed",
     "shell_bash_n": "passed",
     "strict_json_regressions": "passed",
     "ray_capacity_regressions": "passed",
-    "doubled_ip_tracking_config_guard": "passed",
-    "old_ip_tracking_threshold_rejection": "passed",
-    "combined_endpoint_ip_tracking_selection": "passed with doubled thresholds",
-    "real_gotsc_stage3_3_campaign": "not_run_in_packaging_environment",
-    "curvature_aware_reduced_jacobian_regression": "passed",
-    "source_prior_fallback_regression": "passed",
-    "target_model_failure_isolation_regression": "passed",
-    "bound_collinear_probe_regression": "passed",
-    "existing_probe_manifest_resume_compatibility": "implemented and unit-covered through legacy-field inputs; real server resume not run in packaging environment"
+    "arrival_120_to_250_and_hold_through_350_regression": "passed",
+    "arrival_after_250_rejection_regression": "passed",
+    "physical_cache_fresh_phase_reuse_regression": "passed",
+    "centered_internal_margin_goal_regression": "passed",
+    "positive_feedback_scale_selection_regression": "passed",
+    "real_stage3_3_prepare_integration": "passed",
+    "real_stage3_2_jacobian_continuation_corrections": "all parent edges finite",
+    "real_gotsc_stage3_4_campaign": "not_run_in_packaging_environment"
   },
   "truthfulness": {
-    "claims_real_stage3_3_control_success": false,
+    "claims_real_stage3_4_control_success": false,
+    "claims_complete_target_library": false,
     "claims_online_mpc_deployment_ready": false,
     "claims_initial_state_robustness": false,
     "claims_noise_or_delay_robustness": false
@@ -117,12 +148,12 @@
   "delivery_profile": {
     "markdown_files_included": 0,
     "shell_scripts_included": [
-      "run_stage3_3_target_conditioned_mpc_native.sh",
-      "run_stage3_3_target_conditioned_mpc_nohup.sh",
-      "run_stage3_3_self_test.sh",
-      "run_stage3_3_verify_package.sh",
-      "run_stop_stage3_3_now.sh",
-      "scripts/stage3_3_shell_common.sh"
+      "run_stage3_4_late_arrival_continuation_mpc_native.sh",
+      "run_stage3_4_late_arrival_continuation_mpc_nohup.sh",
+      "run_stage3_4_self_test.sh",
+      "run_stage3_4_verify_package.sh",
+      "run_stop_stage3_4_now.sh",
+      "scripts/stage3_4_shell_common.sh"
     ],
     "phase_helper_shell_scripts_omitted": true,
     "historical_stage_shell_scripts_omitted": true,
@@ -139,29 +170,17 @@
       "stage2_2_runs/",
       "stage3_0_runs/",
       "stage3_1_runs/",
-      "stage3_2_runs/"
+      "stage3_2_runs/",
+      "stage3_3_runs/"
     ],
-    "reason": "Stage3.3 follows the Stage3.2 source manifest chain to recover the validated environment, SVD modes, initial currents, source trajectories, and controller Jacobian."
+    "reason": "Stage3.4 follows the Stage3.3/Stage3.2 manifest chain to recover the validated environment, SVD modes, initial currents, source target trajectories, and source controller Jacobian."
   },
-  "package_file_count_excluding_SHA256SUMS": 51,
+  "package_file_count_excluding_SHA256SUMS": 55,
   "shell_script_count": 6,
   "markdown_file_count": 0,
-  "python_source_count": 37,
-  "config_json_count": 7,
-  "refinement_model_revision": "dimensionless_central_difference_source_prior_v2",
-  "refinement_debug_fix": {
-    "triggering_error": "Target Z_m2mm has only 1/12 reliable reduced directions",
-    "root_cause": "The old postprocessor fitted a raw-physical-unit through-origin line to two probes, treated even curvature as residual, and aborted the entire campaign when fewer than seven directions passed a hard residual threshold. All 168 real-TSC probes had actually succeeded.",
-    "changes": [
-      "fit linear-plus-quadratic real-TSC secants so the central derivative is separated from even curvature",
-      "measure signal, curvature, residual, and prior agreement in the dimensionless weighted refinement feature space",
-      "regularize weak directions with the previously validated Stage3.2 125x75 real-TSC Jacobian prior",
-      "shrink coordinate bounds and increase ridge penalty for low-confidence/source-prior directions",
-      "generate exactly collinear feasible probes instead of componentwise clipping reduced directions",
-      "isolate a single unbuildable target model instead of crashing all other targets",
-      "resume existing 2x-Ip Stage3.3 runs and reuse completed warm-start/probe JSON.GZ files"
-    ],
-    "hard_gate_changed": false,
-    "real_tsc_success_claimed_from_packaging": false
-  }
+  "python_source_count": 40,
+  "config_json_count": 8,
+  "latest_allowed_arrival_ms": 250,
+  "hold_through_ms": 350,
+  "minimum_post_arrival_hold_ms": 100
 }
