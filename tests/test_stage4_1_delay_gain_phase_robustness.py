@@ -20,7 +20,7 @@ class Stage41Tests(unittest.TestCase):
     def setUpClass(cls) -> None:
         root = Path(__file__).resolve().parents[1]
         cls.root = root
-        cls.cfg = json.loads((root / "configs/stage4_1_delay_gain_phase_robustness_350ms.json").read_text())
+        cls.cfg = json.loads((root / "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json").read_text())
         cls.stage34_cfg = json.loads((root / "configs/stage3_4_late_arrival_continuation_mpc_350ms.json").read_text())
 
     def test_default_workers_are_128(self) -> None:
@@ -53,11 +53,12 @@ class Stage41Tests(unittest.TestCase):
         self.assertEqual(s41.wilson_lower_bound(0, 0), 0.0)
 
     def test_alpha_beta_observer_filters_and_predicts(self) -> None:
-        observer = s41.AlphaBetaObserver(0.7, 0.15, 0.4, 2.0)
+        observer = s41.NominalErrorStateObserver(0.7, 0.15, 0.4, 2.0)
         dt = 0.01
-        observer.update(np.array([0.0, 0.0, 100.0]), 0, dt)
-        observer.update(np.array([0.001, -0.002, 102.0]), 1, dt)
-        pos, vel, ip = observer.predict_to(2, dt)
+        nominal = np.zeros((4, 3), dtype=float)
+        observer.update(np.array([0.0, 0.0, 100.0]), 0, nominal, dt)
+        observer.update(np.array([0.001, -0.002, 102.0]), 1, nominal, dt)
+        pos, vel, ip = observer.predict_error_to(2, dt)
         self.assertTrue(np.all(np.isfinite(pos)))
         self.assertTrue(np.all(np.isfinite(vel)))
         self.assertTrue(math.isfinite(ip))
@@ -65,11 +66,72 @@ class Stage41Tests(unittest.TestCase):
         self.assertLess(pos[1], 0.0)
 
     def test_observer_ignores_duplicate_delayed_measurement(self) -> None:
-        observer = s41.AlphaBetaObserver(0.7, 0.15, 0.4, 2.0)
-        observer.update(np.array([0.0, 0.0, 100.0]), 0, 0.01)
-        before = observer.position.copy()
-        observer.update(np.array([10.0, 10.0, 999.0]), 0, 0.01)
-        np.testing.assert_allclose(observer.position, before)
+        observer = s41.NominalErrorStateObserver(0.7, 0.15, 0.4, 2.0)
+        nominal = np.zeros((3, 3), dtype=float)
+        observer.update(np.array([0.0, 0.0, 100.0]), 0, nominal, 0.01)
+        before = observer.position_error.copy()
+        observer.update(np.array([10.0, 10.0, 999.0]), 0, nominal, 0.01)
+        np.testing.assert_allclose(observer.position_error, before)
+
+    def test_error_observer_exact_accelerating_nominal_is_zero_invariant(self) -> None:
+        dt = 0.01
+        t = np.arange(10, dtype=float) * dt
+        nominal = np.column_stack([
+            0.75 + 0.4 * t**2,
+            -0.2 * t**2 + 0.01 * t,
+            30000.0 + 700.0 * t + 900.0 * t**2,
+        ])
+        observer = s41.NominalErrorStateObserver(0.72, 0.16, 0.45, 2.0)
+        for index in range(len(nominal)):
+            observer.update(nominal[index], index, nominal, dt)
+            pos, vel, ip = observer.predict_error_to(index, dt)
+            np.testing.assert_allclose(pos, np.zeros(2), atol=1e-14)
+            np.testing.assert_allclose(vel, np.zeros(2), atol=1e-14)
+            self.assertAlmostEqual(ip, 0.0, places=12)
+
+    def test_legacy_measurement_matches_stage34_no_delay_definition(self) -> None:
+        dt = 0.01
+        nominal = np.array([
+            [0.75, 0.00, 30000.0],
+            [0.751, 0.002, 30010.0],
+            [0.753, 0.003, 30020.0],
+        ])
+        nominal_velocity = np.array([[0.0, 0.0], [0.1, 0.2], [0.2, 0.1]])
+        history = [nominal[0].copy(), nominal[1].copy(), nominal[2].copy()]
+        error = s41.legacy_measurement_error(
+            history,
+            delayed_local_index=2,
+            delayed_absolute_index=2,
+            current_absolute_index=2,
+            nominal_y=nominal,
+            nominal_velocity=nominal_velocity,
+            dt_s=dt,
+        )
+        np.testing.assert_allclose(error, np.zeros(5), atol=1e-12)
+
+    def test_physical_scheduler_identity_is_exact(self) -> None:
+        scheduler = s41.PhysicalCoilScheduler(
+            modes_tsc=np.eye(14, 3), nominal_max_delta_a=3.0, command_max_delta_a=3.0,
+            min_current=-1e6*np.ones(14), max_current=1e6*np.ones(14),
+            lower_mode=np.array([-2.6, -2.6, -0.9]), upper_mode=np.array([2.6, 2.6, 0.9]),
+        )
+        desired = np.array([0.4, -0.2, 0.1])
+        result = scheduler.solve_command(desired, np.zeros(14), np.ones(3), 1.0, enabled=True)
+        np.testing.assert_allclose(result["command"], desired, atol=1e-14)
+        self.assertLess(result["mismatch_rms_a"], 1e-12)
+
+    def test_physical_scheduler_compensates_slew_and_gain_in_coil_space(self) -> None:
+        scheduler = s41.PhysicalCoilScheduler(
+            modes_tsc=np.eye(14, 3), nominal_max_delta_a=3.0, command_max_delta_a=2.7,
+            min_current=-1e6*np.ones(14), max_current=1e6*np.ones(14),
+            lower_mode=np.array([-2.6, -2.6, -0.9]), upper_mode=np.array([2.6, 2.6, 0.9]),
+        )
+        desired = np.array([0.45, -0.25, 0.08])
+        result = scheduler.solve_command(
+            desired, np.zeros(14), np.array([0.9, 1.1, 1.0]), 0.9, enabled=True
+        )
+        self.assertTrue(result["solver_success"])
+        self.assertLess(result["mismatch_rms_a"], 1e-4)
 
     def test_disturbance_headroom_respects_all_pulse_steps(self) -> None:
         nominal = np.zeros((35, 3))
@@ -110,6 +172,34 @@ class Stage41Tests(unittest.TestCase):
         b = s41._make_spec(phase="x", scenario="s", category="c", target=target, controller_scale=0.5,
                            extra={"action_delay_steps": 1, "controller_action_delay_steps": 0})
         self.assertNotEqual(a["experiment_id"], b["experiment_id"])
+
+    def test_zero_delay_physical_solver_matches_stage34_solver(self) -> None:
+        from tsc_rzip_rllib.diagnostics import stage3_4_late_arrival_continuation_mpc as s34
+        cfg = json.loads(json.dumps(self.stage34_cfg))
+        stub = SimpleNamespace(cfg=cfg, env_cfg={"dt_ms": 10})
+        rng = np.random.default_rng(7)
+        jac = rng.normal(0.0, 0.01, size=(175, 105))
+        bundle = {"jacobian_normalized": jac.tolist(), "output_scales": np.ones(175).tolist()}
+        nominal = rng.normal(0.0, 0.1, size=(35, 3))
+        feature = rng.normal(0.0, 0.01, size=175)
+        measurement = rng.normal(0.0, 0.02, size=5)
+        integral = rng.normal(0.0, 0.01, size=5)
+        previous = np.array([0.01, -0.02, 0.005])
+        legacy = s34.solve_receding_horizon_correction(
+            stub, bundle, current_step=4, nominal_coefficients=nominal,
+            nominal_feature=feature, measurement_normalized=measurement,
+            integral_normalized=integral, previous_correction=previous,
+            controller_scale=0.5,
+        )
+        revised = s41.solve_delay_aware_physical_correction(
+            stub, bundle, current_step=4, modeled_action_delay_steps=0,
+            modeled_pending_physical_coefficients=[], nominal_physical_coefficients=nominal,
+            nominal_feature=feature, measurement_normalized=measurement,
+            integral_normalized=integral, previous_correction=previous,
+            controller_scale=0.5, controller_model_scale=1.0,
+        )
+        np.testing.assert_allclose(revised["first_correction"], legacy["first_correction"], atol=1e-10)
+        np.testing.assert_allclose(revised["sequence_correction"], legacy["sequence_correction"], atol=1e-10)
 
     def test_delay_aware_solver_shifts_effect_step(self) -> None:
         cfg = json.loads(json.dumps(self.stage34_cfg))
@@ -246,6 +336,31 @@ class Stage41Tests(unittest.TestCase):
         self.assertEqual(result["phase_start_diagnostics"]["phase_offset_steps"], 3)
         self.assertEqual(result["control_trace"][0]["step"], 3)
         self.assertEqual(result["control_trace"][0]["actual_action_delay_steps"], 1)
+
+    def test_config_locks_controller_revision(self) -> None:
+        self.assertEqual(
+            self.cfg["controller_revision"],
+            "nominal_error_state_observer_physical_coil_scheduler_v2",
+        )
+        source_gate = json.loads(json.dumps(self.stage34_cfg))
+        s41.validate_stage41_config(self.cfg, source_gate)
+        bad = json.loads(json.dumps(self.cfg))
+        bad["controller_revision"] = "old"
+        with self.assertRaises(ValueError):
+            s41.validate_stage41_config(bad, source_gate)
+
+    def test_all_controller_upgrade_switches_are_present(self) -> None:
+        upgrade = self.cfg["controller_upgrade"]
+        for key in ("observer", "delay_aware", "gain_slew_scheduling", "phase_aware_reference"):
+            self.assertIn("enabled", upgrade[key])
+
+    def test_execute_stops_after_failed_regression(self) -> None:
+        fake_ctx = SimpleNamespace(paths=SimpleNamespace(state=Path("/tmp/not_used")))
+        with mock.patch.object(s41, "load_stage41_config", return_value=fake_ctx),              mock.patch.object(s41, "prepare_stage41", return_value={}),              mock.patch.object(s41, "run_regression", return_value={"passed": False}),              mock.patch.object(s41, "analyze_stage41", return_value={"verdict": {"verdict": "failed"}}),              mock.patch.object(s41, "_update_state") as update_state,              mock.patch.object(s41, "run_recovery") as run_recovery:
+            result = s41.execute("unused.json", command="all")
+        self.assertEqual(result["verdict"]["verdict"], "failed")
+        run_recovery.assert_not_called()
+        self.assertEqual(update_state.call_args.kwargs["stop_reason"], "controller_integration_regression_failed")
 
     def test_synthetic_stage41_test(self) -> None:
         payload = s41.synthetic_stage41_test()

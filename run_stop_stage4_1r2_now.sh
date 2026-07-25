@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/scripts/stage4_1_shell_common.sh"
-stage41_project_init
-stage41_find_python
-PID_FILE="${PROJECT_DIR}/stage4_1_runs/stage4_1_driver.pid"
+source "${SCRIPT_DIR}/scripts/stage4_1r2_shell_common.sh"
+stage41r2_project_init
+stage41r2_find_python
+PID_FILE="${PROJECT_DIR}/stage4_1r2_runs/stage4_1r2_driver.pid"
 if [[ -f "${PID_FILE}" ]]; then
   PID="$(cat "${PID_FILE}" 2>/dev/null || true)"
   if [[ "${PID}" =~ ^[0-9]+$ ]] && kill -0 "${PID}" 2>/dev/null; then
@@ -17,6 +17,6 @@ if [[ -f "${PID_FILE}" ]]; then
   fi
   rm -f "${PID_FILE}"
 fi
-stage41_ray_stop
-stage41_cleanup_runtime
-echo "[Stage4.1] stopped Ray and cleaned temporary runtime directories; saved run results were not deleted."
+stage41r2_ray_stop
+stage41r2_cleanup_runtime
+echo "[Stage4.1R2] stopped Ray and cleaned temporary runtime directories; saved run results were not deleted."

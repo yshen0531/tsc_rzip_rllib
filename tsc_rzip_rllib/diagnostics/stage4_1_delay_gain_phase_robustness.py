@@ -1,6 +1,6 @@
-"""Stage4.1 delay/gain/phase-aware robustness and recovery validation.
+"""Stage4.1R2 nominal-error observer and physical-scheduler robustness validation.
 
-Stage4.1 freezes the confirmed Stage3.4 target-conditioned library and real-TSC
+Stage4.1R2 freezes the confirmed Stage3.4 target-conditioned library and real-TSC
 175x105 Jacobian, but upgrades the online controller wrapper with:
 
 * an alpha-beta state observer instead of raw noisy finite differences;
@@ -43,10 +43,11 @@ from tsc_rzip_rllib.diagnostics import stage3_4_late_arrival_continuation_mpc as
 from tsc_rzip_rllib.diagnostics import stage4_0_robustness_recovery as s40
 from tsc_rzip_rllib.utils.ray_runtime import ensure_ray_worker_plan
 
-SCHEMA_VERSION = 1
-STAGE = "Stage4.1"
-STATE_FILENAME = "stage4_1_state.json"
-MANIFEST_FILENAME = "stage4_1_manifest.json"
+SCHEMA_VERSION = 2
+STAGE = "Stage4.1R2"
+CONTROLLER_REVISION = "nominal_error_state_observer_physical_coil_scheduler_v2"
+STATE_FILENAME = "stage4_1r2_state.json"
+MANIFEST_FILENAME = "stage4_1r2_manifest.json"
 EXPECTED_STAGE34_VERDICT = (
     "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED"
 )
@@ -236,15 +237,15 @@ class Stage41Paths:
             run_dir=run_dir,
             state=run_dir / STATE_FILENAME,
             manifest=run_dir / MANIFEST_FILENAME,
-            regression=run_dir / "stage4_1_regression_targets",
-            recovery=run_dir / "stage4_1_adaptive_recovery",
-            structured=run_dir / "stage4_1_structured_uncertainty",
-            noise=run_dir / "stage4_1_noise_statistics",
-            history=run_dir / "stage4_1_phase_aligned_history",
-            restart=run_dir / "stage4_1_restart_sweep",
-            confirmation=run_dir / "stage4_1_confirmation",
-            analysis=run_dir / "stage4_1_analysis",
-            variants=run_dir / "stage4_1_environment_variants",
+            regression=run_dir / "stage4_1r2_regression_targets",
+            recovery=run_dir / "stage4_1r2_adaptive_recovery",
+            structured=run_dir / "stage4_1r2_structured_uncertainty",
+            noise=run_dir / "stage4_1r2_noise_statistics",
+            history=run_dir / "stage4_1r2_phase_aligned_history",
+            restart=run_dir / "stage4_1r2_restart_sweep",
+            confirmation=run_dir / "stage4_1r2_confirmation",
+            analysis=run_dir / "stage4_1r2_analysis",
+            variants=run_dir / "stage4_1r2_environment_variants",
             source_reference=run_dir / "source_stage4_0_reference",
         )
 
@@ -273,7 +274,7 @@ def resolve_source_stage40_run(value: str | Path | None) -> Path:
     if value is None or not str(value).strip():
         value = os.environ.get("SOURCE_STAGE4_0_RUN", "").strip()
     if not value:
-        raise ValueError("Stage4.1 requires --source-stage4-0-run or SOURCE_STAGE4_0_RUN")
+        raise ValueError("Stage4.1R2 requires --source-stage4-0-run or SOURCE_STAGE4_0_RUN")
     run = Path(value).expanduser().resolve()
     required = [
         run / "stage4_0_manifest.json",
@@ -331,8 +332,13 @@ def _source_inventory(stage40_run: Path, stage34_run: Path) -> dict[str, Any]:
 
 
 def validate_stage41_config(cfg: dict[str, Any], source_cfg: dict[str, Any]) -> None:
+    if str(cfg.get("controller_revision", "")) != CONTROLLER_REVISION:
+        raise ValueError(
+            f"Stage4.1R2 controller_revision must be {CONTROLLER_REVISION!r}; "
+            f"got {cfg.get('controller_revision')!r}"
+        )
     if int(cfg["parallel"]["n_workers"]) != 128:
-        raise ValueError("Stage4.1 complete package is intentionally configured for 128 workers")
+        raise ValueError("Stage4.1R2 complete package is intentionally configured for 128 workers")
     gate = cfg["gate"]
     source_gate = source_cfg["gate"]
     for key in (
@@ -341,12 +347,12 @@ def validate_stage41_config(cfg: dict[str, Any], source_cfg: dict[str, Any]) -> 
         "late_velocity_rms_max_m_per_s", "ip_safety_tolerance_A",
     ):
         if not math.isclose(float(gate[key]), float(source_gate[key]), rel_tol=0.0, abs_tol=1e-12):
-            raise ValueError(f"Stage4.1 hard gate {key} differs from Stage3.4")
+            raise ValueError(f"Stage4.1R2 hard gate {key} differs from Stage3.4")
     for key in ("terminal_abs_tolerance_A", "hold_rms_tolerance_A", "sustained_max_tolerance_A"):
         if not math.isclose(float(gate["ip_tracking"][key]), float(source_gate["ip_tracking"][key]), rel_tol=0.0, abs_tol=1e-12):
-            raise ValueError(f"Stage4.1 Ip tracking threshold {key} differs from Stage3.4")
+            raise ValueError(f"Stage4.1R2 Ip tracking threshold {key} differs from Stage3.4")
     if int(gate["hold_through_step"]) != 35:
-        raise ValueError("Stage4.1 is fixed to the validated 350 ms horizon")
+        raise ValueError("Stage4.1R2 is fixed to the validated 350 ms horizon")
 
 
 def load_stage41_config(
@@ -376,8 +382,8 @@ def load_stage41_config(
         raise ValueError("Stage3.4 calibration has no positive selected controller scale")
     validate_stage41_config(cfg, source_cfg)
     if run_dir_override is None:
-        root = base.resolve_path(cfg.get("output_root", "stage4_1_runs"), base_dir=project_dir)
-        run_dir = root / f"{cfg.get('run_name', 'stage4_1_delay_gain_phase_robustness_350ms')}_{utc_timestamp()}"
+        root = base.resolve_path(cfg.get("output_root", "stage4_1r2_runs"), base_dir=project_dir)
+        run_dir = root / f"{cfg.get('run_name', 'stage4_1r2_error_state_observer_physical_scheduling_350ms')}_{utc_timestamp()}"
     else:
         run_dir = base.resolve_path(run_dir_override, base_dir=project_dir)
     source33 = Path(source34_manifest["source_stage3_3_run"]).expanduser()
@@ -397,8 +403,8 @@ def load_stage41_config(
     storage = cfg.get("storage", {})
     env_cfg = copy.deepcopy(source_env)
     env_cfg["tsc_timeout_s"] = float(cfg.get("runtime", {}).get("tsc_timeout_s", env_cfg.get("tsc_timeout_s", 180.0)))
-    env_cfg["tsc_workspace_root"] = str(Path(os.environ.get("STAGE4_1_TSC_WORKSPACE_ROOT", storage.get("tsc_workspace_root", "/tmp/tsc_workspace"))).expanduser().resolve())
-    env_cfg["run_root"] = str(Path(os.environ.get("STAGE4_1_TSC_RUN_ROOT", storage.get("tsc_run_root", "/tmp/tsc_workspace/episode_runs"))).expanduser().resolve())
+    env_cfg["tsc_workspace_root"] = str(Path(os.environ.get("STAGE4_1R2_TSC_WORKSPACE_ROOT", os.environ.get("STAGE4_1_TSC_WORKSPACE_ROOT", storage.get("tsc_workspace_root", "/tmp/tsc_workspace")))).expanduser().resolve())
+    env_cfg["run_root"] = str(Path(os.environ.get("STAGE4_1R2_TSC_RUN_ROOT", os.environ.get("STAGE4_1_TSC_RUN_ROOT", storage.get("tsc_run_root", "/tmp/tsc_workspace/episode_runs")))).expanduser().resolve())
     env_cfg["keep_tsc_workspace"] = False
     env_cfg["cleanup_episode_dir"] = True
     env_cfg["keep_failed_episode_dir"] = bool(storage.get("keep_failed_episode_dir", False))
@@ -439,20 +445,20 @@ def _available_memory_gb() -> float:
 
 
 def runtime_preflight(ctx: Stage41Context) -> dict[str, Any]:
-    requested = int(os.environ.get("STAGE4_1_WORKERS", os.environ.get("STAGE4_WORKERS", ctx.cfg["parallel"]["n_workers"])))
+    requested = int(os.environ.get("STAGE4_1R2_WORKERS", os.environ.get("STAGE4_1_WORKERS", os.environ.get("STAGE4_WORKERS", ctx.cfg["parallel"]["n_workers"]))))
     logical = int(os.cpu_count() or 1)
     reserve = int(ctx.cfg["parallel"].get("reserve_logical_cpus", 16))
     allowed = max(1, logical - reserve)
     if requested > allowed:
         raise RuntimeError(
-            f"Stage4.1 requests {requested} workers but only {logical} logical CPUs are visible; "
+            f"Stage4.1R2 requests {requested} workers but only {logical} logical CPUs are visible; "
             f"reserve={reserve}, safe maximum={allowed}. No silent fallback is allowed."
         )
     memory = _available_memory_gb()
     configured = max(1, int(ctx.cfg["parallel"].get("n_workers", 128)))
     minimum_memory = float(ctx.cfg["parallel"].get("minimum_available_memory_gb", 72.0)) * (requested / configured)
     if math.isfinite(memory) and memory < minimum_memory:
-        raise RuntimeError(f"Stage4.1 requires at least {minimum_memory:.1f} GiB available memory; {memory:.1f} GiB is visible")
+        raise RuntimeError(f"Stage4.1R2 requires at least {minimum_memory:.1f} GiB available memory; {memory:.1f} GiB is visible")
     soft_fd, hard_fd = resource.getrlimit(resource.RLIMIT_NOFILE)
     minimum_fd = max(1024, requested * 16)
     if soft_fd < minimum_fd:
@@ -472,6 +478,7 @@ def initial_state() -> dict[str, Any]:
     return {
         "schema_version": SCHEMA_VERSION,
         "stage": STAGE,
+        "controller_revision": CONTROLLER_REVISION,
         "prepared": True,
         "regression_complete": False,
         "recovery_complete": False,
@@ -503,18 +510,23 @@ def initialize_stage41_run(ctx: Stage41Context) -> None:
         path.mkdir(parents=True, exist_ok=True)
     if ctx.paths.manifest.exists():
         old = read_json(ctx.paths.manifest)
+        if str(old.get("controller_revision", "")) != CONTROLLER_REVISION:
+            raise ValueError(
+                "Existing run uses a different controller revision; create a fresh Stage4.1R2 run"
+            )
         if Path(old["source_stage4_0_run"]).resolve() != ctx.source_stage40_run:
-            raise ValueError("Existing Stage4.1 run points to a different Stage4.0 source")
+            raise ValueError("Existing Stage4.1R2 run points to a different Stage4.0 source")
         digest = str((old.get("source_fingerprint") or {}).get("digest", ""))
         if digest and digest != ctx.source_fingerprint["digest"]:
-            raise ValueError("Stage4.0/Stage3.4 source content changed since this Stage4.1 run was prepared")
-    atomic_write_json(ctx.paths.run_dir / "stage4_1_config.resolved.json", ctx.cfg)
+            raise ValueError("Stage4.0/Stage3.4 source content changed since this Stage4.1R2 run was prepared")
+    atomic_write_json(ctx.paths.run_dir / "stage4_1r2_config.resolved.json", ctx.cfg)
     atomic_write_json(ctx.paths.run_dir / "train_config.resolved.json", ctx.source_train_cfg)
     atomic_write_json(ctx.paths.run_dir / "env_config.resolved.json", ctx.source_env_cfg)
     preflight = runtime_preflight(ctx)
     manifest = {
         "schema_version": SCHEMA_VERSION,
         "stage": STAGE,
+        "controller_revision": CONTROLLER_REVISION,
         "created_utc": utc_timestamp(),
         "source_stage4_0_run": str(ctx.source_stage40_run),
         "source_stage3_4_run": str(ctx.source_stage34_run),
@@ -592,6 +604,7 @@ def _materialize_variant(
     payload["train_cfg"] = train_cfg
     payload["env_cfg"] = env_cfg
     payload["max_delta_a"] = float(env_cfg["current_slew_a_per_ms"]) * float(env_cfg["dt_ms"])
+    payload["nominal_max_delta_a"] = float(ctx.source_env_cfg["current_slew_a_per_ms"]) * float(ctx.source_env_cfg["dt_ms"])
     payload["stage4_1_cfg"] = copy.deepcopy(ctx.cfg)
     payload["variant_id"] = variant_id
     payload["start_folder"] = env_cfg.get("start_folder")
@@ -636,117 +649,203 @@ def discover_restart_folders(ctx: Stage41Context) -> list[str]:
 
 
 @dataclass
-class AlphaBetaObserver:
+class NominalErrorStateObserver:
+    """Alpha-beta observer for *tracking error* relative to a time-varying nominal.
+
+    The Stage4.1 absolute-state observer used a constant-velocity model on the
+    accelerating nominal trajectory itself.  Even when the plant followed the
+    nominal exactly, that produced artificial velocity errors comparable to the
+    0.10 m/s control gate.  This revision removes the nominal position, velocity
+    and Ip *before* filtering, so an exact nominal trajectory is an invariant
+    zero-error solution.
+    """
+
     alpha: float
     beta: float
     alpha_ip: float
-    max_abs_velocity: float
-    position: np.ndarray | None = None
-    velocity: np.ndarray | None = None
-    ip: float | None = None
+    max_abs_velocity_error: float
+    position_error: np.ndarray | None = None
+    velocity_error: np.ndarray | None = None
+    ip_error: float | None = None
     last_index: int | None = None
 
-    def update(self, measurement: np.ndarray, measurement_index: int, dt_s: float) -> None:
-        measurement = np.asarray(measurement, dtype=float)
-        if self.position is None:
-            self.position = measurement[:2].copy()
-            self.velocity = np.zeros(2, dtype=float)
-            self.ip = float(measurement[2])
-            self.last_index = int(measurement_index)
+    def update(
+        self,
+        measurement: np.ndarray,
+        measurement_index: int,
+        nominal_y: np.ndarray,
+        dt_s: float,
+    ) -> None:
+        measurement = np.asarray(measurement, dtype=float).reshape(3)
+        nominal_y = np.asarray(nominal_y, dtype=float)
+        index = int(measurement_index)
+        if not 0 <= index < len(nominal_y):
+            raise IndexError(f"measurement index {index} outside nominal trajectory length {len(nominal_y)}")
+        error = measurement - nominal_y[index, :3]
+        if self.position_error is None:
+            self.position_error = error[:2].copy()
+            self.velocity_error = np.zeros(2, dtype=float)
+            self.ip_error = float(error[2])
+            self.last_index = index
             return
-        if self.last_index is not None and measurement_index <= self.last_index:
+        if self.last_index is not None and index <= self.last_index:
             return
-        elapsed_steps = max(1, int(measurement_index - int(self.last_index)))
-        elapsed = elapsed_steps * dt_s
-        predicted = self.position + self.velocity * elapsed
-        residual = measurement[:2] - predicted
-        self.position = predicted + self.alpha * residual
-        self.velocity = self.velocity + (self.beta / max(elapsed, 1e-12)) * residual
-        self.velocity = np.clip(self.velocity, -self.max_abs_velocity, self.max_abs_velocity)
-        self.ip = (1.0 - self.alpha_ip) * float(self.ip) + self.alpha_ip * float(measurement[2])
-        self.last_index = int(measurement_index)
+        elapsed_steps = max(1, index - int(self.last_index))
+        elapsed = elapsed_steps * float(dt_s)
+        predicted_error = self.position_error + self.velocity_error * elapsed
+        residual = error[:2] - predicted_error
+        self.position_error = predicted_error + self.alpha * residual
+        self.velocity_error = self.velocity_error + (self.beta / max(elapsed, 1e-12)) * residual
+        self.velocity_error = np.clip(
+            self.velocity_error, -self.max_abs_velocity_error, self.max_abs_velocity_error
+        )
+        self.ip_error = (1.0 - self.alpha_ip) * float(self.ip_error) + self.alpha_ip * float(error[2])
+        self.last_index = index
 
-    def predict_to(self, current_index: int, dt_s: float) -> tuple[np.ndarray, np.ndarray, float]:
-        if self.position is None or self.velocity is None or self.ip is None or self.last_index is None:
-            raise RuntimeError("observer has not been initialized")
-        ahead = max(0, int(current_index - self.last_index)) * dt_s
-        return self.position + self.velocity * ahead, self.velocity.copy(), float(self.ip)
+    def predict_error_to(self, current_index: int, dt_s: float) -> tuple[np.ndarray, np.ndarray, float]:
+        if (
+            self.position_error is None
+            or self.velocity_error is None
+            or self.ip_error is None
+            or self.last_index is None
+        ):
+            raise RuntimeError("nominal-error observer has not been initialized")
+        ahead = max(0, int(current_index) - int(self.last_index)) * float(dt_s)
+        return (
+            self.position_error + self.velocity_error * ahead,
+            self.velocity_error.copy(),
+            float(self.ip_error),
+        )
 
+
+# Compatibility alias for external imports.  Its semantics are intentionally
+# changed to nominal-error estimation in controller revision v2.
+AlphaBetaObserver = NominalErrorStateObserver
+
+
+def legacy_measurement_error(
+    observation_history: Sequence[np.ndarray],
+    *,
+    delayed_local_index: int,
+    delayed_absolute_index: int,
+    current_absolute_index: int,
+    nominal_y: np.ndarray,
+    nominal_velocity: np.ndarray,
+    dt_s: float,
+) -> np.ndarray:
+    """Reproduce the Stage3.4 raw-measurement error path.
+
+    With no noise and no delay this is bit-for-bit the same state/finite-
+    difference construction used by the confirmed Stage3.4 controller.  For a
+    delayed observation, the *error state* (not the absolute state) is propagated
+    to the current phase.
+    """
+    y = np.asarray(observation_history[delayed_local_index], dtype=float).reshape(3)
+    if delayed_local_index <= 0:
+        measured_velocity = np.zeros(2, dtype=float)
+    else:
+        previous = np.asarray(observation_history[delayed_local_index - 1], dtype=float).reshape(3)
+        measured_velocity = (y[:2] - previous[:2]) / max(float(dt_s), 1e-12)
+    position_error = y[:2] - np.asarray(nominal_y[delayed_absolute_index, :2], dtype=float)
+    velocity_error = measured_velocity - np.asarray(nominal_velocity[delayed_absolute_index, :2], dtype=float)
+    ahead = max(0, int(current_absolute_index) - int(delayed_absolute_index)) * float(dt_s)
+    position_error = position_error + velocity_error * ahead
+    ip_error = float(y[2] - nominal_y[delayed_absolute_index, 2])
+    return np.asarray([position_error[0], position_error[1], velocity_error[0], velocity_error[1], ip_error])
 
 def _scaled_jacobian(bundle: dict[str, Any], model_scale: float) -> np.ndarray:
     return np.asarray(bundle["jacobian_normalized"], dtype=float) * float(model_scale)
 
 
-def solve_delay_gain_aware_correction(
+def solve_delay_aware_physical_correction(
     ctx_stub: Any,
     bundle: dict[str, Any],
     *,
     current_step: int,
     modeled_action_delay_steps: int,
-    modeled_pending_commands: Sequence[np.ndarray],
+    modeled_pending_physical_coefficients: Sequence[np.ndarray],
     nominal_physical_coefficients: np.ndarray,
-    nominal_command_coefficients: np.ndarray,
     nominal_feature: np.ndarray,
     measurement_normalized: np.ndarray,
     integral_normalized: np.ndarray,
     previous_correction: np.ndarray,
     controller_scale: float,
-    estimated_effective_gain_by_mode: np.ndarray,
     controller_model_scale: float,
 ) -> dict[str, Any]:
+    """Solve MPC corrections in the *nominal physical mode* coordinates.
+
+    Stage4.1 multiplied Jacobian columns by a diagonal gain/slew estimate and
+    optimized command-space corrections.  That approximation breaks when the
+    3-mode command is decoded through the nonlinear 14-coil max-norm/current
+    repair.  Revision v2 keeps the identified Jacobian in its native physical
+    coefficient coordinates.  A separate physical-coil scheduler maps the
+    desired coefficient sequence into actuator commands.
+    """
     try:
         from scipy.optimize import lsq_linear
     except Exception as exc:  # pragma: no cover
-        raise RuntimeError("scipy is required for Stage4.1 MPC") from exc
+        raise RuntimeError("scipy is required for Stage4.1R2 MPC") from exc
     current_step = int(current_step)
     delay = max(0, int(modeled_action_delay_steps))
     effect_step = min(current_step + delay, 35)
     if effect_step >= 35:
         return {
-            "first_correction": np.zeros(3), "sequence_correction": np.zeros((0, 3)),
-            "solver_success": True, "solver_status": 0, "solver_cost": 0.0,
-            "solver_optimality": 0.0, "predicted_normalized_residual_rms": 0.0,
-            "active_lower": 0, "active_upper": 0, "effect_step": effect_step,
+            "first_correction": np.zeros(3),
+            "sequence_correction": np.zeros((0, 3)),
+            "solver_success": True,
+            "solver_status": 0,
+            "solver_cost": 0.0,
+            "solver_optimality": 0.0,
+            "predicted_normalized_residual_rms": 0.0,
+            "active_lower": 0,
+            "active_upper": 0,
+            "effect_step": effect_step,
             "fixed_pending_steps": delay,
         }
-    jacobian_base = _scaled_jacobian(bundle, controller_model_scale)
+    jacobian = _scaled_jacobian(bundle, controller_model_scale)
     scales = np.asarray(bundle["output_scales"], dtype=float)
     rows = s34._future_feature_rows(current_step)
     projection = s34._measurement_bias_projection(ctx_stub, current_step, rows)
     integral_gain = np.asarray(ctx_stub.cfg["mpc"]["integral_measurement_gain"], dtype=float)
-    effective_measurement = np.asarray(measurement_normalized, dtype=float) + integral_gain * np.asarray(integral_normalized, dtype=float)
+    effective_measurement = np.asarray(measurement_normalized, dtype=float) + integral_gain * np.asarray(
+        integral_normalized, dtype=float
+    )
     future_error = nominal_feature[np.asarray(rows)] / scales[np.asarray(rows)] + projection @ effective_measurement
 
-    gain = np.asarray(estimated_effective_gain_by_mode, dtype=float).reshape(3)
-    gain = np.clip(gain, 1e-6, None)
     fixed_steps = list(range(current_step, min(effect_step, 35)))
     if fixed_steps:
         fixed_columns = [step * 3 + mode for step in fixed_steps for mode in range(3)]
         fixed_delta: list[float] = []
         for offset, step in enumerate(fixed_steps):
-            if offset < len(modeled_pending_commands):
-                command = np.asarray(modeled_pending_commands[offset], dtype=float)
+            if offset < len(modeled_pending_physical_coefficients):
+                physical = np.asarray(modeled_pending_physical_coefficients[offset], dtype=float)
             else:
-                command = np.asarray(nominal_command_coefficients[step], dtype=float)
-            physical = gain * command
+                physical = np.asarray(nominal_physical_coefficients[step], dtype=float)
             fixed_delta.extend((physical - nominal_physical_coefficients[step]).tolist())
-        future_error = future_error + jacobian_base[np.ix_(rows, fixed_columns)] @ np.asarray(fixed_delta, dtype=float)
+        future_error = future_error + jacobian[np.ix_(rows, fixed_columns)] @ np.asarray(fixed_delta, dtype=float)
 
     free_steps = list(range(effect_step, 35))
     columns = [step * 3 + mode for step in free_steps for mode in range(3)]
-    column_scale = np.tile(gain, 35)
-    a = jacobian_base[np.ix_(rows, columns)] * column_scale[np.asarray(columns)][None, :]
+    a = jacobian[np.ix_(rows, columns)]
     weights = s34._state_weight_vector(ctx_stub, rows, current_step)
     sqrt_w = np.sqrt(np.maximum(weights, 0.0))
     augmented_a: list[np.ndarray] = [sqrt_w[:, None] * a]
     augmented_b: list[np.ndarray] = [-sqrt_w * future_error]
 
-    nominal_future = np.asarray(nominal_command_coefficients, dtype=float)[free_steps].reshape(-1)
+    nominal_future = np.asarray(nominal_physical_coefficients, dtype=float)[free_steps].reshape(-1)
     lower_mode = np.asarray(ctx_stub.cfg["trajectory"]["coefficient_lower"], dtype=float)
     upper_mode = np.asarray(ctx_stub.cfg["trajectory"]["coefficient_upper"], dtype=float)
-    feedback_limit = np.asarray(ctx_stub.cfg["mpc"]["per_step_feedback_limit_by_mode"], dtype=float) * float(controller_scale)
-    lower = np.maximum(np.tile(lower_mode, len(free_steps)) - nominal_future, -np.tile(feedback_limit, len(free_steps)))
-    upper = np.minimum(np.tile(upper_mode, len(free_steps)) - nominal_future, np.tile(feedback_limit, len(free_steps)))
+    feedback_limit = np.asarray(ctx_stub.cfg["mpc"]["per_step_feedback_limit_by_mode"], dtype=float) * float(
+        controller_scale
+    )
+    lower = np.maximum(
+        np.tile(lower_mode, len(free_steps)) - nominal_future,
+        -np.tile(feedback_limit, len(free_steps)),
+    )
+    upper = np.minimum(
+        np.tile(upper_mode, len(free_steps)) - nominal_future,
+        np.tile(feedback_limit, len(free_steps)),
+    )
     ridge = float(ctx_stub.cfg["mpc"].get("ridge_lambda", 0.08))
     if ridge > 0.0:
         radius = np.maximum(np.tile(feedback_limit, len(free_steps)), 1e-8)
@@ -755,6 +854,7 @@ def solve_delay_gain_aware_correction(
     smooth = float(ctx_stub.cfg["mpc"].get("future_correction_smoothness", 0.08))
     if smooth > 0.0 and len(free_steps) > 1:
         from tsc_rzip_rllib.diagnostics import stage3_3_target_conditioned_mpc as s33
+
         difference = s33._difference_matrix(len(free_steps))
         augmented_a.append(math.sqrt(smooth) * difference)
         augmented_b.append(np.zeros(difference.shape[0]))
@@ -765,9 +865,13 @@ def solve_delay_gain_aware_correction(
         augmented_a.append(math.sqrt(rate) * first_matrix)
         augmented_b.append(math.sqrt(rate) * np.asarray(previous_correction, dtype=float))
     solution = lsq_linear(
-        np.vstack(augmented_a), np.concatenate(augmented_b), bounds=(lower, upper),
-        method="trf", tol=float(ctx_stub.cfg["mpc"].get("solver_tolerance", 1e-8)),
-        max_iter=int(ctx_stub.cfg["mpc"].get("solver_max_iterations", 300)), lsmr_tol="auto",
+        np.vstack(augmented_a),
+        np.concatenate(augmented_b),
+        bounds=(lower, upper),
+        method="trf",
+        tol=float(ctx_stub.cfg["mpc"].get("solver_tolerance", 1e-8)),
+        max_iter=int(ctx_stub.cfg["mpc"].get("solver_max_iterations", 300)),
+        lsmr_tol="auto",
     )
     sequence = np.asarray(solution.x, dtype=float).reshape(len(free_steps), 3)
     first = sequence[0]
@@ -790,6 +894,178 @@ def solve_delay_gain_aware_correction(
     }
 
 
+@dataclass
+class PhysicalCoilScheduler:
+    modes_tsc: np.ndarray
+    nominal_max_delta_a: float
+    command_max_delta_a: float
+    min_current: np.ndarray
+    max_current: np.ndarray
+    lower_mode: np.ndarray
+    upper_mode: np.ndarray
+    regularization: float = 1e-4
+
+    def _action_from_effective(self, effective_coefficients: np.ndarray, currents: np.ndarray, max_delta_a: float) -> np.ndarray:
+        desired = np.asarray(effective_coefficients, dtype=float) @ np.asarray(self.modes_tsc, dtype=float).T
+        max_abs = float(np.max(np.abs(desired)))
+        if max_abs > 1.0:
+            desired = desired / max_abs
+        delta = desired * float(max_delta_a)
+        scale = 1.0
+        currents = np.asarray(currents, dtype=float)
+        for coil in range(14):
+            if delta[coil] > 0.0:
+                scale = min(scale, max(0.0, (self.max_current[coil] - currents[coil]) / max(delta[coil], 1e-30)))
+            elif delta[coil] < 0.0:
+                scale = min(scale, max(0.0, (self.min_current[coil] - currents[coil]) / min(delta[coil], -1e-30)))
+        return np.asarray(desired * float(np.clip(scale, 0.0, 1.0)), dtype=float)
+
+    def target_delta_a(self, desired_physical_coefficients: np.ndarray, currents: np.ndarray) -> np.ndarray:
+        return self._action_from_effective(desired_physical_coefficients, currents, self.nominal_max_delta_a) * self.nominal_max_delta_a
+
+    def predicted_delta_a(
+        self,
+        command_coefficients: np.ndarray,
+        currents: np.ndarray,
+        gain_estimate: np.ndarray,
+        slew_estimate: float,
+    ) -> np.ndarray:
+        effective = np.asarray(gain_estimate, dtype=float) * np.asarray(command_coefficients, dtype=float)
+        max_delta = self.nominal_max_delta_a * float(slew_estimate)
+        return self._action_from_effective(effective, currents, max_delta) * max_delta
+
+    def equivalent_physical_coefficients(
+        self,
+        command_coefficients: np.ndarray,
+        gain_estimate: np.ndarray,
+        slew_estimate: float,
+    ) -> np.ndarray:
+        # Used only for delay-queue prediction.  The physical-coil inverse below
+        # handles the nonlinear decoder for the command actually issued.
+        return np.asarray(gain_estimate, dtype=float) * float(slew_estimate) * np.asarray(
+            command_coefficients, dtype=float
+        )
+
+    def solve_command(
+        self,
+        desired_physical_coefficients: np.ndarray,
+        currents: np.ndarray,
+        gain_estimate: np.ndarray,
+        slew_estimate: float,
+        *,
+        enabled: bool,
+    ) -> dict[str, Any]:
+        desired_physical = np.asarray(desired_physical_coefficients, dtype=float).reshape(3)
+        gain = np.clip(np.asarray(gain_estimate, dtype=float).reshape(3), 1e-6, None)
+        slew = max(float(slew_estimate), 1e-6)
+        target_delta = self.target_delta_a(desired_physical, currents)
+        if not enabled:
+            command = np.clip(desired_physical, self.lower_mode, self.upper_mode)
+            predicted = self.predicted_delta_a(command, currents, np.ones(3), 1.0)
+            mismatch = predicted - target_delta
+            return {
+                "command": command,
+                "target_delta_a": target_delta,
+                "predicted_delta_a": predicted,
+                "mismatch_rms_a": float(np.sqrt(np.mean(mismatch**2))),
+                "mismatch_max_abs_a": float(np.max(np.abs(mismatch))),
+                "solver_success": True,
+                "solver_status": 0,
+                "identity_shortcut": True,
+            }
+        if np.allclose(gain, 1.0, atol=1e-14) and math.isclose(slew, 1.0, abs_tol=1e-14):
+            command = np.clip(desired_physical, self.lower_mode, self.upper_mode)
+            predicted = self.predicted_delta_a(command, currents, gain, slew)
+            mismatch = predicted - target_delta
+            return {
+                "command": command,
+                "target_delta_a": target_delta,
+                "predicted_delta_a": predicted,
+                "mismatch_rms_a": float(np.sqrt(np.mean(mismatch**2))),
+                "mismatch_max_abs_a": float(np.max(np.abs(mismatch))),
+                "solver_success": True,
+                "solver_status": 0,
+                "identity_shortcut": True,
+            }
+        try:
+            from scipy.optimize import least_squares
+        except Exception as exc:  # pragma: no cover
+            raise RuntimeError("scipy is required for physical-coil scheduling") from exc
+        initial = np.clip(desired_physical / (gain * slew), self.lower_mode, self.upper_mode)
+        scale_a = max(self.nominal_max_delta_a, 1.0)
+        reg = math.sqrt(max(self.regularization, 0.0))
+
+        def residual(command: np.ndarray) -> np.ndarray:
+            predicted = self.predicted_delta_a(command, currents, gain, slew)
+            physical_residual = (predicted - target_delta) / scale_a
+            if reg <= 0.0:
+                return physical_residual
+            return np.concatenate([physical_residual, reg * (command - initial)])
+
+        result = least_squares(
+            residual,
+            initial,
+            bounds=(self.lower_mode, self.upper_mode),
+            xtol=1e-10,
+            ftol=1e-10,
+            gtol=1e-10,
+            max_nfev=100,
+        )
+        command = np.clip(np.asarray(result.x, dtype=float), self.lower_mode, self.upper_mode)
+        predicted = self.predicted_delta_a(command, currents, gain, slew)
+        mismatch = predicted - target_delta
+        return {
+            "command": command,
+            "target_delta_a": target_delta,
+            "predicted_delta_a": predicted,
+            "mismatch_rms_a": float(np.sqrt(np.mean(mismatch**2))),
+            "mismatch_max_abs_a": float(np.max(np.abs(mismatch))),
+            "solver_success": bool(result.success),
+            "solver_status": int(result.status),
+            "identity_shortcut": False,
+            "nfev": int(result.nfev),
+        }
+
+
+# Backward-compatible wrapper for unit tests and downstream imports.  It now
+# solves in physical coordinates and ignores the deprecated diagonal gain
+# approximation.
+def solve_delay_gain_aware_correction(
+    ctx_stub: Any,
+    bundle: dict[str, Any],
+    *,
+    current_step: int,
+    modeled_action_delay_steps: int,
+    modeled_pending_commands: Sequence[np.ndarray],
+    nominal_physical_coefficients: np.ndarray,
+    nominal_command_coefficients: np.ndarray,
+    nominal_feature: np.ndarray,
+    measurement_normalized: np.ndarray,
+    integral_normalized: np.ndarray,
+    previous_correction: np.ndarray,
+    controller_scale: float,
+    estimated_effective_gain_by_mode: np.ndarray,
+    controller_model_scale: float,
+) -> dict[str, Any]:
+    pending_physical = [
+        np.asarray(estimated_effective_gain_by_mode, dtype=float) * np.asarray(command, dtype=float)
+        for command in modeled_pending_commands
+    ]
+    return solve_delay_aware_physical_correction(
+        ctx_stub,
+        bundle,
+        current_step=current_step,
+        modeled_action_delay_steps=modeled_action_delay_steps,
+        modeled_pending_physical_coefficients=pending_physical,
+        nominal_physical_coefficients=nominal_physical_coefficients,
+        nominal_feature=nominal_feature,
+        measurement_normalized=measurement_normalized,
+        integral_normalized=integral_normalized,
+        previous_correction=previous_correction,
+        controller_scale=controller_scale,
+        controller_model_scale=controller_model_scale,
+    )
+
 # ---------------------------------------------------------------------------
 # Worker and Ray evaluation
 # ---------------------------------------------------------------------------
@@ -805,6 +1081,7 @@ class LocalStage41Worker:
         self.env_cfg = payload["env_cfg"]
         self.modes_tsc = np.asarray(payload["modes_tsc"], dtype=float)
         self.max_delta_a = float(payload["max_delta_a"])
+        self.nominal_max_delta_a = float(payload.get("nominal_max_delta_a", self.max_delta_a))
         self.min_current = np.asarray(payload["min_current_tsc"], dtype=float)
         self.max_current = np.asarray(payload["max_current_tsc"], dtype=float)
         self.variant_id = str(payload.get("variant_id", "base"))
@@ -813,20 +1090,58 @@ class LocalStage41Worker:
         self.bundle = bundle
         self.stub = SimpleNamespace(cfg=self.cfg, env_cfg=self.env_cfg)
         self.env = make_tsc_rzip_env(copy.deepcopy(self.train_cfg), worker_id=worker_id, seed=None)
+        self.lower_mode = np.asarray(self.cfg["trajectory"]["coefficient_lower"], dtype=float)
+        self.upper_mode = np.asarray(self.cfg["trajectory"]["coefficient_upper"], dtype=float)
+        scheduler_cfg = self.robust_cfg["controller_upgrade"]["gain_slew_scheduling"]
+        self.scheduler = PhysicalCoilScheduler(
+            modes_tsc=self.modes_tsc,
+            nominal_max_delta_a=self.nominal_max_delta_a,
+            command_max_delta_a=self.max_delta_a,
+            min_current=self.min_current,
+            max_current=self.max_current,
+            lower_mode=self.lower_mode,
+            upper_mode=self.upper_mode,
+            regularization=float(scheduler_cfg.get("physical_inverse_regularization", 1e-4)),
+        )
 
     def _mode_action(self, effective_coefficients: np.ndarray, currents: np.ndarray) -> np.ndarray:
-        desired = np.asarray(effective_coefficients, dtype=float) @ self.modes_tsc.T
-        max_abs = float(np.max(np.abs(desired)))
-        if max_abs > 1.0:
-            desired = desired / max_abs
-        delta = desired * self.max_delta_a
-        scale = 1.0
-        for coil in range(14):
-            if delta[coil] > 0.0:
-                scale = min(scale, max(0.0, (self.max_current[coil] - currents[coil]) / max(delta[coil], 1e-30)))
-            elif delta[coil] < 0.0:
-                scale = min(scale, max(0.0, (self.min_current[coil] - currents[coil]) / min(delta[coil], -1e-30)))
-        return np.asarray(desired * float(np.clip(scale, 0.0, 1.0)), dtype=np.float32)
+        return np.asarray(
+            self.scheduler._action_from_effective(effective_coefficients, currents, self.max_delta_a),
+            dtype=np.float32,
+        )
+
+    def _flag(self, spec: dict[str, Any], group: str, override_key: str) -> bool:
+        if override_key in spec:
+            return bool(spec[override_key])
+        return bool(self.robust_cfg["controller_upgrade"][group].get("enabled", True))
+
+    def _nominal_command_plan(
+        self,
+        nominal_physical: np.ndarray,
+        initial_currents: np.ndarray,
+        gain_estimate: np.ndarray,
+        slew_estimate: float,
+        scheduling_enabled: bool,
+    ) -> tuple[np.ndarray, list[dict[str, Any]]]:
+        commands = np.zeros_like(nominal_physical)
+        diagnostics: list[dict[str, Any]] = []
+        predicted_currents = np.asarray(initial_currents, dtype=float).copy()
+        for step in range(35):
+            scheduled = self.scheduler.solve_command(
+                nominal_physical[step], predicted_currents, gain_estimate, slew_estimate,
+                enabled=scheduling_enabled,
+            )
+            command = np.asarray(scheduled["command"], dtype=float)
+            commands[step] = command
+            predicted_currents = predicted_currents + np.asarray(scheduled["predicted_delta_a"], dtype=float)
+            diagnostics.append({
+                "step": step,
+                "mismatch_rms_a": float(scheduled["mismatch_rms_a"]),
+                "mismatch_max_abs_a": float(scheduled["mismatch_max_abs_a"]),
+                "identity_shortcut": bool(scheduled.get("identity_shortcut", False)),
+                "solver_success": bool(scheduled.get("solver_success", True)),
+            })
+        return commands, diagnostics
 
     def evaluate(self, spec: dict[str, Any]) -> dict[str, Any]:
         started = time.time()
@@ -836,7 +1151,9 @@ class LocalStage41Worker:
         failure_reason = ""
         try:
             offset = np.asarray([
-                spec.get("target_R_offset_m", 0.0), spec.get("target_Z_offset_m", 0.0), spec.get("target_Ip_offset_A", 0.0)
+                spec.get("target_R_offset_m", 0.0),
+                spec.get("target_Z_offset_m", 0.0),
+                spec.get("target_Ip_offset_A", 0.0),
             ], dtype=float)
             interpolation = s34.interpolation_for_target(self.stub, self.library, offset)
             nominal_physical = _vector(interpolation["full_control_vector"], 105).reshape(35, 3)
@@ -849,63 +1166,108 @@ class LocalStage41Worker:
             ], dtype=float)
             nominal_feature = s34._nominal_feature(nominal_y, nominal_velocity, requested_target)
 
+            observer_enabled = self._flag(spec, "observer", "observer_enabled")
+            delay_aware_enabled = self._flag(spec, "delay_aware", "delay_aware_enabled")
+            scheduling_enabled = self._flag(
+                spec, "gain_slew_scheduling", "gain_slew_scheduling_enabled"
+            )
+            phase_aware_enabled = self._flag(
+                spec, "phase_aware_reference", "phase_aware_reference_enabled"
+            )
+
             actual_gain = np.asarray(spec.get("actuator_gain_by_mode", [1.0, 1.0, 1.0]), dtype=float)
             gain_estimate = np.asarray(spec.get("controller_gain_estimate_by_mode", actual_gain), dtype=float)
             slew_estimate = float(spec.get("controller_slew_scale_estimate", self.actual_slew_scale))
-            schedule = self.robust_cfg["controller_upgrade"]["gain_slew_scheduling"]
-            effective_estimate = gain_estimate * slew_estimate
-            effective_estimate = np.clip(
-                effective_estimate,
-                float(schedule.get("minimum_effective_scale", 0.70)),
-                float(schedule.get("maximum_effective_scale", 1.30)),
+            schedule_cfg = self.robust_cfg["controller_upgrade"]["gain_slew_scheduling"]
+            gain_estimate = np.clip(
+                gain_estimate,
+                float(schedule_cfg.get("minimum_effective_scale", 0.70)),
+                float(schedule_cfg.get("maximum_effective_scale", 1.30)),
             )
-            lower_mode = np.asarray(self.cfg["trajectory"]["coefficient_lower"], dtype=float)
-            upper_mode = np.asarray(self.cfg["trajectory"]["coefficient_upper"], dtype=float)
-            if bool(schedule.get("precompensate_nominal", True)):
-                nominal_command = np.clip(nominal_physical / effective_estimate[None, :], lower_mode, upper_mode)
-            else:
-                nominal_command = nominal_physical.copy()
+            slew_estimate = float(np.clip(
+                slew_estimate,
+                float(schedule_cfg.get("minimum_effective_scale", 0.70)),
+                float(schedule_cfg.get("maximum_effective_scale", 1.30)),
+            ))
 
             controller_scale = float(spec.get("controller_scale", 0.0))
             actual_delay = max(0, int(spec.get("action_delay_steps", 0)))
-            modeled_delay = max(0, int(spec.get("controller_action_delay_steps", actual_delay)))
-            maximum_delay = int(self.robust_cfg["controller_upgrade"]["delay_aware"].get("maximum_modeled_action_delay_steps", 2))
-            modeled_delay = min(modeled_delay, maximum_delay)
+            requested_modeled_delay = max(0, int(spec.get("controller_action_delay_steps", actual_delay)))
+            maximum_delay = int(
+                self.robust_cfg["controller_upgrade"]["delay_aware"].get(
+                    "maximum_modeled_action_delay_steps", 2
+                )
+            )
+            modeled_delay = min(requested_modeled_delay, maximum_delay) if delay_aware_enabled else 0
             prime_queue = bool(spec.get(
                 "prime_action_queue_with_nominal",
-                self.robust_cfg["controller_upgrade"]["delay_aware"].get("prime_action_queue_with_nominal", True),
+                self.robust_cfg["controller_upgrade"]["delay_aware"].get(
+                    "prime_action_queue_with_nominal", True
+                ),
             ))
-            command_queue: list[np.ndarray] = []
-            for index in range(actual_delay):
-                command_queue.append(nominal_command[index].copy() if prime_queue else np.zeros(3, dtype=float))
 
             self.env.reset()
+            initial_currents = np.asarray(self.env.last_state["currents_a_tsc"], dtype=float)
+            nominal_command_plan, nominal_schedule_diagnostics = self._nominal_command_plan(
+                nominal_physical,
+                initial_currents,
+                gain_estimate,
+                slew_estimate,
+                scheduling_enabled,
+            )
+
+            command_queue: list[dict[str, np.ndarray]] = []
+            for index in range(actual_delay):
+                if prime_queue:
+                    command_queue.append({
+                        "command": nominal_command_plan[index].copy(),
+                        "desired_physical": nominal_physical[index].copy(),
+                    })
+                else:
+                    command_queue.append({
+                        "command": np.zeros(3, dtype=float),
+                        "desired_physical": np.zeros(3, dtype=float),
+                    })
+
             zero_action = np.zeros(14, dtype=np.float32)
             prelude_trajectory.append(base._state_record(self.env, 0, zero_action))
             prelude_deltas = spec.get("prelude_mode_deltas") or []
-            phase_offset = len(prelude_deltas)
-            for prelude_step, delta_command in enumerate(prelude_deltas):
-                command = np.clip(nominal_command[prelude_step] + np.asarray(delta_command, dtype=float), lower_mode, upper_mode)
-                effective = actual_gain * command + np.asarray(spec.get("actuator_bias_by_mode", [0.0, 0.0, 0.0]), dtype=float)
+            env_phase_offset = len(prelude_deltas)
+            actuator_bias = np.asarray(
+                spec.get("actuator_bias_by_mode", [0.0, 0.0, 0.0]), dtype=float
+            )
+            for prelude_step, delta_physical in enumerate(prelude_deltas):
+                desired_physical = np.clip(
+                    nominal_physical[prelude_step] + np.asarray(delta_physical, dtype=float),
+                    self.lower_mode,
+                    self.upper_mode,
+                )
                 currents = np.asarray(self.env.last_state["currents_a_tsc"], dtype=float)
+                scheduled = self.scheduler.solve_command(
+                    desired_physical, currents, gain_estimate, slew_estimate,
+                    enabled=scheduling_enabled,
+                )
+                command = np.asarray(scheduled["command"], dtype=float)
+                effective = actual_gain * command + actuator_bias
                 action = self._mode_action(effective, currents)
                 _, _, terminated, truncated, info = self.env.step(action)
                 prelude_trajectory.append(base._state_record(self.env, prelude_step + 1, action))
                 if terminated:
-                    failure_reason = str(info.get("failure_reason", "prelude terminated")); break
+                    failure_reason = str(info.get("failure_reason", "prelude terminated"))
+                    break
                 if truncated:
-                    failure_reason = "environment truncated during prelude"; break
+                    failure_reason = "environment truncated during prelude"
+                    break
             if failure_reason:
                 raise RuntimeError(failure_reason)
 
-            # The full trajectory remains exactly 36 states.  Prelude steps
-            # consume the beginning of the 350 ms horizon, and the controller
-            # continues from the matching absolute nominal phase.
             trajectory = [copy.deepcopy(row) for row in prelude_trajectory]
+            reference_phase_offset = env_phase_offset if phase_aware_enabled else 0
+            phase_reference_index = min(reference_phase_offset, 35)
             phase_start_state = np.asarray([
                 trajectory[-1]["R"], trajectory[-1]["Z"], trajectory[-1]["Ip"]
             ], dtype=float)
-            phase_start_reference = nominal_y[phase_offset]
+            phase_start_reference = nominal_y[phase_reference_index]
             phase_start_error = phase_start_state - phase_start_reference
 
             measurement_scales = np.asarray([
@@ -918,144 +1280,223 @@ class LocalStage41Worker:
             noise_cfg = spec.get("observation_noise") or {}
             rng = np.random.default_rng(int(noise_cfg.get("seed", 0)))
             noise_sigma = np.asarray([
-                noise_cfg.get("R_sigma_m", 0.0), noise_cfg.get("Z_sigma_m", 0.0), noise_cfg.get("Ip_sigma_A", 0.0)
+                noise_cfg.get("R_sigma_m", 0.0),
+                noise_cfg.get("Z_sigma_m", 0.0),
+                noise_cfg.get("Ip_sigma_A", 0.0),
             ], dtype=float)
             bias_cfg = spec.get("observation_bias") or {}
-            bias = np.asarray([bias_cfg.get("R_m", 0.0), bias_cfg.get("Z_m", 0.0), bias_cfg.get("Ip_A", 0.0)], dtype=float)
+            bias = np.asarray([
+                bias_cfg.get("R_m", 0.0),
+                bias_cfg.get("Z_m", 0.0),
+                bias_cfg.get("Ip_A", 0.0),
+            ], dtype=float)
             observation_delay = max(0, int(spec.get("observation_delay_steps", 0)))
-            observation_history: list[np.ndarray] = []
+            measurement_records: list[tuple[int, np.ndarray]] = []
             dt_s = float(self.env_cfg["dt_ms"]) / 1000.0
             observer_cfg = self.robust_cfg["controller_upgrade"]["observer"]
-            observer = AlphaBetaObserver(
+            observer = NominalErrorStateObserver(
                 alpha=float(observer_cfg.get("alpha_position", 0.72)),
                 beta=float(observer_cfg.get("beta_velocity", 0.16)),
                 alpha_ip=float(observer_cfg.get("alpha_ip", 0.45)),
-                max_abs_velocity=float(observer_cfg.get("maximum_abs_velocity_m_per_s", 2.0)),
+                max_abs_velocity_error=float(
+                    observer_cfg.get("maximum_abs_velocity_m_per_s", 2.0)
+                ),
             )
-            # Seed the observer with every already executed prelude state.  This
-            # preserves the correct phase velocity instead of resetting the
-            # estimated velocity to zero at the prelude/main boundary.
-            for observer_index, row in enumerate(prelude_trajectory):
-                observer.update(
-                    np.asarray([row["R"], row["Z"], row["Ip"]], dtype=float),
-                    observer_index,
-                    dt_s,
-                )
+            if observer_enabled:
+                for env_index, row in enumerate(prelude_trajectory):
+                    ref_index = env_index if phase_aware_enabled else max(0, env_index - env_phase_offset)
+                    observer.update(
+                        np.asarray([row["R"], row["Z"], row["Ip"]], dtype=float),
+                        ref_index,
+                        nominal_y,
+                        dt_s,
+                    )
+
             integral = np.zeros(5, dtype=float)
             previous_correction = np.zeros(3, dtype=float)
             model_scale = float(spec.get("controller_model_scale", 1.0))
-            actuator_bias = np.asarray(spec.get("actuator_bias_by_mode", [0.0, 0.0, 0.0]), dtype=float)
             disturbance = spec.get("disturbance") or None
 
-            for absolute_step in range(phase_offset, 35):
+            for env_step in range(env_phase_offset, 35):
+                reference_step = env_step if phase_aware_enabled else env_step - env_phase_offset
+                reference_step = int(np.clip(reference_step, 0, 34))
                 state = self.env.last_state
                 current_true = np.asarray([state["R"], state["Z"], state["Ip"]], dtype=float)
                 measured_now = current_true + bias + rng.normal(0.0, noise_sigma)
-                observation_history.append(measured_now)
-                local_index = len(observation_history) - 1
-                delayed_local_index = max(0, local_index - observation_delay)
-                delayed_absolute_index = phase_offset + delayed_local_index
-                observer.update(observation_history[delayed_local_index], delayed_absolute_index, dt_s)
-                estimated_position, estimated_velocity, estimated_ip = observer.predict_to(absolute_step, dt_s)
-                measurement_physical = np.asarray([
-                    estimated_position[0] - nominal_y[absolute_step, 0],
-                    estimated_position[1] - nominal_y[absolute_step, 1],
-                    estimated_velocity[0] - nominal_velocity[absolute_step, 0],
-                    estimated_velocity[1] - nominal_velocity[absolute_step, 1],
-                    estimated_ip - nominal_y[absolute_step, 2],
-                ], dtype=float)
+                measurement_records.append((reference_step, measured_now))
+                delayed_record_index = max(0, len(measurement_records) - 1 - observation_delay)
+                delayed_reference_step, delayed_measurement = measurement_records[delayed_record_index]
+
+                if observer_enabled:
+                    observer.update(
+                        delayed_measurement,
+                        delayed_reference_step,
+                        nominal_y,
+                        dt_s,
+                    )
+                    error_position, error_velocity, error_ip = observer.predict_error_to(
+                        reference_step, dt_s
+                    )
+                    measurement_physical = np.asarray([
+                        error_position[0], error_position[1],
+                        error_velocity[0], error_velocity[1], error_ip,
+                    ], dtype=float)
+                else:
+                    history_values = [row[1] for row in measurement_records]
+                    measurement_physical = legacy_measurement_error(
+                        history_values,
+                        delayed_local_index=delayed_record_index,
+                        delayed_absolute_index=delayed_reference_step,
+                        current_absolute_index=reference_step,
+                        nominal_y=nominal_y,
+                        nominal_velocity=nominal_velocity,
+                        dt_s=dt_s,
+                    )
                 measurement = measurement_physical / measurement_scales
                 integral = float(self.cfg["mpc"].get("integral_decay", 0.92)) * integral + measurement
 
-                modeled_pending: list[np.ndarray] = []
+                modeled_pending_physical: list[np.ndarray] = []
                 for index in range(modeled_delay):
                     if index < len(command_queue):
-                        modeled_pending.append(np.asarray(command_queue[index], dtype=float))
+                        modeled_pending_physical.append(
+                            np.asarray(command_queue[index]["desired_physical"], dtype=float)
+                        )
                     else:
-                        ref_step = min(absolute_step + index, 34)
-                        modeled_pending.append(nominal_command[ref_step].copy())
+                        ref_step = min(reference_step + index, 34)
+                        modeled_pending_physical.append(nominal_physical[ref_step].copy())
+
                 if controller_scale <= 0.0:
-                    effect_step = min(absolute_step + modeled_delay, 34)
+                    effect_step = min(reference_step + modeled_delay, 34)
                     solve = {
-                        "first_correction": np.zeros(3), "sequence_correction": np.zeros((0, 3)),
-                        "solver_success": True, "solver_status": 0, "solver_cost": 0.0,
+                        "first_correction": np.zeros(3),
+                        "sequence_correction": np.zeros((0, 3)),
+                        "solver_success": True,
+                        "solver_status": 0,
+                        "solver_cost": 0.0,
                         "solver_optimality": 0.0,
-                        "predicted_normalized_residual_rms": float(np.sqrt(np.mean(measurement**2))),
-                        "active_lower": 0, "active_upper": 0, "effect_step": effect_step,
+                        "predicted_normalized_residual_rms": float(
+                            np.sqrt(np.mean(measurement**2))
+                        ),
+                        "active_lower": 0,
+                        "active_upper": 0,
+                        "effect_step": effect_step,
                         "fixed_pending_steps": modeled_delay,
                     }
                 else:
-                    solve = solve_delay_gain_aware_correction(
-                        self.stub, self.bundle,
-                        current_step=absolute_step,
+                    solve = solve_delay_aware_physical_correction(
+                        self.stub,
+                        self.bundle,
+                        current_step=reference_step,
                         modeled_action_delay_steps=modeled_delay,
-                        modeled_pending_commands=modeled_pending,
+                        modeled_pending_physical_coefficients=modeled_pending_physical,
                         nominal_physical_coefficients=nominal_physical,
-                        nominal_command_coefficients=nominal_command,
                         nominal_feature=nominal_feature,
                         measurement_normalized=measurement,
                         integral_normalized=integral,
                         previous_correction=previous_correction,
                         controller_scale=controller_scale,
-                        estimated_effective_gain_by_mode=effective_estimate,
                         controller_model_scale=model_scale,
                     )
+
                 correction = np.asarray(solve["first_correction"], dtype=float)
-                effect_step = min(int(solve.get("effect_step", absolute_step)), 34)
-                issued_command = np.clip(nominal_command[effect_step] + correction, lower_mode, upper_mode)
+                effect_step = min(int(solve.get("effect_step", reference_step)), 34)
+                desired_physical = np.clip(
+                    nominal_physical[effect_step] + correction,
+                    self.lower_mode,
+                    self.upper_mode,
+                )
+                currents = np.asarray(self.env.last_state["currents_a_tsc"], dtype=float)
+                scheduled = self.scheduler.solve_command(
+                    desired_physical,
+                    currents,
+                    gain_estimate,
+                    slew_estimate,
+                    enabled=scheduling_enabled,
+                )
+                issued_command = np.asarray(scheduled["command"], dtype=float)
+                issued_item = {
+                    "command": issued_command,
+                    "desired_physical": desired_physical,
+                }
                 if actual_delay > 0:
-                    command_queue.append(issued_command)
-                    applied_command = np.asarray(command_queue.pop(0), dtype=float)
+                    command_queue.append(issued_item)
+                    applied_item = command_queue.pop(0)
                 else:
-                    applied_command = issued_command
+                    applied_item = issued_item
+                applied_command = np.asarray(applied_item["command"], dtype=float)
 
                 disturbance_applied = 0.0
                 if disturbance:
                     start = int(disturbance["step"])
                     duration = max(1, int(disturbance.get("duration_steps", 1)))
-                    if start <= absolute_step < start + duration:
+                    if start <= env_step < start + duration:
                         mode = int(disturbance["mode"])
                         requested_amplitude = float(disturbance["amplitude"])
                         before = float(applied_command[mode])
                         applied_command = applied_command.copy()
-                        applied_command[mode] = float(np.clip(before + requested_amplitude, lower_mode[mode], upper_mode[mode]))
+                        applied_command[mode] = float(np.clip(
+                            before + requested_amplitude,
+                            self.lower_mode[mode],
+                            self.upper_mode[mode],
+                        ))
                         disturbance_applied = float(applied_command[mode] - before)
 
                 effective_coefficients = actual_gain * applied_command + actuator_bias
-                currents = np.asarray(self.env.last_state["currents_a_tsc"], dtype=float)
                 action = self._mode_action(effective_coefficients, currents)
                 _, _, terminated, truncated, info = self.env.step(action)
-                trajectory.append(base._state_record(self.env, absolute_step + 1, action))
+                trajectory.append(base._state_record(self.env, env_step + 1, action))
+                actual_delta_a = np.asarray(action, dtype=float) * self.max_delta_a
+                scheduler_target = np.asarray(scheduled["target_delta_a"], dtype=float)
+                actual_scheduler_mismatch = actual_delta_a - scheduler_target
                 control_trace.append({
-                    "step": absolute_step,
-                    "phase_offset_steps": phase_offset,
+                    "step": env_step,
+                    "reference_step": reference_step,
+                    "phase_offset_steps": env_phase_offset,
+                    "phase_aware_reference_enabled": phase_aware_enabled,
+                    "observer_enabled": observer_enabled,
+                    "delay_aware_enabled": delay_aware_enabled,
+                    "gain_slew_scheduling_enabled": scheduling_enabled,
                     "observation_delay_steps": observation_delay,
                     "actual_action_delay_steps": actual_delay,
                     "modeled_action_delay_steps": modeled_delay,
                     "measurement_physical": measurement_physical.tolist(),
                     "measurement_normalized": measurement.tolist(),
                     "integral_normalized": integral.tolist(),
-                    "mode_correction": correction.tolist(),
+                    "mode_correction_physical": correction.tolist(),
+                    "desired_physical_mode_coefficients": desired_physical.tolist(),
                     "issued_mode_coefficients": issued_command.tolist(),
                     "applied_command_mode_coefficients": applied_command.tolist(),
                     "effective_mode_coefficients": effective_coefficients.tolist(),
-                    "estimated_effective_gain_by_mode": effective_estimate.tolist(),
+                    "estimated_gain_by_mode": gain_estimate.tolist(),
                     "actual_gain_by_mode": actual_gain.tolist(),
+                    "estimated_slew_scale": slew_estimate,
+                    "actual_slew_scale": self.actual_slew_scale,
+                    "scheduler_predicted_mismatch_rms_a": float(scheduled["mismatch_rms_a"]),
+                    "scheduler_predicted_mismatch_max_abs_a": float(scheduled["mismatch_max_abs_a"]),
+                    "scheduler_actual_mismatch_rms_a": float(np.sqrt(np.mean(actual_scheduler_mismatch**2))),
+                    "scheduler_actual_mismatch_max_abs_a": float(np.max(np.abs(actual_scheduler_mismatch))),
                     "disturbance_applied": disturbance_applied,
                     "solver_success": bool(solve["solver_success"]),
                     "solver_status": int(solve["solver_status"]),
                     "solver_cost": float(solve["solver_cost"]),
-                    "predicted_normalized_residual_rms": float(solve["predicted_normalized_residual_rms"]),
+                    "predicted_normalized_residual_rms": float(
+                        solve["predicted_normalized_residual_rms"]
+                    ),
                 })
                 previous_correction = correction
                 if terminated:
-                    failure_reason = str(info.get("failure_reason", "terminated")); break
-                if truncated and absolute_step + 1 < 35:
-                    failure_reason = "environment truncated before the 350 ms horizon"; break
+                    failure_reason = str(info.get("failure_reason", "terminated"))
+                    break
+                if truncated and env_step + 1 < 35:
+                    failure_reason = "environment truncated before the 350 ms horizon"
+                    break
 
-            success = len(trajectory) == 36 and not any(bool(row.get("abnormal", False)) for row in trajectory)
+            success = len(trajectory) == 36 and not any(
+                bool(row.get("abnormal", False)) for row in trajectory
+            )
             result = {
                 "schema_version": SCHEMA_VERSION,
+                "controller_revision": CONTROLLER_REVISION,
                 "experiment_id": spec["experiment_id"],
                 "spec": spec,
                 "success": bool(success),
@@ -1064,19 +1505,24 @@ class LocalStage41Worker:
                 "trajectory": trajectory,
                 "prelude_trajectory": prelude_trajectory,
                 "control_trace": control_trace,
+                "nominal_schedule_diagnostics": nominal_schedule_diagnostics,
                 "library_interpolation": interpolation,
                 "environment_variant": self.variant_id,
                 "phase_start_diagnostics": {
-                    "phase_offset_steps": phase_offset,
+                    "phase_offset_steps": env_phase_offset,
+                    "reference_phase_offset_steps": reference_phase_offset,
                     "R_error_to_nominal_m": float(phase_start_error[0]),
                     "Z_error_to_nominal_m": float(phase_start_error[1]),
                     "Ip_error_to_nominal_A": float(phase_start_error[2]),
-                    "RZ_box_error_to_nominal_m": float(max(abs(phase_start_error[0]), abs(phase_start_error[1]))),
+                    "RZ_box_error_to_nominal_m": float(
+                        max(abs(phase_start_error[0]), abs(phase_start_error[1]))
+                    ),
                 },
             }
         except Exception as exc:
             result = {
                 "schema_version": SCHEMA_VERSION,
+                "controller_revision": CONTROLLER_REVISION,
                 "experiment_id": spec.get("experiment_id", "unknown"),
                 "spec": spec,
                 "success": False,
@@ -1090,12 +1536,14 @@ class LocalStage41Worker:
             }
         runner = getattr(self.env, "runner", None)
         if runner is not None:
-            runner.cleanup_episode_workspace(failed=not bool(result.get("success")), reason=str(result.get("failure_reason", "stage4_1_complete")))
+            runner.cleanup_episode_workspace(
+                failed=not bool(result.get("success")),
+                reason=str(result.get("failure_reason", "stage4_1r2_complete")),
+            )
         return _json_safe(result)
 
     def close(self) -> None:
         self.env.close()
-
 
 def _ray_actor_class():
     import ray
@@ -1152,24 +1600,24 @@ def evaluate_specs(
             try:
                 for index, spec in enumerate(pending, 1):
                     atomic_write_json_gz(output_dir / f"{spec['experiment_id']}.json.gz", worker.evaluate(spec))
-                    print(f"[Stage4.1 {variant}] {index}/{len(pending)}", flush=True)
+                    print(f"[Stage4.1R2 {variant}] {index}/{len(pending)}", flush=True)
             finally:
                 worker.close()
     elif backend == "ray" and pending_by_variant:
         import ray
-        requested = int(os.environ.get("STAGE4_1_WORKERS", os.environ.get("STAGE4_WORKERS", ctx.cfg["parallel"]["n_workers"])))
+        requested = int(os.environ.get("STAGE4_1R2_WORKERS", os.environ.get("STAGE4_1_WORKERS", os.environ.get("STAGE4_WORKERS", ctx.cfg["parallel"]["n_workers"]))))
         total_pending = sum(len(rows) for rows in pending_by_variant.values())
         plan = ensure_ray_worker_plan(
             ray,
             requested_workers=requested,
             pending_tasks=total_pending,
             ray_tmpdir=os.environ.get("RAY_TMPDIR", ctx.cfg["parallel"].get("ray_tmpdir", "")) or None,
-            log_prefix="[Stage4.1 mixed-variant]",
+            log_prefix="[Stage4.1R2 mixed-variant]",
         )
         allocation = s40._allocate_variant_actor_counts(
             {variant: len(rows) for variant, rows in pending_by_variant.items()}, plan.actor_count
         )
-        print("[Stage4.1 mixed-variant] actor_allocation=" + json.dumps(allocation, sort_keys=True, separators=(",", ":")), flush=True)
+        print("[Stage4.1R2 mixed-variant] actor_allocation=" + json.dumps(allocation, sort_keys=True, separators=(",", ":")), flush=True)
         Actor = _ray_actor_class()
         all_actors: list[Any] = []
         actors_by_variant: dict[str, list[Any]] = {}
@@ -1187,7 +1635,7 @@ def evaluate_specs(
             while refs:
                 ready, _ = ray.wait(list(refs), num_returns=1, timeout=30.0)
                 if not ready:
-                    print(f"[Stage4.1 mixed-variant] waiting {done}/{total_pending}", flush=True)
+                    print(f"[Stage4.1R2 mixed-variant] waiting {done}/{total_pending}", flush=True)
                     continue
                 for ref in ready:
                     spec = refs.pop(ref)
@@ -1201,7 +1649,7 @@ def evaluate_specs(
                     atomic_write_json_gz(output_dir / f"{spec['experiment_id']}.json.gz", result)
                     done += 1
                     if done % 10 == 0 or not refs:
-                        print(f"[Stage4.1 mixed-variant] {done}/{total_pending}", flush=True)
+                        print(f"[Stage4.1R2 mixed-variant] {done}/{total_pending}", flush=True)
         finally:
             s2._close_ray_actors(all_actors, timeout_s=float(ctx.cfg["storage"].get("actor_close_timeout_s", 1800.0)))
     elif backend not in {"serial", "ray"}:
@@ -1232,13 +1680,15 @@ def _make_spec(
 ) -> dict[str, Any]:
     extra = copy.deepcopy(extra or {})
     identity = {
+        "controller_revision": CONTROLLER_REVISION,
         "phase": phase, "scenario": scenario, "category": category,
         "target": target, "controller_scale": controller_scale,
         "environment_variant": environment_variant, "extra": extra,
     }
     return {
-        "kind": "stage4_1_robustness_mpc",
-        "experiment_id": _scenario_digest(identity),
+        "kind": "stage4_1r2_robustness_mpc",
+        "controller_revision": CONTROLLER_REVISION,
+        "experiment_id": _scenario_digest(identity, prefix="s41r2"),
         "phase": phase,
         "scenario": scenario,
         "category": category,
@@ -1270,7 +1720,9 @@ def result_row(ctx: Stage41Context, result: dict[str, Any]) -> dict[str, Any]:
     interpolation = result.get("library_interpolation") or {}
     trace = result.get("control_trace") or []
     phase_diag = result.get("phase_start_diagnostics") or {}
-    max_correction = max((float(np.max(np.abs(row.get("mode_correction", [0.0, 0.0, 0.0])))) for row in trace), default=0.0)
+    max_correction = max((float(np.max(np.abs(row.get("mode_correction_physical", row.get("mode_correction", [0.0, 0.0, 0.0]))))) for row in trace), default=0.0)
+    scheduler_rms = max((float(row.get("scheduler_actual_mismatch_rms_a", 0.0)) for row in trace), default=0.0)
+    scheduler_max = max((float(row.get("scheduler_actual_mismatch_max_abs_a", 0.0)) for row in trace), default=0.0)
     represented = np.asarray(interpolation.get("represented_target_offset", [math.nan, math.nan, math.nan]), dtype=float)
     requested = np.asarray([
         float(spec.get("target_R_offset_m", 0.0)), float(spec.get("target_Z_offset_m", 0.0)), float(spec.get("target_Ip_offset_A", 0.0))
@@ -1306,7 +1758,15 @@ def result_row(ctx: Stage41Context, result: dict[str, Any]) -> dict[str, Any]:
         "phase_offset_steps": int(phase_diag.get("phase_offset_steps", 0)),
         "phase_start_RZ_box_error_to_nominal_m": phase_diag.get("RZ_box_error_to_nominal_m"),
         "phase_start_Ip_error_to_nominal_A": phase_diag.get("Ip_error_to_nominal_A"),
+        "controller_revision": result.get("controller_revision", spec.get("controller_revision", "")),
+        "controller_variant": spec.get("controller_variant", "default"),
+        "observer_enabled": bool(spec.get("observer_enabled", True)),
+        "delay_aware_enabled": bool(spec.get("delay_aware_enabled", True)),
+        "gain_slew_scheduling_enabled": bool(spec.get("gain_slew_scheduling_enabled", True)),
+        "phase_aware_reference_enabled": bool(spec.get("phase_aware_reference_enabled", True)),
         "max_abs_mode_correction": max_correction,
+        "max_scheduler_actual_mismatch_rms_a": scheduler_rms,
+        "max_scheduler_actual_mismatch_abs_a": scheduler_max,
         **metrics,
     }
 
@@ -1321,28 +1781,150 @@ def summarize_pairs(rows: Sequence[dict[str, Any]], pair_fields: Sequence[str]) 
 
 
 def run_regression(ctx: Stage41Context, *, backend: str, resume: bool) -> dict[str, Any]:
+    """Hard integration gate before any expensive robustness campaign.
+
+    Three variants are evaluated on the same ten Stage3.4 regression targets:
+    open-loop, the exact Stage3.4 raw-measurement controller path, and the new
+    nominal-error observer/physical scheduler path.  The pipeline is not
+    allowed to continue if the confirmed legacy behavior is not reproduced or
+    if the upgraded controller loses a previously passing target.
+    """
     cfg = ctx.cfg["regression_targets"]
+    variants = [
+        {
+            "name": "open_loop",
+            "controller_scale": 0.0,
+            "observer_enabled": False,
+            "delay_aware_enabled": False,
+            "gain_slew_scheduling_enabled": False,
+            "phase_aware_reference_enabled": True,
+        },
+        {
+            "name": "legacy_stage3_4",
+            "controller_scale": ctx.source_scale,
+            "observer_enabled": False,
+            "delay_aware_enabled": False,
+            "gain_slew_scheduling_enabled": False,
+            "phase_aware_reference_enabled": True,
+        },
+        {
+            "name": "error_state_observer_v2",
+            "controller_scale": ctx.source_scale,
+            "observer_enabled": True,
+            "delay_aware_enabled": True,
+            "gain_slew_scheduling_enabled": True,
+            "phase_aware_reference_enabled": True,
+        },
+    ]
     specs: list[dict[str, Any]] = []
     for scenario in cfg["scenarios"]:
         target = {"target_id": scenario["scenario"], **scenario}
-        for raw_scale in cfg["controller_scales"]:
-            specs.append(_make_spec(
-                phase="regression_targets", scenario=scenario["scenario"], category="regression_target",
-                target=target, controller_scale=_resolve_scale(raw_scale, ctx.source_scale),
-            ))
-    results = evaluate_specs(ctx, specs, output_dir=ctx.paths.regression / "raw", backend=backend, resume=resume)
+        for variant in variants:
+            specs.append(
+                _make_spec(
+                    phase="regression_targets",
+                    scenario=scenario["scenario"],
+                    category="regression_target",
+                    target=target,
+                    controller_scale=float(variant["controller_scale"]),
+                    extra={
+                        "controller_variant": variant["name"],
+                        "observer_enabled": variant["observer_enabled"],
+                        "delay_aware_enabled": variant["delay_aware_enabled"],
+                        "gain_slew_scheduling_enabled": variant["gain_slew_scheduling_enabled"],
+                        "phase_aware_reference_enabled": variant["phase_aware_reference_enabled"],
+                    },
+                )
+            )
+    results = evaluate_specs(
+        ctx, specs, output_dir=ctx.paths.regression / "raw", backend=backend, resume=resume
+    )
     rows = [result_row(ctx, result) for result in results]
-    pairs, pair_summary = summarize_pairs(rows, ("scenario", "category"))
+    by_scenario: dict[str, dict[str, dict[str, Any]]] = {}
+    for row in rows:
+        by_scenario.setdefault(str(row["scenario"]), {})[str(row["controller_variant"])] = row
+    comparison_rows: list[dict[str, Any]] = []
+    for scenario in [str(item["scenario"]) for item in cfg["scenarios"]]:
+        group = by_scenario.get(scenario, {})
+        missing = [name for name in ("open_loop", "legacy_stage3_4", "error_state_observer_v2") if name not in group]
+        if missing:
+            raise RuntimeError(f"regression scenario {scenario} missing variants {missing}")
+        open_row = group["open_loop"]
+        legacy_row = group["legacy_stage3_4"]
+        upgraded_row = group["error_state_observer_v2"]
+        open_pass = _as_bool(open_row.get("stage3_4_target_tracking_pass"))
+        legacy_pass = _as_bool(legacy_row.get("stage3_4_target_tracking_pass"))
+        upgraded_pass = _as_bool(upgraded_row.get("stage3_4_target_tracking_pass"))
+        legacy_margin = _as_float(legacy_row.get("stage3_4_tracking_minimum_signed_margin"), -1e12)
+        upgraded_margin = _as_float(upgraded_row.get("stage3_4_tracking_minimum_signed_margin"), -1e12)
+        comparison_rows.append({
+            "scenario": scenario,
+            "open_loop_pass": open_pass,
+            "legacy_stage3_4_pass": legacy_pass,
+            "upgraded_pass": upgraded_pass,
+            "upgraded_lost_open_loop_pass": bool(open_pass and not upgraded_pass),
+            "upgraded_lost_legacy_pass": bool(legacy_pass and not upgraded_pass),
+            "legacy_signed_margin": legacy_margin,
+            "upgraded_signed_margin": upgraded_margin,
+            "upgraded_minus_legacy_margin": upgraded_margin - legacy_margin,
+            "legacy_post_arrival_velocity_rms": _as_float(
+                legacy_row.get("stage3_4_post_arrival_velocity_rms_m_per_s"), 1e12
+            ),
+            "upgraded_post_arrival_velocity_rms": _as_float(
+                upgraded_row.get("stage3_4_post_arrival_velocity_rms_m_per_s"), 1e12
+            ),
+            "legacy_final_velocity": _as_float(legacy_row.get("final_velocity_m_per_s"), 1e12),
+            "upgraded_final_velocity": _as_float(upgraded_row.get("final_velocity_m_per_s"), 1e12),
+            "upgraded_scheduler_mismatch_rms_a": _as_float(
+                upgraded_row.get("max_scheduler_actual_mismatch_rms_a"), 0.0
+            ),
+        })
+    margin_deltas = [row["upgraded_minus_legacy_margin"] for row in comparison_rows]
+    minimum_median_delta = float(cfg.get("minimum_median_margin_delta_vs_legacy", -0.02))
+    minimum_worst_delta = float(cfg.get("minimum_worst_margin_delta_vs_legacy", -0.08))
+    maximum_scheduler_mismatch = float(
+        ctx.cfg["controller_upgrade"]["gain_slew_scheduling"].get(
+            "maximum_allowed_regression_scheduler_mismatch_rms_A", 0.05
+        )
+    )
+    observed_scheduler_mismatch = max(
+        row["upgraded_scheduler_mismatch_rms_a"] for row in comparison_rows
+    )
+    passed = bool(
+        all(row["open_loop_pass"] for row in comparison_rows)
+        and all(row["legacy_stage3_4_pass"] for row in comparison_rows)
+        and all(row["upgraded_pass"] for row in comparison_rows)
+        and not any(row["upgraded_lost_open_loop_pass"] for row in comparison_rows)
+        and not any(row["upgraded_lost_legacy_pass"] for row in comparison_rows)
+        and float(np.median(margin_deltas)) >= minimum_median_delta
+        and min(margin_deltas) >= minimum_worst_delta
+        and observed_scheduler_mismatch <= maximum_scheduler_mismatch
+    )
     summary = {
-        "schema_version": SCHEMA_VERSION, "stage": STAGE, "phase": "regression_targets",
-        "n_rollouts": len(rows), "n_scenarios": len(pairs), "pair_summary": pair_summary,
-        "passed": bool(
-            all(bool(row["feedback_pass"]) for row in pairs)
-            and (not bool(cfg.get("require_no_lost_open_loop_passes", True)) or not any(bool(row["lost"]) for row in pairs))
-        ),
+        "schema_version": SCHEMA_VERSION,
+        "stage": STAGE,
+        "controller_revision": CONTROLLER_REVISION,
+        "phase": "regression_targets",
+        "n_rollouts": len(rows),
+        "n_scenarios": len(comparison_rows),
+        "open_loop_passes": sum(row["open_loop_pass"] for row in comparison_rows),
+        "legacy_passes": sum(row["legacy_stage3_4_pass"] for row in comparison_rows),
+        "upgraded_passes": sum(row["upgraded_pass"] for row in comparison_rows),
+        "n_lost_open_loop": sum(row["upgraded_lost_open_loop_pass"] for row in comparison_rows),
+        "n_lost_legacy": sum(row["upgraded_lost_legacy_pass"] for row in comparison_rows),
+        "median_margin_delta_vs_legacy": float(np.median(margin_deltas)),
+        "worst_margin_delta_vs_legacy": float(min(margin_deltas)),
+        "minimum_median_margin_delta_vs_legacy": minimum_median_delta,
+        "minimum_worst_margin_delta_vs_legacy": minimum_worst_delta,
+        "maximum_scheduler_mismatch_rms_a": maximum_scheduler_mismatch,
+        "observed_scheduler_mismatch_rms_a": observed_scheduler_mismatch,
+        "passed": passed,
     }
-    write_csv(ctx.paths.regression / "results.csv", rows); write_csv(ctx.paths.regression / "pairs.csv", pairs)
-    atomic_write_json(ctx.paths.regression / "results.json", rows); atomic_write_json(ctx.paths.regression / "summary.json", summary)
+    write_csv(ctx.paths.regression / "results.csv", rows)
+    write_csv(ctx.paths.regression / "comparison.csv", comparison_rows)
+    atomic_write_json(ctx.paths.regression / "results.json", rows)
+    atomic_write_json(ctx.paths.regression / "comparison.json", comparison_rows)
+    atomic_write_json(ctx.paths.regression / "summary.json", summary)
     _update_state(ctx, regression_complete=True, regression_summary=summary)
     return summary
 
@@ -1850,20 +2432,24 @@ def final_verdict(ctx: Stage41Context) -> dict[str, Any]:
     restart = state.get("restart_summary") or {}
     available = bool(restart.get("true_restart_validation_available"))
     restart_pass = bool(restart.get("passed")) if available else None
-    if core and not available:
-        label = "PASS_STAGE4_1_DELAY_GAIN_PHASE_ROBUSTNESS_AND_RECOVERY_CONFIRMED_TRUE_RESTART_NOT_AVAILABLE"
+    regression_passed = bool((state.get("regression_summary") or {}).get("passed"))
+    if not regression_passed:
+        label = "STAGE4_1R2_CONTROLLER_INTEGRATION_REGRESSION_FAILED"
+    elif core and not available:
+        label = "PASS_STAGE4_1R2_DELAY_GAIN_PHASE_ROBUSTNESS_AND_RECOVERY_CONFIRMED_TRUE_RESTART_NOT_AVAILABLE"
     elif core and restart_pass:
-        label = "PASS_STAGE4_1_DELAY_GAIN_PHASE_ROBUSTNESS_RECOVERY_AND_TRUE_RESTART_CONFIRMED"
+        label = "PASS_STAGE4_1R2_DELAY_GAIN_PHASE_ROBUSTNESS_RECOVERY_AND_TRUE_RESTART_CONFIRMED"
     elif core:
-        label = "PASS_STAGE4_1_CONTROLLED_ROBUSTNESS_TRUE_RESTART_VALIDATION_FAILED"
+        label = "PASS_STAGE4_1R2_CONTROLLED_ROBUSTNESS_TRUE_RESTART_VALIDATION_FAILED"
     else:
-        label = "STAGE4_1_DELAY_GAIN_PHASE_ROBUSTNESS_ENVELOPE_INCOMPLETE"
+        label = "STAGE4_1R2_DELAY_GAIN_PHASE_ROBUSTNESS_ENVELOPE_INCOMPLETE"
     verdict = {
         "schema_version": SCHEMA_VERSION, "stage": STAGE, "created_utc": utc_timestamp(),
         "verdict": label, "source_stage4_0_run": str(ctx.source_stage40_run),
         "source_stage3_4_run": str(ctx.source_stage34_run),
         "source_selected_controller_scale": ctx.source_scale,
-        "regression_passed": bool((state.get("regression_summary") or {}).get("passed")),
+        "controller_revision": CONTROLLER_REVISION,
+        "regression_passed": regression_passed,
         "failure_recovery_passed": bool((state.get("recovery_summary") or {}).get("passed")),
         "structured_uncertainty_passed": bool((state.get("structured_summary") or {}).get("passed")),
         "noise_statistics_passed": bool((state.get("noise_summary") or {}).get("passed")),
@@ -1878,7 +2464,7 @@ def final_verdict(ctx: Stage41Context) -> dict[str, Any]:
         "warning": "This verdict covers only the configured finite delay/gain/slew/noise/history/restart envelope. It is not deployment qualification.",
         "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
     }
-    atomic_write_json(ctx.paths.analysis / "stage4_1_verdict.json", verdict)
+    atomic_write_json(ctx.paths.analysis / "stage4_1r2_verdict.json", verdict)
     return verdict
 
 
@@ -1899,7 +2485,7 @@ def analyze_stage41(ctx: Stage41Context) -> dict[str, Any]:
         "confirmation": state.get("confirmation_summary", {}),
         "verdict": verdict,
     }
-    atomic_write_json(ctx.paths.analysis / "stage4_1_analysis_summary.json", summary)
+    atomic_write_json(ctx.paths.analysis / "stage4_1r2_analysis_summary.json", summary)
     return summary
 
 
@@ -1929,7 +2515,16 @@ def execute(
     if command == "prepare":
         return prepare
     if command in {"all", "regression"}:
-        run_regression(ctx, backend=backend, resume=resume)
+        regression = run_regression(ctx, backend=backend, resume=resume)
+        if command == "all" and not bool(regression.get("passed")):
+            analysis = analyze_stage41(ctx)
+            _update_state(
+                ctx,
+                finished=True,
+                stop_reason="controller_integration_regression_failed",
+                analysis_summary=analysis,
+            )
+            return analysis
     if command in {"all", "recovery"}:
         run_recovery(ctx, backend=backend, resume=resume)
     if command in {"all", "structured"}:
@@ -1955,12 +2550,22 @@ def execute(
 
 
 def synthetic_stage41_test() -> dict[str, Any]:
-    observer = AlphaBetaObserver(alpha=0.7, beta=0.15, alpha_ip=0.4, max_abs_velocity=2.0)
     dt = 0.01
+    t = np.arange(6, dtype=float) * dt
+    nominal = np.column_stack([
+        0.75 + 0.3 * t**2,
+        -0.1 * t**2,
+        30000.0 + 500.0 * t,
+    ])
+    observer = NominalErrorStateObserver(
+        alpha=0.7, beta=0.15, alpha_ip=0.4, max_abs_velocity_error=2.0
+    )
     for index in range(5):
-        observer.update(np.asarray([0.001 * index, -0.0005 * index, 100.0 + index]), index, dt)
-    position, velocity, ip = observer.predict_to(5, dt)
-    assert np.all(np.isfinite(position)) and np.all(np.isfinite(velocity)) and math.isfinite(ip)
+        observer.update(nominal[index], index, nominal, dt)
+    position_error, velocity_error, ip_error = observer.predict_error_to(5, dt)
+    assert np.allclose(position_error, 0.0, atol=1e-14)
+    assert np.allclose(velocity_error, 0.0, atol=1e-14)
+    assert abs(ip_error) <= 1e-14
     assert 0.0 <= wilson_lower_bound(9, 10) <= 1.0
     cfg = {
         "adaptive_failure_recovery": {
@@ -1970,12 +2575,18 @@ def synthetic_stage41_test() -> dict[str, Any]:
     }
     families = len(cfg["adaptive_failure_recovery"]["targets"]) * 3 * 3 * 2
     assert families == 18
-    return {"synthetic_ok": True, "workers": 128, "observer_position": position.tolist(), "families_per_target": 18}
+    return {
+        "synthetic_ok": True,
+        "workers": 128,
+        "controller_revision": CONTROLLER_REVISION,
+        "observer_position_error": position_error.tolist(),
+        "families_per_target": 18,
+    }
 
 
 def _parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Stage4.1 delay/gain/phase-aware robustness and recovery")
-    parser.add_argument("--config", default="configs/stage4_1_delay_gain_phase_robustness_350ms.json")
+    parser = argparse.ArgumentParser(description="Stage4.1R2 nominal-error observer and physical-scheduler robustness validation")
+    parser.add_argument("--config", default="configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json")
     parser.add_argument("--source-stage4-0-run", default=None)
     parser.add_argument("--run-dir", default=None)
     parser.add_argument("--backend", choices=("ray", "serial"), default="ray")

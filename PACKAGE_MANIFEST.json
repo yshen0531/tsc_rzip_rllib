@@ -1,14 +1,14 @@
 {
-  "schema_version": 1,
-  "stage": "Stage4.1",
-  "package_name": "stage4_1_complete_standalone_delay_gain_phase_robustness_128worker_lean",
+  "schema_version": 2,
+  "stage": "Stage4.1R2",
+  "package_name": "stage4_1r2_complete_standalone_error_state_observer_physical_scheduler_128worker_lean",
   "complete_standalone": true,
   "lean_delivery": true,
   "default_workers": 128,
   "silent_worker_fallback": false,
   "base_package": {
-    "filename": "stage4_0_complete_standalone_robustness_recovery_192worker_lean.zip",
-    "sha256": "2aa8633242b2690f64f628de5411bbbf1b6816e409ea06b1e9af23b4867b7a7e"
+    "filename": "stage4_1_complete_standalone_delay_gain_phase_robustness_128worker_lean.zip",
+    "sha256": "d6b265e33b9122067aa90083eb4bbe3ac2aef3de0d776bf4dd2b4e8c1f3bb1d5"
   },
   "source_requirement": "completed Stage4.0 run that references the confirmed Stage3.4 target-conditioned MPC baseline",
   "hard_gate_changed_from_stage3_4": false,
@@ -16,13 +16,14 @@
   "stage3_4_jacobian_changed": false,
   "controller_wrapper_upgraded": true,
   "controller_upgrades": [
-    "alpha-beta R/Z state observer and filtered Ip estimate",
+    "nominal-error-state alpha-beta observer with exact accelerating-nominal invariance",
+    "true enabled/disabled ablation switches for observer, delay, scheduling, and phase reference",
+    "MPC corrections solved in the Stage3.4 physical mode coordinates",
+    "bounded nonlinear inverse scheduling in decoded 14-coil physical-current-increment space",
     "action-delay queue-aware receding-horizon prediction",
-    "gain/slew scheduled Jacobian columns and nominal pre-compensation",
     "phase-aligned continuation after compensated prelude histories",
-    "adaptive disturbance severity ladder until open-loop failure",
-    "category-separated uncertainty gates",
-    "multi-seed noise statistics with Wilson lower bounds"
+    "hard 30-rollout controller-integration regression gate before expensive robustness phases",
+    "adaptive disturbance boundary, category-separated uncertainty, and multi-seed noise statistics"
   ],
   "finite_test_envelope_only": true,
   "deployment_robustness_validated": false,
@@ -31,15 +32,25 @@
   "verification_ignores_unlisted_project_files": true,
   "residual_markdown_files_allowed": true,
   "shell_files": [
-    "run_stage4_1_delay_gain_phase_robustness_native.sh",
-    "run_stage4_1_delay_gain_phase_robustness_nohup.sh",
-    "run_stage4_1_self_test.sh",
-    "run_stage4_1_verify_package.sh",
-    "run_stop_stage4_1_now.sh",
-    "scripts/stage4_1_shell_common.sh"
+    "run_stage4_1r2_error_state_robustness_native.sh",
+    "run_stage4_1r2_error_state_robustness_nohup.sh",
+    "run_stage4_1r2_self_test.sh",
+    "run_stage4_1r2_verify_package.sh",
+    "run_stop_stage4_1r2_now.sh",
+    "scripts/stage4_1r2_shell_common.sh"
   ],
-  "main_config": "configs/stage4_1_delay_gain_phase_robustness_350ms.json",
+  "main_config": "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json",
   "main_module": "tsc_rzip_rllib/diagnostics/stage4_1_delay_gain_phase_robustness.py",
-  "main_entrypoint": "scripts/stage4_1_delay_gain_phase_robustness.py",
-  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+  "main_entrypoint": "scripts/stage4_1r2_error_state_robustness.py",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "controller_revision": "nominal_error_state_observer_physical_coil_scheduler_v2",
+  "regression_gate": {
+    "rollouts": 30,
+    "variants": [
+      "open_loop",
+      "legacy_stage3_4",
+      "error_state_observer_v2"
+    ],
+    "stop_pipeline_on_failure": true
+  }
 }
