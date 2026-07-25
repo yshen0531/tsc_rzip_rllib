@@ -1,37 +1,46 @@
 {
   "schema_version": 1,
-  "package_name": "stage3_4_complete_standalone_late_arrival_350ms_lean",
-  "stage": "Stage3.4",
-  "created_utc": "20260724_021009",
+  "package_name": "stage4_0_complete_standalone_robustness_recovery_192worker_lean",
+  "stage": "Stage4.0",
+  "created_utc": "20260724_145506",
   "complete_standalone": true,
   "lean_delivery": true,
   "requires_git": false,
   "requires_network": false,
   "requires_external_base_tree": false,
+  "default_workers": 192,
+  "reserved_logical_cpus": 16,
+  "minimum_available_memory_gb": 96.0,
+  "minimum_open_file_soft_limit": 4096,
+  "silent_worker_fallback": false,
+  "worker_policy": "The Ray cluster is initialized at the configured campaign capacity. An undersized host or existing Ray cluster fails immediately; the program never silently falls back to 96 or 12 workers.",
   "base_code_package": {
-    "filename": "stage3_3_complete_standalone_ip_tracking_2x_lean_refinement_fix.zip",
-    "sha256": "09e75d1df2f9ddff30705e07285c9b92826b24f62ed536f826e56d96b2842e6b"
+    "filename": "stage3_4_complete_standalone_late_arrival_350ms_lean.zip",
+    "sha256": "dd8cf2bad53e9db1b9ba4e8a11a6aa23a899e4a83543766b80b4658cb61494ad"
   },
   "integration_result_source": {
-    "filename": "stage3_3_runs.zip",
-    "sha256": "52411f32774e29744e0f38860dbbfef5789c1acfe343970c1f5a8d551c596675",
-    "source_run_basename": "stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331",
-    "source_verdict": "TARGET_CONDITIONED_LIBRARY_INCOMPLETE_MPC_NOT_VALIDATED",
-    "source_target_entries": 20,
-    "source_tracking_pass_entries": 14,
-    "source_mandatory_pass": 5,
-    "source_mandatory_total": 10,
-    "source_late_arrival_recomputed_final_pass_by_250ms": 8,
-    "source_late_arrival_recomputed_final_total": 10,
-    "prepare_integration": "passed against the uploaded Stage3.3 and historical result chain"
+    "filename": "stage3_4_runs.zip",
+    "sha256": "fd9150c40ec2616098ac83e49353f178d04d93223f384f88bfa765fd41677544",
+    "source_run_basename": "stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+    "source_verdict": "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED",
+    "source_target_library_entries": 16,
+    "source_mandatory_complete": true,
+    "source_jacobian_shape": [
+      175,
+      105
+    ],
+    "source_selected_controller_scale": 0.5,
+    "source_artifact_guard_validation": "passed against the uploaded Stage3.4 configuration, library, controller bundle, calibration, and verdict"
   },
-  "method": {
-    "controller": "ordered late-arrival target continuation, globally cached real-TSC reduced-space refinement, then target-conditioned per-step receding-horizon MPC POC",
-    "dt_ms": 10,
-    "horizon_steps": 35,
-    "horizon_ms": 350,
-    "n_svd_modes": 3,
-    "control_dimension": 105,
+  "source_controller_frozen": true,
+  "source_target_library_frozen": true,
+  "source_jacobian_frozen": true,
+  "controller_weights_changed": false,
+  "hard_gate_changed_from_stage3_4": false,
+  "hard_gate": {
+    "R_box_tolerance_m": 0.03,
+    "Z_box_tolerance_m": 0.03,
+    "required_arrival_streak_steps": 3,
     "allowed_arrival_ms": [
       120,
       130,
@@ -48,58 +57,9 @@
       240,
       250
     ],
-    "latest_allowed_arrival_ms": 250,
     "hold_through_ms": 350,
-    "minimum_followup_hold_ms_after_latest_arrival": 100,
-    "continuation_tasks": 16,
-    "final_mandatory_tasks": 10,
-    "support_milestone_tasks": 6,
-    "reduced_refinement_rank": 18,
-    "maximum_refinement_rounds_per_task": 5,
-    "real_tsc_probes_per_refinement_round": 36,
-    "real_tsc_proposals_per_refinement_round": 12,
-    "full_identification_jacobian_shape": [
-      175,
-      105
-    ],
-    "full_identification_rollouts": 210,
-    "physical_cache_key": "clipped 105-D control vector only",
-    "physical_cache_reused_across_targets_and_logical_phases": true,
-    "positive_feedback_scale_required_for_mpc_selection": true,
-    "logical_rollout_upper_bound_without_cache_or_early_stopping": 4474
-  },
-  "continuation_design": {
-    "single_axis_milestones": [
-      "R +5 -> +7.5 -> +10 mm",
-      "Z -2 -> -3.5 -> -5 -> -7.5 -> -10 mm"
-    ],
-    "coupled_milestones": [
-      "R+5/Z-2 -> R+5/Z-3.5 -> R+5/Z-5",
-      "R+5/Z-5 -> R+7.5/Z-7.5 -> R+10/Z-10"
-    ],
-    "source_stage3_2_jacobian_warmstart": true,
-    "target_specific_real_tsc_refinement": true,
-    "internal_margin_goal": {
-      "nominal_sustained_box_m": 0.02,
-      "final_target_sustained_box_m": 0.025,
-      "support_sustained_box_m": 0.028,
-      "post_arrival_velocity_rms_m_per_s": 0.07,
-      "note": "Hard-pass candidates continue refining toward a more centered, higher-margin library; failure to reach the internal goal does not erase a valid hard pass."
-    }
-  },
-  "hard_gate_changed_from_stage3_3": false,
-  "hard_numeric_thresholds_changed_from_stage3_3": false,
-  "timing_requirement_changed_from_stage3_3": true,
-  "timing_change": {
-    "previous_latest_arrival_ms": 150,
-    "new_latest_arrival_ms": 250,
-    "previous_hold_through_ms": 250,
-    "new_hold_through_ms": 350
-  },
-  "hard_gate": {
-    "R_box_tolerance_m": 0.03,
-    "Z_box_tolerance_m": 0.03,
-    "endpoint_velocity_max_m_per_s": 0.1,
+    "minimum_followup_hold_ms": 100,
+    "terminal_velocity_max_m_per_s": 0.1,
     "late_velocity_rms_max_m_per_s": 0.1,
     "Ip_safety_tolerance_A": 10000.0
   },
@@ -109,51 +69,143 @@
     "hold_rms_tolerance_A": 2400.0,
     "sustained_max_tolerance_A": 4000.0
   },
-  "ray_capacity_policy": "configured campaign capacity; variable-size waves cannot undersize later waves",
-  "strict_json": true,
-  "resume_supported": true,
-  "source_content_fingerprint_on_resume": true,
-  "online_mpc_deployment_ready": false,
-  "initial_state_robustness_validated": false,
-  "plant_parameter_robustness_validated": false,
-  "noise_delay_robustness_validated": false,
-  "robustness_validated": false,
+  "campaign": {
+    "heldout_targets": {
+      "logical_rollouts": 40,
+      "unique_targets": 20,
+      "in_domain_targets": 16,
+      "extrapolation_targets": 4,
+      "exact_library_matches_forbidden": true
+    },
+    "failure_recovery": {
+      "logical_rollouts": 360,
+      "disturbance_families": 36,
+      "targets": 2,
+      "control_steps": [
+        4,
+        12,
+        24
+      ],
+      "modes": 3,
+      "signs": [
+        -1,
+        1
+      ],
+      "amplitude_levels_per_mode": 5,
+      "purpose": "Find open-loop failure thresholds and measure fail-to-pass MPC recovery, rather than only preserving already-passing cases."
+    },
+    "software_and_actuation_uncertainty": {
+      "logical_rollouts": 104,
+      "targets": 2,
+      "configured_scenarios_per_target": 26,
+      "includes": [
+        "R/Z/Ip observation noise with multiple seeds",
+        "R/Z observation bias",
+        "one- and two-step observation delay",
+        "one-step action delay",
+        "mode actuator-gain error",
+        "controller-model scaling error",
+        "combined noise/delay and gain/action-delay cases",
+        "0.9x and 1.1x physical slew variants"
+      ],
+      "true_general_plant_parameter_variation_claimed": false
+    },
+    "preconditioned_hidden_state": {
+      "logical_rollouts": 32,
+      "targets": 2,
+      "prelude_histories": 8,
+      "purpose": "Test the same apparent task after distinct short mode-command histories."
+    },
+    "alternate_restart_sweep": {
+      "logical_rollouts": "4 per discovered alternate restart folder",
+      "automatic_candidate_offsets_ms": [
+        -20,
+        -10,
+        10,
+        20
+      ],
+      "minimum_alternate_folders_for_validation": 2,
+      "conditional_on_server_data_availability": true,
+      "manual_override_environment_variable": "STAGE4_START_FOLDERS"
+    },
+    "confirmation": {
+      "maximum_selected_scenarios": 12,
+      "repeats_per_scenario": 2,
+      "maximum_rollouts": 24,
+      "prioritizes": [
+        "worst passing held-out targets",
+        "open-loop failures recovered by MPC",
+        "worst passing uncertainty, preconditioned-history, and alternate-restart cases"
+      ]
+    },
+    "logical_rollouts_excluding_restart": 560,
+    "estimated_ray_waves_at_96_workers": 9,
+    "estimated_ray_waves_at_192_workers": 6,
+    "expected_wall_time_speedup_from_192_workers": "approximately 1.4x to 1.6x on this campaign if TSC/filesystem contention remains moderate; not a guaranteed 2x speedup",
+    "expected_ray_wave_note": "Held-out, recovery, uncertainty variants, preconditioned histories, restart variants, and confirmation are each scheduled as mixed-variant waves where applicable."
+  },
+  "runtime_safety": {
+    "fixed_campaign_ray_capacity": true,
+    "variable_wave_actor_count": true,
+    "undersized_existing_ray_cluster_fails_fast": true,
+    "per_candidate_atomic_json_gz": true,
+    "resume_supported": true,
+    "source_content_fingerprint_on_resume": true,
+    "strict_json_no_nan_or_infinity": true,
+    "candidate_workspace_cleanup": true,
+    "actor_close_before_kill": true,
+    "temporary_workspace_under_tmp": true,
+    "mixed_environment_variants_share_one_ray_wave": true,
+    "mixed_variant_actor_budget_allocation": "proportional queue-depth allocation with at least one actor per non-empty variant"
+  },
+  "verdict_scope": {
+    "strongest_verdict_with_true_restart_data": "PASS_STAGE4_0_FINITE_ROBUSTNESS_RECOVERY_AND_TRUE_RESTART_ENVELOPE_CONFIRMED",
+    "strongest_verdict_without_true_restart_data": "PASS_STAGE4_0_CONTROLLED_ROBUSTNESS_AND_RECOVERY_ENVELOPE_CONFIRMED_TRUE_RESTART_NOT_AVAILABLE",
+    "finite_test_envelope_only": true,
+    "deployment_robustness_validated": false,
+    "plant_parameter_robustness_validated": false,
+    "untested_conditions_are_not_claimed": true
+  },
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
   "residual_rl_primary_controller": false,
-  "residual_rl_status": "not started; bounded and secondary after a validated causal feedback baseline",
+  "residual_rl_status": "not started; bounded and secondary after the causal MPC baseline passes broader robustness tests",
   "validation": {
-    "stage3_4_unittest_count": 12,
-    "complete_unittest_count": 128,
+    "stage4_0_specific_unittest_count": 17,
+    "complete_unittest_count": 145,
     "python_compileall": "passed",
-    "config_json_parse": "passed",
-    "shell_bash_n": "passed",
+    "all_config_json_parse": "passed",
+    "all_shell_bash_n": "passed",
     "strict_json_regressions": "passed",
     "ray_capacity_regressions": "passed",
-    "arrival_120_to_250_and_hold_through_350_regression": "passed",
-    "arrival_after_250_rejection_regression": "passed",
-    "physical_cache_fresh_phase_reuse_regression": "passed",
-    "centered_internal_margin_goal_regression": "passed",
-    "positive_feedback_scale_selection_regression": "passed",
-    "real_stage3_3_prepare_integration": "passed",
-    "real_stage3_2_jacobian_continuation_corrections": "all parent edges finite",
-    "real_gotsc_stage3_4_campaign": "not_run_in_packaging_environment"
+    "192_worker_preflight_on_208_logical_cpu_host": "passed",
+    "low_cpu_memory_and_file_limit_fail_fast_regressions": "passed",
+    "heldout_library_collision_rejection": "passed",
+    "failure_recovery_pairing_and_recovery_logic": "passed",
+    "restart_folder_discovery": "passed",
+    "finite_verdict_never_claims_deployment": "passed",
+    "real_stage3_4_source_artifact_guard": "passed",
+    "real_gotsc_stage4_0_campaign": "not_run_in_packaging_environment",
+    "recovery_pairing_metadata_regression": "passed",
+    "slew_variant_worker_headroom_consistency": "passed"
   },
   "truthfulness": {
-    "claims_real_stage3_4_control_success": false,
-    "claims_complete_target_library": false,
-    "claims_online_mpc_deployment_ready": false,
-    "claims_initial_state_robustness": false,
-    "claims_noise_or_delay_robustness": false
+    "claims_real_stage4_0_control_success": false,
+    "claims_true_restart_robustness_without_available_restart_folders": false,
+    "claims_general_plant_parameter_robustness": false,
+    "claims_noise_delay_robustness_before_real_campaign": false,
+    "claims_deployment_qualification": false
   },
-  "final_task": "robust causal R/Z/Ip control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay; residual RL remains bounded and secondary",
+  "final_task": "robust causal R/Z/Ip control across genuinely different initial states, targets, hidden dynamics, plant uncertainty, measurement noise, and control delay; residual RL remains bounded and secondary",
   "delivery_profile": {
     "markdown_files_included": 0,
     "shell_scripts_included": [
-      "run_stage3_4_late_arrival_continuation_mpc_native.sh",
-      "run_stage3_4_late_arrival_continuation_mpc_nohup.sh",
-      "run_stage3_4_self_test.sh",
-      "run_stage3_4_verify_package.sh",
-      "run_stop_stage3_4_now.sh",
-      "scripts/stage3_4_shell_common.sh"
+      "run_stage4_0_robustness_recovery_native.sh",
+      "run_stage4_0_robustness_recovery_nohup.sh",
+      "run_stage4_0_self_test.sh",
+      "run_stage4_0_verify_package.sh",
+      "run_stop_stage4_0_now.sh",
+      "scripts/stage4_0_shell_common.sh"
     ],
     "phase_helper_shell_scripts_omitted": true,
     "historical_stage_shell_scripts_omitted": true,
@@ -171,16 +223,14 @@
       "stage3_0_runs/",
       "stage3_1_runs/",
       "stage3_2_runs/",
-      "stage3_3_runs/"
+      "stage3_3_runs/",
+      "stage3_4_runs/"
     ],
-    "reason": "Stage3.4 follows the Stage3.3/Stage3.2 manifest chain to recover the validated environment, SVD modes, initial currents, source target trajectories, and source controller Jacobian."
+    "reason": "Stage4.0 loads the confirmed Stage3.4 target library, selected MPC scale, full-horizon Jacobian, and follows the validated historical manifest chain to reconstruct the same TSC environment and SVD action basis."
   },
-  "package_file_count_excluding_SHA256SUMS": 55,
+  "package_file_count_excluding_SHA256SUMS": 59,
   "shell_script_count": 6,
   "markdown_file_count": 0,
-  "python_source_count": 40,
-  "config_json_count": 8,
-  "latest_allowed_arrival_ms": 250,
-  "hold_through_ms": 350,
-  "minimum_post_arrival_hold_ms": 100
+  "python_source_count": 43,
+  "config_json_count": 9
 }

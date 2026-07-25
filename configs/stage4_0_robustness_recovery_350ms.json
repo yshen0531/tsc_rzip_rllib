@@ -1,0 +1,700 @@
+{
+  "stage_label": "Stage 4.0",
+  "run_name": "stage4_0_robustness_recovery_350ms",
+  "output_root": "stage4_0_runs",
+  "source_requirement": {
+    "required_stage": "Stage3.4",
+    "required_verdict": "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED",
+    "reuse_selected_controller_scale": true,
+    "require_complete_target_library": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Validate genuine held-out targets, fail-to-pass recovery, sensor/latency/actuation uncertainty, preconditioned hidden-state histories, and any discoverable alternate TSC restart folders without changing the Stage3.4 controller."
+  },
+  "parallel": {
+    "n_workers": 192,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 96.0,
+    "ray_tmpdir": "/tmp/stage4_0"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "allowed_arrival_steps": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "hold_through_step": 35,
+    "minimum_post_arrival_hold_steps": 10,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "heldout_targets": {
+    "controller_scales": [
+      0.0,
+      "source_selected"
+    ],
+    "minimum_in_domain_mpc_pass_fraction": 0.9,
+    "minimum_in_domain_open_loop_pass_fraction": 0.6,
+    "require_no_lost_open_loop_passes": true,
+    "minimum_median_signed_margin_gain": -0.01,
+    "scenarios": [
+      {
+        "scenario": "R_p3p3",
+        "domain": "in_domain",
+        "R_offset_m": 0.0033,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "R_p6p2",
+        "domain": "in_domain",
+        "R_offset_m": 0.0062,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "R_p8p8",
+        "domain": "in_domain",
+        "R_offset_m": 0.0088,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "Z_m1p3",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.0013,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "Z_m4p2",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.0042,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "Z_m6p4",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.0064,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "Z_m8p6",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.0086,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "RZ_p3p3_m4p2",
+        "domain": "in_domain",
+        "R_offset_m": 0.0033,
+        "Z_offset_m": -0.0042,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "RZ_p6p2_m8p6",
+        "domain": "in_domain",
+        "R_offset_m": 0.0062,
+        "Z_offset_m": -0.0086,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "RZ_p8p8_m3p3",
+        "domain": "in_domain",
+        "R_offset_m": 0.0088,
+        "Z_offset_m": -0.0033,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "RZ_p2p5_m7p0",
+        "domain": "in_domain",
+        "R_offset_m": 0.0025,
+        "Z_offset_m": -0.007,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "RZ_p7p0_m2p5",
+        "domain": "in_domain",
+        "R_offset_m": 0.007,
+        "Z_offset_m": -0.0025,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "Ip_m300",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": -300.0
+      },
+      {
+        "scenario": "Ip_p300",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 300.0
+      },
+      {
+        "scenario": "Ip_m600",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": -600.0
+      },
+      {
+        "scenario": "Ip_p600",
+        "domain": "in_domain",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 600.0
+      },
+      {
+        "scenario": "Ip_m1500",
+        "domain": "extrapolation",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": -1500.0
+      },
+      {
+        "scenario": "Ip_p1500",
+        "domain": "extrapolation",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 1500.0
+      },
+      {
+        "scenario": "R_m5_Z_p5",
+        "domain": "extrapolation",
+        "R_offset_m": -0.005,
+        "Z_offset_m": 0.005,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "scenario": "R_m8_Z_p8",
+        "domain": "extrapolation",
+        "R_offset_m": -0.008,
+        "Z_offset_m": 0.008,
+        "Ip_offset_A": 0.0
+      }
+    ]
+  },
+  "failure_recovery": {
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "steps": [
+      4,
+      12,
+      24
+    ],
+    "amplitudes_by_mode": {
+      "0": [
+        0.08,
+        0.12,
+        0.16,
+        0.2,
+        0.28
+      ],
+      "1": [
+        0.08,
+        0.12,
+        0.16,
+        0.2,
+        0.28
+      ],
+      "2": [
+        0.035,
+        0.05,
+        0.07,
+        0.1,
+        0.14
+      ]
+    },
+    "signs": [
+      -1,
+      1
+    ],
+    "controller_scales": [
+      0.0,
+      "source_selected"
+    ],
+    "minimum_families_with_open_loop_failure": 8,
+    "minimum_failure_recovery_fraction": 0.5,
+    "minimum_preserved_open_loop_pass_fraction": 0.95
+  },
+  "uncertainty": {
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "controller_scales": [
+      0.0,
+      "source_selected"
+    ],
+    "minimum_mpc_pass_fraction": 0.8,
+    "minimum_preserved_open_loop_pass_fraction": 0.9,
+    "scenarios": [
+      {
+        "name": "noise_low_s0",
+        "observation_noise": {
+          "R_sigma_m": 0.00025,
+          "Z_sigma_m": 0.00025,
+          "Ip_sigma_A": 50.0,
+          "seed": 1101
+        }
+      },
+      {
+        "name": "noise_low_s1",
+        "observation_noise": {
+          "R_sigma_m": 0.00025,
+          "Z_sigma_m": 0.00025,
+          "Ip_sigma_A": 50.0,
+          "seed": 1102
+        }
+      },
+      {
+        "name": "noise_low_s2",
+        "observation_noise": {
+          "R_sigma_m": 0.00025,
+          "Z_sigma_m": 0.00025,
+          "Ip_sigma_A": 50.0,
+          "seed": 1103
+        }
+      },
+      {
+        "name": "noise_med_s0",
+        "observation_noise": {
+          "R_sigma_m": 0.0005,
+          "Z_sigma_m": 0.0005,
+          "Ip_sigma_A": 100.0,
+          "seed": 1201
+        }
+      },
+      {
+        "name": "noise_med_s1",
+        "observation_noise": {
+          "R_sigma_m": 0.0005,
+          "Z_sigma_m": 0.0005,
+          "Ip_sigma_A": 100.0,
+          "seed": 1202
+        }
+      },
+      {
+        "name": "noise_med_s2",
+        "observation_noise": {
+          "R_sigma_m": 0.0005,
+          "Z_sigma_m": 0.0005,
+          "Ip_sigma_A": 100.0,
+          "seed": 1203
+        }
+      },
+      {
+        "name": "noise_high_s0",
+        "observation_noise": {
+          "R_sigma_m": 0.001,
+          "Z_sigma_m": 0.001,
+          "Ip_sigma_A": 200.0,
+          "seed": 1301
+        }
+      },
+      {
+        "name": "noise_high_s1",
+        "observation_noise": {
+          "R_sigma_m": 0.001,
+          "Z_sigma_m": 0.001,
+          "Ip_sigma_A": 200.0,
+          "seed": 1302
+        }
+      },
+      {
+        "name": "noise_high_s2",
+        "observation_noise": {
+          "R_sigma_m": 0.001,
+          "Z_sigma_m": 0.001,
+          "Ip_sigma_A": 200.0,
+          "seed": 1303
+        }
+      },
+      {
+        "name": "observation_delay_1",
+        "observation_delay_steps": 1
+      },
+      {
+        "name": "observation_delay_2",
+        "observation_delay_steps": 2
+      },
+      {
+        "name": "action_delay_1",
+        "action_delay_steps": 1
+      },
+      {
+        "name": "gain_all_m10",
+        "actuator_gain_by_mode": [
+          0.9,
+          0.9,
+          0.9
+        ]
+      },
+      {
+        "name": "gain_all_m5",
+        "actuator_gain_by_mode": [
+          0.95,
+          0.95,
+          0.95
+        ]
+      },
+      {
+        "name": "gain_all_p5",
+        "actuator_gain_by_mode": [
+          1.05,
+          1.05,
+          1.05
+        ]
+      },
+      {
+        "name": "gain_all_p10",
+        "actuator_gain_by_mode": [
+          1.1,
+          1.1,
+          1.1
+        ]
+      },
+      {
+        "name": "gain_m1low_m2high",
+        "actuator_gain_by_mode": [
+          0.9,
+          1.1,
+          1.0
+        ]
+      },
+      {
+        "name": "gain_m1high_m2low",
+        "actuator_gain_by_mode": [
+          1.1,
+          0.9,
+          1.0
+        ]
+      },
+      {
+        "name": "model_scale_m15",
+        "controller_model_scale": 0.85
+      },
+      {
+        "name": "model_scale_p15",
+        "controller_model_scale": 1.15
+      },
+      {
+        "name": "bias_Rp0p5_Zm0p5",
+        "observation_bias": {
+          "R_m": 0.0005,
+          "Z_m": -0.0005,
+          "Ip_A": 0.0
+        }
+      },
+      {
+        "name": "bias_Rm0p5_Zp0p5",
+        "observation_bias": {
+          "R_m": -0.0005,
+          "Z_m": 0.0005,
+          "Ip_A": 0.0
+        }
+      },
+      {
+        "name": "combined_noise_delay",
+        "observation_noise": {
+          "R_sigma_m": 0.0005,
+          "Z_sigma_m": 0.0005,
+          "Ip_sigma_A": 100.0,
+          "seed": 1401
+        },
+        "observation_delay_steps": 1
+      },
+      {
+        "name": "combined_gain_actiondelay",
+        "actuator_gain_by_mode": [
+          0.95,
+          0.95,
+          1.0
+        ],
+        "action_delay_steps": 1
+      }
+    ],
+    "slew_scale_variants": [
+      0.9,
+      1.1
+    ]
+  },
+  "preconditioned_state": {
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "controller_scales": [
+      0.0,
+      "source_selected"
+    ],
+    "minimum_mpc_pass_fraction": 0.75,
+    "minimum_preserved_open_loop_pass_fraction": 0.85,
+    "preludes": [
+      {
+        "name": "m1_p",
+        "mode_commands": [
+          [
+            0.12,
+            0.0,
+            0.0
+          ],
+          [
+            0.12,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "m1_m",
+        "mode_commands": [
+          [
+            -0.12,
+            0.0,
+            0.0
+          ],
+          [
+            -0.12,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "m2_p",
+        "mode_commands": [
+          [
+            0.0,
+            0.12,
+            0.0
+          ],
+          [
+            0.0,
+            0.12,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "m2_m",
+        "mode_commands": [
+          [
+            0.0,
+            -0.12,
+            0.0
+          ],
+          [
+            0.0,
+            -0.12,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "m3_p",
+        "mode_commands": [
+          [
+            0.0,
+            0.0,
+            0.05
+          ],
+          [
+            0.0,
+            0.0,
+            0.05
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "m3_m",
+        "mode_commands": [
+          [
+            0.0,
+            0.0,
+            -0.05
+          ],
+          [
+            0.0,
+            0.0,
+            -0.05
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "m1p_m2m",
+        "mode_commands": [
+          [
+            0.08,
+            -0.08,
+            0.0
+          ],
+          [
+            0.08,
+            -0.08,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      {
+        "name": "m1m_m2p",
+        "mode_commands": [
+          [
+            -0.08,
+            0.08,
+            0.0
+          ],
+          [
+            -0.08,
+            0.08,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ]
+      }
+    ]
+  },
+  "restart_sweep": {
+    "auto_discover": true,
+    "candidate_offsets_ms": [
+      -20,
+      -10,
+      10,
+      20
+    ],
+    "environment_variable": "STAGE4_START_FOLDERS",
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "controller_scales": [
+      0.0,
+      "source_selected"
+    ],
+    "minimum_alternate_folders_for_validation": 2,
+    "minimum_mpc_pass_fraction": 0.75,
+    "minimum_preserved_open_loop_pass_fraction": 0.8
+  },
+  "confirmation": {
+    "repeats_per_scenario": 2,
+    "maximum_scenarios": 12,
+    "noise_seed_offset": 100000
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  }
+}
