@@ -1,30 +1,54 @@
 {
-  "schema_version": 2,
-  "stage": "Stage4.1R2",
-  "package_name": "stage4_1r2_complete_standalone_error_state_observer_physical_scheduler_128worker_lean",
+  "schema_version": 3,
+  "stage": "Stage4.1R3",
+  "package_name": "stage4_1r3_complete_standalone_control_aware_residual_observer_antiwindup_128worker_lean",
   "complete_standalone": true,
   "lean_delivery": true,
   "default_workers": 128,
   "silent_worker_fallback": false,
   "base_package": {
-    "filename": "stage4_1_complete_standalone_delay_gain_phase_robustness_128worker_lean.zip",
-    "sha256": "d6b265e33b9122067aa90083eb4bbe3ac2aef3de0d776bf4dd2b4e8c1f3bb1d5"
+    "filename": "stage4_1r2_complete_standalone_error_state_observer_physical_scheduler_128worker_lean.zip",
+    "sha256": "d939c673d9d1b3a857e943bc8bd2ec5ed530f29805030284ad03f3c07175958f"
   },
-  "source_requirement": "completed Stage4.0 run that references the confirmed Stage3.4 target-conditioned MPC baseline",
+  "source_requirement": "completed Stage4.0 run that references the confirmed Stage3.4 target-conditioned receding-horizon MPC baseline",
   "hard_gate_changed_from_stage3_4": false,
   "target_library_changed": false,
   "stage3_4_jacobian_changed": false,
   "controller_wrapper_upgraded": true,
+  "controller_revision": "control_aware_residual_observer_antiwindup_v3",
   "controller_upgrades": [
-    "nominal-error-state alpha-beta observer with exact accelerating-nominal invariance",
-    "true enabled/disabled ablation switches for observer, delay, scheduling, and phase reference",
-    "MPC corrections solved in the Stage3.4 physical mode coordinates",
-    "bounded nonlinear inverse scheduling in decoded 14-coil physical-current-increment space",
+    "clean zero-noise zero-delay path exactly reuses the confirmed Stage3.4 measurement and MPC behavior",
+    "control-aware residual observer subtracts the known response of already-applied feedback through the frozen Stage3.4 Jacobian",
+    "the injected robustness disturbance and unmodelled gain or bias remain unknown residuals by construction",
+    "observer and integral anti-windup are selected by a disjoint 64-rollout finite-envelope ablation",
+    "integral clipping, hold-phase leakage, and saturation-triggered freeze or decay",
+    "physical 14-coil inverse gain and slew scheduling",
     "action-delay queue-aware receding-horizon prediction",
     "phase-aligned continuation after compensated prelude histories",
-    "hard 30-rollout controller-integration regression gate before expensive robustness phases",
+    "hard 30-rollout controller-integration regression gate before observer ablation or expensive robustness phases",
     "adaptive disturbance boundary, category-separated uncertainty, and multi-seed noise statistics"
   ],
+  "regression_gate": {
+    "rollouts": 30,
+    "variants": [
+      "open_loop",
+      "legacy_stage3_4",
+      "r3_clean_direct"
+    ],
+    "requires_exact_clean_path_action_and_state_reproduction": true,
+    "stop_pipeline_on_failure": true
+  },
+  "observer_ablation": {
+    "rollouts": 64,
+    "targets": 2,
+    "sensor_conditions": 8,
+    "variants": 4,
+    "selectable_variants": [
+      "control_aware_no_aw",
+      "control_aware_aw"
+    ],
+    "stop_pipeline_on_failure": true
+  },
   "finite_test_envelope_only": true,
   "deployment_robustness_validated": false,
   "plant_parameter_robustness_validated": false,
@@ -32,25 +56,17 @@
   "verification_ignores_unlisted_project_files": true,
   "residual_markdown_files_allowed": true,
   "shell_files": [
-    "run_stage4_1r2_error_state_robustness_native.sh",
-    "run_stage4_1r2_error_state_robustness_nohup.sh",
-    "run_stage4_1r2_self_test.sh",
-    "run_stage4_1r2_verify_package.sh",
-    "run_stop_stage4_1r2_now.sh",
-    "scripts/stage4_1r2_shell_common.sh"
+    "run_stage4_1r3_control_aware_robustness_native.sh",
+    "run_stage4_1r3_control_aware_robustness_nohup.sh",
+    "run_stage4_1r3_self_test.sh",
+    "run_stage4_1r3_verify_package.sh",
+    "run_stop_stage4_1r3_now.sh",
+    "scripts/stage4_1r3_shell_common.sh"
   ],
-  "main_config": "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json",
-  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1_delay_gain_phase_robustness.py",
-  "main_entrypoint": "scripts/stage4_1r2_error_state_robustness.py",
-  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
-  "controller_revision": "nominal_error_state_observer_physical_coil_scheduler_v2",
-  "regression_gate": {
-    "rollouts": 30,
-    "variants": [
-      "open_loop",
-      "legacy_stage3_4",
-      "error_state_observer_v2"
-    ],
-    "stop_pipeline_on_failure": true
-  }
+  "main_config": "configs/stage4_1r3_control_aware_residual_observer_350ms.json",
+  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py",
+  "main_entrypoint": "scripts/stage4_1r3_control_aware_robustness.py",
+  "main_test": "tests/test_stage4_1r3_control_aware_robustness.py",
+  "verified_unit_test_count": 186,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
 }
