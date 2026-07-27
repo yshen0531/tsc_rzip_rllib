@@ -1,7 +1,7 @@
 {
-  "schema_version": 7,
+  "schema_version": 8,
   "stage": "Stage4.1R7",
-  "package_name": "stage4_1r7_complete_standalone_precontrol_calibration_queue_consistent_startup_128worker_lean",
+  "package_name": "stage4_1r7a_complete_standalone_precontrol_calibration_queue_consistent_startup_128worker_lean_debugged",
   "complete_standalone": true,
   "lean_delivery": true,
   "default_workers": 128,
@@ -31,11 +31,25 @@
     "zero_flush_steps": 2,
     "zero_net_mode_command": true,
     "maximum_observed_physical_coil_delta_fraction_of_nominal_slew_in_real_source_offline_replay": 0.33050043545000135,
-    "delay_candidates_steps": [0, 1, 2],
-    "slew_candidates": [0.9, 1.0, 1.1],
+    "delay_candidates_steps": [
+      0,
+      1,
+      2
+    ],
+    "slew_candidates": [
+      0.9,
+      1.0,
+      1.1
+    ],
     "profiles": [
-      {"profile_id": "clean", "coil_current_measurement_noise_A": 0.0},
-      {"profile_id": "noisy_20mA", "coil_current_measurement_noise_A": 0.02}
+      {
+        "profile_id": "clean",
+        "coil_current_measurement_noise_A": 0.0
+      },
+      {
+        "profile_id": "noisy_20mA",
+        "coil_current_measurement_noise_A": 0.02
+      }
     ],
     "main_rollouts": 18,
     "requires_all_profiles_and_all_pairs_correct": true,
@@ -102,7 +116,7 @@
   "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r7_precontrol_calibration_queue_startup.py",
   "main_entrypoint": "scripts/stage4_1r7_precontrol_calibration_queue_startup.py",
   "main_test": "tests/test_stage4_1r7_precontrol_calibration_queue_startup.py",
-  "verified_unit_test_count": 242,
+  "verified_unit_test_count": 249,
   "validation": {
     "python_compileall": true,
     "all_json_parsed": true,
@@ -127,7 +141,18 @@
     },
     "weak_slew_no_aw_guard": true,
     "queue_history_actual_issued_increment_guard": true,
-    "real_gotsc_stage4_1r7_campaign_executed_here": false
+    "real_gotsc_stage4_1r7_campaign_executed_here": false,
+    "nullable_no_monitor_startup_regression": true,
+    "nullable_real_monitor_failure_regression": true,
+    "nullable_paired_confirmation_regression": true,
+    "paired_missing_model_does_not_execute_main_regression": true,
+    "phase_coverage_regressions": true,
+    "resume_successful_raw_reuse_regression": true,
+    "direct_root_zip_layout_verified": true,
+    "empty_directory_extraction_verified": true,
+    "shell_execute_bits_preserved_after_unzip": true,
+    "overlay_replacement_preserved_existing_stage_runs": true,
+    "residual_markdown_overlay_verification": true
   },
   "scientific_hard_stops": {
     "source_audit_failure_stops_campaign": true,
@@ -138,5 +163,35 @@
   "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
   "packaged_file_count_excluding_checksum_file": 83,
   "shell_file_count": 6,
-  "markdown_file_count_in_package_at_build_time": 0
+  "markdown_file_count_in_package_at_build_time": 0,
+  "package_revision": "r7a_summary_null_coverage_guard_v1",
+  "source_git": {
+    "repository": "https://github.com/yshen0531/tsc_rzip_rllib",
+    "branch": "feat-stage4",
+    "commit": "3b9c1987c3af311a8d76a336d64783c059815e8b",
+    "basis": "user-supplied original complete package; Git metadata is not required at runtime"
+  },
+  "debug_fixes": {
+    "startup_no_monitor_exact_variant_match": true,
+    "nullable_monitor_estimates_are_scientific_failure_not_python_exception": true,
+    "paired_confirmation_missing_selected_model_skips_main_control": true,
+    "paired_tsc_episode_count_tracks_executed_episodes": true,
+    "calibration_profile_coverage_is_hard_checked": true,
+    "startup_108_rollout_variant_coverage_is_hard_checked": true,
+    "confirmation_group_and_repeat_coverage_is_hard_checked": true,
+    "control_law_changed": false,
+    "calibration_plan_changed": false,
+    "experiment_identity_changed": false,
+    "existing_successful_raw_json_gz_resume_compatible": true
+  },
+  "resume_compatibility": {
+    "existing_stage4_1r7_run_supported": true,
+    "controller_revision_preserved": "precontrol_calibration_queue_consistent_startup_v7",
+    "experiment_ids_preserved": true,
+    "successful_raw_json_gz_reused_when_resume_true": true,
+    "required_launcher_environment": [
+      "STAGE4_1R7_RUN_DIR=/absolute/path/to/existing/run",
+      "STAGE4_1R7_RESUME=1"
+    ]
+  }
 }

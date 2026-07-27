@@ -121,6 +121,26 @@ class Stage41R7Tests(unittest.TestCase):
         rows[-1]["final_identification_correct"] = False
         self.assertFalse(r7.summarize_calibration(ctx, rows)["passed"])
 
+    def test_calibration_summary_rejects_duplicate_profile_coverage(self) -> None:
+        rows = []
+        for delay in (0, 1, 2):
+            for slew in (0.9, 1.0, 1.1):
+                for profile in ("clean", "noisy_20mA"):
+                    rows.append({
+                        "success": True,
+                        "final_identification_correct": True,
+                        "incorrect_confident_lock_count": 0,
+                        "first_confident_lock_step": 2,
+                        "confidence_ratio": 20.0,
+                        "actual_delay_steps": delay,
+                        "actual_slew_scale": slew,
+                        "calibration_profile": profile,
+                    })
+        rows[-1]["calibration_profile"] = "clean"
+        summary = r7.summarize_calibration(SimpleNamespace(cfg=self.cfg), rows)
+        self.assertFalse(summary["coverage_complete"])
+        self.assertFalse(summary["passed"])
+
     def _write_calibration_rows(self, root: Path) -> None:
         rows = []
         for delay in (0, 1, 2):
@@ -138,6 +158,70 @@ class Stage41R7Tests(unittest.TestCase):
         (root / "stage4_1r7_precontrol_calibration/results.json").write_text(
             json.dumps(rows), encoding="utf-8"
         )
+
+    def _startup_rows(self) -> list[dict[str, object]]:
+        rows: list[dict[str, object]] = []
+        variants = self.cfg["queue_consistent_startup"]["controller_variants"]
+        for target in ("nominal", "RZ_p10_m10"):
+            for delay in (0, 1, 2):
+                for slew in (0.9, 1.0, 1.1):
+                    signature = f"sig_{target}_{delay}_{slew}"
+                    for variant in variants:
+                        row: dict[str, object] = {
+                            "success": True,
+                            "target_id": target,
+                            "actual_action_delay_steps": delay,
+                            "actual_slew_scale": slew,
+                            "controller_variant": variant,
+                            "stage3_4_target_tracking_pass": True,
+                            "stage3_4_tracking_minimum_signed_margin": 0.2,
+                            "trajectory_signature": signature
+                            if variant.startswith("r7_precalibrated") or variant == "oracle"
+                            else f"{variant}_{signature}",
+                            "issued_command_signature": signature
+                            if variant.startswith("r7_precalibrated") or variant == "oracle"
+                            else f"{variant}_{signature}",
+                        }
+                        if variant in r7.STARTUP_MONITOR_VARIANTS:
+                            row.update({
+                                "monitor_estimated_delay_steps": delay,
+                                "monitor_estimated_slew_scale": slew,
+                                "monitor_transition_count": 0,
+                            })
+                        else:
+                            # The real no-monitor and diagnostic rows carry no
+                            # selected estimator model.  Explicit None reproduces
+                            # the server crash that this package fixes.
+                            row.update({
+                                "monitor_estimated_delay_steps": None,
+                                "monitor_estimated_slew_scale": None,
+                                "monitor_transition_count": 0,
+                            })
+                        rows.append(row)
+        return rows
+
+    def _confirmation_rows(self) -> list[dict[str, object]]:
+        rows: list[dict[str, object]] = []
+        for delay in (0, 1, 2):
+            for slew in (0.9, 1.0, 1.1):
+                for target in ("nominal", "RZ_p10_m10"):
+                    group = f"d{delay}_s{slew}_{target}"
+                    for repeat in range(2):
+                        rows.append({
+                            "confirmation_group": group,
+                            "confirmation_repeat": repeat,
+                            "success": True,
+                            "paired_calibration_success": True,
+                            "paired_calibration_estimated_delay_steps": delay,
+                            "paired_calibration_estimated_slew_scale": slew,
+                            "actual_action_delay_steps": delay,
+                            "actual_slew_scale": slew,
+                            "paired_main_control_executed": True,
+                            "paired_tsc_episode_count": 2,
+                            "stage3_4_target_tracking_pass": True,
+                            "stage3_4_tracking_minimum_signed_margin": 0.1,
+                        })
+        return rows
 
     def test_startup_specs_cover_six_variants_and_108_rollouts(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
@@ -190,36 +274,36 @@ class Stage41R7Tests(unittest.TestCase):
         self.assertEqual(spec["anti_windup_mode"], "off")
 
     def test_startup_summary_requires_preservation_and_trace_equivalence(self) -> None:
-        rows = []
-        variants = self.cfg["queue_consistent_startup"]["controller_variants"]
-        for target in ("nominal", "RZ_p10_m10"):
-            for delay in (0, 1, 2):
-                for slew in (0.9, 1.0, 1.1):
-                    signature = f"sig_{target}_{delay}_{slew}"
-                    for variant in variants:
-                        row = {
-                            "target_id": target,
-                            "actual_action_delay_steps": delay,
-                            "actual_slew_scale": slew,
-                            "controller_variant": variant,
-                            "stage3_4_target_tracking_pass": True,
-                            "stage3_4_tracking_minimum_signed_margin": 0.2,
-                            "trajectory_signature": signature if variant.startswith("r7_precalibrated") or variant == "oracle" else f"{variant}_{signature}",
-                            "issued_command_signature": signature if variant.startswith("r7_precalibrated") or variant == "oracle" else f"{variant}_{signature}",
-                            "monitor_estimated_delay_steps": delay,
-                            "monitor_estimated_slew_scale": slew,
-                            "monitor_transition_count": 0,
-                        }
-                        rows.append(row)
+        rows = self._startup_rows()
         ctx = SimpleNamespace(cfg=self.cfg)
         summary = r7.summarize_startup(ctx, rows)
         self.assertTrue(summary["passed"])
+        self.assertTrue(summary["coverage_complete"])
+        self.assertEqual(summary["monitor_rows_evaluated"], 36)
+        self.assertEqual(summary["monitor_final_model_correct_fraction"], 1.0)
         bad = [dict(row) for row in rows]
         for row in bad:
             if row["controller_variant"] == "r7_precalibrated_noisy_monitor":
                 row["trajectory_signature"] = "different"
                 break
         self.assertFalse(r7.summarize_startup(ctx, bad)["passed"])
+
+    def test_startup_summary_real_monitor_none_is_failure_not_exception(self) -> None:
+        rows = self._startup_rows()
+        target = next(
+            row for row in rows
+            if row["controller_variant"] == "r7_precalibrated_clean_monitor"
+        )
+        target["monitor_estimated_delay_steps"] = None
+        summary = r7.summarize_startup(SimpleNamespace(cfg=self.cfg), rows)
+        self.assertFalse(summary["passed"])
+        self.assertLess(summary["monitor_final_model_correct_fraction"], 1.0)
+
+    def test_startup_summary_rejects_partial_coverage(self) -> None:
+        rows = self._startup_rows()[:-6]
+        summary = r7.summarize_startup(SimpleNamespace(cfg=self.cfg), rows)
+        self.assertFalse(summary["coverage_complete"])
+        self.assertFalse(summary["passed"])
 
     def test_confirmation_specs_cover_eighteen_groups_twice(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
@@ -238,29 +322,87 @@ class Stage41R7Tests(unittest.TestCase):
         self.assertTrue(all("paired_main_spec_template" in s for s in specs))
 
     def test_confirmation_summary_requires_calibration_and_tracking(self) -> None:
-        rows = []
-        for delay in (0, 1, 2):
-            for slew in (0.9, 1.0, 1.1):
-                for target in ("nominal", "RZ_p10_m10"):
-                    group = f"d{delay}_s{slew}_{target}"
-                    for repeat in range(2):
-                        rows.append({
-                            "confirmation_group": group,
-                            "success": True,
-                            "paired_calibration_success": True,
-                            "paired_calibration_estimated_delay_steps": delay,
-                            "paired_calibration_estimated_slew_scale": slew,
-                            "actual_action_delay_steps": delay,
-                            "actual_slew_scale": slew,
-                            "stage3_4_target_tracking_pass": True,
-                            "stage3_4_tracking_minimum_signed_margin": 0.1,
-                        })
+        rows = self._confirmation_rows()
         ctx = SimpleNamespace(cfg=self.cfg)
         summary = r7.summarize_confirmation(ctx, rows)
         self.assertTrue(summary["passed"])
+        self.assertTrue(summary["coverage_complete"])
         self.assertEqual(summary["n_tsc_episodes"], 72)
         rows[-1]["paired_calibration_estimated_delay_steps"] = -1
         self.assertFalse(r7.summarize_confirmation(ctx, rows)["passed"])
+
+    def test_confirmation_summary_none_estimate_is_failure_not_exception(self) -> None:
+        rows = self._confirmation_rows()
+        rows[-1]["paired_calibration_estimated_delay_steps"] = None
+        summary = r7.summarize_confirmation(SimpleNamespace(cfg=self.cfg), rows)
+        self.assertFalse(summary["passed"])
+
+    def test_confirmation_summary_rejects_missing_repeat(self) -> None:
+        rows = self._confirmation_rows()[:-1]
+        summary = r7.summarize_confirmation(SimpleNamespace(cfg=self.cfg), rows)
+        self.assertFalse(summary["coverage_complete"])
+        self.assertFalse(summary["passed"])
+
+    def test_paired_confirmation_missing_model_skips_main_control(self) -> None:
+        worker = object.__new__(r7.LocalStage41R7Worker)
+        worker._run_calibration = mock.Mock(return_value={
+            "success": True,
+            "adaptive_estimator_summary": {
+                "selected_delay_steps": None,
+                "selected_slew_scale": None,
+            },
+        })
+        worker.inner = SimpleNamespace(evaluate=mock.Mock())
+        spec = {
+            "experiment_id": "paired_test",
+            "phase": "paired_confirmation",
+            "paired_calibration_spec": {
+                "calibration_estimator": {
+                    "delay_candidates": [0, 1, 2],
+                    "slew_candidates": [0.9, 1.0, 1.1],
+                },
+            },
+            "paired_main_spec_template": {},
+        }
+        result = worker._run_paired_confirmation(spec)
+        self.assertFalse(result["success"])
+        self.assertFalse(result["paired_main_control_executed"])
+        self.assertEqual(result["paired_tsc_episode_count"], 1)
+        worker.inner.evaluate.assert_not_called()
+
+    def test_resume_reuses_complete_raw_without_worker(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            output = Path(temp)
+            payload = {
+                "experiment_id": "resume_case",
+                "spec": {"environment_variant": "variant"},
+                "success": True,
+            }
+            r7.atomic_write_json_gz(output / "resume_case.json.gz", payload)
+            ctx = SimpleNamespace(
+                cfg={"parallel": {"n_workers": 128}},
+                r6_ctx=SimpleNamespace(
+                    r5_ctx=SimpleNamespace(
+                        r4_ctx=SimpleNamespace(
+                            variants={"variant": {}},
+                            r3_ctx=SimpleNamespace(source_library={}, source_bundle={}),
+                        )
+                    )
+                ),
+            )
+            with mock.patch.object(
+                r7,
+                "LocalStage41R7Worker",
+                side_effect=AssertionError("resume should not create a worker"),
+            ):
+                result = r7.evaluate_specs(
+                    ctx,
+                    [{"experiment_id": "resume_case", "environment_variant": "variant"}],
+                    output_dir=output,
+                    backend="serial",
+                    resume=True,
+                )
+        self.assertEqual(result, [payload])
 
     def test_source_validation_accepts_expected_r6_partial_startup_result(self) -> None:
         manifest = {

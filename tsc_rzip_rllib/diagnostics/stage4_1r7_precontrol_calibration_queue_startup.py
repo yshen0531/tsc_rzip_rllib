@@ -47,6 +47,11 @@ from tsc_rzip_rllib.utils.ray_runtime import ensure_ray_worker_plan
 SCHEMA_VERSION = 1
 STAGE = "Stage4.1R7"
 CONTROLLER_REVISION = "precontrol_calibration_queue_consistent_startup_v7"
+RUNTIME_BUGFIX_REVISION = "r7a_summary_null_coverage_guard_v1"
+STARTUP_MONITOR_VARIANTS = frozenset({
+    "r7_precalibrated_clean_monitor",
+    "r7_precalibrated_noisy_monitor",
+})
 EXPECTED_SOURCE_STAGE = "Stage4.1R6"
 EXPECTED_SOURCE_REVISION = "confidence_gated_persistent_prior_physical_handover_v6"
 STATE_FILENAME = "stage4_1r7_state.json"
@@ -433,6 +438,9 @@ def initialize_run(ctx: Stage41R7Context) -> None:
         "schema_version": SCHEMA_VERSION,
         "stage": STAGE,
         "controller_revision": CONTROLLER_REVISION,
+        "runtime_bugfix_revision": RUNTIME_BUGFIX_REVISION,
+        "runtime_bugfix_control_law_changed": False,
+        "runtime_bugfix_experiment_identity_changed": False,
         "created_utc": utc_timestamp(),
         "source_stage4_1r6_run": str(ctx.source_stage41r6_run),
         "source_stage4_1r5_run": str(ctx.source_stage41r5_run),
@@ -452,6 +460,18 @@ def initialize_run(ctx: Stage41R7Context) -> None:
             raise ValueError("existing Stage4.1R7 run uses another controller revision")
         if str((old.get("source_fingerprint") or {}).get("digest")) != str(ctx.source_fingerprint["digest"]):
             raise ValueError("source Stage4.1R6 content changed")
+        old_bugfix = str(old.get("runtime_bugfix_revision", "")).strip()
+        if old_bugfix and old_bugfix != RUNTIME_BUGFIX_REVISION:
+            raise ValueError(
+                "existing Stage4.1R7 run uses another runtime bugfix revision: "
+                f"{old_bugfix}"
+            )
+        if not old_bugfix:
+            old["runtime_bugfix_revision"] = RUNTIME_BUGFIX_REVISION
+            old["runtime_bugfix_control_law_changed"] = False
+            old["runtime_bugfix_experiment_identity_changed"] = False
+            old["runtime_bugfix_applied_utc"] = utc_timestamp()
+            atomic_write_json(ctx.paths.manifest, old)
     else:
         atomic_write_json(ctx.paths.manifest, manifest)
     inventory = ctx.paths.source_reference / "source_content_inventory.json"
@@ -649,20 +669,53 @@ class LocalStage41R7Worker:
         calibration_spec = copy.deepcopy(spec["paired_calibration_spec"])
         calibration_spec["experiment_id"] = f"{spec['experiment_id']}__cal"
         calibration = self._run_calibration(calibration_spec)
-        if not calibration.get("success"):
+
+        def calibration_failure(reason: str) -> dict[str, Any]:
             return _json_safe({
                 "schema_version": SCHEMA_VERSION,
                 "controller_revision": CONTROLLER_REVISION,
                 "experiment_id": spec["experiment_id"],
                 "spec": copy.deepcopy(spec),
                 "success": False,
-                "failure_reason": "paired calibration failed: " + str(calibration.get("failure_reason", "")),
+                "failure_reason": reason,
                 "trajectory": [],
+                "control_trace": [],
                 "paired_calibration_result": calibration,
+                "precontrol_calibration_is_separate_reset_episode": True,
+                "paired_main_control_executed": False,
+                "paired_tsc_episode_count": 1,
             })
+
+        if not calibration.get("success"):
+            return calibration_failure(
+                "paired calibration failed: " + str(calibration.get("failure_reason", ""))
+            )
         estimator = calibration.get("adaptive_estimator_summary") or {}
-        estimated_delay = int(estimator.get("selected_delay_steps", 0))
-        estimated_slew = float(estimator.get("selected_slew_scale", 1.0))
+        selected_delay = estimator.get("selected_delay_steps")
+        selected_slew = estimator.get("selected_slew_scale")
+        try:
+            if isinstance(selected_delay, bool) or isinstance(selected_slew, bool):
+                raise ValueError("boolean selected model")
+            estimated_delay = int(selected_delay)
+            estimated_slew = float(selected_slew)
+            if not math.isfinite(estimated_slew):
+                raise ValueError("non-finite selected slew")
+        except (TypeError, ValueError, OverflowError):
+            return calibration_failure(
+                "paired calibration produced no valid selected delay/slew model: "
+                f"delay={selected_delay!r}, slew={selected_slew!r}"
+            )
+        estimator_cfg = calibration_spec.get("calibration_estimator") or {}
+        delay_candidates = {int(value) for value in estimator_cfg.get("delay_candidates", [])}
+        slew_candidates = [float(value) for value in estimator_cfg.get("slew_candidates", [])]
+        if (
+            estimated_delay not in delay_candidates
+            or not any(math.isclose(estimated_slew, value, abs_tol=1e-12) for value in slew_candidates)
+        ):
+            return calibration_failure(
+                "paired calibration selected a model outside its finite candidate bank: "
+                f"delay={estimated_delay!r}, slew={estimated_slew!r}"
+            )
         main_spec = copy.deepcopy(spec["paired_main_spec_template"])
         main_spec["experiment_id"] = f"{spec['experiment_id']}__main"
         main_spec["controller_action_delay_steps"] = estimated_delay
@@ -687,6 +740,8 @@ class LocalStage41R7Worker:
         main["stage4_1r7_controller_revision"] = CONTROLLER_REVISION
         main["paired_calibration_result"] = calibration
         main["precontrol_calibration_is_separate_reset_episode"] = True
+        main["paired_main_control_executed"] = True
+        main["paired_tsc_episode_count"] = 2
         return _json_safe(main)
 
     def evaluate(self, spec: dict[str, Any]) -> dict[str, Any]:
@@ -899,10 +954,10 @@ def calibration_result_row(result: dict[str, Any]) -> dict[str, Any]:
     actual_slew = float(spec.get("slew_scale", 1.0))
     selected_delay = estimator.get("selected_delay_steps")
     selected_slew = estimator.get("selected_slew_scale")
-    lock_events = list(estimator.get("lock_events", []))
+    lock_events = list(estimator.get("lock_events") or [])
     incorrect_locks = sum(
-        int(event.get("delay_steps", -999)) != actual_delay
-        or not math.isclose(float(event.get("slew_scale", 1e9)), actual_slew, abs_tol=1e-12)
+        _as_int(event.get("delay_steps"), -999) != actual_delay
+        or not math.isclose(_as_float(event.get("slew_scale"), 1e9), actual_slew, abs_tol=1e-12)
         for event in lock_events
     )
     trace = result.get("calibration_trace") or []
@@ -952,8 +1007,18 @@ def control_result_row(ctx: Stage41R7Context, result: dict[str, Any]) -> dict[st
     issued = np.asarray([item.get("issued_mode_coefficients", [0.0, 0.0, 0.0]) for item in trace], dtype=float)
     command_signature = _array_digest(issued, "cmd") if len(issued) else ""
     estimator = result.get("adaptive_estimator_summary") or {}
+    transitions = list(estimator.get("transitions") or [])
     calibration = result.get("paired_calibration_result") or {}
     calibration_estimator = calibration.get("adaptive_estimator_summary") or {}
+    is_paired_confirmation = str(spec.get("phase", "")) == "paired_confirmation"
+    paired_main_executed = result.get("paired_main_control_executed")
+    if is_paired_confirmation and paired_main_executed is None:
+        # Compatibility with any pre-hotfix paired raw: a completed main result
+        # carries the paired calibration and the environment-level success bit.
+        paired_main_executed = bool(calibration and result.get("success", False))
+    paired_episode_count = result.get("paired_tsc_episode_count")
+    if is_paired_confirmation and paired_episode_count is None:
+        paired_episode_count = 2 if paired_main_executed else 1
     row.update({
         "controller_revision": CONTROLLER_REVISION,
         "controller_variant": spec.get("controller_variant"),
@@ -963,7 +1028,7 @@ def control_result_row(ctx: Stage41R7Context, result: dict[str, Any]) -> dict[st
         "calibrated_slew_scale": spec.get("controller_slew_scale_estimate"),
         "monitor_estimated_delay_steps": estimator.get("selected_delay_steps"),
         "monitor_estimated_slew_scale": estimator.get("selected_slew_scale"),
-        "monitor_transition_count": len(estimator.get("transitions", [])),
+        "monitor_transition_count": len(transitions),
         "trajectory_signature": trajectory_signature,
         "issued_command_signature": command_signature,
         "confirmation_group": spec.get("confirmation_group"),
@@ -972,6 +1037,8 @@ def control_result_row(ctx: Stage41R7Context, result: dict[str, Any]) -> dict[st
         "paired_calibration_estimated_delay_steps": calibration_estimator.get("selected_delay_steps") if calibration else None,
         "paired_calibration_estimated_slew_scale": calibration_estimator.get("selected_slew_scale") if calibration else None,
         "paired_calibration_first_confident_lock_step": calibration_estimator.get("first_confident_lock_step") if calibration else None,
+        "paired_main_control_executed": paired_main_executed if is_paired_confirmation else None,
+        "paired_tsc_episode_count": paired_episode_count if is_paired_confirmation else None,
     })
     return row
 
@@ -1053,42 +1120,73 @@ def build_calibration_specs(ctx: Stage41R7Context) -> list[dict[str, Any]]:
 def summarize_calibration(ctx: Stage41R7Context, rows: Sequence[dict[str, Any]]) -> dict[str, Any]:
     cfg = ctx.cfg["precontrol_calibration"]
     correct = [_as_bool(row.get("final_identification_correct")) for row in rows]
-    locks = [int(row.get("first_confident_lock_step") if row.get("first_confident_lock_step") is not None else 999) for row in rows]
+    locks = [
+        _as_int(row.get("first_confident_lock_step"), 999)
+        if row.get("first_confident_lock_step") is not None else 999
+        for row in rows
+    ]
+    expected_pairs = {
+        (int(delay), float(slew))
+        for delay in cfg["actual_delay_steps"]
+        for slew in cfg["actual_slew_scales"]
+    }
+    expected_profiles = {str(profile["profile_id"]) for profile in cfg["profiles"]}
     groups: dict[tuple[int, float], list[dict[str, Any]]] = {}
     for row in rows:
-        groups.setdefault((int(row["actual_delay_steps"]), float(row["actual_slew_scale"])), []).append(row)
+        groups.setdefault(
+            (_as_int(row.get("actual_delay_steps"), -999), _as_float(row.get("actual_slew_scale"), math.nan)),
+            [],
+        ).append(row)
     group_rows = []
     for key, subset in sorted(groups.items()):
+        profiles = [str(row.get("calibration_profile", "")) for row in subset]
+        profile_coverage_complete = bool(
+            len(profiles) == len(expected_profiles) and set(profiles) == expected_profiles
+        )
         group_rows.append({
             "actual_delay_steps": key[0],
             "actual_slew_scale": key[1],
             "profiles": len(subset),
+            "profile_ids": sorted(profiles),
+            "profile_coverage_complete": profile_coverage_complete,
             "all_success": all(_as_bool(row.get("success")) for row in subset),
             "all_final_correct": all(_as_bool(row.get("final_identification_correct")) for row in subset),
-            "incorrect_confident_lock_count": sum(int(row.get("incorrect_confident_lock_count", 0)) for row in subset),
+            "incorrect_confident_lock_count": sum(_as_int(row.get("incorrect_confident_lock_count"), 0) for row in subset),
             "maximum_first_confident_lock_step": max(
-                (int(row.get("first_confident_lock_step") if row.get("first_confident_lock_step") is not None else 999) for row in subset),
+                (
+                    _as_int(row.get("first_confident_lock_step"), 999)
+                    if row.get("first_confident_lock_step") is not None else 999
+                    for row in subset
+                ),
                 default=999,
             ),
             "minimum_confidence_ratio": min((_as_float(row.get("confidence_ratio"), 0.0) for row in subset), default=0.0),
         })
+    expected_rollouts = len(expected_pairs) * len(expected_profiles)
+    coverage_complete = bool(
+        len(rows) == expected_rollouts
+        and set(groups) == expected_pairs
+        and all(row["profile_coverage_complete"] for row in group_rows)
+    )
+    incorrect_lock_count = sum(_as_int(row.get("incorrect_confident_lock_count"), 0) for row in rows)
     passed = bool(
         rows
+        and coverage_complete
         and all(_as_bool(row.get("success")) for row in rows)
         and all(correct)
-        and sum(int(row.get("incorrect_confident_lock_count", 0)) for row in rows) == 0
+        and incorrect_lock_count == 0
         and max(locks, default=999) <= int(cfg["maximum_first_confident_lock_step"])
-        and len(group_rows) == 9
-        and all(int(row["profiles"]) >= len(cfg["profiles"]) for row in group_rows)
     )
     return {
         "schema_version": SCHEMA_VERSION,
         "stage": STAGE,
         "phase": "precontrol_calibration",
         "n_rollouts": len(rows),
+        "expected_rollouts": expected_rollouts,
+        "coverage_complete": coverage_complete,
         "n_successful": sum(_as_bool(row.get("success")) for row in rows),
         "final_identification_fraction": float(np.mean(correct)) if correct else 0.0,
-        "incorrect_confident_lock_count": sum(int(row.get("incorrect_confident_lock_count", 0)) for row in rows),
+        "incorrect_confident_lock_count": incorrect_lock_count,
         "maximum_first_confident_lock_step": max(locks, default=999),
         "minimum_final_confidence_ratio": min((_as_float(row.get("confidence_ratio"), 0.0) for row in rows), default=0.0),
         "distinct_pairs_calibrated": len(group_rows),
@@ -1187,7 +1285,7 @@ def _main_extra(
         "precontrol_calibration_is_separate_reset_episode": calibration_row is not None,
         "queue_initialized_from_calibrated_model_before_main_control": calibration_row is not None,
     }
-    if variant in {"r7_precalibrated_clean_monitor", "r7_precalibrated_noisy_monitor"}:
+    if variant in STARTUP_MONITOR_VARIANTS:
         extra["adaptive_delay_slew_estimator"] = _confidence_estimator_cfg(
             ctx, initial_delay=modeled_delay, initial_slew=modeled_slew
         )
@@ -1248,10 +1346,32 @@ def build_startup_specs(ctx: Stage41R7Context) -> list[dict[str, Any]]:
 
 def summarize_startup(ctx: Stage41R7Context, rows: Sequence[dict[str, Any]]) -> dict[str, Any]:
     cfg = ctx.cfg["queue_consistent_startup"]
+    expected_variants = {str(value) for value in cfg["controller_variants"]}
+    expected_cases = {
+        (str(target["target_id"]), int(delay), float(slew))
+        for target in cfg["targets"]
+        for delay in cfg["actual_delay_steps"]
+        for slew in cfg["actual_slew_scales"]
+    }
     grouped: dict[tuple[str, int, float], dict[str, dict[str, Any]]] = {}
+    duplicate_rows = 0
     for row in rows:
-        key = (str(row["target_id"]), int(row["actual_action_delay_steps"]), float(row["actual_slew_scale"]))
-        grouped.setdefault(key, {})[str(row["controller_variant"])] = row
+        key = (
+            str(row.get("target_id", "")),
+            _as_int(row.get("actual_action_delay_steps"), -999),
+            _as_float(row.get("actual_slew_scale"), math.nan),
+        )
+        variant = str(row.get("controller_variant", ""))
+        variants = grouped.setdefault(key, {})
+        duplicate_rows += int(variant in variants)
+        variants[variant] = row
+    expected_rollouts = len(expected_cases) * len(expected_variants)
+    coverage_complete = bool(
+        len(rows) == expected_rollouts
+        and duplicate_rows == 0
+        and set(grouped) == expected_cases
+        and all(set(variants) == expected_variants for variants in grouped.values())
+    )
     oracle_feasible = 0
     preserve_counts = {
         "r7_precalibrated_clean_no_monitor": 0,
@@ -1291,11 +1411,15 @@ def summarize_startup(ctx: Stage41R7Context, rows: Sequence[dict[str, Any]]) -> 
             row_summary[f"{variant}_pass"] = passed
             row_summary[f"{variant}_trace_equal"] = equal
             row_summary[f"{variant}_margin"] = None if row is None else row.get("stage3_4_tracking_minimum_signed_margin")
-            if row and variant.endswith("monitor"):
+            if row is not None and variant in STARTUP_MONITOR_VARIANTS:
                 monitor_correct.append(
-                    int(row.get("monitor_estimated_delay_steps", -999)) == key[1]
-                    and math.isclose(_as_float(row.get("monitor_estimated_slew_scale"), 1e9), key[2], abs_tol=1e-12)
-                    and int(row.get("monitor_transition_count", 0)) == 0
+                    _as_int(row.get("monitor_estimated_delay_steps"), -999) == key[1]
+                    and math.isclose(
+                        _as_float(row.get("monitor_estimated_slew_scale"), 1e9),
+                        key[2],
+                        abs_tol=1e-12,
+                    )
+                    and _as_int(row.get("monitor_transition_count"), -999) == 0
                 )
         for variant in diagnostics:
             row = variants.get(variant)
@@ -1307,13 +1431,16 @@ def summarize_startup(ctx: Stage41R7Context, rows: Sequence[dict[str, Any]]) -> 
     denominator = max(oracle_feasible, 1)
     preservation = {key: value / denominator for key, value in preserve_counts.items()}
     equivalence = {key: value / denominator for key, value in equality_counts.items()}
+    expected_monitor_rows = len(expected_cases) * len(STARTUP_MONITOR_VARIANTS)
+    monitor_coverage_complete = len(monitor_correct) == expected_monitor_rows
     passed = bool(
-        oracle_feasible > 0
+        coverage_complete
+        and oracle_feasible > 0
         and all(value >= float(cfg["minimum_oracle_feasible_preservation"]) for value in preservation.values())
         and equivalence["r7_precalibrated_clean_no_monitor"] >= float(cfg["minimum_clean_trace_equivalence"])
         and equivalence["r7_precalibrated_clean_monitor"] >= float(cfg["minimum_clean_monitor_trace_equivalence"])
         and equivalence["r7_precalibrated_noisy_monitor"] >= float(cfg["minimum_noisy_monitor_trace_equivalence"])
-        and monitor_correct
+        and monitor_coverage_complete
         and all(monitor_correct)
     )
     return {
@@ -1321,10 +1448,16 @@ def summarize_startup(ctx: Stage41R7Context, rows: Sequence[dict[str, Any]]) -> 
         "stage": STAGE,
         "phase": "queue_consistent_startup",
         "n_rollouts": len(rows),
+        "expected_rollouts": expected_rollouts,
+        "coverage_complete": coverage_complete,
+        "duplicate_rows": duplicate_rows,
         "n_successful": sum(_as_bool(row.get("success")) for row in rows),
         "oracle_feasible_cases": oracle_feasible,
         "precalibrated_preservation_fraction": preservation,
         "precalibrated_trace_equivalence_fraction": equivalence,
+        "monitor_rows_evaluated": len(monitor_correct),
+        "expected_monitor_rows": expected_monitor_rows,
+        "monitor_coverage_complete": monitor_coverage_complete,
         "monitor_final_model_correct_fraction": float(np.mean(monitor_correct)) if monitor_correct else 0.0,
         "diagnostic_preservation_fraction": {
             key: value / denominator for key, value in diagnostics.items()
@@ -1460,31 +1593,62 @@ def build_confirmation_specs(ctx: Stage41R7Context) -> list[dict[str, Any]]:
 
 
 def summarize_confirmation(ctx: Stage41R7Context, rows: Sequence[dict[str, Any]]) -> dict[str, Any]:
+    cfg = ctx.cfg["confirmation"]
     groups: dict[str, list[dict[str, Any]]] = {}
     for row in rows:
         groups.setdefault(str(row.get("confirmation_group", "")), []).append(row)
+    required_repeats = int(cfg["repeats_per_group"])
+    expected_groups = {
+        f"d{int(delay)}_s{float(slew):.1f}_{target['target_id']}"
+        for delay in cfg["actual_delay_steps"]
+        for slew in cfg["actual_slew_scales"]
+        for target in cfg["targets"]
+    }
+    expected_repeat_ids = set(range(required_repeats))
     group_rows = []
     for group, subset in sorted(groups.items()):
+        repeat_ids = [_as_int(row.get("confirmation_repeat"), -999) for row in subset]
+        repeat_coverage_complete = bool(
+            len(subset) == required_repeats and set(repeat_ids) == expected_repeat_ids
+        )
         group_rows.append({
             "confirmation_group": group,
             "repeats": len(subset),
+            "repeat_ids": sorted(repeat_ids),
+            "repeat_coverage_complete": repeat_coverage_complete,
             "all_success": all(_as_bool(row.get("success")) for row in subset),
             "all_calibrations_successful": all(_as_bool(row.get("paired_calibration_success")) for row in subset),
             "all_calibrations_correct": all(
-                int(row.get("paired_calibration_estimated_delay_steps", -999)) == int(row["actual_action_delay_steps"])
-                and math.isclose(_as_float(row.get("paired_calibration_estimated_slew_scale"), 1e9), float(row["actual_slew_scale"]), abs_tol=1e-12)
+                _as_int(row.get("paired_calibration_estimated_delay_steps"), -999)
+                == _as_int(row.get("actual_action_delay_steps"), -998)
+                and math.isclose(
+                    _as_float(row.get("paired_calibration_estimated_slew_scale"), 1e9),
+                    _as_float(row.get("actual_slew_scale"), -1e9),
+                    abs_tol=1e-12,
+                )
                 for row in subset
+            ),
+            "all_main_controls_executed": all(
+                _as_bool(row.get("paired_main_control_executed"), True) for row in subset
             ),
             "all_tracking_pass": all(_as_bool(row.get("stage3_4_target_tracking_pass")) for row in subset),
             "minimum_margin": min((_as_float(row.get("stage3_4_tracking_minimum_signed_margin"), -1e12) for row in subset), default=-1e12),
         })
-    required = int(ctx.cfg["confirmation"]["minimum_distinct_groups"])
+    required_groups = int(cfg["minimum_distinct_groups"])
+    expected_ray_tasks = len(expected_groups) * required_repeats
+    coverage_complete = bool(
+        len(rows) == expected_ray_tasks
+        and len(expected_groups) >= required_groups
+        and set(groups) == expected_groups
+        and all(row["repeat_coverage_complete"] for row in group_rows)
+    )
     passed = bool(
-        len(group_rows) >= required
+        coverage_complete
         and all(
             row["all_success"]
             and row["all_calibrations_successful"]
             and row["all_calibrations_correct"]
+            and row["all_main_controls_executed"]
             and row["all_tracking_pass"]
             for row in group_rows
         )
@@ -1494,9 +1658,13 @@ def summarize_confirmation(ctx: Stage41R7Context, rows: Sequence[dict[str, Any]]
         "stage": STAGE,
         "phase": "paired_confirmation",
         "n_ray_tasks": len(rows),
-        "n_tsc_episodes": 2 * len(rows),
+        "expected_ray_tasks": expected_ray_tasks,
+        "n_tsc_episodes": sum(
+            _as_int(row.get("paired_tsc_episode_count"), 2) for row in rows
+        ),
         "n_successful_tasks": sum(_as_bool(row.get("success")) for row in rows),
         "distinct_groups_confirmed": len(group_rows),
+        "coverage_complete": coverage_complete,
         "passed": passed,
         "group_summaries": group_rows,
     }

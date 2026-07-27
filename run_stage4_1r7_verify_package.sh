@@ -14,6 +14,7 @@ import json
 import subprocess
 import sys
 import numpy as np
+from tsc_rzip_rllib.diagnostics import stage4_1r7_precontrol_calibration_queue_startup as r7
 
 root = Path(sys.argv[1])
 manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8"))
@@ -23,6 +24,16 @@ assert manifest["complete_standalone"] is True
 assert manifest["lean_delivery"] is True
 assert manifest["default_workers"] == 128
 assert manifest["controller_revision"] == "precontrol_calibration_queue_consistent_startup_v7"
+assert manifest["package_revision"] == "r7a_summary_null_coverage_guard_v1"
+assert manifest["verified_unit_test_count"] == 249
+assert manifest["debug_fixes"]["control_law_changed"] is False
+assert manifest["debug_fixes"]["experiment_identity_changed"] is False
+assert manifest["debug_fixes"]["existing_successful_raw_json_gz_resume_compatible"] is True
+assert r7.RUNTIME_BUGFIX_REVISION == manifest["package_revision"]
+assert set(r7.STARTUP_MONITOR_VARIANTS) == {
+    "r7_precalibrated_clean_monitor",
+    "r7_precalibrated_noisy_monitor",
+}
 assert manifest["hard_gate_changed_from_stage4_1r6"] is False
 assert manifest["precontrol_calibration"]["separate_reset_episode"] is True
 assert manifest["queue_consistent_startup"]["primary_path_uses_online_handover"] is False

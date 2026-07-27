@@ -77,7 +77,8 @@ cat <<EOF
 [Stage4.1R7] R6 finite-bank estimation and exact persistent startup are frozen; failed physical-blend/cold-start paths are not reused as success.
 [Stage4.1R7] A separate bounded zero-net calibration episode identifies delay/slew, then TSC is reset before the main control trajectory.
 [Stage4.1R7] The main action queue is primed consistently from the calibrated model before the first control action; primary startup uses no online handover.
-[Stage4.1R7] The weak 0.9x-slew cases retain the validated 370 ms / 270 ms-arrival closure and conditional anti-windup configuration.
+[Stage4.1R7] The weak 0.9x-slew cases retain the validated 370 ms / 270 ms-arrival closure and no-anti-windup configuration.
+[Stage4.1R7 R7a] Null-safe summaries, exact monitor matching, and phase-coverage guards are active; control law and experiment IDs are unchanged.
 [Stage4.1R7] Residual Markdown files elsewhere in the project are ignored by package verification.
 [Stage4.1R7] Final task remains robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay.
 EOF
