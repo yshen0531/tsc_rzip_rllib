@@ -1219,6 +1219,196 @@ class PhysicalCoilScheduler:
         }
 
 
+
+@dataclass
+class DelaySlewHypothesisBank:
+    """Online command-response hypothesis bank for delay and slew scale.
+
+    The estimator uses only quantities that are measurable or known by a real
+    controller: issued three-mode commands, measured 14-coil current changes,
+    and the current coil state.  It never reads the simulated plant's private
+    delay queue.  Candidate pairs are scored in physical 14-coil current-
+    increment space through the same nonlinear decoder/current-room model used
+    by the controller scheduler.
+
+    This is a finite-bank POC, not a deployment-qualified adaptive estimator.
+    """
+
+    scheduler: PhysicalCoilScheduler
+    delay_candidates: tuple[int, ...] = (0, 1, 2)
+    slew_candidates: tuple[float, ...] = (0.9, 1.0, 1.1)
+    score_decay: float = 0.92
+    minimum_observations: int = 3
+    switch_hysteresis_fraction: float = 0.05
+    initial_delay_steps: int = 0
+    initial_slew_scale: float = 1.0
+    selected_delay_steps: int = 0
+    selected_slew_scale: float = 1.0
+    observations: int = 0
+    score_sums: dict[tuple[int, float], float] | None = None
+    score_weights: dict[tuple[int, float], float] | None = None
+    transitions: list[dict[str, Any]] | None = None
+
+    def __post_init__(self) -> None:
+        delays = tuple(sorted({int(value) for value in self.delay_candidates}))
+        slews = tuple(sorted({float(value) for value in self.slew_candidates}))
+        if not delays or min(delays) < 0:
+            raise ValueError("delay_candidates must be non-empty and non-negative")
+        if not slews or min(slews) <= 0.0:
+            raise ValueError("slew_candidates must be positive")
+        self.delay_candidates = delays
+        self.slew_candidates = slews
+        self.selected_delay_steps = int(self.initial_delay_steps)
+        self.selected_slew_scale = float(self.initial_slew_scale)
+        if self.selected_delay_steps not in delays:
+            raise ValueError("initial_delay_steps is outside the candidate bank")
+        if not any(math.isclose(self.selected_slew_scale, value, abs_tol=1e-12) for value in slews):
+            raise ValueError("initial_slew_scale is outside the candidate bank")
+        self.score_sums = {(delay, slew): 0.0 for delay in delays for slew in slews}
+        self.score_weights = {(delay, slew): 0.0 for delay in delays for slew in slews}
+        self.transitions = []
+
+    def _command_for_hypothesis(
+        self,
+        *,
+        step: int,
+        delay_steps: int,
+        issued_commands: Sequence[np.ndarray],
+        nominal_commands: np.ndarray,
+    ) -> np.ndarray:
+        issue_index = int(step) - int(delay_steps)
+        if issue_index < 0:
+            # The real plant queue is primed with the nominal command that is
+            # supposed to act at this physical step.
+            return np.asarray(nominal_commands[int(step)], dtype=float)
+        if issue_index >= len(issued_commands):
+            raise IndexError(
+                f"issued command history is missing step {issue_index}; "
+                f"available={len(issued_commands)}"
+            )
+        return np.asarray(issued_commands[issue_index], dtype=float)
+
+    def update(
+        self,
+        *,
+        step: int,
+        observed_delta_a: np.ndarray,
+        currents_before_a: np.ndarray,
+        issued_commands: Sequence[np.ndarray],
+        nominal_commands: np.ndarray,
+        gain_for_prediction: np.ndarray | None = None,
+    ) -> dict[str, Any]:
+        observed = np.asarray(observed_delta_a, dtype=float).reshape(14)
+        currents = np.asarray(currents_before_a, dtype=float).reshape(14)
+        nominal = np.asarray(nominal_commands, dtype=float)
+        if nominal.ndim != 2 or nominal.shape[1] != 3:
+            raise ValueError(f"nominal_commands must have shape (N,3), got {nominal.shape}")
+        gain = (
+            np.ones(3, dtype=float)
+            if gain_for_prediction is None
+            else np.asarray(gain_for_prediction, dtype=float).reshape(3)
+        )
+        scale = max(float(self.scheduler.nominal_max_delta_a), 1.0)
+        decay = float(np.clip(self.score_decay, 0.0, 1.0))
+        residuals: dict[tuple[int, float], float] = {}
+        for delay in self.delay_candidates:
+            command = self._command_for_hypothesis(
+                step=int(step),
+                delay_steps=int(delay),
+                issued_commands=issued_commands,
+                nominal_commands=nominal,
+            )
+            for slew in self.slew_candidates:
+                predicted = self.scheduler.predicted_delta_a(
+                    command,
+                    currents,
+                    gain,
+                    float(slew),
+                )
+                residual = float(np.sqrt(np.mean(((predicted - observed) / scale) ** 2)))
+                key = (int(delay), float(slew))
+                self.score_sums[key] = decay * float(self.score_sums[key]) + residual * residual
+                self.score_weights[key] = decay * float(self.score_weights[key]) + 1.0
+                residuals[key] = residual
+        self.observations += 1
+        normalized = {
+            key: float(self.score_sums[key]) / max(float(self.score_weights[key]), 1e-12)
+            for key in self.score_sums
+        }
+        old = (int(self.selected_delay_steps), float(self.selected_slew_scale))
+        best = min(normalized, key=lambda key: (normalized[key], key[0], abs(key[1] - 1.0)))
+        if self.observations >= int(self.minimum_observations):
+            old_score = normalized.get(old, math.inf)
+            best_score = normalized[best]
+            hysteresis = float(np.clip(self.switch_hysteresis_fraction, 0.0, 0.95))
+            if best == old or best_score <= old_score * (1.0 - hysteresis):
+                self.selected_delay_steps = int(best[0])
+                self.selected_slew_scale = float(best[1])
+        new = (int(self.selected_delay_steps), float(self.selected_slew_scale))
+        if new != old:
+            self.transitions.append(
+                {
+                    "step": int(step),
+                    "old_delay_steps": int(old[0]),
+                    "old_slew_scale": float(old[1]),
+                    "new_delay_steps": int(new[0]),
+                    "new_slew_scale": float(new[1]),
+                    "observations": int(self.observations),
+                }
+            )
+        return {
+            "selected_delay_steps": int(self.selected_delay_steps),
+            "selected_slew_scale": float(self.selected_slew_scale),
+            "instantaneous_residuals": {
+                f"d{delay}_s{slew:.3f}": float(value)
+                for (delay, slew), value in sorted(residuals.items())
+            },
+            "normalized_scores": {
+                f"d{delay}_s{slew:.3f}": float(value)
+                for (delay, slew), value in sorted(normalized.items())
+            },
+        }
+
+    def pending_desired_physical(
+        self,
+        *,
+        current_step: int,
+        issued_items: Sequence[dict[str, Any]],
+        nominal_physical: np.ndarray,
+    ) -> list[np.ndarray]:
+        delay = int(self.selected_delay_steps)
+        nominal = np.asarray(nominal_physical, dtype=float)
+        pending: list[np.ndarray] = []
+        for offset in range(delay):
+            issue_index = int(current_step) + offset - delay
+            if issue_index < 0:
+                effect_step = min(int(current_step) + offset, len(nominal) - 1)
+                pending.append(np.asarray(nominal[effect_step], dtype=float).copy())
+            elif issue_index < len(issued_items):
+                pending.append(
+                    np.asarray(issued_items[issue_index]["desired_physical"], dtype=float).copy()
+                )
+            else:
+                effect_step = min(int(current_step) + offset, len(nominal) - 1)
+                pending.append(np.asarray(nominal[effect_step], dtype=float).copy())
+        return pending
+
+    def summary(self) -> dict[str, Any]:
+        normalized = {
+            key: float(self.score_sums[key]) / max(float(self.score_weights[key]), 1e-12)
+            for key in self.score_sums
+        }
+        return {
+            "observations": int(self.observations),
+            "selected_delay_steps": int(self.selected_delay_steps),
+            "selected_slew_scale": float(self.selected_slew_scale),
+            "normalized_scores": {
+                f"d{delay}_s{slew:.3f}": float(value)
+                for (delay, slew), value in sorted(normalized.items())
+            },
+            "transitions": copy.deepcopy(self.transitions),
+        }
+
 # Backward-compatible wrapper for unit tests and downstream imports.  It now
 # solves in physical coordinates and ignores the deprecated diagonal gain
 # approximation.
@@ -1451,8 +1641,12 @@ class LocalStage41Worker:
             )
             observer_variant = self._observer_variant(spec, observer_enabled)
             anti_windup_cfg = self.robust_cfg["controller_upgrade"]["anti_windup"]
-            anti_windup_enabled = bool(
+            anti_windup_requested = bool(
                 spec.get("anti_windup_enabled", anti_windup_cfg.get("enabled", True))
+            )
+            anti_windup_mode = str(spec.get("anti_windup_mode", "explicit"))
+            conditional_aw_use_actual = bool(
+                spec.get("conditional_anti_windup_use_actual_actuator_state", True)
             )
             clean_sensor_path = _sensor_path_is_clean(spec)
             clean_bypass = bool(
@@ -1460,10 +1654,11 @@ class LocalStage41Worker:
                     "clean_measurement_bypass", True
                 )
             )
-            if clean_sensor_path and clean_bypass and not bool(
+            force_aw_in_clean = bool(spec.get("force_anti_windup_in_clean", False))
+            if clean_sensor_path and clean_bypass and not force_aw_in_clean and not bool(
                 anti_windup_cfg.get("apply_in_clean_measurement_bypass", False)
             ):
-                anti_windup_enabled = False
+                anti_windup_requested = False
 
             actual_gain = np.asarray(spec.get("actuator_gain_by_mode", [1.0, 1.0, 1.0]), dtype=float)
             gain_estimate = np.asarray(spec.get("controller_gain_estimate_by_mode", actual_gain), dtype=float)
@@ -1479,6 +1674,33 @@ class LocalStage41Worker:
                 float(schedule_cfg.get("minimum_effective_scale", 0.70)),
                 float(schedule_cfg.get("maximum_effective_scale", 1.30)),
             ))
+            def conditional_anti_windup_active(
+                current_slew_estimate: float,
+                current_gain_estimate: np.ndarray,
+            ) -> bool:
+                if not anti_windup_requested:
+                    return False
+                if anti_windup_mode != "conditional_weak_actuator":
+                    return True
+                slew_threshold = float(
+                    anti_windup_cfg.get("conditional_slew_scale_threshold", 0.98)
+                )
+                gain_threshold = float(
+                    anti_windup_cfg.get("conditional_gain_scale_threshold", 0.98)
+                )
+                estimated_weak = bool(
+                    float(current_slew_estimate) < slew_threshold
+                    or float(np.min(np.asarray(current_gain_estimate, dtype=float)))
+                    < gain_threshold
+                )
+                actual_weak = bool(
+                    conditional_aw_use_actual
+                    and (
+                        self.actual_slew_scale < slew_threshold
+                        or float(np.min(actual_gain)) < gain_threshold
+                    )
+                )
+                return bool(estimated_weak or actual_weak)
 
             controller_scale = float(spec.get("controller_scale", 0.0))
             actual_delay = max(0, int(spec.get("action_delay_steps", 0)))
@@ -1497,6 +1719,12 @@ class LocalStage41Worker:
                     "prime_action_queue_with_nominal", True
                 ),
             ))
+            estimator_spec = copy.deepcopy(spec.get("adaptive_delay_slew_estimator") or {})
+            estimator_enabled = bool(estimator_spec.get("enabled", False))
+            measured_known_effect = bool(
+                spec.get("known_control_effect_from_measured_current_increment", False)
+            )
+            estimator: DelaySlewHypothesisBank | None = None
 
             self.env.reset()
             initial_currents = np.asarray(self.env.last_state["currents_a_tsc"], dtype=float)
@@ -1507,8 +1735,37 @@ class LocalStage41Worker:
                 slew_estimate,
                 scheduling_enabled,
             )
+            if estimator_enabled:
+                estimator = DelaySlewHypothesisBank(
+                    scheduler=self.scheduler,
+                    delay_candidates=tuple(
+                        int(value)
+                        for value in estimator_spec.get("delay_candidates", [0, 1, 2])
+                    ),
+                    slew_candidates=tuple(
+                        float(value)
+                        for value in estimator_spec.get("slew_candidates", [0.9, 1.0, 1.1])
+                    ),
+                    score_decay=float(estimator_spec.get("score_decay", 0.92)),
+                    minimum_observations=int(
+                        estimator_spec.get("minimum_observations", 3)
+                    ),
+                    switch_hysteresis_fraction=float(
+                        estimator_spec.get("switch_hysteresis_fraction", 0.05)
+                    ),
+                    initial_delay_steps=int(
+                        estimator_spec.get("initial_delay_steps", modeled_delay)
+                    ),
+                    initial_slew_scale=float(
+                        estimator_spec.get("initial_slew_scale", slew_estimate)
+                    ),
+                )
+                modeled_delay = int(estimator.selected_delay_steps)
+                slew_estimate = float(estimator.selected_slew_scale)
 
             command_queue: list[dict[str, np.ndarray]] = []
+            issued_items_history: list[dict[str, np.ndarray]] = []
+            issued_command_history: list[np.ndarray] = []
             for index in range(actual_delay):
                 if prime_queue:
                     command_queue.append({
@@ -1645,6 +1902,12 @@ class LocalStage41Worker:
             for env_step in range(env_phase_offset, 35):
                 reference_step = env_step if phase_aware_enabled else env_step - env_phase_offset
                 reference_step = int(np.clip(reference_step, 0, 34))
+                if estimator is not None:
+                    modeled_delay = int(estimator.selected_delay_steps)
+                    slew_estimate = float(estimator.selected_slew_scale)
+                anti_windup_active = conditional_anti_windup_active(
+                    slew_estimate, gain_estimate
+                )
                 state = self.env.last_state
                 current_true = np.asarray([state["R"], state["Z"], state["Ip"]], dtype=float)
                 measured_now = current_true + bias + rng.normal(0.0, noise_sigma)
@@ -1738,18 +2001,25 @@ class LocalStage41Worker:
                     integral_previous,
                     measurement,
                     reference_step=reference_step,
-                    anti_windup_enabled=anti_windup_enabled,
+                    anti_windup_enabled=anti_windup_active,
                 )
 
-                modeled_pending_physical: list[np.ndarray] = []
-                for index in range(modeled_delay):
-                    if index < len(command_queue):
-                        modeled_pending_physical.append(
-                            np.asarray(command_queue[index]["desired_physical"], dtype=float)
-                        )
-                    else:
-                        ref_step = min(reference_step + index, 34)
-                        modeled_pending_physical.append(nominal_physical[ref_step].copy())
+                if estimator is not None:
+                    modeled_pending_physical = estimator.pending_desired_physical(
+                        current_step=reference_step,
+                        issued_items=issued_items_history,
+                        nominal_physical=nominal_physical,
+                    )
+                else:
+                    modeled_pending_physical = []
+                    for index in range(modeled_delay):
+                        if index < len(command_queue):
+                            modeled_pending_physical.append(
+                                np.asarray(command_queue[index]["desired_physical"], dtype=float)
+                            )
+                        else:
+                            ref_step = min(reference_step + index, 34)
+                            modeled_pending_physical.append(nominal_physical[ref_step].copy())
 
                 if controller_scale <= 0.0:
                     effect_step = min(reference_step + modeled_delay, 34)
@@ -1795,7 +2065,7 @@ class LocalStage41Worker:
                     integral_previous,
                     integral_candidate,
                     saturated=saturated,
-                    anti_windup_enabled=anti_windup_enabled,
+                    anti_windup_enabled=anti_windup_active,
                 )
                 effect_step = min(int(solve.get("effect_step", reference_step)), 34)
                 desired_physical = np.clip(
@@ -1816,6 +2086,13 @@ class LocalStage41Worker:
                     "command": issued_command,
                     "desired_physical": desired_physical,
                 }
+                issued_items_history.append(
+                    {
+                        "command": issued_command.copy(),
+                        "desired_physical": desired_physical.copy(),
+                    }
+                )
+                issued_command_history.append(issued_command.copy())
                 if actual_delay > 0:
                     command_queue.append(issued_item)
                     applied_item = command_queue.pop(0)
@@ -1843,13 +2120,40 @@ class LocalStage41Worker:
 
                 effective_coefficients = actual_gain * applied_command + actuator_bias
                 action = self._mode_action(effective_coefficients, currents)
+                currents_before_step = currents.copy()
                 _, _, terminated, truncated, info = self.env.step(action)
                 trajectory.append(base._state_record(self.env, env_step + 1, action))
+                currents_after_step = np.asarray(
+                    self.env.last_state["currents_a_tsc"], dtype=float
+                )
+                observed_current_delta_a = currents_after_step - currents_before_step
+                estimator_update: dict[str, Any] | None = None
+                if estimator is not None:
+                    estimator_update = estimator.update(
+                        step=reference_step,
+                        observed_delta_a=observed_current_delta_a,
+                        currents_before_a=currents_before_step,
+                        issued_commands=issued_command_history,
+                        nominal_commands=nominal_command_plan,
+                        gain_for_prediction=gain_estimate,
+                    )
 
-                # Record only controller-known intended physical action.  The
-                # injected robustness disturbance and unmodelled gain/bias stay
-                # in the residual innovation by construction.
-                known_desired = np.asarray(applied_item["desired_physical"], dtype=float)
+                if measured_known_effect:
+                    # Deployment-realistic path for the adaptive delay/slew POC:
+                    # infer the physical three-mode effect from measured coil-
+                    # current increments.  This avoids consulting the simulator's
+                    # private actual-delay queue.
+                    known_desired = (
+                        observed_current_delta_a / max(self.nominal_max_delta_a, 1e-12)
+                    ) @ self.modes_tsc
+                    known_effect_source = "measured_coil_current_increment"
+                else:
+                    # Existing robustness path: keep injected disturbances and
+                    # unmodelled plant gain/bias in the residual innovation.
+                    known_desired = np.asarray(
+                        applied_item["desired_physical"], dtype=float
+                    )
+                    known_effect_source = "controller_intended_applied_item"
                 known_physical_delta_by_step[reference_step] = (
                     known_desired - nominal_physical[reference_step]
                 )
@@ -1867,7 +2171,9 @@ class LocalStage41Worker:
                     "measurement_source": measurement_source,
                     "clean_sensor_path": clean_sensor_path,
                     "clean_measurement_bypass": clean_bypass,
-                    "anti_windup_enabled": anti_windup_enabled,
+                    "anti_windup_enabled": anti_windup_active,
+                    "anti_windup_requested": anti_windup_requested,
+                    "conditional_anti_windup_use_actual_actuator_state": conditional_aw_use_actual,
                     "anti_windup_saturated": saturated,
                     "delay_aware_enabled": delay_aware_enabled,
                     "gain_slew_scheduling_enabled": scheduling_enabled,
@@ -1889,10 +2195,19 @@ class LocalStage41Worker:
                     "known_physical_delta_from_nominal": known_physical_delta_by_step[
                         reference_step
                     ].tolist(),
+                    "known_control_effect_source": known_effect_source,
                     "estimated_gain_by_mode": gain_estimate.tolist(),
                     "actual_gain_by_mode": actual_gain.tolist(),
                     "estimated_slew_scale": slew_estimate,
                     "actual_slew_scale": self.actual_slew_scale,
+                    "adaptive_estimator_enabled": estimator is not None,
+                    "adaptive_estimated_delay_steps": (
+                        None if estimator is None else int(estimator.selected_delay_steps)
+                    ),
+                    "adaptive_estimated_slew_scale": (
+                        None if estimator is None else float(estimator.selected_slew_scale)
+                    ),
+                    "adaptive_estimator_update": estimator_update,
                     "scheduler_predicted_mismatch_rms_a": float(scheduled["mismatch_rms_a"]),
                     "scheduler_predicted_mismatch_max_abs_a": float(scheduled["mismatch_max_abs_a"]),
                     "scheduler_actual_mismatch_rms_a": float(
@@ -1936,6 +2251,9 @@ class LocalStage41Worker:
                 "nominal_schedule_diagnostics": nominal_schedule_diagnostics,
                 "library_interpolation": interpolation,
                 "environment_variant": self.variant_id,
+                "adaptive_estimator_summary": (
+                    None if estimator is None else estimator.summary()
+                ),
                 "phase_start_diagnostics": {
                     "phase_offset_steps": env_phase_offset,
                     "reference_phase_offset_steps": reference_phase_offset,
@@ -1963,7 +2281,7 @@ class LocalStage41Worker:
                 "environment_variant": self.variant_id,
             }
         runner = getattr(self.env, "runner", None)
-        if runner is not None:
+        if runner is not None and not bool(spec.get("_defer_cleanup", False)):
             runner.cleanup_episode_workspace(
                 failed=not bool(result.get("success")),
                 reason=str(result.get("failure_reason", "stage4_1r3_complete")),

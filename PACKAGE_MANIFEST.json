@@ -1,72 +1,122 @@
 {
-  "schema_version": 3,
-  "stage": "Stage4.1R3",
-  "package_name": "stage4_1r3_complete_standalone_control_aware_residual_observer_antiwindup_128worker_lean",
+  "schema_version": 4,
+  "stage": "Stage4.1R4",
+  "package_name": "stage4_1r4_complete_standalone_targeted_weak_slew_online_estimator_128worker_lean",
   "complete_standalone": true,
   "lean_delivery": true,
   "default_workers": 128,
   "silent_worker_fallback": false,
   "base_package": {
-    "filename": "stage4_1r2_complete_standalone_error_state_observer_physical_scheduler_128worker_lean.zip",
-    "sha256": "d939c673d9d1b3a857e943bc8bd2ec5ed530f29805030284ad03f3c07175958f"
+    "filename": "stage4_1r3_complete_standalone_control_aware_residual_observer_antiwindup_128worker_lean.zip",
+    "sha256": "876fdec14e21140603a2e95304c3672f562d2537b7eba19b184892a8e6970bcc"
   },
-  "source_requirement": "completed Stage4.0 run that references the confirmed Stage3.4 target-conditioned receding-horizon MPC baseline",
-  "hard_gate_changed_from_stage3_4": false,
+  "source_requirement": "completed Stage4.1R3 run with regression, observer ablation, failure recovery, noise statistics, phase-aligned history, and confirmation all passed",
+  "controller_revision": "targeted_weak_slew_and_online_delay_slew_estimator_v4",
+  "hard_gate_changed_from_stage4_1r3": false,
   "target_library_changed": false,
   "stage3_4_jacobian_changed": false,
-  "controller_wrapper_upgraded": true,
-  "controller_revision": "control_aware_residual_observer_antiwindup_v3",
-  "controller_upgrades": [
-    "clean zero-noise zero-delay path exactly reuses the confirmed Stage3.4 measurement and MPC behavior",
-    "control-aware residual observer subtracts the known response of already-applied feedback through the frozen Stage3.4 Jacobian",
-    "the injected robustness disturbance and unmodelled gain or bias remain unknown residuals by construction",
-    "observer and integral anti-windup are selected by a disjoint 64-rollout finite-envelope ablation",
-    "integral clipping, hold-phase leakage, and saturation-triggered freeze or decay",
-    "physical 14-coil inverse gain and slew scheduling",
-    "action-delay queue-aware receding-horizon prediction",
-    "phase-aligned continuation after compensated prelude histories",
-    "hard 30-rollout controller-integration regression gate before observer ablation or expensive robustness phases",
-    "adaptive disturbance boundary, category-separated uncertainty, and multi-seed noise statistics"
-  ],
-  "regression_gate": {
-    "rollouts": 30,
-    "variants": [
-      "open_loop",
-      "legacy_stage3_4",
-      "r3_clean_direct"
-    ],
-    "requires_exact_clean_path_action_and_state_reproduction": true,
-    "stop_pipeline_on_failure": true
+  "source_reclassification": {
+    "corrects_zero-baseline preservation accounting": true,
+    "real_source_integration_result": "gain_estimation_error passes; scheduled_slew is the only unresolved required category",
+    "new_tsc_required_for_accounting_fix": false
   },
-  "observer_ablation": {
-    "rollouts": 64,
+  "weak_slew_closure": {
+    "actual_slew_scale": 0.9,
+    "horizon_steps": 37,
+    "horizon_ms": 370,
+    "latest_arrival_step": 27,
+    "weak_slew_latest_arrival_ms": 270,
+    "hold_through_step": 37,
+    "weak_slew_hold_through_ms": 370,
+    "minimum_post_arrival_hold_ms": 100,
+    "tail_policy_steps_35_to_36": "zero_current_increment",
+    "main_rollouts": 6,
+    "confirmation_rollouts": 4
+  },
+  "online_delay_slew_estimator": {
+    "type": "finite physical-coil command-response hypothesis bank",
+    "delay_candidates_steps": [
+      0,
+      1,
+      2
+    ],
+    "slew_candidates": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "grid_pairs": 9,
     "targets": 2,
-    "sensor_conditions": 8,
-    "variants": 4,
-    "selectable_variants": [
-      "control_aware_no_aw",
-      "control_aware_aw"
+    "controller_variants": [
+      "naive",
+      "oracle",
+      "adaptive"
     ],
-    "stop_pipeline_on_failure": true
+    "main_rollouts": 54,
+    "maximum_confirmation_rollouts": 18,
+    "uses_measured_14_coil_current_increments": true,
+    "uses_issued_mode_commands": true,
+    "reads_private_actual_delay_queue": false,
+    "adaptive_anti_windup_reads_private_actual_slew": false,
+    "known_control_effect_for_estimator_poc_source": "measured coil-current increment projected onto the validated three-mode basis",
+    "finite_bank_poc_only": true
   },
+  "confirmation": {
+    "weak_slew_targets_confirmed": 2,
+    "weak_slew_repeats_per_target": 2,
+    "adaptive_estimator_distinct_delay_slew_pairs_max": 9,
+    "adaptive_estimator_distinct_delay_slew_pairs_minimum_required": 6,
+    "adaptive_estimator_repeats_per_case": 2,
+    "requires_tracking_pass": true,
+    "requires_estimator_identification_pass": true,
+    "maximum_total_confirmation_rollouts": 22
+  },
+  "maximum_new_real_tsc_rollouts_without_restart_validation": 82,
+  "restart_scope": "availability audit only; no true alternate-restart robustness claim",
   "finite_test_envelope_only": true,
   "deployment_robustness_validated": false,
   "plant_parameter_robustness_validated": false,
-  "true_hidden_state_robustness_validated": false,
+  "true_restart_state_robustness_validated": false,
   "verification_ignores_unlisted_project_files": true,
   "residual_markdown_files_allowed": true,
   "shell_files": [
-    "run_stage4_1r3_control_aware_robustness_native.sh",
-    "run_stage4_1r3_control_aware_robustness_nohup.sh",
-    "run_stage4_1r3_self_test.sh",
-    "run_stage4_1r3_verify_package.sh",
-    "run_stop_stage4_1r3_now.sh",
-    "scripts/stage4_1r3_shell_common.sh"
+    "run_stage4_1r4_targeted_closure_native.sh",
+    "run_stage4_1r4_targeted_closure_nohup.sh",
+    "run_stage4_1r4_self_test.sh",
+    "run_stage4_1r4_verify_package.sh",
+    "run_stop_stage4_1r4_now.sh",
+    "scripts/stage4_1r4_shell_common.sh"
   ],
-  "main_config": "configs/stage4_1r3_control_aware_residual_observer_350ms.json",
-  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py",
-  "main_entrypoint": "scripts/stage4_1r3_control_aware_robustness.py",
-  "main_test": "tests/test_stage4_1r3_control_aware_robustness.py",
-  "verified_unit_test_count": 186,
-  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+  "main_config": "configs/stage4_1r4_targeted_closure_370ms.json",
+  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py",
+  "main_entrypoint": "scripts/stage4_1r4_targeted_closure.py",
+  "main_test": "tests/test_stage4_1r4_targeted_closure.py",
+  "verified_unit_test_count": 196,
+  "validation": {
+    "python_compileall": true,
+    "all_json_parsed": true,
+    "all_declared_shell_scripts_bash_n": true,
+    "synthetic_full_delay_slew_grid_identification": "9/9 exact",
+    "real_stage4_1r3_trace_replay_identification": {
+      "cases": 4,
+      "exact": 4,
+      "pairs": [
+        "d1_s1.0",
+        "d2_s1.0",
+        "d0_s0.9",
+        "d0_s1.1"
+      ]
+    },
+    "real_source_reclassification_integration": true,
+    "no_tsc_full_pipeline_mock": {
+      "weak_slew_rollouts": 6,
+      "estimator_rollouts": 54,
+      "confirmation_rollouts": 22,
+      "strongest_mock_verdict_reached": true
+    },
+    "real_gotsc_stage4_1r4_campaign_executed_here": false
+  },
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "weak_slew_latest_arrival_ms": 270,
+  "weak_slew_hold_through_ms": 370
 }

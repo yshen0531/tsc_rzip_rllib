@@ -726,7 +726,7 @@ def target_metrics(
         return _failed_metrics(str(result.get("failure_reason", "TSC failure")), horizon=max(len(result.get("trajectory", [])) - 1, 0))
     trajectory = result.get("trajectory", [])
     horizon = len(trajectory) - 1
-    if horizon not in {25, 35}:
+    if horizon not in {25, 35, 37}:
         return _failed_metrics(f"unexpected trajectory horizon {horizon}", horizon=horizon)
     y = np.asarray([[row["R"], row["Z"], row["Ip"]] for row in trajectory], dtype=float)
     if not np.all(np.isfinite(y)):
@@ -879,9 +879,13 @@ def target_metrics(
             and float(chosen["post_arrival_velocity_rms_m_per_s"]) <= float(gate["late_velocity_rms_max_m_per_s"]) + 1e-12
         ),
         "gate_label": (
-            "PASS_PRECISE_HOLD_30MM_BY_250MS_THROUGH_350MS"
-            if tracking_pass and horizon == 35
-            else ("PASS_LATE_ARRIVAL_SEED_30MM_BY_250MS" if tracking_pass else "NEAR_FEASIBLE_STAGE3_4")
+            "PASS_PRECISE_HOLD_30MM_BY_270MS_THROUGH_370MS"
+            if tracking_pass and horizon == 37
+            else (
+                "PASS_PRECISE_HOLD_30MM_BY_250MS_THROUGH_350MS"
+                if tracking_pass and horizon == 35
+                else ("PASS_LATE_ARRIVAL_SEED_30MM_BY_250MS" if tracking_pass else "NEAR_FEASIBLE_STAGE3_4")
+            )
         ),
         "action_rms": action_rms,
         "delta_action_rms": delta_rms,
