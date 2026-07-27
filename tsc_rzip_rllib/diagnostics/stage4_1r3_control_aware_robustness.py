@@ -2648,7 +2648,13 @@ class LocalStage41Worker:
                 issued_items_history.append(
                     {
                         "command": issued_command.copy(),
-                        "desired_physical": desired_physical.copy(),
+                        # Record the physical target that actually entered the
+                        # actuator queue.  During any future queue-consistent
+                        # transition this may differ from the unconstrained new
+                        # controller target.
+                        "desired_physical": np.asarray(
+                            issued_desired_physical, dtype=float
+                        ).copy(),
                     }
                 )
                 issued_command_history.append(issued_command.copy())
@@ -2851,6 +2857,9 @@ class LocalStage41Worker:
                     "integral_normalized": integral.tolist(),
                     "mode_correction_physical": correction.tolist(),
                     "desired_physical_mode_coefficients": desired_physical.tolist(),
+                    "issued_desired_physical_mode_coefficients": np.asarray(
+                        issued_desired_physical, dtype=float
+                    ).tolist(),
                     "issued_mode_coefficients": issued_command.tolist(),
                     "applied_command_mode_coefficients": applied_command.tolist(),
                     "effective_mode_coefficients": effective_coefficients.tolist(),

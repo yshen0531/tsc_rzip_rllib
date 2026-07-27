@@ -1,0 +1,245 @@
+{
+  "stage_label": "Stage 4.1R7",
+  "run_name": "stage4_1r7_precontrol_calibration_queue_startup",
+  "output_root": "stage4_1r7_runs",
+  "controller_revision": "precontrol_calibration_queue_consistent_startup_v7",
+  "source_requirement": {
+    "required_stage": "Stage4.1R6",
+    "required_controller_revision": "confidence_gated_persistent_prior_physical_handover_v6",
+    "require_finished": true,
+    "require_confidence_gated_estimator_confirmation": true,
+    "require_exact_persistent_preservation": true,
+    "allow_source_adjacent_handover_failure": true,
+    "allow_source_cold_start_failure": true,
+    "reuse_stage4_1r3_controller": true,
+    "reuse_stage3_4_target_library": true,
+    "reuse_stage3_4_jacobian": true,
+    "reuse_stage3_4_selected_controller_scale": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "A separate bounded zero-net calibration episode identifies finite delay/slew under clean and 20 mA coil-current measurement conditions; TSC is then reset and the frozen main controller starts with a queue primed consistently from the calibrated model."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r7"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "confidence_gate": {
+    "delay_candidates": [
+      0,
+      1,
+      2
+    ],
+    "slew_candidates": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "score_decay": 0.92,
+    "minimum_observations": 2,
+    "switch_hysteresis_fraction": 0.03,
+    "minimum_confidence_ratio": 5.0,
+    "minimum_absolute_score_gap": 1e-10,
+    "consecutive_best_observations": 2,
+    "require_unique_best": true,
+    "tie_relative_tolerance": 1e-09,
+    "tie_absolute_tolerance": 1e-12
+  },
+  "precontrol_calibration": {
+    "environment_horizon_steps": 35,
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "mode_command_plan": [
+      [
+        0.72,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.6,
+        0.0
+      ],
+      [
+        -0.72,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.6,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.24
+      ],
+      [
+        0.0,
+        0.0,
+        -0.24
+      ],
+      [
+        0.36,
+        0.3,
+        0.0
+      ],
+      [
+        -0.36,
+        -0.3,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "profiles": [
+      {
+        "profile_id": "clean",
+        "coil_current_measurement_noise_A": 0.0,
+        "seed_base": 71000
+      },
+      {
+        "profile_id": "noisy_20mA",
+        "coil_current_measurement_noise_A": 0.02,
+        "seed_base": 72000
+      }
+    ],
+    "maximum_first_confident_lock_step": 5,
+    "minimum_distinct_pairs_calibrated": 9,
+    "require_all_profiles_correct": true,
+    "calibration_is_separate_reset_episode": true,
+    "zero_command_prehistory": true,
+    "maximum_physical_coil_delta_fraction_of_nominal_slew": 0.34,
+    "calibration_plan_revision": "bounded_zero_net_snr_20mA_v2"
+  },
+  "queue_consistent_startup": {
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "clean_profile_id": "clean",
+    "noisy_profile_id": "noisy_20mA",
+    "controller_variants": [
+      "oracle",
+      "r7_precalibrated_clean_no_monitor",
+      "r7_precalibrated_clean_monitor",
+      "r7_precalibrated_noisy_monitor",
+      "naive_default",
+      "r4_abrupt_unknown"
+    ],
+    "minimum_oracle_feasible_preservation": 1.0,
+    "minimum_clean_trace_equivalence": 1.0,
+    "minimum_clean_monitor_trace_equivalence": 1.0,
+    "minimum_noisy_monitor_trace_equivalence": 1.0,
+    "use_370ms_weak_slew_closure": true,
+    "primary_path_uses_online_handover": false,
+    "queue_primed_from_calibrated_model_before_first_main_action": true,
+    "weak_slew_controller_variant": "control_aware_no_aw",
+    "anti_windup_enabled": false
+  },
+  "confirmation": {
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "repeats_per_group": 2,
+    "minimum_distinct_groups": 18,
+    "coil_current_measurement_noise_A": 0.02,
+    "seed_base": 73000,
+    "paired_calibration_and_main_control": true
+  },
+  "restart_audit": {
+    "candidate_folders": [
+      "1080ms",
+      "1090ms",
+      "1110ms",
+      "1120ms"
+    ],
+    "minimum_distinct_folders": 2
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "hardware_pre_shot_calibration_validated": false,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}
