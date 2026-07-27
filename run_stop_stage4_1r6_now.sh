@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/scripts/stage4_1r5_shell_common.sh"
-stage41r5_project_init
-stage41r5_find_python
-PID_FILE="${PROJECT_DIR}/stage4_1r5_runs/stage4_1r5_driver.pid"
+source "${SCRIPT_DIR}/scripts/stage4_1r6_shell_common.sh"
+stage41r6_project_init
+stage41r6_find_python
+PID_FILE="${PROJECT_DIR}/stage4_1r6_runs/stage4_1r6_driver.pid"
 if [[ -f "${PID_FILE}" ]]; then
   PID="$(cat "${PID_FILE}" 2>/dev/null || true)"
   if [[ "${PID}" =~ ^[0-9]+$ ]] && kill -0 "${PID}" 2>/dev/null; then
     CMD="$(ps -o args= -p "${PID}" 2>/dev/null || true)"
-    if [[ "${CMD}" == *stage4_1r5* ]]; then
+    if [[ "${CMD}" == *stage4_1r6* ]]; then
       kill -TERM -- "-${PID}" 2>/dev/null || kill -TERM "${PID}" 2>/dev/null || true
       for _ in $(seq 1 30); do kill -0 "${PID}" 2>/dev/null || break; sleep 1; done
       kill -KILL -- "-${PID}" 2>/dev/null || kill -KILL "${PID}" 2>/dev/null || true
@@ -17,6 +17,6 @@ if [[ -f "${PID_FILE}" ]]; then
   fi
   rm -f "${PID_FILE}"
 fi
-stage41r5_ray_stop
-stage41r5_cleanup_runtime
-echo "[Stage4.1R5] stopped Ray and cleaned temporary runtime directories; saved run results were not deleted."
+stage41r6_ray_stop
+stage41r6_cleanup_runtime
+echo "[Stage4.1R6] stopped Ray and cleaned temporary runtime directories; saved run results were not deleted."

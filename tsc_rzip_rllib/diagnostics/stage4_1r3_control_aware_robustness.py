@@ -1254,20 +1254,111 @@ class PhysicalCoilScheduler:
             "nfev": int(result.nfev),
         }
 
+    def project_delta_to_physical_coefficients(self, delta_a: np.ndarray) -> np.ndarray:
+        """Project a 14-coil current increment onto the validated mode basis.
+
+        The returned coefficients are in the nominal physical-mode convention
+        used by the Stage3.4 Jacobian.  This is used only for queue-consistent
+        handover bookkeeping; the actual issued command is always verified in
+        14-coil current-increment space.
+        """
+        delta = np.asarray(delta_a, dtype=float).reshape(14)
+        return (delta / max(float(self.nominal_max_delta_a), 1e-12)) @ np.asarray(
+            self.modes_tsc, dtype=float
+        )
+
+    def solve_command_for_target_delta(
+        self,
+        target_delta_a: np.ndarray,
+        currents: np.ndarray,
+        gain_estimate: np.ndarray,
+        slew_estimate: float,
+        *,
+        enabled: bool,
+        reference_command: np.ndarray | None = None,
+    ) -> dict[str, Any]:
+        """Invert the nonlinear mode-to-coil map for a requested 14-coil delta.
+
+        Unlike :meth:`solve_command`, this method accepts the physical current
+        increment directly.  It is the key primitive for a truly bumpless
+        handover: the old and new controller representations may differ, but
+        the requested physical coil increment can remain continuous.
+        """
+        target = np.asarray(target_delta_a, dtype=float).reshape(14)
+        gain = np.clip(np.asarray(gain_estimate, dtype=float).reshape(3), 1e-6, None)
+        slew = max(float(slew_estimate), 1e-6)
+        if reference_command is None:
+            physical = self.project_delta_to_physical_coefficients(target)
+            reference = np.clip(physical / (gain * slew), self.lower_mode, self.upper_mode)
+        else:
+            reference = np.clip(
+                np.asarray(reference_command, dtype=float).reshape(3),
+                self.lower_mode,
+                self.upper_mode,
+            )
+        if not enabled:
+            command = reference
+            predicted = self.predicted_delta_a(command, currents, np.ones(3), 1.0)
+            mismatch = predicted - target
+            return {
+                "command": command,
+                "target_delta_a": target,
+                "predicted_delta_a": predicted,
+                "mismatch_rms_a": float(np.sqrt(np.mean(mismatch**2))),
+                "mismatch_max_abs_a": float(np.max(np.abs(mismatch))),
+                "solver_success": True,
+                "solver_status": 0,
+                "identity_shortcut": False,
+                "target_delta_direct": True,
+            }
+        try:
+            from scipy.optimize import least_squares
+        except Exception as exc:  # pragma: no cover
+            raise RuntimeError("scipy is required for physical-coil scheduling") from exc
+        scale_a = max(self.nominal_max_delta_a, 1.0)
+        reg = math.sqrt(max(self.regularization, 0.0))
+
+        def residual(command: np.ndarray) -> np.ndarray:
+            predicted = self.predicted_delta_a(command, currents, gain, slew)
+            physical_residual = (predicted - target) / scale_a
+            if reg <= 0.0:
+                return physical_residual
+            return np.concatenate([physical_residual, reg * (command - reference)])
+
+        result = least_squares(
+            residual,
+            reference,
+            bounds=(self.lower_mode, self.upper_mode),
+            xtol=1e-10,
+            ftol=1e-10,
+            gtol=1e-10,
+            max_nfev=120,
+        )
+        command = np.clip(np.asarray(result.x, dtype=float), self.lower_mode, self.upper_mode)
+        predicted = self.predicted_delta_a(command, currents, gain, slew)
+        mismatch = predicted - target
+        return {
+            "command": command,
+            "target_delta_a": target,
+            "predicted_delta_a": predicted,
+            "mismatch_rms_a": float(np.sqrt(np.mean(mismatch**2))),
+            "mismatch_max_abs_a": float(np.max(np.abs(mismatch))),
+            "solver_success": bool(result.success),
+            "solver_status": int(result.status),
+            "identity_shortcut": False,
+            "target_delta_direct": True,
+            "nfev": int(result.nfev),
+        }
 
 
 @dataclass
 class DelaySlewHypothesisBank:
-    """Online command-response hypothesis bank for delay and slew scale.
+    """Online finite-bank estimator with optional confidence-gated locking.
 
-    The estimator uses only quantities that are measurable or known by a real
-    controller: issued three-mode commands, measured 14-coil current changes,
-    and the current coil state.  It never reads the simulated plant's private
-    delay queue.  Candidate pairs are scored in physical 14-coil current-
-    increment space through the same nonlinear decoder/current-room model used
-    by the controller scheduler.
-
-    This is a finite-bank POC, not a deployment-qualified adaptive estimator.
+    The original Stage4.1R4/R5 behaviour is preserved when the confidence
+    options remain at their defaults.  Stage4.1R6 enables a strict gate so a
+    tied best score (confidence ratio near one) cannot be misreported as a
+    model lock or trigger a controller handover.
     """
 
     scheduler: PhysicalCoilScheduler
@@ -1278,19 +1369,33 @@ class DelaySlewHypothesisBank:
     switch_hysteresis_fraction: float = 0.05
     initial_delay_steps: int = 0
     initial_slew_scale: float = 1.0
+    minimum_confidence_ratio: float = 1.0
+    minimum_absolute_score_gap: float = 0.0
+    consecutive_best_observations: int = 1
+    require_unique_best: bool = False
+    tie_relative_tolerance: float = 0.0
+    tie_absolute_tolerance: float = 0.0
     selected_delay_steps: int = 0
     selected_slew_scale: float = 1.0
     observations: int = 0
     score_sums: dict[tuple[int, float], float] | None = None
     score_weights: dict[tuple[int, float], float] | None = None
     transitions: list[dict[str, Any]] | None = None
+    lock_events: list[dict[str, Any]] | None = None
     locked: bool = False
     last_best_delay_steps: int = 0
     last_best_slew_scale: float = 1.0
     last_best_score: float = 0.0
     last_second_best_score: float = 0.0
     last_confidence_ratio: float = 1.0
+    last_score_gap: float = 0.0
+    last_best_is_unique: bool = True
+    last_confident: bool = False
     first_lock_step: int | None = None
+    first_any_selection_step: int | None = None
+    first_confident_lock_step: int | None = None
+    current_best_key: tuple[int, float] | None = None
+    current_best_streak: int = 0
 
     def __post_init__(self) -> None:
         delays = tuple(sorted({int(value) for value in self.delay_candidates}))
@@ -1299,6 +1404,10 @@ class DelaySlewHypothesisBank:
             raise ValueError("delay_candidates must be non-empty and non-negative")
         if not slews or min(slews) <= 0.0:
             raise ValueError("slew_candidates must be positive")
+        if self.minimum_confidence_ratio < 1.0:
+            raise ValueError("minimum_confidence_ratio must be >= 1")
+        if self.consecutive_best_observations < 1:
+            raise ValueError("consecutive_best_observations must be >= 1")
         self.delay_candidates = delays
         self.slew_candidates = slews
         self.selected_delay_steps = int(self.initial_delay_steps)
@@ -1310,20 +1419,23 @@ class DelaySlewHypothesisBank:
         self.score_sums = {(delay, slew): 0.0 for delay in delays for slew in slews}
         self.score_weights = {(delay, slew): 0.0 for delay in delays for slew in slews}
         self.transitions = []
+        self.lock_events = []
         self.locked = False
         self.last_best_delay_steps = int(self.selected_delay_steps)
         self.last_best_slew_scale = float(self.selected_slew_scale)
         self.last_best_score = 0.0
         self.last_second_best_score = 0.0
         self.last_confidence_ratio = 1.0
+        self.last_score_gap = 0.0
+        self.last_best_is_unique = True
+        self.last_confident = False
         self.first_lock_step = None
+        self.first_any_selection_step = None
+        self.first_confident_lock_step = None
+        self.current_best_key = None
+        self.current_best_streak = 0
 
     def reset_scores(self, *, retain_selection: bool = True) -> None:
-        """Forget accumulated evidence while optionally retaining the selected model.
-
-        This is used by change-point diagnostics.  It never changes the
-        candidate bank and does not read private plant state.
-        """
         assert self.score_sums is not None and self.score_weights is not None
         for key in self.score_sums:
             self.score_sums[key] = 0.0
@@ -1331,6 +1443,10 @@ class DelaySlewHypothesisBank:
         self.observations = 0
         self.locked = False
         self.first_lock_step = None
+        self.first_any_selection_step = None
+        self.first_confident_lock_step = None
+        self.current_best_key = None
+        self.current_best_streak = 0
         if not retain_selection:
             self.selected_delay_steps = int(self.initial_delay_steps)
             self.selected_slew_scale = float(self.initial_slew_scale)
@@ -1352,15 +1468,23 @@ class DelaySlewHypothesisBank:
     ) -> np.ndarray:
         issue_index = int(step) - int(delay_steps)
         if issue_index < 0:
-            # The real plant queue is primed with the nominal command that is
-            # supposed to act at this physical step.
             return np.asarray(nominal_commands[int(step)], dtype=float)
         if issue_index >= len(issued_commands):
             raise IndexError(
-                f"issued command history is missing step {issue_index}; "
-                f"available={len(issued_commands)}"
+                f"issued command history is missing step {issue_index}; available={len(issued_commands)}"
             )
         return np.asarray(issued_commands[issue_index], dtype=float)
+
+    def _unique_best(self, ordered: list[tuple[int, float]], normalized: dict[tuple[int, float], float]) -> bool:
+        if len(ordered) < 2:
+            return True
+        best_score = float(normalized[ordered[0]])
+        second_score = float(normalized[ordered[1]])
+        tol = max(
+            float(self.tie_absolute_tolerance),
+            float(self.tie_relative_tolerance) * max(abs(best_score), abs(second_score), 1e-18),
+        )
+        return bool(second_score - best_score > tol)
 
     def update(
         self,
@@ -1377,28 +1501,17 @@ class DelaySlewHypothesisBank:
         nominal = np.asarray(nominal_commands, dtype=float)
         if nominal.ndim != 2 or nominal.shape[1] != 3:
             raise ValueError(f"nominal_commands must have shape (N,3), got {nominal.shape}")
-        gain = (
-            np.ones(3, dtype=float)
-            if gain_for_prediction is None
-            else np.asarray(gain_for_prediction, dtype=float).reshape(3)
-        )
+        gain = np.ones(3, dtype=float) if gain_for_prediction is None else np.asarray(gain_for_prediction, dtype=float).reshape(3)
         scale = max(float(self.scheduler.nominal_max_delta_a), 1.0)
         decay = float(np.clip(self.score_decay, 0.0, 1.0))
         residuals: dict[tuple[int, float], float] = {}
+        assert self.score_sums is not None and self.score_weights is not None
         for delay in self.delay_candidates:
             command = self._command_for_hypothesis(
-                step=int(step),
-                delay_steps=int(delay),
-                issued_commands=issued_commands,
-                nominal_commands=nominal,
+                step=int(step), delay_steps=int(delay), issued_commands=issued_commands, nominal_commands=nominal
             )
             for slew in self.slew_candidates:
-                predicted = self.scheduler.predicted_delta_a(
-                    command,
-                    currents,
-                    gain,
-                    float(slew),
-                )
+                predicted = self.scheduler.predicted_delta_a(command, currents, gain, float(slew))
                 residual = float(np.sqrt(np.mean(((predicted - observed) / scale) ** 2)))
                 key = (int(delay), float(slew))
                 self.score_sums[key] = decay * float(self.score_sums[key]) + residual * residual
@@ -1407,19 +1520,28 @@ class DelaySlewHypothesisBank:
         self.observations += 1
         normalized = self.normalized_scores()
         old = (int(self.selected_delay_steps), float(self.selected_slew_scale))
-        ordered = sorted(
-            normalized,
-            key=lambda key: (normalized[key], key[0], abs(key[1] - 1.0)),
-        )
+        ordered = sorted(normalized, key=lambda key: (normalized[key], key[0], abs(key[1] - 1.0)))
         best = ordered[0]
         best_score = float(normalized[best])
         second_score = float(normalized[ordered[1]]) if len(ordered) > 1 else best_score
-        confidence_ratio = (
-            1.0e12
-            if best_score <= 1.0e-18 and second_score > best_score
-            else float(second_score / max(best_score, 1.0e-18))
+        score_gap = float(second_score - best_score)
+        confidence_ratio = 1.0e12 if best_score <= 1.0e-18 and second_score > best_score else float(second_score / max(best_score, 1.0e-18))
+        unique_best = self._unique_best(ordered, normalized)
+        if self.current_best_key == best:
+            self.current_best_streak += 1
+        else:
+            self.current_best_key = best
+            self.current_best_streak = 1
+        confident = bool(
+            self.observations >= int(self.minimum_observations)
+            and confidence_ratio >= float(self.minimum_confidence_ratio)
+            and score_gap >= float(self.minimum_absolute_score_gap)
+            and self.current_best_streak >= int(self.consecutive_best_observations)
+            and (unique_best or not bool(self.require_unique_best))
         )
-        if self.observations >= int(self.minimum_observations):
+        if self.first_any_selection_step is None and self.observations >= int(self.minimum_observations):
+            self.first_any_selection_step = int(step)
+        if confident:
             old_score = normalized.get(old, math.inf)
             hysteresis = float(np.clip(self.switch_hysteresis_fraction, 0.0, 0.95))
             if best == old or best_score <= old_score * (1.0 - hysteresis):
@@ -1428,30 +1550,46 @@ class DelaySlewHypothesisBank:
         new = (int(self.selected_delay_steps), float(self.selected_slew_scale))
         transitioned = new != old
         if transitioned:
-            self.transitions.append(
-                {
-                    "step": int(step),
-                    "old_delay_steps": int(old[0]),
-                    "old_slew_scale": float(old[1]),
-                    "new_delay_steps": int(new[0]),
-                    "new_slew_scale": float(new[1]),
-                    "observations": int(self.observations),
-                    "best_score": best_score,
-                    "confidence_ratio": confidence_ratio,
-                }
-            )
-        locked_now = bool(
-            self.observations >= int(self.minimum_observations)
-            and new == best
-        )
-        if locked_now and not self.locked and self.first_lock_step is None:
-            self.first_lock_step = int(step)
+            assert self.transitions is not None
+            self.transitions.append({
+                "step": int(step),
+                "old_delay_steps": int(old[0]),
+                "old_slew_scale": float(old[1]),
+                "new_delay_steps": int(new[0]),
+                "new_slew_scale": float(new[1]),
+                "observations": int(self.observations),
+                "best_score": best_score,
+                "second_best_score": second_score,
+                "score_gap": score_gap,
+                "confidence_ratio": confidence_ratio,
+                "unique_best": unique_best,
+                "best_streak": int(self.current_best_streak),
+                "confident": confident,
+            })
+        locked_now = bool(confident and new == best)
+        if locked_now and not self.locked:
+            if self.first_confident_lock_step is None:
+                self.first_confident_lock_step = int(step)
+                self.first_lock_step = int(step)  # backwards-compatible alias
+            assert self.lock_events is not None
+            self.lock_events.append({
+                "step": int(step),
+                "delay_steps": int(new[0]),
+                "slew_scale": float(new[1]),
+                "confidence_ratio": confidence_ratio,
+                "score_gap": score_gap,
+                "unique_best": unique_best,
+                "best_streak": int(self.current_best_streak),
+            })
         self.locked = locked_now
         self.last_best_delay_steps = int(best[0])
         self.last_best_slew_scale = float(best[1])
         self.last_best_score = best_score
         self.last_second_best_score = second_score
         self.last_confidence_ratio = float(min(confidence_ratio, 1.0e12))
+        self.last_score_gap = score_gap
+        self.last_best_is_unique = unique_best
+        self.last_confident = confident
         return {
             "selected_delay_steps": int(self.selected_delay_steps),
             "selected_slew_scale": float(self.selected_slew_scale),
@@ -1461,18 +1599,18 @@ class DelaySlewHypothesisBank:
             "best_slew_scale": float(best[1]),
             "best_score": best_score,
             "second_best_score": second_score,
+            "score_gap": score_gap,
             "confidence_ratio": float(min(confidence_ratio, 1.0e12)),
+            "best_is_unique": unique_best,
+            "best_streak": int(self.current_best_streak),
+            "confident": confident,
             "transitioned": transitioned,
             "locked": locked_now,
             "first_lock_step": self.first_lock_step,
-            "instantaneous_residuals": {
-                f"d{delay}_s{slew:.3f}": float(value)
-                for (delay, slew), value in sorted(residuals.items())
-            },
-            "normalized_scores": {
-                f"d{delay}_s{slew:.3f}": float(value)
-                for (delay, slew), value in sorted(normalized.items())
-            },
+            "first_any_selection_step": self.first_any_selection_step,
+            "first_confident_lock_step": self.first_confident_lock_step,
+            "instantaneous_residuals": {f"d{delay}_s{slew:.3f}": float(value) for (delay, slew), value in sorted(residuals.items())},
+            "normalized_scores": {f"d{delay}_s{slew:.3f}": float(value) for (delay, slew), value in sorted(normalized.items())},
         }
 
     def pending_desired_physical(
@@ -1491,9 +1629,7 @@ class DelaySlewHypothesisBank:
                 effect_step = min(int(current_step) + offset, len(nominal) - 1)
                 pending.append(np.asarray(nominal[effect_step], dtype=float).copy())
             elif issue_index < len(issued_items):
-                pending.append(
-                    np.asarray(issued_items[issue_index]["desired_physical"], dtype=float).copy()
-                )
+                pending.append(np.asarray(issued_items[issue_index]["desired_physical"], dtype=float).copy())
             else:
                 effect_step = min(int(current_step) + offset, len(nominal) - 1)
                 pending.append(np.asarray(nominal[effect_step], dtype=float).copy())
@@ -1507,16 +1643,20 @@ class DelaySlewHypothesisBank:
             "selected_slew_scale": float(self.selected_slew_scale),
             "locked": bool(self.locked),
             "first_lock_step": self.first_lock_step,
+            "first_any_selection_step": self.first_any_selection_step,
+            "first_confident_lock_step": self.first_confident_lock_step,
             "best_delay_steps": int(self.last_best_delay_steps),
             "best_slew_scale": float(self.last_best_slew_scale),
             "best_score": float(self.last_best_score),
             "second_best_score": float(self.last_second_best_score),
+            "score_gap": float(self.last_score_gap),
             "confidence_ratio": float(self.last_confidence_ratio),
-            "normalized_scores": {
-                f"d{delay}_s{slew:.3f}": float(value)
-                for (delay, slew), value in sorted(normalized.items())
-            },
+            "best_is_unique": bool(self.last_best_is_unique),
+            "confident": bool(self.last_confident),
+            "best_streak": int(self.current_best_streak),
+            "normalized_scores": {f"d{delay}_s{slew:.3f}": float(value) for (delay, slew), value in sorted(normalized.items())},
             "transitions": copy.deepcopy(self.transitions),
+            "lock_events": copy.deepcopy(self.lock_events),
         }
 
 # Backward-compatible wrapper for unit tests and downstream imports.  It now
@@ -1875,12 +2015,47 @@ class LocalStage41Worker:
             handover_freeze_integral = bool(
                 handover_cfg.get("freeze_integral_during_prelock_and_ramp", True)
             )
+            handover_suppress_noop_event = bool(
+                handover_cfg.get("suppress_noop_initial_lock_event", False)
+            )
+            handover_release_on_confident_lock = bool(
+                handover_cfg.get("release_safe_start_on_confident_lock", True)
+            )
+            handover_prelock_nominal_scale = float(
+                np.clip(handover_cfg.get("prelock_nominal_scale_fraction", 1.0), 0.0, 1.0)
+            )
+            common_prefix_raw = spec.get("prelock_common_prefix_physical")
+            if common_prefix_raw is None:
+                common_prefix_raw = handover_cfg.get("prelock_common_prefix_physical")
+            handover_common_prefix: np.ndarray | None = None
+            if common_prefix_raw is not None:
+                handover_common_prefix = np.asarray(common_prefix_raw, dtype=float)
+                if handover_common_prefix.ndim != 2 or handover_common_prefix.shape[1] != 3:
+                    raise ValueError(
+                        "prelock_common_prefix_physical must have shape (N,3)"
+                    )
+            handover_physical_blend_enabled = bool(
+                handover_cfg.get("physical_target_blend_enabled", False)
+            )
+            handover_physical_blend_fractions = [
+                float(np.clip(value, 0.0, 1.0))
+                for value in handover_cfg.get(
+                    "physical_target_blend_fractions", [0.0, 0.25, 0.5, 0.75, 1.0]
+                )
+            ]
+            if not handover_physical_blend_fractions:
+                handover_physical_blend_fractions = [1.0]
             handover_lock_acquired = bool(handover_initial_model_trusted)
             handover_pending_event: dict[str, Any] | None = None
             handover_ramp_index: int | None = None
+            handover_physical_blend_index: int | None = None
+            handover_physical_blend_start_delta: np.ndarray | None = None
             handover_events: list[dict[str, Any]] = []
             handover_prelock_steps = 0
             handover_ramp_steps = 0
+            handover_physical_blend_steps = 0
+            last_issued_predicted_delta_a = np.zeros(14, dtype=float)
+            last_issued_command = np.zeros(3, dtype=float)
 
             actual_delay_schedule = copy.deepcopy(spec.get("actual_action_delay_schedule") or [])
             actual_slew_schedule = copy.deepcopy(spec.get("actual_slew_scale_schedule") or [])
@@ -1967,6 +2142,24 @@ class LocalStage41Worker:
                     ),
                     initial_slew_scale=float(
                         estimator_spec.get("initial_slew_scale", slew_estimate)
+                    ),
+                    minimum_confidence_ratio=float(
+                        estimator_spec.get("minimum_confidence_ratio", 1.0)
+                    ),
+                    minimum_absolute_score_gap=float(
+                        estimator_spec.get("minimum_absolute_score_gap", 0.0)
+                    ),
+                    consecutive_best_observations=int(
+                        estimator_spec.get("consecutive_best_observations", 1)
+                    ),
+                    require_unique_best=bool(
+                        estimator_spec.get("require_unique_best", False)
+                    ),
+                    tie_relative_tolerance=float(
+                        estimator_spec.get("tie_relative_tolerance", 0.0)
+                    ),
+                    tie_absolute_tolerance=float(
+                        estimator_spec.get("tie_absolute_tolerance", 0.0)
                     ),
                 )
                 modeled_delay = int(estimator.selected_delay_steps)
@@ -2163,10 +2356,19 @@ class LocalStage41Worker:
                 handover_event_applied: dict[str, Any] | None = None
                 if handover_pending_event is not None:
                     handover_event_applied = copy.deepcopy(handover_pending_event)
-                    if handover_reset_previous:
+                    reset_state = bool(
+                        handover_event_applied.get("reset_controller_state", True)
+                    )
+                    if reset_state and handover_reset_previous:
                         previous_correction = np.zeros(3, dtype=float)
-                    integral = handover_integral_decay * np.asarray(integral, dtype=float)
+                    if reset_state:
+                        integral = handover_integral_decay * np.asarray(integral, dtype=float)
                     handover_ramp_index = 0
+                    if handover_physical_blend_enabled:
+                        handover_physical_blend_index = 0
+                        handover_physical_blend_start_delta = np.asarray(
+                            last_issued_predicted_delta_a, dtype=float
+                        ).copy()
                     handover_pending_event = None
                     handover_events.append(
                         {
@@ -2368,23 +2570,80 @@ class LocalStage41Worker:
                     anti_windup_enabled=anti_windup_active,
                 )
                 effect_step = min(int(solve.get("effect_step", reference_step)), 34)
+                if handover_enabled and handover_phase == "prelock_safe_start":
+                    if handover_common_prefix is not None:
+                        prefix_index = min(effect_step, len(handover_common_prefix) - 1)
+                        feedforward_physical = np.asarray(
+                            handover_common_prefix[prefix_index], dtype=float
+                        )
+                    else:
+                        feedforward_physical = (
+                            handover_prelock_nominal_scale * nominal_physical[effect_step]
+                        )
+                else:
+                    feedforward_physical = nominal_physical[effect_step]
                 desired_physical = np.clip(
-                    nominal_physical[effect_step] + correction,
+                    feedforward_physical + correction,
                     self.lower_mode,
                     self.upper_mode,
                 )
                 currents = np.asarray(self.env.last_state["currents_a_tsc"], dtype=float)
-                scheduled = self.scheduler.solve_command(
-                    desired_physical,
-                    currents,
-                    gain_estimate,
-                    slew_estimate,
-                    enabled=scheduling_enabled,
-                )
+                physical_blend_fraction = 1.0
+                if (
+                    handover_physical_blend_enabled
+                    and handover_physical_blend_index is not None
+                    and handover_physical_blend_start_delta is not None
+                ):
+                    blend_index = min(
+                        handover_physical_blend_index,
+                        len(handover_physical_blend_fractions) - 1,
+                    )
+                    physical_blend_fraction = handover_physical_blend_fractions[blend_index]
+                    new_target_delta = self.scheduler.target_delta_a(
+                        desired_physical, currents
+                    )
+                    blended_target_delta = (
+                        (1.0 - physical_blend_fraction)
+                        * handover_physical_blend_start_delta
+                        + physical_blend_fraction * new_target_delta
+                    )
+                    scheduled = self.scheduler.solve_command_for_target_delta(
+                        blended_target_delta,
+                        currents,
+                        gain_estimate,
+                        slew_estimate,
+                        enabled=scheduling_enabled,
+                        reference_command=last_issued_command,
+                    )
+                    issued_desired_physical = (
+                        self.scheduler.project_delta_to_physical_coefficients(
+                            blended_target_delta
+                        )
+                    )
+                    handover_physical_blend_steps += 1
+                    handover_physical_blend_index += 1
+                    if handover_physical_blend_index >= len(
+                        handover_physical_blend_fractions
+                    ):
+                        handover_physical_blend_index = None
+                        handover_physical_blend_start_delta = None
+                else:
+                    scheduled = self.scheduler.solve_command(
+                        desired_physical,
+                        currents,
+                        gain_estimate,
+                        slew_estimate,
+                        enabled=scheduling_enabled,
+                    )
+                    issued_desired_physical = desired_physical
                 issued_command = np.asarray(scheduled["command"], dtype=float)
+                last_issued_command = issued_command.copy()
+                last_issued_predicted_delta_a = np.asarray(
+                    scheduled["predicted_delta_a"], dtype=float
+                ).copy()
                 issued_item = {
                     "command": issued_command,
-                    "desired_physical": desired_physical,
+                    "desired_physical": np.asarray(issued_desired_physical, dtype=float),
                 }
                 issued_items_history.append(
                     {
@@ -2472,32 +2731,57 @@ class LocalStage41Worker:
                         lock_now = bool(estimator_update.get("locked", False))
                         transitioned = bool(estimator_update.get("transitioned", False))
                         first_lock = bool(lock_now and not handover_lock_acquired)
-                        if first_lock or transitioned:
+                        old_model = (
+                            int(estimator_update.get("old_selected_delay_steps", estimator.selected_delay_steps)),
+                            float(estimator_update.get("old_selected_slew_scale", estimator.selected_slew_scale)),
+                        )
+                        new_model = (
+                            int(estimator.selected_delay_steps),
+                            float(estimator.selected_slew_scale),
+                        )
+                        model_changed = bool(transitioned or new_model != old_model)
+                        if transitioned:
                             handover_lock_acquired = bool(lock_now)
                             handover_pending_event = {
-                                "event_type": (
-                                    "initial_model_lock" if first_lock and not transitioned
-                                    else "model_switch"
-                                ),
+                                "event_type": "model_switch",
                                 "detected_at_step": int(reference_step),
-                                "old_delay_steps": int(
-                                    estimator_update.get(
-                                        "old_selected_delay_steps",
-                                        estimator.selected_delay_steps,
-                                    )
-                                ),
-                                "old_slew_scale": float(
-                                    estimator_update.get(
-                                        "old_selected_slew_scale",
-                                        estimator.selected_slew_scale,
-                                    )
-                                ),
-                                "new_delay_steps": int(estimator.selected_delay_steps),
-                                "new_slew_scale": float(estimator.selected_slew_scale),
-                                "confidence_ratio": float(
-                                    estimator_update.get("confidence_ratio", 1.0)
-                                ),
+                                "old_delay_steps": int(old_model[0]),
+                                "old_slew_scale": float(old_model[1]),
+                                "new_delay_steps": int(new_model[0]),
+                                "new_slew_scale": float(new_model[1]),
+                                "confidence_ratio": float(estimator_update.get("confidence_ratio", 1.0)),
+                                "score_gap": float(estimator_update.get("score_gap", 0.0)),
+                                "best_streak": int(estimator_update.get("best_streak", 0)),
+                                "reset_controller_state": True,
                             }
+                        elif first_lock:
+                            handover_lock_acquired = True
+                            if handover_safe_start and handover_release_on_confident_lock:
+                                handover_pending_event = {
+                                    "event_type": "confidence_release",
+                                    "detected_at_step": int(reference_step),
+                                    "old_delay_steps": int(old_model[0]),
+                                    "old_slew_scale": float(old_model[1]),
+                                    "new_delay_steps": int(new_model[0]),
+                                    "new_slew_scale": float(new_model[1]),
+                                    "confidence_ratio": float(estimator_update.get("confidence_ratio", 1.0)),
+                                    "score_gap": float(estimator_update.get("score_gap", 0.0)),
+                                    "best_streak": int(estimator_update.get("best_streak", 0)),
+                                    "reset_controller_state": False,
+                                }
+                            elif not handover_suppress_noop_event:
+                                handover_pending_event = {
+                                    "event_type": "initial_model_lock",
+                                    "detected_at_step": int(reference_step),
+                                    "old_delay_steps": int(old_model[0]),
+                                    "old_slew_scale": float(old_model[1]),
+                                    "new_delay_steps": int(new_model[0]),
+                                    "new_slew_scale": float(new_model[1]),
+                                    "confidence_ratio": float(estimator_update.get("confidence_ratio", 1.0)),
+                                    "score_gap": float(estimator_update.get("score_gap", 0.0)),
+                                    "best_streak": int(estimator_update.get("best_streak", 0)),
+                                    "reset_controller_state": False,
+                                }
                         elif lock_now:
                             handover_lock_acquired = True
 
@@ -2551,6 +2835,13 @@ class LocalStage41Worker:
                     "effective_controller_scale": effective_controller_scale,
                     "handover_model_locked": handover_lock_acquired,
                     "handover_event_applied": handover_event_applied,
+                    "handover_physical_blend_fraction": physical_blend_fraction,
+                    "handover_physical_blend_active": bool(
+                        handover_physical_blend_index is not None
+                    ),
+                    "feedforward_physical_mode_coefficients": np.asarray(
+                        feedforward_physical, dtype=float
+                    ).tolist(),
                     "measurement_physical": measurement_physical.tolist(),
                     "measurement_normalized": measurement.tolist(),
                     "known_control_effect_delayed_physical": known_effect_delayed.tolist(),
@@ -2631,6 +2922,7 @@ class LocalStage41Worker:
                     "model_locked": bool(handover_lock_acquired),
                     "prelock_steps": int(handover_prelock_steps),
                     "ramp_steps": int(handover_ramp_steps),
+                    "physical_blend_steps": int(handover_physical_blend_steps),
                     "events": copy.deepcopy(handover_events),
                     "pending_event_at_end": copy.deepcopy(handover_pending_event),
                     "ramp_active_at_end": handover_ramp_index is not None,

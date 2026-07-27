@@ -1,27 +1,29 @@
 {
-  "schema_version": 5,
-  "stage": "Stage4.1R5",
-  "package_name": "stage4_1r5_complete_standalone_bumpless_handover_change_point_128worker_lean",
+  "schema_version": 6,
+  "stage": "Stage4.1R6",
+  "package_name": "stage4_1r6_complete_standalone_persistent_prior_common_prefix_physical_handover_128worker_lean",
   "complete_standalone": true,
   "lean_delivery": true,
   "default_workers": 128,
   "silent_worker_fallback": false,
   "base_package": {
-    "filename": "stage4_1r4_complete_standalone_targeted_weak_slew_online_estimator_128worker_lean.zip",
-    "sha256": "e7930ce1b696130b0ea7e491d03cd8adc3584c197151823c333256423713fe21"
+    "filename": "stage4_1r5_complete_standalone_bumpless_handover_change_point_128worker_lean.zip",
+    "sha256": "1230af80d8c2f40ad73a358e4c1892b4470916391ec845e28355de887a87d5a4"
   },
-  "source_requirement": "completed Stage4.1R4 run whose accounting, 370 ms weak-slew closure, and finite-bank estimator accuracy passed; the source abrupt adaptive controller is expected to be incomplete",
-  "controller_revision": "confidence_gated_bumpless_delay_slew_handover_v5",
-  "hard_gate_changed_from_stage4_1r4": false,
+  "source_requirement": "completed Stage4.1R5 run whose source audit, final finite-bank identification, and exact persistent initialization passed; the source fully-unknown handover is expected to be incomplete",
+  "controller_revision": "confidence_gated_persistent_prior_physical_handover_v6",
+  "hard_gate_changed_from_stage4_1r5": false,
   "target_library_changed": false,
   "stage3_4_jacobian_changed": false,
-  "source_stage4_1r4_findings_frozen": {
-    "weak_slew_370ms_passed": true,
-    "finite_bank_estimator_accuracy_passed": true,
-    "adaptive_control_passed": false,
-    "scientific_reason_for_r5": "separate estimator accuracy from controller handover and prevent early wrong-model commands from causing destructive queue transients"
+  "source_stage4_1r5_findings_frozen": {
+    "finite_bank_final_identification_fraction": 1.0,
+    "persistent_exact_preservation_fraction": 1.0,
+    "persistent_exact_trace_equivalent_to_oracle": true,
+    "fully_unknown_bumpless_preservation_fraction": 0.38461538461538464,
+    "delay2_fully_unknown_preservation_fraction": 0.0,
+    "scientific_reason_for_r6": "use pre-shot or previous-shot parameter persistence as the primary startup path; prevent tied scores from locking; use a conservative common prefix for diagnostic cold starts; blend controller changes in physical 14-coil current-increment space"
   },
-  "estimator_only_confirmation": {
+  "confidence_gated_estimator": {
     "delay_candidates_steps": [
       0,
       1,
@@ -32,56 +34,54 @@
       1.0,
       1.1
     ],
-    "targets": 2,
-    "main_rollouts": 18,
     "minimum_observations": 2,
-    "maximum_first_lock_step": 2,
-    "requires_all_final_identifications_correct": true,
-    "confirmation_pairs": 9,
-    "confirmation_repeats_per_pair": 2,
-    "maximum_confirmation_rollouts": 18
+    "minimum_confidence_ratio": 5.0,
+    "minimum_absolute_score_gap": 1e-10,
+    "consecutive_best_observations": 2,
+    "requires_unique_best": true,
+    "ties_cannot_lock": true,
+    "real_r5_raw_trace_replay_cases": 18,
+    "real_r5_raw_trace_replay_final_correct_fraction": 1.0,
+    "real_r5_raw_trace_replay_incorrect_confident_locks": 0,
+    "real_r5_raw_trace_replay_max_first_confident_lock_step": 3
   },
-  "static_bumpless_handover": {
+  "estimator_confirmation": {
+    "delay_slew_pairs": 9,
+    "targets": 2,
+    "repeats_per_case": 2,
+    "main_rollouts": 36,
+    "requires_zero_incorrect_confident_locks": true
+  },
+  "static_startup_architectures": {
     "delay_slew_pairs": 9,
     "targets": 2,
     "controller_variants": [
       "oracle",
       "r4_abrupt_unknown",
-      "r5_bumpless_unknown",
-      "r5_bumpless_adjacent",
-      "r5_persistent_exact"
+      "r6_persistent_exact_monitor",
+      "r6_persistent_adjacent_delay",
+      "r6_persistent_adjacent_full",
+      "r6_cold_common_prefix"
     ],
-    "main_rollouts": 90,
-    "unknown_start_safe_scale_fraction": 0.0,
-    "ramp_scale_fractions": [
-      0.0,
-      0.25,
-      0.5,
-      0.75,
-      1.0
-    ],
-    "reset_previous_correction_on_switch": true,
-    "integral_decay_on_switch": 0.0,
-    "minimum_delay2_unknown_preservation": 0.75,
-    "maximum_confirmation_rollouts": 18
+    "main_rollouts": 108,
+    "primary_deployment_path": "pre-shot or previous-shot persistent parameter initialization plus confidence-gated online monitoring",
+    "adjacent_prior_handover": "physical 14-coil current-increment blend",
+    "cold_start_scope": "conservative common-prefix diagnostic only",
+    "minimum_persistent_exact_preservation": 1.0,
+    "minimum_persistent_exact_trace_equivalence": 1.0,
+    "minimum_adjacent_delay_preservation": 0.75,
+    "minimum_delay2_adjacent_preservation": 0.75
   },
-  "change_point_diagnostics": {
-    "enabled": true,
-    "finite_scenarios": 6,
-    "targets": 2,
-    "controller_variants": [
-      "oracle_schedule",
-      "fixed_initial",
-      "adaptive_bumpless"
-    ],
-    "main_rollouts": 36,
-    "maximum_detection_latency_steps": 4,
-    "maximum_confirmation_rollouts": 12,
-    "scope_warning": "instantaneous integer-delay changes use an explicitly defined finite command-index diagnostic model and are not a hardware actuator model"
+  "confirmation": {
+    "maximum_distinct_groups": 18,
+    "repeats_per_group": 2,
+    "maximum_rollouts": 36
   },
-  "maximum_new_real_tsc_rollouts_without_restart_validation": 192,
+  "maximum_new_real_tsc_rollouts_without_restart_validation": 180,
   "restart_scope": "availability audit only; true alternate-restart validation remains a later stage",
   "online_estimator_is_finite_hypothesis_bank_poc": true,
+  "precalibrated_persistent_startup_is_primary": true,
+  "cold_common_prefix_is_diagnostic": true,
   "finite_test_envelope_only": true,
   "deployment_robustness_validated": false,
   "plant_parameter_robustness_validated": false,
@@ -89,47 +89,45 @@
   "verification_ignores_unlisted_project_files": true,
   "residual_markdown_files_allowed": true,
   "shell_files": [
-    "run_stage4_1r5_adaptive_handover_native.sh",
-    "run_stage4_1r5_adaptive_handover_nohup.sh",
-    "run_stage4_1r5_self_test.sh",
-    "run_stage4_1r5_verify_package.sh",
-    "run_stop_stage4_1r5_now.sh",
-    "scripts/stage4_1r5_shell_common.sh"
+    "run_stage4_1r6_startup_architecture_native.sh",
+    "run_stage4_1r6_startup_architecture_nohup.sh",
+    "run_stage4_1r6_self_test.sh",
+    "run_stage4_1r6_verify_package.sh",
+    "run_stop_stage4_1r6_now.sh",
+    "scripts/stage4_1r6_shell_common.sh"
   ],
-  "main_config": "configs/stage4_1r5_adaptive_handover_closure_350ms.json",
-  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py",
-  "main_entrypoint": "scripts/stage4_1r5_adaptive_handover_closure.py",
-  "main_test": "tests/test_stage4_1r5_adaptive_handover_closure.py",
-  "verified_unit_test_count": 213,
+  "main_config": "configs/stage4_1r6_startup_architecture_closure_350ms.json",
+  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r6_startup_architecture_closure.py",
+  "main_entrypoint": "scripts/stage4_1r6_startup_architecture_closure.py",
+  "main_test": "tests/test_stage4_1r6_startup_architecture_closure.py",
+  "verified_unit_test_count": 228,
   "validation": {
     "python_compileall": true,
     "all_json_parsed": true,
     "all_declared_shell_scripts_bash_n": true,
-    "synthetic_estimator_lock_by_second_observation": true,
-    "synthetic_full_delay_slew_grid_identification": "9/9 exact",
-    "static_handover_spec_count": 90,
-    "change_point_spec_count": 36,
-    "real_stage4_1r4_source_validation": true,
-    "real_source_chain_prepare_and_audit": true,
-    "real_source_weak_slew_minimum_signed_margin": 1.0456920999768471e-05,
-    "real_source_estimator_accuracy_passed": true,
-    "real_source_adaptive_control_passed": false,
-    "real_gotsc_stage4_1r5_campaign_executed_here": false,
-    "no_tsc_full_pipeline_mock": {
-      "estimator_only_rollouts": 18,
-      "static_handover_rollouts": 90,
-      "change_point_rollouts": 36,
-      "maximum_confirmation_rollouts": 48,
-      "strongest_mock_verdict_reached": true
-    }
+    "confidence_tie_does_not_lock": true,
+    "synthetic_correct_confident_lock": true,
+    "physical_coil_target_delta_inverse": true,
+    "estimator_confirmation_spec_count": 36,
+    "static_startup_spec_count": 108,
+    "real_stage4_1r5_source_validation": true,
+    "real_source_chain_prepare": true,
+    "real_source_raw_trace_confidence_replay": {
+      "cases": 18,
+      "final_correct_fraction": 1.0,
+      "incorrect_confident_locks": 0,
+      "maximum_first_confident_lock_step": 3
+    },
+    "real_gotsc_stage4_1r6_campaign_executed_here": false
   },
   "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
   "scientific_hard_stops": {
-    "estimator_only_failure_stops_before_static_handover": true,
-    "static_handover_failure_stops_before_change_point": true,
-    "change_point_is_a_separate_finite_diagnostic": true
+    "source_confidence_replay_failure_stops_campaign": true,
+    "estimator_confirmation_failure_stops_before_startup": true,
+    "precalibrated_startup_failure_stops_before_confirmation": true,
+    "cold_common_prefix_failure_does_not_invalidate_precalibrated_primary_path": true
   },
-  "packaged_file_count_excluding_checksum_file": 75,
+  "packaged_file_count_excluding_checksum_file": 79,
   "shell_file_count": 6,
   "markdown_file_count_in_package": 0
 }

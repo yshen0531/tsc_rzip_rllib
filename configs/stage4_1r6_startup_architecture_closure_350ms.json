@@ -1,0 +1,136 @@
+{
+  "stage_label": "Stage 4.1R6",
+  "run_name": "stage4_1r6_startup_architecture_closure_350ms",
+  "output_root": "stage4_1r6_runs",
+  "controller_revision": "confidence_gated_persistent_prior_physical_handover_v6",
+  "source_requirement": {
+    "required_stage": "Stage4.1R5",
+    "required_controller_revision": "confidence_gated_bumpless_delay_slew_handover_v5",
+    "require_finished": true,
+    "require_source_audit_passed": true,
+    "require_estimator_final_identification_passed": true,
+    "require_persistent_exact_preservation": true,
+    "allow_source_static_handover_failure": true,
+    "reuse_stage4_1r3_controller": true,
+    "reuse_stage3_4_target_library": true,
+    "reuse_stage3_4_jacobian": true,
+    "reuse_stage3_4_selected_controller_scale": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Confidence-gated finite-bank estimation, previous-shot/pre-shot persistent startup, adjacent-prior physical-coil-space handover, and conservative common-prefix cold-start diagnostic."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r6"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "confidence_gate": {
+    "delay_candidates": [0, 1, 2],
+    "slew_candidates": [0.9, 1.0, 1.1],
+    "score_decay": 0.92,
+    "minimum_observations": 2,
+    "switch_hysteresis_fraction": 0.03,
+    "minimum_confidence_ratio": 5.0,
+    "minimum_absolute_score_gap": 1.0e-10,
+    "consecutive_best_observations": 2,
+    "require_unique_best": true,
+    "tie_relative_tolerance": 1.0e-9,
+    "tie_absolute_tolerance": 1.0e-12
+  },
+  "source_replay": {
+    "maximum_first_confident_lock_step": 4,
+    "require_final_identification_fraction": 1.0,
+    "require_zero_incorrect_confident_locks": true
+  },
+  "estimator_confirmation": {
+    "horizon_steps": 35,
+    "actual_delay_steps": [0, 1, 2],
+    "actual_slew_scales": [0.9, 1.0, 1.1],
+    "targets": [
+      {"target_id": "nominal", "R_offset_m": 0.0, "Z_offset_m": 0.0, "Ip_offset_A": 0.0},
+      {"target_id": "RZ_p10_m10", "R_offset_m": 0.01, "Z_offset_m": -0.01, "Ip_offset_A": 0.0}
+    ],
+    "repeats_per_case": 2,
+    "maximum_first_confident_lock_step": 4,
+    "minimum_distinct_pairs_confirmed": 9
+  },
+  "static_startup": {
+    "horizon_steps": 35,
+    "actual_delay_steps": [0, 1, 2],
+    "actual_slew_scales": [0.9, 1.0, 1.1],
+    "targets": [
+      {"target_id": "nominal", "R_offset_m": 0.0, "Z_offset_m": 0.0, "Ip_offset_A": 0.0},
+      {"target_id": "RZ_p10_m10", "R_offset_m": 0.01, "Z_offset_m": -0.01, "Ip_offset_A": 0.0}
+    ],
+    "controller_variants": [
+      "oracle",
+      "r4_abrupt_unknown",
+      "r6_persistent_exact_monitor",
+      "r6_persistent_adjacent_delay",
+      "r6_persistent_adjacent_full",
+      "r6_cold_common_prefix"
+    ],
+    "handover": {
+      "enabled": true,
+      "safe_start_until_lock": false,
+      "prelock_controller_scale_fraction": 1.0,
+      "ramp_scale_fractions": [0.0, 0.25, 0.5, 0.75, 1.0],
+      "reset_previous_correction_on_switch": true,
+      "integral_decay_on_switch": 0.0,
+      "freeze_integral_during_prelock_and_ramp": true,
+      "suppress_noop_handover": true,
+      "release_prelock_on_confident_noop": true,
+      "physical_target_blend_enabled": true,
+      "physical_target_blend_fractions": [0.0, 0.25, 0.5, 0.75, 1.0]
+    },
+    "cold_common_prefix": {
+      "physical_scale_fraction": 0.30,
+      "prelock_controller_scale_fraction": 0.0,
+      "diagnostic_target_preservation_fraction": 0.50,
+      "description": "A conservative shared prefix while the delay/slew bank is not confidently locked; diagnostic only, not the primary deployment path."
+    },
+    "weak_slew_deadline_cases_are_diagnostic": true,
+    "minimum_persistent_exact_preservation": 1.0,
+    "minimum_persistent_exact_trace_equivalence": 1.0,
+    "minimum_adjacent_delay_preservation": 0.75,
+    "minimum_delay2_adjacent_preservation": 0.75,
+    "minimum_physical_blend_nonregression_fraction": 0.75,
+    "maximum_blend_jump_regression_a": 0.25
+  },
+  "confirmation": {
+    "repeats_per_group": 2,
+    "maximum_startup_groups": 18,
+    "minimum_distinct_groups": 12
+  },
+  "restart_audit": {
+    "candidate_folders": ["1080ms", "1090ms", "1110ms", "1120ms"],
+    "minimum_distinct_folders": 2
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}
