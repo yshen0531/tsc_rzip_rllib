@@ -915,6 +915,42 @@ def _sensor_path_is_clean(spec: dict[str, Any]) -> bool:
     )
 
 
+def _piecewise_schedule_value(
+    schedule: Sequence[dict[str, Any]] | None,
+    *,
+    step: int,
+    default: float | int,
+    value_key: str,
+) -> float | int:
+    """Return the latest piecewise-constant schedule value at ``step``.
+
+    Schedule entries use ``start_step`` and a caller-selected value key.  This
+    helper is deliberately generic and is only active when a diagnostic spec
+    explicitly supplies a schedule; all legacy constant-parameter paths remain
+    unchanged.
+    """
+    value: float | int = default
+    if not schedule:
+        return value
+    ordered = sorted(schedule, key=lambda row: int(row.get("start_step", 0)))
+    for row in ordered:
+        if int(step) < int(row.get("start_step", 0)):
+            break
+        if value_key in row:
+            value = row[value_key]
+    return value
+
+
+def _schedule_change_steps(
+    schedule: Sequence[dict[str, Any]] | None,
+) -> set[int]:
+    return {
+        int(row.get("start_step", 0))
+        for row in (schedule or [])
+        if int(row.get("start_step", 0)) > 0
+    }
+
+
 def legacy_measurement_error(
     observation_history: Sequence[np.ndarray],
     *,
@@ -1248,6 +1284,13 @@ class DelaySlewHypothesisBank:
     score_sums: dict[tuple[int, float], float] | None = None
     score_weights: dict[tuple[int, float], float] | None = None
     transitions: list[dict[str, Any]] | None = None
+    locked: bool = False
+    last_best_delay_steps: int = 0
+    last_best_slew_scale: float = 1.0
+    last_best_score: float = 0.0
+    last_second_best_score: float = 0.0
+    last_confidence_ratio: float = 1.0
+    first_lock_step: int | None = None
 
     def __post_init__(self) -> None:
         delays = tuple(sorted({int(value) for value in self.delay_candidates}))
@@ -1267,6 +1310,37 @@ class DelaySlewHypothesisBank:
         self.score_sums = {(delay, slew): 0.0 for delay in delays for slew in slews}
         self.score_weights = {(delay, slew): 0.0 for delay in delays for slew in slews}
         self.transitions = []
+        self.locked = False
+        self.last_best_delay_steps = int(self.selected_delay_steps)
+        self.last_best_slew_scale = float(self.selected_slew_scale)
+        self.last_best_score = 0.0
+        self.last_second_best_score = 0.0
+        self.last_confidence_ratio = 1.0
+        self.first_lock_step = None
+
+    def reset_scores(self, *, retain_selection: bool = True) -> None:
+        """Forget accumulated evidence while optionally retaining the selected model.
+
+        This is used by change-point diagnostics.  It never changes the
+        candidate bank and does not read private plant state.
+        """
+        assert self.score_sums is not None and self.score_weights is not None
+        for key in self.score_sums:
+            self.score_sums[key] = 0.0
+            self.score_weights[key] = 0.0
+        self.observations = 0
+        self.locked = False
+        self.first_lock_step = None
+        if not retain_selection:
+            self.selected_delay_steps = int(self.initial_delay_steps)
+            self.selected_slew_scale = float(self.initial_slew_scale)
+
+    def normalized_scores(self) -> dict[tuple[int, float], float]:
+        assert self.score_sums is not None and self.score_weights is not None
+        return {
+            key: float(self.score_sums[key]) / max(float(self.score_weights[key]), 1e-12)
+            for key in self.score_sums
+        }
 
     def _command_for_hypothesis(
         self,
@@ -1331,21 +1405,29 @@ class DelaySlewHypothesisBank:
                 self.score_weights[key] = decay * float(self.score_weights[key]) + 1.0
                 residuals[key] = residual
         self.observations += 1
-        normalized = {
-            key: float(self.score_sums[key]) / max(float(self.score_weights[key]), 1e-12)
-            for key in self.score_sums
-        }
+        normalized = self.normalized_scores()
         old = (int(self.selected_delay_steps), float(self.selected_slew_scale))
-        best = min(normalized, key=lambda key: (normalized[key], key[0], abs(key[1] - 1.0)))
+        ordered = sorted(
+            normalized,
+            key=lambda key: (normalized[key], key[0], abs(key[1] - 1.0)),
+        )
+        best = ordered[0]
+        best_score = float(normalized[best])
+        second_score = float(normalized[ordered[1]]) if len(ordered) > 1 else best_score
+        confidence_ratio = (
+            1.0e12
+            if best_score <= 1.0e-18 and second_score > best_score
+            else float(second_score / max(best_score, 1.0e-18))
+        )
         if self.observations >= int(self.minimum_observations):
             old_score = normalized.get(old, math.inf)
-            best_score = normalized[best]
             hysteresis = float(np.clip(self.switch_hysteresis_fraction, 0.0, 0.95))
             if best == old or best_score <= old_score * (1.0 - hysteresis):
                 self.selected_delay_steps = int(best[0])
                 self.selected_slew_scale = float(best[1])
         new = (int(self.selected_delay_steps), float(self.selected_slew_scale))
-        if new != old:
+        transitioned = new != old
+        if transitioned:
             self.transitions.append(
                 {
                     "step": int(step),
@@ -1354,11 +1436,35 @@ class DelaySlewHypothesisBank:
                     "new_delay_steps": int(new[0]),
                     "new_slew_scale": float(new[1]),
                     "observations": int(self.observations),
+                    "best_score": best_score,
+                    "confidence_ratio": confidence_ratio,
                 }
             )
+        locked_now = bool(
+            self.observations >= int(self.minimum_observations)
+            and new == best
+        )
+        if locked_now and not self.locked and self.first_lock_step is None:
+            self.first_lock_step = int(step)
+        self.locked = locked_now
+        self.last_best_delay_steps = int(best[0])
+        self.last_best_slew_scale = float(best[1])
+        self.last_best_score = best_score
+        self.last_second_best_score = second_score
+        self.last_confidence_ratio = float(min(confidence_ratio, 1.0e12))
         return {
             "selected_delay_steps": int(self.selected_delay_steps),
             "selected_slew_scale": float(self.selected_slew_scale),
+            "old_selected_delay_steps": int(old[0]),
+            "old_selected_slew_scale": float(old[1]),
+            "best_delay_steps": int(best[0]),
+            "best_slew_scale": float(best[1]),
+            "best_score": best_score,
+            "second_best_score": second_score,
+            "confidence_ratio": float(min(confidence_ratio, 1.0e12)),
+            "transitioned": transitioned,
+            "locked": locked_now,
+            "first_lock_step": self.first_lock_step,
             "instantaneous_residuals": {
                 f"d{delay}_s{slew:.3f}": float(value)
                 for (delay, slew), value in sorted(residuals.items())
@@ -1394,14 +1500,18 @@ class DelaySlewHypothesisBank:
         return pending
 
     def summary(self) -> dict[str, Any]:
-        normalized = {
-            key: float(self.score_sums[key]) / max(float(self.score_weights[key]), 1e-12)
-            for key in self.score_sums
-        }
+        normalized = self.normalized_scores()
         return {
             "observations": int(self.observations),
             "selected_delay_steps": int(self.selected_delay_steps),
             "selected_slew_scale": float(self.selected_slew_scale),
+            "locked": bool(self.locked),
+            "first_lock_step": self.first_lock_step,
+            "best_delay_steps": int(self.last_best_delay_steps),
+            "best_slew_scale": float(self.last_best_slew_scale),
+            "best_score": float(self.last_best_score),
+            "second_best_score": float(self.last_second_best_score),
+            "confidence_ratio": float(self.last_confidence_ratio),
             "normalized_scores": {
                 f"d{delay}_s{slew:.3f}": float(value)
                 for (delay, slew), value in sorted(normalized.items())
@@ -1677,6 +1787,7 @@ class LocalStage41Worker:
             def conditional_anti_windup_active(
                 current_slew_estimate: float,
                 current_gain_estimate: np.ndarray,
+                current_actual_slew_scale: float | None = None,
             ) -> bool:
                 if not anti_windup_requested:
                     return False
@@ -1696,7 +1807,11 @@ class LocalStage41Worker:
                 actual_weak = bool(
                     conditional_aw_use_actual
                     and (
-                        self.actual_slew_scale < slew_threshold
+                        float(
+                            self.actual_slew_scale
+                            if current_actual_slew_scale is None
+                            else current_actual_slew_scale
+                        ) < slew_threshold
                         or float(np.min(actual_gain)) < gain_threshold
                     )
                 )
@@ -1725,6 +1840,100 @@ class LocalStage41Worker:
                 spec.get("known_control_effect_from_measured_current_increment", False)
             )
             estimator: DelaySlewHypothesisBank | None = None
+
+            # Optional Stage4.1R5 diagnostics.  These are strictly opt-in and
+            # leave every legacy Stage3.4/Stage4.1R3 path unchanged.
+            handover_cfg = copy.deepcopy(spec.get("adaptive_handover") or {})
+            handover_enabled = bool(estimator_enabled and handover_cfg.get("enabled", False))
+            handover_initial_model_trusted = bool(
+                handover_cfg.get("initial_model_trusted", False)
+            )
+            handover_safe_start = bool(
+                handover_cfg.get("safe_start_until_lock", True)
+            )
+            handover_prelock_scale_fraction = float(
+                handover_cfg.get("prelock_controller_scale_fraction", 0.0)
+            )
+            handover_ramp_fractions = [
+                float(value)
+                for value in handover_cfg.get(
+                    "ramp_scale_fractions", [0.0, 0.25, 0.5, 0.75, 1.0]
+                )
+            ]
+            if not handover_ramp_fractions:
+                handover_ramp_fractions = [1.0]
+            handover_ramp_fractions = [
+                float(np.clip(value, 0.0, 1.0))
+                for value in handover_ramp_fractions
+            ]
+            handover_reset_previous = bool(
+                handover_cfg.get("reset_previous_correction_on_switch", True)
+            )
+            handover_integral_decay = float(
+                np.clip(handover_cfg.get("integral_decay_on_switch", 0.0), 0.0, 1.0)
+            )
+            handover_freeze_integral = bool(
+                handover_cfg.get("freeze_integral_during_prelock_and_ramp", True)
+            )
+            handover_lock_acquired = bool(handover_initial_model_trusted)
+            handover_pending_event: dict[str, Any] | None = None
+            handover_ramp_index: int | None = None
+            handover_events: list[dict[str, Any]] = []
+            handover_prelock_steps = 0
+            handover_ramp_steps = 0
+
+            actual_delay_schedule = copy.deepcopy(spec.get("actual_action_delay_schedule") or [])
+            actual_slew_schedule = copy.deepcopy(spec.get("actual_slew_scale_schedule") or [])
+            controller_delay_schedule = copy.deepcopy(
+                spec.get("controller_action_delay_schedule") or []
+            )
+            controller_slew_schedule = copy.deepcopy(
+                spec.get("controller_slew_scale_schedule") or []
+            )
+            dynamic_delay_path = bool(actual_delay_schedule)
+            dynamic_slew_path = bool(actual_slew_schedule)
+            actual_delay = max(
+                0,
+                int(
+                    _piecewise_schedule_value(
+                        actual_delay_schedule,
+                        step=0,
+                        default=actual_delay,
+                        value_key="delay_steps",
+                    )
+                ),
+            )
+            initial_actual_slew_scale = float(
+                _piecewise_schedule_value(
+                    actual_slew_schedule,
+                    step=0,
+                    default=self.actual_slew_scale,
+                    value_key="slew_scale",
+                )
+            )
+            if initial_actual_slew_scale <= 0.0:
+                raise ValueError("actual slew schedule must remain positive")
+            if controller_delay_schedule and estimator is None:
+                modeled_delay = max(
+                    0,
+                    int(
+                        _piecewise_schedule_value(
+                            controller_delay_schedule,
+                            step=0,
+                            default=modeled_delay,
+                            value_key="delay_steps",
+                        )
+                    ),
+                )
+            if controller_slew_schedule and estimator is None:
+                slew_estimate = float(
+                    _piecewise_schedule_value(
+                        controller_slew_schedule,
+                        step=0,
+                        default=slew_estimate,
+                        value_key="slew_scale",
+                    )
+                )
 
             self.env.reset()
             initial_currents = np.asarray(self.env.last_state["currents_a_tsc"], dtype=float)
@@ -1902,11 +2111,96 @@ class LocalStage41Worker:
             for env_step in range(env_phase_offset, 35):
                 reference_step = env_step if phase_aware_enabled else env_step - env_phase_offset
                 reference_step = int(np.clip(reference_step, 0, 34))
+
+                current_actual_delay = max(
+                    0,
+                    int(
+                        _piecewise_schedule_value(
+                            actual_delay_schedule,
+                            step=reference_step,
+                            default=actual_delay,
+                            value_key="delay_steps",
+                        )
+                    ),
+                )
+                current_actual_slew_scale = float(
+                    _piecewise_schedule_value(
+                        actual_slew_schedule,
+                        step=reference_step,
+                        default=self.actual_slew_scale,
+                        value_key="slew_scale",
+                    )
+                )
+                if current_actual_slew_scale <= 0.0:
+                    raise ValueError("actual slew schedule must remain positive")
+
                 if estimator is not None:
                     modeled_delay = int(estimator.selected_delay_steps)
                     slew_estimate = float(estimator.selected_slew_scale)
+                else:
+                    if controller_delay_schedule:
+                        modeled_delay = max(
+                            0,
+                            int(
+                                _piecewise_schedule_value(
+                                    controller_delay_schedule,
+                                    step=reference_step,
+                                    default=modeled_delay,
+                                    value_key="delay_steps",
+                                )
+                            ),
+                        )
+                    if controller_slew_schedule:
+                        slew_estimate = float(
+                            _piecewise_schedule_value(
+                                controller_slew_schedule,
+                                step=reference_step,
+                                default=slew_estimate,
+                                value_key="slew_scale",
+                            )
+                        )
+
+                handover_event_applied: dict[str, Any] | None = None
+                if handover_pending_event is not None:
+                    handover_event_applied = copy.deepcopy(handover_pending_event)
+                    if handover_reset_previous:
+                        previous_correction = np.zeros(3, dtype=float)
+                    integral = handover_integral_decay * np.asarray(integral, dtype=float)
+                    handover_ramp_index = 0
+                    handover_pending_event = None
+                    handover_events.append(
+                        {
+                            **handover_event_applied,
+                            "applied_at_step": int(reference_step),
+                        }
+                    )
+
+                if not handover_enabled:
+                    handover_scale_fraction = 1.0
+                    handover_phase = "disabled"
+                elif not handover_lock_acquired and handover_safe_start:
+                    handover_scale_fraction = float(
+                        np.clip(handover_prelock_scale_fraction, 0.0, 1.0)
+                    )
+                    handover_phase = "prelock_safe_start"
+                    handover_prelock_steps += 1
+                elif handover_ramp_index is not None:
+                    index = min(handover_ramp_index, len(handover_ramp_fractions) - 1)
+                    handover_scale_fraction = handover_ramp_fractions[index]
+                    handover_phase = "bumpless_ramp"
+                    handover_ramp_steps += 1
+                    handover_ramp_index += 1
+                    if handover_ramp_index >= len(handover_ramp_fractions):
+                        handover_ramp_index = None
+                else:
+                    handover_scale_fraction = 1.0
+                    handover_phase = "full_control"
+                effective_controller_scale = float(controller_scale) * float(
+                    np.clip(handover_scale_fraction, 0.0, 1.0)
+                )
+
                 anti_windup_active = conditional_anti_windup_active(
-                    slew_estimate, gain_estimate
+                    slew_estimate, gain_estimate, current_actual_slew_scale
                 )
                 state = self.env.last_state
                 current_true = np.asarray([state["R"], state["Z"], state["Ip"]], dtype=float)
@@ -2003,6 +2297,12 @@ class LocalStage41Worker:
                     reference_step=reference_step,
                     anti_windup_enabled=anti_windup_active,
                 )
+                if (
+                    handover_enabled
+                    and handover_freeze_integral
+                    and handover_phase in {"prelock_safe_start", "bumpless_ramp"}
+                ):
+                    integral_candidate = np.asarray(integral_previous, dtype=float).copy()
 
                 if estimator is not None:
                     modeled_pending_physical = estimator.pending_desired_physical(
@@ -2021,7 +2321,7 @@ class LocalStage41Worker:
                             ref_step = min(reference_step + index, 34)
                             modeled_pending_physical.append(nominal_physical[ref_step].copy())
 
-                if controller_scale <= 0.0:
+                if effective_controller_scale <= 0.0:
                     effect_step = min(reference_step + modeled_delay, 34)
                     solve = {
                         "first_correction": np.zeros(3),
@@ -2050,7 +2350,7 @@ class LocalStage41Worker:
                         measurement_normalized=measurement,
                         integral_normalized=integral_candidate,
                         previous_correction=previous_correction,
-                        controller_scale=controller_scale,
+                        controller_scale=effective_controller_scale,
                         controller_model_scale=model_scale,
                     )
 
@@ -2059,7 +2359,7 @@ class LocalStage41Worker:
                     correction,
                     previous_correction,
                     solve,
-                    controller_scale,
+                    effective_controller_scale,
                 )
                 integral = self._anti_windup_finalize(
                     integral_previous,
@@ -2093,7 +2393,22 @@ class LocalStage41Worker:
                     }
                 )
                 issued_command_history.append(issued_command.copy())
-                if actual_delay > 0:
+                if dynamic_delay_path:
+                    issue_index = int(reference_step) - int(current_actual_delay)
+                    if issue_index < 0:
+                        prime_index = min(int(reference_step), len(nominal_command_plan) - 1)
+                        applied_item = {
+                            "command": nominal_command_plan[prime_index].copy(),
+                            "desired_physical": nominal_physical[prime_index].copy(),
+                        }
+                    elif issue_index < len(issued_items_history):
+                        applied_item = issued_items_history[issue_index]
+                    else:
+                        raise IndexError(
+                            f"dynamic delay requires issued item {issue_index}; "
+                            f"available={len(issued_items_history)}"
+                        )
+                elif actual_delay > 0:
                     command_queue.append(issued_item)
                     applied_item = command_queue.pop(0)
                 else:
@@ -2119,7 +2434,23 @@ class LocalStage41Worker:
                         disturbance_applied = float(applied_command[mode] - before)
 
                 effective_coefficients = actual_gain * applied_command + actuator_bias
-                action = self._mode_action(effective_coefficients, currents)
+                if dynamic_slew_path:
+                    desired_action_at_actual_slew = self.scheduler._action_from_effective(
+                        effective_coefficients,
+                        currents,
+                        self.nominal_max_delta_a * current_actual_slew_scale,
+                    )
+                    desired_delta_a = (
+                        desired_action_at_actual_slew
+                        * self.nominal_max_delta_a
+                        * current_actual_slew_scale
+                    )
+                    action = np.asarray(
+                        desired_delta_a / max(self.max_delta_a, 1e-12),
+                        dtype=np.float32,
+                    )
+                else:
+                    action = self._mode_action(effective_coefficients, currents)
                 currents_before_step = currents.copy()
                 _, _, terminated, truncated, info = self.env.step(action)
                 trajectory.append(base._state_record(self.env, env_step + 1, action))
@@ -2137,6 +2468,38 @@ class LocalStage41Worker:
                         nominal_commands=nominal_command_plan,
                         gain_for_prediction=gain_estimate,
                     )
+                    if handover_enabled:
+                        lock_now = bool(estimator_update.get("locked", False))
+                        transitioned = bool(estimator_update.get("transitioned", False))
+                        first_lock = bool(lock_now and not handover_lock_acquired)
+                        if first_lock or transitioned:
+                            handover_lock_acquired = bool(lock_now)
+                            handover_pending_event = {
+                                "event_type": (
+                                    "initial_model_lock" if first_lock and not transitioned
+                                    else "model_switch"
+                                ),
+                                "detected_at_step": int(reference_step),
+                                "old_delay_steps": int(
+                                    estimator_update.get(
+                                        "old_selected_delay_steps",
+                                        estimator.selected_delay_steps,
+                                    )
+                                ),
+                                "old_slew_scale": float(
+                                    estimator_update.get(
+                                        "old_selected_slew_scale",
+                                        estimator.selected_slew_scale,
+                                    )
+                                ),
+                                "new_delay_steps": int(estimator.selected_delay_steps),
+                                "new_slew_scale": float(estimator.selected_slew_scale),
+                                "confidence_ratio": float(
+                                    estimator_update.get("confidence_ratio", 1.0)
+                                ),
+                            }
+                        elif lock_now:
+                            handover_lock_acquired = True
 
                 if measured_known_effect:
                     # Deployment-realistic path for the adaptive delay/slew POC:
@@ -2178,8 +2541,16 @@ class LocalStage41Worker:
                     "delay_aware_enabled": delay_aware_enabled,
                     "gain_slew_scheduling_enabled": scheduling_enabled,
                     "observation_delay_steps": observation_delay,
-                    "actual_action_delay_steps": actual_delay,
+                    "actual_action_delay_steps": current_actual_delay,
                     "modeled_action_delay_steps": modeled_delay,
+                    "actual_delay_schedule_enabled": dynamic_delay_path,
+                    "actual_slew_schedule_enabled": dynamic_slew_path,
+                    "handover_enabled": handover_enabled,
+                    "handover_phase": handover_phase,
+                    "handover_scale_fraction": handover_scale_fraction,
+                    "effective_controller_scale": effective_controller_scale,
+                    "handover_model_locked": handover_lock_acquired,
+                    "handover_event_applied": handover_event_applied,
                     "measurement_physical": measurement_physical.tolist(),
                     "measurement_normalized": measurement.tolist(),
                     "known_control_effect_delayed_physical": known_effect_delayed.tolist(),
@@ -2199,7 +2570,7 @@ class LocalStage41Worker:
                     "estimated_gain_by_mode": gain_estimate.tolist(),
                     "actual_gain_by_mode": actual_gain.tolist(),
                     "estimated_slew_scale": slew_estimate,
-                    "actual_slew_scale": self.actual_slew_scale,
+                    "actual_slew_scale": current_actual_slew_scale,
                     "adaptive_estimator_enabled": estimator is not None,
                     "adaptive_estimated_delay_steps": (
                         None if estimator is None else int(estimator.selected_delay_steps)
@@ -2254,6 +2625,22 @@ class LocalStage41Worker:
                 "adaptive_estimator_summary": (
                     None if estimator is None else estimator.summary()
                 ),
+                "adaptive_handover_summary": {
+                    "enabled": bool(handover_enabled),
+                    "initial_model_trusted": bool(handover_initial_model_trusted),
+                    "model_locked": bool(handover_lock_acquired),
+                    "prelock_steps": int(handover_prelock_steps),
+                    "ramp_steps": int(handover_ramp_steps),
+                    "events": copy.deepcopy(handover_events),
+                    "pending_event_at_end": copy.deepcopy(handover_pending_event),
+                    "ramp_active_at_end": handover_ramp_index is not None,
+                },
+                "actual_parameter_schedules": {
+                    "action_delay": copy.deepcopy(actual_delay_schedule),
+                    "slew_scale": copy.deepcopy(actual_slew_schedule),
+                    "controller_action_delay": copy.deepcopy(controller_delay_schedule),
+                    "controller_slew_scale": copy.deepcopy(controller_slew_schedule),
+                },
                 "phase_start_diagnostics": {
                     "phase_offset_steps": env_phase_offset,
                     "reference_phase_offset_steps": reference_phase_offset,

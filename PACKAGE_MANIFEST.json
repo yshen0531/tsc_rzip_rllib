@@ -1,40 +1,27 @@
 {
-  "schema_version": 4,
-  "stage": "Stage4.1R4",
-  "package_name": "stage4_1r4_complete_standalone_targeted_weak_slew_online_estimator_128worker_lean",
+  "schema_version": 5,
+  "stage": "Stage4.1R5",
+  "package_name": "stage4_1r5_complete_standalone_bumpless_handover_change_point_128worker_lean",
   "complete_standalone": true,
   "lean_delivery": true,
   "default_workers": 128,
   "silent_worker_fallback": false,
   "base_package": {
-    "filename": "stage4_1r3_complete_standalone_control_aware_residual_observer_antiwindup_128worker_lean.zip",
-    "sha256": "876fdec14e21140603a2e95304c3672f562d2537b7eba19b184892a8e6970bcc"
+    "filename": "stage4_1r4_complete_standalone_targeted_weak_slew_online_estimator_128worker_lean.zip",
+    "sha256": "e7930ce1b696130b0ea7e491d03cd8adc3584c197151823c333256423713fe21"
   },
-  "source_requirement": "completed Stage4.1R3 run with regression, observer ablation, failure recovery, noise statistics, phase-aligned history, and confirmation all passed",
-  "controller_revision": "targeted_weak_slew_and_online_delay_slew_estimator_v4",
-  "hard_gate_changed_from_stage4_1r3": false,
+  "source_requirement": "completed Stage4.1R4 run whose accounting, 370 ms weak-slew closure, and finite-bank estimator accuracy passed; the source abrupt adaptive controller is expected to be incomplete",
+  "controller_revision": "confidence_gated_bumpless_delay_slew_handover_v5",
+  "hard_gate_changed_from_stage4_1r4": false,
   "target_library_changed": false,
   "stage3_4_jacobian_changed": false,
-  "source_reclassification": {
-    "corrects_zero-baseline preservation accounting": true,
-    "real_source_integration_result": "gain_estimation_error passes; scheduled_slew is the only unresolved required category",
-    "new_tsc_required_for_accounting_fix": false
+  "source_stage4_1r4_findings_frozen": {
+    "weak_slew_370ms_passed": true,
+    "finite_bank_estimator_accuracy_passed": true,
+    "adaptive_control_passed": false,
+    "scientific_reason_for_r5": "separate estimator accuracy from controller handover and prevent early wrong-model commands from causing destructive queue transients"
   },
-  "weak_slew_closure": {
-    "actual_slew_scale": 0.9,
-    "horizon_steps": 37,
-    "horizon_ms": 370,
-    "latest_arrival_step": 27,
-    "weak_slew_latest_arrival_ms": 270,
-    "hold_through_step": 37,
-    "weak_slew_hold_through_ms": 370,
-    "minimum_post_arrival_hold_ms": 100,
-    "tail_policy_steps_35_to_36": "zero_current_increment",
-    "main_rollouts": 6,
-    "confirmation_rollouts": 4
-  },
-  "online_delay_slew_estimator": {
-    "type": "finite physical-coil command-response hypothesis bank",
+  "estimator_only_confirmation": {
     "delay_candidates_steps": [
       0,
       1,
@@ -45,34 +32,56 @@
       1.0,
       1.1
     ],
-    "grid_pairs": 9,
+    "targets": 2,
+    "main_rollouts": 18,
+    "minimum_observations": 2,
+    "maximum_first_lock_step": 2,
+    "requires_all_final_identifications_correct": true,
+    "confirmation_pairs": 9,
+    "confirmation_repeats_per_pair": 2,
+    "maximum_confirmation_rollouts": 18
+  },
+  "static_bumpless_handover": {
+    "delay_slew_pairs": 9,
     "targets": 2,
     "controller_variants": [
-      "naive",
       "oracle",
-      "adaptive"
+      "r4_abrupt_unknown",
+      "r5_bumpless_unknown",
+      "r5_bumpless_adjacent",
+      "r5_persistent_exact"
     ],
-    "main_rollouts": 54,
-    "maximum_confirmation_rollouts": 18,
-    "uses_measured_14_coil_current_increments": true,
-    "uses_issued_mode_commands": true,
-    "reads_private_actual_delay_queue": false,
-    "adaptive_anti_windup_reads_private_actual_slew": false,
-    "known_control_effect_for_estimator_poc_source": "measured coil-current increment projected onto the validated three-mode basis",
-    "finite_bank_poc_only": true
+    "main_rollouts": 90,
+    "unknown_start_safe_scale_fraction": 0.0,
+    "ramp_scale_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "reset_previous_correction_on_switch": true,
+    "integral_decay_on_switch": 0.0,
+    "minimum_delay2_unknown_preservation": 0.75,
+    "maximum_confirmation_rollouts": 18
   },
-  "confirmation": {
-    "weak_slew_targets_confirmed": 2,
-    "weak_slew_repeats_per_target": 2,
-    "adaptive_estimator_distinct_delay_slew_pairs_max": 9,
-    "adaptive_estimator_distinct_delay_slew_pairs_minimum_required": 6,
-    "adaptive_estimator_repeats_per_case": 2,
-    "requires_tracking_pass": true,
-    "requires_estimator_identification_pass": true,
-    "maximum_total_confirmation_rollouts": 22
+  "change_point_diagnostics": {
+    "enabled": true,
+    "finite_scenarios": 6,
+    "targets": 2,
+    "controller_variants": [
+      "oracle_schedule",
+      "fixed_initial",
+      "adaptive_bumpless"
+    ],
+    "main_rollouts": 36,
+    "maximum_detection_latency_steps": 4,
+    "maximum_confirmation_rollouts": 12,
+    "scope_warning": "instantaneous integer-delay changes use an explicitly defined finite command-index diagnostic model and are not a hardware actuator model"
   },
-  "maximum_new_real_tsc_rollouts_without_restart_validation": 82,
-  "restart_scope": "availability audit only; no true alternate-restart robustness claim",
+  "maximum_new_real_tsc_rollouts_without_restart_validation": 192,
+  "restart_scope": "availability audit only; true alternate-restart validation remains a later stage",
+  "online_estimator_is_finite_hypothesis_bank_poc": true,
   "finite_test_envelope_only": true,
   "deployment_robustness_validated": false,
   "plant_parameter_robustness_validated": false,
@@ -80,43 +89,47 @@
   "verification_ignores_unlisted_project_files": true,
   "residual_markdown_files_allowed": true,
   "shell_files": [
-    "run_stage4_1r4_targeted_closure_native.sh",
-    "run_stage4_1r4_targeted_closure_nohup.sh",
-    "run_stage4_1r4_self_test.sh",
-    "run_stage4_1r4_verify_package.sh",
-    "run_stop_stage4_1r4_now.sh",
-    "scripts/stage4_1r4_shell_common.sh"
+    "run_stage4_1r5_adaptive_handover_native.sh",
+    "run_stage4_1r5_adaptive_handover_nohup.sh",
+    "run_stage4_1r5_self_test.sh",
+    "run_stage4_1r5_verify_package.sh",
+    "run_stop_stage4_1r5_now.sh",
+    "scripts/stage4_1r5_shell_common.sh"
   ],
-  "main_config": "configs/stage4_1r4_targeted_closure_370ms.json",
-  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py",
-  "main_entrypoint": "scripts/stage4_1r4_targeted_closure.py",
-  "main_test": "tests/test_stage4_1r4_targeted_closure.py",
-  "verified_unit_test_count": 196,
+  "main_config": "configs/stage4_1r5_adaptive_handover_closure_350ms.json",
+  "main_module": "tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py",
+  "main_entrypoint": "scripts/stage4_1r5_adaptive_handover_closure.py",
+  "main_test": "tests/test_stage4_1r5_adaptive_handover_closure.py",
+  "verified_unit_test_count": 213,
   "validation": {
     "python_compileall": true,
     "all_json_parsed": true,
     "all_declared_shell_scripts_bash_n": true,
+    "synthetic_estimator_lock_by_second_observation": true,
     "synthetic_full_delay_slew_grid_identification": "9/9 exact",
-    "real_stage4_1r3_trace_replay_identification": {
-      "cases": 4,
-      "exact": 4,
-      "pairs": [
-        "d1_s1.0",
-        "d2_s1.0",
-        "d0_s0.9",
-        "d0_s1.1"
-      ]
-    },
-    "real_source_reclassification_integration": true,
+    "static_handover_spec_count": 90,
+    "change_point_spec_count": 36,
+    "real_stage4_1r4_source_validation": true,
+    "real_source_chain_prepare_and_audit": true,
+    "real_source_weak_slew_minimum_signed_margin": 1.0456920999768471e-05,
+    "real_source_estimator_accuracy_passed": true,
+    "real_source_adaptive_control_passed": false,
+    "real_gotsc_stage4_1r5_campaign_executed_here": false,
     "no_tsc_full_pipeline_mock": {
-      "weak_slew_rollouts": 6,
-      "estimator_rollouts": 54,
-      "confirmation_rollouts": 22,
+      "estimator_only_rollouts": 18,
+      "static_handover_rollouts": 90,
+      "change_point_rollouts": 36,
+      "maximum_confirmation_rollouts": 48,
       "strongest_mock_verdict_reached": true
-    },
-    "real_gotsc_stage4_1r4_campaign_executed_here": false
+    }
   },
   "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
-  "weak_slew_latest_arrival_ms": 270,
-  "weak_slew_hold_through_ms": 370
+  "scientific_hard_stops": {
+    "estimator_only_failure_stops_before_static_handover": true,
+    "static_handover_failure_stops_before_change_point": true,
+    "change_point_is_a_separate_finite_diagnostic": true
+  },
+  "packaged_file_count_excluding_checksum_file": 75,
+  "shell_file_count": 6,
+  "markdown_file_count_in_package": 0
 }
