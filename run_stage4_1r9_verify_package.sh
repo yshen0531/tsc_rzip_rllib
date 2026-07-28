@@ -48,6 +48,8 @@ if manifest.get("stage") != "Stage4.1R9":
     raise SystemExit("PACKAGE_MANIFEST stage mismatch")
 if manifest.get("controller_revision") != "terminal_template_mpc_feedback_hold_v9":
     raise SystemExit("PACKAGE_MANIFEST controller revision mismatch")
+if manifest.get("package_revision") != "r9a_metric_policy_contract_v2":
+    raise SystemExit("PACKAGE_MANIFEST package revision mismatch")
 checksum_rows = [
     line for line in (root / "SHA256SUMS").read_text(encoding="utf-8").splitlines()
     if line.strip()
@@ -138,6 +140,10 @@ from tsc_rzip_rllib.diagnostics import stage4_1r9_terminal_template_mpc_feedback
 payload = r9.self_test()
 if not payload.get("passed"):
     raise SystemExit("Stage4.1R9 self-test failed")
+if payload.get("package_revision") != "r9a_metric_policy_contract_v2":
+    raise SystemExit("Stage4.1R9 self-test package revision mismatch")
+if not payload.get("metric_policy_contract_passed"):
+    raise SystemExit("Stage4.1R9 metric-policy interface regression failed")
 cfg = json.loads(
     (root / "configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json")
     .read_text(encoding="utf-8")

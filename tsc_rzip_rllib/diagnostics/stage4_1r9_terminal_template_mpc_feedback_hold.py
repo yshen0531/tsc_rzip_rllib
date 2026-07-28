@@ -51,7 +51,8 @@ SCHEMA_VERSION = 1
 STAGE = "Stage4.1R9"
 CONTROLLER_REVISION = "terminal_template_mpc_feedback_hold_v9"
 EXPECTED_SOURCE_REVISION = "trusted_batch_calibration_queue_tail_closure_v8"
-PACKAGE_REVISION = "r9_terminal_template_feedback_hold_v1"
+PACKAGE_REVISION = "r9a_metric_policy_contract_v2"
+LEGACY_PACKAGE_REVISIONS = {"r9_terminal_template_feedback_hold_v1"}
 MAIN_CONTROL_STEPS = 35
 N_MODES = 3
 
@@ -507,6 +508,7 @@ def initial_state() -> dict[str, Any]:
         "schema_version": SCHEMA_VERSION,
         "stage": STAGE,
         "controller_revision": CONTROLLER_REVISION,
+        "package_revision": PACKAGE_REVISION,
         "prepared": True,
         "source_audit_complete": False,
         "oracle_development_complete": False,
@@ -522,9 +524,41 @@ def initial_state() -> dict[str, Any]:
 def _update_state(ctx: Stage41R9Context, **values: Any) -> dict[str, Any]:
     state = read_json(ctx.paths.state) if ctx.paths.state.exists() else initial_state()
     state.update(_json_safe(values))
+    state["package_revision"] = PACKAGE_REVISION
     state["updated_utc"] = utc_timestamp()
     atomic_write_json(ctx.paths.state, state)
     return state
+
+
+def _validated_resume_manifest(
+    old: Mapping[str, Any], current: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Validate scientific identity and upgrade the packaging-only R9 revision."""
+
+    for key in (
+        "controller_revision",
+        "source_stage4_1r8_run",
+        "source_fingerprint",
+    ):
+        if old.get(key) != current.get(key):
+            raise ValueError(f"resume manifest mismatch for {key}")
+    old_revision = str(old.get("package_revision", ""))
+    allowed_revisions = {PACKAGE_REVISION, *LEGACY_PACKAGE_REVISIONS}
+    if old_revision not in allowed_revisions:
+        raise ValueError(
+            "resume manifest package_revision is not an approved R9/R9a "
+            f"revision: {old_revision!r}"
+        )
+    upgraded = copy.deepcopy(dict(old))
+    if old_revision != PACKAGE_REVISION:
+        history = list(upgraded.get("package_revision_history") or [])
+        if old_revision and old_revision not in history:
+            history.append(old_revision)
+        upgraded["package_revision_history"] = history
+        upgraded["package_revision"] = PACKAGE_REVISION
+        upgraded["summary_metric_policy_contract_hotfix"] = True
+        upgraded["updated_utc"] = utc_timestamp()
+    return upgraded
 
 
 def initialize_run(ctx: Stage41R9Context, preflight: Mapping[str, Any]) -> None:
@@ -591,13 +625,9 @@ def initialize_run(ctx: Stage41R9Context, preflight: Mapping[str, Any]) -> None:
     }
     if ctx.paths.manifest.exists():
         old = read_json(ctx.paths.manifest)
-        for key in (
-            "controller_revision",
-            "source_stage4_1r8_run",
-            "source_fingerprint",
-        ):
-            if old.get(key) != manifest.get(key):
-                raise ValueError(f"resume manifest mismatch for {key}")
+        upgraded = _validated_resume_manifest(old, manifest)
+        if upgraded != old:
+            atomic_write_json(ctx.paths.manifest, upgraded)
     else:
         atomic_write_json(ctx.paths.manifest, manifest)
     if not ctx.paths.state.exists():
@@ -1918,6 +1948,36 @@ def _source_prefix_comparison(
     return comparison
 
 
+def _tracking_metric_policy(
+    ctx: Stage41R9Context,
+    spec: Mapping[str, Any],
+    *,
+    phase: str,
+) -> dict[str, Any]:
+    """Build the complete R8 tracking-metric policy contract for R9.
+
+    R8's metric implementation requires ``policy_id`` for its gate label in
+    addition to the horizon and allowed arrival steps.  Keep that interface
+    explicit here so every R9 phase (development, holdout and calibrated
+    confirmation) uses the same validated adapter.
+    """
+
+    policy_id = str(spec.get("terminal_policy_id") or "").strip()
+    if not policy_id:
+        raise ValueError(
+            f"Stage4.1R9 {phase} result is missing terminal_policy_id; "
+            "tracking metrics cannot be attributed safely"
+        )
+    terminal = ctx.cfg["terminal_feedback"]
+    return {
+        "policy_id": policy_id,
+        "horizon_steps": int(terminal["horizon_steps"]),
+        "allowed_arrival_steps": [
+            int(value) for value in terminal["allowed_arrival_steps"]
+        ],
+    }
+
+
 def feedback_result_row(
     ctx: Stage41R9Context,
     result: Mapping[str, Any],
@@ -1927,14 +1987,7 @@ def feedback_result_row(
     spec = result.get("spec") or {}
     terminal = result.get("terminal_feedback_summary") or {}
     task = _target_task(spec)
-    allowed = [
-        int(value)
-        for value in ctx.cfg["terminal_feedback"]["allowed_arrival_steps"]
-    ]
-    metric_policy = {
-        "horizon_steps": int(ctx.cfg["terminal_feedback"]["horizon_steps"]),
-        "allowed_arrival_steps": allowed,
-    }
+    metric_policy = _tracking_metric_policy(ctx, spec, phase=phase)
     metrics = r8.tracking_metrics(ctx.r8_ctx, result, metric_policy)
     trajectory = list(result.get("trajectory") or [])
     full_actions = np.asarray(
@@ -3051,17 +3104,40 @@ def self_test() -> dict[str, Any]:
         / "stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json"
     )
     config_ok = False
+    metric_policy_ok = False
     if config_path.is_file():
         cfg = json.loads(config_path.read_text(encoding="utf-8"))
         validate_config(cfg)
         config_ok = True
+        metric_ctx = type("MetricContext", (), {"cfg": cfg})()
+        metric_policy = _tracking_metric_policy(
+            metric_ctx,
+            {"terminal_policy_id": "self_test_policy"},
+            phase="self_test",
+        )
+        metric_policy_ok = bool(
+            metric_policy["policy_id"] == "self_test_policy"
+            and metric_policy["horizon_steps"]
+            == int(cfg["terminal_feedback"]["horizon_steps"])
+            and metric_policy["allowed_arrival_steps"]
+            == [
+                int(value)
+                for value in cfg["terminal_feedback"][
+                    "allowed_arrival_steps"
+                ]
+            ]
+        )
     return {
         "schema_version": SCHEMA_VERSION,
         "stage": STAGE,
+        "package_revision": PACKAGE_REVISION,
         "queue_streaming_semantics_passed": queue_ok,
         "terminal_measurement_passed": measurement_ok,
+        "metric_policy_contract_passed": metric_policy_ok,
         "config_guardrails_passed": config_ok,
-        "passed": bool(queue_ok and measurement_ok and config_ok),
+        "passed": bool(
+            queue_ok and measurement_ok and metric_policy_ok and config_ok
+        ),
     }
 
 

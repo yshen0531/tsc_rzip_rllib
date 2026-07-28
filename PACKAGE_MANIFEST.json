@@ -3,7 +3,7 @@
   "stage": "Stage4.1R9",
   "run_name": "stage4_1r9_terminal_template_mpc_feedback_hold",
   "controller_revision": "terminal_template_mpc_feedback_hold_v9",
-  "package_revision": "r9_terminal_template_feedback_hold_v1",
+  "package_revision": "r9a_metric_policy_contract_v2",
   "created_utc": "20260728",
   "source_code_baseline": {
     "repository": "https://github.com/yshen0531/tsc_rzip_rllib",
@@ -99,7 +99,11 @@
     "source_audit_replayed_on_attached_r8_raw_results": true,
     "residual_markdown_outside_manifest_ignored": true,
     "empty_directory_extraction_test_required_before_release": true,
-    "real_server_gotsc_executed_during_package_build": false
+    "real_server_gotsc_executed_during_package_build": false,
+    "metric_policy_interface_contract_regression": true,
+    "resume_from_r9_v1_manifest_supported": true,
+    "full_unittest_count_expected": 279,
+    "r9_specific_unittest_count_expected": 19
   },
   "declared_file_count": 75,
   "file_inventory": [
@@ -178,5 +182,18 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ]
+  ],
+  "hotfix": {
+    "id": "R9a_metric_policy_contract",
+    "root_cause": "R9 feedback_result_row omitted policy_id when invoking the reused R8 tracking_metrics interface; all 54 rollout files were already written and the crash occurred only during summary-row construction.",
+    "control_law_changed": false,
+    "experiment_ids_changed": false,
+    "existing_successful_raw_results_reusable_with_resume": true,
+    "downstream_phases_fixed": [
+      "oracle_development",
+      "oracle_holdout",
+      "calibrated_confirmation"
+    ],
+    "regression_guard": "The R9 unit test now uses a strict tracking-metrics stub that indexes policy_id, and self-test validates the full adapter contract."
+  }
 }

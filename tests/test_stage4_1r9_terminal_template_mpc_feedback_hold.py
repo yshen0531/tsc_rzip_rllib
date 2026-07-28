@@ -413,7 +413,14 @@ class Stage41R9ResultRowTests(unittest.TestCase):
             np.zeros((0, 3)),
             np.zeros((0, 3)),
         )
-        with mock.patch.object(r9.r8, "tracking_metrics", return_value=metrics) as tracking, mock.patch.object(
+        def strict_tracking(metric_ctx, metric_result, policy):
+            # Exercise the exact R8 contract that caused the server crash.
+            self.assertEqual(policy["policy_id"], "tm-test")
+            return metrics
+
+        with mock.patch.object(
+            r9.r8, "tracking_metrics", side_effect=strict_tracking
+        ) as tracking, mock.patch.object(
             r9, "_source_prefix_comparison", return_value=prefix
         ), mock.patch.object(r9, "_trace_arrays", return_value=empty_arrays):
             row = r9.feedback_result_row(ctx, result, phase="development")
@@ -423,10 +430,63 @@ class Stage41R9ResultRowTests(unittest.TestCase):
         self.assertIs(args[1], result)
         self.assertEqual(
             args[2],
-            {"horizon_steps": 55, "allowed_arrival_steps": [26, 40]},
+            {
+                "policy_id": "tm-test",
+                "horizon_steps": 55,
+                "allowed_arrival_steps": [26, 40],
+            },
         )
         self.assertTrue(row["stage3_4_target_tracking_pass"])
 
+    def test_feedback_result_row_rejects_missing_terminal_policy_id(self) -> None:
+        cfg = {
+            "terminal_feedback": {
+                "horizon_steps": 55,
+                "allowed_arrival_steps": [26, 40],
+                "prefix_numeric_atol": 1e-12,
+            }
+        }
+        ctx = SimpleNamespace(cfg=cfg, r8_ctx=object())
+        with self.assertRaisesRegex(ValueError, "missing terminal_policy_id"):
+            r9._tracking_metric_policy(
+                ctx, {}, phase="oracle_development"
+            )
+
+
+
+class Stage41R9ResumeManifestTests(unittest.TestCase):
+    @staticmethod
+    def _current() -> dict:
+        return {
+            "controller_revision": r9.CONTROLLER_REVISION,
+            "package_revision": r9.PACKAGE_REVISION,
+            "source_stage4_1r8_run": "/source/r8",
+            "source_fingerprint": {"digest": "abc"},
+        }
+
+    def test_legacy_r9_manifest_upgrades_without_changing_scientific_identity(self) -> None:
+        old = {
+            **self._current(),
+            "package_revision": "r9_terminal_template_feedback_hold_v1",
+            "created_utc": "before",
+        }
+        upgraded = r9._validated_resume_manifest(old, self._current())
+        self.assertEqual(upgraded["controller_revision"], r9.CONTROLLER_REVISION)
+        self.assertEqual(upgraded["source_fingerprint"], {"digest": "abc"})
+        self.assertEqual(upgraded["package_revision"], r9.PACKAGE_REVISION)
+        self.assertIn(
+            "r9_terminal_template_feedback_hold_v1",
+            upgraded["package_revision_history"],
+        )
+        self.assertTrue(upgraded["summary_metric_policy_contract_hotfix"])
+        self.assertEqual(
+            old["package_revision"], "r9_terminal_template_feedback_hold_v1"
+        )
+
+    def test_unknown_resume_package_revision_is_rejected(self) -> None:
+        old = {**self._current(), "package_revision": "unknown"}
+        with self.assertRaisesRegex(ValueError, "not an approved R9/R9a"):
+            r9._validated_resume_manifest(old, self._current())
 
 
 class Stage41R9SummaryTests(unittest.TestCase):

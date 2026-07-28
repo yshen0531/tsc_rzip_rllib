@@ -35,6 +35,7 @@ printf '[Stage4.1R9] run_dir=%s\n' "${RUN_DIR}"
 printf '[Stage4.1R9] config=%s\n' "${STAGE4_1R9_CONFIG}"
 printf '[Stage4.1R9] command=%s backend=%s resume=%s workers=%s\n' "${STAGE4_1R9_COMMAND}" "${STAGE4_1R9_BACKEND}" "${STAGE4_1R9_RESUME}" "${STAGE4_1R9_WORKERS}"
 printf '[Stage4.1R9] python=%s RAY_TMPDIR=%s\n' "${STAGE4_1R9_PYTHON}" "${RAY_TMPDIR}"
+printf '[Stage4.1R9 R9a] Complete R8 metric-policy contract is active; existing successful raw rollouts remain reusable under resume=1.\n'
 printf '[Stage4.1R9] The first 350 ms MPC/observer/library/Jacobian are frozen. Only the failed open-loop tail is replaced by continuously streaming delay-aware terminal feedback.\n'
 printf '[Stage4.1R9] Candidate selection uses nominal only; RZ_p10_m10 is a disjoint holdout. Untrusted calibration cannot start control and no online handover is used.\n'
 printf '[Stage4.1R9] This remains a finite clean-measurement digital-twin test, not true restart, plant-mismatch, continuous-parameter, or deployment validation.\n'
