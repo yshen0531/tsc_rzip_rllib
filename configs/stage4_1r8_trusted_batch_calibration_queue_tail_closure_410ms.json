@@ -1,0 +1,276 @@
+{
+  "stage_label": "Stage 4.1R8",
+  "run_name": "stage4_1r8_trusted_batch_calibration_queue_tail_closure",
+  "output_root": "stage4_1r8_runs",
+  "controller_revision": "trusted_batch_calibration_queue_tail_closure_v8",
+  "source_requirement": {
+    "required_stage": "Stage4.1R7",
+    "required_controller_revision": "precontrol_calibration_queue_consistent_startup_v7",
+    "require_finished": true,
+    "require_source_audit_passed": true,
+    "require_precontrol_calibration_passed": true,
+    "require_queue_consistent_startup_passed": true,
+    "allow_paired_confirmation_failure": true,
+    "require_raw_precontrol_calibration_count": 18,
+    "require_raw_startup_count": 108,
+    "require_raw_paired_confirmation_count": 36
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "R8 separates trusted batch delay/slew acquisition from weak-slew tail queue closure. It never starts the main controller from an untrusted default model and it drains the finite actuator-delay queue before zero-increment hold actions."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r8"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "batch_selector": {
+    "delay_candidates": [
+      0,
+      1,
+      2
+    ],
+    "slew_candidates": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "nominal_coil_count": 14,
+    "minimum_full_delta_log_likelihood": 50.0,
+    "minimum_split_delta_log_likelihood": 20.0,
+    "minimum_clean_score_ratio": 10.0,
+    "minimum_clean_absolute_score_gap": 1e-12,
+    "require_full_first_second_odd_even_consensus": true,
+    "require_leave_one_out_consensus": true,
+    "trusted_model_must_not_fallback_to_default": true,
+    "selector_revision": "batch_full_split_loo_likelihood_v1"
+  },
+  "source_replay": {
+    "expected_unique_noisy_traces": 27,
+    "expected_r7_online_untrusted_default_count": 3,
+    "require_all_batch_best_correct": true,
+    "require_all_batch_trusted": true,
+    "maximum_wrong_accept_count": 0,
+    "monte_carlo": {
+      "primary_profile_id": "iid_gaussian_20mA",
+      "primary_noise_sigma_A": 0.02,
+      "primary_trials_per_pair": 512,
+      "primary_seed_base": 810000,
+      "minimum_primary_acceptance_fraction": 0.995,
+      "maximum_primary_wrong_accept_count": 0,
+      "diagnostic_profile_id": "iid_gaussian_50mA",
+      "diagnostic_noise_sigma_A": 0.05,
+      "diagnostic_trials_per_pair": 256,
+      "diagnostic_seed_base": 820000,
+      "maximum_diagnostic_wrong_accept_count": 0
+    }
+  },
+  "integrated_calibration": {
+    "environment_horizon_steps": 35,
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "mode_command_plan": [
+      [
+        0.72,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.6,
+        0.0
+      ],
+      [
+        -0.72,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.6,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.24
+      ],
+      [
+        0.0,
+        0.0,
+        -0.24
+      ],
+      [
+        0.36,
+        0.3,
+        0.0
+      ],
+      [
+        -0.36,
+        -0.3,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "coil_current_measurement_noise_A": 0.02,
+    "seed_base": 830000,
+    "minimum_distinct_pairs": 9,
+    "require_all_trusted": true,
+    "require_all_correct_in_finite_test": true,
+    "maximum_wrong_accept_count": 0,
+    "calibration_is_separate_reset_episode": true,
+    "zero_command_prehistory": true,
+    "maximum_physical_coil_delta_fraction_of_nominal_slew": 0.34,
+    "calibration_plan_revision": "bounded_zero_net_snr_20mA_v2_batch_selector",
+    "maximum_final_max_abs_coil_residual_A": 0.01
+  },
+  "oracle_queue_tail": {
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "policies": [
+      {
+        "policy_id": "drain_pending_h37",
+        "horizon_steps": 37,
+        "allowed_arrival_steps": [
+          26,
+          27
+        ],
+        "tail_policy": "drain_pending_then_zero_increment",
+        "tail_steps": 2
+      },
+      {
+        "policy_id": "drain_pending_h39",
+        "horizon_steps": 39,
+        "allowed_arrival_steps": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "tail_policy": "drain_pending_then_zero_increment",
+        "tail_steps": 4
+      },
+      {
+        "policy_id": "drain_pending_h41",
+        "horizon_steps": 41,
+        "allowed_arrival_steps": [
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        "tail_policy": "drain_pending_then_zero_increment",
+        "tail_steps": 6
+      }
+    ],
+    "minimum_policy_tracking_fraction": 1.0,
+    "minimum_selected_policy_signed_margin": 0.02,
+    "selection_order": "shortest_horizon_then_largest_minimum_margin",
+    "require_pending_queue_fully_drained": true,
+    "require_no_zero_action_while_pending": true,
+    "primary_controller_variant": "control_aware_no_aw"
+  },
+  "calibrated_startup": {
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "require_all_18_cases": true,
+    "minimum_trace_equivalence_fraction": 1.0,
+    "numeric_trace_equivalence_atol": 1e-12,
+    "monitor_enabled": true,
+    "online_handover_enabled": false,
+    "queue_primed_from_trusted_model_before_first_main_action": true,
+    "reuse_each_calibration_token_for_both_targets": true,
+    "require_zero_untrusted_main_starts": true
+  },
+  "restart_audit": {
+    "candidate_folders": [
+      "1080ms",
+      "1090ms",
+      "1110ms",
+      "1120ms"
+    ],
+    "minimum_distinct_folders": 2
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "hardware_pre_shot_calibration_validated": false,
+  "true_restart_validation_performed": false,
+  "continuous_parameter_change_validated": false,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}
