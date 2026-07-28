@@ -1,35 +1,37 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.1R9",
-  "run_name": "stage4_1r9_terminal_template_mpc_feedback_hold",
-  "controller_revision": "terminal_template_mpc_feedback_hold_v9",
-  "package_revision": "r9a_metric_policy_contract_v2",
+  "stage": "Stage4.1R10",
+  "run_name": "stage4_1r10_queue_preview_terminal_transition_hold",
+  "controller_revision": "queue_preview_terminal_transition_hold_v10",
+  "package_revision": "r10_queue_preview_transition_v1",
   "created_utc": "20260728",
   "source_code_baseline": {
     "repository": "https://github.com/yshen0531/tsc_rzip_rllib",
     "branch": "feat-stage4",
     "commit": "3b9c1987c3af311a8d76a336d64783c059815e8b",
-    "note": "R9 is a standalone derivative of the user-supplied Stage4.1R8 package. Runtime does not require Git, GitHub, network access, or another source-code tree."
+    "note": "R10 is a complete standalone derivative of the user-supplied and R9a-hotfixed Stage4.1R9 package. Runtime does not require Git, GitHub, network access, or another source-code tree."
   },
   "source_run_requirement": {
-    "stage": "Stage4.1R8",
-    "controller_revision": "trusted_batch_calibration_queue_tail_closure_v8",
+    "stage": "Stage4.1R9",
+    "controller_revision": "terminal_template_mpc_feedback_hold_v9",
     "finished": true,
-    "expected_stop_reason": "oracle_queue_tail_failed",
-    "expected_integrated_calibration_rollouts": 9,
-    "expected_oracle_queue_tail_rollouts": 54,
-    "expected_r8_tracking_failures": 47,
-    "expected_r8_final_speed_limited_failures": 47,
-    "calibrated_startup_expected_status": "not_run",
-    "source_is_fingerprinted_on_prepare": true
+    "expected_stop_reason": "oracle_development_failed",
+    "expected_raw_oracle_development_rollouts": 54,
+    "expected_delay0_passes": 18,
+    "expected_delay1_passes": 0,
+    "expected_delay2_passes": 0,
+    "expected_all_environment_success": true,
+    "holdout_expected_status": "not_run",
+    "calibrated_confirmation_expected_status": "not_run",
+    "source_is_content_fingerprinted_on_prepare": true
   },
   "complete_standalone": true,
   "requires_git": false,
   "requires_network": false,
   "requires_external_base_code_tree": false,
   "requires_existing_run_data": [
-    "the completed Stage4.1R8 run selected as source",
-    "the completed Stage4.1R7 and frozen nested Stage4.1R6/Stage3.4 runs referenced by the source manifests"
+    "the completed Stage4.1R9 run selected as source",
+    "the completed Stage4.1R8, Stage4.1R7, Stage4.1R6 and frozen Stage3.4 runs referenced by the nested source manifests"
   ],
   "replaceable_project_paths": [
     "configs/",
@@ -38,18 +40,18 @@
     "tsc_rzip_rllib/"
   ],
   "root_shell_scripts": [
-    "run_stage4_1r9_terminal_template_mpc_feedback_hold_native.sh",
-    "run_stage4_1r9_terminal_template_mpc_feedback_hold_nohup.sh",
-    "run_stage4_1r9_self_test.sh",
-    "run_stage4_1r9_verify_package.sh",
-    "run_stop_stage4_1r9_now.sh"
+    "run_stage4_1r10_queue_preview_terminal_transition_hold_native.sh",
+    "run_stage4_1r10_queue_preview_terminal_transition_hold_nohup.sh",
+    "run_stage4_1r10_self_test.sh",
+    "run_stage4_1r10_verify_package.sh",
+    "run_stop_stage4_1r10_now.sh"
   ],
   "runtime": {
     "default_workers": 128,
     "backend": "ray",
     "resume_supported": true,
     "ray_campaign_capacity_guard": true,
-    "fixed_campaign_actor_count_limited_by_pending_tasks_and_requested_workers": true,
+    "fixed_campaign_actor_count_limited_by_pending_tasks_requested_workers_and_cluster_capacity": true,
     "maximum_new_real_tsc_episodes": 81,
     "phase_episode_budget": {
       "oracle_development": 54,
@@ -60,21 +62,45 @@
     "tsc_run_root_default": "/tmp/tsc_workspace/episode_runs",
     "python_default": "/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python"
   },
+  "r9_forensic_basis": {
+    "runtime_errors_after_r9a_hotfix": 0,
+    "raw_rollouts": 54,
+    "environment_success": 54,
+    "solver_failure_steps": 0,
+    "queue_inconsistent_rollouts": 0,
+    "delay0_tracking": "18/18",
+    "delay1_tracking": "0/18",
+    "delay2_tracking": "0/18",
+    "all_six_policies_exactly_identical_through_first_terminal_effect": true,
+    "maximum_pre_effect_prefix_difference": 0.0,
+    "delay1_mean_speed_kick_before_first_terminal_effect_m_per_s": 0.02581709446378272,
+    "delay2_mean_speed_kick_before_first_terminal_effect_m_per_s": 0.06606716336759988,
+    "pending_main_command_norm_range_delay_positive": [
+      0.506327545319832,
+      0.6188447776131282
+    ],
+    "first_low_policy_terminal_desired_norm": 0.10198161599033424,
+    "maximum_current_utilization": 0.41174999999999995,
+    "dedicated_terminal_local_model_yet_proven_necessary": false
+  },
   "scientific_design": {
-    "r8_source_audit": "Recomputes all 54 R8 raw queue-tail rollouts, verifies exact first-350ms prefix identity, 47/54 final-speed-limited tracking failures, and all nine trusted calibration tokens.",
-    "first_350ms_controller_frozen": true,
-    "observer_frozen_in_first_350ms": true,
-    "target_library_frozen": true,
-    "jacobian_frozen": true,
-    "terminal_feedback": "Runs a 20-step continuously streaming explicit-delay-queue terminal MPC after 350 ms. It reuses late-phase real-TSC Jacobian templates and direct R/Z/Ip plus finite-difference R/Z velocity.",
-    "candidate_development": "Selects among six terminal-template gain policies on the nominal target over all nine finite delay/slew pairs.",
-    "disjoint_holdout": "Evaluates the selected policy on RZ_p10_m10 without using holdout results for selection.",
-    "calibrated_confirmation": "Reuses the nine trusted pair-level R8 calibration tokens for two targets and requires full trace equivalence to the corresponding Oracle terminal-feedback runs.",
+    "r9_source_audit": "Recomputes all 54 R9 raw development rollouts and requires the observed 18/18 delay=0 pass, 0/36 delay=1/2 pass structure, healthy solver/queue semantics, and exact policy identity before the first terminal command can affect the plant.",
+    "causal_transition_preview": "For delay d, replaces exactly the last d issue slots (34 for d=1; 33 and 34 for d=2) that cannot have affected the physical state through 350 ms. Each replacement is computed at its original issue time from only states and pending commands then available.",
+    "frozen_prefix": "Requires bit-exact physical and applied-command prefixes through 350 ms and an exact audit copy of the original issued-command trace. Only still-unapplied issue slots may differ.",
+    "terminal_feedback": "Runs 40 continuously streaming explicit-delay-queue feedback steps from 350 to 750 ms using clean direct R/Z/Ip measurements and finite-difference R/Z velocity.",
+    "candidate_development": "Tests six independently interpretable policies on nominal across all nine delay/slew pairs: exact R9 structural baseline, earlier template only, controller-scale only, velocity-gain only, position-gain only, and one combined stronger/earlier policy.",
+    "disjoint_holdout": "Tests the selected policy once on RZ_p10_m10 over all nine pairs without using holdout results for policy selection.",
+    "calibrated_confirmation": "Reuses only the nine trusted/correct pair-level R8 calibration tokens and requires all 18 calibrated trajectories to be trace-equivalent to their Oracle counterparts.",
+    "hard_gates": "Keeps 30 mm position, 0.1 m/s speed and frozen Ip gates; adds tail-box, last-100ms speed/position, final pending-command and last-100ms command-convergence guards.",
     "online_handover_enabled": false,
-    "measurement_path": "clean direct measured state for terminal architecture closure only",
-    "failure_next_step": "If no candidate passes, proceed to bounded local terminal-model identification and terminal MPC redesign; do not weaken gates and do not begin BC/DAgger/RL."
+    "measurement_path": "clean direct measured state for causal transition architecture closure only",
+    "failure_next_step": "If the complete R10 Oracle development bank fails, the queue-boundary artifact has been isolated and bounded terminal local-model identification is then justified. Do not weaken gates and do not begin BC/DAgger/RL."
   },
   "scientific_guardrails": {
+    "physical_prefix_through_350ms_may_change": false,
+    "applied_command_prefix_through_350ms_may_change": false,
+    "issued_command_changes_outside_unapplied_preview_slots_allowed": false,
+    "future_measurement_in_preview_allowed": false,
     "development_and_holdout_targets_disjoint": true,
     "untrusted_calibration_can_start_main_control": false,
     "pending_delay_queue_bypass_allowed": false,
@@ -84,6 +110,7 @@
     "true_restart_claim_allowed": false,
     "continuous_parameter_change_claim_allowed": false,
     "plant_parameter_robustness_claim_allowed": false,
+    "measurement_noise_robustness_claim_allowed": false,
     "deployment_robustness_claim_allowed": false,
     "finite_test_envelope_only": true,
     "final_task": "robust causal control across initial states, targets, hidden vessel/eddy history, plant uncertainty, continuous actuator variation, measurement noise and unknown delay, with safe arrival, deceleration, disturbance recovery and long hold"
@@ -96,16 +123,19 @@
     "shell_bash_n_all_declared_scripts": true,
     "self_test": true,
     "full_unittest_discovery": true,
-    "source_audit_replayed_on_attached_r8_raw_results": true,
+    "full_unittest_count_expected": 297,
+    "r10_specific_unittest_count_expected": 18,
+    "causal_preview_queue_regression": true,
+    "issue_time_no_future_information_regression": true,
+    "synthetic_full_worker_flow_regression": true,
+    "untrusted_calibration_hard_reject_regression": true,
+    "source_audit_replayed_on_attached_r9_raw_results": true,
+    "source_audit_replay_passed": true,
     "residual_markdown_outside_manifest_ignored": true,
     "empty_directory_extraction_test_required_before_release": true,
-    "real_server_gotsc_executed_during_package_build": false,
-    "metric_policy_interface_contract_regression": true,
-    "resume_from_r9_v1_manifest_supported": true,
-    "full_unittest_count_expected": 279,
-    "r9_specific_unittest_count_expected": 19
+    "real_server_gotsc_executed_during_package_build": false
   },
-  "declared_file_count": 75,
+  "declared_file_count": 78,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -117,6 +147,7 @@
     "configs/stage3_3_target_conditioned_receding_horizon_mpc_250ms.json",
     "configs/stage3_4_late_arrival_continuation_mpc_350ms.json",
     "configs/stage4_0_robustness_recovery_350ms.json",
+    "configs/stage4_1r10_queue_preview_terminal_transition_hold_750ms.json",
     "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json",
     "configs/stage4_1r3_control_aware_residual_observer_350ms.json",
     "configs/stage4_1r4_targeted_closure_370ms.json",
@@ -125,13 +156,13 @@
     "configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json",
     "configs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_410ms.json",
     "configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json",
-    "run_stage4_1r9_self_test.sh",
-    "run_stage4_1r9_terminal_template_mpc_feedback_hold_native.sh",
-    "run_stage4_1r9_terminal_template_mpc_feedback_hold_nohup.sh",
-    "run_stage4_1r9_verify_package.sh",
-    "run_stop_stage4_1r9_now.sh",
-    "scripts/stage4_1r9_shell_common.sh",
-    "scripts/stage4_1r9_terminal_template_mpc_feedback_hold.py",
+    "run_stage4_1r10_queue_preview_terminal_transition_hold_native.sh",
+    "run_stage4_1r10_queue_preview_terminal_transition_hold_nohup.sh",
+    "run_stage4_1r10_self_test.sh",
+    "run_stage4_1r10_verify_package.sh",
+    "run_stop_stage4_1r10_now.sh",
+    "scripts/stage4_1r10_queue_preview_terminal_transition_hold.py",
+    "scripts/stage4_1r10_shell_common.sh",
     "tests/__init__.py",
     "tests/test_ray_runtime_capacity.py",
     "tests/test_stage2_1_trajectory_optimization.py",
@@ -144,6 +175,7 @@
     "tests/test_stage3_4_late_arrival_continuation_mpc.py",
     "tests/test_stage4_0_robustness_recovery.py",
     "tests/test_stage4_1_delay_gain_phase_robustness.py",
+    "tests/test_stage4_1r10_queue_preview_terminal_transition_hold.py",
     "tests/test_stage4_1r3_control_aware_robustness.py",
     "tests/test_stage4_1r4_targeted_closure.py",
     "tests/test_stage4_1r5_adaptive_handover_closure.py",
@@ -169,6 +201,7 @@
     "tsc_rzip_rllib/diagnostics/stage3_4_late_arrival_continuation_mpc.py",
     "tsc_rzip_rllib/diagnostics/stage4_0_robustness_recovery.py",
     "tsc_rzip_rllib/diagnostics/stage4_1_delay_gain_phase_robustness.py",
+    "tsc_rzip_rllib/diagnostics/stage4_1r10_queue_preview_terminal_transition_hold.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py",
@@ -182,18 +215,5 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ],
-  "hotfix": {
-    "id": "R9a_metric_policy_contract",
-    "root_cause": "R9 feedback_result_row omitted policy_id when invoking the reused R8 tracking_metrics interface; all 54 rollout files were already written and the crash occurred only during summary-row construction.",
-    "control_law_changed": false,
-    "experiment_ids_changed": false,
-    "existing_successful_raw_results_reusable_with_resume": true,
-    "downstream_phases_fixed": [
-      "oracle_development",
-      "oracle_holdout",
-      "calibrated_confirmation"
-    ],
-    "regression_guard": "The R9 unit test now uses a strict tracking-metrics stub that indexes policy_id, and self-test validates the full adapter contract."
-  }
+  ]
 }

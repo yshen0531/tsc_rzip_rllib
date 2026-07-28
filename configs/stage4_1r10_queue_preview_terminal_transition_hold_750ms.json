@@ -1,0 +1,234 @@
+{
+  "stage_label": "Stage 4.1R10",
+  "run_name": "stage4_1r10_queue_preview_terminal_transition_hold",
+  "output_root": "stage4_1r10_runs",
+  "controller_revision": "queue_preview_terminal_transition_hold_v10",
+  "source_requirement": {
+    "required_stage": "Stage4.1R9",
+    "required_controller_revision": "terminal_template_mpc_feedback_hold_v9",
+    "require_finished": true,
+    "require_stop_reason": "oracle_development_failed",
+    "require_source_audit_passed": true,
+    "require_oracle_development_failed": true,
+    "require_raw_oracle_development_count": 54,
+    "require_all_source_environment_success": true,
+    "require_delay0_all_pass": true,
+    "require_delay1_delay2_all_fail": true,
+    "require_holdout_not_executed": true,
+    "require_calibrated_confirmation_not_executed": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "R10 preserves the exact physical and applied-command prefix through 350 ms, but causally replaces only the final delay-dependent main-MPC commands that had been issued yet could not have affected the plant by 350 ms. The replacements are computed at their original issue times from only then-available measurements and pending commands. A longer streaming terminal feedback controller then runs through 750 ms."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r10"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "terminal_transition": {
+    "main_control_steps": 35,
+    "horizon_steps": 75,
+    "tail_feedback_steps": 40,
+    "dt_s": 0.01,
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "development_target": {
+      "target_id": "nominal",
+      "R_offset_m": 0.0,
+      "Z_offset_m": 0.0,
+      "Ip_offset_A": 0.0
+    },
+    "holdout_target": {
+      "target_id": "RZ_p10_m10",
+      "R_offset_m": 0.01,
+      "Z_offset_m": -0.01,
+      "Ip_offset_A": 0.0
+    },
+    "allowed_arrival_steps": [
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65
+    ],
+    "candidate_bank": [
+      {
+        "policy_id": "qp28_c0p50_v1p50_p1p00_baseline",
+        "template_step": 28,
+        "controller_scale": 0.5,
+        "velocity_measurement_gain": 1.5,
+        "position_measurement_gain": 1.0,
+        "ablation_axis": "exact_r9_best_structure_plus_preview_and_longer_horizon"
+      },
+      {
+        "policy_id": "qp24_c0p50_v1p50_p1p00_early",
+        "template_step": 24,
+        "controller_scale": 0.5,
+        "velocity_measurement_gain": 1.5,
+        "position_measurement_gain": 1.0,
+        "ablation_axis": "earlier_template_only"
+      },
+      {
+        "policy_id": "qp28_c0p75_v1p50_p1p00_scale",
+        "template_step": 28,
+        "controller_scale": 0.75,
+        "velocity_measurement_gain": 1.5,
+        "position_measurement_gain": 1.0,
+        "ablation_axis": "controller_scale_only"
+      },
+      {
+        "policy_id": "qp28_c0p50_v2p00_p1p00_velocity",
+        "template_step": 28,
+        "controller_scale": 0.5,
+        "velocity_measurement_gain": 2.0,
+        "position_measurement_gain": 1.0,
+        "ablation_axis": "velocity_gain_only"
+      },
+      {
+        "policy_id": "qp28_c0p50_v1p50_p1p25_position",
+        "template_step": 28,
+        "controller_scale": 0.5,
+        "velocity_measurement_gain": 1.5,
+        "position_measurement_gain": 1.25,
+        "ablation_axis": "position_gain_only"
+      },
+      {
+        "policy_id": "qp24_c0p75_v2p00_p1p25_combined",
+        "template_step": 24,
+        "controller_scale": 0.75,
+        "velocity_measurement_gain": 2.0,
+        "position_measurement_gain": 1.25,
+        "ablation_axis": "combined_stronger_earlier"
+      }
+    ],
+    "controller_model_scale": 1.0,
+    "ip_measurement_gain": 1.0,
+    "integral_mode": "reset_zero",
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "initial_previous_correction": "last_main_mode_correction",
+    "preview_replaces_only_unapplied_issue_slots": true,
+    "preview_uses_only_original_issue_time_information": true,
+    "minimum_tracking_fraction": 1.0,
+    "minimum_signed_margin": 0.02,
+    "require_exact_first_350ms_physics_prefix": true,
+    "require_exact_first_350ms_applied_command_prefix": true,
+    "require_exact_original_issued_trace_audit_copy": true,
+    "prefix_numeric_atol": 1e-12,
+    "require_streaming_queue_consistency": true,
+    "maximum_preview_desired_physical_norm": 0.35,
+    "maximum_tail_box_error_m": 0.06,
+    "maximum_last10_speed_rms_m_per_s": 0.08,
+    "maximum_last10_box_error_m": 0.03,
+    "maximum_final_pending_desired_physical_norm": 0.15,
+    "maximum_last10_issued_desired_rms": 0.15,
+    "selection_order": "largest_combined_minimum_margin_then_tracking_margin_then_mean_margin_then_lower_tail_action_rms",
+    "development_target_is_disjoint_from_holdout": true
+  },
+  "calibrated_confirmation": {
+    "reuse_stage4_1r8_pair_level_tokens": true,
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "require_all_18_cases": true,
+    "require_all_tokens_trusted_and_correct": true,
+    "online_handover_enabled": false,
+    "monitor_enabled": false,
+    "minimum_trace_equivalence_fraction": 1.0,
+    "numeric_trace_equivalence_atol": 1e-12,
+    "require_zero_untrusted_main_starts": true
+  },
+  "restart_audit": {
+    "candidate_folders": [
+      "1080ms",
+      "1090ms",
+      "1110ms",
+      "1120ms"
+    ],
+    "minimum_distinct_folders": 2
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "hardware_pre_shot_calibration_validated": false,
+  "true_restart_validation_performed": false,
+  "continuous_parameter_change_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}
