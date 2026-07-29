@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R17",
+  "controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",
+  "package_revision": "r17_delay_conditioned_one_sided_margin_closure_v1",
+  "run_name": "stage4_1r17_original_deadline_one_sided_robust_braking_closure",
+  "output_root": "stage4_1r17_runs",
+  "parallel": {
+    "n_workers": 128,
+    "ray_tmpdir": "/tmp/stage4_1r17"
+  },
+  "runtime": {
+    "tsc_timeout_s": 1800.0
+  },
+  "formal_timing_contract": {
+    "immutable": true,
+    "speed_gate_m_per_s": 0.1,
+    "normal_slew": {
+      "arrival_deadline_step": 25,
+      "hold_through_step": 35,
+      "arrival_deadline_ms": 250,
+      "hold_through_ms": 350,
+      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    },
+    "weak_slew": {
+      "arrival_deadline_step": 27,
+      "hold_through_step": 37,
+      "arrival_deadline_ms": 270,
+      "hold_through_ms": 370,
+      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+    }
+  },
+  "source_requirements": {
+    "source_stage": "Stage4.1R16",
+    "source_controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
+    "source_package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
+    "require_r16_raw_count": 32
+  },
+  "one_sided_candidate": {
+    "actual_slew_scale": 0.9,
+    "horizon_steps": 37,
+    "source_delay1": 1,
+    "new_delay2": 2,
+    "source_delay1_magnitude": 6.0,
+    "new_delay2_magnitude": 7.0,
+    "direction_sign": -1,
+    "peak_component": 0.105,
+    "expected_oracle_rollouts": 2,
+    "minimum_actual_signed_margin": 0.01,
+    "endpoint_error_safety_factor": 1.25,
+    "candidate_fixed_before_new_tsc": true,
+    "require_exact_per_step_probe_application": true,
+    "maximum_current_utilization": 0.55,
+    "required_targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "candidate_model_guard": {
+      "maximum_velocity_component_rmse_m_per_s": 0.008,
+      "maximum_endpoint_late_speed_error_m_per_s": 0.004,
+      "maximum_final_speed_error_m_per_s": 0.01,
+      "maximum_position_rmse_m": 0.001,
+      "maximum_ip_rmse_A": 30.0
+    }
+  },
+  "calibrated_confirmation": {
+    "expected_rollouts": 4,
+    "minimum_trace_equivalence_fraction": 1.0,
+    "numeric_trace_equivalence_atol": 1e-12,
+    "require_distinct_calibration_tokens": 2,
+    "require_untrusted_start_count": 0
+  },
+  "formal_grid_confirmation": {
+    "expected_cases": 18,
+    "modified_cases": 4,
+    "unchanged_source_cases": 14,
+    "require_all_pass": true
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "arrival_deadline_expansion_allowed": false,
+  "finite_test_envelope_only": true,
+  "bidirectional_response_model_validated": false,
+  "unseen_target_generalization_validated": false,
+  "continuous_parameter_change_validated": false,
+  "true_restart_validation_performed": false,
+  "unseen_hidden_state_robustness_validated": false,
+  "terminal_measurement_noise_robustness_validated": false,
+  "deployment_robustness_validated": false,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "next_if_pass": "Freeze the original-deadline 18-case finite static-grid controller, then proceed to true restart and hidden vessel/eddy-history validation. Keep the one-sided delay-conditioned patch labelled as finite and do not claim bidirectional, unseen-target, continuous-parameter, noisy-sensing, disturbance-recovery or deployment robustness. Do not start BC, DAgger or bounded residual RL yet.",
+  "next_if_fail": "Do not relax the 250/270 ms deadlines, do not posthoc try 7.5x or 8x, and do not return to 750 ms or 2 s late-arrival closure. Expand the bounded response basis with mode 2 and additional pre-deadline temporal shapes, then validate the enlarged basis with new real-TSC probes before another controller attempt.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

@@ -1,89 +1,66 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.1R16",
-  "controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
-  "package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
-  "run_name": "stage4_1r16_amplitude_certified_probe_derived_braking_closure",
-  "source_stage": "Stage4.1R15B",
-  "source_controller_revision": "probe_derived_symmetric_local_response_superposition_v15b",
-  "source_package_revision": "r15b_hadamard_superposition_validation_v1",
-  "purpose": "Certify the amplitude domain of the R15B probe-derived four-basis response with a preregistered 1x/2x/4x/6x plus-minus real-TSC ladder, then test one fixed 6x braking direction under the immutable original timing contract and confirm trusted-token replay.",
+  "stage": "Stage4.1R17",
+  "controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",
+  "package_revision": "r17_delay_conditioned_one_sided_margin_closure_v1",
+  "run_name": "stage4_1r17_original_deadline_one_sided_robust_braking_closure",
+  "source_stage": "Stage4.1R16",
+  "source_controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
+  "source_package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
+  "purpose": "Use the real-TSC R16 one-sided braking ladder without reinterpreting the failed bidirectional amplitude envelope. Reuse the passing delay=1 6x source trajectory, preregister and directly validate one delay=2 7x braking candidate, then require trusted-token exact replay and recombine the immutable 18-case original-deadline grid.",
   "formal_timing": {
-    "normal_slew_arrival_deadline_ms": 250,
+    "normal_slew_arrival_ms": 250,
     "normal_slew_hold_through_ms": 350,
-    "weak_slew_arrival_deadline_ms": 270,
+    "weak_slew_arrival_ms": 270,
     "weak_slew_hold_through_ms": 370,
-    "arrival_deadline_expansion_allowed": false
+    "arrival_deadline_expanded": false
+  },
+  "delay_conditioned_candidate": {
+    "delay1_source_magnitude": 6.0,
+    "delay1_peak_component": 0.09,
+    "delay2_preregistered_magnitude": 7.0,
+    "delay2_peak_component": 0.105,
+    "direction_sign": -1,
+    "minimum_actual_signed_margin": 0.01,
+    "candidate_fixed_before_new_tsc": true,
+    "posthoc_7p5x_or_8x_fallback_allowed": false
   },
   "campaigns": {
-    "source_audit": {
-      "true_tsc_rollouts": 0
-    },
-    "amplitude_envelope_validation": {
-      "true_tsc_rollouts": 32,
-      "matrix": "4 magnitudes x 2 signs x 2 delays x 2 targets",
-      "magnitude_levels": [
-        1.0,
-        2.0,
-        4.0,
-        6.0
-      ],
-      "peak_probe_components": [
-        0.015,
-        0.03,
-        0.06,
-        0.09
-      ]
-    },
-    "calibrated_confirmation": {
-      "true_tsc_rollouts": 4
-    },
-    "formal_grid_confirmation": {
-      "true_tsc_rollouts": 0,
-      "cases": 18
-    }
+    "source_audit_new_tsc_rollouts": 0,
+    "oracle_delay2_candidate_rollouts": 2,
+    "calibrated_confirmation_rollouts": 4,
+    "formal_grid_recombination_new_tsc_rollouts": 0
   },
-  "maximum_true_tsc_rollouts": 36,
+  "maximum_true_tsc_rollouts": 6,
   "finite_test_envelope_only": true,
   "scientific_guardrails": [
-    "The R15B joint common-direction external envelope is coefficient 0.5 (0.0075 peak component); individual basis coefficient 1.0 is not misreported as joint validation.",
-    "The 6x braking candidate is preregistered before all new R16 TSC runs and is never selected post hoc from the amplitude ladder.",
-    "All 32 amplitude runs must pass runtime, zero-net, exact-applied-probe, current-utilization, model-prediction, central-symmetry, and per-unit-scaling guards.",
-    "The fixed 6x braking candidate must pass all four modified target-delay paths with actual minimum signed margin at least 0.01.",
-    "Calibrated confirmation requires trusted-correct delay/slew tokens and exact Oracle trace equivalence.",
-    "The 14 already-passing paths are reused unchanged and the final formal grid must pass 18/18 under 250/350 and 270/370 ms timing.",
-    "No unseen-target, continuous-parameter, restart, hidden-history, noisy-sensing, or deployment robustness is claimed.",
-    "Stage4.2R1, Behavior Cloning, DAgger, and RL are not run or reused."
+    "Exact per-step requested/applied probe equality is required; max/count equality alone is insufficient.",
+    "R16 symmetric plus/minus large-amplitude model remains failed and is not reinterpreted as validated.",
+    "Delay=1 reuses only the already-executed real-TSC 6x braking source trajectories.",
+    "Delay=2 runs exactly one source-preregistered 7x candidate for both required targets.",
+    "Both new Oracle cases must pass the immutable 270/370 ms contract with at least 0.01 signed margin.",
+    "Trusted calibration tokens must reproduce Oracle traces exactly before the 18-case grid can pass.",
+    "No true-restart, hidden-history, continuous-parameter, noisy-sensing, disturbance-recovery or deployment claim is made.",
+    "Stage4.2R1, BC, DAgger and bounded residual RL are not run or reused."
   ],
   "requirements": {
-    "replace_directories": [
+    "delete_and_replace_directories": [
       "configs",
       "scripts",
       "tests",
       "tsc_rzip_rllib"
     ],
-    "replace_root_stage_shell_scripts": true,
-    "preserve_run_directories": [
-      "stage4_1r15b_runs",
-      "stage4_1r15_runs",
-      "stage4_1r14_runs",
-      "stage4_1r13_runs",
-      "stage4_1r12_runs",
-      "stage4_1r11_runs",
-      "stage4_1r10_runs",
-      "stage4_1r9_runs",
-      "stage4_1r8_runs",
-      "stage4_1r7_runs",
-      "stage4_1r6_runs",
-      "stage3_4_runs"
-    ],
-    "network_required": false,
-    "git_required": false,
-    "resume_supported": true,
-    "ray_capacity_is_pending_task_bounded": true
+    "root_shell_scripts_are_stage4_1r17_only": true,
+    "requires_git": false,
+    "requires_network": false,
+    "requires_external_source_tree": false,
+    "requires_existing_source_run": "complete Stage4.1R16 run and its manifest-recorded upstream run chain",
+    "supports_resume": true,
+    "ray_actor_capacity_limited_by_pending_tasks": true,
+    "residual_markdown_ignored_by_verification": true
   },
   "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
-  "declared_file_count": 99,
+  "declared_file_count": 102,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -103,6 +80,7 @@
     "configs/stage4_1r15_bounded_early_braking_local_response_identification_370ms.json",
     "configs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_370ms.json",
     "configs/stage4_1r16_amplitude_certified_probe_derived_braking_closure_370ms.json",
+    "configs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_370ms.json",
     "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json",
     "configs/stage4_1r3_control_aware_residual_observer_350ms.json",
     "configs/stage4_1r4_targeted_closure_370ms.json",
@@ -111,13 +89,13 @@
     "configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json",
     "configs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_410ms.json",
     "configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json",
-    "run_stage4_1r16_amplitude_certified_probe_derived_braking_closure_native.sh",
-    "run_stage4_1r16_amplitude_certified_probe_derived_braking_closure_nohup.sh",
-    "run_stage4_1r16_self_test.sh",
-    "run_stage4_1r16_verify_package.sh",
-    "run_stop_stage4_1r16_now.sh",
-    "scripts/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py",
-    "scripts/stage4_1r16_shell_common.sh",
+    "run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_native.sh",
+    "run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_nohup.sh",
+    "run_stage4_1r17_self_test.sh",
+    "run_stage4_1r17_verify_package.sh",
+    "run_stop_stage4_1r17_now.sh",
+    "scripts/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py",
+    "scripts/stage4_1r17_shell_common.sh",
     "tests/__init__.py",
     "tests/test_ray_runtime_capacity.py",
     "tests/test_stage2_1_trajectory_optimization.py",
@@ -138,6 +116,7 @@
     "tests/test_stage4_1r15_bounded_early_braking_local_response_identification.py",
     "tests/test_stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py",
     "tests/test_stage4_1r16_amplitude_certified_probe_derived_braking_closure.py",
+    "tests/test_stage4_1r17_original_deadline_one_sided_robust_braking_closure.py",
     "tests/test_stage4_1r3_control_aware_robustness.py",
     "tests/test_stage4_1r4_targeted_closure.py",
     "tests/test_stage4_1r5_adaptive_handover_closure.py",
@@ -171,6 +150,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py",
+    "tsc_rzip_rllib/diagnostics/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py",

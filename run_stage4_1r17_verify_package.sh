@@ -1,34 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PYTHON_BIN="${STAGE4_1R16_PYTHON:-${PYTHON:-python3}}"
+PYTHON_BIN="${STAGE4_1R17_PYTHON:-${PYTHON:-python3}}"
 cd "${PROJECT_DIR}"
 for path in \
   PACKAGE_MANIFEST.json SHA256SUMS \
+  configs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_370ms.json \
   configs/stage4_1r16_amplitude_certified_probe_derived_braking_closure_370ms.json \
   configs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_370ms.json \
-  configs/stage4_1r15_bounded_early_braking_local_response_identification_370ms.json \
-  scripts/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py \
-  scripts/stage4_1r16_shell_common.sh \
+  scripts/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py \
+  scripts/stage4_1r17_shell_common.sh \
+  tsc_rzip_rllib/diagnostics/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py \
   tsc_rzip_rllib/diagnostics/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py \
   tsc_rzip_rllib/diagnostics/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py \
-  tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py \
-  tests/test_stage4_1r16_amplitude_certified_probe_derived_braking_closure.py \
+  tests/test_stage4_1r17_original_deadline_one_sided_robust_braking_closure.py \
   tests/test_ray_runtime_capacity.py \
-  run_stage4_1r16_amplitude_certified_probe_derived_braking_closure_native.sh \
-  run_stage4_1r16_amplitude_certified_probe_derived_braking_closure_nohup.sh \
-  run_stage4_1r16_self_test.sh run_stage4_1r16_verify_package.sh \
-  run_stop_stage4_1r16_now.sh; do
+  run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_native.sh \
+  run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_nohup.sh \
+  run_stage4_1r17_self_test.sh run_stage4_1r17_verify_package.sh \
+  run_stop_stage4_1r17_now.sh; do
   [[ -f "${path}" ]] || { echo "ERROR: required packaged file missing: ${path}" >&2; exit 1; }
 done
 mapfile -t ROOT_STAGE_SH < <(find . -maxdepth 1 -type f -name 'run_stage*.sh' -printf '%f\n' | sort)
 for script in "${ROOT_STAGE_SH[@]}"; do
-  [[ "${script}" == *"stage4_1r16"* ]] || { echo "ERROR: obsolete root-stage shell script is packaged: ${script}" >&2; exit 1; }
+  [[ "${script}" == *"stage4_1r17"* ]] || { echo "ERROR: obsolete root-stage shell script is packaged: ${script}" >&2; exit 1; }
 done
 find configs scripts tests tsc_rzip_rllib -type d -name '__pycache__' -prune -exec rm -rf {} +
 find configs scripts tests tsc_rzip_rllib -type f -name '*.pyc' -delete
 sha256sum -c SHA256SUMS
-printf '[Stage4.1R16 verify] packaged file checksums passed.\n'
+printf '[Stage4.1R17 verify] packaged file checksums passed.\n'
 export PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
 "${PYTHON_BIN}" - <<'PY'
 from __future__ import annotations
@@ -39,10 +39,10 @@ from pathlib import Path
 root = Path.cwd()
 manifest = json.loads((root / 'PACKAGE_MANIFEST.json').read_text(encoding='utf-8'))
 expected = {
-    'stage': 'Stage4.1R16',
-    'controller_revision': 'amplitude_certified_probe_derived_braking_closure_v16',
-    'package_revision': 'r16_joint_envelope_amplitude_ladder_formal_closure_v1',
-    'run_name': 'stage4_1r16_amplitude_certified_probe_derived_braking_closure',
+    'stage': 'Stage4.1R17',
+    'controller_revision': 'original_deadline_one_sided_robust_braking_closure_v17',
+    'package_revision': 'r17_delay_conditioned_one_sided_margin_closure_v1',
+    'run_name': 'stage4_1r17_original_deadline_one_sided_robust_braking_closure',
 }
 for key, value in expected.items():
     if manifest.get(key) != value:
@@ -72,7 +72,7 @@ ignored = {
     'stage4_1r6_runs', 'stage4_1r7_runs', 'stage4_1r8_runs', 'stage4_1r9_runs',
     'stage4_1r10_runs', 'stage4_1r11_runs', 'stage4_1r12_runs', 'stage4_1r13_runs',
     'stage4_1r14_runs', 'stage4_1r15_runs', 'stage4_1r15b_runs', 'stage4_1r16_runs',
-    'logs', '__pycache__',
+    'stage4_1r17_runs', 'logs', '__pycache__',
 }
 for path in sorted(root.rglob('*.py')):
     if any(part in ignored for part in path.parts):
@@ -126,58 +126,63 @@ for path, module in module_by_path.items():
 if missing:
     raise SystemExit('missing packaged internal imports: ' + repr(missing[:20]))
 
-from tsc_rzip_rllib.diagnostics import stage4_1r16_amplitude_certified_probe_derived_braking_closure as r16
+from tsc_rzip_rllib.diagnostics import stage4_1r17_original_deadline_one_sided_robust_braking_closure as r17
 
-payload = r16.self_test(root)
+payload = r17.self_test(root)
 if not payload.get('passed'):
-    raise SystemExit('R16 self-test failed')
-if payload.get('expected_true_tsc_amplitude_rollouts') != 32:
-    raise SystemExit('R16 amplitude rollout budget changed')
+    raise SystemExit('R17 self-test failed')
+if payload.get('expected_true_tsc_oracle_rollouts') != 2:
+    raise SystemExit('R17 Oracle rollout budget changed')
 if payload.get('expected_true_tsc_calibrated_rollouts') != 4:
-    raise SystemExit('R16 calibrated rollout budget changed')
-if payload.get('maximum_true_tsc_rollouts') != 36:
-    raise SystemExit('R16 maximum rollout budget changed')
-if not payload.get('all_schedules_zero_net'):
-    raise SystemExit('R16 zero-net schedule guard failed')
-if abs(float(payload.get('maximum_schedule_component')) - 0.09) > 1e-12:
-    raise SystemExit('R16 maximum schedule component changed')
+    raise SystemExit('R17 calibrated rollout budget changed')
+if payload.get('maximum_true_tsc_rollouts') != 6:
+    raise SystemExit('R17 maximum rollout budget changed')
+if abs(float(payload.get('maximum_schedule_component')) - 0.105) > 1e-12:
+    raise SystemExit('R17 maximum schedule component changed')
+if payload.get('bidirectional_response_model_validated'):
+    raise SystemExit('R17 may not claim bidirectional validation')
 
 cfg = json.loads(
-    (root / 'configs/stage4_1r16_amplitude_certified_probe_derived_braking_closure_370ms.json').read_text(encoding='utf-8')
+    (root / 'configs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_370ms.json').read_text(encoding='utf-8')
 )
-r16.validate_config(cfg)
+r17.validate_config(cfg)
 if cfg['formal_timing_contract']['normal_slew']['arrival_deadline_step'] != 25:
     raise SystemExit('normal arrival deadline changed')
 if cfg['formal_timing_contract']['weak_slew']['arrival_deadline_step'] != 27:
     raise SystemExit('weak arrival deadline changed')
-amp = cfg['amplitude_envelope_validation']
-if amp['magnitude_levels'] != [1.0, 2.0, 4.0, 6.0]:
-    raise SystemExit('R16 amplitude ladder changed')
-if amp['closure_candidate_magnitude'] != 6.0 or amp['braking_sign'] != -1:
-    raise SystemExit('R16 preregistered candidate changed')
-if amp['expected_rollouts'] != 32 or cfg['calibrated_confirmation']['expected_rollouts'] != 4:
-    raise SystemExit('R16 task matrix changed')
-if not cfg['finite_test_envelope_only'] or cfg['unseen_target_generalization_validated']:
-    raise SystemExit('R16 finite-envelope semantics changed')
+candidate = cfg['one_sided_candidate']
+if candidate['source_delay1_magnitude'] != 6.0 or candidate['new_delay2_magnitude'] != 7.0:
+    raise SystemExit('R17 delay-conditioned magnitudes changed')
+if candidate['direction_sign'] != -1 or candidate['peak_component'] != 0.105:
+    raise SystemExit('R17 preregistered one-sided candidate changed')
+if candidate['expected_oracle_rollouts'] != 2 or cfg['calibrated_confirmation']['expected_rollouts'] != 4:
+    raise SystemExit('R17 task matrix changed')
+if candidate['minimum_actual_signed_margin'] < 0.01:
+    raise SystemExit('R17 actual margin guard weakened')
+if not candidate['require_exact_per_step_probe_application']:
+    raise SystemExit('R17 exact per-step probe guard disabled')
+if not cfg['finite_test_envelope_only'] or cfg['bidirectional_response_model_validated']:
+    raise SystemExit('R17 finite one-sided semantics changed')
 if not cfg['stage4_2r1_was_not_run_or_reused']:
-    raise SystemExit('R16 may not reuse Stage4.2R1')
+    raise SystemExit('R17 may not reuse Stage4.2R1')
 module = (
-    root / 'tsc_rzip_rllib/diagnostics/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py'
+    root / 'tsc_rzip_rllib/diagnostics/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py'
 ).read_text(encoding='utf-8')
 for token in (
-    'source_joint_h0_coverage_exact',
-    'candidate_was_preregistered_from_source_model_not_selected_from_new_tsc',
-    'maximum_per_unit_velocity_response_rmse_m_per_s',
-    'closure_candidate_minimum_signed_margin',
+    'per_step_probe_application_exact',
+    'source_candidate_exact_failure',
+    'source_only_robust_prediction_pass',
+    'new_delay2_magnitude',
     'formal_grid_confirmation',
+    'bidirectional_response_model_validated',
     'stage4_2r1_was_not_run_or_reused',
 ):
     if token not in module:
-        raise SystemExit(f'R16 implementation guard missing: {token}')
-print('[Stage4.1R16 verify] Python compile, JSON parse, internal import closure and scientific guardrails passed.')
+        raise SystemExit(f'R17 implementation guard missing: {token}')
+print('[Stage4.1R17 verify] Python compile, JSON parse, internal import closure and scientific guardrails passed.')
 PY
 mapfile -t SHELLS < <(find . -maxdepth 2 -type f -name '*.sh' -print | sort)
 for script in "${SHELLS[@]}"; do bash -n "${script}"; done
-printf '[Stage4.1R16 verify] declared shell scripts passed bash -n.\n'
+printf '[Stage4.1R17 verify] declared shell scripts passed bash -n.\n'
 "${PYTHON_BIN}" -m unittest discover -s tests -p 'test_*.py'
-printf '[Stage4.1R16 verify] complete unittest discovery passed.\n'
+printf '[Stage4.1R17 verify] complete unittest discovery passed.\n'
