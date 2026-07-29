@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "Stage4.1R17",
   "controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",
-  "package_revision": "r17_delay_conditioned_one_sided_margin_closure_v1",
+  "package_revision": "r17a_output_vector_contract_hotfix_v2",
   "run_name": "stage4_1r17_original_deadline_one_sided_robust_braking_closure",
   "source_stage": "Stage4.1R16",
   "source_controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
@@ -164,5 +164,15 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ]
+  ],
+  "hotfix": {
+    "legacy_package_revision": "r17_delay_conditioned_one_sided_margin_closure_v1",
+    "output_vector_provider": "stage4_1r15_bounded_early_braking_local_response_identification._output_vector",
+    "output_state_window": {
+      "start_state": 23,
+      "end_state_inclusive": 37
+    },
+    "existing_successful_oracle_raw_reusable_with_resume": true,
+    "controller_revision_and_experiment_ids_unchanged": true
+  }
 }

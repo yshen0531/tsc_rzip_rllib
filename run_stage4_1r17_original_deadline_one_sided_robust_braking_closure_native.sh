@@ -18,6 +18,7 @@ printf '[Stage4.1R17] source_stage4_1r16_run=%s\n' "${SOURCE_R16}"
 printf '[Stage4.1R17] run_dir=%s\n' "${RUN_DIR}"
 printf '[Stage4.1R17] config=%s\n' "${STAGE4_1R17_CONFIG}"
 printf '[Stage4.1R17] command=%s backend=%s resume=%s workers=%s\n' "${STAGE4_1R17_COMMAND}" "${STAGE4_1R17_BACKEND}" "${STAGE4_1R17_RESUME}" "${STAGE4_1R17_WORKERS}"
+printf '[Stage4.1R17 R17a] Canonical R15 output-vector contract is active for states 23--37; legacy R17 manifests and successful Oracle raw are reusable with resume=1.\n'
 printf '[Stage4.1R17] R16 ran normally. Its symmetric large-amplitude envelope failed, but all 16 one-sided braking rollouts passed runtime and model guards.\n'
 printf '[Stage4.1R17] Delay=1 retains the real-TSC 6x source trajectory; delay=2 tests one preregistered 7x braking candidate with 0.105 peak component. No posthoc 7.5x/8x fallback is permitted.\n'
 printf '[Stage4.1R17] Exact per-step requested/applied probe equality is required; the weaker R16 max/count-only guard is not reused.\n'

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "Stage4.1R17",
   "controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",
-  "package_revision": "r17_delay_conditioned_one_sided_margin_closure_v1",
+  "package_revision": "r17a_output_vector_contract_hotfix_v2",
   "run_name": "stage4_1r17_original_deadline_one_sided_robust_braking_closure",
   "output_root": "stage4_1r17_runs",
   "parallel": {
@@ -20,14 +20,46 @@
       "hold_through_step": 35,
       "arrival_deadline_ms": 250,
       "hold_through_ms": 350,
-      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
     },
     "weak_slew": {
       "arrival_deadline_step": 27,
       "hold_through_step": 37,
       "arrival_deadline_ms": 270,
       "hold_through_ms": 370,
-      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ]
     }
   },
   "source_requirements": {

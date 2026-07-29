@@ -41,7 +41,7 @@ manifest = json.loads((root / 'PACKAGE_MANIFEST.json').read_text(encoding='utf-8
 expected = {
     'stage': 'Stage4.1R17',
     'controller_revision': 'original_deadline_one_sided_robust_braking_closure_v17',
-    'package_revision': 'r17_delay_conditioned_one_sided_margin_closure_v1',
+    'package_revision': 'r17a_output_vector_contract_hotfix_v2',
     'run_name': 'stage4_1r17_original_deadline_one_sided_robust_braking_closure',
 }
 for key, value in expected.items():
@@ -141,6 +141,10 @@ if abs(float(payload.get('maximum_schedule_component')) - 0.105) > 1e-12:
     raise SystemExit('R17 maximum schedule component changed')
 if payload.get('bidirectional_response_model_validated'):
     raise SystemExit('R17 may not claim bidirectional validation')
+if not payload.get('output_vector_contract_hotfix'):
+    raise SystemExit('R17a output-vector contract hotfix is inactive')
+if payload.get('model_output_vector_length') != 75:
+    raise SystemExit('R17a model output-vector length changed')
 
 cfg = json.loads(
     (root / 'configs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_370ms.json').read_text(encoding='utf-8')
@@ -176,6 +180,8 @@ for token in (
     'formal_grid_confirmation',
     'bidirectional_response_model_validated',
     'stage4_2r1_was_not_run_or_reused',
+    '_model_output_vector',
+    'end_state_inclusive=37',
 ):
     if token not in module:
         raise SystemExit(f'R17 implementation guard missing: {token}')

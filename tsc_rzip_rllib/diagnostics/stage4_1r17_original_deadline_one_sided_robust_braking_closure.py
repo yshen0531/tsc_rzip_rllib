@@ -66,7 +66,8 @@ write_csv = r15.write_csv
 SCHEMA_VERSION = 1
 STAGE = "Stage4.1R17"
 CONTROLLER_REVISION = "original_deadline_one_sided_robust_braking_closure_v17"
-PACKAGE_REVISION = "r17_delay_conditioned_one_sided_margin_closure_v1"
+LEGACY_PACKAGE_REVISIONS = {"r17_delay_conditioned_one_sided_margin_closure_v1"}
+PACKAGE_REVISION = "r17a_output_vector_contract_hotfix_v2"
 EXPECTED_SOURCE_REVISION = r16.CONTROLLER_REVISION
 EXPECTED_SOURCE_PACKAGE_REVISION = r16.PACKAGE_REVISION
 SOURCE_INVENTORY_CONTRACT = "r17_direct_stage4_1r16_source_v1"
@@ -379,6 +380,7 @@ def _initial_state(ctx: Stage41R17Context) -> dict[str, Any]:
         "stage": STAGE,
         "controller_revision": CONTROLLER_REVISION,
         "package_revision": PACKAGE_REVISION,
+        "output_vector_contract_hotfix": True,
         "prepared": True,
         "source_audit_complete": False,
         "oracle_candidate_validation_complete": False,
@@ -393,47 +395,15 @@ def _initial_state(ctx: Stage41R17Context) -> dict[str, Any]:
 def _update_state(ctx: Stage41R17Context, **updates: Any) -> dict[str, Any]:
     state = read_json(ctx.paths.state) if ctx.paths.state.is_file() else _initial_state(ctx)
     state.update(_json_safe(updates))
+    state["package_revision"] = PACKAGE_REVISION
+    state["output_vector_contract_hotfix"] = True
     state["updated_utc"] = utc_timestamp()
     atomic_write_json(ctx.paths.state, state)
     return state
 
 
-def prepare(ctx: Stage41R17Context, *, resume: bool) -> None:
-    for path in (
-        ctx.paths.run_dir,
-        ctx.paths.source_reference,
-        ctx.paths.source_audit,
-        ctx.paths.oracle_validation,
-        ctx.paths.calibrated_confirmation,
-        ctx.paths.formal_grid_confirmation,
-        ctx.paths.analysis,
-        ctx.paths.variants,
-    ):
-        path.mkdir(parents=True, exist_ok=True)
-    if ctx.paths.manifest.is_file():
-        existing = read_json(ctx.paths.manifest)
-        if existing.get("source_fingerprint", {}).get("digest") != ctx.source_fingerprint["digest"]:
-            raise ValueError("R17 resume source fingerprint mismatch")
-        if existing.get("controller_revision") != CONTROLLER_REVISION:
-            raise ValueError("R17 resume controller revision mismatch")
-        if existing.get("package_revision") != PACKAGE_REVISION:
-            raise ValueError("R17 resume package revision mismatch")
-    elif resume:
-        raise FileNotFoundError("R17 resume requested but manifest is missing")
-    atomic_write_json(ctx.paths.run_dir / "stage4_1r17_config.resolved.json", ctx.cfg)
-    for name, payload in (
-        ("stage4_1r16_manifest.json", ctx.source_manifest),
-        ("stage4_1r16_state.json", ctx.source_state),
-        ("stage4_1r16_config.resolved.json", ctx.source_cfg),
-        ("stage4_1r16_verdict.json", ctx.source_verdict),
-        ("source_content_inventory.json", ctx.source_fingerprint),
-        (
-            "nested_stage4_1r15b_source_inventory.json",
-            ctx.source_manifest.get("source_fingerprint") or {},
-        ),
-    ):
-        atomic_write_json(ctx.paths.source_reference / name, payload)
-    manifest = {
+def _manifest_payload(ctx: Stage41R17Context) -> dict[str, Any]:
+    return {
         "schema_version": 1,
         "stage": STAGE,
         "controller_revision": CONTROLLER_REVISION,
@@ -453,14 +423,86 @@ def prepare(ctx: Stage41R17Context, *, resume: bool) -> None:
         "candidate_fixed_before_new_tsc": True,
         "arrival_deadline_expansion_allowed": False,
         "bidirectional_response_model_validated": False,
+        "output_vector_contract_hotfix": True,
         "stage4_2r1_was_not_run_or_reused": True,
         "finite_test_envelope_only": True,
         "final_task": ctx.cfg["final_task"],
     }
-    if not ctx.paths.manifest.is_file():
-        atomic_write_json(ctx.paths.manifest, manifest)
+
+
+def _validated_resume_manifest(
+    old: Mapping[str, Any], current: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Upgrade packaging-only R17 revisions without changing experiment identity."""
+
+    for key in (
+        "controller_revision",
+        "source_stage4_1r16_run",
+        "source_fingerprint",
+        "formal_timing_contract",
+        "delay_conditioned_magnitudes",
+        "candidate_fixed_before_new_tsc",
+    ):
+        if old.get(key) != current.get(key):
+            raise ValueError(f"R17 resume manifest mismatch for {key}")
+    old_revision = str(old.get("package_revision", ""))
+    allowed = {PACKAGE_REVISION, *LEGACY_PACKAGE_REVISIONS}
+    if old_revision not in allowed:
+        raise ValueError(
+            "R17 resume package_revision is not an approved R17/R17a revision: "
+            f"{old_revision!r}"
+        )
+    upgraded = copy.deepcopy(dict(old))
+    if old_revision != PACKAGE_REVISION:
+        history = list(upgraded.get("package_revision_history") or [])
+        if old_revision and old_revision not in history:
+            history.append(old_revision)
+        upgraded["package_revision_history"] = history
+        upgraded["package_revision"] = PACKAGE_REVISION
+        upgraded["output_vector_contract_hotfix"] = True
+        upgraded["updated_utc"] = utc_timestamp()
+    return upgraded
+
+
+def prepare(ctx: Stage41R17Context, *, resume: bool) -> None:
+    for path in (
+        ctx.paths.run_dir,
+        ctx.paths.source_reference,
+        ctx.paths.source_audit,
+        ctx.paths.oracle_validation,
+        ctx.paths.calibrated_confirmation,
+        ctx.paths.formal_grid_confirmation,
+        ctx.paths.analysis,
+        ctx.paths.variants,
+    ):
+        path.mkdir(parents=True, exist_ok=True)
+    current_manifest = _manifest_payload(ctx)
+    if ctx.paths.manifest.is_file():
+        existing = read_json(ctx.paths.manifest)
+        upgraded = _validated_resume_manifest(existing, current_manifest)
+        if upgraded != existing:
+            atomic_write_json(ctx.paths.manifest, upgraded)
+    elif resume:
+        raise FileNotFoundError("R17 resume requested but manifest is missing")
+    else:
+        atomic_write_json(ctx.paths.manifest, current_manifest)
+    atomic_write_json(ctx.paths.run_dir / "stage4_1r17_config.resolved.json", ctx.cfg)
+    for name, payload in (
+        ("stage4_1r16_manifest.json", ctx.source_manifest),
+        ("stage4_1r16_state.json", ctx.source_state),
+        ("stage4_1r16_config.resolved.json", ctx.source_cfg),
+        ("stage4_1r16_verdict.json", ctx.source_verdict),
+        ("source_content_inventory.json", ctx.source_fingerprint),
+        (
+            "nested_stage4_1r15b_source_inventory.json",
+            ctx.source_manifest.get("source_fingerprint") or {},
+        ),
+    ):
+        atomic_write_json(ctx.paths.source_reference / name, payload)
     if not ctx.paths.state.is_file():
         atomic_write_json(ctx.paths.state, _initial_state(ctx))
+    else:
+        _update_state(ctx, prepared=True)
 
 
 def _read_source_rows(ctx: Stage41R17Context) -> list[dict[str, Any]]:
@@ -1075,6 +1117,22 @@ def _runtime_row(ctx: Stage41R17Context, result: Mapping[str, Any]) -> dict[str,
     }
 
 
+def _model_output_vector(result: Mapping[str, Any]) -> np.ndarray:
+    """Use the canonical R15 inclusive output-vector contract for states 23--37."""
+
+    output = r15._output_vector(
+        result,
+        start_state=23,
+        end_state_inclusive=37,
+    )
+    expected = 15 * 5
+    if output.shape != (expected,):
+        raise ValueError(
+            f"R17 model output vector shape mismatch: expected {(expected,)}, got {output.shape}"
+        )
+    return output
+
+
 def _prediction_metrics(
     ctx: Stage41R17Context, result: Mapping[str, Any]
 ) -> dict[str, float | bool]:
@@ -1083,16 +1141,8 @@ def _prediction_metrics(
     delay = int(spec["action_delay_steps"])
     magnitude = float(spec["r17_delay_conditioned_magnitude"])
     predicted = _predicted_result(ctx, target=target, delay=delay, magnitude=magnitude)
-    actual_output = r16.r15b._output_vector(
-        result,
-        start_state=23,
-        end_state_exclusive=38,
-    )
-    predicted_output = r16.r15b._output_vector(
-        predicted,
-        start_state=23,
-        end_state_exclusive=38,
-    )
+    actual_output = _model_output_vector(result)
+    predicted_output = _model_output_vector(predicted)
     count = 15
     velocity_rmse = float(
         np.sqrt(np.mean((actual_output[: 2 * count] - predicted_output[: 2 * count]) ** 2))
@@ -1687,6 +1737,15 @@ def self_test(project_dir: Path) -> dict[str, Any]:
             )()
         },
     )()
+    synthetic = {
+        "trajectory": [
+            {"R": 1.0 + 1e-4 * step, "Z": -1e-4 * step, "Ip": 1.0e6 + step}
+            for step in range(38)
+        ]
+    }
+    synthetic_output = _model_output_vector(synthetic)
+    if synthetic_output.shape != (75,):
+        raise AssertionError("R17 output-vector contract self-test failed")
     schedules = {}
     maximum = 0.0
     for delay, magnitude in ((1, 6.0), (2, 7.0)):
@@ -1720,6 +1779,8 @@ def self_test(project_dir: Path) -> dict[str, Any]:
         "expected_true_tsc_calibrated_rollouts": 4,
         "maximum_true_tsc_rollouts": 6,
         "bidirectional_response_model_validated": False,
+        "output_vector_contract_hotfix": True,
+        "model_output_vector_length": int(synthetic_output.size),
     }
 
 

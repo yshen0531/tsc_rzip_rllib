@@ -183,6 +183,60 @@ class Stage41R17Tests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 r17._calibrated_specs(ctx)
 
+
+    def test_model_output_vector_uses_r15_inclusive_contract(self) -> None:
+        sentinel = np.arange(75, dtype=float)
+        with mock.patch.object(r17.r15, "_output_vector", return_value=sentinel) as fn:
+            actual = r17._model_output_vector({"trajectory": []})
+        np.testing.assert_array_equal(actual, sentinel)
+        fn.assert_called_once_with(
+            {"trajectory": []}, start_state=23, end_state_inclusive=37
+        )
+        self.assertFalse(hasattr(r17.r16.r15b, "_output_vector"))
+
+    def test_model_output_vector_rejects_wrong_shape(self) -> None:
+        with mock.patch.object(r17.r15, "_output_vector", return_value=np.zeros(74)):
+            with self.assertRaisesRegex(ValueError, "shape mismatch"):
+                r17._model_output_vector({"trajectory": []})
+
+    def test_legacy_r17_manifest_upgrades_without_changing_scientific_identity(self) -> None:
+        current = {
+            "controller_revision": r17.CONTROLLER_REVISION,
+            "package_revision": r17.PACKAGE_REVISION,
+            "source_stage4_1r16_run": "/source/r16",
+            "source_fingerprint": {"digest": "abc"},
+            "formal_timing_contract": self.cfg["formal_timing_contract"],
+            "delay_conditioned_magnitudes": {"delay1": 6.0, "delay2": 7.0},
+            "candidate_fixed_before_new_tsc": True,
+        }
+        old = {
+            **copy.deepcopy(current),
+            "package_revision": "r17_delay_conditioned_one_sided_margin_closure_v1",
+            "created_utc": "before",
+        }
+        upgraded = r17._validated_resume_manifest(old, current)
+        self.assertEqual(upgraded["package_revision"], r17.PACKAGE_REVISION)
+        self.assertIn(
+            "r17_delay_conditioned_one_sided_margin_closure_v1",
+            upgraded["package_revision_history"],
+        )
+        self.assertTrue(upgraded["output_vector_contract_hotfix"])
+        self.assertEqual(upgraded["source_fingerprint"], {"digest": "abc"})
+
+    def test_unknown_resume_package_revision_is_rejected(self) -> None:
+        current = {
+            "controller_revision": r17.CONTROLLER_REVISION,
+            "package_revision": r17.PACKAGE_REVISION,
+            "source_stage4_1r16_run": "/source/r16",
+            "source_fingerprint": {"digest": "abc"},
+            "formal_timing_contract": self.cfg["formal_timing_contract"],
+            "delay_conditioned_magnitudes": {"delay1": 6.0, "delay2": 7.0},
+            "candidate_fixed_before_new_tsc": True,
+        }
+        old = {**copy.deepcopy(current), "package_revision": "unknown"}
+        with self.assertRaisesRegex(ValueError, "not an approved R17/R17a"):
+            r17._validated_resume_manifest(old, current)
+
     def test_finite_scope_and_no_rl_claims(self) -> None:
         self.assertTrue(self.cfg["finite_test_envelope_only"])
         self.assertFalse(self.cfg["bidirectional_response_model_validated"])
