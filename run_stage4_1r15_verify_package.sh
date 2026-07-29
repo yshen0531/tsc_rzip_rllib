@@ -40,7 +40,7 @@ manifest=json.loads((root/'PACKAGE_MANIFEST.json').read_text())
 expected={
  'stage':'Stage4.1R15',
  'controller_revision':'bounded_early_braking_local_response_identification_v15',
- 'package_revision':'r15_bounded_local_response_identification_v1',
+ 'package_revision':'r15a_direct_r14_source_inventory_v2',
  'run_name':'stage4_1r15_bounded_early_braking_local_response_identification',
 }
 for k,v in expected.items():
@@ -110,7 +110,7 @@ if cfg['formal_timing_contract_restored_by_this_stage'] is not False: raise Syst
 if cfg['stage4_2r1_was_not_run_or_reused'] is not True: raise SystemExit('Stage4.2R1 guard disabled')
 
 module=(root/'tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py').read_text()
-for token in ('applied_probe_zero_net','nonzero_feedforward_rows_beyond_state35' if False else 'beyond_horizon_feedforward_row_count','formal_tracking_pass_required'):
+for token in ('applied_probe_zero_net','nonzero_feedforward_rows_beyond_state35' if False else 'beyond_horizon_feedforward_row_count','formal_tracking_pass_required','R14_SOURCE_INVENTORY_CONTRACT','source_fingerprint_stage'):
     if token not in module: raise SystemExit(f'R15 implementation guard missing: {token}')
 print('[Stage4.1R15 verify] Python compile, JSON parse, internal import closure and scientific guardrails passed.')
 PY

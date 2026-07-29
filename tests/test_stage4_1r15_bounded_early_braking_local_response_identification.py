@@ -53,6 +53,64 @@ class Stage41R15ConfigTests(unittest.TestCase):
         self.assertFalse(payload["formal_timing_contract_restored_by_this_stage"])
 
 
+class Stage41R15SourceInventoryTests(unittest.TestCase):
+    def _build_r14_tree(self, root: Path, raw_count: int = 2) -> Path:
+        source = root / "stage4_1r14_run"
+        fixed = [
+            "stage4_1r14_manifest.json",
+            "stage4_1r14_state.json",
+            "stage4_1r14_config.resolved.json",
+            "stage4_1r14_analysis/stage4_1r14_verdict.json",
+            "stage4_1r14_analysis/stage4_1r14_summary.json",
+            "stage4_1r14_source_audit/summary.json",
+            "stage4_1r14_oracle_development/summary.json",
+            "stage4_1r14_oracle_development/results.json",
+            "stage4_1r14_oracle_development/results.csv",
+        ]
+        for idx, rel in enumerate(fixed):
+            path = source / rel
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps({"index": idx}), encoding="utf-8")
+        raw_dir = source / "stage4_1r14_oracle_development/raw"
+        raw_dir.mkdir(parents=True, exist_ok=True)
+        for idx in range(raw_count):
+            (raw_dir / f"case_{idx}.json.gz").write_bytes(f"raw-{idx}".encode())
+        return source
+
+    def test_direct_r14_inventory_does_not_require_r13_manifest_at_r14_root(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            source = self._build_r14_tree(Path(td))
+            with mock.patch.object(
+                r15.r14,
+                "_source_inventory",
+                side_effect=AssertionError("R14's R13 inventory helper must not be used"),
+            ):
+                payload = r15._source_inventory(source)
+            self.assertEqual(payload["source_stage"], "Stage4.1R14")
+            self.assertEqual(payload["inventory_contract"], r15.R14_SOURCE_INVENTORY_CONTRACT)
+            self.assertEqual(payload["n_files"], 11)
+            self.assertFalse((source / "stage4_1r13_manifest.json").exists())
+
+    def test_r14_raw_files_are_part_of_resume_fingerprint(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            source = self._build_r14_tree(Path(td), raw_count=1)
+            before = r15._source_inventory(source)
+            raw = next((source / "stage4_1r14_oracle_development/raw").glob("*.json.gz"))
+            raw.write_bytes(b"changed")
+            after = r15._source_inventory(source)
+            self.assertNotEqual(before["digest"], after["digest"])
+            self.assertTrue(
+                any(row["relative_path"].endswith(".json.gz") for row in after["files"])
+            )
+
+    def test_missing_r14_artifact_has_r14_specific_error(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            source = self._build_r14_tree(Path(td))
+            (source / "stage4_1r14_state.json").unlink()
+            with self.assertRaisesRegex(FileNotFoundError, "Stage4.1R14"):
+                r15._source_inventory(source)
+
+
 class Stage41R15ModelTests(unittest.TestCase):
     def test_probe_schedule_is_causal_and_zero_net(self) -> None:
         basis = {"mode": 0, "effect_offsets": [0, 1, 3, 4], "sign_pattern": [1, 1, -1, -1]}

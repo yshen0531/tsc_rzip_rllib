@@ -13,11 +13,31 @@ STAGE4_1R15_TSC_WORKSPACE_ROOT="${STAGE4_1R15_TSC_WORKSPACE_ROOT:-/tmp/tsc_works
 STAGE4_1R15_TSC_RUN_ROOT="${STAGE4_1R15_TSC_RUN_ROOT:-${STAGE4_1R15_TSC_WORKSPACE_ROOT}/episode_runs}"
 RAY_TMPDIR="${RAY_TMPDIR:-/tmp/stage4_1r15_${UID:-0}}"
 
+stage4_1r15_source_r14_complete() {
+  local source="$1"
+  local required
+  for required in \
+    stage4_1r14_manifest.json \
+    stage4_1r14_state.json \
+    stage4_1r14_config.resolved.json \
+    stage4_1r14_analysis/stage4_1r14_verdict.json \
+    stage4_1r14_analysis/stage4_1r14_summary.json \
+    stage4_1r14_source_audit/summary.json \
+    stage4_1r14_oracle_development/summary.json \
+    stage4_1r14_oracle_development/results.json \
+    stage4_1r14_oracle_development/results.csv; do
+    [[ -f "${source}/${required}" ]] || return 1
+  done
+  local raw_count
+  raw_count="$(find "${source}/stage4_1r14_oracle_development/raw" -maxdepth 1 -type f -name '*.json.gz' 2>/dev/null | wc -l)"
+  [[ "${raw_count}" -eq 24 ]]
+}
+
 stage4_1r15_find_source_r14() {
   local explicit="${STAGE4_1R15_SOURCE_STAGE4_1R14_RUN:-}"
   if [[ -n "${explicit}" ]]; then
     [[ -d "${explicit}" ]] || { echo "ERROR: explicit R14 source directory missing: ${explicit}" >&2; return 1; }
-    [[ -f "${explicit}/stage4_1r14_state.json" ]] || { echo "ERROR: explicit R14 state missing: ${explicit}" >&2; return 1; }
+    stage4_1r15_source_r14_complete "${explicit}" || { echo "ERROR: explicit R14 source is incomplete or raw coverage is not 24/24: ${explicit}" >&2; return 1; }
     printf '%s\n' "${explicit}"
     return 0
   fi
@@ -25,14 +45,14 @@ stage4_1r15_find_source_r14() {
   if [[ -f "${latest_file}" ]]; then
     local candidate
     candidate="$(tr -d '\r\n' < "${latest_file}")"
-    if [[ -d "${candidate}" && -f "${candidate}/stage4_1r14_state.json" && -f "${candidate}/stage4_1r14_analysis/stage4_1r14_verdict.json" && -f "${candidate}/stage4_1r14_oracle_development/summary.json" ]]; then
+    if [[ -d "${candidate}" ]] && stage4_1r15_source_r14_complete "${candidate}"; then
       printf '%s\n' "${candidate}"
       return 0
     fi
   fi
   local candidate
   while IFS= read -r candidate; do
-    if [[ -f "${candidate}/stage4_1r14_manifest.json" && -f "${candidate}/stage4_1r14_state.json" && -f "${candidate}/stage4_1r14_analysis/stage4_1r14_verdict.json" && -f "${candidate}/stage4_1r14_oracle_development/summary.json" ]]; then
+    if stage4_1r15_source_r14_complete "${candidate}"; then
       printf '%s\n' "${candidate}"
       return 0
     fi

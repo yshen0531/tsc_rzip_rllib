@@ -53,7 +53,7 @@ write_csv = r14.write_csv
 SCHEMA_VERSION = 1
 STAGE = "Stage4.1R15"
 CONTROLLER_REVISION = "bounded_early_braking_local_response_identification_v15"
-PACKAGE_REVISION = "r15_bounded_local_response_identification_v1"
+PACKAGE_REVISION = "r15a_direct_r14_source_inventory_v2"
 EXPECTED_SOURCE_REVISION = r14.CONTROLLER_REVISION
 EXPECTED_SOURCE_PACKAGE_REVISION = r14.PACKAGE_REVISION
 WEAK_SLEW = 0.9
@@ -128,8 +128,18 @@ class Stage41R15Context:
     source_fingerprint: dict[str, Any]
 
 
+R14_SOURCE_INVENTORY_CONTRACT = "r15_direct_stage4_1r14_source_v2"
+
+
 def _required_source_files(source: Path) -> list[Path]:
-    return [
+    """Return the Stage4.1R14 artifacts that R15 actually consumes.
+
+    This must remain an R14-rooted inventory.  R14's own ``_source_inventory``
+    intentionally fingerprints its *R13* source and therefore must never be
+    called with an R14 run directory.
+    """
+
+    required = [
         source / "stage4_1r14_manifest.json",
         source / "stage4_1r14_state.json",
         source / "stage4_1r14_config.resolved.json",
@@ -140,10 +150,40 @@ def _required_source_files(source: Path) -> list[Path]:
         source / "stage4_1r14_oracle_development" / "results.json",
         source / "stage4_1r14_oracle_development" / "results.csv",
     ]
+    required.extend(
+        sorted((source / "stage4_1r14_oracle_development" / "raw").glob("*.json.gz"))
+    )
+    return required
 
 
 def _source_inventory(source: Path) -> dict[str, Any]:
-    return r14._source_inventory(source)
+    """Fingerprint the R14 run directly, including all 24 raw rollouts."""
+
+    source = source.expanduser().resolve()
+    rows: list[dict[str, Any]] = []
+    total = 0
+    for path in _required_source_files(source):
+        if not path.is_file():
+            raise FileNotFoundError(f"required Stage4.1R14 source file missing: {path}")
+        size = path.stat().st_size
+        total += size
+        rows.append(
+            {
+                "relative_path": str(path.relative_to(source)),
+                "size_bytes": size,
+                "sha256": _sha256_file(path),
+            }
+        )
+    canonical = json.dumps(rows, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return {
+        "schema_version": 1,
+        "source_stage": "Stage4.1R14",
+        "inventory_contract": R14_SOURCE_INVENTORY_CONTRACT,
+        "n_files": len(rows),
+        "total_bytes": total,
+        "digest": hashlib.sha256(canonical).hexdigest(),
+        "files": rows,
+    }
 
 
 def _resolve_recorded_run(project_dir: Path, recorded: str, root_name: str) -> Path:
@@ -370,6 +410,10 @@ def prepare(ctx: Stage41R15Context, *, resume: bool) -> None:
         ("stage4_1r14_config.resolved.json", ctx.source_cfg),
         ("stage4_1r14_verdict.json", ctx.source_verdict),
         ("source_content_inventory.json", ctx.source_fingerprint),
+        (
+            "nested_stage4_1r13_source_inventory.json",
+            ctx.source_manifest.get("source_fingerprint") or {},
+        ),
     ):
         atomic_write_json(ctx.paths.source_reference / name, payload)
     manifest = {
@@ -381,6 +425,9 @@ def prepare(ctx: Stage41R15Context, *, resume: bool) -> None:
         "source_stage4_1r14_run": str(ctx.source_stage41r14_run),
         "source_stage4_1r13_run": str(ctx.source_stage41r13_run),
         "source_fingerprint": ctx.source_fingerprint,
+        "source_fingerprint_stage": "Stage4.1R14",
+        "source_inventory_contract": R14_SOURCE_INVENTORY_CONTRACT,
+        "nested_stage4_1r13_source_fingerprint": ctx.source_manifest.get("source_fingerprint") or {},
         "workers": int(os.environ.get("STAGE4_1R15_WORKERS", ctx.cfg["parallel"]["n_workers"])),
         "formal_timing_contract": ctx.cfg["formal_timing_contract"],
         "identification_only": True,

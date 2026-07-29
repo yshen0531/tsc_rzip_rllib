@@ -18,6 +18,7 @@ printf '[Stage4.1R15] source_stage4_1r14_run=%s\n' "${SOURCE_R14}"
 printf '[Stage4.1R15] run_dir=%s\n' "${RUN_DIR}"
 printf '[Stage4.1R15] config=%s\n' "${STAGE4_1R15_CONFIG}"
 printf '[Stage4.1R15] command=%s backend=%s resume=%s workers=%s\n' "${STAGE4_1R15_COMMAND}" "${STAGE4_1R15_BACKEND}" "${STAGE4_1R15_RESUME}" "${STAGE4_1R15_WORKERS}"
+printf '[Stage4.1R15 R15a] Direct R14 source fingerprinting is active; nested R13 provenance is validated independently.\n'
 printf '[Stage4.1R15] R14 ran normally but all 24 cases rebounded after state 34 and failed final speed; this is a model-horizon/tail-semantic problem, not a runtime failure.\n'
 printf '[Stage4.1R15] R15 is identification-only: fit/cross-validate the bounded R13/R14 local response bank, then validate with 32 preregistered zero-net TSC probes.\n'
 printf '[Stage4.1R15] No controller is selected, no formal closure is claimed, and the 250/350 and 270/370 ms timing contracts remain immutable.\n'

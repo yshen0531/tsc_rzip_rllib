@@ -109,8 +109,8 @@
     "weak_hold_through_ms": 370
   },
   "maximum_true_tsc_rollouts": 32,
-  "package_revision": "r15_bounded_local_response_identification_v1",
-  "purpose": "Bounded local-response identification and independent zero-net TSC probe validation after R14 exposed a state-35 model horizon versus state-37 formal hold mismatch. This package does not select a controller or claim formal closure.",
+  "package_revision": "r15a_direct_r14_source_inventory_v2",
+  "purpose": "Bounded local-response identification and independent zero-net TSC probe validation after R14, with a corrected direct Stage4.1R14 source-content fingerprint and independent nested Stage4.1R13 fingerprint validation. This package does not select a controller or claim formal closure.",
   "requirements": {
     "existing_source_run_data_required": true,
     "external_code_tree_required": false,
@@ -121,6 +121,7 @@
     "ray_capacity_limited_to_pending_tasks_and_cluster_cpus": true,
     "resume_supported": true,
     "source_stage4_1r13_run_resolved_from_r14_manifest": true,
+    "source_stage4_1r14_inventory_is_direct_and_includes_raw": true,
     "source_stage4_1r14_run_required": true,
     "stage4_2r1_was_not_run_or_reused": true
   },
@@ -132,7 +133,8 @@
     "R14 24/24 final-speed failure and horizon rebound must be reproduced before probes",
     "Each probe is preregistered, mode-0/1 only, amplitude 0.015, requested and applied zero-net",
     "No future measurement and exact pre-effect prefix",
-    "No Stage4.2R1, BC, DAgger, or RL"
+    "No Stage4.2R1, BC, DAgger, or RL",
+    "R15 fingerprints the Stage4.1R14 run directly; the nested Stage4.1R13 fingerprint is validated separately"
   ],
   "source_controller_revision": "original_deadline_integrated_target_conditioned_deadline_mpc_v14",
   "source_package_revision": "r14_integrated_target_conditioned_deadline_mpc_v1",
