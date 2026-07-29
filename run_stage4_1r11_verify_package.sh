@@ -2,7 +2,7 @@
 set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${PROJECT_DIR}"
-PYTHON_BIN="${STAGE4_1R10_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
+PYTHON_BIN="${STAGE4_1R11_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
 if [[ ! -x "${PYTHON_BIN}" ]]; then
   PYTHON_BIN="${PYTHON:-python3}"
 fi
@@ -15,29 +15,29 @@ for path in configs scripts tests tsc_rzip_rllib; do
 done
 for path in \
   PACKAGE_MANIFEST.json SHA256SUMS \
+  configs/stage4_1r11_frozen_terminal_long_horizon_hold_2000ms.json \
   configs/stage4_1r10_queue_preview_terminal_transition_hold_750ms.json \
-  configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json \
-  scripts/stage4_1r10_queue_preview_terminal_transition_hold.py \
-  scripts/stage4_1r10_shell_common.sh \
+  scripts/stage4_1r11_frozen_terminal_long_horizon_hold.py \
+  scripts/stage4_1r11_shell_common.sh \
+  tsc_rzip_rllib/diagnostics/stage4_1r11_frozen_terminal_long_horizon_hold.py \
   tsc_rzip_rllib/diagnostics/stage4_1r10_queue_preview_terminal_transition_hold.py \
-  tsc_rzip_rllib/diagnostics/stage4_1r9_terminal_template_mpc_feedback_hold.py \
-  tests/test_stage4_1r10_queue_preview_terminal_transition_hold.py \
-  run_stage4_1r10_queue_preview_terminal_transition_hold_native.sh \
-  run_stage4_1r10_queue_preview_terminal_transition_hold_nohup.sh \
-  run_stage4_1r10_self_test.sh \
-  run_stage4_1r10_verify_package.sh \
-  run_stop_stage4_1r10_now.sh; do
+  tests/test_stage4_1r11_frozen_terminal_long_horizon_hold.py \
+  run_stage4_1r11_frozen_terminal_long_horizon_hold_native.sh \
+  run_stage4_1r11_frozen_terminal_long_horizon_hold_nohup.sh \
+  run_stage4_1r11_self_test.sh \
+  run_stage4_1r11_verify_package.sh \
+  run_stop_stage4_1r11_now.sh; do
   [[ -f "${path}" ]] || { echo "ERROR: required packaged file missing: ${path}" >&2; exit 1; }
 done
 mapfile -t ROOT_STAGE_SH < <(find . -maxdepth 1 -type f -name 'run_stage*.sh' -printf '%f\n' | sort)
 for script in "${ROOT_STAGE_SH[@]}"; do
-  [[ "${script}" == *"stage4_1r10"* ]] || {
+  [[ "${script}" == *"stage4_1r11"* ]] || {
     echo "ERROR: obsolete root-stage shell script is packaged: ${script}" >&2
     exit 1
   }
 done
 sha256sum -c SHA256SUMS
-printf '[Stage4.1R10 verify] packaged file checksums passed.\n'
+printf '[Stage4.1R11 verify] packaged file checksums passed.\n'
 export PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
 "${PYTHON_BIN}" - <<'PY'
 from __future__ import annotations
@@ -47,11 +47,11 @@ from pathlib import Path
 
 root = Path.cwd()
 manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8"))
-if manifest.get("stage") != "Stage4.1R10":
+if manifest.get("stage") != "Stage4.1R11":
     raise SystemExit("PACKAGE_MANIFEST stage mismatch")
-if manifest.get("controller_revision") != "queue_preview_terminal_transition_hold_v10":
+if manifest.get("controller_revision") != "frozen_queue_preview_terminal_long_horizon_hold_v11":
     raise SystemExit("PACKAGE_MANIFEST controller revision mismatch")
-if manifest.get("package_revision") != "r10_queue_preview_transition_v1":
+if manifest.get("package_revision") != "r11_frozen_long_hold_v1":
     raise SystemExit("PACKAGE_MANIFEST package revision mismatch")
 checksum_rows = [
     line for line in (root / "SHA256SUMS").read_text(encoding="utf-8").splitlines()
@@ -68,8 +68,8 @@ if listed != manifest.get("file_inventory"):
 
 ignored_roots = {
     "stage2_runs", "stage3_runs", "stage4_runs", "stage4_1r7_runs",
-    "stage4_1r8_runs", "stage4_1r9_runs", "stage4_1r10_runs", "logs",
-    "__pycache__",
+    "stage4_1r8_runs", "stage4_1r9_runs", "stage4_1r10_runs",
+    "stage4_1r11_runs", "logs", "__pycache__",
 }
 for path in sorted(root.rglob("*.py")):
     if any(part in ignored_roots for part in path.parts):
@@ -82,7 +82,7 @@ for path in sorted((root / "configs").glob("*.json")):
 json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8"))
 
 # Resolve every packaged internal import without importing optional runtime
-# dependencies (Ray, gymnasium or the server TSC bindings).
+# dependencies such as Ray, gymnasium or the server TSC bindings.
 module_by_path = {}
 modules = set()
 for path in sorted((root / "tsc_rzip_rllib").rglob("*.py")):
@@ -129,55 +129,41 @@ for path, current_module in module_by_path.items():
 if missing:
     raise SystemExit("missing packaged internal imports: " + repr(missing[:20]))
 
-from tsc_rzip_rllib.diagnostics import stage4_1r10_queue_preview_terminal_transition_hold as r10
-payload = r10.self_test()
+from tsc_rzip_rllib.diagnostics import stage4_1r11_frozen_terminal_long_horizon_hold as r11
+payload = r11.self_test()
 if not payload.get("passed"):
-    raise SystemExit("Stage4.1R10 self-test failed")
-if payload.get("package_revision") != "r10_queue_preview_transition_v1":
-    raise SystemExit("Stage4.1R10 self-test package revision mismatch")
-if not payload.get("causal_preview_queue_semantics_passed"):
-    raise SystemExit("Stage4.1R10 causal preview queue regression failed")
-if not payload.get("original_issue_time_measurement_passed"):
-    raise SystemExit("Stage4.1R10 issue-time causality regression failed")
+    raise SystemExit("Stage4.1R11 self-test failed")
+if payload.get("package_revision") != "r11_frozen_long_hold_v1":
+    raise SystemExit("Stage4.1R11 self-test package revision mismatch")
+if not payload.get("r10_preview_queue_semantics_retained"):
+    raise SystemExit("Stage4.1R11 inherited preview-queue regression failed")
+if not payload.get("long_hold_metric_arithmetic_passed"):
+    raise SystemExit("Stage4.1R11 long-hold arithmetic regression failed")
 
 cfg = json.loads(
-    (root / "configs/stage4_1r10_queue_preview_terminal_transition_hold_750ms.json")
+    (root / "configs/stage4_1r11_frozen_terminal_long_horizon_hold_2000ms.json")
     .read_text(encoding="utf-8")
 )
-r10.validate_config(cfg)
-terminal = cfg["terminal_transition"]
-if terminal["main_control_steps"] != 35 or terminal["horizon_steps"] != 75:
-    raise SystemExit("R10 transition horizon guard failed")
-if terminal["tail_feedback_steps"] != 40:
-    raise SystemExit("R10 tail feedback length guard failed")
-if terminal["development_target"]["target_id"] == terminal["holdout_target"]["target_id"]:
-    raise SystemExit("R10 holdout is not disjoint")
+r11.validate_config(cfg)
+hold = cfg["long_hold"]
+if hold["main_control_steps"] != 35 or hold["source_horizon_steps"] != 75:
+    raise SystemExit("R11 frozen source-prefix boundary guard failed")
+if hold["horizon_steps"] != 200 or hold["tail_feedback_steps"] != 165:
+    raise SystemExit("R11 2000 ms horizon guard failed")
+if hold["uniform_hold_start_step"] != 65:
+    raise SystemExit("R11 fixed 650 ms hold-start guard failed")
+if not hold.get("no_policy_retuning_allowed") or not hold.get("no_new_arrival_search_allowed"):
+    raise SystemExit("R11 frozen-policy/no-endpoint-search guard failed")
+if len(hold["targets"]) * len(hold["actual_delay_steps"]) * len(hold["actual_slew_scales"]) != 18:
+    raise SystemExit("R11 18-case oracle/calibrated matrix guard failed")
 if cfg["calibrated_confirmation"].get("online_handover_enabled"):
-    raise SystemExit("R10 unexpectedly enables online handover")
-if not terminal.get("preview_replaces_only_unapplied_issue_slots"):
-    raise SystemExit("R10 unapplied-command preview guard failed")
-if not terminal.get("preview_uses_only_original_issue_time_information"):
-    raise SystemExit("R10 causal information guard failed")
-bank = terminal["candidate_bank"]
-if len(bank) != 6 or len({row["policy_id"] for row in bank}) != 6:
-    raise SystemExit("R10 candidate bank coverage guard failed")
-axes = {row.get("ablation_axis") for row in bank}
-required_axes = {
-    "exact_r9_best_structure_plus_preview_and_longer_horizon",
-    "earlier_template_only",
-    "controller_scale_only",
-    "velocity_gain_only",
-    "position_gain_only",
-    "combined_stronger_earlier",
-}
-if axes != required_axes:
-    raise SystemExit("R10 independently factored candidate bank guard failed")
-print("[Stage4.1R10 verify] Python compile, JSON parse, internal import closure and scientific self-test passed.")
+    raise SystemExit("R11 unexpectedly enables online handover")
+print("[Stage4.1R11 verify] Python compile, JSON parse, complete internal import closure and scientific self-test passed.")
 PY
 while IFS= read -r script; do
   bash -n "${script}"
 done < <(awk '{print $2}' SHA256SUMS | grep -E '\.sh$' | sort -u)
-printf '[Stage4.1R10 verify] declared shell scripts passed bash -n.\n'
+printf '[Stage4.1R11 verify] declared shell scripts passed bash -n.\n'
 "${PYTHON_BIN}" -m unittest discover -s tests -p 'test*.py'
-printf '[Stage4.1R10 verify] complete unittest discovery passed.\n'
-printf '[Stage4.1R10 verify] residual Markdown and run-output files outside SHA256SUMS are intentionally ignored.\n'
+printf '[Stage4.1R11 verify] complete unittest discovery passed.\n'
+printf '[Stage4.1R11 verify] residual Markdown and run-output files outside SHA256SUMS are intentionally ignored.\n'
