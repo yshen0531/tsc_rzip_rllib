@@ -1,11 +1,89 @@
 {
-  "campaigns": {
-    "probe_derived_response_model": 0,
-    "source_audit": 0,
-    "superposition_validation": 32
+  "schema_version": 1,
+  "stage": "Stage4.1R16",
+  "controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
+  "package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
+  "run_name": "stage4_1r16_amplitude_certified_probe_derived_braking_closure",
+  "source_stage": "Stage4.1R15B",
+  "source_controller_revision": "probe_derived_symmetric_local_response_superposition_v15b",
+  "source_package_revision": "r15b_hadamard_superposition_validation_v1",
+  "purpose": "Certify the amplitude domain of the R15B probe-derived four-basis response with a preregistered 1x/2x/4x/6x plus-minus real-TSC ladder, then test one fixed 6x braking direction under the immutable original timing contract and confirm trusted-token replay.",
+  "formal_timing": {
+    "normal_slew_arrival_deadline_ms": 250,
+    "normal_slew_hold_through_ms": 350,
+    "weak_slew_arrival_deadline_ms": 270,
+    "weak_slew_hold_through_ms": 370,
+    "arrival_deadline_expansion_allowed": false
   },
-  "controller_revision": "probe_derived_symmetric_local_response_superposition_v15b",
-  "declared_file_count": 96,
+  "campaigns": {
+    "source_audit": {
+      "true_tsc_rollouts": 0
+    },
+    "amplitude_envelope_validation": {
+      "true_tsc_rollouts": 32,
+      "matrix": "4 magnitudes x 2 signs x 2 delays x 2 targets",
+      "magnitude_levels": [
+        1.0,
+        2.0,
+        4.0,
+        6.0
+      ],
+      "peak_probe_components": [
+        0.015,
+        0.03,
+        0.06,
+        0.09
+      ]
+    },
+    "calibrated_confirmation": {
+      "true_tsc_rollouts": 4
+    },
+    "formal_grid_confirmation": {
+      "true_tsc_rollouts": 0,
+      "cases": 18
+    }
+  },
+  "maximum_true_tsc_rollouts": 36,
+  "finite_test_envelope_only": true,
+  "scientific_guardrails": [
+    "The R15B joint common-direction external envelope is coefficient 0.5 (0.0075 peak component); individual basis coefficient 1.0 is not misreported as joint validation.",
+    "The 6x braking candidate is preregistered before all new R16 TSC runs and is never selected post hoc from the amplitude ladder.",
+    "All 32 amplitude runs must pass runtime, zero-net, exact-applied-probe, current-utilization, model-prediction, central-symmetry, and per-unit-scaling guards.",
+    "The fixed 6x braking candidate must pass all four modified target-delay paths with actual minimum signed margin at least 0.01.",
+    "Calibrated confirmation requires trusted-correct delay/slew tokens and exact Oracle trace equivalence.",
+    "The 14 already-passing paths are reused unchanged and the final formal grid must pass 18/18 under 250/350 and 270/370 ms timing.",
+    "No unseen-target, continuous-parameter, restart, hidden-history, noisy-sensing, or deployment robustness is claimed.",
+    "Stage4.2R1, Behavior Cloning, DAgger, and RL are not run or reused."
+  ],
+  "requirements": {
+    "replace_directories": [
+      "configs",
+      "scripts",
+      "tests",
+      "tsc_rzip_rllib"
+    ],
+    "replace_root_stage_shell_scripts": true,
+    "preserve_run_directories": [
+      "stage4_1r15b_runs",
+      "stage4_1r15_runs",
+      "stage4_1r14_runs",
+      "stage4_1r13_runs",
+      "stage4_1r12_runs",
+      "stage4_1r11_runs",
+      "stage4_1r10_runs",
+      "stage4_1r9_runs",
+      "stage4_1r8_runs",
+      "stage4_1r7_runs",
+      "stage4_1r6_runs",
+      "stage3_4_runs"
+    ],
+    "network_required": false,
+    "git_required": false,
+    "resume_supported": true,
+    "ray_capacity_is_pending_task_bounded": true
+  },
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "declared_file_count": 99,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -24,6 +102,7 @@
     "configs/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_370ms.json",
     "configs/stage4_1r15_bounded_early_braking_local_response_identification_370ms.json",
     "configs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_370ms.json",
+    "configs/stage4_1r16_amplitude_certified_probe_derived_braking_closure_370ms.json",
     "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json",
     "configs/stage4_1r3_control_aware_residual_observer_350ms.json",
     "configs/stage4_1r4_targeted_closure_370ms.json",
@@ -32,13 +111,13 @@
     "configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json",
     "configs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_410ms.json",
     "configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json",
-    "run_stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_native.sh",
-    "run_stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_nohup.sh",
-    "run_stage4_1r15b_self_test.sh",
-    "run_stage4_1r15b_verify_package.sh",
-    "run_stop_stage4_1r15b_now.sh",
-    "scripts/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py",
-    "scripts/stage4_1r15b_shell_common.sh",
+    "run_stage4_1r16_amplitude_certified_probe_derived_braking_closure_native.sh",
+    "run_stage4_1r16_amplitude_certified_probe_derived_braking_closure_nohup.sh",
+    "run_stage4_1r16_self_test.sh",
+    "run_stage4_1r16_verify_package.sh",
+    "run_stop_stage4_1r16_now.sh",
+    "scripts/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py",
+    "scripts/stage4_1r16_shell_common.sh",
     "tests/__init__.py",
     "tests/test_ray_runtime_capacity.py",
     "tests/test_stage2_1_trajectory_optimization.py",
@@ -58,6 +137,7 @@
     "tests/test_stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py",
     "tests/test_stage4_1r15_bounded_early_braking_local_response_identification.py",
     "tests/test_stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py",
+    "tests/test_stage4_1r16_amplitude_certified_probe_derived_braking_closure.py",
     "tests/test_stage4_1r3_control_aware_robustness.py",
     "tests/test_stage4_1r4_targeted_closure.py",
     "tests/test_stage4_1r5_adaptive_handover_closure.py",
@@ -90,6 +170,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py",
+    "tsc_rzip_rllib/diagnostics/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py",
@@ -103,45 +184,5 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ],
-  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
-  "finite_test_envelope_only": true,
-  "formal_timing": {
-    "immutable": true,
-    "normal_arrival_ms": 250,
-    "normal_hold_through_ms": 350,
-    "weak_arrival_ms": 270,
-    "weak_hold_through_ms": 370
-  },
-  "maximum_true_tsc_rollouts": 32,
-  "package_revision": "r15b_hadamard_superposition_validation_v1",
-  "purpose": "Identification-only refinement after R15: derive group-specific odd finite-difference response columns from the 32 safe R15 plus/minus probes, then externally validate superposition and basis reconstruction with 32 new orthogonal Hadamard combination probes. No controller or formal timing closure is claimed.",
-  "requirements": {
-    "existing_source_run_data_required": true,
-    "external_code_tree_required": false,
-    "formal_closure_claimed": false,
-    "formal_tracking_pass_required_for_probes": false,
-    "git_required": false,
-    "network_required": false,
-    "ray_capacity_limited_to_pending_tasks_and_cluster_cpus": true,
-    "resume_supported": true,
-    "source_absolute_pca_model_reinterpreted_as_validated": false,
-    "source_stage4_1r15_run_required": true,
-    "stage4_2r1_was_not_run_or_reused": true
-  },
-  "run_name": "stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation",
-  "schema_version": 1,
-  "scientific_guardrails": [
-    "No 250/350 or 270/370 ms timing relaxation",
-    "R15 31/32 external result must be reproduced and the failed probe may not be waived",
-    "The response model is the measured odd central-difference response of four R15 basis pairs, scoped separately by target and delay",
-    "External validation uses four preregistered orthogonal Hadamard combinations, both signs, two targets and two delays",
-    "Every combination probe is bounded by 0.015 per component, requested/applied zero-net, causal and queue-consistent",
-    "All 32 external predictions, all central-symmetry checks and all Hadamard basis reconstructions must pass",
-    "No controller selection, true restart, BC, DAgger or RL"
-  ],
-  "source_controller_revision": "bounded_early_braking_local_response_identification_v15",
-  "source_package_revision": "r15a_direct_r14_source_inventory_v2",
-  "source_stage": "Stage4.1R15",
-  "stage": "Stage4.1R15B"
+  ]
 }
