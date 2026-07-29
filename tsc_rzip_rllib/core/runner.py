@@ -364,6 +364,10 @@ class TSCStepRunner:
         self.done_reason: Optional[str] = None
         self.local_step_index: int = 0
         self.last_step_timing: Dict[str, float] = {}
+        # One-shot, worker-local snapshot requests used by restart validation.
+        # The request is consumed only after TSC has produced and promoted the
+        # restart state for the requested local step.
+        self._restart_snapshot_requests: Dict[int, Path] = {}
 
         self.runtime_tsc_dir: Path = self._prepare_runtime_tsc_dir()
         self.runtime_executable: Path = self._resolve_runtime_executable()
@@ -771,6 +775,9 @@ class TSCStepRunner:
                 }
             timing["collect_outputs_s"] = float((datetime.now() - collect_t0).total_seconds())
             self.current_folder = next_folder
+            save_t0 = datetime.now()
+            self._maybe_save_runtime_step_artifacts()
+            timing["save_artifacts_s"] = float((datetime.now() - save_t0).total_seconds())
 
         read1_t0 = datetime.now()
         self.last_step_timing = timing
@@ -869,7 +876,80 @@ class TSCStepRunner:
             if src.exists():
                 shutil.copy2(src, dst / name)
 
+    def request_restart_snapshot(
+        self,
+        *,
+        local_step_index: int,
+        destination: Path,
+    ) -> None:
+        """Register a one-shot authentic TSC restart snapshot.
+
+        The snapshot is exported *after* the requested TSC step has completed
+        and ``sprsoua`` has been promoted to the current ``sprsina``.  Requests
+        are worker-local and are intentionally not inferred from observations.
+        """
+        index = int(local_step_index)
+        if index <= 0:
+            raise ValueError("restart snapshot local_step_index must be positive")
+        destination = Path(destination).expanduser().resolve()
+        previous = self._restart_snapshot_requests.get(index)
+        if previous is not None and previous != destination:
+            raise ValueError(
+                f"restart snapshot step {index} already targets {previous}"
+            )
+        self._restart_snapshot_requests[index] = destination
+
+    def clear_restart_snapshot_requests(self) -> None:
+        """Remove unconsumed snapshot requests between independent episodes."""
+        self._restart_snapshot_requests.clear()
+
+    def export_restart_snapshot(self, destination: Path) -> Dict[str, Any]:
+        """Copy the current complete TSC restart state into ``destination``."""
+        if self.current_time_ms is None or self.current_folder is None:
+            raise RuntimeError("call reset() and advance TSC before exporting a restart")
+        destination = Path(destination).expanduser().resolve()
+        destination.mkdir(parents=True, exist_ok=True)
+        if self.cfg.runtime_only_fast_mode:
+            self._copy_runtime_artifacts_to(destination)
+        else:
+            for name in [
+                "inputa",
+                "sprsina",
+                "sprsoua",
+                "geqdsk",
+                "outputa",
+                "tsc.cgm",
+                "coil_currents.csv",
+                "wire_currents.csv",
+            ]:
+                src = Path(self.current_folder) / name
+                if src.exists():
+                    shutil.copy2(src, destination / name)
+        required = [
+            "inputa",
+            "sprsina",
+            "geqdsk",
+            "coil_currents.csv",
+            "wire_currents.csv",
+        ]
+        missing = [name for name in required if not (destination / name).is_file()]
+        if missing:
+            raise FileNotFoundError(
+                f"restart snapshot missing required files: {missing}"
+            )
+        return {
+            "destination": str(destination),
+            "local_step_index": int(self.local_step_index),
+            "time_ms": int(self.current_time_ms),
+            "files": sorted(path.name for path in destination.iterdir() if path.is_file()),
+        }
+
     def _maybe_save_runtime_step_artifacts(self) -> None:
+        requested = self._restart_snapshot_requests.pop(
+            int(self.local_step_index), None
+        )
+        if requested is not None:
+            self.export_restart_snapshot(requested)
         if not self.cfg.runtime_only_fast_mode:
             return
         if self.cfg.save_step_artifacts:

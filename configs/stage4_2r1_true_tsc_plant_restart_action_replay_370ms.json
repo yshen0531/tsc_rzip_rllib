@@ -1,0 +1,110 @@
+{
+  "stage": "Stage4.2R1",
+  "stage_label": "Stage 4.2R1",
+  "run_name": "stage4_2r1_true_tsc_plant_restart_action_replay",
+  "output_root": "stage4_2r1_runs",
+  "controller_revision": "true_tsc_plant_restart_action_replay_v42r1",
+  "package_revision": "r42r1_plant_restart_action_replay_v1",
+  "source_requirements": {
+    "required_stage": "Stage4.1R17",
+    "required_controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",
+    "required_package_revision": "r17a_output_vector_contract_hotfix_v2",
+    "require_finished": true,
+    "require_stop_reason": "",
+    "require_formal_grid_pass": true,
+    "require_formal_case_count": 18,
+    "require_modified_case_count": 4,
+    "require_unchanged_case_count": 14,
+    "require_calibrated_raw_count": 4,
+    "require_oracle_raw_count": 2,
+    "require_exact_calibrated_trace_fraction": 1.0,
+    "require_original_timing_contract": true,
+    "require_stage4_2r1_not_previously_reused": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Certify authentic TSC plant-state restart fidelity independently of controller-state reconstruction. Replay the exact Stage4.1R17 finite-expert actions, export sprsina and full wire/coil state at 200 ms elapsed time, create fresh TSC environments from the snapshots, replay the exact remaining action suffix, and require exact plant-state reproduction and preservation of the immutable 250/350 and 270/370 ms formal contracts."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_2r1"
+  },
+  "checkpoint": {
+    "checkpoint_step": 20,
+    "checkpoint_elapsed_ms": 200,
+    "dt_ms": 10,
+    "normal_horizon_steps": 35,
+    "weak_horizon_steps": 37,
+    "required_snapshot_files": [
+      "inputa",
+      "sprsina",
+      "geqdsk",
+      "outputa",
+      "coil_currents.csv",
+      "wire_currents.csv"
+    ],
+    "optional_snapshot_files": [
+      "sprsoua",
+      "tsc.cgm"
+    ],
+    "require_snapshot_sha256": true,
+    "require_capture_source_exact": true,
+    "capture_numeric_atol": 1e-12,
+    "require_restart_initial_state_exact": true,
+    "require_restart_suffix_exact": true,
+    "restart_numeric_atol": 1e-12,
+    "require_full_wire_current_vector": true,
+    "require_exact_source_action_replay": true,
+    "require_fresh_restart_actor": true,
+    "controller_checkpoint_replay_in_this_stage": false,
+    "require_formal_contract_preservation": true
+  },
+  "formal_timing_contract": {
+    "normal_slew": {
+      "arrival_deadline_step": 25,
+      "hold_through_step": 35,
+      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+    },
+    "weak_slew": {
+      "arrival_deadline_step": 27,
+      "hold_through_step": 37,
+      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27]
+    },
+    "arrival_streak_steps": 3,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "matrix": {
+    "targets": ["nominal", "RZ_p10_m10"],
+    "actual_delay_steps": [0, 1, 2],
+    "actual_slew_scales": [0.9, 1.0, 1.1],
+    "expected_source_cases": 18,
+    "expected_capture_rollouts": 18,
+    "expected_restart_rollouts": 18
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "plant_restart_only": true,
+  "true_filesystem_tsc_restart_executed": false,
+  "controller_checkpoint_replay_validated": false,
+  "cold_controller_restart_validated": false,
+  "unseen_hidden_history_generalization_validated": false,
+  "unseen_target_generalization_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "continuous_parameter_change_validated": false,
+  "terminal_measurement_noise_robustness_validated": false,
+  "disturbance_recovery_validated": false,
+  "deployment_robustness_validated": false,
+  "finite_test_envelope_only": true,
+  "stage4_1r10_r11_long_horizons_are_auxiliary_only": true,
+  "stage4_2r1_old_r11_based_package_was_not_run_or_reused": true,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

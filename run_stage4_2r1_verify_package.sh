@@ -1,34 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PYTHON_BIN="${STAGE4_1R17_PYTHON:-${PYTHON:-python3}}"
+PYTHON_BIN="${STAGE4_2R1_PYTHON:-${PYTHON:-python3}}"
 cd "${PROJECT_DIR}"
 for path in \
   PACKAGE_MANIFEST.json SHA256SUMS \
+  configs/stage4_2r1_true_tsc_plant_restart_action_replay_370ms.json \
   configs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_370ms.json \
   configs/stage4_1r16_amplitude_certified_probe_derived_braking_closure_370ms.json \
-  configs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_370ms.json \
-  scripts/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py \
-  scripts/stage4_1r17_shell_common.sh \
+  scripts/stage4_2r1_true_tsc_plant_restart_action_replay.py \
+  scripts/stage4_2r1_shell_common.sh \
+  tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py \
   tsc_rzip_rllib/diagnostics/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py \
-  tsc_rzip_rllib/diagnostics/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py \
-  tsc_rzip_rllib/diagnostics/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py \
-  tests/test_stage4_1r17_original_deadline_one_sided_robust_braking_closure.py \
+  tsc_rzip_rllib/core/runner.py \
+  tests/test_stage4_2r1_true_tsc_plant_restart_action_replay.py \
   tests/test_ray_runtime_capacity.py \
-  run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_native.sh \
-  run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_nohup.sh \
-  run_stage4_1r17_self_test.sh run_stage4_1r17_verify_package.sh \
-  run_stop_stage4_1r17_now.sh; do
+  run_stage4_2r1_true_tsc_plant_restart_action_replay_native.sh \
+  run_stage4_2r1_true_tsc_plant_restart_action_replay_nohup.sh \
+  run_stage4_2r1_self_test.sh run_stage4_2r1_verify_package.sh \
+  run_stop_stage4_2r1_now.sh; do
   [[ -f "${path}" ]] || { echo "ERROR: required packaged file missing: ${path}" >&2; exit 1; }
 done
 mapfile -t ROOT_STAGE_SH < <(find . -maxdepth 1 -type f -name 'run_stage*.sh' -printf '%f\n' | sort)
 for script in "${ROOT_STAGE_SH[@]}"; do
-  [[ "${script}" == *"stage4_1r17"* ]] || { echo "ERROR: obsolete root-stage shell script is packaged: ${script}" >&2; exit 1; }
+  [[ "${script}" == *"stage4_2r1"* ]] || { echo "ERROR: obsolete root-stage shell script is packaged: ${script}" >&2; exit 1; }
 done
 find configs scripts tests tsc_rzip_rllib -type d -name '__pycache__' -prune -exec rm -rf {} +
 find configs scripts tests tsc_rzip_rllib -type f -name '*.pyc' -delete
 sha256sum -c SHA256SUMS
-printf '[Stage4.1R17 verify] packaged file checksums passed.\n'
+printf '[Stage4.2R1 verify] packaged file checksums passed.\n'
 export PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
 "${PYTHON_BIN}" - <<'PY'
 from __future__ import annotations
@@ -39,10 +39,10 @@ from pathlib import Path
 root = Path.cwd()
 manifest = json.loads((root / 'PACKAGE_MANIFEST.json').read_text(encoding='utf-8'))
 expected = {
-    'stage': 'Stage4.1R17',
-    'controller_revision': 'original_deadline_one_sided_robust_braking_closure_v17',
-    'package_revision': 'r17a_output_vector_contract_hotfix_v2',
-    'run_name': 'stage4_1r17_original_deadline_one_sided_robust_braking_closure',
+    'stage': 'Stage4.2R1',
+    'controller_revision': 'true_tsc_plant_restart_action_replay_v42r1',
+    'package_revision': 'r42r1_plant_restart_action_replay_v1',
+    'run_name': 'stage4_2r1_true_tsc_plant_restart_action_replay',
 }
 for key, value in expected.items():
     if manifest.get(key) != value:
@@ -72,7 +72,7 @@ ignored = {
     'stage4_1r6_runs', 'stage4_1r7_runs', 'stage4_1r8_runs', 'stage4_1r9_runs',
     'stage4_1r10_runs', 'stage4_1r11_runs', 'stage4_1r12_runs', 'stage4_1r13_runs',
     'stage4_1r14_runs', 'stage4_1r15_runs', 'stage4_1r15b_runs', 'stage4_1r16_runs',
-    'stage4_1r17_runs', 'logs', '__pycache__',
+    'stage4_1r17_runs', 'stage4_2r1_runs', 'logs', '__pycache__',
 }
 for path in sorted(root.rglob('*.py')):
     if any(part in ignored for part in path.parts):
@@ -126,69 +126,76 @@ for path, module in module_by_path.items():
 if missing:
     raise SystemExit('missing packaged internal imports: ' + repr(missing[:20]))
 
-from tsc_rzip_rllib.diagnostics import stage4_1r17_original_deadline_one_sided_robust_braking_closure as r17
+from tsc_rzip_rllib.diagnostics import stage4_2r1_true_tsc_plant_restart_action_replay as r42
+from tsc_rzip_rllib.core.runner import TSCStepRunner
 
-payload = r17.self_test(root)
+payload = r42.self_test()
 if not payload.get('passed'):
-    raise SystemExit('R17 self-test failed')
-if payload.get('expected_true_tsc_oracle_rollouts') != 2:
-    raise SystemExit('R17 Oracle rollout budget changed')
-if payload.get('expected_true_tsc_calibrated_rollouts') != 4:
-    raise SystemExit('R17 calibrated rollout budget changed')
-if payload.get('maximum_true_tsc_rollouts') != 6:
-    raise SystemExit('R17 maximum rollout budget changed')
-if abs(float(payload.get('maximum_schedule_component')) - 0.105) > 1e-12:
-    raise SystemExit('R17 maximum schedule component changed')
-if payload.get('bidirectional_response_model_validated'):
-    raise SystemExit('R17 may not claim bidirectional validation')
-if not payload.get('output_vector_contract_hotfix'):
-    raise SystemExit('R17a output-vector contract hotfix is inactive')
-if payload.get('model_output_vector_length') != 75:
-    raise SystemExit('R17a model output-vector length changed')
+    raise SystemExit('Stage4.2R1 self-test failed')
+if payload.get('checkpoint_step') != 20:
+    raise SystemExit('Stage4.2R1 checkpoint changed')
+if payload.get('expected_capture_rollouts') != 18 or payload.get('expected_restart_rollouts') != 18:
+    raise SystemExit('Stage4.2R1 task matrix changed')
+if payload.get('maximum_true_tsc_rollouts') != 36:
+    raise SystemExit('Stage4.2R1 TSC budget changed')
+if not payload.get('plant_restart_only') or payload.get('controller_checkpoint_replay_validated'):
+    raise SystemExit('Stage4.2R1 plant/controller isolation changed')
 
 cfg = json.loads(
-    (root / 'configs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_370ms.json').read_text(encoding='utf-8')
+    (root / 'configs/stage4_2r1_true_tsc_plant_restart_action_replay_370ms.json').read_text(encoding='utf-8')
 )
-r17.validate_config(cfg)
-if cfg['formal_timing_contract']['normal_slew']['arrival_deadline_step'] != 25:
-    raise SystemExit('normal arrival deadline changed')
-if cfg['formal_timing_contract']['weak_slew']['arrival_deadline_step'] != 27:
-    raise SystemExit('weak arrival deadline changed')
-candidate = cfg['one_sided_candidate']
-if candidate['source_delay1_magnitude'] != 6.0 or candidate['new_delay2_magnitude'] != 7.0:
-    raise SystemExit('R17 delay-conditioned magnitudes changed')
-if candidate['direction_sign'] != -1 or candidate['peak_component'] != 0.105:
-    raise SystemExit('R17 preregistered one-sided candidate changed')
-if candidate['expected_oracle_rollouts'] != 2 or cfg['calibrated_confirmation']['expected_rollouts'] != 4:
-    raise SystemExit('R17 task matrix changed')
-if candidate['minimum_actual_signed_margin'] < 0.01:
-    raise SystemExit('R17 actual margin guard weakened')
-if not candidate['require_exact_per_step_probe_application']:
-    raise SystemExit('R17 exact per-step probe guard disabled')
-if not cfg['finite_test_envelope_only'] or cfg['bidirectional_response_model_validated']:
-    raise SystemExit('R17 finite one-sided semantics changed')
-if not cfg['stage4_2r1_was_not_run_or_reused']:
-    raise SystemExit('R17 may not reuse Stage4.2R1')
+r42.validate_config(cfg)
+checkpoint = cfg['checkpoint']
+contract = cfg['formal_timing_contract']
+if checkpoint['checkpoint_step'] != 20 or checkpoint['checkpoint_elapsed_ms'] != 200:
+    raise SystemExit('Stage4.2R1 capture checkpoint changed')
+if checkpoint['normal_horizon_steps'] != 35 or checkpoint['weak_horizon_steps'] != 37:
+    raise SystemExit('Stage4.2R1 formal horizon changed')
+if contract['normal_slew']['arrival_deadline_step'] != 25 or contract['normal_slew']['hold_through_step'] != 35:
+    raise SystemExit('normal 250/350 contract changed')
+if contract['weak_slew']['arrival_deadline_step'] != 27 or contract['weak_slew']['hold_through_step'] != 37:
+    raise SystemExit('weak 270/370 contract changed')
+if contract['arrival_deadline_expansion_allowed']:
+    raise SystemExit('arrival deadline expansion was enabled')
+if checkpoint['controller_checkpoint_replay_in_this_stage']:
+    raise SystemExit('controller checkpoint replay leaked into plant restart R1')
+if not cfg['stage4_2r1_old_r11_based_package_was_not_run_or_reused']:
+    raise SystemExit('old unrun R11-based R1 package reuse guard disabled')
+if cfg['source_requirements']['required_package_revision'] != 'r17a_output_vector_contract_hotfix_v2':
+    raise SystemExit('R17a source package contract changed')
+if cfg['matrix']['expected_source_cases'] != 18 or cfg['matrix']['expected_capture_rollouts'] != 18 or cfg['matrix']['expected_restart_rollouts'] != 18:
+    raise SystemExit('Stage4.2R1 finite matrix changed')
+
 module = (
-    root / 'tsc_rzip_rllib/diagnostics/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py'
+    root / 'tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py'
 ).read_text(encoding='utf-8')
 for token in (
-    'per_step_probe_application_exact',
-    'source_candidate_exact_failure',
-    'source_only_robust_prediction_pass',
-    'new_delay2_magnitude',
-    'formal_grid_confirmation',
-    'bidirectional_response_model_validated',
-    'stage4_2r1_was_not_run_or_reused',
-    '_model_output_vector',
-    'end_state_inclusive=37',
+    'request_restart_snapshot',
+    'restart_snapshot_manifest.json',
+    'wire_currents_a',
+    'snapshot_wire_vector_exact_to_capture_state',
+    'fresh_restart_actor',
+    'controller_checkpoint_loaded": False',
+    'plant_restart_fidelity_pass',
+    'formal_contract_pass',
+    'old_unrun_r11_based_stage4_2r1_not_reused',
 ):
     if token not in module:
-        raise SystemExit(f'R17 implementation guard missing: {token}')
-print('[Stage4.1R17 verify] Python compile, JSON parse, internal import closure and scientific guardrails passed.')
+        raise SystemExit(f'Stage4.2R1 implementation guard missing: {token}')
+for method in ('request_restart_snapshot', 'clear_restart_snapshot_requests', 'export_restart_snapshot'):
+    if not hasattr(TSCStepRunner, method):
+        raise SystemExit(f'TSCStepRunner snapshot API missing: {method}')
+native_source = (root / 'run_stage4_2r1_true_tsc_plant_restart_action_replay_native.sh').read_text(encoding='utf-8')
+if 'R10/R11 750 ms/2 s trajectories remain auxiliary' not in native_source:
+    raise SystemExit('long-horizon auxiliary-only runtime warning missing')
+runner_source = (root / 'tsc_rzip_rllib/core/runner.py').read_text(encoding='utf-8')
+for token in ('_restart_snapshot_requests', 'self.export_restart_snapshot(requested)', 'sprsina', 'wire_currents.csv'):
+    if token not in runner_source:
+        raise SystemExit(f'runner snapshot guard missing: {token}')
+print('[Stage4.2R1 verify] Python compile, JSON parse, internal import closure and scientific guardrails passed.')
 PY
 mapfile -t SHELLS < <(find . -maxdepth 2 -type f -name '*.sh' -print | sort)
 for script in "${SHELLS[@]}"; do bash -n "${script}"; done
-printf '[Stage4.1R17 verify] declared shell scripts passed bash -n.\n'
+printf '[Stage4.2R1 verify] declared shell scripts passed bash -n.\n'
 "${PYTHON_BIN}" -m unittest discover -s tests -p 'test_*.py'
-printf '[Stage4.1R17 verify] complete unittest discovery passed.\n'
+printf '[Stage4.2R1 verify] complete unittest discovery passed.\n'

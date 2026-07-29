@@ -1,66 +1,30 @@
 {
-  "schema_version": 1,
-  "stage": "Stage4.1R17",
-  "controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",
-  "package_revision": "r17a_output_vector_contract_hotfix_v2",
-  "run_name": "stage4_1r17_original_deadline_one_sided_robust_braking_closure",
-  "source_stage": "Stage4.1R16",
-  "source_controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
-  "source_package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
-  "purpose": "Use the real-TSC R16 one-sided braking ladder without reinterpreting the failed bidirectional amplitude envelope. Reuse the passing delay=1 6x source trajectory, preregister and directly validate one delay=2 7x braking candidate, then require trusted-token exact replay and recombine the immutable 18-case original-deadline grid.",
-  "formal_timing": {
-    "normal_slew_arrival_ms": 250,
-    "normal_slew_hold_through_ms": 350,
-    "weak_slew_arrival_ms": 270,
-    "weak_slew_hold_through_ms": 370,
-    "arrival_deadline_expanded": false
-  },
-  "delay_conditioned_candidate": {
-    "delay1_source_magnitude": 6.0,
-    "delay1_peak_component": 0.09,
-    "delay2_preregistered_magnitude": 7.0,
-    "delay2_peak_component": 0.105,
-    "direction_sign": -1,
-    "minimum_actual_signed_margin": 0.01,
-    "candidate_fixed_before_new_tsc": true,
-    "posthoc_7p5x_or_8x_fallback_allowed": false
-  },
   "campaigns": {
-    "source_audit_new_tsc_rollouts": 0,
-    "oracle_delay2_candidate_rollouts": 2,
-    "calibrated_confirmation_rollouts": 4,
-    "formal_grid_recombination_new_tsc_rollouts": 0
+    "fresh_plant_restart_replay_rollouts": 18,
+    "plant_checkpoint_capture_rollouts": 18,
+    "source_audit_new_tsc_rollouts": 0
   },
-  "maximum_true_tsc_rollouts": 6,
-  "finite_test_envelope_only": true,
-  "scientific_guardrails": [
-    "Exact per-step requested/applied probe equality is required; max/count equality alone is insufficient.",
-    "R16 symmetric plus/minus large-amplitude model remains failed and is not reinterpreted as validated.",
-    "Delay=1 reuses only the already-executed real-TSC 6x braking source trajectories.",
-    "Delay=2 runs exactly one source-preregistered 7x candidate for both required targets.",
-    "Both new Oracle cases must pass the immutable 270/370 ms contract with at least 0.01 signed margin.",
-    "Trusted calibration tokens must reproduce Oracle traces exactly before the 18-case grid can pass.",
-    "No true-restart, hidden-history, continuous-parameter, noisy-sensing, disturbance-recovery or deployment claim is made.",
-    "Stage4.2R1, BC, DAgger and bounded residual RL are not run or reused."
-  ],
-  "requirements": {
-    "delete_and_replace_directories": [
-      "configs",
-      "scripts",
-      "tests",
-      "tsc_rzip_rllib"
+  "checkpoint": {
+    "elapsed_ms": 200,
+    "expected_snapshot_folder_ms": 1300,
+    "full_wire_vector_required": true,
+    "normal_suffix_steps": 15,
+    "required_files": [
+      "inputa",
+      "sprsina",
+      "geqdsk",
+      "outputa",
+      "coil_currents.csv",
+      "wire_currents.csv"
     ],
-    "root_shell_scripts_are_stage4_1r17_only": true,
-    "requires_git": false,
-    "requires_network": false,
-    "requires_external_source_tree": false,
-    "requires_existing_source_run": "complete Stage4.1R16 run and its manifest-recorded upstream run chain",
-    "supports_resume": true,
-    "ray_actor_capacity_limited_by_pending_tasks": true,
-    "residual_markdown_ignored_by_verification": true
+    "sha256_inventory_required": true,
+    "source_start_folder_ms": 1100,
+    "state_step": 20,
+    "weak_suffix_steps": 17
   },
-  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
-  "declared_file_count": 102,
+  "controller_checkpoint_replay_in_this_stage": false,
+  "controller_revision": "true_tsc_plant_restart_action_replay_v42r1",
+  "declared_file_count": 105,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -89,13 +53,14 @@
     "configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json",
     "configs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_410ms.json",
     "configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json",
-    "run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_native.sh",
-    "run_stage4_1r17_original_deadline_one_sided_robust_braking_closure_nohup.sh",
-    "run_stage4_1r17_self_test.sh",
-    "run_stage4_1r17_verify_package.sh",
-    "run_stop_stage4_1r17_now.sh",
-    "scripts/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py",
-    "scripts/stage4_1r17_shell_common.sh",
+    "configs/stage4_2r1_true_tsc_plant_restart_action_replay_370ms.json",
+    "run_stage4_2r1_self_test.sh",
+    "run_stage4_2r1_true_tsc_plant_restart_action_replay_native.sh",
+    "run_stage4_2r1_true_tsc_plant_restart_action_replay_nohup.sh",
+    "run_stage4_2r1_verify_package.sh",
+    "run_stop_stage4_2r1_now.sh",
+    "scripts/stage4_2r1_shell_common.sh",
+    "scripts/stage4_2r1_true_tsc_plant_restart_action_replay.py",
     "tests/__init__.py",
     "tests/test_ray_runtime_capacity.py",
     "tests/test_stage2_1_trajectory_optimization.py",
@@ -124,6 +89,7 @@
     "tests/test_stage4_1r7_precontrol_calibration_queue_startup.py",
     "tests/test_stage4_1r8_trusted_batch_calibration_queue_tail_closure.py",
     "tests/test_stage4_1r9_terminal_template_mpc_feedback_hold.py",
+    "tests/test_stage4_2r1_true_tsc_plant_restart_action_replay.py",
     "tsc_rzip_rllib/__init__.py",
     "tsc_rzip_rllib/core/__init__.py",
     "tsc_rzip_rllib/core/coil_order.py",
@@ -158,6 +124,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_1r7_precontrol_calibration_queue_startup.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r8_trusted_batch_calibration_queue_tail_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r9_terminal_template_mpc_feedback_hold.py",
+    "tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py",
     "tsc_rzip_rllib/envs/__init__.py",
     "tsc_rzip_rllib/envs/factory.py",
     "tsc_rzip_rllib/envs/rzip_env.py",
@@ -165,14 +132,50 @@
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
   ],
-  "hotfix": {
-    "legacy_package_revision": "r17_delay_conditioned_one_sided_margin_closure_v1",
-    "output_vector_provider": "stage4_1r15_bounded_early_braking_local_response_identification._output_vector",
-    "output_state_window": {
-      "start_state": 23,
-      "end_state_inclusive": 37
-    },
-    "existing_successful_oracle_raw_reusable_with_resume": true,
-    "controller_revision_and_experiment_ids_unchanged": true
-  }
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "finite_test_envelope_only": true,
+  "formal_timing": {
+    "arrival_deadline_expanded": false,
+    "normal_slew_arrival_ms": 250,
+    "normal_slew_hold_through_ms": 350,
+    "weak_slew_arrival_ms": 270,
+    "weak_slew_hold_through_ms": 370
+  },
+  "maximum_true_tsc_rollouts": 36,
+  "package_revision": "r42r1_plant_restart_action_replay_v1",
+  "plant_restart_only": true,
+  "purpose": "Certify authentic TSC plant-state serialization and fresh-process restart independently of controller-state reconstruction. Replay the exact calibrated Stage4.1R17 finite-expert actions, capture sprsina plus complete coil/wire state at 200 ms elapsed time, restart fresh TSC processes from the snapshots, replay the exact remaining action suffix, require exact plant trajectory and full wire-current reproduction, and re-evaluate the immutable original timing contracts.",
+  "requirements": {
+    "delete_and_replace_directories": [
+      "configs",
+      "scripts",
+      "tests",
+      "tsc_rzip_rllib"
+    ],
+    "ray_actor_capacity_limited_by_pending_tasks": true,
+    "requires_existing_source_run": "complete Stage4.1R17 run and its manifest-recorded upstream run chain",
+    "requires_external_source_tree": false,
+    "requires_git": false,
+    "requires_network": false,
+    "residual_markdown_ignored_by_verification": true,
+    "root_shell_scripts_are_stage4_2r1_only": true,
+    "supports_resume": true
+  },
+  "run_name": "stage4_2r1_true_tsc_plant_restart_action_replay",
+  "schema_version": 1,
+  "scientific_guardrails": [
+    "The Stage4.1R17 18-case calibrated expert map and its exact original 250/350 and 270/370 ms contracts are frozen.",
+    "The old unrun R11-based Stage4.2R1 package is neither read nor reused; R10/R11 long horizons remain auxiliary diagnostics only.",
+    "Capture instrumentation must replay the exact source action sequence and leave the visible source trajectory bit-exact.",
+    "Every restart snapshot must contain authentic sprsina and the full coil/wire state with SHA-256 tamper detection.",
+    "Restart replay must use a fresh actor/TSC process and the exact source action suffix.",
+    "R/Z/Ip, all 14 coil currents, vessel aggregates, full wire-current vector and action trace must be exactly reproduced.",
+    "Plant restart fidelity and formal-contract preservation are reported separately.",
+    "Controller observer/integrator/pending-queue checkpoint replay is intentionally deferred to Stage4.2R2.",
+    "No unseen-hidden-history, new-target, plant-mismatch, continuous-parameter, noise, disturbance, deployment, BC, DAgger or RL claim is made."
+  ],
+  "source_controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",
+  "source_package_revision": "r17a_output_vector_contract_hotfix_v2",
+  "source_stage": "Stage4.1R17",
+  "stage": "Stage4.2R1"
 }
