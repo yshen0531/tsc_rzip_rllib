@@ -2,7 +2,7 @@
 set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${PROJECT_DIR}"
-PYTHON_BIN="${STAGE4_1R12_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
+PYTHON_BIN="${STAGE4_1R13_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
 if [[ ! -x "${PYTHON_BIN}" ]]; then
   PYTHON_BIN="${PYTHON:-python3}"
 fi
@@ -15,24 +15,26 @@ for path in configs scripts tests tsc_rzip_rllib; do
 done
 for path in \
   PACKAGE_MANIFEST.json SHA256SUMS \
+  configs/stage4_1r13_original_deadline_delay_pipeline_early_braking_370ms.json \
   configs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_370ms.json \
   configs/stage4_1r11_frozen_terminal_long_horizon_hold_2000ms.json \
   configs/stage4_1r10_queue_preview_terminal_transition_hold_750ms.json \
-  scripts/stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py \
-  scripts/stage4_1r12_shell_common.sh \
+  scripts/stage4_1r13_original_deadline_delay_pipeline_early_braking.py \
+  scripts/stage4_1r13_shell_common.sh \
+  tsc_rzip_rllib/diagnostics/stage4_1r13_original_deadline_delay_pipeline_early_braking.py \
   tsc_rzip_rllib/diagnostics/stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py \
   tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py \
-  tests/test_stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py \
-  run_stage4_1r12_original_deadline_weak_slew_anticipatory_damping_native.sh \
-  run_stage4_1r12_original_deadline_weak_slew_anticipatory_damping_nohup.sh \
-  run_stage4_1r12_self_test.sh \
-  run_stage4_1r12_verify_package.sh \
-  run_stop_stage4_1r12_now.sh; do
+  tests/test_stage4_1r13_original_deadline_delay_pipeline_early_braking.py \
+  run_stage4_1r13_original_deadline_delay_pipeline_early_braking_native.sh \
+  run_stage4_1r13_original_deadline_delay_pipeline_early_braking_nohup.sh \
+  run_stage4_1r13_self_test.sh \
+  run_stage4_1r13_verify_package.sh \
+  run_stop_stage4_1r13_now.sh; do
   [[ -f "${path}" ]] || { echo "ERROR: required packaged file missing: ${path}" >&2; exit 1; }
 done
 mapfile -t ROOT_STAGE_SH < <(find . -maxdepth 1 -type f -name 'run_stage*.sh' -printf '%f\n' | sort)
 for script in "${ROOT_STAGE_SH[@]}"; do
-  [[ "${script}" == *"stage4_1r12"* ]] || {
+  [[ "${script}" == *"stage4_1r13"* ]] || {
     echo "ERROR: obsolete root-stage shell script is packaged: ${script}" >&2
     exit 1
   }
@@ -40,7 +42,7 @@ done
 find configs scripts tests tsc_rzip_rllib -type d -name '__pycache__' -prune -exec rm -rf {} +
 find configs scripts tests tsc_rzip_rllib -type f -name '*.pyc' -delete
 sha256sum -c SHA256SUMS
-printf '[Stage4.1R12 verify] packaged file checksums passed.\n'
+printf '[Stage4.1R13 verify] packaged file checksums passed.\n'
 export PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
 "${PYTHON_BIN}" - <<'PY'
 from __future__ import annotations
@@ -51,10 +53,10 @@ from pathlib import Path
 root = Path.cwd()
 manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8"))
 expected = {
-    "stage": "Stage4.1R12",
-    "controller_revision": "original_deadline_weak_slew_anticipatory_damping_v12",
-    "package_revision": "r12_original_deadline_post_arrival_damping_v4",
-    "run_name": "stage4_1r12_original_deadline_weak_slew_anticipatory_damping",
+    "stage": "Stage4.1R13",
+    "controller_revision": "original_deadline_delay_pipeline_early_braking_v13",
+    "package_revision": "r13_original_deadline_early_braking_v1",
+    "run_name": "stage4_1r13_original_deadline_delay_pipeline_early_braking",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:
@@ -79,9 +81,9 @@ if "PACKAGE_MANIFEST.json" not in listed:
 if "SHA256SUMS" in listed:
     raise SystemExit("SHA256SUMS may not checksum itself")
 
-# Every file under the replaced code directories must be declared. Residual
-# Markdown, logs, zips and run outputs elsewhere in the server project are not
-# package inputs and are intentionally ignored.
+# Every file under the four replacement directories must be declared. Files
+# elsewhere in the server project (runs, logs, Markdown, zips) are not package
+# inputs and are intentionally ignored.
 actual_replaced = []
 for directory in ("configs", "scripts", "tests", "tsc_rzip_rllib"):
     for path in sorted((root / directory).rglob("*")):
@@ -99,7 +101,7 @@ ignored_roots = {
     "stage2_runs", "stage3_runs", "stage3_4_runs", "stage4_runs",
     "stage4_1r6_runs", "stage4_1r7_runs", "stage4_1r8_runs",
     "stage4_1r9_runs", "stage4_1r10_runs", "stage4_1r11_runs",
-    "stage4_1r12_runs", "logs", "__pycache__",
+    "stage4_1r12_runs", "stage4_1r13_runs", "logs", "__pycache__",
 }
 for path in sorted(root.rglob("*.py")):
     if any(part in ignored_roots for part in path.parts):
@@ -111,7 +113,7 @@ for path in sorted((root / "configs").glob("*.json")):
     json.loads(path.read_text(encoding="utf-8"))
 
 # Resolve every packaged internal import without importing optional runtime
-# dependencies such as Ray, gymnasium or the server TSC bindings.
+# dependencies such as Ray or the server TSC bindings.
 module_by_path = {}
 modules = set()
 for path in sorted((root / "tsc_rzip_rllib").rglob("*.py")):
@@ -146,8 +148,7 @@ for path, current_module in module_by_path.items():
             for alias in node.names:
                 name = alias.name
                 if name.startswith("tsc_rzip_rllib") and not any(
-                    name == candidate or name.startswith(candidate + ".")
-                    for candidate in modules
+                    name == candidate or name.startswith(candidate + ".") for candidate in modules
                 ):
                     missing.append((str(path), name))
         elif isinstance(node, ast.ImportFrom):
@@ -158,32 +159,33 @@ for path, current_module in module_by_path.items():
 if missing:
     raise SystemExit("missing packaged internal imports: " + repr(missing[:20]))
 
-from tsc_rzip_rllib.diagnostics import stage4_1r12_original_deadline_weak_slew_anticipatory_damping as r12
-from tsc_rzip_rllib.diagnostics import stage4_1r3_control_aware_robustness as r3
-payload = r12.self_test(root)
+from tsc_rzip_rllib.diagnostics import stage4_1r13_original_deadline_delay_pipeline_early_braking as r13
+payload = r13.self_test(root)
 if not payload.get("passed"):
-    raise SystemExit("Stage4.1R12 self-test failed")
+    raise SystemExit("Stage4.1R13 self-test failed")
 if payload.get("package_revision") != expected["package_revision"]:
-    raise SystemExit("Stage4.1R12 self-test package revision mismatch")
-if payload.get("candidate_first_affected_state_steps") != [28, 30, 32, 33, 34, 35]:
-    raise SystemExit("R12 post-arrival first-effect candidate bank mismatch")
-if not payload.get("post_deadline_first_effect_only"):
-    raise SystemExit("R12 candidate may affect physics by/before 270 ms")
-if not payload.get("no_arrival_deadline_expansion"):
-    raise SystemExit("R12 deadline expansion guard failed")
-if payload.get("maximum_true_tsc_rollouts") != 18:
-    raise SystemExit("R12 true-TSC campaign budget mismatch")
+    raise SystemExit("Stage4.1R13 self-test package revision mismatch")
+if payload.get("candidate_first_affected_state_steps") != [20, 21, 22, 23, 24, 25, 26]:
+    raise SystemExit("R13 causal early-braking candidate bank mismatch")
+if payload.get("maximum_true_tsc_rollouts") != 32:
+    raise SystemExit("R13 true-TSC campaign budget mismatch")
+if not payload.get("selection_conditioned_on_trusted_delay"):
+    raise SystemExit("R13 must select only on the trusted delay token")
+if not payload.get("selection_uses_both_required_targets"):
+    raise SystemExit("R13 must close both required targets per delay")
+if payload.get("unseen_target_holdout_claimed"):
+    raise SystemExit("R13 may not claim unseen-target generalization")
 if not payload.get("stage4_2r1_was_not_run_or_reused"):
-    raise SystemExit("R12 must not claim or reuse unrun Stage4.2R1")
+    raise SystemExit("R13 must not reuse unrun Stage4.2R1")
 
 cfg = json.loads(
-    (root / "configs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_370ms.json")
+    (root / "configs/stage4_1r13_original_deadline_delay_pipeline_early_braking_370ms.json")
     .read_text(encoding="utf-8")
 )
-r12.validate_config(cfg)
+r13.validate_config(cfg)
 normal = cfg["formal_timing_contract"]["normal_slew"]
 weak = cfg["formal_timing_contract"]["weak_slew"]
-closure = cfg["weak_slew_closure"]
+closure = cfg["early_braking_closure"]
 if (normal["arrival_deadline_step"], normal["horizon_steps"]) != (25, 35):
     raise SystemExit("normal 250/350 ms contract changed")
 if (weak["arrival_deadline_step"], weak["horizon_steps"]) != (27, 37):
@@ -191,44 +193,38 @@ if (weak["arrival_deadline_step"], weak["horizon_steps"]) != (27, 37):
 if max(normal["allowed_arrival_steps"]) != 25 or max(weak["allowed_arrival_steps"]) != 27:
     raise SystemExit("formal arrival list exceeds immutable deadline")
 if closure["actual_delay_steps"] != [1, 2] or closure["actual_slew_scale"] != 0.9:
-    raise SystemExit("R12 scope expanded beyond four weak-slew delay=1/2 cases")
-if closure["candidate_first_affected_state_steps"] != [28, 30, 32, 33, 34, 35]:
-    raise SystemExit("R12 candidate bank changed")
-if min(closure["candidate_first_affected_state_steps"]) <= weak["arrival_deadline_step"]:
-    raise SystemExit("R12 candidate first effect is not strictly after 270 ms")
-if closure.get("modified_paths_may_change_before_arrival_deadline"):
-    raise SystemExit("R12 allows source physics to change before/by 270 ms")
-if not closure.get("preserve_source_physics_through_arrival_deadline"):
-    raise SystemExit("R12 does not preserve source physics through 270 ms")
-if cfg.get("stage4_2r1_was_not_run_or_reused") is not True:
-    raise SystemExit("R12 Stage4.2R1 provenance guard failed")
-if cfg["calibrated_confirmation"].get("online_handover_enabled"):
-    raise SystemExit("R12 unexpectedly enables online handover")
+    raise SystemExit("R13 scope expanded beyond four weak-slew delay=1/2 cases")
+if closure["candidate_first_affected_state_steps"] != [20, 21, 22, 23, 24, 25, 26]:
+    raise SystemExit("R13 candidate bank changed")
+if max(closure["candidate_first_affected_state_steps"]) > 26:
+    raise SystemExit("R13 contains a structurally too-late first effect")
+if closure["arrival_deadline_expansion_allowed"]:
+    raise SystemExit("R13 arrival deadline expansion is enabled")
+if not closure["future_measurement_forbidden"]:
+    raise SystemExit("R13 future-measurement guard is disabled")
+if not closure["unaffected_14_paths_remain_source_exact"]:
+    raise SystemExit("R13 must retain the fourteen unaffected source paths exactly")
 
-r3_source = (root / "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py").read_text(encoding="utf-8")
-for token in (
-    "_stage4_1r12_main_control_stop_step",
-    "partial_main_control_checkpoint",
-    "main_control_stop_step = 35 if partial_stop_step is None",
-):
-    if token not in r3_source:
-        raise SystemExit(f"R3 partial-checkpoint hook missing: {token}")
+# Ensure no operational code points to or imports the unrun Stage4.2R1 package.
+for path in list((root / "scripts").rglob("*")) + list((root / "tsc_rzip_rllib").rglob("*.py")):
+    if path.is_file() and "stage4_2r1" in path.read_text(encoding="utf-8", errors="ignore").lower():
+        # Literal scientific statements in R13 itself are permitted only if they
+        # explicitly say the stage was not run/reused.
+        text = path.read_text(encoding="utf-8", errors="ignore").lower()
+        if "was_not_run_or_reused" not in text and "was not run" not in text:
+            raise SystemExit(f"unexpected Stage4.2R1 operational dependency: {path}")
 
-campaign = manifest.get("campaign") or {}
-if campaign.get("oracle_development_rollouts") != 12:
-    raise SystemExit("manifest development campaign mismatch")
-if campaign.get("oracle_holdout_rollouts_if_development_passes") != 2:
-    raise SystemExit("manifest holdout campaign mismatch")
-if campaign.get("calibrated_confirmation_rollouts_if_holdout_passes") != 4:
-    raise SystemExit("manifest calibrated campaign mismatch")
-if campaign.get("maximum_real_tsc_episodes") != 18:
-    raise SystemExit("manifest real-TSC budget mismatch")
-print("[Stage4.1R12 verify] Python compile, JSON parse, internal import closure and formal scientific guardrails passed.")
+print("[Stage4.1R13 verify] Python compile, JSON parse, internal import closure and formal scientific guardrails passed.")
 PY
-while IFS= read -r script; do
+mapfile -t SHELLS < <(
+  {
+    find . -maxdepth 1 -type f -name '*.sh' -print
+    find scripts -type f -name '*.sh' -print
+  } | sort -u
+)
+for script in "${SHELLS[@]}"; do
   bash -n "${script}"
-done < <(awk '{print $2}' SHA256SUMS | grep -E '\.sh$' | sort -u)
-printf '[Stage4.1R12 verify] declared shell scripts passed bash -n.\n'
+done
+printf '[Stage4.1R13 verify] declared shell scripts passed bash -n.\n'
 "${PYTHON_BIN}" -m unittest discover -s tests -p 'test*.py'
-printf '[Stage4.1R12 verify] complete unittest discovery passed.\n'
-printf '[Stage4.1R12 verify] residual Markdown, archives, logs and run outputs outside SHA256SUMS are intentionally ignored.\n'
+printf '[Stage4.1R13 verify] complete unittest discovery passed.\n'
