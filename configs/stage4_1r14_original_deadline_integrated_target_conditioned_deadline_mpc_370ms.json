@@ -1,0 +1,177 @@
+{
+  "stage_label": "Stage 4.1R14",
+  "run_name": "stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc",
+  "output_root": "stage4_1r14_runs",
+  "controller_revision": "original_deadline_integrated_target_conditioned_deadline_mpc_v14",
+  "source_requirement": {
+    "required_stage": "Stage4.1R13",
+    "required_controller_revision": "original_deadline_delay_pipeline_early_braking_v13",
+    "required_package_revision": "r13_original_deadline_early_braking_v1",
+    "require_finished": true,
+    "require_stop_reason": "formal_original_deadline_early_braking_failed",
+    "require_source_audit_passed": true,
+    "require_oracle_development_complete": true,
+    "require_oracle_development_passed": false,
+    "require_oracle_raw_count": 28,
+    "expected_environment_success_count": 28,
+    "expected_nominal_delay1_pass_count": 2,
+    "expected_nominal_delay2_pass_count": 5,
+    "expected_rz_delay1_pass_count": 0,
+    "expected_rz_delay2_pass_count": 0,
+    "expected_global_minimax_first_effect_step": 23,
+    "expected_limiting_component": "endpoint_late_speed"
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Keep the immutable 250/350 and 270/370 ms contracts. R13 proved that a scalar onset scan is insufficient and that its zero-nominal, reset-integral handoff removes the target-conditioned Stage3.4 plan. R14 fixes the first physical effect at the R13 minimax state 23, preserves the target-conditioned nominal trajectory, feedforward and accumulated integral, and adds an explicit state-24--27 velocity penalty inside the same delay-aware 175x105 MPC. Only the deadline-velocity weight and bounded software correction scale are compared; no onset or horizon is re-searched."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r14"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "formal_timing_contract": {
+    "immutable": true,
+    "normal_slew": {
+      "slew_scales": [1.0, 1.1],
+      "horizon_steps": 35,
+      "arrival_deadline_step": 25,
+      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+      "hold_through_step": 35,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "weak_slew": {
+      "slew_scale": 0.9,
+      "horizon_steps": 37,
+      "arrival_deadline_step": 27,
+      "allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27],
+      "hold_through_step": 37,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "arrival_deadline_may_not_expand": true,
+    "hold_horizon_may_not_substitute_for_arrival_deadline": true,
+    "r9_r10_r11_extended_horizons_are_auxiliary_only": true
+  },
+  "r13_forensic_contract": {
+    "fixed_first_affected_state_step": 23,
+    "deadline_velocity_states": [24, 25, 26, 27],
+    "require_all_r13_raw_success": true,
+    "require_zero_rz_passes": true,
+    "require_target_conditioned_nominal_was_discarded": true,
+    "require_integral_was_reset": true,
+    "require_nonzero_checkpoint_integral": true,
+    "minimum_rz_state23_mode_bound_fraction_delay1": 0.80,
+    "minimum_rz_state23_mode_bound_fraction_delay2": 0.70,
+    "maximum_observed_current_utilization": 0.42,
+    "interpretation": "R13 is a valid negative experiment, but it tests a zero-nominal residual regulator after handoff rather than the original target-conditioned expert. Its failure therefore justifies restoring the target-conditioned plan before fitting a new local model."
+  },
+  "integrated_deadline_mpc": {
+    "actual_slew_scale": 0.9,
+    "horizon_steps": 37,
+    "actual_delay_steps": [1, 2],
+    "required_targets": [
+      {"target_id": "nominal", "R_offset_m": 0.0, "Z_offset_m": 0.0, "Ip_offset_A": 0.0},
+      {"target_id": "RZ_p10_m10", "R_offset_m": 0.01, "Z_offset_m": -0.01, "Ip_offset_A": 0.0}
+    ],
+    "fixed_first_affected_state_step": 23,
+    "candidate_bank": [
+      {"policy_id": "itc_vw1_c0p50", "deadline_velocity_weight_multiplier": 1.0, "controller_scale": 0.50},
+      {"policy_id": "itc_vw3_c0p50", "deadline_velocity_weight_multiplier": 3.0, "controller_scale": 0.50},
+      {"policy_id": "itc_vw6_c0p50", "deadline_velocity_weight_multiplier": 6.0, "controller_scale": 0.50},
+      {"policy_id": "itc_vw10_c0p50", "deadline_velocity_weight_multiplier": 10.0, "controller_scale": 0.50},
+      {"policy_id": "itc_vw6_c0p60", "deadline_velocity_weight_multiplier": 6.0, "controller_scale": 0.60},
+      {"policy_id": "itc_vw10_c0p60", "deadline_velocity_weight_multiplier": 10.0, "controller_scale": 0.60}
+    ],
+    "deadline_velocity_states": [24, 25, 26, 27],
+    "target_conditioned_nominal_physical_required": true,
+    "target_conditioned_nominal_feature_required": true,
+    "checkpoint_integral_preservation_required": true,
+    "main_phase_model_scale": 1.0,
+    "tail_phase_start_step": 35,
+    "tail_model_phase_cap_step": 28,
+    "tail_controller_scale": 0.5,
+    "tail_velocity_measurement_gain": 1.5,
+    "tail_position_measurement_gain": 1.25,
+    "tail_ip_measurement_gain": 1.0,
+    "tail_integral_mode": "reset_only_after_main_horizon",
+    "selection_is_conditioned_only_on_trusted_delay": true,
+    "selection_uses_both_required_targets": true,
+    "unseen_target_holdout_claimed": false,
+    "minimum_target_pass_fraction_per_delay": 1.0,
+    "minimum_tracking_signed_margin": 0.0,
+    "maximum_current_utilization": 0.75,
+    "prefix_numeric_atol": 1e-12,
+    "require_exact_source_physics_before_first_affected_state": true,
+    "require_exact_source_issued_before_transition_issue": true,
+    "require_exact_source_applied_before_first_effect": true,
+    "require_no_future_measurement": true,
+    "require_streaming_queue_consistency": true,
+    "require_no_onset_rescan": true,
+    "selection_order": "per_delay_largest_minimum_formal_margin_then_largest_mean_margin_then_lower_controller_scale_then_lower_deadline_weight_then_lower_terminal_speed_then_lower_action_rms",
+    "arrival_deadline_remains_step": 27,
+    "horizon_remains_step": 37,
+    "arrival_deadline_expansion_allowed": false,
+    "future_measurement_forbidden": true,
+    "unaffected_14_paths_remain_source_exact": true
+  },
+  "full_oracle_confirmation": {
+    "case_count": 18,
+    "source_unchanged_case_count": 14,
+    "r14_modified_case_count": 4,
+    "require_all_original_contract_cases": true,
+    "require_unchanged_path_for_unaffected_14_cases": true,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "calibrated_confirmation": {
+    "reuse_stage4_1r8_pair_level_tokens": true,
+    "targets": [
+      {"target_id": "nominal", "R_offset_m": 0.0, "Z_offset_m": 0.0, "Ip_offset_A": 0.0},
+      {"target_id": "RZ_p10_m10", "R_offset_m": 0.01, "Z_offset_m": -0.01, "Ip_offset_A": 0.0}
+    ],
+    "actual_delay_steps": [1, 2],
+    "actual_slew_scales": [0.9],
+    "require_all_tokens_trusted_and_correct": true,
+    "online_handover_enabled": false,
+    "monitor_enabled": false,
+    "minimum_trace_equivalence_fraction": 1.0,
+    "numeric_trace_equivalence_atol": 1e-12,
+    "require_zero_untrusted_main_starts": true
+  },
+  "restart_audit": {
+    "candidate_folders": ["1080ms", "1090ms", "1110ms", "1120ms"],
+    "minimum_distinct_folders": 2,
+    "availability_is_not_a_stage4_1r14_pass_requirement": true
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "hardware_pre_shot_calibration_validated": false,
+  "true_restart_validation_performed": false,
+  "continuous_parameter_change_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "deployment_robustness_validated": false,
+  "unseen_target_generalization_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "stage4_2r1_was_not_run_or_reused": true
+}

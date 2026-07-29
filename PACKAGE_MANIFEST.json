@@ -1,146 +1,13 @@
 {
-  "schema_version": 1,
-  "stage": "Stage4.1R13",
-  "controller_revision": "original_deadline_delay_pipeline_early_braking_v13",
-  "package_revision": "r13_original_deadline_early_braking_v1",
-  "package_type": "complete_standalone_lean_source_package",
-  "run_name": "stage4_1r13_original_deadline_delay_pipeline_early_braking",
-  "description": "Preserve the immutable Stage3.4/R4 timing contract. Stage4.1R12 completed normally, but its 280--350 ms first-effect bank was structurally unable to repair endpoint-late-speed violations already present at the 270 ms weak-slew deadline. R13 changes only the four 0.9x-slew delay=1/2 paths, tests causal first physical effects at 200--260 ms, selects one onset per trusted delay across both required targets, and leaves the fourteen already-passing formal paths source-exact. No deadline or scoring horizon is expanded.",
-  "source_requirement": {
-    "stage": "Stage4.1R12",
-    "controller_revision": "original_deadline_weak_slew_anticipatory_damping_v12",
-    "package_revision": "r12_original_deadline_post_arrival_damping_v4",
-    "require_finished": true,
-    "required_stop_reason": "formal_original_deadline_closure_failed",
-    "required_source_raw_rollouts": 12,
-    "expected_delay1_formal_pass_count": 0,
-    "expected_delay2_formal_pass_count": 6,
-    "stage4_2r1_was_not_run_or_reused": true,
-    "retain_run_directories": [
-      "stage4_1r12_runs",
-      "stage4_1r11_runs",
-      "stage4_1r10_runs",
-      "stage4_1r9_runs",
-      "stage4_1r8_runs",
-      "stage4_1r7_runs",
-      "stage4_1r6_runs",
-      "stage3_4_runs"
-    ]
-  },
-  "formal_acceptance_contract": {
-    "normal_slew_scales": [
-      1.0,
-      1.1
-    ],
-    "normal_arrival_deadline_step": 25,
-    "normal_arrival_deadline_ms": 250,
-    "normal_hold_through_step": 35,
-    "normal_hold_through_ms": 350,
-    "weak_slew_scale": 0.9,
-    "weak_arrival_deadline_step": 27,
-    "weak_arrival_deadline_ms": 270,
-    "weak_hold_through_step": 37,
-    "weak_hold_through_ms": 370,
-    "position_gate_m": 0.03,
-    "velocity_gate_m_per_s": 0.1,
-    "arrival_deadline_expansion_allowed": false,
-    "hold_horizon_substitution_for_arrival_deadline_allowed": false,
-    "r9_r10_r11_extended_horizons_are_auxiliary_only": true
-  },
-  "r12_forensic_basis": {
-    "runtime_or_tsc_error_found": false,
-    "r12_development_rollouts": 12,
-    "all_environment_success": true,
-    "delay1_formal_pass_count": 0,
-    "delay2_formal_pass_count": 6,
-    "post_deadline_damping_fixed_nominal_delay2": true,
-    "nominal_delay1_limiting_component": "endpoint_late_speed",
-    "rz_delay1_delay2_state27_only_lower_bound_exceeds_speed_gate": true,
-    "latest_globally_feasible_first_physical_effect_state": 26,
-    "interpretation": "R12 was a valid negative experiment whose candidate bank was too late by construction; this is a design limitation, not a runtime failure."
-  },
-  "campaign": {
-    "required_targets": [
-      "nominal",
-      "RZ_p10_m10"
-    ],
-    "modified_actual_slew_scales": [
-      0.9
-    ],
-    "modified_actual_delay_steps": [
-      1,
-      2
-    ],
-    "candidate_first_physical_effect_steps": [
-      20,
-      21,
-      22,
-      23,
-      24,
-      25,
-      26
-    ],
-    "candidate_first_physical_effect_ms": [
-      200,
-      210,
-      220,
-      230,
-      240,
-      250,
-      260
-    ],
-    "selection_conditioned_only_on_trusted_delay": true,
-    "selection_uses_both_required_targets": true,
-    "unseen_target_holdout_claimed": false,
-    "oracle_development_rollouts": 28,
+  "campaign_budget": {
     "calibrated_confirmation_rollouts_if_development_passes": 4,
-    "maximum_real_tsc_episodes": 32,
-    "default_workers": 128,
-    "formal_grid_cases": 18,
-    "source_unchanged_formal_grid_cases": 14,
-    "new_modified_formal_grid_cases": 4
+    "maximum_new_true_tsc_rollouts": 28,
+    "oracle_development_rollouts": 24,
+    "ray_actor_cap": "min(requested_workers,pending_tasks,cluster_capacity)"
   },
-  "scientific_guardrails": {
-    "source_physics_exact_before_selected_first_effect": true,
-    "source_issued_exact_before_transition_issue": true,
-    "source_applied_exact_before_first_effect": true,
-    "transition_command_issued_earlier_only_due_to_trusted_delay": true,
-    "future_measurement_allowed": false,
-    "normal_slew_controller_changed": false,
-    "weak_slew_delay0_controller_changed": false,
-    "unaffected_14_paths_rerun": false,
-    "unaffected_14_paths_remain_source_exact": true,
-    "untrusted_default_start_allowed": false,
-    "online_handover_enabled": false,
-    "tracking_gate_weakened": false,
-    "finite_clean_static_digital_twin_only": true,
-    "true_restart_validated": false,
-    "hidden_history_validated": false,
-    "plant_parameter_robustness_validated": false,
-    "continuous_actuator_change_validated": false,
-    "measurement_noise_validated": false,
-    "disturbance_recovery_validated": false
-  },
-  "next_stage_logic": {
-    "if_pass": "Freeze the original 250/270 ms static-grid controller, then proceed to true restart and hidden vessel/eddy-history validation. Do not begin BC/DAgger/RL yet.",
-    "if_fail": "Do not enlarge 250/270 ms. Use the complete causal 200--260 ms raw bank to identify a bounded early-braking local model and redesign an integrated delay-pipeline-aware main MPC; do not add another late tail and do not hand 14-coil control to RL."
-  },
-  "deployment": {
-    "replace_directories": [
-      "configs",
-      "scripts",
-      "tests",
-      "tsc_rzip_rllib"
-    ],
-    "replace_root_shell_scripts": true,
-    "requires_git": false,
-    "requires_network": false,
-    "requires_external_source_tree": false,
-    "ignores_residual_markdown_archives_logs_and_run_outputs_outside_manifest": true,
-    "supports_resume": true,
-    "ray_fixed_campaign_capacity_protection": true
-  },
-  "declared_file_count": 87,
+  "config": "configs/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_370ms.json",
+  "controller_revision": "original_deadline_integrated_target_conditioned_deadline_mpc_v14",
+  "declared_file_count": 90,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -156,6 +23,7 @@
     "configs/stage4_1r11_frozen_terminal_long_horizon_hold_2000ms.json",
     "configs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_370ms.json",
     "configs/stage4_1r13_original_deadline_delay_pipeline_early_braking_370ms.json",
+    "configs/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_370ms.json",
     "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json",
     "configs/stage4_1r3_control_aware_residual_observer_350ms.json",
     "configs/stage4_1r4_targeted_closure_370ms.json",
@@ -164,13 +32,13 @@
     "configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json",
     "configs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_410ms.json",
     "configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json",
-    "run_stage4_1r13_original_deadline_delay_pipeline_early_braking_native.sh",
-    "run_stage4_1r13_original_deadline_delay_pipeline_early_braking_nohup.sh",
-    "run_stage4_1r13_self_test.sh",
-    "run_stage4_1r13_verify_package.sh",
-    "run_stop_stage4_1r13_now.sh",
-    "scripts/stage4_1r13_original_deadline_delay_pipeline_early_braking.py",
-    "scripts/stage4_1r13_shell_common.sh",
+    "run_stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_native.sh",
+    "run_stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_nohup.sh",
+    "run_stage4_1r14_self_test.sh",
+    "run_stage4_1r14_verify_package.sh",
+    "run_stop_stage4_1r14_now.sh",
+    "scripts/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py",
+    "scripts/stage4_1r14_shell_common.sh",
     "tests/__init__.py",
     "tests/test_ray_runtime_capacity.py",
     "tests/test_stage2_1_trajectory_optimization.py",
@@ -187,6 +55,7 @@
     "tests/test_stage4_1r11_frozen_terminal_long_horizon_hold.py",
     "tests/test_stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py",
     "tests/test_stage4_1r13_original_deadline_delay_pipeline_early_braking.py",
+    "tests/test_stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py",
     "tests/test_stage4_1r3_control_aware_robustness.py",
     "tests/test_stage4_1r4_targeted_closure.py",
     "tests/test_stage4_1r5_adaptive_handover_closure.py",
@@ -216,6 +85,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_1r11_frozen_terminal_long_horizon_hold.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r13_original_deadline_delay_pipeline_early_braking.py",
+    "tsc_rzip_rllib/diagnostics/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py",
@@ -231,5 +101,73 @@
     "tsc_rzip_rllib/utils/ray_runtime.py"
   ],
   "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
-  "rl_role": "bounded residual correction only after a reliable MPC expert baseline; never from-scratch 14-coil takeover"
+  "formal_timing_contract": {
+    "arrival_deadline_expansion_allowed": false,
+    "normal_slew_arrival_deadline_ms": 250,
+    "normal_slew_hold_through_ms": 350,
+    "weak_slew_arrival_deadline_ms": 270,
+    "weak_slew_hold_through_ms": 370
+  },
+  "package_revision": "r14_integrated_target_conditioned_deadline_mpc_v1",
+  "replacement_contract": {
+    "external_source_tree_required": false,
+    "git_required": false,
+    "network_required": false,
+    "replace_directories": [
+      "configs",
+      "scripts",
+      "tests",
+      "tsc_rzip_rllib"
+    ],
+    "replace_root_stage_shell_scripts": true,
+    "residual_markdown_logs_zips_ignored": true,
+    "resume_supported": true
+  },
+  "run_name": "stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc",
+  "schema_version": 1,
+  "scientific_scope": {
+    "actual_delay_steps": [
+      1,
+      2
+    ],
+    "actual_slew_scale": 0.9,
+    "checkpoint_integral_preserved": true,
+    "deadline_velocity_states": [
+      24,
+      25,
+      26,
+      27
+    ],
+    "finite_test_envelope_only": true,
+    "fixed_first_affected_state_step": 23,
+    "modified_paths": 4,
+    "onset_rescan_allowed": false,
+    "required_targets": [
+      "nominal",
+      "RZ_p10_m10"
+    ],
+    "selection_conditioned_only_on_trusted_delay": true,
+    "stage4_2r1_was_not_run_or_reused": true,
+    "target_conditioned_nominal_retained": true,
+    "unaffected_source_exact_paths": 14,
+    "unseen_target_generalization_claimed": false
+  },
+  "source_requirement": {
+    "controller_revision": "original_deadline_delay_pipeline_early_braking_v13",
+    "package_revision": "r13_original_deadline_early_braking_v1",
+    "required_raw_rollouts": 28,
+    "required_stop_reason": "formal_original_deadline_early_braking_failed",
+    "stage": "Stage4.1R13"
+  },
+  "stage": "Stage4.1R14",
+  "verification": {
+    "empty_directory_extract": true,
+    "full_unittest_discovery": true,
+    "internal_import_closure": true,
+    "json_parse": true,
+    "python_compile": true,
+    "real_server_gotsc_executed_by_packager": false,
+    "shell_bash_n": true,
+    "source_raw_audit_supported": true
+  }
 }
