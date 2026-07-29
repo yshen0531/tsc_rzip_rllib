@@ -1,17 +1,44 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.1R11",
-  "controller_revision": "frozen_queue_preview_terminal_long_horizon_hold_v11",
-  "package_revision": "r11_frozen_long_hold_v1",
+  "stage": "Stage4.1R12",
+  "controller_revision": "original_deadline_weak_slew_anticipatory_damping_v12",
+  "package_revision": "r12_original_deadline_post_arrival_damping_v4",
   "package_type": "complete_standalone_lean_source_package",
-  "run_name": "stage4_1r11_frozen_terminal_long_horizon_hold",
-  "description": "Freeze the Stage4.1R10 selected causal queue-preview terminal controller and extend both targets over the complete static 3x3 delay/slew grid to a fixed 2000 ms clean hold. No policy retuning or new arrival endpoint search is allowed.",
+  "run_name": "stage4_1r12_original_deadline_weak_slew_anticipatory_damping",
+  "description": "Restore the immutable Stage3.4/R4 acceptance timing without reusing the unrun Stage4.2R1. Normal slew must arrive by 250 ms and hold through 350 ms; 0.9x slew must arrive by 270 ms and hold through 370 ms. Re-score R11 under that contract, then modify only the four 0.9x-slew delay=1/2 failures. Candidate damping commands are causal and their first physical effect is strictly after the unchanged 270 ms arrival deadline, so the source arrival trajectory through 270 ms remains exact.",
   "source_requirement": {
-    "stage": "Stage4.1R10",
-    "controller_revision": "queue_preview_terminal_transition_hold_v10",
-    "selected_policy": "qp28_c0p50_v1p50_p1p25_position",
-    "required_source_raw_rollouts": 81,
+    "stage": "Stage4.1R11",
+    "controller_revision": "frozen_queue_preview_terminal_long_horizon_hold_v11",
+    "required_source_oracle_raw_rollouts": 18,
+    "required_source_calibrated_raw_rollouts": 18,
+    "source_long_hold_is_auxiliary_only": true,
+    "stage4_2r1_was_not_run_or_reused": true,
+    "expected_original_contract_pass_count": 14,
+    "expected_original_contract_failure_count": 4,
+    "expected_original_contract_failures": [
+      {
+        "target_id": "nominal",
+        "actual_delay_steps": 1,
+        "actual_slew_scale": 0.9
+      },
+      {
+        "target_id": "nominal",
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "actual_delay_steps": 1,
+        "actual_slew_scale": 0.9
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      }
+    ],
     "retain_run_directories": [
+      "stage4_1r11_runs",
       "stage4_1r10_runs",
       "stage4_1r9_runs",
       "stage4_1r8_runs",
@@ -20,31 +47,86 @@
       "stage3_4_runs"
     ]
   },
-  "campaign": {
-    "oracle_long_hold_rollouts": 18,
-    "calibrated_long_hold_rollouts_if_oracle_passes": 18,
-    "maximum_real_tsc_episodes": 36,
-    "default_workers": 128,
-    "horizon_steps": 200,
-    "horizon_ms": 2000,
-    "fixed_hold_start_step": 65,
-    "fixed_hold_start_ms": 650,
-    "source_prefix_steps": 75,
-    "source_prefix_ms": 750
-  },
-  "scientific_guardrails": {
-    "policy_retuning_allowed": false,
-    "new_arrival_endpoint_search_allowed": false,
-    "r10_prefix_must_be_bit_exact": true,
-    "untrusted_calibration_start_allowed": false,
-    "online_handover_enabled": false,
+  "formal_acceptance_contract": {
+    "normal_slew_scales": [
+      1.0,
+      1.1
+    ],
+    "normal_arrival_deadline_step": 25,
+    "normal_arrival_deadline_ms": 250,
+    "normal_hold_through_step": 35,
+    "normal_hold_through_ms": 350,
+    "weak_slew_scale": 0.9,
+    "weak_arrival_deadline_step": 27,
+    "weak_arrival_deadline_ms": 270,
+    "weak_hold_through_step": 37,
+    "weak_hold_through_ms": 370,
     "position_gate_m": 0.03,
     "velocity_gate_m_per_s": 0.1,
+    "arrival_deadline_expansion_allowed": false,
+    "hold_horizon_substitution_for_arrival_deadline_allowed": false,
+    "r9_r10_r11_extended_horizons_are_auxiliary_only": true
+  },
+  "campaign": {
+    "development_target": "nominal",
+    "disjoint_holdout_target": "RZ_p10_m10",
+    "modified_actual_slew_scales": [
+      0.9
+    ],
+    "modified_actual_delay_steps": [
+      1,
+      2
+    ],
+    "candidate_first_physical_effect_steps": [
+      28,
+      30,
+      32,
+      33,
+      34,
+      35
+    ],
+    "candidate_first_physical_effect_ms": [
+      280,
+      300,
+      320,
+      330,
+      340,
+      350
+    ],
+    "oracle_development_rollouts": 12,
+    "oracle_holdout_rollouts_if_development_passes": 2,
+    "calibrated_confirmation_rollouts_if_holdout_passes": 4,
+    "maximum_real_tsc_episodes": 18,
+    "default_workers": 128,
+    "formal_grid_cases": 18,
+    "source_unchanged_formal_grid_cases": 14,
+    "new_modified_formal_grid_cases": 4
+  },
+  "scientific_guardrails": {
+    "source_physics_through_270ms_must_be_exact": true,
+    "candidate_first_physical_effect_strictly_after_270ms": true,
+    "transition_command_may_be_issued_before_270ms_only_due_to_known_delay": true,
+    "future_measurement_allowed": false,
+    "normal_slew_controller_changed": false,
+    "weak_slew_delay0_controller_changed": false,
+    "unaffected_14_paths_rerun": false,
+    "holdout_used_for_policy_selection": false,
+    "holdout_reselection_allowed": false,
+    "trusted_calibration_required": true,
+    "untrusted_default_start_allowed": false,
+    "online_handover_enabled": false,
+    "tracking_gate_weakened": false,
     "finite_clean_static_digital_twin_only": true,
     "true_restart_validated": false,
+    "hidden_history_validated": false,
     "plant_parameter_robustness_validated": false,
     "continuous_actuator_change_validated": false,
-    "terminal_measurement_noise_validated": false
+    "measurement_noise_validated": false,
+    "disturbance_recovery_validated": false
+  },
+  "next_stage_logic": {
+    "if_pass": "Freeze the original-deadline controller, then begin true restart and hidden vessel/eddy-history validation. Do not treat R10/R11 late-arrival timing as the expert contract and do not begin RL.",
+    "if_fail": "Do not enlarge 250/270 ms. Use the failed post-arrival damping traces to identify a bounded late-phase local model and redesign delay-pipeline-aware braking before 270 ms under the same gates."
   },
   "deployment": {
     "replace_directories": [
@@ -56,12 +138,14 @@
     "replace_root_shell_scripts": true,
     "requires_git": false,
     "requires_network": false,
-    "ignores_residual_markdown_outside_manifest": true,
+    "requires_external_source_tree": false,
+    "ignores_residual_markdown_archives_logs_and_run_outputs_outside_manifest": true,
     "supports_resume": true,
     "ray_fixed_campaign_capacity_protection": true
   },
-  "declared_file_count": 80,
+  "declared_file_count": 84,
   "file_inventory": [
+    "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
     "configs/stage2_2_svd3_corner_feasibility_100ms.json",
     "configs/stage2_svd3_real_tsc_cem_100ms.json",
@@ -73,6 +157,7 @@
     "configs/stage4_0_robustness_recovery_350ms.json",
     "configs/stage4_1r10_queue_preview_terminal_transition_hold_750ms.json",
     "configs/stage4_1r11_frozen_terminal_long_horizon_hold_2000ms.json",
+    "configs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_370ms.json",
     "configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json",
     "configs/stage4_1r3_control_aware_residual_observer_350ms.json",
     "configs/stage4_1r4_targeted_closure_370ms.json",
@@ -81,13 +166,13 @@
     "configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json",
     "configs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_410ms.json",
     "configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json",
-    "run_stage4_1r11_frozen_terminal_long_horizon_hold_native.sh",
-    "run_stage4_1r11_frozen_terminal_long_horizon_hold_nohup.sh",
-    "run_stage4_1r11_self_test.sh",
-    "run_stage4_1r11_verify_package.sh",
-    "run_stop_stage4_1r11_now.sh",
-    "scripts/stage4_1r11_frozen_terminal_long_horizon_hold.py",
-    "scripts/stage4_1r11_shell_common.sh",
+    "run_stage4_1r12_original_deadline_weak_slew_anticipatory_damping_native.sh",
+    "run_stage4_1r12_original_deadline_weak_slew_anticipatory_damping_nohup.sh",
+    "run_stage4_1r12_self_test.sh",
+    "run_stage4_1r12_verify_package.sh",
+    "run_stop_stage4_1r12_now.sh",
+    "scripts/stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py",
+    "scripts/stage4_1r12_shell_common.sh",
     "tests/__init__.py",
     "tests/test_ray_runtime_capacity.py",
     "tests/test_stage2_1_trajectory_optimization.py",
@@ -102,6 +187,7 @@
     "tests/test_stage4_1_delay_gain_phase_robustness.py",
     "tests/test_stage4_1r10_queue_preview_terminal_transition_hold.py",
     "tests/test_stage4_1r11_frozen_terminal_long_horizon_hold.py",
+    "tests/test_stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py",
     "tests/test_stage4_1r3_control_aware_robustness.py",
     "tests/test_stage4_1r4_targeted_closure.py",
     "tests/test_stage4_1r5_adaptive_handover_closure.py",
@@ -129,6 +215,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_1_delay_gain_phase_robustness.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r10_queue_preview_terminal_transition_hold.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r11_frozen_terminal_long_horizon_hold.py",
+    "tsc_rzip_rllib/diagnostics/stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py",
     "tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py",
@@ -143,5 +230,6 @@
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
   ],
-  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "rl_role": "bounded residual correction only after a reliable MPC expert baseline; never from-scratch 14-coil takeover"
 }

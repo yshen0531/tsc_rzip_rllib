@@ -1,0 +1,276 @@
+{
+  "stage_label": "Stage 4.1R12",
+  "run_name": "stage4_1r12_original_deadline_weak_slew_anticipatory_damping",
+  "output_root": "stage4_1r12_runs",
+  "controller_revision": "original_deadline_weak_slew_anticipatory_damping_v12",
+  "source_requirement": {
+    "required_stage": "Stage4.1R11",
+    "required_controller_revision": "frozen_queue_preview_terminal_long_horizon_hold_v11",
+    "require_finished": true,
+    "require_stop_reason": "",
+    "require_oracle_long_hold_passed": true,
+    "require_calibrated_long_hold_passed": true,
+    "require_oracle_raw_count": 18,
+    "require_calibrated_raw_count": 18,
+    "expected_original_contract_pass_count": 14,
+    "expected_original_contract_total_count": 18,
+    "expected_original_contract_failures": [
+      {
+        "target_id": "nominal",
+        "actual_delay_steps": 1,
+        "actual_slew_scale": 0.9
+      },
+      {
+        "target_id": "nominal",
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "actual_delay_steps": 1,
+        "actual_slew_scale": 0.9
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      }
+    ]
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Restore the immutable Stage3.4/R4 timing contract. Slew 1.0/1.1 must arrive by 250 ms and hold through 350 ms; slew 0.9 must arrive by 270 ms and hold through 370 ms. Only the four 0.9x-slew delay=1/2 failures may change. The source physical trajectory through the unchanged 270 ms arrival deadline is preserved exactly; candidate damping commands may be issued causally before that deadline only when their first physical effect occurs strictly after it. No arrival deadline or scoring horizon may expand."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r12"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "formal_timing_contract": {
+    "immutable": true,
+    "normal_slew": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "horizon_steps": 35,
+      "arrival_deadline_step": 25,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "hold_through_step": 35,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "weak_slew": {
+      "slew_scale": 0.9,
+      "horizon_steps": 37,
+      "arrival_deadline_step": 27,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "hold_through_step": 37,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "arrival_deadline_may_not_expand": true,
+    "hold_horizon_may_not_substitute_for_arrival_deadline": true,
+    "r9_r10_r11_extended_horizons_are_auxiliary_only": true
+  },
+  "weak_slew_closure": {
+    "actual_slew_scale": 0.9,
+    "horizon_steps": 37,
+    "actual_delay_steps": [
+      1,
+      2
+    ],
+    "development_target": {
+      "target_id": "nominal",
+      "R_offset_m": 0.0,
+      "Z_offset_m": 0.0,
+      "Ip_offset_A": 0.0
+    },
+    "holdout_target": {
+      "target_id": "RZ_p10_m10",
+      "R_offset_m": 0.01,
+      "Z_offset_m": -0.01,
+      "Ip_offset_A": 0.0
+    },
+    "candidate_bank": [
+      {
+        "policy_id": "brake_effect_state28",
+        "first_affected_state_step": 28
+      },
+      {
+        "policy_id": "brake_effect_state30",
+        "first_affected_state_step": 30
+      },
+      {
+        "policy_id": "brake_effect_state32",
+        "first_affected_state_step": 32
+      },
+      {
+        "policy_id": "brake_effect_state33",
+        "first_affected_state_step": 33
+      },
+      {
+        "policy_id": "brake_effect_state34",
+        "first_affected_state_step": 34
+      },
+      {
+        "policy_id": "brake_effect_state35",
+        "first_affected_state_step": 35
+      }
+    ],
+    "terminal_model_phase_cap_step": 28,
+    "terminal_controller_scale": 0.5,
+    "terminal_velocity_measurement_gain": 1.5,
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_integral_mode": "reset_zero",
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "activation_requires_trusted_slew_0p9_model": true,
+    "normal_slew_controller_is_unchanged": true,
+    "weak_slew_delay0_controller_is_unchanged": true,
+    "minimum_tracking_fraction": 1.0,
+    "minimum_tracking_signed_margin": 0.0,
+    "maximum_current_utilization": 0.75,
+    "prefix_numeric_atol": 1e-12,
+    "require_exact_source_physics_before_first_affected_state": true,
+    "require_exact_source_issued_before_transition_issue": true,
+    "require_no_future_measurement": true,
+    "require_streaming_queue_consistency": true,
+    "selection_order": "largest_minimum_original_contract_margin_then_largest_mean_margin_then_latest_first_effect_then_lower_terminal_speed_then_lower_action_rms",
+    "development_target_is_disjoint_from_holdout": true,
+    "holdout_may_not_reselect_policy": true,
+    "candidate_first_affected_state_steps": [
+      28,
+      30,
+      32,
+      33,
+      34,
+      35
+    ],
+    "earliest_first_affected_state_step": 28,
+    "latest_first_affected_state_step": 35,
+    "modified_paths_may_change_before_arrival_deadline": false,
+    "preserve_source_physics_only_until_candidate_first_effect": true,
+    "causal_original_issue_time_transition_required": true,
+    "future_measurement_forbidden": true,
+    "arrival_deadline_remains_step": 27,
+    "horizon_remains_step": 37,
+    "unaffected_14_paths_remain_source_exact": true,
+    "preserve_source_physics_through_arrival_deadline": true,
+    "candidate_first_effect_strictly_after_arrival_deadline": true,
+    "transition_command_may_be_issued_before_deadline": true
+  },
+  "full_oracle_confirmation": {
+    "case_count": 18,
+    "source_unchanged_case_count": 14,
+    "r12_modified_case_count": 4,
+    "require_all_original_contract_cases": true,
+    "require_unchanged_path_for_unaffected_14_cases": true,
+    "arrival_deadline_expansion_allowed": false,
+    "modified_paths_preserve_physics_through_arrival_deadline": true,
+    "transition_commands_may_be_issued_before_deadline_but_first_effect_is_after_deadline": true
+  },
+  "calibrated_confirmation": {
+    "reuse_stage4_1r8_pair_level_tokens": true,
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "actual_delay_steps": [
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9
+    ],
+    "require_all_tokens_trusted_and_correct": true,
+    "online_handover_enabled": false,
+    "monitor_enabled": false,
+    "minimum_trace_equivalence_fraction": 1.0,
+    "numeric_trace_equivalence_atol": 1e-12,
+    "require_zero_untrusted_main_starts": true
+  },
+  "restart_audit": {
+    "candidate_folders": [
+      "1080ms",
+      "1090ms",
+      "1110ms",
+      "1120ms"
+    ],
+    "minimum_distinct_folders": 2,
+    "availability_is_not_a_stage4_1r12_pass_requirement": true
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "hardware_pre_shot_calibration_validated": false,
+  "true_restart_validation_performed": false,
+  "continuous_parameter_change_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "stage4_2r1_was_not_run_or_reused": true
+}

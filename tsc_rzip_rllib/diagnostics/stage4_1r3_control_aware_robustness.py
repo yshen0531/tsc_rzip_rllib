@@ -2301,7 +2301,50 @@ class LocalStage41Worker:
             model_scale = float(spec.get("controller_model_scale", 1.0))
             disturbance = spec.get("disturbance") or None
 
-            for env_step in range(env_phase_offset, 35):
+            # Stage4.1R12 opt-in partial main-control checkpoint.  The legacy
+            # path is byte-for-byte unchanged when the private key is absent.
+            # The checkpoint is taken *before* issuing ``partial_stop_step`` so
+            # a stage-local controller can continue causally from state k using
+            # only state k and the real pending action-delay queue.
+            partial_stop_raw = spec.get("_stage4_1r12_main_control_stop_step")
+            partial_stop_step: int | None = None
+            if partial_stop_raw is not None:
+                partial_stop_step = int(partial_stop_raw)
+                if not (2 <= partial_stop_step <= 34):
+                    raise ValueError(
+                        "Stage4.1R12 partial main-control stop must be in [2,34]"
+                    )
+                if env_phase_offset != 0:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint forbids prelude steps"
+                    )
+                if dynamic_delay_path or dynamic_slew_path:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint requires static actuator parameters"
+                    )
+                if controller_delay_schedule or controller_slew_schedule:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint forbids controller schedules"
+                    )
+                if estimator is not None or handover_enabled:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint requires a trusted persistent model"
+                    )
+                if actual_delay != modeled_delay:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint actual/modeled delay mismatch"
+                    )
+                if not bool(spec.get("trusted_calibration_model", False)):
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint forbids untrusted model startup"
+                    )
+                if observation_delay != 0 or not clean_sensor_path:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint currently requires clean zero-delay sensing"
+                    )
+
+            main_control_stop_step = 35 if partial_stop_step is None else partial_stop_step
+            for env_step in range(env_phase_offset, main_control_stop_step):
                 reference_step = env_step if phase_aware_enabled else env_step - env_phase_offset
                 reference_step = int(np.clip(reference_step, 0, 34))
 
@@ -2903,9 +2946,44 @@ class LocalStage41Worker:
                     failure_reason = "environment truncated before the 350 ms horizon"
                     break
 
-            success = len(trajectory) == 36 and not any(
+            expected_state_count = main_control_stop_step + 1
+            success = len(trajectory) == expected_state_count and not any(
                 bool(row.get("abnormal", False)) for row in trajectory
             )
+            partial_checkpoint = None
+            if partial_stop_step is not None and success:
+                if len(control_trace) != partial_stop_step:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint control-trace length mismatch"
+                    )
+                if len(command_queue) != actual_delay:
+                    raise ValueError(
+                        "Stage4.1R12 partial checkpoint queue length mismatch"
+                    )
+                partial_checkpoint = {
+                    "schema_version": 1,
+                    "state_index": int(partial_stop_step),
+                    "actual_delay_steps": int(actual_delay),
+                    "modeled_delay_steps": int(modeled_delay),
+                    "actual_slew_scale": float(self.actual_slew_scale),
+                    "modeled_slew_scale": float(slew_estimate),
+                    "queue": [
+                        {
+                            "command": np.asarray(item["command"], dtype=float).tolist(),
+                            "desired_physical": np.asarray(
+                                item["desired_physical"], dtype=float
+                            ).tolist(),
+                        }
+                        for item in command_queue
+                    ],
+                    "previous_correction_physical": np.asarray(
+                        previous_correction, dtype=float
+                    ).tolist(),
+                    "integral_normalized": np.asarray(integral, dtype=float).tolist(),
+                    "measurement_history_max_state_index": int(partial_stop_step),
+                    "future_measurement_used": False,
+                    "issued_command_count": len(issued_items_history),
+                }
             result = {
                 "schema_version": SCHEMA_VERSION,
                 "controller_revision": CONTROLLER_REVISION,
@@ -2913,12 +2991,19 @@ class LocalStage41Worker:
                 "spec": spec,
                 "success": bool(success),
                 "failure_reason": "" if success else (
-                    failure_reason or "incomplete/abnormal trajectory"
+                    failure_reason
+                    or (
+                        "incomplete/abnormal partial main-control trajectory"
+                        if partial_stop_step is not None
+                        else "incomplete/abnormal trajectory"
+                    )
                 ),
                 "wall_time_s": float(time.time() - started),
                 "trajectory": trajectory,
                 "prelude_trajectory": prelude_trajectory,
                 "control_trace": control_trace,
+                "partial_main_control_checkpoint": partial_checkpoint,
+                "partial_main_control_stop_step": partial_stop_step,
                 "nominal_schedule_diagnostics": nominal_schedule_diagnostics,
                 "library_interpolation": interpolation,
                 "environment_variant": self.variant_id,
