@@ -1,134 +1,143 @@
 # Current status
 
-## Stage4.2R3c1 failed; Stage4.2R3c2 is preregistered
+## Stage4.2R3c2 failed; Stage4.2R3c3 is preregistered
 
 Status timestamp: 2026-07-30 Asia/Shanghai
 
 Current local branch:
 
 ```text
-codex/stage4_2r3c1-visible-manifold
+codex/stage4_2r3c2-restart-regulation
 ```
 
-R3c1 implementation and forensic checkpoints:
+R3c2 implementation checkpoint:
 
 ```text
-be3065b  implementation
-35e725c  semantics-preserving first-sample runtime hotfix
-0898b28  reporting-only package-chain audit hotfix
-1e3772d  independent raw forensic tool
+c4b9143  restart target-state regulation MPC
 ```
 
-## R3c1 exact result
+## R3c2 exact result
 
 Remote run:
 
 ```text
-/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/
-stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/
+stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616
 ```
 
-Final result:
+Final raw-derived result:
 
 ```text
 expected/final raw                                32/32
 environment success                               32/32
+fresh controller / fresh TSC                      32/32
 exact plant restart                               32/32
-causal controller / valid phase trace             32/32
-formal contract pass                              16/32
-real closed-loop failures                             16
+causal complete regulator trace                 1152/1152
+formal contract pass                              12/32
+real formal failures                                  20
 ```
-
-The initial run had four phase-20 first-sample runtime exceptions. Their
-complete pre-hotfix evidence was preserved. A compatible resume recomputed
-only those four experiment IDs; all four passed and all 28 prior-success raw
-hashes remained exact. A missing executable bit caused one pre-TSC resume
-launch failure. A later package-chain postprocessing defect was
-reporting-only.
 
 Final classification:
 
-- final runtime/environment errors: 0;
-- final deployment/import errors: 0;
+- runtime/environment errors: 0;
+- final packaging/import errors: 0;
 - raw/snapshot corruption: 0;
-- final statistics/reporting errors: 0;
+- statistics/reporting errors: 0;
 - plant-restart failures: 0;
 - controller-causality failures: 0;
-- real closed-loop formal failures: 16;
-- controller-design failure: static visible R/Z/Ip phase matching is
-  insufficient.
+- solver failures: 0;
+- saturated action elements: 0/16,128;
+- deployment-command incident: one pre-run quoting/install failure, fully
+  restored and revalidated before TSC;
+- controller-design failure: zero-nominal terminal damping is not a
+  finite-horizon restart transport controller;
+- real closed-loop formal failures: 20.
 
-R3c1 moved R3c outcomes as follows:
+R3c1-to-R3c2 outcome movement:
 
 ```text
-pass -> pass    16
-fail -> fail    12
+pass -> pass    12
+fail -> fail    16
 pass -> fail     4
 fail -> pass     0
 ```
 
-It did not validate hidden-history robustness: eight pair groups passed both
-members and eight failed both members, so common-mode failures mask history
-sensitivity.
+Grouped R3c2 outcome:
+
+```text
+prefix 5                    0/16
+prefix 9                   12/16
+nominal target              8/16
+offset target               4/16
+normal actuator             8/16
+weak actuator               4/16
+```
+
+The 20 formal failures all have unavoidable position violations. Four also
+have unavoidable endpoint-late-speed violations. Hidden-history robustness
+remains inconclusive because six pair groups passed both members and ten
+failed both members.
 
 ## Evidence
 
 ```text
 run inventory
-  166 files / 3,409,736 bytes
-  5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f
+  147 files / 3,287,591 bytes
+  2119d2edad615dbb9594ad4332b758a9cf7ffc2e62b988650c41297aace8cff2
 
-independent raw forensics
-  29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd
+raw inventory
+  32 files / 1,070,893 bytes
+  b01a07c9dc136677f323d292d0f9388904cc39663514bf4025f4fa4fed767653
 
-server audit
-  0d81cbe3e0d9b67d72cf093143edd8a825a3b60ea5e3c449cf29de7cf0cc7712
+server audit SHA-256
+  87461800e5fd9ea6f228d49e36269eb80ffbb537720fcf804c69812ed2ddf7cf
 
-pre-hotfix evidence manifest
-  30303cc7a907a4ff2cd4c7680f3164990db39ac0495a6b978b9f4cac38a69cc9
+independent raw forensics SHA-256
+  644da85280e03015732bb63deb1205bf5fcafeabc53b0f8a9e606565a27efbb2
 
-restart-regulation no-TSC diagnostic
-  9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d
+local compact inventory
+  12 files / 903,923 bytes
+  35ac2b2731047a7e2d5e67e63d28b9eb108b649c31cb712af012a20fd3a2f0b1
 
 formal report
-  docs/codex/reports/STAGE4_2R3C1_FORENSIC_REPORT.md
+  docs/codex/reports/STAGE4_2R3C2_FORENSIC_REPORT.md
 
 compact evidence
-  docs/codex/audits/stage4_2r3c1_result_20260730_143218/
+  docs/codex/audits/stage4_2r3c2_result_20260730_164616/
 ```
 
-No final large raw JSON.GZ or snapshot tree was downloaded.
+Large raw JSON.GZ and snapshot trees remain server-side.
 
 ## Active next step
 
-Stage4.2R3c2 is frozen in:
+R3c3 is frozen in:
 
 ```text
-docs/codex/reports/STAGE4_2R3C2_PREREGISTERED_DESIGN.md
+docs/codex/reports/STAGE4_2R3C3_PREREGISTERED_DESIGN.md
 ```
 
-It preserves the exact phase-zero R17 path but starts causal target-state
-regulation at task step zero for every nonzero visible restart phase.
-Visible phase remains only for the branch, response-model phase, and
-phase-aligned delay-queue initialization.
+R3c3 is not another controller attempt. It is a 256-rollout,
+identification-only campaign using the exact R3c1 target-conditioned nominal
+controller plus fixed `0.0075`, bidirectional, zero-net mode-0/mode-1 probes
+at task-state anchors 5 and 17.
 
-The server-side no-TSC diagnostic established:
+It will independently test:
 
-```text
-development first actions finite/solver success       32/32
-hidden-wire invariant                                  32/32
-zero-velocity causal bootstrap                         32/32
-original R17 phase-zero/actions exact                    4/4
-plant advance / real TSC                                    0
-```
+- exact restart and causal task-relative probe execution;
+- bounded local central symmetry;
+- four-basis response conditioning;
+- matched-visible hidden-history response disagreement.
 
-R3c2 is a new controller and experiment identity because its first actions
-differ materially from R3c1. It must complete the entire local validation,
-direct deployment, server validation, offline gate, real TSC, server
-postprocessing, compact download, and independent analysis loop.
+The probe bank cannot enter an expert dataset. Formal outcomes are recorded
+but are not used to pass an identification probe.
+
+Only a passed R3c3 may support an R3c4 restart-integrated
+target-conditioned deadline MPC. A hidden-history response disagreement
+failure instead routes to causal observer/history-state identification.
 
 ## Still blocked
 
-Independent R3d histories, unseen targets, continuous actuator/plant
-variation, noise, disturbance recovery, and independent long hold remain
-unvalidated. BC, DAgger, and bounded residual RL are prohibited.
+Reliable restart MPC closure, independent new histories, unseen targets,
+continuous actuator/plant variation, noise, disturbance recovery, and
+independent long hold remain unvalidated. BC, DAgger, and bounded residual RL
+are prohibited.

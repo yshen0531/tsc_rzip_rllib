@@ -1,0 +1,981 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c2",
+  "controller_revision": "restart_target_state_regulation_mpc_v42r3c2",
+  "package_revision": "r42r3c2_restart_target_state_regulation_mpc_v1",
+  "source_stage4_2r3b_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+  "source_stage4_2r3b_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+  "source_fingerprint": {
+    "schema_version": 1,
+    "contract": "r42r3c2_exact_r3b_development_source_v1",
+    "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+    "source_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+    "run_inventory_digest": "301a3ad2be01c83209d8e260c1a8c80f090d01afafb9c173f63cf9219caac8fc",
+    "run_inventory_file_count": 874,
+    "run_inventory_total_bytes": 8538932691,
+    "n_files": 12,
+    "digest": "5c5b6707908cf8777889ef2b00aeef93e7f516d8ac6915687efe7777fa280cee",
+    "files": [
+      {
+        "name": "control_summary",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_hidden_history_control/summary.json",
+        "size_bytes": 1160,
+        "sha256": "ed0b6124228232997ba88442d02824905769031876a95610d5affa0136bd6ca4"
+      },
+      {
+        "name": "manifest",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_manifest.json",
+        "size_bytes": 21361,
+        "sha256": "4fdd037bfd1f5367e4ea374a9193b8084795ec2f928ad6e87eebb2c1ee4a53fe"
+      },
+      {
+        "name": "pair_summary",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_pair_analysis/summary.json",
+        "size_bytes": 3324,
+        "sha256": "07b084148bc0313a302115e868aa7888459162004d546f029d23b9a8bba4b8d8"
+      },
+      {
+        "name": "raw_forensics",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_raw_control_forensics.json",
+        "size_bytes": 550543,
+        "sha256": "975205eff41f62d319e4f6e22643bb687461e42d3c73c1d09f0424f2a7c5cf32"
+      },
+      {
+        "name": "resolved_config",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_config.resolved.json",
+        "size_bytes": 6874,
+        "sha256": "b20c69455278ed1ae97a481cc68cc127816a4ee6a3334896038efbdeb2a01513"
+      },
+      {
+        "name": "run_inventory",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_run_inventory.json",
+        "size_bytes": 194280,
+        "sha256": "f4e9c9d91f5d9439769adca9176431243ebf8d5a430a29cb54a5b15d2b5d6407"
+      },
+      {
+        "name": "selected_pairs",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_pair_analysis/selected_pairs.json",
+        "size_bytes": 34022,
+        "sha256": "f7021babd8cbab4650c23001581c4f5ee8ef4c8fbef6dd6f05ec0d8540200147"
+      },
+      {
+        "name": "server_audit",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_server_audit.json",
+        "size_bytes": 210432,
+        "sha256": "f1e907888e19846d07099714d4b581e26aac80c5675a373364d396db78130831"
+      },
+      {
+        "name": "snapshot_checks",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_snapshot_checks.json",
+        "size_bytes": 31971,
+        "sha256": "a979757e4a62ece89635754a2885308549dbd0b8b88f8e849b03f0e648e0b927"
+      },
+      {
+        "name": "state",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state.json",
+        "size_bytes": 2097,
+        "sha256": "2155d5443289cc17b7db6cf97b00a5b6f694c160c34ef1fd9df591b69bd1ec60"
+      },
+      {
+        "name": "state_summary",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/summary.json",
+        "size_bytes": 3324,
+        "sha256": "07b084148bc0313a302115e868aa7888459162004d546f029d23b9a8bba4b8d8"
+      },
+      {
+        "name": "verdict",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_analysis/stage4_2r3b_verdict.json",
+        "size_bytes": 1254,
+        "sha256": "8bf93d44772adc9be8c1a58200de6477236dc4896eb8f7db82641e61acf39bb3"
+      }
+    ]
+  },
+  "source_stage4_2r3c_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807",
+  "source_stage4_2r3c_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_audits/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807",
+  "source_stage4_2r3c_fingerprint": {
+    "schema_version": 1,
+    "contract": "r42r3c2_exact_failed_r3c_evidence_v1",
+    "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807",
+    "source_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_audits/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807",
+    "run_inventory_digest": "278395b364bb355c73b5f6de7461478b4bb239584a3f6bf9bf048aad12be9d13",
+    "run_inventory_file_count": 143,
+    "run_inventory_total_bytes": 2963470,
+    "formal_pass_count": 20,
+    "formal_failure_count": 12,
+    "n_files": 9,
+    "digest": "dcf614361bec4bd8d8cdede3c034c728563c84ca298523b9f641a90698dc95f4",
+    "files": [
+      {
+        "name": "control_results",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_phase_aligned_control/results.json",
+        "size_bytes": 44803,
+        "sha256": "35557462da0023206a8945b40a0d57e71a4d7eea69adcb88033cd77aa060a694"
+      },
+      {
+        "name": "control_summary",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_phase_aligned_control/summary.json",
+        "size_bytes": 1629,
+        "sha256": "745af3ae05fba6e3be6a20f3b4b5e9ae8a0f8cdb5a78e5cc05b03af28f1c56ae"
+      },
+      {
+        "name": "manifest",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_manifest.json",
+        "size_bytes": 14436,
+        "sha256": "8e825973bd5bc24cf3cb4d839c3059053a080d28f711f40e5729b41122b7dede"
+      },
+      {
+        "name": "raw_forensics",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_audits/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_raw_control_forensics.json",
+        "size_bytes": 363732,
+        "sha256": "395427285a5bad0de9611629df0a13ade037ddd4f0e30e993e475a56c3dbafaa"
+      },
+      {
+        "name": "resolved_config",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_config.resolved.json",
+        "size_bytes": 4865,
+        "sha256": "8ff400b34e440f0323c264a004722263ff47fdc2fd772850d5d26d8b980bbe34"
+      },
+      {
+        "name": "run_inventory",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_audits/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_run_inventory.json",
+        "size_bytes": 30088,
+        "sha256": "309158ec585abebaab2bce2e60264419d54ce71bee3fc9343c59468bb8b6fe97"
+      },
+      {
+        "name": "server_audit",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_audits/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_server_audit.json",
+        "size_bytes": 34948,
+        "sha256": "d5276a0f30edbc503e8e09b8850023bcdf00a20cc70504fec54a44eacb0485d2"
+      },
+      {
+        "name": "state",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_state.json",
+        "size_bytes": 2433,
+        "sha256": "81b48ea2738d0cf454776d438b3f9b585aee479df81230ae91c089b631c1451f"
+      },
+      {
+        "name": "verdict",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807/stage4_2r3c_analysis/stage4_2r3c_verdict.json",
+        "size_bytes": 1230,
+        "sha256": "e9dea3ee0849b26a9ae287e0a1af1d27386ec866fe7f8e488b0fe47eb020b63c"
+      }
+    ]
+  },
+  "source_stage4_2r3c1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+  "source_stage4_2r3c1_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+  "source_stage4_2r3c1_fingerprint": {
+    "schema_version": 1,
+    "contract": "r42r3c2_exact_failed_r3c1_evidence_v1",
+    "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+    "source_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+    "run_inventory_digest": "5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f",
+    "run_inventory_file_count": 166,
+    "run_inventory_total_bytes": 3409736,
+    "formal_pass_count": 16,
+    "formal_failure_count": 16,
+    "restart_regulation_diagnostic_sha256": "9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d",
+    "n_files": 10,
+    "digest": "6da08914bd42b4975cab45744699f53b8213c761f297272592f28801b1c12b33",
+    "files": [
+      {
+        "name": "control_results",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_authenticated_visible_manifold_control/results.json",
+        "size_bytes": 52385,
+        "sha256": "208227facfe9cc9c1e2a6f876e07e0442711f08e2936fd3e2f550721d1bef53f"
+      },
+      {
+        "name": "control_summary",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_authenticated_visible_manifold_control/summary.json",
+        "size_bytes": 1842,
+        "sha256": "d2f87f540fe638a7fed8e5b5327feb53dbdd651bc2a6edd7935c579595e4344b"
+      },
+      {
+        "name": "manifest",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_manifest.json",
+        "size_bytes": 34362,
+        "sha256": "22922492efcc6500e4a16d73a28bcbe5395f242047ca026bd8f2ea24f80dd1f3"
+      },
+      {
+        "name": "raw_forensics",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_raw_control_forensics.json",
+        "size_bytes": 365344,
+        "sha256": "29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd"
+      },
+      {
+        "name": "resolved_config",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_config.resolved.json",
+        "size_bytes": 6274,
+        "sha256": "cbfa7388d0ad4af45d20327617e529af73e656a10866777b6481f3286304b3eb"
+      },
+      {
+        "name": "restart_regulation_diagnostic",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_restart_regulation_diagnostic.json",
+        "size_bytes": 79741,
+        "sha256": "9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d"
+      },
+      {
+        "name": "run_inventory",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_run_inventory.json",
+        "size_bytes": 36295,
+        "sha256": "8a2451dd5368f8d0e2dbf6e0b22616751b5136f80ec0dee5ee22e8959062af5e"
+      },
+      {
+        "name": "server_audit",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_server_audit.json",
+        "size_bytes": 44059,
+        "sha256": "0d81cbe3e0d9b67d72cf093143edd8a825a3b60ea5e3c449cf29de7cf0cc7712"
+      },
+      {
+        "name": "state",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_state.json",
+        "size_bytes": 3590,
+        "sha256": "0cc11558d0b312b65b419d713cfef595b6e37e5ed2c2ce35c2ee7ee2551abfe9"
+      },
+      {
+        "name": "verdict",
+        "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_analysis/stage4_2r3c1_verdict.json",
+        "size_bytes": 1388,
+        "sha256": "35ad3095ca865e434ff38deb13d132173f761b50b4fd06a46c8f3e9e094a10fd"
+      }
+    ]
+  },
+  "deployed_package_fingerprint": {
+    "schema_version": 1,
+    "contract": "r42r3c2_deployed_package_source_v1",
+    "n_files": 13,
+    "digest": "b35ef6df933d3e268705584834b1ffff5b7b6172fb882d82f4c338b75e06f1cd",
+    "files": [
+      {
+        "path": "PACKAGE_MANIFEST.json",
+        "size_bytes": 18324,
+        "sha256": "90245028eb145335290ff50f611eb28775eeb253b43c7b11d15b7ea4bada29ba"
+      },
+      {
+        "path": "SHA256SUMS",
+        "size_bytes": 18784,
+        "sha256": "c246d0bd3bc6364d861030b46c82ea99a39b58f3cf819720de6babd45d1cde41"
+      },
+      {
+        "path": "configs/stage4_2r3c2_restart_target_state_regulation_mpc_370ms.json",
+        "size_bytes": 8289,
+        "sha256": "2d61388b4acbdbb7ae77ac5d049424c612dfc528ba8f2eeb8e5326cdf8262f0c"
+      },
+      {
+        "path": "run_stage4_2r3c2_restart_target_state_regulation_mpc_native.sh",
+        "size_bytes": 2776,
+        "sha256": "4df786eeb53cd92dacadfe3e9d64bbad10584ea292a28857c2be9aaaa5086341"
+      },
+      {
+        "path": "run_stage4_2r3c2_restart_target_state_regulation_mpc_nohup.sh",
+        "size_bytes": 1838,
+        "sha256": "2b1610fd2e0ddd4d00d739bf29ae83895a7ed93fff7d8ea39405d6b9ab204395"
+      },
+      {
+        "path": "run_stage4_2r3c2_self_test.sh",
+        "size_bytes": 336,
+        "sha256": "6231a8511f5a1a771a305f91bf599581a1fb1c0828f33f06e8ec3df2b3af5684"
+      },
+      {
+        "path": "run_stage4_2r3c2_server_postprocess.sh",
+        "size_bytes": 1271,
+        "sha256": "508c1e2c9368a8443f9afd267500d46a700ff0553c900c1abba8a3ab6b2d34a8"
+      },
+      {
+        "path": "run_stage4_2r3c2_verify_package.sh",
+        "size_bytes": 12098,
+        "sha256": "e384422d3bb4f189a9a0ca3523d21f3a6e639abd5d864e7fce004f633b38e350"
+      },
+      {
+        "path": "run_stop_stage4_2r3c2_now.sh",
+        "size_bytes": 913,
+        "sha256": "090f4f2492ca58079f4bb905983eabebb5bed81101b251f8af74f12de9cdf90f"
+      },
+      {
+        "path": "scripts/stage4_2r3c2_shell_common.sh",
+        "size_bytes": 7768,
+        "sha256": "eb7ecb36cc1ef0a7ba5fc2e53dea0ad0778b7c8b0aa1fc0846f7d600fe3ca11b"
+      },
+      {
+        "path": "scripts/stage4_2r3c2_restart_target_state_regulation_mpc.py",
+        "size_bytes": 206,
+        "sha256": "6c97173ea2508141b74c4a5e6268895f4f437bca1126b2b2d8f8a6780ff1c47c"
+      },
+      {
+        "path": "scripts/stage4_2r3c2_server_postprocess.py",
+        "size_bytes": 10710,
+        "sha256": "3dfb2a75ce6e94cd65995927e4e89c3b5feda8af8e6b29f333d87f00e2c585bc"
+      },
+      {
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c2_restart_target_state_regulation_mpc.py",
+        "size_bytes": 147138,
+        "sha256": "0e5c487276d13ed72500cc9a8d904499092a236ba232c5b3046142d49454534e"
+      }
+    ]
+  },
+  "config_digest": "42c7b43d9d29191ffccbf6acd56d9e7bb4c1216bacd980083e476c3e8cf9da48",
+  "selected_snapshot_sources": [
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "common_prefix_steps": 5,
+      "nullspace_direction_index": 1,
+      "amplitude_fraction": 0.9,
+      "gap_steps": 2,
+      "plus_first_experiment_id": "s42r3b_46ca1104e9f7129c703b",
+      "minus_first_experiment_id": "s42r3b_58701a99165df704aa4d",
+      "plus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_46ca1104e9f7129c703b/1230ms",
+      "minus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_58701a99165df704aa4d/1230ms",
+      "plus_first_snapshot_manifest_digest": "4add3b5354fa2a0660cdd9c3f02212989e1f81f76804a8f9f7eba5a2969548b7",
+      "minus_first_snapshot_manifest_digest": "0c4141fe324eb930c9929db60c52190e1f745cf7a4c1cc4ff4badcfbb4ab8cf4"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "common_prefix_steps": 5,
+      "nullspace_direction_index": 2,
+      "amplitude_fraction": 0.9,
+      "gap_steps": 2,
+      "plus_first_experiment_id": "s42r3b_91d4477b58f016a062bf",
+      "minus_first_experiment_id": "s42r3b_602862b213b27d9ab02f",
+      "plus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_91d4477b58f016a062bf/1230ms",
+      "minus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_602862b213b27d9ab02f/1230ms",
+      "plus_first_snapshot_manifest_digest": "e40bc1f02a6559eef6f677683d5e0011e013f67ed5c4c6649f08824b02d030da",
+      "minus_first_snapshot_manifest_digest": "11ba0651e04c5cc3cb16482f0f5bb7e6430425ff5a9886fd5bdca349727b8735"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "common_prefix_steps": 9,
+      "nullspace_direction_index": 1,
+      "amplitude_fraction": 0.75,
+      "gap_steps": 2,
+      "plus_first_experiment_id": "s42r3b_03abcc6378f04ba5be30",
+      "minus_first_experiment_id": "s42r3b_4b608db7a281e5e3ca9a",
+      "plus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_03abcc6378f04ba5be30/1270ms",
+      "minus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_4b608db7a281e5e3ca9a/1270ms",
+      "plus_first_snapshot_manifest_digest": "1edbbc2b7a2d31c7dcdf8e3bbade06e2a55ee91c33bedfa9d13fa0681fa7d910",
+      "minus_first_snapshot_manifest_digest": "2af7aee6a2fc773ea3c25f4ebb92255300328a3bf4c0ab56bb9ed9aba5be27eb"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "common_prefix_steps": 9,
+      "nullspace_direction_index": 2,
+      "amplitude_fraction": 0.75,
+      "gap_steps": 2,
+      "plus_first_experiment_id": "s42r3b_aadc869b24c2e3d79a3f",
+      "minus_first_experiment_id": "s42r3b_619f6b416158dade3311",
+      "plus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_aadc869b24c2e3d79a3f/1270ms",
+      "minus_first_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_619f6b416158dade3311/1270ms",
+      "plus_first_snapshot_manifest_digest": "b931836adcc4486454a470ee75981d76ca79664da72487a8151110a84bbec05d",
+      "minus_first_snapshot_manifest_digest": "96554811c713b35cc42aa12914e2b4af41cf7ff1e58ae7ae015873855ee1edb8"
+    }
+  ],
+  "selected_snapshot_source_digest": "dc1fc09ff5614a86e0d4645b3e448043ce6332061c615e0200d8b174f5a9d113",
+  "control_spec_digest": "09859b5f9b8f83ffcd9bc2e4ba4f5d7433953c2bb2c182cc7d9d07199e5a05ba",
+  "visible_reference_manifolds": [
+    {
+      "schema_version": 1,
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "source_experiment_id": "s41r17_805f073b5a4a4d40cf05",
+      "source_raw_sha256": "99a029e469f4b751e1c0d3c161f5632751e5f02ef23f9ea81dd81c8dd9dead6b",
+      "source_raw_size_bytes": 63325,
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "phase_min": 0,
+      "phase_max": 20,
+      "phase_count": 21,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739456187,
+          0.0209609373,
+          31176.2182
+        ],
+        [
+          0.735136086,
+          0.0258357927,
+          31056.3307
+        ],
+        [
+          0.730769677,
+          0.0303313647,
+          30988.4205
+        ],
+        [
+          0.726791493,
+          0.0334881731,
+          30997.413
+        ],
+        [
+          0.723785494,
+          0.0349656472,
+          31006.4669
+        ],
+        [
+          0.72211286,
+          0.0349408625,
+          30913.19
+        ],
+        [
+          0.721532459,
+          0.0339010783,
+          30673.5158
+        ],
+        [
+          0.721622026,
+          0.032446169,
+          30555.306
+        ],
+        [
+          0.721814403,
+          0.0310803929,
+          30530.459
+        ],
+        [
+          0.722078561,
+          0.029941855,
+          30590.4648
+        ],
+        [
+          0.722769178,
+          0.028684339,
+          30495.2966
+        ],
+        [
+          0.724086104,
+          0.0269269057,
+          30161.5616
+        ],
+        [
+          0.725702296,
+          0.0248275401,
+          29959.2322
+        ],
+        [
+          0.727229763,
+          0.0228982131,
+          29829.3066
+        ],
+        [
+          0.728647911,
+          0.0213277649,
+          29658.0715
+        ],
+        [
+          0.729904627,
+          0.0200351204,
+          29660.9302
+        ],
+        [
+          0.730914824,
+          0.0189035709,
+          29652.5722
+        ],
+        [
+          0.731772567,
+          0.0177667433,
+          29687.0167
+        ],
+        [
+          0.732620573,
+          0.0164982174,
+          29716.3821
+        ],
+        [
+          0.733553733,
+          0.0150913385,
+          29756.8382
+        ]
+      ],
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_wire_currents_included": false,
+      "current_run_future_included": false,
+      "values_digest": "02e358437eedcbef385070ff33c98c1e1a493331f3b4402d6ec4daff51c29620"
+    },
+    {
+      "schema_version": 1,
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "source_experiment_id": "s41r17_94ed769e1a5da77ca1f9",
+      "source_raw_sha256": "a65fc343933da1c40e438d95755eafba11c9b0417bc6d8de5a149e65ae266885",
+      "source_raw_size_bytes": 63014,
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "phase_min": 0,
+      "phase_max": 20,
+      "phase_count": 21,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739456353,
+          0.0209609999,
+          31174.6534
+        ],
+        [
+          0.735137578,
+          0.0258377319,
+          31062.1137
+        ],
+        [
+          0.730781003,
+          0.0303418437,
+          31003.2713
+        ],
+        [
+          0.726847625,
+          0.0335203369,
+          31014.6089
+        ],
+        [
+          0.723886761,
+          0.0350584469,
+          31041.599
+        ],
+        [
+          0.722293168,
+          0.0351423532,
+          30956.7623
+        ],
+        [
+          0.721799683,
+          0.0342837639,
+          30729.7784
+        ],
+        [
+          0.721923678,
+          0.0330872836,
+          30622.6907
+        ],
+        [
+          0.722079348,
+          0.0320586021,
+          30600.1216
+        ],
+        [
+          0.722222122,
+          0.0313247736,
+          30665.6089
+        ],
+        [
+          0.722713438,
+          0.0305085496,
+          30562.1597
+        ],
+        [
+          0.723795996,
+          0.0292068249,
+          30212.0069
+        ],
+        [
+          0.725093059,
+          0.0275311035,
+          29999.793
+        ],
+        [
+          0.726198436,
+          0.0259550237,
+          29863.803
+        ],
+        [
+          0.727151673,
+          0.0247032777,
+          29679.0047
+        ],
+        [
+          0.727993735,
+          0.0237012362,
+          29677.7364
+        ],
+        [
+          0.728597989,
+          0.022817427,
+          29663.9039
+        ],
+        [
+          0.729150539,
+          0.0218934257,
+          29686.0921
+        ],
+        [
+          0.729771558,
+          0.0208110839,
+          29706.244
+        ],
+        [
+          0.730515397,
+          0.0195821329,
+          29744.1006
+        ]
+      ],
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_wire_currents_included": false,
+      "current_run_future_included": false,
+      "values_digest": "0766d45a864741efd220b5e3ba3b0fe62fb7eb6abe3caf109a5a39996f09e521"
+    },
+    {
+      "schema_version": 1,
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "phase_min": 0,
+      "phase_max": 20,
+      "phase_count": 21,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_wire_currents_included": false,
+      "current_run_future_included": false,
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b"
+    },
+    {
+      "schema_version": 1,
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "source_experiment_id": "s41r11_2f8571253fb3d4fecc7d",
+      "source_raw_sha256": "20131cbd3091e85ee5fb8a5a782fcf3509b456eb4e521f010540979b76c4c4f7",
+      "source_raw_size_bytes": 238784,
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "phase_min": 0,
+      "phase_max": 20,
+      "phase_count": 21,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.73945744,
+          0.0209579364,
+          31185.2124
+        ],
+        [
+          0.735150815,
+          0.0258097043,
+          31079.6738
+        ],
+        [
+          0.730845636,
+          0.0302124808,
+          31019.247
+        ],
+        [
+          0.727038574,
+          0.0331475169,
+          31007.2803
+        ],
+        [
+          0.724211516,
+          0.034286293,
+          31043.1029
+        ],
+        [
+          0.722881157,
+          0.0338190228,
+          30935.9667
+        ],
+        [
+          0.722677506,
+          0.0322486399,
+          30697.6699
+        ],
+        [
+          0.723110869,
+          0.0301849629,
+          30579.8651
+        ],
+        [
+          0.723632803,
+          0.0281913871,
+          30554.3632
+        ],
+        [
+          0.724225083,
+          0.0264642126,
+          30607.4241
+        ],
+        [
+          0.725285209,
+          0.0246797396,
+          30498.1717
+        ],
+        [
+          0.72702309,
+          0.0224764885,
+          30144.8321
+        ],
+        [
+          0.729079133,
+          0.0200677747,
+          29935.0146
+        ],
+        [
+          0.730986029,
+          0.0180409431,
+          29805.3674
+        ],
+        [
+          0.732658888,
+          0.0166141478,
+          29631.2468
+        ],
+        [
+          0.734066317,
+          0.0156491307,
+          29627.0418
+        ],
+        [
+          0.735086033,
+          0.0150067431,
+          29614.9622
+        ],
+        [
+          0.735781785,
+          0.0144740886,
+          29653.9928
+        ],
+        [
+          0.736280266,
+          0.0138814124,
+          29688.3178
+        ],
+        [
+          0.736750628,
+          0.0132046306,
+          29735.9986
+        ]
+      ],
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_wire_currents_included": false,
+      "current_run_future_included": false,
+      "values_digest": "d268cbf408060a8d0da20a3bbbcc23ad15287148f210bc7ccdc578857b58f57e"
+    }
+  ],
+  "visible_reference_manifold_digest": "538e081d0212174c00ac921b2fd1ce9cf7df4b69e6810892fa9aaf7202e47f9a",
+  "phase_alignment": {
+    "candidate_min_phase": 0,
+    "candidate_max_phase": 20,
+    "R_scale_m": 0.03,
+    "Z_scale_m": 0.03,
+    "Ip_scale_A": 2000.0,
+    "tie_break": "earliest_phase",
+    "task_clock_starts_at_zero": true,
+    "reference_clock_separate_from_task_clock": true,
+    "align_nominal_reference": true,
+    "align_response_model_phase": true,
+    "align_delay_queue_priming": true,
+    "align_braking_transition": true,
+    "align_terminal_transition": true,
+    "hidden_wire_input_allowed": false,
+    "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+    "reference_fields": [
+      "R",
+      "Z",
+      "Ip"
+    ],
+    "reference_phase_count": 21,
+    "source_actions_allowed": false,
+    "source_coil_currents_allowed": false,
+    "source_wire_currents_allowed": false
+  },
+  "restart_regulation": {
+    "phase_zero_policy": "preserve_r3c1_path",
+    "nonzero_phase_policy": "target_state_regulation_from_task_step_zero",
+    "nonzero_phase_regulation_persistent": true,
+    "step_zero_velocity_initialization": "zero",
+    "subsequent_velocity_source": "causal_current_run_finite_difference",
+    "model_phase_policy": "min_reference_phase_and_frozen_terminal_cap",
+    "normal_model_phase_cap_source": "terminal_template_step",
+    "zero_nominal_physical_coefficients": true,
+    "zero_nominal_feature": true,
+    "retain_phase_aligned_delay_queue_priming": true,
+    "retain_frozen_terminal_gains": true,
+    "retain_frozen_weak_probe_schedule": true,
+    "pair_or_history_label_input_allowed": false,
+    "source_result_input_allowed": false
+  },
+  "formal_timing_contract": {
+    "normal": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "arrival_deadline_step": 25,
+      "arrival_deadline_ms": 250,
+      "hold_through_step": 35,
+      "hold_through_ms": 350
+    },
+    "weak": {
+      "slew_scales": [
+        0.9
+      ],
+      "arrival_deadline_step": 27,
+      "arrival_deadline_ms": 270,
+      "hold_through_step": 37,
+      "hold_through_ms": 370
+    },
+    "arrival_streak_steps_unchanged": true,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_threshold_unchanged": true,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "control_matrix": {
+    "targets": [
+      "nominal",
+      "RZ_p10_m10"
+    ],
+    "future_actuator_cases": [
+      {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 1.0
+      },
+      {
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      }
+    ],
+    "history_members": [
+      "plus_first",
+      "minus_first"
+    ],
+    "expected_rollouts_per_selected_pair": 8,
+    "expected_selected_pairs": 4,
+    "expected_rollouts": 32,
+    "require_fresh_controller": true,
+    "require_fresh_tsc_process": true,
+    "forbid_future_actions": true,
+    "forbid_future_measurements": true,
+    "require_online_action_computation": true
+  },
+  "development_set_only": true,
+  "independent_hidden_history_confirmation": false
+}

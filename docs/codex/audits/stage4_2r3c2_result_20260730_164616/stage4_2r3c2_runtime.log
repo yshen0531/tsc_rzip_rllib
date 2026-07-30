@@ -1,0 +1,127 @@
+[Stage4.2R3c2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c2] source_stage4_2r3b_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3c2] source_stage4_2r3c_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807
+[Stage4.2R3c2] source_stage4_2r3c1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218
+[Stage4.2R3c2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616
+[Stage4.2R3c2] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c2_restart_target_state_regulation_mpc_370ms.json
+[Stage4.2R3c2] command=all backend=ray resume=1 workers=128
+[Stage4.2R3c2] Offline gate requires original-start R17 phase 0 and exact action preservation before real TSC.
+[Stage4.2R3c2] Phase zero preserves R17; every nonzero visible phase starts target-state regulation at task step zero.
+[Stage4.2R3c2] Source actions/results, pair/history labels, source/current wire currents and current-run future values are forbidden from the controller.
+[Stage4.2R3c2] The exact locked R3b four-pair snapshots are a development set, not independent confirmation.
+[Stage4.2R3c2] Full wire current remains post-action audit telemetry and is forbidden from phase selection/control.
+[Stage4.2R3c2] Formal timing remains 250/350 ms for slew 1.0 and 270/370 ms for slew 0.9.
+[Stage4.2R3c2] BC, DAgger and residual RL remain forbidden.
+2026-07-31 00:47:45,743	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R3c2 control] ray_capacity requested=128 cluster_cpus=128 pending=32 actors=32 initialized_now=1
+[Stage4.2R3c2 control] actor_count=32 pending=32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] waiting 0/32
+[Stage4.2R3c2 control] 8/32
+[Stage4.2R3c2 control] 16/32
+[Stage4.2R3c2 control] 24/32
+[Stage4.2R3c2 control] 32/32
+{
+  "bc_dagger_or_rl_allowed": false,
+  "continuous_parameter_change_validated": false,
+  "control_summary": {
+    "common_mode_both_fail_masked_group_count": 10,
+    "controller_causality_failure_count": 0,
+    "controller_trace_causal_fraction": 1.0,
+    "current_run_future_use_count": 0,
+    "development_set_only": true,
+    "environment_success_count": 32,
+    "expected_rollouts": 32,
+    "formal_clock_shift_count": 0,
+    "formal_contract_pass_fraction": 0.375,
+    "fresh_controller_fraction": 1.0,
+    "fresh_tsc_process_fraction": 1.0,
+    "future_action_replay_count": 0,
+    "future_measurement_use_count": 0,
+    "hidden_history_assessment_inconclusive": true,
+    "hidden_wire_controller_input_count": 0,
+    "history_sensitive_outcome_count": 0,
+    "independent_hidden_history_confirmation": false,
+    "initial_restart_exact_fraction": 1.0,
+    "minimum_formal_signed_margin": -0.5203167999999989,
+    "minimum_margin_case": {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "target_id": "RZ_p10_m10"
+    },
+    "model_phase_exact_fraction": 1.0,
+    "n_rollouts": 32,
+    "observer_or_history_identification_failure_count": null,
+    "pair_both_members_pass_count": 6,
+    "pair_both_members_pass_fraction": 0.375,
+    "pair_control_group_count": 16,
+    "pair_or_history_label_use_count": 0,
+    "passed": false,
+    "phase": "restart_target_state_regulation_development_control",
+    "phase_selection_or_transition_design_failure_count": 0,
+    "phase_trace_valid_fraction": 1.0,
+    "plant_restart_fidelity_failure_count": 0,
+    "real_closed_loop_formal_control_failure_count": 20,
+    "reference_phase_start_values": [
+      11,
+      12,
+      13,
+      14,
+      20
+    ],
+    "restart_regulation_complete_trace_fraction": 1.0,
+    "restart_regulation_enabled_fraction": 1.0,
+    "runtime_or_environment_error_count": 0,
+    "schema_version": 1,
+    "selected_pair_count": 4,
+    "source_action_use_count": 0,
+    "source_coil_current_use_count": 0,
+    "source_result_use_count": 0,
+    "source_wire_current_use_count": 0,
+    "stage": "Stage4.2R3c2",
+    "visible_reference_manifold_exact_fraction": 1.0
+  },
+  "controller_causality_preserved": true,
+  "created_utc": "20260730_165742",
+  "development_set_restart_regulation_validated": false,
+  "different_initial_state_independent_validation": false,
+  "disturbance_recovery_validated": false,
+  "finite_test_envelope_only": true,
+  "formal_contract_preserved": false,
+  "independent_hidden_history_confirmation": false,
+  "independent_long_hold_validated": false,
+  "matched_visible_different_hidden_history_validated": false,
+  "measurement_noise_validated": false,
+  "next_if_fail": "Preserve R3c2 raw evidence and create a new controller revision without weakening the formal gate.",
+  "next_if_pass": "Proceed only to Stage4.2R3d independent new-history confirmation. Do not start new targets, BC, DAgger, or RL.",
+  "plant_jacobian_error_validated": false,
+  "plant_restart_fidelity_preserved": true,
+  "primary_pass": false,
+  "schema_version": 1,
+  "source_stage4_2r3b_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+  "source_stage4_2r3c1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+  "source_stage4_2r3c_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807",
+  "stage": "Stage4.2R3c2",
+  "unseen_target_validated": false,
+  "verdict": "STAGE4_2R3C2_RESTART_TARGET_STATE_REGULATION_FAILED"
+}

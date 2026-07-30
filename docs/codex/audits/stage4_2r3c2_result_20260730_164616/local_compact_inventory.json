@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "purpose": "local_compact_evidence_inventory",
+  "root": "docs/codex/audits/stage4_2r3c2_result_20260730_164616",
+  "inventory_file_excluded": "local_compact_inventory.json",
+  "digest_contract": "sha256 of UTF-8 rows path<TAB>size_bytes<TAB>sha256<LF>, sorted by path",
+  "n_files": 12,
+  "total_bytes": 903923,
+  "digest": "35ac2b2731047a7e2d5e67e63d28b9eb108b649c31cb712af012a20fd3a2f0b1",
+  "files": [
+    {
+      "path": "control_specs.json",
+      "size_bytes": 309619,
+      "sha256": "d68ccbee7d5cf4f8df9473338ed705651f9b451da494ef8c0cc3ed23631e32d0"
+    },
+    {
+      "path": "offline_restart_regulation_audit.json",
+      "size_bytes": 38326,
+      "sha256": "2ff613ddd971bf6426ff83702167fff297528edcc98873932e73d16e3987029d"
+    },
+    {
+      "path": "results.json",
+      "size_bytes": 57725,
+      "sha256": "a2d1cc175c00d810a2b053b135b00b41a6bc331f089644d074502b3ba2491fd9"
+    },
+    {
+      "path": "stage4_2r3c2_config.resolved.json",
+      "size_bytes": 8289,
+      "sha256": "2d61388b4acbdbb7ae77ac5d049424c612dfc528ba8f2eeb8e5326cdf8262f0c"
+    },
+    {
+      "path": "stage4_2r3c2_manifest.json",
+      "size_bytes": 35005,
+      "sha256": "2fe9b51fc8ede90623e7f2b9f71e2d67888a519301fec9bc6eee186df91ae467"
+    },
+    {
+      "path": "stage4_2r3c2_raw_control_forensics.json",
+      "size_bytes": 370333,
+      "sha256": "644da85280e03015732bb63deb1205bf5fcafeabc53b0f8a9e606565a27efbb2"
+    },
+    {
+      "path": "stage4_2r3c2_run_inventory.json",
+      "size_bytes": 31876,
+      "sha256": "8f9baa408e28a02874a95d4a6549ca6bcdef7bd3d8d3adb94707ed1eede90913"
+    },
+    {
+      "path": "stage4_2r3c2_runtime.log",
+      "size_bytes": 6802,
+      "sha256": "be08f4a68966528da3d35f90d77b4fb013e4d439b28e3c6b4e052a62c91d349e"
+    },
+    {
+      "path": "stage4_2r3c2_server_audit.json",
+      "size_bytes": 38593,
+      "sha256": "87461800e5fd9ea6f228d49e36269eb80ffbb537720fcf804c69812ed2ddf7cf"
+    },
+    {
+      "path": "stage4_2r3c2_state.json",
+      "size_bytes": 3783,
+      "sha256": "20d909330dcd8b55014a01b32485e0ff0598ee6fb0b790b74a9f397e83d1ffa5"
+    },
+    {
+      "path": "stage4_2r3c2_verdict.json",
+      "size_bytes": 1554,
+      "sha256": "667cab5f1389c94ec62f0946b7d4cd1d964145668b637b2ab75597cb2f6ad686"
+    },
+    {
+      "path": "summary.json",
+      "size_bytes": 2018,
+      "sha256": "ea93ed4baa3bf17f218cee6b45d74f05d1772bd8cf41928d01f66e34b8220dd5"
+    }
+  ]
+}

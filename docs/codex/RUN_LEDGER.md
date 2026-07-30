@@ -437,3 +437,64 @@
   new Stage4.2R3c2 identity with phase-zero preservation and immediate causal
   target-state regulation for nonzero visible restart phases; no
   BC/DAgger/RL
+
+## Stage4.2R3c2 restart target-state regulation MPC
+
+- Local implementation:
+  `codex/stage4_2r3c2-restart-regulation` / `c4b9143`
+- Package/controller:
+  `r42r3c2_restart_target_state_regulation_mpc_v1` /
+  `restart_target_state_regulation_mpc_v42r3c2`
+- Runtime/audit package digest:
+  `b35ef6df933d3e268705584834b1ffff5b7b6172fb882d82f4c338b75e06f1cd`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616`
+- Offline gate:
+  original-source phase-zero/full-action exact 4/4; 32/32 finite causal
+  restart-regulation first actions; hidden-wire invariant 32/32; no raw or
+  real TSC
+- Real execution:
+  exactly 32/32 environment-success raw; fresh controller/TSC, exact restart,
+  causal phase/model/regulator trace all 32/32; no resume or rerun
+- Final control:
+  formal PASS 12/32; real formal failures 20; minimum signed margin
+  `-0.5203167999999989`
+- Grouped outcome:
+  prefix-5 0/16; prefix-9 12/16; nominal 8/16; offset 4/16; normal actuator
+  8/16; weak actuator 4/16
+- R3c1 comparison:
+  pass→pass 12, fail→fail 16, pass→fail 4, fail→pass 0
+- Diagnosis:
+  zero-nominal terminal regulation discarded target-conditioned transport;
+  representative prefix-5 normal-actuator maximum action fell from about
+  0.55--0.92 under R3c1 to about 0.08; all 20 failures have unavoidable
+  position violations
+- Integrity:
+  147 files / 3,287,591 bytes / run digest
+  `2119d2edad615dbb9594ad4332b758a9cf7ffc2e62b988650c41297aace8cff2`;
+  raw digest
+  `b01a07c9dc136677f323d292d0f9388904cc39663514bf4025f4fa4fed767653`;
+  runtime, corruption, restart, causality, solver, and saturation failures 0
+- Deployment incident:
+  one pre-run remote quoting/install command failed after deleting only named
+  package code paths; exact validated staging was immediately restored and
+  canonical package plus all 516 tests passed before TSC; no experiment data
+  was touched
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C2_FORENSIC_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c2_result_20260730_164616/`
+- Load-bearing hashes:
+  server audit
+  `87461800e5fd9ea6f228d49e36269eb80ffbb537720fcf804c69812ed2ddf7cf`;
+  independent raw forensics
+  `644da85280e03015732bb63deb1205bf5fcafeabc53b0f8a9e606565a27efbb2`;
+  local compact inventory
+  `35ac2b2731047a7e2d5e67e63d28b9eb108b649c31cb712af012a20fd3a2f0b1`
+- Classification:
+  recovered pre-run deployment-command error is separate; final result is a
+  true controller-design/closed-loop failure; hidden-history robustness
+  remains inconclusive
+- Next:
+  Stage4.2R3c3 identification-only bounded task-clock response probes on the
+  R3c1 target-conditioned baseline; only a passed response/hidden-history
+  gate may support R3c4 MPC; no BC/DAgger/RL

@@ -297,21 +297,32 @@ R1  = Stage4.2R1 authentic TSC plant-state restart
 R17 = Stage4.1R17 frozen finite static-grid controller source
 ```
 
-The current stage is Stage4.2R3c2 restart target-state regulation MPC
-development. Its new controller/experiment identity and frozen design are
-defined in:
+Stage4.2R3c2 completed 32/32 authentic restart trajectories with exact
+restart, causal traces, no runtime/solver/saturation errors, and no raw
+corruption, but formal control passed only 12/32. It repaired none of
+R3c1's failures and regressed four R3c1 passes. All 16 prefix-5 cases
+failed. The final 20 failures are genuine closed-loop/controller-design
+failures: the zero-nominal terminal regulator is a local damping controller,
+not a finite-horizon restart transport MPC.
+
+The current stage is Stage4.2R3c3 restart task-clock local-response
+identification. Its identification-only experiment identity and frozen
+design are defined in:
 
 ```text
-docs/codex/reports/STAGE4_2R3C2_PREREGISTERED_DESIGN.md
+docs/codex/reports/STAGE4_2R3C2_FORENSIC_REPORT.md
+docs/codex/reports/STAGE4_2R3C3_PREREGISTERED_DESIGN.md
 docs/codex/CURRENT_TASK.md
 ```
 
-R3c2 preserves the exact phase-zero R17 path and starts causal target-state
-regulation at task step zero for nonzero visible restart phases. It may never
-use source actions, current-run future values, source/current wire currents,
-or pair/history/prefix labels. It remains development on inspected R3b
-snapshots; a successful repair must be followed by R3d with newly generated
-unseen histories before advancing to new targets.
+R3c3 retains R3c1's target-conditioned nominal controller as the baseline
+and applies preregistered bounded, bidirectional, zero-net physical-mode
+probes at task-relative windows across all 32 restart contexts. Formal
+tracking is diagnostic only. It may never use source actions, current-run
+future values, source/current wire currents, or pair/history/prefix labels
+inside the controller. A new R3c4 controller is allowed only if R3c3
+validates local linearity, conditioning, and matched-hidden-history response
+agreement within the frozen envelope.
 
 ## 10. Required validation before server execution
 
