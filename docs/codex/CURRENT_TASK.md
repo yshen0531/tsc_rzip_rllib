@@ -1,4 +1,4 @@
-# CURRENT_TASK.md — Stage4.2R3 hidden-history and initial-state robustness
+# CURRENT_TASK.md — Stage4.2R3a hidden-history state generation
 
 ## 1. Current evidence checkpoint
 
@@ -35,44 +35,78 @@ minimum formal signed margin              1.0456920999768471e-05
 The full report is
 `docs/codex/reports/STAGE4_2R2_FORENSIC_REPORT.md`.
 
+Stage4.2R3 has also completed. Its entire authentic state-generation grid
+completed successfully, but none of the 27 candidate pairs met the
+preregistered hidden-state separation gate:
+
+```text
+real-TSC state rollouts                    54/54
+snapshot inventories verified             54/54
+visible-matched pairs                      27/27
+hidden-separated pairs                      0/27
+selected pairs                              0
+conditional control phase                  not_run
+runtime/deployment/corruption errors         0
+```
+
+The R3 result is an experimental-design failure. Adjacent reversed
+nullspace pulses canceled the passive-current history to at most 0.048 A,
+while the preregistered absolute gate was 1,000 A. It is not a real
+closed-loop control or plant-restart failure because no R3 control rollout
+was run. R3 remains failed under its frozen gate.
+
+The full report and compact evidence are:
+
+```text
+docs/codex/reports/STAGE4_2R3_FORENSIC_REPORT.md
+docs/codex/audits/stage4_2r3_result_20260730_100915/
+```
+
 ## 2. Active task
 
-The active next stage is Stage4.2R3. It must test the reliable MPC expert
-under:
+The active next stage is the separately identified Stage4.2R3a experiment.
+Its design is frozen in:
+
+```text
+docs/codex/reports/STAGE4_2R3A_PREREGISTERED_DESIGN.md
+```
+
+R3a must test the reliable MPC expert under:
 
 1. matched visible R/Z/Ip/coil state with materially different hidden
    vessel/eddy-current histories; and
 2. different authenticated initial states.
 
-R3 must first establish a scientifically valid, preregistered pair-generation
-method. It must not synthesize an arbitrary hidden-current vector or call two
-states "matched visible" merely because a summary metric is close.
+R3a uses an authentic common expert-action prefix plus delayed counter-pulses
+to generate its candidate states. It must not synthesize an arbitrary
+hidden-current vector or call two states "matched visible" merely because a
+summary metric is close.
 
 The controller must receive only causal observations and the R2 checkpoint
 schema. Hidden full-wire current may be recorded for audit and pairing, but it
 must not leak into the online controller unless a later observer design
 explicitly estimates it from causal measurements.
 
-## 3. Required design before execution
+## 3. Frozen R3a design and execution gates
 
-Before changing controller behavior or starting TSC:
+Before starting R3a TSC:
 
-- inventory authentic R1/R2 states and available restart times;
-- define visible-state matching tolerances separately for R, Z, Ip, all
-  controller-visible channels, and 14 coil currents;
-- define a minimum hidden-history separation over the full wire/vessel-current
-  vector;
-- prove each candidate snapshot is complete and restart-authentic;
-- preregister target, delay, slew, initial-state, and history-pair matrices;
-- preregister safety stops and the unchanged formal gate;
-- state whether the current observer is expected to disambiguate the pair
-  causally, and over what observation window;
-- keep identification/calibration information causal;
-- prevent selection on post-result formal success.
+- implement the exact 72-rollout state-generation matrix in the R3a design;
+- authenticate the common prefix against the frozen nominal R17 source and
+  freeze its source experiment ID and action digest;
+- include config, module, launcher, package, source, and state-spec hashes in
+  the manifest and resume gates;
+- run compile, JSON, focused/full tests, import closure, package hashes, and
+  empty-directory deployment simulation;
+- run the independent no-gotsc frozen-controller recomputation audit;
+- execute all state-generation tasks before selecting any pair;
+- require the complete state grid, 48-wire separation, visible match,
+  different-initial-state, and both-prefix-length gates;
+- select without reading control outcomes;
+- run the conditional control matrix only if the state gate passes.
 
-If the existing evidence cannot supply valid matched-visible/different-hidden
-pairs, create a focused state-generation stage first. Do not weaken matching
-or hidden-separation thresholds after seeing outcomes.
+Do not weaken any R3a threshold or alter the matrix after seeing R3a results.
+A failed state gate leaves the control phase `not_run`.
 
 ## 4. Required result classification
 

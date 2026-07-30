@@ -1,0 +1,87 @@
+{
+  "summary": {
+    "schema_version": 1,
+    "stage": "Stage4.2R3",
+    "phase": "offline_frozen_controller_recomputation",
+    "expected_cases": 4,
+    "n_cases": 4,
+    "exact_case_count": 4,
+    "maximum_online_action_abs_difference": 0.0,
+    "future_action_read_count": 0,
+    "future_state_persisted_count": 0,
+    "real_tsc_executed": false,
+    "passed": true
+  },
+  "results": [
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "source_experiment_id": "s41r17_805f073b5a4a4d40cf05",
+      "action_steps": 37,
+      "phase_counts": {
+        "main_control": 20,
+        "anticipatory_damping": 17
+      },
+      "source_state_streamed_only_to_offline_audit": true,
+      "source_future_state_persisted_in_controller": false,
+      "source_future_action_read_by_controller": false,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "passed": true
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "source_experiment_id": "s41r17_94ed769e1a5da77ca1f9",
+      "action_steps": 37,
+      "phase_counts": {
+        "main_control": 20,
+        "anticipatory_damping": 17
+      },
+      "source_state_streamed_only_to_offline_audit": true,
+      "source_future_state_persisted_in_controller": false,
+      "source_future_action_read_by_controller": false,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "passed": true
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "source_experiment_id": "s41r11_2f8571253fb3d4fecc7d",
+      "action_steps": 35,
+      "phase_counts": {
+        "main_control": 35
+      },
+      "source_state_streamed_only_to_offline_audit": true,
+      "source_future_state_persisted_in_controller": false,
+      "source_future_action_read_by_controller": false,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "passed": true
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "action_steps": 35,
+      "phase_counts": {
+        "main_control": 35
+      },
+      "source_state_streamed_only_to_offline_audit": true,
+      "source_future_state_persisted_in_controller": false,
+      "source_future_action_read_by_controller": false,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "passed": true
+    }
+  ]
+}

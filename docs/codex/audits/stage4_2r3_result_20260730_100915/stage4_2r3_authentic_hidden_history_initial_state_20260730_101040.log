@@ -1,0 +1,80 @@
+[Stage4.2R3] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3] source_stage4_2r2_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250
+[Stage4.2R3] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3_runs/stage4_2r3_authentic_hidden_history_initial_state_20260730_100915
+[Stage4.2R3] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3_authentic_hidden_history_initial_state_370ms.json
+[Stage4.2R3] command=all backend=ray resume=1 workers=128
+[Stage4.2R3] A no-gotsc gate first reproduces the required frozen R17 policies exactly from a fresh step-zero controller.
+[Stage4.2R3] Pair selection uses only preregistered visible/hidden checkpoint metrics and never control outcomes.
+[Stage4.2R3] Every selected snapshot starts a fresh causal controller and fresh TSC process; wire currents are post-action audit telemetry only.
+[Stage4.2R3] Formal timing remains 250/350 ms for slew 1.0 and 270/370 ms for slew 0.9.
+[Stage4.2R3] Large raw results and snapshots remain server-side; only compact postprocessed evidence is transferred.
+[Stage4.2R3] BC, DAgger and residual RL remain forbidden.
+2026-07-30 18:10:50,539	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R3 state-generation] ray_capacity requested=128 cluster_cpus=128 pending=54 actors=54 initialized_now=1
+[Stage4.2R3 state-generation] actor_count=54 pending=54
+[Stage4.2R3 state-generation] waiting 0/54
+[Stage4.2R3 state-generation] waiting 0/54
+[Stage4.2R3 state-generation] waiting 0/54
+[Stage4.2R3 state-generation] 10/54
+[Stage4.2R3 state-generation] waiting 18/54
+[Stage4.2R3 state-generation] 20/54
+[Stage4.2R3 state-generation] 30/54
+[Stage4.2R3 state-generation] waiting 36/54
+[Stage4.2R3 state-generation] 40/54
+[Stage4.2R3 state-generation] 50/54
+[Stage4.2R3 state-generation] 54/54
+{
+  "authentic_state_generation_status": "failed",
+  "bc_dagger_or_rl_allowed": false,
+  "continuous_parameter_change_validated": false,
+  "created_utc": "20260730_101458",
+  "different_initial_state_validated": false,
+  "disturbance_recovery_validated": false,
+  "finite_test_envelope_only": true,
+  "formal_contract_preserved": null,
+  "future_action_replay_used": null,
+  "hidden_history_control_status": "not_run",
+  "hidden_wire_used_as_controller_input": null,
+  "independent_long_hold_validated": false,
+  "matched_visible_different_hidden_history_validated": false,
+  "measurement_noise_validated": false,
+  "next_if_fail": "Separate authentic state-generation validity, observer/history identification, plant restart, causality, and real formal control.",
+  "next_if_pass": "Proceed to new preregistered targets, then continuous actuator and plant/Jacobian variation. Do not start BC, DAgger, or RL.",
+  "phases": {
+    "authentic_hidden_history_control": null,
+    "authentic_state_generation_and_pair_selection": {
+      "accepted_pair_count": 0,
+      "complete_state_grid": true,
+      "control_outcome_used_for_selection": false,
+      "expected_pair_count": 27,
+      "expected_state_rollouts": 54,
+      "hidden_separation_pair_count": 0,
+      "hidden_state_edited": false,
+      "minimum_different_initial_centroids_required": 2,
+      "minimum_selected_pairs_required": 2,
+      "pair_count": 27,
+      "passed": false,
+      "phase": "authentic_hidden_history_state_generation_and_pair_selection",
+      "raw_or_snapshot_corruption_count": 0,
+      "runtime_or_environment_error_count": 0,
+      "schema_version": 1,
+      "selected_different_initial_state_count": 0,
+      "selected_pair_count": 0,
+      "selected_pair_ids": [],
+      "stage": "Stage4.2R3",
+      "state_environment_success_count": 54,
+      "state_rollout_count": 54,
+      "stop_reason": "insufficient_valid_pairs",
+      "visible_match_pair_count": 27
+    }
+  },
+  "plant_jacobian_error_validated": false,
+  "primary_pass": false,
+  "schema_version": 1,
+  "source_stage4_2r2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250",
+  "stage": "Stage4.2R3",
+  "unseen_target_validated": false,
+  "verdict": "STAGE4_2R3_STATE_GENERATION_OR_PAIR_GATE_INCOMPLETE"
+}
