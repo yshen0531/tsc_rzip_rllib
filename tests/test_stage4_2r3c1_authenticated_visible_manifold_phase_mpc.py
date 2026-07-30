@@ -10,6 +10,7 @@ from unittest import mock
 
 import numpy as np
 
+from scripts import stage4_2r3c1_server_postprocess as postprocess
 from tsc_rzip_rllib.diagnostics import (
     stage4_2r3c1_authenticated_visible_manifold_phase_mpc as r3c,
 )
@@ -463,6 +464,110 @@ class Stage42R3C1DesignTests(unittest.TestCase):
                 r3c._semantics_preserving_resume_compatibility(
                     ctx, original, incompatible
                 )
+
+    def test_postprocess_separates_runtime_and_audit_package_hashes(
+        self,
+    ) -> None:
+        original = {
+            "digest": r3c.INITIAL_DEPLOYED_PACKAGE_DIGEST,
+            "files": [],
+        }
+        active = {
+            "digest": "runtime-package",
+            "files": [],
+        }
+        manifest = {
+            "deployed_package_fingerprint": original,
+            "semantics_preserving_resume_hotfix": {
+                "contract": {
+                    "hotfix_id": r3c.SEMANTICS_PRESERVING_HOTFIX_ID,
+                    "controller_semantics_changed": False,
+                },
+                "original_deployed_package_digest": (
+                    r3c.INITIAL_DEPLOYED_PACKAGE_DIGEST
+                ),
+                "active_deployed_package_digest": "runtime-package",
+                "active_deployed_package_fingerprint": active,
+            },
+        }
+        self.assertEqual(
+            postprocess._runtime_package_fingerprint(manifest),
+            active,
+        )
+
+        controller_path = (
+            "tsc_rzip_rllib/diagnostics/"
+            "stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py"
+        )
+        postprocess_path = "scripts/stage4_2r3c1_server_postprocess.py"
+        runtime_rows = [
+            {
+                "path": "PACKAGE_MANIFEST.json",
+                "sha256": "old-manifest",
+            },
+            {"path": "SHA256SUMS", "sha256": "old-sums"},
+            {
+                "path": postprocess_path,
+                "sha256": "old-postprocess",
+            },
+            {"path": controller_path, "sha256": "same-controller"},
+        ]
+        audit_rows = copy.deepcopy(runtime_rows)
+        audit_rows[0]["sha256"] = "new-manifest"
+        audit_rows[1]["sha256"] = "new-sums"
+        audit_rows[2]["sha256"] = "new-postprocess"
+        runtime = {
+            "digest": "runtime-package",
+            "files": runtime_rows,
+        }
+        audit = {"digest": "audit-package", "files": audit_rows}
+        contract = {
+            "schema_version": 1,
+            "hotfix_id": postprocess.POSTPROCESS_HOTFIX_ID,
+            "stage": r3c.STAGE,
+            "controller_revision": r3c.CONTROLLER_REVISION,
+            "package_revision": r3c.PACKAGE_REVISION,
+            "from_runtime_package_digest": "runtime-package",
+            "from_postprocess_source_sha256": "old-postprocess",
+            "to_postprocess_source_sha256": "new-postprocess",
+            "controller_runtime_changed": False,
+            "raw_results_changed": False,
+            "reporting_logic_only": True,
+        }
+        with mock.patch.object(
+            Path, "is_file", return_value=True
+        ), mock.patch.object(
+            Path,
+            "read_text",
+            return_value=json.dumps(contract),
+        ):
+            compatible = postprocess._audit_package_compatibility(
+                Path("/synthetic/project"), runtime, audit
+            )
+        self.assertTrue(compatible["passed"])
+        self.assertEqual(
+            compatible["changed_paths"],
+            [
+                "PACKAGE_MANIFEST.json",
+                "SHA256SUMS",
+                postprocess_path,
+            ],
+        )
+        changed_controller = copy.deepcopy(audit)
+        changed_controller["files"][3]["sha256"] = "changed-controller"
+        with mock.patch.object(
+            Path, "is_file", return_value=True
+        ), mock.patch.object(
+            Path,
+            "read_text",
+            return_value=json.dumps(contract),
+        ):
+            incompatible = postprocess._audit_package_compatibility(
+                Path("/synthetic/project"),
+                runtime,
+                changed_controller,
+            )
+        self.assertFalse(incompatible["passed"])
 
     def test_pair_classification_does_not_overclaim_masked_failures(
         self,

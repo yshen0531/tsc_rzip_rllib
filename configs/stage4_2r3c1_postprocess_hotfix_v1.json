@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "hotfix_id": "r3c1_hotfix_aware_postprocess_v1",
+  "stage": "Stage4.2R3c1",
+  "controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+  "package_revision": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
+  "from_runtime_package_digest": "c78beb6649543512d3d54649c3001b1c870256929470f09fccaf082b7e087a99",
+  "from_postprocess_source_sha256": "eb948dd064c117bf49beb8b0c16c19e5ea6e61e4828ca560e2ca1dee415de997",
+  "to_postprocess_source_sha256": "4111b860229d3cbc5a03bff909c3d2a36bae143c91e75305922c557f56cfd1ea",
+  "controller_runtime_changed": false,
+  "raw_results_changed": false,
+  "reporting_logic_only": true,
+  "allowed_deployed_fingerprint_changes": [
+    "PACKAGE_MANIFEST.json",
+    "SHA256SUMS",
+    "scripts/stage4_2r3c1_server_postprocess.py"
+  ],
+  "rationale": "The original postprocessor compared the run manifest's preserved initial deployment fingerprint directly with the active hotfix package. The run already records an authenticated initial-to-active runtime package chain. This reporting-only hotfix validates that chain separately from the later audit package and requires the controller source hash and all raw results to remain unchanged."
+}

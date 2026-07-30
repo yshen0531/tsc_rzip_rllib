@@ -88,6 +88,7 @@
     "supports_resume": true,
     "resume_requires_same_source_run_and_audit_fingerprint_phase_alignment_config_control_spec_controller_revision_and_experiment_identity": true,
     "resume_package_change_requires_exact_semantics_preserving_hotfix_contract": true,
+    "postprocess_package_change_requires_exact_reporting_only_hotfix_contract": true,
     "large_result_postprocess_on_server": true,
     "download_compact_audits_only": true
   },
@@ -101,6 +102,7 @@
     "Source actions, source coil/wire currents, current-run future values and hidden wire state are excluded from phase selection and control.",
     "Original-start R17 cases must select phase zero and reproduce every frozen online action exactly before real TSC execution.",
     "The only compatible in-place resume hotfix initializes the unavailable first terminal finite difference to zero when phase 20 enters damping at fresh task step zero; this is the same causal convention already used by the frozen main-control measurement path.",
+    "A later postprocess-only hotfix fingerprints audit code separately from the authenticated runtime package chain and does not authorize another controller resume.",
     "Nominal reference, response-model phase, delay-queue priming, braking transition and terminal transition move together.",
     "Every control rollout uses a fresh controller actor and fresh TSC process from a hash-verified authentic snapshot.",
     "Full wire current remains post-action audit telemetry and never enters phase selection or the controller.",
@@ -112,7 +114,7 @@
   "finite_test_envelope_only": true,
   "bc_dagger_or_rl_allowed": false,
   "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold",
-  "declared_file_count": 143,
+  "declared_file_count": 144,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -147,6 +149,7 @@
     "configs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_370ms.json",
     "configs/stage4_2r3b_confirmatory_hidden_history_initial_state_370ms.json",
     "configs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_370ms.json",
+    "configs/stage4_2r3c1_postprocess_hotfix_v1.json",
     "configs/stage4_2r3c1_semantics_preserving_resume_hotfix_v1.json",
     "configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json",
     "run_stage4_2r3c1_authenticated_visible_manifold_phase_mpc_native.sh",
