@@ -113,7 +113,9 @@ def _trajectory_arrays(
     ):
         raise ValueError("non-finite or malformed R/Z/Ip trajectory")
     velocity = r3c.r1.r8._velocity_components(values, dt_s)
-    if velocity.shape != values.shape or not np.all(np.isfinite(velocity)):
+    if velocity.shape != (len(values), 2) or not np.all(
+        np.isfinite(velocity)
+    ):
         raise ValueError("non-finite or malformed velocity trajectory")
     return values, velocity
 
@@ -651,7 +653,7 @@ def main() -> None:
                 },
                 "offline_design_only_baseline": {
                     "RZI_by_state": base_y.tolist(),
-                    "velocity_RZI_by_state": base_v.tolist(),
+                    "velocity_RZ_by_state": base_v.tolist(),
                     "formal_metrics": r3c._formal_metrics(ctx, baseline),
                     "controller_use_forbidden": True,
                 },
@@ -695,7 +697,7 @@ def main() -> None:
                 for step in sorted(plus_schedule)
             ],
             "delta_RZI_by_state": odd_y.tolist(),
-            "delta_velocity_RZI_by_state": odd_v.tolist(),
+            "delta_velocity_RZ_by_state": odd_v.tolist(),
             "central_even_metrics": {
                 "velocity_RZ_rmse_m_per_s": velocity_rmse,
                 "position_RZ_rmse_m": position_rmse,
@@ -935,8 +937,8 @@ def main() -> None:
                         "positive_schedule_by_task_issue_step"
                     ],
                     "delta_RZI_by_state": response["delta_RZI_by_state"],
-                    "delta_velocity_RZI_by_state": response[
-                        "delta_velocity_RZI_by_state"
+                    "delta_velocity_RZ_by_state": response[
+                        "delta_velocity_RZ_by_state"
                     ],
                 }
             )
