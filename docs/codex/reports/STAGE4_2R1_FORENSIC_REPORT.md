@@ -341,3 +341,16 @@ Predeployment package hashes:
 
 At this checkpoint the server is still untouched by the hotfix and no new TSC
 task has been claimed.
+
+## Remote preflight status
+
+The required read-only command using `ssh tsc-airgap` was attempted after
+commit `0c87297`.  The only locally available client,
+`C:\WINDOWS\System32\OpenSSH\ssh.exe` (OpenSSH 9.5p2), returned
+`Could not resolve hostname tsc-airgap`.  No remote command ran, no file was
+transferred, and no server state changed.
+
+The repository rules prohibit reading/changing external SSH configuration or
+replacing the alias with the identification-only IP endpoint.  Deployment and
+resume are therefore pending restoration of the required alias; the exact
+handoff is recorded in `docs/codex/CURRENT_STATUS.md`.
