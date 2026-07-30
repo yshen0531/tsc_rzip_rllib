@@ -1900,8 +1900,10 @@ def analyze(
         "controller_restart_replay_status": (
             "passed" if replay_pass else "failed" if replay_summary else "not_run"
         ),
-        "online_action_recomputation_validated": replay_pass,
-        "future_action_replay_used": False if replay_summary else None,
+        "online_action_recomputation_validated": offline_pass,
+        "future_action_replay_used": (
+            False if offline_summary is not None or replay_summary is not None else None
+        ),
         "same_source_exact_controller_restart_validated": replay_pass,
         "matched_visible_different_hidden_history_validated": False,
         "different_initial_state_validated": False,
@@ -1941,9 +1943,15 @@ def analyze(
     atomic_write_json(ctx.paths.analysis / "stage4_2r2_verdict.json", verdict)
     atomic_write_json(ctx.paths.analysis / "stage4_2r2_summary.json", summary)
     state = read_json(ctx.paths.state)
+    campaign_finished = bool(
+        primary_pass
+        or not checkpoint_pass
+        or (offline_summary is not None and not offline_pass)
+        or (replay_summary is not None and not replay_pass)
+    )
     state.update(
         {
-            "finished": True,
+            "finished": campaign_finished,
             "primary_pass": primary_pass,
             "stop_reason": (
                 ""
@@ -1951,8 +1959,17 @@ def analyze(
                 else "controller_checkpoint_failed"
                 if not checkpoint_pass
                 else "offline_controller_recomputation_failed"
-                if not offline_pass
+                if offline_summary is not None and not offline_pass
                 else "controller_restart_replay_failed"
+                if replay_summary is not None and not replay_pass
+                else ""
+            ),
+            "phase_status": (
+                "campaign_complete"
+                if campaign_finished
+                else "checkpoint_complete"
+                if offline_summary is None
+                else "offline_gate_complete"
             ),
             "updated_utc": utc_timestamp(),
             "verdict": verdict,

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -224,6 +225,34 @@ class Stage42R2ControllerTests(unittest.TestCase):
         row = r2._result_row(None, result)  # type: ignore[arg-type]
         self.assertEqual(row["failure_class"], "runtime_or_environment_error")
         self.assertNotIn("summary_exception", row)
+
+    def test_offline_only_analysis_remains_resumable_not_failed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            paths = r2.Stage42R2Paths.from_run_dir(Path(tmp))
+            paths.analysis.mkdir(parents=True)
+            r2.atomic_write_json(
+                paths.state,
+                {
+                    "finished": False,
+                    "primary_pass": False,
+                    "stop_reason": "",
+                },
+            )
+            ctx = SimpleNamespace(
+                paths=paths,
+                source_r1_run=Path("/source/r1"),
+            )
+            checkpoint = {"passed": True}
+            offline = {"passed": True}
+            summary = r2.analyze(ctx, checkpoint, offline)
+            state = r2.read_json(paths.state)
+            self.assertFalse(state["finished"])
+            self.assertEqual(state["stop_reason"], "")
+            self.assertEqual(state["phase_status"], "offline_gate_complete")
+            self.assertTrue(summary["online_action_recomputation_validated"])
+            self.assertEqual(
+                summary["controller_restart_replay_status"], "not_run"
+            )
 
 
 if __name__ == "__main__":
