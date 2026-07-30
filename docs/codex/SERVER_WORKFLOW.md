@@ -268,7 +268,31 @@ Do not infer completion from a quiet log. Check:
 
 If the task remains active, continue polling in the current Codex task when practical. If the session must stop, write exact status and commands to `docs/codex/CURRENT_STATUS.md`.
 
-## 11. Direct download without archives
+## 11. Evidence retrieval without archives
+
+Large result trees must now be postprocessed in place on the server with the
+existing project code and existing virtualenv.  Do not download large raw,
+snapshot, or trajectory trees to the local repository.
+
+For a large run:
+
+1. keep the raw result tree immutable;
+2. run a read-only Python postprocessor inside `REMOTE_PROJECT`;
+3. make the postprocessor read every required raw JSON/JSON.GZ and snapshot
+   payload, verify strict JSON, counts, sizes, SHA-256, source fingerprints,
+   and recompute all load-bearing metrics;
+4. write only compact audit JSON/CSV, inventory/hash lists, and analysis logs;
+5. transfer those compact artifacts directly without compression;
+6. record the exact remote run path so any raw claim remains reproducible.
+
+The compact audit must contain enough per-case evidence to distinguish runtime,
+package, corruption, reporting, design, and real control/plant conclusions.
+It must not merely copy a saved verdict.
+
+Small result trees may still be copied directly when a complete local copy is
+materially useful.  No ZIP/TAR operation is permitted in either workflow.
+
+### 11.1 Direct copy for a small result tree
 
 Create a repository-local destination:
 
@@ -279,7 +303,7 @@ New-Item -ItemType Directory -Force $LocalRunRoot | Out-Null
 New-Item -ItemType Directory -Force $LocalLogRoot | Out-Null
 ```
 
-Copy the run tree directly:
+Copy a small run tree directly:
 
 ```powershell
 scp -r "tsc-airgap:/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/<run_name>" "$LocalRunRoot\"
@@ -288,9 +312,10 @@ scp    "tsc-airgap:/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/<log_nam
 
 Do not ZIP/TAR either side for this workflow.
 
-Download snapshot directories exactly as generated. Preserve filenames and directory hierarchy.
+When a small snapshot tree is copied, preserve filenames and directory
+hierarchy exactly.
 
-## 12. Verify downloaded evidence
+## 12. Verify retrieved evidence
 
 After transfer:
 
@@ -305,7 +330,10 @@ After transfer:
    artifacts/transfer_manifests/
    ```
 
-A copied directory is not trusted until this check passes.
+A copied directory is not trusted until this check passes.  A server-processed
+large run is not trusted until the compact audit proves raw coverage, strict
+parse, snapshot inventory/hash integrity, and independent metric
+recomputation.
 
 ## 13. Analyze and iterate
 

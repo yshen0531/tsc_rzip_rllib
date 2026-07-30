@@ -612,3 +612,121 @@ R1c package hashes:
 - `artifacts/server_validation/stage4_2r1_r1b_remote_run_sha256_20260730_061527.txt`
 - `artifacts/server_validation/stage4_2r1_r1b_local_run_sha256_20260730_061527.txt`
 - `artifacts/server_logs/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_061527.log`
+
+## R1c final authenticated result
+
+R1c was deployed and installed with the package hashes recorded above.  Both
+staging and installed validation passed package checksum verification,
+compile/import closure, scientific guards, shell syntax, and 428/428 server
+tests.  The exact existing run was resumed:
+
+```text
+remote run = /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
+remote log = /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_070023.log
+driver PID = 1217510
+backend    = ray
+workers    = 128
+```
+
+During capture and restart, 18 concurrent real `gotsc` processes were observed
+for each phase.  The driver exited normally and the complete log contains no
+traceback.
+
+### Raw and snapshot evidence
+
+The final run contains 261 files totaling 2,134,623,716 bytes:
+
+- capture raw: 18/18, strict parse 18/18, success 18/18;
+- restart raw: 18/18, strict parse 18/18, success 18/18;
+- snapshot cases: 18/18;
+- snapshot payloads: 144 files;
+- snapshot manifests: 18/18;
+- all run JSON/JSON.GZ: strict parse 114/114.
+
+Independent remote/local SHA-256 inventories matched 261/261 with missing 0,
+extra 0, and mismatch 0.  A separate server-side Python postprocessor then
+read the selected source raw directly from their recorded R11/R17 paths and
+verified all 18 recorded sizes and hashes.
+
+All 18 snapshot manifests were independently reconstructed from their file
+rows and all listed payload sizes/SHA-256 were recomputed.  Manifest/hash
+failures were 0.  Each snapshot contains:
+
+```text
+inputa
+sprsina
+geqdsk
+outputa
+coil_currents.csv
+wire_currents.csv
+sprsoua
+tsc.cgm
+```
+
+`1300ms` is the absolute TSC clock, not the elapsed checkpoint:
+`1100 ms + 20 * 10 ms = 1300 ms`, so elapsed capture is exactly 200 ms.
+After converting `coil_currents.csv` from kA-turn with the configured TSC-order
+turn counts, its maximum difference from the raw checkpoint 14-coil vector is
+0 A.  All 48 wire currents are also exactly equal.
+
+### Independent recomputation
+
+The postprocessor recomputed every comparison from raw data and matched the
+saved per-case result rows:
+
+```text
+capture visible/source maximum difference       = 0
+capture/source action maximum difference         = 0
+snapshot coil maximum difference                 = 0 A
+snapshot wire maximum difference                 = 0 A
+restart initial and suffix visible difference    = 0
+restart full 48-wire suffix difference           = 0 A
+restart/source action maximum difference         = 0
+recombined/source visible maximum difference     = 0
+saved capture rows match recomputation            = true
+saved restart rows match recomputation            = true
+```
+
+There is no duplicate or missing checkpoint interval: the recombination is
+capture states `[0, 20)` plus restart states `[20, horizon]`, producing
+`horizon + 1` states.
+
+The immutable formal metric was recomputed from the combined raw trajectory:
+
+- 12 normal-slew cases arrive at 250 ms and hold through 350 ms;
+- 6 weak-slew cases arrive at 270 ms and hold through 370 ms;
+- formal pass: 18/18;
+- minimum signed margin:
+  `1.04569209997685e-05`;
+- minimum case:
+  `RZ_p10_m10`, delay 0, slew 0.9, arrival 270 ms.
+
+### Final classification
+
+1. Runtime/environment errors: none in R1c.
+2. Packaging/deployment/import errors: none.
+3. Raw/snapshot integrity errors: none in the finite 18-case result.
+4. Statistics/reporting bugs: no R1c mismatch; saved result rows match
+   independent raw recomputation.
+5. Experimental-design limitation: R1 uses exact action replay and deliberately
+   restores no controller state.
+6. Real plant-restart conclusion: authentic filesystem `sprsina` restart is
+   bit-exact for R/Z/Ip, vessel aggregates, all 14 coil channels, and all 48
+   wire currents over every same-action suffix in 18/18 cases.
+7. What can be frozen: the R1 plant restart bank and same-source plant-restart
+   fidelity on the finite clean R17 expert map.
+8. What remains unvalidated: controller-state restart, hidden-history
+   variation, different initial states, new targets, continuous parameters,
+   plant/Jacobian error, noise, disturbance recovery, independent long hold,
+   and deployment robustness.
+9. Next step: Stage4.2R2 must persist controller state and recompute actions
+   online on the certified plant bank.  BC, DAgger, and RL remain blocked.
+
+Final compact evidence:
+
+- `artifacts/codex_audits/stage4_2r1_r1c_inventory.json`
+- `artifacts/codex_audits/stage4_2r1_r1c_remote_raw_forensics.json`
+- `artifacts/server_hashes/stage4_2r1_r1c_remote_sha256_20260730.txt`
+- `artifacts/server_logs/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_070023.log`
+- `artifacts/server_validation/stage4_2r1_r1c_staging_validation_20260730.log`
+- `artifacts/server_validation/stage4_2r1_r1c_installed_validation_20260730.log`

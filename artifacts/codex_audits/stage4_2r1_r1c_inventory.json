@@ -1,0 +1,18 @@
+{
+  "actual_bytes": 2134623716,
+  "actual_files": 261,
+  "expected_files": 261,
+  "extra": [],
+  "extra_count": 0,
+  "local_run": "C:\\Users\\用户\\Documents\\codes\\tsc_rzip_rllib\\artifacts\\server_runs\\r1c_resume_20260730_070023\\stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619",
+  "mismatch_count": 0,
+  "mismatches": [],
+  "missing": [],
+  "missing_count": 0,
+  "package_revision": "r42r1c_terminal_wire_telemetry_resume_v4",
+  "passed": true,
+  "remote_hash_inventory": "C:\\Users\\用户\\Documents\\codes\\tsc_rzip_rllib\\artifacts\\server_hashes\\stage4_2r1_r1c_remote_sha256_20260730.txt",
+  "remote_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619",
+  "schema_version": 1,
+  "stage": "Stage4.2R1"
+}

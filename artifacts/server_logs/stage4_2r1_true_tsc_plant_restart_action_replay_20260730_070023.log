@@ -1,0 +1,174 @@
+[Stage4.2R1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R1] source_stage4_1r17_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501
+[Stage4.2R1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
+[Stage4.2R1] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r1_true_tsc_plant_restart_action_replay_370ms.json
+[Stage4.2R1] command=all backend=ray resume=1 workers=128
+[Stage4.2R1 R1c] Lazy-runner capture setup and terminal full-wire telemetry remain lifecycle-safe; finite failures and compatible successful snapshots remain resume-safe.
+[Stage4.2R1] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python RAY_TMPDIR=/tmp/stage4_2r1_1120
+[Stage4.2R1] R17 original timing is frozen: slew 1.0/1.1 arrives by 250 ms and holds through 350 ms; slew 0.9 arrives by 270 ms and holds through 370 ms.
+[Stage4.2R1] This stage isolates authentic TSC plant-state restart: exact R17 expert actions are replayed, sprsina plus full coil/wire state is captured at 200 ms, and a fresh TSC process replays the remaining suffix.
+[Stage4.2R1] Plant restart fidelity and formal-contract preservation are reported separately. Controller observer/integrator/queue checkpoint replay is deliberately not performed in R1.
+[Stage4.2R1] The old unrun R11-based Stage4.2R1 package is not reused. R10/R11 750 ms/2 s trajectories remain auxiliary diagnostics only.
+[Stage4.2R1] This does not validate unseen hidden histories, new targets, plant mismatch, continuous actuator changes, noise, disturbances, deployment, BC, DAgger or RL.
+[Stage4.2R1] Final task remains causal safe arrival, deceleration, disturbance recovery and long hold across initial states, hidden vessel/eddy histories, targets, continuous plant/actuator changes, noise and unknown delay.
+2026-07-30 15:00:33,137	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R1 plant-capture] ray_capacity requested=128 cluster_cpus=128 pending=18 actors=18 initialized_now=1
+[Stage4.2R1 plant-capture] actor_allocation={"slew_0p900_h37":6,"slew_1p000_h35":6,"slew_1p100_h35":6}
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] waiting 0/18
+[Stage4.2R1 plant-capture] 10/18
+[Stage4.2R1 plant-capture] 18/18
+[Stage4.2R1 plant-restart] ray_capacity requested=128 cluster_cpus=128 pending=18 actors=18 initialized_now=0
+[Stage4.2R1 plant-restart] actor_allocation={"r42r1_restart_s42r1_02e362a9db5d0038375a_d0_s1p000":1,"r42r1_restart_s42r1_0335d099a55455c8c4a2_d0_s1p100":1,"r42r1_restart_s42r1_07d4391626b568d3d1d4_d2_s1p000":1,"r42r1_restart_s42r1_127f38736035b78c7af6_d1_s0p900":1,"r42r1_restart_s42r1_13e6677c5ee386421561_d1_s1p100":1,"r42r1_restart_s42r1_360594c6e0e18106a893_d1_s1p000":1,"r42r1_restart_s42r1_43d84438b41d51cf6491_d1_s1p100":1,"r42r1_restart_s42r1_6442ea8fce407a0d50c6_d2_s1p000":1,"r42r1_restart_s42r1_683efa483483fb445e3d_d0_s0p900":1,"r42r1_restart_s42r1_6e47fc276c089c8225c6_d2_s0p900":1,"r42r1_restart_s42r1_9cb2964ccf9f1f305352_d0_s1p000":1,"r42r1_restart_s42r1_a1b7708f6011ce730dd9_d0_s0p900":1,"r42r1_restart_s42r1_a873b553954ffbd64e0d_d0_s1p100":1,"r42r1_restart_s42r1_c1b845e90cb8b80f4011_d1_s1p000":1,"r42r1_restart_s42r1_db5ff6d589593afd0d7d_d2_s1p100":1,"r42r1_restart_s42r1_dd913b425ec6e54e594d_d2_s1p100":1,"r42r1_restart_s42r1_e49b8629e202e57e9aec_d1_s0p900":1,"r42r1_restart_s42r1_eeeae74dc3d8cfdd6271_d2_s0p900":1}
+[Stage4.2R1 plant-restart] waiting 0/18
+[Stage4.2R1 plant-restart] waiting 0/18
+[Stage4.2R1 plant-restart] waiting 0/18
+[Stage4.2R1 plant-restart] waiting 0/18
+[Stage4.2R1 plant-restart] waiting 0/18
+[Stage4.2R1 plant-restart] waiting 0/18
+[Stage4.2R1 plant-restart] waiting 0/18
+[Stage4.2R1 plant-restart] 10/18
+[Stage4.2R1 plant-restart] 18/18
+{
+  "checkpoint_elapsed_ms": 200,
+  "checkpoint_step": 20,
+  "cold_controller_restart_validated": false,
+  "continuous_parameter_change_validated": false,
+  "controller_checkpoint_replay_validated": false,
+  "created_utc": "20260730_071446",
+  "deployment_robustness_validated": false,
+  "disturbance_recovery_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "finite_test_envelope_only": true,
+  "formal_contract_preservation_status": "passed",
+  "formal_contract_preserved": true,
+  "measurement_noise_robustness_validated": false,
+  "next_if_fail": "Separate snapshot-file, full-wire-state, action-replay and formal-margin failures. Fix TSC plant serialization/restart fidelity before testing controller-state reconstruction; do not relax timing gates.",
+  "next_if_pass": "Proceed to Stage4.2R2 persistent controller-checkpoint replay on the certified plant restart bank, then construct matched-visible/different-hidden-history tests. Do not start BC/DAgger/RL yet.",
+  "original_250_350_and_270_370_timing_unchanged": true,
+  "phases": {
+    "plant_checkpoint_capture": {
+      "capture_exception_stage_counts": {},
+      "capture_summary_exception_count": 0,
+      "capture_trace_comparison_status": "exact",
+      "capture_visible_comparable_fraction": 1.0,
+      "capture_visible_exact_fraction": 1.0,
+      "coverage_complete": true,
+      "distinct_snapshot_paths": 18,
+      "environment_success_count": 18,
+      "expected_rollouts": 18,
+      "failure_reason_count": 0,
+      "full_wire_vector_fraction": 1.0,
+      "maximum_capture_visible_abs_difference": 0.0,
+      "maximum_source_action_abs_difference": 0.0,
+      "n_rollouts": 18,
+      "passed": true,
+      "phase": "plant_checkpoint_capture",
+      "plant_capture_instrumentation_changed_source_trace": false,
+      "schema_version": 1,
+      "snapshot_valid_fraction": 1.0,
+      "snapshot_wire_exact_fraction": 1.0,
+      "source_action_comparable_fraction": 1.0,
+      "source_action_exact_fraction": 1.0,
+      "stage": "Stage4.2R1",
+      "wire_current_count_max": 48,
+      "wire_current_count_min": 48
+    },
+    "plant_restart_replay": {
+      "controller_checkpoint_loaded_count": 0,
+      "coverage_complete": true,
+      "environment_success_count": 18,
+      "expected_rollouts": 18,
+      "formal_contract_preservation_fraction": 1.0,
+      "formal_contract_preserved": true,
+      "fresh_restart_actor_fraction": 1.0,
+      "full_tsc_hidden_state_loaded_fraction": 1.0,
+      "maximum_restart_action_abs_difference": 0.0,
+      "maximum_restart_visible_abs_difference": 0.0,
+      "maximum_restart_wire_abs_difference": 0.0,
+      "minimum_formal_signed_margin": 1.0456920999768471e-05,
+      "minimum_margin_case": {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 0.9,
+        "target_id": "RZ_p10_m10"
+      },
+      "n_rollouts": 18,
+      "passed": true,
+      "phase": "plant_restart_replay",
+      "plant_restart_fidelity_pass_fraction": 1.0,
+      "plant_restart_fidelity_passed": true,
+      "recombined_visible_exact_fraction": 1.0,
+      "restart_initial_visible_exact_fraction": 1.0,
+      "restart_initial_wire_exact_fraction": 1.0,
+      "restart_source_action_exact_fraction": 1.0,
+      "restart_summary_exception_count": 0,
+      "restart_visible_suffix_exact_fraction": 1.0,
+      "restart_wire_suffix_exact_fraction": 1.0,
+      "schema_version": 1,
+      "stage": "Stage4.2R1"
+    },
+    "source_audit": {
+      "abnormal_rollout_count": 0,
+      "controller_checkpoint_replay_in_this_stage": false,
+      "distinct_trusted_calibration_tokens": 9,
+      "environment_success_count": 18,
+      "expected_cases": 18,
+      "formal_contract_pass_fraction": 1.0,
+      "interpretation": "R17 genuinely restores the original finite 18-case timing grid, but the minimum source margin is razor-thin. R1 now isolates authentic TSC plant-state restart fidelity by replaying the exact expert actions; it does not yet test controller-state reconstruction.",
+      "minimum_formal_signed_margin": 1.0456920999768471e-05,
+      "minimum_margin_case": {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 0.9,
+        "controller_path": "source_unchanged_r11_original_deadline",
+        "target_id": "RZ_p10_m10"
+      },
+      "modified_r17_cases": 4,
+      "old_unrun_r11_based_stage4_2r1_not_reused": true,
+      "original_250_350_and_270_370_timing_unchanged": true,
+      "passed": true,
+      "phase": "source_audit",
+      "plant_restart_only": true,
+      "r10_r11_long_horizons_are_auxiliary_only": true,
+      "razor_thin_source_margin_warning": true,
+      "schema_version": 1,
+      "selected_expert_cases": 18,
+      "source_finished": true,
+      "source_formal_grid_status": "passed",
+      "source_stage4_1r17_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501",
+      "source_stop_reason": "",
+      "stage": "Stage4.2R1",
+      "unchanged_source_cases": 14
+    }
+  },
+  "plant_checkpoint_capture_status": "passed",
+  "plant_parameter_robustness_validated": false,
+  "plant_restart_fidelity_passed": true,
+  "plant_restart_replay_status": "passed",
+  "primary_pass": true,
+  "schema_version": 1,
+  "source_audit_status": "passed",
+  "source_stage4_1r17_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501",
+  "stage": "Stage4.2R1",
+  "true_filesystem_tsc_restart_performed": true,
+  "unseen_hidden_history_generalization_validated": false,
+  "unseen_target_generalization_validated": false,
+  "verdict": "STAGE4_2R1_TRUE_TSC_PLANT_RESTART_ACTION_REPLAY_CERTIFIED",
+  "warning": "Stage4.2R1 certifies only authentic TSC plant-state serialization and exact action-replay restart for the same finite clean 18-case R17 expert. It deliberately does not replay or reconstruct controller observer/integrator/queue state, and it does not validate unseen hidden histories, new targets, plant error, continuous actuator changes, noise, disturbances or deployment."
+}

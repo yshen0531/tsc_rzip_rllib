@@ -1,5 +1,36 @@
 # CURRENT_TASK.md — Stage4.2R1 final-result forensics and continuation
 
+## Current execution update — 2026-07-30
+
+Stage4.2R1 R1c has now been authenticated from source raw, capture raw,
+restart raw, snapshot payloads/manifests, full logs, and independent
+server-side recomputation.  It passes the finite 18-case same-source plant
+restart gate and preserves the immutable formal timing 18/18.  The minimum
+formal signed margin is only `1.04569209997685e-05`.
+
+The active continuation is therefore Case D / Stage4.2R2.  R2 must perform a
+real persistent controller-state restart on the certified R1 plant snapshot
+bank.  It must recompute actions online after restart; storing or replaying the
+future source action suffix is forbidden as a substitute for controller-state
+restoration.
+
+R2 must persist at least:
+
+- causal measurement/observer history;
+- integrator;
+- previous correction;
+- pending action-delay queue;
+- trusted calibration token and modeled delay/slew;
+- controller phase and source/code fingerprint.
+
+The first R2 experiment is exact same-source replay only.  Matched-visible /
+different-hidden-history testing comes afterward.  Formal timing remains
+250/350 ms for slew 1.0/1.1 and 270/370 ms for slew 0.9.
+
+Per the user's updated transfer rule, subsequent large raw/snapshot result
+trees stay on the server and are processed there with Python.  Only compact
+audit JSON/CSV, manifests, hash inventories, and logs are downloaded.
+
 ## 1. Task statement
 
 The Stage4.2R1 / R1a server run has completed. The uncompressed final log and full uncompressed run results have already been downloaded into this repository.

@@ -104,3 +104,39 @@
 - Next:
   direct R1c deployment, server validation, same-run resume, complete
   uncompressed download, and raw/snapshot/restart re-audit
+
+### R1c final server result
+
+- Local code checkpoint:
+  `4ff8a1d`
+- Package/controller:
+  `r42r1c_terminal_wire_telemetry_resume_v4` /
+  `true_tsc_plant_restart_action_replay_v42r1`
+- Server validation:
+  staging and installed checksum/import/compile/`bash -n` passed; installed
+  complete unit discovery 428/428
+- Resume:
+  PID `1217510`, Ray capacity 128, same run and experiment identity
+- Log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_070023.log`
+- Real TSC:
+  18 concurrent `gotsc` capture processes and 18 concurrent fresh-restart
+  `gotsc` processes observed
+- Final counts:
+  capture 18/18 success; restart 18/18 success; snapshot cases 18/18;
+  snapshot payloads 144 plus 18 manifests
+- Integrity:
+  261 files, 2,134,623,716 bytes; remote/local SHA-256 missing 0, extra 0,
+  mismatch 0; strict run JSON/JSON.GZ 114/114
+- Independent result:
+  source/capture/action/snapshot/restart/recombined equality 18/18; 14-coil
+  maximum difference 0 A after kA-turn conversion; 48-wire maximum difference
+  0 A; fixed formal gate 18/18
+- Minimum formal margin:
+  `1.04569209997685e-05`, `RZ_p10_m10`, delay 0, slew 0.9, 270 ms
+- Classification:
+  authentic finite same-source plant restart success; no controller-state
+  restart claim
+- Next:
+  Stage4.2R2 persistent controller checkpoint with online action
+  recomputation; no BC/DAgger/RL
