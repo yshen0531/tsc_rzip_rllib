@@ -195,17 +195,25 @@ claims. Their global minimum formal signed margin is only
 
 ## 6. Current near-term objective
 
-Stage4.2R3 must test:
+Stage4.2R3 and R3a completed 54/54 and 72/72 authentic state-generation
+rollouts respectively, without runtime or corruption errors. Both remain
+failed under their original preregistered hidden-state gates and neither ran
+conditional control. R3a did establish that common expert prefixes generate
+different authenticated initial-state groups and that delayed counter-pulses
+produce a measurable hidden-history difference up to 0.527 A.
 
-1. matched controller-visible state with materially different authentic
-   hidden vessel/eddy-current histories; and
-2. different authenticated initial states.
+Stage4.2R3b is the prospectively gated confirmation experiment. It uses new
+prefix lengths and pulse amplitudes, requires all 72 new state rollouts, and
+selects one valid pair from each prefix-by-direction stratum before any
+conditional control may run.
 
-The pair-generation method, visible matching tolerances, minimum hidden-state
-separation, safety rules, and unchanged formal gates must be preregistered.
-Full wire state is audit evidence and must not leak into controller input.
-Invalid pairing, observer/history-identification failure, and real control
-failure must be separated.
+The pair-generation method, visible matching tolerances, calibrated material
+hidden-state separation, safety rules, source fingerprints, and unchanged
+formal gates are frozen in
+`docs/codex/reports/STAGE4_2R3B_PREREGISTERED_DESIGN.md`.
+Full wire state remains audit evidence and must not leak into controller
+input. Invalid pairing, observer/history-identification failure, plant
+restart failure, and real control failure must be separated.
 
 ## 7. Medium-term objectives
 

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3a",
+  "phase": "authentic_hidden_history_state_generation_and_pair_selection",
+  "expected_state_rollouts": 72,
+  "state_rollout_count": 72,
+  "state_environment_success_count": 72,
+  "runtime_or_environment_error_count": 0,
+  "raw_or_snapshot_corruption_count": 0,
+  "complete_state_grid": true,
+  "expected_pair_count": 36,
+  "pair_count": 36,
+  "visible_match_pair_count": 24,
+  "hidden_separation_pair_count": 0,
+  "accepted_pair_count": 0,
+  "selected_pair_count": 0,
+  "selected_pair_ids": [],
+  "selected_different_initial_state_count": 0,
+  "minimum_selected_pairs_required": 2,
+  "minimum_different_initial_centroids_required": 2,
+  "required_common_prefix_lengths": [
+    4,
+    8
+  ],
+  "selected_common_prefix_lengths": [],
+  "common_prefix_coverage_pass": false,
+  "mutual_prefix_group_separation_pass": false,
+  "control_outcome_used_for_selection": false,
+  "hidden_state_edited": false,
+  "passed": false,
+  "stop_reason": "insufficient_valid_pairs"
+}

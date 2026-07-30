@@ -1,0 +1,123 @@
+{
+  "digest": "d7c12be4dafef9fbc97d6512d258d0045a01bc8a14324c0aba27b81af1a44608",
+  "files": [
+    {
+      "path": "analysis/stage4_2r3a_summary.json",
+      "sha256": "0f957eaff6c604d32116cfad1683ec84f457d7ddae4f1a8946fe9f6b65809d81",
+      "size_bytes": 2546
+    },
+    {
+      "path": "analysis/stage4_2r3a_verdict.json",
+      "sha256": "a7479ccc1bd55f241b5a7d4a0311f1938867f9c7808a74f13071fea09340e365",
+      "size_bytes": 1253
+    },
+    {
+      "path": "pair_analysis/results.csv",
+      "sha256": "e20511906070f3f0cd85ddf70ba1fb9c02f9005f4737be078868ca4ea371317a",
+      "size_bytes": 36585
+    },
+    {
+      "path": "pair_analysis/results.json",
+      "sha256": "6a021537f3be3942bfb0b2264dbd3569df7b6586647dfba61c6dfd1c71a4d9b8",
+      "size_bytes": 72788
+    },
+    {
+      "path": "pair_analysis/selected_pairs.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "size_bytes": 3
+    },
+    {
+      "path": "pair_analysis/summary.json",
+      "sha256": "8148b532e50bff05f1c060d47b49918a67b213e5411ea44c73eb9418467dd1d4",
+      "size_bytes": 1015
+    },
+    {
+      "path": "server_audit/stage4_2r3a_raw_forensics.json",
+      "sha256": "3889ef0df2220a4ada253761535945c143f80bca1e0351e7ece0c380abc61e23",
+      "size_bytes": 139314
+    },
+    {
+      "path": "server_audit/stage4_2r3a_raw_forensics.log",
+      "sha256": "cf852d30e9b8a0397e3b94d56f746616922f066feb8274258e90232e6e1c702e",
+      "size_bytes": 121958
+    },
+    {
+      "path": "server_audit/stage4_2r3a_raw_forensics.py",
+      "sha256": "fc715369165d7683be41bcce0601409981d46f0aca2318e878c9bba88310680b",
+      "size_bytes": 9260
+    },
+    {
+      "path": "server_audit/stage4_2r3a_run_inventory.json",
+      "sha256": "23954a28ab455fa27b8fd837180ddab99c014a4726828c3d48e96dafd5a28699",
+      "size_bytes": 165765
+    },
+    {
+      "path": "server_audit/stage4_2r3a_server_audit.json",
+      "sha256": "3e270647c51b67f6160be2b26ad903b73811dce15b973028228e39b94d640f90",
+      "size_bytes": 176506
+    },
+    {
+      "path": "server_audit/stage4_2r3a_snapshot_checks.json",
+      "sha256": "7c19986afac830d0a348b6edb31b06e69a4b0604a9a0f4e76feab005f1beb6c6",
+      "size_bytes": 32547
+    },
+    {
+      "path": "source_reference/common_prefix_source.json",
+      "sha256": "28c44fcf2e7abc1f731aae651d70a856748391d8526ac47fa1f14c932f1b0590",
+      "size_bytes": 3661
+    },
+    {
+      "path": "source_reference/deployed_package_fingerprint.json",
+      "sha256": "b55da94b8b786c0ec2b8b53c7f0f8d761d91fb2d1668db93f69dc21cae9960f4",
+      "size_bytes": 2637
+    },
+    {
+      "path": "source_reference/offline_frozen_controller_recomputation_audit.json",
+      "sha256": "a22c52aa96fcee23d70a2ad25f6a3677b270a3c7c6cf2261861330866aafc910",
+      "size_bytes": 2753
+    },
+    {
+      "path": "source_reference/stage4_2r3a_source_fingerprint.json",
+      "sha256": "e9887cafc05347b46538bacad2472a9b6df23f23c66fd3188397b571b821bdb6",
+      "size_bytes": 6565
+    },
+    {
+      "path": "stage4_2r3a_config.resolved.json",
+      "sha256": "8b718e3236f897205d32fcbbe24b91950a41645ea801978774e658e3f98b82b0",
+      "size_bytes": 5547
+    },
+    {
+      "path": "stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110200.log",
+      "sha256": "1ab301b16ea9643aaa8c9ffcbc61db24e74cd3a297d78016cde6dd4898442d95",
+      "size_bytes": 5412
+    },
+    {
+      "path": "stage4_2r3a_manifest.json",
+      "sha256": "9653be2b91bc62fa774ae814dcd7024384cb704a6b955f21cf2f32e444d8c28a",
+      "size_bytes": 18268
+    },
+    {
+      "path": "stage4_2r3a_state.json",
+      "sha256": "1b27d1a646d47ae3a1cccb8f330320d4bc3617539f6bccbff4f54c06dbbf8a44",
+      "size_bytes": 2107
+    },
+    {
+      "path": "state_generation/results.csv",
+      "sha256": "77c179772de1a8adf7a9517dd4abab87a2434ec82933f6413f45dbc57436c98a",
+      "size_bytes": 57952
+    },
+    {
+      "path": "state_generation/results.json",
+      "sha256": "33bc45d521fc9567a6af9267f7f3799f2f44cdbda114845378d563c641303998",
+      "size_bytes": 98998
+    },
+    {
+      "path": "state_generation/summary.json",
+      "sha256": "8148b532e50bff05f1c060d47b49918a67b213e5411ea44c73eb9418467dd1d4",
+      "size_bytes": 1015
+    }
+  ],
+  "n_files": 23,
+  "schema_version": 1,
+  "total_bytes": 964455
+}

@@ -54,6 +54,10 @@ Use `.codex_tmp/` inside the repository for temporary work. Clean only files cre
 Allowed local process exceptions:
 
 - invoke the existing `ssh`, `scp`, or `sftp` executable with the configured alias `tsc-airgap`;
+- if and only if `tsc-airgap` name resolution fails in the current Codex
+  process, invoke `ssh`, `scp`, or `sftp` with the user-authorized fixed
+  endpoint and identity options documented in
+  `docs/codex/SERVER_WORKFLOW.md`; do not inspect the identity or SSH config;
 - invoke the existing Git executable and configured Git remote;
 - invoke an existing Python interpreter or project-local virtual environment.
 
@@ -90,7 +94,12 @@ Actual endpoint, for identification only:
 yangshen0711@10.10.60.108
 ```
 
-Use the alias, not a newly constructed authentication command.
+Use the alias by default. If the alias is unresolved in the current Codex
+process, the only allowed fallback is the exact fixed endpoint, identity
+filename, and non-interactive public-key options documented in
+`docs/codex/SERVER_WORKFLOW.md`. This fallback was explicitly authorized and
+connectivity-tested by the user on 2026-07-30. It does not authorize reading
+or modifying the key or SSH configuration.
 
 Canonical remote paths:
 
@@ -259,19 +268,22 @@ Do not overstate it as restart, hidden-history, unseen-target, continuous-parame
 
 ## 9. Current stage
 
-The repository is currently at Stage4.2R1 / R1a plant-state restart work.
+R1c authentic plant-state restart and R2 causal persistent-controller restart
+are certified for their finite clean same-source 18-case grids. R3 and R3a
+completed their real-TSC state-generation grids but failed their original
+preregistered hidden-state gates; neither ran its conditional control phase.
 
-Expected R1 purpose:
+The current stage is Stage4.2R3b confirmatory hidden-history and
+different-initial-state work. Its design is frozen in:
 
-- replay exact R17 expert actions;
-- capture authentic TSC plant state at elapsed 200 ms;
-- save `sprsina`, coil currents, and full wire/vessel-current state;
-- start a fresh TSC process from the snapshot;
-- replay the remaining action suffix;
-- report plant restart fidelity separately from formal-contract preservation;
-- do not restore observer/integrator/pending-queue controller state in R1.
+```text
+docs/codex/reports/STAGE4_2R3B_PREREGISTERED_DESIGN.md
+```
 
-An earlier R1 summary crash converted a non-comparable result to `inf`; R1a changed this to finite structured failure data and preserved partial trajectories. The final local logs and results must be inspected as raw evidence. Do not assume the final R1 scientific outcome.
+R3b uses a new state grid and a prospectively calibrated material
+hidden-current gate. It must not retroactively relabel R3a, reuse R3a
+snapshots as its formal result, expose full-wire current to the controller, or
+run control before the complete state/pair gate passes.
 
 ## 10. Required validation before server execution
 

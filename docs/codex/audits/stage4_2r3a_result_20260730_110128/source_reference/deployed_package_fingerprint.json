@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3a_deployed_package_source_v1",
+  "n_files": 13,
+  "digest": "b56c45d947c8afc0c43a9257a634c977345fbf86825c139b69ea244d9d910590",
+  "files": [
+    {
+      "path": "PACKAGE_MANIFEST.json",
+      "size_bytes": 13026,
+      "sha256": "e9a5eb5582b8d0de3570d60d216bdd70b657f097d22b543f4f7db9cd4649088c"
+    },
+    {
+      "path": "SHA256SUMS",
+      "size_bytes": 15562,
+      "sha256": "f9454a40316755ae419b4f1efe4cdc28de77dafff47b2c61340398bfed34080a"
+    },
+    {
+      "path": "configs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_370ms.json",
+      "size_bytes": 5547,
+      "sha256": "8b718e3236f897205d32fcbbe24b91950a41645ea801978774e658e3f98b82b0"
+    },
+    {
+      "path": "run_stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_native.sh",
+      "size_bytes": 2769,
+      "sha256": "37125ad4ab3778ddd4f181df3debbed9a72867681793280c1b75d04f655d96bb"
+    },
+    {
+      "path": "run_stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_nohup.sh",
+      "size_bytes": 1836,
+      "sha256": "f9932f985f55f48cca200fd7205ad0c8500508df8369cb24804c34e1280cbb23"
+    },
+    {
+      "path": "run_stage4_2r3a_self_test.sh",
+      "size_bytes": 348,
+      "sha256": "976abf48cd064697af55d01579b53920ab5bb11f80a4f3ed3c194cf648f7423d"
+    },
+    {
+      "path": "run_stage4_2r3a_server_postprocess.sh",
+      "size_bytes": 1227,
+      "sha256": "e25696d00ddd2f09f9cf48d6480f942becba4a48c9aefe56149dd3132c5ed9a8"
+    },
+    {
+      "path": "run_stage4_2r3a_verify_package.sh",
+      "size_bytes": 8868,
+      "sha256": "0e689493a23ee56845766957ca049770ac64d4b9447693cf686caa8172d28b0b"
+    },
+    {
+      "path": "run_stop_stage4_2r3a_now.sh",
+      "size_bytes": 933,
+      "sha256": "ff40737769c9e85d4e730004b385f6cdfa0338b14373d5df02d6c88d7828760e"
+    },
+    {
+      "path": "scripts/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py",
+      "size_bytes": 178,
+      "sha256": "592a83be33a15126c6cea2bfa80bd88e59fed8cfd7ecaf4c87678d390bf11d82"
+    },
+    {
+      "path": "scripts/stage4_2r3a_server_postprocess.py",
+      "size_bytes": 11437,
+      "sha256": "f1761bf66078de19589c1312944d4f88d24b83c07816bdaba66492ebcdfb3ad8"
+    },
+    {
+      "path": "scripts/stage4_2r3a_shell_common.sh",
+      "size_bytes": 4913,
+      "sha256": "9a7f87a03c5b311d1ad1458fca758e36a133ce4d89b930773422464a17645517"
+    },
+    {
+      "path": "tsc_rzip_rllib/diagnostics/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py",
+      "size_bytes": 117047,
+      "sha256": "e2964936d84ecee1502a3333293e9aeb0329159a830c168405481b4341964994"
+    }
+  ]
+}

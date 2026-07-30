@@ -22,6 +22,38 @@ $RemoteVenv = "/home/yangshen0711/tsc_all/tsc_simulation/venv_simu"
 
 Do not infer a different path without evidence.
 
+### 2.1 Authorized fixed-endpoint fallback
+
+Use `tsc-airgap` by default. In the current Codex process the alias may fail
+name resolution even though the endpoint and key work. After an observed
+alias-resolution failure, the user has explicitly authorized this exact
+fallback:
+
+```powershell
+$SshArgs = @(
+  "-i", "$env:USERPROFILE\.ssh\id_ed25519_tsc",
+  "-o", "IdentitiesOnly=yes",
+  "-o", "PreferredAuthentications=publickey",
+  "-o", "PasswordAuthentication=no",
+  "yangshen0711@10.10.60.108"
+)
+ssh @SshArgs 'echo SSH_KEY_OK; whoami; hostname; echo "HOME=$HOME"'
+```
+
+For `scp`, use the same identity and `-o` options followed by the exact local
+and remote paths. Do not inspect, enumerate, copy, edit, hash, or print the
+identity file or SSH configuration. Do not substitute another endpoint,
+username, key, or authentication method.
+
+The fixed command was connectivity-tested successfully on 2026-07-30:
+
+```text
+SSH_KEY_OK
+yangshen0711
+master
+HOME=/home/yangshen0711
+```
+
 ## 3. Start-of-task preflight
 
 Local:
@@ -46,6 +78,9 @@ cd "$HOME/tsc_all/tsc_rzip_rllib"
 printf 'REMOTE_PROJECT=%s\n' "$PWD"
 '@
 ```
+
+If and only if the alias is unresolved, invoke the same remote script with
+the exact `$SshArgs` fallback from section 2.1.
 
 Do not run destructive commands before this succeeds.
 

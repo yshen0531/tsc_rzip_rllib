@@ -206,3 +206,70 @@
 - Next:
   Stage4.2R3 matched-visible/different-hidden-history pair construction and
   different-initial-state testing; no BC/DAgger/RL
+
+## Stage4.2R3 authentic hidden-history state generation
+
+- Local implementation:
+  `codex/stage4_2r3-hidden-history` / `9d752d2`; offline CLI fix `5748f83`
+- Package/controller:
+  `r42r3_authentic_hidden_history_initial_state_v1` /
+  `authentic_hidden_history_initial_state_mpc_v42r3`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3_runs/stage4_2r3_authentic_hidden_history_initial_state_20260730_100915`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3_authentic_hidden_history_initial_state_20260730_101040.log`
+- Expected/actual:
+  state rollouts 54/54; snapshots 54/54; pairs 27/27; control 0 because
+  the state gate failed
+- Result:
+  visible match 27/27; hidden separation 0/27; maximum hidden difference
+  0.048 A versus frozen 1,000 A; control `not_run`
+- Classification:
+  state-generation design/threshold failure; no runtime, corruption,
+  plant-restart, or real control conclusion
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3_FORENSIC_REPORT.md`;
+  `docs/codex/audits/stage4_2r3_result_20260730_100915/`
+- Next:
+  new R3a delayed-counterpulse state-generation identity
+
+## Stage4.2R3a delayed-counterpulse hidden-history state generation
+
+- Local implementation:
+  `codex/stage4_2r3a-delayed-history` /
+  `8a3eb670e9db210594f21260c2391cea0a32a255`
+- Package/controller:
+  `r42r3a_delayed_counterpulse_hidden_history_v1` /
+  `delayed_counterpulse_hidden_history_initial_state_mpc_v42r3a`
+- Package hashes:
+  `PACKAGE_MANIFEST.json`
+  `e9a5eb5582b8d0de3570d60d216bdd70b657f097d22b543f4f7db9cd4649088c`;
+  `SHA256SUMS`
+  `f9454a40316755ae419b4f1efe4cdc28de77dafff47b2c61340398bfed34080a`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3a_runs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110200.log`
+- Fresh/resume:
+  offline no-gotsc gate first, then safe same-identity resume for real TSC
+- Expected/actual:
+  state rollouts 72/72; snapshots 72/72; pairs 36/36; control 0 because
+  the frozen state gate failed
+- Independent result:
+  visible match 24/36; different initial state 36/36; hidden separation
+  under frozen 1.0 A gate 0/36; observed maximum 0.527 A; control `not_run`
+- Integrity:
+  739 files / 8,535,699,130 bytes / run digest
+  `9be432ee725035b31cee32f9415298aacd1fa576e24190588b8ef2c2be08eae7`;
+  runtime and corruption errors 0
+- Download:
+  no large raw/snapshot download; compact evidence 25 files / 971,284 bytes
+  at `docs/codex/audits/stage4_2r3a_result_20260730_110128/`
+- Classification:
+  experimental-design/threshold-calibration failure; no unit-conversion,
+  runtime, deployment, reporting, plant-restart, or real control failure
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3A_FORENSIC_REPORT.md`
+- Next:
+  new R3b confirmation grid with prospective material hidden-state gate;
+  no retroactive R3a reinterpretation and no BC/DAgger/RL
