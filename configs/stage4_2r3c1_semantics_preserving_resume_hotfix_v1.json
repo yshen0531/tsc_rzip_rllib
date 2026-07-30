@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "hotfix_id": "r3c1_phase20_fresh_terminal_zero_velocity_v1",
+  "stage": "Stage4.2R3c1",
+  "controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+  "package_revision": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
+  "from_deployed_package_digest": "3ea8456d0cb5cc13ba0771e6b8d571aef62da9fe08f678c09d962969eeba9ede",
+  "from_controller_source_sha256": "961f075c04f3c9f7eea812c12fb4a8fdc21971c31298108184201f3ed41c80b9",
+  "to_controller_source_sha256": "4ee7eda0e06d7c771322f33bec9f0bb31c5593937821b494d81fa6c615eaa76d",
+  "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+  "first_sample_velocity_initialization": "zero_from_current_visible_state_only",
+  "controller_semantics_changed": false,
+  "task_matrix_unchanged": true,
+  "formal_gate_unchanged": true,
+  "experiment_ids_unchanged": true,
+  "source_fingerprints_unchanged": true,
+  "allowed_deployed_fingerprint_changes": [
+    "PACKAGE_MANIFEST.json",
+    "SHA256SUMS",
+    "tsc_rzip_rllib/diagnostics/stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py"
+  ],
+  "rationale": "Phase alignment can select phase 20 and enter damping at task step zero. The frozen fresh-controller contract supplies only the current visible state then, while the established main-control measurement path initializes the unavailable first finite difference to zero. This hotfix applies that same causal initialization to immediate damping and delegates unchanged to the frozen terminal measurement after the second current-run sample."
+}

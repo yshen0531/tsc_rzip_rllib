@@ -40,6 +40,21 @@ SCHEMA_VERSION = 1
 STAGE = "Stage4.2R3c1"
 CONTROLLER_REVISION = "authenticated_visible_manifold_phase_mpc_v42r3c1"
 PACKAGE_REVISION = "r42r3c1_authenticated_visible_manifold_phase_mpc_v1"
+SEMANTICS_PRESERVING_HOTFIX_ID = (
+    "r3c1_phase20_fresh_terminal_zero_velocity_v1"
+)
+INITIAL_DEPLOYED_PACKAGE_DIGEST = (
+    "3ea8456d0cb5cc13ba0771e6b8d571aef62da9fe08f678c09d962969eeba9ede"
+)
+INITIAL_CONTROLLER_SOURCE_SHA256 = (
+    "961f075c04f3c9f7eea812c12fb4a8fdc21971c31298108184201f3ed41c80b9"
+)
+SEMANTICS_PRESERVING_HOTFIX_RELATIVE_PATH = (
+    "configs/stage4_2r3c1_semantics_preserving_resume_hotfix_v1.json"
+)
+FIRST_SAMPLE_TERMINAL_FAILURE_REASON = (
+    "ValueError('terminal feedback requires at least two trajectory states')"
+)
 N_COILS = r3b.N_COILS
 N_MODES = r3b.N_MODES
 N_WIRES = r3b.N_WIRES
@@ -151,6 +166,41 @@ def select_visible_reference_phase(
         "current_run_future_used": False,
         "hidden_wire_used": False,
     }
+
+
+def _fresh_task_terminal_measurement(
+    trajectory: Sequence[Mapping[str, Any]],
+    target: np.ndarray,
+    dt_s: float,
+) -> np.ndarray:
+    """Build a causal terminal measurement at a fresh task boundary.
+
+    The frozen fresh-controller contract exposes only the current visible
+    state at task step zero.  Its established main-control measurement path
+    initializes the unavailable first finite difference to zero.  Apply that
+    same convention when phase alignment enters damping immediately; after a
+    second current-run sample exists, delegate exactly to the frozen terminal
+    measurement implementation.
+    """
+
+    if not trajectory:
+        raise ValueError(
+            "fresh terminal feedback requires a current visible state"
+        )
+    if len(trajectory) >= 2:
+        return r2.r9._terminal_measurement(trajectory, target, dt_s)
+    current = trajectory[-1]
+    target_array = np.asarray(target, dtype=float).reshape(3)
+    return np.asarray(
+        [
+            float(current["R"]) - target_array[0],
+            float(current["Z"]) - target_array[1],
+            0.0,
+            0.0,
+            float(current["Ip"]) - target_array[2],
+        ],
+        dtype=float,
+    )
 
 
 def classify_pair_assessment(
@@ -841,6 +891,91 @@ def _deployed_package_fingerprint(
     }
 
 
+def _semantics_preserving_resume_compatibility(
+    ctx: Stage42R3C1Context,
+    original: Mapping[str, Any],
+    active: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    """Validate the one narrow R3c1 implementation-only resume hotfix."""
+
+    if dict(original) == dict(active):
+        return None
+    path = ctx.project_dir / SEMANTICS_PRESERVING_HOTFIX_RELATIVE_PATH
+    if not path.is_file():
+        raise ValueError(
+            "Stage4.2R3c1 deployed package changed without a "
+            "semantics-preserving resume contract"
+        )
+    contract = read_json(path)
+    if (
+        int(contract.get("schema_version", -1)) != 1
+        or str(contract.get("hotfix_id"))
+        != SEMANTICS_PRESERVING_HOTFIX_ID
+        or str(contract.get("stage")) != STAGE
+        or str(contract.get("controller_revision"))
+        != CONTROLLER_REVISION
+        or str(contract.get("package_revision")) != PACKAGE_REVISION
+        or str(contract.get("from_deployed_package_digest"))
+        != INITIAL_DEPLOYED_PACKAGE_DIGEST
+        or str(contract.get("from_controller_source_sha256"))
+        != INITIAL_CONTROLLER_SOURCE_SHA256
+        or str(original.get("digest"))
+        != INITIAL_DEPLOYED_PACKAGE_DIGEST
+        or str(active.get("contract"))
+        != str(original.get("contract"))
+        or int(active.get("n_files", -1))
+        != int(original.get("n_files", -2))
+        or str(contract.get("failure_reason"))
+        != FIRST_SAMPLE_TERMINAL_FAILURE_REASON
+        or str(contract.get("first_sample_velocity_initialization"))
+        != "zero_from_current_visible_state_only"
+        or bool(contract.get("controller_semantics_changed"))
+        or not bool(contract.get("task_matrix_unchanged"))
+        or not bool(contract.get("formal_gate_unchanged"))
+        or not bool(contract.get("experiment_ids_unchanged"))
+        or not bool(contract.get("source_fingerprints_unchanged"))
+    ):
+        raise ValueError(
+            "Stage4.2R3c1 semantics-preserving resume contract invalid"
+        )
+    original_rows = {
+        str(row["path"]): dict(row)
+        for row in original.get("files", [])
+    }
+    active_rows = {
+        str(row["path"]): dict(row) for row in active.get("files", [])
+    }
+    if set(original_rows) != set(active_rows):
+        raise ValueError(
+            "Stage4.2R3c1 hotfix changed deployed fingerprint coverage"
+        )
+    controller_path = (
+        "tsc_rzip_rllib/diagnostics/"
+        "stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py"
+    )
+    allowed = {"PACKAGE_MANIFEST.json", "SHA256SUMS", controller_path}
+    changed = {
+        relative
+        for relative in original_rows
+        if original_rows[relative] != active_rows[relative]
+    }
+    if changed != allowed:
+        raise ValueError(
+            "Stage4.2R3c1 hotfix changed files outside its exact "
+            f"allowlist: {sorted(changed)}"
+        )
+    if (
+        str(original_rows[controller_path].get("sha256"))
+        != INITIAL_CONTROLLER_SOURCE_SHA256
+        or str(active_rows[controller_path].get("sha256"))
+        != str(contract.get("to_controller_source_sha256"))
+    ):
+        raise ValueError(
+            "Stage4.2R3c1 hotfix controller source hash mismatch"
+        )
+    return copy.deepcopy(contract)
+
+
 def _source_controller_cases(
     ctx: Stage42R3C1Context,
 ) -> dict[tuple[str, int, float], dict[str, Any]]:
@@ -1433,7 +1568,7 @@ class AuthenticatedVisibleManifoldPhaseTaskController(r3b.FreshTaskController):
     ) -> tuple[np.ndarray, dict[str, Any]]:
         task_step = self.step
         reference_phase = self.reference_phase()
-        measurement_physical = r2.r9._terminal_measurement(
+        measurement_physical = _fresh_task_terminal_measurement(
             self.history, self.target, self.dt_s
         )
         normalized, for_solver = r2.r12._measurement_for_solver(
@@ -1822,7 +1957,7 @@ def _result_complete(
         return False
     try:
         result = read_json_gz(path)
-        return bool(
+        identity_complete = bool(
             result.get("completed")
             and str(result.get("stage")) == STAGE
             and str(result.get("controller_revision"))
@@ -1834,6 +1969,15 @@ def _result_complete(
             and isinstance(result.get("trajectory"), list)
             and isinstance(result.get("controller_trace"), list)
         )
+        exact_hotfix_failure = bool(
+            identity_complete
+            and not result.get("success")
+            and str(result.get("failure_reason", ""))
+            == FIRST_SAMPLE_TERMINAL_FAILURE_REASON
+            and result.get("trajectory") == []
+            and result.get("controller_trace") == []
+        )
+        return bool(identity_complete and not exact_hotfix_failure)
     except Exception:
         return False
 
@@ -2524,8 +2668,14 @@ def prepare(
         "development_set_only": True,
         "independent_hidden_history_confirmation": False,
     }
+    resume_hotfix: dict[str, Any] | None = None
+    original_package_fingerprint = package_fingerprint
     if ctx.paths.manifest.is_file():
         old = read_json(ctx.paths.manifest)
+        if not resume:
+            raise FileExistsError(
+                "Stage4.2R3c1 run exists; use --resume or a fresh run"
+            )
         for key in (
             "stage",
             "controller_revision",
@@ -2536,7 +2686,6 @@ def prepare(
             "source_stage4_2r3c_run",
             "source_stage4_2r3c_audit",
             "source_stage4_2r3c_fingerprint",
-            "deployed_package_fingerprint",
             "config_digest",
             "selected_snapshot_source_digest",
             "control_spec_digest",
@@ -2550,10 +2699,27 @@ def prepare(
                     "Stage4.2R3c1 resume incompatibility in "
                     f"manifest field {key}"
                 )
-        if not resume:
-            raise FileExistsError(
-                "Stage4.2R3c1 run exists; use --resume or a fresh run"
-            )
+        original_package_fingerprint = dict(
+            old.get("deployed_package_fingerprint") or {}
+        )
+        resume_hotfix = _semantics_preserving_resume_compatibility(
+            ctx, original_package_fingerprint, package_fingerprint
+        )
+        if resume_hotfix is not None:
+            updated_manifest = copy.deepcopy(old)
+            updated_manifest["semantics_preserving_resume_hotfix"] = {
+                "contract": resume_hotfix,
+                "original_deployed_package_digest": str(
+                    original_package_fingerprint["digest"]
+                ),
+                "active_deployed_package_digest": str(
+                    package_fingerprint["digest"]
+                ),
+                "active_deployed_package_fingerprint": (
+                    package_fingerprint
+                ),
+            }
+            atomic_write_json(ctx.paths.manifest, updated_manifest)
     else:
         atomic_write_json(ctx.paths.manifest, manifest)
     atomic_write_json(
@@ -2570,11 +2736,34 @@ def prepare(
         / "stage4_2r3c_source_fingerprint.json",
         ctx.source_r3c_fingerprint,
     )
-    atomic_write_json(
+    original_fingerprint_path = (
         ctx.paths.source_reference
-        / "deployed_package_fingerprint.json",
-        package_fingerprint,
+        / "deployed_package_fingerprint.json"
     )
+    if resume_hotfix is None:
+        atomic_write_json(
+            original_fingerprint_path, package_fingerprint
+        )
+    else:
+        if (
+            not original_fingerprint_path.is_file()
+            or read_json(original_fingerprint_path)
+            != original_package_fingerprint
+        ):
+            raise ValueError(
+                "Stage4.2R3c1 original deployment fingerprint evidence "
+                "changed before hotfix resume"
+            )
+        atomic_write_json(
+            ctx.paths.source_reference
+            / "resume_deployed_package_fingerprint.json",
+            package_fingerprint,
+        )
+        atomic_write_json(
+            ctx.paths.source_reference
+            / "semantics_preserving_resume_hotfix.json",
+            resume_hotfix,
+        )
     atomic_write_json(
         ctx.paths.source_reference / "selected_snapshot_sources.json",
         selected_public,
@@ -2603,6 +2792,17 @@ def prepare(
         }
     )
     state.update({"updated_utc": utc_timestamp()})
+    if resume_hotfix is not None:
+        state["semantics_preserving_resume_hotfix"] = {
+            "hotfix_id": SEMANTICS_PRESERVING_HOTFIX_ID,
+            "original_deployed_package_digest": str(
+                original_package_fingerprint["digest"]
+            ),
+            "active_deployed_package_digest": str(
+                package_fingerprint["digest"]
+            ),
+            "controller_semantics_changed": False,
+        }
     atomic_write_json(ctx.paths.state, state)
     return selected_pairs, specs
 

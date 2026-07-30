@@ -160,6 +160,46 @@ class Stage42R3C1DesignTests(unittest.TestCase):
                 scales=[0.03, 0.0, 2000.0],
             )
 
+    def test_fresh_terminal_measurement_uses_causal_zero_first_velocity(
+        self,
+    ) -> None:
+        target = np.asarray([0.70, -0.01, 30000.0])
+        first = [
+            {
+                "step_index": 0,
+                "R": 0.705,
+                "Z": -0.012,
+                "Ip": 30125.0,
+            }
+        ]
+        measurement = r3c._fresh_task_terminal_measurement(
+            first, target, 0.01
+        )
+        np.testing.assert_allclose(
+            measurement,
+            np.asarray([0.005, -0.002, 0.0, 0.0, 125.0]),
+            rtol=0.0,
+            atol=1.0e-15,
+        )
+        with self.assertRaises(ValueError):
+            r3c._fresh_task_terminal_measurement([], target, 0.01)
+
+        second = [
+            *first,
+            {
+                "step_index": 1,
+                "R": 0.706,
+                "Z": -0.010,
+                "Ip": 30050.0,
+            },
+        ]
+        np.testing.assert_array_equal(
+            r3c._fresh_task_terminal_measurement(
+                second, target, 0.01
+            ),
+            r3c.r2.r9._terminal_measurement(second, target, 0.01),
+        )
+
     def test_control_spec_grid_is_exactly_32_and_keeps_hidden_state_out(
         self,
     ) -> None:
@@ -320,6 +360,109 @@ class Stage42R3C1DesignTests(unittest.TestCase):
                         Path("/synthetic/raw.json.gz"), expected
                     )
                 )
+            hotfix_failure = copy.deepcopy(valid)
+            hotfix_failure["failure_reason"] = (
+                r3c.FIRST_SAMPLE_TERMINAL_FAILURE_REASON
+            )
+            with mock.patch.object(
+                r3c, "read_json_gz", return_value=hotfix_failure
+            ):
+                self.assertFalse(
+                    r3c._result_complete(
+                        Path("/synthetic/raw.json.gz"), expected
+                    )
+                )
+
+    def test_resume_hotfix_accepts_only_the_exact_three_file_delta(
+        self,
+    ) -> None:
+        controller_path = (
+            "tsc_rzip_rllib/diagnostics/"
+            "stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py"
+        )
+        original_rows = [
+            {
+                "path": "PACKAGE_MANIFEST.json",
+                "size_bytes": 10,
+                "sha256": "old-manifest",
+            },
+            {
+                "path": "SHA256SUMS",
+                "size_bytes": 20,
+                "sha256": "old-sums",
+            },
+            {
+                "path": controller_path,
+                "size_bytes": 30,
+                "sha256": r3c.INITIAL_CONTROLLER_SOURCE_SHA256,
+            },
+            {
+                "path": "unchanged.py",
+                "size_bytes": 40,
+                "sha256": "same",
+            },
+        ]
+        active_rows = copy.deepcopy(original_rows)
+        active_rows[0].update(
+            {"size_bytes": 11, "sha256": "new-manifest"}
+        )
+        active_rows[1].update(
+            {"size_bytes": 21, "sha256": "new-sums"}
+        )
+        active_rows[2].update(
+            {"size_bytes": 31, "sha256": "new-controller"}
+        )
+        original = {
+            "contract": "r42r3c1_deployed_package_source_v1",
+            "n_files": len(original_rows),
+            "digest": r3c.INITIAL_DEPLOYED_PACKAGE_DIGEST,
+            "files": original_rows,
+        }
+        active = {
+            "contract": original["contract"],
+            "n_files": len(active_rows),
+            "digest": "new-package",
+            "files": active_rows,
+        }
+        contract = {
+            "schema_version": 1,
+            "hotfix_id": r3c.SEMANTICS_PRESERVING_HOTFIX_ID,
+            "stage": r3c.STAGE,
+            "controller_revision": r3c.CONTROLLER_REVISION,
+            "package_revision": r3c.PACKAGE_REVISION,
+            "from_deployed_package_digest": (
+                r3c.INITIAL_DEPLOYED_PACKAGE_DIGEST
+            ),
+            "from_controller_source_sha256": (
+                r3c.INITIAL_CONTROLLER_SOURCE_SHA256
+            ),
+            "to_controller_source_sha256": "new-controller",
+            "failure_reason": r3c.FIRST_SAMPLE_TERMINAL_FAILURE_REASON,
+            "first_sample_velocity_initialization": (
+                "zero_from_current_visible_state_only"
+            ),
+            "controller_semantics_changed": False,
+            "task_matrix_unchanged": True,
+            "formal_gate_unchanged": True,
+            "experiment_ids_unchanged": True,
+            "source_fingerprints_unchanged": True,
+        }
+        ctx = SimpleNamespace(project_dir=Path("/synthetic/project"))
+        with mock.patch.object(
+            Path, "is_file", return_value=True
+        ), mock.patch.object(r3c, "read_json", return_value=contract):
+            self.assertEqual(
+                r3c._semantics_preserving_resume_compatibility(
+                    ctx, original, active
+                ),
+                contract,
+            )
+            incompatible = copy.deepcopy(active)
+            incompatible["files"][3]["sha256"] = "changed-too"
+            with self.assertRaises(ValueError):
+                r3c._semantics_preserving_resume_compatibility(
+                    ctx, original, incompatible
+                )
 
     def test_pair_classification_does_not_overclaim_masked_failures(
         self,
@@ -418,6 +561,17 @@ class Stage42R3C1ControllerInitializationTests(unittest.TestCase):
                 }
             }
         )
+        base.lower_mode = np.full(r3c.N_MODES, -1.0e6)
+        base.upper_mode = np.full(r3c.N_MODES, 1.0e6)
+        base.stub = SimpleNamespace()
+        base.scheduler = SimpleNamespace(
+            solve_command=lambda desired, *_args, **_kwargs: {
+                "command": np.asarray(desired, dtype=float)
+            }
+        )
+        base._mode_action = lambda _effective, _currents: np.zeros(
+            r3c.N_COILS
+        )
 
         def nominal_plan(
             nominal: np.ndarray,
@@ -464,6 +618,9 @@ class Stage42R3C1ControllerInitializationTests(unittest.TestCase):
             controller.nominal_physical = nominal_physical.copy()
             controller.nominal_velocity = np.zeros((35, 2))
             controller.nominal_feature = np.zeros(35 * 5)
+            controller.target = np.asarray([0.70, -0.01, 30000.0])
+            controller.measurement_scales = np.ones(5)
+            controller.dt_s = 0.01
             controller.step = 0
             controller.delay = 2
             controller.actual_delay = 2
@@ -489,6 +646,13 @@ class Stage42R3C1ControllerInitializationTests(unittest.TestCase):
         spec = {
             "phase_alignment": phase_cfg,
             "prime_action_queue_with_nominal": True,
+            "terminal_position_measurement_gain": 1.0,
+            "terminal_velocity_measurement_gain": 1.0,
+            "terminal_ip_measurement_gain": 1.0,
+            "terminal_model_phase_cap_step": 28,
+            "terminal_controller_scale": 0.5,
+            "terminal_controller_model_scale": 1.0,
+            "r15_probe_delta_by_issue_step": {},
             "visible_reference_manifold": _manifold(
                 "synthetic-r17-source"
             ),
@@ -562,6 +726,39 @@ class Stage42R3C1ControllerInitializationTests(unittest.TestCase):
             [row["reference_phase"] for row in controller.queue],
             [0, 1],
         )
+
+    def test_phase_twenty_can_enter_damping_at_fresh_step_zero(
+        self,
+    ) -> None:
+        controller, _ = self._controller(
+            visible_phase=20,
+            transition_step=20,
+            wire_value=9.0e9,
+        )
+        self.assertEqual(controller.transition_step, 0)
+        solve = {
+            "first_correction": np.zeros(r3c.N_MODES),
+            "solver_success": True,
+        }
+        current = {
+            **controller.history[0],
+            "currents_a_tsc": [0.0] * r3c.N_COILS,
+        }
+        with mock.patch.object(
+            r3c.r2.r3,
+            "solve_delay_aware_physical_correction",
+            return_value=solve,
+        ):
+            action, trace = controller.action(current)
+        self.assertEqual(
+            trace["controller_phase"],
+            "phase_aligned_anticipatory_damping",
+        )
+        self.assertEqual(trace["task_step"], 0)
+        self.assertEqual(trace["reference_phase"], 20)
+        self.assertEqual(trace["measurement_physical"][2:4], [0.0, 0.0])
+        self.assertFalse(trace["hidden_wire_used"])
+        np.testing.assert_array_equal(action, np.zeros(r3c.N_COILS))
 
 
 if __name__ == "__main__":
