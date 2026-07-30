@@ -126,6 +126,15 @@ Follow it exactly. Any change to schedule, amplitude, context matrix, formal
 timing, acceptance thresholds, or controller information boundary requires a
 new prospective design identity before real TSC.
 
+The first v2 execution attempt is preserved at run
+`stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_222433`.
+Its 11/11 saved raw files are structured runtime failures caused by an
+inherited 35/37-step episode limit; zero trajectories succeeded. This is not
+a scientific T2 result. Package v2h1 restores the preregistered 50-step
+episode horizon and adds payload/environment horizon guards without changing
+controller or experiment semantics. The failed run must not be overwritten
+or resumed; execute v2h1 in a fresh run directory.
+
 ## 4. Formal timing remains immutable
 
 ```text

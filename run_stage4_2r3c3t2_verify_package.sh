@@ -22,7 +22,7 @@ expected = {
         "post_contract_neutralized_held_transport_probe_v42r3c3t2_v2"
     ),
     "package_revision": (
-        "r42r3c3t2_post_contract_held_transport_identification_v2"
+        "r42r3c3t2_post_contract_held_transport_identification_v2h1"
     ),
     "run_name": (
         "stage4_2r3c3t2_post_contract_neutralized_held_transport_"

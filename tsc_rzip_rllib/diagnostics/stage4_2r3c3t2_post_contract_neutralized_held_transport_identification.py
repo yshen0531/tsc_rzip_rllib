@@ -42,7 +42,7 @@ CONTROLLER_REVISION = (
     "post_contract_neutralized_held_transport_probe_v42r3c3t2_v2"
 )
 PACKAGE_REVISION = (
-    "r42r3c3t2_post_contract_held_transport_identification_v2"
+    "r42r3c3t2_post_contract_held_transport_identification_v2h1"
 )
 RUN_NAME = (
     "stage4_2r3c3t2_post_contract_neutralized_held_transport_"
@@ -588,6 +588,17 @@ def _control_payload(
         paths=ctx.paths,
     )
     payload = t1.r3c3._control_payload(proxy, spec=spec)
+    train_cfg = copy.deepcopy(payload["train_cfg"])
+    train_cfg.setdefault("episode", {})[
+        "max_episode_steps"
+    ] = OBSERVATION_HORIZON
+    experiment_id = str(spec["experiment_id"])
+    t1.r3c3.atomic_write_json(
+        ctx.paths.variants / f"train_{experiment_id}.json",
+        train_cfg,
+    )
+    payload["train_cfg"] = train_cfg
+    payload["stage4_1r4_horizon_steps"] = OBSERVATION_HORIZON
     payload["variant_id"] = (
         f"stage4_2r3c3t2_{spec['experiment_id']}"
     )
@@ -598,7 +609,7 @@ def _control_payload(
         spec["restart_snapshot_manifest_digest"]
     )
     t1.r3c3.atomic_write_json(
-        ctx.paths.variants / f"payload_{spec['experiment_id']}.json",
+        ctx.paths.variants / f"payload_{experiment_id}.json",
         payload,
     )
     return payload
@@ -650,6 +661,8 @@ class LocalHeldTransportResponseProbeWorker:
                 horizon != OBSERVATION_HORIZON
                 or int(spec["formal_horizon_steps"])
                 != _formal_horizon(float(spec["slew_scale"]))
+                or int(self.base.env.max_episode_steps)
+                != OBSERVATION_HORIZON
             ):
                 raise ValueError("T2 observation/formal horizon changed")
             self.base.env.reset()
@@ -2167,6 +2180,14 @@ def run_offline_probe_audit(
         initial = copy.deepcopy(dict(source_baseline["trajectory"][0]))
         initial["step_index"] = 0
         payload = _control_payload(ctx, spec=context_specs[0])
+        payload_horizon_exact = bool(
+            int(payload["stage4_1r4_horizon_steps"])
+            == OBSERVATION_HORIZON
+            and int(
+                payload["train_cfg"]["episode"]["max_episode_steps"]
+            )
+            == OBSERVATION_HORIZON
+        )
         plant = t1.r1.LocalPlantReplayWorker(
             payload,
             library,
@@ -2214,6 +2235,9 @@ def run_offline_probe_audit(
                     and not bool(trace["source_action_used"])
                     and not bool(trace["source_result_used"])
                     and not bool(trace["pair_or_history_label_used"])
+                    and payload_horizon_exact
+                    and int(plant.base_worker.env.max_episode_steps)
+                    == OBSERVATION_HORIZON
                 )
                 action_rows.append(
                     {
@@ -2229,6 +2253,10 @@ def run_offline_probe_audit(
                         ),
                         "probe_issue_at_step_zero_actual": bool(
                             trace["r3c3_probe_issued"]
+                        ),
+                        "payload_horizon_exact": payload_horizon_exact,
+                        "environment_horizon_steps": int(
+                            plant.base_worker.env.max_episode_steps
                         ),
                         "passed": passed,
                     }
@@ -2259,6 +2287,12 @@ def run_offline_probe_audit(
         "hidden_wire_invariant_action_count": sum(
             bool(row["hidden_wire_invariant"]) for row in action_rows
         ),
+        "payload_and_environment_horizon_exact_count": sum(
+            bool(row["payload_horizon_exact"])
+            and int(row["environment_horizon_steps"])
+            == OBSERVATION_HORIZON
+            for row in action_rows
+        ),
         "raw_count": raw_count,
         "plant_advance_count": 0,
         "real_tsc_executed": False,
@@ -2272,6 +2306,10 @@ def run_offline_probe_audit(
         and summary["finite_causal_action_count"] == expected
         and len(grouped) == 32
         and summary["hidden_wire_invariant_action_count"] == expected
+        and summary[
+            "payload_and_environment_horizon_exact_count"
+        ]
+        == expected
         and raw_count == 0
     )
     t1.r3c3.atomic_write_json(

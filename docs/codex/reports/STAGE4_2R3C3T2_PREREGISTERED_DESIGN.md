@@ -1,5 +1,47 @@
 # Stage4.2R3c3T2 preregistered design
 
+## Implementation hotfix record
+
+The first real execution attempt used package
+`r42r3c3t2_post_contract_held_transport_identification_v2`:
+
+```text
+run
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t2_runs/
+  stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_222433
+
+driver PID
+  1458105
+
+structured raw failures
+  11/11 RuntimeError('environment truncated before T2 horizon')
+
+successful trajectories
+  0
+```
+
+The inherited R3c3 payload builder replaced the intended 50-step episode
+limit with its frozen 35/37-step formal horizon. The resolved payloads and
+all 11 raw tracebacks agree on this cause. The exact T2 driver was stopped;
+all raw, manifest, state, and log evidence was preserved.
+
+This is an implementation/runtime error, not a plant-restart, controller,
+identification, statistics, or reporting result. It does not change the
+prospectively frozen 50-step design. Package
+`r42r3c3t2_post_contract_held_transport_identification_v2h1` only restores:
+
+```text
+train_cfg.episode.max_episode_steps = 50
+stage4_1r4_horizon_steps            = 50
+```
+
+It adds pre-TSC payload/environment horizon guards. Controller actions,
+probe schedules, amplitudes, contexts, formal 35/37-step evaluation
+prefixes, gates, and information boundaries are unchanged. Because the
+package fingerprint changed and the old raw files are structured failures,
+the failed run is not resumed or overwritten; v2h1 uses a fresh run
+directory.
+
 ## 0. Pre-implementation design correction
 
 The first prospective draft contained 128 signed probe tasks but no

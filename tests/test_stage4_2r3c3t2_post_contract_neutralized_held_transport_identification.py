@@ -37,6 +37,10 @@ class Stage42R3C3T2DesignTests(unittest.TestCase):
             cfg["controller_revision"],
             "post_contract_neutralized_held_transport_probe_v42r3c3t2_v2",
         )
+        self.assertEqual(
+            cfg["package_revision"],
+            "r42r3c3t2_post_contract_held_transport_identification_v2h1",
+        )
         self.assertEqual(cfg["control_matrix"]["expected_rollouts"], 160)
         self.assertEqual(
             cfg["control_matrix"]["expected_extended_baseline_rollouts"],
@@ -294,6 +298,56 @@ class Stage42R3C3T2DesignTests(unittest.TestCase):
             self.assertEqual(
                 t2._formal_prefix_metrics(ctx, result), {"passed": True}
             )
+
+    def test_payload_overrides_inherited_formal_episode_horizon(self) -> None:
+        ctx = SimpleNamespace(
+            source_ctx=SimpleNamespace(source_ctx="source"),
+            cfg={"storage": {}},
+            paths=SimpleNamespace(variants=Path("/server/variants")),
+        )
+        spec = {
+            "experiment_id": "test_horizon",
+            "restart_snapshot_dir": "/server/snapshot",
+            "restart_snapshot_manifest_digest": "a" * 64,
+        }
+        inherited = {
+            "train_cfg": {
+                "episode": {"max_episode_steps": 35},
+                "env_config": "/server/variants/env_test_horizon.json",
+            },
+            "stage4_1r4_horizon_steps": 35,
+        }
+        writes = {}
+
+        def record(path, value):
+            writes[Path(path).name] = copy.deepcopy(value)
+
+        with mock.patch.object(
+            t2.t1.r3c3,
+            "_control_payload",
+            return_value=copy.deepcopy(inherited),
+        ), mock.patch.object(
+            t2.t1.r3c3,
+            "atomic_write_json",
+            side_effect=record,
+        ):
+            payload = t2._control_payload(ctx, spec=spec)
+        self.assertEqual(
+            payload["train_cfg"]["episode"]["max_episode_steps"], 50
+        )
+        self.assertEqual(payload["stage4_1r4_horizon_steps"], 50)
+        self.assertEqual(
+            writes["train_test_horizon.json"]["episode"][
+                "max_episode_steps"
+            ],
+            50,
+        )
+        self.assertEqual(
+            writes["payload_test_horizon.json"][
+                "stage4_1r4_horizon_steps"
+            ],
+            50,
+        )
 
     def test_t1_failed_source_authentication_is_exact(self) -> None:
         cfg, _ = t2._resolved_config(self.config_path)

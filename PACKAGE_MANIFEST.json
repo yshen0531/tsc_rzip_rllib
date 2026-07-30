@@ -3,7 +3,7 @@
   "stage": "Stage4.2R3c3T2",
   "run_name": "stage4_2r3c3t2_post_contract_neutralized_held_transport_identification",
   "controller_revision": "post_contract_neutralized_held_transport_probe_v42r3c3t2_v2",
-  "package_revision": "r42r3c3t2_post_contract_held_transport_identification_v2",
+  "package_revision": "r42r3c3t2_post_contract_held_transport_identification_v2h1",
   "source_stage": "exact failed Stage4.2R3c3T1 identification with corrected six-basis audit; exact completed Stage4.2R3c3 response bank, Stage4.2R3c1 baseline, and authenticated R17/R1c/R2 source chain",
   "source_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
   "source_package_revision": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
