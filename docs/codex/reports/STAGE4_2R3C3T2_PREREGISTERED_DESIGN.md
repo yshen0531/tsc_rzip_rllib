@@ -1,5 +1,23 @@
 # Stage4.2R3c3T2 preregistered design
 
+## 0. Pre-implementation design correction
+
+The first prospective draft contained 128 signed probe tasks but no
+unprobed 500 ms baseline. The frozen R3c1 source trajectories end at their
+350/370 ms formal horizons, so they cannot authenticate central symmetry
+over the new states 38--50.
+
+This was found before T2 code, deployment, offline execution, or real TSC.
+Design revision 2 adds one real zero-probe extended baseline per context.
+No observed T2 result exists, and no gate was changed after data inspection.
+
+```text
+design revision                           2
+extended zero-probe baselines            32
+signed probe tasks                       128
+total real TSC tasks                     160
+```
+
 ## 1. Purpose and scientific route
 
 Stage4.2R3c3T2 is a new real-TSC identification identity. It does not resume
@@ -82,10 +100,10 @@ stage
   Stage4.2R3c3T2
 
 controller revision
-  post_contract_neutralized_held_transport_probe_v42r3c3t2
+  post_contract_neutralized_held_transport_probe_v42r3c3t2_v2
 
 package revision
-  r42r3c3t2_post_contract_held_transport_identification_v1
+  r42r3c3t2_post_contract_held_transport_identification_v2
 
 run name
   stage4_2r3c3t2_post_contract_neutralized_held_transport_identification
@@ -167,9 +185,11 @@ The exact locked development matrix is:
 
 ```text
 32 restart contexts
-x 2 held-transport modes
-x 2 signs
-= 128 real TSC tasks
+x (
+    1 zero-probe extended baseline
+    + 2 held-transport modes x 2 signs
+  )
+= 160 real TSC tasks
 ```
 
 The 32 contexts remain:
@@ -182,6 +202,12 @@ x 2 locked actuator settings
 
 No context may be removed, duplicated, reweighted, or replaced after
 inspection.
+
+The zero-probe row runs the same causal R3c1 controller through state 50
+without a T2 correction. Its prefix through state 35/37 must exactly match
+the authenticated R3c1 source trajectory for that context. It is the only
+permitted baseline for T2 central-symmetry metrics after the source formal
+horizon.
 
 ## 7. Controller information boundary
 
@@ -211,7 +237,8 @@ by the online controller.
 Execution:
 
 ```text
-environment complete / exact restart / causal trace       128/128
+environment complete / exact restart / causal trace       160/160
+zero-probe extended baseline exact                           32/32
 exact 12-issue requested/applied schedule                  128/128
 requested and applied net zero                             128/128
 runtime / solver / clipping / forbidden-input errors              0
@@ -257,7 +284,8 @@ Before real TSC:
 2. run focused and complete repository tests;
 3. verify import closure, package manifest, and checksums;
 4. authenticate exact R3b/R3c1/R3c3/T1 sources and fingerprints;
-5. verify 32 contexts and exactly 128 new identities;
+5. verify 32 contexts, 32 baseline identities, 128 signed probe identities,
+   and exactly 160 total identities;
 6. verify effect/issue mapping for both delays;
 7. verify the first negative physical effect is state 39 in every row;
 8. verify exact requested/applied zero-net schedule logic;
@@ -265,17 +293,17 @@ Before real TSC:
 10. test source fingerprints and resume compatibility;
 11. simulate direct-copy deployment in an empty repository-local directory;
 12. validate staging and canonical server trees with the existing venv;
-13. run a no-TSC offline controller audit for all 128 specs;
+13. run a no-TSC offline controller audit for all 160 specs;
 14. prove offline raw count zero, plant advances zero, and real TSC false.
 
-Only then may exactly one T2 identity be launched.
+Only then may exactly one 160-task T2 identity be launched.
 
 ## 10. Server evidence loop
 
 The run must be monitored by its exact PID and log. All raw JSON.GZ and TSC
 work products remain on the server. The server postprocessor must:
 
-- authenticate all 128 raw identities and specs;
+- authenticate all 160 raw identities and specs;
 - recompute execution, restart, causality, schedule, current, symmetry,
   history, condition, and formal-prefix diagnostics from raw;
 - record a complete raw and run inventory with hashes;

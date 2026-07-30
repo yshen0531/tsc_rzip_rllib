@@ -351,7 +351,9 @@ positive physical effect states 3 through 8
 negative physical effect states 39 through 44
 observation through state 50
 exact zero net
-32 contexts × 2 bases × 2 signs = 128 real rollouts
+32 extended zero-probe baselines
+32 contexts × 2 bases × 2 signs = 128 signed-probe rollouts
+160 real rollouts total
 ```
 
 The full gates are frozen in

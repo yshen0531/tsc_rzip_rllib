@@ -112,7 +112,8 @@ amplitudes
   held_transport_mode1 = 0.0075
 
 matrix
-  32 contexts × 2 modes × 2 signs = 128 real TSC tasks
+  32 contexts × (1 extended baseline + 2 modes × 2 signs)
+  = 160 real TSC tasks
 ```
 
 The complete prospective design is frozen in:
@@ -167,7 +168,8 @@ Before real TSC:
 - focused and complete tests;
 - import closure, manifest, and checksum verification;
 - exact R3b/R3c1/R3c3/T1 fingerprints;
-- exact 32 contexts and 128 T2 identities;
+- exact 32 contexts, 32 extended baselines, 128 signed probes, and 160 T2
+  identities;
 - exact delay-aware issue/effect mapping;
 - exact 12-issue requested/applied zero net;
 - first negative physical effect exactly state 39;
@@ -175,7 +177,7 @@ Before real TSC:
 - source-fingerprint and resume-compatibility tests;
 - empty-directory direct-copy simulation inside the repository;
 - server preflight, shell syntax, import/compile/package/full tests;
-- offline finite controller audit for 128 specs;
+- offline finite controller audit for 160 specs;
 - offline raw zero, plant advance zero, real TSC false.
 
 Use direct uncompressed transfer only.
@@ -183,7 +185,9 @@ Use direct uncompressed transfer only.
 ## 7. Prospective T2 gates
 
 ```text
-complete / exact restart / causal / exact probe           128/128
+complete / exact restart / causal                         160/160
+extended zero-probe prefix exact                            32/32
+exact signed probe schedule                               128/128
 runtime / solver / clipping / forbidden-input errors              0
 maximum current utilization                                    <= 0.55
 
@@ -207,7 +211,7 @@ Formal tracking of signed probes is diagnostic-only.
 
 ## 8. Server result loop
 
-Run exactly one new T2 identity after validation. Monitor its exact PID,
+Run exactly one new 160-task T2 identity after validation. Monitor its exact PID,
 run directory, log, state, and raw task count. Postprocess all raw and
 snapshots on the server. Download compact audit JSON and logs only.
 

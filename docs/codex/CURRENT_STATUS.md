@@ -129,8 +129,21 @@ negative physical effects             states 39..44
 observation tail                       states 45..50
 held transport mode 0 amplitude       0.0060
 held transport mode 1 amplitude       0.0075
-tasks                                  128
+signed probe tasks                    128
 ```
+
+Pre-implementation design review found that the 500 ms symmetry metric needs
+a real baseline beyond the 350/370 ms source horizon. Design revision 2
+therefore adds one zero-probe extended baseline per context:
+
+```text
+extended baselines                     32
+signed probes                         128
+total real TSC tasks                  160
+```
+
+No T2 code, offline run, server deployment, or real TSC preceded this
+prospective correction.
 
 The first negative physical effect is after both original formal hold
 endpoints. Arrival remains due by 250/270 ms and formal hold remains through
@@ -143,7 +156,7 @@ Next implementation steps:
 2. implement standalone config/module/launch/postprocess/tests;
 3. complete local compile/JSON/full-test/import/package/empty-copy checks;
 4. deploy directly without archives and validate the canonical server tree;
-5. run the 128-spec offline no-TSC audit;
+5. run the 160-spec offline no-TSC audit;
 6. launch exactly one real T2 identity;
 7. postprocess large raw server-side and download only compact evidence;
 8. require T2 identification gates, then six-basis optimistic feasibility
