@@ -68,10 +68,17 @@ class Stage42R1ConfigTests(unittest.TestCase):
 
 
     def test_hotfix_revision_accepts_only_known_legacy_manifests(self) -> None:
-        self.assertEqual(r42.PACKAGE_REVISION, "r42r1b_lazy_runner_capture_resume_v3")
+        self.assertEqual(
+            r42.PACKAGE_REVISION,
+            "r42r1c_terminal_wire_telemetry_resume_v4",
+        )
         self.assertIn("r42r1_plant_restart_action_replay_v1", r42.LEGACY_PACKAGE_REVISIONS)
         self.assertIn(
             "r42r1a_capture_failure_finite_summary_v2",
+            r42.LEGACY_PACKAGE_REVISIONS,
+        )
+        self.assertIn(
+            "r42r1b_lazy_runner_capture_resume_v3",
             r42.LEGACY_PACKAGE_REVISIONS,
         )
 
@@ -219,6 +226,36 @@ class Stage42R1SnapshotTests(unittest.TestCase):
             runner.request_restart_snapshot(local_step_index=20, destination=Path("/tmp/b"))
         runner.clear_restart_snapshot_requests()
         self.assertEqual(runner._restart_snapshot_requests, {})
+
+    def test_terminal_state_folder_preserves_full_wire_telemetry(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            pd.DataFrame({"cwire(ka)": [1.25, -2.5, 0.0]}).to_csv(
+                folder / "wire_currents.csv",
+                index=False,
+            )
+            runner = SimpleNamespace(
+                current_folder=None,
+                cfg=SimpleNamespace(
+                    vessel_current_column="cwire(ka)",
+                    vessel_current_raw_to_a=1000.0,
+                ),
+            )
+            env = SimpleNamespace(
+                runner=runner,
+                last_state={"folder": folder},
+            )
+            with mock.patch.object(
+                r42.r3.base,
+                "_state_record",
+                return_value={"step_index": 35},
+            ):
+                row = r42._state_record_full(env, 35, np.zeros(14, dtype=float))
+        self.assertEqual(row["wire_current_count"], 3)
+        np.testing.assert_array_equal(
+            row["wire_currents_a"],
+            [1250.0, -2500.0, 0.0],
+        )
 
     def test_runner_export_snapshot_requires_complete_plant_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

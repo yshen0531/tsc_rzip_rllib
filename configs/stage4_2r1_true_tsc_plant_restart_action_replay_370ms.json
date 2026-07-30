@@ -4,7 +4,7 @@
   "run_name": "stage4_2r1_true_tsc_plant_restart_action_replay",
   "output_root": "stage4_2r1_runs",
   "controller_revision": "true_tsc_plant_restart_action_replay_v42r1",
-  "package_revision": "r42r1b_lazy_runner_capture_resume_v3",
+  "package_revision": "r42r1c_terminal_wire_telemetry_resume_v4",
   "source_requirements": {
     "required_stage": "Stage4.1R17",
     "required_controller_revision": "original_deadline_one_sided_robust_braking_closure_v17",

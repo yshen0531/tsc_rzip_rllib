@@ -41,7 +41,7 @@ manifest = json.loads((root / 'PACKAGE_MANIFEST.json').read_text(encoding='utf-8
 expected = {
     'stage': 'Stage4.2R1',
     'controller_revision': 'true_tsc_plant_restart_action_replay_v42r1',
-    'package_revision': 'r42r1b_lazy_runner_capture_resume_v3',
+    'package_revision': 'r42r1c_terminal_wire_telemetry_resume_v4',
     'run_name': 'stage4_2r1_true_tsc_plant_restart_action_replay',
 }
 for key, value in expected.items():
@@ -187,6 +187,7 @@ for token in (
     'self.base_worker.env._ensure_runner()',
     'formal_contract_preservation_status',
     '_selected_expert_inventory_compatible',
+    'terminal_state_folder=terminal_state_folder',
 ):
     if token not in module:
         raise SystemExit(f'Stage4.2R1 implementation guard missing: {token}')

@@ -68,10 +68,11 @@ write_csv = r17.write_csv
 SCHEMA_VERSION = 1
 STAGE = "Stage4.2R1"
 CONTROLLER_REVISION = "true_tsc_plant_restart_action_replay_v42r1"
-PACKAGE_REVISION = "r42r1b_lazy_runner_capture_resume_v3"
+PACKAGE_REVISION = "r42r1c_terminal_wire_telemetry_resume_v4"
 LEGACY_PACKAGE_REVISIONS = {
     "r42r1_plant_restart_action_replay_v1",
     "r42r1a_capture_failure_finite_summary_v2",
+    "r42r1b_lazy_runner_capture_resume_v3",
 }
 EXPECTED_SOURCE_REVISION = r17.CONTROLLER_REVISION
 EXPECTED_SOURCE_PACKAGE_REVISION = r17.PACKAGE_REVISION
@@ -802,8 +803,21 @@ def _wire_array(result: Mapping[str, Any], *, trajectory_key: str = "trajectory"
     return array
 
 
-def _read_wire_currents_a(runner: Any) -> np.ndarray:
-    folder = Path(runner.current_folder)
+def _read_wire_currents_a(runner: Any, *, terminal_state_folder: Any = None) -> np.ndarray:
+    """Read the full wire vector, including after normal terminal cleanup.
+
+    ``TscRzipEnv.step()`` intentionally cleans the episode workspace and clears
+    ``runner.current_folder`` before returning a terminal/truncated step.  The
+    state that was just read still carries its authentic TSC output folder,
+    which remains available until the worker cleanup.  R1 uses that folder only
+    as a telemetry fallback; it does not change the TSC action or lifecycle.
+    """
+    folder_value = getattr(runner, "current_folder", None)
+    if folder_value is None:
+        folder_value = terminal_state_folder
+    if folder_value is None:
+        raise RuntimeError("wire-current folder unavailable after environment step")
+    folder = Path(folder_value)
     path = folder / "wire_currents.csv"
     if not path.is_file():
         raise FileNotFoundError(f"wire-current file missing: {path}")
@@ -823,7 +837,14 @@ def _read_wire_currents_a(runner: Any) -> np.ndarray:
 
 def _state_record_full(env: Any, step_index: int, action: np.ndarray) -> dict[str, Any]:
     row = r3.base._state_record(env, step_index, np.asarray(action, dtype=float))
-    row["wire_currents_a"] = _read_wire_currents_a(env.runner).tolist()
+    last_state = getattr(env, "last_state", None)
+    terminal_state_folder = (
+        last_state.get("folder") if isinstance(last_state, Mapping) else None
+    )
+    row["wire_currents_a"] = _read_wire_currents_a(
+        env.runner,
+        terminal_state_folder=terminal_state_folder,
+    ).tolist()
     row["wire_current_count"] = len(row["wire_currents_a"])
     return row
 
