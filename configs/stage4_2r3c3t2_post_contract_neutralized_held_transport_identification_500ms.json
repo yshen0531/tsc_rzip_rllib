@@ -1,0 +1,159 @@
+{
+  "stage": "Stage4.2R3c3T2",
+  "stage_label": "Stage4.2R3c3T2",
+  "design_revision": 2,
+  "run_name": "stage4_2r3c3t2_post_contract_neutralized_held_transport_identification",
+  "output_root": "stage4_2r3c3t2_runs",
+  "controller_revision": "post_contract_neutralized_held_transport_probe_v42r3c3t2_v2",
+  "package_revision": "r42r3c3t2_post_contract_held_transport_identification_v2",
+  "base_stage_config": "configs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_370ms.json",
+  "base_stage_config_sha256": "b6b8133977e6682a5fd7df70aa94142bd6a16a941ff3533cebd98ff88ae62746",
+  "source_t1_requirements": {
+    "required_run_name": "stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441",
+    "required_stage": "Stage4.2R3c3T1",
+    "required_controller_revision": "long_separation_zero_net_transport_probe_v42r3c3t1",
+    "required_package_revision": "r42r3c3t1_long_separation_transport_identification_v1",
+    "required_primary_pass": false,
+    "required_raw_count": 128,
+    "required_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "required_server_audit_sha256": "0f24b44f32493b390832474d5c78cc2455a8ba0c455b496b16c04f8deaf3a2bd",
+    "required_corrected_six_basis_diagnostic_sha256": "e7bc8f0168ff1d2019f1a9a232b5152a27d46a66a92f9542d31d80c6942c3164",
+    "required_combined_condition_pass_count": 27,
+    "required_combined_condition_context_count": 32,
+    "required_optimistic_formal_pass_count": 16,
+    "required_failed_context_repair_count": 0
+  },
+  "identification_probe": {
+    "baseline_controller": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "baseline_package": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
+    "observation_horizon_steps": 50,
+    "formal_prefix_by_slew": {
+      "1.0": 35,
+      "0.9": 37
+    },
+    "physical_mode_amplitude": [
+      0.006,
+      0.0075,
+      0.0
+    ],
+    "basis": [
+      {
+        "probe_id": "held_transport_mode0",
+        "mode": 0,
+        "first_effect_state": 3,
+        "positive_effect_states": [3, 4, 5, 6, 7, 8],
+        "negative_effect_states": [39, 40, 41, 42, 43, 44]
+      },
+      {
+        "probe_id": "held_transport_mode1",
+        "mode": 1,
+        "first_effect_state": 3,
+        "positive_effect_states": [3, 4, 5, 6, 7, 8],
+        "negative_effect_states": [39, 40, 41, 42, 43, 44]
+      }
+    ],
+    "probe_signs": [-1, 1],
+    "extended_baseline_probe_id": "held_transport_baseline",
+    "required_nonzero_issue_count": 12,
+    "require_requested_and_applied_zero_net": true,
+    "zero_net_atol": 1e-12,
+    "maximum_current_utilization": 0.55,
+    "central_symmetry": {
+      "maximum_even_velocity_rmse_m_per_s": 0.004,
+      "maximum_even_position_rmse_m": 0.0005,
+      "maximum_even_ip_rmse_A": 20.0
+    },
+    "matched_hidden_history": {
+      "maximum_odd_velocity_rmse_m_per_s": 0.006,
+      "maximum_odd_position_rmse_m": 0.001,
+      "maximum_odd_ip_rmse_A": 40.0
+    },
+    "maximum_selected_velocity_condition_number": 25.0,
+    "maximum_combined_velocity_condition_number": 25.0,
+    "formal_tracking_pass_required": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "pair_or_history_label_input_allowed": false,
+    "source_result_input_allowed": false,
+    "source_action_input_allowed": false,
+    "source_or_current_wire_input_allowed": false
+  },
+  "control_matrix": {
+    "targets": ["nominal", "RZ_p10_m10"],
+    "future_actuator_cases": [
+      {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 1.0
+      },
+      {
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      }
+    ],
+    "history_members": ["plus_first", "minus_first"],
+    "extended_baseline_count_per_context": 1,
+    "probe_basis_count": 2,
+    "probe_sign_count": 2,
+    "expected_signed_probe_rollouts": 128,
+    "expected_extended_baseline_rollouts": 32,
+    "expected_rollouts_per_baseline_context": 5,
+    "expected_baseline_contexts_per_selected_pair": 8,
+    "expected_rollouts_per_selected_pair": 40,
+    "expected_selected_pairs": 4,
+    "expected_baseline_contexts": 32,
+    "expected_rollouts": 160,
+    "require_fresh_controller": true,
+    "require_fresh_tsc_process": true,
+    "forbid_future_actions": true,
+    "forbid_future_measurements": true,
+    "require_online_action_computation": true
+  },
+  "formal_timing_contract": {
+    "normal": {
+      "slew_scales": [1.0, 1.1],
+      "arrival_deadline_step": 25,
+      "arrival_deadline_ms": 250,
+      "hold_through_step": 35,
+      "hold_through_ms": 350
+    },
+    "weak": {
+      "slew_scales": [0.9],
+      "arrival_deadline_step": 27,
+      "arrival_deadline_ms": 270,
+      "hold_through_step": 37,
+      "hold_through_ms": 370
+    },
+    "arrival_streak_steps_unchanged": true,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_threshold_unchanged": true,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_2r3c3t2"
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "development_set_only": true,
+  "independent_hidden_history_confirmation": false,
+  "different_initial_state_validated": false,
+  "unseen_target_validated": false,
+  "continuous_parameter_change_validated": false,
+  "plant_jacobian_error_validated": false,
+  "measurement_noise_validated": false,
+  "disturbance_recovery_validated": false,
+  "independent_long_hold_validated": false,
+  "bc_dagger_or_rl_allowed": false,
+  "next_if_pass": "Build a combined R3c3 plus T2 bank server-side and require 32/32 unchanged-contract optimistic formal feasibility before R3c4 implementation",
+  "next_if_fail": "Preserve all raw and redesign the dynamic response model without weakening timing, context, symmetry, condition, or safety gates",
+  "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold"
+}
