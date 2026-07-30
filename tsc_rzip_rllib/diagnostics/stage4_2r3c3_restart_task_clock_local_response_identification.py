@@ -2823,6 +2823,21 @@ def summarize_control(
                 "source_result_trace_count": int(
                     phase["source_result_trace_count"]
                 ),
+                "hidden_wire_trace_count": int(
+                    phase["hidden_wire_trace_count"]
+                ),
+                "source_action_trace_count": int(
+                    phase["source_action_trace_count"]
+                ),
+                "source_coil_current_trace_count": int(
+                    phase["source_coil_current_trace_count"]
+                ),
+                "source_wire_current_trace_count": int(
+                    phase["source_wire_current_trace_count"]
+                ),
+                "current_run_future_trace_count": int(
+                    phase["current_run_future_trace_count"]
+                ),
                 "max_current_utilization": (
                     float(formal["max_current_utilization"])
                     if formal
@@ -3125,6 +3140,31 @@ def summarize_control(
             row["failure_class"] == "controller_causality_failure"
             for row in rows
         ),
+        "hidden_wire_controller_input_count": sum(
+            int(row["hidden_wire_trace_count"]) for row in rows
+        ),
+        "source_action_use_count": sum(
+            int(row["source_action_trace_count"]) for row in rows
+        ),
+        "source_coil_current_use_count": sum(
+            int(row["source_coil_current_trace_count"])
+            for row in rows
+        ),
+        "source_wire_current_use_count": sum(
+            int(row["source_wire_current_trace_count"])
+            for row in rows
+        ),
+        "current_run_future_use_count": sum(
+            int(row["current_run_future_trace_count"])
+            for row in rows
+        ),
+        "pair_or_history_label_use_count": sum(
+            int(row["pair_or_history_label_trace_count"])
+            for row in rows
+        ),
+        "source_result_use_count": sum(
+            int(row["source_result_trace_count"]) for row in rows
+        ),
         "identification_probe_execution_failure_count": sum(
             row["failure_class"]
             == "identification_probe_execution_failure"
@@ -3182,7 +3222,15 @@ def summarize_control(
         ),
     }
     summary["execution_gate_passed"] = bool(
-        len(rows) == expected and execution_pass_count == expected
+        len(rows) == expected
+        and execution_pass_count == expected
+        and summary["hidden_wire_controller_input_count"] == 0
+        and summary["source_action_use_count"] == 0
+        and summary["source_coil_current_use_count"] == 0
+        and summary["source_wire_current_use_count"] == 0
+        and summary["current_run_future_use_count"] == 0
+        and summary["pair_or_history_label_use_count"] == 0
+        and summary["source_result_use_count"] == 0
     )
     summary["central_symmetry_gate_passed"] = bool(
         len(response_rows) == expected_response_groups

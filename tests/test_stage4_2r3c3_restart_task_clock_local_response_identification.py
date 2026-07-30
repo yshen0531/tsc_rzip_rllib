@@ -545,6 +545,11 @@ class Stage42R3C3DesignTests(unittest.TestCase):
             "solver_failure_count": 0,
             "pair_or_history_label_trace_count": 0,
             "source_result_trace_count": 0,
+            "hidden_wire_trace_count": 0,
+            "source_action_trace_count": 0,
+            "source_coil_current_trace_count": 0,
+            "source_wire_current_trace_count": 0,
+            "current_run_future_trace_count": 0,
         }
         cfg = copy.deepcopy(self.config)
         cfg["control_matrix"]["expected_rollouts"] = 16
