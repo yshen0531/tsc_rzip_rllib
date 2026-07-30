@@ -2453,6 +2453,28 @@ def execute(
             "Stage4.2R3 offline frozen-controller recomputation gate failed; "
             "no real TSC state generation was started"
         )
+    if command == "offline":
+        state = read_json(ctx.paths.state)
+        state.update(
+            {
+                "finished": False,
+                "primary_pass": False,
+                "phase_status": "offline_gate_complete",
+                "stop_reason": "",
+                "offline_frozen_controller_audit": dict(offline_summary),
+                "updated_utc": utc_timestamp(),
+            }
+        )
+        atomic_write_json(ctx.paths.state, state)
+        return {
+            "schema_version": 1,
+            "stage": STAGE,
+            "phase": "offline_frozen_controller_recomputation",
+            "offline_frozen_controller_audit": dict(offline_summary),
+            "real_tsc_executed": False,
+            "finished": False,
+            "primary_pass": False,
+        }
     payload = _generation_base_payload(ctx)
     directions = _nullspace_directions(np.asarray(payload["modes_tsc"], dtype=float))
     state_specs = _state_spec_grid(directions, ctx.cfg)
@@ -2564,7 +2586,9 @@ def main() -> None:
     parser.add_argument("--config", type=Path)
     parser.add_argument("--source-stage4-2r2-run", type=Path)
     parser.add_argument("--run-dir", type=Path)
-    parser.add_argument("--command", choices=("all", "state"), default="all")
+    parser.add_argument(
+        "--command", choices=("all", "offline", "state"), default="all"
+    )
     parser.add_argument("--backend", choices=("serial", "ray"), default="ray")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--self-test", action="store_true")

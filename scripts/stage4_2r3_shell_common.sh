@@ -103,7 +103,7 @@ stage4_2r3_validate_common() {
     return 1
   }
   case "${STAGE4_2R3_COMMAND}" in
-    all|state) ;;
+    all|offline|state) ;;
     *) echo "ERROR: invalid command ${STAGE4_2R3_COMMAND}" >&2; return 1 ;;
   esac
 }

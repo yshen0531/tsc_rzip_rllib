@@ -197,6 +197,44 @@ class Stage42R3DesignTests(unittest.TestCase):
 
 
 class Stage42R3FreshControllerTests(unittest.TestCase):
+    def test_offline_command_cannot_start_state_generation(self) -> None:
+        ctx = SimpleNamespace(
+            paths=SimpleNamespace(state=Path("/synthetic/state.json"))
+        )
+        state = {
+            "finished": False,
+            "primary_pass": False,
+            "phase_status": "prepared",
+            "stop_reason": "",
+        }
+        writes = {}
+
+        def write(_path, value):
+            writes.update(copy.deepcopy(value))
+
+        with mock.patch.object(r3, "prepare"), mock.patch.object(
+            r3,
+            "run_offline_frozen_controller_audit",
+            return_value={"passed": True, "real_tsc_executed": False},
+        ), mock.patch.object(
+            r3, "read_json", return_value=state
+        ), mock.patch.object(
+            r3, "atomic_write_json", side_effect=write
+        ), mock.patch.object(
+            r3, "_generation_base_payload"
+        ) as generation:
+            result = r3.execute(
+                ctx,
+                command="offline",
+                backend="ray",
+                resume=False,
+            )
+
+        generation.assert_not_called()
+        self.assertFalse(result["real_tsc_executed"])
+        self.assertEqual(writes["phase_status"], "offline_gate_complete")
+        self.assertFalse(writes["finished"])
+
     def test_fresh_controller_starts_only_from_current_visible_state(self) -> None:
         class Base:
             stub = SimpleNamespace()
