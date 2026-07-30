@@ -1,0 +1,352 @@
+# SERVER_WORKFLOW.md
+
+## 1. Purpose
+
+This file defines the repeatable Windows ↔ air-gapped TSC server development loop.
+
+No local archive operations are permitted. Use direct tree/file transfer.
+
+## 2. Variables
+
+PowerShell local setup:
+
+```powershell
+$Repo = (git rev-parse --show-toplevel).Trim()
+Set-Location $Repo
+
+$Ssh = "tsc-airgap"
+$RemoteProject = "/home/yangshen0711/tsc_all/tsc_rzip_rllib"
+$RemoteStaging = "/home/yangshen0711/tsc_software"
+$RemoteVenv = "/home/yangshen0711/tsc_all/tsc_simulation/venv_simu"
+```
+
+Do not infer a different path without evidence.
+
+## 3. Start-of-task preflight
+
+Local:
+
+```powershell
+$Repo = (git rev-parse --show-toplevel).Trim()
+Set-Location $Repo
+git status --short
+git branch --show-current
+git log -1 --oneline
+```
+
+Remote, read-only:
+
+```powershell
+ssh tsc-airgap @'
+set -eu
+printf 'HOME=%s\n' "$HOME"
+test -d "$HOME/tsc_all/tsc_rzip_rllib"
+test -f "$HOME/tsc_all/tsc_simulation/venv_simu/bin/activate"
+cd "$HOME/tsc_all/tsc_rzip_rllib"
+printf 'REMOTE_PROJECT=%s\n' "$PWD"
+'@
+```
+
+Do not run destructive commands before this succeeds.
+
+## 4. Local evidence analysis
+
+Before changing code:
+
+1. Locate the exact local run directory and log.
+2. Read manifest, state, resolved config, summaries, verdict, all raw JSON/JSON.GZ, snapshot manifests, and snapshot files.
+3. Build an inventory:
+   - expected tasks;
+   - actual tasks;
+   - unique experiment IDs;
+   - parse failures;
+   - `success=true/false`;
+   - failure stages/reasons;
+   - snapshot availability;
+   - restart availability.
+4. Recompute load-bearing metrics from raw data.
+5. Write a report under:
+   ```text
+   docs/codex/reports/
+   ```
+6. Write machine-readable audits under:
+   ```text
+   artifacts/codex_audits/
+   ```
+7. Do not modify controller code before the evidence map is complete unless the task is an obvious startup/import failure with no TSC tasks executed.
+
+## 5. Local code changes
+
+Use only repository files.
+
+Recommended branch naming:
+
+```text
+codex/stage4_2r1-forensics
+codex/stage4_2r1-hotfix-<short-cause>
+codex/stage4_2r2-controller-restart
+```
+
+For a hotfix after real tasks completed:
+
+- preserve experiment IDs and controller revision if physical behavior is unchanged;
+- add a package revision;
+- add manifest-upgrade compatibility;
+- add regression tests that call the real interface, not a mock that hides the bug;
+- prove successful raw remains resume-safe;
+- reject incompatible source/run revisions.
+
+## 6. Local validation
+
+Use the existing project-local Python environment if present. Do not install packages outside the repository.
+
+At minimum:
+
+```powershell
+python -m compileall -q configs scripts tsc_rzip_rllib tests
+python -m unittest discover -s tests -p "test*.py"
+```
+
+Run the current stage's self-test and package verification where compatible with Windows. Linux shell syntax must also be checked on the server before execution.
+
+Parse all JSON:
+
+```powershell
+@'
+from pathlib import Path
+import json
+root = Path(".")
+for path in root.rglob("*.json"):
+    json.loads(path.read_text(encoding="utf-8"))
+print("JSON OK")
+'@ | python -
+```
+
+Keep temporary files under `.codex_tmp/`.
+
+## 7. Direct deployment without archives
+
+### 7.1 Full clean replacement
+
+First validate the remote working directory:
+
+```powershell
+ssh tsc-airgap @'
+set -eu
+cd "$HOME/tsc_all/tsc_rzip_rllib"
+test "$PWD" = "$HOME/tsc_all/tsc_rzip_rllib"
+printf 'SAFE_REMOTE_PROJECT=%s\n' "$PWD"
+'@
+```
+
+Then remove only the named code directories and current root shell files:
+
+```powershell
+ssh tsc-airgap @'
+set -eu
+cd "$HOME/tsc_all/tsc_rzip_rllib"
+test "$PWD" = "$HOME/tsc_all/tsc_rzip_rllib"
+rm -rf configs scripts tests tsc_rzip_rllib
+find . -maxdepth 1 -type f -name '*.sh' -delete
+rm -f PACKAGE_MANIFEST.json SHA256SUMS
+'@
+```
+
+Transfer directly:
+
+```powershell
+scp -r "$Repo\configs"        "tsc-airgap:$RemoteProject/"
+scp -r "$Repo\scripts"        "tsc-airgap:$RemoteProject/"
+scp -r "$Repo\tests"          "tsc-airgap:$RemoteProject/"
+scp -r "$Repo\tsc_rzip_rllib" "tsc-airgap:$RemoteProject/"
+```
+
+Transfer only the current stage's root scripts plus manifest/checksums. Example:
+
+```powershell
+scp "$Repo\run_stage4_2r1_true_tsc_plant_restart_action_replay_native.sh" "tsc-airgap:$RemoteProject/"
+scp "$Repo\run_stage4_2r1_true_tsc_plant_restart_action_replay_nohup.sh"  "tsc-airgap:$RemoteProject/"
+scp "$Repo\run_stage4_2r1_self_test.sh"                                  "tsc-airgap:$RemoteProject/"
+scp "$Repo\run_stage4_2r1_verify_package.sh"                             "tsc-airgap:$RemoteProject/"
+scp "$Repo\run_stop_stage4_2r1_now.sh"                                   "tsc-airgap:$RemoteProject/"
+scp "$Repo\PACKAGE_MANIFEST.json"                                        "tsc-airgap:$RemoteProject/"
+scp "$Repo\SHA256SUMS"                                                    "tsc-airgap:$RemoteProject/"
+```
+
+Adapt filenames to the actual current stage. Never upload a historical forest of root `.sh` files.
+
+### 7.2 Patch deployment
+
+A patch-only deployment is allowed only when:
+
+- the exact server base hashes are verified;
+- the patch is idempotent;
+- physical controller semantics and experiment IDs remain unchanged;
+- the complete standalone local tree is also updated.
+
+Otherwise perform a full clean replacement.
+
+## 8. Server package validation
+
+```powershell
+ssh tsc-airgap @'
+set -eu
+cd "$HOME/tsc_all/tsc_rzip_rllib"
+source "$HOME/tsc_all/tsc_simulation/venv_simu/bin/activate"
+chmod +x ./*.sh scripts/*.sh scripts/*.py 2>/dev/null || true
+./run_stage4_2r1_verify_package.sh
+'@
+```
+
+Use the actual current-stage verify script.
+
+Record the complete output in a repository-local text file under:
+
+```text
+artifacts/server_validation/
+```
+
+## 9. Start or resume a server run
+
+Fresh run example:
+
+```powershell
+ssh tsc-airgap @'
+set -eu
+cd "$HOME/tsc_all/tsc_rzip_rllib"
+source "$HOME/tsc_all/tsc_simulation/venv_simu/bin/activate"
+STAGE4_2R1_WORKERS=128 \
+STAGE4_2R1_BACKEND=ray \
+STAGE4_2R1_COMMAND=all \
+STAGE4_2R1_RESUME=0 \
+./run_stage4_2r1_true_tsc_plant_restart_action_replay_nohup.sh
+'@
+```
+
+Resume example:
+
+```powershell
+ssh tsc-airgap @'
+set -eu
+cd "$HOME/tsc_all/tsc_rzip_rllib"
+source "$HOME/tsc_all/tsc_simulation/venv_simu/bin/activate"
+STAGE4_2R1_RUN_DIR="/absolute/existing/run_dir" \
+STAGE4_2R1_WORKERS=128 \
+STAGE4_2R1_BACKEND=ray \
+STAGE4_2R1_COMMAND=all \
+STAGE4_2R1_RESUME=1 \
+./run_stage4_2r1_true_tsc_plant_restart_action_replay_nohup.sh
+'@
+```
+
+Resume only when experiment identity and physical semantics are unchanged.
+
+## 10. Monitor actual execution
+
+Capture run and log paths from the launcher output or latest pointer files.
+
+Read-only monitoring example:
+
+```powershell
+ssh tsc-airgap @'
+set -eu
+cd "$HOME/tsc_all/tsc_rzip_rllib"
+RUN_DIR="$(cat stage4_2r1_runs/latest_stage4_2r1_run.txt)"
+LOG_FILE="$(cat logs/nohup/latest_stage4_2r1_true_tsc_plant_restart_action_replay.log)"
+printf 'RUN_DIR=%s\nLOG_FILE=%s\n' "$RUN_DIR" "$LOG_FILE"
+tail -n 200 "$LOG_FILE"
+'@
+```
+
+Do not infer completion from a quiet log. Check:
+
+- exact process/PID;
+- state file;
+- raw task count;
+- final summary/verdict creation;
+- launcher exit status if available.
+
+If the task remains active, continue polling in the current Codex task when practical. If the session must stop, write exact status and commands to `docs/codex/CURRENT_STATUS.md`.
+
+## 11. Direct download without archives
+
+Create a repository-local destination:
+
+```powershell
+$LocalRunRoot = Join-Path $Repo "artifacts\server_runs"
+$LocalLogRoot = Join-Path $Repo "artifacts\server_logs"
+New-Item -ItemType Directory -Force $LocalRunRoot | Out-Null
+New-Item -ItemType Directory -Force $LocalLogRoot | Out-Null
+```
+
+Copy the run tree directly:
+
+```powershell
+scp -r "tsc-airgap:/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/<run_name>" "$LocalRunRoot\"
+scp    "tsc-airgap:/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/<log_name>" "$LocalLogRoot\"
+```
+
+Do not ZIP/TAR either side for this workflow.
+
+Download snapshot directories exactly as generated. Preserve filenames and directory hierarchy.
+
+## 12. Verify downloaded evidence
+
+After transfer:
+
+1. compare remote and local file counts;
+2. compare manifest-listed sizes/hashes;
+3. parse every JSON/JSON.GZ;
+4. check expected raw count;
+5. check snapshot file inventory;
+6. check no truncated file;
+7. record transfer verification under:
+   ```text
+   artifacts/transfer_manifests/
+   ```
+
+A copied directory is not trusted until this check passes.
+
+## 13. Analyze and iterate
+
+Classify findings:
+
+```text
+runtime/environment
+deployment/package
+snapshot/corruption
+summary/statistics
+design
+true plant/control result
+```
+
+Then:
+
+- summary-only bug with unchanged experiment semantics: patch and resume;
+- physical controller/task change: new stage or new run;
+- authentic plant restart success: advance to controller-state restart;
+- authentic plant restart failure: isolate file/state/restart cause first;
+- no route choice needed: implement the next complete standalone stage;
+- route choice genuinely needed: present a compact evidence-based decision.
+
+## 14. Run ledger
+
+Maintain `docs/codex/RUN_LEDGER.md` with one entry per run:
+
+```text
+stage
+local branch/commit
+package revision
+source run
+remote run directory
+remote log
+fresh/resume
+expected/actual tasks
+result
+known bugs
+download location
+evidence hashes
+next step
+```
+
+This ledger is required to prevent version/result confusion across long-running iterations.
