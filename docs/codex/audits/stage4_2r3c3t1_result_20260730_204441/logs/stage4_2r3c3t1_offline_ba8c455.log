@@ -1,0 +1,37 @@
+[Stage4.2R3c3T1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T1] source_stage4_2r3b_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3c3T1] source_stage4_2r3c3_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+[Stage4.2R3c3T1] source_stage4_2r3c3_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+[Stage4.2R3c3T1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/offline_stage4_2r3c3t1_ba8c455
+[Stage4.2R3c3T1] command=offline backend=serial resume=0 workers=128
+[Stage4.2R3c3T1] 128 signed long-separation probes are zero-net and identification-only.
+[Stage4.2R3c3T1] Formal timing is unchanged; tracking is diagnostic, not this identification gate.
+[Stage4.2R3c3T1] Probe trajectories are forbidden expert data; BC, DAgger and residual RL remain forbidden.
+{
+  "finished": false,
+  "offline_probe_audit": {
+    "baseline_context_count": 32,
+    "baseline_first_action_exact_count": 32,
+    "expected_probe_specs": 128,
+    "finite_causal_action_count": 128,
+    "future_action_read_count": 0,
+    "future_measurement_use_count": 0,
+    "hidden_wire_invariant_action_count": 128,
+    "pair_or_history_label_controller_input_count": 0,
+    "passed": true,
+    "phase": "offline_transport_probe_audit",
+    "plant_advance_count": 0,
+    "probe_schedule_exact_count": 128,
+    "probe_spec_count": 128,
+    "raw_count": 0,
+    "real_tsc_executed": false,
+    "schema_version": 1,
+    "source_result_controller_input_count": 0,
+    "stage": "Stage4.2R3c3T1"
+  },
+  "phase": "offline_transport_probe_audit",
+  "primary_pass": false,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T1"
+}

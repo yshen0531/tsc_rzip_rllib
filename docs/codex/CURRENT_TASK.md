@@ -1,8 +1,6 @@
-# CURRENT_TASK.md — Stage4.2R3c3T1 transport-response identification
+# CURRENT_TASK.md — Stage4.2R3c3T2 held-transport identification
 
-## 1. Certified checkpoint
-
-Terminology:
+## 1. Terminology and certified checkpoint
 
 ```text
 R1  = Stage4.2R1 authentic TSC plant-state restart
@@ -27,171 +25,107 @@ R3c1 authenticated R17 R/Z/Ip alignment      16/32
 R3c2 zero-nominal restart regulator          12/32
 ```
 
-R3b, R3c, R3c1, R3c2, and R3c3 are immutable. Do not overwrite, relabel, or
-weaken their gates.
+These stages are immutable. Do not overwrite, relabel, resume under changed
+semantics, or weaken their gates.
 
-## 2. R3c3 response-bank result
+## 2. Final Stage4.2R3c3T1 result
 
-Exact R3c3 run:
-
-```text
-/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/
-stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
-```
-
-Authenticated compact bank:
+Exact real run:
 
 ```text
-R3c3 raw / causal exact probe                         256/256
-R3c1 baseline contexts                                 32/32
-signed response groups                                128/128
-matched-hidden-history groups                           64/64
-conditioned rank-4 groups                               32/32
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/
+stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
 ```
 
-Fingerprints:
+Result:
 
 ```text
-R3c3 raw inventory
-  88bcd02a5dd2ec4def60c1f2e7f2304fb57859836d3b9a34b090bfd91e00e563
-
-audit response bank SHA-256
-  51bb4eeabfc8a4c5cc3983d75469f484a2278e6ef37cf03cf93ac650f9404b32
-
-controller response bank SHA-256
-  6610dd4c434497240cb89ef0fbaa40716e42df68168efa66cddb919dd8679cf0
-
-bank manifest SHA-256
-  a17322dcfc1d019de0455950c95e45b0b7d0f8f29fc3c68a22211481f261a066
-
-bank provenance digest
-  5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6
+raw / execution / exact restart / causal trace          128/128
+central symmetry                                          64/64
+matched hidden history                                    32/32
+transport-only rank and condition                         32/32
+combined rank six                                         32/32
+combined condition <= 25                                  27/32
+worst combined condition                             29.2962711
+runtime / restart / causality / solver errors                  0
+maximum current utilization                              0.3904
 ```
 
-The controller-facing bank has zero forbidden pair/history/source/raw/result/
-wire/pass/fail keys. Source identities and exact R3c1 baseline trajectories
-exist only in the separate audit bank.
+T1 is a real identification-design FAIL, not a runtime, plant-restart,
+summary/reporting, or real MPC control failure.
 
-## 3. R3c4 pre-execution design veto
-
-The four-basis candidate was tested before implementation using an optimistic
-audit-only model:
+Load-bearing fingerprints:
 
 ```text
-exact R3c1 baseline
-+ bounded linear combination of all four authenticated R3c3 odd responses
+T1 raw inventory
+  f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f
+
+T1 server audit
+  0f24b44f32493b390832474d5c78cc2455a8ba0c455b496b16c04f8deaf3a2bd
+
+corrected six-basis feasibility diagnostic
+  e7bc8f0168ff1d2019f1a9a232b5152a27d46a66a92f9542d31d80c6942c3164
 ```
 
-The evaluator reproduced all 32 R3c1 PASS values and margins exactly.
-Exhaustive-grid and per-endpoint convex epigraph checks agreed:
+The corrected audit reproduces all 32 saved R3c1 formal results and shows:
 
 ```text
-R3c1 baseline feasible                         16/32
-bounded four-basis oracle feasible             16/32
-failed contexts repaired                        0/16
-best remaining failed margin              -0.0603147
-worst remaining failed margin             -0.3585158
+mode0 scale   combined condition pass   optimistic formal pass
+1.00                        27/32                      16/32
+0.85                        32/32                      16/32
+0.80                        32/32                      16/32
+0.75                        32/32                      16/32
+0.70                        32/32                      16/32
 ```
 
-This is a pre-execution design flaw, not a real R3c4 closed-loop failure.
-R3c4 controller code, offline launch, real TSC launch, and raw count are all
-zero/not run.
+No scale repairs a failed formal context. Do not run an amplitude-only T2.
 
-The rejected design is frozen in:
+Full report:
 
 ```text
-docs/codex/reports/STAGE4_2R3C4_PREREGISTERED_DESIGN.md
-docs/codex/audits/stage4_2r3c4_response_bank_20260730/
-stage4_2r3c4_offline_feasibility.json
+docs/codex/reports/STAGE4_2R3C3T1_FORENSIC_REPORT.md
 ```
 
-Do not implement or launch R3c4 from the four-basis bank. Do not enlarge
-coefficients beyond `[-1,1]` or reinterpret unvalidated amplitude
-extrapolation as controller authority.
+## 3. Active task
 
-## 4. Active task
-
-Build Stage4.2R3c3T1 as a new identification identity:
+Implement Stage4.2R3c3T2 as a new independent identity:
 
 ```text
 purpose
-  bounded long-separation zero-net transport-response identification
+  identify a bounded odd response that remains active through the immutable
+  350/370 ms formal hold, then neutralizes after the contract
 
-baseline controller
-  exact R3c1 authenticated visible-manifold controller
+observation horizon
+  50 steps / 500 ms
 
-source response bank
-  exact authenticated R3c3 compact bank
+positive physical-effect states
+  3..8
 
-new transport bases
-  transport_mode0
-  transport_mode1
+negative physical-effect states
+  39..44
+
+observation tail
+  45..50
+
+amplitudes
+  held_transport_mode0 = 0.0060
+  held_transport_mode1 = 0.0075
+
+matrix
+  32 contexts × 2 modes × 2 signs = 128 real TSC tasks
 ```
 
-The complete design was frozen before implementation:
+The complete prospective design is frozen in:
 
 ```text
-docs/codex/reports/STAGE4_2R3C3T1_PREREGISTERED_DESIGN.md
+docs/codex/reports/STAGE4_2R3C3T2_PREREGISTERED_DESIGN.md
 ```
 
-Frozen per-sign physical effect schedule:
+Follow it exactly. Any change to schedule, amplitude, context matrix, formal
+timing, acceptance thresholds, or controller information boundary requires a
+new prospective design identity before real TSC.
 
-```text
-positive states 3,4,5,6,7,8
-negative states 15,16,17,18,19,20
-maximum component 0.0075
-exact zero net
-```
-
-Matrix:
-
-```text
-32 contexts × 2 bases × 2 signs = 128 real TSC rollouts
-```
-
-Implementation sequence:
-
-1. Implement a complete standalone R3c3T1 config, module, scripts, launchers,
-   package manifest, checksums, tests, and server postprocessor.
-2. Preserve exact R3c3/R3c1/bank fingerprints and new experiment identity.
-3. Complete all local compile/JSON/test/import/package/deployment checks.
-4. Deploy directly without archives and validate staging/canonical server
-   trees with the existing venv.
-5. Run the offline no-TSC gate and prove zero raw/plant advance.
-6. Start exactly one new R3c3T1 real identity.
-7. Monitor exact PID, log, raw count, task count, state, and finalization.
-8. Postprocess all large raw server-side.
-9. Download compact evidence only and independently recompute raw metrics.
-10. If identification passes, build the combined six-basis compact bank and
-    rerun the optimistic R3c4 feasibility gate.
-
-## 5. Mandatory controller constraints
-
-R3c3T1 may use only:
-
-- current and past visible R/Z/Ip and 14-coil currents;
-- target R/Z/Ip;
-- causal actuator delay/gain/slew values available at task start;
-- the exact R3c1 target-conditioned nominal controller;
-- its own prospectively fixed transport schedule.
-
-Forbidden controller inputs:
-
-- source actions or source formal outcomes;
-- future measurements, actions, or actuator state from the current run;
-- source or current 48-wire/vessel current;
-- pair, hidden-history, common-prefix, state-generation, source-experiment,
-  pass/fail, or other-member labels;
-- post-action telemetry unavailable at the action decision.
-
-The schedule must remain causal and delay aware. Requested/applied probe
-deltas must agree to absolute tolerance `1e-12`. Clipping is a failed
-identification row.
-
-All R3c3/R3c3T1 probe trajectories are identification data, not
-demonstrations.
-
-## 6. Immutable formal contract
+## 4. Formal timing remains immutable
 
 ```text
 slew 1.0:
@@ -208,67 +142,101 @@ Ip thresholds                 frozen
 arrival streak                frozen
 ```
 
-Formal tracking remains diagnostic-only for identification probes. No
-deadline or threshold may be changed.
+The 500 ms identification horizon does not permit later arrival and is not
+an independent long-hold success test. Neutralization begins physically at
+state 39, after both formal hold endpoints.
 
-## 7. Required validation and acceptance
+## 5. Mandatory controller boundary
+
+T2 may use only current/past visible R/Z/Ip, current/past 14-coil currents,
+target, causal task-start actuator values, the exact R3c1 controller, and
+the fixed T2 task-clock schedule.
+
+It may not use wire/vessel currents, pair/history labels, T1/R3c3 source
+actions or outcomes, another member, future measurements/actions, or
+post-action current-step telemetry.
+
+Probe trajectories are identification data and are forbidden from expert
+datasets.
+
+## 6. Required pre-run validation
 
 Before real TSC:
 
-- Python compile and all repository JSON parse;
-- focused and complete unit tests;
-- import closure and package checksum verification;
-- exact R3b/R3c1/R3c2/R3c3/bank fingerprints;
-- exact 32-context and 128-spec identity set;
-- exact amplitude/sign/zero-net/delay-aware schedule tests;
-- controller-input and future-information guards;
-- hidden-wire and pair/history-label invariance;
+- compile changed Python and parse every JSON;
+- focused and complete tests;
+- import closure, manifest, and checksum verification;
+- exact R3b/R3c1/R3c3/T1 fingerprints;
+- exact 32 contexts and 128 T2 identities;
+- exact delay-aware issue/effect mapping;
+- exact 12-issue requested/applied zero net;
+- first negative physical effect exactly state 39;
+- hidden-wire, label, source, and future-information guards;
 - source-fingerprint and resume-compatibility tests;
-- empty-directory direct-copy deployment simulation;
-- server preflight, `bash -n`, import, compile, package, and complete tests;
-- offline finite causal action computation for all 128 specs;
-- zero raw, zero plant advance, and no real TSC in the offline phase.
+- empty-directory direct-copy simulation inside the repository;
+- server preflight, shell syntax, import/compile/package/full tests;
+- offline finite controller audit for 128 specs;
+- offline raw zero, plant advance zero, real TSC false.
 
-Prospective real-result gates:
+Use direct uncompressed transfer only.
 
-```text
-environment / complete / exact restart / causal trace     128/128
-exact requested/applied transport schedule                128/128
-runtime / solver / clipping / forbidden-input errors            0
-maximum current utilization                                  <= 0.55
-
-central even velocity RMSE                               <= 0.004 m/s
-central even position RMSE                               <= 0.0005 m
-central even Ip RMSE                                     <= 20 A
-
-matched-history odd velocity RMSE                        <= 0.006 m/s
-matched-history odd position RMSE                        <= 0.001 m
-matched-history odd Ip RMSE                              <= 40 A
-
-transport-only rank / condition                          2/2, <= 25
-combined six-basis rank / condition                      6/6, <= 25
-```
-
-No failed group may be removed after inspection.
-
-## 8. Advancement
-
-R3c3T1 PASS is only a bounded development-bank transport-response result.
-
-R3c4 may resume only if:
+## 7. Prospective T2 gates
 
 ```text
-combined six-basis optimistic oracle feasibility        32/32
-all coefficients                                        inside [-1,1]
-baseline pass regressions                               0
-formal contract                                         unchanged
+complete / exact restart / causal / exact probe           128/128
+runtime / solver / clipping / forbidden-input errors              0
+maximum current utilization                                    <= 0.55
+
+central even velocity RMSE                                <= 0.004 m/s
+central even position RMSE                                <= 0.0005 m
+central even Ip RMSE                                      <= 20 A
+
+matched-history odd velocity RMSE                         <= 0.006 m/s
+matched-history odd position RMSE                         <= 0.001 m
+matched-history odd Ip RMSE                               <= 40 A
+
+contract-prefix transport rank / condition                2/2, <= 25
+contract-prefix combined rank / condition                  6/6, <= 25
 ```
 
-If that gate fails, do not launch R3c4. Preserve raw and redesign the
-transport model without weakening gates.
+Condition windows end at the original formal hold state 35 or 37. The
+post-contract cancellation tail must be reported separately and cannot
+improve the controller-use condition matrix.
 
-Independent histories/initial states, new targets, continuous actuator and
-plant variation, noise, disturbance recovery, and independent long hold
-remain unvalidated.
+Formal tracking of signed probes is diagnostic-only.
+
+## 8. Server result loop
+
+Run exactly one new T2 identity after validation. Monitor its exact PID,
+run directory, log, state, and raw task count. Postprocess all raw and
+snapshots on the server. Download compact audit JSON and logs only.
+
+Always distinguish:
+
+- runtime/environment error;
+- packaging/deployment error;
+- raw/snapshot corruption;
+- summary/reporting error;
+- unrun test;
+- identification-design failure;
+- real plant-restart or closed-loop control failure.
+
+## 9. Advancement
+
+If T2 identification passes, build a new combined bank on the server and
+require:
+
+```text
+six-basis optimistic formal feasibility                 32/32
+coefficients                                             [-1,1]
+baseline pass regression                                      0
+formal timing unchanged                                      yes
+```
+
+If this fails, do not implement or launch R3c4.
+
+Even a pass does not validate a reliable restart MPC, independent histories,
+unseen targets, continuous actuator/plant parameters, noise, disturbance
+recovery, or long hold.
 
 BC, DAgger, and bounded residual RL remain prohibited.

@@ -1,6 +1,6 @@
 # Current status
 
-## R3c4 four-basis design vetoed before execution; R3c3T1 is active
+## Stage4.2R3c3T1 failed cleanly; Stage4.2R3c3T2 is preregistered
 
 Status timestamp: 2026-07-31 Asia/Shanghai
 
@@ -10,150 +10,149 @@ Current local branch:
 codex/stage4_2r3c3t1-transport-response
 ```
 
-Frozen checkpoints:
+Current checkpoints:
 
 ```text
-8623bcf  final R3c3 runtime and package
-83e78e4  independent R3c3 raw response forensics
-b0b9ece  final R3c3 certification
-fbcbb16  final compact response-bank builder
-84483f6  compact bank and R3c4 feasibility veto
+b8e66da  preregister T1 transport response
+ba8c455  implement and deploy T1 campaign
 ```
 
-## Authenticated R3c3 response bank
+## T1 real result
 
-Remote bank directory:
+Remote run:
 
 ```text
-/home/yangshen0711/tsc_all/tsc_rzip_rllib/
-stage4_2r3c4_response_bank
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/
+stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
 ```
 
-Coverage:
+Remote audit:
 
 ```text
-R3c3 raw parsed/authenticated                    256/256
-R3c1 exact baselines                              32/32
-signed response groups                           128/128
-matched-hidden-history comparisons                64/64
-rank/condition contexts                           32/32
-controller-facing forbidden-key count                 0
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/
+stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
 ```
+
+Compact local evidence:
+
+```text
+docs/codex/audits/stage4_2r3c3t1_result_20260730_204441/
+```
+
+Result:
+
+```text
+raw / execution / exact restart / causal             128/128
+central symmetry                                       64/64
+matched history                                        32/32
+transport-only condition                               32/32
+combined rank six                                      32/32
+combined condition <= 25                               27/32
+worst combined condition                          29.2962711
+runtime / restart / causal / solver errors                  0
+maximum current utilization                           0.3904
+formal probe diagnostic pass/fail                      56/72
+```
+
+T1 is frozen as FAIL because of the preregistered combined-condition gate.
+Formal tracking was diagnostic-only and was not used to change that result.
 
 Fingerprints:
 
 ```text
-R3c3 raw inventory
-  88bcd02a5dd2ec4def60c1f2e7f2304fb57859836d3b9a34b090bfd91e00e563
+runtime/audit package
+  cea1e49470afed77387cdf3d636de38541c47998846a817edc32dafd9b60f44a
 
-audit response bank
-  51bb4eeabfc8a4c5cc3983d75469f484a2278e6ef37cf03cf93ac650f9404b32
+raw inventory
+  f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f
 
-controller response bank
-  6610dd4c434497240cb89ef0fbaa40716e42df68168efa66cddb919dd8679cf0
+run inventory
+  159ee8f85fc07fec52280cb0f153a75d5f24b8bf69629502f8177b7810567c52
 
-bank manifest
-  a17322dcfc1d019de0455950c95e45b0b7d0f8f29fc3c68a22211481f261a066
-
-provenance digest
-  5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6
-
-R3c1 baseline inventory
-  3e82504dde79215ed34626531e4f926f5bd65404832790cba6a2eb2f2cc3a97e
+server audit
+  0f24b44f32493b390832474d5c78cc2455a8ba0c455b496b16c04f8deaf3a2bd
 ```
 
-Local compact evidence:
+No T1 task was resumed or rerun after completion.
+
+## T1 forensic classification
 
 ```text
-docs/codex/audits/stage4_2r3c4_response_bank_20260730/
-
-6 transferred files / 3,847,978 bytes
-inventory digest
-  222eabf8089e52d0e18fddafc9f038b28ceae66a3e510e8e5e09e65877f96397
+runtime/environment error                    no
+package/deployment error                     no
+raw/snapshot corruption                      no
+T1 statistics/reporting error                no
+plant restart failure                        no
+real MPC control result                      not tested
+identification-design failure                yes
 ```
 
-The audit bank retains provenance and exact R3c1 trajectories for offline
-forensics. The controller-facing bank strips source/result/pair/history/wire
-identity and contains only allowed numeric visible state, coil currents,
-target, actuator values, selected phase, and bounded response arrays.
-
-## R3c4 pre-execution result
-
-Candidate:
+The first read-only six-basis feasibility tool used position arrays for the
+velocity condition calculation. Its invalid output is preserved with SHA
+`a19169f1...`. Corrected v2 exactly reproduces the T1 27/32 condition count
+and 29.2962711 maximum before computing formal feasibility:
 
 ```text
-restart_integrated_bounded_response_deadline_mpc_v42r3c4_candidate
+corrected diagnostic
+  e7bc8f0168ff1d2019f1a9a232b5152a27d46a66a92f9542d31d80c6942c3164
+
+optimistic six-basis formal pass               16/32
+failed baseline contexts repaired               0/16
+best remaining failed margin                -0.0458576
+worst remaining failed margin               -0.3456933
 ```
 
-The prospective oracle was deliberately optimistic:
+Reducing transport mode 0 to scales 0.85, 0.80, 0.75, or 0.70 repairs
+conditioning to 32/32 but leaves formal feasibility at 16/32. An
+amplitude-only T2 is therefore vetoed before execution.
+
+Full T1 report:
 
 ```text
-exact audit-only R3c1 outcome
-+ four authenticated odd responses with coefficients in [-1,1]
+docs/codex/reports/STAGE4_2R3C3T1_FORENSIC_REPORT.md
 ```
 
-The formal evaluator reproduced all 32 R3c1 PASS values and minimum margins
-exactly. Exhaustive-grid and independent per-endpoint convex epigraph checks
-found:
+## Active T2 design
+
+Prospective design:
 
 ```text
-R3c1 baseline formal pass                      16/32
-bounded four-basis oracle formal pass          16/32
-failed contexts repaired                        0/16
-baseline pass regression                        0/16
-best remaining failed margin              -0.0603147
-worst remaining failed margin             -0.3585158
+docs/codex/reports/STAGE4_2R3C3T2_PREREGISTERED_DESIGN.md
 ```
 
-Classification:
-
-- runtime/environment error: no;
-- deployment/package error: no;
-- raw/snapshot corruption: no;
-- statistics/reporting error: no;
-- plant-restart failure: no;
-- real R3c4 control result: not run;
-- pre-execution design flaw: yes.
-
-The four short zero-net bases produce at most `0.3659 mm` single-basis R/Z
-displacement and lack the transport authority needed to satisfy the full
-hold horizon. Even unvalidated linear bounds 2, 4, and 6 repaired no failed
-context; those extrapolations are not controller authority.
-
-No R3c4 controller module, offline launch, real TSC run, or raw was created.
-The design stop is frozen in:
+Frozen schedule:
 
 ```text
-docs/codex/reports/STAGE4_2R3C4_PREREGISTERED_DESIGN.md
+observation horizon                    50 steps / 500 ms
+positive physical effects             states 3..8
+negative physical effects             states 39..44
+observation tail                       states 45..50
+held transport mode 0 amplitude       0.0060
+held transport mode 1 amplitude       0.0075
+tasks                                  128
 ```
 
-## Active next step
+The first negative physical effect is after both original formal hold
+endpoints. Arrival remains due by 250/270 ms and formal hold remains through
+350/370 ms. The longer run is identification-only, not a later deadline or
+long-hold success.
 
-Stage4.2R3c3T1 is now preregistered:
+Next implementation steps:
 
-```text
-docs/codex/reports/STAGE4_2R3C3T1_PREREGISTERED_DESIGN.md
-```
-
-It adds two bounded long-separation transport bases:
-
-```text
-modes                        0 and 1
-per-step amplitude           0.0075
-positive effect states       3..8
-negative effect states       15..20
-requested net                exactly zero
-rollouts                     32 × 2 × 2 = 128
-```
-
-R3c3T1 must complete the full local/server/offline/real/postprocess/forensic
-loop. R3c4 remains blocked unless the combined six-basis bank makes all
-32 development contexts feasible under the unchanged formal contract.
+1. create a focused T2 branch and implementation checkpoint;
+2. implement standalone config/module/launch/postprocess/tests;
+3. complete local compile/JSON/full-test/import/package/empty-copy checks;
+4. deploy directly without archives and validate the canonical server tree;
+5. run the 128-spec offline no-TSC audit;
+6. launch exactly one real T2 identity;
+7. postprocess large raw server-side and download only compact evidence;
+8. require T2 identification gates, then six-basis optimistic feasibility
+   32/32 before any R3c4 implementation.
 
 ## Still unvalidated
 
-A reliable restart MPC expert, independent new histories and initial states,
-unseen targets, continuous actuator/plant variation, noise, disturbance
-recovery, and independent long hold remain unvalidated.
+A reliable restart MPC expert, independent histories and initial states,
+unseen targets, continuous actuator and plant variation, noise, observer,
+disturbance recovery, and independent long hold remain unvalidated.
 
 BC, DAgger, and bounded residual RL remain prohibited.

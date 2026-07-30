@@ -608,3 +608,55 @@
   Stage4.2R3c3T1 long-separation zero-net transport-response identification;
   R3c4 remains blocked until a combined six-basis oracle is feasible 32/32;
   no BC/DAgger/RL
+
+## Stage4.2R3c3T1 long-separation transport identification
+
+- Local branch/checkpoints:
+  `codex/stage4_2r3c3t1-transport-response`;
+  preregistration `b8e66da`; implementation/deployment `ba8c455`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441`
+- Remote audit:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441`
+- Runtime package fingerprint:
+  `cea1e49470afed77387cdf3d636de38541c47998846a817edc32dafd9b60f44a`
+- Raw:
+  expected/actual/parsed/execution/exact restart/causal `128/128`;
+  inventory digest
+  `f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f`
+- Run inventory:
+  532 files / 12,861,181 bytes / digest
+  `159ee8f85fc07fec52280cb0f153a75d5f24b8bf69629502f8177b7810567c52`
+- Passing response gates:
+  central symmetry 64/64; matched history 32/32; transport-only condition
+  32/32; maximum current utilization 0.3904
+- Failing primary gate:
+  combined rank six 32/32 but combined condition 27/32; five `p9`
+  contexts exceed 25; maximum `29.296271086222426`
+- Formal probe diagnostic:
+  56/128 pass; not an identification acceptance gate
+- Server audit:
+  summary exactly recomputed; runtime/audit fingerprints identical; SHA
+  `0f24b44f32493b390832474d5c78cc2455a8ba0c455b496b16c04f8deaf3a2bd`
+- Corrected optimistic six-basis diagnostic:
+  exact R3c1 evaluator reproduction 32/32; original response formal
+  feasibility 16/32; repaired 0/16; amplitude scales 0.85 through 0.70
+  repair conditioning to 32/32 but still repair 0/16; SHA
+  `e7bc8f0168ff1d2019f1a9a232b5152a27d46a66a92f9542d31d80c6942c3164`
+- Tooling incident:
+  first read-only six-basis diagnostic used RZI positions for the frozen
+  velocity condition and is preserved as invalid SHA
+  `a19169f1aa7bf38547216ec4536ef06e8b97d34a784036af2c0551eb87845f4f`;
+  corrected v2 reproduces the certified 27/32 and 29.2962711 values. No raw,
+  run, summary, or verdict changed.
+- Classification:
+  identification-design FAIL; no runtime, deployment, raw, restart, causal,
+  T1 summary/reporting, or real-MPC failure
+- Compact download:
+  `docs/codex/audits/stage4_2r3c3t1_result_20260730_204441/`; large raw
+  remained server-side
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3T1_FORENSIC_REPORT.md`
+- Next:
+  Stage4.2R3c3T2 post-contract-neutralized held-transport identification;
+  amplitude-only T2 and current six-basis R3c4 are vetoed; no BC/DAgger/RL

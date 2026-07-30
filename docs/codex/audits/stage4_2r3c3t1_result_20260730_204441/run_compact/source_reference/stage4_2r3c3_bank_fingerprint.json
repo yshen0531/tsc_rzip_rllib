@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "source_r3c3_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427",
+  "source_bank_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank",
+  "raw_count": 256,
+  "raw_inventory_digest": "88bcd02a5dd2ec4def60c1f2e7f2304fb57859836d3b9a34b090bfd91e00e563",
+  "audit_bank_sha256": "51bb4eeabfc8a4c5cc3983d75469f484a2278e6ef37cf03cf93ac650f9404b32",
+  "controller_bank_sha256": "6610dd4c434497240cb89ef0fbaa40716e42df68168efa66cddb919dd8679cf0",
+  "bank_manifest_sha256": "a17322dcfc1d019de0455950c95e45b0b7d0f8f29fc3c68a22211481f261a066",
+  "bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+  "r3c1_baseline_inventory_digest": "3e82504dde79215ed34626531e4f926f5bd65404832790cba6a2eb2f2cc3a97e",
+  "run_manifest_digest": "186e9da3766bcb26ba23704301beef704fe9fc9fa1867cf1cff15936eb5e4223"
+}

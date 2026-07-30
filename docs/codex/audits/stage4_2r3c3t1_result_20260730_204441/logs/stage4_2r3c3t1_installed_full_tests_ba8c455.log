@@ -1,0 +1,50 @@
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=120 actors=96 initialized_now=0
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=24 actors=24 initialized_now=0
+[test] ray_capacity requested=96 cluster_cpus=96 pending=150 actors=96 initialized_now=0
+..{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "created_utc": "20260730_204232",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041,
+      "max_terminal_velocity_m_per_s": 0.02,
+      "max_late_velocity_rms_m_per_s": 0.08
+    }
+  ]
+}
+.{
+  "verdict": "NO_CONFIRMED_HOLD",
+  "created_utc": "20260730_204232",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 0,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 99,
+      "mean_terminal_RZ_error_m": null,
+      "max_terminal_velocity_m_per_s": null,
+      "max_late_velocity_rms_m_per_s": null
+    }
+  ]
+}
+.....[Stage2 evaluation] candidate stored as failure because the result was not strict-JSON serializable: non-finite JSON number at $.trajectory[0].R: nan
+............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 538 tests in 2.418s
+
+OK

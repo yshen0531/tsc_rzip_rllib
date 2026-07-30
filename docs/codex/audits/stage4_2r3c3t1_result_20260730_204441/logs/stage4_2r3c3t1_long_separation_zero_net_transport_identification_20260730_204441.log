@@ -1,0 +1,144 @@
+[Stage4.2R3c3T1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T1] source_stage4_2r3b_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3c3T1] source_stage4_2r3c3_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+[Stage4.2R3c3T1] source_stage4_2r3c3_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+[Stage4.2R3c3T1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+[Stage4.2R3c3T1] command=all backend=ray resume=0 workers=128
+[Stage4.2R3c3T1] 128 signed long-separation probes are zero-net and identification-only.
+[Stage4.2R3c3T1] Formal timing is unchanged; tracking is diagnostic, not this identification gate.
+[Stage4.2R3c3T1] Probe trajectories are forbidden expert data; BC, DAgger and residual RL remain forbidden.
+2026-07-31 04:45:26,966	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R3c3T1] ray_capacity requested=128 cluster_cpus=128 pending=128 actors=128 initialized_now=1
+[Stage4.2R3c3T1] maximum_actor_count=128 pending=128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] waiting 0/128
+[Stage4.2R3c3T1] 8/128
+[Stage4.2R3c3T1] 16/128
+[Stage4.2R3c3T1] 24/128
+[Stage4.2R3c3T1] 32/128
+[Stage4.2R3c3T1] 40/128
+[Stage4.2R3c3T1] 48/128
+[Stage4.2R3c3T1] 56/128
+[Stage4.2R3c3T1] 64/128
+[Stage4.2R3c3T1] 72/128
+[Stage4.2R3c3T1] 80/128
+[Stage4.2R3c3T1] 88/128
+[Stage4.2R3c3T1] 96/128
+[Stage4.2R3c3T1] 104/128
+[Stage4.2R3c3T1] 112/128
+[Stage4.2R3c3T1] 120/128
+[Stage4.2R3c3T1] 128/128
+{
+  "control_summary": {
+    "central_symmetry_failure_count": 0,
+    "central_symmetry_gate_passed": true,
+    "central_symmetry_pass_count": 64,
+    "combined_condition_failure_count": 5,
+    "combined_condition_group_count": 32,
+    "combined_condition_number_gate_passed": false,
+    "combined_condition_pass_count": 27,
+    "condition_number_failure_count": 0,
+    "condition_number_gate_passed": true,
+    "condition_number_group_count": 32,
+    "condition_number_pass_count": 32,
+    "controller_causality_failure_count": 0,
+    "current_run_future_use_count": 0,
+    "current_utilization_pass": true,
+    "development_set_only": true,
+    "execution_gate_passed": true,
+    "execution_pass_count": 128,
+    "expected_combined_condition_group_count": 32,
+    "expected_condition_number_group_count": 32,
+    "expected_matched_hidden_history_group_count": 32,
+    "expected_response_group_count": 64,
+    "expected_rollouts": 128,
+    "formal_contract_failure_count": 72,
+    "formal_contract_pass_count": 56,
+    "formal_tracking_is_acceptance_gate": false,
+    "hidden_wire_controller_input_count": 0,
+    "identification_only": true,
+    "identification_probe_execution_failure_count": 0,
+    "independent_hidden_history_confirmation": false,
+    "matched_hidden_history_failure_count": 0,
+    "matched_hidden_history_gate_passed": true,
+    "matched_hidden_history_group_count": 32,
+    "matched_hidden_history_pass_count": 32,
+    "maximum_combined_velocity_condition_number": 29.296271086222426,
+    "maximum_current_utilization": 0.39039999999999997,
+    "maximum_current_utilization_allowed": 0.55,
+    "maximum_selected_velocity_condition_number": 3.284150532152829,
+    "n_rollouts": 128,
+    "pair_or_history_label_use_count": 0,
+    "passed": false,
+    "phase": "long_separation_zero_net_transport_identification",
+    "plant_restart_fidelity_failure_count": 0,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "response_group_count": 64,
+    "runtime_or_environment_error_count": 0,
+    "schema_version": 1,
+    "solver_failure_count": 0,
+    "source_action_use_count": 0,
+    "source_coil_current_use_count": 0,
+    "source_result_use_count": 0,
+    "source_wire_current_use_count": 0,
+    "stage": "Stage4.2R3c3T1"
+  },
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T1",
+  "verdict": {
+    "bc_dagger_or_rl_allowed": false,
+    "development_set_only": true,
+    "formal_tracking_is_acceptance_gate": false,
+    "identification_only": true,
+    "independent_hidden_history_confirmation": false,
+    "next_if_fail": "Preserve all raw and redesign transport identification without weakening timing or response gates.",
+    "next_if_pass": "Build a combined six-basis compact bank and require 32/32 bounded optimistic R3c4 feasibility before implementation.",
+    "primary_pass": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "schema_version": 1,
+    "stage": "Stage4.2R3c3T1",
+    "verdict": "STAGE4_2R3C3T1_TRANSPORT_IDENTIFICATION_FAIL"
+  }
+}

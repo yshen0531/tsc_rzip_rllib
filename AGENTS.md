@@ -328,25 +328,42 @@ feasibility and repaired 0/16 failed contexts. R3c4 was therefore vetoed
 before controller implementation or real TSC; it has zero raw and is not a
 real closed-loop result.
 
-The current stage is Stage4.2R3c3T1 long-separation zero-net
-transport-response identification. Its fixed design is:
+Stage4.2R3c3T1 completed all 128 authentic identification tasks. Restart,
+causality, central symmetry, matched-history response, transport-only
+conditioning, and current gates passed, but the frozen combined six-basis
+condition gate passed only 27/32 with a maximum of 29.2962711. T1 is frozen
+as an identification-design FAIL; it is not a runtime, restart, reporting,
+or real MPC failure.
+
+Corrected server-side optimistic feasibility reproduced all 32 R3c1 formal
+results exactly. Scaling T1 mode 0 to 0.85 through 0.70 repaired combined
+conditioning to 32/32 but left formal feasibility at 16/32 and repaired
+0/16 failed contexts. An amplitude-only T2 and the current six-basis R3c4
+are vetoed.
+
+The current stage is Stage4.2R3c3T2 post-contract-neutralized
+held-transport identification. Its fixed design is:
 
 ```text
-mode 0 and mode 1
-per-step amplitude 0.0075
+mode 0 amplitude 0.0060
+mode 1 amplitude 0.0075
 positive physical effect states 3 through 8
-negative physical effect states 15 through 20
+negative physical effect states 39 through 44
+observation through state 50
 exact zero net
 32 contexts × 2 bases × 2 signs = 128 real rollouts
 ```
 
 The full gates are frozen in
-`docs/codex/reports/STAGE4_2R3C3T1_PREREGISTERED_DESIGN.md` and
-`docs/codex/CURRENT_TASK.md`. R3c3T1 may never use source actions/results,
+`docs/codex/reports/STAGE4_2R3C3T2_PREREGISTERED_DESIGN.md` and
+`docs/codex/CURRENT_TASK.md`. R3c3T2 may never use source actions/results,
 current-run future values, source/current wire currents, or
 pair/history/prefix labels inside the controller.
 
-R3c4 may resume only if the combined R3c3 plus R3c3T1 six-basis optimistic
+The 500 ms T2 horizon does not change the 250/270 ms arrival deadlines or
+the 350/370 ms formal hold endpoints and is not a long-hold success test.
+
+R3c4 may resume only if the combined R3c3 plus R3c3T2 six-basis optimistic
 oracle is feasible 32/32 with every coefficient inside `[-1,1]` and no
 formal-gate change.
 
