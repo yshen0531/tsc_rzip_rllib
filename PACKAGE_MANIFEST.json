@@ -1,33 +1,30 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.2R3c2",
-  "run_name": "stage4_2r3c2_restart_target_state_regulation_mpc",
-  "controller_revision": "restart_target_state_regulation_mpc_v42r3c2",
-  "package_revision": "r42r3c2_restart_target_state_regulation_mpc_v1",
-  "source_stage": "exact completed Stage4.2R3b development snapshots, failed Stage4.2R3c/R3c1 evidence, and authenticated R17/R1c/R2 source chain",
+  "stage": "Stage4.2R3c3",
+  "run_name": "stage4_2r3c3_restart_task_clock_local_response_identification",
+  "controller_revision": "restart_task_clock_local_response_probe_v42r3c3",
+  "package_revision": "r42r3c3_restart_task_clock_local_response_identification_v1",
+  "source_stage": "exact completed Stage4.2R3b development snapshots; failed Stage4.2R3c, R3c1, and R3c2 evidence; authenticated R17/R1c/R2 source chain",
   "source_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
   "source_package_revision": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
-  "purpose": "Develop and audit a causal restart target-state regulator for every nonzero visible restart phase while preserving the exact phase-zero R17 path on the locked Stage4.2R3b four-pair development set.",
+  "purpose": "Identify the bounded task-clock-local signed plant response around the exact Stage4.2R3c1 restart baseline without proposing or accepting a new expert controller.",
   "campaigns": {
-    "offline_no_gotsc_original_start_exact_action_cases": 4,
+    "offline_no_gotsc_baseline_contexts": 32,
     "locked_stage4_2r3b_development_pairs": 4,
     "locked_stage4_2r3b_development_snapshots": 8,
-    "restart_target_state_regulation_control_rollouts": 32,
+    "baseline_restart_contexts": 32,
+    "signed_probe_rollouts": 256,
+    "central_symmetry_response_groups": 128,
+    "matched_hidden_history_response_groups": 64,
+    "velocity_condition_number_groups": 32,
     "authenticated_r17_visible_reference_manifolds": 4
   },
   "phase_alignment_contract": {
     "candidate_min_phase": 0,
     "candidate_max_phase": 20,
-    "visible_phase_selection_fields": [
-      "R",
-      "Z",
-      "Ip"
-    ],
-    "visible_phase_selection_scales": {
-      "R_m": 0.03,
-      "Z_m": 0.03,
-      "Ip_A": 2000.0
-    },
+    "R_scale_m": 0.03,
+    "Z_scale_m": 0.03,
+    "Ip_scale_A": 2000.0,
     "tie_break": "earliest_phase",
     "task_clock_starts_at_zero": true,
     "reference_clock_separate_from_task_clock": true,
@@ -36,31 +33,125 @@
     "align_delay_queue_priming": true,
     "align_braking_transition": true,
     "align_terminal_transition": true,
+    "hidden_wire_input_allowed": false,
+    "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+    "reference_fields": [
+      "R",
+      "Z",
+      "Ip"
+    ],
+    "reference_phase_count": 21,
+    "source_actions_allowed": false,
+    "source_coil_currents_allowed": false,
+    "source_wire_currents_allowed": false,
     "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
     "controller_integral_initialization": "zero",
-    "hidden_wire_current_available_to_controller": false,
     "future_actions_forbidden": true,
     "future_measurements_forbidden": true,
-    "online_action_recomputation_required": true,
-    "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
-    "reference_phase_count": 21,
-    "source_actions_included": false,
-    "source_coil_currents_included": false,
-    "source_wire_currents_included": false,
-    "current_run_future_included": false
+    "online_action_recomputation_required": true
   },
-  "restart_regulation_contract": {
-    "phase_zero_policy": "preserve_r3c1_path",
-    "nonzero_phase_policy": "target_state_regulation_from_task_step_zero",
-    "nonzero_phase_regulation_persistent": true,
-    "step_zero_velocity_initialization": "zero",
-    "subsequent_velocity_source": "causal_current_run_finite_difference",
-    "model_phase_policy": "min_reference_phase_and_frozen_terminal_cap",
-    "zero_nominal_physical_coefficients": true,
-    "zero_nominal_feature": true,
-    "retain_phase_aligned_delay_queue_priming": true,
+  "identification_probe_contract": {
+    "baseline_controller": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "baseline_package": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
+    "physical_mode_amplitude": [
+      0.0075,
+      0.0075,
+      0.0
+    ],
+    "basis": [
+      {
+        "probe_id": "early_mode0",
+        "mode": 0,
+        "first_effect_state": 5,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "probe_id": "early_mode1",
+        "mode": 1,
+        "first_effect_state": 5,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "probe_id": "deadline_mode0",
+        "mode": 0,
+        "first_effect_state": 17,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "probe_id": "deadline_mode1",
+        "mode": 1,
+        "first_effect_state": 17,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      }
+    ],
+    "probe_signs": [
+      -1,
+      1
+    ],
+    "require_requested_and_applied_zero_net": true,
+    "zero_net_atol": 1e-12,
+    "maximum_current_utilization": 0.55,
+    "central_symmetry": {
+      "maximum_even_velocity_rmse_m_per_s": 0.004,
+      "maximum_even_position_rmse_m": 0.0005,
+      "maximum_even_ip_rmse_A": 20.0
+    },
+    "matched_hidden_history": {
+      "maximum_odd_velocity_rmse_m_per_s": 0.006,
+      "maximum_odd_position_rmse_m": 0.001,
+      "maximum_odd_ip_rmse_A": 40.0
+    },
+    "maximum_selected_velocity_condition_number": 25.0,
+    "formal_tracking_pass_required": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
     "pair_or_history_label_input_allowed": false,
-    "source_result_input_allowed": false
+    "source_result_input_allowed": false,
+    "source_action_input_allowed": false,
+    "source_or_current_wire_input_allowed": false
   },
   "source_contract": {
     "stage4_2r3b_run_name": "stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
@@ -79,65 +170,74 @@
     "stage4_2r3c_raw_forensics_sha256": "395427285a5bad0de9611629df0a13ade037ddd4f0e30e993e475a56c3dbafaa",
     "stage4_2r3c1_run_name": "stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
     "stage4_2r3c1_run_inventory_digest": "5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f",
-    "stage4_2r3c1_run_inventory_file_count": 166,
-    "stage4_2r3c1_run_inventory_total_bytes": 3409736,
     "stage4_2r3c1_control_raw_count": 32,
     "stage4_2r3c1_formal_pass_count": 16,
     "stage4_2r3c1_formal_failure_count": 16,
     "stage4_2r3c1_raw_forensics_sha256": "29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd",
-    "stage4_2r3c1_restart_regulation_diagnostic_sha256": "9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d",
-    "r3c2_uses_r3b_r3c_or_r3c1_as_independent_confirmation": false
+    "stage4_2r3c2_run_name": "stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616",
+    "stage4_2r3c2_run_inventory_digest": "2119d2edad615dbb9594ad4332b758a9cf7ffc2e62b988650c41297aace8cff2",
+    "stage4_2r3c2_control_raw_count": 32,
+    "stage4_2r3c2_formal_pass_count": 12,
+    "stage4_2r3c2_formal_failure_count": 20,
+    "stage4_2r3c2_raw_forensics_sha256": "644da85280e03015732bb63deb1205bf5fcafeabc53b0f8a9e606565a27efbb2"
   },
-  "formal_timing": {
-    "arrival_deadline_expanded": false,
-    "normal_slew_arrival_ms": 250,
-    "normal_slew_hold_through_ms": 350,
-    "weak_slew_arrival_ms": 270,
-    "weak_slew_hold_through_ms": 370
+  "formal_timing_contract": {
+    "normal": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "arrival_deadline_step": 25,
+      "arrival_deadline_ms": 250,
+      "hold_through_step": 35,
+      "hold_through_ms": 350
+    },
+    "weak": {
+      "slew_scales": [
+        0.9
+      ],
+      "arrival_deadline_step": 27,
+      "arrival_deadline_ms": 270,
+      "hold_through_step": 37,
+      "hold_through_ms": 370
+    },
+    "arrival_streak_steps_unchanged": true,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_threshold_unchanged": true,
+    "arrival_deadline_expansion_allowed": false
   },
-  "requirements": {
-    "delete_and_replace_directories": [
-      "configs",
-      "scripts",
-      "tests",
-      "tsc_rzip_rllib"
-    ],
-    "root_shell_scripts_are_stage4_2r3c2_only": true,
-    "requires_existing_source_run": "exact completed Stage4.2R3b run, exact failed Stage4.2R3c and R3c1 runs/audits, and their authenticated Stage4.2R2/R3a/R17 source chain",
-    "requires_external_source_tree": false,
-    "requires_git": false,
-    "requires_network": false,
-    "supports_resume": true,
-    "resume_requires_same_source_runs_audit_fingerprints_phase_and_regulation_config_control_spec_controller_revision_package_revision_and_experiment_identity": true,
-    "resume_package_change_allowed": false,
-    "postprocess_package_change_allowed": false,
-    "large_result_postprocess_on_server": true,
-    "download_compact_audits_only": true
+  "scientific_scope": {
+    "identification_only": true,
+    "formal_tracking_recorded": true,
+    "formal_tracking_is_identification_acceptance_gate": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "development_set_only": true,
+    "independent_hidden_history_confirmation": false,
+    "different_initial_state_validated": false,
+    "unseen_target_validated": false,
+    "continuous_parameter_change_validated": false,
+    "plant_jacobian_error_validated": false,
+    "measurement_noise_validated": false,
+    "disturbance_recovery_validated": false,
+    "independent_long_hold_validated": false,
+    "bc_dagger_or_rl_allowed": false
   },
-  "scientific_guardrails": [
-    "R17, R1c and R2 finite clean foundations and immutable 250/350 and 270/370 ms formal contracts remain frozen.",
-    "R3, R3a, R3b, R3c and R3c1 remain failed under their original preregistered gates.",
-    "The exact R3b, R3c and R3c1 run inventories and independent raw forensics are immutable source and resume gates.",
-    "R3c2 reuses only the exact four selected R3b history pairs as a controller development set after inspecting R3c and R3c1.",
-    "The task and formal clocks start at zero; a separate reference/model phase is selected causally from initial visible R/Z/Ip only.",
-    "Phase selection uses only four authenticated R17 actual closed-loop R/Z/Ip tables for phases 0 through 20.",
-    "Source actions, source coil/wire currents, current-run future values and hidden wire state are excluded from phase selection and control.",
-    "Original-start R17 cases must select phase zero and reproduce every frozen online action exactly before real TSC execution.",
-    "Phase zero preserves the exact R3c1/R17 action path; every nonzero visible phase uses target-state regulation from task step zero through the complete formal horizon.",
-    "The unavailable first current-run velocity sample is causally initialized to zero; subsequent velocity uses only current-run finite differences.",
-    "The controller cannot receive pair/history labels, source results, source actions, hidden wire state or future values.",
-    "The response-model clock and nominal delay-queue priming remain phase aligned while the formal task clock remains zero based.",
-    "Every control rollout uses a fresh controller actor and fresh TSC process from a hash-verified authentic snapshot.",
-    "Full wire current remains post-action audit telemetry and never enters phase selection or the controller.",
-    "Runtime, deployment, corruption, reporting, design, observer/history, restart and real control conclusions remain separate.",
-    "An R3c2 pass validates only development-set closure and must be followed by Stage4.2R3d independent new-history confirmation.",
-    "Unseen targets, continuous actuator parameters, plant/Jacobian error, noise, disturbance recovery and independent long hold remain unvalidated.",
-    "BC, DAgger and bounded residual RL remain forbidden until the reliable MPC expert roadmap is complete."
-  ],
-  "finite_test_envelope_only": true,
-  "bc_dagger_or_rl_allowed": false,
-  "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold",
-  "declared_file_count": 150,
+  "package_rules": {
+    "complete_import_closure_required": true,
+    "empty_directory_deployment_required": true,
+    "server_git_required": false,
+    "server_network_required": false,
+    "external_source_tree_allowed": false,
+    "local_archive_operations_allowed": false,
+    "root_shell_scripts_are_stage4_2r3c3_only": true,
+    "fixed_ray_worker_capacity": 128,
+    "maximum_live_probe_actors": 128,
+    "probe_actor_batches": 2,
+    "large_raw_postprocess_on_server": true,
+    "compact_audits_only_downloaded": true
+  },
+  "declared_file_count": 156,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -175,13 +275,14 @@
     "configs/stage4_2r3c1_postprocess_hotfix_v1.json",
     "configs/stage4_2r3c1_semantics_preserving_resume_hotfix_v1.json",
     "configs/stage4_2r3c2_restart_target_state_regulation_mpc_370ms.json",
+    "configs/stage4_2r3c3_restart_task_clock_local_response_identification_370ms.json",
     "configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json",
-    "run_stage4_2r3c2_restart_target_state_regulation_mpc_native.sh",
-    "run_stage4_2r3c2_restart_target_state_regulation_mpc_nohup.sh",
-    "run_stage4_2r3c2_self_test.sh",
-    "run_stage4_2r3c2_server_postprocess.sh",
-    "run_stage4_2r3c2_verify_package.sh",
-    "run_stop_stage4_2r3c2_now.sh",
+    "run_stage4_2r3c3_restart_task_clock_local_response_identification_native.sh",
+    "run_stage4_2r3c3_restart_task_clock_local_response_identification_nohup.sh",
+    "run_stage4_2r3c3_self_test.sh",
+    "run_stage4_2r3c3_server_postprocess.sh",
+    "run_stage4_2r3c3_verify_package.sh",
+    "run_stop_stage4_2r3c3_now.sh",
     "scripts/stage4_2r1_shell_common.sh",
     "scripts/stage4_2r1_true_tsc_plant_restart_action_replay.py",
     "scripts/stage4_2r2_persistent_controller_checkpoint_replay.py",
@@ -201,6 +302,9 @@
     "scripts/stage4_2r3c2_restart_target_state_regulation_mpc.py",
     "scripts/stage4_2r3c2_server_postprocess.py",
     "scripts/stage4_2r3c2_shell_common.sh",
+    "scripts/stage4_2r3c3_restart_task_clock_local_response_identification.py",
+    "scripts/stage4_2r3c3_server_postprocess.py",
+    "scripts/stage4_2r3c3_shell_common.sh",
     "scripts/stage4_2r3c_server_postprocess.py",
     "scripts/stage4_2r3c_shell_common.sh",
     "scripts/stage4_2r3c_visible_state_phase_aligned_mpc.py",
@@ -240,6 +344,7 @@
     "tests/test_stage4_2r3b_confirmatory_hidden_history_initial_state.py",
     "tests/test_stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py",
     "tests/test_stage4_2r3c2_restart_target_state_regulation_mpc.py",
+    "tests/test_stage4_2r3c3_restart_task_clock_local_response_identification.py",
     "tests/test_stage4_2r3c_visible_state_phase_aligned_mpc.py",
     "tsc_rzip_rllib/__init__.py",
     "tsc_rzip_rllib/core/__init__.py",
@@ -282,6 +387,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_2r3b_confirmatory_hidden_history_initial_state.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c2_restart_target_state_regulation_mpc.py",
+    "tsc_rzip_rllib/diagnostics/stage4_2r3c3_restart_task_clock_local_response_identification.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py",
     "tsc_rzip_rllib/envs/__init__.py",
     "tsc_rzip_rllib/envs/factory.py",
