@@ -554,3 +554,57 @@
   freeze a compact authenticated R3c3 response bank and preregister a new
   Stage4.2R3c4 restart-integrated target-conditioned deadline MPC; no
   BC/DAgger/RL
+
+## Stage4.2R3c4 pre-execution bounded-response feasibility
+
+- Local branch/checkpoint:
+  `codex/stage4_2r3c4-deadline-mpc` / `84483f6`
+- Compact-bank builder:
+  `fbcbb16`;
+  `docs/codex/audit_tools/stage4_2r3c3_compact_response_bank.py`
+- Source run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427`
+- Remote compact bank:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank`
+- Response-bank coverage:
+  R3c3 raw 256/256; exact R3c1 baselines 32/32; signed groups 128/128;
+  matched-hidden-history groups 64/64; condition groups 32/32
+- Bank hashes:
+  audit bank
+  `51bb4eeabfc8a4c5cc3983d75469f484a2278e6ef37cf03cf93ac650f9404b32`;
+  controller bank
+  `6610dd4c434497240cb89ef0fbaa40716e42df68168efa66cddb919dd8679cf0`;
+  manifest
+  `a17322dcfc1d019de0455950c95e45b0b7d0f8f29fc3c68a22211481f261a066`
+- Bank guard:
+  controller-facing recursive forbidden pair/history/source/raw/result/wire/
+  pass/fail key count 0; provenance digest
+  `5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6`
+- Tooling incidents:
+  first read-only attempt incorrectly required a three-axis velocity array;
+  second used the R3c3 probe formal wrapper on an R3c1 baseline; both stopped
+  before creating bank files; corrected third attempt produced the final
+  deterministic compact files. These are postprocessing-tool errors, not
+  runtime, raw, restart, or control errors.
+- Prospective feasibility:
+  exact R3c1 formal evaluator reproduction 32/32 with maximum margin error
+  zero; bounded four-basis optimistic oracle 16/32, repaired 0/16, best
+  remaining failed margin `-0.060314716666669765`, worst
+  `-0.3585158333333367`
+- Execution:
+  R3c4 controller implementation not authorized; offline launch not run;
+  real TSC not run; raw count 0
+- Classification:
+  pre-execution controller-design infeasibility. It is not a real closed-loop
+  R3c4 failure and does not weaken any R3c3 or formal gate.
+- Download:
+  compact evidence only at
+  `docs/codex/audits/stage4_2r3c4_response_bank_20260730/`;
+  six transferred files / 3,847,978 bytes / inventory digest
+  `222eabf8089e52d0e18fddafc9f038b28ceae66a3e510e8e5e09e65877f96397`
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C4_PREREGISTERED_DESIGN.md`
+- Next:
+  Stage4.2R3c3T1 long-separation zero-net transport-response identification;
+  R3c4 remains blocked until a combined six-basis oracle is feasible 32/32;
+  no BC/DAgger/RL

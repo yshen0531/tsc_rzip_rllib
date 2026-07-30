@@ -321,20 +321,34 @@ R3c3 is only a finite development-envelope identification result. Its probe
 trajectories are forbidden from expert datasets. The matched-history response
 gate does not independently validate hidden-history closed-loop robustness.
 
-The current stage is Stage4.2R3c4 restart-integrated target-conditioned
-deadline MPC. Before implementation, its compact response bank and full
-controller design must be frozen as required by:
+The authenticated R3c3 compact response bank was recomputed from all 256 raw
+and 32 exact R3c1 baselines. A prospective four-basis R3c4 feasibility gate
+then reproduced all R3c1 metrics exactly but found only 16/32 bounded-oracle
+feasibility and repaired 0/16 failed contexts. R3c4 was therefore vetoed
+before controller implementation or real TSC; it has zero raw and is not a
+real closed-loop result.
+
+The current stage is Stage4.2R3c3T1 long-separation zero-net
+transport-response identification. Its fixed design is:
 
 ```text
-docs/codex/reports/STAGE4_2R3C3_FORENSIC_REPORT.md
-docs/codex/CURRENT_TASK.md
+mode 0 and mode 1
+per-step amplitude 0.0075
+positive physical effect states 3 through 8
+negative physical effect states 15 through 20
+exact zero net
+32 contexts × 2 bases × 2 signs = 128 real rollouts
 ```
 
-R3c4 may use only current/past visible measurements, target, causal actuator
-estimates, the exact R3c1 nominal controller, and the authenticated bounded
-R3c3 response bank. It may never use source actions/results, current-run
-future values, source/current wire currents, pair/history/prefix labels, or
-raw probe identity inside the controller.
+The full gates are frozen in
+`docs/codex/reports/STAGE4_2R3C3T1_PREREGISTERED_DESIGN.md` and
+`docs/codex/CURRENT_TASK.md`. R3c3T1 may never use source actions/results,
+current-run future values, source/current wire currents, or
+pair/history/prefix labels inside the controller.
+
+R3c4 may resume only if the combined R3c3 plus R3c3T1 six-basis optimistic
+oracle is feasible 32/32 with every coefficient inside `[-1,1]` and no
+formal-gate change.
 
 ## 10. Required validation before server execution
 
