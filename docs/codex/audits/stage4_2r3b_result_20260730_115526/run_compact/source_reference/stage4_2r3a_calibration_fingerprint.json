@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3b_exact_r3a_calibration_evidence_v1",
+  "calibration_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3a_runs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128",
+  "calibration_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3a_audits/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128",
+  "run_inventory_digest": "9be432ee725035b31cee32f9415298aacd1fa576e24190588b8ef2c2be08eae7",
+  "run_inventory_file_count": 739,
+  "run_inventory_total_bytes": 8535699130,
+  "state_raw_count": 72,
+  "snapshot_valid_count": 72,
+  "candidate_pair_count": 36,
+  "visible_match_pair_count": 24,
+  "original_absolute_gate_pass_count": 0,
+  "control_raw_count": 0,
+  "n_files": 8,
+  "digest": "367782ca436a023ab3ba3117c145aed4d40e280c6627977a72ca0f411356386b",
+  "files": [
+    {
+      "path": "pair_summary",
+      "size_bytes": 1015,
+      "sha256": "8148b532e50bff05f1c060d47b49918a67b213e5411ea44c73eb9418467dd1d4"
+    },
+    {
+      "path": "raw_forensics",
+      "size_bytes": 139314,
+      "sha256": "3889ef0df2220a4ada253761535945c143f80bca1e0351e7ece0c380abc61e23"
+    },
+    {
+      "path": "run_inventory",
+      "size_bytes": 165765,
+      "sha256": "23954a28ab455fa27b8fd837180ddab99c014a4726828c3d48e96dafd5a28699"
+    },
+    {
+      "path": "run_manifest",
+      "size_bytes": 18268,
+      "sha256": "9653be2b91bc62fa774ae814dcd7024384cb704a6b955f21cf2f32e444d8c28a"
+    },
+    {
+      "path": "run_state",
+      "size_bytes": 2107,
+      "sha256": "1b27d1a646d47ae3a1cccb8f330320d4bc3617539f6bccbff4f54c06dbbf8a44"
+    },
+    {
+      "path": "run_verdict",
+      "size_bytes": 1253,
+      "sha256": "a7479ccc1bd55f241b5a7d4a0311f1938867f9c7808a74f13071fea09340e365"
+    },
+    {
+      "path": "server_audit",
+      "size_bytes": 176506,
+      "sha256": "3e270647c51b67f6160be2b26ad903b73811dce15b973028228e39b94d640f90"
+    },
+    {
+      "path": "snapshot_checks",
+      "size_bytes": 32547,
+      "sha256": "7c19986afac830d0a348b6edb31b06e69a4b0604a9a0f4e76feab005f1beb6c6"
+    }
+  ]
+}

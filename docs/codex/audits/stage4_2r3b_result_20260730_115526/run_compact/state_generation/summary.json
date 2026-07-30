@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3b",
+  "phase": "authentic_hidden_history_state_generation_and_pair_selection",
+  "expected_state_rollouts": 72,
+  "state_rollout_count": 72,
+  "state_environment_success_count": 72,
+  "runtime_or_environment_error_count": 0,
+  "raw_or_snapshot_corruption_count": 0,
+  "complete_state_grid": true,
+  "expected_pair_count": 36,
+  "pair_count": 36,
+  "visible_match_pair_count": 16,
+  "hidden_separation_pair_count": 34,
+  "accepted_pair_count": 14,
+  "selected_pair_count": 4,
+  "selected_pair_ids": [
+    "p5_q1_a0p900_gap2_settle4",
+    "p5_q2_a0p900_gap2_settle4",
+    "p9_q1_a0p750_gap2_settle4",
+    "p9_q2_a0p750_gap2_settle4"
+  ],
+  "selected_different_initial_state_count": 4,
+  "minimum_selected_pairs_required": 4,
+  "minimum_different_initial_centroids_required": 4,
+  "required_prefix_direction_strata": [
+    {
+      "common_prefix_steps": 5,
+      "nullspace_direction_index": 1
+    },
+    {
+      "common_prefix_steps": 5,
+      "nullspace_direction_index": 2
+    },
+    {
+      "common_prefix_steps": 9,
+      "nullspace_direction_index": 1
+    },
+    {
+      "common_prefix_steps": 9,
+      "nullspace_direction_index": 2
+    }
+  ],
+  "selected_prefix_direction_strata": [
+    {
+      "common_prefix_steps": 5,
+      "nullspace_direction_index": 1
+    },
+    {
+      "common_prefix_steps": 5,
+      "nullspace_direction_index": 2
+    },
+    {
+      "common_prefix_steps": 9,
+      "nullspace_direction_index": 1
+    },
+    {
+      "common_prefix_steps": 9,
+      "nullspace_direction_index": 2
+    }
+  ],
+  "prefix_direction_strata_coverage_pass": true,
+  "required_common_prefix_lengths": [
+    5,
+    9
+  ],
+  "selected_common_prefix_lengths": [
+    5,
+    9
+  ],
+  "common_prefix_coverage_pass": true,
+  "mutual_prefix_group_separation_pass": true,
+  "prefix_group_centroids": {
+    "5": {
+      "R": 0.7243140935,
+      "Z": 0.018750491075,
+      "Ip": 30473.7469,
+      "coil_currents_a": [
+        -84.0833375,
+        -107.85417083333333,
+        -102.31250416666667,
+        -70.87500416666667,
+        -86.47917083333333,
+        -88.18750416666667,
+        -70.8333375,
+        -63.250002083333335,
+        -6.88,
+        7.89,
+        -78.69,
+        -124.90001000000001,
+        -78.08,
+        -67.66
+      ],
+      "selected_pair_ids": [
+        "p5_q1_a0p900_gap2_settle4",
+        "p5_q2_a0p900_gap2_settle4"
+      ]
+    },
+    "9": {
+      "R": 0.7280151557500001,
+      "Z": 0.018971348625000002,
+      "Ip": 30314.980274999998,
+      "coil_currents_a": [
+        -83.93750416666667,
+        -106.7083375,
+        -101.29167083333333,
+        -72.03125416666666,
+        -87.62500416666667,
+        -88.81250416666667,
+        -70.2083375,
+        -63.54166875,
+        -5.435,
+        7.405,
+        -76.98,
+        -125.20001,
+        -76.13,
+        -67.32
+      ],
+      "selected_pair_ids": [
+        "p9_q1_a0p750_gap2_settle4",
+        "p9_q2_a0p750_gap2_settle4"
+      ]
+    }
+  },
+  "prefix_group_separation_metrics": {
+    "R_abs_difference_m": 0.003701062250000109,
+    "Z_abs_difference_m": 0.0002208575500000018,
+    "Ip_abs_difference_A": 158.7666250000002,
+    "coil_rms_difference_A": 1.0401895300533162
+  },
+  "control_outcome_used_for_selection": false,
+  "hidden_state_edited": false,
+  "passed": true,
+  "stop_reason": ""
+}

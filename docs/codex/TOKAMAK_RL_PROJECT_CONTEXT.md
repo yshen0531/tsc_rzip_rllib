@@ -202,18 +202,27 @@ conditional control. R3a did establish that common expert prefixes generate
 different authenticated initial-state groups and that delayed counter-pulses
 produce a measurable hidden-history difference up to 0.527 A.
 
-Stage4.2R3b is the prospectively gated confirmation experiment. It uses new
-prefix lengths and pulse amplitudes, requires all 72 new state rollouts, and
-selects one valid pair from each prefix-by-direction stratum before any
-conditional control may run.
+Stage4.2R3b completed its full prospective campaign. Authentic state
+construction passed: 72/72 state runs and snapshots, 14 accepted pairs, and
+four selected prefix-by-direction pairs. All 32 fresh restart control
+rollouts then failed the immutable formal contract despite exact plant
+restart and causal controller execution.
 
-The pair-generation method, visible matching tolerances, calibrated material
-hidden-state separation, safety rules, source fingerprints, and unchanged
-formal gates are frozen in
-`docs/codex/reports/STAGE4_2R3B_PREREGISTERED_DESIGN.md`.
-Full wire state remains audit evidence and must not leak into controller
-input. Invalid pairing, observer/history-identification failure, plant
-restart failure, and real control failure must be separated.
+Independent raw forensics found that the restart states were closest to R17
+visible phases 12--20, while the fresh controller restarted its time-indexed
+nominal reference at phase zero. Nominal cases began inside the formal R/Z
+box and offset-target cases entered by 50--80 ms, but all left by 80--110 ms
+and ended with 149--223 mm box error. Original-start R17 sources for the same
+specifications remain 32/32 formal PASS. This is a different-initial-state
+controller-design failure, not a plant-restart failure.
+
+Stage4.2R3c is now the active development stage. It locks the exact R3b
+snapshots and adds causal visible-state phase alignment while leaving formal
+task time at zero. Its design is frozen in
+`docs/codex/reports/STAGE4_2R3C_PREREGISTERED_DESIGN.md`. Because the repair
+was selected after inspecting R3b, R3c cannot independently validate
+hidden-history robustness. A successful R3c must be followed by R3d on new,
+unseen histories before new-target work.
 
 ## 7. Medium-term objectives
 

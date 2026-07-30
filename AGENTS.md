@@ -269,21 +269,28 @@ Do not overstate it as restart, hidden-history, unseen-target, continuous-parame
 ## 9. Current stage
 
 R1c authentic plant-state restart and R2 causal persistent-controller restart
-are certified for their finite clean same-source 18-case grids. R3 and R3a
-completed their real-TSC state-generation grids but failed their original
-preregistered hidden-state gates; neither ran its conditional control phase.
+are certified for their finite clean same-source 18-case grids.
 
-The current stage is Stage4.2R3b confirmatory hidden-history and
-different-initial-state work. Its design is frozen in:
+Stage4.2R3b completed 72/72 authentic state runs, selected four valid
+visible-matched/different-hidden-history pairs, and executed 32/32 fresh
+restart control runs. Plant restart and causality were exact, but formal
+control was 0/32. Raw evidence shows that the new initial states match R17
+visible phases 12--20 while the fresh time-indexed controller restarted its
+nominal reference at phase zero.
+
+The current stage is Stage4.2R3c visible-state phase-aligned MPC development.
+Its design is frozen in:
 
 ```text
-docs/codex/reports/STAGE4_2R3B_PREREGISTERED_DESIGN.md
+docs/codex/reports/STAGE4_2R3C_PREREGISTERED_DESIGN.md
 ```
 
-R3b uses a new state grid and a prospectively calibrated material
-hidden-current gate. It must not retroactively relabel R3a, reuse R3a
-snapshots as its formal result, expose full-wire current to the controller, or
-run control before the complete state/pair gate passes.
+R3c must use a new controller and experiment identity. It may reuse only the
+exact locked R3b selected snapshots as development inputs, choose phase from
+current visible R/Z/Ip only, keep formal task time at zero, and never expose
+the 48-wire hidden state to the controller. R3c is not independent
+confirmation; a successful repair must be followed by R3d with newly
+generated unseen histories before advancing to new targets.
 
 ## 10. Required validation before server execution
 

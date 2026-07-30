@@ -273,3 +273,65 @@
 - Next:
   new R3b confirmation grid with prospective material hidden-state gate;
   no retroactive R3a reinterpretation and no BC/DAgger/RL
+
+## Stage4.2R3b confirmatory hidden-history and different-initial-state control
+
+- Local implementation:
+  `codex/stage4_2r3b-confirmatory-history` / `8fb1534`
+- Package/controller:
+  `r42r3b_confirmatory_hidden_history_v1` /
+  `confirmatory_hidden_history_initial_state_mpc_v42r3b`
+- Package hashes:
+  `PACKAGE_MANIFEST.json`
+  `2fcd4e5a5e9d9d69512e56dcb4b614ed93e5496c72887df3d29befc0adbb5c37`;
+  `SHA256SUMS`
+  `fb8b008fc8baac8bb5606fe7376b9520087eac9efe18c97c7b8e5025c82ad194`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526`
+- Fresh/resume:
+  offline no-gotsc gate first, then safe same-identity resume for real TSC
+- Expected/actual:
+  state 72/72; snapshots 72/72; candidate pairs 36/36; selected pairs 4/4;
+  fresh control 32/32
+- State result:
+  visible match 16/36; hidden separation 34/36; accepted 14/36; exact
+  prefix-by-direction selection 4/4; different-initial-state and prefix
+  separation gates passed
+- Control integrity:
+  environment, fresh-controller, fresh-TSC, exact visible/full-wire restart,
+  and causal trace 32/32; future action/measurement and hidden-wire input 0
+- Real control:
+  immutable formal contract 0/32; position and speed fail 32/32; formal
+  signed margins `-6.447296` to `-3.960849033333333`
+- Independent diagnosis:
+  restart states nearest R17 phases 12--20 but controller nominal phase reset
+  to 0; first actions remain within 0--0.0163 of phase-zero source actions and
+  differ by 0.9019--1.4371 from nearest-phase actions; original-start R17
+  source remains 32/32 PASS
+- Integrity:
+  874 files / 8,538,932,691 bytes / run digest
+  `301a3ad2be01c83209d8e260c1a8c80f090d01afafb9c173f63cf9219caac8fc`;
+  runtime, corruption, plant-restart, and causality failure counts all 0
+- Reporting issue:
+  saved `observer_or_history_identification_failure_count=0` is inconclusive,
+  not observer success, because both members fail all 16 groups under a
+  common-mode controller failure
+- Download:
+  large raw/snapshots remain server-side; compact evidence at
+  `docs/codex/audits/stage4_2r3b_result_20260730_115526/`
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3B_FORENSIC_REPORT.md`
+- Load-bearing audit hashes:
+  server audit
+  `f1e907888e19846d07099714d4b581e26aac80c5675a373364d396db78130831`;
+  raw control forensics
+  `975205eff41f62d319e4f6e22643bb687461e42d3c73c1d09f0424f2a7c5cf32`;
+  run inventory document
+  `f4e9c9d91f5d9439769adca9176431243ebf8d5a430a29cb54a5b15d2b5d6407`
+- Classification:
+  real finite-envelope control/design failure; authentic state generation
+  and plant restart passed; hidden-history robustness remains unvalidated
+- Next:
+  R3c visible-state phase-aligned MPC development on the locked R3b
+  snapshots, followed by independent R3d new-history confirmation before new
+  targets; no BC/DAgger/RL

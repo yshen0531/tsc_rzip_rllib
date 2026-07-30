@@ -1,0 +1,37 @@
+[Stage4.2R3b] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3b] source_stage4_2r2_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250
+[Stage4.2R3b] calibration_stage4_2r3a_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3a_runs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128
+[Stage4.2R3b] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3b] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3b_confirmatory_hidden_history_initial_state_370ms.json
+[Stage4.2R3b] command=offline backend=ray resume=0 workers=128
+[Stage4.2R3b] A no-gotsc gate first reproduces the required frozen R17 policies exactly from a fresh step-zero controller.
+[Stage4.2R3b] State generation is fixed at 72 new real-TSC rollouts: prefix 5/9, directions 1/2, amplitude 0.60/0.75/0.90, gap 2/3/4, settle 4, both orders.
+[Stage4.2R3b] The exact failed R3a calibration inventory/forensics is a source fingerprint; no R3a snapshot is reused as an R3b result.
+[Stage4.2R3b] Hidden separation is frozen at max >=0.25 A, vector RMS >=0.10 A and relative RMS >=0.05.
+[Stage4.2R3b] Common prefixes are exact authenticated nominal delay-0/slew-1.0 R17 actions; their source and digest are resume gates.
+[Stage4.2R3b] Pair selection uses only preregistered visible/hidden checkpoint metrics and never control outcomes.
+[Stage4.2R3b] Every selected snapshot starts a fresh causal controller and fresh TSC process; wire currents are post-action audit telemetry only.
+[Stage4.2R3b] Formal timing remains 250/350 ms for slew 1.0 and 270/370 ms for slew 0.9.
+[Stage4.2R3b] Large raw results and snapshots remain server-side; only compact postprocessed evidence is transferred.
+[Stage4.2R3b] BC, DAgger and residual RL remain forbidden.
+{
+  "finished": false,
+  "offline_frozen_controller_audit": {
+    "exact_case_count": 4,
+    "expected_cases": 4,
+    "future_action_read_count": 0,
+    "future_state_persisted_count": 0,
+    "maximum_online_action_abs_difference": 0.0,
+    "n_cases": 4,
+    "passed": true,
+    "phase": "offline_frozen_controller_recomputation",
+    "real_tsc_executed": false,
+    "schema_version": 1,
+    "stage": "Stage4.2R3b"
+  },
+  "phase": "offline_frozen_controller_recomputation",
+  "primary_pass": false,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3b"
+}

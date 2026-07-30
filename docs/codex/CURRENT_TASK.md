@@ -1,9 +1,13 @@
-# CURRENT_TASK.md — Stage4.2R3b confirmatory hidden-history robustness
+# CURRENT_TASK.md — Stage4.2R3c visible-state phase-aligned MPC repair
 
-## 1. Current evidence checkpoint
+## 1. Certified evidence checkpoint
 
-Stage4.2R1 means the Stage4.2R1 authentic plant-state restart experiment.
-Stage4.1R17 means the frozen Stage4.1R17 finite static-grid controller source.
+Terminology remains:
+
+```text
+R1  = Stage4.2R1 authentic TSC plant-state restart
+R17 = Stage4.1R17 frozen finite static-grid controller source
+```
 
 Certified foundations:
 
@@ -14,154 +18,109 @@ Stage4.2R2 causal controller-state restart   18/18
 minimum frozen formal signed margin          1.0456920999768471e-05
 ```
 
-R2 exact run:
+R3b completed its full preregistered campaign:
 
 ```text
-branch
-  codex/stage4_2r2-controller-checkpoint
-
-code commit
-  84962ef
-
-controller revision
-  persistent_mpc_controller_checkpoint_replay_v42r2
-
-package revision
-  r42r2_persistent_controller_checkpoint_v1
-
-remote run
-  /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/
-  stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250
+state rollouts                                72/72
+valid authentic snapshots                    72/72
+candidate pairs                               36/36
+visible-matched pairs                         16/36
+hidden-separated pairs                        34/36
+accepted pairs                                14/36
+selected prefix-by-direction pairs              4/4
+fresh restart control rollouts                32/32
+formal control pass                            0/32
+runtime/deployment/corruption errors               0
+plant restart fidelity failures                   0
+controller causality failures                     0
 ```
 
-R3 completed 54/54 authentic state rollouts and 54/54 snapshots. Its
-adjacent reversed pulses produced at most 0.048 A of hidden difference, so
-0/27 pairs met its frozen 1,000 A gate. Control was `not_run`.
-
-R3a then completed:
-
-```text
-real-TSC state rollouts                     72/72
-valid snapshot inventories                  72/72
-candidate pairs                             36/36
-visible-matched pairs                       24/36
-different-initial-state pairs               36/36
-hidden-separated under frozen 1.0 A gate     0/36
-conditional control                         not_run
-runtime/deployment/corruption errors         0
-```
-
-R3a delayed pulses increased the maximum hidden difference to 0.527 A.
-Independent same-clock cross-pair recomputation found no visible-matched
-pair above 1.0 A. This is an experimental-design/threshold-calibration
-failure, not a code-unit bug, runtime failure, plant-restart failure, or real
-closed-loop control failure.
-
-Exact R3a evidence:
+Exact R3b evidence:
 
 ```text
 implementation commit
-  8a3eb670e9db210594f21260c2391cea0a32a255
+  8fb1534
 
 remote run
-  /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3a_runs/
-  stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/
+  stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
 
 run inventory digest
-  9be432ee725035b31cee32f9415298aacd1fa576e24190588b8ef2c2be08eae7
+  301a3ad2be01c83209d8e260c1a8c80f090d01afafb9c173f63cf9219caac8fc
+
+independent raw forensics SHA-256
+  975205eff41f62d319e4f6e22643bb687461e42d3c73c1d09f0424f2a7c5cf32
 
 report
-  docs/codex/reports/STAGE4_2R3A_FORENSIC_REPORT.md
+  docs/codex/reports/STAGE4_2R3B_FORENSIC_REPORT.md
 
 compact evidence
-  docs/codex/audits/stage4_2r3a_result_20260730_110128/
+  docs/codex/audits/stage4_2r3b_result_20260730_115526/
 ```
 
-R3 and R3a remain failed under their original gates. Their results must not
-be retroactively relabeled.
+R3b state construction passed, but hidden-history control did not. The result
+must not be relabeled as success.
 
-## 2. Active task
+## 2. R3b diagnosis
 
-The active task is Stage4.2R3b. Its prospective design is frozen in:
+The R3b fresh controller reset both task time and its R17 nominal reference to
+step zero. Raw restart states were closest to R17 visible phases 12--20:
 
 ```text
-docs/codex/reports/STAGE4_2R3B_PREREGISTERED_DESIGN.md
+controller nominal start phase                    0
+nearest visible source phase                  12--20
+first action difference from source phase 0   0--0.0163
+first action difference from nearest phase    0.9019--1.4371
 ```
 
-Implement R3b as a complete standalone package, validate it locally and in
-an empty deployment directory, deploy it directly without archives, validate
-the staging and canonical server trees, run the no-gotsc gate, then execute
-the real-TSC state and conditional control campaign.
+All nominal cases began inside the 30 mm R/Z box. Offset-target cases entered
+by 50--80 ms. All 32 cases then left the box by 80--110 ms and ended at
+149--223 mm box error. Position and speed failed in 32/32 cases. Original-
+start R17 sources for the same specifications remained 32/32 formal PASS.
 
-R3b must use:
+This is a controller-design failure: the frozen controller is a time-indexed
+trajectory follower without causal visible-state phase alignment or
+state-aware replanning. It is not a plant-restart failure.
+
+The R3b summary field
+`observer_or_history_identification_failure_count=0` is not evidence of
+observer success. Both members failed every pair group under a common-mode
+controller failure, so history sensitivity was masked. New summaries must
+report that state as inconclusive.
+
+## 3. Active task
+
+Implement Stage4.2R3c as a new controller and experiment identity. R3c is a
+development-stage repair on the exact locked R3b selected snapshots. It must
+not regenerate R3b results or rewrite the R3b summary.
+
+The prospective design is frozen in:
 
 ```text
-new common-prefix lengths                   5, 9
-nullspace directions                        1, 2
-new amplitude fractions                     0.60, 0.75, 0.90
-inter-pulse gaps                            2, 3, 4
-settle steps                                4
-history orders                              plus-first, minus-first
-candidate pairs                             36
-state rollouts                              72
-selected pairs if state gate passes          4
-conditional control rollouts                32
+docs/codex/reports/STAGE4_2R3C_PREREGISTERED_DESIGN.md
 ```
 
-The material hidden-state gate is:
+R3c must:
 
-```text
-48-wire maximum absolute difference         >= 0.25 A
-48-wire vector RMS difference               >= 0.10 A
-relative RMS difference                     >= 0.05
-```
+- authenticate the exact R3b run inventory, audit, raw-forensics hash, four
+  selected pair identities, and all eight selected snapshot manifests;
+- receive only current/past visible R/Z/Ip and coil currents;
+- never expose 48-wire hidden state to phase selection or control;
+- choose a causal R17 nominal phase from the initial visible state;
+- keep controller task time and formal timing at zero;
+- align the nominal reference, model/Jacobian phase, delay-queue priming, and
+  braking/terminal phase transitions consistently;
+- preserve zero fresh integrals, zero previous correction, and empty visible
+  history except for the current state;
+- run an offline no-gotsc original-start preservation gate;
+- execute the unchanged 32-case R3b development matrix under the new
+  controller identity;
+- separately report runtime, restart, causality, formal control, and
+  masked/assessed hidden-history outcomes.
 
-The visible matching gates and different-initial-state gates are unchanged.
-One valid pair is required from each prefix-by-direction stratum. Selection
-must finish before any control outcome exists.
+## 4. Formal and scientific constraints
 
-## 3. Source, fingerprint, and causality requirements
-
-Before real TSC:
-
-- authenticate prefix-5 and prefix-9 actions against the same frozen nominal
-  delay-0/slew-1.0 R17 source;
-- validate the exact R3a calibration run, its complete inventory digest, and
-  the independent raw-forensics hash;
-- include config, module, launchers, package, R2/R1/R17 source, R3a
-  calibration, common-prefix, and state-spec fingerprints in manifest and
-  resume compatibility checks;
-- run compile, all JSON parse, focused/full tests, import closure, package
-  hashes, source/resume tests, and an empty-directory deployment simulation;
-- run the independent no-gotsc frozen-controller recomputation audit;
-- execute all 72 state tasks before pair selection;
-- reject a partial or incompatible state grid.
-
-The controller may receive only causal R/Z/Ip observations and the R2
-checkpoint schema. Full 48-wire current is pairing/audit telemetry only and
-must not be controller input.
-
-## 4. Required result classification
-
-Every result must distinguish:
-
-```text
-runtime/environment error
-deployment/package/import error
-raw/snapshot corruption
-summary/statistics/reporting bug
-invalid pair or experimental-design flaw
-observer/history-identification failure
-plant-restart fidelity failure
-real closed-loop control failure
-finite-envelope success
-unvalidated extrapolation
-```
-
-An unrun phase is `not_run`, never pass or fail. A server audit integrity
-`passed=true` is not itself an experiment PASS.
-
-## 5. Immutable formal contract
+The formal contract is immutable:
 
 ```text
 slew 1.0 or 1.1:
@@ -173,35 +132,56 @@ slew 0.9:
   hold/evaluate through 370 ms
 ```
 
-R/Z tolerance, speed threshold, Ip threshold, and arrival streak remain at
-the frozen baseline. Longer horizons do not move the arrival deadline.
+R/Z tolerance, 0.1 m/s speed threshold, Ip thresholds, and arrival streak are
+unchanged. R3c may not move the formal clock to the selected nominal phase.
 
-## 6. Server and evidence rules
+R3c reuses snapshots after observing R3b. Therefore:
 
-Use `tsc-airgap` by default. If alias resolution fails, use only the exact
-fixed public-key fallback documented in `SERVER_WORKFLOW.md`; never inspect
-the key or SSH configuration.
+- R3c is controller-development evidence only;
+- an R3c PASS does not independently validate hidden-history robustness;
+- a successful R3c must be followed by R3d with new preregistered, unseen
+  histories and initial states;
+- new targets and continuous parameter work remain blocked until R3d.
 
-Large raw, JSON.GZ, snapshot, and trajectory trees stay on the server:
+## 5. Required validation and server loop
 
-1. preserve the raw tree;
-2. run a read-only postprocessor in the canonical project with the existing
-   virtualenv;
-3. parse/hash every required raw/snapshot input and recompute metrics;
-4. download only compact audit JSON/CSV, manifests, hash inventories, and
-   logs;
-5. verify compact local counts, sizes, and SHA-256 values.
+Before real TSC:
 
-No local compression or extraction is allowed.
+- Python compile and all JSON parse;
+- focused and complete tests;
+- import closure and package hash verification;
+- source fingerprint and resume compatibility tests;
+- empty-directory deployment simulation;
+- no undeclared external source dependency;
+- exact remote path preflight;
+- server `bash -n`, package verification, import/compile, and complete tests;
+- offline original-start source preservation;
+- offline proof that no hidden wire or current-run future value enters phase
+  selection or action computation.
 
-## 7. Advancement rule
+Then:
 
-If R3b genuinely validates finite-envelope hidden-history and different-
-initial-state control, proceed next to new preregistered targets. Then
-continue through continuous actuator and plant/Jacobian variation,
-measurement noise/observer robustness, disturbance recovery, and independent
-long hold.
+```text
+deploy directly without archives
+→ validate staging and canonical server trees
+→ run offline gate
+→ safely resume the same identity for 32 real-TSC controls
+→ postprocess raw on the server
+→ download only compact audit/results/logs
+→ verify hashes
+→ write the final R3c forensic report
+```
 
-BC, DAgger, and bounded residual RL remain prohibited until the MPC expert is
-reliable across restart, hidden history, initial state, continuous
-parameters, noise, and disturbance recovery.
+Large raw JSON.GZ and snapshot trees stay on the server.
+
+## 6. Advancement rule
+
+If R3c fails, preserve its raw evidence and create a new controller revision;
+do not weaken the gate or overwrite R3c.
+
+If R3c passes all 32 development cases, proceed to an independently
+preregistered R3d with newly generated unseen hidden histories and initial
+states. Only a successful independent confirmation can unblock new target,
+continuous actuator/plant, noise, disturbance, and long-hold work.
+
+BC, DAgger, and bounded residual RL remain prohibited.

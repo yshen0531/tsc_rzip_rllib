@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3b_deployed_package_source_v1",
+  "n_files": 13,
+  "digest": "ec848862b1bd77576452a67e9e596266d1c15322876edece977b55304e8cae59",
+  "files": [
+    {
+      "path": "PACKAGE_MANIFEST.json",
+      "size_bytes": 13715,
+      "sha256": "2fcd4e5a5e9d9d69512e56dcb4b614ed93e5496c72887df3d29befc0adbb5c37"
+    },
+    {
+      "path": "SHA256SUMS",
+      "size_bytes": 16310,
+      "sha256": "fb8b008fc8baac8bb5606fe7376b9520087eac9efe18c97c7b8e5025c82ad194"
+    },
+    {
+      "path": "configs/stage4_2r3b_confirmatory_hidden_history_initial_state_370ms.json",
+      "size_bytes": 6874,
+      "sha256": "b20c69455278ed1ae97a481cc68cc127816a4ee6a3334896038efbdeb2a01513"
+    },
+    {
+      "path": "run_stage4_2r3b_confirmatory_hidden_history_initial_state_native.sh",
+      "size_bytes": 3310,
+      "sha256": "050736fb8b5b3eec9d9a76c6b4482906e7f0deb90360f0746857f229b0c8f323"
+    },
+    {
+      "path": "run_stage4_2r3b_confirmatory_hidden_history_initial_state_nohup.sh",
+      "size_bytes": 1903,
+      "sha256": "cfe5f0f0bd6d99a9995457227bcca0d921327379f8d7e32a61c52ef9ff22497a"
+    },
+    {
+      "path": "run_stage4_2r3b_self_test.sh",
+      "size_bytes": 340,
+      "sha256": "8ce3836dc820219cdab4f565d625303a8841a0a028343b8074f60bd108456edc"
+    },
+    {
+      "path": "run_stage4_2r3b_server_postprocess.sh",
+      "size_bytes": 1432,
+      "sha256": "33094d9f4a1cc188cd028840ebc381917257b62d21e1c028f06ad255ff988e05"
+    },
+    {
+      "path": "run_stage4_2r3b_verify_package.sh",
+      "size_bytes": 8872,
+      "sha256": "cb7593dfd763dbf4223163923b12ed7d2996901432d2f908348da8c28b583c26"
+    },
+    {
+      "path": "run_stop_stage4_2r3b_now.sh",
+      "size_bytes": 917,
+      "sha256": "a328548d0ce57a4a1628294c9cee9a57c86562694b934bb50db99c167483998b"
+    },
+    {
+      "path": "scripts/stage4_2r3b_confirmatory_hidden_history_initial_state.py",
+      "size_bytes": 170,
+      "sha256": "89c828900a05fbb87879bbe60685b44da114ea10e6627148f7eea7a306a24ada"
+    },
+    {
+      "path": "scripts/stage4_2r3b_server_postprocess.py",
+      "size_bytes": 12058,
+      "sha256": "98efcdaa5ce1b6fe3a104a5149c8b281ca7cf3cad186ccb485995ef05293ffa2"
+    },
+    {
+      "path": "scripts/stage4_2r3b_shell_common.sh",
+      "size_bytes": 6372,
+      "sha256": "3349c44b5170d348e3dd4bd58f3fdc13a4ce503ad1f665b3e0b50050c1b8d814"
+    },
+    {
+      "path": "tsc_rzip_rllib/diagnostics/stage4_2r3b_confirmatory_hidden_history_initial_state.py",
+      "size_bytes": 133143,
+      "sha256": "edf6188581a01dbe6f726e6dbd941e0c9a35770e57e599d57962d832a51fbf71"
+    }
+  ]
+}
