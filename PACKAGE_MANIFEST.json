@@ -234,6 +234,8 @@
     "fixed_ray_worker_capacity": 128,
     "maximum_live_probe_actors": 128,
     "probe_actor_batches": 2,
+    "empty_directory_focused_stage_tests_required": true,
+    "installed_project_complete_test_suite_required": true,
     "large_raw_postprocess_on_server": true,
     "compact_audits_only_downloaded": true
   },

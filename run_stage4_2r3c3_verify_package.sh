@@ -323,8 +323,10 @@ import unittest
 
 import tests.conftest  # installs the Windows-only resource portability shim
 
-suite = unittest.defaultTestLoader.discover("tests", pattern="test_*.py")
+suite = unittest.defaultTestLoader.loadTestsFromName(
+    "tests.test_stage4_2r3c3_restart_task_clock_local_response_identification"
+)
 result = unittest.TextTestRunner(verbosity=1).run(suite)
 raise SystemExit(0 if result.wasSuccessful() else 1)
 PY
-printf '[Stage4.2R3c3 verify] complete unittest discovery passed.\n'
+printf '[Stage4.2R3c3 verify] focused Stage4.2R3c3 unittests passed.\n'
