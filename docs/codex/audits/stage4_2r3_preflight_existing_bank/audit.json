@@ -1,0 +1,196 @@
+{
+  "capture_raw_count": 18,
+  "case_history_counts": [
+    {
+      "delay": 0,
+      "experiment_ids": [
+        "s42r1_683efa483483fb445e3d"
+      ],
+      "history_count": 1,
+      "slew": 0.9,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 0,
+      "experiment_ids": [
+        "s42r1_02e362a9db5d0038375a"
+      ],
+      "history_count": 1,
+      "slew": 1.0,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 0,
+      "experiment_ids": [
+        "s42r1_a873b553954ffbd64e0d"
+      ],
+      "history_count": 1,
+      "slew": 1.1,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 1,
+      "experiment_ids": [
+        "s42r1_127f38736035b78c7af6"
+      ],
+      "history_count": 1,
+      "slew": 0.9,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 1,
+      "experiment_ids": [
+        "s42r1_360594c6e0e18106a893"
+      ],
+      "history_count": 1,
+      "slew": 1.0,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 1,
+      "experiment_ids": [
+        "s42r1_13e6677c5ee386421561"
+      ],
+      "history_count": 1,
+      "slew": 1.1,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 2,
+      "experiment_ids": [
+        "s42r1_eeeae74dc3d8cfdd6271"
+      ],
+      "history_count": 1,
+      "slew": 0.9,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 2,
+      "experiment_ids": [
+        "s42r1_07d4391626b568d3d1d4"
+      ],
+      "history_count": 1,
+      "slew": 1.0,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 2,
+      "experiment_ids": [
+        "s42r1_db5ff6d589593afd0d7d"
+      ],
+      "history_count": 1,
+      "slew": 1.1,
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "delay": 0,
+      "experiment_ids": [
+        "s42r1_a1b7708f6011ce730dd9"
+      ],
+      "history_count": 1,
+      "slew": 0.9,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 0,
+      "experiment_ids": [
+        "s42r1_9cb2964ccf9f1f305352"
+      ],
+      "history_count": 1,
+      "slew": 1.0,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 0,
+      "experiment_ids": [
+        "s42r1_0335d099a55455c8c4a2"
+      ],
+      "history_count": 1,
+      "slew": 1.1,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 1,
+      "experiment_ids": [
+        "s42r1_e49b8629e202e57e9aec"
+      ],
+      "history_count": 1,
+      "slew": 0.9,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 1,
+      "experiment_ids": [
+        "s42r1_c1b845e90cb8b80f4011"
+      ],
+      "history_count": 1,
+      "slew": 1.0,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 1,
+      "experiment_ids": [
+        "s42r1_43d84438b41d51cf6491"
+      ],
+      "history_count": 1,
+      "slew": 1.1,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 2,
+      "experiment_ids": [
+        "s42r1_6e47fc276c089c8225c6"
+      ],
+      "history_count": 1,
+      "slew": 0.9,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 2,
+      "experiment_ids": [
+        "s42r1_6442ea8fce407a0d50c6"
+      ],
+      "history_count": 1,
+      "slew": 1.0,
+      "target_id": "nominal"
+    },
+    {
+      "delay": 2,
+      "experiment_ids": [
+        "s42r1_dd913b425ec6e54e594d"
+      ],
+      "history_count": 1,
+      "slew": 1.1,
+      "target_id": "nominal"
+    }
+  ],
+  "conclusion": "Existing R1/R2 bank has one history per target/delay/slew key; a dedicated authentic state-generation phase is required.",
+  "contract": "r42r3_preregistered_existing_bank_pair_feasibility_v1",
+  "inventory_digest": "d08709393c321582e6caef39043113319b5afcb31e79b6360c4be51b69531b70",
+  "inventory_file_count": 180,
+  "inventory_total_bytes": 2134076925,
+  "passed_as_read_only_inventory": true,
+  "same_target_cross_key_diagnostic_pair_count": 72,
+  "schema_version": 1,
+  "scientific_r3_gate_run": false,
+  "snapshot_manifest_count": 18,
+  "snapshot_payload_count": 144,
+  "source_r1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619",
+  "stage": "Stage4.2R3-preflight",
+  "state_generation_required": true,
+  "thresholds": {
+    "Ip_abs_difference_A_max": 2000.0,
+    "R_abs_difference_m_max": 0.0005,
+    "Z_abs_difference_m_max": 0.0005,
+    "action_max_abs_difference_max": 1e-12,
+    "coil_max_abs_difference_A_max": 2000.0,
+    "coil_rms_difference_A_max": 500.0,
+    "vR_abs_difference_m_per_s_max": 0.02,
+    "vZ_abs_difference_m_per_s_max": 0.02,
+    "wire_max_abs_difference_A_min": 1000.0,
+    "wire_relative_rms_difference_min": 0.05
+  },
+  "unique_case_key_count": 18,
+  "valid_existing_r3_pair_count": 0,
+  "within_same_future_semantics_pair_count": 0
+}
