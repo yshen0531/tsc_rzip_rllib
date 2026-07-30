@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c4",
+  "purpose": "pre-execution bounded response-envelope feasibility audit",
+  "real_tsc_executed": false,
+  "candidate_controller_revision": "restart_integrated_bounded_response_deadline_mpc_v42r3c4_candidate",
+  "inputs": {
+    "audit_bank_sha256": "51bb4eeabfc8a4c5cc3983d75469f484a2278e6ef37cf03cf93ac650f9404b32",
+    "controller_bank_sha256": "6610dd4c434497240cb89ef0fbaa40716e42df68168efa66cddb919dd8679cf0",
+    "manifest_sha256": "a17322dcfc1d019de0455950c95e45b0b7d0f8f29fc3c68a22211481f261a066",
+    "provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "raw_inventory_digest": "88bcd02a5dd2ec4def60c1f2e7f2304fb57859836d3b9a34b090bfd91e00e563",
+    "r3c1_baseline_inventory_digest": "3e82504dde79215ed34626531e4f926f5bd65404832790cba6a2eb2f2cc3a97e"
+  },
+  "model": {
+    "prediction": "exact_R3c1_audit_only_baseline_plus_linear_combination_of_four_R3c3_odd_responses",
+    "basis_count": 4,
+    "coefficient_lower_bound": -1.0,
+    "coefficient_upper_bound": 1.0,
+    "probe_amplitude": 0.0075,
+    "formal_evaluator": {
+      "position_tolerance_m": 0.03,
+      "speed_tolerance_m_per_s": 0.1,
+      "arrival_streak_steps": 3,
+      "late_velocity_window_steps": 4,
+      "normal_allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25],
+      "weak_allowed_arrival_steps": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27],
+      "normal_hold_through_step": 35,
+      "weak_hold_through_step": 37,
+      "Ip_terminal_tolerance_A": 2000.0,
+      "Ip_hold_rms_tolerance_A": 2400.0,
+      "Ip_sustained_max_tolerance_A": 4000.0
+    }
+  },
+  "evaluator_reproduction": {
+    "context_count": 32,
+    "formal_pass_match_count": 32,
+    "maximum_absolute_minimum_margin_error": 0.0,
+    "r3c1_baseline_pass_count": 16,
+    "r3c1_baseline_failure_count": 16
+  },
+  "bounded_oracle": {
+    "method": "per-arrival-endpoint convex epigraph feasibility with independent exhaustive-grid corroboration",
+    "scipy_version": "1.15.3",
+    "contexts_evaluated": 32,
+    "pass_count": 16,
+    "failure_count": 16,
+    "failed_context_repair_count": 0,
+    "baseline_pass_regression_count": 0,
+    "best_remaining_failed_margin": -0.060314716666669765,
+    "worst_remaining_failed_margin": -0.3585158333333367,
+    "all_failed_contexts_remain_infeasible": true,
+    "failed_contexts": [
+      {
+        "pair_id": "p5_q1_a0p900_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 0,
+        "best_endpoint_step": 20,
+        "best_minimum_signed_margin": -0.233571921,
+        "best_coefficients": [-1.0, 1.0, 1.0, -1.0],
+        "active_constraint": "post_speed"
+      },
+      {
+        "pair_id": "p5_q1_a0p900_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 27,
+        "best_minimum_signed_margin": -0.358515833,
+        "best_coefficients": [-1.0, 1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q1_a0p900_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "nominal",
+        "delay_steps": 2,
+        "best_endpoint_step": 18,
+        "best_minimum_signed_margin": -0.061643717,
+        "best_coefficients": [-1.0, -1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q1_a0p900_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 0,
+        "best_endpoint_step": 20,
+        "best_minimum_signed_margin": -0.244849573,
+        "best_coefficients": [1.0, 1.0, 1.0, -1.0],
+        "active_constraint": "post_speed"
+      },
+      {
+        "pair_id": "p5_q1_a0p900_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 27,
+        "best_minimum_signed_margin": -0.3544912,
+        "best_coefficients": [-1.0, 1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q1_a0p900_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "nominal",
+        "delay_steps": 2,
+        "best_endpoint_step": 27,
+        "best_minimum_signed_margin": -0.0603166,
+        "best_coefficients": [-1.0, -1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q2_a0p900_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 0,
+        "best_endpoint_step": 20,
+        "best_minimum_signed_margin": -0.225483676,
+        "best_coefficients": [-1.0, 1.0, 1.0, -1.0],
+        "active_constraint": "post_speed"
+      },
+      {
+        "pair_id": "p5_q2_a0p900_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 27,
+        "best_minimum_signed_margin": -0.357783083,
+        "best_coefficients": [-1.0, 1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q2_a0p900_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "nominal",
+        "delay_steps": 2,
+        "best_endpoint_step": 27,
+        "best_minimum_signed_margin": -0.060314717,
+        "best_coefficients": [-1.0, -1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q2_a0p900_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 0,
+        "best_endpoint_step": 19,
+        "best_minimum_signed_margin": -0.247433206,
+        "best_coefficients": [1.0, 1.0, -0.491726, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q2_a0p900_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 27,
+        "best_minimum_signed_margin": -0.355172933,
+        "best_coefficients": [-1.0, 1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p5_q2_a0p900_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "nominal",
+        "delay_steps": 2,
+        "best_endpoint_step": 27,
+        "best_minimum_signed_margin": -0.063972617,
+        "best_coefficients": [-1.0, 1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p9_q1_a0p750_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 25,
+        "best_minimum_signed_margin": -0.0737469,
+        "best_coefficients": [-1.0, -1.0, -1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p9_q1_a0p750_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 26,
+        "best_minimum_signed_margin": -0.073937283,
+        "best_coefficients": [1.0, 1.0, 1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p9_q2_a0p750_gap2_settle4",
+        "history_member": "minus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 25,
+        "best_minimum_signed_margin": -0.07510385,
+        "best_coefficients": [-1.0, -1.0, 1.0, 1.0],
+        "active_constraint": "R_position"
+      },
+      {
+        "pair_id": "p9_q2_a0p750_gap2_settle4",
+        "history_member": "plus_first",
+        "target_id": "RZ_p10_m10",
+        "delay_steps": 2,
+        "best_endpoint_step": 26,
+        "best_minimum_signed_margin": -0.074225217,
+        "best_coefficients": [1.0, 1.0, 1.0, 1.0],
+        "active_constraint": "R_position"
+      }
+    ]
+  },
+  "unvalidated_extrapolation_diagnostic": {
+    "controller_authorization": false,
+    "coefficient_bound_2_repaired_count": 0,
+    "coefficient_bound_4_repaired_count": 0,
+    "coefficient_bound_6_repaired_count": 0,
+    "coefficient_bound_6_best_remaining_failed_margin": -0.02234003333332435,
+    "coefficient_bound_6_worst_remaining_failed_margin": -0.3421681666666796,
+    "interpretation": "amplitude expansion alone is not an authenticated or sufficient route; new temporal transport basis identification is required"
+  },
+  "response_scale_diagnostic": {
+    "maximum_single_basis_RZ_position_response_m": 0.00036588834999999945,
+    "minimum_failed_position_excess_indicated_by_best_margin_m": 0.001809441499999903,
+    "dominant_failure_classes": ["R_position", "post_speed"]
+  },
+  "classification": {
+    "runtime_or_environment_error": false,
+    "deployment_or_packaging_error": false,
+    "raw_or_snapshot_corruption": false,
+    "statistics_or_reporting_error": false,
+    "plant_restart_failure": false,
+    "real_control_result": "not_run",
+    "design_flaw": "the four short zero-net R3c3 bases lack enough transport authority to make any failed R3c1 development context formally feasible"
+  },
+  "decision": {
+    "r3c4_real_run_authorized": false,
+    "r3c4_controller_implementation_authorized": false,
+    "next_stage": "Stage4.2R3c3T1",
+    "next_stage_purpose": "identify bounded long-separation zero-net transport responses before returning to R3c4"
+  }
+}

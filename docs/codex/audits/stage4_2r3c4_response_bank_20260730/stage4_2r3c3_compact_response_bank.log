@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3_compact_response_bank.py", line 1069, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3_compact_response_bank.py", line 521, in main
+    plus_y, plus_v = _trajectory_arrays(plus, dt_s)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3_compact_response_bank.py", line 117, in _trajectory_arrays
+    raise ValueError("non-finite or malformed velocity trajectory")
+ValueError: non-finite or malformed velocity trajectory

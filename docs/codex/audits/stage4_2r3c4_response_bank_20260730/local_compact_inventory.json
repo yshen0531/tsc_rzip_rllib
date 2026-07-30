@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "purpose": "local inventory of directly transferred Stage4.2R3c4 compact response-bank evidence",
+  "remote_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank",
+  "file_count": 6,
+  "total_bytes": 3847978,
+  "inventory_digest": "222eabf8089e52d0e18fddafc9f038b28ceae66a3e510e8e5e09e65877f96397",
+  "files": [
+    {
+      "path": "stage4_2r3c3_compact_response_audit_bank_v1.json",
+      "size_bytes": 2685606,
+      "sha256": "51bb4eeabfc8a4c5cc3983d75469f484a2278e6ef37cf03cf93ac650f9404b32"
+    },
+    {
+      "path": "stage4_2r3c3_compact_response_bank.log",
+      "size_bytes": 686,
+      "sha256": "e287a08828cba29e50bd03e26e74f53b56a7b6ebb609d21671fc801e01700fe7"
+    },
+    {
+      "path": "stage4_2r3c3_compact_response_bank_manifest_v1.json",
+      "size_bytes": 823,
+      "sha256": "a17322dcfc1d019de0455950c95e45b0b7d0f8f29fc3c68a22211481f261a066"
+    },
+    {
+      "path": "stage4_2r3c3_compact_response_bank_v2.log",
+      "size_bytes": 731,
+      "sha256": "afdcfc9954189f2f8b264009d577e1fcaf56ed4cf8cebbd59f663b10819ce20a"
+    },
+    {
+      "path": "stage4_2r3c3_compact_response_bank_v3.log",
+      "size_bytes": 904,
+      "sha256": "80a768984e8a517f660abb8681871929588eccc628e9aae6f4e9d5364a2df83b"
+    },
+    {
+      "path": "stage4_2r3c3_controller_response_bank_v1.json",
+      "size_bytes": 1159228,
+      "sha256": "6610dd4c434497240cb89ef0fbaa40716e42df68168efa66cddb919dd8679cf0"
+    }
+  ],
+  "verification": {
+    "all_json_strict_parse": true,
+    "remote_manifest_size_and_sha256_match": true,
+    "controller_bank_forbidden_key_count": 0,
+    "provenance_digest_match": true
+  }
+}

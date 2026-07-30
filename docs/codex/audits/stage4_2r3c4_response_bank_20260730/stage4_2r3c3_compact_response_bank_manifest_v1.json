@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "purpose": "Stage4.2R3c3 compact response-bank file manifest",
+  "provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+  "files": [
+    {
+      "role": "audit_bank",
+      "path": "stage4_2r3c3_compact_response_audit_bank_v1.json",
+      "size_bytes": 2685606,
+      "sha256": "51bb4eeabfc8a4c5cc3983d75469f484a2278e6ef37cf03cf93ac650f9404b32"
+    },
+    {
+      "role": "controller_bank",
+      "path": "stage4_2r3c3_controller_response_bank_v1.json",
+      "size_bytes": 1159228,
+      "sha256": "6610dd4c434497240cb89ef0fbaa40716e42df68168efa66cddb919dd8679cf0",
+      "canonical_digest": "7bb576c421d414086e2c49b33fe02fe6eb63e2e1ffdefaefc2ddc83cd7ca616c"
+    }
+  ],
+  "inventory_digest": "0d4118307f0d7707ed23a6f51b0a97833555d3b3d2c234c55df8682b0f075873"
+}

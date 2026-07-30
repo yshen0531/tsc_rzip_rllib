@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3_compact_response_bank.py", line 1071, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3_compact_response_bank.py", line 657, in main
+    "formal_metrics": r3c._formal_metrics(ctx, baseline),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3_restart_task_clock_local_response_identification.py", line 2691, in _formal_metrics
+    f"{spec['slew_scale']}_{spec['r3c3_probe_id']}_"
+                            ~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'r3c3_probe_id'
