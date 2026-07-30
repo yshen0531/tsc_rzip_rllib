@@ -1,61 +1,56 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.2R3b",
-  "run_name": "stage4_2r3b_confirmatory_hidden_history_initial_state",
-  "controller_revision": "confirmatory_hidden_history_initial_state_mpc_v42r3b",
-  "package_revision": "r42r3b_confirmatory_hidden_history_v1",
-  "source_stage": "Stage4.2R2 plus exact failed Stage4.2R3a calibration evidence",
-  "source_controller_revision": "persistent_mpc_controller_checkpoint_replay_v42r2",
-  "source_package_revision": "r42r2_persistent_controller_checkpoint_v1",
-  "purpose": "Prospectively confirm matched-visible, materially different authentic hidden vessel/eddy-current histories and different authenticated initial states on a new prefix/amplitude grid, then conditionally test the frozen causal MPC expert from fresh TSC processes.",
+  "stage": "Stage4.2R3c",
+  "run_name": "stage4_2r3c_visible_state_phase_aligned_mpc",
+  "controller_revision": "visible_state_phase_aligned_mpc_v42r3c",
+  "package_revision": "r42r3c_visible_state_phase_aligned_mpc_v1",
+  "source_stage": "exact completed Stage4.2R3b development snapshots and authenticated R17/R1c/R2 source chain",
+  "source_controller_revision": "confirmatory_hidden_history_initial_state_mpc_v42r3b",
+  "source_package_revision": "r42r3b_confirmatory_hidden_history_v1",
+  "purpose": "Develop and audit a causal visible-state phase-aligned MPC on the exact locked Stage4.2R3b four-pair development set while keeping formal task time at zero and preserving original-start R17 actions exactly.",
   "campaigns": {
-    "offline_no_gotsc_frozen_controller_recomputation_cases": 4,
-    "authentic_state_generation_pairs": 36,
-    "authentic_state_generation_rollouts": 72,
-    "fresh_hidden_history_control_rollouts_if_state_gate_passes": 32
+    "offline_no_gotsc_original_start_exact_action_cases": 4,
+    "locked_stage4_2r3b_development_pairs": 4,
+    "locked_stage4_2r3b_development_snapshots": 8,
+    "fresh_phase_aligned_control_rollouts": 32
   },
-  "hidden_history_contract": {
-    "wire_current_count": 48,
-    "required_valid_and_selected_pairs": 4,
-    "required_prefix_direction_strata": [
-      [
-        5,
-        1
-      ],
-      [
-        5,
-        2
-      ],
-      [
-        9,
-        1
-      ],
-      [
-        9,
-        2
-      ]
+  "phase_alignment_contract": {
+    "candidate_min_phase": 0,
+    "candidate_max_phase": 20,
+    "visible_phase_selection_fields": [
+      "R",
+      "Z",
+      "Ip"
     ],
-    "required_common_prefix_lengths": [
-      5,
-      9
-    ],
-    "wire_max_abs_difference_A_min": 0.25,
-    "wire_rms_difference_A_min": 0.1,
-    "wire_relative_rms_difference_min": 0.05,
-    "controller_history_initialization": "current_visible_state_only_at_new_task_start",
+    "visible_phase_selection_scales": {
+      "R_m": 0.03,
+      "Z_m": 0.03,
+      "Ip_A": 2000.0
+    },
+    "tie_break": "earliest_phase",
+    "task_clock_starts_at_zero": true,
+    "reference_clock_separate_from_task_clock": true,
+    "align_nominal_reference": true,
+    "align_response_model_phase": true,
+    "align_delay_queue_priming": true,
+    "align_braking_transition": true,
+    "align_terminal_transition": true,
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
     "controller_integral_initialization": "zero",
     "hidden_wire_current_available_to_controller": false,
-    "pair_selection_uses_control_outcome": false,
     "future_actions_forbidden": true,
     "future_measurements_forbidden": true,
     "online_action_recomputation_required": true
   },
-  "calibration_contract": {
-    "stage4_2r3a_run_name": "stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128",
-    "stage4_2r3a_run_inventory_digest": "9be432ee725035b31cee32f9415298aacd1fa576e24190588b8ef2c2be08eae7",
-    "stage4_2r3a_raw_forensics_sha256": "3889ef0df2220a4ada253761535945c143f80bca1e0351e7ece0c380abc61e23",
-    "r3a_result_reinterpreted": false,
-    "r3a_snapshot_reused_as_r3b_result": false
+  "source_contract": {
+    "stage4_2r3b_run_name": "stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+    "stage4_2r3b_run_inventory_digest": "301a3ad2be01c83209d8e260c1a8c80f090d01afafb9c173f63cf9219caac8fc",
+    "stage4_2r3b_run_inventory_file_count": 874,
+    "stage4_2r3b_run_inventory_total_bytes": 8538932691,
+    "stage4_2r3b_formal_pass_count": 0,
+    "locked_selected_pair_count": 4,
+    "source_outcome_reinterpreted": false,
+    "development_snapshots_are_independent_confirmation": false
   },
   "formal_timing": {
     "arrival_deadline_expanded": false,
@@ -71,34 +66,35 @@
       "tests",
       "tsc_rzip_rllib"
     ],
-    "root_shell_scripts_are_stage4_2r3b_only": true,
-    "requires_existing_source_run": "complete certified Stage4.2R2 source chain and exact completed Stage4.2R3a calibration run/audit",
+    "root_shell_scripts_are_stage4_2r3c_only": true,
+    "requires_existing_source_run": "exact completed Stage4.2R3b run and compact server audit plus its authenticated Stage4.2R2/R3a/R17 source chain",
     "requires_external_source_tree": false,
     "requires_git": false,
     "requires_network": false,
     "supports_resume": true,
-    "resume_requires_same_source_calibration_package_fingerprint_common_prefix_config_state_generation_spec_controller_revision_and_experiment_identity": true,
+    "resume_requires_same_source_run_and_audit_fingerprint_package_fingerprint_phase_alignment_config_control_spec_controller_revision_and_experiment_identity": true,
     "large_result_postprocess_on_server": true,
     "download_compact_audits_only": true
   },
   "scientific_guardrails": [
     "R17, R1c and R2 finite clean foundations and immutable 250/350 and 270/370 ms formal contracts remain frozen.",
-    "R3 and R3a remain failed under their original preregistered hidden-state gates.",
-    "The exact R3a run inventory and independent raw forensics calibrate R3b prospectively and are manifest/resume gates.",
-    "R3b uses new prefix lengths 5/9 and new amplitudes 0.60/0.75/0.90; no R3a snapshot is reused as an R3b result.",
-    "All 72 authentic state tasks finish before selection, and exactly one valid pair is selected from each prefix-by-direction stratum.",
-    "Matched-visible/different-hidden pairs are accepted and selected only from frozen checkpoint metrics, never from downstream control outcomes.",
+    "R3, R3a and R3b remain failed under their original preregistered control gates.",
+    "The exact R3b run inventory and independent raw forensics are immutable source and resume gates.",
+    "R3c reuses only the exact four selected R3b history pairs as a controller development set.",
+    "The task and formal clocks start at zero; a separate nominal/model phase is selected causally from initial visible R/Z/Ip only.",
+    "Original-start R17 cases must select phase zero and reproduce every frozen online action exactly before real TSC execution.",
+    "Nominal reference, response-model phase, delay-queue priming, braking transition and terminal transition move together.",
     "Every control rollout uses a fresh controller actor and fresh TSC process from a hash-verified authentic snapshot.",
-    "Full wire current remains post-action audit telemetry and never enters the controller.",
+    "Full wire current remains post-action audit telemetry and never enters phase selection or the controller.",
     "Runtime, deployment, corruption, reporting, design, observer/history, restart and real control conclusions remain separate.",
-    "A pass validates only the preregistered finite R3b hidden-history/initial-state envelope.",
+    "A pass validates only development-set closure and must be followed by Stage4.2R3d independent new-history confirmation.",
     "Unseen targets, continuous actuator parameters, plant/Jacobian error, noise, disturbance recovery and independent long hold remain unvalidated.",
     "BC, DAgger and bounded residual RL remain forbidden until the reliable MPC expert roadmap is complete."
   ],
   "finite_test_envelope_only": true,
   "bc_dagger_or_rl_allowed": false,
   "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold",
-  "declared_file_count": 130,
+  "declared_file_count": 136,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -132,12 +128,13 @@
     "configs/stage4_2r3_authentic_hidden_history_initial_state_370ms.json",
     "configs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_370ms.json",
     "configs/stage4_2r3b_confirmatory_hidden_history_initial_state_370ms.json",
-    "run_stage4_2r3b_confirmatory_hidden_history_initial_state_native.sh",
-    "run_stage4_2r3b_confirmatory_hidden_history_initial_state_nohup.sh",
-    "run_stage4_2r3b_self_test.sh",
-    "run_stage4_2r3b_server_postprocess.sh",
-    "run_stage4_2r3b_verify_package.sh",
-    "run_stop_stage4_2r3b_now.sh",
+    "configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json",
+    "run_stage4_2r3c_self_test.sh",
+    "run_stage4_2r3c_server_postprocess.sh",
+    "run_stage4_2r3c_verify_package.sh",
+    "run_stage4_2r3c_visible_state_phase_aligned_mpc_native.sh",
+    "run_stage4_2r3c_visible_state_phase_aligned_mpc_nohup.sh",
+    "run_stop_stage4_2r3c_now.sh",
     "scripts/stage4_2r1_shell_common.sh",
     "scripts/stage4_2r1_true_tsc_plant_restart_action_replay.py",
     "scripts/stage4_2r2_persistent_controller_checkpoint_replay.py",
@@ -151,6 +148,9 @@
     "scripts/stage4_2r3b_confirmatory_hidden_history_initial_state.py",
     "scripts/stage4_2r3b_server_postprocess.py",
     "scripts/stage4_2r3b_shell_common.sh",
+    "scripts/stage4_2r3c_server_postprocess.py",
+    "scripts/stage4_2r3c_shell_common.sh",
+    "scripts/stage4_2r3c_visible_state_phase_aligned_mpc.py",
     "tests/__init__.py",
     "tests/conftest.py",
     "tests/test_ray_runtime_capacity.py",
@@ -185,6 +185,7 @@
     "tests/test_stage4_2r3_authentic_hidden_history_initial_state.py",
     "tests/test_stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py",
     "tests/test_stage4_2r3b_confirmatory_hidden_history_initial_state.py",
+    "tests/test_stage4_2r3c_visible_state_phase_aligned_mpc.py",
     "tsc_rzip_rllib/__init__.py",
     "tsc_rzip_rllib/core/__init__.py",
     "tsc_rzip_rllib/core/coil_order.py",
@@ -224,6 +225,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_2r3_authentic_hidden_history_initial_state.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3b_confirmatory_hidden_history_initial_state.py",
+    "tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py",
     "tsc_rzip_rllib/envs/__init__.py",
     "tsc_rzip_rllib/envs/factory.py",
     "tsc_rzip_rllib/envs/rzip_env.py",

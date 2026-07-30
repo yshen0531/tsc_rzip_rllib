@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYTHON_BIN="${STAGE4_2R3C_PYTHON:-${PYTHON:-python3}}"
+export PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
+exec "${PYTHON_BIN}" \
+  "${PROJECT_DIR}/scripts/stage4_2r3c_visible_state_phase_aligned_mpc.py" \
+  --self-test

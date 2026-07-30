@@ -1,0 +1,134 @@
+{
+  "stage": "Stage4.2R3c",
+  "stage_label": "Stage4.2R3c",
+  "run_name": "stage4_2r3c_visible_state_phase_aligned_mpc",
+  "output_root": "stage4_2r3c_runs",
+  "controller_revision": "visible_state_phase_aligned_mpc_v42r3c",
+  "package_revision": "r42r3c_visible_state_phase_aligned_mpc_v1",
+  "source_requirements": {
+    "required_stage4_2r3b_run_name": "stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+    "required_stage4_2r3b_stage": "Stage4.2R3b",
+    "required_stage4_2r3b_controller_revision": "confirmatory_hidden_history_initial_state_mpc_v42r3b",
+    "required_stage4_2r3b_package_revision": "r42r3b_confirmatory_hidden_history_v1",
+    "required_stage4_2r3b_run_inventory_digest": "301a3ad2be01c83209d8e260c1a8c80f090d01afafb9c173f63cf9219caac8fc",
+    "required_stage4_2r3b_run_inventory_file_count": 874,
+    "required_stage4_2r3b_run_inventory_total_bytes": 8538932691,
+    "required_stage4_2r3b_run_inventory_file_sha256": "f4e9c9d91f5d9439769adca9176431243ebf8d5a430a29cb54a5b15d2b5d6407",
+    "required_stage4_2r3b_server_audit_sha256": "f1e907888e19846d07099714d4b581e26aac80c5675a373364d396db78130831",
+    "required_stage4_2r3b_raw_forensics_sha256": "975205eff41f62d319e4f6e22643bb687461e42d3c73c1d09f0424f2a7c5cf32",
+    "required_state_raw_count": 72,
+    "required_control_raw_count": 32,
+    "required_snapshot_valid_count": 72,
+    "required_selected_pair_count": 4,
+    "required_selected_pair_ids": [
+      "p5_q1_a0p900_gap2_settle4",
+      "p5_q2_a0p900_gap2_settle4",
+      "p9_q1_a0p750_gap2_settle4",
+      "p9_q2_a0p750_gap2_settle4"
+    ],
+    "require_source_finished": true,
+    "require_source_state_gate_pass": true,
+    "require_source_primary_fail": true,
+    "require_source_control_formal_pass_count": 0
+  },
+  "phase_alignment": {
+    "candidate_min_phase": 0,
+    "candidate_max_phase": 20,
+    "R_scale_m": 0.03,
+    "Z_scale_m": 0.03,
+    "Ip_scale_A": 2000.0,
+    "tie_break": "earliest_phase",
+    "task_clock_starts_at_zero": true,
+    "reference_clock_separate_from_task_clock": true,
+    "align_nominal_reference": true,
+    "align_response_model_phase": true,
+    "align_delay_queue_priming": true,
+    "align_braking_transition": true,
+    "align_terminal_transition": true,
+    "hidden_wire_input_allowed": false
+  },
+  "control_matrix": {
+    "targets": [
+      "nominal",
+      "RZ_p10_m10"
+    ],
+    "future_actuator_cases": [
+      {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 1.0
+      },
+      {
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      }
+    ],
+    "history_members": [
+      "plus_first",
+      "minus_first"
+    ],
+    "expected_rollouts_per_selected_pair": 8,
+    "expected_selected_pairs": 4,
+    "expected_rollouts": 32,
+    "require_fresh_controller": true,
+    "require_fresh_tsc_process": true,
+    "forbid_future_actions": true,
+    "forbid_future_measurements": true,
+    "require_online_action_computation": true
+  },
+  "formal_timing_contract": {
+    "normal": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "arrival_deadline_step": 25,
+      "arrival_deadline_ms": 250,
+      "hold_through_step": 35,
+      "hold_through_ms": 350
+    },
+    "weak": {
+      "slew_scales": [
+        0.9
+      ],
+      "arrival_deadline_step": 27,
+      "arrival_deadline_ms": 270,
+      "hold_through_step": 37,
+      "hold_through_ms": 370
+    },
+    "arrival_streak_steps_unchanged": true,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_threshold_unchanged": true,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_2r3c"
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "development_set_only": true,
+  "independent_hidden_history_confirmation": false,
+  "different_initial_state_validated": false,
+  "unseen_target_validated": false,
+  "continuous_parameter_change_validated": false,
+  "plant_jacobian_error_validated": false,
+  "measurement_noise_validated": false,
+  "disturbance_recovery_validated": false,
+  "independent_long_hold_validated": false,
+  "bc_dagger_or_rl_allowed": false,
+  "next_if_pass": "Stage4.2R3d independent new-history confirmation; do not start new targets, BC, DAgger, or RL",
+  "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold"
+}
