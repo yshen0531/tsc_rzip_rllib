@@ -315,6 +315,26 @@ Do not ZIP/TAR either side for this workflow.
 When a small snapshot tree is copied, preserve filenames and directory
 hierarchy exactly.
 
+### 11.2 Windows Unicode path and remote-shell quoting safeguards
+
+On a Windows workspace whose absolute path contains non-ASCII characters,
+some interactive SFTP clients may replace the local path with `?` and still
+return exit code 0 after transferring zero files.  Therefore:
+
+1. prefer direct `scp` of exact compact files or one directly copied compact
+   directory;
+2. verify the local file count, total bytes, and SHA-256 values after every
+   transfer;
+3. never treat process exit code alone as transfer success.
+
+When PowerShell invokes SSH, avoid embedding remote wildcard/destructive
+expressions whose quotes must survive multiple parsers.  Prefer a fixed
+repository script transferred and checked with `bash -n`.  If an inline
+remote command is unavoidable, first test its quoting read-only and retain
+the canonical-directory guard before any named deletion.  A failed quoting
+step must be classified as deployment/tooling error and must not be reported
+as an experiment result.
+
 ## 12. Verify retrieved evidence
 
 After transfer:

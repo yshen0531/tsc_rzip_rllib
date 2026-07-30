@@ -166,77 +166,59 @@ Limitations:
 
 The global minimum formal margin is very thin in at least one unchanged source case, so finite-grid PASS is not broad robustness.
 
-## 5. Current Stage4.2R1 purpose
+## 5. Certified restart foundations
 
-Current work isolates authentic TSC plant-state restart.
+Stage4.2R1 means authentic TSC plant-state restart action replay. Its R1c
+result is certified for all 18 finite clean same-source cases:
 
-R1 source is the frozen R17 formal expert.
+- exact source-action capture;
+- authentic snapshot at 200 ms elapsed / 1300 ms absolute TSC time;
+- 18 complete manifests and 144 payload files;
+- exact 14-coil and full 48-wire state;
+- 18 fresh TSC restart suffixes;
+- exact visible, action, and full-wire suffix;
+- immutable formal contract 18/18.
 
-R1 should:
+R1 intentionally restored no controller state.
 
-1. replay exact source actions;
-2. capture at elapsed 200 ms;
-3. export authentic snapshot files;
-4. preserve full coil and full wire/vessel-current state;
-5. start a fresh TSC process from snapshot;
-6. replay the remaining source action suffix;
-7. compare visible state, coil currents, full wire currents, and action alignment;
-8. recombine prefix and suffix without duplicate/missing states;
-9. reevaluate the original formal timing contract.
+Stage4.2R2 then persisted causal controller state: observer history,
+integrator, previous correction, pending delay queue, trusted calibration,
+modeled delay/slew, controller phase, and source/code fingerprints. It stored
+no future action or measurement. The offline gate recomputed 282 suffix
+actions exactly, and 18 fresh controller/TSC processes reproduced online
+actions, visible state, and full-wire state exactly while preserving the
+formal contract 18/18.
 
-R1 intentionally does not restore controller internal state. It is an action-replay plant test.
+Both results are finite same-source restart foundations, not robustness
+claims. Their global minimum formal signed margin is only
+`1.0456920999768471e-05`.
 
-R1 must report separately:
+## 6. Current near-term objective
 
-```text
-plant_restart_fidelity
-formal_contract_preservation
-```
+Stage4.2R3 must test:
 
-### Known R1/R1a history
+1. matched controller-visible state with materially different authentic
+   hidden vessel/eddy-current histories; and
+2. different authenticated initial states.
 
-Initial R1:
-
-- 18 capture Ray tasks returned;
-- at least one capture was non-comparable;
-- old summary returned `inf`;
-- strict JSON rejected Infinity and crashed.
-
-R1a changed failure handling:
-
-- preserve partial trajectory;
-- preserve failure stage, reason, traceback, and snapshot path;
-- use `null` plus mismatch reason rather than `inf`;
-- create finite structured summaries/verdicts;
-- reuse only complete successful raw plus valid snapshot;
-- rerun failed/incomplete captures only.
-
-The final R1a run has completed and its uncompressed logs/results are now local. The first Codex task is to analyze those real files. Do not assume whether plant restart passed or failed.
-
-## 6. Near-term objectives
-
-1. Forensically analyze final Stage4.2R1/R1a.
-2. Determine exact capture success/failure distribution.
-3. Validate snapshot inventory, hashes, manifests, coil vectors, and full wire vectors.
-4. Determine whether fresh restart suffix tasks ran.
-5. Separate snapshot/export failure, restart initialization failure, replay mismatch, and formal-gate failure.
-6. Fix only proven code bugs.
-7. If plant restart is authenticated, advance to controller-state restart.
-8. If plant restart fails, isolate the minimum reproducible cause before adding more robustness axes.
+The pair-generation method, visible matching tolerances, minimum hidden-state
+separation, safety rules, and unchanged formal gates must be preregistered.
+Full wire state is audit evidence and must not leak into controller input.
+Invalid pairing, observer/history-identification failure, and real control
+failure must be separated.
 
 ## 7. Medium-term objectives
 
-After authentic plant restart:
+After hidden-history and different-initial-state robustness:
 
-1. Persist/restore observer history, integrator, previous correction, and pending delay queue.
-2. Matched-visible-state / different-hidden-vessel-history testing.
-3. Multiple restart times and different initial states.
-4. New preregistered R/Z/Ip targets not used for policy selection.
-5. Bounded plant/Jacobian mismatch.
-6. Continuous delay, gain, and slew changes rather than a discrete static bank.
-7. Measurement noise and observer robustness.
-8. Disturbance injection and recovery.
-9. Independent long-hold tests after formal arrival, with horizon chosen from dynamics rather than arbitrary route drift.
+1. multiple authenticated restart times;
+2. new preregistered R/Z/Ip targets not used for policy selection;
+3. bounded plant/Jacobian mismatch;
+4. continuously varying delay, gain, and slew rather than a static bank;
+5. measurement noise and observer robustness;
+6. disturbance injection and recovery;
+7. independent long-hold tests after formal arrival, with horizon chosen from
+   dynamics rather than route drift.
 
 ## 8. Long-term objectives
 

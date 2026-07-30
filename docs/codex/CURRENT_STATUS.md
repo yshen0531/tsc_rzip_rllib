@@ -1,109 +1,126 @@
 # Current status
 
-## Stage4.2R1 R1c certified; Stage4.2R2 is active
+## Stage4.2R2 certified; Stage4.2R3 design is next
 
 Status timestamp: 2026-07-30 Asia/Shanghai
 
-Local identity at the R1c execution checkpoint:
+Local R2 code identity:
 
 ```text
-branch              = codex/stage4_2r1-forensics
-code commit         = 4ff8a1d
-controller_revision = true_tsc_plant_restart_action_replay_v42r1
-package_revision    = r42r1c_terminal_wire_telemetry_resume_v4
+branch              = codex/stage4_2r2-controller-checkpoint
+code commit         = 84962ef
+controller_revision = persistent_mpc_controller_checkpoint_replay_v42r2
+package_revision    = r42r2_persistent_controller_checkpoint_v1
 ```
 
-R1c was installed after staging validation and 428/428 server tests.  The
-existing R1 run was resumed without changing its experiment IDs, selected
-expert digest, controller revision, action semantics, matrix, checkpoint, or
-formal contract:
+Remote identity:
 
 ```text
-remote run = /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
-remote log = /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_070023.log
-driver PID = 1217510 (finished normally)
-backend    = ray
-workers    = 128
+source R1c = /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
+R2 run     = /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250
+R2 log     = /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082828.log
+backend    = Ray
+capacity   = 128
 ```
 
-Observed real execution:
+## Certified R2 result
 
-- capture: 18 actors and 18 concurrent `gotsc` processes;
-- restart: 18 fresh actors and 18 concurrent `gotsc` processes;
-- capture raw: 18/18, success 18/18;
-- restart raw: 18/18, success 18/18;
-- snapshot cases: 18/18;
-- snapshot payload files: 144 plus 18 manifests;
-- complete log traceback count: 0.
+R2 persisted causal controller state through the 200 ms checkpoint:
+measurement/observer history, integral, previous correction, pending
+delay queue, trusted calibration and modeled delay/slew, controller phase,
+and fingerprints. Checkpoints contain no future action or measurement.
 
-Independent server-side postprocessing read all raw source/capture/restart
-JSON.GZ and every snapshot payload.  It did not trust the saved verdict:
+The offline mandatory gate reconstructed actions without TSC:
 
 ```text
-strict run JSON/JSON.GZ                    = 114/114
-selected source raw size/SHA-256           = 18/18
-capture visible equality to source         = 18/18 exact
-capture source-action equality             = 18/18 exact
-checkpoint elapsed                         = 200 ms
-snapshot absolute TSC time                 = 1300 ms
-snapshot manifest/hash failures            = 0
-snapshot 14-coil difference after turns    = 0 A
-snapshot 48-wire difference                = 0 A
-fresh restart visible suffix difference    = 0
-fresh restart 48-wire suffix difference    = 0 A
-fresh restart action difference            = 0
-recombined/source visible difference       = 0
-formal contract pass                       = 18/18
-minimum formal signed margin               = 1.04569209997685e-05
-minimum case                               = RZ_p10_m10, delay 0, slew 0.9
-controller checkpoint loaded               = 0/18 by R1 design
+checkpoints                        18/18
+exact action cases                 18/18
+suffix actions recomputed          282
+maximum action difference          0
+future action replay               0
+future measurement use             0
+new TSC processes                  0
 ```
 
-The snapshot folder name `1300ms` is the absolute TSC clock:
-`1100 ms + 20 * 10 ms`; it is exactly the preregistered 200 ms elapsed
-checkpoint.
+The real phase used 18 fresh controller/TSC processes:
 
-The complete R1c tree was downloaded before the user changed the evidence
-transfer rule.  It has 261 files and 2,134,623,716 bytes.  Remote/local
-SHA-256 comparison is 261/261 with missing 0, extra 0, mismatch 0.  For all
-subsequent large result trees, process raw evidence directly on the server
-with the existing virtualenv and download only compact audit JSON/CSV,
-manifests, hash inventories, and logs.
+```text
+raw rollouts                       18/18
+environment success                18/18
+controller checkpoint loaded       18/18
+online actions exact               18/18
+visible restart suffix exact       18/18
+full wire-current suffix exact     18/18
+formal contract                    18/18
+minimum signed formal margin       1.0456920999768471e-05
+minimum case                       RZ_p10_m10, delay 0, slew 0.9
+```
+
+Independent server-side postprocessing covered all 50 R2 input files
+(604,967 bytes, 30 JSON and 18 JSON.GZ) and all 18 source snapshot manifests
+plus 144 payload files (2,133,646,442 bytes). Strict parse, source
+fingerprints, sizes, and SHA-256 checks passed. Independent metrics agree
+with the saved summary.
 
 ## Classification
 
-- Runtime/environment errors: none in R1c.
-- Packaging/deployment/import errors: none; staging and installed validation
-  passed.
-- Raw/snapshot integrity errors: none across the authenticated finite matrix.
-- Statistics/reporting errors: saved capture/restart result rows exactly match
-  independent recomputation.
-- Design limitation: R1 deliberately replays fixed expert actions and restores
-  no observer, integrator, previous correction, pending delay queue, or
-  trusted calibration controller state.
-- Real plant-restart conclusion: authentic `sprsina` restart is bit-exact for
-  visible state, all 14 coil channels, and all 48 wire currents over the full
-  same-action suffix in all 18 finite clean cases.
-- Control conclusion: the original 250/350 and 270/370 ms contract is
-  preserved 18/18, but the minimum source margin remains razor-thin and no
-  robustness beyond the frozen finite grid is implied.
+- R2 scientific runtime/environment errors: 0.
+- Final package/import/deployment errors: 0.
+- Raw/snapshot corruption: 0.
+- Final statistics/reporting errors: 0.
+- Controller-checkpoint/design failures in the tested matrix: 0.
+- Plant-restart fidelity failures in the tested matrix: 0.
+- Real formal-control failures in the tested matrix: 0.
+- Real conclusion: finite clean same-source persistent-controller restart is
+  exact and preserves the immutable formal contract 18/18.
+
+Pre-run/tooling incidents were repaired and did not alter the experiment:
+
+- one Windows-to-remote shell quoting failure during clean deployment;
+- a non-idempotent verifier rejection of runtime `__pycache__`;
+- an offline-only state/reporting bug that falsely marked an intentionally
+  unrun replay phase as failed;
+- one postprocessor launch without project `PYTHONPATH`;
+- Windows Unicode-path SFTP failure and a later aggregate SCP timeout during
+  compact evidence retrieval.
+
+The complete classification and command record are in
+`docs/codex/reports/STAGE4_2R2_FORENSIC_REPORT.md`.
+
+## Evidence policy and local compact evidence
+
+No R2 raw JSON.GZ or large snapshot tree was downloaded. Server-side raw and
+snapshot evidence remains at the exact run/source paths above.
+
+Local compact transfer:
+
+```text
+artifacts/server_audits/stage4_2r2_20260730_082250
+files       = 19
+bytes       = 185,302
+JSON parse  = 14/14
+raw/JSON.GZ = 0
+```
+
+Tracked compact audit:
+
+```text
+docs/codex/audits/stage4_2r2_20260730_082250
+```
+
+## What remains unvalidated
+
+R2 does not validate matched-visible/different-hidden history, different
+initial state, unseen targets, continuous actuator variation, plant/Jacobian
+error, measurement noise, disturbance recovery, or independent long hold.
+The minimum formal margin remains razor-thin.
 
 ## Active next step
 
-Stage4.2R2 is active.  It must persist and restore controller state on the
-certified R1 plant bank and recompute actions online.  Merely storing or
-replaying the source suffix is not an acceptable controller-restart test.
+Stage4.2R3 must first preregister and authenticate matched-visible /
+different-hidden-vessel-history pairs and different initial states. Hidden
+wire state is audit evidence, not an online controller input. Invalid pair
+construction, observer/history-identification failure, and real control
+failure must be reported separately.
 
-The first R2 gate is same-source exact replay with:
-
-- causal measurement/observer history;
-- integrator;
-- previous correction;
-- pending physical delay queue;
-- trusted calibration token and modeled delay/slew;
-- explicit controller phase and source fingerprint;
-- no future measurement or future action in the checkpoint.
-
-Only after exact same-source controller restart may the project advance to
-matched-visible/different-hidden-history tests.  BC, DAgger, and residual RL
-remain blocked.
+BC, DAgger, and residual RL remain blocked.

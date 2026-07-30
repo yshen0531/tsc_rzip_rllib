@@ -1,392 +1,146 @@
-# CURRENT_TASK.md — Stage4.2R1 final-result forensics and continuation
+# CURRENT_TASK.md — Stage4.2R3 hidden-history and initial-state robustness
 
-## Current execution update — 2026-07-30
+## 1. Current evidence checkpoint
 
-Stage4.2R1 R1c has now been authenticated from source raw, capture raw,
-restart raw, snapshot payloads/manifests, full logs, and independent
-server-side recomputation.  It passes the finite 18-case same-source plant
-restart gate and preserves the immutable formal timing 18/18.  The minimum
-formal signed margin is only `1.04569209997685e-05`.
+Stage4.2R1 means the Stage4.2R1 authentic plant-state restart experiment.
+Stage4.1R17 means the frozen Stage4.1R17 finite static-grid controller source.
 
-The active continuation is therefore Case D / Stage4.2R2.  R2 must perform a
-real persistent controller-state restart on the certified R1 plant snapshot
-bank.  It must recompute actions online after restart; storing or replaying the
-future source action suffix is forbidden as a substitute for controller-state
-restoration.
+Stage4.2R1 R1c is certified for authentic same-action plant restart, 18/18.
+Stage4.2R2 is now certified for causal persistent-controller-state restart
+with online action recomputation, 18/18.
 
-R2 must persist at least:
-
-- causal measurement/observer history;
-- integrator;
-- previous correction;
-- pending action-delay queue;
-- trusted calibration token and modeled delay/slew;
-- controller phase and source/code fingerprint.
-
-The first R2 experiment is exact same-source replay only.  Matched-visible /
-different-hidden-history testing comes afterward.  Formal timing remains
-250/350 ms for slew 1.0/1.1 and 270/370 ms for slew 0.9.
-
-Per the user's updated transfer rule, subsequent large raw/snapshot result
-trees stay on the server and are processed there with Python.  Only compact
-audit JSON/CSV, manifests, hash inventories, and logs are downloaded.
-
-## 1. Task statement
-
-The Stage4.2R1 / R1a server run has completed. The uncompressed final log and full uncompressed run results have already been downloaded into this repository.
-
-Your first job is to analyze the real local evidence. Do not immediately rerun the server. Do not assume the final verdict is correct. Do not assume plant restart passed or failed.
-
-Use the exact local files that exist now.
-
-## 2. Expected current code identity
-
-Expected conceptual stage:
+R2 exact identities:
 
 ```text
-Stage4.2R1 authentic TSC plant-state restart action replay
+branch              codex/stage4_2r2-controller-checkpoint
+code commit         84962ef
+controller revision persistent_mpc_controller_checkpoint_replay_v42r2
+package revision    r42r2_persistent_controller_checkpoint_v1
+remote run          /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250
+remote log          /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082828.log
 ```
 
-Expected latest hotfix behavior:
+Independent server-side raw/snapshot recomputation established:
 
 ```text
-R1a capture-failure finite-summary handling
+controller checkpoints                   18/18
+offline causal action recomputation       18/18, 282 suffix actions
+future action/measurement use             0/0
+real fresh-TSC restart rollouts            18/18
+online action / visible / full-wire exact 18/18
+immutable formal contract                 18/18
+minimum formal signed margin              1.0456920999768471e-05
 ```
 
-Likely package revision:
+The full report is
+`docs/codex/reports/STAGE4_2R2_FORENSIC_REPORT.md`.
+
+## 2. Active task
+
+The active next stage is Stage4.2R3. It must test the reliable MPC expert
+under:
+
+1. matched visible R/Z/Ip/coil state with materially different hidden
+   vessel/eddy-current histories; and
+2. different authenticated initial states.
+
+R3 must first establish a scientifically valid, preregistered pair-generation
+method. It must not synthesize an arbitrary hidden-current vector or call two
+states "matched visible" merely because a summary metric is close.
+
+The controller must receive only causal observations and the R2 checkpoint
+schema. Hidden full-wire current may be recorded for audit and pairing, but it
+must not leak into the online controller unless a later observer design
+explicitly estimates it from causal measurements.
+
+## 3. Required design before execution
+
+Before changing controller behavior or starting TSC:
+
+- inventory authentic R1/R2 states and available restart times;
+- define visible-state matching tolerances separately for R, Z, Ip, all
+  controller-visible channels, and 14 coil currents;
+- define a minimum hidden-history separation over the full wire/vessel-current
+  vector;
+- prove each candidate snapshot is complete and restart-authentic;
+- preregister target, delay, slew, initial-state, and history-pair matrices;
+- preregister safety stops and the unchanged formal gate;
+- state whether the current observer is expected to disambiguate the pair
+  causally, and over what observation window;
+- keep identification/calibration information causal;
+- prevent selection on post-result formal success.
+
+If the existing evidence cannot supply valid matched-visible/different-hidden
+pairs, create a focused state-generation stage first. Do not weaken matching
+or hidden-separation thresholds after seeing outcomes.
+
+## 4. Required result classification
+
+Every result must distinguish:
 
 ```text
-r42r1a_capture_failure_finite_summary_v2
+runtime/environment error
+deployment/package/import error
+raw/snapshot corruption
+summary/statistics/reporting bug
+invalid pair or experimental-design flaw
+observer/history-identification failure
+real closed-loop control failure
+finite-envelope success
+unvalidated extrapolation
 ```
 
-Verify the actual package/manifest/state revision. Do not trust this expected value if the local files say otherwise.
+An unrun phase is `not_run`, never pass or fail. A valid plant-history effect
+must not be mislabeled as a controller software error, and an invalid pair
+must not be interpreted as control evidence.
 
-## 3. Source baseline
-
-Formal source expert:
+## 5. Immutable formal contract
 
 ```text
-Stage4.1R17
+slew 1.0 or 1.1:
+  arrive no later than 250 ms
+  hold/evaluate through 350 ms
+
+slew 0.9:
+  arrive no later than 270 ms
+  hold/evaluate through 370 ms
 ```
 
-Frozen formal timing:
+R/Z tolerance, speed threshold, Ip threshold, and arrival streak remain at
+the frozen baseline. Longer observation horizons do not move the arrival
+deadline. Independent long hold remains a later orthogonal test.
+
+## 6. Evidence-transfer rule
+
+Large raw, JSON.GZ, snapshot, and trajectory trees stay on the server.
+
+For every large run:
+
+1. preserve the raw tree;
+2. run a read-only Python postprocessor in the canonical server project with
+   the existing virtualenv;
+3. parse and hash every required raw/snapshot input and independently
+   recompute load-bearing metrics;
+4. download only compact audit JSON/CSV, manifests, hash inventories, and
+   logs;
+5. verify compact local counts and SHA-256 values.
+
+No local compression or extraction is allowed.
+
+## 7. Advancement rule
+
+R3 success must remain a bounded claim over its preregistered state/history
+matrix. After hidden-history and different-initial-state robustness, proceed
+in order to:
 
 ```text
-slew=1.0/1.1: arrive by 250 ms, hold through 350 ms
-slew=0.9:     arrive by 270 ms, hold through 370 ms
+new preregistered targets
+continuous actuator and plant/Jacobian variation
+measurement noise and observer robustness
+disturbance recovery
+independent long hold
 ```
 
-Frozen finite source composition:
-
-```text
-14 unchanged source paths
-4 R17 one-sided braking paths
-delay=1 braking magnitude 6×
-delay=2 braking magnitude 7×
-18/18 finite static-grid formal pass
-```
-
-Do not use R10/R11 late-arrival horizons as the formal source contract.
-
-## 4. R1 experiment design to verify
-
-Expected capture matrix:
-
-```text
-2 targets × 3 delays × 3 slew scales = 18 capture tasks
-```
-
-Expected restart matrix if capture passes:
-
-```text
-18 fresh TSC restart suffix tasks
-```
-
-Expected checkpoint:
-
-```text
-elapsed checkpoint = 200 ms
-source start folder = 1100 ms
-snapshot folder time = 1300 ms
-```
-
-Expected snapshot required files may include:
-
-```text
-inputa
-sprsina
-geqdsk
-outputa
-coil_currents.csv
-wire_currents.csv
-```
-
-Verify against actual code/config, not this summary.
-
-R1 isolates plant state:
-
-```text
-plant snapshot + action suffix replay
-```
-
-R1 intentionally does not restore:
-
-```text
-observer
-integrator
-pending command queue
-controller checkpoint
-```
-
-## 5. Mandatory phase A — repository and evidence inventory
-
-Before edits:
-
-```powershell
-git status --short
-git branch --show-current
-git log -1 --oneline
-```
-
-Locate and record:
-
-- current Stage4.2R1 code files;
-- `PACKAGE_MANIFEST.json`;
-- `SHA256SUMS`;
-- final R1/R1a log;
-- initial failure log if retained;
-- full R1 run directory;
-- R17 source run directory;
-- all state, manifest, resolved config, results, summary, CSV, verdict files;
-- all raw JSON/JSON.GZ;
-- all snapshot directories/files.
-
-Create:
-
-```text
-docs/codex/reports/STAGE4_2R1_FORENSIC_REPORT.md
-artifacts/codex_audits/stage4_2r1_inventory.json
-artifacts/codex_audits/stage4_2r1_capture_audit.csv
-artifacts/codex_audits/stage4_2r1_restart_audit.csv
-artifacts/codex_audits/stage4_2r1_snapshot_audit.csv
-```
-
-Do not alter scientific code until this phase is complete.
-
-## 6. Mandatory phase B — capture audit
-
-Programmatically inspect all expected capture specs and raw files.
-
-For each expected capture case, report:
-
-- target;
-- delay;
-- slew;
-- experiment ID;
-- raw file path;
-- parse status;
-- `success`;
-- failure reason;
-- exception stage;
-- traceback presence;
-- trajectory state/action count;
-- source trajectory state/action count;
-- shape comparability;
-- maximum visible difference, or structured mismatch reason;
-- action equality;
-- formal metric result;
-- snapshot path;
-- snapshot manifest presence;
-- snapshot required-file completeness;
-- each file size and SHA-256;
-- snapshot manifest digest validity;
-- coil-current vector shape and equality;
-- full wire-current vector shape and equality;
-- snapshot time/index alignment.
-
-Classify every failed/incomplete capture into one exact category:
-
-```text
-environment reset
-action replay
-snapshot request not triggered
-snapshot export exception
-required snapshot file missing
-snapshot file hash mismatch
-coil vector mismatch
-wire vector missing/shape mismatch/value mismatch
-capture trajectory truncated
-source/capture state-index mismatch
-formal contract failure
-other, with evidence
-```
-
-Do not let a summary-level `null`, `inf`, or generic failure reason replace raw diagnosis.
-
-## 7. Mandatory phase C — restart audit
-
-Determine whether restart suffix tasks actually ran.
-
-If they ran, inspect each case:
-
-- fresh TSC environment/process identity;
-- snapshot source;
-- restart raw parse/success;
-- restart initial state versus continuous source checkpoint;
-- R/Z/Ip difference;
-- 14-coil vector difference;
-- full wire-current vector difference;
-- vessel aggregate difference;
-- action-suffix index alignment;
-- source suffix and restart suffix lengths;
-- duplicate or missing checkpoint state;
-- per-step suffix differences;
-- formal metric after prefix/suffix recombination.
-
-Independently verify prefix/suffix reconstruction:
-
-```text
-source prefix before checkpoint
-+
-restart suffix beginning at the correct checkpoint state
-```
-
-There must be no duplicate state and no missing control interval.
-
-If restart tasks did not run, say `not_run`, identify the exact prerequisite gate that stopped them, and do not label restart fidelity as failed.
-
-## 8. Mandatory phase D — separate scientific conclusions
-
-Report separately:
-
-```text
-capture_instrumentation_fidelity
-snapshot_integrity
-plant_restart_initial_state_fidelity
-plant_restart_suffix_fidelity
-formal_contract_preservation
-```
-
-A possible valid result is:
-
-```text
-snapshot/restart not bit-exact but formal contract preserved
-```
-
-That is not the same as exact restart fidelity.
-
-Another possible result is:
-
-```text
-capture failed before restart
-```
-
-That is not evidence about restart behavior.
-
-## 9. Classification required in the report
-
-Use these headings:
-
-1. Runtime/environment errors.
-2. Packaging/deployment/import errors.
-3. Raw/snapshot integrity errors.
-4. Statistics/reporting bugs.
-5. Experimental-design flaws.
-6. Real plant-restart conclusions.
-7. What can be frozen.
-8. What remains unvalidated.
-9. Next step tied to the final task.
-
-## 10. Decision and implementation rule
-
-After the evidence report:
-
-### Case A — summary/report-only bug
-
-If physical capture/restart raw is valid and only the summary/reporting code is wrong:
-
-- patch locally;
-- preserve successful raw;
-- add real-interface regression tests;
-- keep experiment IDs/controller semantics unchanged;
-- prove `resume=1` compatibility;
-- deploy directly;
-- resume the same remote run;
-- download and re-audit final results.
-
-### Case B — snapshot/capture implementation bug
-
-If snapshot export or capture indexing is wrong:
-
-- fix the minimum proven cause;
-- keep the R17 expert and formal timing unchanged;
-- decide whether old successful captures are scientifically reusable;
-- rerun only failed/incompatible captures;
-- do not run restart until capture is authenticated.
-
-### Case C — authentic plant restart failure
-
-If capture and snapshot are valid but fresh restart diverges:
-
-- do not modify the controller;
-- isolate the smallest reproducible plant-state restart mismatch;
-- compare `sprsina`, coil vector, full wire vector, and first fresh step;
-- create a focused restart-diagnostic stage rather than adding controller complexity.
-
-### Case D — authentic plant restart success
-
-If plant restart is authenticated and the formal contract is preserved:
-
-- freeze R1;
-- implement Stage4.2R2 for complete controller-state checkpoint/replay;
-- include observer history, integrator, previous correction, pending delay queue, and trusted calibration token;
-- first require exact replay of the same source;
-- only afterward test matched-visible/different-hidden-history cases.
-
-If there is no genuine route choice, implement the next complete standalone code tree and run the full local → server → download → analysis loop.
-
-## 11. Server execution authorization
-
-Codex may use:
-
-```text
-ssh tsc-airgap
-scp
-sftp
-```
-
-It may operate remotely only inside:
-
-```text
-/home/yangshen0711/tsc_all/tsc_rzip_rllib
-```
-
-It may source:
-
-```text
-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/activate
-```
-
-It must not modify the virtualenv or simulation installation.
-
-It may use `/home/yangshen0711/tsc_software` only as a clearly identified staging directory, never as the project directory.
-
-No local or server archive operations.
-
-## 12. Required final response for this task
-
-Return:
-
-1. concise executive conclusion;
-2. complete evidence-based classification;
-3. exact files changed;
-4. local tests run;
-5. server validation/run commands actually executed;
-6. exact remote run/log path;
-7. expected/actual task counts;
-8. links/paths to audit artifacts;
-9. whether true `gotsc` was executed;
-10. next-stage rationale;
-11. current relation to the final task.
-
-Do not end with vague suggestions. If no user decision is needed, execute the evidence-backed next step.
+BC, DAgger, and bounded residual RL remain prohibited until the MPC expert is
+reliable across restart, hidden history, initial state, continuous parameters,
+noise, and disturbance recovery.

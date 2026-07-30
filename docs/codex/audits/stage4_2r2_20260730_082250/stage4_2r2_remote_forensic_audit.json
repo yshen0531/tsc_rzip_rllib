@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R2",
+  "audit_contract": "independent_server_raw_snapshot_formal_recomputation_v1",
+  "project_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+  "run_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250",
+  "source_stage4_2r1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619",
+  "experiment_controller_revision": "persistent_mpc_controller_checkpoint_replay_v42r2",
+  "experiment_package_revision": "r42r2_persistent_controller_checkpoint_v1",
+  "postprocessor_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250/stage4_2r2_remote_forensic_audit/stage4_2r2_remote_forensic_postprocess.py",
+  "postprocessor_sha256": "973124602537e624c4c19bbbb25f89c2069f5202c62df31e53846afccebc4fa4",
+  "input_inventory": {
+    "file_count": 50,
+    "total_bytes": 604967,
+    "json_count": 30,
+    "json_gz_count": 18,
+    "strict_json_parse_pass": true,
+    "digest": "5d45bcb381624da2e428a080c0876bf2472f7f2598e05f84ebc78337ec0a0e81"
+  },
+  "source_snapshot_inventory": {
+    "manifest_count": 18,
+    "payload_file_count": 144,
+    "payload_total_bytes": 2133646442,
+    "hash_mismatch_count": 0,
+    "passed": true
+  },
+  "coverage": {
+    "expected_cases": 18,
+    "raw_cases": 18,
+    "controller_checkpoints": 18,
+    "case_keys_exact_to_selected_source": true,
+    "source_fingerprint_matches_run_manifest": true
+  },
+  "independently_derived_metrics": {
+    "n_rollouts": 18,
+    "environment_success_count": 18,
+    "online_action_exact_fraction": 1.0,
+    "restart_visible_exact_fraction": 1.0,
+    "restart_wire_exact_fraction": 1.0,
+    "formal_contract_pass_fraction": 1.0,
+    "minimum_formal_signed_margin": 1.0456920999768471e-05
+  },
+  "saved_summary_agrees_with_independent_metrics": true,
+  "error_classification": {
+    "runtime_or_environment_error_count": 0,
+    "raw_or_snapshot_corruption_count": 0,
+    "statistics_or_reporting_error_count": 0,
+    "controller_checkpoint_or_design_failure_count": 0,
+    "plant_restart_fidelity_failure_count": 0,
+    "real_closed_loop_formal_control_failure_count": 0
+  },
+  "scientific_conclusion": {
+    "same_source_finite_clean_persistent_controller_restart_validated": true,
+    "online_suffix_actions_recomputed_not_replayed": true,
+    "fresh_controller_and_tsc_process_validated": true,
+    "formal_contract_preserved": true,
+    "finite_test_envelope_only": true,
+    "matched_visible_different_hidden_history_validated": false,
+    "different_initial_state_validated": false,
+    "unseen_target_validated": false,
+    "continuous_parameter_change_validated": false,
+    "plant_or_jacobian_error_validated": false,
+    "measurement_noise_validated": false,
+    "disturbance_recovery_validated": false,
+    "independent_long_hold_validated": false,
+    "bc_dagger_or_rl_allowed": false
+  },
+  "minimum_margin_case": {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 0.9,
+    "formal_minimum_signed_margin": 1.0456920999768471e-05
+  },
+  "state_finished": true,
+  "state_primary_pass": true,
+  "passed": true
+}

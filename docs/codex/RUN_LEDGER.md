@@ -140,3 +140,69 @@
 - Next:
   Stage4.2R2 persistent controller checkpoint with online action
   recomputation; no BC/DAgger/RL
+
+## Stage4.2R2 persistent controller checkpoint replay
+
+- Local code branch/commit:
+  `codex/stage4_2r2-controller-checkpoint` / `84962ef`
+- Controller revision:
+  `persistent_mpc_controller_checkpoint_replay_v42r2`
+- Package revision:
+  `r42r2_persistent_controller_checkpoint_v1`
+- Relevant hashes:
+  controller module
+  `8dffdc6f6a9b851577e3a4bc98102893d8abbb418be6381d14fc54d611bf711c`;
+  `PACKAGE_MANIFEST.json`
+  `3479504de287e919a644d5215e9237e9ee7dd74809455c0cc236b3651f399337`;
+  `SHA256SUMS`
+  `bc8ae857da2ec962e78ac376ce849525171998f51cd90d32ac2c9f63bc65e1f6`
+- R17 source:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501`
+- R1c plant/snapshot source:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082828.log`
+- Fresh/resume:
+  one run directory; offline gate first, then the same resumable run continued
+  into a fresh real-TSC replay phase after a reporting-only state hotfix
+- Expected/actual:
+  checkpoints 18/18; offline causal recomputation cases 18/18 and 282 suffix
+  actions; real fresh-TSC rollouts 18/18; raw JSON.GZ 18/18
+- Real TSC:
+  Ray capacity 128; 18 concurrent `gotsc` restart processes observed
+- Result:
+  online action, visible suffix, and full-wire suffix exact 18/18; fixed
+  formal contract 18/18; minimum signed margin
+  `1.0456920999768471e-05` at `RZ_p10_m10`, delay 0, slew 0.9
+- Independent server audit:
+  50 R2 input files / 604,967 bytes / strict JSON 30 and JSON.GZ 18; source
+  snapshot manifests 18 and payloads 144 / 2,133,646,442 bytes; corruption,
+  reporting, checkpoint/design, plant-fidelity, and formal-control failure
+  counts all 0
+- Known repaired tooling/reporting bugs:
+  Windows remote-shell quoting during clean install; verifier included runtime
+  bytecode; offline-only phase was incorrectly marked finished/failed; first
+  audit-tool launch lacked project `PYTHONPATH`; SFTP mishandled the Unicode
+  local path and aggregate SCP later timed out after 18/19 compact files
+- Download:
+  no large raw/snapshot download; compact local evidence at
+  `artifacts/server_audits/stage4_2r2_20260730_082250`, 19 files and 185,302
+  bytes
+- Evidence:
+  `docs/codex/reports/STAGE4_2R2_FORENSIC_REPORT.md`;
+  `docs/codex/audits/stage4_2r2_20260730_082250/`
+- Load-bearing audit hashes:
+  forensic audit
+  `ae188ed87d70040b1f20cd7857febaaa7749e3922647ca3d0c7c85e2b2066674`;
+  case rows JSON
+  `ce8c6aa9954bb995d29125d5eb2e023681d08cfefe0e2a84b7a6f9f0a07d7d85`;
+  input inventory
+  `9bd9f8d3d6be3a1a76dbee601edb2b25292e72315abd81a7685bcf51376fc2f0`
+- Frozen claim:
+  exact causal persistent-controller restart only for the finite clean
+  same-source grid
+- Next:
+  Stage4.2R3 matched-visible/different-hidden-history pair construction and
+  different-initial-state testing; no BC/DAgger/RL
