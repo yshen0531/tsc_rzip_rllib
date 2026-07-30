@@ -331,6 +331,29 @@ def _model_feature(context: Mapping[str, Any]) -> list[Any]:
     ]
 
 
+def _baseline_formal_metrics(
+    ctx: Any, result: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Evaluate an R3c1 baseline under the unchanged formal timing policy."""
+
+    spec = result["spec"]
+    r13_ctx = r3c.r1._r13_ctx(ctx.source_ctx.r1_ctx)
+    policy = r3c.r1.r13._timing_policy(
+        r13_ctx,
+        float(spec["slew_scale"]),
+        policy_id=(
+            f"r42r3c4_bank_baseline_{spec['pair_id']}_"
+            f"{spec['history_member']}_{spec['target_id']}_"
+            f"{spec['action_delay_steps']}_{spec['slew_scale']}"
+        ),
+    )
+    return r3c.r1.r8.tracking_metrics(
+        r13_ctx.r12_ctx.r11_ctx.r10_ctx.r9_ctx.r8_ctx,
+        result,
+        policy,
+    )
+
+
 def _write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     r3c.atomic_write_json(path, value)
@@ -654,7 +677,9 @@ def main() -> None:
                 "offline_design_only_baseline": {
                     "RZI_by_state": base_y.tolist(),
                     "velocity_RZ_by_state": base_v.tolist(),
-                    "formal_metrics": r3c._formal_metrics(ctx, baseline),
+                    "formal_metrics": _baseline_formal_metrics(
+                        ctx, baseline
+                    ),
                     "controller_use_forbidden": True,
                 },
                 "responses": [],
