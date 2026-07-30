@@ -563,15 +563,23 @@ def _recompute_selected_pairs(
     for pair in selected:
         for member in ("plus_first", "minus_first"):
             state = pair[f"{member}_state"]
-            if (
-                not bool(state.get("success"))
-                or not bool(state.get("snapshot_pass"))
-                or not Path(str(state["snapshot_dir"])).is_dir()
-            ):
+            if not _selected_snapshot_state_is_valid(state):
                 raise ValueError(
                     "Stage4.2R3c selected source snapshot is invalid"
                 )
     return selected, state_by_id
+
+
+def _selected_snapshot_state_is_valid(
+    state: Mapping[str, Any],
+) -> bool:
+    """Honor R3b `_state_row`: `success` already includes snapshot checks."""
+
+    return bool(
+        state.get("success")
+        and str(state.get("snapshot_manifest_digest", "")).strip()
+        and Path(str(state.get("snapshot_dir", ""))).is_dir()
+    )
 
 
 def _deployed_package_fingerprint(

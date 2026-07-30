@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -174,6 +175,25 @@ class Stage42R3CDesignTests(unittest.TestCase):
                 for row in specs
             )
         )
+
+    def test_selected_snapshot_uses_r3b_validated_success_contract(
+        self,
+    ) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            state = {
+                "success": True,
+                "snapshot_dir": tmp,
+                "snapshot_manifest_digest": "authenticated-digest",
+            }
+            self.assertNotIn("snapshot_pass", state)
+            self.assertTrue(
+                r3c._selected_snapshot_state_is_valid(state)
+            )
+            self.assertFalse(
+                r3c._selected_snapshot_state_is_valid(
+                    {**state, "success": False}
+                )
+            )
 
     def test_trace_validator_separates_task_and_reference_clocks(
         self,
