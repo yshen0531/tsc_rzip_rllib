@@ -344,13 +344,23 @@ task has been claimed.
 
 ## Remote preflight status
 
-The required read-only command using `ssh tsc-airgap` was attempted after
-commit `0c87297`.  The only locally available client,
-`C:\WINDOWS\System32\OpenSSH\ssh.exe` (OpenSSH 9.5p2), returned
-`Could not resolve hostname tsc-airgap`.  No remote command ran, no file was
-transferred, and no server state changed.
+The `tsc-airgap` alias was not resolvable by the only local OpenSSH client.
+On 2026-07-30 the user then explicitly authorized that client to use the
+existing `id_ed25519_tsc` identity for the recorded endpoint, with
+identity-only, public-key-only authentication.  Codex used that narrow
+authorization without reading or changing the identity or external SSH
+configuration.
 
-The repository rules prohibit reading/changing external SSH configuration or
-replacing the alias with the identification-only IP endpoint.  Deployment and
-resume are therefore pending restoration of the required alias; the exact
-handoff is recorded in `docs/codex/CURRENT_STATUS.md`.
+The task-scoped read-only preflight connected successfully and verified the
+canonical project and virtualenv paths.  The server still holds package
+`r42r1a_capture_failure_finite_summary_v2` and controller revision
+`true_tsc_plant_restart_action_replay_v42r1`.  The exact existing run has 42
+files and 9 subdirectories: capture raw 18/18 and parseable 18/18, successful
+capture 0/18, snapshot case directories 0/18, and restart raw 0/18.  No
+Stage4.2R1 process is active.  These remote observations agree with the local
+forensic evidence and establish that the exact run is inactive and eligible
+for the already-proved R1b semantic-preserving resume.
+
+No remote file was transferred or changed during these checks and no TSC task
+ran.  Direct uncompressed deployment and server validation are now the next
+steps; the exact handoff is recorded in `docs/codex/CURRENT_STATUS.md`.

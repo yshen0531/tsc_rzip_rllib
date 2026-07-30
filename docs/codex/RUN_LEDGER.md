@@ -47,5 +47,9 @@
   1133 JSON and 10703 JSON.GZ parsed strictly; 105 checksums passed;
   empty-directory import/self-test/focused tests passed
 - Server status:
-  not deployed or resumed; mandatory `ssh tsc-airgap` read-only preflight
-  failed locally because the alias could not be resolved. Server untouched.
+  the `tsc-airgap` alias remains unresolved, but the user explicitly
+  authorized the existing identity file for this endpoint. The task-scoped
+  read-only preflight connected successfully and confirmed the old R1a
+  package, 42-file run tree, 18/18 parseable failed captures, 0/18 snapshots,
+  0/18 restart raws, and no active Stage4.2R1 process. Server remains
+  untouched pending R1b deployment.
