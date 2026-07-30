@@ -33,7 +33,10 @@ import hashlib
 import json
 import math
 import os
-import resource
+try:
+    import resource
+except ImportError:  # pragma: no cover - exercised by the Windows validation host.
+    resource = None
 import shutil
 import tempfile
 import time
@@ -65,8 +68,11 @@ write_csv = r17.write_csv
 SCHEMA_VERSION = 1
 STAGE = "Stage4.2R1"
 CONTROLLER_REVISION = "true_tsc_plant_restart_action_replay_v42r1"
-PACKAGE_REVISION = "r42r1a_capture_failure_finite_summary_v2"
-LEGACY_PACKAGE_REVISIONS = {"r42r1_plant_restart_action_replay_v1"}
+PACKAGE_REVISION = "r42r1b_lazy_runner_capture_resume_v3"
+LEGACY_PACKAGE_REVISIONS = {
+    "r42r1_plant_restart_action_replay_v1",
+    "r42r1a_capture_failure_finite_summary_v2",
+}
 EXPECTED_SOURCE_REVISION = r17.CONTROLLER_REVISION
 EXPECTED_SOURCE_PACKAGE_REVISION = r17.PACKAGE_REVISION
 SOURCE_INVENTORY_CONTRACT = "r42r1_direct_r17_and_selected_expert_raw_v1"
@@ -220,7 +226,7 @@ def _inventory(source: Path, files: Sequence[Path], *, contract: str, stage: str
         size = int(path.stat().st_size)
         total += size
         try:
-            relative = str(path.relative_to(source))
+            relative = path.relative_to(source).as_posix()
         except ValueError:
             relative = str(path)
         rows.append({"relative_path": relative, "size_bytes": size, "sha256": _sha256_file(path)})
@@ -473,6 +479,60 @@ def _expert_inventory(ctx: Stage42R1Context) -> dict[str, Any]:
     }
 
 
+def _selected_expert_inventory_compatible(
+    recorded: Mapping[str, Any],
+    current: Mapping[str, Any],
+) -> bool:
+    """Compare selected expert evidence without trusting host-absolute paths.
+
+    R1's original inventory digest includes absolute server paths, so the same
+    byte-identical evidence has a different digest on the Windows validation
+    host.  Resume safety rests on case identity, experiment ID, size and hash;
+    the path is only a locator.  Server-side resumes retain the exact old
+    digest because their absolute roots are unchanged.
+    """
+
+    header_keys = (
+        "schema_version",
+        "source_stage",
+        "inventory_contract",
+        "n_files",
+        "total_bytes",
+    )
+    if any(recorded.get(key) != current.get(key) for key in header_keys):
+        return False
+
+    def content_rows(payload: Mapping[str, Any]) -> list[dict[str, Any]]:
+        rows = []
+        for row in list(payload.get("files") or []):
+            item = dict(row)
+            path = Path(str(item.pop("path", "")))
+            experiment_id = str(item.get("experiment_id", ""))
+            if not experiment_id or path.name != f"{experiment_id}.json.gz":
+                return []
+            rows.append(item)
+        return rows
+
+    recorded_rows = content_rows(recorded)
+    current_rows = content_rows(current)
+    return bool(
+        recorded_rows
+        and len(recorded_rows) == int(recorded.get("n_files", -1))
+        and recorded_rows == current_rows
+    )
+
+
+def _recorded_source_run_compatible(recorded: str, current: str) -> bool:
+    recorded_path = Path(str(recorded))
+    current_path = Path(str(current))
+    return bool(
+        recorded_path.name
+        and recorded_path.name == current_path.name
+        and recorded_path.parent.name == "stage4_1r17_runs"
+        and current_path.parent.name == "stage4_1r17_runs"
+    )
+
+
 def load_stage42r1_config(
     config_path: Path,
     *,
@@ -618,15 +678,39 @@ def prepare(ctx: Stage42R1Context, *, resume: bool) -> None:
         legacy_revision = str(old.get("package_revision", ""))
         for key in (
             "controller_revision",
-            "source_stage4_1r17_run",
             "source_fingerprint",
-            "selected_expert_fingerprint",
             "checkpoint_step",
             "formal_timing_contract",
             "plant_restart_only",
         ):
             if old.get(key) != current.get(key):
                 raise ValueError(f"Stage4.2R1 resume manifest mismatch for {key}")
+        if not _recorded_source_run_compatible(
+            str(old.get("source_stage4_1r17_run", "")),
+            str(current.get("source_stage4_1r17_run", "")),
+        ):
+            raise ValueError(
+                "Stage4.2R1 resume manifest mismatch for source_stage4_1r17_run"
+            )
+        if not _selected_expert_inventory_compatible(
+            old.get("selected_expert_fingerprint") or {},
+            current.get("selected_expert_fingerprint") or {},
+        ):
+            raise ValueError(
+                "Stage4.2R1 resume manifest mismatch for selected_expert_fingerprint"
+            )
+        # Preserve the original run's path-bearing expert digest because it is
+        # part of the frozen experiment-ID identity.  Content compatibility
+        # above proves that only the host locator root may differ.
+        ctx.expert_fingerprint = copy.deepcopy(
+            old["selected_expert_fingerprint"]
+        )
+        current["selected_expert_fingerprint"] = copy.deepcopy(
+            ctx.expert_fingerprint
+        )
+        current["source_stage4_1r17_run"] = str(
+            old["source_stage4_1r17_run"]
+        )
         if legacy_revision not in ({PACKAGE_REVISION} | LEGACY_PACKAGE_REVISIONS):
             raise ValueError(f"Stage4.2R1 resume manifest mismatch for package_revision: {legacy_revision!r}")
         if not resume:
@@ -911,6 +995,19 @@ class LocalPlantReplayWorker:
     def runner(self):
         return self.base_worker.env.runner
 
+    def _ensure_runner(self):
+        """Construct the lazy TSC runner before capture setup reads its config.
+
+        ``TscRzipEnv`` deliberately creates its runner lazily.  Capture must
+        register the one-shot snapshot request before ``env.reset()``, so it
+        must use the environment's real lazy-runner interface here rather than
+        reading ``env.runner`` while it is still ``None``.
+        """
+        runner = self.base_worker.env._ensure_runner()
+        if runner is None:
+            raise RuntimeError("environment failed to initialize its TSC runner")
+        return runner
+
     def close(self) -> None:
         self.container.close()
 
@@ -922,7 +1019,7 @@ class LocalPlantReplayWorker:
     def evaluate_capture(self, spec: dict[str, Any]) -> dict[str, Any]:
         started = time.time()
         failed = True
-        runner = self.runner
+        runner = self._ensure_runner()
         result: dict[str, Any] = {
             "schema_version": 1,
             "controller_revision": CONTROLLER_REVISION,
@@ -1448,11 +1545,19 @@ def _capture_result_row(ctx: Stage42R1Context, result: Mapping[str, Any]) -> dic
     action_compare = _compare_arrays(capture_actions, source_actions, atol=0.0)
     wire = _wire_array(result)
     snapshot = result.get("restart_snapshot") or {}
-    manifest_path = Path(str(snapshot.get("snapshot_manifest_path", "")))
-    snapshot_dir = Path(str(snapshot.get("snapshot_dir", "")))
-    manifest = read_json(manifest_path) if manifest_path.is_file() else {}
+    manifest_path_text = str(snapshot.get("snapshot_manifest_path", "")).strip()
+    snapshot_dir_text = str(snapshot.get("snapshot_dir", "")).strip()
+    manifest_path = Path(manifest_path_text) if manifest_path_text else None
+    snapshot_dir = Path(snapshot_dir_text) if snapshot_dir_text else None
+    manifest = (
+        read_json(manifest_path)
+        if manifest_path is not None and manifest_path.is_file()
+        else {}
+    )
     snapshot_valid = bool(
-        manifest_path.is_file()
+        manifest_path is not None
+        and manifest_path.is_file()
+        and snapshot_dir is not None
         and str(snapshot.get("snapshot_manifest_digest", "")) == str(manifest.get("digest", ""))
         and _validate_snapshot_inventory(snapshot_dir, manifest)
     )
@@ -1501,7 +1606,7 @@ def _capture_result_row(ctx: Stage42R1Context, result: Mapping[str, Any]) -> dic
         "trajectory_state_count": int(len(result.get("trajectory") or [])),
         "full_wire_current_vector_present": bool(wire.shape[1] > 0),
         "wire_current_count": int(wire.shape[1]) if wire.ndim == 2 else 0,
-        "snapshot_dir": str(snapshot_dir),
+        "snapshot_dir": snapshot_dir_text,
         "snapshot_manifest_digest": snapshot.get("snapshot_manifest_digest"),
         "snapshot_files_valid": snapshot_valid,
         "snapshot_wire_exact_to_capture_checkpoint": snapshot_wire_compare["exact"],
@@ -1559,6 +1664,20 @@ def _summarize_capture(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any
     expected = int(ctx.cfg["matrix"]["expected_capture_rollouts"])
     keys = {(row["target_id"], row["actual_delay_steps"], row["actual_slew_scale"]) for row in rows}
     expected_keys = set(_selected_source_cases(ctx))
+    comparable_count = sum(bool(row["capture_visible_comparable"]) for row in rows)
+    exact_count = sum(bool(row["capture_visible_exact_to_source"]) for row in rows)
+    snapshot_paths = {
+        str(row["snapshot_dir"]).strip()
+        for row in rows
+        if str(row.get("snapshot_dir", "")).strip()
+    }
+    trace_comparison_status = (
+        "exact"
+        if rows and comparable_count == len(rows) and exact_count == len(rows)
+        else "mismatch"
+        if comparable_count > 0
+        else "not_comparable"
+    )
     summary = {
         "schema_version": 1,
         "stage": STAGE,
@@ -1567,11 +1686,11 @@ def _summarize_capture(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any
         "expected_rollouts": expected,
         "coverage_complete": len(rows) == expected and keys == expected_keys,
         "environment_success_count": sum(bool(row["environment_success"]) for row in rows),
-        "capture_visible_exact_fraction": sum(bool(row["capture_visible_exact_to_source"]) for row in rows) / len(rows) if rows else 0.0,
+        "capture_visible_exact_fraction": exact_count / len(rows) if rows else 0.0,
         "source_action_exact_fraction": sum(bool(row["source_actions_exactly_replayed"]) for row in rows) / len(rows) if rows else 0.0,
         "maximum_capture_visible_abs_difference": _finite_metric_max(rows, "capture_visible_maximum_abs_difference"),
         "maximum_source_action_abs_difference": _finite_metric_max(rows, "source_action_maximum_abs_difference"),
-        "capture_visible_comparable_fraction": sum(bool(row["capture_visible_comparable"]) for row in rows) / len(rows) if rows else 0.0,
+        "capture_visible_comparable_fraction": comparable_count / len(rows) if rows else 0.0,
         "source_action_comparable_fraction": sum(bool(row["source_action_comparable"]) for row in rows) / len(rows) if rows else 0.0,
         "failure_reason_count": sum(bool(str(row.get("failure_reason", ""))) for row in rows),
         "capture_summary_exception_count": sum(bool(str(row.get("capture_summary_exception", ""))) for row in rows),
@@ -1582,10 +1701,11 @@ def _summarize_capture(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any
         "snapshot_valid_fraction": sum(bool(row["snapshot_files_valid"]) for row in rows) / len(rows) if rows else 0.0,
         "snapshot_wire_exact_fraction": sum(bool(row["snapshot_wire_exact_to_capture_checkpoint"]) for row in rows) / len(rows) if rows else 0.0,
         "full_wire_vector_fraction": sum(bool(row["full_wire_current_vector_present"]) for row in rows) / len(rows) if rows else 0.0,
-        "distinct_snapshot_paths": len({row["snapshot_dir"] for row in rows}),
+        "distinct_snapshot_paths": len(snapshot_paths),
         "wire_current_count_min": min((int(row["wire_current_count"]) for row in rows), default=0),
         "wire_current_count_max": max((int(row["wire_current_count"]) for row in rows), default=0),
-        "plant_capture_instrumentation_changed_source_trace": not all(bool(row["capture_visible_exact_to_source"]) for row in rows),
+        "capture_trace_comparison_status": trace_comparison_status,
+        "plant_capture_instrumentation_changed_source_trace": trace_comparison_status == "mismatch",
         "passed": False,
     }
     summary["passed"] = bool(
@@ -2049,8 +2169,19 @@ def analyze(
         "checkpoint_step": CHECKPOINT_STEP,
         "checkpoint_elapsed_ms": CHECKPOINT_STEP * DT_MS,
         "true_filesystem_tsc_restart_performed": bool(restart),
-        "plant_restart_fidelity_passed": bool(restart.get("plant_restart_fidelity_passed")),
-        "formal_contract_preserved": bool(restart.get("formal_contract_preserved")),
+        "plant_restart_fidelity_passed": (
+            bool(restart.get("plant_restart_fidelity_passed")) if restart else None
+        ),
+        "formal_contract_preserved": (
+            bool(restart.get("formal_contract_preserved")) if restart else None
+        ),
+        "formal_contract_preservation_status": (
+            "passed"
+            if restart and bool(restart.get("formal_contract_preserved"))
+            else "failed"
+            if restart
+            else "not_run"
+        ),
         "original_250_350_and_270_370_timing_unchanged": True,
         "controller_checkpoint_replay_validated": False,
         "cold_controller_restart_validated": False,
@@ -2187,6 +2318,8 @@ def self_test() -> dict[str, Any]:
 
 
 def _set_resource_limits() -> None:
+    if resource is None:
+        return
     try:
         resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
     except Exception:

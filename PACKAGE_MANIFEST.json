@@ -142,7 +142,7 @@
     "weak_slew_hold_through_ms": 370
   },
   "maximum_true_tsc_rollouts": 36,
-  "package_revision": "r42r1a_capture_failure_finite_summary_v2",
+  "package_revision": "r42r1b_lazy_runner_capture_resume_v3",
   "plant_restart_only": true,
   "purpose": "Certify authentic TSC plant-state serialization and fresh-process restart independently of controller-state reconstruction. Replay the exact calibrated Stage4.1R17 finite-expert actions, capture sprsina plus complete coil/wire state at 200 ms elapsed time, restart fresh TSC processes from the snapshots, replay the exact remaining action suffix, require exact plant trajectory and full wire-current reproduction, and re-evaluate the immutable original timing contracts.",
   "requirements": {
@@ -179,9 +179,16 @@
   "source_stage": "Stage4.1R17",
   "stage": "Stage4.2R1",
   "hotfix": {
-    "legacy_package_revision": "r42r1_plant_restart_action_replay_v1",
+    "legacy_package_revisions": [
+      "r42r1_plant_restart_action_replay_v1",
+      "r42r1a_capture_failure_finite_summary_v2"
+    ],
     "capture_worker_partial_trajectory_preserved": true,
     "incomparable_metrics_serialized_as_null": true,
+    "lazy_tsc_runner_initialized_before_snapshot_request": true,
+    "missing_snapshot_paths_not_counted": true,
+    "unrun_restart_metrics_serialized_as_null": true,
+    "canonical_inventory_paths_use_posix_separators": true,
     "resume_existing_capture_run_supported": true,
     "controller_revision_unchanged": true,
     "experiment_ids_unchanged": true

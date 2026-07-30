@@ -176,7 +176,7 @@ def _source_inventory(source: Path) -> dict[str, Any]:
     for path in files:
         rows.append(
             {
-                "relative_path": str(path.relative_to(source)),
+                "relative_path": path.relative_to(source).as_posix(),
                 "size_bytes": int(path.stat().st_size),
                 "sha256": _sha256_file(path),
             }
