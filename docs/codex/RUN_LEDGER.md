@@ -335,3 +335,105 @@
   R3c visible-state phase-aligned MPC development on the locked R3b
   snapshots, followed by independent R3d new-history confirmation before new
   targets; no BC/DAgger/RL
+
+## Stage4.2R3c visible-state phase-aligned MPC development
+
+- Local implementation:
+  `codex/stage4_2r3c-phase-aligned-mpc` / `e8856f8`; authenticated-source
+  contract hotfix `a5513e9`
+- Package/controller:
+  `r42r3c_visible_state_phase_aligned_mpc_v1` /
+  `visible_state_phase_aligned_mpc_v42r3c`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807`
+- Expected/actual:
+  offline original-start preservation 4/4; real TSC 32/32; exact plant
+  restart and causal phase trace 32/32
+- Real control:
+  20/32 formal PASS; prefix 9 passed 16/16 and prefix 5 passed 4/16;
+  12 genuine formal failures
+- Diagnosis:
+  selected ideal-reference phases 11--13 versus nearest actual R17 visible
+  phases 12--20; phase-zero mismatch was repaired but ideal-reference phase
+  underestimated the physical closed-loop phase
+- Integrity:
+  143 files / 2,963,470 bytes / digest
+  `278395b364bb355c73b5f6de7461478b4bb239584a3f6bf9bf048aad12be9d13`;
+  runtime, corruption, restart, and causality errors 0
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C_FORENSIC_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c_result_20260730_132807/`
+- Independent raw forensics:
+  `395427285a5bad0de9611629df0a13ade037ddd4f0e30e993e475a56c3dbafaa`
+- Classification:
+  failed controller development result; hidden-history robustness
+  inconclusive because six pair groups failed both members
+- Next:
+  R3c1 authenticated actual R17 visible-manifold phase MPC; no
+  BC/DAgger/RL
+
+## Stage4.2R3c1 authenticated visible-manifold phase MPC
+
+- Local implementation:
+  `codex/stage4_2r3c1-visible-manifold` / `be3065b`
+- Runtime/reporting hotfixes:
+  `35e725c` first-sample causal zero-velocity resume;
+  `0898b28` reporting-only package-chain audit
+- Package/controller:
+  `r42r3c1_authenticated_visible_manifold_phase_mpc_v1` /
+  `authenticated_visible_manifold_phase_mpc_v42r3c1`
+- Runtime package digest:
+  `c78beb6649543512d3d54649c3001b1c870256929470f09fccaf082b7e087a99`
+- Audit package digest:
+  `61f31875d9ecbef70ecf46b6acbf1600cd877c66345db8cd7ce07bbb6e9f038a`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218`
+- Fresh/resume:
+  offline gate; initial 32-task real run; semantics-preserving resume of
+  exactly four phase-20 first-sample runtime failures
+- Initial incident:
+  28 successful trajectories and four
+  `terminal feedback requires at least two trajectory states` failures;
+  complete evidence preserved under
+  `stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053`
+- Resume integrity:
+  exact 28 prior-success raw hashes unchanged; only the four preserved
+  runtime-failure experiment IDs changed; final raw/environment success
+  32/32
+- Final control:
+  exact plant restart 32/32; causal/valid phase trace 32/32; formal PASS
+  16/32; real formal failures 16
+- R3c comparison:
+  pass→pass 16, fail→fail 12, pass→fail 4, fail→pass 0
+- Diagnosis:
+  static R17 R/Z/Ip nearest-phase alignment is insufficient dynamic
+  controller-state initialization; all 16 failures have unavoidable
+  position violations, and four also have final/post-speed violations
+- Integrity:
+  166 files / 3,409,736 bytes / digest
+  `5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f`;
+  final runtime, corruption, restart, and causality errors 0
+- Load-bearing hashes:
+  server audit
+  `0d81cbe3e0d9b67d72cf093143edd8a825a3b60ea5e3c449cf29de7cf0cc7712`;
+  independent raw forensics
+  `29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd`;
+  pre-hotfix manifest
+  `30303cc7a907a4ff2cd4c7680f3164990db39ac0495a6b978b9f4cac38a69cc9`
+- No-TSC next-design diagnostic:
+  `9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d`;
+  32/32 finite causal restart-regulation first actions, 4/4 phase-zero
+  original-source preservation, no plant advance
+- Download:
+  final large raw/snapshots remain server-side; compact evidence at
+  `docs/codex/audits/stage4_2r3c1_result_20260730_143218/`
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C1_FORENSIC_REPORT.md`
+- Classification:
+  final 16/32 is a true controller-design/closed-loop failure; repaired
+  runtime, deployment-permission, and reporting incidents are separate;
+  hidden-history robustness remains inconclusive
+- Next:
+  new Stage4.2R3c2 identity with phase-zero preservation and immediate causal
+  target-state regulation for nonzero visible restart phases; no
+  BC/DAgger/RL

@@ -1,0 +1,603 @@
+{
+  "control_raw_count": 32,
+  "environment_success_count": 28,
+  "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+  "formal_pass_fraction_before_hotfix": 0.375,
+  "interrupted_first_preservation_attempt_detected": true,
+  "original_deployed_package_digest": "3ea8456d0cb5cc13ba0771e6b8d571aef62da9fe08f678c09d962969eeba9ede",
+  "preserved_compact_artifacts": [
+    {
+      "copy": {
+        "path": "stage4_2r3c1_manifest.json",
+        "sha256": "6fcf58fdb025c330024e8c638456be78bb1b8b6ab1a5e959dd652f03168aaace",
+        "size_bytes": 29482
+      },
+      "source": {
+        "path": "stage4_2r3c1_manifest.json",
+        "sha256": "6fcf58fdb025c330024e8c638456be78bb1b8b6ab1a5e959dd652f03168aaace",
+        "size_bytes": 29482
+      }
+    },
+    {
+      "copy": {
+        "path": "stage4_2r3c1_state.json",
+        "sha256": "8b49b0607d517389b246ffdda64d41bef71dab51bbe5c17697fb8e9cbfe9bf1b",
+        "size_bytes": 3224
+      },
+      "source": {
+        "path": "stage4_2r3c1_state.json",
+        "sha256": "8b49b0607d517389b246ffdda64d41bef71dab51bbe5c17697fb8e9cbfe9bf1b",
+        "size_bytes": 3224
+      }
+    },
+    {
+      "copy": {
+        "path": "deployed_package_fingerprint.json",
+        "sha256": "80340703c958f806aaf5914839e5fec32ed5650a5964f1b95a8c625d0522ab1c",
+        "size_bytes": 2604
+      },
+      "source": {
+        "path": "stage4_2r3c1_source_reference/deployed_package_fingerprint.json",
+        "sha256": "80340703c958f806aaf5914839e5fec32ed5650a5964f1b95a8c625d0522ab1c",
+        "size_bytes": 2604
+      }
+    },
+    {
+      "copy": {
+        "path": "offline_phase_alignment_audit.json",
+        "sha256": "04fb013ade57845d305552b4392d456fb4cef327e679530cc069edf58c9355ab",
+        "size_bytes": 19453
+      },
+      "source": {
+        "path": "stage4_2r3c1_source_reference/offline_phase_alignment_audit.json",
+        "sha256": "04fb013ade57845d305552b4392d456fb4cef327e679530cc069edf58c9355ab",
+        "size_bytes": 19453
+      }
+    },
+    {
+      "copy": {
+        "path": "results.json",
+        "sha256": "5f804d485b1e65ae279edac0652e72c38df530b3bbd65a65810127eb4fd6066f",
+        "size_bytes": 51795
+      },
+      "source": {
+        "path": "stage4_2r3c1_authenticated_visible_manifold_control/results.json",
+        "sha256": "5f804d485b1e65ae279edac0652e72c38df530b3bbd65a65810127eb4fd6066f",
+        "size_bytes": 51795
+      }
+    },
+    {
+      "copy": {
+        "path": "results.csv",
+        "sha256": "dcb2e36c49f73794fee3a78c89616187eb9b93a9bc1b432487c17baa8585ef82",
+        "size_bytes": 10646
+      },
+      "source": {
+        "path": "stage4_2r3c1_authenticated_visible_manifold_control/results.csv",
+        "sha256": "dcb2e36c49f73794fee3a78c89616187eb9b93a9bc1b432487c17baa8585ef82",
+        "size_bytes": 10646
+      }
+    },
+    {
+      "copy": {
+        "path": "pair_results.json",
+        "sha256": "8420bdc2fd5c461385dc859f0b6dcb85d34f9f429afee8ff01bd180122cb4180",
+        "size_bytes": 11531
+      },
+      "source": {
+        "path": "stage4_2r3c1_authenticated_visible_manifold_control/pair_results.json",
+        "sha256": "8420bdc2fd5c461385dc859f0b6dcb85d34f9f429afee8ff01bd180122cb4180",
+        "size_bytes": 11531
+      }
+    },
+    {
+      "copy": {
+        "path": "pair_results.csv",
+        "sha256": "d8120396456f182dcddb3ee8af606381b12535b7da0b3a2077c11af6ca01c2ee",
+        "size_bytes": 3607
+      },
+      "source": {
+        "path": "stage4_2r3c1_authenticated_visible_manifold_control/pair_results.csv",
+        "sha256": "d8120396456f182dcddb3ee8af606381b12535b7da0b3a2077c11af6ca01c2ee",
+        "size_bytes": 3607
+      }
+    },
+    {
+      "copy": {
+        "path": "summary.json",
+        "sha256": "c038066f0408251753a3324dbba0dd71f4103ad60e86c5b842e922a10c40435c",
+        "size_bytes": 1853
+      },
+      "source": {
+        "path": "stage4_2r3c1_authenticated_visible_manifold_control/summary.json",
+        "sha256": "c038066f0408251753a3324dbba0dd71f4103ad60e86c5b842e922a10c40435c",
+        "size_bytes": 1853
+      }
+    },
+    {
+      "copy": {
+        "path": "stage4_2r3c1_verdict.json",
+        "sha256": "c40ff81a4b531a5c6bf9dfb6a837bb23025f5718c330afa800d404d7b9f84bf4",
+        "size_bytes": 1390
+      },
+      "source": {
+        "path": "stage4_2r3c1_analysis/stage4_2r3c1_verdict.json",
+        "sha256": "c40ff81a4b531a5c6bf9dfb6a837bb23025f5718c330afa800d404d7b9f84bf4",
+        "size_bytes": 1390
+      }
+    },
+    {
+      "copy": {
+        "path": "stage4_2r3c1_run_inventory.json",
+        "sha256": "c35ea6f61b4b2de30e28321cdc8e1ab4a6c1e9ea5472679a0dfe9a7dab5c6962",
+        "size_bytes": 31408
+      },
+      "source": {
+        "path": "stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_run_inventory.json",
+        "sha256": "c35ea6f61b4b2de30e28321cdc8e1ab4a6c1e9ea5472679a0dfe9a7dab5c6962",
+        "size_bytes": 31408
+      }
+    },
+    {
+      "copy": {
+        "path": "stage4_2r3c1_server_audit.json",
+        "sha256": "39f7e04edc5a6f11373588b9ea24f05be7c72c0b1abd47dc161eb2b3b19fee18",
+        "size_bytes": 37092
+      },
+      "source": {
+        "path": "stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_server_audit.json",
+        "sha256": "39f7e04edc5a6f11373588b9ea24f05be7c72c0b1abd47dc161eb2b3b19fee18",
+        "size_bytes": 37092
+      }
+    },
+    {
+      "copy": {
+        "path": "stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218.log",
+        "sha256": "25c2ade985c9d89a25a4a95bc2a13ac011109e4337bccaadf894eef914de4063",
+        "size_bytes": 3057
+      },
+      "source": {
+        "path": "logs/nohup/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218.log",
+        "sha256": "25c2ade985c9d89a25a4a95bc2a13ac011109e4337bccaadf894eef914de4063",
+        "size_bytes": 3057
+      }
+    },
+    {
+      "copy": {
+        "path": "stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_144049.log",
+        "sha256": "b20ead85efcabcc39147abac80844837eb8b8def0f732fe79e285fdb6c1a86f6",
+        "size_bytes": 6251
+      },
+      "source": {
+        "path": "logs/nohup/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_144049.log",
+        "sha256": "b20ead85efcabcc39147abac80844837eb8b8def0f732fe79e285fdb6c1a86f6",
+        "size_bytes": 6251
+      }
+    }
+  ],
+  "preserved_runtime_failures": [
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_1158eec2af85a1687c50",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_1158eec2af85a1687c50.json.gz",
+      "preserved_copy": {
+        "path": "failed_raw/s42r3c1_1158eec2af85a1687c50.json.gz",
+        "sha256": "f33a382e43b36f083925e853c40333e0648e190f1eac20ee0e3238e17ff9a84c",
+        "size_bytes": 2935
+      },
+      "sha256": "f33a382e43b36f083925e853c40333e0648e190f1eac20ee0e3238e17ff9a84c",
+      "size_bytes": 2935,
+      "success": false,
+      "trajectory_count": 0
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_4b8dc85c34b4b10adc6c",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_4b8dc85c34b4b10adc6c.json.gz",
+      "preserved_copy": {
+        "path": "failed_raw/s42r3c1_4b8dc85c34b4b10adc6c.json.gz",
+        "sha256": "d62880830ae235f2841694c7a81561d379f1ea98e7036a1870976365bd062f7f",
+        "size_bytes": 2935
+      },
+      "sha256": "d62880830ae235f2841694c7a81561d379f1ea98e7036a1870976365bd062f7f",
+      "size_bytes": 2935,
+      "success": false,
+      "trajectory_count": 0
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_6ec081eb0f5408a0e934",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_6ec081eb0f5408a0e934.json.gz",
+      "preserved_copy": {
+        "path": "failed_raw/s42r3c1_6ec081eb0f5408a0e934.json.gz",
+        "sha256": "a4c77544882ac158c8cafd3c744d60d12640ce5d8be2e48a484cd68ffffaca57",
+        "size_bytes": 2934
+      },
+      "sha256": "a4c77544882ac158c8cafd3c744d60d12640ce5d8be2e48a484cd68ffffaca57",
+      "size_bytes": 2934,
+      "success": false,
+      "trajectory_count": 0
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_9f56bf3403ed25612e1f",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_9f56bf3403ed25612e1f.json.gz",
+      "preserved_copy": {
+        "path": "failed_raw/s42r3c1_9f56bf3403ed25612e1f.json.gz",
+        "sha256": "92723cc7990a342e9267874d0c682c2e30db296ac36df831a2de95b4551bd873",
+        "size_bytes": 2935
+      },
+      "sha256": "92723cc7990a342e9267874d0c682c2e30db296ac36df831a2de95b4551bd873",
+      "size_bytes": 2935,
+      "success": false,
+      "trajectory_count": 0
+    }
+  ],
+  "purpose": "preserve_complete_pre_hotfix_runtime_bug_evidence_before_semantics_preserving_resume",
+  "raw_inventory": [
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_0ac739d9f630903c706a",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_0ac739d9f630903c706a.json.gz",
+      "sha256": "ba20ff1610fd504ad5e299857a0bd8ec1cde0816e988ec4fd597c8f549e3584e",
+      "size_bytes": 35022,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_0d7fa08f0caa5920c57b",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_0d7fa08f0caa5920c57b.json.gz",
+      "sha256": "aa6097c6b4804a9d065db7995dee1e0437598944f6afae5f313e1892ee1bd3a0",
+      "size_bytes": 35029,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_0e2bd794a950e79d21a3",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_0e2bd794a950e79d21a3.json.gz",
+      "sha256": "c7ff2bcbe0c0fc9a0733f57f29e129c0bb25a318cce2b807d2a3bc4c8991b5af",
+      "size_bytes": 32730,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_1158eec2af85a1687c50",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_1158eec2af85a1687c50.json.gz",
+      "sha256": "f33a382e43b36f083925e853c40333e0648e190f1eac20ee0e3238e17ff9a84c",
+      "size_bytes": 2935,
+      "success": false,
+      "trajectory_count": 0
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_1bb453c126bcacb47dcd",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_1bb453c126bcacb47dcd.json.gz",
+      "sha256": "f20913a15a735f2e586b2660220bd59a24f6f0fff6fb473dd8be59b5bbae5393",
+      "size_bytes": 35023,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_1be965d393046a0768a8",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_1be965d393046a0768a8.json.gz",
+      "sha256": "fdc098b0cb11653386c90d67466b1ab0e77cf5b29f3b619b3da2d6dca695932d",
+      "size_bytes": 32655,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_2bdc1887560b3886a227",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_2bdc1887560b3886a227.json.gz",
+      "sha256": "6b504e2436ab457c69ca099a926cee180c5a82b025b17695f55b1578e966582b",
+      "size_bytes": 32741,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_2cc0b6a039c298ff0eb6",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_2cc0b6a039c298ff0eb6.json.gz",
+      "sha256": "bc725d7b261965f7003ee7881ee230941fe37e702e9a944996111dd424edfed3",
+      "size_bytes": 35218,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_3f285839dc63859020d5",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_3f285839dc63859020d5.json.gz",
+      "sha256": "5dd4057d32ea88acf0cc4f3759431e49351ad00dc60142d9e8c541fde8676738",
+      "size_bytes": 35150,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_40fb68b1a495bbc3dade",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_40fb68b1a495bbc3dade.json.gz",
+      "sha256": "db55d2141a2aa0c13a029969eab9b3c5f58901b1ca998543a4b12612a9b56f46",
+      "size_bytes": 35185,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_4b8dc85c34b4b10adc6c",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_4b8dc85c34b4b10adc6c.json.gz",
+      "sha256": "d62880830ae235f2841694c7a81561d379f1ea98e7036a1870976365bd062f7f",
+      "size_bytes": 2935,
+      "success": false,
+      "trajectory_count": 0
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_569f4a7cd7a12eab8815",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_569f4a7cd7a12eab8815.json.gz",
+      "sha256": "4930d16c29d376446e65e1c6c88dc05104a6c6b82880578e40019889fdc4a2a7",
+      "size_bytes": 32570,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_6ec081eb0f5408a0e934",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_6ec081eb0f5408a0e934.json.gz",
+      "sha256": "a4c77544882ac158c8cafd3c744d60d12640ce5d8be2e48a484cd68ffffaca57",
+      "size_bytes": 2934,
+      "success": false,
+      "trajectory_count": 0
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_7d1c48c5be7daeb169d0",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_7d1c48c5be7daeb169d0.json.gz",
+      "sha256": "b4de60869f5d2380d41c511f274bc643d7a1b384e658c6361dce872029181118",
+      "size_bytes": 32636,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_7f47bd92b5458cdb0d40",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_7f47bd92b5458cdb0d40.json.gz",
+      "sha256": "cc3a6f9b383546d95fda6612f0d425126e73f55ead30cfd03ce2a61e58a928bf",
+      "size_bytes": 35231,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_7f61fe5202ae33ac2ed0",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_7f61fe5202ae33ac2ed0.json.gz",
+      "sha256": "e645d61e6ca9ddd4ba2b18d780f8414034c8b50a2ac21a0525237bc5f6dd6c7b",
+      "size_bytes": 32814,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_80468ba2375ca639ef00",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_80468ba2375ca639ef00.json.gz",
+      "sha256": "f5434c34e94e06d1140a7655ac598813cae3eb883b0cfd847a9f906838e1643f",
+      "size_bytes": 35241,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_804b35d2b2e62a957702",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_804b35d2b2e62a957702.json.gz",
+      "sha256": "1c61c5face82d7f528c84dd62d29d228761a9f9f68c604e646ee74330a1615b6",
+      "size_bytes": 32844,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_93d020858e4b4355c19d",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_93d020858e4b4355c19d.json.gz",
+      "sha256": "d4233ea2ddff50cd0edbc6a60ee5121ee148ebb04007dd6c73adc103a06a2cad",
+      "size_bytes": 35126,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_965d1418e70a2444e627",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_965d1418e70a2444e627.json.gz",
+      "sha256": "6852dbe8db24fff53084a01bf464f70028056b18d5799dacb1a9e690a19e0f5d",
+      "size_bytes": 32809,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 0,
+      "experiment_id": "s42r3c1_9f56bf3403ed25612e1f",
+      "failure_reason": "ValueError('terminal feedback requires at least two trajectory states')",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_9f56bf3403ed25612e1f.json.gz",
+      "sha256": "92723cc7990a342e9267874d0c682c2e30db296ac36df831a2de95b4551bd873",
+      "size_bytes": 2935,
+      "success": false,
+      "trajectory_count": 0
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_a735458eb7e7667a6a81",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_a735458eb7e7667a6a81.json.gz",
+      "sha256": "24969b9d6582ccea4ab7c6ed89a46b4ad2c7f9a8eb7f09f950d7ac2e658933d9",
+      "size_bytes": 34973,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_a7cf656de03a975cccc8",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_a7cf656de03a975cccc8.json.gz",
+      "sha256": "175d63f4d09e72625fef3c07bd6e489536a308ea4c9c585af35afc6320a0a1a9",
+      "size_bytes": 35161,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_ae25f291dce78230df3f",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_ae25f291dce78230df3f.json.gz",
+      "sha256": "2d56ecd3c5a7bd55ea605ad9702ba6d26609c7f289e0232ec39437153266686a",
+      "size_bytes": 32611,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_c4313cb511404d0937ed",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_c4313cb511404d0937ed.json.gz",
+      "sha256": "64cd26a3a0e21743e2461d23f7ccd4627c54621951415d8d2477a0c39a89662a",
+      "size_bytes": 32635,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 37,
+      "experiment_id": "s42r3c1_c77a5f6732c899e454fd",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_c77a5f6732c899e454fd.json.gz",
+      "sha256": "85746144b5948099cf7b82c38783332c64ef9dd69984e1667adcc0c5c46b20b7",
+      "size_bytes": 35105,
+      "success": true,
+      "trajectory_count": 38
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_de27cb9c9cb3bf4e2653",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_de27cb9c9cb3bf4e2653.json.gz",
+      "sha256": "0d391dd4f058af9f4dff5163f97fca41b3eb833cd06587f8debec6b407a5bc02",
+      "size_bytes": 32817,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_e71fcb89e14e9fe8fe2b",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_e71fcb89e14e9fe8fe2b.json.gz",
+      "sha256": "5b33264ff762a029dd14ee0efe25228e055d0c2d6c39e4f28d13bb04b05c4a7f",
+      "size_bytes": 32758,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_ee404a8e3301e9caacb0",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_ee404a8e3301e9caacb0.json.gz",
+      "sha256": "7cf6b9813b2c7c71bbd771d86915a54d1dd8c35b1ddd5eb1c3cd99f92d95a7fa",
+      "size_bytes": 32779,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_f226e01852c4d3c0ebd4",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_f226e01852c4d3c0ebd4.json.gz",
+      "sha256": "aa7b0b9115057aaad97c4579435c8cb17be4afdee890bfecd467a6be03e3034d",
+      "size_bytes": 32819,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_f7ac14b67b3eddb3659d",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_f7ac14b67b3eddb3659d.json.gz",
+      "sha256": "f3c265ecd2e71bd4d14d856b7d391fc9f258eccbd7395f6b172955602abc4e96",
+      "size_bytes": 32716,
+      "success": true,
+      "trajectory_count": 36
+    },
+    {
+      "completed": true,
+      "controller_trace_count": 35,
+      "experiment_id": "s42r3c1_fd657a535f208c20c6fa",
+      "failure_reason": "",
+      "path": "stage4_2r3c1_authenticated_visible_manifold_control/raw/s42r3c1_fd657a535f208c20c6fa.json.gz",
+      "sha256": "f5b1771571c8b919868c1978ede798d84a2d829cd15a330ec6ea4549f09810c3",
+      "size_bytes": 32573,
+      "success": true,
+      "trajectory_count": 36
+    }
+  ],
+  "run_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+  "runtime_failure_count": 4,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c1"
+}

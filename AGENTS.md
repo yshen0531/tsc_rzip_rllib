@@ -282,21 +282,36 @@ causality, or solver error. R3c matched against an ideal nominal reference
 and selected phases 11--13, while the restart states were nearest to actual
 R17 closed-loop visible phases 12--20.
 
-The current stage is Stage4.2R3c1 authenticated visible-manifold phase MPC
-development. Its design is frozen in:
+Stage4.2R3c1 then authenticated the actual R17 visible R/Z/Ip manifold and
+completed 32/32 successful restart trajectories after a separately audited
+four-task runtime hotfix. Exact plant restart and causality were 32/32, but
+formal control passed only 16/32. Static nearest-visible-phase matching
+repaired none of R3c's failures and regressed four previously passing cases.
+The final 16 failures are genuine closed-loop/controller-design failures,
+not runtime, restart, raw-corruption, or reporting failures.
+
+Terminology remains:
 
 ```text
-docs/codex/reports/STAGE4_2R3C1_PREREGISTERED_DESIGN.md
+R1  = Stage4.2R1 authentic TSC plant-state restart
+R17 = Stage4.1R17 frozen finite static-grid controller source
 ```
 
-R3c1 must use a new controller and experiment identity. It may reuse only the
-exact locked R3b selected snapshots and an authenticated, hashed R17 actual
-closed-loop R/Z/Ip calibration table. It must choose phase from current
-visible R/Z/Ip only, keep formal task time at zero, and never expose source
-actions, current-run future values, source coil/wire currents, or the
-48-wire hidden state to the controller. R3c1 is not independent confirmation;
-a successful repair must be followed by R3d with newly generated unseen
-histories before advancing to new targets.
+The current stage is Stage4.2R3c2 restart target-state regulation MPC
+development. Its new controller/experiment identity and frozen design are
+defined in:
+
+```text
+docs/codex/reports/STAGE4_2R3C2_PREREGISTERED_DESIGN.md
+docs/codex/CURRENT_TASK.md
+```
+
+R3c2 preserves the exact phase-zero R17 path and starts causal target-state
+regulation at task step zero for nonzero visible restart phases. It may never
+use source actions, current-run future values, source/current wire currents,
+or pair/history/prefix labels. It remains development on inspected R3b
+snapshots; a successful repair must be followed by R3d with newly generated
+unseen histories before advancing to new targets.
 
 ## 10. Required validation before server execution
 

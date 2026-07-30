@@ -1,0 +1,58 @@
+[Stage4.2R3c1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c1] source_stage4_2r3b_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3c1] source_stage4_2r3c_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807
+[Stage4.2R3c1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218
+[Stage4.2R3c1] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_370ms.json
+[Stage4.2R3c1] command=offline backend=ray resume=0 workers=128
+[Stage4.2R3c1] Offline gate requires original-start R17 phase 0 and exact action preservation before real TSC.
+[Stage4.2R3c1] Task/formal time starts at zero; reference/model phase matches current R/Z/Ip to authenticated actual R17 R/Z/Ip only.
+[Stage4.2R3c1] Source actions, source coil/wire currents and current-run future values are forbidden from the controller.
+[Stage4.2R3c1] The exact locked R3b four-pair snapshots are a development set, not independent confirmation.
+[Stage4.2R3c1] Full wire current remains post-action audit telemetry and is forbidden from phase selection/control.
+[Stage4.2R3c1] Formal timing remains 250/350 ms for slew 1.0 and 270/370 ms for slew 0.9.
+[Stage4.2R3c1] BC, DAgger and residual RL remain forbidden.
+{
+  "finished": false,
+  "offline_phase_alignment_audit": {
+    "authenticated_visible_reference_manifold_count": 4,
+    "authenticated_visible_reference_manifold_digests": [
+      "02e358437eedcbef385070ff33c98c1e1a493331f3b4402d6ec4daff51c29620",
+      "0766d45a864741efd220b5e3ba3b0fe62fb7eb6abe3caf109a5a39996f09e521",
+      "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "d268cbf408060a8d0da20a3bbbcc23ad15287148f210bc7ccdc578857b58f57e"
+    ],
+    "current_run_future_use_count": 0,
+    "development_hidden_wire_use_count": 0,
+    "development_phase_selection_count": 32,
+    "development_reference_phase_values": [
+      11,
+      12,
+      13,
+      14,
+      20
+    ],
+    "expected_development_phase_selections": 32,
+    "expected_source_cases": 4,
+    "future_action_read_count": 0,
+    "future_measurement_use_count": 0,
+    "hidden_wire_invariant_source_case_count": 4,
+    "maximum_source_action_abs_difference": 0.0,
+    "passed": true,
+    "phase": "offline_visible_state_phase_alignment_audit",
+    "real_tsc_executed": false,
+    "schema_version": 1,
+    "source_action_use_count": 0,
+    "source_case_count": 4,
+    "source_coil_current_use_count": 0,
+    "source_exact_action_count": 4,
+    "source_phase_trace_valid_count": 4,
+    "source_phase_zero_count": 4,
+    "source_wire_current_use_count": 0,
+    "stage": "Stage4.2R3c1"
+  },
+  "phase": "offline_visible_state_phase_alignment_audit",
+  "primary_pass": false,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c1"
+}

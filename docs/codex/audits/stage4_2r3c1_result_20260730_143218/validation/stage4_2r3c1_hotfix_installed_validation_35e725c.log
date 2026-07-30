@@ -1,0 +1,197 @@
+PACKAGE_MANIFEST.json: OK
+configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json: OK
+configs/stage2_2_svd3_corner_feasibility_100ms.json: OK
+configs/stage2_svd3_real_tsc_cem_100ms.json: OK
+configs/stage3_0_svd3_tail_sqp_150ms.json: OK
+configs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms.json: OK
+configs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms.json: OK
+configs/stage3_3_target_conditioned_receding_horizon_mpc_250ms.json: OK
+configs/stage3_4_late_arrival_continuation_mpc_350ms.json: OK
+configs/stage4_0_robustness_recovery_350ms.json: OK
+configs/stage4_1r10_queue_preview_terminal_transition_hold_750ms.json: OK
+configs/stage4_1r11_frozen_terminal_long_horizon_hold_2000ms.json: OK
+configs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_370ms.json: OK
+configs/stage4_1r13_original_deadline_delay_pipeline_early_braking_370ms.json: OK
+configs/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_370ms.json: OK
+configs/stage4_1r15_bounded_early_braking_local_response_identification_370ms.json: OK
+configs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_370ms.json: OK
+configs/stage4_1r16_amplitude_certified_probe_derived_braking_closure_370ms.json: OK
+configs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_370ms.json: OK
+configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json: OK
+configs/stage4_1r3_control_aware_residual_observer_350ms.json: OK
+configs/stage4_1r4_targeted_closure_370ms.json: OK
+configs/stage4_1r5_adaptive_handover_closure_350ms.json: OK
+configs/stage4_1r6_startup_architecture_closure_350ms.json: OK
+configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json: OK
+configs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_410ms.json: OK
+configs/stage4_1r9_terminal_template_mpc_feedback_hold_550ms.json: OK
+configs/stage4_2r1_true_tsc_plant_restart_action_replay_370ms.json: OK
+configs/stage4_2r2_persistent_controller_checkpoint_replay_370ms.json: OK
+configs/stage4_2r3_authentic_hidden_history_initial_state_370ms.json: OK
+configs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_370ms.json: OK
+configs/stage4_2r3b_confirmatory_hidden_history_initial_state_370ms.json: OK
+configs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_370ms.json: OK
+configs/stage4_2r3c1_semantics_preserving_resume_hotfix_v1.json: OK
+configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json: OK
+run_stage4_2r3c1_authenticated_visible_manifold_phase_mpc_native.sh: OK
+run_stage4_2r3c1_authenticated_visible_manifold_phase_mpc_nohup.sh: OK
+run_stage4_2r3c1_self_test.sh: OK
+run_stage4_2r3c1_server_postprocess.sh: OK
+run_stage4_2r3c1_verify_package.sh: OK
+run_stop_stage4_2r3c1_now.sh: OK
+scripts/stage4_2r1_shell_common.sh: OK
+scripts/stage4_2r1_true_tsc_plant_restart_action_replay.py: OK
+scripts/stage4_2r2_persistent_controller_checkpoint_replay.py: OK
+scripts/stage4_2r2_shell_common.sh: OK
+scripts/stage4_2r3_authentic_hidden_history_initial_state.py: OK
+scripts/stage4_2r3_server_postprocess.py: OK
+scripts/stage4_2r3_shell_common.sh: OK
+scripts/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py: OK
+scripts/stage4_2r3a_server_postprocess.py: OK
+scripts/stage4_2r3a_shell_common.sh: OK
+scripts/stage4_2r3b_confirmatory_hidden_history_initial_state.py: OK
+scripts/stage4_2r3b_server_postprocess.py: OK
+scripts/stage4_2r3b_shell_common.sh: OK
+scripts/stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py: OK
+scripts/stage4_2r3c1_server_postprocess.py: OK
+scripts/stage4_2r3c1_shell_common.sh: OK
+scripts/stage4_2r3c_server_postprocess.py: OK
+scripts/stage4_2r3c_shell_common.sh: OK
+scripts/stage4_2r3c_visible_state_phase_aligned_mpc.py: OK
+tests/__init__.py: OK
+tests/conftest.py: OK
+tests/test_ray_runtime_capacity.py: OK
+tests/test_stage2_1_trajectory_optimization.py: OK
+tests/test_stage2_2_trajectory_optimization.py: OK
+tests/test_stage2_trajectory_optimization.py: OK
+tests/test_stage3_0_tail_sqp.py: OK
+tests/test_stage3_1_adaptive_sqp_mpc.py: OK
+tests/test_stage3_2_margin_long_hold_mpc.py: OK
+tests/test_stage3_3_target_conditioned_mpc.py: OK
+tests/test_stage3_4_late_arrival_continuation_mpc.py: OK
+tests/test_stage4_0_robustness_recovery.py: OK
+tests/test_stage4_1_delay_gain_phase_robustness.py: OK
+tests/test_stage4_1r10_queue_preview_terminal_transition_hold.py: OK
+tests/test_stage4_1r11_frozen_terminal_long_horizon_hold.py: OK
+tests/test_stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py: OK
+tests/test_stage4_1r13_original_deadline_delay_pipeline_early_braking.py: OK
+tests/test_stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py: OK
+tests/test_stage4_1r15_bounded_early_braking_local_response_identification.py: OK
+tests/test_stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py: OK
+tests/test_stage4_1r16_amplitude_certified_probe_derived_braking_closure.py: OK
+tests/test_stage4_1r17_original_deadline_one_sided_robust_braking_closure.py: OK
+tests/test_stage4_1r3_control_aware_robustness.py: OK
+tests/test_stage4_1r4_targeted_closure.py: OK
+tests/test_stage4_1r5_adaptive_handover_closure.py: OK
+tests/test_stage4_1r6_startup_architecture_closure.py: OK
+tests/test_stage4_1r7_precontrol_calibration_queue_startup.py: OK
+tests/test_stage4_1r8_trusted_batch_calibration_queue_tail_closure.py: OK
+tests/test_stage4_1r9_terminal_template_mpc_feedback_hold.py: OK
+tests/test_stage4_2r1_true_tsc_plant_restart_action_replay.py: OK
+tests/test_stage4_2r2_persistent_controller_checkpoint_replay.py: OK
+tests/test_stage4_2r3_authentic_hidden_history_initial_state.py: OK
+tests/test_stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py: OK
+tests/test_stage4_2r3b_confirmatory_hidden_history_initial_state.py: OK
+tests/test_stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py: OK
+tests/test_stage4_2r3c_visible_state_phase_aligned_mpc.py: OK
+tsc_rzip_rllib/__init__.py: OK
+tsc_rzip_rllib/core/__init__.py: OK
+tsc_rzip_rllib/core/coil_order.py: OK
+tsc_rzip_rllib/core/gfile.py: OK
+tsc_rzip_rllib/core/inputa.py: OK
+tsc_rzip_rllib/core/runner.py: OK
+tsc_rzip_rllib/diagnostics/__init__.py: OK
+tsc_rzip_rllib/diagnostics/stage1_controllability.py: OK
+tsc_rzip_rllib/diagnostics/stage2_1_trajectory_optimization.py: OK
+tsc_rzip_rllib/diagnostics/stage2_2_trajectory_optimization.py: OK
+tsc_rzip_rllib/diagnostics/stage2_trajectory_optimization.py: OK
+tsc_rzip_rllib/diagnostics/stage3_0_tail_sqp.py: OK
+tsc_rzip_rllib/diagnostics/stage3_1_adaptive_sqp_mpc.py: OK
+tsc_rzip_rllib/diagnostics/stage3_2_margin_long_hold_mpc.py: OK
+tsc_rzip_rllib/diagnostics/stage3_3_target_conditioned_mpc.py: OK
+tsc_rzip_rllib/diagnostics/stage3_4_late_arrival_continuation_mpc.py: OK
+tsc_rzip_rllib/diagnostics/stage4_0_robustness_recovery.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1_delay_gain_phase_robustness.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r10_queue_preview_terminal_transition_hold.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r11_frozen_terminal_long_horizon_hold.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r12_original_deadline_weak_slew_anticipatory_damping.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r13_original_deadline_delay_pipeline_early_braking.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r16_amplitude_certified_probe_derived_braking_closure.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r17_original_deadline_one_sided_robust_braking_closure.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r3_control_aware_robustness.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r4_targeted_closure.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r6_startup_architecture_closure.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r7_precontrol_calibration_queue_startup.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r8_trusted_batch_calibration_queue_tail_closure.py: OK
+tsc_rzip_rllib/diagnostics/stage4_1r9_terminal_template_mpc_feedback_hold.py: OK
+tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py: OK
+tsc_rzip_rllib/diagnostics/stage4_2r2_persistent_controller_checkpoint_replay.py: OK
+tsc_rzip_rllib/diagnostics/stage4_2r3_authentic_hidden_history_initial_state.py: OK
+tsc_rzip_rllib/diagnostics/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py: OK
+tsc_rzip_rllib/diagnostics/stage4_2r3b_confirmatory_hidden_history_initial_state.py: OK
+tsc_rzip_rllib/diagnostics/stage4_2r3c1_authenticated_visible_manifold_phase_mpc.py: OK
+tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py: OK
+tsc_rzip_rllib/envs/__init__.py: OK
+tsc_rzip_rllib/envs/factory.py: OK
+tsc_rzip_rllib/envs/rzip_env.py: OK
+tsc_rzip_rllib/utils/__init__.py: OK
+tsc_rzip_rllib/utils/config.py: OK
+tsc_rzip_rllib/utils/ray_runtime.py: OK
+[Stage4.2R3c1 verify] packaged file checksums passed.
+[Stage4.2R3c1 verify] Python compile, JSON parse, import closure and scientific guardrails passed.
+[Stage4.2R3c1 verify] declared shell scripts passed bash -n.
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=120 actors=96 initialized_now=0
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=24 actors=24 initialized_now=0
+[test] ray_capacity requested=96 cluster_cpus=96 pending=150 actors=96 initialized_now=0
+..{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "created_utc": "20260730_151106",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041,
+      "max_terminal_velocity_m_per_s": 0.02,
+      "max_late_velocity_rms_m_per_s": 0.08
+    }
+  ]
+}
+.{
+  "verdict": "NO_CONFIRMED_HOLD",
+  "created_utc": "20260730_151106",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 0,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 99,
+      "mean_terminal_RZ_error_m": null,
+      "max_terminal_velocity_m_per_s": null,
+      "max_late_velocity_rms_m_per_s": null
+    }
+  ]
+}
+.....[Stage2 evaluation] candidate stored as failure because the result was not strict-JSON serializable: non-finite JSON number at $.trajectory[0].R: nan
+........................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 502 tests in 2.339s
+
+OK
+[Stage4.2R3c1 verify] complete unittest discovery passed.

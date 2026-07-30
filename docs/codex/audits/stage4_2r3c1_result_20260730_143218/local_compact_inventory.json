@@ -1,0 +1,277 @@
+{
+    "schema_version":  1,
+    "purpose":  "local_compact_evidence_inventory",
+    "root":  "docs/codex/audits/stage4_2r3c1_result_20260730_143218",
+    "inventory_file_excluded":  "local_compact_inventory.json",
+    "digest_contract":  "sha256 of UTF-8 rows path\u003cTAB\u003esize_bytes\u003cTAB\u003esha256\u003cLF\u003e, sorted by path",
+    "n_files":  53,
+    "total_bytes":  1317002,
+    "digest":  "2906317fb9089579eb3fce881d86f947c433135eac086d6a9a8afdec0ee846a3",
+    "files":  [
+                  {
+                      "path":  "audit/stage4_2r3c1_raw_control_forensics.json",
+                      "size_bytes":  365344,
+                      "sha256":  "29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd"
+                  },
+                  {
+                      "path":  "audit/stage4_2r3c1_restart_regulation_diagnostic.json",
+                      "size_bytes":  79741,
+                      "sha256":  "9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d"
+                  },
+                  {
+                      "path":  "audit/stage4_2r3c1_run_inventory.json",
+                      "size_bytes":  36295,
+                      "sha256":  "8a2451dd5368f8d0e2dbf6e0b22616751b5136f80ec0dee5ee22e8959062af5e"
+                  },
+                  {
+                      "path":  "audit/stage4_2r3c1_server_audit.json",
+                      "size_bytes":  44059,
+                      "sha256":  "0d81cbe3e0d9b67d72cf093143edd8a825a3b60ea5e3c449cf29de7cf0cc7712"
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218.log",
+                      "size_bytes":  3057,
+                      "sha256":  "25c2ade985c9d89a25a4a95bc2a13ac011109e4337bccaadf894eef914de4063"
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_144049.log",
+                      "size_bytes":  6251,
+                      "sha256":  "b20ead85efcabcc39147abac80844837eb8b8def0f732fe79e285fdb6c1a86f6"
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_151300.log",
+                      "size_bytes":  134,
+                      "sha256":  "7df83c6a6fd75f943a5e9b942452745bcdfe2cef2d2b8ddd1b9c3e8e0ce4fa2b"
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_151450.log",
+                      "size_bytes":  6131,
+                      "sha256":  "43df9e34e2d1df763d08fd103e3c97b168505800c671557f4aadf0710d72e193"
+                  },
+                  {
+                      "path":  "run/control/pair_results.csv",
+                      "size_bytes":  3824,
+                      "sha256":  "4fca41c0866bc0272ed7c144aaaf2b4893152f5a9fdb8cd6874339cb0a5599d6"
+                  },
+                  {
+                      "path":  "run/control/pair_results.json",
+                      "size_bytes":  11700,
+                      "sha256":  "3ed429560b71edf07224b5413a00d624504957b2fd589aa9420bb6f00ba6fe9a"
+                  },
+                  {
+                      "path":  "run/control/results.csv",
+                      "size_bytes":  10424,
+                      "sha256":  "0685a2da6189402c09382f6230620aa52205cd0d31d6b2ad193395121fcb580c"
+                  },
+                  {
+                      "path":  "run/control/results.json",
+                      "size_bytes":  52385,
+                      "sha256":  "208227facfe9cc9c1e2a6f876e07e0442711f08e2936fd3e2f550721d1bef53f"
+                  },
+                  {
+                      "path":  "run/control/summary.json",
+                      "size_bytes":  1842,
+                      "sha256":  "d2f87f540fe638a7fed8e5b5327feb53dbdd651bc2a6edd7935c579595e4344b"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_analysis/stage4_2r3c1_summary.json",
+                      "size_bytes":  3396,
+                      "sha256":  "7980a3dc867f7e527b3873f7f76cdde14cbd2c10fe1ebcd6179c8cb035b8ef9a"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_analysis/stage4_2r3c1_verdict.json",
+                      "size_bytes":  1388,
+                      "sha256":  "35ad3095ca865e434ff38deb13d132173f761b50b4fd06a46c8f3e9e094a10fd"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_config.resolved.json",
+                      "size_bytes":  6274,
+                      "sha256":  "cbfa7388d0ad4af45d20327617e529af73e656a10866777b6481f3286304b3eb"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_manifest.json",
+                      "size_bytes":  34362,
+                      "sha256":  "22922492efcc6500e4a16d73a28bcbe5395f242047ca026bd8f2ea24f80dd1f3"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/deployed_package_fingerprint.json",
+                      "size_bytes":  2604,
+                      "sha256":  "80340703c958f806aaf5914839e5fec32ed5650a5964f1b95a8c625d0522ab1c"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/failed_raw/s42r3c1_1158eec2af85a1687c50.json.gz",
+                      "size_bytes":  2935,
+                      "sha256":  "f33a382e43b36f083925e853c40333e0648e190f1eac20ee0e3238e17ff9a84c"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/failed_raw/s42r3c1_4b8dc85c34b4b10adc6c.json.gz",
+                      "size_bytes":  2935,
+                      "sha256":  "d62880830ae235f2841694c7a81561d379f1ea98e7036a1870976365bd062f7f"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/failed_raw/s42r3c1_6ec081eb0f5408a0e934.json.gz",
+                      "size_bytes":  2934,
+                      "sha256":  "a4c77544882ac158c8cafd3c744d60d12640ce5d8be2e48a484cd68ffffaca57"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/failed_raw/s42r3c1_9f56bf3403ed25612e1f.json.gz",
+                      "size_bytes":  2935,
+                      "sha256":  "92723cc7990a342e9267874d0c682c2e30db296ac36df831a2de95b4551bd873"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/offline_phase_alignment_audit.json",
+                      "size_bytes":  19453,
+                      "sha256":  "04fb013ade57845d305552b4392d456fb4cef327e679530cc069edf58c9355ab"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/pair_results.csv",
+                      "size_bytes":  3607,
+                      "sha256":  "d8120396456f182dcddb3ee8af606381b12535b7da0b3a2077c11af6ca01c2ee"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/pair_results.json",
+                      "size_bytes":  11531,
+                      "sha256":  "8420bdc2fd5c461385dc859f0b6dcb85d34f9f429afee8ff01bd180122cb4180"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/pre_hotfix_evidence_manifest.json",
+                      "size_bytes":  23703,
+                      "sha256":  "30303cc7a907a4ff2cd4c7680f3164990db39ac0495a6b978b9f4cac38a69cc9"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/results.csv",
+                      "size_bytes":  10646,
+                      "sha256":  "dcb2e36c49f73794fee3a78c89616187eb9b93a9bc1b432487c17baa8585ef82"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/results.json",
+                      "size_bytes":  51795,
+                      "sha256":  "5f804d485b1e65ae279edac0652e72c38df530b3bbd65a65810127eb4fd6066f"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218.log",
+                      "size_bytes":  3057,
+                      "sha256":  "25c2ade985c9d89a25a4a95bc2a13ac011109e4337bccaadf894eef914de4063"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_144049.log",
+                      "size_bytes":  6251,
+                      "sha256":  "b20ead85efcabcc39147abac80844837eb8b8def0f732fe79e285fdb6c1a86f6"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/stage4_2r3c1_manifest.json",
+                      "size_bytes":  29482,
+                      "sha256":  "6fcf58fdb025c330024e8c638456be78bb1b8b6ab1a5e959dd652f03168aaace"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/stage4_2r3c1_run_inventory.json",
+                      "size_bytes":  31408,
+                      "sha256":  "c35ea6f61b4b2de30e28321cdc8e1ab4a6c1e9ea5472679a0dfe9a7dab5c6962"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/stage4_2r3c1_server_audit.json",
+                      "size_bytes":  37092,
+                      "sha256":  "39f7e04edc5a6f11373588b9ea24f05be7c72c0b1abd47dc161eb2b3b19fee18"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/stage4_2r3c1_state.json",
+                      "size_bytes":  3224,
+                      "sha256":  "8b49b0607d517389b246ffdda64d41bef71dab51bbe5c17697fb8e9cbfe9bf1b"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/stage4_2r3c1_verdict.json",
+                      "size_bytes":  1390,
+                      "sha256":  "c40ff81a4b531a5c6bf9dfb6a837bb23025f5718c330afa800d404d7b9f84bf4"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_runtime_bug_evidence/pre_hotfix_20260730_145053/summary.json",
+                      "size_bytes":  1853,
+                      "sha256":  "c038066f0408251753a3324dbba0dd71f4103ad60e86c5b842e922a10c40435c"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/authenticated_visible_reference_manifolds.json",
+                      "size_bytes":  9409,
+                      "sha256":  "0865b22fba57a09893677e9dfe49a61c7dbdd3ceee02e2aea9952f4cd12d9472"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/control_specs.json",
+                      "size_bytes":  276995,
+                      "sha256":  "abbdf049b86c50f3ebf1ff06c37d64f2bf8a8e4bc6fab903b24c23481668a0c4"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/deployed_package_fingerprint.json",
+                      "size_bytes":  2604,
+                      "sha256":  "80340703c958f806aaf5914839e5fec32ed5650a5964f1b95a8c625d0522ab1c"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/offline_phase_alignment_audit.json",
+                      "size_bytes":  19453,
+                      "sha256":  "04fb013ade57845d305552b4392d456fb4cef327e679530cc069edf58c9355ab"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/resume_deployed_package_fingerprint.json",
+                      "size_bytes":  2604,
+                      "sha256":  "12f9658c3ff436d23e8875d9062a76f45141a4c150a368369ec12ad13e48aefa"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/selected_snapshot_sources.json",
+                      "size_bytes":  3981,
+                      "sha256":  "bd748c662a8878653313e9ea64c6fdcdd294e28a9ba61314c549a4635984ec2f"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/semantics_preserving_resume_hotfix.json",
+                      "size_bytes":  1579,
+                      "sha256":  "9bdcdf72c3c7120d2f083a75bd533b90a7b74dad0c27e98bdb355adc78f2c89f"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/stage4_2r3b_source_fingerprint.json",
+                      "size_bytes":  4696,
+                      "sha256":  "49923331a75ccbd0a0ccefdb44441115751c3e4ca70610e637173b76dd24ab16"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_source_reference/stage4_2r3c_source_fingerprint.json",
+                      "size_bytes":  3620,
+                      "sha256":  "ad0453c743d14b23bc6238c798537aa968177ece0c18af2c60252e4f772e073a"
+                  },
+                  {
+                      "path":  "run/stage4_2r3c1_state.json",
+                      "size_bytes":  3590,
+                      "sha256":  "0cc11558d0b312b65b419d713cfef595b6e37e5ed2c2ce35c2ee7ee2551abfe9"
+                  },
+                  {
+                      "path":  "validation/stage4_2r3c1_hotfix_installed_validation_35e725c.log",
+                      "size_bytes":  11668,
+                      "sha256":  "c3a0c4d693abbd30fac2ecf7e2a2233296c9ff7da1d1f305c6438ee107133016"
+                  },
+                  {
+                      "path":  "validation/stage4_2r3c1_hotfix_offline_resume_35e725c.log",
+                      "size_bytes":  3057,
+                      "sha256":  "a70c63771036e14576a2b298152e6324aabf30a784487dc3bea22a1fc60ad8d3"
+                  },
+                  {
+                      "path":  "validation/stage4_2r3c1_hotfix_staging_validation_35e725c.log",
+                      "size_bytes":  11668,
+                      "sha256":  "b7bbc4729bfedab6a8968a521427b16428048bfe8769d46ea32b521f13bfd243"
+                  },
+                  {
+                      "path":  "validation/stage4_2r3c1_installed_validation_be3065b.log",
+                      "size_bytes":  11597,
+                      "sha256":  "11a80d54b7149ca21d24b34fc24b77aa442d464c51f6b6ab5bcff41395773689"
+                  },
+                  {
+                      "path":  "validation/stage4_2r3c1_postprocess_installed_validation_0898b28.log",
+                      "size_bytes":  11721,
+                      "sha256":  "6f780e457449ea46ad7ac43f67ba117f9f0fa4afbf6bac685113319bfd513a39"
+                  },
+                  {
+                      "path":  "validation/stage4_2r3c1_postprocess_staging_validation_0898b28.log",
+                      "size_bytes":  11721,
+                      "sha256":  "437183ba16bf15f2c5a3e818ec2ac8a159da36582cbc9fdf64cddb16f7d592cc"
+                  },
+                  {
+                      "path":  "validation/stage4_2r3c1_staging_validation_be3065b.log",
+                      "size_bytes":  11597,
+                      "sha256":  "4abed08d197d3f94f82e7897b52a62de6224ed0851da25f2c66193a1d97d2779"
+                  }
+              ]
+}

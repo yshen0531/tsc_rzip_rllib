@@ -1,126 +1,134 @@
 # Current status
 
-## Stage4.2R2 certified; Stage4.2R3 design is next
+## Stage4.2R3c1 failed; Stage4.2R3c2 is preregistered
 
 Status timestamp: 2026-07-30 Asia/Shanghai
 
-Local R2 code identity:
+Current local branch:
 
 ```text
-branch              = codex/stage4_2r2-controller-checkpoint
-code commit         = 84962ef
-controller_revision = persistent_mpc_controller_checkpoint_replay_v42r2
-package_revision    = r42r2_persistent_controller_checkpoint_v1
+codex/stage4_2r3c1-visible-manifold
 ```
 
-Remote identity:
+R3c1 implementation and forensic checkpoints:
 
 ```text
-source R1c = /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
-R2 run     = /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r2_runs/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082250
-R2 log     = /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r2_persistent_controller_checkpoint_replay_20260730_082828.log
-backend    = Ray
-capacity   = 128
+be3065b  implementation
+35e725c  semantics-preserving first-sample runtime hotfix
+0898b28  reporting-only package-chain audit hotfix
+1e3772d  independent raw forensic tool
 ```
 
-## Certified R2 result
+## R3c1 exact result
 
-R2 persisted causal controller state through the 200 ms checkpoint:
-measurement/observer history, integral, previous correction, pending
-delay queue, trusted calibration and modeled delay/slew, controller phase,
-and fingerprints. Checkpoints contain no future action or measurement.
-
-The offline mandatory gate reconstructed actions without TSC:
+Remote run:
 
 ```text
-checkpoints                        18/18
-exact action cases                 18/18
-suffix actions recomputed          282
-maximum action difference          0
-future action replay               0
-future measurement use             0
-new TSC processes                  0
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/
+stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218
 ```
 
-The real phase used 18 fresh controller/TSC processes:
+Final result:
 
 ```text
-raw rollouts                       18/18
-environment success                18/18
-controller checkpoint loaded       18/18
-online actions exact               18/18
-visible restart suffix exact       18/18
-full wire-current suffix exact     18/18
-formal contract                    18/18
-minimum signed formal margin       1.0456920999768471e-05
-minimum case                       RZ_p10_m10, delay 0, slew 0.9
+expected/final raw                                32/32
+environment success                               32/32
+exact plant restart                               32/32
+causal controller / valid phase trace             32/32
+formal contract pass                              16/32
+real closed-loop failures                             16
 ```
 
-Independent server-side postprocessing covered all 50 R2 input files
-(604,967 bytes, 30 JSON and 18 JSON.GZ) and all 18 source snapshot manifests
-plus 144 payload files (2,133,646,442 bytes). Strict parse, source
-fingerprints, sizes, and SHA-256 checks passed. Independent metrics agree
-with the saved summary.
+The initial run had four phase-20 first-sample runtime exceptions. Their
+complete pre-hotfix evidence was preserved. A compatible resume recomputed
+only those four experiment IDs; all four passed and all 28 prior-success raw
+hashes remained exact. A missing executable bit caused one pre-TSC resume
+launch failure. A later package-chain postprocessing defect was
+reporting-only.
 
-## Classification
+Final classification:
 
-- R2 scientific runtime/environment errors: 0.
-- Final package/import/deployment errors: 0.
-- Raw/snapshot corruption: 0.
-- Final statistics/reporting errors: 0.
-- Controller-checkpoint/design failures in the tested matrix: 0.
-- Plant-restart fidelity failures in the tested matrix: 0.
-- Real formal-control failures in the tested matrix: 0.
-- Real conclusion: finite clean same-source persistent-controller restart is
-  exact and preserves the immutable formal contract 18/18.
+- final runtime/environment errors: 0;
+- final deployment/import errors: 0;
+- raw/snapshot corruption: 0;
+- final statistics/reporting errors: 0;
+- plant-restart failures: 0;
+- controller-causality failures: 0;
+- real closed-loop formal failures: 16;
+- controller-design failure: static visible R/Z/Ip phase matching is
+  insufficient.
 
-Pre-run/tooling incidents were repaired and did not alter the experiment:
-
-- one Windows-to-remote shell quoting failure during clean deployment;
-- a non-idempotent verifier rejection of runtime `__pycache__`;
-- an offline-only state/reporting bug that falsely marked an intentionally
-  unrun replay phase as failed;
-- one postprocessor launch without project `PYTHONPATH`;
-- Windows Unicode-path SFTP failure and a later aggregate SCP timeout during
-  compact evidence retrieval.
-
-The complete classification and command record are in
-`docs/codex/reports/STAGE4_2R2_FORENSIC_REPORT.md`.
-
-## Evidence policy and local compact evidence
-
-No R2 raw JSON.GZ or large snapshot tree was downloaded. Server-side raw and
-snapshot evidence remains at the exact run/source paths above.
-
-Local compact transfer:
+R3c1 moved R3c outcomes as follows:
 
 ```text
-artifacts/server_audits/stage4_2r2_20260730_082250
-files       = 19
-bytes       = 185,302
-JSON parse  = 14/14
-raw/JSON.GZ = 0
+pass -> pass    16
+fail -> fail    12
+pass -> fail     4
+fail -> pass     0
 ```
 
-Tracked compact audit:
+It did not validate hidden-history robustness: eight pair groups passed both
+members and eight failed both members, so common-mode failures mask history
+sensitivity.
+
+## Evidence
 
 ```text
-docs/codex/audits/stage4_2r2_20260730_082250
+run inventory
+  166 files / 3,409,736 bytes
+  5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f
+
+independent raw forensics
+  29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd
+
+server audit
+  0d81cbe3e0d9b67d72cf093143edd8a825a3b60ea5e3c449cf29de7cf0cc7712
+
+pre-hotfix evidence manifest
+  30303cc7a907a4ff2cd4c7680f3164990db39ac0495a6b978b9f4cac38a69cc9
+
+restart-regulation no-TSC diagnostic
+  9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d
+
+formal report
+  docs/codex/reports/STAGE4_2R3C1_FORENSIC_REPORT.md
+
+compact evidence
+  docs/codex/audits/stage4_2r3c1_result_20260730_143218/
 ```
 
-## What remains unvalidated
-
-R2 does not validate matched-visible/different-hidden history, different
-initial state, unseen targets, continuous actuator variation, plant/Jacobian
-error, measurement noise, disturbance recovery, or independent long hold.
-The minimum formal margin remains razor-thin.
+No final large raw JSON.GZ or snapshot tree was downloaded.
 
 ## Active next step
 
-Stage4.2R3 must first preregister and authenticate matched-visible /
-different-hidden-vessel-history pairs and different initial states. Hidden
-wire state is audit evidence, not an online controller input. Invalid pair
-construction, observer/history-identification failure, and real control
-failure must be reported separately.
+Stage4.2R3c2 is frozen in:
 
-BC, DAgger, and residual RL remain blocked.
+```text
+docs/codex/reports/STAGE4_2R3C2_PREREGISTERED_DESIGN.md
+```
+
+It preserves the exact phase-zero R17 path but starts causal target-state
+regulation at task step zero for every nonzero visible restart phase.
+Visible phase remains only for the branch, response-model phase, and
+phase-aligned delay-queue initialization.
+
+The server-side no-TSC diagnostic established:
+
+```text
+development first actions finite/solver success       32/32
+hidden-wire invariant                                  32/32
+zero-velocity causal bootstrap                         32/32
+original R17 phase-zero/actions exact                    4/4
+plant advance / real TSC                                    0
+```
+
+R3c2 is a new controller and experiment identity because its first actions
+differ materially from R3c1. It must complete the entire local validation,
+direct deployment, server validation, offline gate, real TSC, server
+postprocessing, compact download, and independent analysis loop.
+
+## Still blocked
+
+Independent R3d histories, unseen targets, continuous actuator/plant
+variation, noise, disturbance recovery, and independent long hold remain
+unvalidated. BC, DAgger, and bounded residual RL are prohibited.
