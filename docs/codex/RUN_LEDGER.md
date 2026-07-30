@@ -498,3 +498,59 @@
   Stage4.2R3c3 identification-only bounded task-clock response probes on the
   R3c1 target-conditioned baseline; only a passed response/hidden-history
   gate may support R3c4 MPC; no BC/DAgger/RL
+
+## Stage4.2R3c3 restart task-clock local-response identification
+
+- Local runtime implementation:
+  `codex/stage4_2r3c3-restart-response-id` / `8623bcf`
+- Independent forensic tool:
+  `83e78e4`
+- Package/controller:
+  `r42r3c3_restart_task_clock_local_response_identification_v1` /
+  `restart_task_clock_local_response_probe_v42r3c3`
+- Runtime/audit package digest:
+  `1ba40b276a6a998e266e68d044c8ad3e819d86b6f7c8e52c7c60c6000a05a661`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427`
+- Offline gate:
+  exact 256-case grid; 32/32 exact R3c1 baseline first actions and probe-first
+  actions; hidden-wire invariant 32/32; no raw and no real TSC
+- Real execution:
+  exactly 256/256 environment-success/completed raw; fresh controller/TSC,
+  exact plant restart, causal controller trace, four exact bounded zero-net
+  probe issues, and no forbidden controller input in every trajectory
+- Identification result:
+  central symmetry 128/128; matched-hidden-history response 64/64;
+  conditioned rank-4 matrices 32/32; maximum condition number `8.0984`;
+  maximum current utilization `0.3904`
+- Formal diagnostic:
+  125/256 probe trajectories passed and 131/256 failed the unchanged formal
+  contract; this was preregistered as non-acceptance diagnostic data
+- Integrity:
+  1048 files / 25,371,364 bytes / run digest
+  `ef377ce1367d7a969b8f90cdb247445106f50b8706146f4c97b312892e909754`;
+  256 raw files / 8,933,607 bytes / raw digest
+  `88bcd02a5dd2ec4def60c1f2e7f2304fb57859836d3b9a34b090bfd91e00e563`
+- Errors:
+  final runtime, raw/snapshot, restart, causality, solver, identification,
+  and statistics/reporting errors all 0; pre-run staging/test-command and
+  monitoring/download incidents are separately recorded and did not affect
+  the scientific run
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3_FORENSIC_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c3_result_20260730_182427/`
+- Load-bearing hashes:
+  server audit
+  `5172fc54a8446418bbcccd31c84515f62ad2594a52904b831a3b2064d52a44b4`;
+  independent raw-response forensics
+  `1a1d1acb2b6401a726a5e313301d9a37643cf023b4d2013a9f9c37e23f8a097b`;
+  local compact inventory
+  `ed2443a8e3ea5d9559517a815df33bbb706263a3559f902953fcc940898cc957`
+- Classification:
+  finite locked-development-bank local-response identification success;
+  independent hidden-history control robustness and a reliable restart MPC
+  remain unvalidated; probe trajectories are forbidden from expert datasets
+- Next:
+  freeze a compact authenticated R3c3 response bank and preregister a new
+  Stage4.2R3c4 restart-integrated target-conditioned deadline MPC; no
+  BC/DAgger/RL

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3c3_exact_r3b_development_source_v1",
+  "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+  "source_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+  "run_inventory_digest": "301a3ad2be01c83209d8e260c1a8c80f090d01afafb9c173f63cf9219caac8fc",
+  "run_inventory_file_count": 874,
+  "run_inventory_total_bytes": 8538932691,
+  "n_files": 12,
+  "digest": "5c5b6707908cf8777889ef2b00aeef93e7f516d8ac6915687efe7777fa280cee",
+  "files": [
+    {
+      "name": "control_summary",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_hidden_history_control/summary.json",
+      "size_bytes": 1160,
+      "sha256": "ed0b6124228232997ba88442d02824905769031876a95610d5affa0136bd6ca4"
+    },
+    {
+      "name": "manifest",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_manifest.json",
+      "size_bytes": 21361,
+      "sha256": "4fdd037bfd1f5367e4ea374a9193b8084795ec2f928ad6e87eebb2c1ee4a53fe"
+    },
+    {
+      "name": "pair_summary",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_pair_analysis/summary.json",
+      "size_bytes": 3324,
+      "sha256": "07b084148bc0313a302115e868aa7888459162004d546f029d23b9a8bba4b8d8"
+    },
+    {
+      "name": "raw_forensics",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_raw_control_forensics.json",
+      "size_bytes": 550543,
+      "sha256": "975205eff41f62d319e4f6e22643bb687461e42d3c73c1d09f0424f2a7c5cf32"
+    },
+    {
+      "name": "resolved_config",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_config.resolved.json",
+      "size_bytes": 6874,
+      "sha256": "b20c69455278ed1ae97a481cc68cc127816a4ee6a3334896038efbdeb2a01513"
+    },
+    {
+      "name": "run_inventory",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_run_inventory.json",
+      "size_bytes": 194280,
+      "sha256": "f4e9c9d91f5d9439769adca9176431243ebf8d5a430a29cb54a5b15d2b5d6407"
+    },
+    {
+      "name": "selected_pairs",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_pair_analysis/selected_pairs.json",
+      "size_bytes": 34022,
+      "sha256": "f7021babd8cbab4650c23001581c4f5ee8ef4c8fbef6dd6f05ec0d8540200147"
+    },
+    {
+      "name": "server_audit",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_server_audit.json",
+      "size_bytes": 210432,
+      "sha256": "f1e907888e19846d07099714d4b581e26aac80c5675a373364d396db78130831"
+    },
+    {
+      "name": "snapshot_checks",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_audits/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_snapshot_checks.json",
+      "size_bytes": 31971,
+      "sha256": "a979757e4a62ece89635754a2885308549dbd0b8b88f8e849b03f0e648e0b927"
+    },
+    {
+      "name": "state",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state.json",
+      "size_bytes": 2097,
+      "sha256": "2155d5443289cc17b7db6cf97b00a5b6f694c160c34ef1fd9df591b69bd1ec60"
+    },
+    {
+      "name": "state_summary",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/summary.json",
+      "size_bytes": 3324,
+      "sha256": "07b084148bc0313a302115e868aa7888459162004d546f029d23b9a8bba4b8d8"
+    },
+    {
+      "name": "verdict",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_analysis/stage4_2r3b_verdict.json",
+      "size_bytes": 1254,
+      "sha256": "8bf93d44772adc9be8c1a58200de6477236dc4896eb8f7db82641e61acf39bb3"
+    }
+  ]
+}

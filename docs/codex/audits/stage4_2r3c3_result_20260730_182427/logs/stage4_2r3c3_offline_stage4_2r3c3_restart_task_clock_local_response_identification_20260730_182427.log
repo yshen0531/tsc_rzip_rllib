@@ -1,0 +1,43 @@
+[Stage4.2R3c3] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3] source_stage4_2r3b_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3c3] source_stage4_2r3c_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807
+[Stage4.2R3c3] source_stage4_2r3c1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218
+[Stage4.2R3c3] source_stage4_2r3c2_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616
+[Stage4.2R3c3] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+[Stage4.2R3c3] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3_restart_task_clock_local_response_identification_370ms.json
+[Stage4.2R3c3] command=offline backend=ray resume=0 workers=128
+[Stage4.2R3c3] Offline gate requires exact R3c1 baseline first actions in all 32 restart contexts before real TSC.
+[Stage4.2R3c3] The 256 bounded +/- probes are task-clock relative, exactly zero-net, and identification-only.
+[Stage4.2R3c3] Source actions/results, pair/history labels, source/current wire currents and current-run future values are forbidden from the controller.
+[Stage4.2R3c3] The exact locked R3b four-pair snapshots are a development set, not independent confirmation.
+[Stage4.2R3c3] Full wire current remains post-action audit telemetry and is forbidden from phase selection/control.
+[Stage4.2R3c3] Formal timing remains 250/350 ms for slew 1.0 and 270/370 ms for slew 0.9.
+[Stage4.2R3c3] Formal tracking is recorded but is not the preregistered identification acceptance gate.
+[Stage4.2R3c3] BC, DAgger and residual RL remain forbidden.
+{
+  "finished": false,
+  "offline_probe_audit": {
+    "baseline_context_count": 32,
+    "baseline_first_action_exact_count": 32,
+    "expected_baseline_contexts": 32,
+    "expected_probe_specs": 256,
+    "future_action_read_count": 0,
+    "future_measurement_use_count": 0,
+    "hidden_wire_invariant_first_action_count": 32,
+    "pair_or_history_label_controller_input_count": 0,
+    "passed": true,
+    "phase": "offline_restart_task_clock_probe_audit",
+    "probe_first_action_preserved_count": 32,
+    "probe_schedule_exact_count": 256,
+    "probe_spec_count": 256,
+    "real_tsc_executed": false,
+    "schema_version": 1,
+    "source_result_controller_input_count": 0,
+    "stage": "Stage4.2R3c3"
+  },
+  "phase": "offline_restart_task_clock_probe_audit",
+  "primary_pass": false,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3"
+}

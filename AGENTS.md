@@ -305,24 +305,36 @@ failed. The final 20 failures are genuine closed-loop/controller-design
 failures: the zero-nominal terminal regulator is a local damping controller,
 not a finite-horizon restart transport MPC.
 
-The current stage is Stage4.2R3c3 restart task-clock local-response
-identification. Its identification-only experiment identity and frozen
-design are defined in:
+Stage4.2R3c3 then completed 256/256 authentic bounded probe trajectories
+with exact restart, causal probe execution, no runtime/solver/raw/reporting
+error, and all preregistered response gates passed:
 
 ```text
-docs/codex/reports/STAGE4_2R3C2_FORENSIC_REPORT.md
-docs/codex/reports/STAGE4_2R3C3_PREREGISTERED_DESIGN.md
+central symmetry                    128/128
+matched hidden-history response      64/64
+rank-4 conditioned response          32/32
+maximum condition number             8.0984
+maximum current utilization          0.3904
+```
+
+R3c3 is only a finite development-envelope identification result. Its probe
+trajectories are forbidden from expert datasets. The matched-history response
+gate does not independently validate hidden-history closed-loop robustness.
+
+The current stage is Stage4.2R3c4 restart-integrated target-conditioned
+deadline MPC. Before implementation, its compact response bank and full
+controller design must be frozen as required by:
+
+```text
+docs/codex/reports/STAGE4_2R3C3_FORENSIC_REPORT.md
 docs/codex/CURRENT_TASK.md
 ```
 
-R3c3 retains R3c1's target-conditioned nominal controller as the baseline
-and applies preregistered bounded, bidirectional, zero-net physical-mode
-probes at task-relative windows across all 32 restart contexts. Formal
-tracking is diagnostic only. It may never use source actions, current-run
-future values, source/current wire currents, or pair/history/prefix labels
-inside the controller. A new R3c4 controller is allowed only if R3c3
-validates local linearity, conditioning, and matched-hidden-history response
-agreement within the frozen envelope.
+R3c4 may use only current/past visible measurements, target, causal actuator
+estimates, the exact R3c1 nominal controller, and the authenticated bounded
+R3c3 response bank. It may never use source actions/results, current-run
+future values, source/current wire currents, pair/history/prefix labels, or
+raw probe identity inside the controller.
 
 ## 10. Required validation before server execution
 

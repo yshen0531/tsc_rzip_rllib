@@ -1,0 +1,292 @@
+{
+  "stage": "Stage4.2R3c3",
+  "stage_label": "Stage4.2R3c3",
+  "run_name": "stage4_2r3c3_restart_task_clock_local_response_identification",
+  "output_root": "stage4_2r3c3_runs",
+  "controller_revision": "restart_task_clock_local_response_probe_v42r3c3",
+  "package_revision": "r42r3c3_restart_task_clock_local_response_identification_v1",
+  "source_requirements": {
+    "required_stage4_2r3b_run_name": "stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526",
+    "required_stage4_2r3b_stage": "Stage4.2R3b",
+    "required_stage4_2r3b_controller_revision": "confirmatory_hidden_history_initial_state_mpc_v42r3b",
+    "required_stage4_2r3b_package_revision": "r42r3b_confirmatory_hidden_history_v1",
+    "required_stage4_2r3b_run_inventory_digest": "301a3ad2be01c83209d8e260c1a8c80f090d01afafb9c173f63cf9219caac8fc",
+    "required_stage4_2r3b_run_inventory_file_count": 874,
+    "required_stage4_2r3b_run_inventory_total_bytes": 8538932691,
+    "required_stage4_2r3b_run_inventory_file_sha256": "f4e9c9d91f5d9439769adca9176431243ebf8d5a430a29cb54a5b15d2b5d6407",
+    "required_stage4_2r3b_server_audit_sha256": "f1e907888e19846d07099714d4b581e26aac80c5675a373364d396db78130831",
+    "required_stage4_2r3b_raw_forensics_sha256": "975205eff41f62d319e4f6e22643bb687461e42d3c73c1d09f0424f2a7c5cf32",
+    "required_state_raw_count": 72,
+    "required_control_raw_count": 32,
+    "required_snapshot_valid_count": 72,
+    "required_selected_pair_count": 4,
+    "required_selected_pair_ids": [
+      "p5_q1_a0p900_gap2_settle4",
+      "p5_q2_a0p900_gap2_settle4",
+      "p9_q1_a0p750_gap2_settle4",
+      "p9_q2_a0p750_gap2_settle4"
+    ],
+    "require_source_finished": true,
+    "require_source_state_gate_pass": true,
+    "require_source_primary_fail": true,
+    "require_source_control_formal_pass_count": 0,
+    "required_stage4_2r3c_run_name": "stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807",
+    "required_stage4_2r3c_stage": "Stage4.2R3c",
+    "required_stage4_2r3c_controller_revision": "visible_state_phase_aligned_mpc_v42r3c",
+    "required_stage4_2r3c_package_revision": "r42r3c_visible_state_phase_aligned_mpc_v1",
+    "required_stage4_2r3c_run_inventory_digest": "278395b364bb355c73b5f6de7461478b4bb239584a3f6bf9bf048aad12be9d13",
+    "required_stage4_2r3c_run_inventory_file_count": 143,
+    "required_stage4_2r3c_run_inventory_total_bytes": 2963470,
+    "required_stage4_2r3c_run_inventory_file_sha256": "309158ec585abebaab2bce2e60264419d54ce71bee3fc9343c59468bb8b6fe97",
+    "required_stage4_2r3c_server_audit_sha256": "d5276a0f30edbc503e8e09b8850023bcdf00a20cc70504fec54a44eacb0485d2",
+    "required_stage4_2r3c_raw_forensics_sha256": "395427285a5bad0de9611629df0a13ade037ddd4f0e30e993e475a56c3dbafaa",
+    "required_stage4_2r3c_control_raw_count": 32,
+    "required_stage4_2r3c_formal_pass_count": 20,
+    "required_stage4_2r3c_formal_failure_count": 12,
+    "required_stage4_2r3c1_run_name": "stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+    "required_stage4_2r3c1_stage": "Stage4.2R3c1",
+    "required_stage4_2r3c1_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "required_stage4_2r3c1_package_revision": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
+    "required_stage4_2r3c1_run_inventory_digest": "5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f",
+    "required_stage4_2r3c1_run_inventory_file_count": 166,
+    "required_stage4_2r3c1_run_inventory_total_bytes": 3409736,
+    "required_stage4_2r3c1_run_inventory_file_sha256": "8a2451dd5368f8d0e2dbf6e0b22616751b5136f80ec0dee5ee22e8959062af5e",
+    "required_stage4_2r3c1_server_audit_sha256": "0d81cbe3e0d9b67d72cf093143edd8a825a3b60ea5e3c449cf29de7cf0cc7712",
+    "required_stage4_2r3c1_raw_forensics_sha256": "29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd",
+    "required_stage4_2r3c1_restart_regulation_diagnostic_sha256": "9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d",
+    "required_stage4_2r3c1_control_raw_count": 32,
+    "required_stage4_2r3c1_formal_pass_count": 16,
+    "required_stage4_2r3c1_formal_failure_count": 16,
+    "required_stage4_2r3c2_run_name": "stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616",
+    "required_stage4_2r3c2_stage": "Stage4.2R3c2",
+    "required_stage4_2r3c2_controller_revision": "restart_target_state_regulation_mpc_v42r3c2",
+    "required_stage4_2r3c2_package_revision": "r42r3c2_restart_target_state_regulation_mpc_v1",
+    "required_stage4_2r3c2_run_inventory_digest": "2119d2edad615dbb9594ad4332b758a9cf7ffc2e62b988650c41297aace8cff2",
+    "required_stage4_2r3c2_run_inventory_file_count": 147,
+    "required_stage4_2r3c2_run_inventory_total_bytes": 3287591,
+    "required_stage4_2r3c2_run_inventory_file_sha256": "8f9baa408e28a02874a95d4a6549ca6bcdef7bd3d8d3adb94707ed1eede90913",
+    "required_stage4_2r3c2_server_audit_sha256": "87461800e5fd9ea6f228d49e36269eb80ffbb537720fcf804c69812ed2ddf7cf",
+    "required_stage4_2r3c2_raw_forensics_sha256": "644da85280e03015732bb63deb1205bf5fcafeabc53b0f8a9e606565a27efbb2",
+    "required_stage4_2r3c2_control_raw_count": 32,
+    "required_stage4_2r3c2_formal_pass_count": 12,
+    "required_stage4_2r3c2_formal_failure_count": 20
+  },
+  "phase_alignment": {
+    "candidate_min_phase": 0,
+    "candidate_max_phase": 20,
+    "R_scale_m": 0.03,
+    "Z_scale_m": 0.03,
+    "Ip_scale_A": 2000.0,
+    "tie_break": "earliest_phase",
+    "task_clock_starts_at_zero": true,
+    "reference_clock_separate_from_task_clock": true,
+    "align_nominal_reference": true,
+    "align_response_model_phase": true,
+    "align_delay_queue_priming": true,
+    "align_braking_transition": true,
+    "align_terminal_transition": true,
+    "hidden_wire_input_allowed": false,
+    "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+    "reference_fields": [
+      "R",
+      "Z",
+      "Ip"
+    ],
+    "reference_phase_count": 21,
+    "source_actions_allowed": false,
+    "source_coil_currents_allowed": false,
+    "source_wire_currents_allowed": false
+  },
+  "identification_probe": {
+    "baseline_controller": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "baseline_package": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
+    "physical_mode_amplitude": [
+      0.0075,
+      0.0075,
+      0.0
+    ],
+    "basis": [
+      {
+        "probe_id": "early_mode0",
+        "mode": 0,
+        "first_effect_state": 5,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "probe_id": "early_mode1",
+        "mode": 1,
+        "first_effect_state": 5,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "probe_id": "deadline_mode0",
+        "mode": 0,
+        "first_effect_state": 17,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "probe_id": "deadline_mode1",
+        "mode": 1,
+        "first_effect_state": 17,
+        "effect_offsets": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "sign_pattern": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      }
+    ],
+    "probe_signs": [
+      -1,
+      1
+    ],
+    "require_requested_and_applied_zero_net": true,
+    "zero_net_atol": 1e-12,
+    "maximum_current_utilization": 0.55,
+    "central_symmetry": {
+      "maximum_even_velocity_rmse_m_per_s": 0.004,
+      "maximum_even_position_rmse_m": 0.0005,
+      "maximum_even_ip_rmse_A": 20.0
+    },
+    "matched_hidden_history": {
+      "maximum_odd_velocity_rmse_m_per_s": 0.006,
+      "maximum_odd_position_rmse_m": 0.001,
+      "maximum_odd_ip_rmse_A": 40.0
+    },
+    "maximum_selected_velocity_condition_number": 25.0,
+    "formal_tracking_pass_required": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "pair_or_history_label_input_allowed": false,
+    "source_result_input_allowed": false,
+    "source_action_input_allowed": false,
+    "source_or_current_wire_input_allowed": false
+  },
+  "control_matrix": {
+    "targets": [
+      "nominal",
+      "RZ_p10_m10"
+    ],
+    "future_actuator_cases": [
+      {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 1.0
+      },
+      {
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      }
+    ],
+    "history_members": [
+      "plus_first",
+      "minus_first"
+    ],
+    "probe_basis_count": 4,
+    "probe_sign_count": 2,
+    "expected_rollouts_per_baseline_context": 8,
+    "expected_baseline_contexts_per_selected_pair": 8,
+    "expected_rollouts_per_selected_pair": 64,
+    "expected_selected_pairs": 4,
+    "expected_baseline_contexts": 32,
+    "expected_rollouts": 256,
+    "require_fresh_controller": true,
+    "require_fresh_tsc_process": true,
+    "forbid_future_actions": true,
+    "forbid_future_measurements": true,
+    "require_online_action_computation": true
+  },
+  "formal_timing_contract": {
+    "normal": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "arrival_deadline_step": 25,
+      "arrival_deadline_ms": 250,
+      "hold_through_step": 35,
+      "hold_through_ms": 350
+    },
+    "weak": {
+      "slew_scales": [
+        0.9
+      ],
+      "arrival_deadline_step": 27,
+      "arrival_deadline_ms": 270,
+      "hold_through_step": 37,
+      "hold_through_ms": 370
+    },
+    "arrival_streak_steps_unchanged": true,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_threshold_unchanged": true,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_2r3c3"
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "development_set_only": true,
+  "independent_hidden_history_confirmation": false,
+  "different_initial_state_validated": false,
+  "unseen_target_validated": false,
+  "continuous_parameter_change_validated": false,
+  "plant_jacobian_error_validated": false,
+  "measurement_noise_validated": false,
+  "disturbance_recovery_validated": false,
+  "independent_long_hold_validated": false,
+  "bc_dagger_or_rl_allowed": false,
+  "next_if_pass": "Preregister Stage4.2R3c4 restart-integrated target-conditioned deadline MPC inside the validated bounded response envelope; do not start BC, DAgger, or RL",
+  "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold"
+}

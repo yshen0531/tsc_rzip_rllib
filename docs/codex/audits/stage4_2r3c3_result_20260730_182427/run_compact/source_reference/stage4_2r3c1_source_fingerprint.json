@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3c3_exact_failed_r3c1_evidence_v1",
+  "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+  "source_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218",
+  "run_inventory_digest": "5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f",
+  "run_inventory_file_count": 166,
+  "run_inventory_total_bytes": 3409736,
+  "formal_pass_count": 16,
+  "formal_failure_count": 16,
+  "restart_regulation_diagnostic_sha256": "9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d",
+  "n_files": 10,
+  "digest": "6da08914bd42b4975cab45744699f53b8213c761f297272592f28801b1c12b33",
+  "files": [
+    {
+      "name": "control_results",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_authenticated_visible_manifold_control/results.json",
+      "size_bytes": 52385,
+      "sha256": "208227facfe9cc9c1e2a6f876e07e0442711f08e2936fd3e2f550721d1bef53f"
+    },
+    {
+      "name": "control_summary",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_authenticated_visible_manifold_control/summary.json",
+      "size_bytes": 1842,
+      "sha256": "d2f87f540fe638a7fed8e5b5327feb53dbdd651bc2a6edd7935c579595e4344b"
+    },
+    {
+      "name": "manifest",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_manifest.json",
+      "size_bytes": 34362,
+      "sha256": "22922492efcc6500e4a16d73a28bcbe5395f242047ca026bd8f2ea24f80dd1f3"
+    },
+    {
+      "name": "raw_forensics",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_raw_control_forensics.json",
+      "size_bytes": 365344,
+      "sha256": "29e37da1d570179228a39700ac4f4c2c66067cf2a7295c2b744f2bfb40d50edd"
+    },
+    {
+      "name": "resolved_config",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_config.resolved.json",
+      "size_bytes": 6274,
+      "sha256": "cbfa7388d0ad4af45d20327617e529af73e656a10866777b6481f3286304b3eb"
+    },
+    {
+      "name": "restart_regulation_diagnostic",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_restart_regulation_diagnostic.json",
+      "size_bytes": 79741,
+      "sha256": "9a278b5e97416ae2d98d05b4cff7ad2328ddd0a1ec8f3d14ded0421b184c124d"
+    },
+    {
+      "name": "run_inventory",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_run_inventory.json",
+      "size_bytes": 36295,
+      "sha256": "8a2451dd5368f8d0e2dbf6e0b22616751b5136f80ec0dee5ee22e8959062af5e"
+    },
+    {
+      "name": "server_audit",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_audits/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_server_audit.json",
+      "size_bytes": 44059,
+      "sha256": "0d81cbe3e0d9b67d72cf093143edd8a825a3b60ea5e3c449cf29de7cf0cc7712"
+    },
+    {
+      "name": "state",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_state.json",
+      "size_bytes": 3590,
+      "sha256": "0cc11558d0b312b65b419d713cfef595b6e37e5ed2c2ce35c2ee7ee2551abfe9"
+    },
+    {
+      "name": "verdict",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c1_runs/stage4_2r3c1_authenticated_visible_manifold_phase_mpc_20260730_143218/stage4_2r3c1_analysis/stage4_2r3c1_verdict.json",
+      "size_bytes": 1388,
+      "sha256": "35ad3095ca865e434ff38deb13d132173f761b50b4fd06a46c8f3e9e094a10fd"
+    }
+  ]
+}

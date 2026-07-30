@@ -1,143 +1,148 @@
 # Current status
 
-## Stage4.2R3c2 failed; Stage4.2R3c3 is preregistered
+## Stage4.2R3c3 passed; Stage4.2R3c4 preregistration is next
 
-Status timestamp: 2026-07-30 Asia/Shanghai
+Status timestamp: 2026-07-31 Asia/Shanghai
 
 Current local branch:
 
 ```text
-codex/stage4_2r3c2-restart-regulation
+codex/stage4_2r3c3-restart-response-id
 ```
 
-R3c2 implementation checkpoint:
+Runtime implementation checkpoint:
 
 ```text
-c4b9143  restart target-state regulation MPC
+8623bcf  final R3c3 runtime and package
 ```
 
-## R3c2 exact result
+Independent forensic checkpoint:
+
+```text
+83e78e4  independent raw response forensics
+```
+
+## R3c3 exact result
 
 Remote run:
 
 ```text
-/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/
-stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/
+stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
 ```
 
-Final raw-derived result:
+Raw-derived result:
 
 ```text
-expected/final raw                                32/32
-environment success                               32/32
-fresh controller / fresh TSC                      32/32
-exact plant restart                               32/32
-causal complete regulator trace                 1152/1152
-formal contract pass                              12/32
-real formal failures                                  20
+expected / parsed raw                         256 / 256
+environment success / completed               256 / 256
+exact plant restart                            256 / 256
+causal exact probe execution                   256 / 256
+central-symmetry groups                        128 / 128 PASS
+matched-hidden-history groups                    64 / 64 PASS
+conditioned rank-4 response groups               32 / 32 PASS
+maximum selected condition number              8.0984 <= 25
+maximum current utilization                    0.3904 <= 0.55
+formal contract pass                           125 / 256
+real formal failures                           131 / 256
 ```
+
+Formal tracking was preregistered as diagnostic-only. Probe trajectories are
+identification data and are forbidden from every expert dataset.
 
 Final classification:
 
 - runtime/environment errors: 0;
-- final packaging/import errors: 0;
+- packaging/import/deployment errors affecting the run: 0;
 - raw/snapshot corruption: 0;
 - statistics/reporting errors: 0;
 - plant-restart failures: 0;
 - controller-causality failures: 0;
-- solver failures: 0;
-- saturated action elements: 0/16,128;
-- deployment-command incident: one pre-run quoting/install failure, fully
-  restored and revalidated before TSC;
-- controller-design failure: zero-nominal terminal damping is not a
-  finite-horizon restart transport controller;
-- real closed-loop formal failures: 20.
+- probe-execution/solver failures: 0;
+- response-identification design failures: 0;
+- real formal failures of perturbed probe trajectories: 131;
+- finite development-envelope identification success: yes;
+- independent hidden-history robustness: not validated.
 
-R3c1-to-R3c2 outcome movement:
+## Response bounds
 
 ```text
-pass -> pass    12
-fail -> fail    16
-pass -> fail     4
-fail -> pass     0
+central even velocity RMSE max      0.0012790224 m/s  <= 0.004
+central even position RMSE max      0.0001068371 m    <= 0.0005
+central even Ip RMSE max            2.8750260 A       <= 20
+
+hidden odd velocity RMSE max        0.0013169411 m/s  <= 0.006
+hidden odd position RMSE max        0.0001102332 m    <= 0.001
+hidden odd Ip RMSE max              2.4495309 A       <= 40
+
+condition number min / mean / max   1.8785 / 3.9845 / 8.0984
 ```
 
-Grouped R3c2 outcome:
-
-```text
-prefix 5                    0/16
-prefix 9                   12/16
-nominal target              8/16
-offset target               4/16
-normal actuator             8/16
-weak actuator               4/16
-```
-
-The 20 formal failures all have unavoidable position violations. Four also
-have unavoidable endpoint-late-speed violations. Hidden-history robustness
-remains inconclusive because six pair groups passed both members and ten
-failed both members.
+Within the exact four-pair development bank and the `0.0075` local probe
+envelope, matched-visible alternate hidden histories had sufficiently
+similar signed responses. This is not an independent new-history control
+result.
 
 ## Evidence
 
 ```text
+runtime/audit package digest
+  1ba40b276a6a998e266e68d044c8ad3e819d86b6f7c8e52c7c60c6000a05a661
+
 run inventory
-  147 files / 3,287,591 bytes
-  2119d2edad615dbb9594ad4332b758a9cf7ffc2e62b988650c41297aace8cff2
+  1048 files / 25,371,364 bytes
+  ef377ce1367d7a969b8f90cdb247445106f50b8706146f4c97b312892e909754
 
 raw inventory
-  32 files / 1,070,893 bytes
-  b01a07c9dc136677f323d292d0f9388904cc39663514bf4025f4fa4fed767653
+  256 files / 8,933,607 bytes
+  88bcd02a5dd2ec4def60c1f2e7f2304fb57859836d3b9a34b090bfd91e00e563
 
 server audit SHA-256
-  87461800e5fd9ea6f228d49e36269eb80ffbb537720fcf804c69812ed2ddf7cf
+  5172fc54a8446418bbcccd31c84515f62ad2594a52904b831a3b2064d52a44b4
 
 independent raw forensics SHA-256
-  644da85280e03015732bb63deb1205bf5fcafeabc53b0f8a9e606565a27efbb2
+  1a1d1acb2b6401a726a5e313301d9a37643cf023b4d2013a9f9c37e23f8a097b
 
 local compact inventory
-  12 files / 903,923 bytes
-  35ac2b2731047a7e2d5e67e63d28b9eb108b649c31cb712af012a20fd3a2f0b1
-
-formal report
-  docs/codex/reports/STAGE4_2R3C2_FORENSIC_REPORT.md
-
-compact evidence
-  docs/codex/audits/stage4_2r3c2_result_20260730_164616/
+  30 files / 1,871,530 bytes
+  ed2443a8e3ea5d9559517a815df33bbb706263a3559f902953fcc940898cc957
 ```
 
-Large raw JSON.GZ and snapshot trees remain server-side.
+Formal report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3_FORENSIC_REPORT.md
+```
+
+Compact evidence:
+
+```text
+docs/codex/audits/stage4_2r3c3_result_20260730_182427/
+```
+
+Large raw JSON.GZ and generated environment variants remain server-side.
 
 ## Active next step
 
-R3c3 is frozen in:
+Freeze a compact authenticated R3c3 response bank on the server, download
+only that compact model, and preregister Stage4.2R3c4.
 
-```text
-docs/codex/reports/STAGE4_2R3C3_PREREGISTERED_DESIGN.md
-```
+R3c4 must be a new restart-integrated target-conditioned deadline MPC. It
+may use only:
 
-R3c3 is not another controller attempt. It is a 256-rollout,
-identification-only campaign using the exact R3c1 target-conditioned nominal
-controller plus fixed `0.0075`, bidirectional, zero-net mode-0/mode-1 probes
-at task-state anchors 5 and 17.
+- current and past visible state/current measurements;
+- the requested target;
+- causal actuator delay/gain/slew estimates;
+- the frozen R3c1 nominal controller;
+- the bounded R3c3 local response envelope.
 
-It will independently test:
-
-- exact restart and causal task-relative probe execution;
-- bounded local central symmetry;
-- four-basis response conditioning;
-- matched-visible hidden-history response disagreement.
-
-The probe bank cannot enter an expert dataset. Formal outcomes are recorded
-but are not used to pass an identification probe.
-
-Only a passed R3c3 may support an R3c4 restart-integrated
-target-conditioned deadline MPC. A hidden-history response disagreement
-failure instead routes to causal observer/history-state identification.
+It may not use source actions/results, future current-run values, full wire
+current, pair/history/prefix labels, or probe trajectories as demonstrations.
+It must preserve the immutable 250/350 ms and 270/370 ms formal contract.
 
 ## Still blocked
 
-Reliable restart MPC closure, independent new histories, unseen targets,
-continuous actuator/plant variation, noise, disturbance recovery, and
-independent long hold remain unvalidated. BC, DAgger, and bounded residual RL
-are prohibited.
+A reliable restart MPC expert, independent new histories and initial states,
+unseen targets, continuous actuator/plant variation, noise, disturbance
+recovery, and independent long hold remain unvalidated. BC, DAgger, and
+bounded residual RL remain prohibited.

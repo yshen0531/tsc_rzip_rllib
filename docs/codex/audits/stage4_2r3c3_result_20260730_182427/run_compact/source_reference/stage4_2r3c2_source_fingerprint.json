@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3c3_exact_failed_r3c2_evidence_v1",
+  "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616",
+  "source_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_audits/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616",
+  "run_inventory_digest": "2119d2edad615dbb9594ad4332b758a9cf7ffc2e62b988650c41297aace8cff2",
+  "run_inventory_file_count": 147,
+  "run_inventory_total_bytes": 3287591,
+  "formal_pass_count": 12,
+  "formal_failure_count": 20,
+  "n_files": 9,
+  "digest": "18294397178aa23afb706f39f9963b485c362f0343d3f53166943e744567c39e",
+  "files": [
+    {
+      "name": "control_results",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_restart_target_state_regulation_control/results.json",
+      "size_bytes": 57725,
+      "sha256": "a2d1cc175c00d810a2b053b135b00b41a6bc331f089644d074502b3ba2491fd9"
+    },
+    {
+      "name": "control_summary",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_restart_target_state_regulation_control/summary.json",
+      "size_bytes": 2018,
+      "sha256": "ea93ed4baa3bf17f218cee6b45d74f05d1772bd8cf41928d01f66e34b8220dd5"
+    },
+    {
+      "name": "manifest",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_manifest.json",
+      "size_bytes": 35005,
+      "sha256": "2fe9b51fc8ede90623e7f2b9f71e2d67888a519301fec9bc6eee186df91ae467"
+    },
+    {
+      "name": "raw_forensics",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_audits/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_raw_control_forensics.json",
+      "size_bytes": 370333,
+      "sha256": "644da85280e03015732bb63deb1205bf5fcafeabc53b0f8a9e606565a27efbb2"
+    },
+    {
+      "name": "resolved_config",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_config.resolved.json",
+      "size_bytes": 8289,
+      "sha256": "2d61388b4acbdbb7ae77ac5d049424c612dfc528ba8f2eeb8e5326cdf8262f0c"
+    },
+    {
+      "name": "run_inventory",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_audits/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_run_inventory.json",
+      "size_bytes": 31876,
+      "sha256": "8f9baa408e28a02874a95d4a6549ca6bcdef7bd3d8d3adb94707ed1eede90913"
+    },
+    {
+      "name": "server_audit",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_audits/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_server_audit.json",
+      "size_bytes": 38593,
+      "sha256": "87461800e5fd9ea6f228d49e36269eb80ffbb537720fcf804c69812ed2ddf7cf"
+    },
+    {
+      "name": "state",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_state.json",
+      "size_bytes": 3783,
+      "sha256": "20d909330dcd8b55014a01b32485e0ff0598ee6fb0b790b74a9f397e83d1ffa5"
+    },
+    {
+      "name": "verdict",
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c2_runs/stage4_2r3c2_restart_target_state_regulation_mpc_20260730_164616/stage4_2r3c2_analysis/stage4_2r3c2_verdict.json",
+      "size_bytes": 1554,
+      "sha256": "667cab5f1389c94ec62f0946b7d4cd1d964145668b637b2ab75597cb2f6ad686"
+    }
+  ]
+}

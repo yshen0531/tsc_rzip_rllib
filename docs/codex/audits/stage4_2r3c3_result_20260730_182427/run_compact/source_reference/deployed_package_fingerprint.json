@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3c3_deployed_package_source_v1",
+  "n_files": 13,
+  "digest": "1ba40b276a6a998e266e68d044c8ad3e819d86b6f7c8e52c7c60c6000a05a661",
+  "files": [
+    {
+      "path": "PACKAGE_MANIFEST.json",
+      "size_bytes": 18873,
+      "sha256": "26ce9dc16a0bac00e73542bd52325ab2adb54ed4d453570e850099e5f1012ee4"
+    },
+    {
+      "path": "SHA256SUMS",
+      "size_bytes": 19608,
+      "sha256": "961226047d61f020b6f3b50d5f91dac3a510a19b847645439d84f7ae110f423d"
+    },
+    {
+      "path": "configs/stage4_2r3c3_restart_task_clock_local_response_identification_370ms.json",
+      "size_bytes": 10764,
+      "sha256": "7181bde6b18a52e54d386094a8da48c0eb8d2507bb9feab0c2507a08eaf2e793"
+    },
+    {
+      "path": "run_stage4_2r3c3_restart_task_clock_local_response_identification_native.sh",
+      "size_bytes": 3026,
+      "sha256": "2f4c667493c754f664bb51abcb64b3984573835ed2578a9d0428f2292763772d"
+    },
+    {
+      "path": "run_stage4_2r3c3_restart_task_clock_local_response_identification_nohup.sh",
+      "size_bytes": 1877,
+      "sha256": "c7bf3d35326ace2674ac06c4ed5d328980b20de1cbdc9c7c43881d9d669f5d7d"
+    },
+    {
+      "path": "run_stage4_2r3c3_self_test.sh",
+      "size_bytes": 349,
+      "sha256": "e810f81f3f15ee1fa431902211c661df2d4e7c388af5695956bbd90f2607e74c"
+    },
+    {
+      "path": "run_stage4_2r3c3_server_postprocess.sh",
+      "size_bytes": 1322,
+      "sha256": "5ad2f29b337ff0455a34bf168ffe53f3c20a29ab1b4b0afb1eaaa1ac886c1d55"
+    },
+    {
+      "path": "run_stage4_2r3c3_verify_package.sh",
+      "size_bytes": 13210,
+      "sha256": "d3f3642c48084ae4f758418435bcd1496b561226cea32f2261e2bac865310b5e"
+    },
+    {
+      "path": "run_stop_stage4_2r3c3_now.sh",
+      "size_bytes": 939,
+      "sha256": "baa0bda2f06b75850277202d2f0f124f0a72de87e61caf32d73e927a8b4156d5"
+    },
+    {
+      "path": "scripts/stage4_2r3c3_shell_common.sh",
+      "size_bytes": 9188,
+      "sha256": "995692d2b1f76f4348b1727076ef6d0d633cd11d13f37d6976164a85db376355"
+    },
+    {
+      "path": "scripts/stage4_2r3c3_restart_task_clock_local_response_identification.py",
+      "size_bytes": 219,
+      "sha256": "8de23e2283da43e22c478ca8e40f7f45189edcb9547020a5a800eea4f2f84680"
+    },
+    {
+      "path": "scripts/stage4_2r3c3_server_postprocess.py",
+      "size_bytes": 13327,
+      "sha256": "b60e8f0564d3fd5d9b2712a7028aed15a724edc76b488029179aa6ac671fec00"
+    },
+    {
+      "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3_restart_task_clock_local_response_identification.py",
+      "size_bytes": 155248,
+      "sha256": "766b50a819d188e529fbe034babef47128db6f361b0ad8368fb2bf5562fe6a77"
+    }
+  ]
+}
