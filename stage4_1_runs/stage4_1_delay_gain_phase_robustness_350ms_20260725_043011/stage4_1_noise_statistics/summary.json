@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1",
+  "phase": "noise_statistics",
+  "n_rollouts": 126,
+  "level_target_summaries": [
+    {
+      "target_id": "nominal",
+      "noise_level": "low",
+      "n_seeds": 12,
+      "n_pass": 7,
+      "pass_fraction": 0.5833333333333334,
+      "wilson_lower_bound": 0.3195073356553728,
+      "minimum_pass_fraction": 0.98,
+      "passed": false
+    },
+    {
+      "target_id": "nominal",
+      "noise_level": "medium",
+      "n_seeds": 16,
+      "n_pass": 8,
+      "pass_fraction": 0.5,
+      "wilson_lower_bound": 0.2799923761135083,
+      "minimum_pass_fraction": 0.95,
+      "passed": false
+    },
+    {
+      "target_id": "nominal",
+      "noise_level": "high",
+      "n_seeds": 32,
+      "n_pass": 13,
+      "pass_fraction": 0.40625,
+      "wilson_lower_bound": 0.25519402480313796,
+      "minimum_pass_fraction": 0.9,
+      "passed": false
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "noise_level": "low",
+      "n_seeds": 12,
+      "n_pass": 0,
+      "pass_fraction": 0.0,
+      "wilson_lower_bound": 0.0,
+      "minimum_pass_fraction": 0.98,
+      "passed": false
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "noise_level": "medium",
+      "n_seeds": 16,
+      "n_pass": 0,
+      "pass_fraction": 0.0,
+      "wilson_lower_bound": 0.0,
+      "minimum_pass_fraction": 0.95,
+      "passed": false
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "noise_level": "high",
+      "n_seeds": 32,
+      "n_pass": 2,
+      "pass_fraction": 0.0625,
+      "wilson_lower_bound": 0.01731020319515724,
+      "minimum_pass_fraction": 0.9,
+      "passed": false
+    }
+  ],
+  "passed": false
+}

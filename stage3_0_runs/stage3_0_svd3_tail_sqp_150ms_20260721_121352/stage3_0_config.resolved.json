@@ -1,0 +1,268 @@
+{
+  "stage_label": "Stage 3.0",
+  "run_name": "stage3_0_svd3_tail_sqp_150ms",
+  "output_root": "stage3_0_runs",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Use the validated runtime-only TSC environment. The episode is extended from 100 ms to 150 ms; each TSC control step remains 10 ms."
+  },
+  "parallel": {
+    "n_workers": 96,
+    "ray_tmpdir": "/tmp/stage3_0"
+  },
+  "trajectory": {
+    "horizon_ms": 150,
+    "horizon_steps": 15,
+    "source_horizon_steps": 10,
+    "n_modes": 3,
+    "source_node_steps": [
+      0,
+      2,
+      4,
+      6,
+      9
+    ],
+    "tail_variable_steps": [
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "frozen_action_steps": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "coefficient_lower": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper": [
+      2.6,
+      2.6,
+      0.9
+    ],
+    "description": "The first nine 10 ms actions are inherited exactly from a real-TSC validated Stage2.2 nominal. Six independent three-mode controls at steps 9-14 provide 18 tail variables, removing the old five-node interpolation bottleneck."
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "allowed_arrival_steps": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_tolerance_a": 10000.0,
+    "description": "Arrival may occur from 120 to 150 ms. At an accepted endpoint, the preceding three samples must be inside the rectangular tube, and the trajectory must remain inside that tube through 150 ms. Endpoint late-speed RMS, post-arrival speed RMS, final speed, and post-arrival Ip must remain safe."
+  },
+  "objective": {
+    "non_strict_offset": 1000000.0,
+    "max_violation_weight": 100000.0,
+    "sum_violation_weight": 4000.0,
+    "l2_violation_weight": 1000.0,
+    "quality_weights": {
+      "position_core": 2.0,
+      "velocity_core": 1.5,
+      "terminal_ip_core": 0.05,
+      "arrival_time_core": 0.15,
+      "action_rms": 0.02,
+      "delta_action_rms": 0.04,
+      "repair": 2.0
+    },
+    "description": "Any real precise sustained pass outranks every non-pass. Otherwise candidates minimize the largest normalized position/speed/Ip violation across the allowed 120-150 ms arrival endpoints."
+  },
+  "nominals": {
+    "count": 8,
+    "corner_candidates": 3,
+    "speed_safe_candidates": 2,
+    "gate_candidates": 2,
+    "position_front_candidates": 1,
+    "minimum_vector_distance": 0.01,
+    "description": "Use multiple real-TSC Stage2.2 families instead of committing to one open-loop trajectory."
+  },
+  "screen": {
+    "templates_per_nominal": 12,
+    "mode_residual_amplitude": [
+      0.08,
+      0.08,
+      0.03
+    ],
+    "random_seed": 20260723,
+    "description": "The first wave evaluates 96 deterministic 150 ms extensions: eight validated 100 ms nominals times twelve zero/hold/ramp/slope/pulse tail templates.",
+    "minimum_successful_candidates": 48,
+    "minimum_successful_nominals": 4
+  },
+  "sqp": {
+    "max_rounds": 3,
+    "centers_per_round": 2,
+    "variables": 18,
+    "probe_delta_by_step_mode": [
+      [
+        0.018,
+        0.018,
+        0.007
+      ],
+      [
+        0.028,
+        0.028,
+        0.01
+      ],
+      [
+        0.035,
+        0.035,
+        0.013
+      ],
+      [
+        0.04,
+        0.04,
+        0.015
+      ],
+      [
+        0.04,
+        0.04,
+        0.015
+      ],
+      [
+        0.04,
+        0.04,
+        0.015
+      ]
+    ],
+    "trust_radius_by_step_mode": [
+      [
+        0.05,
+        0.05,
+        0.018
+      ],
+      [
+        0.1,
+        0.1,
+        0.035
+      ],
+      [
+        0.14,
+        0.14,
+        0.05
+      ],
+      [
+        0.16,
+        0.16,
+        0.06
+      ],
+      [
+        0.16,
+        0.16,
+        0.06
+      ],
+      [
+        0.16,
+        0.16,
+        0.06
+      ]
+    ],
+    "initial_trust_scale": 1.0,
+    "minimum_trust_scale": 0.3,
+    "trust_shrink_on_improvement": 0.9,
+    "trust_shrink_without_improvement": 0.65,
+    "meaningful_improvement": 0.0001,
+    "center_minimum_distance": 0.03,
+    "linear_solver": {
+      "softplus_beta": 80.0,
+      "delta_l2": 0.05,
+      "tail_smoothness": 0.03,
+      "max_iterations": 400,
+      "profiles": {
+        "balanced": {
+          "position": 1.0,
+          "velocity": 1.0,
+          "tube_excess": 3.0
+        },
+        "position": {
+          "position": 2.0,
+          "velocity": 0.55,
+          "tube_excess": 5.0
+        },
+        "damping": {
+          "position": 0.75,
+          "velocity": 2.2,
+          "tube_excess": 2.0
+        }
+      }
+    },
+    "description": "Each round runs 72 exact real-TSC finite-difference probes around two centers, builds two 18-variable local Jacobians, then evaluates 24 trust-region SQP proposals. Probes are not merely archived; they explicitly generate the next control corrections."
+  },
+  "controller_identification": {
+    "enabled": true,
+    "probe_delta_by_step_mode": [
+      [
+        0.01,
+        0.01,
+        0.004
+      ],
+      [
+        0.016,
+        0.016,
+        0.006
+      ],
+      [
+        0.02,
+        0.02,
+        0.008
+      ],
+      [
+        0.024,
+        0.024,
+        0.009
+      ],
+      [
+        0.024,
+        0.024,
+        0.009
+      ],
+      [
+        0.024,
+        0.024,
+        0.009
+      ]
+    ],
+    "ridge_lambda": 0.05,
+    "description": "After optimization, identify one final 18-variable real-TSC tail Jacobian and export an MPC-compatible batch sensitivity/gain bundle. This is an offline POC, not a validated online feedback controller."
+  },
+  "confirmation": {
+    "max_unique_candidates": 8,
+    "repeats_per_candidate": 3,
+    "strict_candidates": 3,
+    "corner_candidates": 4,
+    "speed_safe_candidates": 2,
+    "relaxed_candidates": 2,
+    "earliest_arrival_candidates": 2,
+    "description": "Category-aware deterministic replay. Repetition confirms reproducibility only, not robustness to altered initial state, target, or model parameters."
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 600.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "description": "All temporary TSC runtime and episode directories remain under /tmp and are deleted promptly."
+  }
+}

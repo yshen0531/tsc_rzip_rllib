@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R4",
+  "phase": "confirmation",
+  "n_rollouts": 4,
+  "n_source_scenarios": 2,
+  "n_estimator_delay_slew_pairs_confirmed": 0,
+  "minimum_estimator_delay_slew_pairs_required": 6,
+  "tracking_passed": true,
+  "estimator_coverage_passed": false,
+  "estimator_identification_passed": true,
+  "scenario_summaries": [
+    {
+      "source_experiment_id": "s41r4_a71e5620a524891b36b1",
+      "scenario_type": "weak_slew",
+      "actual_action_delay_steps": null,
+      "actual_slew_scale": null,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "all_repeats_estimator_identification_pass": null,
+      "worst_signed_margin": 0.22532788322651087
+    },
+    {
+      "source_experiment_id": "s41r4_2827d0ab6e39c32945f9",
+      "scenario_type": "weak_slew",
+      "actual_action_delay_steps": null,
+      "actual_slew_scale": null,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "all_repeats_estimator_identification_pass": null,
+      "worst_signed_margin": 1.0456920999768471e-05
+    }
+  ],
+  "passed": false
+}

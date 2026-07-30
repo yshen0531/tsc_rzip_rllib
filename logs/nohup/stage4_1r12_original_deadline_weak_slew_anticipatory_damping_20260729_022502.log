@@ -1,0 +1,264 @@
+[Stage4.1R12] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.1R12] source_stage4_1r11_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313
+[Stage4.1R12] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r12_runs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_20260729_022502
+[Stage4.1R12] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_370ms.json
+[Stage4.1R12] command=all backend=ray resume=0 workers=128
+[Stage4.1R12] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python RAY_TMPDIR=/tmp/stage4_1r12_1120
+[Stage4.1R12] Formal timing is immutable: slew 1.0/1.1 arrives by 250 ms and holds through 350 ms; slew 0.9 arrives by 270 ms and holds through 370 ms.
+[Stage4.1R12] R11 2 s results are auxiliary diagnostics only. Stage4.2R1 was not run and is not reused.
+[Stage4.1R12] Only the four weak-slew delay=1/2 failures are modified; candidate first physical effects span 280--350 ms.
+[Stage4.1R12] Commands may be issued earlier only because of the known delay queue; source physics through the 270 ms arrival deadline must remain bit-exact.
+[Stage4.1R12] The fourteen already-passing paths are reused unchanged and are not rerun.
+[Stage4.1R12] No arrival deadline, scoring horizon, 30 mm gate, 0.1 m/s gate, or Ip gate is relaxed.
+[Stage4.1R12] Final task remains causal safe arrival, deceleration, disturbance recovery and long hold across initial states, hidden vessel/eddy histories, targets, continuous plant/actuator changes, noise and unknown delay.
+2026-07-29 10:25:10,397	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.1R12 weak-slew] ray_capacity requested=128 cluster_cpus=128 pending=12 actors=12 initialized_now=1
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] waiting 0/12
+[Stage4.1R12 weak-slew] 10/12
+[Stage4.1R12 weak-slew] 12/12
+{
+  "arrival_deadline_expanded": false,
+  "continuous_parameter_change_validated": false,
+  "created_utc": "20260729_023430",
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "finite_test_envelope_only": true,
+  "formal_combined_case_count": 18,
+  "formal_timing_contract_restored": false,
+  "newly_closed_modified_case_count": 0,
+  "next_if_fail": "Do not enlarge the 250/270 ms deadline. If every post-arrival damping onset fails, use the failed raw traces to fit a bounded late-phase local model and redesign the delay-pipeline-aware braking before 270 ms while retaining the same formal gate.",
+  "next_if_pass": "Proceed to true restart and hidden vessel/eddy-history validation using the original-deadline controller. Do not use the late-arrival R10/R11 trajectory as the expert timing contract, and do not start BC/DAgger/RL yet.",
+  "normal_slew_arrival_deadline_ms": 250,
+  "normal_slew_controller_changed": false,
+  "normal_slew_hold_through_ms": 350,
+  "phases": {
+    "calibrated_confirmation": {},
+    "formal_grid_confirmation": {},
+    "oracle_development": {
+      "arrival_deadline_expanded": false,
+      "candidate_first_effect_steps": [
+        28,
+        30,
+        32,
+        33,
+        34,
+        35
+      ],
+      "candidate_first_physical_effect_is_strictly_after_270ms": true,
+      "candidate_selection_uses_holdout": false,
+      "candidate_window_ms": [
+        280,
+        350
+      ],
+      "coverage_complete": true,
+      "development_target_id": "nominal",
+      "expected_rollouts": 12,
+      "formal_arrival_deadline_step": 27,
+      "formal_hold_through_step": 37,
+      "holdout_target_id": "RZ_p10_m10",
+      "n_rollouts": 12,
+      "passed": false,
+      "phase": "oracle_development",
+      "policy_summaries": [
+        {
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "composite_pass_fraction": 0.5,
+          "coverage_complete": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 28,
+          "maximum_terminal_speed_m_per_s": 0.029129711799909423,
+          "mean_action_rms": 0.28186115516808624,
+          "mean_original_contract_signed_margin": 0.0033331023669930238,
+          "minimum_original_contract_signed_margin": -0.017279047980614193,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "brake_effect_state28"
+        },
+        {
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "composite_pass_fraction": 0.5,
+          "coverage_complete": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 30,
+          "maximum_terminal_speed_m_per_s": 0.02969417505623671,
+          "mean_action_rms": 0.2819112153356723,
+          "mean_original_contract_signed_margin": 0.0033331023669930238,
+          "minimum_original_contract_signed_margin": -0.017279047980614193,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "brake_effect_state30"
+        },
+        {
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "composite_pass_fraction": 0.5,
+          "coverage_complete": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 32,
+          "maximum_terminal_speed_m_per_s": 0.028858307034062843,
+          "mean_action_rms": 0.2819084257115493,
+          "mean_original_contract_signed_margin": 0.0033331023669930238,
+          "minimum_original_contract_signed_margin": -0.017279047980614193,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "brake_effect_state32"
+        },
+        {
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "composite_pass_fraction": 0.5,
+          "coverage_complete": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 33,
+          "maximum_terminal_speed_m_per_s": 0.029497073791459893,
+          "mean_action_rms": 0.2820647664935859,
+          "mean_original_contract_signed_margin": 0.0033331023669930238,
+          "minimum_original_contract_signed_margin": -0.017279047980614193,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "brake_effect_state33"
+        },
+        {
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "composite_pass_fraction": 0.5,
+          "coverage_complete": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 34,
+          "maximum_terminal_speed_m_per_s": 0.046247556918934535,
+          "mean_action_rms": 0.2824236788684598,
+          "mean_original_contract_signed_margin": 0.0033331023669930238,
+          "minimum_original_contract_signed_margin": -0.017279047980614193,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "brake_effect_state34"
+        },
+        {
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "composite_pass_fraction": 0.5,
+          "coverage_complete": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 35,
+          "maximum_terminal_speed_m_per_s": 0.0780582199949248,
+          "mean_action_rms": 0.2831355370133005,
+          "mean_original_contract_signed_margin": 0.0033331023669930238,
+          "minimum_original_contract_signed_margin": -0.017279047980614193,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "brake_effect_state35"
+        }
+      ],
+      "schema_version": 1,
+      "selected_policy_id": null,
+      "selected_policy_minimum_signed_margin": null,
+      "source_physics_through_270ms_is_unchanged": true,
+      "stage": "Stage4.1R12",
+      "unaffected_14_paths_are_not_rerun_or_modified": true
+    },
+    "oracle_holdout": {},
+    "restart_audit": {
+      "audit_completed": true,
+      "availability_requirement_for_stage4_1r12": false,
+      "available_folders": [],
+      "candidate_folders": [
+        "1080ms",
+        "1090ms",
+        "1110ms",
+        "1120ms"
+      ],
+      "passed": true,
+      "phase": "restart_audit",
+      "schema_version": 1,
+      "simulation_root": "/home/yangshen0711/tsc_all/tsc_simulation/HH70-PCS-ENV-LOW-FIELD-SIDE-118",
+      "stage": "Stage4.1R12",
+      "stage4_2r1_was_not_run_or_reused": true,
+      "true_restart_validation_available": false,
+      "true_restart_validation_performed": false
+    },
+    "source_audit": {
+      "arrival_deadline_expansion_used": false,
+      "formal_contract_fail_count": 4,
+      "formal_contract_failure_keys": [
+        {
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "target_id": "RZ_p10_m10"
+        },
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "target_id": "RZ_p10_m10"
+        },
+        {
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "target_id": "nominal"
+        },
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "target_id": "nominal"
+        }
+      ],
+      "formal_contract_pass_count": 14,
+      "formal_contract_total_cases": 18,
+      "interpretation": "R11 remains useful long-hold evidence, but under the immutable original 250/350 and 270/370 ms contracts it closes 14/18. R12 is permitted to change only the four 0.9x-slew delay=1/2 cases, preserve their physics through 270 ms, and must not enlarge time.",
+      "normal_slew_source_cases_passed": true,
+      "passed": true,
+      "phase": "source_audit",
+      "schema_version": 1,
+      "source_calibrated_exact_trace_equivalence_fraction": 1.0,
+      "source_long_hold_is_extended_diagnostic_not_formal_timing_replacement": true,
+      "source_long_hold_verdict_passed": true,
+      "source_stage4_1r11_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313",
+      "stage": "Stage4.1R12",
+      "stage4_2r1_was_not_run_or_reused": true,
+      "weak_slew_delay0_source_cases_passed": true
+    }
+  },
+  "plant_parameter_robustness_validated": false,
+  "primary_pass": false,
+  "schema_version": 1,
+  "selected_weak_slew_policy": null,
+  "source_r11_long_hold_retained_as_diagnostic_only": true,
+  "source_stage4_1r11_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313",
+  "stage": "Stage4.1R12",
+  "stage4_2r1_was_not_run_or_reused": true,
+  "terminal_measurement_noise_robustness_validated": false,
+  "true_restart_validation_available": false,
+  "true_restart_validation_performed": false,
+  "trusted_calibration_required": true,
+  "unchanged_source_case_count": 14,
+  "unseen_hidden_state_robustness_validated": false,
+  "verdict": "STAGE4_1R12_ORIGINAL_DEADLINE_CLOSURE_INCOMPLETE",
+  "weak_slew_arrival_deadline_ms": 270,
+  "weak_slew_delay0_controller_changed": false,
+  "weak_slew_hold_through_ms": 370
+}

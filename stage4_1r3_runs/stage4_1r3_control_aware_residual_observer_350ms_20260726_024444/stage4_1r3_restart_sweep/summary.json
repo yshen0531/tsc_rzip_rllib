@@ -1,0 +1,16 @@
+{
+  "schema_version": 3,
+  "stage": "Stage4.1R3",
+  "phase": "restart_sweep",
+  "base_start_folder": "1100ms",
+  "alternate_start_folders": [],
+  "n_alternate_start_folders": 0,
+  "true_restart_validation_available": false,
+  "n_rollouts": 0,
+  "mpc_pass_fraction": 0.0,
+  "preserved_open_loop_pass_fraction": 0.0,
+  "pair_summary": {
+    "n_pairs": 0
+  },
+  "passed": false
+}

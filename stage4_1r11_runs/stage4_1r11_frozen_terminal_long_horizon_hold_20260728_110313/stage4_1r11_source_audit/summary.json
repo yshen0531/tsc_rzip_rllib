@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R11",
+  "phase": "source_audit",
+  "source_stage4_1r10_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r10_runs/stage4_1r10_queue_preview_terminal_transition_hold_20260728_070449",
+  "raw_rollouts": 81,
+  "expected_raw_rollouts": 81,
+  "unique_experiment_ids": 81,
+  "environment_success_count": 81,
+  "failure_reason_count": 0,
+  "abnormal_state_count": 0,
+  "nonfinite_rollout_count": 0,
+  "selected_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+  "selected_policy_development_rollouts": 9,
+  "selected_policy_holdout_rollouts": 9,
+  "selected_policy_all_18_composite_pass": true,
+  "selected_policy_minimum_development_combined_margin": 0.06596020273119285,
+  "baseline_minimum_development_combined_margin": 0.06318411956687808,
+  "selected_minus_baseline_minimum_margin": 0.0027760831643147688,
+  "selected_policy_minimum_holdout_combined_margin": 0.039997189999999905,
+  "all_six_policies_pure_stage3_tracking_fraction": 1.0,
+  "r10_summary_tracking_fraction_is_composite_not_pure_tracking": true,
+  "calibrated_exact_trace_equivalence_fraction": 1.0,
+  "source_terminal_nonzero_control_diagnostic": {
+    "maximum_final_pending_desired_norm": 0.14010596959032107,
+    "maximum_last10_issued_mean_norm": 0.07591595424991733,
+    "maximum_last10_current_net_change_norm_A": 2.4330376304346566,
+    "positive_last10_speed_slope_case_count": 13,
+    "interpretation": "R10 is a valid finite 750 ms closure, but the terminal command and current increments are not uniformly near zero. R11 must test the frozen controller over a much longer horizon before restart or plant-mismatch claims."
+  },
+  "passed": true
+}

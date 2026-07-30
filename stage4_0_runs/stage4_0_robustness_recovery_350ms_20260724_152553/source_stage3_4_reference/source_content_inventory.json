@@ -1,0 +1,57 @@
+{
+  "n_files": 10,
+  "total_bytes": 2967707,
+  "digest": "9ca2ae4e3dd4af2182e3029c3630a93abaf4d3e62621a1665f4e839587f675d6",
+  "entries": [
+    {
+      "relative_path": "stage3_4_config.resolved.json",
+      "sha256": "6d705aaad12bc6872af776a0adf041041cbda38a4d545581017ad5ecdc7b34b4",
+      "bytes": 14756
+    },
+    {
+      "relative_path": "stage3_4_manifest.json",
+      "sha256": "f66b84d59f53ecc665571337726f2ad6c77a749059abc06ff96995589e9af460",
+      "bytes": 1386
+    },
+    {
+      "relative_path": "stage3_4_state.json",
+      "sha256": "1cb127be39824daeda3d5e1aed69351150b418ec19f910054745750f077d166d",
+      "bytes": 1078476
+    },
+    {
+      "relative_path": "env_config.resolved.json",
+      "sha256": "a0ed368a4aeb93b0073ff46f90583a8d63c3ef076eeef6400460ec0cb50c546a",
+      "bytes": 2701
+    },
+    {
+      "relative_path": "train_config.resolved.json",
+      "sha256": "0b808bdc32a5a5e296941f7967e8302efcc6e0f55b7d97141f7e4fa0a7310f2e",
+      "bytes": 2085
+    },
+    {
+      "relative_path": "stage3_4_target_library/target_library.json",
+      "sha256": "d747d6a91d4c31c40b6801e706b16c22fb166d6f9fd903578110ed64eac6af1e",
+      "bytes": 1061361
+    },
+    {
+      "relative_path": "stage3_4_identification/full_horizon_bundle.json",
+      "sha256": "7b307e82c35bc12beea51be303be90d0a5dd7554f54156e3684b167f37ee8987",
+      "bytes": 771847
+    },
+    {
+      "relative_path": "stage3_4_mpc_calibration/calibration_summary.json",
+      "sha256": "735364605b17a6236b3cb1ccd2c6821f43dcd680cba00cec933bea3c60f21c8f",
+      "bytes": 11716
+    },
+    {
+      "relative_path": "stage3_4_confirmations/stage3_4_verdict.json",
+      "sha256": "2fdd41b59f2e9be3000ff4f97fab9801e0bc9bac81bcf7f4f823fa5d2fb308fc",
+      "bytes": 17857
+    },
+    {
+      "relative_path": "stage3_4_analysis/stage3_4_analysis_summary.json",
+      "sha256": "0509ac3a9c15fdfddfd94470793a2af8ff8808d98e8b433e16932ca0544803c8",
+      "bytes": 5522
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.1",
+  "created_utc": "20260722_022134",
+  "center_candidate_id": "s31r003s_42fa9af8412dc46c",
+  "n_rollouts": 24,
+  "n_successful": 24,
+  "n_strict": 21,
+  "selected_controller_scale": 0.5,
+  "comparisons": [
+    {
+      "scenario": "disturbance_mode1_minus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "disturbance_mode1_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "nominal",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_RZ_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_R_minus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_R_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_Z_minus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.03892393000000016,
+      "feedback_max_violation": 0.038345946666666686,
+      "feedback_to_baseline_ratio": 0.9851509512699906,
+      "improved": true,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_Z_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    }
+  ],
+  "scale_summaries": [
+    {
+      "controller_scale": 0.5,
+      "comparisons": [
+        {
+          "scenario": "disturbance_mode1_minus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "disturbance_mode1_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "nominal",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_RZ_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_minus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_minus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.03892393000000016,
+          "feedback_max_violation": 0.038345946666666686,
+          "feedback_to_baseline_ratio": 0.9851509512699906,
+          "improved": true,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        }
+      ],
+      "n_nonnominal_scenarios": 7,
+      "n_nonnominal_improved": 1,
+      "median_nonnominal_feedback_ratio": 0.0,
+      "nominal_not_materially_worsened": true,
+      "all_required_rollouts_successful": true,
+      "limited_causal_feedback_poc_pass": false
+    },
+    {
+      "controller_scale": 1.0,
+      "comparisons": [
+        {
+          "scenario": "disturbance_mode1_minus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "disturbance_mode1_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "nominal",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_RZ_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_minus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_minus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.03892393000000016,
+          "feedback_max_violation": 0.03779811666666655,
+          "feedback_to_baseline_ratio": 0.9710765759435491,
+          "improved": true,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        }
+      ],
+      "n_nonnominal_scenarios": 7,
+      "n_nonnominal_improved": 1,
+      "median_nonnominal_feedback_ratio": 0.0,
+      "nominal_not_materially_worsened": true,
+      "all_required_rollouts_successful": true,
+      "limited_causal_feedback_poc_pass": false
+    }
+  ],
+  "n_nonnominal_scenarios": 7,
+  "n_nonnominal_improved_at_selected_scale": 1,
+  "median_nonnominal_feedback_ratio": 0.0,
+  "nominal_not_materially_worsened": true,
+  "limited_causal_feedback_poc_pass": false,
+  "online_feedback_validated": false,
+  "robustness_validated": false,
+  "warning": "This limited POC uses one initial state, +/-2 mm target shifts, and one injected mode disturbance. It does not validate robustness across initial states, plant parameters, noise, or long hold durations."
+}

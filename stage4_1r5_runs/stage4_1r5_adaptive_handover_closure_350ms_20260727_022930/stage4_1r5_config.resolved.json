@@ -1,0 +1,297 @@
+{
+  "stage_label": "Stage 4.1R5",
+  "run_name": "stage4_1r5_adaptive_handover_closure_350ms",
+  "output_root": "stage4_1r5_runs",
+  "controller_revision": "confidence_gated_bumpless_delay_slew_handover_v5",
+  "source_requirement": {
+    "required_stage": "Stage4.1R4",
+    "required_controller_revision": "targeted_weak_slew_and_online_delay_slew_estimator_v4",
+    "require_finished": true,
+    "require_source_accounting_passed": true,
+    "require_weak_slew_370ms_passed": true,
+    "require_estimator_accuracy_passed": true,
+    "allow_source_adaptive_control_failure": true,
+    "reuse_stage4_1r3_controller": true,
+    "reuse_stage3_4_target_library": true,
+    "reuse_stage3_4_jacobian": true,
+    "reuse_stage3_4_selected_controller_scale": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Independent estimator confirmation, confidence-gated bumpless startup/handover, persistent model initialization, and finite mid-episode delay/slew change diagnostics."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r5"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "estimator_only_confirmation": {
+    "horizon_steps": 35,
+    "delay_candidates": [
+      0,
+      1,
+      2
+    ],
+    "slew_candidates": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "score_decay": 0.92,
+    "minimum_observations": 2,
+    "switch_hysteresis_fraction": 0.03,
+    "initial_delay_steps": 0,
+    "initial_slew_scale": 1.0,
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "require_all_final_identifications_correct": true,
+    "maximum_first_lock_step": 2,
+    "minimum_confidence_ratio": 1.5,
+    "confirmation_repeats_per_pair": 2,
+    "minimum_distinct_pairs_confirmed": 9
+  },
+  "static_handover": {
+    "horizon_steps": 35,
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "estimator": {
+      "delay_candidates": [
+        0,
+        1,
+        2
+      ],
+      "slew_candidates": [
+        0.9,
+        1.0,
+        1.1
+      ],
+      "score_decay": 0.92,
+      "minimum_observations": 2,
+      "switch_hysteresis_fraction": 0.03
+    },
+    "handover": {
+      "enabled": true,
+      "safe_start_until_lock": true,
+      "prelock_controller_scale_fraction": 0.0,
+      "ramp_scale_fractions": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "reset_previous_correction_on_switch": true,
+      "integral_decay_on_switch": 0.0,
+      "freeze_integral_during_prelock_and_ramp": true
+    },
+    "controller_variants": [
+      "oracle",
+      "r4_abrupt_unknown",
+      "r5_bumpless_unknown",
+      "r5_bumpless_adjacent",
+      "r5_persistent_exact"
+    ],
+    "weak_slew_deadline_cases_are_diagnostic": true,
+    "minimum_persistent_preservation_of_oracle_passes": 1.0,
+    "minimum_unknown_bumpless_preservation_of_oracle_passes": 0.85,
+    "minimum_adjacent_bumpless_preservation_of_oracle_passes": 0.9,
+    "minimum_delay2_unknown_bumpless_preservation": 0.75,
+    "minimum_recovery_over_r4_abrupt": 0.5,
+    "require_all_adaptive_final_identifications_correct": true,
+    "confirmation_repeats_per_pair": 2,
+    "minimum_distinct_pairs_confirmed": 7
+  },
+  "change_point_diagnostics": {
+    "enabled": true,
+    "horizon_steps": 35,
+    "environment_max_slew_scale": 1.1,
+    "estimator": {
+      "delay_candidates": [
+        0,
+        1,
+        2
+      ],
+      "slew_candidates": [
+        0.9,
+        1.0,
+        1.1
+      ],
+      "score_decay": 0.55,
+      "minimum_observations": 2,
+      "switch_hysteresis_fraction": 0.02
+    },
+    "handover": {
+      "enabled": true,
+      "initial_model_trusted": true,
+      "safe_start_until_lock": false,
+      "prelock_controller_scale_fraction": 1.0,
+      "ramp_scale_fractions": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "reset_previous_correction_on_switch": true,
+      "integral_decay_on_switch": 0.0,
+      "freeze_integral_during_prelock_and_ramp": true
+    },
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "scenarios": [
+      {
+        "scenario_id": "d0s1_to_d1s1_k08",
+        "change_step": 8,
+        "initial_delay": 0,
+        "final_delay": 1,
+        "initial_slew": 1.0,
+        "final_slew": 1.0
+      },
+      {
+        "scenario_id": "d0s1_to_d2s1_k08",
+        "change_step": 8,
+        "initial_delay": 0,
+        "final_delay": 2,
+        "initial_slew": 1.0,
+        "final_slew": 1.0
+      },
+      {
+        "scenario_id": "d0s1_to_d0s0p9_k10",
+        "change_step": 10,
+        "initial_delay": 0,
+        "final_delay": 0,
+        "initial_slew": 1.0,
+        "final_slew": 0.9
+      },
+      {
+        "scenario_id": "d1s1_to_d2s1p1_k10",
+        "change_step": 10,
+        "initial_delay": 1,
+        "final_delay": 2,
+        "initial_slew": 1.0,
+        "final_slew": 1.1
+      },
+      {
+        "scenario_id": "d2s1_to_d0s1_k12",
+        "change_step": 12,
+        "initial_delay": 2,
+        "final_delay": 0,
+        "initial_slew": 1.0,
+        "final_slew": 1.0
+      },
+      {
+        "scenario_id": "d1s0p9_to_d1s1p1_k12",
+        "change_step": 12,
+        "initial_delay": 1,
+        "final_delay": 1,
+        "initial_slew": 0.9,
+        "final_slew": 1.1
+      }
+    ],
+    "controller_variants": [
+      "oracle_schedule",
+      "fixed_initial",
+      "adaptive_bumpless"
+    ],
+    "maximum_detection_latency_steps": 4,
+    "minimum_final_identification_fraction": 0.9,
+    "minimum_adaptive_preservation_of_oracle_passes": 0.75,
+    "minimum_recovery_over_fixed_initial": 0.5,
+    "confirmation_repeats_per_scenario": 2,
+    "minimum_change_scenarios_confirmed": 3,
+    "diagnostic_only_if_control_gate_fails": true
+  },
+  "restart_audit": {
+    "auto_discover": true,
+    "candidate_offsets_ms": [
+      -20,
+      -10,
+      10,
+      20
+    ],
+    "environment_variable": "STAGE4_1R5_START_FOLDERS",
+    "minimum_alternate_folders_for_true_validation": 2
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

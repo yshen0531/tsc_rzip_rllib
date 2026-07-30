@@ -1,0 +1,60 @@
+{
+  "round_index": 3,
+  "centers": [
+    "s31r002s_4074755102f6b06f",
+    "s31r002s_ce18f2c2e239765b"
+  ],
+  "center_nominals": [
+    "nominal_05_s22g000_571ab4a158d29207",
+    "nominal_05_s22g000_571ab4a158d29207"
+  ],
+  "previous_best_max_violation": 0.008497166666666667,
+  "round_best_max_violation": 0.0,
+  "meaningful_improvement": true,
+  "trust_diagnostics": [
+    {
+      "center_candidate_id": "s31r002s_4074755102f6b06f",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r003s_a691922b40b2401b",
+      "comparison_endpoint_step": 14,
+      "comparison_endpoint_ms": 140,
+      "center_max_violation_at_endpoint": 0.023253503333333425,
+      "predicted_max_violation_at_endpoint": 0.0,
+      "real_max_violation_at_endpoint": 0.0,
+      "center_max_violation": 0.023253503333333425,
+      "predicted_max_violation": 0.0,
+      "real_max_violation": 0.0,
+      "predicted_reduction": 0.023253503333333425,
+      "actual_reduction": 0.023253503333333425,
+      "rho": 1.0,
+      "trust_boundary_fraction": 1.5000000000000004,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 2.4603750000000004,
+      "new_trust_scale": 3.0,
+      "center_slot": "primary"
+    },
+    {
+      "center_candidate_id": "s31r002s_ce18f2c2e239765b",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r003s_42fa9af8412dc46c",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 0.008847140000000087,
+      "predicted_max_violation_at_endpoint": 0.0,
+      "real_max_violation_at_endpoint": 0.0,
+      "center_max_violation": 0.008847140000000087,
+      "predicted_max_violation": 0.0,
+      "real_max_violation": 0.0,
+      "predicted_reduction": 0.008847140000000087,
+      "actual_reduction": 0.008847140000000087,
+      "rho": 1.0,
+      "trust_boundary_fraction": 1.5,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 2.4603750000000004,
+      "new_trust_scale": 3.0,
+      "center_slot": "secondary"
+    }
+  ]
+}

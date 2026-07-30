@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R12",
+  "phase": "source_audit",
+  "source_stage4_1r11_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313",
+  "source_long_hold_verdict_passed": true,
+  "source_long_hold_is_extended_diagnostic_not_formal_timing_replacement": true,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "formal_contract_total_cases": 18,
+  "formal_contract_pass_count": 14,
+  "formal_contract_fail_count": 4,
+  "formal_contract_failure_keys": [
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9
+    }
+  ],
+  "normal_slew_source_cases_passed": true,
+  "weak_slew_delay0_source_cases_passed": true,
+  "source_calibrated_exact_trace_equivalence_fraction": 1.0,
+  "arrival_deadline_expansion_used": false,
+  "passed": true,
+  "interpretation": "R11 remains useful long-hold evidence, but under the immutable original 250/350 and 270/370 ms contracts it closes 14/18. R12 is permitted to change only the four 0.9x-slew delay=1/2 cases, preserve their physics through 270 ms, and must not enlarge time."
+}

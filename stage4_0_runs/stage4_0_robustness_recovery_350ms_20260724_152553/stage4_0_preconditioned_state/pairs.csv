@@ -1,0 +1,17 @@
+scenario,category,controller_scale,baseline_experiment_id,feedback_experiment_id,baseline_pass,feedback_pass,preserved,recovered,lost,baseline_signed_margin,feedback_signed_margin,signed_margin_gain
+nominal__m1_p,preconditioned_hidden_state,0.5,s40_626a94d913336b0f2018,s40_df13330420916e5f5a90,True,False,False,False,True,0.04803974923358478,-1.1462419533737247,-1.1942817026073094
+nominal__m1_m,preconditioned_hidden_state,0.5,s40_d5415573bb001fa0737f,s40_94cf53006c3e7df671ec,False,False,False,False,False,-0.5125479533333335,-1.1425767592915244,-0.6300288059581909
+nominal__m2_p,preconditioned_hidden_state,0.5,s40_c761b45b67fcb821ff78,s40_5f96dcc23f21deef5a93,False,False,False,False,False,-0.10484735999999995,-1.3478887490284048,-1.2430413890284049
+nominal__m2_m,preconditioned_hidden_state,0.5,s40_b161d379d4a536888f59,s40_053e4960033b8b5bb811,False,False,False,False,False,-0.2469499833333333,-1.2081371304390536,-0.9611871471057203
+nominal__m3_p,preconditioned_hidden_state,0.5,s40_aa39b908f503d9736700,s40_27978741f9f5f55a0e96,False,False,False,False,False,-0.19147261333333332,-1.329525982614292,-1.1380533692809587
+nominal__m3_m,preconditioned_hidden_state,0.5,s40_9c5048720fb7ee03ac79,s40_a08d193d7cc80bf1d428,False,False,False,False,False,-0.1634901333333334,-1.3313016344936224,-1.167811501160289
+nominal__m1p_m2m,preconditioned_hidden_state,0.5,s40_223d4d6f4edb1fdf86ab,s40_6af0b2eeb69f41f29985,False,False,False,False,False,-0.053097366666666757,-1.3547215782629762,-1.3016242115963095
+nominal__m1m_m2p,preconditioned_hidden_state,0.5,s40_dbb8a171d14aef46e0a6,s40_d57f89c3a28beb004213,False,False,False,False,False,-0.3498453966666666,-1.2788920492872413,-0.9290466526205747
+RZ_p10_m10__m1_p,preconditioned_hidden_state,0.5,s40_62ded07bdbb98535c53a,s40_b1c9b79a1c947aa000c0,False,False,False,False,False,-0.09360701666666671,-1.305602660804082,-1.2119956441374153
+RZ_p10_m10__m1_m,preconditioned_hidden_state,0.5,s40_63904bff7930911b7c16,s40_5c713b499b24bd62908d,False,False,False,False,False,-0.5954702200000002,-1.5526154706123863,-0.9571452506123861
+RZ_p10_m10__m2_p,preconditioned_hidden_state,0.5,s40_3f2f0c547452c98857af,s40_5c6459f07c652d5a7a0d,False,False,False,False,False,-0.24141281666666692,-1.5247285695709292,-1.2833157529042623
+RZ_p10_m10__m2_m,preconditioned_hidden_state,0.5,s40_a24fe7ffc7f17dd89f65,s40_106fc2b59b4abc14426a,False,False,False,False,False,-0.34177419666666675,-1.5908734463650829,-1.2490992496984161
+RZ_p10_m10__m3_p,preconditioned_hidden_state,0.5,s40_fa37eb462c3429594b22,s40_5fdfd94238844161988e,False,False,False,False,False,-0.30200122666666673,-1.5934138985155428,-1.291412671848876
+RZ_p10_m10__m3_m,preconditioned_hidden_state,0.5,s40_0390dc3bdaa37473e61a,s40_53f6837c9811e24c3088,False,False,False,False,False,-0.28683789333333354,-1.5921053214752154,-1.305267428141882
+RZ_p10_m10__m1p_m2m,preconditioned_hidden_state,0.5,s40_d603aa40de2ffc419d6b,s40_6d6fa5886587c47a7619,False,False,False,False,False,-0.19351314666666686,-1.5064952321294767,-1.3129820854628098
+RZ_p10_m10__m1m_m2p,preconditioned_hidden_state,0.5,s40_6fa3fbed817685cc8b67,s40_3d8d7c4353c05715b6dd,False,False,False,False,False,-0.4264125133333334,-1.6054735840720231,-1.1790610707386897

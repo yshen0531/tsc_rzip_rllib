@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1",
+  "phase": "confirmation",
+  "n_rollouts": 36,
+  "n_successful": 36,
+  "deterministic_summaries": [
+    {
+      "source_experiment_id": "s41_6d4e0f93fb000a89fad0",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.01594297211825957
+    },
+    {
+      "source_experiment_id": "s41_1244fc42a455bb1f7439",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.02692621401239048
+    },
+    {
+      "source_experiment_id": "s41_59032fcf46d2d4a26fa2",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.03434730675780251
+    },
+    {
+      "source_experiment_id": "s41_21feec7efb7bd66e8cfd",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.03764297220879387
+    },
+    {
+      "source_experiment_id": "s41_7e0a70236c1648af7883",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.009511567501832574
+    },
+    {
+      "source_experiment_id": "s41_5018b4a1a35a73b4736a",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.009640219021954666
+    },
+    {
+      "source_experiment_id": "s41_05d03ae485e5ac4d575a",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.016143197129138143
+    },
+    {
+      "source_experiment_id": "s41_e5e7b9f1848447db76f6",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.03887404139801387
+    },
+    {
+      "source_experiment_id": "s41_b3a46ebfe7f7b08fc07f",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.01285792035339095
+    },
+    {
+      "source_experiment_id": "s41_9a76cbc1e9a26e330310",
+      "repeats": 2,
+      "all_repeats_pass": true,
+      "worst_signed_margin": 0.016627150412675484
+    }
+  ],
+  "high_noise_summaries": [
+    {
+      "target_id": "nominal",
+      "n_seeds": 8,
+      "n_pass": 4,
+      "pass_fraction": 0.5,
+      "passed": false
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "n_seeds": 8,
+      "n_pass": 0,
+      "pass_fraction": 0.0,
+      "passed": false
+    }
+  ],
+  "passed": false
+}

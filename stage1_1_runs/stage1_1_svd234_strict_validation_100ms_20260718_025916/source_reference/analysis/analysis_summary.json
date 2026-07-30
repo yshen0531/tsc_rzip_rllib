@@ -1,0 +1,101 @@
+{
+  "baseline": {
+    "baseline_repeats_successful": 3,
+    "max_repeat_spread": {
+      "R": 0.0,
+      "Z": 0.0,
+      "Ip": 0.0,
+      "vessel_current_total_a": 0.0,
+      "vessel_current_abs_sum_a": 0.0
+    },
+    "initial_state": {
+      "R": 0.743600216,
+      "Z": 0.0162365614,
+      "Ip": 31286.4059
+    },
+    "terminal_state": {
+      "R": 0.703815205,
+      "Z": 0.0735284023,
+      "Ip": 30730.6695
+    }
+  },
+  "scan_experiments_expected": 563,
+  "scan_experiments_successful": 542,
+  "scan_experiments_failed": 21,
+  "response_fit": {
+    "median_relative_nonlinearity_residual": 0.07867930621279634,
+    "p90_relative_nonlinearity_residual": 0.1853576498300662,
+    "max_relative_nonlinearity_residual": 0.303825554351722,
+    "max_relative_pre_injection_leakage": 0.0,
+    "non_bidirectional_groups": 0
+  },
+  "identification_reliability": {
+    "reliable": false,
+    "checks": {
+      "baseline_R_spread_ok": true,
+      "baseline_Z_spread_ok": true,
+      "baseline_Ip_spread_ok": true,
+      "failed_fraction_ok": false,
+      "median_nonlinearity_ok": true,
+      "p90_nonlinearity_ok": true,
+      "pre_injection_leakage_ok": true,
+      "bidirectional_groups_ok": true
+    },
+    "failed_scan_fraction": 0.037300177619893425
+  },
+  "svd": {
+    "singular_values": [
+      0.0823342052677587,
+      0.0675369580562071,
+      0.011445662248024376,
+      0.0019501544957699658,
+      0.0015453813169868974,
+      0.0007406720680757118,
+      0.0004818375473464739,
+      0.00030431551848401835,
+      0.00021319969002988863,
+      0.00017407744735988803,
+      0.00015273316687873365,
+      0.00010736281037323859,
+      7.262263154627507e-05,
+      6.361925773587243e-05
+    ],
+    "cumulative_energy": [
+      0.5905832670454778,
+      0.9879610052655386,
+      0.9993740729940903,
+      0.9997054013301092,
+      0.9999134628934233,
+      0.9999612567940627,
+      0.9999814833444802,
+      0.9999895513974641,
+      0.9999935113837345,
+      0.9999961513936718,
+      0.9999981836910458,
+      0.9999991879097007,
+      0.9999996473874723,
+      0.9999999999999999
+    ],
+    "recommended_mode_count": 8,
+    "condition_number_nonzero": 1294.171107899199
+  },
+  "reachable_set_100ms": {
+    "target_inside_local_linear_RZ_projection": false,
+    "failed_directions": 0,
+    "terminal_ip_tolerance_a": 8000.0
+  },
+  "best_linear_candidate": {
+    "label": "full14_target1p00",
+    "optimizer_success": true,
+    "n_modes": 14,
+    "target_fraction": 1.0,
+    "objective": 0.48852647293180906,
+    "predicted_terminal_R_error_m": -0.018990028692821403,
+    "predicted_terminal_Z_error_m": 0.023395800416764895,
+    "predicted_terminal_Ip_error_A": 1199.3976030725644,
+    "predicted_min_normalized_RZ_distance": 0.2181538882527314,
+    "predicted_terminal_normalized_RZ_distance": 0.3766597990261066,
+    "max_abs_increment_a": 3.0000000000000004,
+    "max_current_utilization": 0.034308164226357116
+  }
+}

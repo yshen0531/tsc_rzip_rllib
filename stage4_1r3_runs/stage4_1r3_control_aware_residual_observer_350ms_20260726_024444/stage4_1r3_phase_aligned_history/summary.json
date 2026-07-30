@@ -1,0 +1,22 @@
+{
+  "schema_version": 3,
+  "stage": "Stage4.1R3",
+  "phase": "phase_aligned_history",
+  "n_rollouts": 32,
+  "n_scenarios": 16,
+  "mpc_pass_fraction": 1.0,
+  "preserved_open_loop_pass_fraction": 1.0,
+  "visible_state_matched_fraction": 1.0,
+  "test_interpretation": "phase-aligned history variation with approximately matched visible state",
+  "pair_summary": {
+    "n_pairs": 16,
+    "n_baseline_pass": 16,
+    "n_feedback_pass": 16,
+    "n_preserved": 16,
+    "n_recovered": 0,
+    "n_lost": 0,
+    "median_signed_margin_gain": 0.009585676372484475,
+    "worst_signed_margin_gain": -0.06138462725759908
+  },
+  "passed": true
+}

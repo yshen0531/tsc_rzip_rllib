@@ -1,0 +1,2087 @@
+[Stage3.1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage3.1] source_stage3_0_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352
+[Stage3.1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_1_runs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms_20260722_013158
+[Stage3.1] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms.json
+[Stage3.1] command=all
+[Stage3.1] backend=ray
+[Stage3.1] resume=0
+[Stage3.1] workers=96
+[Stage3.1] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage3.1] RAY_TMPDIR=/tmp/stage3_1_1120
+[Stage3.1] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage3.1] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage3.1] Complete standalone tree: no Git, network, or external code tree is used.
+[Stage3.1] Stage3.0 screen is reused; it is not repeated.
+[Stage3.1] Steps 0-7 are frozen; steps 8-14 are 21 independent three-mode variables.
+[Stage3.1] Adaptive real-TSC trust regions expand/hold/shrink from measured agreement.
+[Stage3.1] MPC features are dimensionless and use truncated-SVD/ridge regularization.
+[Stage3.1] The 24-run causal feedback test is a limited POC, not robustness validation.
+[Stage3.1] Final task remains robust causal feedback across initial states and targets.
+[Stage3.1] SIGKILL cannot be intercepted; completed JSON.GZ results remain resumable.
+2026-07-22 09:32:05,774	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] 1/84
+[Stage2 evaluation] 2/84
+[Stage2 evaluation] 3/84
+[Stage2 evaluation] 4/84
+[Stage2 evaluation] 5/84
+[Stage2 evaluation] 6/84
+[Stage2 evaluation] 7/84
+[Stage2 evaluation] 8/84
+[Stage2 evaluation] 9/84
+[Stage2 evaluation] 10/84
+[Stage2 evaluation] 11/84
+[Stage2 evaluation] 12/84
+[Stage2 evaluation] 13/84
+[Stage2 evaluation] 14/84
+[Stage2 evaluation] 15/84
+[Stage2 evaluation] 16/84
+[Stage2 evaluation] 17/84
+[Stage2 evaluation] 18/84
+[Stage2 evaluation] 19/84
+[Stage2 evaluation] 20/84
+[Stage2 evaluation] 21/84
+[Stage2 evaluation] 22/84
+[Stage2 evaluation] 23/84
+[Stage2 evaluation] 24/84
+[Stage2 evaluation] 25/84
+[Stage2 evaluation] 26/84
+[Stage2 evaluation] 27/84
+[Stage2 evaluation] 28/84
+[Stage2 evaluation] 29/84
+[Stage2 evaluation] 30/84
+[Stage2 evaluation] 31/84
+[Stage2 evaluation] 32/84
+[Stage2 evaluation] 33/84
+[Stage2 evaluation] 34/84
+[Stage2 evaluation] 35/84
+[Stage2 evaluation] 36/84
+[Stage2 evaluation] 37/84
+[Stage2 evaluation] 38/84
+[Stage2 evaluation] 39/84
+[Stage2 evaluation] 40/84
+[Stage2 evaluation] 41/84
+[Stage2 evaluation] 42/84
+[Stage2 evaluation] 43/84
+[Stage2 evaluation] 44/84
+[Stage2 evaluation] 45/84
+[Stage2 evaluation] 46/84
+[Stage2 evaluation] 47/84
+[Stage2 evaluation] 48/84
+[Stage2 evaluation] 49/84
+[Stage2 evaluation] 50/84
+[Stage2 evaluation] 51/84
+[Stage2 evaluation] 52/84
+[Stage2 evaluation] 53/84
+[Stage2 evaluation] 54/84
+[Stage2 evaluation] 55/84
+[Stage2 evaluation] 56/84
+[Stage2 evaluation] 57/84
+[Stage2 evaluation] 58/84
+[Stage2 evaluation] 59/84
+[Stage2 evaluation] 60/84
+[Stage2 evaluation] 61/84
+[Stage2 evaluation] 62/84
+[Stage2 evaluation] 63/84
+[Stage2 evaluation] 64/84
+[Stage2 evaluation] 65/84
+[Stage2 evaluation] 66/84
+[Stage2 evaluation] 67/84
+[Stage2 evaluation] 68/84
+[Stage2 evaluation] 69/84
+[Stage2 evaluation] 70/84
+[Stage2 evaluation] 71/84
+[Stage2 evaluation] 72/84
+[Stage2 evaluation] 73/84
+[Stage2 evaluation] 74/84
+[Stage2 evaluation] 75/84
+[Stage2 evaluation] 76/84
+[Stage2 evaluation] 77/84
+[Stage2 evaluation] 78/84
+[Stage2 evaluation] 79/84
+[Stage2 evaluation] 80/84
+[Stage2 evaluation] 81/84
+[Stage2 evaluation] 82/84
+[Stage2 evaluation] 83/84
+[Stage2 evaluation] 84/84
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] 1/30
+[Stage2 evaluation] 2/30
+[Stage2 evaluation] 3/30
+[Stage2 evaluation] 4/30
+[Stage2 evaluation] 5/30
+[Stage2 evaluation] 6/30
+[Stage2 evaluation] 7/30
+[Stage2 evaluation] 8/30
+[Stage2 evaluation] 9/30
+[Stage2 evaluation] 10/30
+[Stage2 evaluation] 11/30
+[Stage2 evaluation] 12/30
+[Stage2 evaluation] 13/30
+[Stage2 evaluation] 14/30
+[Stage2 evaluation] 15/30
+[Stage2 evaluation] 16/30
+[Stage2 evaluation] 17/30
+[Stage2 evaluation] 18/30
+[Stage2 evaluation] 19/30
+[Stage2 evaluation] 20/30
+[Stage2 evaluation] 21/30
+[Stage2 evaluation] 22/30
+[Stage2 evaluation] 23/30
+[Stage2 evaluation] 24/30
+[Stage2 evaluation] 25/30
+[Stage2 evaluation] 26/30
+[Stage2 evaluation] 27/30
+[Stage2 evaluation] 28/30
+[Stage2 evaluation] 29/30
+[Stage2 evaluation] 30/30
+{
+  "stage": "Stage3.1",
+  "round": 0,
+  "probe_success": 84,
+  "step_success": 30,
+  "best": {
+    "candidate_id": "s31r000s_6090307a93683d00",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "strict": false,
+    "sustained_box_m": 0.032487967,
+    "post_arrival_velocity_rms": 0.06983706803684955,
+    "max_violation": 0.08293223333333333
+  },
+  "trust": [
+    {
+      "center_candidate_id": "s30r999p_3d650586695d1458",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r000s_6090307a93683d00",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 0.15943391666666673,
+      "predicted_max_violation_at_endpoint": 0.08131814038463414,
+      "real_max_violation_at_endpoint": 0.08293223333333333,
+      "center_max_violation": 0.15943391666666673,
+      "predicted_max_violation": 0.08131814038463414,
+      "real_max_violation": 0.08293223333333333,
+      "predicted_reduction": 0.07811577628203259,
+      "actual_reduction": 0.0765016833333334,
+      "rho": 0.9793371707288475,
+      "trust_boundary_fraction": 1.5000000000000002,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.0,
+      "new_trust_scale": 1.35,
+      "center_slot": "primary"
+    },
+    {
+      "center_candidate_id": "s30screen_0803181b62756a85",
+      "center_nominal_id": "nominal_07_s22g005_a2acc95ca222cec3",
+      "best_step_candidate_id": "s31r000s_56824f0dacc9556a",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 1.2770344485416794,
+      "predicted_max_violation_at_endpoint": 0.35433096687401444,
+      "real_max_violation_at_endpoint": 0.3426739357068098,
+      "center_max_violation": 1.2770344485416794,
+      "predicted_max_violation": 0.35433096687401444,
+      "real_max_violation": 0.3426739357068098,
+      "predicted_reduction": 0.9227034816676649,
+      "actual_reduction": 0.9343605128348695,
+      "rho": 1.01263356148406,
+      "trust_boundary_fraction": 1.5000000000000002,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.0,
+      "new_trust_scale": 1.35,
+      "center_slot": "secondary"
+    }
+  ],
+  "next_round": 1,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] 1/84
+[Stage2 evaluation] 2/84
+[Stage2 evaluation] 3/84
+[Stage2 evaluation] 4/84
+[Stage2 evaluation] 5/84
+[Stage2 evaluation] 6/84
+[Stage2 evaluation] 7/84
+[Stage2 evaluation] 8/84
+[Stage2 evaluation] 9/84
+[Stage2 evaluation] 10/84
+[Stage2 evaluation] 11/84
+[Stage2 evaluation] 12/84
+[Stage2 evaluation] 13/84
+[Stage2 evaluation] 14/84
+[Stage2 evaluation] 15/84
+[Stage2 evaluation] 16/84
+[Stage2 evaluation] 17/84
+[Stage2 evaluation] 18/84
+[Stage2 evaluation] 19/84
+[Stage2 evaluation] 20/84
+[Stage2 evaluation] 21/84
+[Stage2 evaluation] 22/84
+[Stage2 evaluation] 23/84
+[Stage2 evaluation] 24/84
+[Stage2 evaluation] 25/84
+[Stage2 evaluation] 26/84
+[Stage2 evaluation] 27/84
+[Stage2 evaluation] 28/84
+[Stage2 evaluation] 29/84
+[Stage2 evaluation] 30/84
+[Stage2 evaluation] 31/84
+[Stage2 evaluation] 32/84
+[Stage2 evaluation] 33/84
+[Stage2 evaluation] 34/84
+[Stage2 evaluation] 35/84
+[Stage2 evaluation] 36/84
+[Stage2 evaluation] 37/84
+[Stage2 evaluation] 38/84
+[Stage2 evaluation] 39/84
+[Stage2 evaluation] 40/84
+[Stage2 evaluation] 41/84
+[Stage2 evaluation] 42/84
+[Stage2 evaluation] 43/84
+[Stage2 evaluation] 44/84
+[Stage2 evaluation] 45/84
+[Stage2 evaluation] 46/84
+[Stage2 evaluation] 47/84
+[Stage2 evaluation] 48/84
+[Stage2 evaluation] 49/84
+[Stage2 evaluation] 50/84
+[Stage2 evaluation] 51/84
+[Stage2 evaluation] 52/84
+[Stage2 evaluation] 53/84
+[Stage2 evaluation] 54/84
+[Stage2 evaluation] 55/84
+[Stage2 evaluation] 56/84
+[Stage2 evaluation] 57/84
+[Stage2 evaluation] 58/84
+[Stage2 evaluation] 59/84
+[Stage2 evaluation] 60/84
+[Stage2 evaluation] 61/84
+[Stage2 evaluation] 62/84
+[Stage2 evaluation] 63/84
+[Stage2 evaluation] 64/84
+[Stage2 evaluation] 65/84
+[Stage2 evaluation] 66/84
+[Stage2 evaluation] 67/84
+[Stage2 evaluation] 68/84
+[Stage2 evaluation] 69/84
+[Stage2 evaluation] 70/84
+[Stage2 evaluation] 71/84
+[Stage2 evaluation] 72/84
+[Stage2 evaluation] 73/84
+[Stage2 evaluation] 74/84
+[Stage2 evaluation] 75/84
+[Stage2 evaluation] 76/84
+[Stage2 evaluation] 77/84
+[Stage2 evaluation] 78/84
+[Stage2 evaluation] 79/84
+[Stage2 evaluation] 80/84
+[Stage2 evaluation] 81/84
+[Stage2 evaluation] 82/84
+[Stage2 evaluation] 83/84
+[Stage2 evaluation] 84/84
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] 1/30
+[Stage2 evaluation] 2/30
+[Stage2 evaluation] 3/30
+[Stage2 evaluation] 4/30
+[Stage2 evaluation] 5/30
+[Stage2 evaluation] 6/30
+[Stage2 evaluation] 7/30
+[Stage2 evaluation] 8/30
+[Stage2 evaluation] 9/30
+[Stage2 evaluation] 10/30
+[Stage2 evaluation] 11/30
+[Stage2 evaluation] 12/30
+[Stage2 evaluation] 13/30
+[Stage2 evaluation] 14/30
+[Stage2 evaluation] 15/30
+[Stage2 evaluation] 16/30
+[Stage2 evaluation] 17/30
+[Stage2 evaluation] 18/30
+[Stage2 evaluation] 19/30
+[Stage2 evaluation] 20/30
+[Stage2 evaluation] 21/30
+[Stage2 evaluation] 22/30
+[Stage2 evaluation] 23/30
+[Stage2 evaluation] 24/30
+[Stage2 evaluation] 25/30
+[Stage2 evaluation] 26/30
+[Stage2 evaluation] 27/30
+[Stage2 evaluation] 28/30
+[Stage2 evaluation] 29/30
+[Stage2 evaluation] 30/30
+{
+  "stage": "Stage3.1",
+  "round": 1,
+  "probe_success": 84,
+  "step_success": 30,
+  "best": {
+    "candidate_id": "s31r001s_8fd81934c26f4bed",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "strict": false,
+    "sustained_box_m": 0.0313577168,
+    "post_arrival_velocity_rms": 0.06156366426817497,
+    "max_violation": 0.04525722666666665
+  },
+  "trust": [
+    {
+      "center_candidate_id": "s31r000s_6090307a93683d00",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r001s_8fd81934c26f4bed",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 0.08293223333333333,
+      "predicted_max_violation_at_endpoint": 0.035230100313911716,
+      "real_max_violation_at_endpoint": 0.04525722666666665,
+      "center_max_violation": 0.08293223333333333,
+      "predicted_max_violation": 0.035230100313911716,
+      "real_max_violation": 0.04525722666666665,
+      "predicted_reduction": 0.04770213301942161,
+      "actual_reduction": 0.03767500666666668,
+      "rho": 0.7897971072137916,
+      "trust_boundary_fraction": 1.5000000000000002,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.35,
+      "new_trust_scale": 1.8225000000000002,
+      "center_slot": "primary"
+    },
+    {
+      "center_candidate_id": "s31r000s_1f055c7367e92f0b",
+      "center_nominal_id": "nominal_07_s22g005_a2acc95ca222cec3",
+      "best_step_candidate_id": "s31r001s_cdedc22b3d8312aa",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 0.3426739357068098,
+      "predicted_max_violation_at_endpoint": 0.08223256835579784,
+      "real_max_violation_at_endpoint": 0.08467507333333346,
+      "center_max_violation": 0.3426739357068098,
+      "predicted_max_violation": 0.08223256835579784,
+      "real_max_violation": 0.08467507333333346,
+      "predicted_reduction": 0.260441367351012,
+      "actual_reduction": 0.25799886237347636,
+      "rho": 0.9906216704267118,
+      "trust_boundary_fraction": 1.5,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.35,
+      "new_trust_scale": 1.8225000000000002,
+      "center_slot": "secondary"
+    }
+  ],
+  "next_round": 2,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] 1/84
+[Stage2 evaluation] 2/84
+[Stage2 evaluation] 3/84
+[Stage2 evaluation] 4/84
+[Stage2 evaluation] 5/84
+[Stage2 evaluation] 6/84
+[Stage2 evaluation] 7/84
+[Stage2 evaluation] 8/84
+[Stage2 evaluation] 9/84
+[Stage2 evaluation] 10/84
+[Stage2 evaluation] 11/84
+[Stage2 evaluation] 12/84
+[Stage2 evaluation] 13/84
+[Stage2 evaluation] 14/84
+[Stage2 evaluation] 15/84
+[Stage2 evaluation] 16/84
+[Stage2 evaluation] 17/84
+[Stage2 evaluation] 18/84
+[Stage2 evaluation] 19/84
+[Stage2 evaluation] 20/84
+[Stage2 evaluation] 21/84
+[Stage2 evaluation] 22/84
+[Stage2 evaluation] 23/84
+[Stage2 evaluation] 24/84
+[Stage2 evaluation] 25/84
+[Stage2 evaluation] 26/84
+[Stage2 evaluation] 27/84
+[Stage2 evaluation] 28/84
+[Stage2 evaluation] 29/84
+[Stage2 evaluation] 30/84
+[Stage2 evaluation] 31/84
+[Stage2 evaluation] 32/84
+[Stage2 evaluation] 33/84
+[Stage2 evaluation] 34/84
+[Stage2 evaluation] 35/84
+[Stage2 evaluation] 36/84
+[Stage2 evaluation] 37/84
+[Stage2 evaluation] 38/84
+[Stage2 evaluation] 39/84
+[Stage2 evaluation] 40/84
+[Stage2 evaluation] 41/84
+[Stage2 evaluation] 42/84
+[Stage2 evaluation] 43/84
+[Stage2 evaluation] 44/84
+[Stage2 evaluation] 45/84
+[Stage2 evaluation] 46/84
+[Stage2 evaluation] 47/84
+[Stage2 evaluation] 48/84
+[Stage2 evaluation] 49/84
+[Stage2 evaluation] 50/84
+[Stage2 evaluation] 51/84
+[Stage2 evaluation] 52/84
+[Stage2 evaluation] 53/84
+[Stage2 evaluation] 54/84
+[Stage2 evaluation] 55/84
+[Stage2 evaluation] 56/84
+[Stage2 evaluation] 57/84
+[Stage2 evaluation] 58/84
+[Stage2 evaluation] 59/84
+[Stage2 evaluation] 60/84
+[Stage2 evaluation] 61/84
+[Stage2 evaluation] 62/84
+[Stage2 evaluation] 63/84
+[Stage2 evaluation] 64/84
+[Stage2 evaluation] 65/84
+[Stage2 evaluation] 66/84
+[Stage2 evaluation] 67/84
+[Stage2 evaluation] 68/84
+[Stage2 evaluation] 69/84
+[Stage2 evaluation] 70/84
+[Stage2 evaluation] 71/84
+[Stage2 evaluation] 72/84
+[Stage2 evaluation] 73/84
+[Stage2 evaluation] 74/84
+[Stage2 evaluation] 75/84
+[Stage2 evaluation] 76/84
+[Stage2 evaluation] 77/84
+[Stage2 evaluation] 78/84
+[Stage2 evaluation] 79/84
+[Stage2 evaluation] 80/84
+[Stage2 evaluation] 81/84
+[Stage2 evaluation] 82/84
+[Stage2 evaluation] 83/84
+[Stage2 evaluation] 84/84
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] 1/30
+[Stage2 evaluation] 2/30
+[Stage2 evaluation] 3/30
+[Stage2 evaluation] 4/30
+[Stage2 evaluation] 5/30
+[Stage2 evaluation] 6/30
+[Stage2 evaluation] 7/30
+[Stage2 evaluation] 8/30
+[Stage2 evaluation] 9/30
+[Stage2 evaluation] 10/30
+[Stage2 evaluation] 11/30
+[Stage2 evaluation] 12/30
+[Stage2 evaluation] 13/30
+[Stage2 evaluation] 14/30
+[Stage2 evaluation] 15/30
+[Stage2 evaluation] 16/30
+[Stage2 evaluation] 17/30
+[Stage2 evaluation] 18/30
+[Stage2 evaluation] 19/30
+[Stage2 evaluation] 20/30
+[Stage2 evaluation] 21/30
+[Stage2 evaluation] 22/30
+[Stage2 evaluation] 23/30
+[Stage2 evaluation] 24/30
+[Stage2 evaluation] 25/30
+[Stage2 evaluation] 26/30
+[Stage2 evaluation] 27/30
+[Stage2 evaluation] 28/30
+[Stage2 evaluation] 29/30
+[Stage2 evaluation] 30/30
+{
+  "stage": "Stage3.1",
+  "round": 2,
+  "probe_success": 84,
+  "step_success": 30,
+  "best": {
+    "candidate_id": "s31r002s_4074755102f6b06f",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "strict": false,
+    "sustained_box_m": 0.030254915,
+    "post_arrival_velocity_rms": 0.04128771692388494,
+    "max_violation": 0.008497166666666667
+  },
+  "trust": [
+    {
+      "center_candidate_id": "s31r001s_8fd81934c26f4bed",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r002s_4074755102f6b06f",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 0.04525722666666665,
+      "predicted_max_violation_at_endpoint": 0.010209215318030207,
+      "real_max_violation_at_endpoint": 0.008497166666666667,
+      "center_max_violation": 0.04525722666666665,
+      "predicted_max_violation": 0.010209215318030207,
+      "real_max_violation": 0.008497166666666667,
+      "predicted_reduction": 0.03504801134863644,
+      "actual_reduction": 0.03676005999999998,
+      "rho": 1.0488486674559967,
+      "trust_boundary_fraction": 1.5,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.8225000000000002,
+      "new_trust_scale": 2.4603750000000004,
+      "center_slot": "primary"
+    },
+    {
+      "center_candidate_id": "s31r001s_cdedc22b3d8312aa",
+      "center_nominal_id": "nominal_07_s22g005_a2acc95ca222cec3",
+      "best_step_candidate_id": "s31r002s_25bc7b62d231718e",
+      "comparison_endpoint_step": 14,
+      "comparison_endpoint_ms": 140,
+      "center_max_violation_at_endpoint": 0.08467507333333346,
+      "predicted_max_violation_at_endpoint": 0.03355994252979011,
+      "real_max_violation_at_endpoint": 0.029553160000000078,
+      "center_max_violation": 0.08467507333333346,
+      "predicted_max_violation": 0.03355994252979011,
+      "real_max_violation": 0.029553160000000078,
+      "predicted_reduction": 0.05111513080354335,
+      "actual_reduction": 0.05512191333333338,
+      "rho": 1.0783874063668106,
+      "trust_boundary_fraction": 1.5000000000000002,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.8225000000000002,
+      "new_trust_scale": 2.4603750000000004,
+      "center_slot": "secondary"
+    }
+  ],
+  "next_round": 3,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] 1/84
+[Stage2 evaluation] 2/84
+[Stage2 evaluation] 3/84
+[Stage2 evaluation] 4/84
+[Stage2 evaluation] 5/84
+[Stage2 evaluation] 6/84
+[Stage2 evaluation] 7/84
+[Stage2 evaluation] 8/84
+[Stage2 evaluation] 9/84
+[Stage2 evaluation] 10/84
+[Stage2 evaluation] 11/84
+[Stage2 evaluation] 12/84
+[Stage2 evaluation] 13/84
+[Stage2 evaluation] 14/84
+[Stage2 evaluation] 15/84
+[Stage2 evaluation] 16/84
+[Stage2 evaluation] 17/84
+[Stage2 evaluation] 18/84
+[Stage2 evaluation] 19/84
+[Stage2 evaluation] 20/84
+[Stage2 evaluation] 21/84
+[Stage2 evaluation] 22/84
+[Stage2 evaluation] 23/84
+[Stage2 evaluation] 24/84
+[Stage2 evaluation] 25/84
+[Stage2 evaluation] 26/84
+[Stage2 evaluation] 27/84
+[Stage2 evaluation] 28/84
+[Stage2 evaluation] 29/84
+[Stage2 evaluation] 30/84
+[Stage2 evaluation] 31/84
+[Stage2 evaluation] 32/84
+[Stage2 evaluation] 33/84
+[Stage2 evaluation] 34/84
+[Stage2 evaluation] 35/84
+[Stage2 evaluation] 36/84
+[Stage2 evaluation] 37/84
+[Stage2 evaluation] 38/84
+[Stage2 evaluation] 39/84
+[Stage2 evaluation] 40/84
+[Stage2 evaluation] 41/84
+[Stage2 evaluation] 42/84
+[Stage2 evaluation] 43/84
+[Stage2 evaluation] 44/84
+[Stage2 evaluation] 45/84
+[Stage2 evaluation] 46/84
+[Stage2 evaluation] 47/84
+[Stage2 evaluation] 48/84
+[Stage2 evaluation] 49/84
+[Stage2 evaluation] 50/84
+[Stage2 evaluation] 51/84
+[Stage2 evaluation] 52/84
+[Stage2 evaluation] 53/84
+[Stage2 evaluation] 54/84
+[Stage2 evaluation] 55/84
+[Stage2 evaluation] 56/84
+[Stage2 evaluation] 57/84
+[Stage2 evaluation] 58/84
+[Stage2 evaluation] 59/84
+[Stage2 evaluation] 60/84
+[Stage2 evaluation] 61/84
+[Stage2 evaluation] 62/84
+[Stage2 evaluation] 63/84
+[Stage2 evaluation] 64/84
+[Stage2 evaluation] 65/84
+[Stage2 evaluation] 66/84
+[Stage2 evaluation] 67/84
+[Stage2 evaluation] 68/84
+[Stage2 evaluation] 69/84
+[Stage2 evaluation] 70/84
+[Stage2 evaluation] 71/84
+[Stage2 evaluation] 72/84
+[Stage2 evaluation] 73/84
+[Stage2 evaluation] 74/84
+[Stage2 evaluation] 75/84
+[Stage2 evaluation] 76/84
+[Stage2 evaluation] 77/84
+[Stage2 evaluation] 78/84
+[Stage2 evaluation] 79/84
+[Stage2 evaluation] 80/84
+[Stage2 evaluation] 81/84
+[Stage2 evaluation] 82/84
+[Stage2 evaluation] 83/84
+[Stage2 evaluation] 84/84
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] waiting 0/30
+[Stage2 evaluation] 1/30
+[Stage2 evaluation] 2/30
+[Stage2 evaluation] 3/30
+[Stage2 evaluation] 4/30
+[Stage2 evaluation] 5/30
+[Stage2 evaluation] 6/30
+[Stage2 evaluation] 7/30
+[Stage2 evaluation] 8/30
+[Stage2 evaluation] 9/30
+[Stage2 evaluation] 10/30
+[Stage2 evaluation] 11/30
+[Stage2 evaluation] 12/30
+[Stage2 evaluation] 13/30
+[Stage2 evaluation] 14/30
+[Stage2 evaluation] 15/30
+[Stage2 evaluation] 16/30
+[Stage2 evaluation] 17/30
+[Stage2 evaluation] 18/30
+[Stage2 evaluation] 19/30
+[Stage2 evaluation] 20/30
+[Stage2 evaluation] 21/30
+[Stage2 evaluation] 22/30
+[Stage2 evaluation] 23/30
+[Stage2 evaluation] 24/30
+[Stage2 evaluation] 25/30
+[Stage2 evaluation] 26/30
+[Stage2 evaluation] 27/30
+[Stage2 evaluation] 28/30
+[Stage2 evaluation] 29/30
+[Stage2 evaluation] 30/30
+{
+  "stage": "Stage3.1",
+  "round": 3,
+  "probe_success": 84,
+  "step_success": 30,
+  "best": {
+    "candidate_id": "s31r003s_42fa9af8412dc46c",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "strict": true,
+    "sustained_box_m": 0.0299368268,
+    "post_arrival_velocity_rms": 0.047932761819191295,
+    "max_violation": 0.0
+  },
+  "trust": [
+    {
+      "center_candidate_id": "s31r002s_4074755102f6b06f",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r003s_a691922b40b2401b",
+      "comparison_endpoint_step": 14,
+      "comparison_endpoint_ms": 140,
+      "center_max_violation_at_endpoint": 0.023253503333333425,
+      "predicted_max_violation_at_endpoint": 0.0,
+      "real_max_violation_at_endpoint": 0.0,
+      "center_max_violation": 0.023253503333333425,
+      "predicted_max_violation": 0.0,
+      "real_max_violation": 0.0,
+      "predicted_reduction": 0.023253503333333425,
+      "actual_reduction": 0.023253503333333425,
+      "rho": 1.0,
+      "trust_boundary_fraction": 1.5000000000000004,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 2.4603750000000004,
+      "new_trust_scale": 3.0,
+      "center_slot": "primary"
+    },
+    {
+      "center_candidate_id": "s31r002s_ce18f2c2e239765b",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r003s_42fa9af8412dc46c",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 0.008847140000000087,
+      "predicted_max_violation_at_endpoint": 0.0,
+      "real_max_violation_at_endpoint": 0.0,
+      "center_max_violation": 0.008847140000000087,
+      "predicted_max_violation": 0.0,
+      "real_max_violation": 0.0,
+      "predicted_reduction": 0.008847140000000087,
+      "actual_reduction": 0.008847140000000087,
+      "rho": 1.0,
+      "trust_boundary_fraction": 1.5,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 2.4603750000000004,
+      "new_trust_scale": 3.0,
+      "center_slot": "secondary"
+    }
+  ],
+  "next_round": 4,
+  "finished": true,
+  "stop_reason": "strict_gate_found"
+}
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] waiting 0/42
+[Stage2 evaluation] 1/42
+[Stage2 evaluation] 2/42
+[Stage2 evaluation] 3/42
+[Stage2 evaluation] 4/42
+[Stage2 evaluation] 5/42
+[Stage2 evaluation] 6/42
+[Stage2 evaluation] 7/42
+[Stage2 evaluation] 8/42
+[Stage2 evaluation] 9/42
+[Stage2 evaluation] 10/42
+[Stage2 evaluation] 11/42
+[Stage2 evaluation] 12/42
+[Stage2 evaluation] 13/42
+[Stage2 evaluation] 14/42
+[Stage2 evaluation] 15/42
+[Stage2 evaluation] 16/42
+[Stage2 evaluation] 17/42
+[Stage2 evaluation] 18/42
+[Stage2 evaluation] 19/42
+[Stage2 evaluation] 20/42
+[Stage2 evaluation] 21/42
+[Stage2 evaluation] 22/42
+[Stage2 evaluation] 23/42
+[Stage2 evaluation] 24/42
+[Stage2 evaluation] 25/42
+[Stage2 evaluation] 26/42
+[Stage2 evaluation] 27/42
+[Stage2 evaluation] 28/42
+[Stage2 evaluation] 29/42
+[Stage2 evaluation] 30/42
+[Stage2 evaluation] 31/42
+[Stage2 evaluation] 32/42
+[Stage2 evaluation] 33/42
+[Stage2 evaluation] 34/42
+[Stage2 evaluation] 35/42
+[Stage2 evaluation] 36/42
+[Stage2 evaluation] 37/42
+[Stage2 evaluation] 38/42
+[Stage2 evaluation] 39/42
+[Stage2 evaluation] 40/42
+[Stage2 evaluation] 41/42
+[Stage2 evaluation] 42/42
+{
+  "stage": "Stage3.1",
+  "phase": "controller_identification",
+  "center": "s31r003s_42fa9af8412dc46c",
+  "recentered_once": false,
+  "successful_probes": 42,
+  "reliable_columns": 21,
+  "numerical_rank": 21,
+  "batch_retained_rank": 13,
+  "online_feedback_validated": false
+}
+[Stage3.1 feedback] waiting 0/24
+[Stage3.1 feedback] waiting 0/24
+[Stage3.1 feedback] waiting 0/24
+[Stage3.1 feedback] waiting 0/24
+[Stage3.1 feedback] waiting 0/24
+[Stage3.1 feedback] waiting 0/24
+[Stage3.1 feedback] waiting 0/24
+[Stage3.1 feedback] 1/24
+[Stage3.1 feedback] 2/24
+[Stage3.1 feedback] 3/24
+[Stage3.1 feedback] 4/24
+[Stage3.1 feedback] 5/24
+[Stage3.1 feedback] 6/24
+[Stage3.1 feedback] 7/24
+[Stage3.1 feedback] 8/24
+[Stage3.1 feedback] 9/24
+[Stage3.1 feedback] 10/24
+[Stage3.1 feedback] 11/24
+[Stage3.1 feedback] 12/24
+[Stage3.1 feedback] 13/24
+[Stage3.1 feedback] 14/24
+[Stage3.1 feedback] 15/24
+[Stage3.1 feedback] 16/24
+[Stage3.1 feedback] 17/24
+[Stage3.1 feedback] 18/24
+[Stage3.1 feedback] 19/24
+[Stage3.1 feedback] 20/24
+[Stage3.1 feedback] 21/24
+[Stage3.1 feedback] 22/24
+[Stage3.1 feedback] 23/24
+[Stage3.1 feedback] 24/24
+{
+  "schema_version": 1,
+  "stage": "Stage3.1",
+  "created_utc": "20260722_022134",
+  "center_candidate_id": "s31r003s_42fa9af8412dc46c",
+  "n_rollouts": 24,
+  "n_successful": 24,
+  "n_strict": 21,
+  "selected_controller_scale": 0.5,
+  "comparisons": [
+    {
+      "scenario": "disturbance_mode1_minus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "disturbance_mode1_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "nominal",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_RZ_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_R_minus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_R_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_Z_minus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.03892393000000016,
+      "feedback_max_violation": 0.038345946666666686,
+      "feedback_to_baseline_ratio": 0.9851509512699906,
+      "improved": true,
+      "pair_success": true
+    },
+    {
+      "scenario": "target_Z_plus",
+      "controller_scale": 0.5,
+      "baseline_max_violation": 0.0,
+      "feedback_max_violation": 0.0,
+      "feedback_to_baseline_ratio": 0.0,
+      "improved": false,
+      "pair_success": true
+    }
+  ],
+  "scale_summaries": [
+    {
+      "controller_scale": 0.5,
+      "comparisons": [
+        {
+          "scenario": "disturbance_mode1_minus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "disturbance_mode1_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "nominal",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_RZ_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_minus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_minus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.03892393000000016,
+          "feedback_max_violation": 0.038345946666666686,
+          "feedback_to_baseline_ratio": 0.9851509512699906,
+          "improved": true,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_plus",
+          "controller_scale": 0.5,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        }
+      ],
+      "n_nonnominal_scenarios": 7,
+      "n_nonnominal_improved": 1,
+      "median_nonnominal_feedback_ratio": 0.0,
+      "nominal_not_materially_worsened": true,
+      "all_required_rollouts_successful": true,
+      "limited_causal_feedback_poc_pass": false
+    },
+    {
+      "controller_scale": 1.0,
+      "comparisons": [
+        {
+          "scenario": "disturbance_mode1_minus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "disturbance_mode1_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "nominal",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_RZ_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_minus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_R_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_minus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.03892393000000016,
+          "feedback_max_violation": 0.03779811666666655,
+          "feedback_to_baseline_ratio": 0.9710765759435491,
+          "improved": true,
+          "pair_success": true
+        },
+        {
+          "scenario": "target_Z_plus",
+          "controller_scale": 1.0,
+          "baseline_max_violation": 0.0,
+          "feedback_max_violation": 0.0,
+          "feedback_to_baseline_ratio": 0.0,
+          "improved": false,
+          "pair_success": true
+        }
+      ],
+      "n_nonnominal_scenarios": 7,
+      "n_nonnominal_improved": 1,
+      "median_nonnominal_feedback_ratio": 0.0,
+      "nominal_not_materially_worsened": true,
+      "all_required_rollouts_successful": true,
+      "limited_causal_feedback_poc_pass": false
+    }
+  ],
+  "n_nonnominal_scenarios": 7,
+  "n_nonnominal_improved_at_selected_scale": 1,
+  "median_nonnominal_feedback_ratio": 0.0,
+  "nominal_not_materially_worsened": true,
+  "limited_causal_feedback_poc_pass": false,
+  "online_feedback_validated": false,
+  "robustness_validated": false,
+  "warning": "This limited POC uses one initial state, +/-2 mm target shifts, and one injected mode disturbance. It does not validate robustness across initial states, plant parameters, noise, or long hold durations."
+}
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "schema_version": 1,
+  "stage": "Stage3.1",
+  "verdict": "PASS_PRECISE_HOLD_30MM_120_150MS_CONFIRMED",
+  "created_utc": "20260722_022526",
+  "candidate_summaries": [
+    {
+      "candidate_id": "s31r999p_69651620f6334222",
+      "confirmation_rank": 1,
+      "confirmation_reasons": [
+        "strict",
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299374239,
+      "max_post_arrival_velocity_rms_m_per_s": 0.047239747377620614
+    },
+    {
+      "candidate_id": "s31r999p_8ed9bde8bda54aa0",
+      "confirmation_rank": 2,
+      "confirmation_reasons": [
+        "strict",
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299379992,
+      "max_post_arrival_velocity_rms_m_per_s": 0.04744588373480257
+    },
+    {
+      "candidate_id": "s31r999p_633377300e52a9db",
+      "confirmation_rank": 3,
+      "confirmation_reasons": [
+        "strict",
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299413698,
+      "max_post_arrival_velocity_rms_m_per_s": 0.047481694984117966
+    },
+    {
+      "candidate_id": "s31r999p_40cc543ce7fc51f6",
+      "confirmation_rank": 4,
+      "confirmation_reasons": [
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299369489,
+      "max_post_arrival_velocity_rms_m_per_s": 0.04724319648700997
+    },
+    {
+      "candidate_id": "s31r999p_762ba9c067439dec",
+      "confirmation_rank": 5,
+      "confirmation_reasons": [
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299503523,
+      "max_post_arrival_velocity_rms_m_per_s": 0.04760960160723886
+    },
+    {
+      "candidate_id": "s31r999p_da372886045202c8",
+      "confirmation_rank": 6,
+      "confirmation_reasons": [
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299394551,
+      "max_post_arrival_velocity_rms_m_per_s": 0.047557279499576506
+    },
+    {
+      "candidate_id": "s31r999p_b56bf2b93a0252ec",
+      "confirmation_rank": 7,
+      "confirmation_reasons": [
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299368268,
+      "max_post_arrival_velocity_rms_m_per_s": 0.0475103318385726
+    },
+    {
+      "candidate_id": "s31r999p_0b949e08c6d28d42",
+      "confirmation_rank": 8,
+      "confirmation_reasons": [
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": true,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_1_max_violation": 0.0,
+      "latest_confirmed_strict_arrival_ms": 140,
+      "latest_confirmed_relaxed_arrival_ms": 120,
+      "worst_sustained_box_max_error_m": 0.0299429907,
+      "max_post_arrival_velocity_rms_m_per_s": 0.04774810056418463
+    }
+  ],
+  "robustness_validated": false,
+  "robustness_warning": "Repeated deterministic rollouts confirm reproducibility only. Initial-state, target, noise, delay, vessel-current, and plant-parameter robustness remain untested."
+}
+{
+  "schema_version": 1,
+  "stage": "Stage3.1",
+  "created_utc": "20260722_022531",
+  "source_stage3_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352",
+  "source_stage3_0_rows": 420,
+  "n_stage3_1_evaluations": 498,
+  "n_stage3_1_successful": 498,
+  "n_total_catalog_rows": 918,
+  "n_strict_gate": 46,
+  "n_relaxed_gate": 440,
+  "best": {
+    "stage": "Stage3.1",
+    "phase": "controller_identification_999_probes",
+    "candidate_id": "s31r999p_69651620f6334222",
+    "population_index": 14,
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "source_candidate_id": "s22g000_571ab4a158d29207",
+    "nominal_category": "gate",
+    "source_name": "center0_v7_m",
+    "source_type": "real_tsc_fd_probe",
+    "control_vector": [
+      0.1986434276998702,
+      0.49204023013107095,
+      0.21547878343592358,
+      0.83132404818189,
+      1.5122800036218753,
+      0.028159299640196922,
+      0.30806661553497394,
+      0.4129908399311615,
+      -0.005991563903879671,
+      -1.1089019269553486,
+      -1.1213055953182878,
+      0.6599068669037618,
+      -0.511986289280472,
+      -0.46391496554601097,
+      0.49992092091630724,
+      -0.2679410662670594,
+      -0.5027650000000008,
+      0.3255964149569546,
+      -0.2785443579757814,
+      -0.8448859878787722,
+      0.3086456620311949
+    ],
+    "result_relpath": "stage3_1_evaluations/controller_identification_999_probes/s31r999p_69651620f6334222.json.gz",
+    "success": true,
+    "failure_reason": "",
+    "n_trajectory_steps": 16,
+    "terminal_R_error_m": -0.025647650999999994,
+    "terminal_Z_error_m": 0.0286499865,
+    "terminal_Ip_error_A": 83.38180000000284,
+    "terminal_RZ_euclidean_error_m": 0.0384528767229187,
+    "terminal_RZ_box_max_error_m": 0.0286499865,
+    "terminal_velocity_m_per_s": 0.012535210935234745,
+    "late_velocity_rms_m_per_s": 0.06761280210339465,
+    "max_velocity_m_per_s": 0.6492383287639514,
+    "max_current_utilization": 0.41409999999999997,
+    "trailing_streak_within_30mm_steps": 4,
+    "trailing_streak_within_40mm_steps": 16,
+    "strict_gate_pass": true,
+    "relaxed_gate_pass": true,
+    "gate_label": "PASS_PRECISE_HOLD_30MM_120_150MS",
+    "stage3_0_earliest_strict_arrival_step": 14,
+    "stage3_0_earliest_strict_arrival_ms": 140,
+    "stage3_0_earliest_relaxed_arrival_step": 12,
+    "stage3_0_earliest_relaxed_arrival_ms": 120,
+    "stage3_0_gate_endpoint_step": 14,
+    "stage3_0_gate_endpoint_ms": 140,
+    "stage3_0_gate_sustained_box_max_error_m": 0.0299374239,
+    "stage3_0_gate_post_arrival_velocity_rms_m_per_s": 0.047239747377620614,
+    "stage3_0_best_endpoint_step": 14,
+    "stage3_0_best_endpoint_ms": 140,
+    "stage3_0_window_start_step": 12,
+    "stage3_0_sustained_box_max_error_m": 0.0299374239,
+    "stage3_0_endpoint_velocity_m_per_s": 0.06562054519288908,
+    "stage3_0_endpoint_late_velocity_rms_m_per_s": 0.06762936034092895,
+    "stage3_0_post_arrival_velocity_rms_m_per_s": 0.047239747377620614,
+    "stage3_0_final_velocity_m_per_s": 0.012535210935234745,
+    "stage3_0_sustained_Ip_max_error_A": 529.7198000000026,
+    "stage3_0_position_violation": 0.0,
+    "stage3_0_endpoint_speed_violation": 0.0,
+    "stage3_0_endpoint_late_speed_violation": 0.0,
+    "stage3_0_post_speed_violation": 0.0,
+    "stage3_0_final_speed_violation": 0.0,
+    "stage3_0_ip_violation": 0.0,
+    "stage3_0_max_violation": 0.0,
+    "stage3_0_sum_violation": 0.0,
+    "stage3_0_l2_violation": 0.0,
+    "stage3_0_endpoint_evaluations": [
+      {
+        "endpoint_step": 12,
+        "arrival_time_ms": 120,
+        "window_start_step": 10,
+        "sustained_box_max_error_m": 0.0304513742,
+        "endpoint_velocity_m_per_s": 0.0654282272584422,
+        "endpoint_late_velocity_rms_m_per_s": 0.05497657031368143,
+        "post_arrival_velocity_rms_m_per_s": 0.06761280210339465,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 885.5930000000008,
+        "position_violation": 0.015045806666666772,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.015045806666666772,
+        "sum_violation": 0.015045806666666772,
+        "l2_violation": 0.015045806666666772,
+        "pass": false
+      },
+      {
+        "endpoint_step": 13,
+        "arrival_time_ms": 130,
+        "window_start_step": 11,
+        "sustained_box_max_error_m": 0.0303745374,
+        "endpoint_velocity_m_per_s": 0.09768277046801062,
+        "endpoint_late_velocity_rms_m_per_s": 0.06033801682638909,
+        "post_arrival_velocity_rms_m_per_s": 0.06832547380225737,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 816.4710000000014,
+        "position_violation": 0.012484579999999967,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.012484579999999967,
+        "sum_violation": 0.012484579999999967,
+        "l2_violation": 0.012484579999999967,
+        "pass": false
+      },
+      {
+        "endpoint_step": 14,
+        "arrival_time_ms": 140,
+        "window_start_step": 12,
+        "sustained_box_max_error_m": 0.0299374239,
+        "endpoint_velocity_m_per_s": 0.06562054519288908,
+        "endpoint_late_velocity_rms_m_per_s": 0.06762936034092895,
+        "post_arrival_velocity_rms_m_per_s": 0.047239747377620614,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 529.7198000000026,
+        "position_violation": 0.0,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.0,
+        "sum_violation": 0.0,
+        "l2_violation": 0.0,
+        "pass": true
+      },
+      {
+        "endpoint_step": 15,
+        "arrival_time_ms": 150,
+        "window_start_step": 13,
+        "sustained_box_max_error_m": 0.0291699208,
+        "endpoint_velocity_m_per_s": 0.012535210935234745,
+        "endpoint_late_velocity_rms_m_per_s": 0.06761280210339465,
+        "post_arrival_velocity_rms_m_per_s": 0.012535210935234745,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 349.7592000000004,
+        "position_violation": 0.0,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.0,
+        "sum_violation": 0.0,
+        "l2_violation": 0.0,
+        "pass": true
+      }
+    ],
+    "stage3_0_speed_safe_at_best_endpoint": true,
+    "stage3_0_position_safe_at_best_endpoint": true,
+    "stage3_0_quality": 4.191052704544628,
+    "continuous_objective": 4.191052704544628,
+    "selection_score": 4.191052704544628,
+    "action_rms": 0.42006205222529,
+    "delta_action_rms": 0.3072358069922158,
+    "repair_excess_rms": 0.04807504367787985,
+    "wall_time_s": 249.0775661468506,
+    "stage3_1_earliest_strict_arrival_step": 14,
+    "stage3_1_earliest_strict_arrival_ms": 140,
+    "stage3_1_earliest_relaxed_arrival_step": 12,
+    "stage3_1_earliest_relaxed_arrival_ms": 120,
+    "stage3_1_gate_endpoint_step": 14,
+    "stage3_1_gate_endpoint_ms": 140,
+    "stage3_1_gate_sustained_box_max_error_m": 0.0299374239,
+    "stage3_1_gate_post_arrival_velocity_rms_m_per_s": 0.047239747377620614,
+    "stage3_1_best_endpoint_step": 14,
+    "stage3_1_best_endpoint_ms": 140,
+    "stage3_1_window_start_step": 12,
+    "stage3_1_sustained_box_max_error_m": 0.0299374239,
+    "stage3_1_endpoint_velocity_m_per_s": 0.06562054519288908,
+    "stage3_1_endpoint_late_velocity_rms_m_per_s": 0.06762936034092895,
+    "stage3_1_post_arrival_velocity_rms_m_per_s": 0.047239747377620614,
+    "stage3_1_final_velocity_m_per_s": 0.012535210935234745,
+    "stage3_1_sustained_Ip_max_error_A": 529.7198000000026,
+    "stage3_1_position_violation": 0.0,
+    "stage3_1_endpoint_speed_violation": 0.0,
+    "stage3_1_endpoint_late_speed_violation": 0.0,
+    "stage3_1_post_speed_violation": 0.0,
+    "stage3_1_final_speed_violation": 0.0,
+    "stage3_1_ip_violation": 0.0,
+    "stage3_1_max_violation": 0.0,
+    "stage3_1_sum_violation": 0.0,
+    "stage3_1_l2_violation": 0.0,
+    "stage3_1_endpoint_evaluations": [
+      {
+        "endpoint_step": 12,
+        "arrival_time_ms": 120,
+        "window_start_step": 10,
+        "sustained_box_max_error_m": 0.0304513742,
+        "endpoint_velocity_m_per_s": 0.0654282272584422,
+        "endpoint_late_velocity_rms_m_per_s": 0.05497657031368143,
+        "post_arrival_velocity_rms_m_per_s": 0.06761280210339465,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 885.5930000000008,
+        "position_violation": 0.015045806666666772,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.015045806666666772,
+        "sum_violation": 0.015045806666666772,
+        "l2_violation": 0.015045806666666772,
+        "pass": false
+      },
+      {
+        "endpoint_step": 13,
+        "arrival_time_ms": 130,
+        "window_start_step": 11,
+        "sustained_box_max_error_m": 0.0303745374,
+        "endpoint_velocity_m_per_s": 0.09768277046801062,
+        "endpoint_late_velocity_rms_m_per_s": 0.06033801682638909,
+        "post_arrival_velocity_rms_m_per_s": 0.06832547380225737,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 816.4710000000014,
+        "position_violation": 0.012484579999999967,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.012484579999999967,
+        "sum_violation": 0.012484579999999967,
+        "l2_violation": 0.012484579999999967,
+        "pass": false
+      },
+      {
+        "endpoint_step": 14,
+        "arrival_time_ms": 140,
+        "window_start_step": 12,
+        "sustained_box_max_error_m": 0.0299374239,
+        "endpoint_velocity_m_per_s": 0.06562054519288908,
+        "endpoint_late_velocity_rms_m_per_s": 0.06762936034092895,
+        "post_arrival_velocity_rms_m_per_s": 0.047239747377620614,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 529.7198000000026,
+        "position_violation": 0.0,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.0,
+        "sum_violation": 0.0,
+        "l2_violation": 0.0,
+        "pass": true
+      },
+      {
+        "endpoint_step": 15,
+        "arrival_time_ms": 150,
+        "window_start_step": 13,
+        "sustained_box_max_error_m": 0.0291699208,
+        "endpoint_velocity_m_per_s": 0.012535210935234745,
+        "endpoint_late_velocity_rms_m_per_s": 0.06761280210339465,
+        "post_arrival_velocity_rms_m_per_s": 0.012535210935234745,
+        "final_velocity_m_per_s": 0.012535210935234745,
+        "sustained_Ip_max_error_A": 349.7592000000004,
+        "position_violation": 0.0,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.0,
+        "sum_violation": 0.0,
+        "l2_violation": 0.0,
+        "pass": true
+      }
+    ],
+    "stage3_1_speed_safe_at_best_endpoint": true,
+    "stage3_1_position_safe_at_best_endpoint": true,
+    "stage3_1_quality": 4.191052704544628,
+    "probe_center_candidate_id": "s31r003s_42fa9af8412dc46c",
+    "probe_center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "probe_variable_index": 7,
+    "probe_sign": -1,
+    "probe_requested_delta": 0.018,
+    "probe_actual_delta": -0.018000000000000016,
+    "probe_scheme": "two_sided",
+    "phase_rank": 1
+  },
+  "confirmation": {
+    "schema_version": 1,
+    "stage": "Stage3.1",
+    "verdict": "PASS_PRECISE_HOLD_30MM_120_150MS_CONFIRMED",
+    "created_utc": "20260722_022526",
+    "candidate_summaries": [
+      {
+        "candidate_id": "s31r999p_69651620f6334222",
+        "confirmation_rank": 1,
+        "confirmation_reasons": [
+          "strict",
+          "corner",
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299374239,
+        "max_post_arrival_velocity_rms_m_per_s": 0.047239747377620614
+      },
+      {
+        "candidate_id": "s31r999p_8ed9bde8bda54aa0",
+        "confirmation_rank": 2,
+        "confirmation_reasons": [
+          "strict",
+          "corner",
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299379992,
+        "max_post_arrival_velocity_rms_m_per_s": 0.04744588373480257
+      },
+      {
+        "candidate_id": "s31r999p_633377300e52a9db",
+        "confirmation_rank": 3,
+        "confirmation_reasons": [
+          "strict",
+          "corner",
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299413698,
+        "max_post_arrival_velocity_rms_m_per_s": 0.047481694984117966
+      },
+      {
+        "candidate_id": "s31r999p_40cc543ce7fc51f6",
+        "confirmation_rank": 4,
+        "confirmation_reasons": [
+          "corner",
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299369489,
+        "max_post_arrival_velocity_rms_m_per_s": 0.04724319648700997
+      },
+      {
+        "candidate_id": "s31r999p_762ba9c067439dec",
+        "confirmation_rank": 5,
+        "confirmation_reasons": [
+          "corner",
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299503523,
+        "max_post_arrival_velocity_rms_m_per_s": 0.04760960160723886
+      },
+      {
+        "candidate_id": "s31r999p_da372886045202c8",
+        "confirmation_rank": 6,
+        "confirmation_reasons": [
+          "corner",
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299394551,
+        "max_post_arrival_velocity_rms_m_per_s": 0.047557279499576506
+      },
+      {
+        "candidate_id": "s31r999p_b56bf2b93a0252ec",
+        "confirmation_rank": 7,
+        "confirmation_reasons": [
+          "corner",
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299368268,
+        "max_post_arrival_velocity_rms_m_per_s": 0.0475103318385726
+      },
+      {
+        "candidate_id": "s31r999p_0b949e08c6d28d42",
+        "confirmation_rank": 8,
+        "confirmation_reasons": [
+          "speed_safe",
+          "relaxed"
+        ],
+        "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+        "repeats": 3,
+        "successful_repeats": 3,
+        "all_repeats_strict_gate": true,
+        "all_repeats_relaxed_gate": true,
+        "worst_stage3_1_max_violation": 0.0,
+        "latest_confirmed_strict_arrival_ms": 140,
+        "latest_confirmed_relaxed_arrival_ms": 120,
+        "worst_sustained_box_max_error_m": 0.0299429907,
+        "max_post_arrival_velocity_rms_m_per_s": 0.04774810056418463
+      }
+    ],
+    "robustness_validated": false,
+    "robustness_warning": "Repeated deterministic rollouts confirm reproducibility only. Initial-state, target, noise, delay, vessel-current, and plant-parameter robustness remain untested."
+  },
+  "feedback_poc": {
+    "schema_version": 1,
+    "stage": "Stage3.1",
+    "created_utc": "20260722_022134",
+    "center_candidate_id": "s31r003s_42fa9af8412dc46c",
+    "n_rollouts": 24,
+    "n_successful": 24,
+    "n_strict": 21,
+    "selected_controller_scale": 0.5,
+    "comparisons": [
+      {
+        "scenario": "disturbance_mode1_minus",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.0,
+        "feedback_max_violation": 0.0,
+        "feedback_to_baseline_ratio": 0.0,
+        "improved": false,
+        "pair_success": true
+      },
+      {
+        "scenario": "disturbance_mode1_plus",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.0,
+        "feedback_max_violation": 0.0,
+        "feedback_to_baseline_ratio": 0.0,
+        "improved": false,
+        "pair_success": true
+      },
+      {
+        "scenario": "nominal",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.0,
+        "feedback_max_violation": 0.0,
+        "feedback_to_baseline_ratio": 0.0,
+        "improved": false,
+        "pair_success": true
+      },
+      {
+        "scenario": "target_RZ_plus",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.0,
+        "feedback_max_violation": 0.0,
+        "feedback_to_baseline_ratio": 0.0,
+        "improved": false,
+        "pair_success": true
+      },
+      {
+        "scenario": "target_R_minus",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.0,
+        "feedback_max_violation": 0.0,
+        "feedback_to_baseline_ratio": 0.0,
+        "improved": false,
+        "pair_success": true
+      },
+      {
+        "scenario": "target_R_plus",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.0,
+        "feedback_max_violation": 0.0,
+        "feedback_to_baseline_ratio": 0.0,
+        "improved": false,
+        "pair_success": true
+      },
+      {
+        "scenario": "target_Z_minus",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.03892393000000016,
+        "feedback_max_violation": 0.038345946666666686,
+        "feedback_to_baseline_ratio": 0.9851509512699906,
+        "improved": true,
+        "pair_success": true
+      },
+      {
+        "scenario": "target_Z_plus",
+        "controller_scale": 0.5,
+        "baseline_max_violation": 0.0,
+        "feedback_max_violation": 0.0,
+        "feedback_to_baseline_ratio": 0.0,
+        "improved": false,
+        "pair_success": true
+      }
+    ],
+    "scale_summaries": [
+      {
+        "controller_scale": 0.5,
+        "comparisons": [
+          {
+            "scenario": "disturbance_mode1_minus",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "disturbance_mode1_plus",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "nominal",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_RZ_plus",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_R_minus",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_R_plus",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_Z_minus",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.03892393000000016,
+            "feedback_max_violation": 0.038345946666666686,
+            "feedback_to_baseline_ratio": 0.9851509512699906,
+            "improved": true,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_Z_plus",
+            "controller_scale": 0.5,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          }
+        ],
+        "n_nonnominal_scenarios": 7,
+        "n_nonnominal_improved": 1,
+        "median_nonnominal_feedback_ratio": 0.0,
+        "nominal_not_materially_worsened": true,
+        "all_required_rollouts_successful": true,
+        "limited_causal_feedback_poc_pass": false
+      },
+      {
+        "controller_scale": 1.0,
+        "comparisons": [
+          {
+            "scenario": "disturbance_mode1_minus",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "disturbance_mode1_plus",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "nominal",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_RZ_plus",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_R_minus",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_R_plus",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_Z_minus",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.03892393000000016,
+            "feedback_max_violation": 0.03779811666666655,
+            "feedback_to_baseline_ratio": 0.9710765759435491,
+            "improved": true,
+            "pair_success": true
+          },
+          {
+            "scenario": "target_Z_plus",
+            "controller_scale": 1.0,
+            "baseline_max_violation": 0.0,
+            "feedback_max_violation": 0.0,
+            "feedback_to_baseline_ratio": 0.0,
+            "improved": false,
+            "pair_success": true
+          }
+        ],
+        "n_nonnominal_scenarios": 7,
+        "n_nonnominal_improved": 1,
+        "median_nonnominal_feedback_ratio": 0.0,
+        "nominal_not_materially_worsened": true,
+        "all_required_rollouts_successful": true,
+        "limited_causal_feedback_poc_pass": false
+      }
+    ],
+    "n_nonnominal_scenarios": 7,
+    "n_nonnominal_improved_at_selected_scale": 1,
+    "median_nonnominal_feedback_ratio": 0.0,
+    "nominal_not_materially_worsened": true,
+    "limited_causal_feedback_poc_pass": false,
+    "online_feedback_validated": false,
+    "robustness_validated": false,
+    "warning": "This limited POC uses one initial state, +/-2 mm target shifts, and one injected mode disturbance. It does not validate robustness across initial states, plant parameters, noise, or long hold durations."
+  },
+  "online_feedback_validated": false,
+  "robustness_validated": false,
+  "report": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_1_runs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms_20260722_013158/STAGE3_1_REPORT.md"
+}

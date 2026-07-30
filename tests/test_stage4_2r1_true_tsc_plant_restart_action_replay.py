@@ -64,6 +64,11 @@ class Stage42R1ConfigTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "pre-claims"):
             r42.validate_config(cfg)
 
+
+    def test_hotfix_revision_accepts_only_known_legacy_manifest(self) -> None:
+        self.assertEqual(r42.PACKAGE_REVISION, "r42r1a_capture_failure_finite_summary_v2")
+        self.assertIn("r42r1_plant_restart_action_replay_v1", r42.LEGACY_PACKAGE_REVISIONS)
+
     def test_self_test_passes_and_budget_is_fixed(self) -> None:
         payload = r42.self_test()
         self.assertTrue(payload["passed"])
@@ -144,6 +149,20 @@ class Stage42R1TraceTests(unittest.TestCase):
         self.assertFalse(numeric["exact"])
         self.assertTrue(numeric["numeric"])
 
+
+
+    def test_shape_mismatch_is_structured_finite_json(self) -> None:
+        left = np.empty((0, 0), dtype=float)
+        right = np.ones((3, 2), dtype=float)
+        result = r42._compare_arrays(left, right, atol=0.0)
+        self.assertFalse(result["comparable"])
+        self.assertEqual(result["mismatch_reason"], "shape_mismatch")
+        self.assertIsNone(result["maximum_abs_difference"])
+        json.dumps(result, allow_nan=False)
+
+    def test_finite_metric_max_rejects_missing_comparisons(self) -> None:
+        self.assertEqual(r42._finite_metric_max([{"x": 0.0}, {"x": 1.0}], "x"), 1.0)
+        self.assertIsNone(r42._finite_metric_max([{"x": 0.0}, {"x": None}], "x"))
 
 class Stage42R1SnapshotTests(unittest.TestCase):
     REQUIRED = [

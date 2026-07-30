@@ -1,0 +1,262 @@
+[Stage1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage1] config=configs/stage1_controllability_100ms.json
+[Stage1] run_dir=stage1_runs/stage1_controllability_100ms_20260718_011455
+[Stage1] workers=192
+[Stage1] RAY_TMPDIR=/tmp/rm1120
+[Stage1] Immediate TERM/KILL is not intercepted. Completed per-experiment files remain resumable.
+[stage1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_runs/stage1_controllability_100ms_20260718_011455
+2026-07-18 01:15:01,888	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[stage1 scan] waiting; completed new=0/563
+[stage1 scan] waiting; completed new=0/563
+[stage1 scan] waiting; completed new=0/563
+[stage1 scan] waiting; completed new=0/563
+[stage1 scan] waiting; completed new=5/563
+[stage1 scan] waiting; completed new=9/563
+[stage1 scan] waiting; completed new=9/563
+[stage1 scan] waiting; completed new=9/563
+[stage1 scan] 10/563 new experiments; success=0, failed=10
+[stage1 scan] waiting; completed new=10/563
+[stage1 scan] waiting; completed new=10/563
+[stage1 scan] waiting; completed new=11/563
+[stage1 scan] waiting; completed new=11/563
+[stage1 scan] waiting; completed new=11/563
+[stage1 scan] waiting; completed new=12/563
+[stage1 scan] 20/563 new experiments; success=7, failed=13
+[stage1 scan] 30/563 new experiments; success=17, failed=13
+[stage1 scan] 40/563 new experiments; success=27, failed=13
+[stage1 scan] 50/563 new experiments; success=37, failed=13
+[stage1 scan] 60/563 new experiments; success=47, failed=13
+[stage1 scan] 70/563 new experiments; success=57, failed=13
+[stage1 scan] 80/563 new experiments; success=67, failed=13
+[stage1 scan] 90/563 new experiments; success=77, failed=13
+[stage1 scan] 100/563 new experiments; success=87, failed=13
+[stage1 scan] 110/563 new experiments; success=97, failed=13
+[stage1 scan] 120/563 new experiments; success=107, failed=13
+[stage1 scan] 130/563 new experiments; success=117, failed=13
+[stage1 scan] 140/563 new experiments; success=127, failed=13
+[stage1 scan] 150/563 new experiments; success=137, failed=13
+[stage1 scan] 160/563 new experiments; success=147, failed=13
+[stage1 scan] 170/563 new experiments; success=157, failed=13
+[stage1 scan] 180/563 new experiments; success=166, failed=14
+[stage1 scan] 190/563 new experiments; success=176, failed=14
+[stage1 scan] 200/563 new experiments; success=182, failed=18
+[stage1 scan] waiting; completed new=208/563
+[stage1 scan] waiting; completed new=208/563
+[stage1 scan] waiting; completed new=208/563
+[stage1 scan] waiting; completed new=208/563
+[stage1 scan] 210/563 new experiments; success=190, failed=20
+[stage1 scan] waiting; completed new=212/563
+[stage1 scan] waiting; completed new=213/563
+[stage1 scan] 220/563 new experiments; success=200, failed=20
+[stage1 scan] 230/563 new experiments; success=210, failed=20
+[stage1 scan] 240/563 new experiments; success=220, failed=20
+[stage1 scan] 250/563 new experiments; success=230, failed=20
+[stage1 scan] 260/563 new experiments; success=240, failed=20
+[stage1 scan] 270/563 new experiments; success=250, failed=20
+[stage1 scan] 280/563 new experiments; success=260, failed=20
+[stage1 scan] 290/563 new experiments; success=270, failed=20
+[stage1 scan] 300/563 new experiments; success=280, failed=20
+[stage1 scan] 310/563 new experiments; success=290, failed=20
+[stage1 scan] 320/563 new experiments; success=300, failed=20
+[stage1 scan] 330/563 new experiments; success=310, failed=20
+[stage1 scan] 340/563 new experiments; success=320, failed=20
+[stage1 scan] 350/563 new experiments; success=330, failed=20
+[stage1 scan] 360/563 new experiments; success=340, failed=20
+[stage1 scan] 370/563 new experiments; success=350, failed=20
+[stage1 scan] 380/563 new experiments; success=360, failed=20
+[stage1 scan] 390/563 new experiments; success=369, failed=21
+[stage1 scan] waiting; completed new=399/563
+[stage1 scan] waiting; completed new=399/563
+[stage1 scan] 400/563 new experiments; success=379, failed=21
+[stage1 scan] 410/563 new experiments; success=389, failed=21
+[stage1 scan] 420/563 new experiments; success=399, failed=21
+[stage1 scan] 430/563 new experiments; success=409, failed=21
+[stage1 scan] 440/563 new experiments; success=419, failed=21
+[stage1 scan] 450/563 new experiments; success=429, failed=21
+[stage1 scan] 460/563 new experiments; success=439, failed=21
+[stage1 scan] 470/563 new experiments; success=449, failed=21
+[stage1 scan] 480/563 new experiments; success=459, failed=21
+[stage1 scan] 490/563 new experiments; success=469, failed=21
+[stage1 scan] 500/563 new experiments; success=479, failed=21
+[stage1 scan] 510/563 new experiments; success=489, failed=21
+[stage1 scan] 520/563 new experiments; success=499, failed=21
+[stage1 scan] 530/563 new experiments; success=509, failed=21
+[stage1 scan] 540/563 new experiments; success=519, failed=21
+[stage1 scan] 550/563 new experiments; success=529, failed=21
+[stage1 scan] 560/563 new experiments; success=539, failed=21
+[stage1 scan] 563/563 new experiments; success=542, failed=21
+{
+  "total_specs": 563,
+  "already_complete": 0,
+  "pending": 563,
+  "backend": "ray",
+  "started_utc": "20260717_171456",
+  "completed_success": 542,
+  "failed": 21,
+  "finished_utc": "20260717_175142"
+}
+{
+  "baseline": {
+    "baseline_repeats_successful": 3,
+    "max_repeat_spread": {
+      "R": 0.0,
+      "Z": 0.0,
+      "Ip": 0.0,
+      "vessel_current_total_a": 0.0,
+      "vessel_current_abs_sum_a": 0.0
+    },
+    "initial_state": {
+      "R": 0.743600216,
+      "Z": 0.0162365614,
+      "Ip": 31286.4059
+    },
+    "terminal_state": {
+      "R": 0.703815205,
+      "Z": 0.0735284023,
+      "Ip": 30730.6695
+    }
+  },
+  "scan_experiments_expected": 563,
+  "scan_experiments_successful": 542,
+  "scan_experiments_failed": 21,
+  "response_fit": {
+    "median_relative_nonlinearity_residual": 0.07867930621279634,
+    "p90_relative_nonlinearity_residual": 0.1853576498300662,
+    "max_relative_nonlinearity_residual": 0.303825554351722,
+    "max_relative_pre_injection_leakage": 0.0,
+    "non_bidirectional_groups": 0
+  },
+  "identification_reliability": {
+    "reliable": false,
+    "checks": {
+      "baseline_R_spread_ok": true,
+      "baseline_Z_spread_ok": true,
+      "baseline_Ip_spread_ok": true,
+      "failed_fraction_ok": false,
+      "median_nonlinearity_ok": true,
+      "p90_nonlinearity_ok": true,
+      "pre_injection_leakage_ok": true,
+      "bidirectional_groups_ok": true
+    },
+    "failed_scan_fraction": 0.037300177619893425
+  },
+  "svd": {
+    "singular_values": [
+      0.0823342052677587,
+      0.0675369580562071,
+      0.011445662248024376,
+      0.0019501544957699658,
+      0.0015453813169868974,
+      0.0007406720680757118,
+      0.0004818375473464739,
+      0.00030431551848401835,
+      0.00021319969002988863,
+      0.00017407744735988803,
+      0.00015273316687873365,
+      0.00010736281037323859,
+      7.262263154627507e-05,
+      6.361925773587243e-05
+    ],
+    "cumulative_energy": [
+      0.5905832670454778,
+      0.9879610052655386,
+      0.9993740729940903,
+      0.9997054013301092,
+      0.9999134628934233,
+      0.9999612567940627,
+      0.9999814833444802,
+      0.9999895513974641,
+      0.9999935113837345,
+      0.9999961513936718,
+      0.9999981836910458,
+      0.9999991879097007,
+      0.9999996473874723,
+      0.9999999999999999
+    ],
+    "recommended_mode_count": 8,
+    "condition_number_nonzero": 1294.171107899199
+  },
+  "reachable_set_100ms": {
+    "target_inside_local_linear_RZ_projection": false,
+    "failed_directions": 0,
+    "terminal_ip_tolerance_a": 8000.0
+  },
+  "best_linear_candidate": {
+    "label": "full14_target1p00",
+    "optimizer_success": true,
+    "n_modes": 14,
+    "target_fraction": 1.0,
+    "objective": 0.48852647293180906,
+    "predicted_terminal_R_error_m": -0.018990028692821403,
+    "predicted_terminal_Z_error_m": 0.023395800416764895,
+    "predicted_terminal_Ip_error_A": 1199.3976030725644,
+    "predicted_min_normalized_RZ_distance": 0.2181538882527314,
+    "predicted_terminal_normalized_RZ_distance": 0.3766597990261066,
+    "max_abs_increment_a": 3.0000000000000004,
+    "max_current_utilization": 0.034308164226357116
+  }
+}
+[stage1 validation] waiting 0/12
+[stage1 validation] waiting 0/12
+[stage1 validation] waiting 0/12
+[stage1 validation] waiting 0/12
+[stage1 validation] 1/12
+[stage1 validation] 2/12
+[stage1 validation] 3/12
+[stage1 validation] 4/12
+[stage1 validation] 5/12
+[stage1 validation] 6/12
+[stage1 validation] 7/12
+[stage1 validation] 8/12
+[stage1 validation] 9/12
+[stage1 validation] 10/12
+[stage1 validation] 11/12
+[stage1 validation] 12/12
+{
+  "status": "PASS_TERMINAL_1X",
+  "interpretation": "At least one real-TSC sequence is inside the 1x R/Z target tube at 100 ms.",
+  "n_validations": 12,
+  "n_successful_tsc": 12,
+  "n_reached_1x": 12,
+  "n_terminal_1x": 12,
+  "n_reached_2x": 12,
+  "best_validation": {
+    "validation_id": "full14_target1p00_scale1p000",
+    "candidate_label": "full14_target1p00",
+    "sequence_scale": 1.0,
+    "success": true,
+    "failure_reason": "",
+    "terminal_R_error_m": -0.02038313199999997,
+    "terminal_Z_error_m": 0.0209815834,
+    "terminal_Ip_error_A": 941.6504000000023,
+    "terminal_normalized_RZ_distance": 0.3656541467229866,
+    "min_normalized_RZ_distance": 0.2181538882527314,
+    "relative_distance_reduction": 0.0,
+    "first_step_within_2x_RZ_only": 0,
+    "first_step_within_1x_RZ_only": 0,
+    "first_step_within_2x": 0,
+    "first_step_within_1x": 0,
+    "terminal_within_2x_RZ_only": true,
+    "terminal_within_1x_RZ_only": true,
+    "terminal_within_2x": true,
+    "terminal_within_1x": true,
+    "gate_ip_tolerance_A": 10000.0,
+    "late_fraction_within_2x": 1.0,
+    "late_fraction_within_1x": 1.0,
+    "late_R_rms_m": 0.021691075446769646,
+    "late_Z_rms_m": 0.025731872994473534,
+    "terminal_velocity_m_per_s": 0.32019543477574086,
+    "max_velocity_m_per_s": 0.6368838524728994,
+    "late_velocity_rms_m_per_s": 0.2897284713411283,
+    "max_current_utilization": 0.41,
+    "wall_time_s": 149.2324583530426
+  },
+  "gate_definition": {
+    "r_1x_m": 0.08,
+    "z_1x_m": 0.08,
+    "horizon_steps": 10,
+    "dt_ms": 10
+  }
+}

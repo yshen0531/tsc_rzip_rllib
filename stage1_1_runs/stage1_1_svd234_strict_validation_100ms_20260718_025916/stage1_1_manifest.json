@@ -1,0 +1,16 @@
+{
+  "stage": "Stage1.1",
+  "created_utc": "20260717_185917",
+  "source_stage1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_runs/stage1_controllability_100ms_20260718_011455",
+  "source_raw_experiments": 563,
+  "new_raw_files_copied": 563,
+  "source_start_folder": "1100ms",
+  "stage1_1_tsc_timeout_s": 180.0,
+  "horizon_steps": 10,
+  "dt_ms": 10,
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  }
+}

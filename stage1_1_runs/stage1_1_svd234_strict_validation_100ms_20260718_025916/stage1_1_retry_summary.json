@@ -1,0 +1,26 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "backend": "ray",
+      "workers": 12,
+      "pending_before": 21,
+      "pending_after": 0,
+      "newly_recovered": 21,
+      "wall_time_s": 302.5456039905548,
+      "run_scan_summary": {
+        "total_specs": 563,
+        "already_complete": 542,
+        "pending": 21,
+        "backend": "ray",
+        "started_utc": "20260717_185917",
+        "completed_success": 563,
+        "failed": 0,
+        "finished_utc": "20260717_190418"
+      }
+    }
+  ],
+  "remaining_failed": 0,
+  "scan_complete": true,
+  "finished_utc": "20260717_190420"
+}

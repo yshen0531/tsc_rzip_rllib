@@ -1,0 +1,10 @@
+{
+  "total_specs": 563,
+  "already_complete": 0,
+  "pending": 563,
+  "backend": "ray",
+  "started_utc": "20260717_171456",
+  "completed_success": 542,
+  "failed": 21,
+  "finished_utc": "20260717_175142"
+}

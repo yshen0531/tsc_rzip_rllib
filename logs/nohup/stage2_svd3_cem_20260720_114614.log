@@ -1,0 +1,2331 @@
+[Stage2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage2] source_stage1_1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+[Stage2] run_dir=stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614
+[Stage2] config=configs/stage2_svd3_real_tsc_cem_100ms.json
+[Stage2] workers=192
+[Stage2] RAY_TMPDIR=/tmp/stage2_1120
+[Stage2] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage2] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage2] 3 SVD modes x 5 time nodes = 15 optimization variables.
+[Stage2] Linear model pre-screens R/Z/Ip only; real TSC ranks speed and hold.
+[Stage2] Immediate TERM/KILL is not intercepted. Completed candidate JSON files remain resumable.
+[Stage2] source_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+[Stage2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614
+2026-07-20 11:46:30,614	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] waiting 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 0,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g000_29563a35ecb9c6a5",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000042.1276316316,
+    "terminal_R_error_m": -0.023341873000000013,
+    "terminal_Z_error_m": 0.0345551438,
+    "terminal_velocity_m_per_s": 0.07960761106296134,
+    "late_velocity_rms_m_per_s": 0.08930628392530449
+  },
+  "next_generation": 1,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 1,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g001_eb588a42e459f278",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000041.1124242732,
+    "terminal_R_error_m": -0.02527094799999996,
+    "terminal_Z_error_m": 0.0340673783,
+    "terminal_velocity_m_per_s": 0.05854782333261783,
+    "late_velocity_rms_m_per_s": 0.06959464625485523
+  },
+  "next_generation": 2,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 2,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g002_2b2965b279fbe7a7",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000040.1637297627,
+    "terminal_R_error_m": -0.025048351999999996,
+    "terminal_Z_error_m": 0.0331164805,
+    "terminal_velocity_m_per_s": 0.05226271042414653,
+    "late_velocity_rms_m_per_s": 0.08335751392534085
+  },
+  "next_generation": 3,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 3,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g003_c201563452ae7dc5",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000039.2313740402,
+    "terminal_R_error_m": -0.024484202999999982,
+    "terminal_Z_error_m": 0.0325922564,
+    "terminal_velocity_m_per_s": 0.019108190354546646,
+    "late_velocity_rms_m_per_s": 0.08974976147091726
+  },
+  "next_generation": 4,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] waiting 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 4,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g004_717d1a103d4acfc8",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000038.8031127658,
+    "terminal_R_error_m": -0.024843174000000023,
+    "terminal_Z_error_m": 0.0321144402,
+    "terminal_velocity_m_per_s": 0.009158858021331076,
+    "late_velocity_rms_m_per_s": 0.09236950089472865
+  },
+  "next_generation": 5,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] waiting 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 5,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g005_717d1a103d4acfc8",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000038.8031127658,
+    "terminal_R_error_m": -0.024843174000000023,
+    "terminal_Z_error_m": 0.0321144402,
+    "terminal_velocity_m_per_s": 0.009158858021331076,
+    "late_velocity_rms_m_per_s": 0.09236950089472865
+  },
+  "next_generation": 6,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 6,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g006_3be98b52a5b7f41f",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000038.7745924287,
+    "terminal_R_error_m": -0.025786687999999947,
+    "terminal_Z_error_m": 0.0323064568,
+    "terminal_velocity_m_per_s": 0.003758288758585018,
+    "late_velocity_rms_m_per_s": 0.08221512249766974
+  },
+  "next_generation": 7,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] waiting 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 7,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g007_1417404bd2e7a119",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000038.7457210398,
+    "terminal_R_error_m": -0.025693610000000033,
+    "terminal_Z_error_m": 0.0320691761,
+    "terminal_velocity_m_per_s": 0.010563105359928758,
+    "late_velocity_rms_m_per_s": 0.08660649244890971
+  },
+  "next_generation": 8,
+  "finished": true,
+  "stop_reason": "max_generations"
+}
+{
+  "schema_version": 1,
+  "generation": 8,
+  "mean": [
+    2.0936349362478786,
+    1.4873311816070987,
+    0.4870464736512399,
+    1.2368020994673883,
+    1.908257803793873,
+    0.04695540750515002,
+    -0.1405838547461698,
+    2.0432540670742765,
+    -0.2684811878363819,
+    -0.732997272685072,
+    -1.2239592937264816,
+    0.10629651763373972,
+    -0.49375710135392625,
+    -0.09665534546794806,
+    -0.06360265817656544
+  ],
+  "covariance": [
+    [
+      0.014441425024866379,
+      -0.0036486458105578967,
+      1.62647925200346e-05,
+      -0.00451700585555726,
+      0.0019119148393635383,
+      -0.0011657067194495807,
+      -0.00036926443163544186,
+      0.004370404258507126,
+      0.0012624168694790618,
+      0.0014393795085278823,
+      0.0004020865741753836,
+      7.5385440035749e-05,
+      -0.005541322365557701,
+      -0.0027560969332909835,
+      0.00041797378922672925
+    ],
+    [
+      -0.0036486458105578967,
+      0.01220653033038303,
+      0.0024898427939239317,
+      0.0011115924933248929,
+      -0.004141243972995135,
+      0.0017116075135733975,
+      0.002601365354009539,
+      -0.0034046032141933063,
+      -0.0022745634555587763,
+      -0.0018223665350583236,
+      -0.00261261249716318,
+      -0.0006698203605179964,
+      0.00010067209470601389,
+      0.005329165180481374,
+      -0.0016962251954927444
+    ],
+    [
+      1.6264792520034684e-05,
+      0.0024898427939239317,
+      0.006594355772702334,
+      -0.0005590626831411742,
+      -0.003223153047801564,
+      -0.00101115108862743,
+      0.0005698382224875449,
+      0.00264989703254601,
+      -0.0014553752036550408,
+      -0.0006392751755082935,
+      -0.002170262134361899,
+      -0.0005325507142842867,
+      -0.002644241729429658,
+      0.004075633199179966,
+      -0.0036863606994110283
+    ],
+    [
+      -0.00451700585555726,
+      0.0011115924933248929,
+      -0.0005590626831411744,
+      0.02123568942538984,
+      0.004333315716165168,
+      -0.0017012690880114899,
+      -0.00720559289475363,
+      -0.0007729988001953305,
+      -0.001883474014772418,
+      -0.0030336477949728506,
+      0.006845500251873413,
+      -0.002108913218364123,
+      0.004408587361928268,
+      -0.0018175942436765684,
+      -0.003502981349453021
+    ],
+    [
+      0.001911914839363538,
+      -0.004141243972995135,
+      -0.0032231530478015634,
+      0.004333315716165168,
+      0.014934031539963408,
+      -0.0006535704534269616,
+      -0.0028158715898404124,
+      0.0017355057728748102,
+      -0.0005103107695138244,
+      -0.0003731336346016727,
+      0.00613363514134938,
+      0.0014686482119248964,
+      0.007533009174545477,
+      -0.01206925322010913,
+      0.00312828088133165
+    ],
+    [
+      -0.0011657067194495807,
+      0.0017116075135733973,
+      -0.00101115108862743,
+      -0.00170126908801149,
+      -0.0006535704534269616,
+      0.006899735363025942,
+      0.001443878076134547,
+      -0.003319729191718494,
+      -0.0002915406543062029,
+      0.00014779082166135895,
+      -0.0010225060248239867,
+      0.0025271864296566473,
+      0.004180495382361625,
+      -0.0029156455641883767,
+      0.002123925362316733
+    ],
+    [
+      -0.0003692644316354423,
+      0.0026013653540095396,
+      0.000569838222487545,
+      -0.007205592894753629,
+      -0.002815871589840412,
+      0.0014438780761345475,
+      0.018954178426200376,
+      -0.004564434436098326,
+      -0.002359996677932528,
+      -0.006815599608566677,
+      -0.0031236377262753956,
+      0.00018809576262555306,
+      0.01004507280803093,
+      0.008558701995623223,
+      0.0009814882475585502
+    ],
+    [
+      0.004370404258507125,
+      -0.0034046032141933063,
+      0.00264989703254601,
+      -0.0007729988001953296,
+      0.0017355057728748102,
+      -0.003319729191718494,
+      -0.004564434436098326,
+      0.03178898062122678,
+      0.0017531740928986201,
+      0.003267493721850742,
+      -0.008756466838804558,
+      0.0034567146788861028,
+      -0.004657945182092589,
+      -0.009104833891146557,
+      0.00020363341716899598
+    ],
+    [
+      0.0012624168694790622,
+      -0.0022745634555587767,
+      -0.0014553752036550408,
+      -0.001883474014772418,
+      -0.000510310769513824,
+      -0.000291540654306203,
+      -0.002359996677932528,
+      0.0017531740928986204,
+      0.01198503828571932,
+      0.004109263864961273,
+      0.0003713075663047273,
+      -0.0017610184013150017,
+      0.002373019390318239,
+      -0.005749302783504448,
+      0.004341959592819159
+    ],
+    [
+      0.001439379508527882,
+      -0.0018223665350583236,
+      -0.000639275175508293,
+      -0.0030336477949728497,
+      -0.000373133634601673,
+      0.00014779082166135874,
+      -0.006815599608566677,
+      0.0032674937218507417,
+      0.004109263864961273,
+      0.024293667230177257,
+      -0.003450982751242078,
+      -1.4845154762093519e-05,
+      -0.02596111081347169,
+      0.00029237120822296473,
+      -0.00012929738126050378
+    ],
+    [
+      0.00040208657417538325,
+      -0.00261261249716318,
+      -0.002170262134361899,
+      0.006845500251873413,
+      0.00613363514134938,
+      -0.0010225060248239867,
+      -0.003123637726275396,
+      -0.00875646683880456,
+      0.0003713075663047277,
+      -0.003450982751242078,
+      0.026627066533814844,
+      -3.332438278490454e-05,
+      0.013799611060579062,
+      -0.013384661168298029,
+      0.0027169790774477618
+    ],
+    [
+      7.538544003574921e-05,
+      -0.0006698203605179963,
+      -0.0005325507142842866,
+      -0.002108913218364123,
+      0.0014686482119248966,
+      0.0025271864296566473,
+      0.00018809576262555322,
+      0.0034567146788861028,
+      -0.0017610184013150017,
+      -1.4845154762094166e-05,
+      -3.332438278490452e-05,
+      0.020740864950323706,
+      0.011281931193446105,
+      -0.009051763488738186,
+      0.00031865327477632784
+    ],
+    [
+      -0.005541322365557702,
+      0.00010067209470601392,
+      -0.0026442417294296576,
+      0.004408587361928268,
+      0.007533009174545477,
+      0.004180495382361625,
+      0.010045072808030932,
+      -0.004657945182092589,
+      0.0023730193903182388,
+      -0.025961110813471692,
+      0.013799611060579064,
+      0.011281931193446107,
+      0.1742570334407087,
+      -0.03212565731329722,
+      0.020528331545572126
+    ],
+    [
+      -0.0027560969332909827,
+      0.005329165180481374,
+      0.004075633199179966,
+      -0.001817594243676568,
+      -0.01206925322010913,
+      -0.0029156455641883767,
+      0.008558701995623223,
+      -0.009104833891146556,
+      -0.005749302783504449,
+      0.00029237120822296473,
+      -0.013384661168298029,
+      -0.009051763488738186,
+      -0.03212565731329722,
+      0.10860200683793216,
+      -0.011472027302864016
+    ],
+    [
+      0.0004179737892267294,
+      -0.0016962251954927444,
+      -0.0036863606994110283,
+      -0.003502981349453021,
+      0.0031282808813316494,
+      0.002123925362316733,
+      0.0009814882475585502,
+      0.00020363341716899633,
+      0.004341959592819159,
+      -0.00012929738126050364,
+      0.002716979077447762,
+      0.00031865327477632616,
+      0.020528331545572126,
+      -0.011472027302864016,
+      0.024423228335076173
+    ]
+  ],
+  "best_selection_score": 1000038.7457210398,
+  "best_experiment_id": "g007_1417404bd2e7a119",
+  "best_generation": 7,
+  "best_vector": [
+    2.140277648746757,
+    1.4994631350872818,
+    0.4909813834093269,
+    1.1150519831541275,
+    1.9206253373078843,
+    0.1729989421885526,
+    0.013768914604392002,
+    1.9633647537889665,
+    -0.36952679030518293,
+    -0.8399185878825941,
+    -1.333515852555668,
+    0.19364250845591677,
+    -0.5930808650492356,
+    -0.14370781623367432,
+    -0.18601876369774545
+  ],
+  "generations_without_improvement": 0,
+  "strict_gate_found": false,
+  "finished": true,
+  "stop_reason": "max_generations",
+  "rng_seed": 20260718,
+  "last_generation_best": {
+    "candidate_id": "g007_1417404bd2e7a119",
+    "selection_score": 1000038.7457210398,
+    "gate_tier": 1,
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "continuous_objective": 38.745721039849926
+  },
+  "last_generation_wall_time_s": 830.5772960186005,
+  "updated_utc": "20260720_053621"
+}
+[Stage2 evaluation] waiting 0/6
+[Stage2 evaluation] waiting 0/6
+[Stage2 evaluation] waiting 0/6
+[Stage2 evaluation] waiting 0/6
+[Stage2 evaluation] 1/6
+[Stage2 evaluation] 2/6
+[Stage2 evaluation] 3/6
+[Stage2 evaluation] 4/6
+[Stage2 evaluation] 5/6
+[Stage2 evaluation] 6/6
+{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED",
+  "created_utc": "20260720_053849",
+  "candidate_summaries": [
+    {
+      "candidate_id": "g007_1417404bd2e7a119",
+      "hall_of_fame_rank": 1,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.04109250114759276,
+      "max_terminal_velocity_m_per_s": 0.010563105359928758,
+      "max_late_velocity_rms_m_per_s": 0.08660649244890971
+    },
+    {
+      "candidate_id": "g006_3be98b52a5b7f41f",
+      "hall_of_fame_rank": 2,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.04133594596691368,
+      "max_terminal_velocity_m_per_s": 0.003758288758585018,
+      "max_late_velocity_rms_m_per_s": 0.08221512249766974
+    },
+    {
+      "candidate_id": "g006_8c4c3fbdd73b343d",
+      "hall_of_fame_rank": 3,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041194426103230444,
+      "max_terminal_velocity_m_per_s": 0.016410751896010663,
+      "max_late_velocity_rms_m_per_s": 0.0823799818192366
+    }
+  ]
+}
+{
+  "n_evaluations": 1536,
+  "n_successful": 1536,
+  "n_strict_gate": 0,
+  "n_relaxed_gate": 302,
+  "best": {
+    "generation": 7,
+    "candidate_id": "g007_1417404bd2e7a119",
+    "population_index": 163,
+    "source_name": "gaussian_0395",
+    "source_type": "gaussian",
+    "linear_prefilter_score": 2.95363512730307,
+    "parameter_vector": [
+      2.140277648746757,
+      1.4994631350872818,
+      0.4909813834093269,
+      1.1150519831541275,
+      1.9206253373078843,
+      0.1729989421885526,
+      0.013768914604392002,
+      1.9633647537889665,
+      -0.36952679030518293,
+      -0.8399185878825941,
+      -1.333515852555668,
+      0.19364250845591677,
+      -0.5930808650492356,
+      -0.14370781623367432,
+      -0.18601876369774545
+    ],
+    "validation_id": "g007_1417404bd2e7a119",
+    "candidate_label": null,
+    "candidate_n_modes": null,
+    "candidate_target_fraction": null,
+    "sequence_scale": null,
+    "success": true,
+    "failure_reason": "",
+    "n_trajectory_steps": 11,
+    "terminal_R_error_m": -0.025693610000000033,
+    "terminal_Z_error_m": 0.0320691761,
+    "terminal_Ip_error_A": 848.0435000000034,
+    "terminal_RZ_euclidean_error_m": 0.04109250114759276,
+    "terminal_RZ_box_max_error_m": 0.0320691761,
+    "terminal_normalized_RZ_distance": 1.3697500382530923,
+    "min_normalized_RZ_distance": 0.5817437020072838,
+    "min_normalized_RZ_distance_after_step0": 0.7820984709676879,
+    "min_RZ_euclidean_error_after_step0_m": 0.023462954129030635,
+    "closest_step_after_step0": 1,
+    "closest_velocity_after_step0_m_per_s": 0.6283325121528797,
+    "relative_distance_reduction": 0.0,
+    "relative_distance_reduction_after_step0": -0.3444038470362256,
+    "first_step_within_2x_RZ_only": 0,
+    "first_step_within_1x_RZ_only": 0,
+    "first_step_within_2x": 0,
+    "first_step_within_1x": 0,
+    "first_step_after_step0_within_2x": 1,
+    "first_step_after_step0_within_1x": 1,
+    "terminal_within_2x_RZ_only": true,
+    "terminal_within_1x_RZ_only": false,
+    "terminal_within_2x": true,
+    "terminal_within_1x": false,
+    "gate_ip_tolerance_A": 10000.0,
+    "terminal_Ip_safe": true,
+    "late_Ip_safe_fraction": 1.0,
+    "late_fraction_within_2x": 1.0,
+    "late_fraction_within_1x": 0.0,
+    "late_R_rms_m": 0.025860505634244114,
+    "late_Z_rms_m": 0.0327460052710703,
+    "late_RZ_euclidean_rms_m": 0.04172609031375616,
+    "terminal_velocity_m_per_s": 0.010563105359928758,
+    "max_velocity_m_per_s": 0.6492223893009516,
+    "late_velocity_mean_m_per_s": 0.07617459713157224,
+    "late_velocity_rms_m_per_s": 0.08660649244890971,
+    "max_current_utilization": 0.41104999999999997,
+    "wall_time_s": 775.817446231842,
+    "first_step_after_step0_within_30mm": 1,
+    "ever_after_step0_within_30mm": true,
+    "terminal_within_30mm": false,
+    "late_fraction_within_30mm": 0.0,
+    "longest_streak_after_step0_within_30mm_steps": 2,
+    "trailing_streak_within_30mm_steps": 0,
+    "first_step_after_step0_within_40mm": 1,
+    "ever_after_step0_within_40mm": true,
+    "terminal_within_40mm": true,
+    "late_fraction_within_40mm": 1.0,
+    "longest_streak_after_step0_within_40mm_steps": 10,
+    "trailing_streak_within_40mm_steps": 10,
+    "first_step_after_step0_within_80mm": 1,
+    "ever_after_step0_within_80mm": true,
+    "terminal_within_80mm": true,
+    "late_fraction_within_80mm": 1.0,
+    "longest_streak_after_step0_within_80mm_steps": 10,
+    "trailing_streak_within_80mm_steps": 10,
+    "gate_tier": 1,
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "strict_gate_pass": false,
+    "relaxed_gate_pass": true,
+    "terminal_RZ_reduction_vs_zero_action_fraction": 0.5267480417426865,
+    "continuous_objective": 38.745721039849926,
+    "selection_score": 1000038.7457210398,
+    "position_excess_objective": 0.009001018014404597,
+    "velocity_excess_objective": 0.0,
+    "precise_streak_deficit": 1.0,
+    "action_rms": 0.45148177620256597,
+    "delta_action_rms": 0.23710991374475068,
+    "repair_excess_rms": 0.05309399769826455,
+    "generation_rank": 1
+  },
+  "report": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614/STAGE2_REPORT.md"
+}

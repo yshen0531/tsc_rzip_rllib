@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "phase": "heldout_targets",
+  "n_rollouts": 40,
+  "n_successful": 40,
+  "n_in_domain_targets": 16,
+  "in_domain_open_loop_pass_fraction": 1.0,
+  "in_domain_mpc_pass_fraction": 1.0,
+  "n_in_domain_exact_library_matches": 0,
+  "n_lost_in_domain_open_loop_passes": 0,
+  "pair_summary": {
+    "n_pairs": 20,
+    "n_baseline_pass": 20,
+    "n_feedback_pass": 20,
+    "n_preserved": 20,
+    "n_recovered": 0,
+    "n_lost": 0,
+    "median_signed_margin_gain": 0.02000799833333272,
+    "worst_signed_margin_gain": -0.12447373124178052
+  },
+  "passed": true
+}

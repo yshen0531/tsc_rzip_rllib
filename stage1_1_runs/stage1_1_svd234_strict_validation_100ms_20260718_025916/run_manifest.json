@@ -1,0 +1,40 @@
+{
+  "created_utc": "20260717_190425",
+  "stage_config_source": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage1_1_supplement_100ms.json",
+  "train_config_source": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/train_stage1_controllability_100ms.json",
+  "env_config_source": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/tsc_stage1_runtime_only.json",
+  "project_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+  "python": "3.12.4 (main, Jul  4 2024, 14:24:01) [GCC 11.2.1 20220127 (Red Hat 11.2.1-9)]",
+  "coil_order_tsc": [
+    "CS1U",
+    "CS2U",
+    "CS3U",
+    "CS1L",
+    "CS2L",
+    "CS3L",
+    "CS4U",
+    "CS4L",
+    "PF2U",
+    "PF2L",
+    "PF3U",
+    "PF3L",
+    "PF4U",
+    "PF4L"
+  ],
+  "coil_order_display": [
+    "CS1U",
+    "CS1L",
+    "CS2U",
+    "CS2L",
+    "CS3U",
+    "CS3L",
+    "CS4U",
+    "CS4L",
+    "PF2U",
+    "PF2L",
+    "PF3U",
+    "PF3L",
+    "PF4U",
+    "PF4L"
+  ]
+}

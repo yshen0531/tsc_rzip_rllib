@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R1",
+  "phase": "source_audit",
+  "source_stage4_1r17_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501",
+  "source_finished": true,
+  "source_stop_reason": "",
+  "source_formal_grid_status": "passed",
+  "selected_expert_cases": 18,
+  "expected_cases": 18,
+  "modified_r17_cases": 4,
+  "unchanged_source_cases": 14,
+  "environment_success_count": 18,
+  "abnormal_rollout_count": 0,
+  "formal_contract_pass_fraction": 1.0,
+  "distinct_trusted_calibration_tokens": 9,
+  "minimum_formal_signed_margin": 1.0456920999768471e-05,
+  "minimum_margin_case": {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 0.9,
+    "controller_path": "source_unchanged_r11_original_deadline"
+  },
+  "razor_thin_source_margin_warning": true,
+  "original_250_350_and_270_370_timing_unchanged": true,
+  "r10_r11_long_horizons_are_auxiliary_only": true,
+  "old_unrun_r11_based_stage4_2r1_not_reused": true,
+  "plant_restart_only": true,
+  "controller_checkpoint_replay_in_this_stage": false,
+  "passed": true,
+  "interpretation": "R17 genuinely restores the original finite 18-case timing grid, but the minimum source margin is razor-thin. R1 now isolates authentic TSC plant-state restart fidelity by replaying the exact expert actions; it does not yet test controller-state reconstruction."
+}

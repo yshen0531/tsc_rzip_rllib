@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R11",
+  "phase": "calibrated_long_hold",
+  "n_rollouts": 18,
+  "expected_rollouts": 18,
+  "coverage_complete": true,
+  "environment_success_count": 18,
+  "long_hold_pass_fraction": 1.0,
+  "minimum_combined_signed_margin": 0.039997189999999905,
+  "source_prefix_exact_fraction": 1.0,
+  "maximum_source_prefix_abs_difference": 0.0,
+  "maximum_hold_box_error_m": 0.0288000843,
+  "maximum_hold_speed_m_per_s": 0.04869939249355,
+  "maximum_final_window_speed_rms_m_per_s": 0.02918559283930021,
+  "maximum_current_utilization": 0.41225,
+  "maximum_final_window_current_net_change_A": 0.8333333333333286,
+  "maximum_final_window_issued_desired_mean_norm": 0.012473897022572417,
+  "maximum_final_pending_desired_norm": 0.12644874135738146,
+  "by_target": [
+    {
+      "target_id": "nominal",
+      "n_rollouts": 9,
+      "pass_fraction": 1.0,
+      "minimum_combined_margin": 0.15700839095079022,
+      "maximum_hold_box_error_m": 0.0218488678,
+      "maximum_hold_speed_m_per_s": 0.04869939249355,
+      "maximum_current_utilization": 0.41174999999999995
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "n_rollouts": 9,
+      "pass_fraction": 1.0,
+      "minimum_combined_margin": 0.039997189999999905,
+      "maximum_hold_box_error_m": 0.0288000843,
+      "maximum_hold_speed_m_per_s": 0.04601861977168816,
+      "maximum_current_utilization": 0.41225
+    }
+  ],
+  "passed": true,
+  "distinct_calibration_tokens": 9,
+  "untrusted_main_start_count": 0,
+  "exact_trace_equivalence_fraction": 1.0,
+  "numeric_trace_equivalence_fraction": 1.0,
+  "numeric_trace_equivalence_atol": 1e-12,
+  "maximum_trace_abs_difference": 0.0,
+  "comparisons": [
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 0.9,
+      "calibration_token": "s41r8_96f124360adfe0ea785a",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 0.9,
+      "calibration_token": "s41r8_96f124360adfe0ea785a",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "calibration_token": "s41r8_b2208612681b9ad35531",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "calibration_token": "s41r8_b2208612681b9ad35531",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "calibration_token": "s41r8_1755db2b033e3c882e1b",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "calibration_token": "s41r8_1755db2b033e3c882e1b",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.0,
+      "calibration_token": "s41r8_b8694b26ade3584683b1",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.0,
+      "calibration_token": "s41r8_b8694b26ade3584683b1",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.0,
+      "calibration_token": "s41r8_e10061668c7e87d2d1d2",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.0,
+      "calibration_token": "s41r8_e10061668c7e87d2d1d2",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.1,
+      "calibration_token": "s41r8_8f82d0b573eea7605820",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.1,
+      "calibration_token": "s41r8_8f82d0b573eea7605820",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.1,
+      "calibration_token": "s41r8_badc5183f5be7ee119c9",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.1,
+      "calibration_token": "s41r8_badc5183f5be7ee119c9",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.1,
+      "calibration_token": "s41r8_f128ff9ac029a5898f16",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.1,
+      "calibration_token": "s41r8_f128ff9ac029a5898f16",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "main_issued": 0.0,
+        "main_applied": 0.0,
+        "original_main_issued": 0.0,
+        "preview_issued": 0.0,
+        "preview_applied": 0.0,
+        "terminal_issued": 0.0,
+        "terminal_applied": 0.0
+      }
+    }
+  ]
+}

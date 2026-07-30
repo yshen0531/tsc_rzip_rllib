@@ -1,0 +1,25 @@
+[Stage4.1R15] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.1R15] source_stage4_1r14_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r14_runs/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_20260729_065749
+[Stage4.1R15] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15_runs/stage4_1r15_bounded_early_braking_local_response_identification_20260729_081224
+[Stage4.1R15] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_1r15_bounded_early_braking_local_response_identification_370ms.json
+[Stage4.1R15] command=all backend=ray resume=0 workers=128
+[Stage4.1R15] R14 ran normally but all 24 cases rebounded after state 34 and failed final speed; this is a model-horizon/tail-semantic problem, not a runtime failure.
+[Stage4.1R15] R15 is identification-only: fit/cross-validate the bounded R13/R14 local response bank, then validate with 32 preregistered zero-net TSC probes.
+[Stage4.1R15] No controller is selected, no formal closure is claimed, and the 250/350 and 270/370 ms timing contracts remain immutable.
+[Stage4.1R15] R10/R11 long horizons remain auxiliary only; Stage4.2R1 was not run or reused; BC/DAgger/RL are not started.
+[Stage4.1R15] Final task remains causal safe arrival, deceleration, disturbance recovery and long hold across initial states, hidden vessel/eddy histories, targets, continuous plant/actuator changes, noise and unknown delay.
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_1r15_bounded_early_braking_local_response_identification.py", line 5, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py", line 1723, in main
+    ctx = load_stage41r15_config(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py", line 315, in load_stage41r15_config
+    source_fingerprint=_source_inventory(source_stage41r14_run),
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r15_bounded_early_braking_local_response_identification.py", line 146, in _source_inventory
+    return r14._source_inventory(source)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc.py", line 162, in _source_inventory
+    raise FileNotFoundError(f"required Stage4.1R13 source file missing: {path}")
+FileNotFoundError: required Stage4.1R13 source file missing: /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r14_runs/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_20260729_065749/stage4_1r13_manifest.json

@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R16",
+  "controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
+  "package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
+  "prepared": true,
+  "source_audit_complete": true,
+  "amplitude_validation_complete": true,
+  "calibrated_confirmation_complete": false,
+  "formal_grid_confirmation_complete": false,
+  "finished": true,
+  "stop_reason": "amplitude_envelope_or_fixed_candidate_failed",
+  "updated_utc": "20260729_132301",
+  "source_audit_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1R16",
+    "phase": "source_audit",
+    "source_stage4_1r15b_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15b_runs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_20260729_115128",
+    "source_raw_rollouts": 32,
+    "source_joint_h0_validation_rollouts": 8,
+    "source_joint_h0_validation_keys": [
+      [
+        "RZ_p10_m10",
+        1,
+        -1
+      ],
+      [
+        "RZ_p10_m10",
+        1,
+        1
+      ],
+      [
+        "RZ_p10_m10",
+        2,
+        -1
+      ],
+      [
+        "RZ_p10_m10",
+        2,
+        1
+      ],
+      [
+        "nominal",
+        1,
+        -1
+      ],
+      [
+        "nominal",
+        1,
+        1
+      ],
+      [
+        "nominal",
+        2,
+        -1
+      ],
+      [
+        "nominal",
+        2,
+        1
+      ]
+    ],
+    "source_model_prediction_pass_fraction": 1.0,
+    "source_maximum_final_speed_error_m_per_s": 0.002078203578799332,
+    "individual_axis_externally_validated_peak_component": 0.015,
+    "joint_common_direction_externally_validated_coefficient": 0.5,
+    "joint_common_direction_externally_validated_peak_component": 0.0075,
+    "small_signal_validated_envelope_closes_nominal_only": true,
+    "small_signal_validated_envelope_closes_rz": false,
+    "preregistered_amplitude_levels": [
+      1.0,
+      2.0,
+      4.0,
+      6.0
+    ],
+    "preregistered_candidate_magnitude": 6.0,
+    "preregistered_candidate_peak_component": 0.09,
+    "candidate_is_diagnostic_model_extrapolation_until_real_tsc_validates_it": true,
+    "predicted_candidate_minimum_margin": 0.015765534868535824,
+    "checks": {
+      "source_raw_coverage": true,
+      "source_model_all_pass": true,
+      "source_superposition_all_pass": true,
+      "source_model_prediction_fraction_one": true,
+      "source_runtime_fraction_one": true,
+      "source_joint_h0_coverage_exact": true,
+      "source_joint_h0_runtime_and_model_all_pass": true,
+      "source_joint_h0_peak_component_is_0p0075": true,
+      "validated_envelope_nominal_passes": true,
+      "validated_envelope_rz_does_not_close": true,
+      "diagnostic_6x_predicts_all_four_pass": true,
+      "diagnostic_6x_minimum_margin": true
+    },
+    "passed": true,
+    "interpretation": "R15B is a valid finite clean small-signal superposition result.  Its externally validated joint common-direction coefficient 0.5 (0.0075 peak component) does not close either RZ weak-slew path.  A fixed 6x zero-net common braking direction is preregistered because the source model predicts all four modified paths with at least 0.01 signed margin, but this is an extrapolation and must be validated by new real-TSC amplitude-ladder trajectories before it may be used as a controller."
+  },
+  "amplitude_validation_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1R16",
+    "phase": "amplitude_envelope_validation",
+    "n_rollouts": 32,
+    "expected_rollouts": 32,
+    "coverage_complete": true,
+    "environment_success_count": 32,
+    "runtime_guard_pass_fraction": 1.0,
+    "model_prediction_pass_fraction": 0.84375,
+    "joint_pass_fraction": 0.84375,
+    "maximum_velocity_component_rmse_m_per_s": 0.014510094037091255,
+    "maximum_endpoint_late_speed_error_m_per_s": 0.0019358497794274565,
+    "maximum_final_speed_error_m_per_s": 0.06378954508660793,
+    "maximum_position_rmse_m": 0.00038060588124472043,
+    "maximum_ip_rmse_A": 17.873042145735948,
+    "maximum_central_symmetry_velocity_rmse_m_per_s": 0.012459166752389306,
+    "maximum_per_unit_velocity_response_rmse_m_per_s": 0.0014977685845797147,
+    "maximum_per_unit_position_response_rmse_m": 3.811004223463343e-05,
+    "maximum_per_unit_ip_response_rmse_A": 2.34946126185384,
+    "maximum_current_utilization": 0.41195,
+    "closure_candidate_magnitude": 6.0,
+    "closure_candidate_peak_component": 0.09,
+    "closure_candidate_rollouts": 4,
+    "closure_candidate_formal_pass_fraction": 0.75,
+    "closure_candidate_minimum_signed_margin": -0.0010110975999380045,
+    "closure_candidate_passed": false,
+    "candidate_was_preregistered_from_source_model_not_selected_from_new_tsc": true,
+    "formal_timing_contract_unchanged": true,
+    "passed": false
+  },
+  "final_verdict": "STAGE4_1R16_AMPLITUDE_CERTIFIED_ORIGINAL_DEADLINE_INCOMPLETE"
+}

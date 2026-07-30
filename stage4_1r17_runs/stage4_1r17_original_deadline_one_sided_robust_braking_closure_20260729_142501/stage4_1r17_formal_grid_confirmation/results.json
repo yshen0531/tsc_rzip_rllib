@@ -1,0 +1,344 @@
+[
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 0.9,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 37,
+    "formal_arrival_deadline_step": 27,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 1.0456920999768471e-05,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.0,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.23832005277494073,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.1,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.33296004,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 0.9,
+    "controller_path": "r17_one_sided_6x_delay1",
+    "formal_horizon_steps": 37,
+    "formal_arrival_deadline_step": 27,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.03424307914254965,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.0,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.27013420000000044,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.1,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.31973813333333134,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 0.9,
+    "controller_path": "r17_one_sided_7x_delay2",
+    "formal_horizon_steps": 37,
+    "formal_arrival_deadline_step": 27,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.01633098324390514,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.0,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.2759736000000004,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.1,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.3130183499999999,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 0.9,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 37,
+    "formal_arrival_deadline_step": 27,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.2320586386219078,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.0,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.45179333666666666,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.1,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.46286111333333335,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 0.9,
+    "controller_path": "r17_one_sided_6x_delay1",
+    "formal_horizon_steps": 37,
+    "formal_arrival_deadline_step": 27,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.1584858193418558,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.0,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.47356742666666674,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.1,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.4926570333333333,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 0.9,
+    "controller_path": "r17_one_sided_7x_delay2",
+    "formal_horizon_steps": 37,
+    "formal_arrival_deadline_step": 27,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.22859295541133307,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.0,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.4816273099999999,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  },
+  {
+    "target_id": "nominal",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.1,
+    "controller_path": "source_unchanged_r11_original_deadline",
+    "formal_horizon_steps": 35,
+    "formal_arrival_deadline_step": 25,
+    "oracle_formal_tracking_pass": true,
+    "oracle_minimum_signed_margin": 0.46433280666666665,
+    "calibrated_exact_equal_to_oracle": true,
+    "calibrated_numeric_equal_to_oracle": true,
+    "maximum_trace_abs_difference": 0.0,
+    "component_max_abs_difference": {
+      "physics": 0.0,
+      "issued": 0.0,
+      "applied": 0.0
+    },
+    "formal_grid_case_pass": true
+  }
+]

@@ -1,0 +1,17 @@
+target_id,actual_delay_steps,combination_id,central_symmetry_velocity_rmse_m_per_s,passed
+nominal,1,hadamard_h0_all_plus,0.0006842538445781876,True
+nominal,1,hadamard_h1_mode_contrast,0.0005628073806502348,True
+nominal,1,hadamard_h2_time_contrast,0.0006548084109073616,True
+nominal,1,hadamard_h3_cross_contrast,0.0004541374692537888,True
+nominal,2,hadamard_h0_all_plus,0.0005291874035914227,True
+nominal,2,hadamard_h1_mode_contrast,0.00036629255354250436,True
+nominal,2,hadamard_h2_time_contrast,0.0006724412248688903,True
+nominal,2,hadamard_h3_cross_contrast,0.0008205575633580945,True
+RZ_p10_m10,1,hadamard_h0_all_plus,0.0007056748265545327,True
+RZ_p10_m10,1,hadamard_h1_mode_contrast,0.001407246035168295,True
+RZ_p10_m10,1,hadamard_h2_time_contrast,0.0008599468980894681,True
+RZ_p10_m10,1,hadamard_h3_cross_contrast,0.0014948703515507724,True
+RZ_p10_m10,2,hadamard_h0_all_plus,0.0014739674141746046,True
+RZ_p10_m10,2,hadamard_h1_mode_contrast,0.000947438715798933,True
+RZ_p10_m10,2,hadamard_h2_time_contrast,0.0012404110677875398,True
+RZ_p10_m10,2,hadamard_h3_cross_contrast,0.0005854644564704479,True

@@ -1,0 +1,714 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1",
+  "prepared": true,
+  "regression_complete": true,
+  "recovery_complete": true,
+  "structured_complete": true,
+  "noise_complete": true,
+  "history_complete": true,
+  "restart_complete": true,
+  "confirmation_complete": true,
+  "finished": true,
+  "stop_reason": "pipeline_complete",
+  "updated_utc": "20260725_064232",
+  "regression_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "phase": "regression_targets",
+    "n_rollouts": 20,
+    "n_scenarios": 10,
+    "pair_summary": {
+      "n_pairs": 10,
+      "n_baseline_pass": 10,
+      "n_feedback_pass": 6,
+      "n_preserved": 6,
+      "n_recovered": 0,
+      "n_lost": 4,
+      "median_signed_margin_gain": -0.30760883708449444,
+      "worst_signed_margin_gain": -0.4023291074859864
+    },
+    "passed": false
+  },
+  "recovery_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "phase": "adaptive_failure_recovery",
+    "n_rollouts": 226,
+    "n_families": 36,
+    "n_families_with_open_loop_failure": 30,
+    "n_families_recovered_at_first_failure": 8,
+    "failure_recovery_fraction": 0.26666666666666666,
+    "preserved_open_loop_pass_fraction": 0.4578313253012048,
+    "n_families_boundary_not_reached": 6,
+    "passed": false
+  },
+  "structured_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "phase": "structured_uncertainty",
+    "n_rollouts": 64,
+    "n_pairs": 32,
+    "pair_summary": {
+      "n_pairs": 32,
+      "n_baseline_pass": 24,
+      "n_feedback_pass": 5,
+      "n_preserved": 4,
+      "n_recovered": 1,
+      "n_lost": 20,
+      "median_signed_margin_gain": -0.3839778714044904,
+      "worst_signed_margin_gain": -1.0495618436258938
+    },
+    "category_summaries": [
+      {
+        "category": "combined_scheduled",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 2,
+        "required": true,
+        "passed": false
+      },
+      {
+        "category": "controller_model_scale",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 0.25,
+        "preserved_open_loop_pass_fraction": 0.25,
+        "n_recovered": 0,
+        "n_lost": 3,
+        "required": true,
+        "passed": false
+      },
+      {
+        "category": "diagnostic_unmodeled_delay",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 2,
+        "required": false,
+        "passed": null
+      },
+      {
+        "category": "diagnostic_unmodeled_slew",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": false,
+        "passed": null
+      },
+      {
+        "category": "gain_estimation_error",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 0.5,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 1,
+        "n_lost": 0,
+        "required": true,
+        "passed": false
+      },
+      {
+        "category": "matched_action_delay",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 4,
+        "required": true,
+        "passed": false
+      },
+      {
+        "category": "observation_delay",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 4,
+        "required": true,
+        "passed": false
+      },
+      {
+        "category": "scheduled_gain",
+        "n_pairs": 8,
+        "mpc_pass_fraction": 0.375,
+        "preserved_open_loop_pass_fraction": 0.375,
+        "n_recovered": 0,
+        "n_lost": 5,
+        "required": true,
+        "passed": false
+      },
+      {
+        "category": "scheduled_slew",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": true,
+        "passed": false
+      }
+    ],
+    "passed": false
+  },
+  "noise_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "phase": "noise_statistics",
+    "n_rollouts": 126,
+    "level_target_summaries": [
+      {
+        "target_id": "nominal",
+        "noise_level": "low",
+        "n_seeds": 12,
+        "n_pass": 7,
+        "pass_fraction": 0.5833333333333334,
+        "wilson_lower_bound": 0.3195073356553728,
+        "minimum_pass_fraction": 0.98,
+        "passed": false
+      },
+      {
+        "target_id": "nominal",
+        "noise_level": "medium",
+        "n_seeds": 16,
+        "n_pass": 8,
+        "pass_fraction": 0.5,
+        "wilson_lower_bound": 0.2799923761135083,
+        "minimum_pass_fraction": 0.95,
+        "passed": false
+      },
+      {
+        "target_id": "nominal",
+        "noise_level": "high",
+        "n_seeds": 32,
+        "n_pass": 13,
+        "pass_fraction": 0.40625,
+        "wilson_lower_bound": 0.25519402480313796,
+        "minimum_pass_fraction": 0.9,
+        "passed": false
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "noise_level": "low",
+        "n_seeds": 12,
+        "n_pass": 0,
+        "pass_fraction": 0.0,
+        "wilson_lower_bound": 0.0,
+        "minimum_pass_fraction": 0.98,
+        "passed": false
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "noise_level": "medium",
+        "n_seeds": 16,
+        "n_pass": 0,
+        "pass_fraction": 0.0,
+        "wilson_lower_bound": 0.0,
+        "minimum_pass_fraction": 0.95,
+        "passed": false
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "noise_level": "high",
+        "n_seeds": 32,
+        "n_pass": 2,
+        "pass_fraction": 0.0625,
+        "wilson_lower_bound": 0.01731020319515724,
+        "minimum_pass_fraction": 0.9,
+        "passed": false
+      }
+    ],
+    "passed": false
+  },
+  "history_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "phase": "phase_aligned_history",
+    "n_rollouts": 32,
+    "n_scenarios": 16,
+    "mpc_pass_fraction": 0.375,
+    "preserved_open_loop_pass_fraction": 0.375,
+    "visible_state_matched_fraction": 1.0,
+    "test_interpretation": "phase-aligned history variation with approximately matched visible state",
+    "pair_summary": {
+      "n_pairs": 16,
+      "n_baseline_pass": 16,
+      "n_feedback_pass": 6,
+      "n_preserved": 6,
+      "n_recovered": 0,
+      "n_lost": 10,
+      "median_signed_margin_gain": -0.3762654498014155,
+      "worst_signed_margin_gain": -0.44832828845941664
+    },
+    "passed": false
+  },
+  "restart_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "phase": "restart_sweep",
+    "base_start_folder": "1100ms",
+    "alternate_start_folders": [],
+    "n_alternate_start_folders": 0,
+    "true_restart_validation_available": false,
+    "n_rollouts": 0,
+    "mpc_pass_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 0.0,
+    "pair_summary": {
+      "n_pairs": 0
+    },
+    "passed": false
+  },
+  "confirmation_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "phase": "confirmation",
+    "n_rollouts": 36,
+    "n_successful": 36,
+    "deterministic_summaries": [
+      {
+        "source_experiment_id": "s41_6d4e0f93fb000a89fad0",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.01594297211825957
+      },
+      {
+        "source_experiment_id": "s41_1244fc42a455bb1f7439",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.02692621401239048
+      },
+      {
+        "source_experiment_id": "s41_59032fcf46d2d4a26fa2",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.03434730675780251
+      },
+      {
+        "source_experiment_id": "s41_21feec7efb7bd66e8cfd",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.03764297220879387
+      },
+      {
+        "source_experiment_id": "s41_7e0a70236c1648af7883",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.009511567501832574
+      },
+      {
+        "source_experiment_id": "s41_5018b4a1a35a73b4736a",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.009640219021954666
+      },
+      {
+        "source_experiment_id": "s41_05d03ae485e5ac4d575a",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.016143197129138143
+      },
+      {
+        "source_experiment_id": "s41_e5e7b9f1848447db76f6",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.03887404139801387
+      },
+      {
+        "source_experiment_id": "s41_b3a46ebfe7f7b08fc07f",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.01285792035339095
+      },
+      {
+        "source_experiment_id": "s41_9a76cbc1e9a26e330310",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.016627150412675484
+      }
+    ],
+    "high_noise_summaries": [
+      {
+        "target_id": "nominal",
+        "n_seeds": 8,
+        "n_pass": 4,
+        "pass_fraction": 0.5,
+        "passed": false
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "n_seeds": 8,
+        "n_pass": 0,
+        "pass_fraction": 0.0,
+        "passed": false
+      }
+    ],
+    "passed": false
+  },
+  "analysis_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1",
+    "created_utc": "20260725_064232",
+    "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+    "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+    "source_selected_controller_scale": 0.5,
+    "regression": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "phase": "regression_targets",
+      "n_rollouts": 20,
+      "n_scenarios": 10,
+      "pair_summary": {
+        "n_pairs": 10,
+        "n_baseline_pass": 10,
+        "n_feedback_pass": 6,
+        "n_preserved": 6,
+        "n_recovered": 0,
+        "n_lost": 4,
+        "median_signed_margin_gain": -0.30760883708449444,
+        "worst_signed_margin_gain": -0.4023291074859864
+      },
+      "passed": false
+    },
+    "adaptive_failure_recovery": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "phase": "adaptive_failure_recovery",
+      "n_rollouts": 226,
+      "n_families": 36,
+      "n_families_with_open_loop_failure": 30,
+      "n_families_recovered_at_first_failure": 8,
+      "failure_recovery_fraction": 0.26666666666666666,
+      "preserved_open_loop_pass_fraction": 0.4578313253012048,
+      "n_families_boundary_not_reached": 6,
+      "passed": false
+    },
+    "structured_uncertainty": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "phase": "structured_uncertainty",
+      "n_rollouts": 64,
+      "n_pairs": 32,
+      "pair_summary": {
+        "n_pairs": 32,
+        "n_baseline_pass": 24,
+        "n_feedback_pass": 5,
+        "n_preserved": 4,
+        "n_recovered": 1,
+        "n_lost": 20,
+        "median_signed_margin_gain": -0.3839778714044904,
+        "worst_signed_margin_gain": -1.0495618436258938
+      },
+      "category_summaries": [
+        {
+          "category": "combined_scheduled",
+          "n_pairs": 2,
+          "mpc_pass_fraction": 0.0,
+          "preserved_open_loop_pass_fraction": 0.0,
+          "n_recovered": 0,
+          "n_lost": 2,
+          "required": true,
+          "passed": false
+        },
+        {
+          "category": "controller_model_scale",
+          "n_pairs": 4,
+          "mpc_pass_fraction": 0.25,
+          "preserved_open_loop_pass_fraction": 0.25,
+          "n_recovered": 0,
+          "n_lost": 3,
+          "required": true,
+          "passed": false
+        },
+        {
+          "category": "diagnostic_unmodeled_delay",
+          "n_pairs": 2,
+          "mpc_pass_fraction": 0.0,
+          "preserved_open_loop_pass_fraction": 0.0,
+          "n_recovered": 0,
+          "n_lost": 2,
+          "required": false,
+          "passed": null
+        },
+        {
+          "category": "diagnostic_unmodeled_slew",
+          "n_pairs": 2,
+          "mpc_pass_fraction": 0.0,
+          "preserved_open_loop_pass_fraction": 0.0,
+          "n_recovered": 0,
+          "n_lost": 0,
+          "required": false,
+          "passed": null
+        },
+        {
+          "category": "gain_estimation_error",
+          "n_pairs": 2,
+          "mpc_pass_fraction": 0.5,
+          "preserved_open_loop_pass_fraction": 0.0,
+          "n_recovered": 1,
+          "n_lost": 0,
+          "required": true,
+          "passed": false
+        },
+        {
+          "category": "matched_action_delay",
+          "n_pairs": 4,
+          "mpc_pass_fraction": 0.0,
+          "preserved_open_loop_pass_fraction": 0.0,
+          "n_recovered": 0,
+          "n_lost": 4,
+          "required": true,
+          "passed": false
+        },
+        {
+          "category": "observation_delay",
+          "n_pairs": 4,
+          "mpc_pass_fraction": 0.0,
+          "preserved_open_loop_pass_fraction": 0.0,
+          "n_recovered": 0,
+          "n_lost": 4,
+          "required": true,
+          "passed": false
+        },
+        {
+          "category": "scheduled_gain",
+          "n_pairs": 8,
+          "mpc_pass_fraction": 0.375,
+          "preserved_open_loop_pass_fraction": 0.375,
+          "n_recovered": 0,
+          "n_lost": 5,
+          "required": true,
+          "passed": false
+        },
+        {
+          "category": "scheduled_slew",
+          "n_pairs": 4,
+          "mpc_pass_fraction": 0.0,
+          "preserved_open_loop_pass_fraction": 0.0,
+          "n_recovered": 0,
+          "n_lost": 0,
+          "required": true,
+          "passed": false
+        }
+      ],
+      "passed": false
+    },
+    "noise_statistics": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "phase": "noise_statistics",
+      "n_rollouts": 126,
+      "level_target_summaries": [
+        {
+          "target_id": "nominal",
+          "noise_level": "low",
+          "n_seeds": 12,
+          "n_pass": 7,
+          "pass_fraction": 0.5833333333333334,
+          "wilson_lower_bound": 0.3195073356553728,
+          "minimum_pass_fraction": 0.98,
+          "passed": false
+        },
+        {
+          "target_id": "nominal",
+          "noise_level": "medium",
+          "n_seeds": 16,
+          "n_pass": 8,
+          "pass_fraction": 0.5,
+          "wilson_lower_bound": 0.2799923761135083,
+          "minimum_pass_fraction": 0.95,
+          "passed": false
+        },
+        {
+          "target_id": "nominal",
+          "noise_level": "high",
+          "n_seeds": 32,
+          "n_pass": 13,
+          "pass_fraction": 0.40625,
+          "wilson_lower_bound": 0.25519402480313796,
+          "minimum_pass_fraction": 0.9,
+          "passed": false
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "noise_level": "low",
+          "n_seeds": 12,
+          "n_pass": 0,
+          "pass_fraction": 0.0,
+          "wilson_lower_bound": 0.0,
+          "minimum_pass_fraction": 0.98,
+          "passed": false
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "noise_level": "medium",
+          "n_seeds": 16,
+          "n_pass": 0,
+          "pass_fraction": 0.0,
+          "wilson_lower_bound": 0.0,
+          "minimum_pass_fraction": 0.95,
+          "passed": false
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "noise_level": "high",
+          "n_seeds": 32,
+          "n_pass": 2,
+          "pass_fraction": 0.0625,
+          "wilson_lower_bound": 0.01731020319515724,
+          "minimum_pass_fraction": 0.9,
+          "passed": false
+        }
+      ],
+      "passed": false
+    },
+    "phase_aligned_history": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "phase": "phase_aligned_history",
+      "n_rollouts": 32,
+      "n_scenarios": 16,
+      "mpc_pass_fraction": 0.375,
+      "preserved_open_loop_pass_fraction": 0.375,
+      "visible_state_matched_fraction": 1.0,
+      "test_interpretation": "phase-aligned history variation with approximately matched visible state",
+      "pair_summary": {
+        "n_pairs": 16,
+        "n_baseline_pass": 16,
+        "n_feedback_pass": 6,
+        "n_preserved": 6,
+        "n_recovered": 0,
+        "n_lost": 10,
+        "median_signed_margin_gain": -0.3762654498014155,
+        "worst_signed_margin_gain": -0.44832828845941664
+      },
+      "passed": false
+    },
+    "restart_sweep": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "phase": "restart_sweep",
+      "base_start_folder": "1100ms",
+      "alternate_start_folders": [],
+      "n_alternate_start_folders": 0,
+      "true_restart_validation_available": false,
+      "n_rollouts": 0,
+      "mpc_pass_fraction": 0.0,
+      "preserved_open_loop_pass_fraction": 0.0,
+      "pair_summary": {
+        "n_pairs": 0
+      },
+      "passed": false
+    },
+    "confirmation": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "phase": "confirmation",
+      "n_rollouts": 36,
+      "n_successful": 36,
+      "deterministic_summaries": [
+        {
+          "source_experiment_id": "s41_6d4e0f93fb000a89fad0",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.01594297211825957
+        },
+        {
+          "source_experiment_id": "s41_1244fc42a455bb1f7439",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.02692621401239048
+        },
+        {
+          "source_experiment_id": "s41_59032fcf46d2d4a26fa2",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.03434730675780251
+        },
+        {
+          "source_experiment_id": "s41_21feec7efb7bd66e8cfd",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.03764297220879387
+        },
+        {
+          "source_experiment_id": "s41_7e0a70236c1648af7883",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.009511567501832574
+        },
+        {
+          "source_experiment_id": "s41_5018b4a1a35a73b4736a",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.009640219021954666
+        },
+        {
+          "source_experiment_id": "s41_05d03ae485e5ac4d575a",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.016143197129138143
+        },
+        {
+          "source_experiment_id": "s41_e5e7b9f1848447db76f6",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.03887404139801387
+        },
+        {
+          "source_experiment_id": "s41_b3a46ebfe7f7b08fc07f",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.01285792035339095
+        },
+        {
+          "source_experiment_id": "s41_9a76cbc1e9a26e330310",
+          "repeats": 2,
+          "all_repeats_pass": true,
+          "worst_signed_margin": 0.016627150412675484
+        }
+      ],
+      "high_noise_summaries": [
+        {
+          "target_id": "nominal",
+          "n_seeds": 8,
+          "n_pass": 4,
+          "pass_fraction": 0.5,
+          "passed": false
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "n_seeds": 8,
+          "n_pass": 0,
+          "pass_fraction": 0.0,
+          "passed": false
+        }
+      ],
+      "passed": false
+    },
+    "verdict": {
+      "schema_version": 1,
+      "stage": "Stage4.1",
+      "created_utc": "20260725_064232",
+      "verdict": "STAGE4_1_DELAY_GAIN_PHASE_ROBUSTNESS_ENVELOPE_INCOMPLETE",
+      "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+      "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+      "source_selected_controller_scale": 0.5,
+      "regression_passed": false,
+      "failure_recovery_passed": false,
+      "structured_uncertainty_passed": false,
+      "noise_statistics_passed": false,
+      "phase_aligned_history_passed": false,
+      "true_restart_validation_available": false,
+      "true_restart_validation_passed": null,
+      "confirmation_passed": false,
+      "finite_test_envelope_validated": false,
+      "deployment_robustness_validated": false,
+      "plant_parameter_robustness_validated": false,
+      "unseen_hidden_state_robustness_validated": false,
+      "warning": "This verdict covers only the configured finite delay/gain/slew/noise/history/restart envelope. It is not deployment qualification.",
+      "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+    }
+  }
+}

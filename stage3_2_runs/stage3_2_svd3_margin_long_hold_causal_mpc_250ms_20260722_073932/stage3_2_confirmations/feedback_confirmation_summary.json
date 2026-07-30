@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.2",
+  "created_utc": "20260723_083539",
+  "selected_controller_scale": 1.0,
+  "all_scenarios_confirmed_strict": false,
+  "scenario_summaries": [
+    {
+      "scenario": "nominal",
+      "category": "nominal",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": true,
+      "worst_signed_margin": 0.030357773333333338
+    },
+    {
+      "scenario": "target_Z_m0p010m",
+      "category": "target",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "worst_signed_margin": -0.2680068533333335
+    },
+    {
+      "scenario": "target_R_p0p010m",
+      "category": "target",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "worst_signed_margin": -0.17015159999999874
+    },
+    {
+      "scenario": "target_RZ_p_m_5mm",
+      "category": "target",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "worst_signed_margin": -0.12481578333333321
+    },
+    {
+      "scenario": "target_Z_m0p005m",
+      "category": "target",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "worst_signed_margin": -0.11683561666666664
+    },
+    {
+      "scenario": "target_RZ_m_m_5mm",
+      "category": "target",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "worst_signed_margin": -0.11291818666666664
+    },
+    {
+      "scenario": "target_Z_m0p002m",
+      "category": "target",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "worst_signed_margin": -0.029541189999999995
+    },
+    {
+      "scenario": "target_R_p0p005m",
+      "category": "target",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "worst_signed_margin": -0.0255626666666684
+    }
+  ]
+}

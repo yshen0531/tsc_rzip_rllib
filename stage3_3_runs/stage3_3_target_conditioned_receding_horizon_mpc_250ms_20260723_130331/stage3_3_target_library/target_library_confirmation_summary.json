@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.3",
+  "created_utc": "20260723_152152",
+  "n_rollouts": 19,
+  "n_successful": 19,
+  "mandatory_all_confirmed": false,
+  "optional_confirmed_fraction": 0.9,
+  "target_library_confirmed": false,
+  "task_summaries": [
+    {
+      "task_id": "nominal",
+      "mandatory": true,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.031981773333333297,
+      "worst_sustained_box_m": 0.0290405468,
+      "worst_ip_hold_rms_A": 149.01070633684105
+    },
+    {
+      "task_id": "R_p5mm",
+      "mandatory": true,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.0022364333333348974,
+      "worst_sustained_box_m": 0.029932906999999953,
+      "worst_ip_hold_rms_A": 150.1375555186965
+    },
+    {
+      "task_id": "R_p10mm",
+      "mandatory": true,
+      "repeats": 0,
+      "successful_repeats": 0,
+      "all_repeats_tracking_pass": false,
+      "worst_tracking_signed_margin": null,
+      "worst_sustained_box_m": null,
+      "worst_ip_hold_rms_A": null
+    },
+    {
+      "task_id": "R_m5mm",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.031981773333333297,
+      "worst_sustained_box_m": 0.0290405468,
+      "worst_ip_hold_rms_A": 149.01070633684105
+    },
+    {
+      "task_id": "R_m10mm",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.031981773333333297,
+      "worst_sustained_box_m": 0.0290405468,
+      "worst_ip_hold_rms_A": 149.01070633684105
+    },
+    {
+      "task_id": "Z_m2mm",
+      "mandatory": true,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.005335813333333439,
+      "worst_sustained_box_m": 0.029839925599999997,
+      "worst_ip_hold_rms_A": 144.8452251196496
+    },
+    {
+      "task_id": "Z_m5mm",
+      "mandatory": true,
+      "repeats": 0,
+      "successful_repeats": 0,
+      "all_repeats_tracking_pass": false,
+      "worst_tracking_signed_margin": null,
+      "worst_sustained_box_m": null,
+      "worst_ip_hold_rms_A": null
+    },
+    {
+      "task_id": "Z_m10mm",
+      "mandatory": true,
+      "repeats": 0,
+      "successful_repeats": 0,
+      "all_repeats_tracking_pass": false,
+      "worst_tracking_signed_margin": null,
+      "worst_sustained_box_m": null,
+      "worst_ip_hold_rms_A": null
+    },
+    {
+      "task_id": "Z_p2mm",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.09864843999999984,
+      "worst_sustained_box_m": 0.027040546800000002,
+      "worst_ip_hold_rms_A": 149.01070633684105
+    },
+    {
+      "task_id": "Z_p5mm",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.16526969999999896,
+      "worst_sustained_box_m": 0.02504190900000003,
+      "worst_ip_hold_rms_A": 151.5873331203594
+    },
+    {
+      "task_id": "Z_p10mm",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.21271993333333383,
+      "worst_sustained_box_m": 0.023618401999999983,
+      "worst_ip_hold_rms_A": 155.0456766174644
+    },
+    {
+      "task_id": "RZ_p5_m5mm",
+      "mandatory": true,
+      "repeats": 0,
+      "successful_repeats": 0,
+      "all_repeats_tracking_pass": false,
+      "worst_tracking_signed_margin": null,
+      "worst_sustained_box_m": null,
+      "worst_ip_hold_rms_A": null
+    },
+    {
+      "task_id": "RZ_p10_m10mm",
+      "mandatory": true,
+      "repeats": 0,
+      "successful_repeats": 0,
+      "all_repeats_tracking_pass": false,
+      "worst_tracking_signed_margin": null,
+      "worst_sustained_box_m": null,
+      "worst_ip_hold_rms_A": null
+    },
+    {
+      "task_id": "RZ_m5_m5mm",
+      "mandatory": false,
+      "repeats": 0,
+      "successful_repeats": 0,
+      "all_repeats_tracking_pass": false,
+      "worst_tracking_signed_margin": null,
+      "worst_sustained_box_m": null,
+      "worst_ip_hold_rms_A": null
+    },
+    {
+      "task_id": "RZ_m5_p5mm",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.19864843999999993,
+      "worst_sustained_box_m": 0.0240405468,
+      "worst_ip_hold_rms_A": 149.01070633684105
+    },
+    {
+      "task_id": "RZ_p5_p5mm",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.05354893333333144,
+      "worst_sustained_box_m": 0.028393532000000055,
+      "worst_ip_hold_rms_A": 154.35742960553378
+    },
+    {
+      "task_id": "Ip_m500A",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.031981773333333297,
+      "worst_sustained_box_m": 0.0290405468,
+      "worst_ip_hold_rms_A": 638.1116961448458
+    },
+    {
+      "task_id": "Ip_p500A",
+      "mandatory": false,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.031981773333333297,
+      "worst_sustained_box_m": 0.0290405468,
+      "worst_ip_hold_rms_A": 370.434669610117
+    },
+    {
+      "task_id": "Ip_m1000A",
+      "mandatory": true,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.031981773333333297,
+      "worst_sustained_box_m": 0.0290405468,
+      "worst_ip_hold_rms_A": 1136.7360656329595
+    },
+    {
+      "task_id": "Ip_p1000A",
+      "mandatory": true,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.031981773333333297,
+      "worst_sustained_box_m": 0.0290405468,
+      "worst_ip_hold_rms_A": 867.3174149613906
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "candidate_id": "s22g005_adf586ba25597d7e",
+    "hall_of_fame_rank": 1,
+    "confirmation_reasons": [
+      "corner"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": false,
+    "worst_gate_tier": 3,
+    "worst_final3_box_max_error_m": 0.0310443736,
+    "max_terminal_velocity_m_per_s": 0.026640452894990247,
+    "max_late_velocity_rms_m_per_s": 0.10295809996098128,
+    "worst_stage2_2_max_violation": 0.03481245333333338
+  },
+  {
+    "candidate_id": "s22g004_b034e7d0314c08d6",
+    "hall_of_fame_rank": 2,
+    "confirmation_reasons": [
+      "corner"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": false,
+    "worst_gate_tier": 3,
+    "worst_final3_box_max_error_m": 0.0310505996,
+    "max_terminal_velocity_m_per_s": 0.025239988889105364,
+    "max_late_velocity_rms_m_per_s": 0.10292384536629184,
+    "worst_stage2_2_max_violation": 0.035019986666666725
+  },
+  {
+    "candidate_id": "s22g005_fe6e232ce2c851ad",
+    "hall_of_fame_rank": 3,
+    "confirmation_reasons": [
+      "corner"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": false,
+    "worst_gate_tier": 3,
+    "worst_final3_box_max_error_m": 0.0310520357,
+    "max_terminal_velocity_m_per_s": 0.027793535941518774,
+    "max_late_velocity_rms_m_per_s": 0.10236427159545632,
+    "worst_stage2_2_max_violation": 0.035067856666666675
+  },
+  {
+    "candidate_id": "s22g004_54c30ebb7f0d4602",
+    "hall_of_fame_rank": 4,
+    "confirmation_reasons": [
+      "corner"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": false,
+    "worst_gate_tier": 3,
+    "worst_final3_box_max_error_m": 0.0310532819,
+    "max_terminal_velocity_m_per_s": 0.02640856926351871,
+    "max_late_velocity_rms_m_per_s": 0.10349041625853456,
+    "worst_stage2_2_max_violation": 0.03510939666666668
+  },
+  {
+    "candidate_id": "s22g005_b3b698b6f3917692",
+    "hall_of_fame_rank": 5,
+    "confirmation_reasons": [
+      "corner"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": false,
+    "worst_gate_tier": 3,
+    "worst_final3_box_max_error_m": 0.0310543386,
+    "max_terminal_velocity_m_per_s": 0.023783879157611525,
+    "max_late_velocity_rms_m_per_s": 0.1023150729104779,
+    "worst_stage2_2_max_violation": 0.03514462000000007
+  },
+  {
+    "candidate_id": "s22g004_89d222a7ea5c4cdd",
+    "hall_of_fame_rank": 6,
+    "confirmation_reasons": [
+      "speed_safe"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "worst_final3_box_max_error_m": 0.0311612042,
+    "max_terminal_velocity_m_per_s": 0.03592963817421413,
+    "max_late_velocity_rms_m_per_s": 0.09970578733997104,
+    "worst_stage2_2_max_violation": 0.038706806666666704
+  },
+  {
+    "candidate_id": "s22g004_b65dbd2d777a03f8",
+    "hall_of_fame_rank": 7,
+    "confirmation_reasons": [
+      "speed_safe"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "worst_final3_box_max_error_m": 0.031167895,
+    "max_terminal_velocity_m_per_s": 0.01793864403171938,
+    "max_late_velocity_rms_m_per_s": 0.09962781619929147,
+    "worst_stage2_2_max_violation": 0.03892983333333344
+  },
+  {
+    "candidate_id": "s22g000_571ab4a158d29207",
+    "hall_of_fame_rank": 8,
+    "confirmation_reasons": [
+      "gate_hall"
+    ],
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "worst_final3_box_max_error_m": 0.0315062376,
+    "max_terminal_velocity_m_per_s": 0.010081189677419512,
+    "max_late_velocity_rms_m_per_s": 0.09481818063529814,
+    "worst_stage2_2_max_violation": 0.05020792000000007
+  }
+]

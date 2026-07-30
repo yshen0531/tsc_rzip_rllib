@@ -1,0 +1,509 @@
+[Stage2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage2] source_stage1_1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+[Stage2] run_dir=stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260718_132141
+[Stage2] config=configs/stage2_svd3_real_tsc_cem_100ms.json
+[Stage2] workers=192
+[Stage2] RAY_TMPDIR=/tmp/stage2_1120
+[Stage2] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage2] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage2] 3 SVD modes x 5 time nodes = 15 optimization variables.
+[Stage2] Linear model pre-screens R/Z/Ip only; real TSC ranks speed and hold.
+[Stage2] Immediate TERM/KILL is not intercepted. Completed candidate JSON files remain resumable.
+[Stage2] source_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+[Stage2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260718_132141
+2026-07-18 13:21:48,420	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] waiting 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] waiting 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] waiting 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 0,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g000_29563a35ecb9c6a5",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000042.1276316316,
+    "terminal_R_error_m": -0.023341873000000013,
+    "terminal_Z_error_m": 0.0345551438,
+    "terminal_velocity_m_per_s": 0.07960761106296134,
+    "late_velocity_rms_m_per_s": 0.08930628392530449
+  },
+  "next_generation": 1,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] 1/192
+[Stage2 evaluation] 2/192
+[Stage2 evaluation] 3/192
+[Stage2 evaluation] 4/192
+[Stage2 evaluation] 5/192
+[Stage2 evaluation] 6/192
+[Stage2 evaluation] 7/192
+[Stage2 evaluation] 8/192
+[Stage2 evaluation] 9/192
+[Stage2 evaluation] 10/192
+[Stage2 evaluation] 11/192
+[Stage2 evaluation] 12/192
+[Stage2 evaluation] 13/192
+[Stage2 evaluation] 14/192
+[Stage2 evaluation] 15/192
+[Stage2 evaluation] 16/192
+[Stage2 evaluation] 17/192
+[Stage2 evaluation] 18/192
+[Stage2 evaluation] 19/192
+[Stage2 evaluation] 20/192
+[Stage2 evaluation] 21/192
+[Stage2 evaluation] 22/192
+[Stage2 evaluation] 23/192
+[Stage2 evaluation] 24/192
+[Stage2 evaluation] 25/192
+[Stage2 evaluation] 26/192
+[Stage2 evaluation] 27/192
+[Stage2 evaluation] 28/192
+[Stage2 evaluation] 29/192
+[Stage2 evaluation] 30/192
+[Stage2 evaluation] 31/192
+[Stage2 evaluation] 32/192
+[Stage2 evaluation] 33/192
+[Stage2 evaluation] 34/192
+[Stage2 evaluation] 35/192
+[Stage2 evaluation] 36/192
+[Stage2 evaluation] 37/192
+[Stage2 evaluation] 38/192
+[Stage2 evaluation] 39/192
+[Stage2 evaluation] 40/192
+[Stage2 evaluation] 41/192
+[Stage2 evaluation] 42/192
+[Stage2 evaluation] 43/192
+[Stage2 evaluation] 44/192
+[Stage2 evaluation] 45/192
+[Stage2 evaluation] 46/192
+[Stage2 evaluation] 47/192
+[Stage2 evaluation] 48/192
+[Stage2 evaluation] 49/192
+[Stage2 evaluation] 50/192
+[Stage2 evaluation] 51/192
+[Stage2 evaluation] 52/192
+[Stage2 evaluation] 53/192
+[Stage2 evaluation] 54/192
+[Stage2 evaluation] 55/192
+[Stage2 evaluation] 56/192
+[Stage2 evaluation] 57/192
+[Stage2 evaluation] 58/192
+[Stage2 evaluation] 59/192
+[Stage2 evaluation] 60/192
+[Stage2 evaluation] 61/192
+[Stage2 evaluation] 62/192
+[Stage2 evaluation] 63/192
+[Stage2 evaluation] 64/192
+[Stage2 evaluation] 65/192
+[Stage2 evaluation] 66/192
+[Stage2 evaluation] 67/192
+[Stage2 evaluation] 68/192
+[Stage2 evaluation] 69/192
+[Stage2 evaluation] 70/192
+[Stage2 evaluation] 71/192
+[Stage2 evaluation] 72/192
+[Stage2 evaluation] 73/192
+[Stage2 evaluation] 74/192
+[Stage2 evaluation] 75/192
+[Stage2 evaluation] 76/192
+[Stage2 evaluation] 77/192
+[Stage2 evaluation] 78/192
+[Stage2 evaluation] 79/192
+[Stage2 evaluation] 80/192
+[Stage2 evaluation] 81/192
+[Stage2 evaluation] 82/192
+[Stage2 evaluation] 83/192
+[Stage2 evaluation] 84/192
+[Stage2 evaluation] 85/192
+[Stage2 evaluation] 86/192
+[Stage2 evaluation] 87/192
+[Stage2 evaluation] 88/192
+[Stage2 evaluation] 89/192
+[Stage2 evaluation] 90/192
+[Stage2 evaluation] 91/192
+[Stage2 evaluation] 92/192
+[Stage2 evaluation] 93/192
+[Stage2 evaluation] 94/192
+[Stage2 evaluation] 95/192
+[Stage2 evaluation] 96/192
+[Stage2 evaluation] 97/192
+[Stage2 evaluation] 98/192
+[Stage2 evaluation] 99/192
+[Stage2 evaluation] 100/192
+[Stage2 evaluation] 101/192
+[Stage2 evaluation] 102/192
+[Stage2 evaluation] 103/192
+[Stage2 evaluation] 104/192
+[Stage2 evaluation] 105/192
+[Stage2 evaluation] 106/192
+[Stage2 evaluation] 107/192
+[Stage2 evaluation] 108/192
+[Stage2 evaluation] 109/192
+[Stage2 evaluation] 110/192
+[Stage2 evaluation] 111/192
+[Stage2 evaluation] 112/192
+[Stage2 evaluation] 113/192
+[Stage2 evaluation] 114/192
+[Stage2 evaluation] 115/192
+[Stage2 evaluation] 116/192
+[Stage2 evaluation] 117/192
+[Stage2 evaluation] 118/192
+[Stage2 evaluation] 119/192
+[Stage2 evaluation] 120/192
+[Stage2 evaluation] 121/192
+[Stage2 evaluation] 122/192
+[Stage2 evaluation] 123/192
+[Stage2 evaluation] 124/192
+[Stage2 evaluation] 125/192
+[Stage2 evaluation] 126/192
+[Stage2 evaluation] 127/192
+[Stage2 evaluation] 128/192
+[Stage2 evaluation] 129/192
+[Stage2 evaluation] 130/192
+[Stage2 evaluation] 131/192
+[Stage2 evaluation] 132/192
+[Stage2 evaluation] 133/192
+[Stage2 evaluation] 134/192
+[Stage2 evaluation] 135/192
+[Stage2 evaluation] 136/192
+[Stage2 evaluation] 137/192
+[Stage2 evaluation] 138/192
+[Stage2 evaluation] 139/192
+[Stage2 evaluation] 140/192
+[Stage2 evaluation] 141/192
+[Stage2 evaluation] 142/192
+[Stage2 evaluation] 143/192
+[Stage2 evaluation] 144/192
+[Stage2 evaluation] 145/192
+[Stage2 evaluation] 146/192
+[Stage2 evaluation] 147/192
+[Stage2 evaluation] 148/192
+[Stage2 evaluation] 149/192
+[Stage2 evaluation] 150/192
+[Stage2 evaluation] 151/192
+[Stage2 evaluation] 152/192
+[Stage2 evaluation] 153/192
+[Stage2 evaluation] 154/192
+[Stage2 evaluation] 155/192
+[Stage2 evaluation] 156/192
+[Stage2 evaluation] 157/192
+[Stage2 evaluation] 158/192
+[Stage2 evaluation] 159/192
+[Stage2 evaluation] 160/192
+[Stage2 evaluation] 161/192
+[Stage2 evaluation] 162/192
+[Stage2 evaluation] 163/192
+[Stage2 evaluation] 164/192
+[Stage2 evaluation] 165/192
+[Stage2 evaluation] 166/192
+[Stage2 evaluation] 167/192
+[Stage2 evaluation] 168/192
+[Stage2 evaluation] 169/192
+[Stage2 evaluation] 170/192
+[Stage2 evaluation] 171/192
+[Stage2 evaluation] 172/192
+[Stage2 evaluation] 173/192
+[Stage2 evaluation] 174/192
+[Stage2 evaluation] 175/192
+[Stage2 evaluation] 176/192
+[Stage2 evaluation] 177/192
+[Stage2 evaluation] 178/192
+[Stage2 evaluation] 179/192
+[Stage2 evaluation] 180/192
+[Stage2 evaluation] 181/192
+[Stage2 evaluation] 182/192
+[Stage2 evaluation] 183/192
+[Stage2 evaluation] 184/192
+[Stage2 evaluation] 185/192
+[Stage2 evaluation] 186/192
+[Stage2 evaluation] 187/192
+[Stage2 evaluation] 188/192
+[Stage2 evaluation] 189/192
+[Stage2 evaluation] 190/192
+[Stage2 evaluation] 191/192
+[Stage2 evaluation] 192/192
+{
+  "generation": 1,
+  "successful": 192,
+  "population": 192,
+  "best": {
+    "candidate_id": "g001_eb588a42e459f278",
+    "gate_label": "PASS_DAMPED_HOLD_40MM",
+    "selection_score": 1000041.1124242732,
+    "terminal_R_error_m": -0.02527094799999996,
+    "terminal_Z_error_m": 0.0340673783,
+    "terminal_velocity_m_per_s": 0.05854782333261783,
+    "late_velocity_rms_m_per_s": 0.06959464625485523
+  },
+  "next_generation": 2,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+[Stage2 evaluation] waiting 0/192
+*** SIGTERM received at time=1784354264 on cpu 81 ***
+PC: @     0x7effb9fbdde2  (unknown)  pthread_cond_timedwait@@GLIBC_2.3.2
+    @     0x7effb9fc1630  (unknown)  (unknown)
+    @     0x7effa992b987       1328  ray::core::CoreWorkerMemoryStore::GetImpl()
+    @     0x7effa992cbed       1360  ray::core::CoreWorkerMemoryStore::Wait()
+    @     0x7effa97caecb       1776  ray::core::CoreWorker::Wait()
+    @     0x7effa96f2c6f        352  __pyx_pw_3ray_7_raylet_10CoreWorker_53wait()
+    @           0x5158b4  (unknown)  PyObject_Vectorcall
+    @     0x7effaab089c0  (unknown)  (unknown)
+[2026-07-18 13:57:44,224 E 1820036 1820036] logging.cc:474: *** SIGTERM received at time=1784354264 on cpu 81 ***
+[2026-07-18 13:57:44,224 E 1820036 1820036] logging.cc:474: PC: @     0x7effb9fbdde2  (unknown)  pthread_cond_timedwait@@GLIBC_2.3.2
+[2026-07-18 13:57:44,226 E 1820036 1820036] logging.cc:474:     @     0x7effb9fc1630  (unknown)  (unknown)
+[2026-07-18 13:57:44,226 E 1820036 1820036] logging.cc:474:     @     0x7effa992b987       1328  ray::core::CoreWorkerMemoryStore::GetImpl()
+[2026-07-18 13:57:44,226 E 1820036 1820036] logging.cc:474:     @     0x7effa992cbed       1360  ray::core::CoreWorkerMemoryStore::Wait()
+[2026-07-18 13:57:44,226 E 1820036 1820036] logging.cc:474:     @     0x7effa97caecb       1776  ray::core::CoreWorker::Wait()
+[2026-07-18 13:57:44,226 E 1820036 1820036] logging.cc:474:     @     0x7effa96f2c6f        352  __pyx_pw_3ray_7_raylet_10CoreWorker_53wait()
+[2026-07-18 13:57:44,226 E 1820036 1820036] logging.cc:474:     @           0x5158b4  (unknown)  PyObject_Vectorcall
+[2026-07-18 13:57:44,227 E 1820036 1820036] logging.cc:474:     @     0x7effaab089c0  (unknown)  (unknown)

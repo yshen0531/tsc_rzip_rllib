@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R10",
+  "phase": "oracle_holdout",
+  "selected_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+  "holdout_target_id": "RZ_p10_m10",
+  "holdout_was_not_used_for_policy_selection": true,
+  "n_rollouts": 9,
+  "expected_rollouts": 9,
+  "coverage_complete": true,
+  "policy_summary": {
+    "policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "n_rollouts": 9,
+    "coverage_complete": true,
+    "all_environment_success": true,
+    "tracking_fraction": 1.0,
+    "minimum_combined_signed_margin": 0.039997189999999905,
+    "minimum_tracking_signed_margin": 0.039997189999999905,
+    "mean_combined_signed_margin": 0.09768465777777771,
+    "all_prefix_guards_pass": true,
+    "all_preview_guards_pass": true,
+    "all_streaming_queue_guards_pass": true,
+    "all_convergence_guards_pass": true,
+    "maximum_preview_desired_physical_norm": 0.12563454722554895,
+    "maximum_final_pending_desired_physical_norm": 0.13096322740218158,
+    "maximum_last10_speed_rms_m_per_s": 0.030326499074741123,
+    "maximum_last10_box_error_m": 0.0288000843,
+    "mean_terminal_action_rms": 0.030603919443426594,
+    "passed": true
+  },
+  "passed": true
+}

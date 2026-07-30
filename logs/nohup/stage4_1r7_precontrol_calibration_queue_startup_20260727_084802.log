@@ -1,0 +1,90 @@
+[Stage4.1R7] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.1R7] source_stage4_1r6_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r6_runs/stage4_1r6_startup_architecture_closure_350ms_20260727_051823
+[Stage4.1R7] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r7_runs/stage4_1r7_precontrol_calibration_queue_startup_20260727_084802
+[Stage4.1R7] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json
+[Stage4.1R7] command=all
+[Stage4.1R7] backend=ray
+[Stage4.1R7] resume=0
+[Stage4.1R7] workers=128
+[Stage4.1R7] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage4.1R7] RAY_TMPDIR=/tmp/stage4_1r7_1120
+[Stage4.1R7] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage4.1R7] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage4.1R7] R6 finite-bank estimation and exact persistent startup are frozen; failed physical-blend/cold-start paths are not reused as success.
+[Stage4.1R7] A separate bounded zero-net calibration episode identifies delay/slew, then TSC is reset before the main control trajectory.
+[Stage4.1R7] The main action queue is primed consistently from the calibrated model before the first control action; primary startup uses no online handover.
+[Stage4.1R7] The weak 0.9x-slew cases retain the validated 370 ms / 270 ms-arrival closure and conditional anti-windup configuration.
+[Stage4.1R7] Residual Markdown files elsewhere in the project are ignored by package verification.
+[Stage4.1R7] Final task remains robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay.
+2026-07-27 16:48:09,961	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.1R7 mixed-variant] ray_capacity requested=128 cluster_cpus=128 pending=18 actors=18 initialized_now=1
+[Stage4.1R7 mixed-variant] actor_allocation={"slew_0p900_h35":6,"slew_1p000_h35":6,"slew_1p100_h35":6}
+[Stage4.1R7 mixed-variant] waiting 0/18
+[Stage4.1R7 mixed-variant] waiting 0/18
+[Stage4.1R7 mixed-variant] waiting 0/18
+[Stage4.1R7 mixed-variant] waiting 0/18
+[Stage4.1R7 mixed-variant] 10/18
+[Stage4.1R7 mixed-variant] 18/18
+[Stage4.1R7 mixed-variant] ray_capacity requested=128 cluster_cpus=128 pending=108 actors=108 initialized_now=0
+[Stage4.1R7 mixed-variant] actor_allocation={"slew_0p900_h37":36,"slew_1p000_h35":36,"slew_1p100_h35":36}
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] waiting 0/108
+[Stage4.1R7 mixed-variant] 10/108
+[Stage4.1R7 mixed-variant] 20/108
+[Stage4.1R7 mixed-variant] 30/108
+[Stage4.1R7 mixed-variant] 40/108
+[Stage4.1R7 mixed-variant] 50/108
+[Stage4.1R7 mixed-variant] 60/108
+[Stage4.1R7 mixed-variant] 70/108
+[Stage4.1R7 mixed-variant] 80/108
+[Stage4.1R7 mixed-variant] 90/108
+[Stage4.1R7 mixed-variant] 100/108
+[Stage4.1R7 mixed-variant] 108/108
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_1r7_precontrol_calibration_queue_startup.py", line 15, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r7_precontrol_calibration_queue_startup.py", line 1748, in main
+    payload = execute(
+              ^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r7_precontrol_calibration_queue_startup.py", line 1610, in execute
+    startup = run_startup(ctx, backend=backend, resume=resume)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r7_precontrol_calibration_queue_startup.py", line 1344, in run_startup
+    summary = summarize_startup(ctx, rows)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r7_precontrol_calibration_queue_startup.py", line 1296, in summarize_startup
+    int(row.get("monitor_estimated_delay_steps", -999)) == key[1]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R7",
+  "phase": "source_audit",
+  "source_stage4_1r6_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r6_runs/stage4_1r6_startup_architecture_closure_350ms_20260727_051823",
+  "source_finished": true,
+  "source_estimator_confirmation_passed": true,
+  "source_persistent_exact_preservation_fraction": 1.0,
+  "source_persistent_exact_trace_equivalence_fraction": 1.0,
+  "source_adjacent_handover_passed": false,
+  "source_cold_start_passed": false,
+  "failed_online_handover_is_not_reused_as_success": true,
+  "passed": true,
+  "warning": "R7 reuses only the validated estimator and exact persistent startup facts. R6 physical-blend and cold-start failures are not reinterpreted as success."
+}

@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R15B",
+  "controller_revision": "probe_derived_symmetric_local_response_superposition_v15b",
+  "package_revision": "r15b_hadamard_superposition_validation_v1",
+  "prepared": true,
+  "source_audit_complete": true,
+  "response_model_complete": true,
+  "composition_validation_complete": true,
+  "finished": true,
+  "stop_reason": "",
+  "updated_utc": "20260729_120140",
+  "source_audit_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1R15B",
+    "phase": "source_audit",
+    "source_stage4_1r15_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15_runs/stage4_1r15_bounded_early_braking_local_response_identification_20260729_085311",
+    "source_probe_rollouts": 32,
+    "environment_success_count": 32,
+    "runtime_guard_pass_fraction": 1.0,
+    "source_model_prediction_pass_fraction": 0.96875,
+    "source_failed_model_probe_count": 1,
+    "source_failed_model_probe_keys": [
+      [
+        "RZ_p10_m10",
+        1,
+        "late_mode0",
+        1
+      ]
+    ],
+    "failed_probe_final_speed_error_m_per_s": 0.00835043397426746,
+    "failed_probe_final_speed_threshold_m_per_s": 0.008,
+    "failed_probe_threshold_excess_m_per_s": 0.00035043397426745906,
+    "maximum_source_central_symmetry_velocity_rmse_m_per_s": 0.0014043948375507278,
+    "finite_bank_all_pass_requirement_was_correct": true,
+    "posthoc_threshold_relaxation_allowed": false,
+    "source_model_is_not_reinterpreted_as_validated": true,
+    "stage4_2r1_was_not_run_or_reused": true,
+    "checks": {
+      "coverage_32": true,
+      "runtime_32": true,
+      "model_31_of_32": true,
+      "one_failure": true,
+      "failure_key_exact": true,
+      "only_final_speed_exceeds": true,
+      "symmetry_coverage": true,
+      "all_symmetry_pass": true,
+      "source_identification_only": true,
+      "formal_timing_not_restored": true
+    },
+    "passed": true,
+    "interpretation": "R15 ran normally and 31/32 external probes passed. The single failure is not a runtime or rounding error: RZ_p10_m10, delay=1, positive late-mode-0 underpredicted final speed by 8.350 mm/s, 0.350 mm/s above the preregistered limit. Plus/minus symmetry passed, so R15B replaces the source-bank absolute PCA model with a probe-derived odd differential response and tests superposition with new orthogonal combinations."
+  },
+  "response_model_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1R15B",
+    "phase": "probe_derived_response_model",
+    "group_count": 4,
+    "expected_group_count": 4,
+    "basis_order": [
+      "early_mode0",
+      "early_mode1",
+      "late_mode0",
+      "late_mode1"
+    ],
+    "model_is_probe_derived_central_difference": true,
+    "source_absolute_pca_model_reused_as_validated": false,
+    "group_rows": [
+      {
+        "group_id": "nominal__d1",
+        "target_id": "nominal",
+        "actual_delay_steps": 1,
+        "basis_count": 4,
+        "full_condition_number": 11.586609314673881,
+        "selected_velocity_condition_number": 4.746196062176096,
+        "maximum_pair_even_velocity_rmse_m_per_s": 0.000306266320908566,
+        "passed": true
+      },
+      {
+        "group_id": "nominal__d2",
+        "target_id": "nominal",
+        "actual_delay_steps": 2,
+        "basis_count": 4,
+        "full_condition_number": 5.948868113977985,
+        "selected_velocity_condition_number": 2.913176082024111,
+        "maximum_pair_even_velocity_rmse_m_per_s": 0.00044813957354360157,
+        "passed": true
+      },
+      {
+        "group_id": "RZ_p10_m10__d1",
+        "target_id": "RZ_p10_m10",
+        "actual_delay_steps": 1,
+        "basis_count": 4,
+        "full_condition_number": 7.204983991678384,
+        "selected_velocity_condition_number": 6.223730996961211,
+        "maximum_pair_even_velocity_rmse_m_per_s": 0.0007021974187753639,
+        "passed": true
+      },
+      {
+        "group_id": "RZ_p10_m10__d2",
+        "target_id": "RZ_p10_m10",
+        "actual_delay_steps": 2,
+        "basis_count": 4,
+        "full_condition_number": 3.568863952544192,
+        "selected_velocity_condition_number": 5.319873218086158,
+        "maximum_pair_even_velocity_rmse_m_per_s": 0.00041960150171711514,
+        "passed": true
+      }
+    ],
+    "maximum_full_condition_number": 11.586609314673881,
+    "maximum_selected_velocity_condition_number": 6.223730996961211,
+    "maximum_pair_even_velocity_rmse_m_per_s": 0.0007021974187753639,
+    "identification_only": true,
+    "passed": true
+  },
+  "composition_validation_summary": {
+    "schema_version": 1,
+    "stage": "Stage4.1R15B",
+    "phase": "superposition_validation",
+    "n_rollouts": 32,
+    "expected_rollouts": 32,
+    "coverage_complete": true,
+    "environment_success_count": 32,
+    "runtime_guard_pass_fraction": 1.0,
+    "model_prediction_pass_fraction": 1.0,
+    "joint_pass_fraction": 1.0,
+    "maximum_velocity_component_rmse_m_per_s": 0.000990937266997121,
+    "maximum_endpoint_late_speed_error_m_per_s": 0.0004327314602618759,
+    "maximum_final_speed_error_m_per_s": 0.002078203578799332,
+    "maximum_position_rmse_m": 5.334660576973294e-05,
+    "maximum_ip_rmse_A": 3.801946838731763,
+    "maximum_central_symmetry_velocity_rmse_m_per_s": 0.0014948703515507724,
+    "maximum_basis_reconstruction_velocity_rmse_m_per_s": 0.0003476503636569919,
+    "maximum_basis_reconstruction_position_rmse_m": 9.440830046426189e-06,
+    "maximum_basis_reconstruction_ip_rmse_A": 1.0929314529244702,
+    "hadamard_combinations_are_new_external_validation": true,
+    "formal_tracking_pass_required": false,
+    "formal_timing_contract_restored": false,
+    "identification_only": true,
+    "passed": true
+  },
+  "final_verdict": "STAGE4_1R15B_PROBE_DERIVED_SUPERPOSITION_MODEL_VALIDATED"
+}

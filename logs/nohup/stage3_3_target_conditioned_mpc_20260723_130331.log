@@ -1,0 +1,382 @@
+[Stage3.3] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage3.3] source_stage3_2_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_2_runs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms_20260722_073932
+[Stage3.3] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_3_runs/stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331
+[Stage3.3] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage3_3_target_conditioned_receding_horizon_mpc_250ms.json
+[Stage3.3] command=all
+[Stage3.3] backend=ray
+[Stage3.3] resume=0
+[Stage3.3] workers=96
+[Stage3.3] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage3.3] RAY_TMPDIR=/tmp/stage3_3_1120
+[Stage3.3] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage3.3] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage3.3] Complete standalone tree: no Git, network, or external code tree is used.
+[Stage3.3] Ray capacity is fixed at the configured campaign worker count for every variable-size wave.
+[Stage3.3] Stage3.2 250 ms open-loop strict results and its 125x75 real-TSC Jacobian are reused.
+[Stage3.3] Phase A/B build target-conditioned 250 ms nominal trajectories; Phase C confirms the library.
+[Stage3.3] Phase D/E resolve a bounded future-sequence problem every 10 ms and apply only the first correction.
+[Stage3.3] Calibration chooses one global controller scale; held-out targets/disturbances are not used for scale selection.
+[Stage3.3] R/Z hard gate remains 30 mm / 0.10 m/s; the 10 kA Ip safety gate is unchanged.
+[Stage3.3] Ip tracking tolerances for the additional-heating setup: terminal <= 2000 A, hold RMS <= 2400 A, sustained max <= 4000 A.
+[Stage3.3] Tested disturbances are not genuine new initial states, plant parameters, noise, or latency.
+[Stage3.3] Final task remains robust causal control; residual RL is bounded and secondary.
+[Stage3.3] SIGKILL cannot be intercepted; completed JSON.GZ results remain resumable.
+2026-07-23 21:03:39,403	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=100 actors=96 initialized_now=1
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] waiting 0/100
+[Stage2 evaluation] 1/100
+[Stage2 evaluation] 2/100
+[Stage2 evaluation] 3/100
+[Stage2 evaluation] 4/100
+[Stage2 evaluation] 5/100
+[Stage2 evaluation] 6/100
+[Stage2 evaluation] 7/100
+[Stage2 evaluation] 8/100
+[Stage2 evaluation] 9/100
+[Stage2 evaluation] 10/100
+[Stage2 evaluation] 11/100
+[Stage2 evaluation] 12/100
+[Stage2 evaluation] 13/100
+[Stage2 evaluation] 14/100
+[Stage2 evaluation] 15/100
+[Stage2 evaluation] 16/100
+[Stage2 evaluation] 17/100
+[Stage2 evaluation] 18/100
+[Stage2 evaluation] 19/100
+[Stage2 evaluation] 20/100
+[Stage2 evaluation] 21/100
+[Stage2 evaluation] 22/100
+[Stage2 evaluation] 23/100
+[Stage2 evaluation] 24/100
+[Stage2 evaluation] 25/100
+[Stage2 evaluation] 26/100
+[Stage2 evaluation] 27/100
+[Stage2 evaluation] 28/100
+[Stage2 evaluation] 29/100
+[Stage2 evaluation] 30/100
+[Stage2 evaluation] 31/100
+[Stage2 evaluation] 32/100
+[Stage2 evaluation] 33/100
+[Stage2 evaluation] 34/100
+[Stage2 evaluation] 35/100
+[Stage2 evaluation] 36/100
+[Stage2 evaluation] 37/100
+[Stage2 evaluation] 38/100
+[Stage2 evaluation] 39/100
+[Stage2 evaluation] 40/100
+[Stage2 evaluation] 41/100
+[Stage2 evaluation] 42/100
+[Stage2 evaluation] 43/100
+[Stage2 evaluation] 44/100
+[Stage2 evaluation] 45/100
+[Stage2 evaluation] 46/100
+[Stage2 evaluation] 47/100
+[Stage2 evaluation] 48/100
+[Stage2 evaluation] 49/100
+[Stage2 evaluation] 50/100
+[Stage2 evaluation] 51/100
+[Stage2 evaluation] 52/100
+[Stage2 evaluation] 53/100
+[Stage2 evaluation] 54/100
+[Stage2 evaluation] 55/100
+[Stage2 evaluation] 56/100
+[Stage2 evaluation] 57/100
+[Stage2 evaluation] 58/100
+[Stage2 evaluation] 59/100
+[Stage2 evaluation] 60/100
+[Stage2 evaluation] 61/100
+[Stage2 evaluation] 62/100
+[Stage2 evaluation] 63/100
+[Stage2 evaluation] 64/100
+[Stage2 evaluation] 65/100
+[Stage2 evaluation] 66/100
+[Stage2 evaluation] 67/100
+[Stage2 evaluation] 68/100
+[Stage2 evaluation] 69/100
+[Stage2 evaluation] 70/100
+[Stage2 evaluation] 71/100
+[Stage2 evaluation] 72/100
+[Stage2 evaluation] 73/100
+[Stage2 evaluation] 74/100
+[Stage2 evaluation] 75/100
+[Stage2 evaluation] 76/100
+[Stage2 evaluation] 77/100
+[Stage2 evaluation] 78/100
+[Stage2 evaluation] 79/100
+[Stage2 evaluation] 80/100
+[Stage2 evaluation] 81/100
+[Stage2 evaluation] 82/100
+[Stage2 evaluation] 83/100
+[Stage2 evaluation] 84/100
+[Stage2 evaluation] 85/100
+[Stage2 evaluation] 86/100
+[Stage2 evaluation] 87/100
+[Stage2 evaluation] 88/100
+[Stage2 evaluation] 89/100
+[Stage2 evaluation] 90/100
+[Stage2 evaluation] 91/100
+[Stage2 evaluation] 92/100
+[Stage2 evaluation] 93/100
+[Stage2 evaluation] 94/100
+[Stage2 evaluation] 95/100
+[Stage2 evaluation] 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] waiting 96/100
+[Stage2 evaluation] 97/100
+[Stage2 evaluation] 98/100
+[Stage2 evaluation] 99/100
+[Stage2 evaluation] 100/100
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=168 actors=96 initialized_now=0
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] waiting 0/168
+[Stage2 evaluation] 1/168
+[Stage2 evaluation] 2/168
+[Stage2 evaluation] 3/168
+[Stage2 evaluation] 4/168
+[Stage2 evaluation] 5/168
+[Stage2 evaluation] 6/168
+[Stage2 evaluation] 7/168
+[Stage2 evaluation] 8/168
+[Stage2 evaluation] 9/168
+[Stage2 evaluation] 10/168
+[Stage2 evaluation] 11/168
+[Stage2 evaluation] 12/168
+[Stage2 evaluation] 13/168
+[Stage2 evaluation] 14/168
+[Stage2 evaluation] 15/168
+[Stage2 evaluation] 16/168
+[Stage2 evaluation] 17/168
+[Stage2 evaluation] 18/168
+[Stage2 evaluation] 19/168
+[Stage2 evaluation] 20/168
+[Stage2 evaluation] 21/168
+[Stage2 evaluation] 22/168
+[Stage2 evaluation] 23/168
+[Stage2 evaluation] 24/168
+[Stage2 evaluation] 25/168
+[Stage2 evaluation] 26/168
+[Stage2 evaluation] 27/168
+[Stage2 evaluation] 28/168
+[Stage2 evaluation] 29/168
+[Stage2 evaluation] 30/168
+[Stage2 evaluation] 31/168
+[Stage2 evaluation] 32/168
+[Stage2 evaluation] 33/168
+[Stage2 evaluation] 34/168
+[Stage2 evaluation] 35/168
+[Stage2 evaluation] 36/168
+[Stage2 evaluation] 37/168
+[Stage2 evaluation] 38/168
+[Stage2 evaluation] 39/168
+[Stage2 evaluation] 40/168
+[Stage2 evaluation] 41/168
+[Stage2 evaluation] 42/168
+[Stage2 evaluation] 43/168
+[Stage2 evaluation] 44/168
+[Stage2 evaluation] 45/168
+[Stage2 evaluation] 46/168
+[Stage2 evaluation] 47/168
+[Stage2 evaluation] 48/168
+[Stage2 evaluation] 49/168
+[Stage2 evaluation] 50/168
+[Stage2 evaluation] 51/168
+[Stage2 evaluation] 52/168
+[Stage2 evaluation] 53/168
+[Stage2 evaluation] 54/168
+[Stage2 evaluation] 55/168
+[Stage2 evaluation] 56/168
+[Stage2 evaluation] 57/168
+[Stage2 evaluation] 58/168
+[Stage2 evaluation] 59/168
+[Stage2 evaluation] 60/168
+[Stage2 evaluation] 61/168
+[Stage2 evaluation] 62/168
+[Stage2 evaluation] 63/168
+[Stage2 evaluation] 64/168
+[Stage2 evaluation] 65/168
+[Stage2 evaluation] 66/168
+[Stage2 evaluation] 67/168
+[Stage2 evaluation] 68/168
+[Stage2 evaluation] 69/168
+[Stage2 evaluation] 70/168
+[Stage2 evaluation] 71/168
+[Stage2 evaluation] 72/168
+[Stage2 evaluation] 73/168
+[Stage2 evaluation] 74/168
+[Stage2 evaluation] 75/168
+[Stage2 evaluation] 76/168
+[Stage2 evaluation] 77/168
+[Stage2 evaluation] 78/168
+[Stage2 evaluation] 79/168
+[Stage2 evaluation] 80/168
+[Stage2 evaluation] 81/168
+[Stage2 evaluation] 82/168
+[Stage2 evaluation] 83/168
+[Stage2 evaluation] 84/168
+[Stage2 evaluation] 85/168
+[Stage2 evaluation] 86/168
+[Stage2 evaluation] 87/168
+[Stage2 evaluation] 88/168
+[Stage2 evaluation] 89/168
+[Stage2 evaluation] 90/168
+[Stage2 evaluation] 91/168
+[Stage2 evaluation] 92/168
+[Stage2 evaluation] 93/168
+[Stage2 evaluation] 94/168
+[Stage2 evaluation] 95/168
+[Stage2 evaluation] 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] waiting 96/168
+[Stage2 evaluation] 97/168
+[Stage2 evaluation] 98/168
+[Stage2 evaluation] 99/168
+[Stage2 evaluation] 100/168
+[Stage2 evaluation] 101/168
+[Stage2 evaluation] 102/168
+[Stage2 evaluation] 103/168
+[Stage2 evaluation] 104/168
+[Stage2 evaluation] 105/168
+[Stage2 evaluation] 106/168
+[Stage2 evaluation] 107/168
+[Stage2 evaluation] 108/168
+[Stage2 evaluation] 109/168
+[Stage2 evaluation] 110/168
+[Stage2 evaluation] 111/168
+[Stage2 evaluation] 112/168
+[Stage2 evaluation] 113/168
+[Stage2 evaluation] 114/168
+[Stage2 evaluation] 115/168
+[Stage2 evaluation] 116/168
+[Stage2 evaluation] 117/168
+[Stage2 evaluation] 118/168
+[Stage2 evaluation] 119/168
+[Stage2 evaluation] 120/168
+[Stage2 evaluation] 121/168
+[Stage2 evaluation] 122/168
+[Stage2 evaluation] 123/168
+[Stage2 evaluation] 124/168
+[Stage2 evaluation] 125/168
+[Stage2 evaluation] 126/168
+[Stage2 evaluation] 127/168
+[Stage2 evaluation] 128/168
+[Stage2 evaluation] 129/168
+[Stage2 evaluation] 130/168
+[Stage2 evaluation] 131/168
+[Stage2 evaluation] 132/168
+[Stage2 evaluation] 133/168
+[Stage2 evaluation] 134/168
+[Stage2 evaluation] 135/168
+[Stage2 evaluation] 136/168
+[Stage2 evaluation] 137/168
+[Stage2 evaluation] 138/168
+[Stage2 evaluation] 139/168
+[Stage2 evaluation] 140/168
+[Stage2 evaluation] 141/168
+[Stage2 evaluation] 142/168
+[Stage2 evaluation] 143/168
+[Stage2 evaluation] 144/168
+[Stage2 evaluation] 145/168
+[Stage2 evaluation] 146/168
+[Stage2 evaluation] 147/168
+[Stage2 evaluation] 148/168
+[Stage2 evaluation] 149/168
+[Stage2 evaluation] 150/168
+[Stage2 evaluation] 151/168
+[Stage2 evaluation] 152/168
+[Stage2 evaluation] 153/168
+[Stage2 evaluation] 154/168
+[Stage2 evaluation] 155/168
+[Stage2 evaluation] 156/168
+[Stage2 evaluation] 157/168
+[Stage2 evaluation] 158/168
+[Stage2 evaluation] 159/168
+[Stage2 evaluation] 160/168
+[Stage2 evaluation] 161/168
+[Stage2 evaluation] 162/168
+[Stage2 evaluation] 163/168
+[Stage2 evaluation] 164/168
+[Stage2 evaluation] 165/168
+[Stage2 evaluation] 166/168
+[Stage2 evaluation] 167/168
+[Stage2 evaluation] 168/168
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage3_3_target_conditioned_mpc.py", line 15, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage3_3_target_conditioned_mpc.py", line 3184, in main
+    result = execute(
+             ^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage3_3_target_conditioned_mpc.py", line 3086, in execute
+    run_refinement(ctx, backend=backend, resume=resume)
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage3_3_target_conditioned_mpc.py", line 1612, in run_refinement
+    summary = run_one_refinement_round(ctx, backend=backend, resume=resume)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage3_3_target_conditioned_mpc.py", line 1540, in run_one_refinement_round
+    proposal_manifest = build_refinement_proposal_manifest(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage3_3_target_conditioned_mpc.py", line 1466, in build_refinement_proposal_manifest
+    model = build_reduced_jacobian(ctx, task=task, center=center, probe_rows=probe_rows)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage3_3_target_conditioned_mpc.py", line 1381, in build_reduced_jacobian
+    raise RuntimeError(
+RuntimeError: Target Z_m2mm has only 1/12 reliable reduced directions

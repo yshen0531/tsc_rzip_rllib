@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R6",
+  "controller_revision": "confidence_gated_persistent_prior_physical_handover_v6",
+  "created_utc": "20260727_051825",
+  "source_stage4_1r5_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r5_runs/stage4_1r5_adaptive_handover_closure_350ms_20260727_022930",
+  "source_stage4_1r4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r4_runs/stage4_1r4_targeted_closure_370ms_20260726_153619",
+  "source_fingerprint": {
+    "n_files": 116,
+    "total_bytes": 7107726,
+    "digest": "46eee5ef57bd77bd7de17f9130a1741f7d48e470db6c5b3eac6355404fe7f89c"
+  },
+  "workers": {
+    "requested_workers": 128,
+    "logical_cpus": 256,
+    "reserved_logical_cpus": 16,
+    "safe_worker_ceiling": 240,
+    "available_memory_gb": 237.6309051513672,
+    "open_file_soft_limit": 1048576,
+    "open_file_hard_limit": 1048576
+  },
+  "hard_numeric_thresholds_changed": false,
+  "precalibrated_persistent_startup_is_primary": true,
+  "cold_start_is_diagnostic": true,
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

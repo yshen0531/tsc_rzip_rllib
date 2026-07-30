@@ -1,0 +1,45 @@
+[Stage4.2R1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R1] source_stage4_1r17_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501
+[Stage4.2R1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
+[Stage4.2R1] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r1_true_tsc_plant_restart_action_replay_370ms.json
+[Stage4.2R1] command=all backend=ray resume=0 workers=128
+[Stage4.2R1] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python RAY_TMPDIR=/tmp/stage4_2r1_1120
+[Stage4.2R1] R17 original timing is frozen: slew 1.0/1.1 arrives by 250 ms and holds through 350 ms; slew 0.9 arrives by 270 ms and holds through 370 ms.
+[Stage4.2R1] This stage isolates authentic TSC plant-state restart: exact R17 expert actions are replayed, sprsina plus full coil/wire state is captured at 200 ms, and a fresh TSC process replays the remaining suffix.
+[Stage4.2R1] Plant restart fidelity and formal-contract preservation are reported separately. Controller observer/integrator/queue checkpoint replay is deliberately not performed in R1.
+[Stage4.2R1] The old unrun R11-based Stage4.2R1 package is not reused. R10/R11 750 ms/2 s trajectories remain auxiliary diagnostics only.
+[Stage4.2R1] This does not validate unseen hidden histories, new targets, plant mismatch, continuous actuator changes, noise, disturbances, deployment, BC, DAgger or RL.
+[Stage4.2R1] Final task remains causal safe arrival, deceleration, disturbance recovery and long hold across initial states, hidden vessel/eddy histories, targets, continuous plant/actuator changes, noise and unknown delay.
+2026-07-30 00:26:30,564	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R1 plant-capture] ray_capacity requested=128 cluster_cpus=128 pending=18 actors=18 initialized_now=1
+[Stage4.2R1 plant-capture] actor_allocation={"slew_0p900_h37":6,"slew_1p000_h35":6,"slew_1p100_h35":6}
+[Stage4.2R1 plant-capture] 10/18
+[Stage4.2R1 plant-capture] 18/18
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_2r1_true_tsc_plant_restart_action_replay.py", line 6, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py", line 2057, in main
+    payload = execute(ctx, command=args.command, backend=args.backend, resume=args.resume)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py", line 1940, in execute
+    capture_summary = run_capture(ctx, backend=backend, resume=resume)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py", line 1498, in run_capture
+    return _summarize_capture(ctx, results)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r1_true_tsc_plant_restart_action_replay.py", line 1489, in _summarize_capture
+    atomic_write_json(ctx.paths.capture / "results.json", rows)
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py", line 96, in atomic_write_json
+    json.dump(_json_safe(payload), handle, indent=2, ensure_ascii=False, allow_nan=False)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py", line 78, in _json_safe
+    return [_json_safe(v, f"{path}[{i}]") for i, v in enumerate(value)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py", line 76, in _json_safe
+    return {str(k): _json_safe(v, f"{path}.{k}") for k, v in value.items()}
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r5_adaptive_handover_closure.py", line 73, in _json_safe
+    raise ValueError(f"non-finite JSON number at {path}: {number!r}")
+ValueError: non-finite JSON number at $[0].capture_visible_maximum_abs_difference: inf

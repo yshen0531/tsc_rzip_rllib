@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R15B",
+  "controller_revision": "probe_derived_symmetric_local_response_superposition_v15b",
+  "package_revision": "r15b_hadamard_superposition_validation_v1",
+  "run_name": "stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation",
+  "output_root": "stage4_1r15b_runs",
+  "parallel": {
+    "n_workers": 128,
+    "ray_tmpdir": "/tmp/stage4_1r15b_1120"
+  },
+  "runtime": {
+    "tsc_timeout_s": 1800.0
+  },
+  "formal_timing_contract": {
+    "immutable": true,
+    "normal_slew": {
+      "arrival_deadline_step": 25,
+      "hold_through_step": 35,
+      "arrival_deadline_ms": 250,
+      "hold_through_ms": 350
+    },
+    "weak_slew": {
+      "arrival_deadline_step": 27,
+      "hold_through_step": 37,
+      "arrival_deadline_ms": 270,
+      "hold_through_ms": 370
+    },
+    "arrival_deadline_expansion_allowed": false
+  },
+  "source_requirements": {
+    "source_stage": "Stage4.1R15",
+    "source_controller_revision": "bounded_early_braking_local_response_identification_v15",
+    "source_package_revision": "r15a_direct_r14_source_inventory_v2",
+    "require_r15_raw_count": 32,
+    "require_runtime_guard_pass_fraction": 1.0,
+    "require_source_model_pass_fraction": 0.96875,
+    "require_exact_failed_probe": {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "probe_id": "late_mode0",
+      "probe_sign": 1
+    },
+    "require_source_model_not_reinterpreted_as_validated": true
+  },
+  "probe_derived_response_model": {
+    "output_state_start": 23,
+    "output_state_end_inclusive": 37,
+    "basis_order": [
+      "early_mode0",
+      "early_mode1",
+      "late_mode0",
+      "late_mode1"
+    ],
+    "maximum_full_response_condition_number": 12.0,
+    "maximum_selected_velocity_condition_number": 8.0,
+    "maximum_pair_even_velocity_rmse_m_per_s": 0.002,
+    "model_scope": "group-specific central-difference response around the R13 state-23 baseline; coefficient +1/-1 is the measured R15 +/-0.015 basis probe",
+    "deployment_model_claimed": false
+  },
+  "superposition_validation": {
+    "actual_slew_scale": 0.9,
+    "horizon_steps": 37,
+    "actual_delay_steps": [
+      1,
+      2
+    ],
+    "required_targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "combination_scale": 0.5,
+    "hadamard_combinations": [
+      {
+        "combination_id": "hadamard_h0_all_plus",
+        "coefficients": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "combination_id": "hadamard_h1_mode_contrast",
+        "coefficients": [
+          1,
+          -1,
+          1,
+          -1
+        ]
+      },
+      {
+        "combination_id": "hadamard_h2_time_contrast",
+        "coefficients": [
+          1,
+          1,
+          -1,
+          -1
+        ]
+      },
+      {
+        "combination_id": "hadamard_h3_cross_contrast",
+        "coefficients": [
+          1,
+          -1,
+          -1,
+          1
+        ]
+      }
+    ],
+    "probe_signs": [
+      -1,
+      1
+    ],
+    "expected_rollouts": 32,
+    "maximum_current_utilization": 0.5,
+    "maximum_requested_probe_component": 0.015,
+    "require_zero_net_each_probe": true,
+    "require_exact_prefix_before_first_probe_effect": true,
+    "require_no_future_measurement": true,
+    "require_streaming_queue_consistency": true,
+    "model_validation": {
+      "maximum_velocity_component_rmse_m_per_s": 0.008,
+      "maximum_endpoint_late_speed_error_m_per_s": 0.008,
+      "maximum_final_speed_error_m_per_s": 0.008,
+      "maximum_position_rmse_m": 0.002,
+      "maximum_ip_rmse_A": 60.0,
+      "maximum_central_symmetry_velocity_rmse_m_per_s": 0.008,
+      "maximum_basis_reconstruction_velocity_rmse_m_per_s": 0.004,
+      "maximum_basis_reconstruction_position_rmse_m": 0.0005,
+      "maximum_basis_reconstruction_ip_rmse_A": 20.0,
+      "minimum_pass_fraction": 1.0
+    },
+    "formal_tracking_pass_is_not_required_for_identification_probes": true
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "identification_only": true,
+  "formal_timing_contract_restored": false,
+  "arrival_deadline_expanded": false,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "finite_test_envelope_only": true,
+  "next_if_pass": "Use the externally validated four-basis probe-derived response in Stage4.1R16 to formulate a bounded delay-pipeline-aware constrained MPC over the immutable 250/350 and 270/370 ms contracts. Do not start restart, BC, DAgger or RL yet.",
+  "next_if_fail": "Do not relax the 250/270 ms deadlines or waive a failed probe. Expand the bounded basis to mode 2 and/or additional temporal shapes and include explicit observable-state dependence before controller redesign.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

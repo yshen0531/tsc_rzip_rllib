@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "stage": "Stage4.1R2",
+  "controller_revision": "nominal_error_state_observer_physical_coil_scheduler_v2",
+  "phase": "regression_targets",
+  "n_rollouts": 30,
+  "n_scenarios": 10,
+  "open_loop_passes": 10,
+  "legacy_passes": 10,
+  "upgraded_passes": 10,
+  "n_lost_open_loop": 0,
+  "n_lost_legacy": 0,
+  "median_margin_delta_vs_legacy": -0.05345853166666664,
+  "worst_margin_delta_vs_legacy": -0.20832698294822283,
+  "minimum_median_margin_delta_vs_legacy": -0.02,
+  "minimum_worst_margin_delta_vs_legacy": -0.08,
+  "maximum_scheduler_mismatch_rms_a": 0.05,
+  "observed_scheduler_mismatch_rms_a": 5.121388758969958e-08,
+  "passed": false
+}

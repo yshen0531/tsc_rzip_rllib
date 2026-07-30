@@ -1,0 +1,42 @@
+{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED",
+  "created_utc": "20260720_053849",
+  "candidate_summaries": [
+    {
+      "candidate_id": "g007_1417404bd2e7a119",
+      "hall_of_fame_rank": 1,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.04109250114759276,
+      "max_terminal_velocity_m_per_s": 0.010563105359928758,
+      "max_late_velocity_rms_m_per_s": 0.08660649244890971
+    },
+    {
+      "candidate_id": "g006_3be98b52a5b7f41f",
+      "hall_of_fame_rank": 2,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.04133594596691368,
+      "max_terminal_velocity_m_per_s": 0.003758288758585018,
+      "max_late_velocity_rms_m_per_s": 0.08221512249766974
+    },
+    {
+      "candidate_id": "g006_8c4c3fbdd73b343d",
+      "hall_of_fame_rank": 3,
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041194426103230444,
+      "max_terminal_velocity_m_per_s": 0.016410751896010663,
+      "max_late_velocity_rms_m_per_s": 0.0823799818192366
+    }
+  ]
+}

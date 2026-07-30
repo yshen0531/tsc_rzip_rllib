@@ -1,0 +1,244 @@
+{
+  "stage_label": "Stage 4.1R4",
+  "run_name": "stage4_1r4_targeted_closure_370ms",
+  "output_root": "stage4_1r4_runs",
+  "controller_revision": "targeted_weak_slew_and_online_delay_slew_estimator_v4",
+  "source_requirement": {
+    "required_stage": "Stage4.1R3",
+    "required_controller_revision": "control_aware_residual_observer_antiwindup_v3",
+    "require_regression_passed": true,
+    "require_observer_ablation_passed": true,
+    "require_failure_recovery_passed": true,
+    "require_noise_statistics_passed": true,
+    "require_phase_aligned_history_passed": true,
+    "require_confirmation_passed": true,
+    "reuse_stage3_4_target_library": true,
+    "reuse_stage3_4_jacobian": true,
+    "reuse_stage3_4_selected_controller_scale": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Targeted closure of the Stage4.1R3 structured-uncertainty gap: corrected category accounting, 0.9x-slew 370 ms confirmation, and a finite online delay/slew hypothesis-bank POC."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r4"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "source_reclassification": {
+    "required_categories": {
+      "observation_delay": {
+        "minimum_mpc_pass_fraction": 1.0,
+        "minimum_preserved_fraction": 1.0,
+        "minimum_recovery_fraction_when_no_baseline_pass": 1.0
+      },
+      "matched_action_delay": {
+        "minimum_mpc_pass_fraction": 1.0,
+        "minimum_preserved_fraction": 1.0,
+        "minimum_recovery_fraction_when_no_baseline_pass": 1.0
+      },
+      "scheduled_gain": {
+        "minimum_mpc_pass_fraction": 1.0,
+        "minimum_preserved_fraction": 1.0,
+        "minimum_recovery_fraction_when_no_baseline_pass": 1.0
+      },
+      "scheduled_slew": {
+        "minimum_mpc_pass_fraction": 1.0,
+        "minimum_preserved_fraction": 1.0,
+        "minimum_recovery_fraction_when_no_baseline_pass": 1.0
+      },
+      "combined_scheduled": {
+        "minimum_mpc_pass_fraction": 1.0,
+        "minimum_preserved_fraction": 1.0,
+        "minimum_recovery_fraction_when_no_baseline_pass": 1.0
+      },
+      "gain_estimation_error": {
+        "minimum_mpc_pass_fraction": 0.75,
+        "minimum_preserved_fraction": 0.75,
+        "minimum_recovery_fraction_when_no_baseline_pass": 0.75
+      },
+      "controller_model_scale": {
+        "minimum_mpc_pass_fraction": 0.75,
+        "minimum_preserved_fraction": 0.75,
+        "minimum_recovery_fraction_when_no_baseline_pass": 0.75
+      }
+    }
+  },
+  "weak_slew_closure": {
+    "actual_slew_scale": 0.9,
+    "estimated_slew_scale": 0.9,
+    "horizon_steps": 37,
+    "allowed_arrival_steps": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27
+    ],
+    "hold_through_step": 37,
+    "minimum_post_arrival_hold_steps": 10,
+    "tail_hold_steps": 2,
+    "tail_action_policy": "zero_current_increment",
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "controller_variants": [
+      {
+        "variant": "open_loop",
+        "controller_scale": 0.0,
+        "observer_enabled": false,
+        "observer_variant": "legacy_raw",
+        "anti_windup_enabled": false,
+        "anti_windup_mode": "off"
+      },
+      {
+        "variant": "control_aware_no_aw",
+        "controller_scale": "source_selected",
+        "observer_enabled": true,
+        "observer_variant": "control_aware_residual",
+        "anti_windup_enabled": false,
+        "anti_windup_mode": "off"
+      },
+      {
+        "variant": "control_aware_conditional_aw",
+        "controller_scale": "source_selected",
+        "observer_enabled": true,
+        "observer_variant": "control_aware_residual",
+        "anti_windup_enabled": true,
+        "anti_windup_mode": "conditional_weak_actuator",
+        "force_anti_windup_in_clean": true
+      }
+    ],
+    "minimum_feedback_targets_pass_fraction": 1.0,
+    "confirmation_repeats_per_target": 2,
+    "require_all_confirmation_repeats_pass": true,
+    "selection": {
+      "primary": "minimum_signed_margin",
+      "secondary": "mean_signed_margin",
+      "tertiary": "mean_post_arrival_velocity_rms"
+    }
+  },
+  "adaptive_estimator": {
+    "horizon_steps": 35,
+    "delay_candidates": [
+      0,
+      1,
+      2
+    ],
+    "slew_candidates": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "score_decay": 0.92,
+    "minimum_observations": 3,
+    "switch_hysteresis_fraction": 0.05,
+    "initial_delay_steps": 0,
+    "initial_slew_scale": 1.0,
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "controller_variants": [
+      "naive",
+      "oracle",
+      "adaptive"
+    ],
+    "minimum_delay_identification_fraction": 0.9,
+    "maximum_slew_absolute_error": 0.051,
+    "minimum_adaptive_preservation_of_oracle_passes": 0.9,
+    "minimum_adaptive_pass_fraction_on_oracle_feasible_cases": 0.85,
+    "minimum_naive_failure_recovery_fraction": 0.5,
+    "minimum_estimator_observations": 3,
+    "weak_slew_deadline_cases_are_diagnostic": true,
+    "maximum_distinct_delay_slew_pairs_to_confirm": 9,
+    "minimum_distinct_delay_slew_pairs_confirmed": 6,
+    "confirmation_repeats_per_case": 2,
+    "require_identification_in_confirmation": true
+  },
+  "restart_audit": {
+    "auto_discover": true,
+    "candidate_offsets_ms": [
+      -20,
+      -10,
+      10,
+      20
+    ],
+    "environment_variable": "STAGE4_1R4_START_FOLDERS",
+    "minimum_alternate_folders_for_true_validation": 2
+  },
+  "controller_upgrade": {
+    "anti_windup": {
+      "conditional_slew_scale_threshold": 0.98,
+      "conditional_gain_scale_threshold": 0.98
+    }
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

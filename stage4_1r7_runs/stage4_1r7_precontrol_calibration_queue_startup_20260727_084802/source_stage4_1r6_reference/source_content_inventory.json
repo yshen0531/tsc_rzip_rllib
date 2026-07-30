@@ -1,0 +1,76 @@
+{
+  "schema_version": 2,
+  "n_files": 7,
+  "total_bytes": 81815,
+  "direct_r6_digest": "e0a4adbbc32170397ece6c7ca4961153b3709d874bc68597231a3943251e396b",
+  "digest": "eab3cfe43952fae50abad0f4d27d91b5eb25d461bc3b252d698fe9b2639ec3e0",
+  "entries": [
+    {
+      "relative_path": "stage4_1r6_manifest.json",
+      "sha256": "55aa7408551760c79fd672bfdb1efc9db1ed736bcb512a7b64884c25f2199bca",
+      "bytes": 1216
+    },
+    {
+      "relative_path": "stage4_1r6_state.json",
+      "sha256": "4c8917cd8f67228e120454e69ca507d9631074f8ea1100abe087fee1c75b2bd4",
+      "bytes": 38731
+    },
+    {
+      "relative_path": "stage4_1r6_config.resolved.json",
+      "sha256": "c456d8d1e98c6a972fa9a93b5e99f29336fd726be2371816be642cdf6d15ffd4",
+      "bytes": 5625
+    },
+    {
+      "relative_path": "stage4_1r6_analysis/stage4_1r6_verdict.json",
+      "sha256": "5dcb660b5cbaacb69de3df1166aa3d7b82fe9d04e862678c95726320dbb3f147",
+      "bytes": 19729
+    },
+    {
+      "relative_path": "stage4_1r6_source_audit/summary.json",
+      "sha256": "8ee2a8e0ceb9b6817df034cfb7448a42383c3245da5f52c3ec70ca975493f085",
+      "bytes": 851
+    },
+    {
+      "relative_path": "stage4_1r6_estimator_confirmation/summary.json",
+      "sha256": "03ef4425e3070f49b35f2a12d0dd7d120f4cbd7fb898fc59fdc446771529988e",
+      "bytes": 2580
+    },
+    {
+      "relative_path": "stage4_1r6_static_startup/summary.json",
+      "sha256": "78ed0b856771b3626060aba216684c1389bf305f05fb3bf005c5be792cfe3f29",
+      "bytes": 13083
+    }
+  ],
+  "chain_fingerprints": [
+    {
+      "label": "stage4_1r6_source_chain",
+      "digest": "46eee5ef57bd77bd7de17f9130a1741f7d48e470db6c5b3eac6355404fe7f89c",
+      "n_files": 116,
+      "total_bytes": 7107726
+    },
+    {
+      "label": "stage4_1r5_source_chain",
+      "digest": "d2fbfbe4fbed6dfda621cdedbcfc61565b3c996190bb138b4b8ac781e9f46552",
+      "n_files": 8,
+      "total_bytes": 94873
+    },
+    {
+      "label": "stage4_1r4_source_chain",
+      "digest": "94e6f347cd04cfd6f5627f63e255eb2dd07c54fa55643349607c46f7bda41097",
+      "n_files": 10,
+      "total_bytes": 1909071
+    },
+    {
+      "label": "stage4_1r3_source_chain",
+      "digest": "52b5dd8d7f0ec122b4c70613034125ab90ef177c3f9fb167edb494610b7c7a0b",
+      "n_files": 10,
+      "total_bytes": 1891987
+    },
+    {
+      "label": "stage3_4_source_chain",
+      "digest": "9b193c409dd20780a5906abab64d202f1b75612a5997eeec0b861a68694cda71",
+      "n_files": 46,
+      "total_bytes": 1153432
+    }
+  ]
+}

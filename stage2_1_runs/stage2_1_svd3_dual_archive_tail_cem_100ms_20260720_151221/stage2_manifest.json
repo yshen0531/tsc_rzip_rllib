@@ -1,0 +1,59 @@
+{
+  "stage": "Stage2",
+  "created_utc": "20260720_151221",
+  "source_stage1_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916",
+  "source_start_folder": "1100ms",
+  "horizon_steps": 10,
+  "dt_ms": 10,
+  "n_modes": 3,
+  "node_steps": [
+    0.0,
+    2.0,
+    4.0,
+    6.0,
+    9.0
+  ],
+  "parameter_dimension": 15,
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "coil_order_tsc": [
+    "CS1U",
+    "CS2U",
+    "CS3U",
+    "CS1L",
+    "CS2L",
+    "CS3L",
+    "CS4U",
+    "CS4L",
+    "PF2U",
+    "PF2L",
+    "PF3U",
+    "PF3L",
+    "PF4U",
+    "PF4L"
+  ],
+  "coil_order_display": [
+    "CS1U",
+    "CS1L",
+    "CS2U",
+    "CS2L",
+    "CS3U",
+    "CS3L",
+    "CS4U",
+    "CS4L",
+    "PF2U",
+    "PF2L",
+    "PF3U",
+    "PF3L",
+    "PF4U",
+    "PF4L"
+  ],
+  "immediate_external_termination_intercepted": false,
+  "tsc_workspace_root": "/tmp/tsc_workspace",
+  "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+  "ray_tmpdir": "/tmp/stage2_1_1120",
+  "actor_close_before_kill": true
+}

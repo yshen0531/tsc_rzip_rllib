@@ -1,0 +1,417 @@
+[Stage1.1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage1.1] source_stage1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_runs/stage1_controllability_100ms_20260718_011455
+[Stage1.1] run_dir=stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+[Stage1.1] config=configs/stage1_1_supplement_100ms.json
+[Stage1.1] validation_workers=9
+[Stage1.1] RAY_TMPDIR=/tmp/stage11_1120
+[Stage1.1] Retry plan is 12-worker Ray -> 4-worker Ray -> serial for only failed/missing experiments.
+[Stage1.1] Immediate TERM/KILL is not intercepted. Completed per-experiment files remain resumable.
+[Stage1.1] source_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_runs/stage1_controllability_100ms_20260718_011455
+[Stage1.1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+2026-07-18 02:59:22,840	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[stage1 scan] waiting; completed new=0/21
+[stage1 scan] waiting; completed new=0/21
+[stage1 scan] waiting; completed new=0/21
+[stage1 scan] waiting; completed new=0/21
+[stage1 scan] 10/21 new experiments; success=552, failed=0
+[stage1 scan] waiting; completed new=12/21
+[stage1 scan] waiting; completed new=12/21
+[stage1 scan] waiting; completed new=12/21
+[stage1 scan] waiting; completed new=12/21
+[stage1 scan] 20/21 new experiments; success=562, failed=0
+[stage1 scan] 21/21 new experiments; success=563, failed=0
+[Stage1.1 retry] round=1 backend=ray workers=12 pending 21 -> 0
+{
+  "rounds": [
+    {
+      "round": 1,
+      "backend": "ray",
+      "workers": 12,
+      "pending_before": 21,
+      "pending_after": 0,
+      "newly_recovered": 21,
+      "wall_time_s": 302.5456039905548,
+      "run_scan_summary": {
+        "total_specs": 563,
+        "already_complete": 542,
+        "pending": 21,
+        "backend": "ray",
+        "started_utc": "20260717_185917",
+        "completed_success": 563,
+        "failed": 0,
+        "finished_utc": "20260717_190418"
+      }
+    }
+  ],
+  "remaining_failed": 0,
+  "scan_complete": true,
+  "finished_utc": "20260717_190420"
+}
+{
+  "baseline": {
+    "baseline_repeats_successful": 3,
+    "max_repeat_spread": {
+      "R": 0.0,
+      "Z": 0.0,
+      "Ip": 0.0,
+      "vessel_current_total_a": 0.0,
+      "vessel_current_abs_sum_a": 0.0
+    },
+    "initial_state": {
+      "R": 0.743600216,
+      "Z": 0.0162365614,
+      "Ip": 31286.4059
+    },
+    "terminal_state": {
+      "R": 0.703815205,
+      "Z": 0.0735284023,
+      "Ip": 30730.6695
+    }
+  },
+  "scan_experiments_expected": 563,
+  "scan_experiments_successful": 563,
+  "scan_experiments_failed": 0,
+  "response_fit": {
+    "median_relative_nonlinearity_residual": 0.080894201347402,
+    "p90_relative_nonlinearity_residual": 0.185483628945492,
+    "max_relative_nonlinearity_residual": 0.303825554351722,
+    "max_relative_pre_injection_leakage": 0.0,
+    "non_bidirectional_groups": 0
+  },
+  "identification_reliability": {
+    "reliable": true,
+    "checks": {
+      "baseline_R_spread_ok": true,
+      "baseline_Z_spread_ok": true,
+      "baseline_Ip_spread_ok": true,
+      "failed_fraction_ok": true,
+      "median_nonlinearity_ok": true,
+      "p90_nonlinearity_ok": true,
+      "pre_injection_leakage_ok": true,
+      "bidirectional_groups_ok": true
+    },
+    "failed_scan_fraction": 0.0
+  },
+  "svd": {
+    "singular_values": [
+      0.08248340462914742,
+      0.06755043723246924,
+      0.0115009379071326,
+      0.0019760267406382357,
+      0.001513327467100742,
+      0.0006200143335449419,
+      0.0003604391856109049,
+      0.00027901172452915115,
+      0.00018593682485632093,
+      0.00017335410776325356,
+      9.722289634672307e-05,
+      8.315679375506054e-05,
+      6.346798699459296e-05,
+      3.617298512668487e-05
+    ],
+    "cumulative_energy": [
+      0.5913157026396927,
+      0.9879064550446617,
+      0.9994026143114317,
+      0.9997419830929841,
+      0.9999410284647221,
+      0.9999744394831361,
+      0.9999857309471277,
+      0.9999924969341625,
+      0.9999955017445735,
+      0.999998113632444,
+      0.9999989351623246,
+      0.9999995361723639,
+      0.9999998862752595,
+      0.9999999999999999
+    ],
+    "recommended_mode_count": 3,
+    "condition_number_nonzero": 2280.248764105987
+  },
+  "reachable_set_100ms": {
+    "target_inside_local_linear_RZ_projection": false,
+    "target_distance_to_sampled_hull_m": 0.0005538726144273008,
+    "nearest_sampled_hull_point_RZ": [
+      0.7495709558929922,
+      0.0003502799269932285
+    ],
+    "failed_directions": 0,
+    "terminal_ip_tolerance_a": 8000.0
+  },
+  "best_linear_candidate": {
+    "label": "svd04_target1p00",
+    "optimizer_success": true,
+    "n_modes": 4,
+    "target_fraction": 1.0,
+    "objective": 0.5278832071716517,
+    "predicted_terminal_R_error_m": -0.022757485725954485,
+    "predicted_terminal_Z_error_m": 0.027060653384005665,
+    "predicted_terminal_Ip_error_A": 1279.3759391884741,
+    "predicted_min_normalized_RZ_distance": 0.2181538882527314,
+    "predicted_terminal_normalized_RZ_distance": 0.44197393131133866,
+    "max_abs_increment_a": 3.0000000000000004,
+    "max_current_utilization": 0.03887468389767602
+  },
+  "mode_bootstrap_robustness": {
+    "n_samples": 300,
+    "seed": 20260718,
+    "reference_singular_values": [
+      0.08248340462914742,
+      0.06755043723246924,
+      0.0115009379071326,
+      0.0019760267406382357,
+      0.001513327467100742,
+      0.0006200143335449419,
+      0.0003604391856109049,
+      0.00027901172452915115,
+      0.00018593682485632093,
+      0.00017335410776325356,
+      9.722289634672307e-05,
+      8.315679375506054e-05,
+      6.346798699459296e-05,
+      3.617298512668487e-05
+    ],
+    "rows": [
+      {
+        "mode_count": 1,
+        "max_principal_angle_p50_deg": 0.4520469070114323,
+        "max_principal_angle_p90_deg": 0.8336799812424364,
+        "max_principal_angle_p95_deg": 0.9535216715128394,
+        "max_principal_angle_p99_deg": 1.1263543956830364,
+        "max_principal_angle_max_deg": 1.2592013280160295
+      },
+      {
+        "mode_count": 2,
+        "max_principal_angle_p50_deg": 0.31684996861456727,
+        "max_principal_angle_p90_deg": 0.470890498846496,
+        "max_principal_angle_p95_deg": 0.5139083035490456,
+        "max_principal_angle_p99_deg": 0.5828708762556377,
+        "max_principal_angle_max_deg": 0.6654307159755419
+      },
+      {
+        "mode_count": 3,
+        "max_principal_angle_p50_deg": 0.7633330297967227,
+        "max_principal_angle_p90_deg": 1.1819970344103115,
+        "max_principal_angle_p95_deg": 1.2726010012000286,
+        "max_principal_angle_p99_deg": 1.4955650920827608,
+        "max_principal_angle_max_deg": 1.6612514447696058
+      },
+      {
+        "mode_count": 4,
+        "max_principal_angle_p50_deg": 11.188917857908624,
+        "max_principal_angle_p90_deg": 19.515179373224015,
+        "max_principal_angle_p95_deg": 24.18506067678931,
+        "max_principal_angle_p99_deg": 32.86082662796951,
+        "max_principal_angle_max_deg": 49.23931934865255
+      },
+      {
+        "mode_count": 5,
+        "max_principal_angle_p50_deg": 14.036039851056572,
+        "max_principal_angle_p90_deg": 21.760813019418276,
+        "max_principal_angle_p95_deg": 25.799917510964487,
+        "max_principal_angle_p99_deg": 31.48340994081213,
+        "max_principal_angle_max_deg": 46.42596612365818
+      },
+      {
+        "mode_count": 8,
+        "max_principal_angle_p50_deg": 62.04819766540972,
+        "max_principal_angle_p90_deg": 85.53555219323421,
+        "max_principal_angle_p95_deg": 88.45555886221214,
+        "max_principal_angle_p99_deg": 89.4736013762444,
+        "max_principal_angle_max_deg": 89.89366095332589
+      }
+    ]
+  }
+}
+2026-07-18 03:04:30,867	INFO worker.py:2012 -- Started a local Ray instance.
+[stage1 validation] waiting 0/9
+[stage1 validation] waiting 0/9
+[stage1 validation] waiting 0/9
+[stage1 validation] waiting 0/9
+[stage1 validation] 1/9
+[stage1 validation] 2/9
+[stage1 validation] 3/9
+[stage1 validation] 4/9
+[stage1 validation] 5/9
+[stage1 validation] 6/9
+[stage1 validation] 7/9
+[stage1 validation] 8/9
+[stage1 validation] 9/9
+{
+  "status": "PASS_DAMPED_HOLD_40MM",
+  "interpretation": "No candidate passes the \u00b130mm precise-hold gate, but at least one passes the damped \u00b140mm gate.",
+  "gate_mode": "stage1_1_precise_hold",
+  "n_validations": 9,
+  "n_successful_tsc": 9,
+  "n_precise_hold": 0,
+  "n_relaxed_hold": 2,
+  "n_primary_position_only": 0,
+  "n_promising_drift_suppression": 5,
+  "best_validation": {
+    "validation_id": "svd04_target1p00_scale0p750",
+    "candidate_label": "svd04_target1p00",
+    "candidate_n_modes": 4,
+    "candidate_target_fraction": 1.0,
+    "sequence_scale": 0.75,
+    "success": true,
+    "failure_reason": "",
+    "n_trajectory_steps": 11,
+    "terminal_R_error_m": -0.028911357000000026,
+    "terminal_Z_error_m": 0.0372099173,
+    "terminal_Ip_error_A": 954.5607000000018,
+    "terminal_RZ_euclidean_error_m": 0.04712159281109128,
+    "terminal_RZ_box_max_error_m": 0.0372099173,
+    "terminal_normalized_RZ_distance": 0.5890199101386411,
+    "min_normalized_RZ_distance": 0.2181538882527314,
+    "min_normalized_RZ_distance_after_step0": 0.2935019692126522,
+    "min_RZ_euclidean_error_after_step0_m": 0.023480157537012172,
+    "closest_step_after_step0": 1,
+    "closest_velocity_after_step0_m_per_s": 0.6298722463301551,
+    "relative_distance_reduction": 0.0,
+    "relative_distance_reduction_after_step0": -0.34538958513831297,
+    "first_step_within_2x_RZ_only": 0,
+    "first_step_within_1x_RZ_only": 0,
+    "first_step_within_2x": 0,
+    "first_step_within_1x": 0,
+    "first_step_after_step0_within_2x": 1,
+    "first_step_after_step0_within_1x": 1,
+    "terminal_within_2x_RZ_only": true,
+    "terminal_within_1x_RZ_only": true,
+    "terminal_within_2x": true,
+    "terminal_within_1x": true,
+    "gate_ip_tolerance_A": 10000.0,
+    "terminal_Ip_safe": true,
+    "late_Ip_safe_fraction": 1.0,
+    "late_fraction_within_2x": 1.0,
+    "late_fraction_within_1x": 1.0,
+    "late_R_rms_m": 0.028691447799981173,
+    "late_Z_rms_m": 0.03807528527406503,
+    "late_RZ_euclidean_rms_m": 0.047675219197823075,
+    "terminal_velocity_m_per_s": 0.06850699013743158,
+    "max_velocity_m_per_s": 0.6554170603763226,
+    "late_velocity_mean_m_per_s": 0.0690349471641378,
+    "late_velocity_rms_m_per_s": 0.07171547016699996,
+    "max_current_utilization": 0.41284999999999994,
+    "wall_time_s": 146.36456561088562,
+    "first_step_after_step0_within_20mm": -1,
+    "ever_after_step0_within_20mm": false,
+    "terminal_within_20mm": false,
+    "late_fraction_within_20mm": 0.0,
+    "longest_streak_after_step0_within_20mm_steps": 0,
+    "trailing_streak_within_20mm_steps": 0,
+    "first_step_after_step0_within_30mm": 1,
+    "ever_after_step0_within_30mm": true,
+    "terminal_within_30mm": false,
+    "late_fraction_within_30mm": 0.0,
+    "longest_streak_after_step0_within_30mm_steps": 2,
+    "trailing_streak_within_30mm_steps": 0,
+    "first_step_after_step0_within_40mm": 1,
+    "ever_after_step0_within_40mm": true,
+    "terminal_within_40mm": true,
+    "late_fraction_within_40mm": 1.0,
+    "longest_streak_after_step0_within_40mm_steps": 10,
+    "trailing_streak_within_40mm_steps": 10,
+    "first_step_after_step0_within_80mm": 1,
+    "ever_after_step0_within_80mm": true,
+    "terminal_within_80mm": true,
+    "late_fraction_within_80mm": 1.0,
+    "longest_streak_after_step0_within_80mm_steps": 10,
+    "trailing_streak_within_80mm_steps": 10,
+    "predicted_terminal_R_error_m": -0.028614313044465822,
+    "predicted_terminal_Z_error_m": 0.03867759061300425,
+    "predicted_terminal_Ip_error_A": 1197.2683293913542,
+    "model_real_terminal_R_error_m": -0.00029704395553420415,
+    "model_real_terminal_Z_error_m": -0.0014676733130042502,
+    "model_real_terminal_Ip_error_A": -242.70762939135238,
+    "terminal_RZ_reduction_vs_zero_action_fraction": 0.4573125156350072,
+    "late_RZ_rms_reduction_vs_zero_action_fraction": 0.37959670876946394,
+    "terminal_velocity_change_vs_zero_action_m_per_s": -0.632420480552366
+  },
+  "zero_action_baseline": {
+    "validation_id": "zero_action_baseline",
+    "candidate_label": "zero_action_baseline",
+    "candidate_n_modes": null,
+    "candidate_target_fraction": null,
+    "sequence_scale": 0.0,
+    "success": true,
+    "failure_reason": "",
+    "n_trajectory_steps": 11,
+    "terminal_R_error_m": -0.046184794999999945,
+    "terminal_Z_error_m": 0.0735284023,
+    "terminal_Ip_error_A": 950.9455000000016,
+    "terminal_RZ_euclidean_error_m": 0.08683007102371082,
+    "terminal_RZ_box_max_error_m": 0.0735284023,
+    "terminal_normalized_RZ_distance": 1.0853758877963853,
+    "min_normalized_RZ_distance": 0.2181538882527314,
+    "min_normalized_RZ_distance_after_step0": 0.2939008456203757,
+    "min_RZ_euclidean_error_after_step0_m": 0.02351206764963006,
+    "closest_step_after_step0": 1,
+    "closest_velocity_after_step0_m_per_s": 0.6328197077554095,
+    "relative_distance_reduction": 0.0,
+    "relative_distance_reduction_after_step0": -0.34721800273342557,
+    "first_step_within_2x_RZ_only": 0,
+    "first_step_within_1x_RZ_only": 0,
+    "first_step_within_2x": 0,
+    "first_step_within_1x": 0,
+    "first_step_after_step0_within_2x": 1,
+    "first_step_after_step0_within_1x": 1,
+    "terminal_within_2x_RZ_only": true,
+    "terminal_within_1x_RZ_only": true,
+    "terminal_within_2x": true,
+    "terminal_within_1x": true,
+    "gate_ip_tolerance_A": 10000.0,
+    "terminal_Ip_safe": true,
+    "late_Ip_safe_fraction": 1.0,
+    "late_fraction_within_2x": 1.0,
+    "late_fraction_within_1x": 1.0,
+    "late_R_rms_m": 0.04119549851806472,
+    "late_Z_rms_m": 0.06487038038582492,
+    "late_RZ_euclidean_rms_m": 0.07684552914485976,
+    "terminal_velocity_m_per_s": 0.7009274706897975,
+    "max_velocity_m_per_s": 0.7564774227865638,
+    "late_velocity_mean_m_per_s": 0.6945029170760075,
+    "late_velocity_rms_m_per_s": 0.6947527258334201,
+    "max_current_utilization": 0.41,
+    "wall_time_s": 860.9035792350769,
+    "first_step_after_step0_within_20mm": -1,
+    "ever_after_step0_within_20mm": false,
+    "terminal_within_20mm": false,
+    "late_fraction_within_20mm": 0.0,
+    "longest_streak_after_step0_within_20mm_steps": 0,
+    "trailing_streak_within_20mm_steps": 0,
+    "first_step_after_step0_within_30mm": 1,
+    "ever_after_step0_within_30mm": true,
+    "terminal_within_30mm": false,
+    "late_fraction_within_30mm": 0.0,
+    "longest_streak_after_step0_within_30mm_steps": 2,
+    "trailing_streak_within_30mm_steps": 0,
+    "first_step_after_step0_within_40mm": 1,
+    "ever_after_step0_within_40mm": true,
+    "terminal_within_40mm": false,
+    "late_fraction_within_40mm": 0.0,
+    "longest_streak_after_step0_within_40mm_steps": 4,
+    "trailing_streak_within_40mm_steps": 0,
+    "first_step_after_step0_within_80mm": 1,
+    "ever_after_step0_within_80mm": true,
+    "terminal_within_80mm": true,
+    "late_fraction_within_80mm": 1.0,
+    "longest_streak_after_step0_within_80mm_steps": 10,
+    "trailing_streak_within_80mm_steps": 10,
+    "terminal_RZ_reduction_vs_zero_action_fraction": 0.0,
+    "late_RZ_rms_reduction_vs_zero_action_fraction": 0.0,
+    "terminal_velocity_change_vs_zero_action_m_per_s": 0.0
+  },
+  "gate_definition": {
+    "primary_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_terminal_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "gate_ip_tolerance_a": 10000.0,
+    "step0_excluded_from_reach_and_streak": true,
+    "horizon_steps": 10,
+    "dt_ms": 10
+  }
+}

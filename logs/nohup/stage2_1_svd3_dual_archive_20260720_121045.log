@@ -1,0 +1,18 @@
+[Stage2.1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage2.1] source_stage1_1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+[Stage2.1] source_stage2_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614
+[Stage2.1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_20260720_121046
+[Stage2.1] config=configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json
+[Stage2.1] workers=192
+[Stage2.1] RAY_TMPDIR=/tmp/stage2_1_1120
+[Stage2.1] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage2.1] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage2.1] 3 validated SVD modes x 5 nodes = 15 variables; search concentrates on the final 9.
+[Stage2.1] The Stage2 30 mm hard gate is unchanged. Dual archives and smooth tube excess alter ranking only.
+[Stage2.1] SIGKILL cannot be intercepted. Completed candidate JSON files remain resumable.
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage2_1_trajectory_optimization.py", line 10, in <module>
+    from tsc_rzip_rllib.diagnostics.stage2_1_trajectory_optimization import execute
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage2_1_trajectory_optimization.py", line 42, in <module>
+    from tsc_rzip_rllib.diagnostics import stage2_trajectory_optimization as s2
+ImportError: cannot import name 'stage2_trajectory_optimization' from 'tsc_rzip_rllib.diagnostics' (unknown location)

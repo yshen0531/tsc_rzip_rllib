@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R10",
+  "verdict": "STAGE4_1R10_FINITE_QUEUE_PREVIEW_TERMINAL_TRANSITION_HOLD_CLOSURE",
+  "primary_pass": true,
+  "selected_terminal_policy": "qp28_c0p50_v1p50_p1p25_position",
+  "next_if_pass": "Proceed to Stage4.2 true restart and plant/actuator-parameter robustness. Do not start BC/DAgger/RL yet.",
+  "next_if_fail": "If the complete R10 Oracle development campaign fails, the queue-boundary artifact has been isolated and bounded terminal local-model identification is then justified. Redesign the terminal regulator without weakening the 30 mm/0.1 m/s gates and without handing 14-coil control back to RL.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

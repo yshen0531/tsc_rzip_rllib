@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.4",
+  "created_utc": "20260724_092224",
+  "n_continuation_tasks": 16,
+  "n_continuation_tasks_pass": 16,
+  "n_physical_cache_files": 731,
+  "n_successful_physical_cache_files": 731,
+  "n_library_entries": 16,
+  "n_mandatory_pass": 10,
+  "n_mandatory": 10,
+  "verdict": "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED",
+  "task_summaries": [
+    {
+      "task_id": "nominal",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0181890353,
+      "hold_rz_rms_m": 0.02212301947906475,
+      "signed_margin": 0.3936988233333333,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "R_p5mm",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.018094967000000017,
+      "hold_rz_rms_m": 0.022840169762517508,
+      "signed_margin": 0.3654096909078971,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "R_p7p5mm",
+      "final": false,
+      "mandatory": false,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.02025810699999997,
+      "hold_rz_rms_m": 0.02581618033462171,
+      "signed_margin": 0.32472976666666764,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "R_p10mm",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0207367103,
+      "hold_rz_rms_m": 0.026412134479608797,
+      "signed_margin": 0.3087763233333334,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "Z_m2mm",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.017528289699999998,
+      "hold_rz_rms_m": 0.020520609541347292,
+      "signed_margin": 0.37178834076495815,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "Z_m3p5mm",
+      "final": false,
+      "mandatory": false,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0190282897,
+      "hold_rz_rms_m": 0.021786528419450182,
+      "signed_margin": 0.3657236766666667,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "Z_m5mm",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0192440386,
+      "hold_rz_rms_m": 0.023750532895413474,
+      "signed_margin": 0.3585320466666667,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "Z_m7p5mm",
+      "final": false,
+      "mandatory": false,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.021733624899999998,
+      "hold_rz_rms_m": 0.025696633173288515,
+      "signed_margin": 0.27554583666666665,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "Z_m10mm",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.019443180560000002,
+      "hold_rz_rms_m": 0.021255452093280277,
+      "signed_margin": 0.35189398133333327,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "RZ_p5_m2mm",
+      "final": false,
+      "mandatory": false,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.018432074999999992,
+      "hold_rz_rms_m": 0.023642750291221388,
+      "signed_margin": 0.37178834076495815,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "RZ_p5_m3p5mm",
+      "final": false,
+      "mandatory": false,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0190282897,
+      "hold_rz_rms_m": 0.024749485771549395,
+      "signed_margin": 0.3657236766666667,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "RZ_p5_m5mm",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0194025259,
+      "hold_rz_rms_m": 0.025313673674383076,
+      "signed_margin": 0.34988746085584566,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "RZ_p7p5_m7p5mm",
+      "final": false,
+      "mandatory": false,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.021902525899999997,
+      "hold_rz_rms_m": 0.028843408455247268,
+      "signed_margin": 0.2699158033333334,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "RZ_p10_m10mm",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.022371874700000002,
+      "hold_rz_rms_m": 0.02908810700548714,
+      "signed_margin": 0.2542708433333333,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "Ip_m1000A",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0165385362,
+      "hold_rz_rms_m": 0.020604984999768657,
+      "signed_margin": 0.4405704263161111,
+      "stop_reason": "internal_margin_goal"
+    },
+    {
+      "task_id": "Ip_p1000A",
+      "final": true,
+      "mandatory": true,
+      "tracking_pass": true,
+      "arrival_ms": 250,
+      "sustained_box_m": 0.0133081678,
+      "hold_rz_rms_m": 0.01561729229827249,
+      "signed_margin": 0.42347567172886946,
+      "stop_reason": "internal_margin_goal"
+    }
+  ]
+}

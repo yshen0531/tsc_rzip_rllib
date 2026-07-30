@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "source_stage3_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_2_runs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms_20260722_073932",
+  "n_files": 28,
+  "total_bytes": 21249531,
+  "digest": "960a34ac567f81e913fb625a5176075e39b61612c34aebb425b47992f0c4b78b",
+  "entries": [
+    {
+      "relative_path": "env_config.resolved.json",
+      "sha256": "ee42e4c1d2a6573fc079ff9cce76ea78b4d62e70abe880a67cbee4cffb50d0e1",
+      "size_bytes": 2700
+    },
+    {
+      "relative_path": "stage3_2_analysis/all_results.json",
+      "sha256": "d3c6180735b3d154a757dd8ab88a34e7ef6ea6b42147810e9660dd155dd11c3d",
+      "size_bytes": 15220955
+    },
+    {
+      "relative_path": "stage3_2_analysis/stage3_2_analysis_summary.json",
+      "sha256": "dba4cc38ab9e9c1039949be765c54f477c7a292429b071d9dc818da150d851bb",
+      "size_bytes": 159408
+    },
+    {
+      "relative_path": "stage3_2_best/controller_identification_best_candidate.json",
+      "sha256": "815b4e10841bcf54368afec8a3cdbf49eb823d2a984a9c0e7b5e6b40801c5bd1",
+      "size_bytes": 39447
+    },
+    {
+      "relative_path": "stage3_2_best/controller_identification_best_tsc_result.json.gz",
+      "sha256": "b3a52dc31d67eaf23bcf9e87aa7778d40515983c081cbcf698cd18c34a2d17ff",
+      "size_bytes": 12789
+    },
+    {
+      "relative_path": "stage3_2_best/long_hold_best_candidate.json",
+      "sha256": "fd81acb031e9783d542c7c3fbc80c6846864e2878de4b1eefe3614214adc3f03",
+      "size_bytes": 40526
+    },
+    {
+      "relative_path": "stage3_2_best/long_hold_best_tsc_result.json.gz",
+      "sha256": "284c7b8710fd51e62e155a62829ff2a5f63c75e6a0d2b20bf816c4bb4c43d9e6",
+      "size_bytes": 12928
+    },
+    {
+      "relative_path": "stage3_2_config.resolved.json",
+      "sha256": "3a0dce7884bfa860458953c869e992033bddb6b94906ebb460b94d9f71cd16b0",
+      "size_bytes": 14089
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank01_s32cr000p_03075fa5a99f2223_r00.json.gz",
+      "sha256": "ad60e6c9d41ad5b34b4d6b04081ee2d4f9bbba2ce6a0200c9024c8ad339863f0",
+      "size_bytes": 12548
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank01_s32cr000p_03075fa5a99f2223_r01.json.gz",
+      "sha256": "3d6ec4bf4e0d30dddd5b8042dfbf3cf0f42546bc651c2e2509bf665eacbf6e8b",
+      "size_bytes": 12555
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank01_s32cr000p_03075fa5a99f2223_r02.json.gz",
+      "sha256": "a930d4bebb77d8dbfce62797c949799fcdf692b24b46e2344591608b2aa3ea3c",
+      "size_bytes": 12555
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank02_s32cr000p_9e71d5727fe194e1_r00.json.gz",
+      "sha256": "bc292802f57f30d4e1a0f63e6d0d201361c76dbf53434f9b1df6eca3821f7f4a",
+      "size_bytes": 12548
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank02_s32cr000p_9e71d5727fe194e1_r01.json.gz",
+      "sha256": "724a32687cb6462494c7c368833299381527cdd0eb989c5a5a3899096b312236",
+      "size_bytes": 12553
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank02_s32cr000p_9e71d5727fe194e1_r02.json.gz",
+      "sha256": "ea53c6e698013c63cb036853a5d16af5b7bad2b797af2571a58c99c1aa5de361",
+      "size_bytes": 12553
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank03_s32cr000p_5f985038dfb37d02_r00.json.gz",
+      "sha256": "5ea9dc36f9947bbd2fbeaacab4276bad7a8a6b666d47c8be66f88ac9dbe66003",
+      "size_bytes": 12560
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank03_s32cr000p_5f985038dfb37d02_r01.json.gz",
+      "sha256": "5700b652aa2d4c00c809d60f7d5ed749153fa15da9f06e3b3d4553b067e7e323",
+      "size_bytes": 12561
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank03_s32cr000p_5f985038dfb37d02_r02.json.gz",
+      "sha256": "2e06bdbaf7cdc044e9d135b3bb0df712b1274d6b1ae19650cf4c3683cded7d7f",
+      "size_bytes": 12572
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank04_s32cr000p_fd93266b56b83ad8_r00.json.gz",
+      "sha256": "cc75870c8b8f0551a62f5fa203b437941a2e5944addcd1cf89c44dad29c137b6",
+      "size_bytes": 12563
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank04_s32cr000p_fd93266b56b83ad8_r01.json.gz",
+      "sha256": "3304c404e9a74fe886e2ff80bb61f3234550b8b00ff0f3a00aa2d442b2e2ccd2",
+      "size_bytes": 12546
+    },
+    {
+      "relative_path": "stage3_2_confirmations/open_loop_raw/s32confirm_open_rank04_s32cr000p_fd93266b56b83ad8_r02.json.gz",
+      "sha256": "3a2932ffcc5623919080b33f753c1f5441edd7d08a18c6a224442b900eaa2030",
+      "size_bytes": 12559
+    },
+    {
+      "relative_path": "stage3_2_confirmations/stage3_2_verdict.json",
+      "sha256": "9f6a83cc037ed8076cc1b9dec1eeb69a899c728264dee5b6c8b92c006f50311d",
+      "size_bytes": 56973
+    },
+    {
+      "relative_path": "stage3_2_controller/full_identification_probe_results.csv",
+      "sha256": "bdad03ad69bc11915aeefa2d149120abfbcc1f49429388fd3c0db10ef9b07403",
+      "size_bytes": 1802572
+    },
+    {
+      "relative_path": "stage3_2_controller/full_identification_probe_results.json",
+      "sha256": "596f656c5795914f64e4816f78b17ef2d7133fe491cc28053d53d304f42d7996",
+      "size_bytes": 2589101
+    },
+    {
+      "relative_path": "stage3_2_controller/mpc_poc_bundle.json",
+      "sha256": "91df199cca53439d387a588ef40b7611f96ab2592d2ae76081a8490f1123a0e0",
+      "size_bytes": 988545
+    },
+    {
+      "relative_path": "stage3_2_controller/mpc_poc_bundle.npz",
+      "sha256": "4355fdfa076ae337aa80a102c7b1cf919029a06c00a8fe06089d17704745c519",
+      "size_bytes": 146767
+    },
+    {
+      "relative_path": "stage3_2_manifest.json",
+      "sha256": "a47629892671faba4d9558e6e28bb7f2e4cabec50096e3c84da513d767fff8e4",
+      "size_bytes": 1773
+    },
+    {
+      "relative_path": "stage3_2_state.json",
+      "sha256": "6d40f453c3d547e762aa927f05629171122c880b70b76db01d2b5a32dc63115c",
+      "size_bytes": 8198
+    },
+    {
+      "relative_path": "train_config.resolved.json",
+      "sha256": "4862b90b1c6de149b47de5777e7e0cd213394bcc9b9224fcf36a9b921b82abfc",
+      "size_bytes": 2087
+    }
+  ]
+}

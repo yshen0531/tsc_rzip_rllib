@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R17",
+  "phase": "oracle_candidate_validation",
+  "n_rollouts": 2,
+  "expected_rollouts": 2,
+  "candidate_magnitude": 7.0,
+  "candidate_peak_component": 0.105,
+  "candidate_fixed_before_new_tsc": true,
+  "bidirectional_response_model_validated": false,
+  "runtime_guard_pass_fraction": 1.0,
+  "model_guard_pass_fraction": 1.0,
+  "formal_contract_pass_fraction": 1.0,
+  "minimum_actual_signed_margin": 0.01633098324390514,
+  "maximum_current_utilization": 0.41195,
+  "passed": true
+}

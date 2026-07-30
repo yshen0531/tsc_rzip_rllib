@@ -1,0 +1,7 @@
+target_id,noise_level,n_seeds,n_pass,pass_fraction,wilson_lower_bound,minimum_pass_fraction,passed
+nominal,low,12,7,0.5833333333333334,0.3195073356553728,0.98,False
+nominal,medium,16,8,0.5,0.2799923761135083,0.95,False
+nominal,high,32,13,0.40625,0.25519402480313796,0.9,False
+RZ_p10_m10,low,12,0,0.0,0.0,0.98,False
+RZ_p10_m10,medium,16,0,0.0,0.0,0.95,False
+RZ_p10_m10,high,32,2,0.0625,0.01731020319515724,0.9,False

@@ -1,0 +1,57 @@
+{
+  "n_files": 10,
+  "total_bytes": 1909071,
+  "digest": "94e6f347cd04cfd6f5627f63e255eb2dd07c54fa55643349607c46f7bda41097",
+  "entries": [
+    {
+      "logical_path": "stage4_1r3/manifest.json",
+      "sha256": "73bc6ba02be731aa26108398edb9327de459fb76130c9207fcc2cbbdc608f08a",
+      "bytes": 1239
+    },
+    {
+      "logical_path": "stage4_1r3/state.json",
+      "sha256": "fafacd45b46ea1919cbbaf05fac2275c19852a00dad57f10bdac005711587312",
+      "bytes": 28009
+    },
+    {
+      "logical_path": "stage4_1r3/config.json",
+      "sha256": "87b3fa3377a05937b47d4ca2e45ccd46ba843ef38ffc3df15163efcd18579445",
+      "bytes": 20008
+    },
+    {
+      "logical_path": "stage4_1r3/verdict.json",
+      "sha256": "ded5f6126cc210b28df91bbee1f48e6434c5e1e0b141f71cf577b9c7cb51cb0c",
+      "bytes": 1455
+    },
+    {
+      "logical_path": "stage4_1r3/structured_pairs.csv",
+      "sha256": "d9cd7c2b4dda7ba0f522de539465759c430bfba800e7774a4555977e9e933d4e",
+      "bytes": 6706
+    },
+    {
+      "logical_path": "stage4_1r3/structured_summary.json",
+      "sha256": "f49041c3dab5562269e40119a640dd9d0deaa1c382eff89999dffb14e6a72c27",
+      "bytes": 2629
+    },
+    {
+      "logical_path": "stage4_0/manifest.json",
+      "sha256": "cef95f35b1ecc24ba486e0dd512e7b69f8e835afbdeca4db037c54a61c7a7d55",
+      "bytes": 1061
+    },
+    {
+      "logical_path": "stage3_4/config.json",
+      "sha256": "6d705aaad12bc6872af776a0adf041041cbda38a4d545581017ad5ecdc7b34b4",
+      "bytes": 14756
+    },
+    {
+      "logical_path": "stage3_4/library.json",
+      "sha256": "d747d6a91d4c31c40b6801e706b16c22fb166d6f9fd903578110ed64eac6af1e",
+      "bytes": 1061361
+    },
+    {
+      "logical_path": "stage3_4/bundle.json",
+      "sha256": "7b307e82c35bc12beea51be303be90d0a5dd7554f54156e3684b167f37ee8987",
+      "bytes": 771847
+    }
+  ]
+}

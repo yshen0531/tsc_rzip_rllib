@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R8",
+  "phase": "integrated_calibration",
+  "n_rollouts": 9,
+  "expected_rollouts": 9,
+  "coverage_complete": true,
+  "n_successful": 9,
+  "trusted_fraction": 1.0,
+  "trusted_correct_fraction": 1.0,
+  "wrong_accept_count": 0,
+  "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+  "maximum_delta_fraction_of_nominal": 0.330000000000003,
+  "maximum_final_coil_residual_A": 0.000185,
+  "calibration_tokens_are_pair_level_not_target_duplicated": true,
+  "passed": true
+}

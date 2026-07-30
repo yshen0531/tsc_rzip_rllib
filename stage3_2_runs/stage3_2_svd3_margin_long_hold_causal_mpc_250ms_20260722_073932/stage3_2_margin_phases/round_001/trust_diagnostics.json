@@ -1,0 +1,32 @@
+[
+  {
+    "center_candidate_id": "s32mr000s_775222de137afe83",
+    "best_step_candidate_id": "s32mr001s_73a1735bf4b70f7b",
+    "center_objective": 7.0845480567486385,
+    "predicted_objective": 7.030969435483427,
+    "real_objective": 7.058614970322162,
+    "predicted_reduction": 0.05357862126521162,
+    "actual_reduction": 0.025933086426476848,
+    "rho": 0.4840192937796832,
+    "trust_boundary_fraction": 1.0,
+    "accepted": true,
+    "action": "hold",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 1.0
+  },
+  {
+    "center_candidate_id": "s32mr000p_377677a291606260",
+    "best_step_candidate_id": "s32mr001s_427ab3ac929006ea",
+    "center_objective": 7.151243643147806,
+    "predicted_objective": 7.056796318014641,
+    "real_objective": 7.040738493315381,
+    "predicted_reduction": 0.09444732513316545,
+    "actual_reduction": 0.11050514983242543,
+    "rho": 1.1700188404131016,
+    "trust_boundary_fraction": 1.0,
+    "accepted": true,
+    "action": "expand",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 1.3
+  }
+]

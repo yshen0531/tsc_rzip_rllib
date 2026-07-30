@@ -1,0 +1,939 @@
+[Stage4.1R7] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.1R7] source_stage4_1r6_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r6_runs/stage4_1r6_startup_architecture_closure_350ms_20260727_051823
+[Stage4.1R7] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r7_runs/stage4_1r7_precontrol_calibration_queue_startup_20260727_084802
+[Stage4.1R7] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_1r7_precontrol_calibration_queue_startup_370ms.json
+[Stage4.1R7] command=all
+[Stage4.1R7] backend=ray
+[Stage4.1R7] resume=1
+[Stage4.1R7] workers=128
+[Stage4.1R7] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage4.1R7] RAY_TMPDIR=/tmp/stage4_1r7_1120
+[Stage4.1R7] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage4.1R7] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage4.1R7] R6 finite-bank estimation and exact persistent startup are frozen; failed physical-blend/cold-start paths are not reused as success.
+[Stage4.1R7] A separate bounded zero-net calibration episode identifies delay/slew, then TSC is reset before the main control trajectory.
+[Stage4.1R7] The main action queue is primed consistently from the calibrated model before the first control action; primary startup uses no online handover.
+[Stage4.1R7] The weak 0.9x-slew cases retain the validated 370 ms / 270 ms-arrival closure and no-anti-windup configuration.
+[Stage4.1R7 R7a] Null-safe summaries, exact monitor matching, and phase-coverage guards are active; control law and experiment IDs are unchanged.
+[Stage4.1R7] Residual Markdown files elsewhere in the project are ignored by package verification.
+[Stage4.1R7] Final task remains robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay.
+2026-07-27 22:21:55,009	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.1R7 mixed-variant] ray_capacity requested=128 cluster_cpus=128 pending=36 actors=36 initialized_now=1
+[Stage4.1R7 mixed-variant] actor_allocation={"slew_0p900_h37":12,"slew_1p000_h35":12,"slew_1p100_h35":12}
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] waiting 0/36
+[Stage4.1R7 mixed-variant] 10/36
+[Stage4.1R7 mixed-variant] 20/36
+[Stage4.1R7 mixed-variant] 30/36
+[Stage4.1R7 mixed-variant] 36/36
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R7",
+  "created_utc": "20260727_143453",
+  "verdict": "STAGE4_1R7_PRECONTROL_CALIBRATION_STARTUP_CLOSURE_INCOMPLETE",
+  "source_stage4_1r6_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r6_runs/stage4_1r6_startup_architecture_closure_350ms_20260727_051823",
+  "source_audit_passed": true,
+  "precontrol_calibration_passed": true,
+  "queue_consistent_startup_passed": true,
+  "paired_confirmation_passed": false,
+  "true_restart_validation_available": false,
+  "true_restart_validation_performed": false,
+  "finite_precontrol_calibration_startup_envelope_validated": false,
+  "precontrol_calibration_uses_separate_reset_episode": true,
+  "hardware_pre_shot_calibration_validated": false,
+  "online_change_point_handover_validated": false,
+  "cold_start_deployment_validated": false,
+  "deployment_robustness_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "unseen_hidden_state_robustness_validated": false,
+  "warning": "The calibration is a separate-reset digital-twin POC. It validates parameter acquisition before the frozen main trajectory, not an in-shot hardware calibration sequence.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "phases": {
+    "source_audit": {
+      "schema_version": 1,
+      "stage": "Stage4.1R7",
+      "phase": "source_audit",
+      "source_stage4_1r6_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r6_runs/stage4_1r6_startup_architecture_closure_350ms_20260727_051823",
+      "source_finished": true,
+      "source_estimator_confirmation_passed": true,
+      "source_persistent_exact_preservation_fraction": 1.0,
+      "source_persistent_exact_trace_equivalence_fraction": 1.0,
+      "source_adjacent_handover_passed": false,
+      "source_cold_start_passed": false,
+      "failed_online_handover_is_not_reused_as_success": true,
+      "passed": true,
+      "warning": "R7 reuses only the validated estimator and exact persistent startup facts. R6 physical-blend and cold-start failures are not reinterpreted as success."
+    },
+    "precontrol_calibration": {
+      "schema_version": 1,
+      "stage": "Stage4.1R7",
+      "phase": "precontrol_calibration",
+      "n_rollouts": 18,
+      "expected_rollouts": 18,
+      "coverage_complete": true,
+      "n_successful": 18,
+      "final_identification_fraction": 1.0,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 5,
+      "minimum_final_confidence_ratio": 3.440503545227497,
+      "distinct_pairs_calibrated": 9,
+      "calibration_is_separate_reset_episode": true,
+      "passed": true,
+      "group_summaries": [
+        {
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 0.9,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 1,
+          "minimum_confidence_ratio": 4.599390302118425
+        },
+        {
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 1,
+          "minimum_confidence_ratio": 4.033853882718183
+        },
+        {
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.1,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 1,
+          "minimum_confidence_ratio": 3.915112322111051
+        },
+        {
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 2,
+          "minimum_confidence_ratio": 3.440503545227497
+        },
+        {
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.0,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 2,
+          "minimum_confidence_ratio": 3.7512373844274647
+        },
+        {
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.1,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 3,
+          "minimum_confidence_ratio": 3.8530489692983205
+        },
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 4,
+          "minimum_confidence_ratio": 3.8082823314275833
+        },
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.0,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 3,
+          "minimum_confidence_ratio": 3.471406825443243
+        },
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.1,
+          "profiles": 2,
+          "profile_ids": [
+            "clean",
+            "noisy_20mA"
+          ],
+          "profile_coverage_complete": true,
+          "all_success": true,
+          "all_final_correct": true,
+          "incorrect_confident_lock_count": 0,
+          "maximum_first_confident_lock_step": 5,
+          "minimum_confidence_ratio": 4.903379916224498
+        }
+      ]
+    },
+    "queue_consistent_startup": {
+      "schema_version": 1,
+      "stage": "Stage4.1R7",
+      "phase": "queue_consistent_startup",
+      "n_rollouts": 108,
+      "expected_rollouts": 108,
+      "coverage_complete": true,
+      "duplicate_rows": 0,
+      "n_successful": 108,
+      "oracle_feasible_cases": 14,
+      "precalibrated_preservation_fraction": {
+        "r7_precalibrated_clean_no_monitor": 1.0,
+        "r7_precalibrated_clean_monitor": 1.0,
+        "r7_precalibrated_noisy_monitor": 1.0
+      },
+      "precalibrated_trace_equivalence_fraction": {
+        "r7_precalibrated_clean_no_monitor": 1.0,
+        "r7_precalibrated_clean_monitor": 1.0,
+        "r7_precalibrated_noisy_monitor": 1.0
+      },
+      "monitor_rows_evaluated": 36,
+      "expected_monitor_rows": 36,
+      "monitor_coverage_complete": true,
+      "monitor_final_model_correct_fraction": 1.0,
+      "diagnostic_preservation_fraction": {
+        "naive_default": 0.2857142857142857,
+        "r4_abrupt_unknown": 0.5
+      },
+      "queue_primed_from_model_before_first_main_action": true,
+      "online_handover_used_by_primary_variants": false,
+      "precalibrated_startup_passed": true,
+      "passed": true,
+      "case_summaries": [
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": true,
+          "oracle_margin": 1.0456920999768471e-05,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 1.0456920999768471e-05,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 1.0456920999768471e-05,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 1.0456920999768471e-05,
+          "naive_default_pass": false,
+          "naive_default_margin": -0.2558093548283251,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -0.18900989634236165
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "oracle_margin": 0.23832005277494073,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.23832005277494073,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.23832005277494073,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.23832005277494073,
+          "naive_default_pass": true,
+          "naive_default_margin": 0.23832005277494073,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.23832005277494073
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "oracle_margin": 0.33296004,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.33296004,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.33296004,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.33296004,
+          "naive_default_pass": true,
+          "naive_default_margin": 0.30110085333333336,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.32086309
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "oracle_margin": -0.16595203212338472,
+          "r7_precalibrated_clean_no_monitor_pass": false,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": -0.16595203212338472,
+          "r7_precalibrated_clean_monitor_pass": false,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": -0.16595203212338472,
+          "r7_precalibrated_noisy_monitor_pass": false,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": -0.16595203212338472,
+          "naive_default_pass": false,
+          "naive_default_margin": -0.05347910667948552,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -0.11912047002765136
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "oracle_margin": 0.27013420000000044,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.27013420000000044,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.27013420000000044,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.27013420000000044,
+          "naive_default_pass": false,
+          "naive_default_margin": -0.8113751119778294,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.030519450175294116
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "oracle_margin": 0.31973813333333134,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.31973813333333134,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.31973813333333134,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.31973813333333134,
+          "naive_default_pass": false,
+          "naive_default_margin": -1.329039340074912,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.015007863562428891
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "oracle_margin": -0.18049654489107136,
+          "r7_precalibrated_clean_no_monitor_pass": false,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": -0.18049654489107136,
+          "r7_precalibrated_clean_monitor_pass": false,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": -0.18049654489107136,
+          "r7_precalibrated_noisy_monitor_pass": false,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": -0.18049654489107136,
+          "naive_default_pass": false,
+          "naive_default_margin": -2.04268577590547,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -0.48298205455412213
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "oracle_margin": 0.2759736000000004,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.2759736000000004,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.2759736000000004,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.2759736000000004,
+          "naive_default_pass": false,
+          "naive_default_margin": -3.478446018724319,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -1.2145423057160438
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "oracle_margin": 0.3130183499999999,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.3130183499999999,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.3130183499999999,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.3130183499999999,
+          "naive_default_pass": false,
+          "naive_default_margin": -4.107399330119309,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -1.8526029486374629
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": true,
+          "oracle_margin": 0.22532788322651087,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.22532788322651087,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.22532788322651087,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.22532788322651087,
+          "naive_default_pass": false,
+          "naive_default_margin": -0.01588045580891828,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -0.06972951122507798
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "oracle_margin": 0.45179333666666666,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.45179333666666666,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.45179333666666666,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.45179333666666666,
+          "naive_default_pass": true,
+          "naive_default_margin": 0.45179333666666666,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.45179333666666666
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "oracle_margin": 0.46286111333333335,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.46286111333333335,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.46286111333333335,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.46286111333333335,
+          "naive_default_pass": true,
+          "naive_default_margin": 0.4527358366666667,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.47174868000000003
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "oracle_margin": -0.027015391051228077,
+          "r7_precalibrated_clean_no_monitor_pass": false,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": -0.027015391051228077,
+          "r7_precalibrated_clean_monitor_pass": false,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": -0.027015391051228077,
+          "r7_precalibrated_noisy_monitor_pass": false,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": -0.027015391051228077,
+          "naive_default_pass": false,
+          "naive_default_margin": -0.019983925086698662,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.0076100409368250466
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "oracle_margin": 0.47356742666666674,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.47356742666666674,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.47356742666666674,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.47356742666666674,
+          "naive_default_pass": false,
+          "naive_default_margin": -0.540465600863586,
+          "r4_abrupt_unknown_pass": true,
+          "r4_abrupt_unknown_margin": 0.12456123407471065
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "oracle_margin": 0.4926570333333333,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.4926570333333333,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.4926570333333333,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.4926570333333333,
+          "naive_default_pass": false,
+          "naive_default_margin": -0.9847158603133344,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -0.0034036562624510935
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "oracle_margin": -0.024942996202705903,
+          "r7_precalibrated_clean_no_monitor_pass": false,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": -0.024942996202705903,
+          "r7_precalibrated_clean_monitor_pass": false,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": -0.024942996202705903,
+          "r7_precalibrated_noisy_monitor_pass": false,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": -0.024942996202705903,
+          "naive_default_pass": false,
+          "naive_default_margin": -1.8722973142067265,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -0.33023731300938475
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "oracle_margin": 0.4816273099999999,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.4816273099999999,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.4816273099999999,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.4816273099999999,
+          "naive_default_pass": false,
+          "naive_default_margin": -3.133069353573335,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -1.033708474786879
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "oracle_margin": 0.46433280666666665,
+          "r7_precalibrated_clean_no_monitor_pass": true,
+          "r7_precalibrated_clean_no_monitor_trace_equal": true,
+          "r7_precalibrated_clean_no_monitor_margin": 0.46433280666666665,
+          "r7_precalibrated_clean_monitor_pass": true,
+          "r7_precalibrated_clean_monitor_trace_equal": true,
+          "r7_precalibrated_clean_monitor_margin": 0.46433280666666665,
+          "r7_precalibrated_noisy_monitor_pass": true,
+          "r7_precalibrated_noisy_monitor_trace_equal": true,
+          "r7_precalibrated_noisy_monitor_margin": 0.46433280666666665,
+          "naive_default_pass": false,
+          "naive_default_margin": -3.7406810074742385,
+          "r4_abrupt_unknown_pass": false,
+          "r4_abrupt_unknown_margin": -1.700130305307137
+        }
+      ]
+    },
+    "restart_audit": {
+      "schema_version": 1,
+      "stage": "Stage4.1R7",
+      "phase": "restart_audit",
+      "candidate_folders": [
+        "1080ms",
+        "1090ms",
+        "1110ms",
+        "1120ms"
+      ],
+      "available_folders": [],
+      "true_restart_validation_available": false,
+      "true_restart_validation_performed": false,
+      "passed": true
+    },
+    "paired_confirmation": {
+      "schema_version": 1,
+      "stage": "Stage4.1R7",
+      "phase": "paired_confirmation",
+      "n_ray_tasks": 36,
+      "expected_ray_tasks": 36,
+      "n_tsc_episodes": 72,
+      "n_successful_tasks": 36,
+      "distinct_groups_confirmed": 18,
+      "coverage_complete": true,
+      "passed": false,
+      "group_summaries": [
+        {
+          "confirmation_group": "d0_s0.9_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": false,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -0.17699226630343223
+        },
+        {
+          "confirmation_group": "d0_s0.9_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": false,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -0.02127816006614003
+        },
+        {
+          "confirmation_group": "d0_s1.0_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.23832005277494073
+        },
+        {
+          "confirmation_group": "d0_s1.0_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.45179333666666666
+        },
+        {
+          "confirmation_group": "d0_s1.1_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.33296004
+        },
+        {
+          "confirmation_group": "d0_s1.1_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.46286111333333335
+        },
+        {
+          "confirmation_group": "d1_s0.9_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": false,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -0.16595203212338472
+        },
+        {
+          "confirmation_group": "d1_s0.9_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": false,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -0.027015391051228077
+        },
+        {
+          "confirmation_group": "d1_s1.0_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.27013420000000044
+        },
+        {
+          "confirmation_group": "d1_s1.0_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.47356742666666674
+        },
+        {
+          "confirmation_group": "d1_s1.1_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.31973813333333134
+        },
+        {
+          "confirmation_group": "d1_s1.1_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.4926570333333333
+        },
+        {
+          "confirmation_group": "d2_s0.9_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -0.18049654489107136
+        },
+        {
+          "confirmation_group": "d2_s0.9_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -0.024942996202705903
+        },
+        {
+          "confirmation_group": "d2_s1.0_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.2759736000000004
+        },
+        {
+          "confirmation_group": "d2_s1.0_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": true,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": true,
+          "minimum_margin": 0.4816273099999999
+        },
+        {
+          "confirmation_group": "d2_s1.1_RZ_p10_m10",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": false,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -1.8526029486374629
+        },
+        {
+          "confirmation_group": "d2_s1.1_nominal",
+          "repeats": 2,
+          "repeat_ids": [
+            0,
+            1
+          ],
+          "repeat_coverage_complete": true,
+          "all_success": true,
+          "all_calibrations_successful": true,
+          "all_calibrations_correct": false,
+          "all_main_controls_executed": true,
+          "all_tracking_pass": false,
+          "minimum_margin": -1.700130305307137
+        }
+      ]
+    }
+  }
+}

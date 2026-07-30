@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R14",
+  "controller_revision": "original_deadline_integrated_target_conditioned_deadline_mpc_v14",
+  "package_revision": "r14_integrated_target_conditioned_deadline_mpc_v1",
+  "created_utc": "20260729_065751",
+  "source_stage4_1r13_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r13_runs/stage4_1r13_original_deadline_delay_pipeline_early_braking_20260729_044403",
+  "source_stage4_1r12_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r12_runs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_20260729_022502",
+  "source_fingerprint": {
+    "schema_version": 1,
+    "n_files": 37,
+    "total_bytes": 1817507,
+    "digest": "090e48e4c3244af3628b6c3425fe4c126d4a77631bbfa845a9b1ca711f378299",
+    "files": [
+      {
+        "relative_path": "stage4_1r13_manifest.json",
+        "size_bytes": 7001,
+        "sha256": "e1c55738a7a2fb5cabe07ad8c006b3f28e595260ad02fef3963461eca4f605cf"
+      },
+      {
+        "relative_path": "stage4_1r13_state.json",
+        "size_bytes": 12739,
+        "sha256": "64f230de4c3790c3bcd46345c551ef9e0f70f9352fb534a5527ad4b890d7426c"
+      },
+      {
+        "relative_path": "stage4_1r13_config.resolved.json",
+        "size_bytes": 9262,
+        "sha256": "22c267da2cba050fc8d31ee25ec8cd0fd42d48e3392b4a8d1704badcbecfa45a"
+      },
+      {
+        "relative_path": "stage4_1r13_analysis/stage4_1r13_verdict.json",
+        "size_bytes": 2022,
+        "sha256": "111b796e59ccc68223fac561846db6447bcfa844fe5e6e7c76439369770e68fa"
+      },
+      {
+        "relative_path": "stage4_1r13_analysis/stage4_1r13_summary.json",
+        "size_bytes": 15273,
+        "sha256": "6d63cc92535efaf14aa1128be99d3d449e9a769cfcd6303de1657b0efe16aa3f"
+      },
+      {
+        "relative_path": "stage4_1r13_source_audit/summary.json",
+        "size_bytes": 1380,
+        "sha256": "f892eab2359f29ee37e1f4cc9d27c1d7b57b01adeb6a8fcb328eacd292615d87"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/summary.json",
+        "size_bytes": 9593,
+        "sha256": "b357d64d8404cad8d5669b97ac4bcc6dab798ccb99937418ef0d0fc57156d8ac"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/results.json",
+        "size_bytes": 47698,
+        "sha256": "0ffd6a119d2d2d759a10b9333c079c4b2ba9878558a94ae2b83c6beca652f8cb"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/results.csv",
+        "size_bytes": 15275,
+        "sha256": "a16f5581d53426c799b592bacd92b9e3a8572fcecd1744a394d8d2d17ccdf45d"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_01ad23d31139c84ba45f.json.gz",
+        "size_bytes": 59897,
+        "sha256": "6d7f72c0c8da6acabb3d37d814b93f5f4a6c6ff14c7637712c5c94407dbc9472"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_07e2fe72bced0391afd9.json.gz",
+        "size_bytes": 62946,
+        "sha256": "c49b675945f98c824f6011ed58ba37645477d5d3d2e0013250669f0a0cc22310"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_114c5a96accddd2d33f7.json.gz",
+        "size_bytes": 61128,
+        "sha256": "7dfd4b5a4e10e5f94434d7a07217714756538a02a1e61fc615074a6865103eda"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_167ac7755aca796f0092.json.gz",
+        "size_bytes": 59817,
+        "sha256": "3dbb00b5a31ad5a0d4ebde8d903b552370a8e78b917bf2409c128f855e078535"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_1975451a3afbfb26899c.json.gz",
+        "size_bytes": 59342,
+        "sha256": "2f28907f70a6f78173296c61e91d0ae393ea6304ecaea3fde66a062ab6201973"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_2cad46b7f8bf3f35decf.json.gz",
+        "size_bytes": 60319,
+        "sha256": "4b6385d370704292caa13d1132ee4deb695bac2e8c48de42d310a8d83291107d"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_3715282e9921ea045508.json.gz",
+        "size_bytes": 62671,
+        "sha256": "52537c8769e916e9552708fb8655cc9754ff5d30c6f0c90945f1922cb78ed280"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_3d3f07340f41492eb77c.json.gz",
+        "size_bytes": 63506,
+        "sha256": "36eb0b10b784a1b791e12df1618905e0518afbdd1973768f2e7c99c170edef38"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_3db862ed572d24796c09.json.gz",
+        "size_bytes": 58362,
+        "sha256": "69e3258023f9136092c051697a42827a2e0f55749ccd92031f2e6e3c7249a500"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_402f08fe25e25e67e234.json.gz",
+        "size_bytes": 62710,
+        "sha256": "72f8695a436a634cccb43b06bbba61bd1bc819e414b9b13b9e0dc631413a8297"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_4a757b65d0a256d31518.json.gz",
+        "size_bytes": 61639,
+        "sha256": "f66a29babfc154958a643907943a2b6841da1aa7b62932a2cbf6f7e5bb00c139"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_500788c02d33ae8d7b42.json.gz",
+        "size_bytes": 60808,
+        "sha256": "b9071e02f778c3820d64512da06a7f5720d09e1a1ce1175c4e9fd1026acce587"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_65818c1e2052c9698810.json.gz",
+        "size_bytes": 62548,
+        "sha256": "0e66d821281fa5214a60cd07ea3101d7afa90403335999a31a169a9106bc455f"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_776564e29cd6c1615eda.json.gz",
+        "size_bytes": 58894,
+        "sha256": "2981ef44db0b18f91797d030fccfdf3c49de87b80ffa47081a4e6f4466d81f67"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_842e5c5b6c6bed3eac39.json.gz",
+        "size_bytes": 61032,
+        "sha256": "486ca09fec803d1f368fe5fd316875d469a5c2c11ac33ed0cfdf1bd12b44a79e"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_8c1c0e2377b5a1d0d284.json.gz",
+        "size_bytes": 59322,
+        "sha256": "ef3522e4fde7717edba6a60505db722b989ee262d6abff23efc159a0b23235b5"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_973af7f40b91f3d600b1.json.gz",
+        "size_bytes": 59825,
+        "sha256": "2e9109d89bbc3f61761ef19dec73e908783822d6f2a005906a02e331a2f7410d"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_a47224c84ee512706db5.json.gz",
+        "size_bytes": 59517,
+        "sha256": "2a5f1df2bf5b7267b3ffb843c49ac19ce81a175c8fdfd81ae4db283b7fc84c81"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_b7c85207f00f0dbc027c.json.gz",
+        "size_bytes": 60678,
+        "sha256": "2775d6c18553e92fc035ae8d7abd4ccc2a623be79db40b1fef4c4d37d5f597cb"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_bf62cf889ee93b2af1fa.json.gz",
+        "size_bytes": 58034,
+        "sha256": "213e65e3f8e3f77df84d82029cd9a3f2f5fe1b97283cad60364a75af6864eeb5"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_c37b50d3594fe54566a9.json.gz",
+        "size_bytes": 61151,
+        "sha256": "49a7dc6016794dc5dfa80ee3a74bcac816d3ec7db8bbdec7425eac791e4d7d9c"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_cf31303b78d383e83881.json.gz",
+        "size_bytes": 61050,
+        "sha256": "ab2714101e09455a91cc3217dea187a2380ca888741d16b504097d53ef67323c"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_d4657fb7efa750069cca.json.gz",
+        "size_bytes": 59382,
+        "sha256": "33137d283bef285f040ee984a55729b7bf2d685efef14a3ea18987c66398b35b"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_d4c413689c8e098c55ca.json.gz",
+        "size_bytes": 58917,
+        "sha256": "c65913be50e14a5756f1b7e45842fc583ce9b74fabc1033b7cbe2460303a50fc"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_d66c21b99ab1291d12b5.json.gz",
+        "size_bytes": 61285,
+        "sha256": "63266309c291fe9b0bdd51b44f67d1cb95501acf0b161e82daa377cfd0046978"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_e99e76f0b005ef85bd4d.json.gz",
+        "size_bytes": 61386,
+        "sha256": "7beae79a8e66cbb3cd522a58baf9f2d46582fc1635cf6b931987f3d3d758ecef"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_f10069f6fb7ce95775fb.json.gz",
+        "size_bytes": 60012,
+        "sha256": "600429b9d5543ae186247f8b0bfe3bbd712245cfb687165b2e16f48cd4d7ed1e"
+      },
+      {
+        "relative_path": "stage4_1r13_oracle_development/raw/s41r13_fd356d96a156f90417aa.json.gz",
+        "size_bytes": 61086,
+        "sha256": "eb17b0ef1c0ad8d85f9ef106105f5a90b84f2ed379eaf9d1cb958c3f19e0ab71"
+      }
+    ]
+  },
+  "workers": 128,
+  "formal_timing_contract": {
+    "immutable": true,
+    "normal_slew": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "horizon_steps": 35,
+      "arrival_deadline_step": 25,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "hold_through_step": 35,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "weak_slew": {
+      "slew_scale": 0.9,
+      "horizon_steps": 37,
+      "arrival_deadline_step": 27,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "hold_through_step": 37,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "arrival_deadline_may_not_expand": true,
+    "hold_horizon_may_not_substitute_for_arrival_deadline": true,
+    "r9_r10_r11_extended_horizons_are_auxiliary_only": true
+  },
+  "fixed_first_affected_state_step": 23,
+  "target_conditioned_nominal_retained": true,
+  "checkpoint_integral_preserved": true,
+  "arrival_deadline_expansion_allowed": false,
+  "unseen_target_holdout_claimed": false,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "finite_test_envelope_only": true,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

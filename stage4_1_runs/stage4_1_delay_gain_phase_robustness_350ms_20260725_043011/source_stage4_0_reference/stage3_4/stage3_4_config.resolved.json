@@ -1,0 +1,653 @@
+{
+  "stage_label": "Stage 3.4",
+  "run_name": "stage3_4_late_arrival_continuation_mpc_350ms",
+  "output_root": "stage3_4_runs",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Accept arrival through 250 ms, require a further 100 ms hold through 350 ms, build mandatory target trajectories by continuation, and validate a full-horizon receding MPC POC."
+  },
+  "parallel": {
+    "n_workers": 96,
+    "ray_tmpdir": "/tmp/stage3_4"
+  },
+  "trajectory": {
+    "horizon_steps": 35,
+    "horizon_ms": 350,
+    "n_modes": 3,
+    "coefficient_lower": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper": [
+      2.6,
+      2.6,
+      0.9
+    ]
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "allowed_arrival_steps": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "hold_through_step": 35,
+    "minimum_post_arrival_hold_steps": 10,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "continuation": {
+    "tasks": [
+      {
+        "task_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [],
+        "source_task_id": "nominal"
+      },
+      {
+        "task_id": "R_p5mm",
+        "R_offset_m": 0.005,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "nominal"
+        ],
+        "source_task_id": "R_p5mm"
+      },
+      {
+        "task_id": "R_p7p5mm",
+        "R_offset_m": 0.0075,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0,
+        "final": false,
+        "mandatory": false,
+        "parents": [
+          "R_p5mm"
+        ]
+      },
+      {
+        "task_id": "R_p10mm",
+        "R_offset_m": 0.01,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "R_p7p5mm",
+          "R_p5mm"
+        ],
+        "source_task_id": "R_p10mm"
+      },
+      {
+        "task_id": "Z_m2mm",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.002,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "nominal"
+        ],
+        "source_task_id": "Z_m2mm"
+      },
+      {
+        "task_id": "Z_m3p5mm",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.0035,
+        "Ip_offset_A": 0.0,
+        "final": false,
+        "mandatory": false,
+        "parents": [
+          "Z_m2mm"
+        ]
+      },
+      {
+        "task_id": "Z_m5mm",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.005,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "Z_m3p5mm",
+          "Z_m2mm"
+        ],
+        "source_task_id": "Z_m5mm"
+      },
+      {
+        "task_id": "Z_m7p5mm",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.0075,
+        "Ip_offset_A": 0.0,
+        "final": false,
+        "mandatory": false,
+        "parents": [
+          "Z_m5mm"
+        ]
+      },
+      {
+        "task_id": "Z_m10mm",
+        "R_offset_m": 0.0,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "Z_m7p5mm",
+          "Z_m5mm"
+        ],
+        "source_task_id": "Z_m10mm"
+      },
+      {
+        "task_id": "RZ_p5_m2mm",
+        "R_offset_m": 0.005,
+        "Z_offset_m": -0.002,
+        "Ip_offset_A": 0.0,
+        "final": false,
+        "mandatory": false,
+        "parents": [
+          "R_p5mm",
+          "Z_m2mm"
+        ]
+      },
+      {
+        "task_id": "RZ_p5_m3p5mm",
+        "R_offset_m": 0.005,
+        "Z_offset_m": -0.0035,
+        "Ip_offset_A": 0.0,
+        "final": false,
+        "mandatory": false,
+        "parents": [
+          "RZ_p5_m2mm",
+          "Z_m3p5mm"
+        ]
+      },
+      {
+        "task_id": "RZ_p5_m5mm",
+        "R_offset_m": 0.005,
+        "Z_offset_m": -0.005,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "RZ_p5_m3p5mm",
+          "R_p5mm",
+          "Z_m5mm"
+        ],
+        "source_task_id": "RZ_p5_m5mm"
+      },
+      {
+        "task_id": "RZ_p7p5_m7p5mm",
+        "R_offset_m": 0.0075,
+        "Z_offset_m": -0.0075,
+        "Ip_offset_A": 0.0,
+        "final": false,
+        "mandatory": false,
+        "parents": [
+          "RZ_p5_m5mm",
+          "R_p7p5mm",
+          "Z_m7p5mm"
+        ]
+      },
+      {
+        "task_id": "RZ_p10_m10mm",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "RZ_p7p5_m7p5mm",
+          "RZ_p5_m5mm"
+        ],
+        "source_task_id": "RZ_p10_m10mm"
+      },
+      {
+        "task_id": "Ip_m1000A",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": -1000.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "nominal"
+        ],
+        "source_task_id": "Ip_m1000A"
+      },
+      {
+        "task_id": "Ip_p1000A",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 1000.0,
+        "final": true,
+        "mandatory": true,
+        "parents": [
+          "nominal"
+        ],
+        "source_task_id": "Ip_p1000A"
+      }
+    ],
+    "tail_templates": [
+      "hold_last",
+      "zero",
+      "linear_zero",
+      "exp_decay",
+      "slope_decay",
+      "mode1_positive",
+      "mode1_negative",
+      "mode2_positive",
+      "mode2_negative"
+    ],
+    "feedforward_scales": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "source_tracking_states": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "source_control_radius_by_mode": [
+      0.3,
+      0.3,
+      0.1
+    ],
+    "center_position_weight": 4.0,
+    "center_velocity_weight": 1.0,
+    "center_ip_weight": 0.15,
+    "internal_goal": {
+      "nominal_box_m": 0.02,
+      "final_box_m": 0.025,
+      "support_box_m": 0.028,
+      "post_arrival_velocity_rms_m_per_s": 0.07,
+      "minimum_refinement_rounds_nominal": 2,
+      "minimum_refinement_rounds_final": 1,
+      "minimum_refinement_rounds_support": 0
+    }
+  },
+  "refinement": {
+    "basis_rank": 18,
+    "temporal_centers": [
+      3,
+      9,
+      15,
+      22,
+      29
+    ],
+    "temporal_widths": [
+      4.0,
+      4.0,
+      4.5,
+      5.0,
+      5.0
+    ],
+    "include_global_mode_directions": true,
+    "max_rounds_per_task": 5,
+    "no_improvement_patience": 2,
+    "initial_trust_radius": 0.3,
+    "minimum_trust_radius": 0.05,
+    "maximum_trust_radius": 1.2,
+    "trust_expand": 1.25,
+    "trust_shrink": 0.6,
+    "minimum_margin_improvement": 0.0015,
+    "probe_fraction_of_trust": 0.65,
+    "probe_bound_margin": 0.95,
+    "minimum_probe_coordinate": 0.0001,
+    "ridge_lambda": 0.06,
+    "profiles": {
+      "balanced": {
+        "R": 2.4,
+        "Z": 2.4,
+        "vR": 0.9,
+        "vZ": 0.9,
+        "Ip": 0.5
+      },
+      "position": {
+        "R": 4.5,
+        "Z": 4.5,
+        "vR": 0.55,
+        "vZ": 0.55,
+        "Ip": 0.4
+      },
+      "damping": {
+        "R": 1.8,
+        "Z": 1.8,
+        "vR": 2.8,
+        "vZ": 2.8,
+        "Ip": 0.35
+      }
+    },
+    "proposal_step_scales": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "state_weight_start": 8,
+    "hold_weight_start": 14,
+    "hold_weight_multiplier": 2.5,
+    "source_prior_blend": 0.2
+  },
+  "identification": {
+    "probe_delta_by_mode": [
+      0.014,
+      0.014,
+      0.0045
+    ],
+    "minimum_reliable_columns": 90,
+    "output_scales": {
+      "R_m": 0.03,
+      "Z_m": 0.03,
+      "vR_m_per_s": 0.1,
+      "vZ_m_per_s": 0.1,
+      "Ip_A": 2000.0
+    },
+    "svd_relative_cutoff": 0.002,
+    "maximum_normalized_condition": 1000.0,
+    "ridge_lambda": 0.08
+  },
+  "mpc": {
+    "allow_incomplete_library": false,
+    "library_neighbors": 4,
+    "target_distance_scales": [
+      0.01,
+      0.01,
+      1000.0
+    ],
+    "inverse_distance_power": 2.0,
+    "output_weights": {
+      "R": 2.5,
+      "Z": 2.5,
+      "vR": 1.0,
+      "vZ": 1.0,
+      "Ip": 0.5
+    },
+    "integral_measurement_gain": [
+      0.45,
+      0.45,
+      0.0,
+      0.0,
+      0.2
+    ],
+    "integral_decay": 0.92,
+    "per_step_feedback_limit_by_mode": [
+      0.2,
+      0.2,
+      0.07
+    ],
+    "per_step_correction_rate_limit_by_mode": [
+      0.08,
+      0.08,
+      0.025
+    ],
+    "controller_scales": [
+      0.0,
+      0.5,
+      1.0,
+      1.5
+    ],
+    "future_discount": 0.988,
+    "hold_weight_start_state": 14,
+    "hold_weight_multiplier": 2.5,
+    "ridge_lambda": 0.08,
+    "future_correction_smoothness": 0.08,
+    "first_action_rate_weight": 0.2,
+    "solver_tolerance": 1e-08,
+    "solver_max_iterations": 300,
+    "calibration_scenarios": [
+      {
+        "scenario": "nominal",
+        "category": "nominal",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "R_p10",
+        "category": "target",
+        "target_R_offset_m": 0.01,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "Z_m10",
+        "category": "target",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": -0.01,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "RZ_p5_m5",
+        "category": "target",
+        "target_R_offset_m": 0.005,
+        "target_Z_offset_m": -0.005,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "RZ_p10_m10",
+        "category": "target",
+        "target_R_offset_m": 0.01,
+        "target_Z_offset_m": -0.01,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "Ip_m1000",
+        "category": "target",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": -1000.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "Ip_p1000",
+        "category": "target",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 1000.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "dist_m1_s08_p",
+        "category": "disturbance",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": {
+          "step": 8,
+          "mode": 0,
+          "amplitude": 0.08
+        }
+      },
+      {
+        "scenario": "dist_m1_s16_m",
+        "category": "disturbance",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": {
+          "step": 16,
+          "mode": 0,
+          "amplitude": -0.08
+        }
+      },
+      {
+        "scenario": "dist_m2_s20_p",
+        "category": "disturbance",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": {
+          "step": 20,
+          "mode": 1,
+          "amplitude": 0.08
+        }
+      }
+    ],
+    "holdout_scenarios": [
+      {
+        "scenario": "R_p7p5",
+        "category": "target",
+        "target_R_offset_m": 0.0075,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "Z_m7p5",
+        "category": "target",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": -0.0075,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "RZ_p7p5_m7p5",
+        "category": "target",
+        "target_R_offset_m": 0.0075,
+        "target_Z_offset_m": -0.0075,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "R_p2p5_Z_m2p5",
+        "category": "target",
+        "target_R_offset_m": 0.0025,
+        "target_Z_offset_m": -0.0025,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "Ip_m750",
+        "category": "target",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": -750.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "Ip_p750",
+        "category": "target",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 750.0,
+        "disturbance": null
+      },
+      {
+        "scenario": "dist_m1_s04_m",
+        "category": "disturbance",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": {
+          "step": 4,
+          "mode": 0,
+          "amplitude": -0.1
+        }
+      },
+      {
+        "scenario": "dist_m2_s12_p",
+        "category": "disturbance",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": {
+          "step": 12,
+          "mode": 1,
+          "amplitude": 0.1
+        }
+      },
+      {
+        "scenario": "dist_m3_s24_m",
+        "category": "disturbance",
+        "target_R_offset_m": 0.0,
+        "target_Z_offset_m": 0.0,
+        "target_Ip_offset_A": 0.0,
+        "disturbance": {
+          "step": 24,
+          "mode": 2,
+          "amplitude": -0.035
+        }
+      }
+    ],
+    "minimum_calibration_tracking_fraction": 0.8,
+    "minimum_holdout_tracking_fraction": 0.75,
+    "require_no_lost_baseline_passes": true,
+    "minimum_median_margin_gain": -0.005
+  },
+  "confirmation": {
+    "library_repeats_per_mandatory": 2,
+    "mpc_scenarios": [
+      "nominal",
+      "R_p10",
+      "Z_m10",
+      "RZ_p10_m10",
+      "Ip_m1000",
+      "Ip_p1000",
+      "RZ_p7p5_m7p5",
+      "dist_m2_s12_p"
+    ],
+    "mpc_repeats_per_scenario": 2
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1200.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  }
+}

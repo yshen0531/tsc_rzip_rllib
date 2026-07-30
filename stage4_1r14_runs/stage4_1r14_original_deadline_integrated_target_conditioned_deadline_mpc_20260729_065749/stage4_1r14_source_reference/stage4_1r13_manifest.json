@@ -1,0 +1,195 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R13",
+  "controller_revision": "original_deadline_delay_pipeline_early_braking_v13",
+  "package_revision": "r13_original_deadline_early_braking_v1",
+  "created_utc": "20260729_044405",
+  "source_stage4_1r12_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r12_runs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_20260729_022502",
+  "source_stage4_1r11_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313",
+  "source_fingerprint": {
+    "schema_version": 1,
+    "n_files": 22,
+    "total_bytes": 685263,
+    "digest": "f1cfb100ee7251ac70c660ff9d91435af648079e6d50da224c5124eb574b164c",
+    "files": [
+      {
+        "relative_path": "stage4_1r12_manifest.json",
+        "size_bytes": 12405,
+        "sha256": "d1e966d84c7f7de1d531ba92bcdea498935bf3dbc121281c56ba58e4c27a8781"
+      },
+      {
+        "relative_path": "stage4_1r12_state.json",
+        "size_bytes": 7542,
+        "sha256": "40f28a4468a73b9128a2d7129f13dadc6ecfba4ec10289bdf6ce493cc1184e41"
+      },
+      {
+        "relative_path": "stage4_1r12_config.resolved.json",
+        "size_bytes": 8680,
+        "sha256": "0335fdcd32627dbefba16d268c142296e586b06ce7dcf03e3883a762fa5ac41c"
+      },
+      {
+        "relative_path": "stage4_1r12_analysis/stage4_1r12_verdict.json",
+        "size_bytes": 1785,
+        "sha256": "52d539485167f072d143a0ebf44a3c3e19dc3547d19e29cb97ad7501d8db36d3"
+      },
+      {
+        "relative_path": "stage4_1r12_analysis/stage4_1r12_summary.json",
+        "size_bytes": 9411,
+        "sha256": "0f26532304d86a48098eb731be4daf18544e7399f3d6d9df5d2765bedeac7f47"
+      },
+      {
+        "relative_path": "stage4_1r12_source_audit/summary.json",
+        "size_bytes": 1466,
+        "sha256": "0465e70245994050970906fa4986e73c959cd798644e601d5023baacaa5d12b2"
+      },
+      {
+        "relative_path": "stage4_1r12_source_audit/original_timing_reaudit.csv",
+        "size_bytes": 1799,
+        "sha256": "9706ad540ac5f768b1ed3acca61f36ffa2b431d2252ea0780b6df21a24f133b4"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/summary.json",
+        "size_bytes": 4519,
+        "sha256": "562e3e9e00677d0862d7742839a7f7d83a6ed412dd1ea9af66f161fd022bd5ee"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/results.json",
+        "size_bytes": 19181,
+        "sha256": "0f906a6d9ad0a57d1e7f03d12590025c0ad30f5efaad578395456147acb234ae"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/results.csv",
+        "size_bytes": 6323,
+        "sha256": "384017bb998ae12ed33edd101604ac6ca6df20fafc764e212700dea52b9cce1c"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_1e6b9fc31c8d8f965da8.json.gz",
+        "size_bytes": 50025,
+        "sha256": "ea0b1250dc8a7112215cfbe5e6118a49d919789b9ee0bd2d302632a32837746a"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_24408135b80c3e802bb9.json.gz",
+        "size_bytes": 50352,
+        "sha256": "2d6fa4c04b01c485cf28d3d152e4db26d7c8b2961c95d8c628020a2e74fbc5e9"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_3c4ba2868dd3f9c977d0.json.gz",
+        "size_bytes": 49267,
+        "sha256": "33cffff64c78d405fdaac580080cf28acad95b7154d9d827c3a5c7f3f433b083"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_3ce3d9d6ea3543dc26ce.json.gz",
+        "size_bytes": 49485,
+        "sha256": "f1f4098b04fcf6a9476b129e925da9820ad34116da89e87c933d33b688de6d24"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_6f53c3e75f5bbf8ca72e.json.gz",
+        "size_bytes": 50738,
+        "sha256": "b84e13e5fefa36da86d01131d5c6c141a8b18019651305987e608812833f6792"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_782f19dfe542fd79bd44.json.gz",
+        "size_bytes": 48501,
+        "sha256": "4471be05f17b59a3fbc1ee6234335ab10a819dffa3f95e7ce95372a130e5946e"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_78c461073d3dd72f6d89.json.gz",
+        "size_bytes": 51397,
+        "sha256": "2cd2a06485807975b869e7b663b5f7e67b54441aae749c3277d3936fb9661a5f"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_7fe0dd84c8cc8938d7b3.json.gz",
+        "size_bytes": 49900,
+        "sha256": "24778c5325e881d06d6b37513455fa304ce1b37c3dea6e683bd2d70547e6408e"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_8286b4213716b1462568.json.gz",
+        "size_bytes": 48931,
+        "sha256": "b65851a1ea68d14f9174905351145f1da8e177a4b40e8a90c4e56f092613345b"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_adea423c5ef8007cd997.json.gz",
+        "size_bytes": 57904,
+        "sha256": "0f1870f6fd9ee720cffd55673f727ce1d10d92f88ac965369c0159ab579c2f91"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_c168d509664a84af4629.json.gz",
+        "size_bytes": 55460,
+        "sha256": "628fecaef819ce84a82c3441dc39a63634102459f98d64dd3c48957f225b5a26"
+      },
+      {
+        "relative_path": "stage4_1r12_oracle_development/raw/s41r12_dd88de9d7611513c1074.json.gz",
+        "size_bytes": 50192,
+        "sha256": "8fbceef676169c019f77d5e3b3d072c2f2c10a5dc68c0d649d2a5001732c94b1"
+      }
+    ]
+  },
+  "workers": 128,
+  "formal_timing_contract": {
+    "immutable": true,
+    "normal_slew": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "horizon_steps": 35,
+      "arrival_deadline_step": 25,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "hold_through_step": 35,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "weak_slew": {
+      "slew_scale": 0.9,
+      "horizon_steps": 37,
+      "arrival_deadline_step": 27,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ],
+      "hold_through_step": 37,
+      "minimum_post_arrival_hold_steps": 10
+    },
+    "arrival_deadline_may_not_expand": true,
+    "hold_horizon_may_not_substitute_for_arrival_deadline": true,
+    "r9_r10_r11_extended_horizons_are_auxiliary_only": true
+  },
+  "arrival_deadline_expansion_allowed": false,
+  "selection_conditioned_on_trusted_delay": true,
+  "selection_targets": [
+    "nominal",
+    "RZ_p10_m10"
+  ],
+  "unseen_target_holdout_claimed": false,
+  "finite_test_envelope_only": true,
+  "true_restart_validation_performed": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

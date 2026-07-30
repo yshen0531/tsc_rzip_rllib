@@ -1,0 +1,393 @@
+[Stage4.1R13] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.1R13] source_stage4_1r12_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r12_runs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_20260729_022502
+[Stage4.1R13] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r13_runs/stage4_1r13_original_deadline_delay_pipeline_early_braking_20260729_044403
+[Stage4.1R13] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_1r13_original_deadline_delay_pipeline_early_braking_370ms.json
+[Stage4.1R13] command=all backend=ray resume=0 workers=128
+[Stage4.1R13] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python RAY_TMPDIR=/tmp/stage4_1r13_1120
+[Stage4.1R13] Formal timing remains immutable: slew 1.0/1.1 arrives by 250 ms and holds through 350 ms; slew 0.9 arrives by 270 ms and holds through 370 ms.
+[Stage4.1R13] R12 ran correctly but its first physical effects at 280--350 ms were structurally too late for endpoint-late-speed failures already present at 270 ms.
+[Stage4.1R13] Only the four weak-slew delay=1/2 paths may change; causal first physical effects are tested at 200--260 ms with issue times shifted earlier only by the trusted delay queue.
+[Stage4.1R13] Both required targets participate in finite-grid policy selection; no unseen-target generalization is claimed. The fourteen already-passing paths remain source-exact and are not rerun.
+[Stage4.1R13] No arrival deadline, scoring horizon, 30 mm gate, 0.1 m/s gate, or Ip gate is relaxed. R10/R11 long horizons remain diagnostics only; Stage4.2R1 was not run or reused.
+[Stage4.1R13] Final task remains causal safe arrival, deceleration, disturbance recovery and long hold across initial states, hidden vessel/eddy histories, targets, continuous plant/actuator changes, noise and unknown delay.
+2026-07-29 12:44:17,080	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.1R13 early-braking] ray_capacity requested=128 cluster_cpus=128 pending=28 actors=28 initialized_now=1
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] waiting 0/28
+[Stage4.1R13 early-braking] 10/28
+[Stage4.1R13 early-braking] 20/28
+[Stage4.1R13 early-braking] 28/28
+{
+  "arrival_deadline_expanded": false,
+  "continuous_parameter_change_validated": false,
+  "created_utc": "20260729_045422",
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "finite_test_envelope_only": true,
+  "formal_combined_case_count": 18,
+  "formal_timing_contract_restored": false,
+  "modified_case_count": 4,
+  "next_if_fail": "Do not enlarge the 250/270 ms deadlines. Use the complete causal 200--260 ms failed raw bank to identify a bounded early-braking local model and redesign an integrated delay-pipeline-aware main MPC; do not add another late tail and do not hand 14-coil control to RL.",
+  "next_if_pass": "Freeze the original-deadline static-grid controller and proceed to true restart and hidden vessel/eddy-history validation. Do not reinterpret R10/R11 late-arrival trajectories as the timing contract and do not start BC/DAgger/RL yet.",
+  "normal_slew_arrival_deadline_ms": 250,
+  "normal_slew_controller_changed": false,
+  "normal_slew_hold_through_ms": 350,
+  "phases": {
+    "calibrated_confirmation": {},
+    "formal_grid_confirmation": {},
+    "oracle_development": {
+      "arrival_deadline_expanded": false,
+      "candidate_first_effect_steps": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26
+      ],
+      "candidate_selection_uses_both_required_targets": true,
+      "candidate_summaries": [
+        {
+          "actual_delay_steps": 1,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 20,
+          "maximum_terminal_speed_m_per_s": 0.032385371674293215,
+          "mean_action_rms": 0.2806216658117868,
+          "mean_formal_signed_margin": -0.18930129783122895,
+          "minimum_formal_signed_margin": -0.2909845395896773,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state20",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.0
+        },
+        {
+          "actual_delay_steps": 1,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 21,
+          "maximum_terminal_speed_m_per_s": 0.03209030144482055,
+          "mean_action_rms": 0.28061970369125283,
+          "mean_formal_signed_margin": -0.22387595801010296,
+          "minimum_formal_signed_margin": -0.30668652905714167,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state21",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.0
+        },
+        {
+          "actual_delay_steps": 1,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 22,
+          "maximum_terminal_speed_m_per_s": 0.023738978037292854,
+          "mean_action_rms": 0.28091996153842835,
+          "mean_formal_signed_margin": -0.12389546155623543,
+          "minimum_formal_signed_margin": -0.2059656976505999,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state22",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.0
+        },
+        {
+          "actual_delay_steps": 1,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 23,
+          "maximum_terminal_speed_m_per_s": 0.022618184129134366,
+          "mean_action_rms": 0.28132811061598406,
+          "mean_formal_signed_margin": 0.014532389470579887,
+          "minimum_formal_signed_margin": -0.04934201439746855,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state23",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.5
+        },
+        {
+          "actual_delay_steps": 1,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 24,
+          "maximum_terminal_speed_m_per_s": 0.020212415437453703,
+          "mean_action_rms": 0.2813722387673031,
+          "mean_formal_signed_margin": -0.030449337356126427,
+          "minimum_formal_signed_margin": -0.08941067639197797,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state24",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.5
+        },
+        {
+          "actual_delay_steps": 1,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 25,
+          "maximum_terminal_speed_m_per_s": 0.022319376711617073,
+          "mean_action_rms": 0.2815564986948794,
+          "mean_formal_signed_margin": -0.06522865890820617,
+          "minimum_formal_signed_margin": -0.12479269878546018,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state25",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.0
+        },
+        {
+          "actual_delay_steps": 1,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 26,
+          "maximum_terminal_speed_m_per_s": 0.0244148599929303,
+          "mean_action_rms": 0.28169084892975116,
+          "mean_formal_signed_margin": -0.07577068611220372,
+          "minimum_formal_signed_margin": -0.13664373503767857,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state26",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.0
+        },
+        {
+          "actual_delay_steps": 2,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 20,
+          "maximum_terminal_speed_m_per_s": 0.034828024402842495,
+          "mean_action_rms": 0.2816474429655258,
+          "mean_formal_signed_margin": -0.16606594839387145,
+          "minimum_formal_signed_margin": -0.26026703994861067,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state20",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.0
+        },
+        {
+          "actual_delay_steps": 2,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 21,
+          "maximum_terminal_speed_m_per_s": 0.03384902530028452,
+          "mean_action_rms": 0.2817357467396651,
+          "mean_formal_signed_margin": -0.09790105305078589,
+          "minimum_formal_signed_margin": -0.18046230745557756,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state21",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.0
+        },
+        {
+          "actual_delay_steps": 2,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 22,
+          "maximum_terminal_speed_m_per_s": 0.028532157661374097,
+          "mean_action_rms": 0.28196127891823186,
+          "mean_formal_signed_margin": -0.10455921512925875,
+          "minimum_formal_signed_margin": -0.21624334500695608,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state22",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.5
+        },
+        {
+          "actual_delay_steps": 2,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 23,
+          "maximum_terminal_speed_m_per_s": 0.031285728955109726,
+          "mean_action_rms": 0.2822627259819829,
+          "mean_formal_signed_margin": 0.027411174729930377,
+          "minimum_formal_signed_margin": -0.08573530759636228,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state23",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.5
+        },
+        {
+          "actual_delay_steps": 2,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 24,
+          "maximum_terminal_speed_m_per_s": 0.030539921505980037,
+          "mean_action_rms": 0.28227003820694724,
+          "mean_formal_signed_margin": -0.016399934066510913,
+          "minimum_formal_signed_margin": -0.12039190063365712,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state24",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.5
+        },
+        {
+          "actual_delay_steps": 2,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 25,
+          "maximum_terminal_speed_m_per_s": 0.03013084459094758,
+          "mean_action_rms": 0.2824331972795159,
+          "mean_formal_signed_margin": -0.060261523433506714,
+          "minimum_formal_signed_margin": -0.16307665948352068,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state25",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.5
+        },
+        {
+          "actual_delay_steps": 2,
+          "all_no_future_measurement": true,
+          "all_prefix_guards_pass": true,
+          "all_streaming_queues_consistent": true,
+          "expected_rollouts": 2,
+          "first_affected_state_step": 26,
+          "maximum_terminal_speed_m_per_s": 0.03041568320511344,
+          "mean_action_rms": 0.28254052198375823,
+          "mean_formal_signed_margin": -0.07501907527316348,
+          "minimum_formal_signed_margin": -0.1775291558419858,
+          "n_rollouts": 2,
+          "passed": false,
+          "policy_id": "early_brake_effect_state26",
+          "target_coverage_complete": true,
+          "target_pass_fraction": 0.5
+        }
+      ],
+      "candidate_window_ms": [
+        200,
+        260
+      ],
+      "coverage_complete": true,
+      "expected_rollouts": 28,
+      "formal_arrival_deadline_step": 27,
+      "formal_hold_through_step": 37,
+      "n_rollouts": 28,
+      "passed": false,
+      "phase": "oracle_development",
+      "required_targets": [
+        "nominal",
+        "RZ_p10_m10"
+      ],
+      "schema_version": 1,
+      "selected_policy_by_delay": {},
+      "selected_summaries": [],
+      "selection_conditioned_only_on_trusted_delay": true,
+      "stage": "Stage4.1R13",
+      "unseen_target_holdout_claimed": false
+    },
+    "restart_audit": {
+      "audit_completed": true,
+      "availability_requirement_for_stage4_1r13": false,
+      "available_folders": [],
+      "candidate_folders": [
+        "1080ms",
+        "1090ms",
+        "1110ms",
+        "1120ms"
+      ],
+      "passed": true,
+      "phase": "restart_audit",
+      "schema_version": 1,
+      "simulation_root": "/home/yangshen0711/tsc_all/tsc_simulation/HH70-PCS-ENV-LOW-FIELD-SIDE-118",
+      "stage": "Stage4.1R13",
+      "stage4_2r1_was_not_run_or_reused": true,
+      "true_restart_validation_available": false,
+      "true_restart_validation_performed": false
+    },
+    "source_audit": {
+      "formal_timing_contract_unchanged": true,
+      "interpretation": "R12 ran correctly and proved useful post-arrival damping: all six nominal delay=2 candidates pass. It cannot close the bank because the nominal delay=1 endpoint-late-speed violation already exists at 270 ms, and both RZ_p10_m10 source paths have an immutable state-27 lower bound above 0.1 m/s. R13 must change the causal pre-deadline braking trajectory while retaining the same 270/370 ms gate.",
+      "latest_globally_feasible_first_affected_state_step": 26,
+      "passed": true,
+      "phase": "source_audit",
+      "r11_2000ms_remains_auxiliary_only": true,
+      "r12_delay1_formal_pass_count": 0,
+      "r12_delay1_residual_is_preexisting_arrival_window_violation": true,
+      "r12_delay2_formal_pass_count": 6,
+      "r12_environment_success_count": 12,
+      "r12_post_deadline_bank_was_structurally_incapable_of_closing_all_four": true,
+      "r12_post_deadline_controller_fixed_nominal_delay2": true,
+      "r12_raw_rollouts": 12,
+      "schema_version": 1,
+      "source_stage4_1r11_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313",
+      "source_stage4_1r12_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r12_runs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_20260729_022502",
+      "stage": "Stage4.1R13",
+      "stage4_2r1_was_not_run_or_reused": true
+    }
+  },
+  "plant_parameter_robustness_validated": false,
+  "primary_pass": false,
+  "r12_post_deadline_design_infeasibility_audited": true,
+  "schema_version": 1,
+  "selected_policy_by_delay": {},
+  "selection_conditioned_only_on_trusted_delay": true,
+  "selection_used_both_required_targets": true,
+  "source_r11_long_hold_retained_as_diagnostic_only": true,
+  "source_stage4_1r11_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313",
+  "source_stage4_1r12_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r12_runs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_20260729_022502",
+  "stage": "Stage4.1R13",
+  "stage4_2r1_was_not_run_or_reused": true,
+  "terminal_measurement_noise_robustness_validated": false,
+  "true_restart_validation_available": false,
+  "true_restart_validation_performed": false,
+  "trusted_calibration_required": true,
+  "unchanged_source_case_count": 14,
+  "unseen_hidden_state_robustness_validated": false,
+  "unseen_target_generalization_validated": false,
+  "verdict": "STAGE4_1R13_ORIGINAL_DEADLINE_EARLY_BRAKING_INCOMPLETE",
+  "weak_slew_arrival_deadline_ms": 270,
+  "weak_slew_delay0_controller_changed": false,
+  "weak_slew_hold_through_ms": 370
+}

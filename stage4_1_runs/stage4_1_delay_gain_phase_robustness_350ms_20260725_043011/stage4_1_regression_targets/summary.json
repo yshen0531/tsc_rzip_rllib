@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1",
+  "phase": "regression_targets",
+  "n_rollouts": 20,
+  "n_scenarios": 10,
+  "pair_summary": {
+    "n_pairs": 10,
+    "n_baseline_pass": 10,
+    "n_feedback_pass": 6,
+    "n_preserved": 6,
+    "n_recovered": 0,
+    "n_lost": 4,
+    "median_signed_margin_gain": -0.30760883708449444,
+    "worst_signed_margin_gain": -0.4023291074859864
+  },
+  "passed": false
+}

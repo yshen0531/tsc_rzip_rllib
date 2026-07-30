@@ -1,0 +1,3393 @@
+[Stage3.2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage3.2] source_stage3_1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_1_runs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms_20260722_013158
+[Stage3.2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_2_runs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms_20260722_073932
+[Stage3.2] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms.json
+[Stage3.2] command=all
+[Stage3.2] backend=ray
+[Stage3.2] resume=0
+[Stage3.2] workers=96
+[Stage3.2] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage3.2] RAY_TMPDIR=/tmp/stage3_2_1120
+[Stage3.2] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage3.2] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage3.2] Complete standalone tree: no Git, network, or external code tree is used.
+[Stage3.2] Stage3.1 confirmed strict candidates are reused; Stage3.1 optimization is not repeated.
+[Stage3.2] Hard gate remains 30 mm / 0.10 m/s / 10 kA; arrival must complete by 150 ms and hold through 250 ms.
+[Stage3.2] Phase A optimizes signed 150 ms margin; Phase B/C extend and optimize long hold; Phase D/E identify and test full-horizon causal feedback.
+[Stage3.2] Feedback selection uses signed margins and preservation/recovery, not zero-clipped violations.
+[Stage3.2] The tested feedback envelope is not initial-state, plant-parameter, noise, or delay robustness.
+[Stage3.2] Final task remains a robust causal feedback controller; residual RL is not the primary controller.
+[Stage3.2] SIGKILL cannot be intercepted; completed JSON.GZ results remain resumable.
+2026-07-22 15:39:39,528	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] 1/84
+[Stage2 evaluation] 2/84
+[Stage2 evaluation] 3/84
+[Stage2 evaluation] 4/84
+[Stage2 evaluation] 5/84
+[Stage2 evaluation] 6/84
+[Stage2 evaluation] 7/84
+[Stage2 evaluation] 8/84
+[Stage2 evaluation] 9/84
+[Stage2 evaluation] 10/84
+[Stage2 evaluation] 11/84
+[Stage2 evaluation] 12/84
+[Stage2 evaluation] 13/84
+[Stage2 evaluation] 14/84
+[Stage2 evaluation] 15/84
+[Stage2 evaluation] 16/84
+[Stage2 evaluation] 17/84
+[Stage2 evaluation] 18/84
+[Stage2 evaluation] 19/84
+[Stage2 evaluation] 20/84
+[Stage2 evaluation] 21/84
+[Stage2 evaluation] 22/84
+[Stage2 evaluation] 23/84
+[Stage2 evaluation] 24/84
+[Stage2 evaluation] 25/84
+[Stage2 evaluation] 26/84
+[Stage2 evaluation] 27/84
+[Stage2 evaluation] 28/84
+[Stage2 evaluation] 29/84
+[Stage2 evaluation] 30/84
+[Stage2 evaluation] 31/84
+[Stage2 evaluation] 32/84
+[Stage2 evaluation] 33/84
+[Stage2 evaluation] 34/84
+[Stage2 evaluation] 35/84
+[Stage2 evaluation] 36/84
+[Stage2 evaluation] 37/84
+[Stage2 evaluation] 38/84
+[Stage2 evaluation] 39/84
+[Stage2 evaluation] 40/84
+[Stage2 evaluation] 41/84
+[Stage2 evaluation] 42/84
+[Stage2 evaluation] 43/84
+[Stage2 evaluation] 44/84
+[Stage2 evaluation] 45/84
+[Stage2 evaluation] 46/84
+[Stage2 evaluation] 47/84
+[Stage2 evaluation] 48/84
+[Stage2 evaluation] 49/84
+[Stage2 evaluation] 50/84
+[Stage2 evaluation] 51/84
+[Stage2 evaluation] 52/84
+[Stage2 evaluation] 53/84
+[Stage2 evaluation] 54/84
+[Stage2 evaluation] 55/84
+[Stage2 evaluation] 56/84
+[Stage2 evaluation] 57/84
+[Stage2 evaluation] 58/84
+[Stage2 evaluation] 59/84
+[Stage2 evaluation] 60/84
+[Stage2 evaluation] 61/84
+[Stage2 evaluation] 62/84
+[Stage2 evaluation] 63/84
+[Stage2 evaluation] 64/84
+[Stage2 evaluation] 65/84
+[Stage2 evaluation] 66/84
+[Stage2 evaluation] 67/84
+[Stage2 evaluation] 68/84
+[Stage2 evaluation] 69/84
+[Stage2 evaluation] 70/84
+[Stage2 evaluation] 71/84
+[Stage2 evaluation] 72/84
+[Stage2 evaluation] 73/84
+[Stage2 evaluation] 74/84
+[Stage2 evaluation] 75/84
+[Stage2 evaluation] 76/84
+[Stage2 evaluation] 77/84
+[Stage2 evaluation] 78/84
+[Stage2 evaluation] 79/84
+[Stage2 evaluation] 80/84
+[Stage2 evaluation] 81/84
+[Stage2 evaluation] 82/84
+[Stage2 evaluation] 83/84
+[Stage2 evaluation] 84/84
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "stage": "Stage3.2",
+  "phase": "margin",
+  "round": 0,
+  "probe_success": 84,
+  "proposal_success": 24,
+  "best": {
+    "candidate_id": "s32mr000s_775222de137afe83",
+    "strict": true,
+    "sustained_box_m": 0.0291239379,
+    "post_arrival_velocity_rms": 0.01866764982580827,
+    "hard_signed_margin": 0.02920206999999997,
+    "internal_signed_margin": -0.059052287272727266
+  },
+  "next_round": 1,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] 1/84
+[Stage2 evaluation] 2/84
+[Stage2 evaluation] 3/84
+[Stage2 evaluation] 4/84
+[Stage2 evaluation] 5/84
+[Stage2 evaluation] 6/84
+[Stage2 evaluation] 7/84
+[Stage2 evaluation] 8/84
+[Stage2 evaluation] 9/84
+[Stage2 evaluation] 10/84
+[Stage2 evaluation] 11/84
+[Stage2 evaluation] 12/84
+[Stage2 evaluation] 13/84
+[Stage2 evaluation] 14/84
+[Stage2 evaluation] 15/84
+[Stage2 evaluation] 16/84
+[Stage2 evaluation] 17/84
+[Stage2 evaluation] 18/84
+[Stage2 evaluation] 19/84
+[Stage2 evaluation] 20/84
+[Stage2 evaluation] 21/84
+[Stage2 evaluation] 22/84
+[Stage2 evaluation] 23/84
+[Stage2 evaluation] 24/84
+[Stage2 evaluation] 25/84
+[Stage2 evaluation] 26/84
+[Stage2 evaluation] 27/84
+[Stage2 evaluation] 28/84
+[Stage2 evaluation] 29/84
+[Stage2 evaluation] 30/84
+[Stage2 evaluation] 31/84
+[Stage2 evaluation] 32/84
+[Stage2 evaluation] 33/84
+[Stage2 evaluation] 34/84
+[Stage2 evaluation] 35/84
+[Stage2 evaluation] 36/84
+[Stage2 evaluation] 37/84
+[Stage2 evaluation] 38/84
+[Stage2 evaluation] 39/84
+[Stage2 evaluation] 40/84
+[Stage2 evaluation] 41/84
+[Stage2 evaluation] 42/84
+[Stage2 evaluation] 43/84
+[Stage2 evaluation] 44/84
+[Stage2 evaluation] 45/84
+[Stage2 evaluation] 46/84
+[Stage2 evaluation] 47/84
+[Stage2 evaluation] 48/84
+[Stage2 evaluation] 49/84
+[Stage2 evaluation] 50/84
+[Stage2 evaluation] 51/84
+[Stage2 evaluation] 52/84
+[Stage2 evaluation] 53/84
+[Stage2 evaluation] 54/84
+[Stage2 evaluation] 55/84
+[Stage2 evaluation] 56/84
+[Stage2 evaluation] 57/84
+[Stage2 evaluation] 58/84
+[Stage2 evaluation] 59/84
+[Stage2 evaluation] 60/84
+[Stage2 evaluation] 61/84
+[Stage2 evaluation] 62/84
+[Stage2 evaluation] 63/84
+[Stage2 evaluation] 64/84
+[Stage2 evaluation] 65/84
+[Stage2 evaluation] 66/84
+[Stage2 evaluation] 67/84
+[Stage2 evaluation] 68/84
+[Stage2 evaluation] 69/84
+[Stage2 evaluation] 70/84
+[Stage2 evaluation] 71/84
+[Stage2 evaluation] 72/84
+[Stage2 evaluation] 73/84
+[Stage2 evaluation] 74/84
+[Stage2 evaluation] 75/84
+[Stage2 evaluation] 76/84
+[Stage2 evaluation] 77/84
+[Stage2 evaluation] 78/84
+[Stage2 evaluation] 79/84
+[Stage2 evaluation] 80/84
+[Stage2 evaluation] 81/84
+[Stage2 evaluation] 82/84
+[Stage2 evaluation] 83/84
+[Stage2 evaluation] 84/84
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "stage": "Stage3.2",
+  "phase": "margin",
+  "round": 1,
+  "probe_success": 84,
+  "proposal_success": 24,
+  "best": {
+    "candidate_id": "s32mr001p_ab1dff8ddf4e904e",
+    "strict": true,
+    "sustained_box_m": 0.0290981957,
+    "post_arrival_velocity_rms": 0.01937568196088914,
+    "hard_signed_margin": 0.03006014333333329,
+    "internal_signed_margin": -0.05811620727272726
+  },
+  "next_round": 2,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] waiting 0/84
+[Stage2 evaluation] 1/84
+[Stage2 evaluation] 2/84
+[Stage2 evaluation] 3/84
+[Stage2 evaluation] 4/84
+[Stage2 evaluation] 5/84
+[Stage2 evaluation] 6/84
+[Stage2 evaluation] 7/84
+[Stage2 evaluation] 8/84
+[Stage2 evaluation] 9/84
+[Stage2 evaluation] 10/84
+[Stage2 evaluation] 11/84
+[Stage2 evaluation] 12/84
+[Stage2 evaluation] 13/84
+[Stage2 evaluation] 14/84
+[Stage2 evaluation] 15/84
+[Stage2 evaluation] 16/84
+[Stage2 evaluation] 17/84
+[Stage2 evaluation] 18/84
+[Stage2 evaluation] 19/84
+[Stage2 evaluation] 20/84
+[Stage2 evaluation] 21/84
+[Stage2 evaluation] 22/84
+[Stage2 evaluation] 23/84
+[Stage2 evaluation] 24/84
+[Stage2 evaluation] 25/84
+[Stage2 evaluation] 26/84
+[Stage2 evaluation] 27/84
+[Stage2 evaluation] 28/84
+[Stage2 evaluation] 29/84
+[Stage2 evaluation] 30/84
+[Stage2 evaluation] 31/84
+[Stage2 evaluation] 32/84
+[Stage2 evaluation] 33/84
+[Stage2 evaluation] 34/84
+[Stage2 evaluation] 35/84
+[Stage2 evaluation] 36/84
+[Stage2 evaluation] 37/84
+[Stage2 evaluation] 38/84
+[Stage2 evaluation] 39/84
+[Stage2 evaluation] 40/84
+[Stage2 evaluation] 41/84
+[Stage2 evaluation] 42/84
+[Stage2 evaluation] 43/84
+[Stage2 evaluation] 44/84
+[Stage2 evaluation] 45/84
+[Stage2 evaluation] 46/84
+[Stage2 evaluation] 47/84
+[Stage2 evaluation] 48/84
+[Stage2 evaluation] 49/84
+[Stage2 evaluation] 50/84
+[Stage2 evaluation] 51/84
+[Stage2 evaluation] 52/84
+[Stage2 evaluation] 53/84
+[Stage2 evaluation] 54/84
+[Stage2 evaluation] 55/84
+[Stage2 evaluation] 56/84
+[Stage2 evaluation] 57/84
+[Stage2 evaluation] 58/84
+[Stage2 evaluation] 59/84
+[Stage2 evaluation] 60/84
+[Stage2 evaluation] 61/84
+[Stage2 evaluation] 62/84
+[Stage2 evaluation] 63/84
+[Stage2 evaluation] 64/84
+[Stage2 evaluation] 65/84
+[Stage2 evaluation] 66/84
+[Stage2 evaluation] 67/84
+[Stage2 evaluation] 68/84
+[Stage2 evaluation] 69/84
+[Stage2 evaluation] 70/84
+[Stage2 evaluation] 71/84
+[Stage2 evaluation] 72/84
+[Stage2 evaluation] 73/84
+[Stage2 evaluation] 74/84
+[Stage2 evaluation] 75/84
+[Stage2 evaluation] 76/84
+[Stage2 evaluation] 77/84
+[Stage2 evaluation] 78/84
+[Stage2 evaluation] 79/84
+[Stage2 evaluation] 80/84
+[Stage2 evaluation] 81/84
+[Stage2 evaluation] 82/84
+[Stage2 evaluation] 83/84
+[Stage2 evaluation] 84/84
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:438: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  g = append(wrapped_grad(x), 0.0)
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "stage": "Stage3.2",
+  "phase": "margin",
+  "round": 2,
+  "probe_success": 84,
+  "proposal_success": 24,
+  "best": {
+    "candidate_id": "s32mr002p_60561a966014cce4",
+    "strict": true,
+    "sustained_box_m": 0.0290815158,
+    "post_arrival_velocity_rms": 0.020146686885443243,
+    "hard_signed_margin": 0.030616140000000014,
+    "internal_signed_margin": -0.0575096654545455
+  },
+  "next_round": 3,
+  "finished": true,
+  "stop_reason": "max_margin_rounds"
+}
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] waiting 0/48
+[Stage2 evaluation] 1/48
+[Stage2 evaluation] 2/48
+[Stage2 evaluation] 3/48
+[Stage2 evaluation] 4/48
+[Stage2 evaluation] 5/48
+[Stage2 evaluation] 6/48
+[Stage2 evaluation] 7/48
+[Stage2 evaluation] 8/48
+[Stage2 evaluation] 9/48
+[Stage2 evaluation] 10/48
+[Stage2 evaluation] 11/48
+[Stage2 evaluation] 12/48
+[Stage2 evaluation] 13/48
+[Stage2 evaluation] 14/48
+[Stage2 evaluation] 15/48
+[Stage2 evaluation] 16/48
+[Stage2 evaluation] 17/48
+[Stage2 evaluation] 18/48
+[Stage2 evaluation] 19/48
+[Stage2 evaluation] 20/48
+[Stage2 evaluation] 21/48
+[Stage2 evaluation] 22/48
+[Stage2 evaluation] 23/48
+[Stage2 evaluation] 24/48
+[Stage2 evaluation] 25/48
+[Stage2 evaluation] 26/48
+[Stage2 evaluation] 27/48
+[Stage2 evaluation] 28/48
+[Stage2 evaluation] 29/48
+[Stage2 evaluation] 30/48
+[Stage2 evaluation] 31/48
+[Stage2 evaluation] 32/48
+[Stage2 evaluation] 33/48
+[Stage2 evaluation] 34/48
+[Stage2 evaluation] 35/48
+[Stage2 evaluation] 36/48
+[Stage2 evaluation] 37/48
+[Stage2 evaluation] 38/48
+[Stage2 evaluation] 39/48
+[Stage2 evaluation] 40/48
+[Stage2 evaluation] 41/48
+[Stage2 evaluation] 42/48
+[Stage2 evaluation] 43/48
+[Stage2 evaluation] 44/48
+[Stage2 evaluation] 45/48
+[Stage2 evaluation] 46/48
+[Stage2 evaluation] 47/48
+[Stage2 evaluation] 48/48
+{
+  "schema_version": 1,
+  "stage": "Stage3.2",
+  "phase": "extension_screen",
+  "created_utc": "20260722_081725",
+  "n_candidates": 48,
+  "n_successful": 48,
+  "n_source_families_successful": 4,
+  "n_strict_long_hold": 0,
+  "n_relaxed_long_hold": 6,
+  "best_candidate_id": "s32screen_c9259cdaf60f253e",
+  "best_signed_margin": -0.06842920999999991,
+  "best_sustained_box_m": 0.0320528763,
+  "best_post_arrival_velocity_rms": 0.04366530095647251
+}
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] waiting 0/120
+[Stage2 evaluation] 1/120
+[Stage2 evaluation] 2/120
+[Stage2 evaluation] 3/120
+[Stage2 evaluation] 4/120
+[Stage2 evaluation] 5/120
+[Stage2 evaluation] 6/120
+[Stage2 evaluation] 7/120
+[Stage2 evaluation] 8/120
+[Stage2 evaluation] 9/120
+[Stage2 evaluation] 10/120
+[Stage2 evaluation] 11/120
+[Stage2 evaluation] 12/120
+[Stage2 evaluation] 13/120
+[Stage2 evaluation] 14/120
+[Stage2 evaluation] 15/120
+[Stage2 evaluation] 16/120
+[Stage2 evaluation] 17/120
+[Stage2 evaluation] 18/120
+[Stage2 evaluation] 19/120
+[Stage2 evaluation] 20/120
+[Stage2 evaluation] 21/120
+[Stage2 evaluation] 22/120
+[Stage2 evaluation] 23/120
+[Stage2 evaluation] 24/120
+[Stage2 evaluation] 25/120
+[Stage2 evaluation] 26/120
+[Stage2 evaluation] 27/120
+[Stage2 evaluation] 28/120
+[Stage2 evaluation] 29/120
+[Stage2 evaluation] 30/120
+[Stage2 evaluation] 31/120
+[Stage2 evaluation] 32/120
+[Stage2 evaluation] 33/120
+[Stage2 evaluation] 34/120
+[Stage2 evaluation] 35/120
+[Stage2 evaluation] 36/120
+[Stage2 evaluation] 37/120
+[Stage2 evaluation] 38/120
+[Stage2 evaluation] 39/120
+[Stage2 evaluation] 40/120
+[Stage2 evaluation] 41/120
+[Stage2 evaluation] 42/120
+[Stage2 evaluation] 43/120
+[Stage2 evaluation] 44/120
+[Stage2 evaluation] 45/120
+[Stage2 evaluation] 46/120
+[Stage2 evaluation] 47/120
+[Stage2 evaluation] 48/120
+[Stage2 evaluation] 49/120
+[Stage2 evaluation] 50/120
+[Stage2 evaluation] 51/120
+[Stage2 evaluation] 52/120
+[Stage2 evaluation] 53/120
+[Stage2 evaluation] 54/120
+[Stage2 evaluation] 55/120
+[Stage2 evaluation] 56/120
+[Stage2 evaluation] 57/120
+[Stage2 evaluation] 58/120
+[Stage2 evaluation] 59/120
+[Stage2 evaluation] 60/120
+[Stage2 evaluation] 61/120
+[Stage2 evaluation] 62/120
+[Stage2 evaluation] 63/120
+[Stage2 evaluation] 64/120
+[Stage2 evaluation] 65/120
+[Stage2 evaluation] 66/120
+[Stage2 evaluation] 67/120
+[Stage2 evaluation] 68/120
+[Stage2 evaluation] 69/120
+[Stage2 evaluation] 70/120
+[Stage2 evaluation] 71/120
+[Stage2 evaluation] 72/120
+[Stage2 evaluation] 73/120
+[Stage2 evaluation] 74/120
+[Stage2 evaluation] 75/120
+[Stage2 evaluation] 76/120
+[Stage2 evaluation] 77/120
+[Stage2 evaluation] 78/120
+[Stage2 evaluation] 79/120
+[Stage2 evaluation] 80/120
+[Stage2 evaluation] 81/120
+[Stage2 evaluation] 82/120
+[Stage2 evaluation] 83/120
+[Stage2 evaluation] 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] waiting 84/120
+[Stage2 evaluation] 85/120
+[Stage2 evaluation] 86/120
+[Stage2 evaluation] 87/120
+[Stage2 evaluation] 88/120
+[Stage2 evaluation] 89/120
+[Stage2 evaluation] 90/120
+[Stage2 evaluation] 91/120
+[Stage2 evaluation] 92/120
+[Stage2 evaluation] 93/120
+[Stage2 evaluation] 94/120
+[Stage2 evaluation] 95/120
+[Stage2 evaluation] 96/120
+[Stage2 evaluation] 97/120
+[Stage2 evaluation] 98/120
+[Stage2 evaluation] 99/120
+[Stage2 evaluation] 100/120
+[Stage2 evaluation] 101/120
+[Stage2 evaluation] 102/120
+[Stage2 evaluation] 103/120
+[Stage2 evaluation] 104/120
+[Stage2 evaluation] 105/120
+[Stage2 evaluation] 106/120
+[Stage2 evaluation] 107/120
+[Stage2 evaluation] 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+[Stage2 evaluation] waiting 108/120
+*** SIGTERM received at time=1784787932 on cpu 166 ***
+PC: @     0x7f0c50a48de2  (unknown)  pthread_cond_timedwait@@GLIBC_2.3.2
+    @     0x7f0c50a4c630  1059768368  (unknown)
+    @     0x7f0c3fab6987       1328  ray::core::CoreWorkerMemoryStore::GetImpl()
+    @     0x7f0c3fab7bed       1360  ray::core::CoreWorkerMemoryStore::Wait()
+    @     0x7f0c3f955ecb       1776  ray::core::CoreWorker::Wait()
+    @     0x7f0c3f87dc6f        352  __pyx_pw_3ray_7_raylet_10CoreWorker_53wait()
+    @           0x5158b4  (unknown)  PyObject_Vectorcall
+    @     0x7f0c40c939c0  (unknown)  (unknown)
+[2026-07-23 14:25:33,003 E 412991 412991] logging.cc:474: *** SIGTERM received at time=1784787933 on cpu 166 ***
+[2026-07-23 14:25:33,003 E 412991 412991] logging.cc:474: PC: @     0x7f0c50a48de2  (unknown)  pthread_cond_timedwait@@GLIBC_2.3.2
+[2026-07-23 14:25:33,005 E 412991 412991] logging.cc:474:     @     0x7f0c50a4c630  1059768368  (unknown)
+[2026-07-23 14:25:33,005 E 412991 412991] logging.cc:474:     @     0x7f0c3fab6987       1328  ray::core::CoreWorkerMemoryStore::GetImpl()
+[2026-07-23 14:25:33,005 E 412991 412991] logging.cc:474:     @     0x7f0c3fab7bed       1360  ray::core::CoreWorkerMemoryStore::Wait()
+[2026-07-23 14:25:33,005 E 412991 412991] logging.cc:474:     @     0x7f0c3f955ecb       1776  ray::core::CoreWorker::Wait()
+[2026-07-23 14:25:33,005 E 412991 412991] logging.cc:474:     @     0x7f0c3f87dc6f        352  __pyx_pw_3ray_7_raylet_10CoreWorker_53wait()
+[2026-07-23 14:25:33,005 E 412991 412991] logging.cc:474:     @           0x5158b4  (unknown)  PyObject_Vectorcall
+[2026-07-23 14:25:33,007 E 412991 412991] logging.cc:474:     @     0x7f0c40c939c0  (unknown)  (unknown)
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xae\xa6\xd4\x0eJ\x15w\xd1\x13F\xb0\xa2\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xe4+\xee\x0e\xe4\xdbs\xd0@\xb2\x1b\x04\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xadg\xd2Cs\xcag-\xbaC\xb4y\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xe3\x1e/\xc3\x93\xb0\xe3R<Ic\xbd\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xca\x16\xacx\x9d:W\xdf\xf6}\xcd\x08\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xa9\x1es\xa0\xa3\x17\xa5\x8a\x7f.\xb6\xbf\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x1cS\x95U\xdb\xea\xa3\xeb\xd4K\xf8\xc8\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'R\xd0\xd7\x18\xddi\xebc\xffl\x84\xe7\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xfaf<\x00\xb2\xf8oTP\xe2x\xb2\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xdd\x9c\xaf\xb6)\xa7iF%Za\x92\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:38569: Failed to connect to remote host: Connection refused rpc_code: 14', b'\x17\x19l\x85)d\x16\x18ul\xa8*\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x0b~\x10"\x1bT\x81\xfbS@Y\x82\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:40580: Failed to connect to remote host: Connection refused rpc_code: 14', b'\xfe\xba\x06\xe07\x06\x9c\xc9\xe3h5h\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x1b,SJU\x86:\xa4\xc1\xed\xc8\xa4\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xacW\x94\xee\x01o\xda~\xfd\xa61\xdd\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'w!0U_\xb9\x7f\x13\n\xe7\xc3l\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xfc\xa5\xd7\xe5\xdc\xc2G8p\x92\x99\xb4\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xb0\x03\xcc\xabT\xe5\x97\xb6\xc0\x1doj\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'3\x1e\xf7\x0e>W\xae\xef\xa5\x96_u\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x81\x9d\xc6%\xc2\xf6\xe8\xe3)c\x0bg\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'F\xa9\xf73\xd5\xb4\xe71N\xb5%\x92\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:45399: Failed to connect to remote host: Connection refused rpc_code: 14', b'a\x91\xd6\xdbQa\xf6]o\x10%k\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b"\xc2GM\x8bC\xe2\xfe'C}\x9b\xc0\x01\x00\x00\x00")
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xf62n\x8cR\x0c\xa6d\xba\xadO\xfc\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xfeW\x1bZ\xca)\xb3\xab\xa1n\xe1\n\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x80\xc0\x14\x81\x99\x9a\x83?\xb1\xb2sw\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'M(\xbcm\xa2\xc8{\xe8D\xf2L\x00\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xca\x1c]\xdew^\x88!z Dr\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'X\xb3\n}\xbe\xed\xb0\x1c/\xec\xfc\x0b\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xcdo\xae\xfe+\x86\x84\x84Rb\x0f\xb2\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xe4G\x04\xfcq\x9d\xb6\x9e\x18\xdc\x03\xfc\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xee\xd3\xb7\x08\xed\xf3\xd3Z\x02M\x8b\xd8\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b',\x98\xe0mI\x88\xc5\xfd/\xdc\x1eB\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x93\x88\xaf[r\xb9\xcc\xb8\xbc\xcfK\x18\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'~\xd5\xc0\xe4Q\xedh\xda\x08\x93\xc2\xb8\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xaf\x02h\xda\x97dT\x80\x0b\xe5-d\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xd1\xc0N\xf85\x93\x05%\n\x90\xca\xb6\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b';\xda<\xe2\xc2\x0b\xe8\x0e\xf1RkH\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xb9\xde\x9b\x9e\xaf\x16\xd3\xe8\xf4\x9d\x01 \x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x85%\xab&\x03t\x9d\xa4\xe5\xe0\xa2\x03\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x01\xea\x1b\x843\xd9t\xfb\xda\xb6\x03b\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'b_o\x15\xd8\xfeM\xdeHO\x04\x8b\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'B\x11{\xc9\x7f:>\xe8\xe6\xa6\x91 \x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'A(\x81\xae\xbc\x8bD~\xae\xb6\x18T\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x8e\xfe\xfd\xbc\xd3\xbc\xda\xcd\xd5tr\xf0\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xf0\xaf*\x99\xb1\xd5w\xce\xca\xfarA\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x88\xb7\x017\xdc\xd1)\xd6T\x1c\x851\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xe7\\\xd2\xbfBn\xe2\xe0\x16R\x13W\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xe4P)F\xf6y\x7fm\xdce\x0b\xcd\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'7\x047P\x84\xa9\xbb`\x088\xee\xb9\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'*\x863\x1fHZ\x98\xc9\xdb\x08\x97\xd9\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xe8\x90\xedNf\x05w\x1e\x02\xc9W:\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xd9!\xa3\xe0:\xae/\x06\xf1\x15\x85\x01\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x16\xeb\xea\xc2\x0b\x9cw\x1f\xe3\xc6\xfe3\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'c\xad\xa6\xc0\x0e\x9d\xb7a\x89[\xe1\xbf\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'?8\x84\x84\xcf\xea\x8d\xc4\x19\x1a\x1aY\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'(\xa8\x89`\x9c|\xf85.w\x06\xf2\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x0ebV\\\x7f\xc94&>t<\xe5\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xb2_\x97{\xbbTb\xc6\xa7~\x06\x89\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x18\xed\xc9\xae-w\x99-\xcf\xe1\xc8\xc2\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'2\xb6\x13:\x98y\x06\xef\x866\x14\x9b\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:34627: Failed to connect to remote host: Connection refused rpc_code: 14', b'e\\\x10R\xbeO8mSho\x8d\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'|&e\xd6\xbb\xa96\xd6\x84\tK\x97\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x19Wn\x9a\xff\x85xD\xc3\x10^\x93\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xe8\xd2\x142\x90\xed"\xbd*\x93`\xf4\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x11K6DT\xfe\xd3kX\x9c\xb3\xbd\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:41791: Failed to connect to remote host: Connection refused rpc_code: 14', b'\xe8|&cl\x85\xfa\x82\x01\xe1X\xd8\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x84\xfd\xd4\xa5\xb0\x89\x94M\x9fU\x9dD\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'^\xea\xa5$xF\x10\xf7:\x7f\x15\xd4\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x9e!YG\xc22>\xec$,,2\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:42105: Failed to connect to remote host: Connection refused rpc_code: 14', b'9\x94\x89\x15q=\xab\x1b\xdbW?\xdc\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x94@C\x87)\xe9Z7k\t\xc7\xe5\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:46076: Failed to connect to remote host: Connection refused rpc_code: 14', b'v\xd1V\xf0r\x8b\x11\xae0^\xa5b\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b"\x93FX'\xab\x18\xbc\x0c\xe5\xc0\xf50\x01\x00\x00\x00")
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x98|\xb7\x82\xa7J\xb0/?\x11\xce\x1f\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: failed to connect to all addresses; last error: UNKNOWN: ipv4:10.10.60.108:36975: Failed to connect to remote host: Connection refused rpc_code: 14', b'$\xb8X\x19\xd3\xe5p\\\xd6\x88@\xa6\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'XI\xc7\xd1\x9e\x95B,V\xd4$\x91\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\x0b-4S\xb3\xcf\x1b\xce\x83\xfe\xee\xdc\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xc8\x92v\xfe\x95\x97\x10\x95\xab\x08X}\x01\x00\x00\x00')
+[Stage2 cleanup] actor close failed: ActorUnavailableError('The actor is temporarily unavailable: RpcError: RPC error: Cancelling all calls rpc_code: 14', b'\xfe\xb2\xe8c\xbd]\xa6\r\xcf\xc2&L\x01\x00\x00\x00')

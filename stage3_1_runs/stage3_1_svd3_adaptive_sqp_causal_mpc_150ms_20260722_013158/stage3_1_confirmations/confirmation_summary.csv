@@ -1,0 +1,9 @@
+candidate_id,confirmation_rank,confirmation_reasons,nominal_id,repeats,successful_repeats,all_repeats_strict_gate,all_repeats_relaxed_gate,worst_stage3_1_max_violation,latest_confirmed_strict_arrival_ms,latest_confirmed_relaxed_arrival_ms,worst_sustained_box_max_error_m,max_post_arrival_velocity_rms_m_per_s
+s31r999p_69651620f6334222,1,"[""strict"",""corner"",""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299374239,0.047239747377620614
+s31r999p_8ed9bde8bda54aa0,2,"[""strict"",""corner"",""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299379992,0.04744588373480257
+s31r999p_633377300e52a9db,3,"[""strict"",""corner"",""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299413698,0.047481694984117966
+s31r999p_40cc543ce7fc51f6,4,"[""corner"",""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299369489,0.04724319648700997
+s31r999p_762ba9c067439dec,5,"[""corner"",""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299503523,0.04760960160723886
+s31r999p_da372886045202c8,6,"[""corner"",""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299394551,0.047557279499576506
+s31r999p_b56bf2b93a0252ec,7,"[""corner"",""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299368268,0.0475103318385726
+s31r999p_0b949e08c6d28d42,8,"[""speed_safe"",""relaxed""]",nominal_05_s22g000_571ab4a158d29207,3,3,True,True,0.0,140,120,0.0299429907,0.04774810056418463

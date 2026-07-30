@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R16",
+  "created_utc": "20260729_132301",
+  "verdict": "STAGE4_1R16_AMPLITUDE_CERTIFIED_ORIGINAL_DEADLINE_INCOMPLETE",
+  "source_stage4_1r15b_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15b_runs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_20260729_115128",
+  "source_audit_status": "passed",
+  "amplitude_envelope_validation_status": "failed",
+  "calibrated_confirmation_status": "not_run",
+  "formal_grid_confirmation_status": "not_run",
+  "closure_candidate_was_preregistered_before_new_r16_tsc": true,
+  "closure_candidate_magnitude": 6.0,
+  "closure_candidate_peak_component": 0.09,
+  "formal_timing_contract_restored": false,
+  "arrival_deadline_expanded": false,
+  "true_restart_validation_performed": false,
+  "continuous_parameter_change_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "terminal_measurement_noise_robustness_validated": false,
+  "unseen_target_generalization_validated": false,
+  "unseen_hidden_state_robustness_validated": false,
+  "deployment_robustness_validated": false,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "finite_test_envelope_only": true,
+  "next_if_pass": "Freeze the original-deadline 18-case static-grid expert and proceed to true restart and hidden vessel/eddy-history validation. Do not claim unseen-target, continuous-parameter, noisy-sensing or deployment robustness, and do not start BC/DAgger/RL yet.",
+  "next_if_fail": "Do not relax the 250/270 ms deadlines and do not use 750 ms or 2 s late-arrival closure. If the 0.09 zero-net braking envelope does not validate and close all four modified paths, expand the bounded response basis with mode 2 and additional pre-deadline temporal shapes before another controller attempt.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "phases": {
+    "source_audit": {
+      "schema_version": 1,
+      "stage": "Stage4.1R16",
+      "phase": "source_audit",
+      "source_stage4_1r15b_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15b_runs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_20260729_115128",
+      "source_raw_rollouts": 32,
+      "source_joint_h0_validation_rollouts": 8,
+      "source_joint_h0_validation_keys": [
+        [
+          "RZ_p10_m10",
+          1,
+          -1
+        ],
+        [
+          "RZ_p10_m10",
+          1,
+          1
+        ],
+        [
+          "RZ_p10_m10",
+          2,
+          -1
+        ],
+        [
+          "RZ_p10_m10",
+          2,
+          1
+        ],
+        [
+          "nominal",
+          1,
+          -1
+        ],
+        [
+          "nominal",
+          1,
+          1
+        ],
+        [
+          "nominal",
+          2,
+          -1
+        ],
+        [
+          "nominal",
+          2,
+          1
+        ]
+      ],
+      "source_model_prediction_pass_fraction": 1.0,
+      "source_maximum_final_speed_error_m_per_s": 0.002078203578799332,
+      "individual_axis_externally_validated_peak_component": 0.015,
+      "joint_common_direction_externally_validated_coefficient": 0.5,
+      "joint_common_direction_externally_validated_peak_component": 0.0075,
+      "small_signal_validated_envelope_closes_nominal_only": true,
+      "small_signal_validated_envelope_closes_rz": false,
+      "preregistered_amplitude_levels": [
+        1.0,
+        2.0,
+        4.0,
+        6.0
+      ],
+      "preregistered_candidate_magnitude": 6.0,
+      "preregistered_candidate_peak_component": 0.09,
+      "candidate_is_diagnostic_model_extrapolation_until_real_tsc_validates_it": true,
+      "predicted_candidate_minimum_margin": 0.015765534868535824,
+      "checks": {
+        "source_raw_coverage": true,
+        "source_model_all_pass": true,
+        "source_superposition_all_pass": true,
+        "source_model_prediction_fraction_one": true,
+        "source_runtime_fraction_one": true,
+        "source_joint_h0_coverage_exact": true,
+        "source_joint_h0_runtime_and_model_all_pass": true,
+        "source_joint_h0_peak_component_is_0p0075": true,
+        "validated_envelope_nominal_passes": true,
+        "validated_envelope_rz_does_not_close": true,
+        "diagnostic_6x_predicts_all_four_pass": true,
+        "diagnostic_6x_minimum_margin": true
+      },
+      "passed": true,
+      "interpretation": "R15B is a valid finite clean small-signal superposition result.  Its externally validated joint common-direction coefficient 0.5 (0.0075 peak component) does not close either RZ weak-slew path.  A fixed 6x zero-net common braking direction is preregistered because the source model predicts all four modified paths with at least 0.01 signed margin, but this is an extrapolation and must be validated by new real-TSC amplitude-ladder trajectories before it may be used as a controller."
+    },
+    "amplitude_envelope_validation": {
+      "schema_version": 1,
+      "stage": "Stage4.1R16",
+      "phase": "amplitude_envelope_validation",
+      "n_rollouts": 32,
+      "expected_rollouts": 32,
+      "coverage_complete": true,
+      "environment_success_count": 32,
+      "runtime_guard_pass_fraction": 1.0,
+      "model_prediction_pass_fraction": 0.84375,
+      "joint_pass_fraction": 0.84375,
+      "maximum_velocity_component_rmse_m_per_s": 0.014510094037091255,
+      "maximum_endpoint_late_speed_error_m_per_s": 0.0019358497794274565,
+      "maximum_final_speed_error_m_per_s": 0.06378954508660793,
+      "maximum_position_rmse_m": 0.00038060588124472043,
+      "maximum_ip_rmse_A": 17.873042145735948,
+      "maximum_central_symmetry_velocity_rmse_m_per_s": 0.012459166752389306,
+      "maximum_per_unit_velocity_response_rmse_m_per_s": 0.0014977685845797147,
+      "maximum_per_unit_position_response_rmse_m": 3.811004223463343e-05,
+      "maximum_per_unit_ip_response_rmse_A": 2.34946126185384,
+      "maximum_current_utilization": 0.41195,
+      "closure_candidate_magnitude": 6.0,
+      "closure_candidate_peak_component": 0.09,
+      "closure_candidate_rollouts": 4,
+      "closure_candidate_formal_pass_fraction": 0.75,
+      "closure_candidate_minimum_signed_margin": -0.0010110975999380045,
+      "closure_candidate_passed": false,
+      "candidate_was_preregistered_from_source_model_not_selected_from_new_tsc": true,
+      "formal_timing_contract_unchanged": true,
+      "passed": false
+    },
+    "calibrated_confirmation": {},
+    "formal_grid_confirmation": {}
+  }
+}

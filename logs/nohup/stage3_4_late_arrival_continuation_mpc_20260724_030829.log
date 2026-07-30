@@ -1,0 +1,2619 @@
+[Stage3.4] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage3.4] source_stage3_3_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_3_runs/stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331
+[Stage3.4] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829
+[Stage3.4] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage3_4_late_arrival_continuation_mpc_350ms.json
+[Stage3.4] command=all
+[Stage3.4] backend=ray
+[Stage3.4] resume=0
+[Stage3.4] workers=96
+[Stage3.4] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage3.4] RAY_TMPDIR=/tmp/stage3_4_1120
+[Stage3.4] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage3.4] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage3.4] Complete standalone tree: no Git, network, or external code tree is used.
+[Stage3.4] Arrival may complete at 120-250 ms and must then hold through 350 ms; the latest arrival therefore has 100 ms of follow-up hold.
+[Stage3.4] R/Z hard gate remains 30 mm / 0.10 m/s; the 10 kA Ip safety gate is unchanged.
+[Stage3.4] Additional-heating Ip compatibility limits remain terminal 2000 A, hold RMS 2400 A, sustained max 4000 A.
+[Stage3.4] Mandatory targets are built by ordered continuation milestones and up to five real-TSC reduced-space refinement rounds.
+[Stage3.4] One physical 105-D control sequence is evaluated once and can be rescored for multiple targets through the global trajectory cache.
+[Stage3.4] Only a confirmed complete target library unlocks the 175x105 real-TSC identification and per-step receding-horizon MPC POC.
+[Stage3.4] Calibration selects one positive global feedback scale; held-out scenarios are never used for scale selection.
+[Stage3.4] Tested targets/disturbances are not genuine new initial states, plant parameters, noise, or latency.
+[Stage3.4] Final task remains robust causal control; residual RL is bounded and secondary.
+[Stage3.4] SIGKILL cannot be intercepted; completed JSON.GZ results remain resumable.
+2026-07-24 11:08:37,067	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=9 actors=9 initialized_now=1
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] waiting 0/9
+[Stage2 evaluation] 1/9
+[Stage2 evaluation] 2/9
+[Stage2 evaluation] 3/9
+[Stage2 evaluation] 4/9
+[Stage2 evaluation] 5/9
+[Stage2 evaluation] 6/9
+[Stage2 evaluation] 7/9
+[Stage2 evaluation] 8/9
+[Stage2 evaluation] 9/9
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=36 actors=36 initialized_now=0
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] 1/36
+[Stage2 evaluation] 2/36
+[Stage2 evaluation] 3/36
+[Stage2 evaluation] 4/36
+[Stage2 evaluation] 5/36
+[Stage2 evaluation] 6/36
+[Stage2 evaluation] 7/36
+[Stage2 evaluation] 8/36
+[Stage2 evaluation] 9/36
+[Stage2 evaluation] 10/36
+[Stage2 evaluation] 11/36
+[Stage2 evaluation] 12/36
+[Stage2 evaluation] 13/36
+[Stage2 evaluation] 14/36
+[Stage2 evaluation] 15/36
+[Stage2 evaluation] 16/36
+[Stage2 evaluation] 17/36
+[Stage2 evaluation] 18/36
+[Stage2 evaluation] 19/36
+[Stage2 evaluation] 20/36
+[Stage2 evaluation] 21/36
+[Stage2 evaluation] 22/36
+[Stage2 evaluation] 23/36
+[Stage2 evaluation] 24/36
+[Stage2 evaluation] 25/36
+[Stage2 evaluation] 26/36
+[Stage2 evaluation] 27/36
+[Stage2 evaluation] 28/36
+[Stage2 evaluation] 29/36
+[Stage2 evaluation] 30/36
+[Stage2 evaluation] 31/36
+[Stage2 evaluation] 32/36
+[Stage2 evaluation] 33/36
+[Stage2 evaluation] 34/36
+[Stage2 evaluation] 35/36
+[Stage2 evaluation] 36/36
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=36 actors=36 initialized_now=0
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] 1/36
+[Stage2 evaluation] 2/36
+[Stage2 evaluation] 3/36
+[Stage2 evaluation] 4/36
+[Stage2 evaluation] 5/36
+[Stage2 evaluation] 6/36
+[Stage2 evaluation] 7/36
+[Stage2 evaluation] 8/36
+[Stage2 evaluation] 9/36
+[Stage2 evaluation] 10/36
+[Stage2 evaluation] 11/36
+[Stage2 evaluation] 12/36
+[Stage2 evaluation] 13/36
+[Stage2 evaluation] 14/36
+[Stage2 evaluation] 15/36
+[Stage2 evaluation] 16/36
+[Stage2 evaluation] 17/36
+[Stage2 evaluation] 18/36
+[Stage2 evaluation] 19/36
+[Stage2 evaluation] 20/36
+[Stage2 evaluation] 21/36
+[Stage2 evaluation] 22/36
+[Stage2 evaluation] 23/36
+[Stage2 evaluation] 24/36
+[Stage2 evaluation] 25/36
+[Stage2 evaluation] 26/36
+[Stage2 evaluation] 27/36
+[Stage2 evaluation] 28/36
+[Stage2 evaluation] 29/36
+[Stage2 evaluation] 30/36
+[Stage2 evaluation] 31/36
+[Stage2 evaluation] 32/36
+[Stage2 evaluation] 33/36
+[Stage2 evaluation] 34/36
+[Stage2 evaluation] 35/36
+[Stage2 evaluation] 36/36
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "nominal",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0181890353,
+  "signed_margin": 0.3936988233333333
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=13 actors=13 initialized_now=0
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] 1/13
+[Stage2 evaluation] 2/13
+[Stage2 evaluation] 3/13
+[Stage2 evaluation] 4/13
+[Stage2 evaluation] 5/13
+[Stage2 evaluation] 6/13
+[Stage2 evaluation] 7/13
+[Stage2 evaluation] 8/13
+[Stage2 evaluation] 9/13
+[Stage2 evaluation] 10/13
+[Stage2 evaluation] 11/13
+[Stage2 evaluation] 12/13
+[Stage2 evaluation] 13/13
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=36 actors=36 initialized_now=0
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] 1/36
+[Stage2 evaluation] 2/36
+[Stage2 evaluation] 3/36
+[Stage2 evaluation] 4/36
+[Stage2 evaluation] 5/36
+[Stage2 evaluation] 6/36
+[Stage2 evaluation] 7/36
+[Stage2 evaluation] 8/36
+[Stage2 evaluation] 9/36
+[Stage2 evaluation] 10/36
+[Stage2 evaluation] 11/36
+[Stage2 evaluation] 12/36
+[Stage2 evaluation] 13/36
+[Stage2 evaluation] 14/36
+[Stage2 evaluation] 15/36
+[Stage2 evaluation] 16/36
+[Stage2 evaluation] 17/36
+[Stage2 evaluation] 18/36
+[Stage2 evaluation] 19/36
+[Stage2 evaluation] 20/36
+[Stage2 evaluation] 21/36
+[Stage2 evaluation] 22/36
+[Stage2 evaluation] 23/36
+[Stage2 evaluation] 24/36
+[Stage2 evaluation] 25/36
+[Stage2 evaluation] 26/36
+[Stage2 evaluation] 27/36
+[Stage2 evaluation] 28/36
+[Stage2 evaluation] 29/36
+[Stage2 evaluation] 30/36
+[Stage2 evaluation] 31/36
+[Stage2 evaluation] 32/36
+[Stage2 evaluation] 33/36
+[Stage2 evaluation] 34/36
+[Stage2 evaluation] 35/36
+[Stage2 evaluation] 36/36
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "R_p5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.018094967000000017,
+  "signed_margin": 0.3654096909078971
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=4 actors=4 initialized_now=0
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] 1/4
+[Stage2 evaluation] 2/4
+[Stage2 evaluation] 3/4
+[Stage2 evaluation] 4/4
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "R_p7p5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.02025810699999997,
+  "signed_margin": 0.32472976666666764
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=36 actors=36 initialized_now=0
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] 1/36
+[Stage2 evaluation] 2/36
+[Stage2 evaluation] 3/36
+[Stage2 evaluation] 4/36
+[Stage2 evaluation] 5/36
+[Stage2 evaluation] 6/36
+[Stage2 evaluation] 7/36
+[Stage2 evaluation] 8/36
+[Stage2 evaluation] 9/36
+[Stage2 evaluation] 10/36
+[Stage2 evaluation] 11/36
+[Stage2 evaluation] 12/36
+[Stage2 evaluation] 13/36
+[Stage2 evaluation] 14/36
+[Stage2 evaluation] 15/36
+[Stage2 evaluation] 16/36
+[Stage2 evaluation] 17/36
+[Stage2 evaluation] 18/36
+[Stage2 evaluation] 19/36
+[Stage2 evaluation] 20/36
+[Stage2 evaluation] 21/36
+[Stage2 evaluation] 22/36
+[Stage2 evaluation] 23/36
+[Stage2 evaluation] 24/36
+[Stage2 evaluation] 25/36
+[Stage2 evaluation] 26/36
+[Stage2 evaluation] 27/36
+[Stage2 evaluation] 28/36
+[Stage2 evaluation] 29/36
+[Stage2 evaluation] 30/36
+[Stage2 evaluation] 31/36
+[Stage2 evaluation] 32/36
+[Stage2 evaluation] 33/36
+[Stage2 evaluation] 34/36
+[Stage2 evaluation] 35/36
+[Stage2 evaluation] 36/36
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:438: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  g = append(wrapped_grad(x), 0.0)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "R_p10mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0207367103,
+  "signed_margin": 0.3087763233333334
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=13 actors=13 initialized_now=0
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] waiting 0/13
+[Stage2 evaluation] 1/13
+[Stage2 evaluation] 2/13
+[Stage2 evaluation] 3/13
+[Stage2 evaluation] 4/13
+[Stage2 evaluation] 5/13
+[Stage2 evaluation] 6/13
+[Stage2 evaluation] 7/13
+[Stage2 evaluation] 8/13
+[Stage2 evaluation] 9/13
+[Stage2 evaluation] 10/13
+[Stage2 evaluation] 11/13
+[Stage2 evaluation] 12/13
+[Stage2 evaluation] 13/13
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:438: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  g = append(wrapped_grad(x), 0.0)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "Z_m2mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.017528289699999998,
+  "signed_margin": 0.37178834076495815
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=4 actors=4 initialized_now=0
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] 1/4
+[Stage2 evaluation] 2/4
+[Stage2 evaluation] 3/4
+[Stage2 evaluation] 4/4
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "Z_m3p5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0190282897,
+  "signed_margin": 0.3657236766666667
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=11 actors=11 initialized_now=0
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] 1/11
+[Stage2 evaluation] 2/11
+[Stage2 evaluation] 3/11
+[Stage2 evaluation] 4/11
+[Stage2 evaluation] 5/11
+[Stage2 evaluation] 6/11
+[Stage2 evaluation] 7/11
+[Stage2 evaluation] 8/11
+[Stage2 evaluation] 9/11
+[Stage2 evaluation] 10/11
+[Stage2 evaluation] 11/11
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=36 actors=36 initialized_now=0
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] 1/36
+[Stage2 evaluation] 2/36
+[Stage2 evaluation] 3/36
+[Stage2 evaluation] 4/36
+[Stage2 evaluation] 5/36
+[Stage2 evaluation] 6/36
+[Stage2 evaluation] 7/36
+[Stage2 evaluation] 8/36
+[Stage2 evaluation] 9/36
+[Stage2 evaluation] 10/36
+[Stage2 evaluation] 11/36
+[Stage2 evaluation] 12/36
+[Stage2 evaluation] 13/36
+[Stage2 evaluation] 14/36
+[Stage2 evaluation] 15/36
+[Stage2 evaluation] 16/36
+[Stage2 evaluation] 17/36
+[Stage2 evaluation] 18/36
+[Stage2 evaluation] 19/36
+[Stage2 evaluation] 20/36
+[Stage2 evaluation] 21/36
+[Stage2 evaluation] 22/36
+[Stage2 evaluation] 23/36
+[Stage2 evaluation] 24/36
+[Stage2 evaluation] 25/36
+[Stage2 evaluation] 26/36
+[Stage2 evaluation] 27/36
+[Stage2 evaluation] 28/36
+[Stage2 evaluation] 29/36
+[Stage2 evaluation] 30/36
+[Stage2 evaluation] 31/36
+[Stage2 evaluation] 32/36
+[Stage2 evaluation] 33/36
+[Stage2 evaluation] 34/36
+[Stage2 evaluation] 35/36
+[Stage2 evaluation] 36/36
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "Z_m5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0192440386,
+  "signed_margin": 0.3585320466666667
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=4 actors=4 initialized_now=0
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] 1/4
+[Stage2 evaluation] 2/4
+[Stage2 evaluation] 3/4
+[Stage2 evaluation] 4/4
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "Z_m7p5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.021733624899999998,
+  "signed_margin": 0.27554583666666665
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=36 actors=36 initialized_now=0
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] 1/36
+[Stage2 evaluation] 2/36
+[Stage2 evaluation] 3/36
+[Stage2 evaluation] 4/36
+[Stage2 evaluation] 5/36
+[Stage2 evaluation] 6/36
+[Stage2 evaluation] 7/36
+[Stage2 evaluation] 8/36
+[Stage2 evaluation] 9/36
+[Stage2 evaluation] 10/36
+[Stage2 evaluation] 11/36
+[Stage2 evaluation] 12/36
+[Stage2 evaluation] 13/36
+[Stage2 evaluation] 14/36
+[Stage2 evaluation] 15/36
+[Stage2 evaluation] 16/36
+[Stage2 evaluation] 17/36
+[Stage2 evaluation] 18/36
+[Stage2 evaluation] 19/36
+[Stage2 evaluation] 20/36
+[Stage2 evaluation] 21/36
+[Stage2 evaluation] 22/36
+[Stage2 evaluation] 23/36
+[Stage2 evaluation] 24/36
+[Stage2 evaluation] 25/36
+[Stage2 evaluation] 26/36
+[Stage2 evaluation] 27/36
+[Stage2 evaluation] 28/36
+[Stage2 evaluation] 29/36
+[Stage2 evaluation] 30/36
+[Stage2 evaluation] 31/36
+[Stage2 evaluation] 32/36
+[Stage2 evaluation] 33/36
+[Stage2 evaluation] 34/36
+[Stage2 evaluation] 35/36
+[Stage2 evaluation] 36/36
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:438: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  g = append(wrapped_grad(x), 0.0)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "Z_m10mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.019443180560000002,
+  "signed_margin": 0.35189398133333327
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=8 actors=8 initialized_now=0
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] waiting 0/8
+[Stage2 evaluation] 1/8
+[Stage2 evaluation] 2/8
+[Stage2 evaluation] 3/8
+[Stage2 evaluation] 4/8
+[Stage2 evaluation] 5/8
+[Stage2 evaluation] 6/8
+[Stage2 evaluation] 7/8
+[Stage2 evaluation] 8/8
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "RZ_p5_m2mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.018432074999999992,
+  "signed_margin": 0.37178834076495815
+}
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "RZ_p5_m3p5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0190282897,
+  "signed_margin": 0.3657236766666667
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=17 actors=17 initialized_now=0
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] waiting 0/17
+[Stage2 evaluation] 1/17
+[Stage2 evaluation] 2/17
+[Stage2 evaluation] 3/17
+[Stage2 evaluation] 4/17
+[Stage2 evaluation] 5/17
+[Stage2 evaluation] 6/17
+[Stage2 evaluation] 7/17
+[Stage2 evaluation] 8/17
+[Stage2 evaluation] 9/17
+[Stage2 evaluation] 10/17
+[Stage2 evaluation] 11/17
+[Stage2 evaluation] 12/17
+[Stage2 evaluation] 13/17
+[Stage2 evaluation] 14/17
+[Stage2 evaluation] 15/17
+[Stage2 evaluation] 16/17
+[Stage2 evaluation] 17/17
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "RZ_p5_m5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0194025259,
+  "signed_margin": 0.34988746085584566
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "RZ_p7p5_m7p5mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.021902525899999997,
+  "signed_margin": 0.2699158033333334
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=11 actors=11 initialized_now=0
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] waiting 0/11
+[Stage2 evaluation] 1/11
+[Stage2 evaluation] 2/11
+[Stage2 evaluation] 3/11
+[Stage2 evaluation] 4/11
+[Stage2 evaluation] 5/11
+[Stage2 evaluation] 6/11
+[Stage2 evaluation] 7/11
+[Stage2 evaluation] 8/11
+[Stage2 evaluation] 9/11
+[Stage2 evaluation] 10/11
+[Stage2 evaluation] 11/11
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=35 actors=35 initialized_now=0
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] waiting 0/35
+[Stage2 evaluation] 1/35
+[Stage2 evaluation] 2/35
+[Stage2 evaluation] 3/35
+[Stage2 evaluation] 4/35
+[Stage2 evaluation] 5/35
+[Stage2 evaluation] 6/35
+[Stage2 evaluation] 7/35
+[Stage2 evaluation] 8/35
+[Stage2 evaluation] 9/35
+[Stage2 evaluation] 10/35
+[Stage2 evaluation] 11/35
+[Stage2 evaluation] 12/35
+[Stage2 evaluation] 13/35
+[Stage2 evaluation] 14/35
+[Stage2 evaluation] 15/35
+[Stage2 evaluation] 16/35
+[Stage2 evaluation] 17/35
+[Stage2 evaluation] 18/35
+[Stage2 evaluation] 19/35
+[Stage2 evaluation] 20/35
+[Stage2 evaluation] 21/35
+[Stage2 evaluation] 22/35
+[Stage2 evaluation] 23/35
+[Stage2 evaluation] 24/35
+[Stage2 evaluation] 25/35
+[Stage2 evaluation] 26/35
+[Stage2 evaluation] 27/35
+[Stage2 evaluation] 28/35
+[Stage2 evaluation] 29/35
+[Stage2 evaluation] 30/35
+[Stage2 evaluation] 31/35
+[Stage2 evaluation] 32/35
+[Stage2 evaluation] 33/35
+[Stage2 evaluation] 34/35
+[Stage2 evaluation] 35/35
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "RZ_p10_m10mm",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.022371874700000002,
+  "signed_margin": 0.2542708433333333
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=4 actors=4 initialized_now=0
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] 1/4
+[Stage2 evaluation] 2/4
+[Stage2 evaluation] 3/4
+[Stage2 evaluation] 4/4
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "Ip_m1000A",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0165385362,
+  "signed_margin": 0.4405704263161111
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=4 actors=4 initialized_now=0
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] waiting 0/4
+[Stage2 evaluation] 1/4
+[Stage2 evaluation] 2/4
+[Stage2 evaluation] 3/4
+[Stage2 evaluation] 4/4
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/scipy/optimize/_slsqp_py.py:434: RuntimeWarning: Values in x were outside bounds during a minimize step, clipping to bounds
+  fx = wrapped_fun(x)
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=0
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "stage": "Stage3.4",
+  "phase": "target_continuation",
+  "task_id": "Ip_p1000A",
+  "tracking_pass": true,
+  "internal_goal_pass": true,
+  "arrival_ms": 250,
+  "sustained_box_m": 0.0133081678,
+  "signed_margin": 0.42347567172886946
+}
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=20 actors=20 initialized_now=0
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] waiting 0/20
+[Stage2 evaluation] 1/20
+[Stage2 evaluation] 2/20
+[Stage2 evaluation] 3/20
+[Stage2 evaluation] 4/20
+[Stage2 evaluation] 5/20
+[Stage2 evaluation] 6/20
+[Stage2 evaluation] 7/20
+[Stage2 evaluation] 8/20
+[Stage2 evaluation] 9/20
+[Stage2 evaluation] 10/20
+[Stage2 evaluation] 11/20
+[Stage2 evaluation] 12/20
+[Stage2 evaluation] 13/20
+[Stage2 evaluation] 14/20
+[Stage2 evaluation] 15/20
+[Stage2 evaluation] 16/20
+[Stage2 evaluation] 17/20
+[Stage2 evaluation] 18/20
+[Stage2 evaluation] 19/20
+[Stage2 evaluation] 20/20
+[Stage2 evaluation] ray_capacity requested=96 cluster_cpus=96 pending=210 actors=96 initialized_now=0
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] waiting 0/210
+[Stage2 evaluation] 1/210
+[Stage2 evaluation] 2/210
+[Stage2 evaluation] 3/210
+[Stage2 evaluation] 4/210
+[Stage2 evaluation] 5/210
+[Stage2 evaluation] 6/210
+[Stage2 evaluation] 7/210
+[Stage2 evaluation] 8/210
+[Stage2 evaluation] 9/210
+[Stage2 evaluation] 10/210
+[Stage2 evaluation] 11/210
+[Stage2 evaluation] 12/210
+[Stage2 evaluation] 13/210
+[Stage2 evaluation] 14/210
+[Stage2 evaluation] 15/210
+[Stage2 evaluation] 16/210
+[Stage2 evaluation] 17/210
+[Stage2 evaluation] 18/210
+[Stage2 evaluation] 19/210
+[Stage2 evaluation] 20/210
+[Stage2 evaluation] 21/210
+[Stage2 evaluation] 22/210
+[Stage2 evaluation] 23/210
+[Stage2 evaluation] 24/210
+[Stage2 evaluation] 25/210
+[Stage2 evaluation] 26/210
+[Stage2 evaluation] 27/210
+[Stage2 evaluation] 28/210
+[Stage2 evaluation] 29/210
+[Stage2 evaluation] 30/210
+[Stage2 evaluation] 31/210
+[Stage2 evaluation] 32/210
+[Stage2 evaluation] 33/210
+[Stage2 evaluation] 34/210
+[Stage2 evaluation] 35/210
+[Stage2 evaluation] 36/210
+[Stage2 evaluation] 37/210
+[Stage2 evaluation] 38/210
+[Stage2 evaluation] 39/210
+[Stage2 evaluation] 40/210
+[Stage2 evaluation] 41/210
+[Stage2 evaluation] 42/210
+[Stage2 evaluation] 43/210
+[Stage2 evaluation] 44/210
+[Stage2 evaluation] 45/210
+[Stage2 evaluation] 46/210
+[Stage2 evaluation] 47/210
+[Stage2 evaluation] 48/210
+[Stage2 evaluation] 49/210
+[Stage2 evaluation] 50/210
+[Stage2 evaluation] 51/210
+[Stage2 evaluation] 52/210
+[Stage2 evaluation] 53/210
+[Stage2 evaluation] 54/210
+[Stage2 evaluation] 55/210
+[Stage2 evaluation] 56/210
+[Stage2 evaluation] 57/210
+[Stage2 evaluation] 58/210
+[Stage2 evaluation] 59/210
+[Stage2 evaluation] 60/210
+[Stage2 evaluation] 61/210
+[Stage2 evaluation] 62/210
+[Stage2 evaluation] 63/210
+[Stage2 evaluation] 64/210
+[Stage2 evaluation] 65/210
+[Stage2 evaluation] 66/210
+[Stage2 evaluation] 67/210
+[Stage2 evaluation] 68/210
+[Stage2 evaluation] 69/210
+[Stage2 evaluation] 70/210
+[Stage2 evaluation] 71/210
+[Stage2 evaluation] 72/210
+[Stage2 evaluation] 73/210
+[Stage2 evaluation] 74/210
+[Stage2 evaluation] 75/210
+[Stage2 evaluation] 76/210
+[Stage2 evaluation] 77/210
+[Stage2 evaluation] 78/210
+[Stage2 evaluation] 79/210
+[Stage2 evaluation] 80/210
+[Stage2 evaluation] 81/210
+[Stage2 evaluation] 82/210
+[Stage2 evaluation] 83/210
+[Stage2 evaluation] 84/210
+[Stage2 evaluation] 85/210
+[Stage2 evaluation] 86/210
+[Stage2 evaluation] 87/210
+[Stage2 evaluation] 88/210
+[Stage2 evaluation] 89/210
+[Stage2 evaluation] 90/210
+[Stage2 evaluation] 91/210
+[Stage2 evaluation] 92/210
+[Stage2 evaluation] 93/210
+[Stage2 evaluation] 94/210
+[Stage2 evaluation] 95/210
+[Stage2 evaluation] 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] waiting 96/210
+[Stage2 evaluation] 97/210
+[Stage2 evaluation] 98/210
+[Stage2 evaluation] 99/210
+[Stage2 evaluation] 100/210
+[Stage2 evaluation] 101/210
+[Stage2 evaluation] 102/210
+[Stage2 evaluation] 103/210
+[Stage2 evaluation] 104/210
+[Stage2 evaluation] 105/210
+[Stage2 evaluation] 106/210
+[Stage2 evaluation] 107/210
+[Stage2 evaluation] 108/210
+[Stage2 evaluation] 109/210
+[Stage2 evaluation] 110/210
+[Stage2 evaluation] 111/210
+[Stage2 evaluation] 112/210
+[Stage2 evaluation] 113/210
+[Stage2 evaluation] 114/210
+[Stage2 evaluation] 115/210
+[Stage2 evaluation] 116/210
+[Stage2 evaluation] 117/210
+[Stage2 evaluation] 118/210
+[Stage2 evaluation] 119/210
+[Stage2 evaluation] 120/210
+[Stage2 evaluation] 121/210
+[Stage2 evaluation] 122/210
+[Stage2 evaluation] 123/210
+[Stage2 evaluation] 124/210
+[Stage2 evaluation] 125/210
+[Stage2 evaluation] 126/210
+[Stage2 evaluation] 127/210
+[Stage2 evaluation] 128/210
+[Stage2 evaluation] 129/210
+[Stage2 evaluation] 130/210
+[Stage2 evaluation] 131/210
+[Stage2 evaluation] 132/210
+[Stage2 evaluation] 133/210
+[Stage2 evaluation] 134/210
+[Stage2 evaluation] 135/210
+[Stage2 evaluation] 136/210
+[Stage2 evaluation] 137/210
+[Stage2 evaluation] 138/210
+[Stage2 evaluation] 139/210
+[Stage2 evaluation] 140/210
+[Stage2 evaluation] 141/210
+[Stage2 evaluation] 142/210
+[Stage2 evaluation] 143/210
+[Stage2 evaluation] 144/210
+[Stage2 evaluation] 145/210
+[Stage2 evaluation] 146/210
+[Stage2 evaluation] 147/210
+[Stage2 evaluation] 148/210
+[Stage2 evaluation] 149/210
+[Stage2 evaluation] 150/210
+[Stage2 evaluation] 151/210
+[Stage2 evaluation] 152/210
+[Stage2 evaluation] 153/210
+[Stage2 evaluation] 154/210
+[Stage2 evaluation] 155/210
+[Stage2 evaluation] 156/210
+[Stage2 evaluation] 157/210
+[Stage2 evaluation] 158/210
+[Stage2 evaluation] 159/210
+[Stage2 evaluation] 160/210
+[Stage2 evaluation] 161/210
+[Stage2 evaluation] 162/210
+[Stage2 evaluation] 163/210
+[Stage2 evaluation] 164/210
+[Stage2 evaluation] 165/210
+[Stage2 evaluation] 166/210
+[Stage2 evaluation] 167/210
+[Stage2 evaluation] 168/210
+[Stage2 evaluation] 169/210
+[Stage2 evaluation] 170/210
+[Stage2 evaluation] 171/210
+[Stage2 evaluation] 172/210
+[Stage2 evaluation] 173/210
+[Stage2 evaluation] 174/210
+[Stage2 evaluation] 175/210
+[Stage2 evaluation] 176/210
+[Stage2 evaluation] 177/210
+[Stage2 evaluation] 178/210
+[Stage2 evaluation] 179/210
+[Stage2 evaluation] 180/210
+[Stage2 evaluation] 181/210
+[Stage2 evaluation] 182/210
+[Stage2 evaluation] 183/210
+[Stage2 evaluation] 184/210
+[Stage2 evaluation] 185/210
+[Stage2 evaluation] 186/210
+[Stage2 evaluation] 187/210
+[Stage2 evaluation] 188/210
+[Stage2 evaluation] 189/210
+[Stage2 evaluation] 190/210
+[Stage2 evaluation] 191/210
+[Stage2 evaluation] 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] waiting 192/210
+[Stage2 evaluation] 193/210
+[Stage2 evaluation] 194/210
+[Stage2 evaluation] 195/210
+[Stage2 evaluation] 196/210
+[Stage2 evaluation] 197/210
+[Stage2 evaluation] 198/210
+[Stage2 evaluation] 199/210
+[Stage2 evaluation] 200/210
+[Stage2 evaluation] 201/210
+[Stage2 evaluation] 202/210
+[Stage2 evaluation] 203/210
+[Stage2 evaluation] 204/210
+[Stage2 evaluation] 205/210
+[Stage2 evaluation] 206/210
+[Stage2 evaluation] 207/210
+[Stage2 evaluation] 208/210
+[Stage2 evaluation] 209/210
+[Stage2 evaluation] 210/210
+[Stage3.4 MPC] ray_capacity requested=96 cluster_cpus=96 pending=40 actors=40 initialized_now=0
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] waiting 0/40
+[Stage3.4 MPC] 1/40
+[Stage3.4 MPC] 2/40
+[Stage3.4 MPC] 3/40
+[Stage3.4 MPC] 4/40
+[Stage3.4 MPC] 5/40
+[Stage3.4 MPC] 6/40
+[Stage3.4 MPC] 7/40
+[Stage3.4 MPC] 8/40
+[Stage3.4 MPC] 9/40
+[Stage3.4 MPC] 10/40
+[Stage3.4 MPC] 11/40
+[Stage3.4 MPC] 12/40
+[Stage3.4 MPC] 13/40
+[Stage3.4 MPC] 14/40
+[Stage3.4 MPC] 15/40
+[Stage3.4 MPC] 16/40
+[Stage3.4 MPC] 17/40
+[Stage3.4 MPC] 18/40
+[Stage3.4 MPC] 19/40
+[Stage3.4 MPC] 20/40
+[Stage3.4 MPC] 21/40
+[Stage3.4 MPC] 22/40
+[Stage3.4 MPC] 23/40
+[Stage3.4 MPC] 24/40
+[Stage3.4 MPC] 25/40
+[Stage3.4 MPC] 26/40
+[Stage3.4 MPC] 27/40
+[Stage3.4 MPC] 28/40
+[Stage3.4 MPC] 29/40
+[Stage3.4 MPC] 30/40
+[Stage3.4 MPC] 31/40
+[Stage3.4 MPC] 32/40
+[Stage3.4 MPC] 33/40
+[Stage3.4 MPC] 34/40
+[Stage3.4 MPC] 35/40
+[Stage3.4 MPC] 36/40
+[Stage3.4 MPC] 37/40
+[Stage3.4 MPC] 38/40
+[Stage3.4 MPC] 39/40
+[Stage3.4 MPC] 40/40
+[Stage3.4 MPC] ray_capacity requested=96 cluster_cpus=96 pending=18 actors=18 initialized_now=0
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] waiting 0/18
+[Stage3.4 MPC] 1/18
+[Stage3.4 MPC] 2/18
+[Stage3.4 MPC] 3/18
+[Stage3.4 MPC] 4/18
+[Stage3.4 MPC] 5/18
+[Stage3.4 MPC] 6/18
+[Stage3.4 MPC] 7/18
+[Stage3.4 MPC] 8/18
+[Stage3.4 MPC] 9/18
+[Stage3.4 MPC] 10/18
+[Stage3.4 MPC] 11/18
+[Stage3.4 MPC] 12/18
+[Stage3.4 MPC] 13/18
+[Stage3.4 MPC] 14/18
+[Stage3.4 MPC] 15/18
+[Stage3.4 MPC] 16/18
+[Stage3.4 MPC] 17/18
+[Stage3.4 MPC] 18/18
+[Stage3.4 MPC] ray_capacity requested=96 cluster_cpus=96 pending=16 actors=16 initialized_now=0
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] waiting 0/16
+[Stage3.4 MPC] 1/16
+[Stage3.4 MPC] 2/16
+[Stage3.4 MPC] 3/16
+[Stage3.4 MPC] 4/16
+[Stage3.4 MPC] 5/16
+[Stage3.4 MPC] 6/16
+[Stage3.4 MPC] 7/16
+[Stage3.4 MPC] 8/16
+[Stage3.4 MPC] 9/16
+[Stage3.4 MPC] 10/16
+[Stage3.4 MPC] 11/16
+[Stage3.4 MPC] 12/16
+[Stage3.4 MPC] 13/16
+[Stage3.4 MPC] 14/16
+[Stage3.4 MPC] 15/16
+[Stage3.4 MPC] 16/16
+{
+  "prepared": {
+    "stage": "Stage3.4",
+    "source_stage3_3_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_3_runs/stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331",
+    "source_seed_entries": 10,
+    "tasks": 16,
+    "final_mandatory_tasks": 10,
+    "horizon_steps": 35,
+    "latest_arrival_ms": 250,
+    "hold_through_ms": 350
+  },
+  "summary": {
+    "schema_version": 1,
+    "stage": "Stage3.4",
+    "created_utc": "20260724_092224",
+    "n_continuation_tasks": 16,
+    "n_continuation_tasks_pass": 16,
+    "n_physical_cache_files": 731,
+    "n_successful_physical_cache_files": 731,
+    "n_library_entries": 16,
+    "n_mandatory_pass": 10,
+    "n_mandatory": 10,
+    "verdict": "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED",
+    "task_summaries": [
+      {
+        "task_id": "nominal",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0181890353,
+        "hold_rz_rms_m": 0.02212301947906475,
+        "signed_margin": 0.3936988233333333,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "R_p5mm",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.018094967000000017,
+        "hold_rz_rms_m": 0.022840169762517508,
+        "signed_margin": 0.3654096909078971,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "R_p7p5mm",
+        "final": false,
+        "mandatory": false,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.02025810699999997,
+        "hold_rz_rms_m": 0.02581618033462171,
+        "signed_margin": 0.32472976666666764,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "R_p10mm",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0207367103,
+        "hold_rz_rms_m": 0.026412134479608797,
+        "signed_margin": 0.3087763233333334,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "Z_m2mm",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.017528289699999998,
+        "hold_rz_rms_m": 0.020520609541347292,
+        "signed_margin": 0.37178834076495815,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "Z_m3p5mm",
+        "final": false,
+        "mandatory": false,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0190282897,
+        "hold_rz_rms_m": 0.021786528419450182,
+        "signed_margin": 0.3657236766666667,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "Z_m5mm",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0192440386,
+        "hold_rz_rms_m": 0.023750532895413474,
+        "signed_margin": 0.3585320466666667,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "Z_m7p5mm",
+        "final": false,
+        "mandatory": false,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.021733624899999998,
+        "hold_rz_rms_m": 0.025696633173288515,
+        "signed_margin": 0.27554583666666665,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "Z_m10mm",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.019443180560000002,
+        "hold_rz_rms_m": 0.021255452093280277,
+        "signed_margin": 0.35189398133333327,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "RZ_p5_m2mm",
+        "final": false,
+        "mandatory": false,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.018432074999999992,
+        "hold_rz_rms_m": 0.023642750291221388,
+        "signed_margin": 0.37178834076495815,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "RZ_p5_m3p5mm",
+        "final": false,
+        "mandatory": false,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0190282897,
+        "hold_rz_rms_m": 0.024749485771549395,
+        "signed_margin": 0.3657236766666667,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "RZ_p5_m5mm",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0194025259,
+        "hold_rz_rms_m": 0.025313673674383076,
+        "signed_margin": 0.34988746085584566,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "RZ_p7p5_m7p5mm",
+        "final": false,
+        "mandatory": false,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.021902525899999997,
+        "hold_rz_rms_m": 0.028843408455247268,
+        "signed_margin": 0.2699158033333334,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "RZ_p10_m10mm",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.022371874700000002,
+        "hold_rz_rms_m": 0.02908810700548714,
+        "signed_margin": 0.2542708433333333,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "Ip_m1000A",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0165385362,
+        "hold_rz_rms_m": 0.020604984999768657,
+        "signed_margin": 0.4405704263161111,
+        "stop_reason": "internal_margin_goal"
+      },
+      {
+        "task_id": "Ip_p1000A",
+        "final": true,
+        "mandatory": true,
+        "tracking_pass": true,
+        "arrival_ms": 250,
+        "sustained_box_m": 0.0133081678,
+        "hold_rz_rms_m": 0.01561729229827249,
+        "signed_margin": 0.42347567172886946,
+        "stop_reason": "internal_margin_goal"
+      }
+    ]
+  },
+  "verdict": {
+    "schema_version": 1,
+    "stage": "Stage3.4",
+    "created_utc": "20260724_092224",
+    "verdict": "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED",
+    "latest_allowed_arrival_ms": 250,
+    "hold_through_ms": 350,
+    "target_library": {
+      "mandatory_complete": true,
+      "mandatory_confirmed": true,
+      "n_entries": 16,
+      "n_mandatory_pass": 10,
+      "n_mandatory": 10
+    },
+    "mpc_calibration": {
+      "schema_version": 1,
+      "stage": "Stage3.4",
+      "n_rollouts": 40,
+      "n_successful": 40,
+      "scale_summaries": [
+        {
+          "controller_scale": 0.5,
+          "n_scenarios": 10,
+          "feedback_pass_fraction": 1.0,
+          "n_preserved": 10,
+          "n_recovered": 0,
+          "n_lost": 0,
+          "median_signed_margin_gain": 0.03777356996362613,
+          "worst_signed_margin_gain": -0.22158198684477193,
+          "comparisons": [
+            {
+              "scenario": "Ip_m1000",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.0674726070172228
+            },
+            {
+              "scenario": "Ip_p1000",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.22158198684477193
+            },
+            {
+              "scenario": "RZ_p10_m10",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.015950790558392547
+            },
+            {
+              "scenario": "RZ_p5_m5",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.017452626593918885
+            },
+            {
+              "scenario": "R_p10",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.0018416566666685785
+            },
+            {
+              "scenario": "Z_m10",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.002800157666666636
+            },
+            {
+              "scenario": "dist_m1_s08_p",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.08378013563120656
+            },
+            {
+              "scenario": "dist_m1_s16_m",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.09050346333333337
+            },
+            {
+              "scenario": "dist_m2_s20_p",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.08393801572544224
+            },
+            {
+              "scenario": "nominal",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.058094513333333375
+            }
+          ],
+          "eligible": true
+        },
+        {
+          "controller_scale": 1.0,
+          "n_scenarios": 10,
+          "feedback_pass_fraction": 1.0,
+          "n_preserved": 10,
+          "n_recovered": 0,
+          "n_lost": 0,
+          "median_signed_margin_gain": -0.04509810565124689,
+          "worst_signed_margin_gain": -0.1724935925186719,
+          "comparisons": [
+            {
+              "scenario": "Ip_m1000",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.019687740586099567
+            },
+            {
+              "scenario": "Ip_p1000",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.048149273302493856
+            },
+            {
+              "scenario": "RZ_p10_m10",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.02045812333333341
+            },
+            {
+              "scenario": "RZ_p5_m5",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.0063442424774876605
+            },
+            {
+              "scenario": "R_p10",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": 0.01335454333333197
+            },
+            {
+              "scenario": "Z_m10",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.04204693799999992
+            },
+            {
+              "scenario": "dist_m1_s08_p",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.10201369123888504
+            },
+            {
+              "scenario": "dist_m1_s16_m",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.1724935925186719
+            },
+            {
+              "scenario": "dist_m2_s20_p",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.1415580605618697
+            },
+            {
+              "scenario": "nominal",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.16631328644200905
+            }
+          ],
+          "eligible": false
+        },
+        {
+          "controller_scale": 1.5,
+          "n_scenarios": 10,
+          "feedback_pass_fraction": 0.1,
+          "n_preserved": 1,
+          "n_recovered": 0,
+          "n_lost": 9,
+          "median_signed_margin_gain": -0.9536755478846886,
+          "worst_signed_margin_gain": -1.1885947657726694,
+          "comparisons": [
+            {
+              "scenario": "Ip_m1000",
+              "baseline_pass": true,
+              "feedback_pass": true,
+              "preserved": true,
+              "recovered": false,
+              "lost": false,
+              "signed_margin_gain": -0.3288098144098742
+            },
+            {
+              "scenario": "Ip_p1000",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -1.1340564732418852
+            },
+            {
+              "scenario": "RZ_p10_m10",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -0.6896611130580071
+            },
+            {
+              "scenario": "RZ_p5_m5",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -0.768683494734958
+            },
+            {
+              "scenario": "R_p10",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -0.6124872499387277
+            },
+            {
+              "scenario": "Z_m10",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -0.9321822496410808
+            },
+            {
+              "scenario": "dist_m1_s08_p",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -1.1885947657726694
+            },
+            {
+              "scenario": "dist_m1_s16_m",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -1.0540982424883112
+            },
+            {
+              "scenario": "dist_m2_s20_p",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -0.9751688461282964
+            },
+            {
+              "scenario": "nominal",
+              "baseline_pass": true,
+              "feedback_pass": false,
+              "preserved": false,
+              "recovered": false,
+              "lost": true,
+              "signed_margin_gain": -1.0048887823582695
+            }
+          ],
+          "eligible": false
+        }
+      ],
+      "selected_scale_summary": {
+        "controller_scale": 0.5,
+        "n_scenarios": 10,
+        "feedback_pass_fraction": 1.0,
+        "n_preserved": 10,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "median_signed_margin_gain": 0.03777356996362613,
+        "worst_signed_margin_gain": -0.22158198684477193,
+        "comparisons": [
+          {
+            "scenario": "Ip_m1000",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.0674726070172228
+          },
+          {
+            "scenario": "Ip_p1000",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.22158198684477193
+          },
+          {
+            "scenario": "RZ_p10_m10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.015950790558392547
+          },
+          {
+            "scenario": "RZ_p5_m5",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.017452626593918885
+          },
+          {
+            "scenario": "R_p10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.0018416566666685785
+          },
+          {
+            "scenario": "Z_m10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.002800157666666636
+          },
+          {
+            "scenario": "dist_m1_s08_p",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.08378013563120656
+          },
+          {
+            "scenario": "dist_m1_s16_m",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.09050346333333337
+          },
+          {
+            "scenario": "dist_m2_s20_p",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.08393801572544224
+          },
+          {
+            "scenario": "nominal",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.058094513333333375
+          }
+        ],
+        "eligible": true
+      },
+      "selected_controller_scale": 0.5,
+      "calibration_pass": true
+    },
+    "mpc_holdout": {
+      "schema_version": 1,
+      "stage": "Stage3.4",
+      "selected_controller_scale": 0.5,
+      "n_scenarios": 9,
+      "feedback_pass_fraction": 1.0,
+      "n_preserved": 9,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "median_signed_margin_gain": 0.05280068333333332,
+      "worst_signed_margin_gain": -0.10913371248916226,
+      "comparisons": [
+        {
+          "scenario": "Ip_m750",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.10359184473639749
+        },
+        {
+          "scenario": "Ip_p750",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": -0.10913371248916226
+        },
+        {
+          "scenario": "RZ_p7p5_m7p5",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.04200069666666728
+        },
+        {
+          "scenario": "R_p2p5_Z_m2p5",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.0188783401406738
+        },
+        {
+          "scenario": "R_p7p5",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.006900966666667507
+        },
+        {
+          "scenario": "Z_m7p5",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.05280068333333332
+        },
+        {
+          "scenario": "dist_m1_s04_m",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.15456619333333332
+        },
+        {
+          "scenario": "dist_m2_s12_p",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.09476904658966945
+        },
+        {
+          "scenario": "dist_m3_s24_m",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.0579856133333333
+        }
+      ],
+      "holdout_pass": true
+    },
+    "mpc_confirmation": {
+      "schema_version": 1,
+      "stage": "Stage3.4",
+      "selected_controller_scale": 0.5,
+      "n_rollouts": 16,
+      "n_successful": 16,
+      "scenario_summaries": [
+        {
+          "scenario": "nominal",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.45179333666666666
+        },
+        {
+          "scenario": "R_p10",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.3069346666666648
+        },
+        {
+          "scenario": "Z_m10",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.34909382366666664
+        },
+        {
+          "scenario": "RZ_p10_m10",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.23832005277494073
+        },
+        {
+          "scenario": "Ip_m1000",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.5080430333333339
+        },
+        {
+          "scenario": "Ip_p1000",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.20189368488409754
+        },
+        {
+          "scenario": "RZ_p7p5_m7p5",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.3119165000000007
+        },
+        {
+          "scenario": "dist_m2_s12_p",
+          "repeats": 2,
+          "successful_repeats": 2,
+          "all_repeats_tracking_pass": true,
+          "worst_tracking_signed_margin": 0.45718491333333333
+        }
+      ],
+      "mpc_confirmation_pass": true
+    },
+    "online_receding_horizon_mpc_validated_for_tested_target_envelope": true,
+    "initial_state_robustness_validated": false,
+    "plant_parameter_robustness_validated": false,
+    "noise_delay_robustness_validated": false,
+    "robustness_validated": false,
+    "final_task_warning": "This fixed-initial-state target/disturbance envelope is not deployment or full robustness validation. Residual RL remains bounded and secondary."
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R8",
+  "phase": "source_audit",
+  "source_stage4_1r7_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r7_runs/stage4_1r7_precontrol_calibration_queue_startup_20260727_084802",
+  "source_finished": true,
+  "source_stop_reason": "paired_confirmation_failed",
+  "source_precontrol_calibration_passed": true,
+  "source_queue_startup_passed": true,
+  "source_paired_confirmation_passed": false,
+  "oracle_feasible_cases": 14,
+  "oracle_total_cases": 18,
+  "paired_distinct_groups": 18,
+  "paired_all_group_gate_structurally_possible": false,
+  "paired_gate_conflated_oracle_infeasibility": true,
+  "legacy_weak_slew_pending_commands_dropped": 6,
+  "legacy_weak_slew_pending_drop_examples": [
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "pending_source_steps": [
+        34
+      ],
+      "pending_command_norms": [
+        0.6065842578897909
+      ],
+      "legacy_tail_actions_zero": true,
+      "dropped_pending_command_count": 1
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "pending_source_steps": [
+        33,
+        34
+      ],
+      "pending_command_norms": [
+        0.6065842578897909,
+        0.6065842578897909
+      ],
+      "legacy_tail_actions_zero": true,
+      "dropped_pending_command_count": 2
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "pending_source_steps": [
+        34
+      ],
+      "pending_command_norms": [
+        0.6188447776131282
+      ],
+      "legacy_tail_actions_zero": true,
+      "dropped_pending_command_count": 1
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "pending_source_steps": [
+        33,
+        34
+      ],
+      "pending_command_norms": [
+        0.6188447776131282,
+        0.6188447776131282
+      ],
+      "legacy_tail_actions_zero": true,
+      "dropped_pending_command_count": 2
+    }
+  ],
+  "flattened_action_rms_zero_rows": 108,
+  "raw_nonzero_action_rollouts": 108,
+  "unique_noisy_calibration_traces": 27,
+  "online_no_lock_default_retained_count": 3,
+  "online_no_lock_but_actual_ranked_best_count": 3,
+  "passed": true,
+  "interpretation": "R7 completed without a runtime crash. Its final failure mixes an impossible all-group gate, three untrusted-default starts, and a legacy tail that bypassed non-empty delay queues."
+}

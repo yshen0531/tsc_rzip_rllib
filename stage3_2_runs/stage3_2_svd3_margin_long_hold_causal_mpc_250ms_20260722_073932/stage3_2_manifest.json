@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.2",
+  "created_utc": "20260722_073934",
+  "source_stage3_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_1_runs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms_20260722_013158",
+  "source_stage3_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352",
+  "source_stage2_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327",
+  "source_strict_candidates": 46,
+  "source_fingerprint": {
+    "schema_version": 2,
+    "stage": "Stage3.2 source inventory",
+    "source_stage3_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_1_runs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms_20260722_013158",
+    "source_stage3_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352",
+    "source_stage2_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327",
+    "source_rows": 918,
+    "fingerprinted_files": 515,
+    "total_bytes": 16755556,
+    "digest": "bae82a085acfc8e2ef7f5e009384056a2cbc5e04905c7a5fa18d9d10973ee705",
+    "digest_uses_logical_paths": true
+  },
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "horizon_steps": 25,
+  "horizon_ms": 250,
+  "arrival_deadline_ms": 150,
+  "hard_gate_changed_from_stage3_1": false,
+  "parameter_dimensions": {
+    "margin": 21,
+    "long_hold_tail": 30,
+    "full_feedback": 75
+  },
+  "final_task": "robust causal feedback across initial states, targets, plant uncertainty, noise, and delay",
+  "tested_scope": "fixed initial state; target shifts and injected mode disturbances only",
+  "robustness_validated": false
+}

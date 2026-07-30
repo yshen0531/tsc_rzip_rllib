@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R8",
+  "verdict": "STAGE4_1R8_TRUSTED_CALIBRATION_OR_QUEUE_TAIL_CLOSURE_INCOMPLETE",
+  "primary_pass": false,
+  "selected_queue_tail_policy": null,
+  "next_if_pass": "Stage4.2 true restart and plant-parameter robustness; do not start BC/DAgger/RL yet.",
+  "next_if_fail": "If batch trust fails, redesign the calibration evidence gate. If no queue-tail policy passes, implement a queue-aware feedback tail rather than weakening the tracking gate.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

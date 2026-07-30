@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R17",
+  "phase": "calibrated_confirmation",
+  "n_rollouts": 4,
+  "expected_rollouts": 4,
+  "formal_contract_pass_fraction": 1.0,
+  "distinct_calibration_tokens": 2,
+  "untrusted_main_start_count": 0,
+  "exact_trace_equivalence_fraction": 1.0,
+  "numeric_trace_equivalence_fraction": 1.0,
+  "numeric_trace_equivalence_atol": 1e-12,
+  "maximum_trace_abs_difference": 0.0,
+  "comparisons": [
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "magnitude": 6.0,
+      "calibration_token": "s41r8_b2208612681b9ad35531",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "issued": 0.0,
+        "applied": 0.0,
+        "braking_issued": 0.0,
+        "braking_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "magnitude": 6.0,
+      "calibration_token": "s41r8_b2208612681b9ad35531",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "issued": 0.0,
+        "applied": 0.0,
+        "braking_issued": 0.0,
+        "braking_applied": 0.0
+      }
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "magnitude": 7.0,
+      "calibration_token": "s41r8_1755db2b033e3c882e1b",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "issued": 0.0,
+        "applied": 0.0,
+        "braking_issued": 0.0,
+        "braking_applied": 0.0
+      }
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "magnitude": 7.0,
+      "calibration_token": "s41r8_1755db2b033e3c882e1b",
+      "exact_trace_equal_to_oracle": true,
+      "numeric_trace_equal_to_oracle": true,
+      "maximum_trace_abs_difference": 0.0,
+      "component_max_abs_difference": {
+        "physics": 0.0,
+        "issued": 0.0,
+        "applied": 0.0,
+        "braking_issued": 0.0,
+        "braking_applied": 0.0
+      }
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R16",
+  "controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
+  "package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
+  "created_utc": "20260729_131242",
+  "source_stage4_1r15b_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15b_runs/stage4_1r15b_probe_derived_symmetric_local_response_superposition_validation_20260729_115128",
+  "source_stage4_1r15_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15_runs/stage4_1r15_bounded_early_braking_local_response_identification_20260729_085311",
+  "source_stage4_1r14_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r14_runs/stage4_1r14_original_deadline_integrated_target_conditioned_deadline_mpc_20260729_065749",
+  "source_stage4_1r13_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r13_runs/stage4_1r13_original_deadline_delay_pipeline_early_braking_20260729_044403",
+  "source_fingerprint": {
+    "schema_version": 1,
+    "source_stage": "Stage4.1R15B",
+    "inventory_contract": "r16_direct_stage4_1r15b_source_v1",
+    "n_files": 46,
+    "total_bytes": 2178338,
+    "digest": "58defda809dbe908f0ae404fe31e95d6d4d1ab44a7346558f1d449a77beb9eb6",
+    "files": [
+      {
+        "relative_path": "stage4_1r15b_manifest.json",
+        "size_bytes": 28061,
+        "sha256": "04a03f70d9b9b8f5a5650b6ed78d84af03beb2d449cfc13eba7aafdb43a7d428"
+      },
+      {
+        "relative_path": "stage4_1r15b_state.json",
+        "size_bytes": 5728,
+        "sha256": "88a12e378b14334d4e3dea17c3ff60190fa5d339a4aa0937f91612defcb36563"
+      },
+      {
+        "relative_path": "stage4_1r15b_config.resolved.json",
+        "size_bytes": 5226,
+        "sha256": "466c613005fb1ea6af1dc89395926ed95251bcd787b300687196dc7c9650c851"
+      },
+      {
+        "relative_path": "stage4_1r15b_analysis/stage4_1r15b_verdict.json",
+        "size_bytes": 7351,
+        "sha256": "7f0d86bf9a49b2c32546ce3edf118b2ae63714d65f6ed3933b5fba62ccc633b3"
+      },
+      {
+        "relative_path": "stage4_1r15b_analysis/stage4_1r15b_summary.json",
+        "size_bytes": 7351,
+        "sha256": "7f0d86bf9a49b2c32546ce3edf118b2ae63714d65f6ed3933b5fba62ccc633b3"
+      },
+      {
+        "relative_path": "stage4_1r15b_source_audit/summary.json",
+        "size_bytes": 1823,
+        "sha256": "e3073eb81e75146d2d9514e4eea1d35674889cbe2fb3a9ba35532a00dac53806"
+      },
+      {
+        "relative_path": "stage4_1r15b_probe_derived_response_model/models.json",
+        "size_bytes": 84075,
+        "sha256": "e6e3363cbe988928be5408a17b748823fc88bded63c6e549a8108a50796ddede"
+      },
+      {
+        "relative_path": "stage4_1r15b_probe_derived_response_model/summary.json",
+        "size_bytes": 1976,
+        "sha256": "0c2c53c46fad2f7ff954eb203c0bd5b685e29c7b14da231ac71588de3def486a"
+      },
+      {
+        "relative_path": "stage4_1r15b_probe_derived_response_model/group_summary.csv",
+        "size_bytes": 521,
+        "sha256": "4e602b062c53eaf6e7bf765c08340eadf515768fbb74410eecbe8dfe23283fdc"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/summary.json",
+        "size_bytes": 1091,
+        "sha256": "9d39a4ffe13b85a5dfeba54b054f506b9ac43be5d51e3dd848744eb822469f6a"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/results.json",
+        "size_bytes": 37150,
+        "sha256": "f7eb704d978735fc14774965b06a37b8f84b9d2c0e1405555acea1868511a295"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/results.csv",
+        "size_bytes": 10319,
+        "sha256": "f9d0be768fcc91654a495dcebcba763d3867b86a933bc80c43483a587f3c2e7d"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/central_symmetry.csv",
+        "size_bytes": 1122,
+        "sha256": "5eda98a9b48068651b71ad8860eadc9e062e17a580807276dfb3f2827b93a963"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/basis_reconstruction.csv",
+        "size_bytes": 429,
+        "sha256": "8d5f4cc5de4aab6a63b99ab4bfff8630d603dd95a53f3d063944d28ffb4b7398"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_093192a7d21c1792293f.json.gz",
+        "size_bytes": 60988,
+        "sha256": "3a6dce76fba3ef8a0fa41aa8bae61e0966296447cce4cff9b89795e261888f63"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_09873f025e90d8acf2a7.json.gz",
+        "size_bytes": 63171,
+        "sha256": "b025bc18d22b810e4be2aec8dee70236cb3d81e032cd9eceb781bdcb802488fa"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_14ae3de89612b2ca359b.json.gz",
+        "size_bytes": 63093,
+        "sha256": "fec45dd243165e75f8fb4d8cbbe60c6310c3e9e01f6b079a1c926149e2a3b516"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_17cfdd71db367221f723.json.gz",
+        "size_bytes": 63091,
+        "sha256": "4e153e788b3ab15d1b6285861501e72876ad9486fe6db26c6131374ef63f358e"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_18f3f52abb098df1fa1d.json.gz",
+        "size_bytes": 62882,
+        "sha256": "98cd2cd80398aecb1c102fbbca62e4ff9fae5e94a538f657ae14a4f7eb6bd57c"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_1cd926d5265e9baaf476.json.gz",
+        "size_bytes": 63150,
+        "sha256": "718184aecfa758ff09c74bc128d7d22e203e3b7221bca793a3c889c65fdbd105"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_29cfc3bf0b78318bbc0e.json.gz",
+        "size_bytes": 63248,
+        "sha256": "b072e0dc99d144f6f23120678d8dfa665caa49804550db105016c4ae83bcba48"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_34058421a6de3289346a.json.gz",
+        "size_bytes": 62912,
+        "sha256": "c2b60cb00e1008d7ad6e646cf08ef8cc02c4ff672ed9440cecd454ac8a7d30a8"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_511bafc9a93751c4423f.json.gz",
+        "size_bytes": 61254,
+        "sha256": "b4cc59346ce2e6118359678705560c559112b73c56bda61649f25300a668f33c"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_5eff3396082079f9b10b.json.gz",
+        "size_bytes": 60913,
+        "sha256": "7e1eb87d1a43a527e93238cfc16a4e636c06fecfc5f5ec70a9a09b031c221be6"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_60275784a12971bb8d55.json.gz",
+        "size_bytes": 61141,
+        "sha256": "01f722ce4b5a5c280d34b59dfa3cba08d188b16d9c2359043230cd056b7b7275"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_6d471f505c45cf8cd667.json.gz",
+        "size_bytes": 63169,
+        "sha256": "7b807fb2a580a313dcb9261131fcb5183efdee635931c6cdfd32a7fa4567ee60"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_7fceeaa4ea48b34d0bb4.json.gz",
+        "size_bytes": 62943,
+        "sha256": "ba89e0a4db5cec7e9577af4f69f545a5f335ec254fecda845685aa781c8abe28"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_8d8374c9c17ff6677ec4.json.gz",
+        "size_bytes": 60854,
+        "sha256": "e558f39c85018fa374c1e71eea2286652bcc970d580fd6daf940f9bc12c2730b"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_97ea077fa2abf8d442be.json.gz",
+        "size_bytes": 61315,
+        "sha256": "9d98c2ee596a9c091899291ec463752888265a4be571ee93204cae67939903a9"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_9a8dc8f8f577accf901e.json.gz",
+        "size_bytes": 63048,
+        "sha256": "ecee7f7a80d923a9fc9006accf7711cfd126cc61d52ee756ffbf9e7bf10c5810"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_9d6a1fcc315493a35a0f.json.gz",
+        "size_bytes": 61057,
+        "sha256": "3b5ff6682d422f62f1e5e51f477417ae7dd070dd64f3c5ae3e0d14858281b710"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_9e20a98143e41a847896.json.gz",
+        "size_bytes": 61035,
+        "sha256": "25f6611aab7b4b351aee6980ef9aa71d89d0d44d6140d4bae578cf33e43d99a4"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_9f710fe23c81083c3d33.json.gz",
+        "size_bytes": 63126,
+        "sha256": "2ae8e6e3252bf2f9aa6620203bb7204f20139d8ccb7d11083afd1e17df969b50"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_a001461a9b8752de2c4a.json.gz",
+        "size_bytes": 62853,
+        "sha256": "a2f84498ee6e2eb699901acb6ac181f7cd5c405588feadda2baa31a0ce4c3067"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_a49ddb4f9ad70a560df3.json.gz",
+        "size_bytes": 61164,
+        "sha256": "f3784956a4b85eb11b983d888e2a3474f742d3cb5f344a7562be977fb3693acd"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_a6636035219ebc2da75e.json.gz",
+        "size_bytes": 61114,
+        "sha256": "3bb82838e95dd09bdb2220f60d488475f105f53400064c3c776920a12cb96875"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_add1ac69aef60eebef4e.json.gz",
+        "size_bytes": 62948,
+        "sha256": "04951ff83f6e95a70608318dafbcce01355c9ac49b58032d151b28efd049fcc9"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_afe937004d3009d3147e.json.gz",
+        "size_bytes": 61501,
+        "sha256": "8bac3de7da65c71f9fb66a9593679b849fa894ac3aeb68259020d4a4c4783cac"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_b619e8c94da08dea2b11.json.gz",
+        "size_bytes": 62981,
+        "sha256": "4267214ce6ddca5e9367cec299a34136a7056c2aeefe7cefbd1d6cb0cefc248c"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_baf5be9eed99c8fc8af0.json.gz",
+        "size_bytes": 63068,
+        "sha256": "e0668bd45b3e7b78a5087c21a96ec8dd956f7c549afcb3a7370adb0f8c21d03e"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_c48d66fa068a77c8d049.json.gz",
+        "size_bytes": 60996,
+        "sha256": "9352fd5d943ee7a2a5eb0ccbe80bf0c6fd0bc8c97330d53b723733a5dc112fd5"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_ce0ce81ced393f8008e2.json.gz",
+        "size_bytes": 63172,
+        "sha256": "843effbac378113bb3ca93c3f5931b19626c54416ba1af27d2c6e20589305af6"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_d7f57a29adcb49765a4f.json.gz",
+        "size_bytes": 61167,
+        "sha256": "6ff18360ba6325bb766aacbb2eca458f1c061d8078dcaf8987d3286e0ff5bd9c"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_e4dabe8ce054d3099397.json.gz",
+        "size_bytes": 61051,
+        "sha256": "f9578d18fd5b40812a49f32021975b82190969ace173937e0ced08c65c477a7b"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_f2b6d8a0d095313e8173.json.gz",
+        "size_bytes": 60839,
+        "sha256": "44daf7a0eff7f3f5a95575bafc6659e96fef794eb3c88b9503ec4c7cc6ca03f5"
+      },
+      {
+        "relative_path": "stage4_1r15b_superposition_validation/raw/s41r15b_fb6b690a32f83bedde1b.json.gz",
+        "size_bytes": 60871,
+        "sha256": "763282d43416c1a240d52aefc853a7dcd655c65c294484bca62ebd594cddb37a"
+      }
+    ]
+  },
+  "source_inventory_contract": "r16_direct_stage4_1r15b_source_v1",
+  "workers": 128,
+  "formal_timing_contract": {
+    "immutable": true,
+    "normal_slew": {
+      "arrival_deadline_step": 25,
+      "hold_through_step": 35,
+      "arrival_deadline_ms": 250,
+      "hold_through_ms": 350
+    },
+    "weak_slew": {
+      "arrival_deadline_step": 27,
+      "hold_through_step": 37,
+      "arrival_deadline_ms": 270,
+      "hold_through_ms": 370,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ]
+    },
+    "arrival_deadline_expansion_allowed": false
+  },
+  "closure_candidate_magnitude": 6.0,
+  "arrival_deadline_expansion_allowed": false,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "finite_test_envelope_only": true,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": "s21g006_0b291509e6d6e307",
+    "hall_of_fame_rank": 1,
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "mean_terminal_RZ_error_m": 0.0413714872218536,
+    "max_terminal_velocity_m_per_s": 0.006700890761681473,
+    "max_late_velocity_rms_m_per_s": 0.08755994037695924
+  },
+  {
+    "candidate_id": "s21g007_323fc938dc836042",
+    "hall_of_fame_rank": 2,
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "mean_terminal_RZ_error_m": 0.04114636528900571,
+    "max_terminal_velocity_m_per_s": 0.007557913849789627,
+    "max_late_velocity_rms_m_per_s": 0.09255851116651777
+  },
+  {
+    "candidate_id": "s21g005_aa1fa1d922105141",
+    "hall_of_fame_rank": 3,
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "mean_terminal_RZ_error_m": 0.0417315637597945,
+    "max_terminal_velocity_m_per_s": 0.020548192225691465,
+    "max_late_velocity_rms_m_per_s": 0.08446084559187891
+  },
+  {
+    "candidate_id": "s21g006_9899bd6e9447845c",
+    "hall_of_fame_rank": 4,
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "mean_terminal_RZ_error_m": 0.04135532298764527,
+    "max_terminal_velocity_m_per_s": 0.015557429159375911,
+    "max_late_velocity_rms_m_per_s": 0.09097722079043526
+  },
+  {
+    "candidate_id": "s21g004_15b2028657dc017a",
+    "hall_of_fame_rank": 5,
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_gate_tier": 1,
+    "mean_terminal_RZ_error_m": 0.04096780824443958,
+    "max_terminal_velocity_m_per_s": 0.012673803284980406,
+    "max_late_velocity_rms_m_per_s": 0.08772622789392835
+  }
+]

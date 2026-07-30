@@ -1,0 +1,32 @@
+[
+  {
+    "center_candidate_id": "s31r999p_6de147eb9cfd6186",
+    "best_step_candidate_id": "s32mr000s_775222de137afe83",
+    "center_objective": 7.203386881752008,
+    "predicted_objective": 7.324199010598455,
+    "real_objective": 7.0845480567486385,
+    "predicted_reduction": -0.12081212884644632,
+    "actual_reduction": 0.11883882500336984,
+    "rho": null,
+    "trust_boundary_fraction": 1.0,
+    "accepted": true,
+    "action": "hold",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 1.0
+  },
+  {
+    "center_candidate_id": "s31r999p_ac0ea0664b1523cf",
+    "best_step_candidate_id": "s32mr000s_3dae7957d08909d2",
+    "center_objective": 7.270688368150656,
+    "predicted_objective": 7.359771496029848,
+    "real_objective": 7.14069541941891,
+    "predicted_reduction": -0.08908312787919215,
+    "actual_reduction": 0.12999294873174527,
+    "rho": null,
+    "trust_boundary_fraction": 1.0,
+    "accepted": true,
+    "action": "hold",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 1.0
+  }
+]

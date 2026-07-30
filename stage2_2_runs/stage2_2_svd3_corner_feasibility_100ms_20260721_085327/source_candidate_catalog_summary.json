@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "created_utc": "20260721_085334",
+  "fingerprint": {
+    "stage2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614",
+    "stage2_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_20260720_151221",
+    "stage2_csv_sha256": "61eee7b882744d3aa163dc593cb8a1b529faebf22ed714c207cfce991eef3073",
+    "stage2_1_csv_sha256": "e032053aec8b616aac2a9ad7f9db106f6e7a610f43d4794cdd4646fe16c91b2c",
+    "stage2_config_sha256": "a602718e95a5969bdb78173cc71ecef639bb6943b33b2dcbf2e37c7cf66c031f",
+    "stage2_1_config_sha256": "099770cdcdf0183cc29c685d84ffb250ac97d62332e75417c2b7891879ea07cb",
+    "stage2_raw_results": {
+      "count": 1536,
+      "total_bytes": 8602877,
+      "sha256": "09d8ad286c9e22abcde7fdaa0e1b4105a33b4c5aaba6363b3fc4c2d01044227f"
+    },
+    "stage2_1_raw_results": {
+      "count": 1536,
+      "total_bytes": 8660642,
+      "sha256": "e9eadbc2d9a486add16d78433764899159b63ce237c9de19ee21465b50353679"
+    }
+  },
+  "stage_counts": {
+    "Stage2": {
+      "rows": 1536,
+      "successful_rows": 1536,
+      "catalog_records": 1536
+    },
+    "Stage2.1": {
+      "rows": 1536,
+      "successful_rows": 1536,
+      "catalog_records": 1536
+    }
+  },
+  "n_records_before_deduplication": 3072,
+  "n_unique_records": 2965,
+  "n_skipped_success_rows": 0,
+  "n_strict": 0,
+  "n_strict_speed_safe": 882,
+  "n_strict_position_safe": 37,
+  "best_constraint_record": {
+    "source_stage": "Stage2.1",
+    "generation": 2,
+    "candidate_id": "s21g002_aaa2ceeb56d4f784",
+    "source_type": "bridge",
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "strict_gate_pass": false,
+    "relaxed_gate_pass": false,
+    "stage2_2_final3_box_max_error_m": 0.0312759249,
+    "stage2_2_terminal_box_error_m": 0.0303526609,
+    "terminal_velocity_m_per_s": 0.01006457515093827,
+    "late_velocity_rms_m_per_s": 0.10292279411660675,
+    "terminal_Ip_error_A": 729.4467000000004,
+    "stage2_2_position_violation": 0.04253083000000002,
+    "stage2_2_terminal_speed_violation": 0.0,
+    "stage2_2_late_speed_violation": 0.029227941166067417,
+    "stage2_2_ip_violation": 0.0,
+    "stage2_2_max_violation": 0.04253083000000002,
+    "stage2_2_sum_violation": 0.07175877116606744,
+    "stage2_2_l2_violation": 0.05160565904332586,
+    "stage2_2_selection_score": 1004596.9532405281
+  },
+  "skipped_examples": []
+}

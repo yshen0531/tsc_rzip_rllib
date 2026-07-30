@@ -1,0 +1,189 @@
+{
+  "stage_label": "Stage 4.1R9",
+  "run_name": "stage4_1r9_terminal_template_mpc_feedback_hold",
+  "output_root": "stage4_1r9_runs",
+  "controller_revision": "terminal_template_mpc_feedback_hold_v9",
+  "source_requirement": {
+    "required_stage": "Stage4.1R8",
+    "required_controller_revision": "trusted_batch_calibration_queue_tail_closure_v8",
+    "require_finished": true,
+    "require_stop_reason": "oracle_queue_tail_failed",
+    "require_source_audit_passed": true,
+    "require_batch_source_replay_passed": true,
+    "require_integrated_calibration_passed": true,
+    "require_oracle_queue_tail_failed": true,
+    "require_raw_integrated_calibration_count": 9,
+    "require_raw_oracle_queue_tail_count": 54,
+    "require_calibrated_startup_not_executed": true
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "R9 freezes the first 350 ms R3/R7/R8 main MPC, observer, target library and 175x105 Jacobian. It replaces the failed open-loop queue-drain/zero tail with a continuously streaming delay-aware terminal feedback MPC that reuses late-phase Jacobian templates and measured R/Z/Ip finite-difference velocity."
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_1r9"
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_arrival_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_tracking": {
+      "terminal_abs_tolerance_A": 2000.0,
+      "hold_rms_tolerance_A": 2400.0,
+      "sustained_max_tolerance_A": 4000.0,
+      "revision": "2x_for_tsc_additional_heating"
+    }
+  },
+  "terminal_feedback": {
+    "main_control_steps": 35,
+    "horizon_steps": 55,
+    "tail_feedback_steps": 20,
+    "dt_s": 0.01,
+    "actual_delay_steps": [
+      0,
+      1,
+      2
+    ],
+    "actual_slew_scales": [
+      0.9,
+      1.0,
+      1.1
+    ],
+    "development_target": {
+      "target_id": "nominal",
+      "R_offset_m": 0.0,
+      "Z_offset_m": 0.0,
+      "Ip_offset_A": 0.0
+    },
+    "holdout_target": {
+      "target_id": "RZ_p10_m10",
+      "R_offset_m": 0.01,
+      "Z_offset_m": -0.01,
+      "Ip_offset_A": 0.0
+    },
+    "allowed_arrival_steps": [
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "candidate_bank": [
+      {
+        "policy_id": "tm28_c0p35_v1p00",
+        "template_step": 28,
+        "controller_scale": 0.35,
+        "velocity_measurement_gain": 1.0
+      },
+      {
+        "policy_id": "tm28_c0p50_v1p50",
+        "template_step": 28,
+        "controller_scale": 0.5,
+        "velocity_measurement_gain": 1.5
+      },
+      {
+        "policy_id": "tm30_c0p35_v1p00",
+        "template_step": 30,
+        "controller_scale": 0.35,
+        "velocity_measurement_gain": 1.0
+      },
+      {
+        "policy_id": "tm30_c0p50_v1p50",
+        "template_step": 30,
+        "controller_scale": 0.5,
+        "velocity_measurement_gain": 1.5
+      },
+      {
+        "policy_id": "tm32_c0p35_v1p00",
+        "template_step": 32,
+        "controller_scale": 0.35,
+        "velocity_measurement_gain": 1.0
+      },
+      {
+        "policy_id": "tm32_c0p50_v1p50",
+        "template_step": 32,
+        "controller_scale": 0.5,
+        "velocity_measurement_gain": 1.5
+      }
+    ],
+    "controller_model_scale": 1.0,
+    "position_measurement_gain": 1.0,
+    "ip_measurement_gain": 1.0,
+    "integral_mode": "reset_zero",
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "initial_previous_correction": "last_issued_desired_physical",
+    "minimum_tracking_fraction": 1.0,
+    "minimum_signed_margin": 0.02,
+    "require_exact_first_350ms_prefix": true,
+    "prefix_numeric_atol": 1e-12,
+    "require_streaming_queue_consistency": true,
+    "maximum_terminal_pending_command_norm": 0.35,
+    "maximum_last5_issued_desired_rms": 0.35,
+    "selection_order": "largest_minimum_margin_then_mean_margin_then_lower_tail_action_rms",
+    "development_target_is_disjoint_from_holdout": true
+  },
+  "calibrated_confirmation": {
+    "reuse_stage4_1r8_pair_level_tokens": true,
+    "targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "require_all_18_cases": true,
+    "require_all_tokens_trusted_and_correct": true,
+    "online_handover_enabled": false,
+    "monitor_enabled": false,
+    "minimum_trace_equivalence_fraction": 1.0,
+    "numeric_trace_equivalence_atol": 1e-12,
+    "require_zero_untrusted_main_starts": true
+  },
+  "restart_audit": {
+    "candidate_folders": [
+      "1080ms",
+      "1090ms",
+      "1110ms",
+      "1120ms"
+    ],
+    "minimum_distinct_folders": 2
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "hardware_pre_shot_calibration_validated": false,
+  "true_restart_validation_performed": false,
+  "continuous_parameter_change_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

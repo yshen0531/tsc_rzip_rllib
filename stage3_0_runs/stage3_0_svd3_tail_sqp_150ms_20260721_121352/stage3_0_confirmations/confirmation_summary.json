@@ -1,0 +1,70 @@
+[
+  {
+    "candidate_id": "s30r999p_3d650586695d1458",
+    "confirmation_rank": 1,
+    "confirmation_reasons": [
+      "corner",
+      "speed_safe",
+      "relaxed"
+    ],
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_stage3_0_max_violation": 0.15943391666666673,
+    "latest_confirmed_arrival_ms": null,
+    "worst_sustained_box_max_error_m": 0.0347830175,
+    "max_post_arrival_velocity_rms_m_per_s": 0.07380439887524418
+  },
+  {
+    "candidate_id": "s30r999p_c100a0376c13f0bd",
+    "confirmation_rank": 2,
+    "confirmation_reasons": [
+      "corner",
+      "speed_safe",
+      "relaxed"
+    ],
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_stage3_0_max_violation": 0.15950887000000002,
+    "latest_confirmed_arrival_ms": null,
+    "worst_sustained_box_max_error_m": 0.0347852661,
+    "max_post_arrival_velocity_rms_m_per_s": 0.07424662430559334
+  },
+  {
+    "candidate_id": "s30r999p_8f77c81ea48cc213",
+    "confirmation_rank": 3,
+    "confirmation_reasons": [
+      "corner"
+    ],
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_stage3_0_max_violation": 0.15989732666666678,
+    "latest_confirmed_arrival_ms": null,
+    "worst_sustained_box_max_error_m": 0.0347969198,
+    "max_post_arrival_velocity_rms_m_per_s": 0.07411841029815944
+  },
+  {
+    "candidate_id": "s30r999p_e7477623771b9c64",
+    "confirmation_rank": 4,
+    "confirmation_reasons": [
+      "corner"
+    ],
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "repeats": 3,
+    "successful_repeats": 3,
+    "all_repeats_strict_gate": false,
+    "all_repeats_relaxed_gate": true,
+    "worst_stage3_0_max_violation": 0.1602795800000001,
+    "latest_confirmed_arrival_ms": null,
+    "worst_sustained_box_max_error_m": 0.0348083874,
+    "max_post_arrival_velocity_rms_m_per_s": 0.07455717320027508
+  }
+]

@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R5",
+  "phase": "static_handover",
+  "n_rollouts": 90,
+  "n_successful": 90,
+  "execution_complete": true,
+  "adaptive_identification_fraction": 1.0,
+  "oracle_feasible_cases": 13,
+  "persistent_exact_preservation_fraction": 1.0,
+  "unknown_bumpless_preservation_fraction": 0.38461538461538464,
+  "adjacent_bumpless_preservation_fraction": 0.5384615384615384,
+  "delay2_unknown_bumpless_preservation_fraction": 0.0,
+  "r4_abrupt_failures_with_oracle_pass": 6,
+  "unknown_bumpless_recoveries": 0,
+  "recovery_over_r4_abrupt_fraction": 0.0,
+  "passed": false,
+  "case_summaries": [
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 0.9,
+      "oracle_pass": false,
+      "weak_slew_deadline_diagnostic": true,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": false,
+      "oracle_margin": -0.05656162672110154,
+      "unknown_margin": -0.1438545266920368,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": true,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.23832005277494073,
+      "unknown_margin": 0.15797807725146173,
+      "unknown_handover_events": [
+        {
+          "event_type": "initial_model_lock",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.1,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": true,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.33296004,
+      "unknown_margin": 0.3190812466666666,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "oracle_pass": false,
+      "weak_slew_deadline_diagnostic": true,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": false,
+      "oracle_margin": -0.20096462994582498,
+      "unknown_margin": -0.20359643826963958,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 1,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 267.48527655117846,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.0,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.27013420000000044,
+      "unknown_margin": -0.018999786103966354,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 1,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 1764.0983802797534,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.1,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.31973813333333134,
+      "unknown_margin": -0.1326706832499096,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 1,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 321.14997838762685,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "oracle_pass": false,
+      "weak_slew_deadline_diagnostic": true,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": false,
+      "oracle_margin": -0.26824317729067215,
+      "unknown_margin": -0.5874510963624351,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        },
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 2,
+          "old_delay_steps": 0,
+          "old_slew_scale": 0.9,
+          "new_delay_steps": 2,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 334.16240169759783,
+          "applied_at_step": 3
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.0,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.2759736000000004,
+      "unknown_margin": -1.328205433949361,
+      "unknown_handover_events": [
+        {
+          "event_type": "initial_model_lock",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        },
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 2,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 2,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 545.1432410090658,
+          "applied_at_step": 3
+        }
+      ]
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.1,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.3130183499999999,
+      "unknown_margin": -1.9591271774826482,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        },
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 2,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.1,
+          "new_delay_steps": 2,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 393.84312956053503,
+          "applied_at_step": 3
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 0.9,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.20440894227709006,
+      "unknown_margin": -0.0023212882450502903,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": true,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.45179333666666666,
+      "unknown_margin": 0.4378762303074414,
+      "unknown_handover_events": [
+        {
+          "event_type": "initial_model_lock",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.1,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": true,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.46286111333333335,
+      "unknown_margin": 0.45498673999999995,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "oracle_pass": false,
+      "weak_slew_deadline_diagnostic": true,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": true,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": false,
+      "oracle_margin": -0.028593344923346642,
+      "unknown_margin": 0.10455154334198535,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 1,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 471.88932559436654,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.0,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": true,
+      "unknown_bumpless_pass": true,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.47356742666666674,
+      "unknown_margin": 0.12675581853874907,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 1,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 1304.4222193876683,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.1,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.4926570333333333,
+      "unknown_margin": -0.17396342561868905,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 1,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 620.631130160272,
+          "applied_at_step": 2
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "oracle_pass": false,
+      "weak_slew_deadline_diagnostic": true,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": false,
+      "persistent_exact_pass": false,
+      "oracle_margin": -0.04997002273695417,
+      "unknown_margin": -0.4094192100172791,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        },
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 2,
+          "old_delay_steps": 0,
+          "old_slew_scale": 0.9,
+          "new_delay_steps": 2,
+          "new_slew_scale": 0.9,
+          "confidence_ratio": 583.3569904947299,
+          "applied_at_step": 3
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.0,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.4816273099999999,
+      "unknown_margin": -1.2480651683171247,
+      "unknown_handover_events": [
+        {
+          "event_type": "initial_model_lock",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        },
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 2,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 2,
+          "new_slew_scale": 1.0,
+          "confidence_ratio": 578.0956731867983,
+          "applied_at_step": 3
+        }
+      ]
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.1,
+      "oracle_pass": true,
+      "weak_slew_deadline_diagnostic": false,
+      "abrupt_pass": false,
+      "unknown_bumpless_pass": false,
+      "adjacent_bumpless_pass": true,
+      "persistent_exact_pass": true,
+      "oracle_margin": 0.46433280666666665,
+      "unknown_margin": -1.8235292561157732,
+      "unknown_handover_events": [
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 1,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.0,
+          "new_delay_steps": 0,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 1.0,
+          "applied_at_step": 2
+        },
+        {
+          "event_type": "model_switch",
+          "detected_at_step": 2,
+          "old_delay_steps": 0,
+          "old_slew_scale": 1.1,
+          "new_delay_steps": 2,
+          "new_slew_scale": 1.1,
+          "confidence_ratio": 569.3029136016477,
+          "applied_at_step": 3
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.0",
+  "created_utc": "20260721_121353",
+  "source_stage2_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327",
+  "source_file_sha256": {
+    "stage2_2_config.resolved.json": "a19debb26bb084120eef2f3dc7f45e5d0bd78f240e0c1ef6e73e1303cc9b50d0",
+    "stage2_2_manifest.json": "0eeb305a6971dc9fd49dcbdf608e68f63e4c1549be02a00ad1ff8c94c7f605aa",
+    "stage2_2_analysis/stage2_2_analysis_summary.json": "d9744fb68f215cdeca10ab77c4b9ac9c386d6aad6be8c8d64b0c79098eacfa20",
+    "stage2_2_analysis/corner_hall_of_fame.json": "f5be07945d290481c5cbe0af64b3e7500fab04063a589d7722b1b8bc171929d4",
+    "stage2_2_analysis/speed_safe_hall_of_fame.json": "0fb666629e2e0181d0be272468fc64ee6e3466d9a58724aa7a3ae009e1f0e35e",
+    "stage2_2_analysis/gate_hall_of_fame.json": "abcf419410bdde96c90637b1002642427f0fa90dca7debbea38f0fd8d51cc477",
+    "stage2_2_best/best_corner_candidate.json": "ae13952d2554c608d1d251f8b3c86fe1558793620d6ae9b99f7bb7e0f39620a1",
+    "STAGE2_2_REPORT.md": "5fc7c16ffdef5577c76930ce69b94efe24124fb7d510bc6e020d84d77e44fcb8"
+  },
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "horizon_steps": 15,
+  "horizon_ms": 150,
+  "dt_ms": 10,
+  "n_modes": 3,
+  "tail_variable_steps": [
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "parameter_dimension": 18,
+  "arrival_window_steps": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "hard_100ms_deadline": false,
+  "final_task": "A feedback controller that reaches, brakes, and robustly holds R/Z/Ip across initial-state and target variations. Stage3.0 is only the fixed-scenario nominal and local-sensitivity gate.",
+  "temporary_workspace": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "ray_tmpdir": "/tmp/stage3_0_1120"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R6",
+  "phase": "source_audit",
+  "source_stage4_1r5_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r5_runs/stage4_1r5_adaptive_handover_closure_350ms_20260727_022930",
+  "source_finished": true,
+  "source_persistent_exact_preservation_fraction": 1.0,
+  "source_unknown_bumpless_preservation_fraction": 0.38461538461538464,
+  "source_delay2_unknown_preservation_fraction": 0.0,
+  "confidence_replay_cases": 18,
+  "confidence_replay_final_correct_fraction": 1.0,
+  "confidence_replay_incorrect_lock_count": 0,
+  "confidence_replay_max_first_confident_lock_step": 3,
+  "confidence_replay_passed": true,
+  "passed": true,
+  "warning": "R5 final identification was correct, but its first_lock_step field was not confidence-gated. R6 recomputes the semantics from raw measured coil-current traces."
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "phase": "confirmation",
+  "n_selected_scenarios": 4,
+  "n_rollouts": 8,
+  "n_successful": 8,
+  "n_scenarios_all_repeats_pass": 3,
+  "scenario_summaries": [
+    {
+      "source_experiment_id": "s40_1f5b8924b0ac2baf40bd",
+      "scenario": "RZ_p7p0_m2p5",
+      "environment_variant": "base",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_signed_margin": 0.28825349209398987
+    },
+    {
+      "source_experiment_id": "s40_649b28818d0b353447d4",
+      "scenario": "RZ_p10_m10__noise_high_s0",
+      "environment_variant": "base",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": false,
+      "worst_signed_margin": -0.09104483291189824
+    },
+    {
+      "source_experiment_id": "s40_758e23673d82e06abc10",
+      "scenario": "Ip_p1500",
+      "environment_variant": "base",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_signed_margin": 0.265689225469259
+    },
+    {
+      "source_experiment_id": "s40_d98f849f7efe6952d813",
+      "scenario": "RZ_p6p2_m8p6",
+      "environment_variant": "base",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_signed_margin": 0.29348141000000005
+    }
+  ],
+  "passed": false
+}

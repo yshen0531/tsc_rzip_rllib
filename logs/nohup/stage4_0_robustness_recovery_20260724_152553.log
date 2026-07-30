@@ -1,0 +1,490 @@
+[Stage4.0] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.0] source_stage3_4_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829
+[Stage4.0] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553
+[Stage4.0] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_0_robustness_recovery_350ms.json
+[Stage4.0] command=all
+[Stage4.0] backend=ray
+[Stage4.0] resume=0
+[Stage4.0] workers=192
+[Stage4.0] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage4.0] RAY_TMPDIR=/tmp/stage4_0_1120
+[Stage4.0] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage4.0] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage4.0] Campaign capacity is fixed at the requested 192 workers (default 192); no silent fallback is allowed.
+[Stage4.0] Stage3.4 target library, selected MPC scale, 175x105 Jacobian, hard gate, and controller weights are frozen.
+[Stage4.0] Phases: genuinely held-out targets; disturbance fail-to-pass recovery; sensor/latency/actuation uncertainty; preconditioned hidden-state histories; discoverable alternate restart folders; confirmation.
+[Stage4.0] Alternate restart validation is conditional on folders actually present under the TSC simulation root or STAGE4_START_FOLDERS.
+[Stage4.0] Finite-envelope success is not deployment qualification or full plant-parameter robustness.
+[Stage4.0] Final task remains robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay.
+2026-07-24 23:26:00,440	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.0 mixed-variant] ray_capacity requested=192 cluster_cpus=192 pending=40 actors=40 initialized_now=1
+[Stage4.0 mixed-variant] actor_allocation={"base":40}
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] waiting 0/40
+[Stage4.0 mixed-variant] 10/40
+[Stage4.0 mixed-variant] 20/40
+[Stage4.0 mixed-variant] 30/40
+[Stage4.0 mixed-variant] 40/40
+[Stage4.0 mixed-variant] ray_capacity requested=192 cluster_cpus=192 pending=360 actors=192 initialized_now=0
+[Stage4.0 mixed-variant] actor_allocation={"base":192}
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 0/360
+[Stage4.0 mixed-variant] waiting 1/360
+[Stage4.0 mixed-variant] 10/360
+[Stage4.0 mixed-variant] 20/360
+[Stage4.0 mixed-variant] 30/360
+[Stage4.0 mixed-variant] 40/360
+[Stage4.0 mixed-variant] 50/360
+[Stage4.0 mixed-variant] 60/360
+[Stage4.0 mixed-variant] 70/360
+[Stage4.0 mixed-variant] 80/360
+[Stage4.0 mixed-variant] 90/360
+[Stage4.0 mixed-variant] 100/360
+[Stage4.0 mixed-variant] 110/360
+[Stage4.0 mixed-variant] 120/360
+[Stage4.0 mixed-variant] 130/360
+[Stage4.0 mixed-variant] 140/360
+[Stage4.0 mixed-variant] 150/360
+[Stage4.0 mixed-variant] 160/360
+[Stage4.0 mixed-variant] 170/360
+[Stage4.0 mixed-variant] 180/360
+[Stage4.0 mixed-variant] 190/360
+[Stage4.0 mixed-variant] waiting 190/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] waiting 192/360
+[Stage4.0 mixed-variant] 200/360
+[Stage4.0 mixed-variant] 210/360
+[Stage4.0 mixed-variant] 220/360
+[Stage4.0 mixed-variant] 230/360
+[Stage4.0 mixed-variant] 240/360
+[Stage4.0 mixed-variant] 250/360
+[Stage4.0 mixed-variant] 260/360
+[Stage4.0 mixed-variant] 270/360
+[Stage4.0 mixed-variant] 280/360
+[Stage4.0 mixed-variant] 290/360
+[Stage4.0 mixed-variant] 300/360
+[Stage4.0 mixed-variant] 310/360
+[Stage4.0 mixed-variant] 320/360
+[Stage4.0 mixed-variant] 330/360
+[Stage4.0 mixed-variant] 340/360
+[Stage4.0 mixed-variant] 350/360
+[Stage4.0 mixed-variant] 360/360
+[Stage4.0 mixed-variant] ray_capacity requested=192 cluster_cpus=192 pending=104 actors=104 initialized_now=0
+[Stage4.0 mixed-variant] actor_allocation={"base":96,"slew_0p9":4,"slew_1p1":4}
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] waiting 0/104
+[Stage4.0 mixed-variant] 10/104
+[Stage4.0 mixed-variant] 20/104
+[Stage4.0 mixed-variant] 30/104
+[Stage4.0 mixed-variant] 40/104
+[Stage4.0 mixed-variant] 50/104
+[Stage4.0 mixed-variant] 60/104
+[Stage4.0 mixed-variant] 70/104
+[Stage4.0 mixed-variant] 80/104
+[Stage4.0 mixed-variant] 90/104
+[Stage4.0 mixed-variant] 100/104
+[Stage4.0 mixed-variant] 104/104
+[Stage4.0 mixed-variant] ray_capacity requested=192 cluster_cpus=192 pending=32 actors=32 initialized_now=0
+[Stage4.0 mixed-variant] actor_allocation={"base":32}
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] waiting 0/32
+[Stage4.0 mixed-variant] 10/32
+[Stage4.0 mixed-variant] 20/32
+[Stage4.0 mixed-variant] 30/32
+[Stage4.0 mixed-variant] 32/32
+[Stage4.0 mixed-variant] ray_capacity requested=192 cluster_cpus=192 pending=8 actors=8 initialized_now=0
+[Stage4.0 mixed-variant] actor_allocation={"base":8}
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] waiting 0/8
+[Stage4.0 mixed-variant] 8/8
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "created_utc": "20260724_173342",
+  "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+  "source_selected_controller_scale": 0.5,
+  "heldout": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "heldout_targets",
+    "n_rollouts": 40,
+    "n_successful": 40,
+    "n_in_domain_targets": 16,
+    "in_domain_open_loop_pass_fraction": 1.0,
+    "in_domain_mpc_pass_fraction": 1.0,
+    "n_in_domain_exact_library_matches": 0,
+    "n_lost_in_domain_open_loop_passes": 0,
+    "pair_summary": {
+      "n_pairs": 20,
+      "n_baseline_pass": 20,
+      "n_feedback_pass": 20,
+      "n_preserved": 20,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "median_signed_margin_gain": 0.02000799833333272,
+      "worst_signed_margin_gain": -0.12447373124178052
+    },
+    "passed": true
+  },
+  "failure_recovery": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "failure_recovery",
+    "n_rollouts": 360,
+    "n_families": 36,
+    "n_families_with_open_loop_failure": 0,
+    "n_families_recovered_at_first_failure": 0,
+    "failure_recovery_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 1.0,
+    "pair_summary": {
+      "n_pairs": 180,
+      "n_baseline_pass": 180,
+      "n_feedback_pass": 180,
+      "n_preserved": 180,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "median_signed_margin_gain": 0.05753645333333335,
+      "worst_signed_margin_gain": -0.041079256858161384
+    },
+    "passed": false
+  },
+  "uncertainty": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "uncertainty",
+    "n_rollouts": 104,
+    "n_scenarios": 52,
+    "mpc_pass_fraction": 0.8653846153846154,
+    "preserved_open_loop_pass_fraction": 0.9130434782608695,
+    "pair_summary": {
+      "n_pairs": 52,
+      "n_baseline_pass": 46,
+      "n_feedback_pass": 45,
+      "n_preserved": 42,
+      "n_recovered": 3,
+      "n_lost": 4,
+      "median_signed_margin_gain": 0.023054985000000028,
+      "worst_signed_margin_gain": -0.5872825991503423
+    },
+    "true_plant_parameter_variation_tested": false,
+    "actuation_and_controller_model_uncertainty_tested": true,
+    "passed": true
+  },
+  "preconditioned_state": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "preconditioned_state",
+    "n_rollouts": 32,
+    "n_scenarios": 16,
+    "mpc_pass_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 0.0,
+    "pair_summary": {
+      "n_pairs": 16,
+      "n_baseline_pass": 1,
+      "n_feedback_pass": 0,
+      "n_preserved": 0,
+      "n_recovered": 0,
+      "n_lost": 1,
+      "median_signed_margin_gain": -1.2031386733723624,
+      "worst_signed_margin_gain": -1.3129820854628098
+    },
+    "true_restart_state_tested": false,
+    "preconditioned_history_tested": true,
+    "passed": false
+  },
+  "restart_sweep": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "restart_sweep",
+    "base_start_folder": "1100ms",
+    "alternate_start_folders": [],
+    "n_alternate_start_folders": 0,
+    "true_restart_validation_available": false,
+    "n_rollouts": 0,
+    "mpc_pass_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 0.0,
+    "pair_summary": {
+      "n_pairs": 0
+    },
+    "passed": false
+  },
+  "confirmation": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "confirmation",
+    "n_selected_scenarios": 4,
+    "n_rollouts": 8,
+    "n_successful": 8,
+    "n_scenarios_all_repeats_pass": 3,
+    "scenario_summaries": [
+      {
+        "source_experiment_id": "s40_1f5b8924b0ac2baf40bd",
+        "scenario": "RZ_p7p0_m2p5",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_signed_margin": 0.28825349209398987
+      },
+      {
+        "source_experiment_id": "s40_649b28818d0b353447d4",
+        "scenario": "RZ_p10_m10__noise_high_s0",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": false,
+        "worst_signed_margin": -0.09104483291189824
+      },
+      {
+        "source_experiment_id": "s40_758e23673d82e06abc10",
+        "scenario": "Ip_p1500",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_signed_margin": 0.265689225469259
+      },
+      {
+        "source_experiment_id": "s40_d98f849f7efe6952d813",
+        "scenario": "RZ_p6p2_m8p6",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_signed_margin": 0.29348141000000005
+      }
+    ],
+    "passed": false
+  },
+  "verdict": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "created_utc": "20260724_173342",
+    "verdict": "STAGE4_0_ROBUSTNESS_AND_RECOVERY_ENVELOPE_INCOMPLETE",
+    "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+    "source_selected_controller_scale": 0.5,
+    "heldout_targets_passed": true,
+    "failure_recovery_passed": false,
+    "software_uncertainty_passed": true,
+    "preconditioned_state_passed": false,
+    "true_restart_validation_available": false,
+    "true_restart_validation_passed": null,
+    "confirmation_passed": false,
+    "finite_test_envelope_validated": false,
+    "deployment_robustness_validated": false,
+    "plant_parameter_robustness_validated": false,
+    "unseen_hidden_state_robustness_validated": false,
+    "warning": "This verdict covers only the finite configured target, disturbance, software uncertainty, preconditioned-history, and discoverable restart-folder envelope. It is not deployment qualification.",
+    "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R16",
+  "controller_revision": "amplitude_certified_probe_derived_braking_closure_v16",
+  "package_revision": "r16_joint_envelope_amplitude_ladder_formal_closure_v1",
+  "run_name": "stage4_1r16_amplitude_certified_probe_derived_braking_closure",
+  "output_root": "stage4_1r16_runs",
+  "parallel": {
+    "n_workers": 128,
+    "ray_tmpdir": "/tmp/stage4_1r16"
+  },
+  "runtime": {
+    "tsc_timeout_s": 1800.0
+  },
+  "formal_timing_contract": {
+    "immutable": true,
+    "normal_slew": {
+      "arrival_deadline_step": 25,
+      "hold_through_step": 35,
+      "arrival_deadline_ms": 250,
+      "hold_through_ms": 350
+    },
+    "weak_slew": {
+      "arrival_deadline_step": 27,
+      "hold_through_step": 37,
+      "arrival_deadline_ms": 270,
+      "hold_through_ms": 370,
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27
+      ]
+    },
+    "arrival_deadline_expansion_allowed": false
+  },
+  "source_requirements": {
+    "source_stage": "Stage4.1R15B",
+    "source_controller_revision": "probe_derived_symmetric_local_response_superposition_v15b",
+    "source_package_revision": "r15b_hadamard_superposition_validation_v1",
+    "require_finished": true,
+    "require_empty_stop_reason": true,
+    "require_source_audit_passed": true,
+    "require_probe_derived_model_passed": true,
+    "require_superposition_validation_passed": true,
+    "require_r15b_raw_count": 32,
+    "require_model_prediction_pass_fraction": 1.0,
+    "require_identification_only": true,
+    "require_formal_timing_not_restored": true
+  },
+  "amplitude_envelope_validation": {
+    "actual_slew_scale": 0.9,
+    "horizon_steps": 37,
+    "actual_delay_steps": [
+      1,
+      2
+    ],
+    "required_targets": [
+      {
+        "target_id": "nominal",
+        "R_offset_m": 0.0,
+        "Z_offset_m": 0.0,
+        "Ip_offset_A": 0.0
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "R_offset_m": 0.01,
+        "Z_offset_m": -0.01,
+        "Ip_offset_A": 0.0
+      }
+    ],
+    "basis_order": [
+      "early_mode0",
+      "early_mode1",
+      "late_mode0",
+      "late_mode1"
+    ],
+    "common_direction": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "braking_sign": -1,
+    "opposite_sign": 1,
+    "magnitude_levels": [
+      1.0,
+      2.0,
+      4.0,
+      6.0
+    ],
+    "closure_candidate_magnitude": 6.0,
+    "expected_rollouts": 32,
+    "maximum_requested_probe_component": 0.09,
+    "maximum_current_utilization": 0.55,
+    "minimum_candidate_formal_signed_margin": 0.01,
+    "require_candidate_all_four_formal_pass": true,
+    "require_zero_net_each_schedule": true,
+    "require_exact_prefix_before_first_effect": true,
+    "require_no_future_measurement": true,
+    "require_streaming_queue_consistency": true,
+    "require_applied_equals_requested_probe": true,
+    "model_validation": {
+      "maximum_velocity_component_rmse_m_per_s": 0.008,
+      "maximum_endpoint_late_speed_error_m_per_s": 0.008,
+      "maximum_final_speed_error_m_per_s": 0.008,
+      "maximum_position_rmse_m": 0.002,
+      "maximum_ip_rmse_A": 60.0,
+      "maximum_central_symmetry_velocity_rmse_m_per_s": 0.008,
+      "maximum_per_unit_velocity_response_rmse_m_per_s": 0.004,
+      "maximum_per_unit_position_response_rmse_m": 0.001,
+      "maximum_per_unit_ip_response_rmse_A": 20.0,
+      "minimum_pass_fraction": 1.0
+    }
+  },
+  "calibrated_confirmation": {
+    "expected_rollouts": 4,
+    "minimum_trace_equivalence_fraction": 1.0,
+    "numeric_trace_equivalence_atol": 1e-12,
+    "require_distinct_calibration_tokens": 2,
+    "require_untrusted_start_count": 0
+  },
+  "formal_grid_confirmation": {
+    "expected_cases": 18,
+    "modified_cases": 4,
+    "unchanged_source_cases": 14,
+    "require_all_pass": true
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0
+  },
+  "finite_test_envelope_only": true,
+  "unseen_target_generalization_validated": false,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "next_if_pass": "Freeze the original-deadline 18-case static-grid expert and proceed to true restart and hidden vessel/eddy-history validation. Do not claim unseen-target, continuous-parameter, noisy-sensing or deployment robustness, and do not start BC/DAgger/RL yet.",
+  "next_if_fail": "Do not relax the 250/270 ms deadlines and do not use 750 ms or 2 s late-arrival closure. If the 0.09 zero-net braking envelope does not validate and close all four modified paths, expand the bounded response basis with mode 2 and additional pre-deadline temporal shapes before another controller attempt.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

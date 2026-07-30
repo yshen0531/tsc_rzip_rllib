@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R7",
+  "phase": "precontrol_calibration",
+  "n_rollouts": 18,
+  "expected_rollouts": 18,
+  "coverage_complete": true,
+  "n_successful": 18,
+  "final_identification_fraction": 1.0,
+  "incorrect_confident_lock_count": 0,
+  "maximum_first_confident_lock_step": 5,
+  "minimum_final_confidence_ratio": 3.440503545227497,
+  "distinct_pairs_calibrated": 9,
+  "calibration_is_separate_reset_episode": true,
+  "passed": true,
+  "group_summaries": [
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 0.9,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 1,
+      "minimum_confidence_ratio": 4.599390302118425
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 1,
+      "minimum_confidence_ratio": 4.033853882718183
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.1,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 1,
+      "minimum_confidence_ratio": 3.915112322111051
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2,
+      "minimum_confidence_ratio": 3.440503545227497
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.0,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2,
+      "minimum_confidence_ratio": 3.7512373844274647
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.1,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 3,
+      "minimum_confidence_ratio": 3.8530489692983205
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 4,
+      "minimum_confidence_ratio": 3.8082823314275833
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.0,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 3,
+      "minimum_confidence_ratio": 3.471406825443243
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.1,
+      "profiles": 2,
+      "profile_ids": [
+        "clean",
+        "noisy_20mA"
+      ],
+      "profile_coverage_complete": true,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 5,
+      "minimum_confidence_ratio": 4.903379916224498
+    }
+  ]
+}

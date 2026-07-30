@@ -1,0 +1,893 @@
+[Stage3.0] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage3.0] source_stage2_2_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327
+[Stage3.0] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352
+[Stage3.0] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage3_0_svd3_tail_sqp_150ms.json
+[Stage3.0] command=all
+[Stage3.0] backend=ray
+[Stage3.0] resume=0
+[Stage3.0] workers=96
+[Stage3.0] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage3.0] RAY_TMPDIR=/tmp/stage3_0_1120
+[Stage3.0] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage3.0] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage3.0] Complete standalone source tree: no Git, network, or external base tree is used.
+[Stage3.0] Arrival is allowed at 120, 130, 140, or 150 ms; 100 ms is not a hard deadline.
+[Stage3.0] First nine actions are frozen from real-TSC Stage2.2 nominals; steps 9-14 are 18 independent tail variables.
+[Stage3.0] Search = 96-tail screen + up to 3 rounds of 72 real-TSC finite differences and 24 SQP steps.
+[Stage3.0] The exported MPC gain is an offline POC, not a validated online feedback controller.
+[Stage3.0] Final task remains a robust feedback controller across initial states and targets.
+[Stage3.0] SIGKILL cannot be intercepted. Completed candidate JSON files remain resumable.
+2026-07-21 20:13:58,721	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] 1/96
+[Stage2 evaluation] 2/96
+[Stage2 evaluation] 3/96
+[Stage2 evaluation] 4/96
+[Stage2 evaluation] 5/96
+[Stage2 evaluation] 6/96
+[Stage2 evaluation] 7/96
+[Stage2 evaluation] 8/96
+[Stage2 evaluation] 9/96
+[Stage2 evaluation] 10/96
+[Stage2 evaluation] 11/96
+[Stage2 evaluation] 12/96
+[Stage2 evaluation] 13/96
+[Stage2 evaluation] 14/96
+[Stage2 evaluation] 15/96
+[Stage2 evaluation] 16/96
+[Stage2 evaluation] 17/96
+[Stage2 evaluation] 18/96
+[Stage2 evaluation] 19/96
+[Stage2 evaluation] 20/96
+[Stage2 evaluation] 21/96
+[Stage2 evaluation] 22/96
+[Stage2 evaluation] 23/96
+[Stage2 evaluation] 24/96
+[Stage2 evaluation] 25/96
+[Stage2 evaluation] 26/96
+[Stage2 evaluation] 27/96
+[Stage2 evaluation] 28/96
+[Stage2 evaluation] 29/96
+[Stage2 evaluation] 30/96
+[Stage2 evaluation] 31/96
+[Stage2 evaluation] 32/96
+[Stage2 evaluation] 33/96
+[Stage2 evaluation] 34/96
+[Stage2 evaluation] 35/96
+[Stage2 evaluation] 36/96
+[Stage2 evaluation] 37/96
+[Stage2 evaluation] 38/96
+[Stage2 evaluation] 39/96
+[Stage2 evaluation] 40/96
+[Stage2 evaluation] 41/96
+[Stage2 evaluation] 42/96
+[Stage2 evaluation] 43/96
+[Stage2 evaluation] 44/96
+[Stage2 evaluation] 45/96
+[Stage2 evaluation] 46/96
+[Stage2 evaluation] 47/96
+[Stage2 evaluation] 48/96
+[Stage2 evaluation] 49/96
+[Stage2 evaluation] 50/96
+[Stage2 evaluation] 51/96
+[Stage2 evaluation] 52/96
+[Stage2 evaluation] 53/96
+[Stage2 evaluation] 54/96
+[Stage2 evaluation] 55/96
+[Stage2 evaluation] 56/96
+[Stage2 evaluation] 57/96
+[Stage2 evaluation] 58/96
+[Stage2 evaluation] 59/96
+[Stage2 evaluation] 60/96
+[Stage2 evaluation] 61/96
+[Stage2 evaluation] 62/96
+[Stage2 evaluation] 63/96
+[Stage2 evaluation] 64/96
+[Stage2 evaluation] 65/96
+[Stage2 evaluation] 66/96
+[Stage2 evaluation] 67/96
+[Stage2 evaluation] 68/96
+[Stage2 evaluation] 69/96
+[Stage2 evaluation] 70/96
+[Stage2 evaluation] 71/96
+[Stage2 evaluation] 72/96
+[Stage2 evaluation] 73/96
+[Stage2 evaluation] 74/96
+[Stage2 evaluation] 75/96
+[Stage2 evaluation] 76/96
+[Stage2 evaluation] 77/96
+[Stage2 evaluation] 78/96
+[Stage2 evaluation] 79/96
+[Stage2 evaluation] 80/96
+[Stage2 evaluation] 81/96
+[Stage2 evaluation] 82/96
+[Stage2 evaluation] 83/96
+[Stage2 evaluation] 84/96
+[Stage2 evaluation] 85/96
+[Stage2 evaluation] 86/96
+[Stage2 evaluation] 87/96
+[Stage2 evaluation] 88/96
+[Stage2 evaluation] 89/96
+[Stage2 evaluation] 90/96
+[Stage2 evaluation] 91/96
+[Stage2 evaluation] 92/96
+[Stage2 evaluation] 93/96
+[Stage2 evaluation] 94/96
+[Stage2 evaluation] 95/96
+[Stage2 evaluation] 96/96
+{
+  "stage": "Stage3.0",
+  "phase": "screen",
+  "successful": 96,
+  "population": 96,
+  "strict": 0,
+  "relaxed": 0,
+  "best": {
+    "candidate_id": "s30screen_d3ce6bdbf6bfd41d",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "gate_label": "NEAR_FEASIBLE_120_150MS",
+    "stage3_0_best_endpoint_ms": 120,
+    "stage3_0_sustained_box_max_error_m": 0.0373907972,
+    "stage3_0_post_arrival_velocity_rms_m_per_s": 0.15354063686674332,
+    "stage3_0_max_violation": 0.6931891952082634
+  }
+}
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] 1/72
+[Stage2 evaluation] 2/72
+[Stage2 evaluation] 3/72
+[Stage2 evaluation] 4/72
+[Stage2 evaluation] 5/72
+[Stage2 evaluation] 6/72
+[Stage2 evaluation] 7/72
+[Stage2 evaluation] 8/72
+[Stage2 evaluation] 9/72
+[Stage2 evaluation] 10/72
+[Stage2 evaluation] 11/72
+[Stage2 evaluation] 12/72
+[Stage2 evaluation] 13/72
+[Stage2 evaluation] 14/72
+[Stage2 evaluation] 15/72
+[Stage2 evaluation] 16/72
+[Stage2 evaluation] 17/72
+[Stage2 evaluation] 18/72
+[Stage2 evaluation] 19/72
+[Stage2 evaluation] 20/72
+[Stage2 evaluation] 21/72
+[Stage2 evaluation] 22/72
+[Stage2 evaluation] 23/72
+[Stage2 evaluation] 24/72
+[Stage2 evaluation] 25/72
+[Stage2 evaluation] 26/72
+[Stage2 evaluation] 27/72
+[Stage2 evaluation] 28/72
+[Stage2 evaluation] 29/72
+[Stage2 evaluation] 30/72
+[Stage2 evaluation] 31/72
+[Stage2 evaluation] 32/72
+[Stage2 evaluation] 33/72
+[Stage2 evaluation] 34/72
+[Stage2 evaluation] 35/72
+[Stage2 evaluation] 36/72
+[Stage2 evaluation] 37/72
+[Stage2 evaluation] 38/72
+[Stage2 evaluation] 39/72
+[Stage2 evaluation] 40/72
+[Stage2 evaluation] 41/72
+[Stage2 evaluation] 42/72
+[Stage2 evaluation] 43/72
+[Stage2 evaluation] 44/72
+[Stage2 evaluation] 45/72
+[Stage2 evaluation] 46/72
+[Stage2 evaluation] 47/72
+[Stage2 evaluation] 48/72
+[Stage2 evaluation] 49/72
+[Stage2 evaluation] 50/72
+[Stage2 evaluation] 51/72
+[Stage2 evaluation] 52/72
+[Stage2 evaluation] 53/72
+[Stage2 evaluation] 54/72
+[Stage2 evaluation] 55/72
+[Stage2 evaluation] 56/72
+[Stage2 evaluation] 57/72
+[Stage2 evaluation] 58/72
+[Stage2 evaluation] 59/72
+[Stage2 evaluation] 60/72
+[Stage2 evaluation] 61/72
+[Stage2 evaluation] 62/72
+[Stage2 evaluation] 63/72
+[Stage2 evaluation] 64/72
+[Stage2 evaluation] 65/72
+[Stage2 evaluation] 66/72
+[Stage2 evaluation] 67/72
+[Stage2 evaluation] 68/72
+[Stage2 evaluation] 69/72
+[Stage2 evaluation] 70/72
+[Stage2 evaluation] 71/72
+[Stage2 evaluation] 72/72
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "stage": "Stage3.0",
+  "round": 0,
+  "probe_success": 72,
+  "step_success": 24,
+  "strict": 0,
+  "best": {
+    "candidate_id": "s30r00s_46e233f658ec22e4",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "source_type": "real_tsc_sqp_step",
+    "stage3_0_best_endpoint_ms": 120,
+    "stage3_0_sustained_box_max_error_m": 0.0364523866,
+    "stage3_0_post_arrival_velocity_rms_m_per_s": 0.12948324838184916,
+    "stage3_0_max_violation": 0.2948324838184915
+  },
+  "next_round": 1,
+  "trust_scale": 0.9,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] 1/72
+[Stage2 evaluation] 2/72
+[Stage2 evaluation] 3/72
+[Stage2 evaluation] 4/72
+[Stage2 evaluation] 5/72
+[Stage2 evaluation] 6/72
+[Stage2 evaluation] 7/72
+[Stage2 evaluation] 8/72
+[Stage2 evaluation] 9/72
+[Stage2 evaluation] 10/72
+[Stage2 evaluation] 11/72
+[Stage2 evaluation] 12/72
+[Stage2 evaluation] 13/72
+[Stage2 evaluation] 14/72
+[Stage2 evaluation] 15/72
+[Stage2 evaluation] 16/72
+[Stage2 evaluation] 17/72
+[Stage2 evaluation] 18/72
+[Stage2 evaluation] 19/72
+[Stage2 evaluation] 20/72
+[Stage2 evaluation] 21/72
+[Stage2 evaluation] 22/72
+[Stage2 evaluation] 23/72
+[Stage2 evaluation] 24/72
+[Stage2 evaluation] 25/72
+[Stage2 evaluation] 26/72
+[Stage2 evaluation] 27/72
+[Stage2 evaluation] 28/72
+[Stage2 evaluation] 29/72
+[Stage2 evaluation] 30/72
+[Stage2 evaluation] 31/72
+[Stage2 evaluation] 32/72
+[Stage2 evaluation] 33/72
+[Stage2 evaluation] 34/72
+[Stage2 evaluation] 35/72
+[Stage2 evaluation] 36/72
+[Stage2 evaluation] 37/72
+[Stage2 evaluation] 38/72
+[Stage2 evaluation] 39/72
+[Stage2 evaluation] 40/72
+[Stage2 evaluation] 41/72
+[Stage2 evaluation] 42/72
+[Stage2 evaluation] 43/72
+[Stage2 evaluation] 44/72
+[Stage2 evaluation] 45/72
+[Stage2 evaluation] 46/72
+[Stage2 evaluation] 47/72
+[Stage2 evaluation] 48/72
+[Stage2 evaluation] 49/72
+[Stage2 evaluation] 50/72
+[Stage2 evaluation] 51/72
+[Stage2 evaluation] 52/72
+[Stage2 evaluation] 53/72
+[Stage2 evaluation] 54/72
+[Stage2 evaluation] 55/72
+[Stage2 evaluation] 56/72
+[Stage2 evaluation] 57/72
+[Stage2 evaluation] 58/72
+[Stage2 evaluation] 59/72
+[Stage2 evaluation] 60/72
+[Stage2 evaluation] 61/72
+[Stage2 evaluation] 62/72
+[Stage2 evaluation] 63/72
+[Stage2 evaluation] 64/72
+[Stage2 evaluation] 65/72
+[Stage2 evaluation] 66/72
+[Stage2 evaluation] 67/72
+[Stage2 evaluation] 68/72
+[Stage2 evaluation] 69/72
+[Stage2 evaluation] 70/72
+[Stage2 evaluation] 71/72
+[Stage2 evaluation] 72/72
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "stage": "Stage3.0",
+  "round": 1,
+  "probe_success": 72,
+  "step_success": 24,
+  "strict": 0,
+  "best": {
+    "candidate_id": "s30r01s_341150084ff015bd",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "source_type": "real_tsc_sqp_step",
+    "stage3_0_best_endpoint_ms": 150,
+    "stage3_0_sustained_box_max_error_m": 0.0356022506,
+    "stage3_0_post_arrival_velocity_rms_m_per_s": 0.08673229963477377,
+    "stage3_0_max_violation": 0.1867416866666669
+  },
+  "next_round": 2,
+  "trust_scale": 0.81,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] waiting 0/72
+[Stage2 evaluation] 1/72
+[Stage2 evaluation] 2/72
+[Stage2 evaluation] 3/72
+[Stage2 evaluation] 4/72
+[Stage2 evaluation] 5/72
+[Stage2 evaluation] 6/72
+[Stage2 evaluation] 7/72
+[Stage2 evaluation] 8/72
+[Stage2 evaluation] 9/72
+[Stage2 evaluation] 10/72
+[Stage2 evaluation] 11/72
+[Stage2 evaluation] 12/72
+[Stage2 evaluation] 13/72
+[Stage2 evaluation] 14/72
+[Stage2 evaluation] 15/72
+[Stage2 evaluation] 16/72
+[Stage2 evaluation] 17/72
+[Stage2 evaluation] 18/72
+[Stage2 evaluation] 19/72
+[Stage2 evaluation] 20/72
+[Stage2 evaluation] 21/72
+[Stage2 evaluation] 22/72
+[Stage2 evaluation] 23/72
+[Stage2 evaluation] 24/72
+[Stage2 evaluation] 25/72
+[Stage2 evaluation] 26/72
+[Stage2 evaluation] 27/72
+[Stage2 evaluation] 28/72
+[Stage2 evaluation] 29/72
+[Stage2 evaluation] 30/72
+[Stage2 evaluation] 31/72
+[Stage2 evaluation] 32/72
+[Stage2 evaluation] 33/72
+[Stage2 evaluation] 34/72
+[Stage2 evaluation] 35/72
+[Stage2 evaluation] 36/72
+[Stage2 evaluation] 37/72
+[Stage2 evaluation] 38/72
+[Stage2 evaluation] 39/72
+[Stage2 evaluation] 40/72
+[Stage2 evaluation] 41/72
+[Stage2 evaluation] 42/72
+[Stage2 evaluation] 43/72
+[Stage2 evaluation] 44/72
+[Stage2 evaluation] 45/72
+[Stage2 evaluation] 46/72
+[Stage2 evaluation] 47/72
+[Stage2 evaluation] 48/72
+[Stage2 evaluation] 49/72
+[Stage2 evaluation] 50/72
+[Stage2 evaluation] 51/72
+[Stage2 evaluation] 52/72
+[Stage2 evaluation] 53/72
+[Stage2 evaluation] 54/72
+[Stage2 evaluation] 55/72
+[Stage2 evaluation] 56/72
+[Stage2 evaluation] 57/72
+[Stage2 evaluation] 58/72
+[Stage2 evaluation] 59/72
+[Stage2 evaluation] 60/72
+[Stage2 evaluation] 61/72
+[Stage2 evaluation] 62/72
+[Stage2 evaluation] 63/72
+[Stage2 evaluation] 64/72
+[Stage2 evaluation] 65/72
+[Stage2 evaluation] 66/72
+[Stage2 evaluation] 67/72
+[Stage2 evaluation] 68/72
+[Stage2 evaluation] 69/72
+[Stage2 evaluation] 70/72
+[Stage2 evaluation] 71/72
+[Stage2 evaluation] 72/72
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "stage": "Stage3.0",
+  "round": 2,
+  "probe_success": 72,
+  "step_success": 24,
+  "strict": 0,
+  "best": {
+    "candidate_id": "s30r02s_5c06bc76b59d0d57",
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "source_type": "real_tsc_sqp_step",
+    "stage3_0_best_endpoint_ms": 140,
+    "stage3_0_sustained_box_max_error_m": 0.0348246406,
+    "stage3_0_post_arrival_velocity_rms_m_per_s": 0.07531884538198655,
+    "stage3_0_max_violation": 0.16082135333333336
+  },
+  "next_round": 3,
+  "trust_scale": 0.7290000000000001,
+  "finished": true,
+  "stop_reason": "max_sqp_rounds"
+}
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] waiting 0/36
+[Stage2 evaluation] 1/36
+[Stage2 evaluation] 2/36
+[Stage2 evaluation] 3/36
+[Stage2 evaluation] 4/36
+[Stage2 evaluation] 5/36
+[Stage2 evaluation] 6/36
+[Stage2 evaluation] 7/36
+[Stage2 evaluation] 8/36
+[Stage2 evaluation] 9/36
+[Stage2 evaluation] 10/36
+[Stage2 evaluation] 11/36
+[Stage2 evaluation] 12/36
+[Stage2 evaluation] 13/36
+[Stage2 evaluation] 14/36
+[Stage2 evaluation] 15/36
+[Stage2 evaluation] 16/36
+[Stage2 evaluation] 17/36
+[Stage2 evaluation] 18/36
+[Stage2 evaluation] 19/36
+[Stage2 evaluation] 20/36
+[Stage2 evaluation] 21/36
+[Stage2 evaluation] 22/36
+[Stage2 evaluation] 23/36
+[Stage2 evaluation] 24/36
+[Stage2 evaluation] 25/36
+[Stage2 evaluation] 26/36
+[Stage2 evaluation] 27/36
+[Stage2 evaluation] 28/36
+[Stage2 evaluation] 29/36
+[Stage2 evaluation] 30/36
+[Stage2 evaluation] 31/36
+[Stage2 evaluation] 32/36
+[Stage2 evaluation] 33/36
+[Stage2 evaluation] 34/36
+[Stage2 evaluation] 35/36
+[Stage2 evaluation] 36/36
+{
+  "stage": "Stage3.0",
+  "phase": "controller_identification",
+  "center": "s30r02s_5c06bc76b59d0d57",
+  "successful_probes": 36,
+  "reliable_columns": 18,
+  "numerical_rank": 18,
+  "online_feedback_validated": false
+}
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] waiting 0/12
+[Stage2 evaluation] 1/12
+[Stage2 evaluation] 2/12
+[Stage2 evaluation] 3/12
+[Stage2 evaluation] 4/12
+[Stage2 evaluation] 5/12
+[Stage2 evaluation] 6/12
+[Stage2 evaluation] 7/12
+[Stage2 evaluation] 8/12
+[Stage2 evaluation] 9/12
+[Stage2 evaluation] 10/12
+[Stage2 evaluation] 11/12
+[Stage2 evaluation] 12/12
+{
+  "schema_version": 1,
+  "stage": "Stage3.0",
+  "verdict": "PASS_DAMPED_HOLD_40MM_120_150MS_CONFIRMED_ONLY",
+  "created_utc": "20260721_125707",
+  "arrival_window_ms": [
+    120,
+    130,
+    140,
+    150
+  ],
+  "hard_100ms_deadline": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "s30r999p_3d650586695d1458",
+      "confirmation_rank": 1,
+      "confirmation_reasons": [
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_0_max_violation": 0.15943391666666673,
+      "latest_confirmed_arrival_ms": null,
+      "worst_sustained_box_max_error_m": 0.0347830175,
+      "max_post_arrival_velocity_rms_m_per_s": 0.07380439887524418
+    },
+    {
+      "candidate_id": "s30r999p_c100a0376c13f0bd",
+      "confirmation_rank": 2,
+      "confirmation_reasons": [
+        "corner",
+        "speed_safe",
+        "relaxed"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_0_max_violation": 0.15950887000000002,
+      "latest_confirmed_arrival_ms": null,
+      "worst_sustained_box_max_error_m": 0.0347852661,
+      "max_post_arrival_velocity_rms_m_per_s": 0.07424662430559334
+    },
+    {
+      "candidate_id": "s30r999p_8f77c81ea48cc213",
+      "confirmation_rank": 3,
+      "confirmation_reasons": [
+        "corner"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_0_max_violation": 0.15989732666666678,
+      "latest_confirmed_arrival_ms": null,
+      "worst_sustained_box_max_error_m": 0.0347969198,
+      "max_post_arrival_velocity_rms_m_per_s": 0.07411841029815944
+    },
+    {
+      "candidate_id": "s30r999p_e7477623771b9c64",
+      "confirmation_rank": 4,
+      "confirmation_reasons": [
+        "corner"
+      ],
+      "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_stage3_0_max_violation": 0.1602795800000001,
+      "latest_confirmed_arrival_ms": null,
+      "worst_sustained_box_max_error_m": 0.0348083874,
+      "max_post_arrival_velocity_rms_m_per_s": 0.07455717320027508
+    }
+  ],
+  "robustness_validated": false,
+  "robustness_warning": "Repeated deterministic rollouts confirm reproducibility only. Initial-state, target, noise and model-parameter robustness remain untested."
+}
+{
+  "schema_version": 1,
+  "stage": "Stage3.0",
+  "created_utc": "20260721_125710",
+  "source_stage2_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327",
+  "n_evaluations": 420,
+  "n_successful": 420,
+  "n_strict_gate": 0,
+  "n_relaxed_gate": 45,
+  "n_unique_candidates": 420,
+  "best": {
+    "stage": "Stage3.0",
+    "phase": "controller_identification_999_probes",
+    "candidate_id": "s30r999p_3d650586695d1458",
+    "population_index": 7,
+    "nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+    "source_candidate_id": "s22g000_571ab4a158d29207",
+    "nominal_category": "gate",
+    "source_name": "center0_v3_p",
+    "source_type": "real_tsc_fd_probe",
+    "tail_vector": [
+      -0.3625934518181101,
+      0.31836250362187624,
+      0.14993042464019693,
+      0.2869999999999997,
+      0.27099999999999996,
+      0.038150000000000024,
+      0.37939999999999935,
+      0.37939999999999996,
+      0.1355,
+      0.43359999999999943,
+      0.43359999999999976,
+      0.06539999999999996,
+      0.4335999999999999,
+      0.11359999999999945,
+      0.16259999999999988,
+      0.4335999999999991,
+      0.11359999999999984,
+      0.16259999999999983
+    ],
+    "result_relpath": "stage3_0_evaluations/controller_identification_999_probes/s30r999p_3d650586695d1458.json.gz",
+    "probe_center_candidate_id": "s30r02s_5c06bc76b59d0d57",
+    "probe_variable_index": 3,
+    "probe_sign": 1,
+    "probe_requested_delta": 0.016,
+    "probe_actual_delta": 0.016000000000000014,
+    "probe_scheme": "two_sided",
+    "success": true,
+    "failure_reason": "",
+    "n_trajectory_steps": 16,
+    "terminal_R_error_m": -0.027138718000000006,
+    "terminal_Z_error_m": 0.0347830175,
+    "terminal_Ip_error_A": 467.94680000000153,
+    "terminal_RZ_euclidean_error_m": 0.044117664501748394,
+    "terminal_RZ_box_max_error_m": 0.0347830175,
+    "terminal_velocity_m_per_s": 0.053851765494918345,
+    "late_velocity_rms_m_per_s": 0.09329181813360073,
+    "max_velocity_m_per_s": 0.6492383287639514,
+    "max_current_utilization": 0.41409999999999997,
+    "trailing_streak_within_30mm_steps": 0,
+    "trailing_streak_within_40mm_steps": 16,
+    "strict_gate_pass": false,
+    "relaxed_gate_pass": true,
+    "gate_label": "PASS_DAMPED_HOLD_40MM_120_150MS",
+    "stage3_0_earliest_strict_arrival_step": null,
+    "stage3_0_earliest_strict_arrival_ms": null,
+    "stage3_0_earliest_relaxed_arrival_step": 14,
+    "stage3_0_earliest_relaxed_arrival_ms": 140,
+    "stage3_0_gate_endpoint_step": 14,
+    "stage3_0_gate_endpoint_ms": 140,
+    "stage3_0_gate_sustained_box_max_error_m": 0.0347830175,
+    "stage3_0_gate_post_arrival_velocity_rms_m_per_s": 0.07380439887524418,
+    "stage3_0_best_endpoint_step": 14,
+    "stage3_0_best_endpoint_ms": 140,
+    "stage3_0_window_start_step": 12,
+    "stage3_0_sustained_box_max_error_m": 0.0347830175,
+    "stage3_0_endpoint_velocity_m_per_s": 0.08941009976368783,
+    "stage3_0_endpoint_late_velocity_rms_m_per_s": 0.09502609196799064,
+    "stage3_0_post_arrival_velocity_rms_m_per_s": 0.07380439887524418,
+    "stage3_0_final_velocity_m_per_s": 0.053851765494918345,
+    "stage3_0_sustained_Ip_max_error_A": 672.856200000002,
+    "stage3_0_position_violation": 0.15943391666666673,
+    "stage3_0_endpoint_speed_violation": 0.0,
+    "stage3_0_endpoint_late_speed_violation": 0.0,
+    "stage3_0_post_speed_violation": 0.0,
+    "stage3_0_final_speed_violation": 0.0,
+    "stage3_0_ip_violation": 0.0,
+    "stage3_0_max_violation": 0.15943391666666673,
+    "stage3_0_sum_violation": 0.15943391666666673,
+    "stage3_0_l2_violation": 0.15943391666666673,
+    "stage3_0_endpoint_evaluations": [
+      {
+        "endpoint_step": 12,
+        "arrival_time_ms": 120,
+        "window_start_step": 10,
+        "sustained_box_max_error_m": 0.0347830175,
+        "endpoint_velocity_m_per_s": 0.1058871379534122,
+        "endpoint_late_velocity_rms_m_per_s": 0.07453966943691982,
+        "post_arrival_velocity_rms_m_per_s": 0.09329181813360073,
+        "final_velocity_m_per_s": 0.053851765494918345,
+        "sustained_Ip_max_error_A": 782.9552000000003,
+        "position_violation": 0.15943391666666673,
+        "endpoint_speed_violation": 0.058871379534122026,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.15943391666666673,
+        "sum_violation": 0.21830529620078876,
+        "l2_violation": 0.16995591520133765,
+        "pass": false
+      },
+      {
+        "endpoint_step": 13,
+        "arrival_time_ms": 130,
+        "window_start_step": 11,
+        "sustained_box_max_error_m": 0.0347830175,
+        "endpoint_velocity_m_per_s": 0.11272616711329317,
+        "endpoint_late_velocity_rms_m_per_s": 0.08400758262533556,
+        "post_arrival_velocity_rms_m_per_s": 0.0886968006539251,
+        "final_velocity_m_per_s": 0.053851765494918345,
+        "sustained_Ip_max_error_A": 731.2748000000029,
+        "position_violation": 0.15943391666666673,
+        "endpoint_speed_violation": 0.12726167113293152,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.15943391666666673,
+        "sum_violation": 0.28669558779959825,
+        "l2_violation": 0.20399683017934384,
+        "pass": false
+      },
+      {
+        "endpoint_step": 14,
+        "arrival_time_ms": 140,
+        "window_start_step": 12,
+        "sustained_box_max_error_m": 0.0347830175,
+        "endpoint_velocity_m_per_s": 0.08941009976368783,
+        "endpoint_late_velocity_rms_m_per_s": 0.09502609196799064,
+        "post_arrival_velocity_rms_m_per_s": 0.07380439887524418,
+        "final_velocity_m_per_s": 0.053851765494918345,
+        "sustained_Ip_max_error_A": 672.856200000002,
+        "position_violation": 0.15943391666666673,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.15943391666666673,
+        "sum_violation": 0.15943391666666673,
+        "l2_violation": 0.15943391666666673,
+        "pass": false
+      },
+      {
+        "endpoint_step": 15,
+        "arrival_time_ms": 150,
+        "window_start_step": 13,
+        "sustained_box_max_error_m": 0.0347830175,
+        "endpoint_velocity_m_per_s": 0.053851765494918345,
+        "endpoint_late_velocity_rms_m_per_s": 0.09329181813360073,
+        "post_arrival_velocity_rms_m_per_s": 0.053851765494918345,
+        "final_velocity_m_per_s": 0.053851765494918345,
+        "sustained_Ip_max_error_A": 637.721800000003,
+        "position_violation": 0.15943391666666673,
+        "endpoint_speed_violation": 0.0,
+        "endpoint_late_speed_violation": 0.0,
+        "post_speed_violation": 0.0,
+        "final_speed_violation": 0.0,
+        "ip_violation": 0.0,
+        "max_violation": 0.15943391666666673,
+        "sum_violation": 0.15943391666666673,
+        "l2_violation": 0.15943391666666673,
+        "pass": false
+      }
+    ],
+    "stage3_0_speed_safe_at_best_endpoint": true,
+    "stage3_0_position_safe_at_best_endpoint": false,
+    "stage3_0_quality": 5.62003014471422,
+    "continuous_objective": 5.62003014471422,
+    "selection_score": 1016746.1812801447,
+    "action_rms": 0.3813455810744221,
+    "delta_action_rms": 0.20868830022204465,
+    "repair_excess_rms": 0.04807504367787985,
+    "wall_time_s": 240.79900908470154,
+    "phase_rank": 1
+  },
+  "confirmation_verdict": "PASS_DAMPED_HOLD_40MM_120_150MS_CONFIRMED_ONLY",
+  "controller_bundle": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352/stage3_0_controller/mpc_poc_bundle.json",
+  "online_feedback_validated": false,
+  "robustness_validated": false,
+  "report": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352/STAGE3_0_REPORT.md"
+}

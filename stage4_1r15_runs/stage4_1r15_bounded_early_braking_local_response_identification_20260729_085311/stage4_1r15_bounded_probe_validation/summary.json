@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R15",
+  "phase": "bounded_probe_validation",
+  "n_rollouts": 32,
+  "expected_rollouts": 32,
+  "coverage_complete": true,
+  "environment_success_count": 32,
+  "runtime_guard_pass_fraction": 1.0,
+  "model_prediction_pass_fraction": 0.96875,
+  "joint_pass_fraction": 0.96875,
+  "maximum_velocity_component_rmse_m_per_s": 0.0033010587602760834,
+  "maximum_endpoint_late_speed_error_m_per_s": 0.002312767316888925,
+  "maximum_final_speed_error_m_per_s": 0.00835043397426746,
+  "maximum_position_rmse_m": 0.0001890971491773114,
+  "maximum_ip_rmse_A": 12.549667200950637,
+  "maximum_central_symmetry_velocity_rmse_m_per_s": 0.0014043948375507278,
+  "formal_tracking_pass_required": false,
+  "formal_timing_contract_restored": false,
+  "identification_only": true,
+  "passed": false
+}

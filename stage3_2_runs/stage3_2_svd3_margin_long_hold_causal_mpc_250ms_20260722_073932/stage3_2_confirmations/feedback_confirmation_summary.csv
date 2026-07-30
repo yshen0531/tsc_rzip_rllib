@@ -1,0 +1,9 @@
+scenario,category,repeats,successful_repeats,all_repeats_strict_gate,worst_signed_margin
+nominal,nominal,2,2,True,0.030357773333333338
+target_Z_m0p010m,target,2,2,False,-0.2680068533333335
+target_R_p0p010m,target,2,2,False,-0.17015159999999874
+target_RZ_p_m_5mm,target,2,2,False,-0.12481578333333321
+target_Z_m0p005m,target,2,2,False,-0.11683561666666664
+target_RZ_m_m_5mm,target,2,2,False,-0.11291818666666664
+target_Z_m0p002m,target,2,2,False,-0.029541189999999995
+target_R_p0p005m,target,2,2,False,-0.0255626666666684

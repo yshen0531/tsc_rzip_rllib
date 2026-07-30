@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R1",
+  "phase": "plant_checkpoint_capture",
+  "n_rollouts": 18,
+  "expected_rollouts": 18,
+  "coverage_complete": true,
+  "environment_success_count": 0,
+  "capture_visible_exact_fraction": 0.0,
+  "source_action_exact_fraction": 0.0,
+  "maximum_capture_visible_abs_difference": null,
+  "maximum_source_action_abs_difference": null,
+  "capture_visible_comparable_fraction": 0.0,
+  "source_action_comparable_fraction": 0.0,
+  "failure_reason_count": 18,
+  "capture_summary_exception_count": 0,
+  "capture_exception_stage_counts": {
+    "prepare_replay": 18
+  },
+  "snapshot_valid_fraction": 0.0,
+  "snapshot_wire_exact_fraction": 0.0,
+  "full_wire_vector_fraction": 0.0,
+  "distinct_snapshot_paths": 1,
+  "wire_current_count_min": 0,
+  "wire_current_count_max": 0,
+  "plant_capture_instrumentation_changed_source_trace": true,
+  "passed": false
+}

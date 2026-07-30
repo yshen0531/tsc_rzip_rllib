@@ -41,7 +41,7 @@ manifest = json.loads((root / 'PACKAGE_MANIFEST.json').read_text(encoding='utf-8
 expected = {
     'stage': 'Stage4.2R1',
     'controller_revision': 'true_tsc_plant_restart_action_replay_v42r1',
-    'package_revision': 'r42r1_plant_restart_action_replay_v1',
+    'package_revision': 'r42r1a_capture_failure_finite_summary_v2',
     'run_name': 'stage4_2r1_true_tsc_plant_restart_action_replay',
 }
 for key, value in expected.items():
@@ -132,6 +132,8 @@ from tsc_rzip_rllib.core.runner import TSCStepRunner
 payload = r42.self_test()
 if not payload.get('passed'):
     raise SystemExit('Stage4.2R1 self-test failed')
+if not payload.get('incomparable_array_is_finite_json'):
+    raise SystemExit('Stage4.2R1 finite-JSON mismatch guard failed')
 if payload.get('checkpoint_step') != 20:
     raise SystemExit('Stage4.2R1 checkpoint changed')
 if payload.get('expected_capture_rollouts') != 18 or payload.get('expected_restart_rollouts') != 18:
@@ -179,6 +181,9 @@ for token in (
     'plant_restart_fidelity_pass',
     'formal_contract_pass',
     'old_unrun_r11_based_stage4_2r1_not_reused',
+    'capture_exception_stage',
+    '_finite_metric_max',
+    'capture_visible_comparable_fraction',
 ):
     if token not in module:
         raise SystemExit(f'Stage4.2R1 implementation guard missing: {token}')

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R11",
+  "verdict": "STAGE4_1R11_FINITE_FROZEN_TERMINAL_2000MS_LONG_HOLD_CLOSURE",
+  "primary_pass": true,
+  "selected_terminal_policy": "qp28_c0p50_v1p50_p1p25_position",
+  "next_if_pass": "Proceed to Stage4.2 true restart, hidden-history and plant/actuator-parameter robustness. Do not start BC/DAgger/RL yet.",
+  "next_if_fail": "Do not reinterpret R10 finite closure as a stable expert baseline. Identify a bounded terminal local model and redesign an offset-free terminal regulator without weakening the 30 mm/0.1 m/s gates and without handing 14-coil control to RL.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

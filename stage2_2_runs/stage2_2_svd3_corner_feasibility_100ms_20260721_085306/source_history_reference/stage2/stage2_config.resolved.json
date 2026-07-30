@@ -1,0 +1,168 @@
+{
+  "stage_label": "Stage 2",
+  "run_name": "stage2_svd3_real_tsc_cem_100ms",
+  "output_root": "stage2_runs",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Use the exact Stage1.1 runtime physics. External TERM/KILL is not intercepted."
+  },
+  "parallel": {
+    "n_workers": 192,
+    "ray_tmpdir": "/tmp/stage2"
+  },
+  "trajectory": {
+    "horizon_ms": 100,
+    "horizon_steps": 10,
+    "n_modes": 3,
+    "node_count": 5,
+    "node_steps": [
+      0,
+      2,
+      4,
+      6,
+      9
+    ],
+    "coefficient_lower": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper": [
+      2.6,
+      2.6,
+      0.9
+    ],
+    "seed_scale_profiles": {
+      "early_strong_late_soft": [
+        1.0,
+        1.0,
+        1.0,
+        0.98,
+        0.92,
+        0.82,
+        0.7,
+        0.58,
+        0.48,
+        0.4
+      ],
+      "moderate_taper": [
+        0.9,
+        0.9,
+        0.9,
+        0.88,
+        0.84,
+        0.78,
+        0.7,
+        0.64,
+        0.58,
+        0.54
+      ],
+      "late_brake_search_seed": [
+        1.0,
+        1.0,
+        0.98,
+        0.92,
+        0.82,
+        0.68,
+        0.5,
+        0.32,
+        0.16,
+        0.0
+      ]
+    },
+    "description": "Fifteen variables: three validated SVD-mode coefficients at five time nodes. Piecewise-linear interpolation produces ten real control steps."
+  },
+  "linear_prefilter": {
+    "r_scale_m": 0.03,
+    "z_scale_m": 0.03,
+    "ip_scale_a": 10000.0,
+    "random_keep_fraction": 0.25,
+    "weights": {
+      "late_position": 1.0,
+      "terminal_position": 0.5,
+      "terminal_ip": 0.05,
+      "action_rms": 0.01,
+      "delta_action_rms": 0.02,
+      "repair": 2.0
+    },
+    "description": "The identified linear model is used only to pre-screen position/Ip and action feasibility. It never ranks real velocity or declares hold success."
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "normalization_r_m": 0.03,
+    "normalization_z_m": 0.03,
+    "required_terminal_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_tolerance_a": 10000.0,
+    "promising_distance_reduction": 0.5,
+    "description": "Strict success requires at least the final three samples inside +/-30 mm, terminal speed <=0.10 m/s, late speed RMS <=0.10 m/s, and terminal Ip within tolerance."
+  },
+  "objective": {
+    "tier_spacing": 1000000.0,
+    "weights": {
+      "position_excess": 80.0,
+      "velocity_excess": 60.0,
+      "streak_deficit": 25.0,
+      "late_position": 4.0,
+      "terminal_position": 2.0,
+      "velocity_core": 2.0,
+      "terminal_ip": 0.1,
+      "action_rms": 0.02,
+      "delta_action_rms": 0.04,
+      "repair": 2.0
+    },
+    "description": "Real-TSC-only selection objective. Gate tiers dominate continuous quality: strict 30 mm hold, relaxed 40 mm hold, position-only tiers, strong drift suppression, then other candidates."
+  },
+  "optimization": {
+    "algorithm": "full_covariance_cem",
+    "population_size": 192,
+    "proposal_pool_size": 768,
+    "elite_count": 24,
+    "max_generations": 8,
+    "random_seed": 20260718,
+    "initial_mean_seed": "svd3_uniform_0.85",
+    "initial_std_by_mode": [
+      0.35,
+      0.35,
+      0.15
+    ],
+    "initial_std_node_multiplier": [
+      0.9,
+      0.95,
+      1.0,
+      1.2,
+      1.35
+    ],
+    "antithetic_sampling": true,
+    "mean_update_fraction": 0.7,
+    "covariance_update_fraction": 0.55,
+    "covariance_diagonal_shrinkage": 0.1,
+    "covariance_eigen_floor": 0.0004,
+    "covariance_eigen_ceiling": 0.5,
+    "meaningful_improvement": 0.0001,
+    "early_stop_patience_generations": 2,
+    "description": "One population fits one 192-worker wave. Full covariance learns cross-mode and temporal correlations. Early stopping is allowed only after a strict gate has been found.",
+    "cross_tier_elite_fraction": 0.25
+  },
+  "confirmation": {
+    "top_k_candidates": 3,
+    "repeats_per_candidate": 2,
+    "description": "After optimization, rerun the top three unique candidates twice each. Final PASS_PRECISE_HOLD_30MM_CONFIRMED requires every repeat of at least one candidate to satisfy the strict real-TSC gate."
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 600.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "description": "All temporary TSC runtime and episode directories are kept under /tmp/tsc_workspace and deleted promptly."
+  }
+}

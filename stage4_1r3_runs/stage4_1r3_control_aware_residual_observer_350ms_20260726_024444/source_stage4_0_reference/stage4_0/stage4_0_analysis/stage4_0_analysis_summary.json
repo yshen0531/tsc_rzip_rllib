@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "created_utc": "20260724_173342",
+  "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+  "source_selected_controller_scale": 0.5,
+  "heldout": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "heldout_targets",
+    "n_rollouts": 40,
+    "n_successful": 40,
+    "n_in_domain_targets": 16,
+    "in_domain_open_loop_pass_fraction": 1.0,
+    "in_domain_mpc_pass_fraction": 1.0,
+    "n_in_domain_exact_library_matches": 0,
+    "n_lost_in_domain_open_loop_passes": 0,
+    "pair_summary": {
+      "n_pairs": 20,
+      "n_baseline_pass": 20,
+      "n_feedback_pass": 20,
+      "n_preserved": 20,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "median_signed_margin_gain": 0.02000799833333272,
+      "worst_signed_margin_gain": -0.12447373124178052
+    },
+    "passed": true
+  },
+  "failure_recovery": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "failure_recovery",
+    "n_rollouts": 360,
+    "n_families": 36,
+    "n_families_with_open_loop_failure": 0,
+    "n_families_recovered_at_first_failure": 0,
+    "failure_recovery_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 1.0,
+    "pair_summary": {
+      "n_pairs": 180,
+      "n_baseline_pass": 180,
+      "n_feedback_pass": 180,
+      "n_preserved": 180,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "median_signed_margin_gain": 0.05753645333333335,
+      "worst_signed_margin_gain": -0.041079256858161384
+    },
+    "passed": false
+  },
+  "uncertainty": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "uncertainty",
+    "n_rollouts": 104,
+    "n_scenarios": 52,
+    "mpc_pass_fraction": 0.8653846153846154,
+    "preserved_open_loop_pass_fraction": 0.9130434782608695,
+    "pair_summary": {
+      "n_pairs": 52,
+      "n_baseline_pass": 46,
+      "n_feedback_pass": 45,
+      "n_preserved": 42,
+      "n_recovered": 3,
+      "n_lost": 4,
+      "median_signed_margin_gain": 0.023054985000000028,
+      "worst_signed_margin_gain": -0.5872825991503423
+    },
+    "true_plant_parameter_variation_tested": false,
+    "actuation_and_controller_model_uncertainty_tested": true,
+    "passed": true
+  },
+  "preconditioned_state": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "preconditioned_state",
+    "n_rollouts": 32,
+    "n_scenarios": 16,
+    "mpc_pass_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 0.0,
+    "pair_summary": {
+      "n_pairs": 16,
+      "n_baseline_pass": 1,
+      "n_feedback_pass": 0,
+      "n_preserved": 0,
+      "n_recovered": 0,
+      "n_lost": 1,
+      "median_signed_margin_gain": -1.2031386733723624,
+      "worst_signed_margin_gain": -1.3129820854628098
+    },
+    "true_restart_state_tested": false,
+    "preconditioned_history_tested": true,
+    "passed": false
+  },
+  "restart_sweep": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "restart_sweep",
+    "base_start_folder": "1100ms",
+    "alternate_start_folders": [],
+    "n_alternate_start_folders": 0,
+    "true_restart_validation_available": false,
+    "n_rollouts": 0,
+    "mpc_pass_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 0.0,
+    "pair_summary": {
+      "n_pairs": 0
+    },
+    "passed": false
+  },
+  "confirmation": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "phase": "confirmation",
+    "n_selected_scenarios": 4,
+    "n_rollouts": 8,
+    "n_successful": 8,
+    "n_scenarios_all_repeats_pass": 3,
+    "scenario_summaries": [
+      {
+        "source_experiment_id": "s40_1f5b8924b0ac2baf40bd",
+        "scenario": "RZ_p7p0_m2p5",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_signed_margin": 0.28825349209398987
+      },
+      {
+        "source_experiment_id": "s40_649b28818d0b353447d4",
+        "scenario": "RZ_p10_m10__noise_high_s0",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": false,
+        "worst_signed_margin": -0.09104483291189824
+      },
+      {
+        "source_experiment_id": "s40_758e23673d82e06abc10",
+        "scenario": "Ip_p1500",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_signed_margin": 0.265689225469259
+      },
+      {
+        "source_experiment_id": "s40_d98f849f7efe6952d813",
+        "scenario": "RZ_p6p2_m8p6",
+        "environment_variant": "base",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_signed_margin": 0.29348141000000005
+      }
+    ],
+    "passed": false
+  },
+  "verdict": {
+    "schema_version": 1,
+    "stage": "Stage4.0",
+    "created_utc": "20260724_173342",
+    "verdict": "STAGE4_0_ROBUSTNESS_AND_RECOVERY_ENVELOPE_INCOMPLETE",
+    "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+    "source_selected_controller_scale": 0.5,
+    "heldout_targets_passed": true,
+    "failure_recovery_passed": false,
+    "software_uncertainty_passed": true,
+    "preconditioned_state_passed": false,
+    "true_restart_validation_available": false,
+    "true_restart_validation_passed": null,
+    "confirmation_passed": false,
+    "finite_test_envelope_validated": false,
+    "deployment_robustness_validated": false,
+    "plant_parameter_robustness_validated": false,
+    "unseen_hidden_state_robustness_validated": false,
+    "warning": "This verdict covers only the finite configured target, disturbance, software uncertainty, preconditioned-history, and discoverable restart-folder envelope. It is not deployment qualification.",
+    "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+  }
+}

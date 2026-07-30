@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R5",
+  "phase": "estimator_only",
+  "n_rollouts": 18,
+  "n_successful": 18,
+  "execution_complete": true,
+  "identification_fraction": 1.0,
+  "maximum_first_lock_step": 1,
+  "minimum_confidence_ratio": 21.077156395325563,
+  "passed": true
+}

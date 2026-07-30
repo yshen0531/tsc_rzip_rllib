@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R9",
+  "verdict": "STAGE4_1R9_TERMINAL_FEEDBACK_HOLD_CLOSURE_INCOMPLETE",
+  "primary_pass": false,
+  "selected_terminal_policy": null,
+  "next_if_pass": "Stage4.2 true restart and plant/actuator-parameter robustness. Do not start BC/DAgger/RL yet.",
+  "next_if_fail": "Identify a dedicated terminal local model with bounded TSC probes and redesign the terminal regulator. Do not weaken the tracking gate and do not hand the 14-coil problem back to RL.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

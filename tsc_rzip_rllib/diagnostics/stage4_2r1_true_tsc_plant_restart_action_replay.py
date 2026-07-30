@@ -65,7 +65,8 @@ write_csv = r17.write_csv
 SCHEMA_VERSION = 1
 STAGE = "Stage4.2R1"
 CONTROLLER_REVISION = "true_tsc_plant_restart_action_replay_v42r1"
-PACKAGE_REVISION = "r42r1_plant_restart_action_replay_v1"
+PACKAGE_REVISION = "r42r1a_capture_failure_finite_summary_v2"
+LEGACY_PACKAGE_REVISIONS = {"r42r1_plant_restart_action_replay_v1"}
 EXPECTED_SOURCE_REVISION = r17.CONTROLLER_REVISION
 EXPECTED_SOURCE_PACKAGE_REVISION = r17.PACKAGE_REVISION
 SOURCE_INVENTORY_CONTRACT = "r42r1_direct_r17_and_selected_expert_raw_v1"
@@ -99,12 +100,33 @@ def _scenario_digest(payload: Mapping[str, Any]) -> str:
     return "s42r1_" + hashlib.sha256(canonical.encode("utf-8")).hexdigest()[:20]
 
 
-def _finite_max_abs(left: np.ndarray, right: np.ndarray) -> float:
+def _finite_max_abs(left: np.ndarray, right: np.ndarray) -> float | None:
+    """Return a finite maximum difference or ``None`` when incomparable.
+
+    Scientific failures such as a missing/partial trajectory must be represented
+    as structured finite JSON, never as IEEE ``inf`` which the package's strict
+    JSON writer correctly rejects.
+    """
     a = np.asarray(left, dtype=float)
     b = np.asarray(right, dtype=float)
     if a.shape != b.shape:
-        return math.inf
+        return None
+    if not np.all(np.isfinite(a)) or not np.all(np.isfinite(b)):
+        return None
     return float(np.max(np.abs(a - b))) if a.size else 0.0
+
+
+def _finite_metric_max(rows: Sequence[Mapping[str, Any]], key: str) -> float | None:
+    values: list[float] = []
+    for row in rows:
+        value = row.get(key)
+        if value is None:
+            return None
+        number = float(value)
+        if not math.isfinite(number):
+            return None
+        values.append(number)
+    return max(values) if values else None
 
 
 def _case_key(result_or_spec: Mapping[str, Any]) -> tuple[str, int, float]:
@@ -593,9 +615,9 @@ def prepare(ctx: Stage42R1Context, *, resume: bool) -> None:
     current = _manifest_payload(ctx)
     if ctx.paths.manifest.is_file():
         old = read_json(ctx.paths.manifest)
+        legacy_revision = str(old.get("package_revision", ""))
         for key in (
             "controller_revision",
-            "package_revision",
             "source_stage4_1r17_run",
             "source_fingerprint",
             "selected_expert_fingerprint",
@@ -605,10 +627,20 @@ def prepare(ctx: Stage42R1Context, *, resume: bool) -> None:
         ):
             if old.get(key) != current.get(key):
                 raise ValueError(f"Stage4.2R1 resume manifest mismatch for {key}")
+        if legacy_revision not in ({PACKAGE_REVISION} | LEGACY_PACKAGE_REVISIONS):
+            raise ValueError(f"Stage4.2R1 resume manifest mismatch for package_revision: {legacy_revision!r}")
         if not resume:
             raise FileExistsError(
                 f"Stage4.2R1 run already exists; use resume=1 or a new run directory: {ctx.paths.run_dir}"
             )
+        if legacy_revision != PACKAGE_REVISION:
+            history = list(old.get("package_revision_history") or [])
+            if legacy_revision and legacy_revision not in history:
+                history.append(legacy_revision)
+            current["package_revision_history"] = history
+            current["capture_failure_finite_summary_hotfix"] = True
+            current["upgraded_utc"] = utc_timestamp()
+            atomic_write_json(ctx.paths.manifest, current)
     else:
         if resume:
             raise FileNotFoundError(f"Stage4.2R1 resume manifest missing: {ctx.paths.manifest}")
@@ -716,11 +748,23 @@ def _compare_arrays(left: np.ndarray, right: np.ndarray, *, atol: float) -> dict
     a = np.asarray(left, dtype=float)
     b = np.asarray(right, dtype=float)
     same_shape = a.shape == b.shape
+    finite = bool(np.all(np.isfinite(a)) and np.all(np.isfinite(b)))
+    comparable = bool(same_shape and finite)
+    if not same_shape:
+        mismatch_reason = "shape_mismatch"
+    elif not finite:
+        mismatch_reason = "nonfinite_input"
+    else:
+        mismatch_reason = ""
     return {
         "left_shape": list(a.shape),
         "right_shape": list(b.shape),
-        "exact": bool(same_shape and np.array_equal(a, b)),
-        "numeric": bool(same_shape and np.allclose(a, b, rtol=0.0, atol=float(atol))),
+        "shape_equal": same_shape,
+        "finite_inputs": finite,
+        "comparable": comparable,
+        "mismatch_reason": mismatch_reason,
+        "exact": bool(comparable and np.array_equal(a, b)),
+        "numeric": bool(comparable and np.allclose(a, b, rtol=0.0, atol=float(atol))),
         "maximum_abs_difference": _finite_max_abs(a, b),
     }
 
@@ -888,9 +932,13 @@ class LocalPlantReplayWorker:
             "failure_reason": "",
             "trajectory": [],
         }
+        trajectory: list[dict[str, Any]] = []
+        capture_stage = "initialization"
+        snapshot_dir: Path | None = None
         try:
             if self.snapshot_root is None:
                 raise ValueError("capture worker has no snapshot root")
+            capture_stage = "prepare_replay"
             horizon = int(spec["horizon_steps"])
             checkpoint_step = int(spec["checkpoint_step"])
             actions = [np.asarray(row, dtype=np.float32).reshape(N_COILS) for row in spec["source_actions"]]
@@ -905,21 +953,27 @@ class LocalPlantReplayWorker:
             snapshot_dir.parent.mkdir(parents=True, exist_ok=True)
             runner.clear_restart_snapshot_requests()
             runner.request_restart_snapshot(local_step_index=checkpoint_step, destination=snapshot_dir)
+            capture_stage = "environment_reset"
             self.base_worker.env.reset()
             trajectory = [_state_record_full(self.base_worker.env, 0, initial_action)]
+            result["trajectory"] = trajectory
+            capture_stage = "action_replay"
             failure_reason = ""
             for index, action in enumerate(actions):
                 _, _, terminated, truncated, info = self.base_worker.env.step(action)
                 trajectory.append(_state_record_full(self.base_worker.env, index + 1, action))
+                result["trajectory"] = trajectory
                 if terminated:
                     failure_reason = str(info.get("failure_reason", "terminated"))
                     break
                 if truncated and index + 1 < horizon:
                     failure_reason = "environment truncated before requested capture horizon"
                     break
+            capture_stage = "snapshot_inventory"
             inventory = _snapshot_file_inventory(snapshot_dir, self.checkpoint_cfg)
             manifest_path = snapshot_dir / "restart_snapshot_manifest.json"
             atomic_write_json(manifest_path, inventory)
+            capture_stage = "snapshot_wire_validation"
             checkpoint_wire = np.asarray(trajectory[checkpoint_step]["wire_currents_a"], dtype=float)
             snapshot_wire = _snapshot_wire_vector_a(
                 snapshot_dir,
@@ -937,6 +991,7 @@ class LocalPlantReplayWorker:
                 and inventory.get("passed")
                 and snapshot_wire_exact
             )
+            capture_stage = "finalize_capture_result"
             result.update(
                 {
                     "success": success,
@@ -965,6 +1020,9 @@ class LocalPlantReplayWorker:
                     "success": False,
                     "failure_reason": repr(exc),
                     "traceback": traceback.format_exc(),
+                    "trajectory": trajectory,
+                    "capture_exception_stage": capture_stage,
+                    "capture_snapshot_dir": str(snapshot_dir) if snapshot_dir is not None else "",
                     "wall_time_s": float(time.time() - started),
                 }
             )
@@ -1431,8 +1489,16 @@ def _capture_result_row(ctx: Stage42R1Context, result: Mapping[str, Any]) -> dic
         "capture_visible_exact_to_source": visible["exact"],
         "capture_visible_numeric_to_source": visible["numeric"],
         "capture_visible_maximum_abs_difference": visible["maximum_abs_difference"],
+        "capture_visible_comparable": visible["comparable"],
+        "capture_visible_left_shape": visible["left_shape"],
+        "capture_visible_right_shape": visible["right_shape"],
+        "capture_visible_mismatch_reason": visible["mismatch_reason"],
+        "capture_exception_stage": str(result.get("capture_exception_stage", "")),
         "source_actions_exactly_replayed": action_compare["exact"],
         "source_action_maximum_abs_difference": action_compare["maximum_abs_difference"],
+        "source_action_comparable": action_compare["comparable"],
+        "source_action_mismatch_reason": action_compare["mismatch_reason"],
+        "trajectory_state_count": int(len(result.get("trajectory") or [])),
         "full_wire_current_vector_present": bool(wire.shape[1] > 0),
         "wire_current_count": int(wire.shape[1]) if wire.ndim == 2 else 0,
         "snapshot_dir": str(snapshot_dir),
@@ -1444,8 +1510,52 @@ def _capture_result_row(ctx: Stage42R1Context, result: Mapping[str, Any]) -> dic
     }
 
 
+def _safe_capture_result_row(ctx: Stage42R1Context, result: Mapping[str, Any]) -> dict[str, Any]:
+    try:
+        return _capture_result_row(ctx, result)
+    except Exception as exc:
+        spec = result.get("spec") or {}
+        try:
+            key = _case_key(result)
+        except Exception:
+            key = (str(spec.get("target_id", "unknown")), int(spec.get("action_delay_steps", -1)), float(spec.get("slew_scale", -1.0)))
+        trajectory = list(result.get("trajectory") or [])
+        return {
+            "experiment_id": result.get("experiment_id"),
+            "source_experiment_id": spec.get("source_experiment_id"),
+            "target_id": key[0],
+            "actual_delay_steps": key[1],
+            "actual_slew_scale": key[2],
+            "formal_horizon_steps": int(spec.get("horizon_steps", 0)),
+            "environment_success": bool(result.get("success")),
+            "failure_reason": str(result.get("failure_reason", "")),
+            "capture_summary_exception": repr(exc),
+            "capture_visible_exact_to_source": False,
+            "capture_visible_numeric_to_source": False,
+            "capture_visible_maximum_abs_difference": None,
+            "capture_visible_comparable": False,
+            "capture_visible_left_shape": [],
+            "capture_visible_right_shape": [],
+            "capture_visible_mismatch_reason": "summary_exception",
+            "capture_exception_stage": str(result.get("capture_exception_stage", "summary")),
+            "source_actions_exactly_replayed": False,
+            "source_action_maximum_abs_difference": None,
+            "source_action_comparable": False,
+            "source_action_mismatch_reason": "summary_exception",
+            "trajectory_state_count": len(trajectory),
+            "full_wire_current_vector_present": False,
+            "wire_current_count": 0,
+            "snapshot_dir": str((result.get("restart_snapshot") or {}).get("snapshot_dir", result.get("capture_snapshot_dir", ""))),
+            "snapshot_manifest_digest": (result.get("restart_snapshot") or {}).get("snapshot_manifest_digest"),
+            "snapshot_files_valid": False,
+            "snapshot_wire_exact_to_capture_checkpoint": False,
+            "snapshot_wire_maximum_abs_difference": None,
+            "passed": False,
+        }
+
+
 def _summarize_capture(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
-    rows = [_capture_result_row(ctx, result) for result in results]
+    rows = [_safe_capture_result_row(ctx, result) for result in results]
     expected = int(ctx.cfg["matrix"]["expected_capture_rollouts"])
     keys = {(row["target_id"], row["actual_delay_steps"], row["actual_slew_scale"]) for row in rows}
     expected_keys = set(_selected_source_cases(ctx))
@@ -1459,8 +1569,16 @@ def _summarize_capture(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any
         "environment_success_count": sum(bool(row["environment_success"]) for row in rows),
         "capture_visible_exact_fraction": sum(bool(row["capture_visible_exact_to_source"]) for row in rows) / len(rows) if rows else 0.0,
         "source_action_exact_fraction": sum(bool(row["source_actions_exactly_replayed"]) for row in rows) / len(rows) if rows else 0.0,
-        "maximum_capture_visible_abs_difference": max((_as_float(row["capture_visible_maximum_abs_difference"], math.inf) for row in rows), default=math.inf),
-        "maximum_source_action_abs_difference": max((_as_float(row["source_action_maximum_abs_difference"], math.inf) for row in rows), default=math.inf),
+        "maximum_capture_visible_abs_difference": _finite_metric_max(rows, "capture_visible_maximum_abs_difference"),
+        "maximum_source_action_abs_difference": _finite_metric_max(rows, "source_action_maximum_abs_difference"),
+        "capture_visible_comparable_fraction": sum(bool(row["capture_visible_comparable"]) for row in rows) / len(rows) if rows else 0.0,
+        "source_action_comparable_fraction": sum(bool(row["source_action_comparable"]) for row in rows) / len(rows) if rows else 0.0,
+        "failure_reason_count": sum(bool(str(row.get("failure_reason", ""))) for row in rows),
+        "capture_summary_exception_count": sum(bool(str(row.get("capture_summary_exception", ""))) for row in rows),
+        "capture_exception_stage_counts": {
+            stage: sum(str(row.get("capture_exception_stage", "")) == stage for row in rows)
+            for stage in sorted({str(row.get("capture_exception_stage", "")) for row in rows if str(row.get("capture_exception_stage", ""))})
+        },
         "snapshot_valid_fraction": sum(bool(row["snapshot_files_valid"]) for row in rows) / len(rows) if rows else 0.0,
         "snapshot_wire_exact_fraction": sum(bool(row["snapshot_wire_exact_to_capture_checkpoint"]) for row in rows) / len(rows) if rows else 0.0,
         "full_wire_vector_fraction": sum(bool(row["full_wire_current_vector_present"]) for row in rows) / len(rows) if rows else 0.0,
@@ -1475,6 +1593,8 @@ def _summarize_capture(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any
         and summary["environment_success_count"] == expected
         and summary["capture_visible_exact_fraction"] == 1.0
         and summary["source_action_exact_fraction"] == 1.0
+        and summary["capture_visible_comparable_fraction"] == 1.0
+        and summary["source_action_comparable_fraction"] == 1.0
         and summary["maximum_capture_visible_abs_difference"] == 0.0
         and summary["maximum_source_action_abs_difference"] == 0.0
         and summary["snapshot_valid_fraction"] == 1.0
@@ -1783,12 +1903,56 @@ def _restart_result_row(ctx: Stage42R1Context, result: Mapping[str, Any]) -> dic
     }
 
 
+def _safe_restart_result_row(ctx: Stage42R1Context, result: Mapping[str, Any]) -> dict[str, Any]:
+    try:
+        return _restart_result_row(ctx, result)
+    except Exception as exc:
+        spec = result.get("spec") or {}
+        try:
+            key = _case_key(result)
+        except Exception:
+            key = (str(spec.get("target_id", "unknown")), int(spec.get("action_delay_steps", -1)), float(spec.get("slew_scale", -1.0)))
+        return {
+            "experiment_id": result.get("experiment_id"),
+            "source_experiment_id": spec.get("source_experiment_id"),
+            "capture_experiment_id": spec.get("capture_experiment_id"),
+            "target_id": key[0],
+            "actual_delay_steps": key[1],
+            "actual_slew_scale": key[2],
+            "formal_horizon_steps": int(spec.get("horizon_steps", 0)),
+            "environment_success": bool(result.get("success")),
+            "failure_reason": str(result.get("failure_reason", "")),
+            "restart_summary_exception": repr(exc),
+            "fresh_restart_actor": bool((result.get("restart_summary") or {}).get("fresh_restart_actor")),
+            "full_tsc_hidden_state_loaded_from_sprsina": bool((result.get("restart_summary") or {}).get("full_tsc_hidden_state_loaded_from_sprsina")),
+            "controller_checkpoint_loaded": bool((result.get("restart_summary") or {}).get("controller_checkpoint_loaded")),
+            "restart_initial_visible_exact": False,
+            "restart_initial_wire_exact": False,
+            "restart_visible_suffix_exact": False,
+            "restart_wire_suffix_exact": False,
+            "restart_source_actions_exact": False,
+            "restart_visible_maximum_abs_difference": None,
+            "restart_wire_maximum_abs_difference": None,
+            "restart_action_maximum_abs_difference": None,
+            "recombined_visible_exact_to_source": False,
+            "formal_contract_pass": False,
+            "formal_minimum_signed_margin": None,
+            "plant_restart_fidelity_pass": False,
+            "passed": False,
+        }
+
+
 def _summarize_restart(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
-    rows = [_restart_result_row(ctx, result) for result in results]
+    rows = [_safe_restart_result_row(ctx, result) for result in results]
     expected = int(ctx.cfg["matrix"]["expected_restart_rollouts"])
     keys = {(row["target_id"], row["actual_delay_steps"], row["actual_slew_scale"]) for row in rows}
     expected_keys = set(_selected_source_cases(ctx))
-    minimum = min(rows, key=lambda row: row["formal_minimum_signed_margin"]) if rows else {}
+    finite_margin_rows = [
+        row for row in rows
+        if row.get("formal_minimum_signed_margin") is not None
+        and math.isfinite(float(row["formal_minimum_signed_margin"]))
+    ]
+    minimum = min(finite_margin_rows, key=lambda row: float(row["formal_minimum_signed_margin"])) if finite_margin_rows else {}
     plant_fraction = sum(bool(row["plant_restart_fidelity_pass"]) for row in rows) / len(rows) if rows else 0.0
     formal_fraction = sum(bool(row["formal_contract_pass"]) for row in rows) / len(rows) if rows else 0.0
     summary = {
@@ -1802,14 +1966,15 @@ def _summarize_restart(ctx: Stage42R1Context, results: Sequence[Mapping[str, Any
         "fresh_restart_actor_fraction": sum(bool(row["fresh_restart_actor"]) for row in rows) / len(rows) if rows else 0.0,
         "full_tsc_hidden_state_loaded_fraction": sum(bool(row["full_tsc_hidden_state_loaded_from_sprsina"]) for row in rows) / len(rows) if rows else 0.0,
         "controller_checkpoint_loaded_count": sum(bool(row["controller_checkpoint_loaded"]) for row in rows),
+        "restart_summary_exception_count": sum(bool(str(row.get("restart_summary_exception", ""))) for row in rows),
         "restart_initial_visible_exact_fraction": sum(bool(row["restart_initial_visible_exact"]) for row in rows) / len(rows) if rows else 0.0,
         "restart_initial_wire_exact_fraction": sum(bool(row["restart_initial_wire_exact"]) for row in rows) / len(rows) if rows else 0.0,
         "restart_visible_suffix_exact_fraction": sum(bool(row["restart_visible_suffix_exact"]) for row in rows) / len(rows) if rows else 0.0,
         "restart_wire_suffix_exact_fraction": sum(bool(row["restart_wire_suffix_exact"]) for row in rows) / len(rows) if rows else 0.0,
         "restart_source_action_exact_fraction": sum(bool(row["restart_source_actions_exact"]) for row in rows) / len(rows) if rows else 0.0,
-        "maximum_restart_visible_abs_difference": max((_as_float(row["restart_visible_maximum_abs_difference"], math.inf) for row in rows), default=math.inf),
-        "maximum_restart_wire_abs_difference": max((_as_float(row["restart_wire_maximum_abs_difference"], math.inf) for row in rows), default=math.inf),
-        "maximum_restart_action_abs_difference": max((_as_float(row["restart_action_maximum_abs_difference"], math.inf) for row in rows), default=math.inf),
+        "maximum_restart_visible_abs_difference": _finite_metric_max(rows, "restart_visible_maximum_abs_difference"),
+        "maximum_restart_wire_abs_difference": _finite_metric_max(rows, "restart_wire_maximum_abs_difference"),
+        "maximum_restart_action_abs_difference": _finite_metric_max(rows, "restart_action_maximum_abs_difference"),
         "recombined_visible_exact_fraction": sum(bool(row["recombined_visible_exact_to_source"]) for row in rows) / len(rows) if rows else 0.0,
         "plant_restart_fidelity_pass_fraction": plant_fraction,
         "formal_contract_preservation_fraction": formal_fraction,
@@ -1973,6 +2138,7 @@ def self_test() -> dict[str, Any]:
     visible = _visible_array(synthetic)
     wire = _wire_array(synthetic)
     comparison = _compare_arrays(visible, visible, atol=1e-12)
+    mismatch = _compare_arrays(np.empty((0, 0)), visible, atol=1e-12)
     prefix = copy.deepcopy(synthetic_states[:CHECKPOINT_STEP])
     suffix = copy.deepcopy(synthetic_states[CHECKPOINT_STEP:])
     recombined = prefix + suffix
@@ -1997,6 +2163,8 @@ def self_test() -> dict[str, Any]:
             and visible.shape == (WEAK_HORIZON + 1, 35)
             and wire.shape == (WEAK_HORIZON + 1, 3)
             and comparison["exact"]
+            and not mismatch["comparable"]
+            and mismatch["maximum_abs_difference"] is None
             and recombination_ok
             and inventory_ok
             and tamper_detected
@@ -2005,6 +2173,7 @@ def self_test() -> dict[str, Any]:
         "visible_state_width": int(visible.shape[1]),
         "full_wire_vector_preserved": bool(wire.shape[1] == 3),
         "exact_array_comparison_passed": comparison["exact"],
+        "incomparable_array_is_finite_json": bool(not mismatch["comparable"] and mismatch["maximum_abs_difference"] is None),
         "prefix_suffix_recombination_passed": recombination_ok,
         "snapshot_inventory_passed": inventory_ok,
         "snapshot_tamper_detected": tamper_detected,

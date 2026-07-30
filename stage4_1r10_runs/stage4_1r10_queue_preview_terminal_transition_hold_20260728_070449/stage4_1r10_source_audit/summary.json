@@ -1,0 +1,184 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R10",
+  "phase": "source_audit",
+  "source_stage4_1r9_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r9_runs/stage4_1r9_terminal_template_mpc_feedback_hold_20260728_020206",
+  "source_finished": true,
+  "source_stop_reason": "oracle_development_failed",
+  "raw_rollouts": 54,
+  "expected_raw_rollouts": 54,
+  "raw_coverage_complete": true,
+  "unique_experiment_ids": 54,
+  "environment_success_count": 54,
+  "failure_reason_count": 0,
+  "abnormal_state_count": 0,
+  "solver_failure_step_count": 0,
+  "streaming_queue_inconsistent_count": 0,
+  "pending_queue_bypass_count": 0,
+  "tracking_by_delay": {
+    "0": {
+      "passed": 18,
+      "total": 18,
+      "fraction": 1.0,
+      "minimum_margin": 0.039259223333333204,
+      "maximum_margin": 0.23918899333333332
+    },
+    "1": {
+      "passed": 0,
+      "total": 18,
+      "fraction": 0.0,
+      "minimum_margin": -0.4448111057858166,
+      "maximum_margin": -0.06199248811673885
+    },
+    "2": {
+      "passed": 0,
+      "total": 18,
+      "fraction": 0.0,
+      "minimum_margin": -1.6396616280889464,
+      "maximum_margin": -0.4461231035122095
+    }
+  },
+  "all_delay0_cases_pass": true,
+  "all_delay1_delay2_cases_fail": true,
+  "all_policies_identical_before_first_terminal_effect": true,
+  "maximum_pre_effect_prefix_difference": 0.0,
+  "maximum_current_utilization": 0.41174999999999995,
+  "transition_attribution": [
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 0.9,
+      "speed_at_350ms_m_per_s": 0.022838072551773864,
+      "speed_before_first_terminal_effect_m_per_s": 0.022838072551773864,
+      "speed_after_first_terminal_effect_m_per_s": 0.045456765742355784,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.0,
+      "pending_main_command_count": 0,
+      "pending_main_command_norms": [],
+      "maximum_pending_main_command_norm": 0.0,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "speed_at_350ms_m_per_s": 0.035340386950050644,
+      "speed_before_first_terminal_effect_m_per_s": 0.035340386950050644,
+      "speed_after_first_terminal_effect_m_per_s": 0.05760355239515093,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.0,
+      "pending_main_command_count": 0,
+      "pending_main_command_norms": [],
+      "maximum_pending_main_command_norm": 0.0,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.1,
+      "speed_at_350ms_m_per_s": 0.029023678935894266,
+      "speed_before_first_terminal_effect_m_per_s": 0.029023678935894266,
+      "speed_after_first_terminal_effect_m_per_s": 0.04972361128207706,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.0,
+      "pending_main_command_count": 0,
+      "pending_main_command_norms": [],
+      "maximum_pending_main_command_norm": 0.0,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "speed_at_350ms_m_per_s": 0.043292819195936,
+      "speed_before_first_terminal_effect_m_per_s": 0.07099133853278922,
+      "speed_after_first_terminal_effect_m_per_s": 0.10922377592093191,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.027698519336853217,
+      "pending_main_command_count": 1,
+      "pending_main_command_norms": [
+        0.6188447776131282
+      ],
+      "maximum_pending_main_command_norm": 0.6188447776131282,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.0,
+      "speed_at_350ms_m_per_s": 0.027551233204711013,
+      "speed_before_first_terminal_effect_m_per_s": 0.0515126884075176,
+      "speed_after_first_terminal_effect_m_per_s": 0.09213450091523497,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.023961455202806584,
+      "pending_main_command_count": 1,
+      "pending_main_command_norms": [
+        0.5569602998518153
+      ],
+      "maximum_pending_main_command_norm": 0.5569602998518153,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.1,
+      "speed_at_350ms_m_per_s": 0.026925358196046755,
+      "speed_before_first_terminal_effect_m_per_s": 0.052716667047735116,
+      "speed_after_first_terminal_effect_m_per_s": 0.09514128850924063,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.02579130885168836,
+      "pending_main_command_count": 1,
+      "pending_main_command_norms": [
+        0.506327545319832
+      ],
+      "maximum_pending_main_command_norm": 0.506327545319832,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "speed_at_350ms_m_per_s": 0.04489186216035888,
+      "speed_before_first_terminal_effect_m_per_s": 0.1094177535114158,
+      "speed_after_first_terminal_effect_m_per_s": 0.15836703746729214,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.06452589135105694,
+      "pending_main_command_count": 2,
+      "pending_main_command_norms": [
+        0.6188447776131282,
+        0.6188447776131282
+      ],
+      "maximum_pending_main_command_norm": 0.6188447776131282,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.0,
+      "speed_at_350ms_m_per_s": 0.03238305551924962,
+      "speed_before_first_terminal_effect_m_per_s": 0.10019332170839337,
+      "speed_after_first_terminal_effect_m_per_s": 0.148074670347789,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.06781026618914375,
+      "pending_main_command_count": 2,
+      "pending_main_command_norms": [
+        0.5569602998518153,
+        0.5569602998518153
+      ],
+      "maximum_pending_main_command_norm": 0.5569602998518153,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.1,
+      "speed_at_350ms_m_per_s": 0.027639760281943284,
+      "speed_before_first_terminal_effect_m_per_s": 0.09350509284454223,
+      "speed_after_first_terminal_effect_m_per_s": 0.1410128724510451,
+      "speed_increase_from_pending_before_terminal_effect_m_per_s": 0.06586533256259894,
+      "pending_main_command_count": 2,
+      "pending_main_command_norms": [
+        0.506327545319832,
+        0.506327545319832
+      ],
+      "maximum_pending_main_command_norm": 0.506327545319832,
+      "first_terminal_desired_physical_norm": 0.10198161599033424,
+      "policies_identical_before_first_terminal_effect": true
+    }
+  ],
+  "source_holdout_status": "not_run",
+  "source_calibrated_confirmation_status": "not_run",
+  "passed": true,
+  "interpretation": "R9 completed normally. Every delay=0 development case passed and every delay=1/2 case failed for every candidate. Before a terminal-issued command can affect the plant, policies are exactly identical; the remaining main-MPC pipeline commands create a deterministic speed kick. R10 therefore changes the causal queue-boundary transition, not the tracking gate and not the 14-coil problem ownership."
+}

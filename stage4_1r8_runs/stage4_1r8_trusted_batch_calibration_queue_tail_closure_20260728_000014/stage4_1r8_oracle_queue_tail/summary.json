@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R8",
+  "phase": "oracle_queue_tail",
+  "n_rollouts": 54,
+  "expected_rollouts": 54,
+  "coverage_complete": true,
+  "policy_summaries": [
+    {
+      "policy_id": "drain_pending_h37",
+      "horizon_steps": 37,
+      "tail_steps": 2,
+      "n_rollouts": 18,
+      "coverage_complete": true,
+      "all_environment_success": true,
+      "tracking_fraction": 0.3888888888888889,
+      "minimum_signed_margin": -0.242367103269711,
+      "all_pending_queues_drained": true,
+      "zero_action_while_pending_count": 0,
+      "passed_tracking_gate": false
+    },
+    {
+      "policy_id": "drain_pending_h39",
+      "horizon_steps": 39,
+      "tail_steps": 4,
+      "n_rollouts": 18,
+      "coverage_complete": true,
+      "all_environment_success": true,
+      "tracking_fraction": 0.0,
+      "minimum_signed_margin": -1.2820246026904294,
+      "all_pending_queues_drained": true,
+      "zero_action_while_pending_count": 0,
+      "passed_tracking_gate": false
+    },
+    {
+      "policy_id": "drain_pending_h41",
+      "horizon_steps": 41,
+      "tail_steps": 6,
+      "n_rollouts": 18,
+      "coverage_complete": true,
+      "all_environment_success": true,
+      "tracking_fraction": 0.0,
+      "minimum_signed_margin": -1.9717088145372261,
+      "all_pending_queues_drained": true,
+      "zero_action_while_pending_count": 0,
+      "passed_tracking_gate": false
+    }
+  ],
+  "selected_policy_id": null,
+  "selected_policy_horizon_steps": null,
+  "selected_policy_minimum_signed_margin": null,
+  "passed": false
+}

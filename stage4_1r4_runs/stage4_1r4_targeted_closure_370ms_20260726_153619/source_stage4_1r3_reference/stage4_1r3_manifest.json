@@ -1,0 +1,29 @@
+{
+  "schema_version": 3,
+  "stage": "Stage4.1R3",
+  "controller_revision": "control_aware_residual_observer_antiwindup_v3",
+  "created_utc": "20260726_024446",
+  "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+  "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+  "source_fingerprint": {
+    "n_files": 10,
+    "total_bytes": 1891987,
+    "digest": "52b5dd8d7f0ec122b4c70613034125ab90ef177c3f9fb167edb494610b7c7a0b"
+  },
+  "source_selected_controller_scale": 0.5,
+  "workers": {
+    "requested_workers": 128,
+    "logical_cpus": 256,
+    "reserved_logical_cpus": 16,
+    "safe_worker_ceiling": 240,
+    "available_memory_gb": 240.72494888305664,
+    "open_file_soft_limit": 1048576,
+    "open_file_hard_limit": 1048576
+  },
+  "hard_numeric_thresholds_changed": false,
+  "target_library_and_jacobian_frozen": true,
+  "controller_wrapper_upgraded": true,
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.4",
+  "selected_controller_scale": 0.5,
+  "n_scenarios": 9,
+  "feedback_pass_fraction": 1.0,
+  "n_preserved": 9,
+  "n_recovered": 0,
+  "n_lost": 0,
+  "median_signed_margin_gain": 0.05280068333333332,
+  "worst_signed_margin_gain": -0.10913371248916226,
+  "comparisons": [
+    {
+      "scenario": "Ip_m750",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.10359184473639749
+    },
+    {
+      "scenario": "Ip_p750",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": -0.10913371248916226
+    },
+    {
+      "scenario": "RZ_p7p5_m7p5",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.04200069666666728
+    },
+    {
+      "scenario": "R_p2p5_Z_m2p5",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.0188783401406738
+    },
+    {
+      "scenario": "R_p7p5",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.006900966666667507
+    },
+    {
+      "scenario": "Z_m7p5",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.05280068333333332
+    },
+    {
+      "scenario": "dist_m1_s04_m",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.15456619333333332
+    },
+    {
+      "scenario": "dist_m2_s12_p",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.09476904658966945
+    },
+    {
+      "scenario": "dist_m3_s24_m",
+      "baseline_pass": true,
+      "feedback_pass": true,
+      "preserved": true,
+      "recovered": false,
+      "lost": false,
+      "signed_margin_gain": 0.0579856133333333
+    }
+  ],
+  "holdout_pass": true
+}

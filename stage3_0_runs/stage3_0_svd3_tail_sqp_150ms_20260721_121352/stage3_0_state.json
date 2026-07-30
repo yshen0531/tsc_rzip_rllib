@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.0",
+  "source_stage2_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327",
+  "screen_complete": true,
+  "next_sqp_round": 3,
+  "max_sqp_rounds": 3,
+  "trust_scale": 0.7290000000000001,
+  "optimization_finished": true,
+  "controller_identification_complete": true,
+  "confirmation_complete": true,
+  "strict_gate_found": false,
+  "best_candidate_id": "s30r999p_3d650586695d1458",
+  "best_selection_score": 1016746.1812801447,
+  "best_max_violation": 0.15943391666666673,
+  "best_phase": "controller_identification_999_probes",
+  "best_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+  "best_tail_vector": [
+    -0.3625934518181101,
+    0.31836250362187624,
+    0.14993042464019693,
+    0.2869999999999997,
+    0.27099999999999996,
+    0.038150000000000024,
+    0.37939999999999935,
+    0.37939999999999996,
+    0.1355,
+    0.43359999999999943,
+    0.43359999999999976,
+    0.06539999999999996,
+    0.4335999999999999,
+    0.11359999999999945,
+    0.16259999999999988,
+    0.4335999999999991,
+    0.11359999999999984,
+    0.16259999999999983
+  ],
+  "stop_reason": "max_sqp_rounds",
+  "updated_utc": "20260721_125707",
+  "last_round": {
+    "round_index": 2,
+    "centers": [
+      "s30r01s_341150084ff015bd",
+      "s30r01s_a41b0f020132d509"
+    ],
+    "previous_best_max_violation": 0.1867416866666669,
+    "round_best_max_violation": 0.16082135333333336,
+    "meaningful_improvement": true,
+    "next_trust_scale": 0.7290000000000001
+  },
+  "controller_identification_center": "s30r02s_5c06bc76b59d0d57",
+  "confirmation_verdict": "PASS_DAMPED_HOLD_40MM_120_150MS_CONFIRMED_ONLY"
+}

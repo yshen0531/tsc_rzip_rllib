@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R8",
+  "created_utc": "20260728_001623",
+  "verdict": "STAGE4_1R8_TRUSTED_CALIBRATION_OR_QUEUE_TAIL_CLOSURE_INCOMPLETE",
+  "source_stage4_1r7_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r7_runs/stage4_1r7_precontrol_calibration_queue_startup_20260727_084802",
+  "source_audit_passed": true,
+  "batch_source_replay_passed": true,
+  "integrated_calibration_passed": true,
+  "oracle_queue_tail_passed": false,
+  "calibrated_startup_passed": false,
+  "selected_queue_tail_policy": null,
+  "finite_trusted_calibration_queue_tail_envelope_validated": false,
+  "untrusted_default_main_start_allowed": false,
+  "tail_pending_queue_bypass_allowed": false,
+  "true_restart_validation_available": false,
+  "true_restart_validation_performed": false,
+  "hardware_pre_shot_calibration_validated": false,
+  "continuous_parameter_change_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "unseen_hidden_state_robustness_validated": false,
+  "deployment_robustness_validated": false,
+  "finite_test_envelope_only": true,
+  "warning": "R8 can only close a finite static digital-twin envelope. It does not validate real restart state, hidden vessel/eddy history, continuously changing actuator parameters, plant-model error, or hardware calibration.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "phases": {
+    "source_audit": {
+      "schema_version": 1,
+      "stage": "Stage4.1R8",
+      "phase": "source_audit",
+      "source_stage4_1r7_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r7_runs/stage4_1r7_precontrol_calibration_queue_startup_20260727_084802",
+      "source_finished": true,
+      "source_stop_reason": "paired_confirmation_failed",
+      "source_precontrol_calibration_passed": true,
+      "source_queue_startup_passed": true,
+      "source_paired_confirmation_passed": false,
+      "oracle_feasible_cases": 14,
+      "oracle_total_cases": 18,
+      "paired_distinct_groups": 18,
+      "paired_all_group_gate_structurally_possible": false,
+      "paired_gate_conflated_oracle_infeasibility": true,
+      "legacy_weak_slew_pending_commands_dropped": 6,
+      "legacy_weak_slew_pending_drop_examples": [
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "pending_source_steps": [
+            34
+          ],
+          "pending_command_norms": [
+            0.6065842578897909
+          ],
+          "legacy_tail_actions_zero": true,
+          "dropped_pending_command_count": 1
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "pending_source_steps": [
+            33,
+            34
+          ],
+          "pending_command_norms": [
+            0.6065842578897909,
+            0.6065842578897909
+          ],
+          "legacy_tail_actions_zero": true,
+          "dropped_pending_command_count": 2
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "pending_source_steps": [
+            34
+          ],
+          "pending_command_norms": [
+            0.6188447776131282
+          ],
+          "legacy_tail_actions_zero": true,
+          "dropped_pending_command_count": 1
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "pending_source_steps": [
+            33,
+            34
+          ],
+          "pending_command_norms": [
+            0.6188447776131282,
+            0.6188447776131282
+          ],
+          "legacy_tail_actions_zero": true,
+          "dropped_pending_command_count": 2
+        }
+      ],
+      "flattened_action_rms_zero_rows": 108,
+      "raw_nonzero_action_rollouts": 108,
+      "unique_noisy_calibration_traces": 27,
+      "online_no_lock_default_retained_count": 3,
+      "online_no_lock_but_actual_ranked_best_count": 3,
+      "passed": true,
+      "interpretation": "R7 completed without a runtime crash. Its final failure mixes an impossible all-group gate, three untrusted-default starts, and a legacy tail that bypassed non-empty delay queues."
+    },
+    "batch_source_replay": {
+      "schema_version": 1,
+      "stage": "Stage4.1R8",
+      "phase": "batch_source_replay",
+      "unique_source_noisy_traces": 27,
+      "source_batch_ranked_correct_fraction": 1.0,
+      "source_batch_trusted_fraction": 1.0,
+      "source_batch_trusted_correct_fraction": 1.0,
+      "source_batch_wrong_accept_count": 0,
+      "source_online_no_lock_count": 3,
+      "primary_monte_carlo": {
+        "profile_id": "iid_gaussian_20mA",
+        "trials": 4608,
+        "accepted": 4608,
+        "trusted_correct": 4608,
+        "wrong_accept_count": 0,
+        "acceptance_fraction": 1.0,
+        "trusted_correct_fraction": 1.0,
+        "zero_wrong_accept_rule_of_three_95pct_upper": 0.0006510416666666666,
+        "minimum_full_delta_log_likelihood": 178.6834379865031,
+        "minimum_split_delta_log_likelihood": 22.388013410273853
+      },
+      "diagnostic_monte_carlo": {
+        "profile_id": "iid_gaussian_50mA",
+        "trials": 2304,
+        "accepted": 73,
+        "trusted_correct": 73,
+        "wrong_accept_count": 0,
+        "acceptance_fraction": 0.031684027777777776,
+        "trusted_correct_fraction": 0.031684027777777776,
+        "zero_wrong_accept_rule_of_three_95pct_upper": 0.0013020833333333333,
+        "minimum_full_delta_log_likelihood": 1.0295219677595595,
+        "minimum_split_delta_log_likelihood": 0.0027969158042384814
+      },
+      "passed": true
+    },
+    "integrated_calibration": {
+      "schema_version": 1,
+      "stage": "Stage4.1R8",
+      "phase": "integrated_calibration",
+      "n_rollouts": 9,
+      "expected_rollouts": 9,
+      "coverage_complete": true,
+      "n_successful": 9,
+      "trusted_fraction": 1.0,
+      "trusted_correct_fraction": 1.0,
+      "wrong_accept_count": 0,
+      "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+      "maximum_delta_fraction_of_nominal": 0.330000000000003,
+      "maximum_final_coil_residual_A": 0.000185,
+      "calibration_tokens_are_pair_level_not_target_duplicated": true,
+      "passed": true
+    },
+    "oracle_queue_tail": {
+      "schema_version": 1,
+      "stage": "Stage4.1R8",
+      "phase": "oracle_queue_tail",
+      "n_rollouts": 54,
+      "expected_rollouts": 54,
+      "coverage_complete": true,
+      "policy_summaries": [
+        {
+          "policy_id": "drain_pending_h37",
+          "horizon_steps": 37,
+          "tail_steps": 2,
+          "n_rollouts": 18,
+          "coverage_complete": true,
+          "all_environment_success": true,
+          "tracking_fraction": 0.3888888888888889,
+          "minimum_signed_margin": -0.242367103269711,
+          "all_pending_queues_drained": true,
+          "zero_action_while_pending_count": 0,
+          "passed_tracking_gate": false
+        },
+        {
+          "policy_id": "drain_pending_h39",
+          "horizon_steps": 39,
+          "tail_steps": 4,
+          "n_rollouts": 18,
+          "coverage_complete": true,
+          "all_environment_success": true,
+          "tracking_fraction": 0.0,
+          "minimum_signed_margin": -1.2820246026904294,
+          "all_pending_queues_drained": true,
+          "zero_action_while_pending_count": 0,
+          "passed_tracking_gate": false
+        },
+        {
+          "policy_id": "drain_pending_h41",
+          "horizon_steps": 41,
+          "tail_steps": 6,
+          "n_rollouts": 18,
+          "coverage_complete": true,
+          "all_environment_success": true,
+          "tracking_fraction": 0.0,
+          "minimum_signed_margin": -1.9717088145372261,
+          "all_pending_queues_drained": true,
+          "zero_action_while_pending_count": 0,
+          "passed_tracking_gate": false
+        }
+      ],
+      "selected_policy_id": null,
+      "selected_policy_horizon_steps": null,
+      "selected_policy_minimum_signed_margin": null,
+      "passed": false
+    },
+    "calibrated_startup": {},
+    "restart_audit": {
+      "schema_version": 1,
+      "stage": "Stage4.1R8",
+      "phase": "restart_audit",
+      "candidate_folders": [
+        "1080ms",
+        "1090ms",
+        "1110ms",
+        "1120ms"
+      ],
+      "available_folders": [],
+      "true_restart_validation_available": false,
+      "true_restart_validation_performed": false,
+      "availability_requirement_for_stage4_1r8": false,
+      "audit_completed": true,
+      "passed": true
+    }
+  }
+}

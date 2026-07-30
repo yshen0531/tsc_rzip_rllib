@@ -1,0 +1,5 @@
+variant,observer_variant,anti_windup_enabled,selectable,eligible,n_scenarios,n_pass,pass_fraction,n_legacy_pass_scenarios,preserved_legacy_pass_fraction,all_clean_pass,median_margin_delta_vs_legacy,worst_margin_delta_vs_legacy,selection_score
+legacy_raw,legacy_raw,False,False,False,16,14,0.875,14,1.0,True,0.0,0.0,16800.0
+r2_error_alpha_beta,r2_error_alpha_beta,False,False,False,16,14,0.875,14,0.8571428571428571,True,-0.019330045200132595,-0.5024667790385312,16398.801765989923
+control_aware_no_aw,control_aware_residual,False,True,True,16,16,1.0,14,1.0,True,0.02432893157834587,-0.15808524122344159,18799.927118833337
+control_aware_aw,control_aware_residual,True,True,True,16,16,1.0,14,1.0,True,-0.0026314171882410586,-0.1422451407949329,18799.699195546527

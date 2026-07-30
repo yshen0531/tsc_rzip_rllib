@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R7",
+  "phase": "paired_confirmation",
+  "n_ray_tasks": 36,
+  "expected_ray_tasks": 36,
+  "n_tsc_episodes": 72,
+  "n_successful_tasks": 36,
+  "distinct_groups_confirmed": 18,
+  "coverage_complete": true,
+  "passed": false,
+  "group_summaries": [
+    {
+      "confirmation_group": "d0_s0.9_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": false,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -0.17699226630343223
+    },
+    {
+      "confirmation_group": "d0_s0.9_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": false,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -0.02127816006614003
+    },
+    {
+      "confirmation_group": "d0_s1.0_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.23832005277494073
+    },
+    {
+      "confirmation_group": "d0_s1.0_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.45179333666666666
+    },
+    {
+      "confirmation_group": "d0_s1.1_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.33296004
+    },
+    {
+      "confirmation_group": "d0_s1.1_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.46286111333333335
+    },
+    {
+      "confirmation_group": "d1_s0.9_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": false,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -0.16595203212338472
+    },
+    {
+      "confirmation_group": "d1_s0.9_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": false,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -0.027015391051228077
+    },
+    {
+      "confirmation_group": "d1_s1.0_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.27013420000000044
+    },
+    {
+      "confirmation_group": "d1_s1.0_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.47356742666666674
+    },
+    {
+      "confirmation_group": "d1_s1.1_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.31973813333333134
+    },
+    {
+      "confirmation_group": "d1_s1.1_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.4926570333333333
+    },
+    {
+      "confirmation_group": "d2_s0.9_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -0.18049654489107136
+    },
+    {
+      "confirmation_group": "d2_s0.9_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -0.024942996202705903
+    },
+    {
+      "confirmation_group": "d2_s1.0_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.2759736000000004
+    },
+    {
+      "confirmation_group": "d2_s1.0_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": true,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": true,
+      "minimum_margin": 0.4816273099999999
+    },
+    {
+      "confirmation_group": "d2_s1.1_RZ_p10_m10",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": false,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -1.8526029486374629
+    },
+    {
+      "confirmation_group": "d2_s1.1_nominal",
+      "repeats": 2,
+      "repeat_ids": [
+        0,
+        1
+      ],
+      "repeat_coverage_complete": true,
+      "all_success": true,
+      "all_calibrations_successful": true,
+      "all_calibrations_correct": false,
+      "all_main_controls_executed": true,
+      "all_tracking_pass": false,
+      "minimum_margin": -1.700130305307137
+    }
+  ]
+}

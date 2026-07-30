@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R7",
+  "controller_revision": "precontrol_calibration_queue_consistent_startup_v7",
+  "created_utc": "20260727_084805",
+  "source_stage4_1r6_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r6_runs/stage4_1r6_startup_architecture_closure_350ms_20260727_051823",
+  "source_stage4_1r5_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r5_runs/stage4_1r5_adaptive_handover_closure_350ms_20260727_022930",
+  "source_fingerprint": {
+    "schema_version": 2,
+    "n_files": 7,
+    "total_bytes": 81815,
+    "direct_r6_digest": "e0a4adbbc32170397ece6c7ca4961153b3709d874bc68597231a3943251e396b",
+    "digest": "eab3cfe43952fae50abad0f4d27d91b5eb25d461bc3b252d698fe9b2639ec3e0",
+    "chain_fingerprints": [
+      {
+        "label": "stage4_1r6_source_chain",
+        "digest": "46eee5ef57bd77bd7de17f9130a1741f7d48e470db6c5b3eac6355404fe7f89c",
+        "n_files": 116,
+        "total_bytes": 7107726
+      },
+      {
+        "label": "stage4_1r5_source_chain",
+        "digest": "d2fbfbe4fbed6dfda621cdedbcfc61565b3c996190bb138b4b8ac781e9f46552",
+        "n_files": 8,
+        "total_bytes": 94873
+      },
+      {
+        "label": "stage4_1r4_source_chain",
+        "digest": "94e6f347cd04cfd6f5627f63e255eb2dd07c54fa55643349607c46f7bda41097",
+        "n_files": 10,
+        "total_bytes": 1909071
+      },
+      {
+        "label": "stage4_1r3_source_chain",
+        "digest": "52b5dd8d7f0ec122b4c70613034125ab90ef177c3f9fb167edb494610b7c7a0b",
+        "n_files": 10,
+        "total_bytes": 1891987
+      },
+      {
+        "label": "stage3_4_source_chain",
+        "digest": "9b193c409dd20780a5906abab64d202f1b75612a5997eeec0b861a68694cda71",
+        "n_files": 46,
+        "total_bytes": 1153432
+      }
+    ]
+  },
+  "workers": {
+    "requested_workers": 128,
+    "logical_cpus": 256,
+    "reserved_logical_cpus": 16,
+    "safe_worker_ceiling": 240,
+    "available_memory_gb": 237.14280700683594,
+    "open_file_soft_limit": 1048576,
+    "open_file_hard_limit": 1048576
+  },
+  "hard_numeric_thresholds_changed": false,
+  "precontrol_calibration_uses_separate_reset_episode": true,
+  "main_queue_is_primed_from_calibrated_model": true,
+  "online_handover_is_not_primary_startup_path": true,
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "runtime_bugfix_revision": "r7a_summary_null_coverage_guard_v1",
+  "runtime_bugfix_control_law_changed": false,
+  "runtime_bugfix_experiment_identity_changed": false,
+  "runtime_bugfix_applied_utc": "20260727_142148"
+}

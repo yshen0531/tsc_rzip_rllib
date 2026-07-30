@@ -1,0 +1,102 @@
+[Stage4.1R2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.1R2] source_stage4_0_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553
+[Stage4.1R2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r2_runs/stage4_1r2_error_state_observer_physical_scheduling_350ms_20260725_150807
+[Stage4.1R2] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_1r2_error_state_observer_physical_scheduling_350ms.json
+[Stage4.1R2] command=all
+[Stage4.1R2] backend=ray
+[Stage4.1R2] resume=0
+[Stage4.1R2] workers=128
+[Stage4.1R2] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage4.1R2] RAY_TMPDIR=/tmp/stage4_1r2_1120
+[Stage4.1R2] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage4.1R2] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage4.1R2] Campaign capacity is fixed at 128 workers (default 128); no silent fallback is allowed.
+[Stage4.1R2] Stage3.4 target library, selected scale, 175x105 Jacobian, and hard gate remain frozen.
+[Stage4.1R2] Controller revision uses a nominal-error-state observer, physical 14-coil inverse scheduling, action-delay queue prediction, and phase-aware continuation.
+[Stage4.1R2] A 30-rollout integration regression is a hard gate; the expensive robustness campaign stops immediately if Stage3.4 behavior is not reproduced.
+[Stage4.1R2] Residual Markdown files elsewhere in the project are ignored by package verification.
+[Stage4.1R2] Final task remains robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay.
+2026-07-25 23:08:14,489	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.1R2 mixed-variant] ray_capacity requested=128 cluster_cpus=128 pending=30 actors=30 initialized_now=1
+[Stage4.1R2 mixed-variant] actor_allocation={"base":30}
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] waiting 0/30
+[Stage4.1R2 mixed-variant] 10/30
+[Stage4.1R2 mixed-variant] 20/30
+[Stage4.1R2 mixed-variant] 30/30
+{
+  "schema_version": 2,
+  "stage": "Stage4.1R2",
+  "created_utc": "20260725_151735",
+  "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+  "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+  "source_selected_controller_scale": 0.5,
+  "regression": {
+    "schema_version": 2,
+    "stage": "Stage4.1R2",
+    "controller_revision": "nominal_error_state_observer_physical_coil_scheduler_v2",
+    "phase": "regression_targets",
+    "n_rollouts": 30,
+    "n_scenarios": 10,
+    "open_loop_passes": 10,
+    "legacy_passes": 10,
+    "upgraded_passes": 10,
+    "n_lost_open_loop": 0,
+    "n_lost_legacy": 0,
+    "median_margin_delta_vs_legacy": -0.05345853166666664,
+    "worst_margin_delta_vs_legacy": -0.20832698294822283,
+    "minimum_median_margin_delta_vs_legacy": -0.02,
+    "minimum_worst_margin_delta_vs_legacy": -0.08,
+    "maximum_scheduler_mismatch_rms_a": 0.05,
+    "observed_scheduler_mismatch_rms_a": 5.121388758969958e-08,
+    "passed": false
+  },
+  "adaptive_failure_recovery": {},
+  "structured_uncertainty": {},
+  "noise_statistics": {},
+  "phase_aligned_history": {},
+  "restart_sweep": {},
+  "confirmation": {},
+  "verdict": {
+    "schema_version": 2,
+    "stage": "Stage4.1R2",
+    "created_utc": "20260725_151735",
+    "verdict": "STAGE4_1R2_CONTROLLER_INTEGRATION_REGRESSION_FAILED",
+    "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+    "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+    "source_selected_controller_scale": 0.5,
+    "controller_revision": "nominal_error_state_observer_physical_coil_scheduler_v2",
+    "regression_passed": false,
+    "failure_recovery_passed": false,
+    "structured_uncertainty_passed": false,
+    "noise_statistics_passed": false,
+    "phase_aligned_history_passed": false,
+    "true_restart_validation_available": false,
+    "true_restart_validation_passed": null,
+    "confirmation_passed": false,
+    "finite_test_envelope_validated": false,
+    "deployment_robustness_validated": false,
+    "plant_parameter_robustness_validated": false,
+    "unseen_hidden_state_robustness_validated": false,
+    "warning": "This verdict covers only the configured finite delay/gain/slew/noise/history/restart envelope. It is not deployment qualification.",
+    "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+  }
+}

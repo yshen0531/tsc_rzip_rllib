@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R4",
+  "controller_revision": "targeted_weak_slew_and_online_delay_slew_estimator_v4",
+  "created_utc": "20260726_153621",
+  "source_stage4_1r3_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r3_runs/stage4_1r3_control_aware_residual_observer_350ms_20260726_024444",
+  "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+  "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+  "source_fingerprint": {
+    "n_files": 10,
+    "total_bytes": 1909071,
+    "digest": "94e6f347cd04cfd6f5627f63e255eb2dd07c54fa55643349607c46f7bda41097"
+  },
+  "source_selected_controller_scale": 0.5,
+  "source_selected_observer_variant": "control_aware_residual",
+  "source_selected_anti_windup_enabled": false,
+  "workers": {
+    "requested_workers": 128,
+    "logical_cpus": 256,
+    "reserved_logical_cpus": 16,
+    "safe_worker_ceiling": 240,
+    "available_memory_gb": 240.70219039916992,
+    "open_file_soft_limit": 1048576,
+    "open_file_hard_limit": 1048576
+  },
+  "hard_numeric_thresholds_changed": false,
+  "weak_slew_arrival_deadline_extended_to_ms": 270,
+  "weak_slew_hold_through_ms": 370,
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

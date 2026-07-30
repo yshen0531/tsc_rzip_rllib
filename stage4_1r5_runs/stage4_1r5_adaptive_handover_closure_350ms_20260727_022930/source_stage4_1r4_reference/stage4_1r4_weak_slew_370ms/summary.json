@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R4",
+  "phase": "weak_slew_370ms",
+  "n_rollouts": 6,
+  "n_successful": 6,
+  "execution_complete": true,
+  "selected_controller": {
+    "controller_variant": "control_aware_no_aw",
+    "pass_fraction": 1.0,
+    "minimum_signed_margin": 1.0456920999768471e-05,
+    "mean_signed_margin": 0.11266917007375532,
+    "mean_post_arrival_velocity_rms": 0.0452934726225145,
+    "all_targets_pass": true
+  },
+  "passed": true
+}

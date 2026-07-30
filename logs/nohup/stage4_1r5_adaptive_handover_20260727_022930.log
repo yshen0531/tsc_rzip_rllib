@@ -1,0 +1,666 @@
+[Stage4.1R5] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.1R5] source_stage4_1r4_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r4_runs/stage4_1r4_targeted_closure_370ms_20260726_153619
+[Stage4.1R5] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r5_runs/stage4_1r5_adaptive_handover_closure_350ms_20260727_022930
+[Stage4.1R5] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_1r5_adaptive_handover_closure_350ms.json
+[Stage4.1R5] command=all
+[Stage4.1R5] backend=ray
+[Stage4.1R5] resume=0
+[Stage4.1R5] workers=128
+[Stage4.1R5] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage4.1R5] RAY_TMPDIR=/tmp/stage4_1r5_1120
+[Stage4.1R5] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage4.1R5] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage4.1R5] Stage4.1R4 estimator accuracy and weak-slew closure are frozen; the failed abrupt adaptive-control handover is not treated as success.
+[Stage4.1R5] Estimator accuracy is confirmed independently before controller handover is judged.
+[Stage4.1R5] Static startup compares oracle, R4 abrupt unknown, R5 unknown bumpless, adjacent-prior bumpless, and persistent exact initialization.
+[Stage4.1R5] Mid-episode delay/slew changes are finite diagnostic schedules, not a deployment actuator model.
+[Stage4.1R5] Residual Markdown files elsewhere in the project are ignored by package verification.
+[Stage4.1R5] Final task remains robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay.
+2026-07-27 10:29:37,142	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.1R5 mixed-variant] ray_capacity requested=128 cluster_cpus=128 pending=18 actors=18 initialized_now=1
+[Stage4.1R5 mixed-variant] actor_allocation={"slew_0p900_h35":6,"slew_1p000_h35":6,"slew_1p100_h35":6}
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] waiting 0/18
+[Stage4.1R5 mixed-variant] 10/18
+[Stage4.1R5 mixed-variant] 18/18
+[Stage4.1R5 mixed-variant] ray_capacity requested=128 cluster_cpus=128 pending=90 actors=90 initialized_now=0
+[Stage4.1R5 mixed-variant] actor_allocation={"slew_0p900_h35":30,"slew_1p000_h35":30,"slew_1p100_h35":30}
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] waiting 0/90
+[Stage4.1R5 mixed-variant] 10/90
+[Stage4.1R5 mixed-variant] 20/90
+[Stage4.1R5 mixed-variant] 30/90
+[Stage4.1R5 mixed-variant] 40/90
+[Stage4.1R5 mixed-variant] 50/90
+[Stage4.1R5 mixed-variant] 60/90
+[Stage4.1R5 mixed-variant] 70/90
+[Stage4.1R5 mixed-variant] 80/90
+[Stage4.1R5 mixed-variant] 90/90
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R5",
+  "created_utc": "20260727_025328",
+  "verdict": "STAGE4_1R5_ADAPTIVE_HANDOVER_CLOSURE_INCOMPLETE",
+  "source_stage4_1r4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r4_runs/stage4_1r4_targeted_closure_370ms_20260726_153619",
+  "source_audit_passed": true,
+  "estimator_only_confirmation_passed": true,
+  "static_bumpless_handover_passed": false,
+  "change_point_diagnostic_passed": false,
+  "confirmation_passed": false,
+  "source_weak_slew_370ms_passed": true,
+  "source_weak_slew_minimum_margin": 1.0456920999768471e-05,
+  "true_restart_validation_available": false,
+  "true_restart_validation_performed": false,
+  "finite_static_handover_envelope_validated": false,
+  "finite_change_point_diagnostic_validated": false,
+  "deployment_robustness_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "unseen_hidden_state_robustness_validated": false,
+  "online_estimator_is_finite_hypothesis_bank_poc": true,
+  "warning": "The delay bank is limited to integer 0/1/2-step latency and slew 0.9/1.0/1.1. The change-point delay model is a finite diagnostic mapping, not a hardware actuator model.",
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "phases": {
+    "source_audit": {
+      "schema_version": 1,
+      "stage": "Stage4.1R5",
+      "phase": "source_audit",
+      "source_stage4_1r4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r4_runs/stage4_1r4_targeted_closure_370ms_20260726_153619",
+      "source_finished": true,
+      "source_accounting_passed": true,
+      "source_weak_slew_passed": true,
+      "source_weak_slew_minimum_margin": 1.0456920999768471e-05,
+      "source_estimator_accuracy_passed": true,
+      "source_adaptive_control_passed": false,
+      "source_adaptive_control_failure_expected": true,
+      "passed": true,
+      "warning": "The source 0.9x-slew hard-target closure has extremely thin signed margin; R5 does not reinterpret it as deployment robustness."
+    },
+    "estimator_only": {
+      "schema_version": 1,
+      "stage": "Stage4.1R5",
+      "phase": "estimator_only",
+      "n_rollouts": 18,
+      "n_successful": 18,
+      "execution_complete": true,
+      "identification_fraction": 1.0,
+      "maximum_first_lock_step": 1,
+      "minimum_confidence_ratio": 21.077156395325563,
+      "passed": true
+    },
+    "static_handover": {
+      "schema_version": 1,
+      "stage": "Stage4.1R5",
+      "phase": "static_handover",
+      "n_rollouts": 90,
+      "n_successful": 90,
+      "execution_complete": true,
+      "adaptive_identification_fraction": 1.0,
+      "oracle_feasible_cases": 13,
+      "persistent_exact_preservation_fraction": 1.0,
+      "unknown_bumpless_preservation_fraction": 0.38461538461538464,
+      "adjacent_bumpless_preservation_fraction": 0.5384615384615384,
+      "delay2_unknown_bumpless_preservation_fraction": 0.0,
+      "r4_abrupt_failures_with_oracle_pass": 6,
+      "unknown_bumpless_recoveries": 0,
+      "recovery_over_r4_abrupt_fraction": 0.0,
+      "passed": false,
+      "case_summaries": [
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "weak_slew_deadline_diagnostic": true,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": false,
+          "oracle_margin": -0.05656162672110154,
+          "unknown_margin": -0.1438545266920368,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": true,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.23832005277494073,
+          "unknown_margin": 0.15797807725146173,
+          "unknown_handover_events": [
+            {
+              "event_type": "initial_model_lock",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": true,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.33296004,
+          "unknown_margin": 0.3190812466666666,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "weak_slew_deadline_diagnostic": true,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": false,
+          "oracle_margin": -0.20096462994582498,
+          "unknown_margin": -0.20359643826963958,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 1,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 267.48527655117846,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.27013420000000044,
+          "unknown_margin": -0.018999786103966354,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 1,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 1764.0983802797534,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.31973813333333134,
+          "unknown_margin": -0.1326706832499096,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 1,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 321.14997838762685,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "weak_slew_deadline_diagnostic": true,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": false,
+          "oracle_margin": -0.26824317729067215,
+          "unknown_margin": -0.5874510963624351,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            },
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 2,
+              "old_delay_steps": 0,
+              "old_slew_scale": 0.9,
+              "new_delay_steps": 2,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 334.16240169759783,
+              "applied_at_step": 3
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.2759736000000004,
+          "unknown_margin": -1.328205433949361,
+          "unknown_handover_events": [
+            {
+              "event_type": "initial_model_lock",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            },
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 2,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 2,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 545.1432410090658,
+              "applied_at_step": 3
+            }
+          ]
+        },
+        {
+          "target_id": "RZ_p10_m10",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.3130183499999999,
+          "unknown_margin": -1.9591271774826482,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            },
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 2,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.1,
+              "new_delay_steps": 2,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 393.84312956053503,
+              "applied_at_step": 3
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.20440894227709006,
+          "unknown_margin": -0.0023212882450502903,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": true,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.45179333666666666,
+          "unknown_margin": 0.4378762303074414,
+          "unknown_handover_events": [
+            {
+              "event_type": "initial_model_lock",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": true,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.46286111333333335,
+          "unknown_margin": 0.45498673999999995,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "weak_slew_deadline_diagnostic": true,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": true,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": false,
+          "oracle_margin": -0.028593344923346642,
+          "unknown_margin": 0.10455154334198535,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 1,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 471.88932559436654,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": true,
+          "unknown_bumpless_pass": true,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.47356742666666674,
+          "unknown_margin": 0.12675581853874907,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 1,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 1304.4222193876683,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 1,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.4926570333333333,
+          "unknown_margin": -0.17396342561868905,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 1,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 620.631130160272,
+              "applied_at_step": 2
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "oracle_pass": false,
+          "weak_slew_deadline_diagnostic": true,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": false,
+          "persistent_exact_pass": false,
+          "oracle_margin": -0.04997002273695417,
+          "unknown_margin": -0.4094192100172791,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            },
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 2,
+              "old_delay_steps": 0,
+              "old_slew_scale": 0.9,
+              "new_delay_steps": 2,
+              "new_slew_scale": 0.9,
+              "confidence_ratio": 583.3569904947299,
+              "applied_at_step": 3
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.0,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.4816273099999999,
+          "unknown_margin": -1.2480651683171247,
+          "unknown_handover_events": [
+            {
+              "event_type": "initial_model_lock",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            },
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 2,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 2,
+              "new_slew_scale": 1.0,
+              "confidence_ratio": 578.0956731867983,
+              "applied_at_step": 3
+            }
+          ]
+        },
+        {
+          "target_id": "nominal",
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 1.1,
+          "oracle_pass": true,
+          "weak_slew_deadline_diagnostic": false,
+          "abrupt_pass": false,
+          "unknown_bumpless_pass": false,
+          "adjacent_bumpless_pass": true,
+          "persistent_exact_pass": true,
+          "oracle_margin": 0.46433280666666665,
+          "unknown_margin": -1.8235292561157732,
+          "unknown_handover_events": [
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 1,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.0,
+              "new_delay_steps": 0,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 1.0,
+              "applied_at_step": 2
+            },
+            {
+              "event_type": "model_switch",
+              "detected_at_step": 2,
+              "old_delay_steps": 0,
+              "old_slew_scale": 1.1,
+              "new_delay_steps": 2,
+              "new_slew_scale": 1.1,
+              "confidence_ratio": 569.3029136016477,
+              "applied_at_step": 3
+            }
+          ]
+        }
+      ]
+    },
+    "change_point": {},
+    "restart_audit": {},
+    "confirmation": {}
+  }
+}

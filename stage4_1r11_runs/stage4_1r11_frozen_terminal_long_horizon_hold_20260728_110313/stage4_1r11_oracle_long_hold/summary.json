@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R11",
+  "phase": "oracle_long_hold",
+  "n_rollouts": 18,
+  "expected_rollouts": 18,
+  "coverage_complete": true,
+  "environment_success_count": 18,
+  "long_hold_pass_fraction": 1.0,
+  "minimum_combined_signed_margin": 0.039997189999999905,
+  "source_prefix_exact_fraction": 1.0,
+  "maximum_source_prefix_abs_difference": 0.0,
+  "maximum_hold_box_error_m": 0.0288000843,
+  "maximum_hold_speed_m_per_s": 0.04869939249355,
+  "maximum_final_window_speed_rms_m_per_s": 0.02918559283930021,
+  "maximum_current_utilization": 0.41225,
+  "maximum_final_window_current_net_change_A": 0.8333333333333286,
+  "maximum_final_window_issued_desired_mean_norm": 0.012473897022572417,
+  "maximum_final_pending_desired_norm": 0.12644874135738146,
+  "by_target": [
+    {
+      "target_id": "nominal",
+      "n_rollouts": 9,
+      "pass_fraction": 1.0,
+      "minimum_combined_margin": 0.15700839095079022,
+      "maximum_hold_box_error_m": 0.0218488678,
+      "maximum_hold_speed_m_per_s": 0.04869939249355,
+      "maximum_current_utilization": 0.41174999999999995
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "n_rollouts": 9,
+      "pass_fraction": 1.0,
+      "minimum_combined_margin": 0.039997189999999905,
+      "maximum_hold_box_error_m": 0.0288000843,
+      "maximum_hold_speed_m_per_s": 0.04601861977168816,
+      "maximum_current_utilization": 0.41225
+    }
+  ],
+  "passed": true
+}

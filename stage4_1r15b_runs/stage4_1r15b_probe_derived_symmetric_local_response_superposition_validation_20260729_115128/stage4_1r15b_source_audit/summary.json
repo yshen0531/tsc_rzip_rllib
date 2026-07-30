@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R15B",
+  "phase": "source_audit",
+  "source_stage4_1r15_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r15_runs/stage4_1r15_bounded_early_braking_local_response_identification_20260729_085311",
+  "source_probe_rollouts": 32,
+  "environment_success_count": 32,
+  "runtime_guard_pass_fraction": 1.0,
+  "source_model_prediction_pass_fraction": 0.96875,
+  "source_failed_model_probe_count": 1,
+  "source_failed_model_probe_keys": [
+    [
+      "RZ_p10_m10",
+      1,
+      "late_mode0",
+      1
+    ]
+  ],
+  "failed_probe_final_speed_error_m_per_s": 0.00835043397426746,
+  "failed_probe_final_speed_threshold_m_per_s": 0.008,
+  "failed_probe_threshold_excess_m_per_s": 0.00035043397426745906,
+  "maximum_source_central_symmetry_velocity_rmse_m_per_s": 0.0014043948375507278,
+  "finite_bank_all_pass_requirement_was_correct": true,
+  "posthoc_threshold_relaxation_allowed": false,
+  "source_model_is_not_reinterpreted_as_validated": true,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "checks": {
+    "coverage_32": true,
+    "runtime_32": true,
+    "model_31_of_32": true,
+    "one_failure": true,
+    "failure_key_exact": true,
+    "only_final_speed_exceeds": true,
+    "symmetry_coverage": true,
+    "all_symmetry_pass": true,
+    "source_identification_only": true,
+    "formal_timing_not_restored": true
+  },
+  "passed": true,
+  "interpretation": "R15 ran normally and 31/32 external probes passed. The single failure is not a runtime or rounding error: RZ_p10_m10, delay=1, positive late-mode-0 underpredicted final speed by 8.350 mm/s, 0.350 mm/s above the preregistered limit. Plus/minus symmetry passed, so R15B replaces the source-bank absolute PCA model with a probe-derived odd differential response and tests superposition with new orthogonal combinations."
+}

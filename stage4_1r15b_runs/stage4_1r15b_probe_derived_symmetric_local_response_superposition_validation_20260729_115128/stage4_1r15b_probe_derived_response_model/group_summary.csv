@@ -1,0 +1,5 @@
+group_id,target_id,actual_delay_steps,basis_count,full_condition_number,selected_velocity_condition_number,maximum_pair_even_velocity_rmse_m_per_s,passed
+nominal__d1,nominal,1,4,11.586609314673881,4.746196062176096,0.000306266320908566,True
+nominal__d2,nominal,2,4,5.948868113977985,2.913176082024111,0.00044813957354360157,True
+RZ_p10_m10__d1,RZ_p10_m10,1,4,7.204983991678384,6.223730996961211,0.0007021974187753639,True
+RZ_p10_m10__d2,RZ_p10_m10,2,4,3.568863952544192,5.319873218086158,0.00041960150171711514,True

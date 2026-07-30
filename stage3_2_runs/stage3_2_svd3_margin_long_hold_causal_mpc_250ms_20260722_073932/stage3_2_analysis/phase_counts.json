@@ -1,0 +1,98 @@
+[
+  {
+    "phase": "controller_round_000_probes",
+    "n_rows": 150,
+    "n_successful": 150,
+    "n_strict": 150,
+    "n_relaxed": 150,
+    "best_signed_margin": 0.031981773333333297
+  },
+  {
+    "phase": "extension_screen",
+    "n_rows": 48,
+    "n_successful": 48,
+    "n_strict": 0,
+    "n_relaxed": 6,
+    "best_signed_margin": -0.06842920999999991
+  },
+  {
+    "phase": "hold_round_000_probes",
+    "n_rows": 120,
+    "n_successful": 120,
+    "n_strict": 0,
+    "n_relaxed": 120,
+    "best_signed_margin": -0.06497945000000005
+  },
+  {
+    "phase": "hold_round_000_proposals",
+    "n_rows": 24,
+    "n_successful": 24,
+    "n_strict": 20,
+    "n_relaxed": 24,
+    "best_signed_margin": 0.02433415333333333
+  },
+  {
+    "phase": "hold_round_001_probes",
+    "n_rows": 120,
+    "n_successful": 120,
+    "n_strict": 120,
+    "n_relaxed": 120,
+    "best_signed_margin": 0.025347149999999874
+  },
+  {
+    "phase": "hold_round_001_proposals",
+    "n_rows": 24,
+    "n_successful": 24,
+    "n_strict": 24,
+    "n_relaxed": 24,
+    "best_signed_margin": 0.030357773333333338
+  },
+  {
+    "phase": "margin_round_000_probes",
+    "n_rows": 84,
+    "n_successful": 84,
+    "n_strict": 84,
+    "n_relaxed": 84,
+    "best_signed_margin": 0.029030069999999908
+  },
+  {
+    "phase": "margin_round_000_proposals",
+    "n_rows": 24,
+    "n_successful": 24,
+    "n_strict": 24,
+    "n_relaxed": 24,
+    "best_signed_margin": 0.02920206999999997
+  },
+  {
+    "phase": "margin_round_001_probes",
+    "n_rows": 84,
+    "n_successful": 84,
+    "n_strict": 84,
+    "n_relaxed": 84,
+    "best_signed_margin": 0.03006014333333329
+  },
+  {
+    "phase": "margin_round_001_proposals",
+    "n_rows": 24,
+    "n_successful": 24,
+    "n_strict": 24,
+    "n_relaxed": 24,
+    "best_signed_margin": 0.029529189999999983
+  },
+  {
+    "phase": "margin_round_002_probes",
+    "n_rows": 84,
+    "n_successful": 84,
+    "n_strict": 84,
+    "n_relaxed": 84,
+    "best_signed_margin": 0.030616140000000014
+  },
+  {
+    "phase": "margin_round_002_proposals",
+    "n_rows": 24,
+    "n_successful": 24,
+    "n_strict": 24,
+    "n_relaxed": 24,
+    "best_signed_margin": 0.030279183333333348
+  }
+]

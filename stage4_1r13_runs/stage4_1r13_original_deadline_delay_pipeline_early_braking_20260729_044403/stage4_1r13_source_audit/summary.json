@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R13",
+  "phase": "source_audit",
+  "source_stage4_1r12_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r12_runs/stage4_1r12_original_deadline_weak_slew_anticipatory_damping_20260729_022502",
+  "source_stage4_1r11_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r11_runs/stage4_1r11_frozen_terminal_long_horizon_hold_20260728_110313",
+  "r12_raw_rollouts": 12,
+  "r12_environment_success_count": 12,
+  "r12_delay1_formal_pass_count": 0,
+  "r12_delay2_formal_pass_count": 6,
+  "r12_post_deadline_controller_fixed_nominal_delay2": true,
+  "r12_delay1_residual_is_preexisting_arrival_window_violation": true,
+  "r12_post_deadline_bank_was_structurally_incapable_of_closing_all_four": true,
+  "latest_globally_feasible_first_affected_state_step": 26,
+  "formal_timing_contract_unchanged": true,
+  "r11_2000ms_remains_auxiliary_only": true,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "passed": true,
+  "interpretation": "R12 ran correctly and proved useful post-arrival damping: all six nominal delay=2 candidates pass. It cannot close the bank because the nominal delay=1 endpoint-late-speed violation already exists at 270 ms, and both RZ_p10_m10 source paths have an immutable state-27 lower bound above 0.1 m/s. R13 must change the causal pre-deadline braking trajectory while retaining the same 270/370 ms gate."
+}

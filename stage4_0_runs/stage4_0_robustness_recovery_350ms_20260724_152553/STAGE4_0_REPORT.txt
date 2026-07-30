@@ -1,0 +1,16 @@
+Stage4.0 finite robustness and recovery report
+===============================================
+Verdict: STAGE4_0_ROBUSTNESS_AND_RECOVERY_ENVELOPE_INCOMPLETE
+Source Stage3.4 run: /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829
+Selected MPC scale: 0.5
+
+Held-out targets passed: True
+Failure recovery passed: False
+Software uncertainty passed: True
+Preconditioned history passed: False
+True restart validation available: False
+True restart validation passed: None
+Confirmation passed: False
+
+The final task remains robust causal control across genuinely different initial states, hidden dynamics, plant parameters, noise, and delay.
+This Stage4.0 verdict is a finite test-envelope result, not deployment qualification.

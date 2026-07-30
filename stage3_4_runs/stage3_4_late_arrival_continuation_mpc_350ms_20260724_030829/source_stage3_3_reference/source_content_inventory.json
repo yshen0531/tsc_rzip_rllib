@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "source_stage3_3_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_3_runs/stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331",
+  "n_files": 46,
+  "total_bytes": 1153432,
+  "digest": "9b193c409dd20780a5906abab64d202f1b75612a5997eeec0b861a68694cda71",
+  "entries": [
+    {
+      "relative_path": "env_config.resolved.json",
+      "sha256": "a0ed368a4aeb93b0073ff46f90583a8d63c3ef076eeef6400460ec0cb50c546a",
+      "size_bytes": 2701
+    },
+    {
+      "relative_path": "stage3_3_config.resolved.json",
+      "sha256": "ffa0b4c7ea98ed9061f0b4662a19186ab3aaa69a537095d51f128c7d942aeb87",
+      "size_bytes": 24504
+    },
+    {
+      "relative_path": "stage3_3_confirmations/stage3_3_verdict.json",
+      "sha256": "9023ce5d031211b7d05c178b449702a0bacf43747249ee454e0bb0f8c72afdf4",
+      "size_bytes": 7507
+    },
+    {
+      "relative_path": "stage3_3_manifest.json",
+      "sha256": "862676eaa0df7968a13778f0520c08e22f74f9639ce34a1fcebb95ce6078aa0f",
+      "size_bytes": 1733
+    },
+    {
+      "relative_path": "stage3_3_nominal_refinement/round_000/proposal_raw/s33step_60777f49d14e05a7.json.gz",
+      "sha256": "664dbd810ab42c443392d81fa6a7d1115dca6a0794445c6eff99d8ac995dc549",
+      "size_bytes": 12827
+    },
+    {
+      "relative_path": "stage3_3_nominal_refinement/round_001/probe_raw/s33probe_4f8ff2236e35e8a4.json.gz",
+      "sha256": "4eaa2277a68804202c380fc87275c4299bf5072fe23f234e0ad71b9cc33ffc68",
+      "size_bytes": 12807
+    },
+    {
+      "relative_path": "stage3_3_nominal_refinement/round_001/probe_raw/s33probe_da6234b1ba74c7b2.json.gz",
+      "sha256": "3c617ce4b5e29224b4b85140202542aa9cd064ccff54e12745f58f7f21837b9e",
+      "size_bytes": 12815
+    },
+    {
+      "relative_path": "stage3_3_nominal_refinement/round_001/probe_raw/s33probe_dc37a1835d47731b.json.gz",
+      "sha256": "4c8a487ecd07c0883e456cd9b37ffeefac3e47237602c31ace97552869bc1167",
+      "size_bytes": 12767
+    },
+    {
+      "relative_path": "stage3_3_nominal_refinement/round_001/proposal_raw/s33step_275e2d2831fba80b.json.gz",
+      "sha256": "74ce02a80e17fe53fcd4b0615361015f60b64ada02cff3cfa62abe07b57d10ff",
+      "size_bytes": 12794
+    },
+    {
+      "relative_path": "stage3_3_nominal_refinement/round_001/proposal_raw/s33step_702acb14d87c9899.json.gz",
+      "sha256": "41a78071c8dd574f4e9250cb2f2dac3a8273ea7a73785f1dbcfaae6f97e48c12",
+      "size_bytes": 12837
+    },
+    {
+      "relative_path": "stage3_3_nominal_refinement/round_001/proposal_raw/s33step_971fad6d182b1f5a.json.gz",
+      "sha256": "33f8e0382ea8e1326e6976d89bf5fb04c55bd83de4d64a91044af410ea3bece4",
+      "size_bytes": 12865
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_2418b652a2e43d54.json.gz",
+      "sha256": "3946dfb53148e27c7002647cb7b767f875e247b9fd3f8f1d11abeea6db5f97d4",
+      "size_bytes": 12765
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_4adf54f3c00dd186.json.gz",
+      "sha256": "2acf5e6b1ee6d5cbc14907503549d865c1ee03a4a0cdbe1509179ea7b62571bf",
+      "size_bytes": 12671
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_565e4ea478e62391.json.gz",
+      "sha256": "dbf90d78ddb4886cfaeaf353c37b09572f79fca75ad5f6151ba6306402d0b791",
+      "size_bytes": 12823
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_7392793e5c5ea9c3.json.gz",
+      "sha256": "8be72288a9e6ed9d9dec91bbd31c5860744f77063860560f4034ff60e678ba94",
+      "size_bytes": 12675
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_791ed0d8cfd05a43.json.gz",
+      "sha256": "ecc6f98212555d54e4977c9cb5e847352319489d08600480df28b43a0d4c0e1d",
+      "size_bytes": 12666
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_7ed2a72423a88b88.json.gz",
+      "sha256": "990a0ce65f8e42c5c18da143bf2fee120a7347902a817b2dff2529116a6f7660",
+      "size_bytes": 12780
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_d0b8f4860bc1774b.json.gz",
+      "sha256": "faccb2fefffe2fc6fc6fb8f77ca8209e714039ec3fc3fdd655ea01c52017da0a",
+      "size_bytes": 12678
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_dc0d3afc5780095c.json.gz",
+      "sha256": "2dcc19b8404cdf7581556fb71ec55757eb0f7a1985392ac696c2f08f0de8b30c",
+      "size_bytes": 12871
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_e60664ad8cc85b14.json.gz",
+      "sha256": "2a15fa6a7fbdd316e6dc4d0e98182739d73438c3e98c3c7bf3a1bdc9d836af8f",
+      "size_bytes": 12677
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_f196f05255249884.json.gz",
+      "sha256": "b859ac735117b48f64c8155754c1949970024fe130d879afc469a03049cb4c9c",
+      "size_bytes": 12686
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_f958a84af969c00c.json.gz",
+      "sha256": "b0a77a94efbdbfa9d8cbebcd5a313208bee4ccf2e2f705bf000df4b920f358b1",
+      "size_bytes": 12662
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_f98a8650a29e7364.json.gz",
+      "sha256": "b7afcaf5c88167f788519d504d3a7dfa12e29cab1842411cae6d3b9c99046de9",
+      "size_bytes": 12678
+    },
+    {
+      "relative_path": "stage3_3_nominal_warmstart/raw/s33warm_fc327a827407dfaa.json.gz",
+      "sha256": "e2c8ad4e1226c5c47d57005b2bfcb04a16b1abbe7a78625a65d2e65807c37379",
+      "size_bytes": 12662
+    },
+    {
+      "relative_path": "stage3_3_state.json",
+      "sha256": "c053e991918ba80c118c28e29a91274b77d71364b4c4338d9052caa4fd299705",
+      "size_bytes": 1572
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_0a71a82ea8430b28.json.gz",
+      "sha256": "4a14e4bc658d403a889bfbda36426e89da5f39d3b8aa32a6f500fc72e8a97d81",
+      "size_bytes": 12629
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_1a42563f4524b2a6.json.gz",
+      "sha256": "f14a3ca87b6364e6533020ee50bbb2e8720652cc8f870e5f98b93be3effa994e",
+      "size_bytes": 12646
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_2a0aa212f126df9c.json.gz",
+      "sha256": "dccf01708f932fc17ae234dc3719302a92df6db18ffeb0fb254c080e88e35f11",
+      "size_bytes": 12834
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_3dbe3ffafa7c062d.json.gz",
+      "sha256": "84e3a8ae9f41cdd899445396f42082a3e49b5dc20a9904e39bfb0da795c7f6f7",
+      "size_bytes": 12796
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_47c64976f38bf926.json.gz",
+      "sha256": "e27a25ca28e15bdad51595ddb196b291ed91b8cd68d598713703f8d03585bfd0",
+      "size_bytes": 12653
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_4fccd168a508ab93.json.gz",
+      "sha256": "cc05228c37a61fe15beacd5fb64c7793c78dde293074a1b3a3729e2378bf0571",
+      "size_bytes": 12645
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_7946495df42cb971.json.gz",
+      "sha256": "a0d4f62f89777ad192b517ae13f8dfa22457ec73156edb4e9a00bc81cad9dc6c",
+      "size_bytes": 12740
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_796b622fedf77c8b.json.gz",
+      "sha256": "17cc85ae40d74715e96e74f730dc431124aa13d430662c415f59ad09c86ad911",
+      "size_bytes": 12778
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_799331a91753454b.json.gz",
+      "sha256": "0e08487c7144699838f5fb6d9533ee031d40ae19132ed819746be34410843029",
+      "size_bytes": 12646
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_7a67dcb67f08c0c7.json.gz",
+      "sha256": "5baf9c5cba521f22e378cdcee07af04b14010b4a6f4f25d1b4db97f2a4751687",
+      "size_bytes": 12648
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_7ae918978a8e5fa4.json.gz",
+      "sha256": "aa7b60a1b83aea49ac14bca30b45757f91bc9bade2a319862f8c6644fffc607b",
+      "size_bytes": 12747
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_87fa88d4ca15da7c.json.gz",
+      "sha256": "5ae5b4eb303cd4f4879f4e9cb43b667f98d8da8cf32af31c0b33c0ec14593c09",
+      "size_bytes": 12639
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_9beda0abc4fca732.json.gz",
+      "sha256": "e63b9ab49038c2ab9badb7628d90f389f6044f81c5837fafb23182ca4753af01",
+      "size_bytes": 12639
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_a5251450f01d01b9.json.gz",
+      "sha256": "3f9210fc395763e761862f568fbd0e1fa4f9f1afa37476c3a9a84c935cff8fec",
+      "size_bytes": 12641
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_bfe5635386ffe222.json.gz",
+      "sha256": "4e0c75e9c49db70cf3eec237b8fe49e600afe62f5b6df45a4bd56021a669f96d",
+      "size_bytes": 12774
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_ccc9a4fa1f3f6d0e.json.gz",
+      "sha256": "b511f78ee3f36ca50653a4846213b4bf166f9d4264969b0d2a351dc746403e05",
+      "size_bytes": 12651
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_e48b2aa5f78990d2.json.gz",
+      "sha256": "6d9e02d2480672d68716f0f708c428f7d4fcc92051c0ddb08f6259fa14d5ad88",
+      "size_bytes": 12637
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_f4354895225cc6e5.json.gz",
+      "sha256": "9f619aea171518cc09ddd733253b722f1ba45c6413bc0cb748386af5777b0518",
+      "size_bytes": 12740
+    },
+    {
+      "relative_path": "stage3_3_target_library/confirmation_raw/s33libconf_f92a9fc77c2b3beb.json.gz",
+      "sha256": "7f9132f4921d06a61d471813568c47dc803a85d09999e2bf323da9b2d3da6a45",
+      "size_bytes": 12627
+    },
+    {
+      "relative_path": "stage3_3_target_library/target_library.json",
+      "sha256": "3abee083e72058719bf1688352f901863b1717e4b75ae8cba15d9bbd0f1f8341",
+      "size_bytes": 617204
+    },
+    {
+      "relative_path": "train_config.resolved.json",
+      "sha256": "06bcbdd4850313bc6e466bc1bc62c3ed2c8d4b6b96ddca14fd41baf1887c63f7",
+      "size_bytes": 2095
+    }
+  ]
+}

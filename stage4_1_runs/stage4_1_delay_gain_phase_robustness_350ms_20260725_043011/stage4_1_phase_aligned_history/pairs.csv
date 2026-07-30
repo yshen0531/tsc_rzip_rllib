@@ -1,0 +1,17 @@
+scenario,category,controller_scale,baseline_experiment_id,feedback_experiment_id,baseline_pass,feedback_pass,preserved,recovered,lost,baseline_signed_margin,feedback_signed_margin,signed_margin_gain
+nominal__m1_pm,phase_aligned_history,0.5,s41_5d3fd79f177167bc7807,s41_9a76cbc1e9a26e330310,True,True,True,False,False,0.3523399233333333,0.016627150412675484,-0.3357127729206578
+nominal__m1_mp,phase_aligned_history,0.5,s41_191dab725366fdc8efd8,s41_a9ecc028ec6d5be2cb63,True,True,True,False,False,0.34136659,0.026163993515871842,-0.3152025964841282
+nominal__m2_pm,phase_aligned_history,0.5,s41_d644744cee746e2e205a,s41_181fb05636bf93ae9344,True,True,True,False,False,0.35229710999999997,0.018099109909096023,-0.33419800009090395
+nominal__m2_mp,phase_aligned_history,0.5,s41_27db22504fd7b8c4b631,s41_b923a363154b3163d4a9,True,False,False,False,True,0.39794909999999994,-0.05037918845941669,-0.44832828845941664
+nominal__m3_pm,phase_aligned_history,0.5,s41_ba9dfce1d4bb5d243ab5,s41_2ba0be95513c15fd2f0f,True,True,True,False,False,0.34100064333333335,0.025244487202443433,-0.3157561561308899
+nominal__m3_mp,phase_aligned_history,0.5,s41_35dfdbc922c6dd347994,s41_b3a46ebfe7f7b08fc07f,True,True,True,False,False,0.35590658333333336,0.01285792035339095,-0.3430486629799424
+nominal__m1p_m2m_comp,phase_aligned_history,0.5,s41_dbfc0853882825df9827,s41_5dc4f516f384f65cb90a,True,False,False,False,True,0.36758246000000006,-0.0037780682464976234,-0.3713605282464977
+nominal__m1m_m2p_comp,phase_aligned_history,0.5,s41_37b94c209a8b8f196ffb,s41_8a8d7cf6f1c0bec146b2,True,True,True,False,False,0.3282437966666666,0.03962961486176653,-0.28861418180490006
+RZ_p10_m10__m1_pm,phase_aligned_history,0.5,s41_258effc87d7869385b8e,s41_7f718ae3a0fab9e9d11c,True,False,False,False,True,0.22380020666666656,-0.1573701646896668,-0.38117037135633336
+RZ_p10_m10__m1_mp,phase_aligned_history,0.5,s41_e4e14032e468704fe67a,s41_6cad7679106459360723,True,False,False,False,True,0.2449720466666666,-0.1731685965755958,-0.4181406432422624
+RZ_p10_m10__m2_pm,phase_aligned_history,0.5,s41_eb80199973040f5f2671,s41_c816fa00cc9ea90346be,True,False,False,False,True,0.2453060233333333,-0.1770953031646625,-0.4224013264979958
+RZ_p10_m10__m2_mp,phase_aligned_history,0.5,s41_5b6e0d033654e1cce633,s41_09d5fdce5d6d7b97fdbc,True,False,False,False,True,0.2251214233333333,-0.15700661242754976,-0.38212803576088306
+RZ_p10_m10__m3_pm,phase_aligned_history,0.5,s41_1b14f942a016ed52623a,s41_cb7e20fe1638d8db4ad6,True,False,False,False,True,0.24478745999999996,-0.17135056128441062,-0.4161380212844106
+RZ_p10_m10__m3_mp,phase_aligned_history,0.5,s41_f85bb882b224f1b3e5e9,s41_9dceeb41c9cc926d7053,True,False,False,False,True,0.23240154666666668,-0.16724220619598018,-0.39964375286264686
+RZ_p10_m10__m1p_m2m_comp,phase_aligned_history,0.5,s41_4c4a77dfc28c2463e9d0,s41_1c4eb6161d010e5ddd3c,True,False,False,False,True,0.20606335666666664,-0.14003531613724118,-0.3460986728039078
+RZ_p10_m10__m1m_m2p_comp,phase_aligned_history,0.5,s41_4222f9910f4f83fa7902,s41_a0cc0fb86da31ee31c05,True,False,False,False,True,0.2364430466666667,-0.1668102491804393,-0.403253295847106

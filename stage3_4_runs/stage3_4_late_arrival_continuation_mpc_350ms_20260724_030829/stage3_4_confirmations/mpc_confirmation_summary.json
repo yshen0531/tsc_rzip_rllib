@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.4",
+  "selected_controller_scale": 0.5,
+  "n_rollouts": 16,
+  "n_successful": 16,
+  "scenario_summaries": [
+    {
+      "scenario": "nominal",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.45179333666666666
+    },
+    {
+      "scenario": "R_p10",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.3069346666666648
+    },
+    {
+      "scenario": "Z_m10",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.34909382366666664
+    },
+    {
+      "scenario": "RZ_p10_m10",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.23832005277494073
+    },
+    {
+      "scenario": "Ip_m1000",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.5080430333333339
+    },
+    {
+      "scenario": "Ip_p1000",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.20189368488409754
+    },
+    {
+      "scenario": "RZ_p7p5_m7p5",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.3119165000000007
+    },
+    {
+      "scenario": "dist_m2_s12_p",
+      "repeats": 2,
+      "successful_repeats": 2,
+      "all_repeats_tracking_pass": true,
+      "worst_tracking_signed_margin": 0.45718491333333333
+    }
+  ],
+  "mpc_confirmation_pass": true
+}

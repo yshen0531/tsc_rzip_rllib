@@ -34,6 +34,7 @@ printf '[Stage4.2R1] source_stage4_1r17_run=%s\n' "${SOURCE_R17}"
 printf '[Stage4.2R1] run_dir=%s\n' "${RUN_DIR}"
 printf '[Stage4.2R1] config=%s\n' "${STAGE4_2R1_CONFIG}"
 printf '[Stage4.2R1] command=%s backend=%s resume=%s workers=%s\n' "${STAGE4_2R1_COMMAND}" "${STAGE4_2R1_BACKEND}" "${STAGE4_2R1_RESUME}" "${STAGE4_2R1_WORKERS}"
+printf '[Stage4.2R1 R1a] Capture exceptions preserve partial trajectories; shape mismatches are finite structured JSON; legacy successful snapshots remain resume-safe.\n'
 printf '[Stage4.2R1] python=%s RAY_TMPDIR=%s\n' "${STAGE4_2R1_PYTHON}" "${RAY_TMPDIR}"
 printf '[Stage4.2R1] R17 original timing is frozen: slew 1.0/1.1 arrives by 250 ms and holds through 350 ms; slew 0.9 arrives by 270 ms and holds through 370 ms.\n'
 printf '[Stage4.2R1] This stage isolates authentic TSC plant-state restart: exact R17 expert actions are replayed, sprsina plus full coil/wire state is captured at 200 ms, and a fresh TSC process replays the remaining suffix.\n'

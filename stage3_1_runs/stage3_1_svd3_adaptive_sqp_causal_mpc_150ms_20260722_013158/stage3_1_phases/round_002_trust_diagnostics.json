@@ -1,0 +1,60 @@
+{
+  "round_index": 2,
+  "centers": [
+    "s31r001s_8fd81934c26f4bed",
+    "s31r001s_cdedc22b3d8312aa"
+  ],
+  "center_nominals": [
+    "nominal_05_s22g000_571ab4a158d29207",
+    "nominal_07_s22g005_a2acc95ca222cec3"
+  ],
+  "previous_best_max_violation": 0.04525722666666665,
+  "round_best_max_violation": 0.008497166666666667,
+  "meaningful_improvement": true,
+  "trust_diagnostics": [
+    {
+      "center_candidate_id": "s31r001s_8fd81934c26f4bed",
+      "center_nominal_id": "nominal_05_s22g000_571ab4a158d29207",
+      "best_step_candidate_id": "s31r002s_4074755102f6b06f",
+      "comparison_endpoint_step": 15,
+      "comparison_endpoint_ms": 150,
+      "center_max_violation_at_endpoint": 0.04525722666666665,
+      "predicted_max_violation_at_endpoint": 0.010209215318030207,
+      "real_max_violation_at_endpoint": 0.008497166666666667,
+      "center_max_violation": 0.04525722666666665,
+      "predicted_max_violation": 0.010209215318030207,
+      "real_max_violation": 0.008497166666666667,
+      "predicted_reduction": 0.03504801134863644,
+      "actual_reduction": 0.03676005999999998,
+      "rho": 1.0488486674559967,
+      "trust_boundary_fraction": 1.5,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.8225000000000002,
+      "new_trust_scale": 2.4603750000000004,
+      "center_slot": "primary"
+    },
+    {
+      "center_candidate_id": "s31r001s_cdedc22b3d8312aa",
+      "center_nominal_id": "nominal_07_s22g005_a2acc95ca222cec3",
+      "best_step_candidate_id": "s31r002s_25bc7b62d231718e",
+      "comparison_endpoint_step": 14,
+      "comparison_endpoint_ms": 140,
+      "center_max_violation_at_endpoint": 0.08467507333333346,
+      "predicted_max_violation_at_endpoint": 0.03355994252979011,
+      "real_max_violation_at_endpoint": 0.029553160000000078,
+      "center_max_violation": 0.08467507333333346,
+      "predicted_max_violation": 0.03355994252979011,
+      "real_max_violation": 0.029553160000000078,
+      "predicted_reduction": 0.05111513080354335,
+      "actual_reduction": 0.05512191333333338,
+      "rho": 1.0783874063668106,
+      "trust_boundary_fraction": 1.5000000000000002,
+      "accepted": true,
+      "action": "expand",
+      "old_trust_scale": 1.8225000000000002,
+      "new_trust_scale": 2.4603750000000004,
+      "center_slot": "secondary"
+    }
+  ]
+}

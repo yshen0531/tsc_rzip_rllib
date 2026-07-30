@@ -1,0 +1,32 @@
+[
+  {
+    "center_candidate_id": "s32mr001p_ab1dff8ddf4e904e",
+    "best_step_candidate_id": "s32mr002s_3f13d612e50d2fc6",
+    "center_objective": 6.997680713265335,
+    "predicted_objective": 6.983721604073857,
+    "real_objective": 6.9810708291148815,
+    "predicted_reduction": 0.013959109191477914,
+    "actual_reduction": 0.01660988415045317,
+    "rho": 1.1898957105796952,
+    "trust_boundary_fraction": 1.0,
+    "accepted": true,
+    "action": "expand",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 1.3
+  },
+  {
+    "center_candidate_id": "s32mr001p_58c0f0efcc85cb11",
+    "best_step_candidate_id": "s32mr002s_3bfa18b939fbb0cd",
+    "center_objective": 7.069292068419525,
+    "predicted_objective": 6.559619692870522,
+    "real_objective": 7.329849714023179,
+    "predicted_reduction": 0.5096723755490027,
+    "actual_reduction": -0.2605576456036536,
+    "rho": -0.5112257561987527,
+    "trust_boundary_fraction": 1.0,
+    "accepted": false,
+    "action": "shrink_rejected",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 0.5
+  }
+]

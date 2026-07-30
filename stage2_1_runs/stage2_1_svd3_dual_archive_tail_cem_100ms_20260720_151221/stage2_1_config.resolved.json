@@ -1,0 +1,269 @@
+{
+  "stage_label": "Stage 2.1",
+  "run_name": "stage2_1_svd3_dual_archive_tail_cem_100ms",
+  "output_root": "stage2_1_runs",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "runtime": {
+    "tsc_timeout_s": 180.0,
+    "description": "Use the exact Stage1.1 runtime physics. External SIGKILL cannot be intercepted."
+  },
+  "parallel": {
+    "n_workers": 192,
+    "ray_tmpdir": "/tmp/stage2_1"
+  },
+  "trajectory": {
+    "horizon_ms": 100,
+    "horizon_steps": 10,
+    "n_modes": 3,
+    "node_count": 5,
+    "node_steps": [
+      0,
+      2,
+      4,
+      6,
+      9
+    ],
+    "coefficient_lower": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper": [
+      2.6,
+      2.6,
+      0.9
+    ],
+    "seed_scale_profiles": {
+      "early_strong_late_soft": [
+        1.0,
+        1.0,
+        1.0,
+        0.98,
+        0.92,
+        0.82,
+        0.7,
+        0.58,
+        0.48,
+        0.4
+      ],
+      "moderate_taper": [
+        0.9,
+        0.9,
+        0.9,
+        0.88,
+        0.84,
+        0.78,
+        0.7,
+        0.64,
+        0.58,
+        0.54
+      ],
+      "late_brake_search_seed": [
+        1.0,
+        1.0,
+        0.98,
+        0.92,
+        0.82,
+        0.68,
+        0.5,
+        0.32,
+        0.16,
+        0.0
+      ]
+    },
+    "description": "Same validated 3 SVD modes and 5 nodes as Stage2. Stage2.1 concentrates most variation on nodes 4, 6 and 9."
+  },
+  "linear_prefilter": {
+    "r_scale_m": 0.03,
+    "z_scale_m": 0.03,
+    "ip_scale_a": 10000.0,
+    "random_keep_fraction": 0.5,
+    "weights": {
+      "late_position": 1.0,
+      "terminal_position": 0.5,
+      "terminal_ip": 0.05,
+      "action_rms": 0.01,
+      "delta_action_rms": 0.02,
+      "repair": 2.0
+    },
+    "description": "Linear position model is a weak ranking aid only. Half of each non-anchor family is retained without position ranking."
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "normalization_r_m": 0.03,
+    "normalization_z_m": 0.03,
+    "required_terminal_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_tolerance_a": 10000.0,
+    "promising_distance_reduction": 0.5,
+    "description": "Hard success definition is unchanged from Stage2. Strict means final three samples inside the +/-30 mm box plus both speed limits and Ip safety."
+  },
+  "objective": {
+    "tier_spacing": 1000000.0,
+    "tube_window_steps": 5,
+    "weights": {
+      "tube_excess_mean": 90.0,
+      "tube_excess_max": 120.0,
+      "tube_excess_terminal": 60.0,
+      "velocity_excess": 80.0,
+      "streak_deficit": 4.0,
+      "late_position_core": 1.5,
+      "terminal_position_core": 1.0,
+      "velocity_core": 2.5,
+      "terminal_ip": 0.1,
+      "action_rms": 0.02,
+      "delta_action_rms": 0.04,
+      "repair": 2.0
+    },
+    "description": "Hard gate tiers still dominate. A smooth final-window 30 mm tube-excess cost supplies gradient between 31, 32 and 39 mm instead of relying mainly on the discrete streak deficit."
+  },
+  "archives": {
+    "damped_capacity": 64,
+    "precise_capacity": 32,
+    "minimum_vector_distance": 0.035,
+    "damped_box_limit_m": 0.045,
+    "precise_box_limit_m": 0.03,
+    "speed_margin_factor": 1.0,
+    "description": "The damped archive is strictly speed-safe under the unchanged 0.10 m/s limits. The precise archive retains 30 mm position candidates but ranks them with explicit velocity penalties so near-damped precise trajectories are favored.",
+    "precise_score_weights": {
+      "terminal_box": 8.0,
+      "late_position": 3.0,
+      "terminal_velocity": 0.5,
+      "late_velocity": 1.5
+    }
+  },
+  "search": {
+    "population_size": 192,
+    "max_generations": 8,
+    "random_seed": 20260721,
+    "proposal_pool_multiplier": 4,
+    "tail_node_indices": [
+      2,
+      3,
+      4
+    ],
+    "early_node_indices": [
+      0,
+      1
+    ],
+    "family_quotas": {
+      "anchors": 12,
+      "sensitivity": 18,
+      "damped_tail": 36,
+      "precise_tail": 24,
+      "bridge": 48,
+      "global": 18,
+      "random_tail": 36
+    },
+    "unranked_fraction_by_family": {
+      "damped_tail": 0.5,
+      "precise_tail": 0.5,
+      "bridge": 0.5,
+      "global": 0.5,
+      "random_tail": 1.0
+    },
+    "early_node_std_by_mode": [
+      0.035,
+      0.035,
+      0.015
+    ],
+    "tail_std_by_mode": [
+      0.15,
+      0.15,
+      0.065
+    ],
+    "tail_node_std_multiplier": [
+      0.8,
+      1.0,
+      1.25
+    ],
+    "precise_tail_std_multiplier": 1.25,
+    "random_tail_radius_by_mode": [
+      0.42,
+      0.42,
+      0.16
+    ],
+    "bridge_noise_by_mode": [
+      0.07,
+      0.07,
+      0.03
+    ],
+    "sensitivity_delta_by_mode": [
+      0.08,
+      0.08,
+      0.035
+    ],
+    "global_covariance_scale": 0.35,
+    "covariance_eigen_floor": 0.00015,
+    "covariance_eigen_ceiling": 0.2,
+    "covariance_diagonal_shrinkage": 0.18,
+    "archive_elite_count": 20,
+    "meaningful_improvement": 0.0001,
+    "strict_patience_generations": 2,
+    "description": "One 192-worker wave per generation. The final 9 variables receive most variation; explicit bridges combine precise fronts with damped braking tails."
+  },
+  "surrogate": {
+    "enabled": true,
+    "ridge_alpha": 0.01,
+    "minimum_samples": 384,
+    "minimum_generation_folds": 4,
+    "minimum_r2_terminal_velocity": 0.1,
+    "minimum_r2_late_velocity": 0.1,
+    "maximum_mae_terminal_velocity": 0.16,
+    "maximum_mae_late_velocity": 0.12,
+    "ranking_weight_terminal_velocity": 0.35,
+    "ranking_weight_late_velocity": 0.65,
+    "description": "A pure-NumPy ridge model may help rank velocity, but it is activated only after leave-one-generation-out validation. It never decides a hard gate."
+  },
+  "optimization": {
+    "algorithm": "stage2_1_dual_archive_tail_cem",
+    "population_size": 192,
+    "proposal_pool_size": 768,
+    "elite_count": 24,
+    "max_generations": 8,
+    "random_seed": 20260721,
+    "initial_mean_seed": "svd3_uniform_0.85",
+    "initial_std_by_mode": [
+      0.35,
+      0.35,
+      0.15
+    ],
+    "initial_std_node_multiplier": [
+      0.9,
+      0.95,
+      1.0,
+      1.2,
+      1.35
+    ],
+    "antithetic_sampling": true,
+    "mean_update_fraction": 0.7,
+    "covariance_update_fraction": 0.55,
+    "covariance_diagonal_shrinkage": 0.18,
+    "covariance_eigen_floor": 0.00015,
+    "covariance_eigen_ceiling": 0.2,
+    "meaningful_improvement": 0.0001,
+    "early_stop_patience_generations": 2,
+    "cross_tier_elite_fraction": 0.25,
+    "description": "Compatibility block for the Stage2 loader. Stage2.1 uses the separate search block."
+  },
+  "confirmation": {
+    "top_k_candidates": 5,
+    "repeats_per_candidate": 3,
+    "description": "Confirm the top five unique candidates three times. Strict confirmation requires every repeat of at least one candidate to pass the unchanged 30 mm hard gate."
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 600.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "description": "All temporary TSC runtime and episode directories stay below /tmp/tsc_workspace and are deleted promptly."
+  }
+}

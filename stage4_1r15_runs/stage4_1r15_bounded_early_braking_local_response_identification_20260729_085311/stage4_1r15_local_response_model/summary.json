@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R15",
+  "phase": "local_response_model",
+  "group_count": 4,
+  "expected_group_count": 4,
+  "group_sample_count": {
+    "RZ_p10_m10__d1": 13,
+    "RZ_p10_m10__d2": 13,
+    "nominal__d1": 13,
+    "nominal__d2": 13
+  },
+  "pca_rank": 6,
+  "ridge_lambda": 0.001,
+  "cross_validation_rows": [
+    {
+      "group_id": "RZ_p10_m10__d1",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 1,
+      "sample_count": 13,
+      "velocity_component_rmse_m_per_s": 0.003237180655628756,
+      "endpoint_late_speed_error_m_per_s": 0.0019074763778429587,
+      "final_speed_error_m_per_s": 0.0010972860511659231,
+      "position_rmse_m": 0.0002657673193858998,
+      "ip_rmse_A": 12.564464500170052,
+      "passed": true
+    },
+    {
+      "group_id": "RZ_p10_m10__d2",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "sample_count": 13,
+      "velocity_component_rmse_m_per_s": 0.003798995114315945,
+      "endpoint_late_speed_error_m_per_s": 0.0028222036538106264,
+      "final_speed_error_m_per_s": 0.002440877614329138,
+      "position_rmse_m": 0.0003120430562675613,
+      "ip_rmse_A": 12.544550799470892,
+      "passed": true
+    },
+    {
+      "group_id": "nominal__d1",
+      "target_id": "nominal",
+      "actual_delay_steps": 1,
+      "sample_count": 13,
+      "velocity_component_rmse_m_per_s": 0.002731230924523728,
+      "endpoint_late_speed_error_m_per_s": 0.002502018907548907,
+      "final_speed_error_m_per_s": 0.0015870219938807562,
+      "position_rmse_m": 0.00022433434698152538,
+      "ip_rmse_A": 12.824372727879265,
+      "passed": true
+    },
+    {
+      "group_id": "nominal__d2",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "sample_count": 13,
+      "velocity_component_rmse_m_per_s": 0.0036283823920898114,
+      "endpoint_late_speed_error_m_per_s": 0.002662743227252455,
+      "final_speed_error_m_per_s": 0.0026042794820680913,
+      "position_rmse_m": 0.00029627686791618146,
+      "ip_rmse_A": 13.38091524976974,
+      "passed": true
+    }
+  ],
+  "all_groups_cross_validated": true,
+  "identification_only": true,
+  "deployment_model_claimed": false,
+  "passed": true
+}

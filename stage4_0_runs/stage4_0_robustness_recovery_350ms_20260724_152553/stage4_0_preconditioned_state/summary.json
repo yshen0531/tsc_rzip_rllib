@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "phase": "preconditioned_state",
+  "n_rollouts": 32,
+  "n_scenarios": 16,
+  "mpc_pass_fraction": 0.0,
+  "preserved_open_loop_pass_fraction": 0.0,
+  "pair_summary": {
+    "n_pairs": 16,
+    "n_baseline_pass": 1,
+    "n_feedback_pass": 0,
+    "n_preserved": 0,
+    "n_recovered": 0,
+    "n_lost": 1,
+    "median_signed_margin_gain": -1.2031386733723624,
+    "worst_signed_margin_gain": -1.3129820854628098
+  },
+  "true_restart_state_tested": false,
+  "preconditioned_history_tested": true,
+  "passed": false
+}

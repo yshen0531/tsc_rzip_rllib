@@ -1,0 +1,10 @@
+actual_delay_steps,actual_slew_scale,repeats,all_success,all_final_correct,incorrect_confident_lock_count,maximum_first_confident_lock_step
+0,0.9,4,True,True,0,2
+0,1.0,4,True,True,0,2
+0,1.1,4,True,True,0,2
+1,0.9,4,True,True,0,2
+1,1.0,4,True,True,0,2
+1,1.1,4,True,True,0,2
+2,0.9,4,True,True,0,3
+2,1.0,4,True,True,0,3
+2,1.1,4,True,True,0,3

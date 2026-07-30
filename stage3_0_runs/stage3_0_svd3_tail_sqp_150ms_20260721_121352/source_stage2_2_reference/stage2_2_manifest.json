@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "stage": "Stage2.2",
+  "created_utc": "20260721_085328",
+  "source_stage1_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916",
+  "source_stage2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614",
+  "source_stage2_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_20260720_151221",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "trajectory": {
+    "horizon_ms": 100,
+    "horizon_steps": 10,
+    "n_modes": 3,
+    "node_count": 5,
+    "node_steps": [
+      0,
+      2,
+      4,
+      6,
+      9
+    ],
+    "coefficient_lower": [
+      -2.6,
+      -2.6,
+      -0.9
+    ],
+    "coefficient_upper": [
+      2.6,
+      2.6,
+      0.9
+    ],
+    "seed_scale_profiles": {
+      "early_strong_late_soft": [
+        1.0,
+        1.0,
+        1.0,
+        0.98,
+        0.92,
+        0.82,
+        0.7,
+        0.58,
+        0.48,
+        0.4
+      ],
+      "moderate_taper": [
+        0.9,
+        0.9,
+        0.9,
+        0.88,
+        0.84,
+        0.78,
+        0.7,
+        0.64,
+        0.58,
+        0.54
+      ],
+      "late_brake_search_seed": [
+        1.0,
+        1.0,
+        0.98,
+        0.92,
+        0.82,
+        0.68,
+        0.5,
+        0.32,
+        0.16,
+        0.0
+      ]
+    },
+    "description": "The validated first three SVD modes and five-node 100 ms parameterization are unchanged. Stage2.2 searches the strict-feasibility corner and permits small changes at node step 2 in addition to the final three nodes."
+  },
+  "gate": {
+    "precise_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "normalization_r_m": 0.03,
+    "normalization_z_m": 0.03,
+    "required_terminal_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_tolerance_a": 10000.0,
+    "promising_distance_reduction": 0.5,
+    "description": "Hard success is identical to Stage2 and Stage2.1: the last three samples must remain inside the +/-30 mm rectangular R/Z box, terminal and late RMS speeds must each be <=0.10 m/s, and terminal Ip must be safe."
+  },
+  "hard_gate_changed_from_stage2": false,
+  "search": {
+    "population_size": 96,
+    "max_generations": 6,
+    "random_seed": 20260722,
+    "proposal_pool_multiplier": 4,
+    "fixed_node_indices": [
+      0
+    ],
+    "active_node_indices": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "family_quotas": {
+      "anchors": 12,
+      "multi_center_probes": 24,
+      "corner_local": 24,
+      "boundary_bridge": 18,
+      "trust_mix": 12,
+      "random_local": 6
+    },
+    "unranked_fraction_by_family": {
+      "corner_local": 0.4,
+      "boundary_bridge": 0.5,
+      "trust_mix": 0.5,
+      "random_local": 1.0
+    },
+    "local_std_by_node_mode": [
+      [
+        0.006,
+        0.006,
+        0.003
+      ],
+      [
+        0.025,
+        0.025,
+        0.01
+      ],
+      [
+        0.055,
+        0.055,
+        0.022
+      ],
+      [
+        0.07,
+        0.07,
+        0.028
+      ],
+      [
+        0.07,
+        0.07,
+        0.028
+      ]
+    ],
+    "probe_delta_by_node_mode": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.018,
+        0.018,
+        0.008
+      ],
+      [
+        0.035,
+        0.035,
+        0.015
+      ],
+      [
+        0.045,
+        0.045,
+        0.018
+      ],
+      [
+        0.045,
+        0.045,
+        0.018
+      ]
+    ],
+    "bridge_noise_by_node_mode": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.008,
+        0.008,
+        0.004
+      ],
+      [
+        0.018,
+        0.018,
+        0.008
+      ],
+      [
+        0.025,
+        0.025,
+        0.01
+      ],
+      [
+        0.025,
+        0.025,
+        0.01
+      ]
+    ],
+    "random_radius_by_node_mode": [
+      [
+        0.004,
+        0.004,
+        0.002
+      ],
+      [
+        0.04,
+        0.04,
+        0.016
+      ],
+      [
+        0.09,
+        0.09,
+        0.035
+      ],
+      [
+        0.11,
+        0.11,
+        0.04
+      ],
+      [
+        0.11,
+        0.11,
+        0.04
+      ]
+    ],
+    "covariance_diagonal_shrinkage": 0.35,
+    "covariance_eigen_floor": 2e-05,
+    "covariance_eigen_ceiling": 0.03,
+    "archive_elite_count": 24,
+    "initial_trust_scale": 1.0,
+    "minimum_trust_scale": 0.35,
+    "trust_shrink_on_improvement": 0.9,
+    "trust_shrink_without_improvement": 0.78,
+    "meaningful_improvement": 1e-05,
+    "strict_patience_generations": 1,
+    "description": "A 96-candidate trust-region search around three independently selected near-corner centers. Twelve active variables cover nodes at steps 2,4,6,9; the step-0 node is effectively fixed."
+  },
+  "objective": {
+    "non_strict_offset": 1000000.0,
+    "max_violation_weight": 100000.0,
+    "sum_violation_weight": 4000.0,
+    "l2_violation_weight": 1000.0,
+    "quality_weights": {
+      "final3_box_core": 2.0,
+      "final3_box_mean_core": 0.8,
+      "terminal_box_core": 0.6,
+      "terminal_velocity_core": 0.5,
+      "late_velocity_core": 1.5,
+      "terminal_ip_core": 0.05,
+      "action_rms": 0.02,
+      "delta_action_rms": 0.04,
+      "repair": 2.0
+    },
+    "description": "Stage2.2 does not rank non-strict candidates by the old gate tier. It lexicographically approximates feasibility by minimizing the largest normalized strict-constraint violation, then total and L2 violation. Any real strict pass outranks every non-strict point."
+  },
+  "temporary_workspace": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "ray_tmpdir": "/tmp/stage2_2_1120"
+  }
+}

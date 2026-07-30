@@ -1,0 +1,114 @@
+[Stage4.2R1] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R1] source_stage4_1r17_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501
+[Stage4.2R1] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
+[Stage4.2R1] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r1_true_tsc_plant_restart_action_replay_370ms.json
+[Stage4.2R1] command=all backend=ray resume=1 workers=128
+[Stage4.2R1 R1a] Capture exceptions preserve partial trajectories; shape mismatches are finite structured JSON; legacy successful snapshots remain resume-safe.
+[Stage4.2R1] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python RAY_TMPDIR=/tmp/stage4_2r1_1120
+[Stage4.2R1] R17 original timing is frozen: slew 1.0/1.1 arrives by 250 ms and holds through 350 ms; slew 0.9 arrives by 270 ms and holds through 370 ms.
+[Stage4.2R1] This stage isolates authentic TSC plant-state restart: exact R17 expert actions are replayed, sprsina plus full coil/wire state is captured at 200 ms, and a fresh TSC process replays the remaining suffix.
+[Stage4.2R1] Plant restart fidelity and formal-contract preservation are reported separately. Controller observer/integrator/queue checkpoint replay is deliberately not performed in R1.
+[Stage4.2R1] The old unrun R11-based Stage4.2R1 package is not reused. R10/R11 750 ms/2 s trajectories remain auxiliary diagnostics only.
+[Stage4.2R1] This does not validate unseen hidden histories, new targets, plant mismatch, continuous actuator changes, noise, disturbances, deployment, BC, DAgger or RL.
+[Stage4.2R1] Final task remains causal safe arrival, deceleration, disturbance recovery and long hold across initial states, hidden vessel/eddy histories, targets, continuous plant/actuator changes, noise and unknown delay.
+2026-07-30 07:41:15,197	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R1 plant-capture] ray_capacity requested=128 cluster_cpus=128 pending=18 actors=18 initialized_now=1
+[Stage4.2R1 plant-capture] actor_allocation={"slew_0p900_h37":6,"slew_1p000_h35":6,"slew_1p100_h35":6}
+[Stage4.2R1 plant-capture] 10/18
+[Stage4.2R1 plant-capture] 18/18
+{
+  "checkpoint_elapsed_ms": 200,
+  "checkpoint_step": 20,
+  "cold_controller_restart_validated": false,
+  "continuous_parameter_change_validated": false,
+  "controller_checkpoint_replay_validated": false,
+  "created_utc": "20260729_234127",
+  "deployment_robustness_validated": false,
+  "disturbance_recovery_validated": false,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay",
+  "finite_test_envelope_only": true,
+  "formal_contract_preserved": false,
+  "measurement_noise_robustness_validated": false,
+  "next_if_fail": "Separate snapshot-file, full-wire-state, action-replay and formal-margin failures. Fix TSC plant serialization/restart fidelity before testing controller-state reconstruction; do not relax timing gates.",
+  "next_if_pass": "Proceed to Stage4.2R2 persistent controller-checkpoint replay on the certified plant restart bank, then construct matched-visible/different-hidden-history tests. Do not start BC/DAgger/RL yet.",
+  "original_250_350_and_270_370_timing_unchanged": true,
+  "phases": {
+    "plant_checkpoint_capture": {
+      "capture_exception_stage_counts": {
+        "prepare_replay": 18
+      },
+      "capture_summary_exception_count": 0,
+      "capture_visible_comparable_fraction": 0.0,
+      "capture_visible_exact_fraction": 0.0,
+      "coverage_complete": true,
+      "distinct_snapshot_paths": 1,
+      "environment_success_count": 0,
+      "expected_rollouts": 18,
+      "failure_reason_count": 18,
+      "full_wire_vector_fraction": 0.0,
+      "maximum_capture_visible_abs_difference": null,
+      "maximum_source_action_abs_difference": null,
+      "n_rollouts": 18,
+      "passed": false,
+      "phase": "plant_checkpoint_capture",
+      "plant_capture_instrumentation_changed_source_trace": true,
+      "schema_version": 1,
+      "snapshot_valid_fraction": 0.0,
+      "snapshot_wire_exact_fraction": 0.0,
+      "source_action_comparable_fraction": 0.0,
+      "source_action_exact_fraction": 0.0,
+      "stage": "Stage4.2R1",
+      "wire_current_count_max": 0,
+      "wire_current_count_min": 0
+    },
+    "plant_restart_replay": {},
+    "source_audit": {
+      "abnormal_rollout_count": 0,
+      "controller_checkpoint_replay_in_this_stage": false,
+      "distinct_trusted_calibration_tokens": 9,
+      "environment_success_count": 18,
+      "expected_cases": 18,
+      "formal_contract_pass_fraction": 1.0,
+      "interpretation": "R17 genuinely restores the original finite 18-case timing grid, but the minimum source margin is razor-thin. R1 now isolates authentic TSC plant-state restart fidelity by replaying the exact expert actions; it does not yet test controller-state reconstruction.",
+      "minimum_formal_signed_margin": 1.0456920999768471e-05,
+      "minimum_margin_case": {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 0.9,
+        "controller_path": "source_unchanged_r11_original_deadline",
+        "target_id": "RZ_p10_m10"
+      },
+      "modified_r17_cases": 4,
+      "old_unrun_r11_based_stage4_2r1_not_reused": true,
+      "original_250_350_and_270_370_timing_unchanged": true,
+      "passed": true,
+      "phase": "source_audit",
+      "plant_restart_only": true,
+      "r10_r11_long_horizons_are_auxiliary_only": true,
+      "razor_thin_source_margin_warning": true,
+      "schema_version": 1,
+      "selected_expert_cases": 18,
+      "source_finished": true,
+      "source_formal_grid_status": "passed",
+      "source_stage4_1r17_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501",
+      "source_stop_reason": "",
+      "stage": "Stage4.2R1",
+      "unchanged_source_cases": 14
+    }
+  },
+  "plant_checkpoint_capture_status": "failed",
+  "plant_parameter_robustness_validated": false,
+  "plant_restart_fidelity_passed": false,
+  "plant_restart_replay_status": "not_run",
+  "primary_pass": false,
+  "schema_version": 1,
+  "source_audit_status": "passed",
+  "source_stage4_1r17_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r17_runs/stage4_1r17_original_deadline_one_sided_robust_braking_closure_20260729_142501",
+  "stage": "Stage4.2R1",
+  "true_filesystem_tsc_restart_performed": false,
+  "unseen_hidden_history_generalization_validated": false,
+  "unseen_target_generalization_validated": false,
+  "verdict": "STAGE4_2R1_TRUE_TSC_PLANT_RESTART_ACTION_REPLAY_INCOMPLETE",
+  "warning": "Stage4.2R1 certifies only authentic TSC plant-state serialization and exact action-replay restart for the same finite clean 18-case R17 expert. It deliberately does not replay or reconstruct controller observer/integrator/queue state, and it does not validate unseen hidden histories, new targets, plant error, continuous actuator changes, noise, disturbances or deployment."
+}

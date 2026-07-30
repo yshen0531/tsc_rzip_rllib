@@ -1,0 +1,32 @@
+[
+  {
+    "center_candidate_id": "s32screen_c9259cdaf60f253e",
+    "best_step_candidate_id": "s32hr000s_a34c24e89a7d631f",
+    "center_objective": 17.558739300732277,
+    "predicted_objective": 7.483546163130664,
+    "real_objective": 7.371812075068278,
+    "predicted_reduction": 10.075193137601612,
+    "actual_reduction": 10.186927225664,
+    "rho": 1.0110900194702357,
+    "trust_boundary_fraction": 1.0,
+    "accepted": true,
+    "action": "expand",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 1.25
+  },
+  {
+    "center_candidate_id": "s32screen_c618189c752da155",
+    "best_step_candidate_id": "s32hr000s_b9346a3f30fad6f5",
+    "center_objective": 20.68405513562835,
+    "predicted_objective": 8.264621336114534,
+    "real_objective": 8.4165972712543,
+    "predicted_reduction": 12.419433799513815,
+    "actual_reduction": 12.267457864374048,
+    "rho": 0.987763054452151,
+    "trust_boundary_fraction": 1.0,
+    "accepted": true,
+    "action": "expand",
+    "old_trust_scale": 1.0,
+    "new_trust_scale": 1.25
+  }
+]

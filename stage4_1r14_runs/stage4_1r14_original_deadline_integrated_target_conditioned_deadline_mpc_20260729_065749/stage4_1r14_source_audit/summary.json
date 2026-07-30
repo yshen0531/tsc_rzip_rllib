@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R14",
+  "phase": "source_audit",
+  "source_stage4_1r13_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r13_runs/stage4_1r13_original_deadline_delay_pipeline_early_braking_20260729_044403",
+  "raw_rollouts": 28,
+  "unique_experiment_ids": 28,
+  "environment_success_count": 28,
+  "failure_reason_count": 0,
+  "nominal_delay1_pass_count": 2,
+  "nominal_delay2_pass_count": 5,
+  "rz_delay1_pass_count": 0,
+  "rz_delay2_pass_count": 0,
+  "global_minimax_first_effect_state": 23,
+  "global_minimax_margin": -0.08573530759636228,
+  "all_failures_limited_by_endpoint_late_speed": true,
+  "target_conditioned_nominal_was_discarded": true,
+  "checkpoint_integral_was_reset": true,
+  "all_checkpoint_integrals_nonzero": true,
+  "rz_state23_any_mode_bound_fraction": {
+    "1": 0.875,
+    "2": 0.7647058823529411
+  },
+  "maximum_current_utilization": 0.41195,
+  "formal_timing_contract_unchanged": true,
+  "r11_2000ms_remains_auxiliary_only": true,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "passed": true,
+  "interpretation": "R13 ran correctly and found state 23 as the best onset. Nominal has passing candidates, but RZ has none. The handoff discarded the target-conditioned Stage3.4 nominal plan and reset a nonzero integral state; the first two residual modes then spent most steps at software correction bounds while physical current utilization stayed near 41%. R14 must restore the target-conditioned expert and add an explicit deadline-speed objective rather than scan another onset."
+}

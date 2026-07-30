@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "phase": "failure_recovery",
+  "n_rollouts": 360,
+  "n_families": 36,
+  "n_families_with_open_loop_failure": 0,
+  "n_families_recovered_at_first_failure": 0,
+  "failure_recovery_fraction": 0.0,
+  "preserved_open_loop_pass_fraction": 1.0,
+  "pair_summary": {
+    "n_pairs": 180,
+    "n_baseline_pass": 180,
+    "n_feedback_pass": 180,
+    "n_preserved": 180,
+    "n_recovered": 0,
+    "n_lost": 0,
+    "median_signed_margin_gain": 0.05753645333333335,
+    "worst_signed_margin_gain": -0.041079256858161384
+  },
+  "passed": false
+}

@@ -1,0 +1,148 @@
+{
+  "stage_label": "Stage 1.1",
+  "run_name": "stage1_1_svd234_strict_validation_100ms",
+  "output_root": "stage1_1_runs",
+  "train_config": "configs/train_stage1_controllability_100ms.json",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "parallel": {
+    "n_workers": 9,
+    "ray_tmpdir": "/tmp/stage11"
+  },
+  "supplement": {
+    "description": "Copy the source Stage1 run, retry only failed scan experiments at reduced concurrency, regenerate the local model, test SVD2/SVD3/SVD4, and apply strict post-step0 hold gates.",
+    "retry_plan": [
+      {
+        "backend": "ray",
+        "workers": 12
+      },
+      {
+        "backend": "ray",
+        "workers": 4
+      },
+      {
+        "backend": "serial",
+        "workers": 1
+      }
+    ],
+    "bootstrap_samples": 300,
+    "bootstrap_seed": 20260718,
+    "retry_tsc_timeout_s": 180.0
+  },
+  "scan": {
+    "horizon_steps": 10,
+    "baseline_repeats": 3,
+    "injection_steps": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "amplitude_fractions": [
+      0.5,
+      1.0
+    ],
+    "description": "Identical experiment grid to Stage1. Existing successful files are copied; only failed/missing experiments are retried."
+  },
+  "analysis": {
+    "r_scale_m": 0.08,
+    "z_scale_m": 0.08,
+    "ip_scale_a": 8000.0,
+    "ip_weight": 0.15,
+    "mode_energy_target": 0.99,
+    "singular_ratio_floor": 0.001,
+    "mode_recommendation_rule": "energy_only",
+    "max_recommended_modes": 4,
+    "reachable_set_directions": 144,
+    "reachable_set_ip_tolerance_a": 8000.0,
+    "reliability": {
+      "max_baseline_R_spread_m": 0.0001,
+      "max_baseline_Z_spread_m": 0.0001,
+      "max_baseline_Ip_spread_a": 50.0,
+      "max_failed_scan_fraction": 0.0,
+      "max_median_nonlinearity": 0.2,
+      "max_p90_nonlinearity": 0.4,
+      "max_relative_pre_injection_leakage": 0.05
+    }
+  },
+  "optimization": {
+    "tracking_steps": [
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "tracking_step_weights": [
+      0.25,
+      0.4,
+      0.6,
+      0.8,
+      1.0
+    ],
+    "velocity_steps": [
+      7,
+      8,
+      9,
+      10
+    ],
+    "velocity_weight": 0.18,
+    "r_velocity_scale_m_per_s": 1.0,
+    "z_velocity_scale_m_per_s": 1.0,
+    "action_increment_l2": 0.001,
+    "current_deviation_l2": 1e-05,
+    "mode_coefficient_bound_a": 12.0,
+    "max_iterations": 1200,
+    "ftol": 1e-10,
+    "mode_counts": [
+      2,
+      3,
+      4
+    ],
+    "target_fractions": [
+      1.0
+    ],
+    "full_14d_identity": false
+  },
+  "validation": {
+    "gate_mode": "stage1_1_precise_hold",
+    "strict_explicit_only": true,
+    "explicit_candidate_labels": [
+      "svd02_target1p00",
+      "svd03_target1p00",
+      "svd04_target1p00"
+    ],
+    "max_base_candidates": 3,
+    "best_per_mode_count": 0,
+    "sequence_scales": [
+      0.75,
+      0.85,
+      1.0
+    ],
+    "late_window_steps": 4,
+    "tolerance_boxes_m": [
+      0.02,
+      0.03,
+      0.04,
+      0.08
+    ],
+    "primary_tolerance_m": 0.03,
+    "relaxed_tolerance_m": 0.04,
+    "required_terminal_streak_steps": 3,
+    "terminal_velocity_max_m_per_s": 0.1,
+    "late_velocity_rms_max_m_per_s": 0.1,
+    "promising_distance_reduction": 0.5,
+    "gate_ip_tolerance_a": 10000.0,
+    "description": "Validate exactly SVD2/SVD3/SVD4 at scales 0.75/0.85/1.0. Step 0 is excluded. Precise hold requires at least three trailing samples inside ±30 mm plus terminal and late velocity <=0.10 m/s.",
+    "plot_distance_metric": "terminal_RZ_euclidean_error_m"
+  }
+}

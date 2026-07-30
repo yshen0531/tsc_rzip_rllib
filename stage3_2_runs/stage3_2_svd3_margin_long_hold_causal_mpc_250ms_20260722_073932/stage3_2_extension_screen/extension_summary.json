@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.2",
+  "phase": "extension_screen",
+  "created_utc": "20260722_081725",
+  "n_candidates": 48,
+  "n_successful": 48,
+  "n_source_families_successful": 4,
+  "n_strict_long_hold": 0,
+  "n_relaxed_long_hold": 6,
+  "best_candidate_id": "s32screen_c9259cdaf60f253e",
+  "best_signed_margin": -0.06842920999999991,
+  "best_sustained_box_m": 0.0320528763,
+  "best_post_arrival_velocity_rms": 0.04366530095647251
+}

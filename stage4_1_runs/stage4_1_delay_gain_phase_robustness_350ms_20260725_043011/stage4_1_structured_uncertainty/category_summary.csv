@@ -1,0 +1,10 @@
+category,n_pairs,mpc_pass_fraction,preserved_open_loop_pass_fraction,n_recovered,n_lost,required,passed
+combined_scheduled,2,0.0,0.0,0,2,True,False
+controller_model_scale,4,0.25,0.25,0,3,True,False
+diagnostic_unmodeled_delay,2,0.0,0.0,0,2,False,
+diagnostic_unmodeled_slew,2,0.0,0.0,0,0,False,
+gain_estimation_error,2,0.5,0.0,1,0,True,False
+matched_action_delay,4,0.0,0.0,0,4,True,False
+observation_delay,4,0.0,0.0,0,4,True,False
+scheduled_gain,8,0.375,0.375,0,5,True,False
+scheduled_slew,4,0.0,0.0,0,0,True,False

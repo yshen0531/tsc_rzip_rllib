@@ -1,0 +1,110 @@
+{
+  "schema_version": 3,
+  "stage": "Stage4.1R3",
+  "phase": "structured_uncertainty",
+  "n_rollouts": 64,
+  "n_pairs": 32,
+  "pair_summary": {
+    "n_pairs": 32,
+    "n_baseline_pass": 26,
+    "n_feedback_pass": 26,
+    "n_preserved": 24,
+    "n_recovered": 2,
+    "n_lost": 2,
+    "median_signed_margin_gain": 0.05756950333333333,
+    "worst_signed_margin_gain": -0.47902000276456025
+  },
+  "category_summaries": [
+    {
+      "category": "combined_scheduled",
+      "n_pairs": 2,
+      "mpc_pass_fraction": 1.0,
+      "preserved_open_loop_pass_fraction": 1.0,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "required": true,
+      "passed": true
+    },
+    {
+      "category": "controller_model_scale",
+      "n_pairs": 4,
+      "mpc_pass_fraction": 1.0,
+      "preserved_open_loop_pass_fraction": 1.0,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "required": true,
+      "passed": true
+    },
+    {
+      "category": "diagnostic_unmodeled_delay",
+      "n_pairs": 2,
+      "mpc_pass_fraction": 0.0,
+      "preserved_open_loop_pass_fraction": 0.0,
+      "n_recovered": 0,
+      "n_lost": 2,
+      "required": false,
+      "passed": null
+    },
+    {
+      "category": "diagnostic_unmodeled_slew",
+      "n_pairs": 2,
+      "mpc_pass_fraction": 0.0,
+      "preserved_open_loop_pass_fraction": 0.0,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "required": false,
+      "passed": null
+    },
+    {
+      "category": "gain_estimation_error",
+      "n_pairs": 2,
+      "mpc_pass_fraction": 1.0,
+      "preserved_open_loop_pass_fraction": 0.0,
+      "n_recovered": 2,
+      "n_lost": 0,
+      "required": true,
+      "passed": false
+    },
+    {
+      "category": "matched_action_delay",
+      "n_pairs": 4,
+      "mpc_pass_fraction": 1.0,
+      "preserved_open_loop_pass_fraction": 1.0,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "required": true,
+      "passed": true
+    },
+    {
+      "category": "observation_delay",
+      "n_pairs": 4,
+      "mpc_pass_fraction": 1.0,
+      "preserved_open_loop_pass_fraction": 1.0,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "required": true,
+      "passed": true
+    },
+    {
+      "category": "scheduled_gain",
+      "n_pairs": 8,
+      "mpc_pass_fraction": 1.0,
+      "preserved_open_loop_pass_fraction": 1.0,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "required": true,
+      "passed": true
+    },
+    {
+      "category": "scheduled_slew",
+      "n_pairs": 4,
+      "mpc_pass_fraction": 0.5,
+      "preserved_open_loop_pass_fraction": 1.0,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "required": true,
+      "passed": false
+    }
+  ],
+  "passed": false
+}

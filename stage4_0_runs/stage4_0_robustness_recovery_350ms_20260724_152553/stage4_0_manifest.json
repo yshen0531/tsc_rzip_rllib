@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "created_utc": "20260724_152555",
+  "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+  "source_fingerprint": {
+    "n_files": 10,
+    "total_bytes": 2967707,
+    "digest": "9ca2ae4e3dd4af2182e3029c3630a93abaf4d3e62621a1665f4e839587f675d6"
+  },
+  "source_selected_controller_scale": 0.5,
+  "workers": {
+    "requested_workers": 192,
+    "logical_cpus": 256,
+    "reserved_logical_cpus": 16,
+    "safe_worker_ceiling": 240,
+    "available_memory_gb": 240.81380462646484,
+    "open_file_soft_limit": 1048576,
+    "open_file_hard_limit": 1048576
+  },
+  "hard_numeric_thresholds_changed": false,
+  "controller_weights_changed": false,
+  "finite_test_envelope_only": true,
+  "deployment_robustness_validated": false,
+  "true_restart_validation_is_conditional_on_available_restart_folders": true,
+  "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+}

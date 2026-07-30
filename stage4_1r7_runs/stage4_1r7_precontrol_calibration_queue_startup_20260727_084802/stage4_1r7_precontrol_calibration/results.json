@@ -1,0 +1,560 @@
+[
+  {
+    "experiment_id": "s41r7_cf5f330db3d76afe858f",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 0.9,
+    "estimated_delay_steps": 0,
+    "estimated_slew_scale": 0.9,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 1,
+    "confidence_ratio": 16.78355278707194,
+    "score_gap": 0.00012864937004037735,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 1,
+        "delay_steps": 0,
+        "slew_scale": 0.9,
+        "confidence_ratio": 24.500519793296778,
+        "score_gap": 0.0002808833850072364,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.8100000000000023,
+    "success": true,
+    "wall_time_s": 146.76998805999756
+  },
+  {
+    "experiment_id": "s41r7_f96b54966ff584bab1c8",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 0.9,
+    "estimated_delay_steps": 0,
+    "estimated_slew_scale": 0.9,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 1,
+    "confidence_ratio": 4.599390302118425,
+    "score_gap": 0.00015691747198840755,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 1,
+        "delay_steps": 0,
+        "slew_scale": 0.9,
+        "confidence_ratio": 7.97957637828808,
+        "score_gap": 0.00031228808048581834,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.8100000000000023,
+    "success": true,
+    "wall_time_s": 143.34576082229614
+  },
+  {
+    "experiment_id": "s41r7_fc475f25f75ceae1c14d",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 0.9,
+    "estimated_delay_steps": 1,
+    "estimated_slew_scale": 0.9,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 2,
+    "confidence_ratio": 16.78355278707194,
+    "score_gap": 0.00013983627178301887,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 2,
+        "delay_steps": 1,
+        "slew_scale": 0.9,
+        "confidence_ratio": 24.500519793296775,
+        "score_gap": 0.00019494509080895527,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.8100000000000023,
+    "success": true,
+    "wall_time_s": 147.39814972877502
+  },
+  {
+    "experiment_id": "s41r7_941edeede140950da6db",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 0.9,
+    "estimated_delay_steps": 1,
+    "estimated_slew_scale": 0.9,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 2,
+    "confidence_ratio": 3.440503545227497,
+    "score_gap": 0.00014049712316302894,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 2,
+        "delay_steps": 1,
+        "slew_scale": 0.9,
+        "confidence_ratio": 5.101199057730067,
+        "score_gap": 0.00018583350107836033,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.8100000000000023,
+    "success": true,
+    "wall_time_s": 147.18825793266296
+  },
+  {
+    "experiment_id": "s41r7_13f26a730a56ca917526",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 0.9,
+    "estimated_delay_steps": 2,
+    "estimated_slew_scale": 0.9,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 3,
+    "confidence_ratio": 16.78355278707194,
+    "score_gap": 0.00015199594759023787,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 3,
+        "delay_steps": 2,
+        "slew_scale": 0.9,
+        "confidence_ratio": 24.500519793296778,
+        "score_gap": 0.00015212488356111155,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.8100000000000023,
+    "success": true,
+    "wall_time_s": 145.71316480636597
+  },
+  {
+    "experiment_id": "s41r7_189d7bb717ca186c55b8",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 0.9,
+    "estimated_delay_steps": 2,
+    "estimated_slew_scale": 0.9,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 4,
+    "confidence_ratio": 3.8082823314275833,
+    "score_gap": 0.00014304559288654496,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 4,
+        "delay_steps": 2,
+        "slew_scale": 0.9,
+        "confidence_ratio": 5.71300079202835,
+        "score_gap": 0.0002041906661107333,
+        "unique_best": true,
+        "best_streak": 3
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.8100000000000023,
+    "success": true,
+    "wall_time_s": 147.32975053787231
+  },
+  {
+    "experiment_id": "s41r7_35b89babdab5d18b5e32",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.0,
+    "estimated_delay_steps": 0,
+    "estimated_slew_scale": 1.0,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 1,
+    "confidence_ratio": 22.202205849101368,
+    "score_gap": 0.00013546231283099896,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 1,
+        "delay_steps": 0,
+        "slew_scale": 1.0,
+        "confidence_ratio": 64.2874367410462,
+        "score_gap": 0.0003083677981548412,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9000000000000057,
+    "success": true,
+    "wall_time_s": 146.5080108642578
+  },
+  {
+    "experiment_id": "s41r7_3de94c11782b295d7e06",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.0,
+    "estimated_delay_steps": 0,
+    "estimated_slew_scale": 1.0,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 1,
+    "confidence_ratio": 4.033853882718183,
+    "score_gap": 0.00012924577524804274,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 1,
+        "delay_steps": 0,
+        "slew_scale": 1.0,
+        "confidence_ratio": 8.331773791722052,
+        "score_gap": 0.00028535895907360844,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9000000000000057,
+    "success": true,
+    "wall_time_s": 147.6553394794464
+  },
+  {
+    "experiment_id": "s41r7_52eb4181879d4676d946",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.0,
+    "estimated_delay_steps": 1,
+    "estimated_slew_scale": 1.0,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 1,
+    "confidence_ratio": 22.202205849101368,
+    "score_gap": 0.00014724164438152063,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 1,
+        "delay_steps": 1,
+        "slew_scale": 1.0,
+        "confidence_ratio": 52.021704645929425,
+        "score_gap": 0.00018142886441133393,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9000000000000057,
+    "success": true,
+    "wall_time_s": 144.97268533706665
+  },
+  {
+    "experiment_id": "s41r7_2c333391688c462f4265",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.0,
+    "estimated_delay_steps": 1,
+    "estimated_slew_scale": 1.0,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 2,
+    "confidence_ratio": 3.7512373844274647,
+    "score_gap": 0.00014741210155227145,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 2,
+        "delay_steps": 1,
+        "slew_scale": 1.0,
+        "confidence_ratio": 6.704276482191215,
+        "score_gap": 0.00019012780844100943,
+        "unique_best": true,
+        "best_streak": 3
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9000000000000057,
+    "success": true,
+    "wall_time_s": 145.46081924438477
+  },
+  {
+    "experiment_id": "s41r7_e08edbc598bdbb2cbedc",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.0,
+    "estimated_delay_steps": 2,
+    "estimated_slew_scale": 1.0,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 2,
+    "confidence_ratio": 22.202205849101368,
+    "score_gap": 0.0001600452656320876,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 2,
+        "delay_steps": 2,
+        "slew_scale": 1.0,
+        "confidence_ratio": 52.02170464592942,
+        "score_gap": 0.00012591939693094316,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9000000000000057,
+    "success": true,
+    "wall_time_s": 146.8919756412506
+  },
+  {
+    "experiment_id": "s41r7_2f4e7fa5553bbe6e7a19",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.0,
+    "estimated_delay_steps": 2,
+    "estimated_slew_scale": 1.0,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 3,
+    "confidence_ratio": 3.471406825443243,
+    "score_gap": 0.00014016952008472447,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 3,
+        "delay_steps": 2,
+        "slew_scale": 1.0,
+        "confidence_ratio": 5.258697654180845,
+        "score_gap": 0.00013652972662168871,
+        "unique_best": true,
+        "best_streak": 3
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9000000000000057,
+    "success": true,
+    "wall_time_s": 148.07119464874268
+  },
+  {
+    "experiment_id": "s41r7_b99d7cf06aba4a3011e0",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.1,
+    "estimated_delay_steps": 0,
+    "estimated_slew_scale": 1.1,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 1,
+    "confidence_ratio": 14.007627392542695,
+    "score_gap": 0.0001573728029297664,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 1,
+        "delay_steps": 0,
+        "slew_scale": 1.1,
+        "confidence_ratio": 20.365599598909803,
+        "score_gap": 0.00034389936561874605,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+    "success": true,
+    "wall_time_s": 146.22612309455872
+  },
+  {
+    "experiment_id": "s41r7_a58647ef5215f17f7e32",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.1,
+    "estimated_delay_steps": 0,
+    "estimated_slew_scale": 1.1,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 1,
+    "confidence_ratio": 3.915112322111051,
+    "score_gap": 0.0001417810708534994,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 1,
+        "delay_steps": 0,
+        "slew_scale": 1.1,
+        "confidence_ratio": 10.027885513565877,
+        "score_gap": 0.0003742699491351951,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+    "success": true,
+    "wall_time_s": 145.9415991306305
+  },
+  {
+    "experiment_id": "s41r7_bbc9de4662465c19c85d",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.1,
+    "estimated_delay_steps": 1,
+    "estimated_slew_scale": 1.1,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 2,
+    "confidence_ratio": 14.007627392542696,
+    "score_gap": 0.00017105739448887653,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 2,
+        "delay_steps": 1,
+        "slew_scale": 1.1,
+        "confidence_ratio": 20.365599598909803,
+        "score_gap": 0.00023868087839357737,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+    "success": true,
+    "wall_time_s": 143.85664820671082
+  },
+  {
+    "experiment_id": "s41r7_c94a64221f393d1f7873",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 1,
+    "actual_slew_scale": 1.1,
+    "estimated_delay_steps": 1,
+    "estimated_slew_scale": 1.1,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 3,
+    "confidence_ratio": 3.8530489692983205,
+    "score_gap": 0.00017909464475117067,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 3,
+        "delay_steps": 1,
+        "slew_scale": 1.1,
+        "confidence_ratio": 5.53757409973996,
+        "score_gap": 0.00029477232663935,
+        "unique_best": true,
+        "best_streak": 3
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+    "success": true,
+    "wall_time_s": 145.2032642364502
+  },
+  {
+    "experiment_id": "s41r7_421295f6a9a4498c36b6",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "clean",
+    "calibration_repeat": 0,
+    "coil_current_measurement_noise_A": 0.0,
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.1,
+    "estimated_delay_steps": 2,
+    "estimated_slew_scale": 1.1,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 3,
+    "confidence_ratio": 14.007627392542693,
+    "score_gap": 0.0001859319505313875,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 3,
+        "delay_steps": 2,
+        "slew_scale": 1.1,
+        "confidence_ratio": 20.3655995989098,
+        "score_gap": 0.00018625398917826365,
+        "unique_best": true,
+        "best_streak": 2
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+    "success": true,
+    "wall_time_s": 146.45020651817322
+  },
+  {
+    "experiment_id": "s41r7_d5c18ec904a7c67d8ea7",
+    "phase": "precontrol_calibration",
+    "calibration_profile": "noisy_20mA",
+    "calibration_repeat": 1,
+    "coil_current_measurement_noise_A": 0.02,
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 1.1,
+    "estimated_delay_steps": 2,
+    "estimated_slew_scale": 1.1,
+    "final_identification_correct": true,
+    "observations": 10,
+    "first_confident_lock_step": 5,
+    "confidence_ratio": 4.903379916224498,
+    "score_gap": 0.00019338067870855262,
+    "incorrect_confident_lock_count": 0,
+    "lock_events": [
+      {
+        "step": 5,
+        "delay_steps": 2,
+        "slew_scale": 1.1,
+        "confidence_ratio": 5.157691249210343,
+        "score_gap": 0.00025433260561375534,
+        "unique_best": true,
+        "best_streak": 4
+      }
+    ],
+    "maximum_abs_actual_current_delta_A": 0.9900000000000091,
+    "success": true,
+    "wall_time_s": 146.90936064720154
+  }
+]

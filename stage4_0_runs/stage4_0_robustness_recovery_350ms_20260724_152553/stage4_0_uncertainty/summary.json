@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.0",
+  "phase": "uncertainty",
+  "n_rollouts": 104,
+  "n_scenarios": 52,
+  "mpc_pass_fraction": 0.8653846153846154,
+  "preserved_open_loop_pass_fraction": 0.9130434782608695,
+  "pair_summary": {
+    "n_pairs": 52,
+    "n_baseline_pass": 46,
+    "n_feedback_pass": 45,
+    "n_preserved": 42,
+    "n_recovered": 3,
+    "n_lost": 4,
+    "median_signed_margin_gain": 0.023054985000000028,
+    "worst_signed_margin_gain": -0.5872825991503423
+  },
+  "true_plant_parameter_variation_tested": false,
+  "actuation_and_controller_model_uncertainty_tested": true,
+  "passed": true
+}

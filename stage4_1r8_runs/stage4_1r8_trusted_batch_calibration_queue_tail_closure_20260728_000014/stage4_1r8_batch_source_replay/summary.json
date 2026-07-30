@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R8",
+  "phase": "batch_source_replay",
+  "unique_source_noisy_traces": 27,
+  "source_batch_ranked_correct_fraction": 1.0,
+  "source_batch_trusted_fraction": 1.0,
+  "source_batch_trusted_correct_fraction": 1.0,
+  "source_batch_wrong_accept_count": 0,
+  "source_online_no_lock_count": 3,
+  "primary_monte_carlo": {
+    "profile_id": "iid_gaussian_20mA",
+    "trials": 4608,
+    "accepted": 4608,
+    "trusted_correct": 4608,
+    "wrong_accept_count": 0,
+    "acceptance_fraction": 1.0,
+    "trusted_correct_fraction": 1.0,
+    "zero_wrong_accept_rule_of_three_95pct_upper": 0.0006510416666666666,
+    "minimum_full_delta_log_likelihood": 178.6834379865031,
+    "minimum_split_delta_log_likelihood": 22.388013410273853
+  },
+  "diagnostic_monte_carlo": {
+    "profile_id": "iid_gaussian_50mA",
+    "trials": 2304,
+    "accepted": 73,
+    "trusted_correct": 73,
+    "wrong_accept_count": 0,
+    "acceptance_fraction": 0.031684027777777776,
+    "trusted_correct_fraction": 0.031684027777777776,
+    "zero_wrong_accept_rule_of_three_95pct_upper": 0.0013020833333333333,
+    "minimum_full_delta_log_likelihood": 1.0295219677595595,
+    "minimum_split_delta_log_likelihood": 0.0027969158042384814
+  },
+  "passed": true
+}

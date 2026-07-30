@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R6",
+  "phase": "estimator_confirmation",
+  "n_rollouts": 36,
+  "n_successful": 36,
+  "final_identification_fraction": 1.0,
+  "incorrect_confident_lock_count": 0,
+  "maximum_first_confident_lock_step": 3,
+  "minimum_final_confidence_ratio": 21.41058723998549,
+  "distinct_pairs_confirmed": 9,
+  "passed": true,
+  "group_summaries": [
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 0.9,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.1,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 0.9,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.0,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2
+    },
+    {
+      "actual_delay_steps": 1,
+      "actual_slew_scale": 1.1,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 2
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 3
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.0,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 3
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 1.1,
+      "repeats": 4,
+      "all_success": true,
+      "all_final_correct": true,
+      "incorrect_confident_lock_count": 0,
+      "maximum_first_confident_lock_step": 3
+    }
+  ]
+}

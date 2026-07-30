@@ -1,0 +1,605 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.4",
+  "created_utc": "20260724_092224",
+  "verdict": "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED",
+  "latest_allowed_arrival_ms": 250,
+  "hold_through_ms": 350,
+  "target_library": {
+    "mandatory_complete": true,
+    "mandatory_confirmed": true,
+    "n_entries": 16,
+    "n_mandatory_pass": 10,
+    "n_mandatory": 10
+  },
+  "mpc_calibration": {
+    "schema_version": 1,
+    "stage": "Stage3.4",
+    "n_rollouts": 40,
+    "n_successful": 40,
+    "scale_summaries": [
+      {
+        "controller_scale": 0.5,
+        "n_scenarios": 10,
+        "feedback_pass_fraction": 1.0,
+        "n_preserved": 10,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "median_signed_margin_gain": 0.03777356996362613,
+        "worst_signed_margin_gain": -0.22158198684477193,
+        "comparisons": [
+          {
+            "scenario": "Ip_m1000",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.0674726070172228
+          },
+          {
+            "scenario": "Ip_p1000",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.22158198684477193
+          },
+          {
+            "scenario": "RZ_p10_m10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.015950790558392547
+          },
+          {
+            "scenario": "RZ_p5_m5",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.017452626593918885
+          },
+          {
+            "scenario": "R_p10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.0018416566666685785
+          },
+          {
+            "scenario": "Z_m10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.002800157666666636
+          },
+          {
+            "scenario": "dist_m1_s08_p",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.08378013563120656
+          },
+          {
+            "scenario": "dist_m1_s16_m",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.09050346333333337
+          },
+          {
+            "scenario": "dist_m2_s20_p",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.08393801572544224
+          },
+          {
+            "scenario": "nominal",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.058094513333333375
+          }
+        ],
+        "eligible": true
+      },
+      {
+        "controller_scale": 1.0,
+        "n_scenarios": 10,
+        "feedback_pass_fraction": 1.0,
+        "n_preserved": 10,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "median_signed_margin_gain": -0.04509810565124689,
+        "worst_signed_margin_gain": -0.1724935925186719,
+        "comparisons": [
+          {
+            "scenario": "Ip_m1000",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.019687740586099567
+          },
+          {
+            "scenario": "Ip_p1000",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.048149273302493856
+          },
+          {
+            "scenario": "RZ_p10_m10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.02045812333333341
+          },
+          {
+            "scenario": "RZ_p5_m5",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.0063442424774876605
+          },
+          {
+            "scenario": "R_p10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": 0.01335454333333197
+          },
+          {
+            "scenario": "Z_m10",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.04204693799999992
+          },
+          {
+            "scenario": "dist_m1_s08_p",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.10201369123888504
+          },
+          {
+            "scenario": "dist_m1_s16_m",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.1724935925186719
+          },
+          {
+            "scenario": "dist_m2_s20_p",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.1415580605618697
+          },
+          {
+            "scenario": "nominal",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.16631328644200905
+          }
+        ],
+        "eligible": false
+      },
+      {
+        "controller_scale": 1.5,
+        "n_scenarios": 10,
+        "feedback_pass_fraction": 0.1,
+        "n_preserved": 1,
+        "n_recovered": 0,
+        "n_lost": 9,
+        "median_signed_margin_gain": -0.9536755478846886,
+        "worst_signed_margin_gain": -1.1885947657726694,
+        "comparisons": [
+          {
+            "scenario": "Ip_m1000",
+            "baseline_pass": true,
+            "feedback_pass": true,
+            "preserved": true,
+            "recovered": false,
+            "lost": false,
+            "signed_margin_gain": -0.3288098144098742
+          },
+          {
+            "scenario": "Ip_p1000",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -1.1340564732418852
+          },
+          {
+            "scenario": "RZ_p10_m10",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -0.6896611130580071
+          },
+          {
+            "scenario": "RZ_p5_m5",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -0.768683494734958
+          },
+          {
+            "scenario": "R_p10",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -0.6124872499387277
+          },
+          {
+            "scenario": "Z_m10",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -0.9321822496410808
+          },
+          {
+            "scenario": "dist_m1_s08_p",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -1.1885947657726694
+          },
+          {
+            "scenario": "dist_m1_s16_m",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -1.0540982424883112
+          },
+          {
+            "scenario": "dist_m2_s20_p",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -0.9751688461282964
+          },
+          {
+            "scenario": "nominal",
+            "baseline_pass": true,
+            "feedback_pass": false,
+            "preserved": false,
+            "recovered": false,
+            "lost": true,
+            "signed_margin_gain": -1.0048887823582695
+          }
+        ],
+        "eligible": false
+      }
+    ],
+    "selected_scale_summary": {
+      "controller_scale": 0.5,
+      "n_scenarios": 10,
+      "feedback_pass_fraction": 1.0,
+      "n_preserved": 10,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "median_signed_margin_gain": 0.03777356996362613,
+      "worst_signed_margin_gain": -0.22158198684477193,
+      "comparisons": [
+        {
+          "scenario": "Ip_m1000",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.0674726070172228
+        },
+        {
+          "scenario": "Ip_p1000",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": -0.22158198684477193
+        },
+        {
+          "scenario": "RZ_p10_m10",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": -0.015950790558392547
+        },
+        {
+          "scenario": "RZ_p5_m5",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.017452626593918885
+        },
+        {
+          "scenario": "R_p10",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": -0.0018416566666685785
+        },
+        {
+          "scenario": "Z_m10",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": -0.002800157666666636
+        },
+        {
+          "scenario": "dist_m1_s08_p",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.08378013563120656
+        },
+        {
+          "scenario": "dist_m1_s16_m",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.09050346333333337
+        },
+        {
+          "scenario": "dist_m2_s20_p",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.08393801572544224
+        },
+        {
+          "scenario": "nominal",
+          "baseline_pass": true,
+          "feedback_pass": true,
+          "preserved": true,
+          "recovered": false,
+          "lost": false,
+          "signed_margin_gain": 0.058094513333333375
+        }
+      ],
+      "eligible": true
+    },
+    "selected_controller_scale": 0.5,
+    "calibration_pass": true
+  },
+  "mpc_holdout": {
+    "schema_version": 1,
+    "stage": "Stage3.4",
+    "selected_controller_scale": 0.5,
+    "n_scenarios": 9,
+    "feedback_pass_fraction": 1.0,
+    "n_preserved": 9,
+    "n_recovered": 0,
+    "n_lost": 0,
+    "median_signed_margin_gain": 0.05280068333333332,
+    "worst_signed_margin_gain": -0.10913371248916226,
+    "comparisons": [
+      {
+        "scenario": "Ip_m750",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.10359184473639749
+      },
+      {
+        "scenario": "Ip_p750",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": -0.10913371248916226
+      },
+      {
+        "scenario": "RZ_p7p5_m7p5",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.04200069666666728
+      },
+      {
+        "scenario": "R_p2p5_Z_m2p5",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.0188783401406738
+      },
+      {
+        "scenario": "R_p7p5",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.006900966666667507
+      },
+      {
+        "scenario": "Z_m7p5",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.05280068333333332
+      },
+      {
+        "scenario": "dist_m1_s04_m",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.15456619333333332
+      },
+      {
+        "scenario": "dist_m2_s12_p",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.09476904658966945
+      },
+      {
+        "scenario": "dist_m3_s24_m",
+        "baseline_pass": true,
+        "feedback_pass": true,
+        "preserved": true,
+        "recovered": false,
+        "lost": false,
+        "signed_margin_gain": 0.0579856133333333
+      }
+    ],
+    "holdout_pass": true
+  },
+  "mpc_confirmation": {
+    "schema_version": 1,
+    "stage": "Stage3.4",
+    "selected_controller_scale": 0.5,
+    "n_rollouts": 16,
+    "n_successful": 16,
+    "scenario_summaries": [
+      {
+        "scenario": "nominal",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.45179333666666666
+      },
+      {
+        "scenario": "R_p10",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.3069346666666648
+      },
+      {
+        "scenario": "Z_m10",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.34909382366666664
+      },
+      {
+        "scenario": "RZ_p10_m10",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.23832005277494073
+      },
+      {
+        "scenario": "Ip_m1000",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.5080430333333339
+      },
+      {
+        "scenario": "Ip_p1000",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.20189368488409754
+      },
+      {
+        "scenario": "RZ_p7p5_m7p5",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.3119165000000007
+      },
+      {
+        "scenario": "dist_m2_s12_p",
+        "repeats": 2,
+        "successful_repeats": 2,
+        "all_repeats_tracking_pass": true,
+        "worst_tracking_signed_margin": 0.45718491333333333
+      }
+    ],
+    "mpc_confirmation_pass": true
+  },
+  "online_receding_horizon_mpc_validated_for_tested_target_envelope": true,
+  "initial_state_robustness_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "noise_delay_robustness_validated": false,
+  "robustness_validated": false,
+  "final_task_warning": "This fixed-initial-state target/disturbance envelope is not deployment or full robustness validation. Residual RL remains bounded and secondary."
+}

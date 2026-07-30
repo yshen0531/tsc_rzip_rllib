@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R15",
+  "phase": "source_audit",
+  "r13_raw_rollouts": 28,
+  "r14_raw_rollouts": 24,
+  "total_source_rollouts": 52,
+  "environment_success_count": 52,
+  "failure_reason_count": 0,
+  "abnormal_rollout_count": 0,
+  "nonfinite_rollout_count": 0,
+  "r14_limiting_components": [
+    "final_speed"
+  ],
+  "r14_all_final_speed_limited": true,
+  "maximum_state34_speed_m_per_s": 0.04108256508646308,
+  "minimum_state37_speed_m_per_s": 0.10898569474124838,
+  "maximum_state37_speed_m_per_s": 0.13071739776132335,
+  "beyond_horizon_feedforward_row_count": 36,
+  "beyond_horizon_feedforward_rows_per_rollout_by_delay": {
+    "1": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "2": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "tail_rows_with_target_conditioned_nominal_false": 48,
+  "rollout_summaries_claiming_target_conditioned_nominal_retained": 24,
+  "tail_nominal_summary_mismatch_detected": true,
+  "r14_main_identified_state_horizon": 35,
+  "formal_hold_state_horizon": 37,
+  "source_group_sample_counts": {
+    "RZ_p10_m10__d1": 13,
+    "RZ_p10_m10__d2": 13,
+    "nominal__d1": 13,
+    "nominal__d2": 13
+  },
+  "source_group_coverage_complete": true,
+  "stage4_2r1_was_not_run_or_reused": true,
+  "passed": true,
+  "interpretation": "R14 ran normally. All 24 cases were final-speed limited. The speed was already below 0.1 m/s near state 34, but delayed nonzero last nominal commands were issued beyond the 35-state identified horizon and the two-step tail changed nominal/integral semantics. R15 therefore identifies and validates a bounded local model instead of tuning another controller."
+}

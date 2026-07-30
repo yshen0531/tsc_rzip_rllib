@@ -1,0 +1,71 @@
+{
+  "env_config": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_1r8_runs/stage4_1r8_trusted_batch_calibration_queue_tail_closure_20260728_000014/stage4_1r4_environment_variants/env_slew_1p100_h41.json",
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "episode": {
+    "max_episode_steps": 41
+  },
+  "normalization": {
+    "r_scale": 0.08,
+    "z_scale": 0.08,
+    "ip_scale": 30000.0,
+    "current_scale_a": 1000.0,
+    "r_velocity_scale": 1.0,
+    "z_velocity_scale": 1.0,
+    "ip_derivative_scale": 100000.0,
+    "vessel_current_scale_a": 100000.0
+  },
+  "observation": {
+    "include_boundary_extrema": false,
+    "boundary_source": "gfile_boundary",
+    "include_derivatives": true,
+    "include_error_history": false,
+    "include_previous_action": false,
+    "include_time_fraction": false,
+    "include_deadline_fraction": false,
+    "include_hold_weight": false,
+    "include_vessel_current": true,
+    "include_history_stack": false,
+    "history_stack_steps": 0
+  },
+  "reward": {
+    "w_r": 1.0,
+    "w_z": 1.0,
+    "w_ip": 0.0,
+    "w_action": 0.0,
+    "w_current": 0.0,
+    "w_action_saturation": 0.0,
+    "w_current_limit": 0.0,
+    "w_r_guard": 0.0,
+    "w_z_guard": 0.0,
+    "w_ip_guard": 0.0,
+    "w_reach_progress": 0.0,
+    "w_pre_hold_tracking_boost": 0.0,
+    "w_derivative": 0.0,
+    "w_near_target_derivative": 0.0,
+    "w_overshoot": 0.0,
+    "hold_start_step": 15,
+    "hold_ramp_start_step": 8,
+    "hold_ramp_end_step": 15,
+    "w_hold_r": 0.0,
+    "w_hold_z": 0.0,
+    "w_hold_ip": 0.0,
+    "w_hold_action": 0.0,
+    "w_delta_action": 0.0,
+    "w_hold_current_drift": 0.0,
+    "hold_success_bonus": 0.0,
+    "quality_success_bonus": 0.0,
+    "survival_bonus": 0.0,
+    "failure_penalty": -1000.0,
+    "failure_penalty_per_remaining_step": -10.0
+  },
+  "failure": {
+    "terminate_on_tsc_failure": true,
+    "failure_penalty": -1000.0,
+    "failure_penalty_per_remaining_step": -10.0
+  },
+  "description": "Minimal non-RL environment configuration for Stage-1 controllability and reachability experiments. Reward values are not used for identification or Gate-A decisions."
+}

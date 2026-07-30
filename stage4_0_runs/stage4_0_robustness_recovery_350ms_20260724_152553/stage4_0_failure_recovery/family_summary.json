@@ -1,0 +1,362 @@
+[
+  {
+    "recovery_family": "RZ_p10_m10_m0_s04_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m0_s04_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m0_s12_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m0_s12_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m0_s24_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m0_s24_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m1_s04_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m1_s04_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m1_s12_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m1_s12_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m1_s24_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m1_s24_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m2_s04_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m2_s04_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m2_s12_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m2_s12_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m2_s24_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "RZ_p10_m10_m2_s24_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "nominal_m0_s04_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m0_s04_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m0_s12_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m0_s12_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m0_s24_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m0_s24_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m1_s04_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m1_s04_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m1_s12_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m1_s12_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m1_s24_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m1_s24_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.28,
+    "maximum_feedback_pass_amplitude": 0.28
+  },
+  {
+    "recovery_family": "nominal_m2_s04_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "nominal_m2_s04_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "nominal_m2_s12_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "nominal_m2_s12_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "nominal_m2_s24_m",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  },
+  {
+    "recovery_family": "nominal_m2_s24_p",
+    "n_amplitudes": 5,
+    "baseline_failure_observed": false,
+    "first_baseline_failure_amplitude": null,
+    "recovered_at_first_failure": false,
+    "first_failure_feedback_margin": null,
+    "maximum_baseline_pass_amplitude": 0.14,
+    "maximum_feedback_pass_amplitude": 0.14
+  }
+]

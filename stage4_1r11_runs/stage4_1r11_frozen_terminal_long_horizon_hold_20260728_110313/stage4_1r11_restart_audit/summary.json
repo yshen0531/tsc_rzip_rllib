@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R11",
+  "phase": "restart_audit",
+  "simulation_root": "/home/yangshen0711/tsc_all/tsc_simulation/HH70-PCS-ENV-LOW-FIELD-SIDE-118",
+  "candidate_folders": [
+    "1080ms",
+    "1090ms",
+    "1110ms",
+    "1120ms"
+  ],
+  "available_folders": [],
+  "true_restart_validation_available": false,
+  "true_restart_validation_performed": false,
+  "availability_requirement_for_stage4_1r11": false,
+  "audit_completed": true,
+  "passed": true
+}

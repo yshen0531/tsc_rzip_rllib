@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.4",
+  "created_utc": "20260724_030832",
+  "source_stage3_3_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_3_runs/stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331",
+  "source_stage3_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_2_runs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms_20260722_073932",
+  "source_fingerprint": {
+    "schema_version": 1,
+    "source_stage3_3_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_3_runs/stage3_3_target_conditioned_receding_horizon_mpc_250ms_20260723_130331",
+    "n_files": 46,
+    "total_bytes": 1153432,
+    "digest": "9b193c409dd20780a5906abab64d202f1b75612a5997eeec0b861a68694cda71"
+  },
+  "horizon_steps": 35,
+  "horizon_ms": 350,
+  "latest_allowed_arrival_ms": 250,
+  "minimum_post_arrival_hold_ms": 100,
+  "hard_numeric_thresholds_changed": false,
+  "timing_requirement_changed": true,
+  "ip_tracking_revision": "2x_for_tsc_additional_heating",
+  "ip_tracking_tolerances_A": {
+    "terminal_abs_tolerance_A": 2000.0,
+    "hold_rms_tolerance_A": 2400.0,
+    "sustained_max_tolerance_A": 4000.0
+  },
+  "physical_trajectory_cache": true,
+  "target_continuation": true,
+  "online_mpc_validated": false,
+  "robustness_validated": false,
+  "final_task": "robust causal feedback across initial states, targets, plant uncertainty, noise, and delay"
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.1R17",
+  "phase": "formal_grid_confirmation",
+  "n_cases": 18,
+  "expected_cases": 18,
+  "modified_r17_cases": 4,
+  "source_unchanged_cases": 14,
+  "formal_contract_pass_fraction": 1.0,
+  "calibrated_exact_trace_equivalence_fraction": 1.0,
+  "maximum_trace_abs_difference": 0.0,
+  "normal_slew_and_weak_delay0_reused_without_new_tsc": true,
+  "arrival_deadline_expanded": false,
+  "bidirectional_response_model_validated": false,
+  "unseen_target_generalization_validated": false,
+  "passed": true
+}

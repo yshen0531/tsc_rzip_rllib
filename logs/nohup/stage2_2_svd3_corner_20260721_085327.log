@@ -1,0 +1,1104 @@
+[Stage2.2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage2.2] source_stage1_1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916
+[Stage2.2] source_stage2_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614
+[Stage2.2] source_stage2_1_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_20260720_151221
+[Stage2.2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327
+[Stage2.2] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage2_2_svd3_corner_feasibility_100ms.json
+[Stage2.2] command=all
+[Stage2.2] backend=ray
+[Stage2.2] resume=0
+[Stage2.2] workers=96
+[Stage2.2] python=/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python
+[Stage2.2] RAY_TMPDIR=/tmp/stage2_2_1120
+[Stage2.2] TSC_WORKSPACE_ROOT=/tmp/tsc_workspace
+[Stage2.2] TSC_RUN_ROOT=/tmp/tsc_workspace/episode_runs
+[Stage2.2] Complete standalone source tree: no Git, network, or external base tree is used.
+[Stage2.2] Stage2 + Stage2.1 raw trajectories are recomputed into one deduplicated feasibility catalog.
+[Stage2.2] 3 SVD modes x 5 nodes remain unchanged; 96 candidates x at most 6 local generations.
+[Stage2.2] The 30 mm / 0.10 m/s / Ip hard gate is unchanged. Surrogates rank proposals only.
+[Stage2.2] SIGKILL cannot be intercepted. Completed candidate JSON files remain resumable.
+2026-07-21 16:53:41,159	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] 1/96
+[Stage2 evaluation] 2/96
+[Stage2 evaluation] 3/96
+[Stage2 evaluation] 4/96
+[Stage2 evaluation] 5/96
+[Stage2 evaluation] 6/96
+[Stage2 evaluation] 7/96
+[Stage2 evaluation] 8/96
+[Stage2 evaluation] 9/96
+[Stage2 evaluation] 10/96
+[Stage2 evaluation] 11/96
+[Stage2 evaluation] 12/96
+[Stage2 evaluation] 13/96
+[Stage2 evaluation] 14/96
+[Stage2 evaluation] 15/96
+[Stage2 evaluation] 16/96
+[Stage2 evaluation] 17/96
+[Stage2 evaluation] 18/96
+[Stage2 evaluation] 19/96
+[Stage2 evaluation] 20/96
+[Stage2 evaluation] 21/96
+[Stage2 evaluation] 22/96
+[Stage2 evaluation] 23/96
+[Stage2 evaluation] 24/96
+[Stage2 evaluation] 25/96
+[Stage2 evaluation] 26/96
+[Stage2 evaluation] 27/96
+[Stage2 evaluation] 28/96
+[Stage2 evaluation] 29/96
+[Stage2 evaluation] 30/96
+[Stage2 evaluation] 31/96
+[Stage2 evaluation] 32/96
+[Stage2 evaluation] 33/96
+[Stage2 evaluation] 34/96
+[Stage2 evaluation] 35/96
+[Stage2 evaluation] 36/96
+[Stage2 evaluation] 37/96
+[Stage2 evaluation] 38/96
+[Stage2 evaluation] 39/96
+[Stage2 evaluation] 40/96
+[Stage2 evaluation] 41/96
+[Stage2 evaluation] 42/96
+[Stage2 evaluation] 43/96
+[Stage2 evaluation] 44/96
+[Stage2 evaluation] 45/96
+[Stage2 evaluation] 46/96
+[Stage2 evaluation] 47/96
+[Stage2 evaluation] 48/96
+[Stage2 evaluation] 49/96
+[Stage2 evaluation] 50/96
+[Stage2 evaluation] 51/96
+[Stage2 evaluation] 52/96
+[Stage2 evaluation] 53/96
+[Stage2 evaluation] 54/96
+[Stage2 evaluation] 55/96
+[Stage2 evaluation] 56/96
+[Stage2 evaluation] 57/96
+[Stage2 evaluation] 58/96
+[Stage2 evaluation] 59/96
+[Stage2 evaluation] 60/96
+[Stage2 evaluation] 61/96
+[Stage2 evaluation] 62/96
+[Stage2 evaluation] 63/96
+[Stage2 evaluation] 64/96
+[Stage2 evaluation] 65/96
+[Stage2 evaluation] 66/96
+[Stage2 evaluation] 67/96
+[Stage2 evaluation] 68/96
+[Stage2 evaluation] 69/96
+[Stage2 evaluation] 70/96
+[Stage2 evaluation] 71/96
+[Stage2 evaluation] 72/96
+[Stage2 evaluation] 73/96
+[Stage2 evaluation] 74/96
+[Stage2 evaluation] 75/96
+[Stage2 evaluation] 76/96
+[Stage2 evaluation] 77/96
+[Stage2 evaluation] 78/96
+[Stage2 evaluation] 79/96
+[Stage2 evaluation] 80/96
+[Stage2 evaluation] 81/96
+[Stage2 evaluation] 82/96
+[Stage2 evaluation] 83/96
+[Stage2 evaluation] 84/96
+[Stage2 evaluation] 85/96
+[Stage2 evaluation] 86/96
+[Stage2 evaluation] 87/96
+[Stage2 evaluation] 88/96
+[Stage2 evaluation] 89/96
+[Stage2 evaluation] 90/96
+[Stage2 evaluation] 91/96
+[Stage2 evaluation] 92/96
+[Stage2 evaluation] 93/96
+[Stage2 evaluation] 94/96
+[Stage2 evaluation] 95/96
+[Stage2 evaluation] 96/96
+{
+  "stage": "Stage2.2",
+  "generation": 0,
+  "successful": 96,
+  "population": 96,
+  "strict": 0,
+  "relaxed": 33,
+  "best": {
+    "candidate_id": "s22g000_723e3eb8dfa35275",
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "selection_score": 1004460.6261817148,
+    "final3_box_max_error_m": 0.0312300782,
+    "terminal_velocity_m_per_s": 0.016133782195096116,
+    "late_velocity_rms_m_per_s": 0.1034398042584584,
+    "max_violation": 0.04100260666666666,
+    "sum_violation": 0.07540064925125067
+  },
+  "trust_scale": 0.9,
+  "next_generation": 1,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] 1/96
+[Stage2 evaluation] 2/96
+[Stage2 evaluation] 3/96
+[Stage2 evaluation] 4/96
+[Stage2 evaluation] 5/96
+[Stage2 evaluation] 6/96
+[Stage2 evaluation] 7/96
+[Stage2 evaluation] 8/96
+[Stage2 evaluation] 9/96
+[Stage2 evaluation] 10/96
+[Stage2 evaluation] 11/96
+[Stage2 evaluation] 12/96
+[Stage2 evaluation] 13/96
+[Stage2 evaluation] 14/96
+[Stage2 evaluation] 15/96
+[Stage2 evaluation] 16/96
+[Stage2 evaluation] 17/96
+[Stage2 evaluation] 18/96
+[Stage2 evaluation] 19/96
+[Stage2 evaluation] 20/96
+[Stage2 evaluation] 21/96
+[Stage2 evaluation] 22/96
+[Stage2 evaluation] 23/96
+[Stage2 evaluation] 24/96
+[Stage2 evaluation] 25/96
+[Stage2 evaluation] 26/96
+[Stage2 evaluation] 27/96
+[Stage2 evaluation] 28/96
+[Stage2 evaluation] 29/96
+[Stage2 evaluation] 30/96
+[Stage2 evaluation] 31/96
+[Stage2 evaluation] 32/96
+[Stage2 evaluation] 33/96
+[Stage2 evaluation] 34/96
+[Stage2 evaluation] 35/96
+[Stage2 evaluation] 36/96
+[Stage2 evaluation] 37/96
+[Stage2 evaluation] 38/96
+[Stage2 evaluation] 39/96
+[Stage2 evaluation] 40/96
+[Stage2 evaluation] 41/96
+[Stage2 evaluation] 42/96
+[Stage2 evaluation] 43/96
+[Stage2 evaluation] 44/96
+[Stage2 evaluation] 45/96
+[Stage2 evaluation] 46/96
+[Stage2 evaluation] 47/96
+[Stage2 evaluation] 48/96
+[Stage2 evaluation] 49/96
+[Stage2 evaluation] 50/96
+[Stage2 evaluation] 51/96
+[Stage2 evaluation] 52/96
+[Stage2 evaluation] 53/96
+[Stage2 evaluation] 54/96
+[Stage2 evaluation] 55/96
+[Stage2 evaluation] 56/96
+[Stage2 evaluation] 57/96
+[Stage2 evaluation] 58/96
+[Stage2 evaluation] 59/96
+[Stage2 evaluation] 60/96
+[Stage2 evaluation] 61/96
+[Stage2 evaluation] 62/96
+[Stage2 evaluation] 63/96
+[Stage2 evaluation] 64/96
+[Stage2 evaluation] 65/96
+[Stage2 evaluation] 66/96
+[Stage2 evaluation] 67/96
+[Stage2 evaluation] 68/96
+[Stage2 evaluation] 69/96
+[Stage2 evaluation] 70/96
+[Stage2 evaluation] 71/96
+[Stage2 evaluation] 72/96
+[Stage2 evaluation] 73/96
+[Stage2 evaluation] 74/96
+[Stage2 evaluation] 75/96
+[Stage2 evaluation] 76/96
+[Stage2 evaluation] 77/96
+[Stage2 evaluation] 78/96
+[Stage2 evaluation] 79/96
+[Stage2 evaluation] 80/96
+[Stage2 evaluation] 81/96
+[Stage2 evaluation] 82/96
+[Stage2 evaluation] 83/96
+[Stage2 evaluation] 84/96
+[Stage2 evaluation] 85/96
+[Stage2 evaluation] 86/96
+[Stage2 evaluation] 87/96
+[Stage2 evaluation] 88/96
+[Stage2 evaluation] 89/96
+[Stage2 evaluation] 90/96
+[Stage2 evaluation] 91/96
+[Stage2 evaluation] 92/96
+[Stage2 evaluation] 93/96
+[Stage2 evaluation] 94/96
+[Stage2 evaluation] 95/96
+[Stage2 evaluation] 96/96
+{
+  "stage": "Stage2.2",
+  "generation": 1,
+  "successful": 96,
+  "population": 96,
+  "strict": 0,
+  "relaxed": 33,
+  "best": {
+    "candidate_id": "s22g001_e7867931b32c3a50",
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "selection_score": 1004134.2615256268,
+    "final3_box_max_error_m": 0.0311419994,
+    "terminal_velocity_m_per_s": 0.022308996880408334,
+    "late_velocity_rms_m_per_s": 0.10303488188646727,
+    "max_violation": 0.03806664666666659,
+    "sum_violation": 0.06841546553133915
+  },
+  "trust_scale": 0.81,
+  "next_generation": 2,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] 1/96
+[Stage2 evaluation] 2/96
+[Stage2 evaluation] 3/96
+[Stage2 evaluation] 4/96
+[Stage2 evaluation] 5/96
+[Stage2 evaluation] 6/96
+[Stage2 evaluation] 7/96
+[Stage2 evaluation] 8/96
+[Stage2 evaluation] 9/96
+[Stage2 evaluation] 10/96
+[Stage2 evaluation] 11/96
+[Stage2 evaluation] 12/96
+[Stage2 evaluation] 13/96
+[Stage2 evaluation] 14/96
+[Stage2 evaluation] 15/96
+[Stage2 evaluation] 16/96
+[Stage2 evaluation] 17/96
+[Stage2 evaluation] 18/96
+[Stage2 evaluation] 19/96
+[Stage2 evaluation] 20/96
+[Stage2 evaluation] 21/96
+[Stage2 evaluation] 22/96
+[Stage2 evaluation] 23/96
+[Stage2 evaluation] 24/96
+[Stage2 evaluation] 25/96
+[Stage2 evaluation] 26/96
+[Stage2 evaluation] 27/96
+[Stage2 evaluation] 28/96
+[Stage2 evaluation] 29/96
+[Stage2 evaluation] 30/96
+[Stage2 evaluation] 31/96
+[Stage2 evaluation] 32/96
+[Stage2 evaluation] 33/96
+[Stage2 evaluation] 34/96
+[Stage2 evaluation] 35/96
+[Stage2 evaluation] 36/96
+[Stage2 evaluation] 37/96
+[Stage2 evaluation] 38/96
+[Stage2 evaluation] 39/96
+[Stage2 evaluation] 40/96
+[Stage2 evaluation] 41/96
+[Stage2 evaluation] 42/96
+[Stage2 evaluation] 43/96
+[Stage2 evaluation] 44/96
+[Stage2 evaluation] 45/96
+[Stage2 evaluation] 46/96
+[Stage2 evaluation] 47/96
+[Stage2 evaluation] 48/96
+[Stage2 evaluation] 49/96
+[Stage2 evaluation] 50/96
+[Stage2 evaluation] 51/96
+[Stage2 evaluation] 52/96
+[Stage2 evaluation] 53/96
+[Stage2 evaluation] 54/96
+[Stage2 evaluation] 55/96
+[Stage2 evaluation] 56/96
+[Stage2 evaluation] 57/96
+[Stage2 evaluation] 58/96
+[Stage2 evaluation] 59/96
+[Stage2 evaluation] 60/96
+[Stage2 evaluation] 61/96
+[Stage2 evaluation] 62/96
+[Stage2 evaluation] 63/96
+[Stage2 evaluation] 64/96
+[Stage2 evaluation] 65/96
+[Stage2 evaluation] 66/96
+[Stage2 evaluation] 67/96
+[Stage2 evaluation] 68/96
+[Stage2 evaluation] 69/96
+[Stage2 evaluation] 70/96
+[Stage2 evaluation] 71/96
+[Stage2 evaluation] 72/96
+[Stage2 evaluation] 73/96
+[Stage2 evaluation] 74/96
+[Stage2 evaluation] 75/96
+[Stage2 evaluation] 76/96
+[Stage2 evaluation] 77/96
+[Stage2 evaluation] 78/96
+[Stage2 evaluation] 79/96
+[Stage2 evaluation] 80/96
+[Stage2 evaluation] 81/96
+[Stage2 evaluation] 82/96
+[Stage2 evaluation] 83/96
+[Stage2 evaluation] 84/96
+[Stage2 evaluation] 85/96
+[Stage2 evaluation] 86/96
+[Stage2 evaluation] 87/96
+[Stage2 evaluation] 88/96
+[Stage2 evaluation] 89/96
+[Stage2 evaluation] 90/96
+[Stage2 evaluation] 91/96
+[Stage2 evaluation] 92/96
+[Stage2 evaluation] 93/96
+[Stage2 evaluation] 94/96
+[Stage2 evaluation] 95/96
+[Stage2 evaluation] 96/96
+{
+  "stage": "Stage2.2",
+  "generation": 2,
+  "successful": 96,
+  "population": 96,
+  "strict": 0,
+  "relaxed": 25,
+  "best": {
+    "candidate_id": "s22g002_564cf51c5ccd4c4e",
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "selection_score": 1004038.5137463249,
+    "final3_box_max_error_m": 0.0311195788,
+    "terminal_velocity_m_per_s": 0.01821838525801873,
+    "late_velocity_rms_m_per_s": 0.10265679007494848,
+    "max_violation": 0.03731929333333328,
+    "sum_violation": 0.06388719408281807
+  },
+  "trust_scale": 0.7290000000000001,
+  "next_generation": 3,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] 1/96
+[Stage2 evaluation] 2/96
+[Stage2 evaluation] 3/96
+[Stage2 evaluation] 4/96
+[Stage2 evaluation] 5/96
+[Stage2 evaluation] 6/96
+[Stage2 evaluation] 7/96
+[Stage2 evaluation] 8/96
+[Stage2 evaluation] 9/96
+[Stage2 evaluation] 10/96
+[Stage2 evaluation] 11/96
+[Stage2 evaluation] 12/96
+[Stage2 evaluation] 13/96
+[Stage2 evaluation] 14/96
+[Stage2 evaluation] 15/96
+[Stage2 evaluation] 16/96
+[Stage2 evaluation] 17/96
+[Stage2 evaluation] 18/96
+[Stage2 evaluation] 19/96
+[Stage2 evaluation] 20/96
+[Stage2 evaluation] 21/96
+[Stage2 evaluation] 22/96
+[Stage2 evaluation] 23/96
+[Stage2 evaluation] 24/96
+[Stage2 evaluation] 25/96
+[Stage2 evaluation] 26/96
+[Stage2 evaluation] 27/96
+[Stage2 evaluation] 28/96
+[Stage2 evaluation] 29/96
+[Stage2 evaluation] 30/96
+[Stage2 evaluation] 31/96
+[Stage2 evaluation] 32/96
+[Stage2 evaluation] 33/96
+[Stage2 evaluation] 34/96
+[Stage2 evaluation] 35/96
+[Stage2 evaluation] 36/96
+[Stage2 evaluation] 37/96
+[Stage2 evaluation] 38/96
+[Stage2 evaluation] 39/96
+[Stage2 evaluation] 40/96
+[Stage2 evaluation] 41/96
+[Stage2 evaluation] 42/96
+[Stage2 evaluation] 43/96
+[Stage2 evaluation] 44/96
+[Stage2 evaluation] 45/96
+[Stage2 evaluation] 46/96
+[Stage2 evaluation] 47/96
+[Stage2 evaluation] 48/96
+[Stage2 evaluation] 49/96
+[Stage2 evaluation] 50/96
+[Stage2 evaluation] 51/96
+[Stage2 evaluation] 52/96
+[Stage2 evaluation] 53/96
+[Stage2 evaluation] 54/96
+[Stage2 evaluation] 55/96
+[Stage2 evaluation] 56/96
+[Stage2 evaluation] 57/96
+[Stage2 evaluation] 58/96
+[Stage2 evaluation] 59/96
+[Stage2 evaluation] 60/96
+[Stage2 evaluation] 61/96
+[Stage2 evaluation] 62/96
+[Stage2 evaluation] 63/96
+[Stage2 evaluation] 64/96
+[Stage2 evaluation] 65/96
+[Stage2 evaluation] 66/96
+[Stage2 evaluation] 67/96
+[Stage2 evaluation] 68/96
+[Stage2 evaluation] 69/96
+[Stage2 evaluation] 70/96
+[Stage2 evaluation] 71/96
+[Stage2 evaluation] 72/96
+[Stage2 evaluation] 73/96
+[Stage2 evaluation] 74/96
+[Stage2 evaluation] 75/96
+[Stage2 evaluation] 76/96
+[Stage2 evaluation] 77/96
+[Stage2 evaluation] 78/96
+[Stage2 evaluation] 79/96
+[Stage2 evaluation] 80/96
+[Stage2 evaluation] 81/96
+[Stage2 evaluation] 82/96
+[Stage2 evaluation] 83/96
+[Stage2 evaluation] 84/96
+[Stage2 evaluation] 85/96
+[Stage2 evaluation] 86/96
+[Stage2 evaluation] 87/96
+[Stage2 evaluation] 88/96
+[Stage2 evaluation] 89/96
+[Stage2 evaluation] 90/96
+[Stage2 evaluation] 91/96
+[Stage2 evaluation] 92/96
+[Stage2 evaluation] 93/96
+[Stage2 evaluation] 94/96
+[Stage2 evaluation] 95/96
+[Stage2 evaluation] 96/96
+{
+  "stage": "Stage2.2",
+  "generation": 3,
+  "successful": 96,
+  "population": 96,
+  "strict": 0,
+  "relaxed": 24,
+  "best": {
+    "candidate_id": "s22g003_da81ee67066f0a3d",
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "selection_score": 1003875.8530568613,
+    "final3_box_max_error_m": 0.0310658699,
+    "terminal_velocity_m_per_s": 0.024159345489001918,
+    "late_velocity_rms_m_per_s": 0.10319521429818013,
+    "max_violation": 0.03552899666666676,
+    "sum_violation": 0.06748113964846802
+  },
+  "trust_scale": 0.6561000000000001,
+  "next_generation": 4,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] 1/96
+[Stage2 evaluation] 2/96
+[Stage2 evaluation] 3/96
+[Stage2 evaluation] 4/96
+[Stage2 evaluation] 5/96
+[Stage2 evaluation] 6/96
+[Stage2 evaluation] 7/96
+[Stage2 evaluation] 8/96
+[Stage2 evaluation] 9/96
+[Stage2 evaluation] 10/96
+[Stage2 evaluation] 11/96
+[Stage2 evaluation] 12/96
+[Stage2 evaluation] 13/96
+[Stage2 evaluation] 14/96
+[Stage2 evaluation] 15/96
+[Stage2 evaluation] 16/96
+[Stage2 evaluation] 17/96
+[Stage2 evaluation] 18/96
+[Stage2 evaluation] 19/96
+[Stage2 evaluation] 20/96
+[Stage2 evaluation] 21/96
+[Stage2 evaluation] 22/96
+[Stage2 evaluation] 23/96
+[Stage2 evaluation] 24/96
+[Stage2 evaluation] 25/96
+[Stage2 evaluation] 26/96
+[Stage2 evaluation] 27/96
+[Stage2 evaluation] 28/96
+[Stage2 evaluation] 29/96
+[Stage2 evaluation] 30/96
+[Stage2 evaluation] 31/96
+[Stage2 evaluation] 32/96
+[Stage2 evaluation] 33/96
+[Stage2 evaluation] 34/96
+[Stage2 evaluation] 35/96
+[Stage2 evaluation] 36/96
+[Stage2 evaluation] 37/96
+[Stage2 evaluation] 38/96
+[Stage2 evaluation] 39/96
+[Stage2 evaluation] 40/96
+[Stage2 evaluation] 41/96
+[Stage2 evaluation] 42/96
+[Stage2 evaluation] 43/96
+[Stage2 evaluation] 44/96
+[Stage2 evaluation] 45/96
+[Stage2 evaluation] 46/96
+[Stage2 evaluation] 47/96
+[Stage2 evaluation] 48/96
+[Stage2 evaluation] 49/96
+[Stage2 evaluation] 50/96
+[Stage2 evaluation] 51/96
+[Stage2 evaluation] 52/96
+[Stage2 evaluation] 53/96
+[Stage2 evaluation] 54/96
+[Stage2 evaluation] 55/96
+[Stage2 evaluation] 56/96
+[Stage2 evaluation] 57/96
+[Stage2 evaluation] 58/96
+[Stage2 evaluation] 59/96
+[Stage2 evaluation] 60/96
+[Stage2 evaluation] 61/96
+[Stage2 evaluation] 62/96
+[Stage2 evaluation] 63/96
+[Stage2 evaluation] 64/96
+[Stage2 evaluation] 65/96
+[Stage2 evaluation] 66/96
+[Stage2 evaluation] 67/96
+[Stage2 evaluation] 68/96
+[Stage2 evaluation] 69/96
+[Stage2 evaluation] 70/96
+[Stage2 evaluation] 71/96
+[Stage2 evaluation] 72/96
+[Stage2 evaluation] 73/96
+[Stage2 evaluation] 74/96
+[Stage2 evaluation] 75/96
+[Stage2 evaluation] 76/96
+[Stage2 evaluation] 77/96
+[Stage2 evaluation] 78/96
+[Stage2 evaluation] 79/96
+[Stage2 evaluation] 80/96
+[Stage2 evaluation] 81/96
+[Stage2 evaluation] 82/96
+[Stage2 evaluation] 83/96
+[Stage2 evaluation] 84/96
+[Stage2 evaluation] 85/96
+[Stage2 evaluation] 86/96
+[Stage2 evaluation] 87/96
+[Stage2 evaluation] 88/96
+[Stage2 evaluation] 89/96
+[Stage2 evaluation] 90/96
+[Stage2 evaluation] 91/96
+[Stage2 evaluation] 92/96
+[Stage2 evaluation] 93/96
+[Stage2 evaluation] 94/96
+[Stage2 evaluation] 95/96
+[Stage2 evaluation] 96/96
+{
+  "stage": "Stage2.2",
+  "generation": 4,
+  "successful": 96,
+  "population": 96,
+  "strict": 0,
+  "relaxed": 24,
+  "best": {
+    "candidate_id": "s22g004_b034e7d0314c08d6",
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "selection_score": 1003809.8909053223,
+    "final3_box_max_error_m": 0.0310505996,
+    "terminal_velocity_m_per_s": 0.025239988889105364,
+    "late_velocity_rms_m_per_s": 0.10292384536629184,
+    "max_violation": 0.035019986666666725,
+    "sum_violation": 0.06425844032958516
+  },
+  "trust_scale": 0.5904900000000002,
+  "next_generation": 5,
+  "finished": false,
+  "stop_reason": ""
+}
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] waiting 0/96
+[Stage2 evaluation] 1/96
+[Stage2 evaluation] 2/96
+[Stage2 evaluation] 3/96
+[Stage2 evaluation] 4/96
+[Stage2 evaluation] 5/96
+[Stage2 evaluation] 6/96
+[Stage2 evaluation] 7/96
+[Stage2 evaluation] 8/96
+[Stage2 evaluation] 9/96
+[Stage2 evaluation] 10/96
+[Stage2 evaluation] 11/96
+[Stage2 evaluation] 12/96
+[Stage2 evaluation] 13/96
+[Stage2 evaluation] 14/96
+[Stage2 evaluation] 15/96
+[Stage2 evaluation] 16/96
+[Stage2 evaluation] 17/96
+[Stage2 evaluation] 18/96
+[Stage2 evaluation] 19/96
+[Stage2 evaluation] 20/96
+[Stage2 evaluation] 21/96
+[Stage2 evaluation] 22/96
+[Stage2 evaluation] 23/96
+[Stage2 evaluation] 24/96
+[Stage2 evaluation] 25/96
+[Stage2 evaluation] 26/96
+[Stage2 evaluation] 27/96
+[Stage2 evaluation] 28/96
+[Stage2 evaluation] 29/96
+[Stage2 evaluation] 30/96
+[Stage2 evaluation] 31/96
+[Stage2 evaluation] 32/96
+[Stage2 evaluation] 33/96
+[Stage2 evaluation] 34/96
+[Stage2 evaluation] 35/96
+[Stage2 evaluation] 36/96
+[Stage2 evaluation] 37/96
+[Stage2 evaluation] 38/96
+[Stage2 evaluation] 39/96
+[Stage2 evaluation] 40/96
+[Stage2 evaluation] 41/96
+[Stage2 evaluation] 42/96
+[Stage2 evaluation] 43/96
+[Stage2 evaluation] 44/96
+[Stage2 evaluation] 45/96
+[Stage2 evaluation] 46/96
+[Stage2 evaluation] 47/96
+[Stage2 evaluation] 48/96
+[Stage2 evaluation] 49/96
+[Stage2 evaluation] 50/96
+[Stage2 evaluation] 51/96
+[Stage2 evaluation] 52/96
+[Stage2 evaluation] 53/96
+[Stage2 evaluation] 54/96
+[Stage2 evaluation] 55/96
+[Stage2 evaluation] 56/96
+[Stage2 evaluation] 57/96
+[Stage2 evaluation] 58/96
+[Stage2 evaluation] 59/96
+[Stage2 evaluation] 60/96
+[Stage2 evaluation] 61/96
+[Stage2 evaluation] 62/96
+[Stage2 evaluation] 63/96
+[Stage2 evaluation] 64/96
+[Stage2 evaluation] 65/96
+[Stage2 evaluation] 66/96
+[Stage2 evaluation] 67/96
+[Stage2 evaluation] 68/96
+[Stage2 evaluation] 69/96
+[Stage2 evaluation] 70/96
+[Stage2 evaluation] 71/96
+[Stage2 evaluation] 72/96
+[Stage2 evaluation] 73/96
+[Stage2 evaluation] 74/96
+[Stage2 evaluation] 75/96
+[Stage2 evaluation] 76/96
+[Stage2 evaluation] 77/96
+[Stage2 evaluation] 78/96
+[Stage2 evaluation] 79/96
+[Stage2 evaluation] 80/96
+[Stage2 evaluation] 81/96
+[Stage2 evaluation] 82/96
+[Stage2 evaluation] 83/96
+[Stage2 evaluation] 84/96
+[Stage2 evaluation] 85/96
+[Stage2 evaluation] 86/96
+[Stage2 evaluation] 87/96
+[Stage2 evaluation] 88/96
+[Stage2 evaluation] 89/96
+[Stage2 evaluation] 90/96
+[Stage2 evaluation] 91/96
+[Stage2 evaluation] 92/96
+[Stage2 evaluation] 93/96
+[Stage2 evaluation] 94/96
+[Stage2 evaluation] 95/96
+[Stage2 evaluation] 96/96
+{
+  "stage": "Stage2.2",
+  "generation": 5,
+  "successful": 96,
+  "population": 96,
+  "strict": 0,
+  "relaxed": 14,
+  "best": {
+    "candidate_id": "s22g005_fe6e232ce2c851ad",
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "selection_score": 1003789.1523028828,
+    "final3_box_max_error_m": 0.0310520357,
+    "terminal_velocity_m_per_s": 0.027793535941518774,
+    "late_velocity_rms_m_per_s": 0.10236427159545632,
+    "max_violation": 0.035067856666666675,
+    "sum_violation": 0.058710572621229806
+  },
+  "trust_scale": 0.5314410000000002,
+  "next_generation": 6,
+  "finished": true,
+  "stop_reason": "max_generations"
+}
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] waiting 0/24
+[Stage2 evaluation] 1/24
+[Stage2 evaluation] 2/24
+[Stage2 evaluation] 3/24
+[Stage2 evaluation] 4/24
+[Stage2 evaluation] 5/24
+[Stage2 evaluation] 6/24
+[Stage2 evaluation] 7/24
+[Stage2 evaluation] 8/24
+[Stage2 evaluation] 9/24
+[Stage2 evaluation] 10/24
+[Stage2 evaluation] 11/24
+[Stage2 evaluation] 12/24
+[Stage2 evaluation] 13/24
+[Stage2 evaluation] 14/24
+[Stage2 evaluation] 15/24
+[Stage2 evaluation] 16/24
+[Stage2 evaluation] 17/24
+[Stage2 evaluation] 18/24
+[Stage2 evaluation] 19/24
+[Stage2 evaluation] 20/24
+[Stage2 evaluation] 21/24
+[Stage2 evaluation] 22/24
+[Stage2 evaluation] 23/24
+[Stage2 evaluation] 24/24
+{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "created_utc": "20260721_092516",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "s22g005_adf586ba25597d7e",
+      "hall_of_fame_rank": 1,
+      "confirmation_reasons": [
+        "corner"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 3,
+      "worst_final3_box_max_error_m": 0.0310443736,
+      "max_terminal_velocity_m_per_s": 0.026640452894990247,
+      "max_late_velocity_rms_m_per_s": 0.10295809996098128,
+      "worst_stage2_2_max_violation": 0.03481245333333338
+    },
+    {
+      "candidate_id": "s22g004_b034e7d0314c08d6",
+      "hall_of_fame_rank": 2,
+      "confirmation_reasons": [
+        "corner"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 3,
+      "worst_final3_box_max_error_m": 0.0310505996,
+      "max_terminal_velocity_m_per_s": 0.025239988889105364,
+      "max_late_velocity_rms_m_per_s": 0.10292384536629184,
+      "worst_stage2_2_max_violation": 0.035019986666666725
+    },
+    {
+      "candidate_id": "s22g005_fe6e232ce2c851ad",
+      "hall_of_fame_rank": 3,
+      "confirmation_reasons": [
+        "corner"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 3,
+      "worst_final3_box_max_error_m": 0.0310520357,
+      "max_terminal_velocity_m_per_s": 0.027793535941518774,
+      "max_late_velocity_rms_m_per_s": 0.10236427159545632,
+      "worst_stage2_2_max_violation": 0.035067856666666675
+    },
+    {
+      "candidate_id": "s22g004_54c30ebb7f0d4602",
+      "hall_of_fame_rank": 4,
+      "confirmation_reasons": [
+        "corner"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 3,
+      "worst_final3_box_max_error_m": 0.0310532819,
+      "max_terminal_velocity_m_per_s": 0.02640856926351871,
+      "max_late_velocity_rms_m_per_s": 0.10349041625853456,
+      "worst_stage2_2_max_violation": 0.03510939666666668
+    },
+    {
+      "candidate_id": "s22g005_b3b698b6f3917692",
+      "hall_of_fame_rank": 5,
+      "confirmation_reasons": [
+        "corner"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 3,
+      "worst_final3_box_max_error_m": 0.0310543386,
+      "max_terminal_velocity_m_per_s": 0.023783879157611525,
+      "max_late_velocity_rms_m_per_s": 0.1023150729104779,
+      "worst_stage2_2_max_violation": 0.03514462000000007
+    },
+    {
+      "candidate_id": "s22g004_89d222a7ea5c4cdd",
+      "hall_of_fame_rank": 6,
+      "confirmation_reasons": [
+        "speed_safe"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "worst_final3_box_max_error_m": 0.0311612042,
+      "max_terminal_velocity_m_per_s": 0.03592963817421413,
+      "max_late_velocity_rms_m_per_s": 0.09970578733997104,
+      "worst_stage2_2_max_violation": 0.038706806666666704
+    },
+    {
+      "candidate_id": "s22g004_b65dbd2d777a03f8",
+      "hall_of_fame_rank": 7,
+      "confirmation_reasons": [
+        "speed_safe"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "worst_final3_box_max_error_m": 0.031167895,
+      "max_terminal_velocity_m_per_s": 0.01793864403171938,
+      "max_late_velocity_rms_m_per_s": 0.09962781619929147,
+      "worst_stage2_2_max_violation": 0.03892983333333344
+    },
+    {
+      "candidate_id": "s22g000_571ab4a158d29207",
+      "hall_of_fame_rank": 8,
+      "confirmation_reasons": [
+        "gate_hall"
+      ],
+      "repeats": 3,
+      "successful_repeats": 3,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "worst_final3_box_max_error_m": 0.0315062376,
+      "max_terminal_velocity_m_per_s": 0.010081189677419512,
+      "max_late_velocity_rms_m_per_s": 0.09481818063529814,
+      "worst_stage2_2_max_violation": 0.05020792000000007
+    }
+  ]
+}
+{
+  "schema_version": 1,
+  "stage": "Stage2.2",
+  "created_utc": "20260721_092518",
+  "source_stage1_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage1_1_runs/stage1_1_svd234_strict_validation_100ms_20260718_025916",
+  "source_stage2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_runs/stage2_svd3_real_tsc_cem_100ms_20260720_114614",
+  "source_stage2_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_1_runs/stage2_1_svd3_dual_archive_tail_cem_100ms_20260720_151221",
+  "source_unique_candidates": 2965,
+  "n_evaluations": 576,
+  "n_successful": 576,
+  "n_strict_gate": 0,
+  "n_relaxed_gate": 153,
+  "n_max_violation_le_0p05": 488,
+  "n_max_violation_le_0p10": 569,
+  "n_strict_speed_safe": 153,
+  "n_strict_position_safe": 0,
+  "archives": {
+    "strict": 0,
+    "corner": 64,
+    "damped": 40,
+    "precise": 40
+  },
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "best_corner": {
+    "stage": "Stage2.2",
+    "generation": 5,
+    "candidate_id": "s22g005_adf586ba25597d7e",
+    "population_index": 49,
+    "source_name": "corner_local_0088",
+    "source_type": "corner_local",
+    "linear_prefilter_score": 2.955348998037384,
+    "proposal_rank_score": 44.146565963167916,
+    "parameter_vector": [
+      2.3911854335466187,
+      1.204177336495726,
+      0.471384395947247,
+      1.264828462341373,
+      1.8058785189844317,
+      0.11909880277857489,
+      -0.32742752958288246,
+      2.2788439928251627,
+      -0.2163958623919818,
+      -1.0879326812337369,
+      -1.4821006429944532,
+      0.2055197261884271,
+      -0.46646280409257196,
+      -0.12819906619391455,
+      -0.0001051071873125458
+    ],
+    "validation_id": "s22g005_adf586ba25597d7e",
+    "predicted_final3_box_max_error_m": 0.03126004787085465,
+    "predicted_terminal_velocity_m_per_s": 0.022242182067934123,
+    "predicted_late_velocity_rms_m_per_s": 0.10108838237556543,
+    "predicted_corner_max_violation": 0.04200159569515516,
+    "predicted_corner_sum_violation": 0.05288541945080949,
+    "candidate_label": null,
+    "candidate_n_modes": null,
+    "candidate_target_fraction": null,
+    "sequence_scale": null,
+    "success": true,
+    "failure_reason": "",
+    "n_trajectory_steps": 11,
+    "terminal_R_error_m": -0.027860905000000047,
+    "terminal_Z_error_m": 0.0304908684,
+    "terminal_Ip_error_A": 696.449700000001,
+    "terminal_RZ_euclidean_error_m": 0.0413028217341763,
+    "terminal_RZ_box_max_error_m": 0.0304908684,
+    "terminal_normalized_RZ_distance": 1.3767607244725435,
+    "min_normalized_RZ_distance": 0.5817437020072838,
+    "min_normalized_RZ_distance_after_step0": 0.7819332053556993,
+    "min_RZ_euclidean_error_after_step0_m": 0.02345799616067098,
+    "closest_step_after_step0": 1,
+    "closest_velocity_after_step0_m_per_s": 0.6279867362113741,
+    "relative_distance_reduction": 0.0,
+    "relative_distance_reduction_after_step0": -0.3441197603990719,
+    "first_step_within_2x_RZ_only": 0,
+    "first_step_within_1x_RZ_only": 0,
+    "first_step_within_2x": 0,
+    "first_step_within_1x": 0,
+    "first_step_after_step0_within_2x": 1,
+    "first_step_after_step0_within_1x": 1,
+    "terminal_within_2x_RZ_only": true,
+    "terminal_within_1x_RZ_only": false,
+    "terminal_within_2x": true,
+    "terminal_within_1x": false,
+    "gate_ip_tolerance_A": 10000.0,
+    "terminal_Ip_safe": true,
+    "late_Ip_safe_fraction": 1.0,
+    "late_fraction_within_2x": 1.0,
+    "late_fraction_within_1x": 0.0,
+    "late_R_rms_m": 0.02788075920752113,
+    "late_Z_rms_m": 0.031066557653222422,
+    "late_RZ_euclidean_rms_m": 0.04174287649897605,
+    "terminal_velocity_m_per_s": 0.026640452894990247,
+    "max_velocity_m_per_s": 0.6492793452001951,
+    "late_velocity_mean_m_per_s": 0.09273065878724637,
+    "late_velocity_rms_m_per_s": 0.10295809996098128,
+    "max_current_utilization": 0.41465,
+    "wall_time_s": 256.84373235702515,
+    "first_step_after_step0_within_30mm": 1,
+    "ever_after_step0_within_30mm": true,
+    "terminal_within_30mm": false,
+    "late_fraction_within_30mm": 0.0,
+    "longest_streak_after_step0_within_30mm_steps": 2,
+    "trailing_streak_within_30mm_steps": 0,
+    "first_step_after_step0_within_40mm": 1,
+    "ever_after_step0_within_40mm": true,
+    "terminal_within_40mm": true,
+    "late_fraction_within_40mm": 1.0,
+    "longest_streak_after_step0_within_40mm_steps": 10,
+    "trailing_streak_within_40mm_steps": 10,
+    "first_step_after_step0_within_80mm": 1,
+    "ever_after_step0_within_80mm": true,
+    "terminal_within_80mm": true,
+    "late_fraction_within_80mm": 1.0,
+    "longest_streak_after_step0_within_80mm_steps": 10,
+    "trailing_streak_within_80mm_steps": 10,
+    "gate_tier": 3,
+    "gate_label": "POSITION_40MM_SPEED_FAIL",
+    "strict_gate_pass": false,
+    "relaxed_gate_pass": false,
+    "terminal_RZ_reduction_vs_zero_action_fraction": 0.5243258326611564,
+    "continuous_objective": 3789.7407778286142,
+    "selection_score": 1003789.7407778286,
+    "position_excess_objective": 0.0019887793566585924,
+    "velocity_excess_objective": 0.0008750355379157356,
+    "precise_streak_deficit": 1.0,
+    "action_rms": 0.4791503566894423,
+    "delta_action_rms": 0.2659535551354423,
+    "repair_excess_rms": 0.0744920444174498,
+    "stage2_legacy_selection_score": 3000039.0278666653,
+    "stage2_legacy_continuous_objective": 39.0278666654811,
+    "stage2_2_final3_box_errors_m": [
+      0.0310443736,
+      0.0302909874,
+      0.0304908684
+    ],
+    "stage2_2_final3_box_max_error_m": 0.0310443736,
+    "stage2_2_final3_box_mean_error_m": 0.030608743133333335,
+    "stage2_2_terminal_box_error_m": 0.0304908684,
+    "stage2_2_final3_R_abs_max_error_m": 0.027860905000000047,
+    "stage2_2_final3_Z_abs_max_error_m": 0.0310443736,
+    "stage2_2_position_violation": 0.03481245333333338,
+    "stage2_2_terminal_speed_violation": 0.0,
+    "stage2_2_late_speed_violation": 0.02958099960981264,
+    "stage2_2_ip_violation": 0.0,
+    "stage2_2_max_violation": 0.03481245333333338,
+    "stage2_2_sum_violation": 0.06439345294314602,
+    "stage2_2_l2_violation": 0.04568306518833046,
+    "stage2_2_quality": 5.238567534213698,
+    "stage2_2_selection_score": 1003789.7407778286,
+    "generation_rank": 2
+  },
+  "state": {
+    "generation": 6,
+    "trust_scale": 0.5314410000000002,
+    "strict_gate_found": false,
+    "finished": true,
+    "stop_reason": "max_generations",
+    "best_candidate_id": "s22g005_fe6e232ce2c851ad",
+    "best_selection_score": 1003789.1523028828
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.1",
+  "created_utc": "20260722_013200",
+  "source_stage3_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_0_runs/stage3_0_svd3_tail_sqp_150ms_20260721_121352",
+  "source_stage2_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage2_2_runs/stage2_2_svd3_corner_feasibility_100ms_20260721_085327",
+  "source_stage3_0_rows": 420,
+  "source_fingerprint": {
+    "algorithm": "sha256",
+    "digest": "7de4a06af4bcc4573c19298cc60af92f407ef19ae2c132d7d4f48b63965e4021",
+    "file_count": 435,
+    "total_bytes": 10857893
+  },
+  "target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "horizon_steps": 15,
+  "horizon_ms": 150,
+  "variable_steps": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "frozen_action_steps": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "parameter_dimension": 21,
+  "hard_gate_changed_from_stage3_0": false,
+  "final_task": "robust causal feedback control across initial states and targets",
+  "robustness_validated": false
+}

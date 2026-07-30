@@ -1,0 +1,3 @@
+target_id,actual_delay_steps,candidate_magnitude,predicted_endpoint_late_speed_m_per_s,predicted_final_speed_m_per_s,source_maximum_negative_endpoint_error_m_per_s,source_maximum_negative_final_error_m_per_s,error_safety_factor,robust_endpoint_upper_m_per_s,robust_final_upper_m_per_s,required_speed_upper_m_per_s,source_only_robust_prediction_pass
+nominal,2,7.0,0.07777242912689267,0.007384901443984374,0.0016776632468473718,0.007368348361300334,1.25,0.07986950818545188,0.01659533689560979,0.099,True
+RZ_p10_m10,2,7.0,0.09687239196135906,0.021135728834832664,0.0016776632468473718,0.007368348361300334,1.25,0.09896947101991828,0.03034616428645808,0.099,True

@@ -1,0 +1,70 @@
+{
+  "n_samples": 300,
+  "seed": 20260718,
+  "reference_singular_values": [
+    0.08248340462914742,
+    0.06755043723246924,
+    0.0115009379071326,
+    0.0019760267406382357,
+    0.001513327467100742,
+    0.0006200143335449419,
+    0.0003604391856109049,
+    0.00027901172452915115,
+    0.00018593682485632093,
+    0.00017335410776325356,
+    9.722289634672307e-05,
+    8.315679375506054e-05,
+    6.346798699459296e-05,
+    3.617298512668487e-05
+  ],
+  "rows": [
+    {
+      "mode_count": 1,
+      "max_principal_angle_p50_deg": 0.4520469070114323,
+      "max_principal_angle_p90_deg": 0.8336799812424364,
+      "max_principal_angle_p95_deg": 0.9535216715128394,
+      "max_principal_angle_p99_deg": 1.1263543956830364,
+      "max_principal_angle_max_deg": 1.2592013280160295
+    },
+    {
+      "mode_count": 2,
+      "max_principal_angle_p50_deg": 0.31684996861456727,
+      "max_principal_angle_p90_deg": 0.470890498846496,
+      "max_principal_angle_p95_deg": 0.5139083035490456,
+      "max_principal_angle_p99_deg": 0.5828708762556377,
+      "max_principal_angle_max_deg": 0.6654307159755419
+    },
+    {
+      "mode_count": 3,
+      "max_principal_angle_p50_deg": 0.7633330297967227,
+      "max_principal_angle_p90_deg": 1.1819970344103115,
+      "max_principal_angle_p95_deg": 1.2726010012000286,
+      "max_principal_angle_p99_deg": 1.4955650920827608,
+      "max_principal_angle_max_deg": 1.6612514447696058
+    },
+    {
+      "mode_count": 4,
+      "max_principal_angle_p50_deg": 11.188917857908624,
+      "max_principal_angle_p90_deg": 19.515179373224015,
+      "max_principal_angle_p95_deg": 24.18506067678931,
+      "max_principal_angle_p99_deg": 32.86082662796951,
+      "max_principal_angle_max_deg": 49.23931934865255
+    },
+    {
+      "mode_count": 5,
+      "max_principal_angle_p50_deg": 14.036039851056572,
+      "max_principal_angle_p90_deg": 21.760813019418276,
+      "max_principal_angle_p95_deg": 25.799917510964487,
+      "max_principal_angle_p99_deg": 31.48340994081213,
+      "max_principal_angle_max_deg": 46.42596612365818
+    },
+    {
+      "mode_count": 8,
+      "max_principal_angle_p50_deg": 62.04819766540972,
+      "max_principal_angle_p90_deg": 85.53555219323421,
+      "max_principal_angle_p95_deg": 88.45555886221214,
+      "max_principal_angle_p99_deg": 89.4736013762444,
+      "max_principal_angle_max_deg": 89.89366095332589
+    }
+  ]
+}

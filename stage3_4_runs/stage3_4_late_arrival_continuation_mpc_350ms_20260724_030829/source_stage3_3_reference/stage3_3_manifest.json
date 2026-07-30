@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "stage": "Stage3.3",
+  "created_utc": "20260723_130333",
+  "source_stage3_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_2_runs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms_20260722_073932",
+  "source_stage3_1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_1_runs/stage3_1_svd3_adaptive_sqp_causal_mpc_150ms_20260722_013158",
+  "source_fingerprint": {
+    "schema_version": 1,
+    "source_stage3_2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_2_runs/stage3_2_svd3_margin_long_hold_causal_mpc_250ms_20260722_073932",
+    "n_files": 28,
+    "total_bytes": 21249531,
+    "digest": "960a34ac567f81e913fb625a5176075e39b61612c34aebb425b47992f0c4b78b"
+  },
+  "base_target": {
+    "R": 0.75,
+    "Z": 0.0,
+    "Ip": 29779.724
+  },
+  "horizon_steps": 25,
+  "horizon_ms": 250,
+  "n_modes": 3,
+  "target_library_size": 20,
+  "mandatory_target_count": 10,
+  "hard_gate_changed_from_stage3_2": false,
+  "ip_tracking_gate_added": true,
+  "ip_tracking_revision": "2x_for_tsc_additional_heating",
+  "ip_tracking_tolerances_A": {
+    "terminal_abs_tolerance_A": 2000.0,
+    "hold_rms_tolerance_A": 2400.0,
+    "sustained_max_tolerance_A": 4000.0
+  },
+  "controller_type": "target-conditioned library plus receding-horizon bounded least-squares MPC POC",
+  "online_feedback_validated": false,
+  "initial_state_robustness_validated": false,
+  "plant_parameter_robustness_validated": false,
+  "noise_delay_robustness_validated": false,
+  "final_task": "robust causal feedback across initial states, targets, plant uncertainty, noise, and delay",
+  "refinement_model_revision": "dimensionless_central_difference_source_prior_v2",
+  "refinement_model_revision_updated_utc": "20260723_143955"
+}

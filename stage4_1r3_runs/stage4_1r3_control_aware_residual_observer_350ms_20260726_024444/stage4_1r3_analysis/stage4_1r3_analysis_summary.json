@@ -1,0 +1,455 @@
+{
+  "schema_version": 3,
+  "stage": "Stage4.1R3",
+  "created_utc": "20260726_050950",
+  "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+  "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+  "source_selected_controller_scale": 0.5,
+  "regression": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "controller_revision": "control_aware_residual_observer_antiwindup_v3",
+    "phase": "regression_targets",
+    "n_rollouts": 30,
+    "n_scenarios": 10,
+    "open_loop_passes": 10,
+    "legacy_passes": 10,
+    "upgraded_passes": 10,
+    "n_lost_open_loop": 0,
+    "n_lost_legacy": 0,
+    "median_margin_delta_vs_legacy": 0.0,
+    "worst_margin_delta_vs_legacy": 0.0,
+    "minimum_median_margin_delta_vs_legacy": -0.005,
+    "minimum_worst_margin_delta_vs_legacy": -0.02,
+    "maximum_action_rms_difference_vs_legacy": 1e-06,
+    "observed_max_action_rms_difference_vs_legacy": 0.0,
+    "maximum_trajectory_state_abs_difference_vs_legacy": 1e-09,
+    "observed_max_trajectory_state_abs_difference_vs_legacy": 0.0,
+    "maximum_scheduler_mismatch_rms_a": 0.05,
+    "observed_scheduler_mismatch_rms_a": 5.121388758969958e-08,
+    "passed": true
+  },
+  "observer_ablation": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "controller_revision": "control_aware_residual_observer_antiwindup_v3",
+    "phase": "observer_ablation",
+    "n_rollouts": 64,
+    "n_scenarios": 16,
+    "variant_summaries": [
+      {
+        "variant": "legacy_raw",
+        "observer_variant": "legacy_raw",
+        "anti_windup_enabled": false,
+        "selectable": false,
+        "eligible": false,
+        "n_scenarios": 16,
+        "n_pass": 14,
+        "pass_fraction": 0.875,
+        "n_legacy_pass_scenarios": 14,
+        "preserved_legacy_pass_fraction": 1.0,
+        "all_clean_pass": true,
+        "median_margin_delta_vs_legacy": 0.0,
+        "worst_margin_delta_vs_legacy": 0.0,
+        "selection_score": 16800.0
+      },
+      {
+        "variant": "r2_error_alpha_beta",
+        "observer_variant": "r2_error_alpha_beta",
+        "anti_windup_enabled": false,
+        "selectable": false,
+        "eligible": false,
+        "n_scenarios": 16,
+        "n_pass": 14,
+        "pass_fraction": 0.875,
+        "n_legacy_pass_scenarios": 14,
+        "preserved_legacy_pass_fraction": 0.8571428571428571,
+        "all_clean_pass": true,
+        "median_margin_delta_vs_legacy": -0.019330045200132595,
+        "worst_margin_delta_vs_legacy": -0.5024667790385312,
+        "selection_score": 16398.801765989923
+      },
+      {
+        "variant": "control_aware_no_aw",
+        "observer_variant": "control_aware_residual",
+        "anti_windup_enabled": false,
+        "selectable": true,
+        "eligible": true,
+        "n_scenarios": 16,
+        "n_pass": 16,
+        "pass_fraction": 1.0,
+        "n_legacy_pass_scenarios": 14,
+        "preserved_legacy_pass_fraction": 1.0,
+        "all_clean_pass": true,
+        "median_margin_delta_vs_legacy": 0.02432893157834587,
+        "worst_margin_delta_vs_legacy": -0.15808524122344159,
+        "selection_score": 18799.927118833337
+      },
+      {
+        "variant": "control_aware_aw",
+        "observer_variant": "control_aware_residual",
+        "anti_windup_enabled": true,
+        "selectable": true,
+        "eligible": true,
+        "n_scenarios": 16,
+        "n_pass": 16,
+        "pass_fraction": 1.0,
+        "n_legacy_pass_scenarios": 14,
+        "preserved_legacy_pass_fraction": 1.0,
+        "all_clean_pass": true,
+        "median_margin_delta_vs_legacy": -0.0026314171882410586,
+        "worst_margin_delta_vs_legacy": -0.1422451407949329,
+        "selection_score": 18799.699195546527
+      }
+    ],
+    "selected_variant": "control_aware_no_aw",
+    "selected_observer_variant": "control_aware_residual",
+    "selected_anti_windup_enabled": false,
+    "passed": true
+  },
+  "selected_observer_variant": "control_aware_residual",
+  "selected_anti_windup_enabled": false,
+  "adaptive_failure_recovery": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "phase": "adaptive_failure_recovery",
+    "n_rollouts": 226,
+    "n_families": 36,
+    "n_families_with_open_loop_failure": 30,
+    "n_families_recovered_at_first_failure": 20,
+    "failure_recovery_fraction": 0.6666666666666666,
+    "preserved_open_loop_pass_fraction": 1.0,
+    "n_families_boundary_not_reached": 6,
+    "passed": true
+  },
+  "structured_uncertainty": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "phase": "structured_uncertainty",
+    "n_rollouts": 64,
+    "n_pairs": 32,
+    "pair_summary": {
+      "n_pairs": 32,
+      "n_baseline_pass": 26,
+      "n_feedback_pass": 26,
+      "n_preserved": 24,
+      "n_recovered": 2,
+      "n_lost": 2,
+      "median_signed_margin_gain": 0.05756950333333333,
+      "worst_signed_margin_gain": -0.47902000276456025
+    },
+    "category_summaries": [
+      {
+        "category": "combined_scheduled",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 1.0,
+        "preserved_open_loop_pass_fraction": 1.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": true,
+        "passed": true
+      },
+      {
+        "category": "controller_model_scale",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 1.0,
+        "preserved_open_loop_pass_fraction": 1.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": true,
+        "passed": true
+      },
+      {
+        "category": "diagnostic_unmodeled_delay",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 2,
+        "required": false,
+        "passed": null
+      },
+      {
+        "category": "diagnostic_unmodeled_slew",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 0.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": false,
+        "passed": null
+      },
+      {
+        "category": "gain_estimation_error",
+        "n_pairs": 2,
+        "mpc_pass_fraction": 1.0,
+        "preserved_open_loop_pass_fraction": 0.0,
+        "n_recovered": 2,
+        "n_lost": 0,
+        "required": true,
+        "passed": false
+      },
+      {
+        "category": "matched_action_delay",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 1.0,
+        "preserved_open_loop_pass_fraction": 1.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": true,
+        "passed": true
+      },
+      {
+        "category": "observation_delay",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 1.0,
+        "preserved_open_loop_pass_fraction": 1.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": true,
+        "passed": true
+      },
+      {
+        "category": "scheduled_gain",
+        "n_pairs": 8,
+        "mpc_pass_fraction": 1.0,
+        "preserved_open_loop_pass_fraction": 1.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": true,
+        "passed": true
+      },
+      {
+        "category": "scheduled_slew",
+        "n_pairs": 4,
+        "mpc_pass_fraction": 0.5,
+        "preserved_open_loop_pass_fraction": 1.0,
+        "n_recovered": 0,
+        "n_lost": 0,
+        "required": true,
+        "passed": false
+      }
+    ],
+    "passed": false
+  },
+  "noise_statistics": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "phase": "noise_statistics",
+    "n_rollouts": 126,
+    "level_target_summaries": [
+      {
+        "target_id": "nominal",
+        "noise_level": "low",
+        "n_seeds": 12,
+        "n_pass": 12,
+        "pass_fraction": 1.0,
+        "wilson_lower_bound": 0.7574992425007574,
+        "minimum_pass_fraction": 0.98,
+        "passed": true
+      },
+      {
+        "target_id": "nominal",
+        "noise_level": "medium",
+        "n_seeds": 16,
+        "n_pass": 16,
+        "pass_fraction": 1.0,
+        "wilson_lower_bound": 0.8063865817272801,
+        "minimum_pass_fraction": 0.95,
+        "passed": true
+      },
+      {
+        "target_id": "nominal",
+        "noise_level": "high",
+        "n_seeds": 32,
+        "n_pass": 32,
+        "pass_fraction": 1.0,
+        "wilson_lower_bound": 0.8928172849426365,
+        "minimum_pass_fraction": 0.9,
+        "passed": true
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "noise_level": "low",
+        "n_seeds": 12,
+        "n_pass": 12,
+        "pass_fraction": 1.0,
+        "wilson_lower_bound": 0.7574992425007574,
+        "minimum_pass_fraction": 0.98,
+        "passed": true
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "noise_level": "medium",
+        "n_seeds": 16,
+        "n_pass": 16,
+        "pass_fraction": 1.0,
+        "wilson_lower_bound": 0.8063865817272801,
+        "minimum_pass_fraction": 0.95,
+        "passed": true
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "noise_level": "high",
+        "n_seeds": 32,
+        "n_pass": 31,
+        "pass_fraction": 0.96875,
+        "wilson_lower_bound": 0.8425539219962727,
+        "minimum_pass_fraction": 0.9,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "phase_aligned_history": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "phase": "phase_aligned_history",
+    "n_rollouts": 32,
+    "n_scenarios": 16,
+    "mpc_pass_fraction": 1.0,
+    "preserved_open_loop_pass_fraction": 1.0,
+    "visible_state_matched_fraction": 1.0,
+    "test_interpretation": "phase-aligned history variation with approximately matched visible state",
+    "pair_summary": {
+      "n_pairs": 16,
+      "n_baseline_pass": 16,
+      "n_feedback_pass": 16,
+      "n_preserved": 16,
+      "n_recovered": 0,
+      "n_lost": 0,
+      "median_signed_margin_gain": 0.009585676372484475,
+      "worst_signed_margin_gain": -0.06138462725759908
+    },
+    "passed": true
+  },
+  "restart_sweep": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "phase": "restart_sweep",
+    "base_start_folder": "1100ms",
+    "alternate_start_folders": [],
+    "n_alternate_start_folders": 0,
+    "true_restart_validation_available": false,
+    "n_rollouts": 0,
+    "mpc_pass_fraction": 0.0,
+    "preserved_open_loop_pass_fraction": 0.0,
+    "pair_summary": {
+      "n_pairs": 0
+    },
+    "passed": false
+  },
+  "confirmation": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "phase": "confirmation",
+    "n_rollouts": 36,
+    "n_successful": 36,
+    "deterministic_summaries": [
+      {
+        "source_experiment_id": "s41r3_6b67fe09b3a0a0894429",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.003235456126801761
+      },
+      {
+        "source_experiment_id": "s41r3_f512df744281d7aaee49",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.01487908973305474
+      },
+      {
+        "source_experiment_id": "s41r3_beee9bf0b407bf7b0d6e",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.0164574387502191
+      },
+      {
+        "source_experiment_id": "s41r3_8672ea832e009b368216",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.031531949692171435
+      },
+      {
+        "source_experiment_id": "s41r3_52d55c893dc0af34d351",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.22955459236390652
+      },
+      {
+        "source_experiment_id": "s41r3_4291a11cf0b36fef6ce5",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.23642193391010657
+      },
+      {
+        "source_experiment_id": "s41r3_1d07b17a6fd00b7fb118",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.23832005277494073
+      },
+      {
+        "source_experiment_id": "s41r3_40311b1eb349de5e50e4",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.23832005277494073
+      },
+      {
+        "source_experiment_id": "s41r3_35ad0585cbcfcdaeeb62",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.17092426241408631
+      },
+      {
+        "source_experiment_id": "s41r3_241064fa6b0869ed6532",
+        "repeats": 2,
+        "all_repeats_pass": true,
+        "worst_signed_margin": 0.18340283274240088
+      }
+    ],
+    "high_noise_summaries": [
+      {
+        "target_id": "nominal",
+        "n_seeds": 8,
+        "n_pass": 8,
+        "pass_fraction": 1.0,
+        "passed": true
+      },
+      {
+        "target_id": "RZ_p10_m10",
+        "n_seeds": 8,
+        "n_pass": 8,
+        "pass_fraction": 1.0,
+        "passed": true
+      }
+    ],
+    "passed": true
+  },
+  "verdict": {
+    "schema_version": 3,
+    "stage": "Stage4.1R3",
+    "created_utc": "20260726_050950",
+    "verdict": "STAGE4_1R3_DELAY_GAIN_PHASE_ROBUSTNESS_ENVELOPE_INCOMPLETE",
+    "source_stage4_0_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_0_runs/stage4_0_robustness_recovery_350ms_20260724_152553",
+    "source_stage3_4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage3_4_runs/stage3_4_late_arrival_continuation_mpc_350ms_20260724_030829",
+    "source_selected_controller_scale": 0.5,
+    "controller_revision": "control_aware_residual_observer_antiwindup_v3",
+    "regression_passed": true,
+    "observer_ablation_passed": true,
+    "selected_observer_variant": "control_aware_residual",
+    "selected_anti_windup_enabled": false,
+    "failure_recovery_passed": true,
+    "structured_uncertainty_passed": false,
+    "noise_statistics_passed": true,
+    "phase_aligned_history_passed": true,
+    "true_restart_validation_available": false,
+    "true_restart_validation_passed": null,
+    "confirmation_passed": true,
+    "finite_test_envelope_validated": false,
+    "deployment_robustness_validated": false,
+    "plant_parameter_robustness_validated": false,
+    "unseen_hidden_state_robustness_validated": false,
+    "warning": "This verdict covers only the configured finite delay/gain/slew/noise/history/restart envelope. It is not deployment qualification.",
+    "final_task": "robust causal control across initial states, targets, hidden dynamics, plant uncertainty, noise, and delay"
+  }
+}

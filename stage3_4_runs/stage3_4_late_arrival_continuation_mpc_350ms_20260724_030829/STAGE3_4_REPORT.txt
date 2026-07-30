@@ -1,0 +1,10 @@
+STAGE3.4 LATE-ARRIVAL CONTINUATION AND MPC REPORT
+
+Verdict: PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED
+Arrival allowed through: 250 ms
+Hold required through: 350 ms
+Mandatory target library: 10/10
+Unique real-TSC physical cache results: 731
+
+This stage does not validate new initial states, plant parameters, noise, or latency.
+The final task remains a robust causal controller; residual RL is bounded and secondary.

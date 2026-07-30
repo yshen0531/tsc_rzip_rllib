@@ -1,0 +1,47 @@
+{
+  "n_files": 8,
+  "total_bytes": 94873,
+  "digest": "d2fbfbe4fbed6dfda621cdedbcfc61565b3c996190bb138b4b8ac781e9f46552",
+  "entries": [
+    {
+      "logical_path": "stage4_1r4/manifest.json",
+      "sha256": "9216a6b1bb2a8170ce25991f6a1ca31dbb75bf4ba377f207bb4f234c2361d6cc",
+      "bytes": 1515
+    },
+    {
+      "logical_path": "stage4_1r4/state.json",
+      "sha256": "10a4891efb46418b62c3dd3e45019e536528eac47eeeff69d06449087eb2b8e0",
+      "bytes": 37007
+    },
+    {
+      "logical_path": "stage4_1r4/config.json",
+      "sha256": "7dbe2fcfdc410c750b800d34795efbea77a258aa9975e9f5ce3f685e9bde4fa9",
+      "bytes": 7184
+    },
+    {
+      "logical_path": "stage4_1r4/verdict.json",
+      "sha256": "20cfd2f557a73663bac31b06891434af62dc88d0b8807349b23d557071a9fd7b",
+      "bytes": 18846
+    },
+    {
+      "logical_path": "stage4_1r4/weak_slew.json",
+      "sha256": "9bf43dff1cb54aa67bbbe9fa3161e3d46df297953c92b2e3ce3c69eb06601cff",
+      "bytes": 463
+    },
+    {
+      "logical_path": "stage4_1r4/estimator.json",
+      "sha256": "7fea47bc471a285ed368ccfe43e56c641dc4d9f614acb22ae6885fbd49a6810b",
+      "bytes": 8611
+    },
+    {
+      "logical_path": "stage4_1r3/manifest.json",
+      "sha256": "73bc6ba02be731aa26108398edb9327de459fb76130c9207fcc2cbbdc608f08a",
+      "bytes": 1239
+    },
+    {
+      "logical_path": "stage4_1r3/config.json",
+      "sha256": "87b3fa3377a05937b47d4ca2e45ccd46ba843ef38ffc3df15163efcd18579445",
+      "bytes": 20008
+    }
+  ]
+}
