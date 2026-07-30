@@ -53,3 +53,54 @@
   package, 42-file run tree, 18/18 parseable failed captures, 0/18 snapshots,
   0/18 restart raws, and no active Stage4.2R1 process. Server remains
   untouched pending R1b deployment.
+
+### R1b server resume result
+
+- Local deployment checkpoint:
+  `0c87297`; task-scoped access documentation checkpoint `a04aae1`
+- Server validation:
+  staging and installed package checksums/import/compile/`bash -n` passed;
+  installed complete unit discovery passed 427/427
+- Resume:
+  PID `1203573`, Ray capacity 128 CPUs, 18 capture actors
+- Log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_061527.log`
+- Real TSC:
+  18 concurrent `gotsc` capture processes observed; capture completed 18/18
+- Final capture:
+  raw 18/18, parse 18/18, success 0/18; all failed at terminal
+  `action_replay` telemetry because normal truncation cleanup cleared
+  `runner.current_folder` before `_read_wire_currents_a`
+- Preserved evidence:
+  18 authentic 1300 ms snapshot case directories, 144 files total; required
+  files complete 18/18; checkpoint coil match 18/18 at `1e-12`; 48-wire exact
+  18/18; snapshot manifests 0/18
+- Prefix fidelity:
+  visible prefix exact 18/18; recorded action prefix exact 18/18
+- Restart/formal:
+  restart raw 0/18, restart `not_run`, formal preservation `not_run`
+- Download:
+  186 files, 2,134,305,226 bytes; remote/local SHA-256 mismatch 0
+- Classification:
+  runtime/instrumentation error, not control failure and not authentic
+  plant-restart failure
+
+### R1c terminal telemetry checkpoint
+
+- Local commit:
+  `4ff8a1d`
+- Package revision:
+  `r42r1c_terminal_wire_telemetry_resume_v4`
+- Controller/experiment semantics:
+  unchanged
+- Fix:
+  after normal terminal cleanup, full-wire telemetry reads the authentic
+  output folder retained in `env.last_state["folder"]`
+- Local validation:
+  compile passed; 428/428 complete tests; 24/24 focused tests;
+  1186 JSON and 10721 JSON.GZ parsed strictly; 105 checksums;
+  41-module import closure; actual R1b resume matched experiment IDs 18/18
+  and pending captures 18/18; empty-directory 106-file simulation passed
+- Next:
+  direct R1c deployment, server validation, same-run resume, complete
+  uncompressed download, and raw/snapshot/restart re-audit

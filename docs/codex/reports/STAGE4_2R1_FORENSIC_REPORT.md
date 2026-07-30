@@ -364,3 +364,251 @@ for the already-proved R1b semantic-preserving resume.
 No remote file was transferred or changed during these checks and no TSC task
 ran.  Direct uncompressed deployment and server validation are now the next
 steps; the exact handoff is recorded in `docs/codex/CURRENT_STATUS.md`.
+
+## R1b final server-result forensics
+
+R1b was subsequently deployed with the exact predeployment hashes above.
+Both staging and installed validation passed checksum verification,
+compile/import closure, scientific guards, `bash -n`, and 427/427 complete
+server tests.  The exact old run was resumed without changing the controller
+revision, 18 experiment IDs, R17 selected-expert digest, or formal timing.
+
+Execution identity:
+
+```text
+local deployment checkpoint = 0c87297
+remote project              = /home/yangshen0711/tsc_all/tsc_rzip_rllib
+remote run                  = /home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r1_runs/stage4_2r1_true_tsc_plant_restart_action_replay_20260729_162619
+remote log                  = /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_061527.log
+driver PID                  = 1203573
+backend/workers             = ray / 128
+```
+
+Eighteen concurrent real `gotsc` processes and 18 stage-owned episode
+directories were observed.  Therefore R1b did perform authentic TSC capture
+work.  It did not perform a true filesystem restart.
+
+The complete run has 186 files totaling 2,134,305,226 file bytes.  The
+uncompressed server tree and log were copied directly into the repository.
+Independent remote and local SHA-256 inventories each contain 186 rows:
+missing 0, extra 0, mismatched 0.
+
+### Capture evidence
+
+All 18 new capture raw JSON.GZ files parse.  All 18 have:
+
+```text
+success                = false
+capture_exception_stage = action_replay
+failure_reason         = TypeError(Path(None))
+```
+
+The common traceback is:
+
+```text
+evaluate_capture
+  -> env.step(final action)
+  -> _state_record_full
+  -> _read_wire_currents_a
+  -> Path(runner.current_folder)
+```
+
+`TscRzipEnv.step()` performs normal episode cleanup before returning the final
+truncated step.  That cleanup deliberately sets `runner.current_folder=None`.
+R1b then attempted to read terminal full-wire telemetry through the cleared
+pointer.  This is a runtime/instrumentation lifecycle error after the terminal
+physical action, not a TSC failure.
+
+The 12 normal-horizon raws contain 35 of 36 required state rows and 34 of 35
+persisted action rows.  The 6 weak-horizon raws contain 37 of 38 state rows and
+36 of 37 persisted action rows.  Control flow and traceback establish that the
+last action was executed before the terminal telemetry read failed.
+
+For every case:
+
+- the complete persisted visible-state prefix is shape-comparable to the
+  selected R17 source and bit-exact; maximum difference is `0.0`;
+- the complete persisted action prefix is bit-exact;
+- the terminal state/hold-through sample is missing, so the formal metric is
+  `not_comparable`, not pass or fail.
+
+### Snapshot evidence
+
+The 200 ms one-shot requests fired in all 18 cases.  Every snapshot is at
+source time 1300 ms and contains the six required files plus both optional
+files:
+
+```text
+inputa
+sprsina
+geqdsk
+outputa
+coil_currents.csv
+wire_currents.csv
+sprsoua
+tsc.cgm
+```
+
+This is 18 directories and 144 files.  Offline comparison against raw
+checkpoint row 20 found:
+
+- required-file completeness: 18/18;
+- snapshot/checkpoint index and time alignment: 18/18;
+- 14-coil vector shape: 14/14 in every case;
+- maximum coil difference:
+  `7.105427357601002e-15` kA-turn, within `1e-12`;
+- full wire-current shape: 48/48 in every case;
+- full wire-current exact equality: 18/18;
+- maximum wire-current difference: `0.0` A.
+
+No `restart_snapshot_manifest.json` was written because the terminal telemetry
+exception occurred before `snapshot_inventory`.  The files are present and
+remote/local hashes agree, but the preregistered in-run manifest/digest gate
+was not completed.  The snapshots therefore cannot yet be frozen as
+authenticated successful capture artifacts.
+
+### Restart evidence
+
+Restart raw is 0/18.  The exact prerequisite gate was failed capture
+authentication.  The R1b summary now correctly records:
+
+```text
+plant_restart_replay_status        = not_run
+plant_restart_fidelity_passed      = null
+formal_contract_preservation_status = not_run
+formal_contract_preserved          = null
+```
+
+This is no evidence for either restart success or restart failure.
+
+## R1b result classification
+
+### 1. Runtime/environment errors
+
+There is one proven runtime/instrumentation error affecting 18/18 cases:
+terminal full-wire telemetry dereferenced `runner.current_folder` after the
+environment's normal truncation cleanup cleared it.  TSC itself completed all
+18 capture horizons without a recorded abnormal exit.
+
+### 2. Packaging/deployment/import errors
+
+None in R1b.  Staging and installed package verification, import/compile,
+shell syntax, and 427 server tests passed.  Deployed hashes matched local
+R1b hashes.
+
+### 3. Raw/snapshot integrity errors
+
+Raw parse corruption: none.  Download corruption: none across 186 hashes.
+All required snapshot files exist and checkpoint coil/wire comparisons pass
+offline.  The missing in-run snapshot manifests are an incomplete capture
+finalization result, not demonstrated byte corruption.
+
+### 4. Statistics/reporting bugs
+
+No new reporting bug was found.  R1b correctly preserves the partial
+trajectories, reports a finite structured failure, counts no empty snapshot
+path, and keeps restart/formal results tri-state `not_run`.
+
+### 5. Experimental-design flaws
+
+The real terminal lifecycle was absent from R1b's interface regression tests.
+Tests covered lazy runner creation and snapshot export but not reading
+full-wire telemetry after `TscRzipEnv.step()` performs normal terminal
+cleanup.
+
+### 6. Real plant-restart conclusions
+
+Capture instrumentation is exact for every persisted prefix, and authentic
+200 ms plant files were exported.  Complete capture fidelity is not yet
+certified because the terminal state and in-run snapshot manifest are missing.
+Fresh-process plant restart did not run.  No plant-restart or closed-loop
+control failure is supported.
+
+### 7. What can be frozen
+
+R17 remains frozen only on its finite clean 18-case static grid, with the
+original 250/350 and 270/370 ms contract.  R1b additionally proves that the
+snapshot request reaches authentic TSC and exports complete checkpoint
+coil/wire files in all 18 cases.  R1 itself cannot yet be frozen.
+
+### 8. What remains unvalidated
+
+Complete capture authentication, fresh plant restart initial-state fidelity,
+restart suffix fidelity, formal preservation after restart, controller-state
+restart, hidden histories, different initial states, new targets, continuous
+parameters, plant/model error, noise, disturbance recovery, and independent
+long hold remain unvalidated.  BC, DAgger, and residual RL remain blocked.
+
+### 9. Next step tied to the final task
+
+Fix only terminal telemetry folder selection, retain controller revision and
+experiment identity, prove R1b resume compatibility, then resume the same run.
+This is required to authenticate the plant restart substrate before adding
+controller-state complexity.
+
+## R1c terminal telemetry hotfix
+
+The evidence-backed package is:
+
+```text
+local commit        = 4ff8a1d
+controller_revision = true_tsc_plant_restart_action_replay_v42r1
+package_revision    = r42r1c_terminal_wire_telemetry_resume_v4
+```
+
+R1c first reads full-wire telemetry from `runner.current_folder`.  Only when
+normal terminal cleanup has cleared that pointer does it use the authentic
+folder already retained in `env.last_state["folder"]`.  If neither exists it
+still fails structurally.  No action, observation, TSC call, checkpoint,
+matrix, deadline, hold horizon, controller state, or physical semantics
+changed.  The same fallback covers terminal capture and terminal restart.
+
+An actual R1b manifest/raw resume simulation proved:
+
+- package history upgrades through R1b to R1c;
+- controller revision is unchanged;
+- source digest remains
+  `aaab69882fff50eed024fd7ffa7babf473a27c729a0944914c739034c9b4f2f6`;
+- selected expert digest remains
+  `95ef2cdbdbbbecdf0a58b316b44cca4fb788613b1a87c1f9b48e897175b2c112`;
+- experiment IDs match 18/18;
+- failed captures remain pending 18/18;
+- the R17 source audit still passes.
+
+R1c local validation:
+
+| Check | Outcome |
+|---|---|
+| `compileall` | passed |
+| Complete unit-test discovery | 428/428 passed |
+| Focused R1 tests | 24/24 passed |
+| Strict plain JSON parse | 1186/1186 passed |
+| Strict raw JSON.GZ parse | 10721/10721 passed |
+| Package checksum rows | 105/105 passed |
+| Declared versus actual package tree | 99/99 matched |
+| Internal import closure | passed, 41 modules |
+| Empty-directory direct-copy simulation | 106/106 files |
+| Empty-directory focused R1 tests | 24/24 passed |
+
+R1c package hashes:
+
+- `PACKAGE_MANIFEST.json`:
+  `c7971a09a647628b9e035d3c46be447571e20e7fee8c963305265248ba920d82`
+- `SHA256SUMS`:
+  `39ae778673accb3df9cb9c6f6c9d6575aa625f224494df17aed082e113a2d4fc`
+- R1 config:
+  `7cc9c1442bcc7b369e73e8b25adce29852fb2137f522d81709c437ce9072a80a`
+- R1 implementation:
+  `83e0bf0c7113e9b8eb1b56ef11c02bfa90079f301344c49627ba3a81e6d90161`
+- Focused R1 test:
+  `c672a516a854c45020c55ba28bb87a7a848f74e1f924ece059882750fa9d99d5`
+
+## R1b/R1c audit artifacts
+
+- `artifacts/codex_audits/stage4_2r1_r1b_inventory.json`
+- `artifacts/codex_audits/stage4_2r1_r1b_capture_audit.csv`
+- `artifacts/codex_audits/stage4_2r1_r1b_restart_audit.csv`
+- `artifacts/codex_audits/stage4_2r1_r1b_snapshot_audit.csv`
+- `artifacts/server_validation/stage4_2r1_r1b_remote_run_sha256_20260730_061527.txt`
+- `artifacts/server_validation/stage4_2r1_r1b_local_run_sha256_20260730_061527.txt`
+- `artifacts/server_logs/stage4_2r1_true_tsc_plant_restart_action_replay_20260730_061527.log`
