@@ -1,0 +1,169 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+STAGE4_2R3B_PROJECT_DIR="${STAGE4_2R3B_PROJECT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+STAGE4_2R3B_CONFIG="${STAGE4_2R3B_CONFIG:-${STAGE4_2R3B_PROJECT_DIR}/configs/stage4_2r3b_confirmatory_hidden_history_initial_state_370ms.json}"
+STAGE4_2R3B_PYTHON="${STAGE4_2R3B_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
+STAGE4_2R3B_WORKERS="${STAGE4_2R3B_WORKERS:-128}"
+STAGE4_2R3B_BACKEND="${STAGE4_2R3B_BACKEND:-ray}"
+STAGE4_2R3B_COMMAND="${STAGE4_2R3B_COMMAND:-all}"
+STAGE4_2R3B_RESUME="${STAGE4_2R3B_RESUME:-0}"
+STAGE4_2R3B_OUTPUT_ROOT="${STAGE4_2R3B_OUTPUT_ROOT:-${STAGE4_2R3B_PROJECT_DIR}/stage4_2r3b_runs}"
+STAGE4_2R3B_TSC_WORKSPACE_ROOT="${STAGE4_2R3B_TSC_WORKSPACE_ROOT:-/tmp/tsc_workspace}"
+STAGE4_2R3B_TSC_RUN_ROOT="${STAGE4_2R3B_TSC_RUN_ROOT:-${STAGE4_2R3B_TSC_WORKSPACE_ROOT}/episode_runs}"
+RAY_TMPDIR="${RAY_TMPDIR:-/tmp/stage4_2r3b_${UID:-0}}"
+
+stage4_2r3b_source_r2_complete() {
+  local source="$1" replay_count
+  for required in \
+    stage4_2r2_manifest.json \
+    stage4_2r2_state.json \
+    stage4_2r2_config.resolved.json \
+    stage4_2r2_analysis/stage4_2r2_verdict.json \
+    stage4_2r2_analysis/stage4_2r2_summary.json \
+    stage4_2r2_controller_checkpoint_bank/results.json \
+    stage4_2r2_controller_checkpoint_bank/summary.json \
+    stage4_2r2_offline_controller_recomputation_audit/summary.json \
+    stage4_2r2_controller_restart_replay/results.json \
+    stage4_2r2_controller_restart_replay/summary.json; do
+    [[ -f "${source}/${required}" ]] || return 1
+  done
+  replay_count="$(
+    find "${source}/stage4_2r2_controller_restart_replay/raw" \
+      -maxdepth 1 -type f -name '*.json.gz' 2>/dev/null | wc -l
+  )"
+  [[ "${replay_count}" -eq 18 ]]
+}
+
+stage4_2r3b_find_source_r2() {
+  local explicit="${STAGE4_2R3B_SOURCE_STAGE4_2R2_RUN:-}"
+  if [[ -n "${explicit}" ]]; then
+    [[ -d "${explicit}" ]] || {
+      echo "ERROR: explicit Stage4.2R2 source directory missing: ${explicit}" >&2
+      return 1
+    }
+    stage4_2r3b_source_r2_complete "${explicit}" || {
+      echo "ERROR: explicit Stage4.2R2 source is incomplete: ${explicit}" >&2
+      return 1
+    }
+    printf '%s\n' "${explicit}"
+    return 0
+  fi
+  local latest_file="${STAGE4_2R3B_PROJECT_DIR}/stage4_2r2_runs/latest_stage4_2r2_run.txt"
+  if [[ -f "${latest_file}" ]]; then
+    local candidate
+    candidate="$(tr -d '\r\n' < "${latest_file}")"
+    if [[ -d "${candidate}" ]] && stage4_2r3b_source_r2_complete "${candidate}"; then
+      printf '%s\n' "${candidate}"
+      return 0
+    fi
+  fi
+  local candidate
+  while IFS= read -r candidate; do
+    if stage4_2r3b_source_r2_complete "${candidate}"; then
+      printf '%s\n' "${candidate}"
+      return 0
+    fi
+  done < <(
+    find "${STAGE4_2R3B_PROJECT_DIR}/stage4_2r2_runs" \
+      -mindepth 1 -maxdepth 1 -type d \
+      -name 'stage4_2r2_persistent_controller_checkpoint_replay_*' \
+      -print 2>/dev/null | sort -r
+  )
+  return 1
+}
+
+stage4_2r3b_calibration_r3a_complete() {
+  local run="$1"
+  local project audit
+  project="$(cd "$(dirname "${run}")/.." && pwd)"
+  audit="${project}/stage4_2r3a_audits/$(basename "${run}")"
+  for required in \
+    stage4_2r3a_manifest.json \
+    stage4_2r3a_state.json \
+    stage4_2r3a_pair_analysis/summary.json \
+    stage4_2r3a_analysis/stage4_2r3a_verdict.json; do
+    [[ -f "${run}/${required}" ]] || return 1
+  done
+  for required in \
+    stage4_2r3a_server_audit.json \
+    stage4_2r3a_run_inventory.json \
+    stage4_2r3a_raw_forensics.json \
+    stage4_2r3a_snapshot_checks.json; do
+    [[ -f "${audit}/${required}" ]] || return 1
+  done
+}
+
+stage4_2r3b_find_calibration_r3a() {
+  local explicit="${STAGE4_2R3B_CALIBRATION_STAGE4_2R3A_RUN:-}"
+  local fixed_name
+  fixed_name="stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128"
+  if [[ -n "${explicit}" ]]; then
+    [[ "$(basename "${explicit}")" == "${fixed_name}" ]] || {
+      echo "ERROR: explicit Stage4.2R3a calibration identity changed: ${explicit}" >&2
+      return 1
+    }
+    stage4_2r3b_calibration_r3a_complete "${explicit}" || {
+      echo "ERROR: explicit Stage4.2R3a calibration is incomplete: ${explicit}" >&2
+      return 1
+    }
+    printf '%s\n' "${explicit}"
+    return 0
+  fi
+  local candidate
+  candidate="${STAGE4_2R3B_PROJECT_DIR}/stage4_2r3a_runs/${fixed_name}"
+  stage4_2r3b_calibration_r3a_complete "${candidate}" || return 1
+  printf '%s\n' "${candidate}"
+}
+
+stage4_2r3b_new_run_dir() {
+  mkdir -p "${STAGE4_2R3B_OUTPUT_ROOT}"
+  local stamp
+  stamp="$(date -u +%Y%m%d_%H%M%S)"
+  printf '%s\n' \
+    "${STAGE4_2R3B_OUTPUT_ROOT}/stage4_2r3b_confirmatory_hidden_history_initial_state_${stamp}"
+}
+
+stage4_2r3b_validate_common() {
+  [[ -x "${STAGE4_2R3B_PYTHON}" ]] || {
+    echo "ERROR: Python not executable: ${STAGE4_2R3B_PYTHON}" >&2
+    return 1
+  }
+  [[ -f "${STAGE4_2R3B_CONFIG}" ]] || {
+    echo "ERROR: config missing: ${STAGE4_2R3B_CONFIG}" >&2
+    return 1
+  }
+  [[ "${STAGE4_2R3B_WORKERS}" == "128" ]] || {
+    echo "ERROR: Stage4.2R3b Ray capacity is frozen at 128 workers" >&2
+    return 1
+  }
+  [[ "${STAGE4_2R3B_BACKEND}" == ray || "${STAGE4_2R3B_BACKEND}" == serial ]] || {
+    echo "ERROR: backend must be ray or serial" >&2
+    return 1
+  }
+  [[ "${STAGE4_2R3B_RESUME}" == 0 || "${STAGE4_2R3B_RESUME}" == 1 ]] || {
+    echo "ERROR: resume must be 0 or 1" >&2
+    return 1
+  }
+  case "${STAGE4_2R3B_COMMAND}" in
+    all|offline|state) ;;
+    *) echo "ERROR: invalid command ${STAGE4_2R3B_COMMAND}" >&2; return 1 ;;
+  esac
+}
+
+stage4_2r3b_export_runtime() {
+  export PROJECT_DIR="${STAGE4_2R3B_PROJECT_DIR}"
+  export PYTHONPATH="${STAGE4_2R3B_PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
+  export STAGE4_2R3B_WORKERS STAGE4_2R3B_TSC_WORKSPACE_ROOT
+  export STAGE4_2R3B_TSC_RUN_ROOT RAY_TMPDIR
+  local suffix
+  for suffix in R17 R16 R15B R15 R14 R13 R12 R11 R10 R9 R8 R7 R6 R5 R4; do
+    export "STAGE4_1${suffix}_TSC_WORKSPACE_ROOT=${STAGE4_2R3B_TSC_WORKSPACE_ROOT}"
+    export "STAGE4_1${suffix}_TSC_RUN_ROOT=${STAGE4_2R3B_TSC_RUN_ROOT}"
+  done
+  export STAGE4_2R1_TSC_WORKSPACE_ROOT="${STAGE4_2R3B_TSC_WORKSPACE_ROOT}"
+  export STAGE4_2R1_TSC_RUN_ROOT="${STAGE4_2R3B_TSC_RUN_ROOT}"
+  export STAGE4_2R2_TSC_WORKSPACE_ROOT="${STAGE4_2R3B_TSC_WORKSPACE_ROOT}"
+  export STAGE4_2R2_TSC_RUN_ROOT="${STAGE4_2R3B_TSC_RUN_ROOT}"
+  mkdir -p "${RAY_TMPDIR}" "${STAGE4_2R3B_TSC_RUN_ROOT}"
+}

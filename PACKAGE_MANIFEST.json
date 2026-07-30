@@ -1,30 +1,46 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.2R3a",
-  "run_name": "stage4_2r3a_delayed_counterpulse_hidden_history_initial_state",
-  "controller_revision": "delayed_counterpulse_hidden_history_initial_state_mpc_v42r3a",
-  "package_revision": "r42r3a_delayed_counterpulse_hidden_history_v1",
-  "source_stage": "Stage4.2R2",
+  "stage": "Stage4.2R3b",
+  "run_name": "stage4_2r3b_confirmatory_hidden_history_initial_state",
+  "controller_revision": "confirmatory_hidden_history_initial_state_mpc_v42r3b",
+  "package_revision": "r42r3b_confirmatory_hidden_history_v1",
+  "source_stage": "Stage4.2R2 plus exact failed Stage4.2R3a calibration evidence",
   "source_controller_revision": "persistent_mpc_controller_checkpoint_replay_v42r2",
   "source_package_revision": "r42r2_persistent_controller_checkpoint_v1",
-  "purpose": "Generate authentic TSC states from a frozen nominal expert prefix followed by delayed reversed zero-net nullspace pulses, select matched-visible/different-hidden and different-initial-state pairs using only preregistered checkpoint metrics, and test each selected member from a fresh TSC process with a fresh causal frozen R17 controller.",
+  "purpose": "Prospectively confirm matched-visible, materially different authentic hidden vessel/eddy-current histories and different authenticated initial states on a new prefix/amplitude grid, then conditionally test the frozen causal MPC expert from fresh TSC processes.",
   "campaigns": {
     "offline_no_gotsc_frozen_controller_recomputation_cases": 4,
     "authentic_state_generation_pairs": 36,
     "authentic_state_generation_rollouts": 72,
-    "fresh_hidden_history_control_rollouts_minimum": 16,
-    "fresh_hidden_history_control_rollouts_maximum": 32
+    "fresh_hidden_history_control_rollouts_if_state_gate_passes": 32
   },
   "hidden_history_contract": {
     "wire_current_count": 48,
-    "minimum_valid_pairs": 2,
-    "maximum_selected_pairs": 4,
-    "minimum_different_initial_centroids": 2,
-    "required_common_prefix_lengths": [
-      4,
-      8
+    "required_valid_and_selected_pairs": 4,
+    "required_prefix_direction_strata": [
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        9,
+        2
+      ]
     ],
-    "wire_max_abs_difference_A_min": 1.0,
+    "required_common_prefix_lengths": [
+      5,
+      9
+    ],
+    "wire_max_abs_difference_A_min": 0.25,
+    "wire_rms_difference_A_min": 0.1,
     "wire_relative_rms_difference_min": 0.05,
     "controller_history_initialization": "current_visible_state_only_at_new_task_start",
     "controller_integral_initialization": "zero",
@@ -33,6 +49,13 @@
     "future_actions_forbidden": true,
     "future_measurements_forbidden": true,
     "online_action_recomputation_required": true
+  },
+  "calibration_contract": {
+    "stage4_2r3a_run_name": "stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_20260730_110128",
+    "stage4_2r3a_run_inventory_digest": "9be432ee725035b31cee32f9415298aacd1fa576e24190588b8ef2c2be08eae7",
+    "stage4_2r3a_raw_forensics_sha256": "3889ef0df2220a4ada253761535945c143f80bca1e0351e7ece0c380abc61e23",
+    "r3a_result_reinterpreted": false,
+    "r3a_snapshot_reused_as_r3b_result": false
   },
   "formal_timing": {
     "arrival_deadline_expanded": false,
@@ -48,34 +71,34 @@
       "tests",
       "tsc_rzip_rllib"
     ],
-    "root_shell_scripts_are_stage4_2r3a_only": true,
-    "requires_existing_source_run": "complete certified Stage4.2R2 run and its manifest-recorded Stage4.2R1 and Stage4.1R17 source chain",
+    "root_shell_scripts_are_stage4_2r3b_only": true,
+    "requires_existing_source_run": "complete certified Stage4.2R2 source chain and exact completed Stage4.2R3a calibration run/audit",
     "requires_external_source_tree": false,
     "requires_git": false,
     "requires_network": false,
     "supports_resume": true,
-    "resume_requires_same_source_package_fingerprint_common_prefix_config_state_generation_spec_controller_revision_and_experiment_identity": true,
+    "resume_requires_same_source_calibration_package_fingerprint_common_prefix_config_state_generation_spec_controller_revision_and_experiment_identity": true,
     "large_result_postprocess_on_server": true,
     "download_compact_audits_only": true
   },
   "scientific_guardrails": [
-    "The Stage4.1R17 18-case finite clean expert map and immutable 250/350 and 270/370 ms formal contracts remain frozen.",
-    "The complete certified R2, R1 and R17 source chain is fingerprinted before R3a.",
-    "Before new TSC work, every required frozen R17 policy is recomputed exactly from a fresh step-zero controller in a no-gotsc causal audit.",
-    "State generation uses a frozen authenticated nominal expert prefix and time-separated reversed zero-net actions in the orthogonal complement of the frozen three-mode controller basis; hidden state is never edited.",
-    "The deployed config, R3a code, launchers, package manifest and checksum inventory are fingerprinted and enforced on resume.",
+    "R17, R1c and R2 finite clean foundations and immutable 250/350 and 270/370 ms formal contracts remain frozen.",
+    "R3 and R3a remain failed under their original preregistered hidden-state gates.",
+    "The exact R3a run inventory and independent raw forensics calibrate R3b prospectively and are manifest/resume gates.",
+    "R3b uses new prefix lengths 5/9 and new amplitudes 0.60/0.75/0.90; no R3a snapshot is reused as an R3b result.",
+    "All 72 authentic state tasks finish before selection, and exactly one valid pair is selected from each prefix-by-direction stratum.",
     "Matched-visible/different-hidden pairs are accepted and selected only from frozen checkpoint metrics, never from downstream control outcomes.",
-    "Every control rollout uses a fresh controller actor and a fresh TSC process loaded from the authentic generated sprsina snapshot.",
-    "The controller starts with only the current R/Z/Ip and coil currents; full wire current remains post-action audit telemetry.",
-    "Runtime errors, deployment errors, corruption, summary/statistics errors, controller-design failures and real plant/control failures remain separate classifications.",
-    "A pass validates only the preregistered discrete hidden-history and different-initial-state finite envelope.",
+    "Every control rollout uses a fresh controller actor and fresh TSC process from a hash-verified authentic snapshot.",
+    "Full wire current remains post-action audit telemetry and never enters the controller.",
+    "Runtime, deployment, corruption, reporting, design, observer/history, restart and real control conclusions remain separate.",
+    "A pass validates only the preregistered finite R3b hidden-history/initial-state envelope.",
     "Unseen targets, continuous actuator parameters, plant/Jacobian error, noise, disturbance recovery and independent long hold remain unvalidated.",
     "BC, DAgger and bounded residual RL remain forbidden until the reliable MPC expert roadmap is complete."
   ],
   "finite_test_envelope_only": true,
   "bc_dagger_or_rl_allowed": false,
   "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold",
-  "declared_file_count": 124,
+  "declared_file_count": 130,
   "file_inventory": [
     "PACKAGE_MANIFEST.json",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -108,12 +131,13 @@
     "configs/stage4_2r2_persistent_controller_checkpoint_replay_370ms.json",
     "configs/stage4_2r3_authentic_hidden_history_initial_state_370ms.json",
     "configs/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_370ms.json",
-    "run_stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_native.sh",
-    "run_stage4_2r3a_delayed_counterpulse_hidden_history_initial_state_nohup.sh",
-    "run_stage4_2r3a_self_test.sh",
-    "run_stage4_2r3a_server_postprocess.sh",
-    "run_stage4_2r3a_verify_package.sh",
-    "run_stop_stage4_2r3a_now.sh",
+    "configs/stage4_2r3b_confirmatory_hidden_history_initial_state_370ms.json",
+    "run_stage4_2r3b_confirmatory_hidden_history_initial_state_native.sh",
+    "run_stage4_2r3b_confirmatory_hidden_history_initial_state_nohup.sh",
+    "run_stage4_2r3b_self_test.sh",
+    "run_stage4_2r3b_server_postprocess.sh",
+    "run_stage4_2r3b_verify_package.sh",
+    "run_stop_stage4_2r3b_now.sh",
     "scripts/stage4_2r1_shell_common.sh",
     "scripts/stage4_2r1_true_tsc_plant_restart_action_replay.py",
     "scripts/stage4_2r2_persistent_controller_checkpoint_replay.py",
@@ -124,6 +148,9 @@
     "scripts/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py",
     "scripts/stage4_2r3a_server_postprocess.py",
     "scripts/stage4_2r3a_shell_common.sh",
+    "scripts/stage4_2r3b_confirmatory_hidden_history_initial_state.py",
+    "scripts/stage4_2r3b_server_postprocess.py",
+    "scripts/stage4_2r3b_shell_common.sh",
     "tests/__init__.py",
     "tests/conftest.py",
     "tests/test_ray_runtime_capacity.py",
@@ -157,6 +184,7 @@
     "tests/test_stage4_2r2_persistent_controller_checkpoint_replay.py",
     "tests/test_stage4_2r3_authentic_hidden_history_initial_state.py",
     "tests/test_stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py",
+    "tests/test_stage4_2r3b_confirmatory_hidden_history_initial_state.py",
     "tsc_rzip_rllib/__init__.py",
     "tsc_rzip_rllib/core/__init__.py",
     "tsc_rzip_rllib/core/coil_order.py",
@@ -195,6 +223,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_2r2_persistent_controller_checkpoint_replay.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3_authentic_hidden_history_initial_state.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3a_delayed_counterpulse_hidden_history_initial_state.py",
+    "tsc_rzip_rllib/diagnostics/stage4_2r3b_confirmatory_hidden_history_initial_state.py",
     "tsc_rzip_rllib/envs/__init__.py",
     "tsc_rzip_rllib/envs/factory.py",
     "tsc_rzip_rllib/envs/rzip_env.py",
