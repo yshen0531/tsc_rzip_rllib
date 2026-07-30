@@ -1,0 +1,133 @@
+{
+    "digest":  "b71d57754e8fb631eb5d85859bc63b0ed9a93ff2b50e256204f0baabcc497146",
+    "files":  [
+                  {
+                      "path":  "logs/stage4_2r3c_hotfix_installed_a5513e9.log",
+                      "sha256":  "75a321c96c4df54e37be5dced968b3259942c07649bd2a260bb365275389885c",
+                      "size_bytes":  22490
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c_installed_e8856f8.log",
+                      "sha256":  "f00c7943fc910b45762b3aff9646bdd87cd92709fbfbf13e94a4254052ac29a0",
+                      "size_bytes":  11673
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c_postprocess_a5513e9.log",
+                      "sha256":  "83c6011caeb212a6fa0ec9e4d738850bda81097870ac4f327559a1d4d0b985c5",
+                      "size_bytes":  400
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c_staging_e8856f8.log",
+                      "sha256":  "5454a7d84d75db40aca47bf43b25cbc78a070d6adfd8eb8ec9404195a0b974ef",
+                      "size_bytes":  11161
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132324.log",
+                      "sha256":  "86b1c12850cb749072521c76c71616bd21ab1b54939607a75116cf6f421e3c47",
+                      "size_bytes":  2312
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807.log",
+                      "sha256":  "d0b36122b1cff28376fc784d4611752473b16951300f6f701a67fd158659f685",
+                      "size_bytes":  2138
+                  },
+                  {
+                      "path":  "logs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132936.log",
+                      "sha256":  "bcc213566b11a5c043afe165a118f171d40a3b9a74368fb232442d820665b839",
+                      "size_bytes":  5540
+                  },
+                  {
+                      "path":  "run_compact/analysis/stage4_2r3c_summary.json",
+                      "sha256":  "903390a0563f39327e87c90303ef66a956a620cb7051b4d3455a027b673ecf64",
+                      "size_bytes":  3011
+                  },
+                  {
+                      "path":  "run_compact/analysis/stage4_2r3c_verdict.json",
+                      "sha256":  "e9dea3ee0849b26a9ae287e0a1af1d27386ec866fe7f8e488b0fe47eb020b63c",
+                      "size_bytes":  1230
+                  },
+                  {
+                      "path":  "run_compact/control/pair_results.csv",
+                      "sha256":  "0f30730f1a20812c9e21f76f0d0b5422228b5e91e449b9e67eaee43bb7b37405",
+                      "size_bytes":  3878
+                  },
+                  {
+                      "path":  "run_compact/control/pair_results.json",
+                      "sha256":  "b1dca6768c20d8871e3b03e45b443ff4423077e527474b316c79a76e1c65f38a",
+                      "size_bytes":  11754
+                  },
+                  {
+                      "path":  "run_compact/control/results.csv",
+                      "sha256":  "dcc8ff424d19aec601f5caacac2b609aaf97000046a3cf139372a13b5304140f",
+                      "size_bytes":  9640
+                  },
+                  {
+                      "path":  "run_compact/control/results.json",
+                      "sha256":  "35557462da0023206a8945b40a0d57e71a4d7eea69adcb88033cd77aa060a694",
+                      "size_bytes":  44803
+                  },
+                  {
+                      "path":  "run_compact/control/summary.json",
+                      "sha256":  "745af3ae05fba6e3be6a20f3b4b5e9ae8a0f8cdb5a78e5cc05b03af28f1c56ae",
+                      "size_bytes":  1629
+                  },
+                  {
+                      "path":  "run_compact/source_reference/control_specs.json",
+                      "sha256":  "412ade66d7d4ff20bd124e9690ec818aa77bc7bff95ac0101feefbda93f3acf7",
+                      "size_bytes":  168979
+                  },
+                  {
+                      "path":  "run_compact/source_reference/deployed_package_fingerprint.json",
+                      "sha256":  "8a9bbd2955317f1d118352560018acfe4ad4717dda93f0b7b4becda854427400",
+                      "size_bytes":  2545
+                  },
+                  {
+                      "path":  "run_compact/source_reference/offline_phase_alignment_audit.json",
+                      "sha256":  "f8612dcb5825602011c48c040ef55b35b3123cb4a8b13a6457436ee638630d75",
+                      "size_bytes":  12593
+                  },
+                  {
+                      "path":  "run_compact/source_reference/selected_snapshot_sources.json",
+                      "sha256":  "bd748c662a8878653313e9ea64c6fdcdd294e28a9ba61314c549a4635984ec2f",
+                      "size_bytes":  3981
+                  },
+                  {
+                      "path":  "run_compact/source_reference/stage4_2r3b_source_fingerprint.json",
+                      "sha256":  "0d638ee5e1bb64b6ef4286bf4105ca608ee1a2173f017eafb2a07a3dd3ac2e22",
+                      "size_bytes":  4695
+                  },
+                  {
+                      "path":  "run_compact/stage4_2r3c_config.resolved.json",
+                      "sha256":  "8ff400b34e440f0323c264a004722263ff47fdc2fd772850d5d26d8b980bbe34",
+                      "size_bytes":  4865
+                  },
+                  {
+                      "path":  "run_compact/stage4_2r3c_manifest.json",
+                      "sha256":  "8e825973bd5bc24cf3cb4d839c3059053a080d28f711f40e5729b41122b7dede",
+                      "size_bytes":  14436
+                  },
+                  {
+                      "path":  "run_compact/stage4_2r3c_state.json",
+                      "sha256":  "81b48ea2738d0cf454776d438b3f9b585aee479df81230ae91c089b631c1451f",
+                      "size_bytes":  2433
+                  },
+                  {
+                      "path":  "server_audit/stage4_2r3c_raw_control_forensics.json",
+                      "sha256":  "395427285a5bad0de9611629df0a13ade037ddd4f0e30e993e475a56c3dbafaa",
+                      "size_bytes":  363732
+                  },
+                  {
+                      "path":  "server_audit/stage4_2r3c_run_inventory.json",
+                      "sha256":  "309158ec585abebaab2bce2e60264419d54ce71bee3fc9343c59468bb8b6fe97",
+                      "size_bytes":  30088
+                  },
+                  {
+                      "path":  "server_audit/stage4_2r3c_server_audit.json",
+                      "sha256":  "d5276a0f30edbc503e8e09b8850023bcdf00a20cc70504fec54a44eacb0485d2",
+                      "size_bytes":  34948
+                  }
+              ],
+    "n_files":  25,
+    "schema_version":  1,
+    "total_bytes":  774954
+}

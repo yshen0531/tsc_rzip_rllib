@@ -1,0 +1,410 @@
+{
+  "summary": {
+    "schema_version": 1,
+    "stage": "Stage4.2R3c",
+    "phase": "offline_visible_state_phase_alignment_audit",
+    "expected_source_cases": 4,
+    "source_case_count": 4,
+    "source_phase_zero_count": 4,
+    "source_exact_action_count": 4,
+    "maximum_source_action_abs_difference": 0.0,
+    "hidden_wire_invariant_source_case_count": 4,
+    "source_phase_trace_valid_count": 4,
+    "expected_development_phase_selections": 32,
+    "development_phase_selection_count": 32,
+    "development_reference_phase_values": [
+      11,
+      12,
+      13
+    ],
+    "development_hidden_wire_use_count": 0,
+    "future_action_read_count": 0,
+    "future_measurement_use_count": 0,
+    "real_tsc_executed": false,
+    "passed": true
+  },
+  "source_results": [
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "source_experiment_id": "s41r17_805f073b5a4a4d40cf05",
+      "selected_reference_phase": 0,
+      "phase_zero_selected": true,
+      "action_steps": 37,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "hidden_wire_variant_first_action_exact": true,
+      "phase_trace_valid": true,
+      "passed": true
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "source_experiment_id": "s41r17_94ed769e1a5da77ca1f9",
+      "selected_reference_phase": 0,
+      "phase_zero_selected": true,
+      "action_steps": 37,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "hidden_wire_variant_first_action_exact": true,
+      "phase_trace_valid": true,
+      "passed": true
+    },
+    {
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "source_experiment_id": "s41r11_2f8571253fb3d4fecc7d",
+      "selected_reference_phase": 0,
+      "phase_zero_selected": true,
+      "action_steps": 35,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "hidden_wire_variant_first_action_exact": true,
+      "phase_trace_valid": true,
+      "passed": true
+    },
+    {
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "selected_reference_phase": 0,
+      "phase_zero_selected": true,
+      "action_steps": 35,
+      "online_action_exact": true,
+      "maximum_online_action_abs_difference": 0.0,
+      "first_mismatch_step": null,
+      "hidden_wire_variant_first_action_exact": true,
+      "phase_trace_valid": true,
+      "passed": true
+    }
+  ],
+  "development_phase_selections": [
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.05064510933722412,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.046219997705992125,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.0518751763644422,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.045228927197625626,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.03754007206071462,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.03179383731981733,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.037775172821747645,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.03157008756379166,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.07977258917712236,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.0764385982031423,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.08125661871323978,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.07521609512986718,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.05915634868068323,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.05452990872057348,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.05962769277232029,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.054047069346677856,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.05064510933722412,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.046219997705992125,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.0518751763644422,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 11,
+      "selected_cost": 0.045228927197625626,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.03754007206071462,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.03179383731981733,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.037775172821747645,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.03157008756379166,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.07977258917712236,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.0764385982031423,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.08125661871323978,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 12,
+      "selected_cost": 0.07521609512986718,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.05915634868068323,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.05452990872057348,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.05962769277232029,
+      "hidden_wire_used": false
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "selected_reference_phase": 13,
+      "selected_cost": 0.054047069346677856,
+      "hidden_wire_used": false
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[Stage4.2R3c] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c] source_stage4_2r3b_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3c] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132324
+[Stage4.2R3c] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json
+[Stage4.2R3c] command=offline backend=ray resume=0 workers=128
+[Stage4.2R3c] Offline gate requires original-start R17 phase 0 and exact action preservation before real TSC.
+[Stage4.2R3c] Task/formal time starts at zero; only the nominal/model phase is selected from current visible R/Z/Ip.
+[Stage4.2R3c] The exact locked R3b four-pair snapshots are a development set, not independent confirmation.
+[Stage4.2R3c] Full wire current remains post-action audit telemetry and is forbidden from phase selection/control.
+[Stage4.2R3c] Formal timing remains 250/350 ms for slew 1.0 and 270/370 ms for slew 0.9.
+[Stage4.2R3c] BC, DAgger and residual RL remain forbidden.
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_2r3c_visible_state_phase_aligned_mpc.py", line 10, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py", line 2488, in main
+    result = execute(
+             ^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py", line 2349, in execute
+    selected_pairs, specs = prepare(ctx, resume=resume)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py", line 1903, in prepare
+    selected_pairs, _ = _recompute_selected_pairs(ctx)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py", line 571, in _recompute_selected_pairs
+    raise ValueError(
+ValueError: Stage4.2R3c selected source snapshot is invalid

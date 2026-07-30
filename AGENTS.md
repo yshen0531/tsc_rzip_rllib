@@ -271,26 +271,32 @@ Do not overstate it as restart, hidden-history, unseen-target, continuous-parame
 R1c authentic plant-state restart and R2 causal persistent-controller restart
 are certified for their finite clean same-source 18-case grids.
 
-Stage4.2R3b completed 72/72 authentic state runs, selected four valid
-visible-matched/different-hidden-history pairs, and executed 32/32 fresh
-restart control runs. Plant restart and causality were exact, but formal
-control was 0/32. Raw evidence shows that the new initial states match R17
-visible phases 12--20 while the fresh time-indexed controller restarted its
-nominal reference at phase zero.
+Stage4.2R3b completed 72/72 authentic state runs and 32/32 fresh restart
+controls. Plant restart and causality were exact, but its phase-zero
+controller passed formal control 0/32.
 
-The current stage is Stage4.2R3c visible-state phase-aligned MPC development.
-Its design is frozen in:
+Stage4.2R3c added causal visible-state phase alignment and completed 32/32
+authentic controls. It passed 20/32: all 16 prefix-9 cases and only 4/16
+prefix-5 cases. Raw forensics found no runtime, corruption, restart,
+causality, or solver error. R3c matched against an ideal nominal reference
+and selected phases 11--13, while the restart states were nearest to actual
+R17 closed-loop visible phases 12--20.
+
+The current stage is Stage4.2R3c1 authenticated visible-manifold phase MPC
+development. Its design is frozen in:
 
 ```text
-docs/codex/reports/STAGE4_2R3C_PREREGISTERED_DESIGN.md
+docs/codex/reports/STAGE4_2R3C1_PREREGISTERED_DESIGN.md
 ```
 
-R3c must use a new controller and experiment identity. It may reuse only the
-exact locked R3b selected snapshots as development inputs, choose phase from
-current visible R/Z/Ip only, keep formal task time at zero, and never expose
-the 48-wire hidden state to the controller. R3c is not independent
-confirmation; a successful repair must be followed by R3d with newly
-generated unseen histories before advancing to new targets.
+R3c1 must use a new controller and experiment identity. It may reuse only the
+exact locked R3b selected snapshots and an authenticated, hashed R17 actual
+closed-loop R/Z/Ip calibration table. It must choose phase from current
+visible R/Z/Ip only, keep formal task time at zero, and never expose source
+actions, current-run future values, source coil/wire currents, or the
+48-wire hidden state to the controller. R3c1 is not independent confirmation;
+a successful repair must be followed by R3d with newly generated unseen
+histories before advancing to new targets.
 
 ## 10. Required validation before server execution
 

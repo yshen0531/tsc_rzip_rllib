@@ -216,13 +216,30 @@ and ended with 149--223 mm box error. Original-start R17 sources for the same
 specifications remain 32/32 formal PASS. This is a different-initial-state
 controller-design failure, not a plant-restart failure.
 
-Stage4.2R3c is now the active development stage. It locks the exact R3b
-snapshots and adds causal visible-state phase alignment while leaving formal
-task time at zero. Its design is frozen in
-`docs/codex/reports/STAGE4_2R3C_PREREGISTERED_DESIGN.md`. Because the repair
-was selected after inspecting R3b, R3c cannot independently validate
-hidden-history robustness. A successful R3c must be followed by R3d on new,
-unseen histories before new-target work.
+Stage4.2R3c completed its offline gate and 32/32 authentic controls. Plant
+restart and causality were exact, but formal control passed only 20/32. All
+16 prefix-9 controls passed; only 4/16 prefix-5 controls passed. Independent
+raw forensics found no runtime, deployment, corruption, restart, causality,
+or solver error. The 12 failures are genuine closed-loop failures.
+
+R3c's causal phase alignment substantially repaired the R3b phase-zero
+mismatch, but it matched restart R/Z/Ip against an ideal nominal trajectory.
+It selected phases 11--13 while the same states were nearest to authenticated
+actual R17 visible phases 12--20, with the largest underestimate under delay
+2 / slew 0.9.
+
+Stage4.2R3c1 is now the active development stage. Its frozen design replaces
+only the ideal-nominal phase reference with a hashed, read-only R17 actual
+closed-loop R/Z/Ip reference manifold for the same target/actuator case.
+Current-run future values, source actions, source coil/wire currents, and
+hidden wire state remain forbidden. Formal task time stays zero and the exact
+32-case R3c matrix and gate remain unchanged. The design is frozen in
+`docs/codex/reports/STAGE4_2R3C1_PREREGISTERED_DESIGN.md`.
+
+Because R3c1 was selected after inspecting R3b and R3c and reuses the same
+snapshots, it is development evidence only. A successful R3c1 must be
+followed by R3d on new, prospectively generated unseen histories before
+new-target work.
 
 ## 7. Medium-term objectives
 

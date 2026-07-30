@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "contract": "r42r3c_deployed_package_source_v1",
+  "n_files": 13,
+  "digest": "0d99b9e3f300575415e8e9d31953d329abcd12a79a78141687f3f4a940e99dc0",
+  "files": [
+    {
+      "path": "PACKAGE_MANIFEST.json",
+      "size_bytes": 14274,
+      "sha256": "06eb17e432f7cdfcabee34fef88a06df149b7161afadad27dc3a3c5a30c761ae"
+    },
+    {
+      "path": "SHA256SUMS",
+      "size_bytes": 17014,
+      "sha256": "0f3720a867bead753981fcce6c4b0dc273174332e9117e79e172c56361fa43e5"
+    },
+    {
+      "path": "configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json",
+      "size_bytes": 4865,
+      "sha256": "8ff400b34e440f0323c264a004722263ff47fdc2fd772850d5d26d8b980bbe34"
+    },
+    {
+      "path": "run_stage4_2r3c_visible_state_phase_aligned_mpc_native.sh",
+      "size_bytes": 2323,
+      "sha256": "6da09f869c7fe935e40ed8d0e21927f4242f3c31b855f8e91cafb717cef6d690"
+    },
+    {
+      "path": "run_stage4_2r3c_visible_state_phase_aligned_mpc_nohup.sh",
+      "size_bytes": 1784,
+      "sha256": "2ee07b0c57024eacc888948d93458e2f15feaaa05cf08c28761b0bfd9a0ef519"
+    },
+    {
+      "path": "run_stage4_2r3c_self_test.sh",
+      "size_bytes": 330,
+      "sha256": "2d3171ef89ee4157892767a06c6f1bb33d0e96388bdd9c1b367029e44c059f48"
+    },
+    {
+      "path": "run_stage4_2r3c_server_postprocess.sh",
+      "size_bytes": 1155,
+      "sha256": "648945e8c43ec49f1d72fb7e441d83e73e2d68ceddeabbfb526198fd8fa141f7"
+    },
+    {
+      "path": "run_stage4_2r3c_verify_package.sh",
+      "size_bytes": 8754,
+      "sha256": "afbe5f8c3e08983db63b3b5ace42c402560ae741e8eb9b96966130832b7297f8"
+    },
+    {
+      "path": "run_stop_stage4_2r3c_now.sh",
+      "size_bytes": 897,
+      "sha256": "4445a8c19b30c510994c6383fb7e04570ccf44ed37f9882843e0cd20e4d9d52a"
+    },
+    {
+      "path": "scripts/stage4_2r3c_shell_common.sh",
+      "size_bytes": 4927,
+      "sha256": "26642e9c0bd4fe7814d7237d5c0a00d3dd552c425562ea849a131938d2a5003d"
+    },
+    {
+      "path": "scripts/stage4_2r3c_visible_state_phase_aligned_mpc.py",
+      "size_bytes": 200,
+      "sha256": "2d2aa4252f258719759535614761b73648205c47316773117a1cbb2b8927c02d"
+    },
+    {
+      "path": "scripts/stage4_2r3c_server_postprocess.py",
+      "size_bytes": 7249,
+      "sha256": "2b72136b4a615b49514d9fa71d8411ae7660223c5b4a4cbf1e257a5fbebec8c8"
+    },
+    {
+      "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c_visible_state_phase_aligned_mpc.py",
+      "size_bytes": 92504,
+      "sha256": "aedee8e2d3e98f21aae0cdc6b7c5d44241a48f7a62dcdf52f5716fbfc096bae2"
+    }
+  ]
+}

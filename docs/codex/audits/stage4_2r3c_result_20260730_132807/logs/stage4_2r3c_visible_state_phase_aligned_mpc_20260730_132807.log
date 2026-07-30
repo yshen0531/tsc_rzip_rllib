@@ -1,0 +1,43 @@
+[Stage4.2R3c] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c] source_stage4_2r3b_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+[Stage4.2R3c] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c_runs/stage4_2r3c_visible_state_phase_aligned_mpc_20260730_132807
+[Stage4.2R3c] config=/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json
+[Stage4.2R3c] command=offline backend=ray resume=0 workers=128
+[Stage4.2R3c] Offline gate requires original-start R17 phase 0 and exact action preservation before real TSC.
+[Stage4.2R3c] Task/formal time starts at zero; only the nominal/model phase is selected from current visible R/Z/Ip.
+[Stage4.2R3c] The exact locked R3b four-pair snapshots are a development set, not independent confirmation.
+[Stage4.2R3c] Full wire current remains post-action audit telemetry and is forbidden from phase selection/control.
+[Stage4.2R3c] Formal timing remains 250/350 ms for slew 1.0 and 270/370 ms for slew 0.9.
+[Stage4.2R3c] BC, DAgger and residual RL remain forbidden.
+{
+  "finished": false,
+  "offline_phase_alignment_audit": {
+    "development_hidden_wire_use_count": 0,
+    "development_phase_selection_count": 32,
+    "development_reference_phase_values": [
+      11,
+      12,
+      13
+    ],
+    "expected_development_phase_selections": 32,
+    "expected_source_cases": 4,
+    "future_action_read_count": 0,
+    "future_measurement_use_count": 0,
+    "hidden_wire_invariant_source_case_count": 4,
+    "maximum_source_action_abs_difference": 0.0,
+    "passed": true,
+    "phase": "offline_visible_state_phase_alignment_audit",
+    "real_tsc_executed": false,
+    "schema_version": 1,
+    "source_case_count": 4,
+    "source_exact_action_count": 4,
+    "source_phase_trace_valid_count": 4,
+    "source_phase_zero_count": 4,
+    "stage": "Stage4.2R3c"
+  },
+  "phase": "offline_visible_state_phase_alignment_audit",
+  "primary_pass": false,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c"
+}
