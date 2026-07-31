@@ -379,24 +379,26 @@ def _same_state_groups(
         for field in ("R", "Z", "Ip", "currents_a_display", "currents_a_tsc"):
             if nominal["trajectory"][0][field] != offset["trajectory"][0][field]:
                 raise ValueError(f"initial same-state mismatch in {field}")
-        nominal_measurement = np.asarray(
-            nominal["controller_trace"][0]["measurement_physical"],
-            dtype=float,
+        nominal_spec = nominal["spec"]
+        offset_spec = offset["spec"]
+        target_offset_delta = np.asarray(
+            [
+                float(offset_spec["target_R_offset_m"])
+                - float(nominal_spec["target_R_offset_m"]),
+                float(offset_spec["target_Z_offset_m"])
+                - float(nominal_spec["target_Z_offset_m"]),
+                float(offset_spec["target_Ip_offset_A"])
+                - float(nominal_spec["target_Ip_offset_A"]),
+            ]
         )
-        offset_measurement = np.asarray(
-            offset["controller_trace"][0]["measurement_physical"],
-            dtype=float,
-        )
-        expected_delta = np.asarray([-0.01, 0.01, 0.0, 0.0, 0.0])
         if float(
             np.max(
                 np.abs(
-                    (offset_measurement - nominal_measurement)
-                    - expected_delta
+                    target_offset_delta - np.asarray([0.01, -0.01, 0.0])
                 )
             )
         ) > 1.0e-12:
-            raise ValueError("same-state visible target-error delta changed")
+            raise ValueError("same-state visible target offset changed")
         ordered.append(group)
     return ordered
 

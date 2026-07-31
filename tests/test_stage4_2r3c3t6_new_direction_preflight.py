@@ -94,6 +94,46 @@ class Stage42R3C3T6NewDirectionPreflightTests(unittest.TestCase):
             float(np.linalg.norm(formal)), preflight.FORMAL_L2_LIMIT
         )
 
+    def test_same_state_gate_uses_raw_state_and_target_offsets(self) -> None:
+        payloads = []
+        for index in range(8):
+            for target in preflight.TARGETS:
+                is_offset = target == "RZ_p10_m10"
+                payloads.append(
+                    {
+                        "spec": {
+                            "action_delay_steps": 0,
+                            "slew_scale": 1.0,
+                            "state_generation_experiment_id": f"state_{index}",
+                            "pair_id": f"pair_{index}",
+                            "history_member": "plus_first",
+                            "target_id": target,
+                            "target_R_offset_m": 0.01 if is_offset else 0.0,
+                            "target_Z_offset_m": -0.01 if is_offset else 0.0,
+                            "target_Ip_offset_A": 0.0,
+                        },
+                        "trajectory": [
+                            {
+                                "R": 0.72,
+                                "Z": 0.02,
+                                "Ip": 30000.0,
+                                "currents_a_display": [0.0] * 14,
+                                "currents_a_tsc": [0.0] * 14,
+                            }
+                        ],
+                        # R3c1 measurement_physical is phase-reference
+                        # conditioned, so it is deliberately not asserted as
+                        # a pure target-error delta by this gate.
+                        "controller_trace": [
+                            {"measurement_physical": [float(index)] * 5}
+                        ],
+                    }
+                )
+        groups = preflight._same_state_groups(
+            payloads, delay_steps=0, slew_scale=1.0
+        )
+        self.assertEqual(len(groups), 8)
+
 
 if __name__ == "__main__":
     unittest.main()
