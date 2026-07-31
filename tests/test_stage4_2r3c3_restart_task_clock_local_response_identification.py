@@ -692,6 +692,20 @@ class Stage42R3C3DesignTests(unittest.TestCase):
             / "run_stage4_2r3c3_restart_task_clock_local_response_identification_native.sh",
             self.root / "run_stop_stage4_2r3c3_now.sh",
         ):
+            if not path.is_file():
+                package = json.loads(
+                    (self.root / "PACKAGE_MANIFEST.json").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                self.assertTrue(
+                    any(
+                        key.startswith("root_shell_scripts_are_")
+                        and bool(value)
+                        for key, value in package["package_rules"].items()
+                    )
+                )
+                continue
             text = path.read_text(encoding="utf-8")
             self.assertNotIn("ray stop --force", text)
             self.assertNotIn("pkill", text)

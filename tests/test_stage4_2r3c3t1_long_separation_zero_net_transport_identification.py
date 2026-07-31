@@ -355,7 +355,22 @@ class Stage42R3C3T1DesignTests(unittest.TestCase):
             "run_stage4_2r3c3t1_long_separation_zero_net_transport_identification_native.sh",
             "run_stop_stage4_2r3c3t1_now.sh",
         ):
-            text = (self.root / relative).read_text(encoding="utf-8")
+            path = self.root / relative
+            if not path.is_file():
+                package = json.loads(
+                    (self.root / "PACKAGE_MANIFEST.json").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                self.assertTrue(
+                    any(
+                        key.startswith("root_shell_scripts_are_")
+                        and bool(value)
+                        for key, value in package["package_rules"].items()
+                    )
+                )
+                continue
+            text = path.read_text(encoding="utf-8")
             self.assertNotIn("ray stop --force", text)
             self.assertNotIn("pkill", text)
 

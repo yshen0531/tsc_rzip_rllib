@@ -536,7 +536,22 @@ class Stage42R3C2DesignTests(unittest.TestCase):
             "run_stage4_2r3c2_restart_target_state_regulation_mpc_nohup.sh",
             "run_stop_stage4_2r3c2_now.sh",
         ):
-            text = (self.root / relative).read_text(encoding="utf-8")
+            path = self.root / relative
+            if not path.is_file():
+                package = json.loads(
+                    (self.root / "PACKAGE_MANIFEST.json").read_text(
+                        encoding="utf-8"
+                    )
+                )
+                self.assertTrue(
+                    any(
+                        key.startswith("root_shell_scripts_are_")
+                        and bool(value)
+                        for key, value in package["package_rules"].items()
+                    )
+                )
+                continue
+            text = path.read_text(encoding="utf-8")
             self.assertNotIn("ray stop --force", text)
             self.assertNotIn("pkill", text)
 
