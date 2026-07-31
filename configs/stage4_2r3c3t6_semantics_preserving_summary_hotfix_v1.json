@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "hotfix_id": "r3c3t6_tsc_order_combined_condition_key_v1",
+  "stage": "Stage4.2R3c3T6",
+  "controller_revision": "target_residual_new_direction_probe_v42r3c3t6_v1",
+  "package_revision": "r42r3c3t6_target_residual_identification_v1h1",
+  "from_deployed_package_digest": "4502545134ce2b4bc298fd99c3011e663b101ed6f26dbeced78ff8fe18aaba26",
+  "from_runtime_source_sha256": "a46e0cc6a63940770e74e896a399f4a954456fa4cab51f24e921a0e782c0e294",
+  "to_runtime_source_sha256": "a4ca94c711c1ba1cf6c99eaafafe97704162a42c42749878b3ab0867871b4f67",
+  "from_postprocess_source_sha256": "53ac7e95c4abaac9e0c76d43bb5e7f20fe1f9a0e8f066c93a8aabe73663ea4e6",
+  "to_postprocess_source_sha256": "9d02290016e07afbb346ee306fb20b1a915f3f0739dc950376a9ca9cb72bc948",
+  "from_test_source_sha256": "19885e250cbbbabab2179a6cc2d072c816afd884bf990f0a11b45542aa272e1a",
+  "to_test_source_sha256": "205849dc24d79c9cf1d068fa2a526b70687648c0b21abbd5eea229d0bf42fb16",
+  "summary_bug": "T3 bank currents were matched to display-order instead of TSC-order currents",
+  "corrected_field": "trajectory[0].currents_a_tsc",
+  "controller_action_semantics_changed": false,
+  "reporting_logic_only": true,
+  "raw_results_unchanged": true,
+  "task_matrix_unchanged": true,
+  "formal_gate_unchanged": true,
+  "experiment_ids_unchanged": true,
+  "source_fingerprints_unchanged": true,
+  "allowed_deployed_fingerprint_changes": [
+    "PACKAGE_MANIFEST.json",
+    "SHA256SUMS",
+    "configs/stage4_2r3c3t6_semantics_preserving_summary_hotfix_v1.json",
+    "scripts/stage4_2r3c3t6_server_postprocess.py",
+    "tests/test_stage4_2r3c3t6_target_residual_new_direction_identification.py",
+    "tsc_rzip_rllib/diagnostics/stage4_2r3c3t6_target_residual_new_direction_identification.py"
+  ],
+  "rationale": "The T3 controller bank records initial_coil_currents_A in native TSC order. T6 raw trajectories preserve both native currents_a_tsc and presentation-only currents_a_display. The original summary joined the bank against the reordered presentation field, so all 32 physically identical samples appeared unmatched and the preregistered combined eleven-basis matrices were never evaluated. The hotfix changes only that join field and adds exact resume/audit package-chain validation; it does not alter any experiment specification, action, plant state, raw result, controller trace, or formal gate."
+}

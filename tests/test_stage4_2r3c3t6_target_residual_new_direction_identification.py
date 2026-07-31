@@ -139,6 +139,158 @@ class Stage42R3C3T6Tests(unittest.TestCase):
         self.assertEqual(rank, 1)
         self.assertFalse(passed)
 
+    def test_t3_bank_key_uses_tsc_order_not_display_order(self) -> None:
+        tsc_currents = [float(index) for index in range(t6.N_COILS)]
+        display_currents = list(reversed(tsc_currents))
+        sample = {
+            "initial_R_m": 2.96,
+            "initial_Z_m": 0.03,
+            "initial_Ip_A": 1.1e6,
+            "initial_coil_currents_A": tsc_currents,
+            "target_R_offset_m": 0.01,
+            "target_Z_offset_m": -0.01,
+            "target_Ip_offset_A": 0.0,
+            "actuator_delay_steps": 2,
+            "actuator_slew_scale": 0.9,
+        }
+        result = {
+            "trajectory": [
+                {
+                    "R": sample["initial_R_m"],
+                    "Z": sample["initial_Z_m"],
+                    "Ip": sample["initial_Ip_A"],
+                    "currents_a_tsc": tsc_currents,
+                    "currents_a_display": display_currents,
+                }
+            ],
+            "spec": {
+                "target_R_offset_m": sample["target_R_offset_m"],
+                "target_Z_offset_m": sample["target_Z_offset_m"],
+                "target_Ip_offset_A": sample["target_Ip_offset_A"],
+                "action_delay_steps": sample["actuator_delay_steps"],
+                "slew_scale": sample["actuator_slew_scale"],
+            },
+        }
+        self.assertNotEqual(tsc_currents, display_currents)
+        self.assertEqual(
+            t6._result_sample_key(result), t6._t3_sample_key(sample)
+        )
+
+    def test_summary_hotfix_accepts_only_exact_bound_delta(self) -> None:
+        runtime_path = (
+            "tsc_rzip_rllib/diagnostics/"
+            "stage4_2r3c3t6_target_residual_new_direction_identification.py"
+        )
+        postprocess_path = "scripts/stage4_2r3c3t6_server_postprocess.py"
+        test_path = (
+            "tests/"
+            "test_stage4_2r3c3t6_target_residual_new_direction_identification.py"
+        )
+        contract_path = (
+            t6.SEMANTICS_PRESERVING_SUMMARY_HOTFIX_RELATIVE_PATH
+        )
+        original_rows = [
+            {"path": "PACKAGE_MANIFEST.json", "sha256": "old-manifest"},
+            {"path": "SHA256SUMS", "sha256": "old-sums"},
+            {
+                "path": runtime_path,
+                "sha256": t6.INITIAL_RUNTIME_SOURCE_SHA256,
+            },
+            {
+                "path": postprocess_path,
+                "sha256": t6.INITIAL_POSTPROCESS_SOURCE_SHA256,
+            },
+            {
+                "path": test_path,
+                "sha256": t6.INITIAL_TEST_SOURCE_SHA256,
+            },
+            {"path": "unchanged.py", "sha256": "same"},
+        ]
+        active_rows = copy.deepcopy(original_rows)
+        replacements = {
+            "PACKAGE_MANIFEST.json": "new-manifest",
+            "SHA256SUMS": "new-sums",
+            runtime_path: "new-runtime",
+            postprocess_path: "new-postprocess",
+            test_path: "new-test",
+        }
+        for row in active_rows:
+            if row["path"] in replacements:
+                row["sha256"] = replacements[row["path"]]
+        active_rows.append(
+            {"path": contract_path, "sha256": "contract"}
+        )
+        original = {
+            "contract": "r42r3c3t6_deployed_package_source_v1",
+            "digest": t6.INITIAL_DEPLOYED_PACKAGE_DIGEST,
+            "files": original_rows,
+        }
+        active = {
+            "contract": original["contract"],
+            "digest": "new-package",
+            "files": active_rows,
+        }
+        contract = {
+            "schema_version": 1,
+            "hotfix_id": t6.SEMANTICS_PRESERVING_SUMMARY_HOTFIX_ID,
+            "stage": t6.STAGE,
+            "controller_revision": t6.CONTROLLER_REVISION,
+            "package_revision": t6.PACKAGE_REVISION,
+            "from_deployed_package_digest": (
+                t6.INITIAL_DEPLOYED_PACKAGE_DIGEST
+            ),
+            "from_runtime_source_sha256": (
+                t6.INITIAL_RUNTIME_SOURCE_SHA256
+            ),
+            "to_runtime_source_sha256": "new-runtime",
+            "from_postprocess_source_sha256": (
+                t6.INITIAL_POSTPROCESS_SOURCE_SHA256
+            ),
+            "to_postprocess_source_sha256": "new-postprocess",
+            "from_test_source_sha256": t6.INITIAL_TEST_SOURCE_SHA256,
+            "to_test_source_sha256": "new-test",
+            "controller_action_semantics_changed": False,
+            "reporting_logic_only": True,
+            "raw_results_unchanged": True,
+            "task_matrix_unchanged": True,
+            "formal_gate_unchanged": True,
+            "experiment_ids_unchanged": True,
+            "source_fingerprints_unchanged": True,
+            "summary_bug": (
+                "T3 bank currents were matched to display-order instead "
+                "of TSC-order currents"
+            ),
+            "corrected_field": "trajectory[0].currents_a_tsc",
+        }
+        with mock.patch.object(Path, "is_file", return_value=True), mock.patch.object(
+            t6.t1.r3c3, "read_json", return_value=contract
+        ):
+            self.assertEqual(
+                t6._semantics_preserving_resume_compatibility(
+                    original, active
+                ),
+                contract,
+            )
+            incompatible = copy.deepcopy(active)
+            incompatible["files"][-1]["path"] = "unexpected.py"
+            with self.assertRaises(ValueError):
+                t6._semantics_preserving_resume_compatibility(
+                    original, incompatible
+                )
+
+        manifest = {
+            "deployed_package_fingerprint": original,
+            "semantics_preserving_summary_hotfix": {
+                "contract": contract,
+                "original_deployed_package_digest": original["digest"],
+                "active_deployed_package_digest": active["digest"],
+                "active_deployed_package_fingerprint": active,
+            },
+        }
+        self.assertEqual(
+            postprocess._runtime_package_fingerprint(manifest), active
+        )
+
     def test_control_payload_uses_frozen_base_runtime_config(self) -> None:
         _, preflight = t6._authenticate_preflight(self.cfg)
         paths = t6._paths(ROOT / ".codex_tmp" / "unused_t6_payload_test")

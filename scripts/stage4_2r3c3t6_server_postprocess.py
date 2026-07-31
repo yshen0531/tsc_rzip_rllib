@@ -77,6 +77,40 @@ def _package_compatibility(
     }
 
 
+def _runtime_package_fingerprint(
+    run_manifest: Mapping[str, Any],
+) -> dict[str, Any]:
+    original = dict(
+        run_manifest.get("deployed_package_fingerprint") or {}
+    )
+    resume = dict(
+        run_manifest.get("semantics_preserving_summary_hotfix") or {}
+    )
+    if not resume:
+        return original
+    contract = dict(resume.get("contract") or {})
+    active = dict(
+        resume.get("active_deployed_package_fingerprint") or {}
+    )
+    if (
+        str(contract.get("hotfix_id"))
+        != t6.SEMANTICS_PRESERVING_SUMMARY_HOTFIX_ID
+        or bool(contract.get("controller_action_semantics_changed"))
+        or not bool(contract.get("reporting_logic_only"))
+        or not bool(contract.get("raw_results_unchanged"))
+        or str(resume.get("original_deployed_package_digest"))
+        != str(original.get("digest"))
+        or str(resume.get("active_deployed_package_digest"))
+        != str(active.get("digest"))
+        or str(original.get("digest"))
+        != t6.INITIAL_DEPLOYED_PACKAGE_DIGEST
+    ):
+        raise ValueError(
+            "Stage4.2R3c3T6 runtime summary-hotfix package chain invalid"
+        )
+    return active
+
+
 def _snapshot_integrity(
     specs: Sequence[Mapping[str, Any]],
 ) -> dict[str, Any]:
@@ -299,14 +333,20 @@ def main() -> None:
     )
 
     audit_package = t6._deployed_package_fingerprint(ctx)
-    runtime_package = dict(
-        manifest.get("deployed_package_fingerprint") or {}
-    )
+    runtime_package = _runtime_package_fingerprint(manifest)
     package_compatibility = _package_compatibility(
         runtime_package, audit_package
     )
-    runtime_fingerprint_path = (
+    original_runtime_package = dict(
+        manifest.get("deployed_package_fingerprint") or {}
+    )
+    original_fingerprint_path = (
         ctx.paths.source_reference / "deployed_package_fingerprint.json"
+    )
+    active_fingerprint_path = (
+        ctx.paths.source_reference / "resume_deployed_package_fingerprint.json"
+        if manifest.get("semantics_preserving_summary_hotfix")
+        else original_fingerprint_path
     )
     control_specs_path = (
         ctx.paths.source_reference / "control_specs.json"
@@ -322,8 +362,11 @@ def main() -> None:
         ctx.paths.source_reference / "candidate_preflight.json"
     )
     evidence_files_exact = bool(
-        runtime_fingerprint_path.is_file()
-        and t6.t1.r3c3.read_json(runtime_fingerprint_path)
+        original_fingerprint_path.is_file()
+        and t6.t1.r3c3.read_json(original_fingerprint_path)
+        == original_runtime_package
+        and active_fingerprint_path.is_file()
+        and t6.t1.r3c3.read_json(active_fingerprint_path)
         == runtime_package
         and control_specs_path.is_file()
         and t6.t1.r3c3.read_json(control_specs_path) == specs

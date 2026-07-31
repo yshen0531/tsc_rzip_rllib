@@ -226,6 +226,7 @@
                            "configs/stage4_2r3c3_restart_task_clock_local_response_identification_370ms.json",
                            "configs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_370ms.json",
                            "configs/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_500ms.json",
+                           "configs/stage4_2r3c3t6_semantics_preserving_summary_hotfix_v1.json",
                            "configs/stage4_2r3c3t6_target_residual_new_direction_identification_500ms.json",
                            "configs/stage4_2r3c_visible_state_phase_aligned_mpc_370ms.json",
                            "docs/codex/audit_tools/stage4_2r3c3t1_six_basis_feasibility_diagnostic.py",

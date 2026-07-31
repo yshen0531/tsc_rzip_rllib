@@ -39,6 +39,24 @@ STAGE = "Stage4.2R3c3T6"
 CONTROLLER_REVISION = "target_residual_new_direction_probe_v42r3c3t6_v1"
 PACKAGE_REVISION = "r42r3c3t6_target_residual_identification_v1h1"
 RUN_NAME = "stage4_2r3c3t6_target_residual_new_direction_identification"
+SEMANTICS_PRESERVING_SUMMARY_HOTFIX_ID = (
+    "r3c3t6_tsc_order_combined_condition_key_v1"
+)
+INITIAL_DEPLOYED_PACKAGE_DIGEST = (
+    "4502545134ce2b4bc298fd99c3011e663b101ed6f26dbeced78ff8fe18aaba26"
+)
+INITIAL_RUNTIME_SOURCE_SHA256 = (
+    "a46e0cc6a63940770e74e896a399f4a954456fa4cab51f24e921a0e782c0e294"
+)
+INITIAL_POSTPROCESS_SOURCE_SHA256 = (
+    "53ac7e95c4abaac9e0c76d43bb5e7f20fe1f9a0e8f066c93a8aabe73663ea4e6"
+)
+INITIAL_TEST_SOURCE_SHA256 = (
+    "19885e250cbbbabab2179a6cc2d072c816afd884bf990f0a11b45542aa272e1a"
+)
+SEMANTICS_PRESERVING_SUMMARY_HOTFIX_RELATIVE_PATH = (
+    "configs/stage4_2r3c3t6_semantics_preserving_summary_hotfix_v1.json"
+)
 OBSERVATION_HORIZON = 50
 BASELINE_PROBE_ID = "target_residual_baseline"
 PROBE_IDS = (
@@ -1198,7 +1216,7 @@ def _result_sample_key(result: Mapping[str, Any]) -> tuple[Any, ...]:
         float(initial["R"]),
         float(initial["Z"]),
         float(initial["Ip"]),
-        tuple(float(x) for x in initial["currents_a_display"]),
+        tuple(float(x) for x in initial["currents_a_tsc"]),
         float(spec["target_R_offset_m"]),
         float(spec["target_Z_offset_m"]),
         float(spec["target_Ip_offset_A"]),
@@ -1824,6 +1842,130 @@ def _deployed_package_fingerprint(
     }
 
 
+def _semantics_preserving_resume_compatibility(
+    original: Mapping[str, Any],
+    active: Mapping[str, Any],
+) -> dict[str, Any] | None:
+    """Validate the exact reporting-only T6 summary resume hotfix."""
+
+    if dict(original) == dict(active):
+        return None
+    project = _project_root()
+    contract_path = (
+        project / SEMANTICS_PRESERVING_SUMMARY_HOTFIX_RELATIVE_PATH
+    )
+    if not contract_path.is_file():
+        raise ValueError(
+            "Stage4.2R3c3T6 deployed package changed without the "
+            "reporting-only summary resume contract"
+        )
+    contract = t1.r3c3.read_json(contract_path)
+    if (
+        int(contract.get("schema_version", -1)) != 1
+        or str(contract.get("hotfix_id"))
+        != SEMANTICS_PRESERVING_SUMMARY_HOTFIX_ID
+        or str(contract.get("stage")) != STAGE
+        or str(contract.get("controller_revision"))
+        != CONTROLLER_REVISION
+        or str(contract.get("package_revision")) != PACKAGE_REVISION
+        or str(contract.get("from_deployed_package_digest"))
+        != INITIAL_DEPLOYED_PACKAGE_DIGEST
+        or str(original.get("digest"))
+        != INITIAL_DEPLOYED_PACKAGE_DIGEST
+        or str(active.get("contract"))
+        != str(original.get("contract"))
+        or str(contract.get("from_runtime_source_sha256"))
+        != INITIAL_RUNTIME_SOURCE_SHA256
+        or str(contract.get("from_postprocess_source_sha256"))
+        != INITIAL_POSTPROCESS_SOURCE_SHA256
+        or str(contract.get("from_test_source_sha256"))
+        != INITIAL_TEST_SOURCE_SHA256
+        or bool(contract.get("controller_action_semantics_changed"))
+        or not bool(contract.get("reporting_logic_only"))
+        or not bool(contract.get("raw_results_unchanged"))
+        or not bool(contract.get("task_matrix_unchanged"))
+        or not bool(contract.get("formal_gate_unchanged"))
+        or not bool(contract.get("experiment_ids_unchanged"))
+        or not bool(contract.get("source_fingerprints_unchanged"))
+        or str(contract.get("summary_bug"))
+        != "T3 bank currents were matched to display-order instead of TSC-order currents"
+        or str(contract.get("corrected_field"))
+        != "trajectory[0].currents_a_tsc"
+    ):
+        raise ValueError(
+            "Stage4.2R3c3T6 reporting-only resume contract invalid"
+        )
+    original_rows = {
+        str(row["path"]): dict(row)
+        for row in original.get("files", [])
+    }
+    active_rows = {
+        str(row["path"]): dict(row) for row in active.get("files", [])
+    }
+    runtime_path = (
+        "tsc_rzip_rllib/diagnostics/"
+        "stage4_2r3c3t6_target_residual_new_direction_identification.py"
+    )
+    postprocess_path = "scripts/stage4_2r3c3t6_server_postprocess.py"
+    test_path = (
+        "tests/"
+        "test_stage4_2r3c3t6_target_residual_new_direction_identification.py"
+    )
+    contract_relative = SEMANTICS_PRESERVING_SUMMARY_HOTFIX_RELATIVE_PATH
+    allowed = {
+        "PACKAGE_MANIFEST.json",
+        "SHA256SUMS",
+        contract_relative,
+        runtime_path,
+        postprocess_path,
+        test_path,
+    }
+    if (
+        contract_relative in original_rows
+        or set(active_rows) != set(original_rows) | {contract_relative}
+    ):
+        raise ValueError(
+            "Stage4.2R3c3T6 hotfix changed deployed fingerprint coverage"
+        )
+    changed = {
+        relative
+        for relative in set(original_rows) | set(active_rows)
+        if original_rows.get(relative) != active_rows.get(relative)
+    }
+    if changed != allowed:
+        raise ValueError(
+            "Stage4.2R3c3T6 hotfix changed files outside its exact "
+            f"allowlist: {sorted(changed)}"
+        )
+    hash_bindings = (
+        (
+            runtime_path,
+            INITIAL_RUNTIME_SOURCE_SHA256,
+            "to_runtime_source_sha256",
+        ),
+        (
+            postprocess_path,
+            INITIAL_POSTPROCESS_SOURCE_SHA256,
+            "to_postprocess_source_sha256",
+        ),
+        (
+            test_path,
+            INITIAL_TEST_SOURCE_SHA256,
+            "to_test_source_sha256",
+        ),
+    )
+    if any(
+        str(original_rows[path].get("sha256")) != from_sha
+        or str(active_rows[path].get("sha256"))
+        != str(contract.get(to_field))
+        for path, from_sha, to_field in hash_bindings
+    ):
+        raise ValueError(
+            "Stage4.2R3c3T6 hotfix source hash binding mismatch"
+        )
+    return copy.deepcopy(contract)
+
+
 def _prepare_dirs(paths: Stage42R3C3T6Paths) -> None:
     for path in (
         paths.run_dir,
@@ -1891,6 +2033,8 @@ def prepare(
         "independent_hidden_history_confirmation": False,
         "independent_long_hold_validated": False,
     }
+    resume_hotfix: dict[str, Any] | None = None
+    original_package_fingerprint = package_fingerprint
     if ctx.paths.manifest.is_file():
         if not resume:
             raise FileExistsError(
@@ -1898,10 +2042,35 @@ def prepare(
             )
         old = t1.r3c3.read_json(ctx.paths.manifest)
         for key, value in manifest.items():
+            if key == "deployed_package_fingerprint":
+                continue
             if old.get(key) != value:
                 raise ValueError(
                     f"T6 resume incompatibility in manifest field {key}"
                 )
+        original_package_fingerprint = dict(
+            old.get("deployed_package_fingerprint") or {}
+        )
+        resume_hotfix = _semantics_preserving_resume_compatibility(
+            original_package_fingerprint, package_fingerprint
+        )
+        if resume_hotfix is not None:
+            updated_manifest = copy.deepcopy(old)
+            updated_manifest["semantics_preserving_summary_hotfix"] = {
+                "contract": resume_hotfix,
+                "original_deployed_package_digest": str(
+                    original_package_fingerprint["digest"]
+                ),
+                "active_deployed_package_digest": str(
+                    package_fingerprint["digest"]
+                ),
+                "active_deployed_package_fingerprint": (
+                    package_fingerprint
+                ),
+            }
+            t1.r3c3.atomic_write_json(
+                ctx.paths.manifest, updated_manifest
+            )
     else:
         t1.r3c3.atomic_write_json(ctx.paths.manifest, manifest)
     t1.r3c3.atomic_write_json(
@@ -1919,10 +2088,33 @@ def prepare(
         ctx.paths.source_reference / "candidate_preflight.json",
         ctx.preflight,
     )
-    t1.r3c3.atomic_write_json(
-        ctx.paths.source_reference / "deployed_package_fingerprint.json",
-        package_fingerprint,
+    original_fingerprint_path = (
+        ctx.paths.source_reference / "deployed_package_fingerprint.json"
     )
+    if resume_hotfix is None:
+        t1.r3c3.atomic_write_json(
+            original_fingerprint_path, package_fingerprint
+        )
+    else:
+        if (
+            not original_fingerprint_path.is_file()
+            or t1.r3c3.read_json(original_fingerprint_path)
+            != original_package_fingerprint
+        ):
+            raise ValueError(
+                "Stage4.2R3c3T6 original deployment fingerprint evidence "
+                "changed before summary hotfix resume"
+            )
+        t1.r3c3.atomic_write_json(
+            ctx.paths.source_reference
+            / "resume_deployed_package_fingerprint.json",
+            package_fingerprint,
+        )
+        t1.r3c3.atomic_write_json(
+            ctx.paths.source_reference
+            / "semantics_preserving_summary_hotfix.json",
+            resume_hotfix,
+        )
     state = (
         t1.r3c3.read_json(ctx.paths.state)
         if ctx.paths.state.is_file()
@@ -1938,6 +2130,18 @@ def prepare(
             "stop_reason": "",
         }
     )
+    if resume_hotfix is not None:
+        state["semantics_preserving_summary_hotfix"] = {
+            "hotfix_id": SEMANTICS_PRESERVING_SUMMARY_HOTFIX_ID,
+            "original_deployed_package_digest": str(
+                original_package_fingerprint["digest"]
+            ),
+            "active_deployed_package_digest": str(
+                package_fingerprint["digest"]
+            ),
+            "controller_action_semantics_changed": False,
+            "reporting_logic_only": True,
+        }
     state["updated_utc"] = t1.r3c3.utc_timestamp()
     t1.r3c3.atomic_write_json(ctx.paths.state, state)
     return list(selected_pairs), specs
