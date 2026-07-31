@@ -719,3 +719,34 @@
 - Next: quantify target-direction current-headroom requirement as a
   diagnostic, then preregister new combined-action/temporal identification
   if insufficient; no R3c4/BC/DAgger/RL
+
+## Stage4.2R3c3T8 measured-current headroom diagnostic
+
+- Local implementation/design commit: `d98820e`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t8_headroom_diagnostics/stage4_2r3c3t8_headroom_diagnostic_20260731_d98820e`
+- Execution: server-side offline postprocessing only; no Ray, `gotsc`, TSC,
+  plant advance, new raw trajectory or snapshot
+- Scale results: `1, 1.25, 1.5, 2, 3, 4` all remain `16/32`, with `0/16`
+  failed-baseline repairs and no regressions
+- Current: `32/32` pass at every scale; maximum predicted utilization stays
+  `0.3904 <= 0.55`
+- Scale-four failure margins: best `-0.0183834`, median `-0.0977671`, mean
+  `-0.1380697`, worst `-0.3347514`
+- Scale-four new-direction saturation: `15/16`, `16/16`, `16/16`
+- Independent evidence: 512 unique referenced raw hashes exact, all 256
+  odd responses exact, formal maximum error `4.44e-15`, current error 0
+- Result / manifest / independent audit hashes:
+  `5fba92cbe0690267d25a7b6f97f53c0d2144e9453420fc7945c05b29d45e18a1`,
+  `a966edd0dfde43dbf16ce76372d13340d25b7361a0ca0b7637e6032639967602`,
+  `d7ab83a37496fde3ba9afcd8fdfebeff16df8313931c013d93fbd3b7d366b2b8`
+- Runtime incident: first launch omitted project-root `PYTHONPATH`, exited
+  before import and created no output; unchanged v2 launch succeeded
+- Classification: present target-direction temporal design remains
+  insufficient; not current-limited, not a real closed-loop failure, no
+  reporting error; R3c4 remains unauthorized
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3T8_HEADROOM_DIAGNOSTIC_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c3t8_headroom_diagnostic_20260731_d98820e/`
+- Next: preregister new temporal/actuator combined-action identification;
+  no amplitude-only, separable-even, R3c4, BC, DAgger or residual RL

@@ -593,3 +593,59 @@ The active task is a new post-T7 route discriminator:
 Even a future development-set feasibility pass will not establish
 independent histories, unseen targets, continuous actuator/plant
 parameters, noise, disturbance recovery or long hold.
+
+## 14. Final T8 measured-current headroom result
+
+T8 implementation/design commit:
+
+```text
+d98820e
+```
+
+T8 executed no TSC. It authenticated the T7 bank and 512 referenced raw
+plus/minus files, reconstructed all selected current odd responses, and
+expanded only the three new target-direction coefficient bounds:
+
+```text
+scale             1.00   1.25   1.50   2.00   3.00   4.00
+formal pass      16/32  16/32  16/32  16/32  16/32  16/32
+failed repairs    0/16   0/16   0/16   0/16   0/16   0/16
+current pass     32/32  32/32  32/32  32/32  32/32  32/32
+maximum current  0.3904 at every scale
+```
+
+At scale four, the best remaining margin is `-0.0183834`, the worst is
+`-0.3347514`, and the three new coefficients remain saturated in `15/16`,
+`16/16` and `16/16` failures. Current headroom is not the bottleneck.
+
+Independent raw/current/formal audit SHA-256:
+
+```text
+d7ab83a37496fde3ba9afcd8fdfebeff16df8313931c013d93fbd3b7d366b2b8
+```
+
+The first launch had a pre-import `PYTHONPATH` environment error and created
+no scientific output. The unchanged v2 launch completed successfully. This
+is recorded separately from the scientific result.
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T8_HEADROOM_DIAGNOSTIC_REPORT.md
+```
+
+T8 is a clean offline route veto. It is not a real controller or plant
+failure. R3c4 remains unauthorized.
+
+The active next task is to preregister and preflight a genuinely new
+target-relevant temporal/actuator combined-action identification:
+
+1. add temporal authority not collinear with the failed T7/T8 bank;
+2. measure combined-action interaction directly, not by separable-even or
+   columnwise linear assumptions;
+3. keep arrival at 250/270 ms and hold through 350/370 ms;
+4. authenticate the same restart state and hidden-current evidence;
+5. require response symmetry, history invariance, conditioning and a
+   prospective feasibility gate before any R3c4 implementation;
+6. run no BC, DAgger or residual RL.

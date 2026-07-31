@@ -1,0 +1,15 @@
+{
+  "controller_implementation_authorized": false,
+  "identity": "measured_current_constrained_target_direction_headroom_diagnostic_v1",
+  "outputs": [
+    {
+      "path": "stage4_2r3c3t8_headroom_diagnostic_v1.json",
+      "sha256": "5fba92cbe0690267d25a7b6f97f53c0d2144e9453420fc7945c05b29d45e18a1",
+      "size_bytes": 119674
+    }
+  ],
+  "provenance_digest": "b4612f125c0ab648f089dd5bbb159386ea5c6bd19bfc0789651c9030c5eb6dd6",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T8"
+}

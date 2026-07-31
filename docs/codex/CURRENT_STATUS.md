@@ -1,5 +1,17 @@
 # Current status
 
+> Superseding status (2026-07-31 Asia/Shanghai): T6 completed 224/224 but
+> failed its combined-bank design gate after a reporting-only hotfix. T7
+> repaired conditioning but remained 16/32 with 0/16 repairs. T8 then
+> expanded only the three new target directions through 4× under
+> independently recomputed 14-coil current constraints; every scale
+> remained 16/32 and maximum predicted current stayed 0.3904. Thus current
+> headroom is not the bottleneck, R3c4 remains unauthorized, and the active
+> route is a new target-relevant temporal/actuator combined-action
+> identification preflight. See `docs/codex/CURRENT_TASK.md` sections
+> 12--14 and `STAGE4_2R3C3T8_HEADROOM_DIAGNOSTIC_REPORT.md`. No T8 TSC,
+> Ray, `gotsc`, controller or plant run occurred.
+
 ## Stage4.2R3c3T1 failed cleanly; Stage4.2R3c3T2 is preregistered
 
 Status timestamp: 2026-07-31 Asia/Shanghai

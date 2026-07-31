@@ -1,0 +1,4166 @@
+{
+  "bounded_current_headroom_route_exposed": false,
+  "context_count": 32,
+  "context_rows": [
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.20780805754530363,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            -0.74765959385,
+            1.25,
+            1.25
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.20348781628609736,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -0.999999999987,
+            1.0,
+            1.0,
+            -0.999999999998,
+            1.0,
+            0.20513261825,
+            1.5,
+            1.5
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.20051869786012766,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -0.950559680808,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.1947213244652497,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            -3.0,
+            3.0,
+            3.0
+          ],
+          "best_endpoint_step": 21,
+          "best_minimum_signed_margin": -0.17870572863559153,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            -3.40289043617,
+            4.0,
+            4.0
+          ],
+          "best_endpoint_step": 21,
+          "best_minimum_signed_margin": -0.15765760781398241,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.34744796666667055,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3463896458333384,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3453313250000025,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.34321468333333804,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.33898140000000554,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.33474811666667303,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10500000000000398,
+      "midpoint_current_model_error_utilization": 0.0005250000000000199,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004718200000000672,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004718200000000672,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004718200000000672,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004718200000000672,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004718200000000672,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004718200000000672,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.14999999999999147,
+      "midpoint_current_model_error_utilization": 0.0007499999999999574,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.05200124999999356,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            1.25
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.05082418749999551,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            1.5
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.049647124999993686,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04729299999999359,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            3.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04258474999999384,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.0378764999999901,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.2500000000000142,
+      "midpoint_current_model_error_utilization": 0.0012500000000000711,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.21579814103373973,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.25,
+            1.25,
+            1.25
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.21068748738684295,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.5,
+            1.5,
+            1.5
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.2056104554663476,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.1955589672957745,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            0.729267753213,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            3.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.1858207238438705,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "best_endpoint_step": 21,
+          "best_minimum_signed_margin": -0.16442659388476688,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.15000000000000568,
+      "midpoint_current_model_error_utilization": 0.0007500000000000284,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3422323166666694,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3410575083333358,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3398827000000022,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.33753308333333853,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.33283385000000365,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.328134616666669,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004738299999998419,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004738299999998419,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004738299999998419,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004738299999998419,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004738299999998419,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004738299999998419,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04852194999999582,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.046765529166663766,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04500910833332794,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.041496266666660286,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.03447058333332831,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.02744489999999633,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            0.409561130397,
+            1.0,
+            1.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.20390955937297317,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -0.717780439256,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.25,
+            1.25,
+            1.25
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.20088302479588105,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.122109140779,
+            1.0,
+            1.0,
+            -0.999999999446,
+            1.0,
+            1.5,
+            1.5,
+            1.5
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.19845120339266975,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.999999999961,
+            1.0,
+            0.99999999855,
+            -0.207021769917,
+            1.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.1939448667262451,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            -3.0,
+            3.0,
+            3.0
+          ],
+          "best_endpoint_step": 21,
+          "best_minimum_signed_margin": -0.1794355531828724,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            -4.0,
+            4.0,
+            4.0
+          ],
+          "best_endpoint_step": 21,
+          "best_minimum_signed_margin": -0.16040610826577062,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3469504500000027,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3459338625000039,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.34491727500000535,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.34288410000000447,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.33881775000000625,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.334751400000008,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10500000000000398,
+      "midpoint_current_model_error_utilization": 0.0005250000000000199,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.005323333333331903,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.005323333333331903,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.005323333333331903,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.005323333333331903,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.005323333333331903,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.005323333333331903,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.20000000000000284,
+      "midpoint_current_model_error_utilization": 0.0010000000000000141,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04919130000000016,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04777370833333272,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.0463561166666655,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.043520933333330625,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.03785056666666131,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.032180199999991776,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.22043886635265397,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            1.25
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.21508309124277303,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            1.5
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.20976825563033974,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            2.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.1992635759102228,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            3.0
+          ],
+          "best_endpoint_step": 20,
+          "best_minimum_signed_margin": -0.18548611666666748,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "best_endpoint_step": 21,
+          "best_minimum_signed_margin": -0.16526476716468919,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.15000000000000568,
+      "midpoint_current_model_error_utilization": 0.0007500000000000284,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3431067833333292,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3419675749999991,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.34082836666666516,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3385499499999973,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3339931166666652,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 27,
+          "best_minimum_signed_margin": -0.3294362833333295,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004227900000000617,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004227900000000617,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004227900000000617,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004227900000000617,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004227900000000617,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": 0.004227900000000617,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.20000000000000284,
+      "midpoint_current_model_error_utilization": 0.0010000000000000141,
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.05155595000000135,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04950801250000003,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.047460074999998936,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": -0.04336419999999652,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 19,
+          "best_minimum_signed_margin": -0.03574473333334005,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 19,
+          "best_minimum_signed_margin": -0.028554083333336644,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.39039999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.1500000000000199,
+      "midpoint_current_model_error_utilization": 0.0007500000000000994,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.012413308956406133,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.012413308956406133,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.012413308956406133,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.012413308956406133,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.012413308956406133,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.012413308956406133,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.14999999999999147,
+      "midpoint_current_model_error_utilization": 0.0007499999999999574,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.04994095000000209,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.25,
+            -1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.04731115416666731,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.04468135833333253,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            2.0,
+            -2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.03942176666666697,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            3.0,
+            -3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.028902583333331844,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            4.0,
+            -4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.018383400000000272,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.0729166666666714,
+      "midpoint_current_model_error_utilization": 0.00036458333333335704,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "endpoint_late_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 12,
+          "best_minimum_signed_margin": 0.09697009954940039,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "endpoint_late_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 12,
+          "best_minimum_signed_margin": 0.09697009954940039,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "endpoint_late_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 12,
+          "best_minimum_signed_margin": 0.09697009954940039,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "endpoint_late_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 12,
+          "best_minimum_signed_margin": 0.09697009954940039,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "endpoint_late_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 12,
+          "best_minimum_signed_margin": 0.09697009954940039,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "endpoint_late_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 12,
+          "best_minimum_signed_margin": 0.09697009954940039,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2234745999999982,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2234745999999982,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2234745999999982,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2234745999999982,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2234745999999982,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2234745999999982,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.03386863666666673,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.03386863666666673,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.03386863666666673,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.03386863666666673,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.03386863666666673,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.03386863666666673,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.06250000000001421,
+      "midpoint_current_model_error_utilization": 0.0003125000000000711,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 26,
+          "best_minimum_signed_margin": -0.06336013333333179,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 26,
+          "best_minimum_signed_margin": -0.06101905000000052,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 26,
+          "best_minimum_signed_margin": -0.05867796666666569,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 26,
+          "best_minimum_signed_margin": -0.053995799999999816,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.04540374999999952,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.037046983333334005,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10378758104765473,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10378758104765473,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10378758104765473,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10378758104765473,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10378758104765473,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10378758104765473,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.20000000000000284,
+      "midpoint_current_model_error_utilization": 0.0010000000000000141,
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22812333333333268,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22812333333333268,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22812333333333268,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22812333333333268,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22812333333333268,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22812333333333268,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.1500000000000199,
+      "midpoint_current_model_error_utilization": 0.0007500000000000994,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.014148986053374446,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.014148986053374446,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.014148986053374446,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.014148986053374446,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.014148986053374446,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.014148986053374446,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.11458333333334281,
+      "midpoint_current_model_error_utilization": 0.000572916666666714,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.05074985000000276,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.25,
+            -1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.048082337500004124,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.5,
+            -1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.04541482500000171,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            -2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.04007980000000444,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            3.0,
+            -3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.029409750000002566,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            -1.0,
+            -1.0,
+            1.0,
+            1.0,
+            1.0,
+            4.0,
+            -4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.018739700000000692,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.0729166666666714,
+      "midpoint_current_model_error_utilization": 0.00036458333333335704,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 13,
+          "best_minimum_signed_margin": 0.10544524405844569,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 13,
+          "best_minimum_signed_margin": 0.10544524405844569,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 13,
+          "best_minimum_signed_margin": 0.10544524405844569,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 13,
+          "best_minimum_signed_margin": 0.10544524405844569,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 13,
+          "best_minimum_signed_margin": 0.10544524405844569,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 13,
+          "best_minimum_signed_margin": 0.10544524405844569,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "minus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2248572000000013,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2248572000000013,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2248572000000013,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2248572000000013,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2248572000000013,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 23,
+          "best_minimum_signed_margin": 0.2248572000000013,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.032832263333333334,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.032832263333333334,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.032832263333333334,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.032832263333333334,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.032832263333333334,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 18,
+          "best_minimum_signed_margin": 0.032832263333333334,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.0729166666666714,
+      "midpoint_current_model_error_utilization": 0.00036458333333335704,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": false,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            -1.0
+          ],
+          "best_endpoint_step": 26,
+          "best_minimum_signed_margin": -0.0627775499999974,
+          "method": "authenticated_exact_T7_result",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.25,
+            1.25,
+            -1.25
+          ],
+          "best_endpoint_step": 26,
+          "best_minimum_signed_margin": -0.06024121666666504,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.5,
+            1.5,
+            -1.5
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.057704883333328905,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            0.756446824527,
+            1.0,
+            2.0,
+            2.0,
+            -2.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.052670937562342646,
+          "method": "per_endpoint_current_constrained_multistart_slsqp",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            3.0,
+            3.0,
+            -3.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.04325596666666387,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            1.0,
+            1.0,
+            1.0,
+            -1.0,
+            1.0,
+            4.0,
+            4.0,
+            -4.0
+          ],
+          "best_endpoint_step": 25,
+          "best_minimum_signed_margin": -0.034064649999999475,
+          "method": "exhaustive_scaled_ternary_grid",
+          "passed": false,
+          "predicted_max_current_utilization": 0.38155,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "RZ_p10_m10"
+    },
+    {
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.10000000000000853,
+      "midpoint_current_model_error_utilization": 0.0005000000000000426,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10281705403080599,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10281705403080599,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10281705403080599,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10281705403080599,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10281705403080599,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "post_speed",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 14,
+          "best_minimum_signed_margin": 0.10281705403080599,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38065,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    },
+    {
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "history_member": "plus_first",
+      "midpoint_current_model_error_A": 0.20000000000000284,
+      "midpoint_current_model_error_utilization": 0.0010000000000000141,
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "saved_baseline_pass": true,
+      "scale_rows": [
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22747463333333462,
+          "method": "authenticated_exact_T7_result",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22747463333333462,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.25
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22747463333333462,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 1.5
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22747463333333462,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 2.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22747463333333462,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 3.0
+        },
+        {
+          "active_constraint": "position",
+          "best_coefficients": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_endpoint_step": 22,
+          "best_minimum_signed_margin": 0.22747463333333462,
+          "method": "exact_baseline_already_passes",
+          "passed": true,
+          "predicted_max_current_utilization": 0.38234999999999997,
+          "target_direction_scale": 4.0
+        }
+      ],
+      "target_id": "nominal"
+    }
+  ],
+  "current_model": {
+    "maximum_allowed_midpoint_error_utilization": 0.0013,
+    "maximum_allowed_predicted_current_utilization": 0.55,
+    "maximum_midpoint_error_A": 0.2500000000000142,
+    "maximum_midpoint_error_utilization": 0.0012500000000000711,
+    "passed": true,
+    "signed_pair_response_count": 256
+  },
+  "first_full_optimistic_pass_scale": null,
+  "identity": "measured_current_constrained_target_direction_headroom_diagnostic_v1",
+  "measured_directions_insufficient_through_scale_four": true,
+  "provenance": {
+    "design_config_sha256": "5a2e054ccba24705feb84eeb16f0e234110326e7e1fa82ee6fc550de40432d30",
+    "formal_timing_changed": false,
+    "frozen_formal_evaluator_sha256": "7b7b3d15b770efaa9a6d648aa69e4dfb35dbdb596c34dc8d6e38fdfba65f31b2",
+    "frozen_t7_tool_sha256": "c70490579ad812f5937ed3311fe13ea66f718108a2b62fd3efc544c17a30ee96",
+    "identity": "measured_current_constrained_target_direction_headroom_diagnostic_v1",
+    "maximum_predicted_current_utilization": 0.55,
+    "old_basis_bounds": [
+      -1.0,
+      1.0
+    ],
+    "selected_basis_ids": [
+      "t3_basis_0",
+      "t3_basis_1",
+      "t3_basis_2",
+      "t3_basis_3",
+      "t3_basis_7",
+      "r17_target_action_residual",
+      "matched_visible_target_equal_pc1",
+      "matched_visible_target_equal_pc2"
+    ],
+    "stage": "Stage4.2R3c3T8",
+    "t6_config_sha256": "e27d44edb2ee50eb6922a65ab4b3e5cdfc36d59efcc058d91084a104a348096f",
+    "t6_raw_count": 224,
+    "t6_raw_inventory_digest": "594b4333eb848c762aec557744fe2dcef9101e1cc495f8713ed8bbe2f2913f61",
+    "t6_runtime_source_sha256": "a4ca94c711c1ba1cf6c99eaafafe97704162a42c42749878b3ab0867871b4f67",
+    "t7_audit_bank_sha256": "e18f5cfc7fb510f32f0f35128274e108f224c1c4a2afec262ec6fb8d91cf0d61",
+    "t7_config_sha256": "0d662f7cb0ef5cd4373c5740cdf4c9dde64c6a8b4665a62f8daf54b42eb3d84f",
+    "t7_controller_bank_sha256": "fef1eb299cede180c1f43d8713b3174aa9afd8724ea6af4509b06ad5d92febd8",
+    "t7_feasibility_sha256": "d4dbcd4a114eec10110432d6bf4337182bcb805b27ab83d689a9e216a052ed30",
+    "t7_manifest_sha256": "e69980452e756686c43ce37b6f3a471b37d6c804b3a6109fa22ea5905921ed74",
+    "target_direction_scale_grid": [
+      1.0,
+      1.25,
+      1.5,
+      2.0,
+      3.0,
+      4.0
+    ]
+  },
+  "provenance_digest": "b4612f125c0ab648f089dd5bbb159386ea5c6bd19bfc0789651c9030c5eb6dd6",
+  "scale_one_exact_T7_reproduction": {
+    "failed_baseline_repair_count": 0,
+    "maximum_absolute_margin_error": 3.552713678800501e-15,
+    "optimistic_formal_pass_count": 16,
+    "passed": true
+  },
+  "scale_summaries": [
+    {
+      "all_contexts_optimistically_pass": false,
+      "baseline_pass_regression_count": 0,
+      "current_constraint_pass_count": 32,
+      "failed_baseline_repair_count": 0,
+      "maximum_predicted_current_utilization": 0.39039999999999997,
+      "optimistic_formal_pass_count": 16,
+      "target_direction_scale": 1.0
+    },
+    {
+      "all_contexts_optimistically_pass": false,
+      "baseline_pass_regression_count": 0,
+      "current_constraint_pass_count": 32,
+      "failed_baseline_repair_count": 0,
+      "maximum_predicted_current_utilization": 0.39039999999999997,
+      "optimistic_formal_pass_count": 16,
+      "target_direction_scale": 1.25
+    },
+    {
+      "all_contexts_optimistically_pass": false,
+      "baseline_pass_regression_count": 0,
+      "current_constraint_pass_count": 32,
+      "failed_baseline_repair_count": 0,
+      "maximum_predicted_current_utilization": 0.39039999999999997,
+      "optimistic_formal_pass_count": 16,
+      "target_direction_scale": 1.5
+    },
+    {
+      "all_contexts_optimistically_pass": false,
+      "baseline_pass_regression_count": 0,
+      "current_constraint_pass_count": 32,
+      "failed_baseline_repair_count": 0,
+      "maximum_predicted_current_utilization": 0.39039999999999997,
+      "optimistic_formal_pass_count": 16,
+      "target_direction_scale": 2.0
+    },
+    {
+      "all_contexts_optimistically_pass": false,
+      "baseline_pass_regression_count": 0,
+      "current_constraint_pass_count": 32,
+      "failed_baseline_repair_count": 0,
+      "maximum_predicted_current_utilization": 0.39039999999999997,
+      "optimistic_formal_pass_count": 16,
+      "target_direction_scale": 3.0
+    },
+    {
+      "all_contexts_optimistically_pass": false,
+      "baseline_pass_regression_count": 0,
+      "current_constraint_pass_count": 32,
+      "failed_baseline_repair_count": 0,
+      "maximum_predicted_current_utilization": 0.39039999999999997,
+      "optimistic_formal_pass_count": 16,
+      "target_direction_scale": 4.0
+    }
+  ],
+  "schema_version": 1,
+  "scientific_classification": {
+    "bc_dagger_or_rl_allowed": false,
+    "candidate_combined_amplitude_identification_route_exposed": false,
+    "controller_implementation_authorized": false,
+    "optimistic_linear_superposition_only": true,
+    "probe_trajectories_are_demonstrations": false,
+    "real_tsc_controller_execution_authorized": false,
+    "real_tsc_executed_by_this_tool": false,
+    "response_above_scale_one_is_unvalidated_extrapolation": true,
+    "runtime_error": false,
+    "statistics_or_reporting_error": false
+  },
+  "stage": "Stage4.2R3c3T8"
+}
