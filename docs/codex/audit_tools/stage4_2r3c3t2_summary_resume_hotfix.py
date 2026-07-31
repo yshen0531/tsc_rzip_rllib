@@ -114,6 +114,15 @@ def _authenticate_run(run_dir: Path, target_args: list[str]) -> dict[str, Any]:
         == "stage4_2r3c3t2_post_contract_neutralized_held_transport_"
         "identification.py"
     )
+    state_finished = bool(state.get("finished"))
+    target_state_exact = bool(
+        (resume_target and not state_finished)
+        or (
+            not resume_target
+            and state_finished
+            and state.get("phase_status") == "campaign_complete"
+        )
+    )
     if resume_target and "--resume" not in target_args:
         raise SystemExit("campaign hotfix target must use --resume")
     if (
@@ -124,7 +133,7 @@ def _authenticate_run(run_dir: Path, target_args: list[str]) -> dict[str, Any]:
         or len(experiment_ids) != 160
         or not all(row["valid"] for row in raw_rows)
         or not offline_exact
-        or bool(state.get("finished"))
+        or not target_state_exact
     ):
         raise SystemExit("T2 summary-hotfix run authentication failed")
     digest_payload = [
