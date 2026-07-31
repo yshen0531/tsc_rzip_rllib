@@ -433,6 +433,14 @@ It is a server-side offline route diagnostic only. Regardless of its formal
 count, it cannot repair the measured T3 odd-column condition failure or
 authorize R3c4.
 
+The first T5 server attempt stopped before optimization/output because
+float64 recomposition of a 30 kA Ip value accumulated exactly one ULP
+(`3.637978807091713e-12`) and tripped the `1e-12` identity gate. Odd/raw
+agreement remained exactly zero-error. T5h1 commit `ff3b391` evaluates only
+that defining identity in 80-digit decimal arithmetic, preserves the
+original threshold and all scientific semantics, and must run under a new
+output/log identity.
+
 Even a pass does not validate a reliable restart MPC, independent histories,
 unseen targets, continuous actuator/plant parameters, noise, disturbance
 recovery, or long hold.

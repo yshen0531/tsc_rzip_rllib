@@ -163,3 +163,45 @@ authorize R3c4.
 Cross interactions, combined-action current safety, plant nonlinear
 extrapolation, and real closed-loop behavior remain unvalidated. R3c4, BC,
 DAgger, and bounded residual RL remain prohibited.
+
+## T5h1 numerical-authentication hotfix
+
+The first server attempt stopped on the first signed pair before any
+optimization and before creating an output. Float64 reconstruction of a
+roughly 30 kA Ip value differed from the raw value by exactly one ULP:
+
+```text
+maximum observed float64 residual
+  3.637978807091713e-12 A
+
+frozen authentication threshold
+  1e-12
+```
+
+The recomputed odd response still matched the bank exactly (`0.0` error),
+and direct higher-precision evaluation of the defining even/odd identity
+gave exactly zero residual. This is an authentication implementation error,
+not raw corruption or a scientific T5 result.
+
+T5h1 changes only the arithmetic used to evaluate the defining identity. It
+uses 80-digit decimal arithmetic constructed from the exact input floats,
+retaining the original `<= 1e-12` gate. Model coefficients, float64 optimizer
+semantics, raw inputs, formal evaluator, timing, and interpretation are
+unchanged.
+
+```text
+hotfix commit
+  ff3b391c672c8ed82c26b402f7c39173ea3adb87
+
+hotfix tool SHA-256
+  36668e8d8661bf6ca79ad4083260c9b5bf9e42e0c64cdf6cd994331b45ae7b1e
+
+focused tests
+  5/5
+
+complete repository unittest discovery
+  564/564
+```
+
+The failed no-output attempt is not resumed or overwritten. The corrected
+tool must use a new staging, log, PID, and output identity.
