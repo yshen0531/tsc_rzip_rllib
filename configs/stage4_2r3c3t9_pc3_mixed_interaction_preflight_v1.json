@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T9",
+  "identity": "target_residual_pc3_mixed_interaction_preflight_v1",
+  "status": "prospective_preflight_before_any_T9_TSC_execution",
+  "source_contract": {
+    "r17_selected_expert_digest": "95ef2cdbdbbbecdf0a58b316b44cca4fb788613b1a87c1f9b48e897175b2c112",
+    "r3c1_run_inventory_digest": "5bb79906dff14e4128e57f80dcd36576c881b46202e68a63f8dd977777812d2f",
+    "eight_basis_controller_bank_sha256": "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86",
+    "t6_preflight_sha256": "94ad5216c147a71cb5dbb907f3451f7c29d83c75394d778e1c11e3fb4112ffa7",
+    "t7_feasibility_sha256": "d4dbcd4a114eec10110432d6bf4337182bcb805b27ab83d689a9e216a052ed30",
+    "t8_headroom_diagnostic_sha256": "5fba92cbe0690267d25a7b6f97f53c0d2144e9453420fc7945c05b29d45e18a1"
+  },
+  "direction_contract": {
+    "action_coordinate": "issued_desired_physical_mode_coefficients",
+    "candidate_id": "matched_visible_target_equal_pc3",
+    "existing_full_span_basis_count": 11,
+    "augmented_full_span_basis_count": 12,
+    "selected_T7_basis_ids": [
+      "t3_basis_0",
+      "t3_basis_1",
+      "t3_basis_2",
+      "t3_basis_3",
+      "t3_basis_7",
+      "r17_target_action_residual",
+      "matched_visible_target_equal_pc1",
+      "matched_visible_target_equal_pc2"
+    ],
+    "selected_old_eight_indices": [0, 1, 2, 3, 7],
+    "minimum_equal_context_pc3_singular_value": 0.5,
+    "minimum_per_context_four_direction_coverage": 0.95,
+    "maximum_normalized_action_schedule_condition": 3.0,
+    "maximum_orthogonality_error": 1e-12,
+    "maximum_formal_schedule_l2": 0.015,
+    "maximum_schedule_component_abs": 0.0075,
+    "cancellation_effect_states": [39, 40, 41, 42, 43, 44],
+    "episode_horizon_steps": 50
+  },
+  "stress_composite_contract": {
+    "coefficient_source": "arithmetic_mean_of_exact_T8_scale_one_best_coefficients_over_failed_contexts_for_each_public_actuator_case",
+    "runtime_schedule_key": "public_task_start_actuator_delay_and_slew_only",
+    "delay0_slew1p0": {
+      "failed_context_count": 4,
+      "mean_coefficients": [
+        0.0,
+        1.0,
+        1.0,
+        -0.5,
+        1.0,
+        0.35239028259925,
+        1.0,
+        1.0
+      ]
+    },
+    "delay2_slew0p9": {
+      "failed_context_count": 12,
+      "mean_coefficients": [
+        -0.6666666666666666,
+        0.16666666666666666,
+        -0.5,
+        0.8333333333333334,
+        1.0,
+        1.0,
+        0.6666666666666666,
+        -0.8333333333333334
+      ]
+    },
+    "normalization": "normalize_the_measured_T7_action_schedule_composite_then_apply_one_common_factorial_amplitude",
+    "factorial_amplitude": "largest_common_amplitude_satisfying_every_plus_or_minus_stress_plus_or_minus_pc3_schedule_l2_and_component_bound",
+    "factorial_signs": [
+      [1, 1],
+      [1, -1],
+      [-1, 1],
+      [-1, -1]
+    ]
+  },
+  "prospective_real_identification_contract": {
+    "context_count": 32,
+    "extended_baseline_count": 32,
+    "standalone_pc3_signed_probe_count": 64,
+    "mixed_factorial_probe_count": 128,
+    "total_task_count": 224,
+    "maximum_current_utilization": 0.55,
+    "standalone_central_even_velocity_rmse_m_per_s": 0.004,
+    "standalone_central_even_position_rmse_m": 0.0005,
+    "standalone_central_even_Ip_rmse_A": 20.0,
+    "matched_history_odd_velocity_rmse_m_per_s": 0.006,
+    "matched_history_odd_position_rmse_m": 0.001,
+    "matched_history_odd_Ip_rmse_A": 40.0,
+    "matched_history_mixed_contrast_velocity_rmse_m_per_s": 0.006,
+    "matched_history_mixed_contrast_position_rmse_m": 0.001,
+    "matched_history_mixed_contrast_Ip_rmse_A": 40.0,
+    "selected_nine_basis_required_rank": 9,
+    "selected_nine_basis_maximum_condition": 25.0,
+    "linear_route_maximum_mixed_velocity_norm_ratio": 0.1,
+    "linear_route_maximum_pc3_main_effect_modulation_ratio": 0.1,
+    "formal_timing_changed": false
+  },
+  "scientific_scope": {
+    "development_set_only": true,
+    "preflight_executes_real_tsc": false,
+    "action_schedule_novelty_is_plant_response_validation": false,
+    "mixed_factorial_is_direct_interaction_measurement": true,
+    "a_small_measured_interaction_is_required_for_a_linear_route": true,
+    "a_large_but_history_invariant_interaction_requires_an_interaction_aware_model": true,
+    "controller_implementation_authorized_by_preflight": false,
+    "real_tsc_controller_execution_authorized_by_preflight": false,
+    "probe_trajectories_are_demonstrations": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
