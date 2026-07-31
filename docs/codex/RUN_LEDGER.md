@@ -887,3 +887,37 @@
 - Next: veto axis de-aliasing and preregister time-localized target-relevant
   transport-versus-braking response identification; no amplitude expansion,
   R3c4, BC, DAgger, or residual RL
+
+## Stage4.2R3c3T11 persistent-step action preflight
+
+- Design commit: `3798a21`
+- Numerical rank hotfix: `0b61f93`
+- Exact T9/T3 source-reference hotfix and package v2: `a9807b9`
+- Execution scope so far: offline preflight only; zero Ray, `gotsc`, TSC,
+  plant, controller, or snapshot executions
+- Frozen proposal: modes 0/1/2 at first-effect states 3 and 17, amplitude
+  `0.0075`, cancellation at states 39--44, observation through state 50,
+  exact zero net
+- Prospective real count if and only if preflight passes: 32 extended
+  baselines plus 384 signed probes, 416 total
+- Local validation: 610/610 complete tests; 14/14 empty-package focused
+  tests; 228-file hashes and LF-only checksum file
+- Installed server validation: 228/228 hashes, 14/14 focused, 610/610 full
+- Final installed validation log SHA-256:
+  `8ef47cb218cc5bc006675e567bc2734f08f4d37c11019c5119f4aed3142e57a3`
+- First installed validation failure: CRLF checksum path parsing; package
+  error only, before Python tests or preflight
+- First preflight stop: unnormalized rank calculation plus wrong same-shape
+  T7 bank; no output JSON
+- Second preflight stop: normalized rank still exposed wrong T7 bank; no
+  output JSON
+- Forensic source hashes: exact T3/T9 bank
+  `6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86`;
+  incorrect T7 bank `fef1eb299cede180c1f43d8713b3174aa9afd8724ea6af4509b06ad5d92febd8`
+- Corrected package changes no new schedule, formal gate, task count, current
+  envelope, controller, or physical-action semantics
+- Corrected v3 preflight not started: four SSH handshakes timed out after the
+  successful package-v2 validation
+- Next: when SSH returns, assert the corrected v3 output/log paths are absent,
+  run exactly one offline preflight, retain compact evidence, and authorize
+  the 416-task implementation only on an all-gates PASS

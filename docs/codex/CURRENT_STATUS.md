@@ -367,3 +367,55 @@ server audit
 Large raw and snapshot trees remain on the server. The active local work is
 the prospectively frozen interaction-aware offline model audit. R3c4 and all
 BC/DAgger/RL work remain unauthorized.
+
+## Stage4.2R3c3T11 corrected offline-preflight handoff
+
+T10's measured-corner authority failure led to a new six-direction
+persistent transport/braking step schedule. T11 remains offline-only and has
+executed zero real tasks.
+
+Current branch and commits:
+
+```text
+branch   codex/stage4_2r3c3t11-persistent-step-preflight
+design   3798a21
+rank fix 0b61f93
+source fix / installed package v2  a9807b9
+```
+
+Final validation before connectivity loss:
+
+```text
+local complete tests                                610/610
+local empty-package focused tests                     14/14
+server package hashes                                228/228
+server focused tests                                   14/14
+server complete tests                                610/610
+server validation log
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/
+  stage4_2r3c3t11_installed_validation_v4_a9807b9.log
+SHA-256
+  8ef47cb218cc5bc006675e567bc2734f08f4d37c11019c5119f4aed3142e57a3
+```
+
+The initial Linux validation failure was CRLF in `SHA256SUMS`; no Python
+test ran. Two later T11 invocations stopped with no output JSON because the
+old 12-column matrix was reconstructed from the wrong same-shape T7 bank.
+Forensics separated a numerical rank-scaling bug from the decisive source
+reference bug. Package v2 now uses the exact T3 bank authenticated by T9:
+
+```text
+6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86
+```
+
+No invocation ran Ray, `gotsc`, TSC, a controller, or any plant step. There
+is no T11 PASS/FAIL or plant conclusion yet. The corrected v3 path and log
+have not been created by Codex because four subsequent SSH connections timed
+out before authentication/session establishment.
+
+Next action after connectivity recovery is one guarded run of
+`run_stage4_2r3c3t11_preflight.sh` into
+`stage4_2r3c3t11_persistent_step_preflight_v3_20260731_a9807b9`, followed by
+server-side inspection and download of only the compact JSON/log. Do not
+implement or launch the prospective 416 real tasks unless that exact
+corrected preflight passes every frozen gate.

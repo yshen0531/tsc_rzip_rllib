@@ -870,3 +870,74 @@ must leave the 250/270 ms arrival and 350/370 ms hold contract unchanged.
 No real TSC should run until the new action schedule, current envelope,
 context matrix, symmetry/history gates, and downstream MPC-identifiability
 criterion are frozen independently of outcomes.
+
+## 18. Stage4.2R3c3T11 persistent-step preflight live handoff
+
+T11 prospectively freezes six persistent incremental-current schedules:
+
+```text
+physical modes                                      0, 1, 2
+first transport effect state                              3
+first braking effect state                               17
+positive amplitude                                   0.0075
+post-contract cancellation effect states              39..44
+observation through state                                 50
+new directions                                             6
+prospective real tasks        32 baselines + 384 probes = 416
+```
+
+The 250/270 ms arrival and 350/370 ms hold contract is unchanged. The
+preflight executes no TSC and cannot authorize a controller.
+
+Implementation and source-reference commits are:
+
+```text
+3798a21  frozen T11 design and offline preflight
+0b61f93  column-normalized numerical rank calculation
+a9807b9  exact T3/T9 eight-basis source authentication; package v2
+```
+
+Local validation passed 610/610 complete tests and 14/14 empty-package
+focused tests. Installed server package v2 passed 228/228 hashes, shell
+syntax, compile/JSON, 14/14 focused tests, and 610/610 complete tests. The
+load-bearing installed hashes are:
+
+```text
+PACKAGE_MANIFEST.json  565591d0983bc941031c9d0a797b11b6d261c2dd86d54a2585d0d0ce84e525d4
+SHA256SUMS             4db3b4ffac46e923b47021e7a4cf3a68099fdca612bf44421f47ca18d817fb73
+validation log         8ef47cb218cc5bc006675e567bc2734f08f4d37c11019c5119f4aed3142e57a3
+```
+
+Two offline invocations stopped before writing a preflight JSON. The first
+used an unnormalized numerical rank on differently scaled columns. After
+that was corrected, forensics proved the deeper cause: the launcher supplied
+the same-shape T7 controller bank instead of the exact T3 eight-basis bank
+authenticated by T6 and T9. The T7 bank made the reconstructed candidates
+overlap the old span. Package v2 now authenticates the correct T3 bank SHA
+`6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86`.
+Neither stopped invocation produced a verdict or ran Ray, `gotsc`, TSC, a
+plant step, a controller, or a new snapshot.
+
+The corrected third invocation has not started. Four fixed-endpoint SSH
+attempts timed out before session establishment after the successful server
+v2 validation. This is an external connectivity blocker, not a T11 gate,
+plant, restart, control, statistics, or reporting result.
+
+When connectivity returns, run only the guarded corrected offline identity:
+
+```text
+output
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/
+  stage4_2r3c3t11_preflights/
+  stage4_2r3c3t11_persistent_step_preflight_v3_20260731_a9807b9
+
+log
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/
+  stage4_2r3c3t11_persistent_step_preflight_v3_20260731_a9807b9.log
+```
+
+First require both paths to be absent. If the corrected preflight passes all
+frozen gates, then and only then implement the exact 416-task authentic
+identification campaign. If it fails, write the compact result and redesign
+without weakening novelty, conditioning, current, or formal timing. R3c4,
+BC, DAgger, and residual RL remain unauthorized.
