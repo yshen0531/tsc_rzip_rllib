@@ -197,7 +197,7 @@
                           "server_network_required":  false,
                           "external_source_tree_allowed":  false,
                           "local_archive_operations_allowed":  false,
-                          "root_shell_scripts_include_stage4_2r3c3t9_source_and_stage4_2r3c3t10_offline_audit":  true,
+                          "root_shell_scripts_are_stage4_2r3c3t9_source_and_stage4_2r3c3t10_offline_audit_only":  true,
                           "fixed_ray_worker_capacity":  0,
                           "maximum_live_probe_actors":  0,
                           "probe_actor_batches":  0,
