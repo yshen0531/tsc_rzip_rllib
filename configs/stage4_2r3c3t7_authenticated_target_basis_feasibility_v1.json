@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T7",
+  "identity": "authenticated_target_residual_global_eight_basis_feasibility_v1",
+  "selection_status": "candidate_exposed_by_post_T6_development_set_forensics_before_T7_formal_optimization",
+  "selected_basis_ids": [
+    "t3_basis_0",
+    "t3_basis_1",
+    "t3_basis_2",
+    "t3_basis_3",
+    "t3_basis_7",
+    "r17_target_action_residual",
+    "matched_visible_target_equal_pc1",
+    "matched_visible_target_equal_pc2"
+  ],
+  "selected_t3_basis_indices": [0, 1, 2, 3, 7],
+  "selected_t6_probe_ids": [
+    "r17_target_action_residual",
+    "matched_visible_target_equal_pc1",
+    "matched_visible_target_equal_pc2"
+  ],
+  "selection_policy": {
+    "candidate_pool_size": 11,
+    "selected_basis_count": 8,
+    "same_global_subset_for_all_contexts": true,
+    "hidden_history_label_conditioning_allowed": false,
+    "pair_label_conditioning_allowed": false,
+    "posthoc_column_scaling_allowed": false,
+    "objective_order": [
+      "maximize_rank8_condition_le25_context_count",
+      "minimize_worst_raw_velocity_condition_number",
+      "minimize_mean_raw_velocity_condition_number",
+      "lexicographically_earliest_basis_index_tuple"
+    ],
+    "expected_selected_worst_condition_number": 20.517346992921592
+  },
+  "source_contract": {
+    "t6_run_manifest_sha256": "075a5ae7be655c7749e29a9c78ee0b18a502d50eb1e7d04bb4e41e77b5e37e1c",
+    "t6_state_sha256": "d79cb700345302adfe2930f9ee28e4b72f74608ebe8a0f8c232a551a4971e363",
+    "t6_summary_sha256": "62052cd3bb737b786d4025e1632d8d59496b06bdd1d3c281341ef1c4367aa670",
+    "t6_combined_condition_sha256": "6edb45e8177cf179ce11bb82170d90e4e7e2c995cd2544411b42bd44832a9c5f",
+    "t6_server_audit_sha256": "6e04a023ddfa36216c74d669a4848261a7f4581b31ac74a4b35561f06b638dfa",
+    "t6_raw_count": 224,
+    "t6_raw_inventory_digest": "594b4333eb848c762aec557744fe2dcef9101e1cc495f8713ed8bbe2f2913f61",
+    "t6_runtime_package_digest": "86fd4d25abccce2b3714a93a30941059690b555e66ec880e381c6dd90132320e",
+    "t6_runtime_source_sha256": "a4ca94c711c1ba1cf6c99eaafafe97704162a42c42749878b3ab0867871b4f67",
+    "t3_manifest_sha256": "2c9389af0ea8d0f9538a0e4af34e604331981e77cfc0bc9c5bf353617c541b09",
+    "t3_audit_bank_sha256": "f6cf5ae8642b68fc9947eaa1c2a3d18074e4e3e5be1f422f50ffa03f1a1a1970",
+    "t3_controller_bank_sha256": "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86",
+    "t3_feasibility_sha256": "08c253f7e8b66165704ec22e7b56c7e5c1abb1a30b8738be8b1d240211729744",
+    "frozen_t3_tool_sha256": "e3c067574ebcb98dc6f30d4e29a41521c38368862fa23f01c0714e8d28dac093",
+    "frozen_formal_evaluator_sha256": "7b7b3d15b770efaa9a6d648aa69e4dfb35dbdb596c34dc8d6e38fdfba65f31b2"
+  },
+  "acceptance_gate": {
+    "context_count": 32,
+    "baseline_formal_pass_count": 16,
+    "required_rank": 8,
+    "maximum_velocity_condition_number": 25.0,
+    "condition_pass_count": 32,
+    "optimistic_formal_pass_count": 32,
+    "failed_baseline_repair_count": 16,
+    "baseline_pass_regression_count": 0,
+    "coefficient_lower_bound": -1.0,
+    "coefficient_upper_bound": 1.0,
+    "formal_timing_changed": false
+  },
+  "scientific_scope": {
+    "development_set_only": true,
+    "optimistic_linear_superposition_only": true,
+    "real_tsc_executed": false,
+    "probe_trajectories_are_demonstrations": false,
+    "independent_hidden_history_confirmation": false,
+    "independent_target_confirmation": false,
+    "continuous_parameter_validation": false,
+    "noise_or_disturbance_validation": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
