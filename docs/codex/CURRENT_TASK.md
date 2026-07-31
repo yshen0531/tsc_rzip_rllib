@@ -374,6 +374,45 @@ docs/codex/reports/
 STAGE4_2R3C3T4_AMPLITUDE_ENVELOPE_DESIGN.md
 ```
 
+## 10. Final T4 amplitude-envelope result
+
+T4 completed as a server-side offline diagnostic:
+
+```text
+profile / scale       formal pass   repairs   condition <= 25
+transport 1.25×            16/32      0/16              2/32
+transport 1.50×            16/32      0/16              2/32
+transport 2.00×            20/32      4/16              0/32
+uniform   1.25×            16/32      0/16             11/32
+uniform   1.50×            16/32      0/16             11/32
+uniform   2.00×            20/32      4/16             11/32
+```
+
+Only four slow-actuator nominal-target contexts repair at `2×`; all 12
+offset-target contexts remain failed. No coefficient exceeds its diagnostic
+bound, no TSC was run, and R3c4 remains unauthorized.
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T4_AMPLITUDE_ENVELOPE_REPORT.md
+```
+
+The active next task is to determine whether exact authenticated plus/minus
+raw trajectories support a separable even/quadratic response diagnostic:
+
+```text
+baseline + sum(c_i * odd_i + c_i^2 * even_i)
+```
+
+This must be prospectively frozen before execution, retain coefficients
+`[-1,1]` and immutable formal timing, and report that cross interactions,
+combined-action safety, and real control remain unvalidated. If exact even
+terms cannot be authenticated, or the diagnostic fails, proceed to a new
+real identification identity with genuinely new target-relevant temporal or
+actuator directions. Do not return to amplitude-only scaling.
+
 Even a pass does not validate a reliable restart MPC, independent histories,
 unseen targets, continuous actuator/plant parameters, noise, disturbance
 recovery, or long hold.
