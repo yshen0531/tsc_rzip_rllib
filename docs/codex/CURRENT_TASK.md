@@ -618,6 +618,15 @@ At scale four, the best remaining margin is `-0.0183834`, the worst is
 `-0.3347514`, and the three new coefficients remain saturated in `15/16`,
 `16/16` and `16/16` failures. Current headroom is not the bottleneck.
 
+Exact post-result enumeration of all 165 global 8-of-11 subsets found that
+T7's subset is the only one satisfying rank eight and condition <=25 in all
+32 contexts. There is no remaining condition-qualified old-subset route.
+Enumeration SHA-256:
+
+```text
+b4512c71d64e1c43ce123b59c608a5cf09e990246936645c7683fbf4d4840e88
+```
+
 Independent raw/current/formal audit SHA-256:
 
 ```text

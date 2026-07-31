@@ -1,0 +1,53 @@
+{
+  "audit_kind": "post_T8_exact_frozen_velocity_condition_qualified_global_subset_enumeration_v1",
+  "candidate_basis_count": 11,
+  "candidate_subset_count": 165,
+  "condition_qualified_subset_count": 1,
+  "condition_qualified_subsets": [
+    {
+      "indices": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10
+      ],
+      "mean_condition_number": 12.162358104587003,
+      "minimum_rank": 8,
+      "worst_condition_number": 20.517346992921592
+    }
+  ],
+  "maximum_condition_number": 25.0,
+  "maximum_condition_pass_count_over_all_subsets": 32,
+  "only_condition_qualified_subset_is_T7": true,
+  "required_context_count": 32,
+  "schema_version": 1,
+  "scientific_scope": {
+    "controller_authorized": false,
+    "formal_feasibility_reoptimization_executed": false,
+    "post_result_route_analysis": true,
+    "real_tsc_executed": false
+  },
+  "selected_basis_count": 8,
+  "source_hashes": {
+    "t3_audit_bank": "f6cf5ae8642b68fc9947eaa1c2a3d18074e4e3e5be1f422f50ffa03f1a1a1970",
+    "t6_runtime_source": "a4ca94c711c1ba1cf6c99eaafafe97704162a42c42749878b3ab0867871b4f67",
+    "t8_result": "5fba92cbe0690267d25a7b6f97f53c0d2144e9453420fc7945c05b29d45e18a1"
+  },
+  "stage": "Stage4.2R3c3T8",
+  "t6_raw_count": 224,
+  "t6_raw_inventory_digest": "594b4333eb848c762aec557744fe2dcef9101e1cc495f8713ed8bbe2f2913f61",
+  "t7_selected_indices": [
+    0,
+    1,
+    2,
+    3,
+    7,
+    8,
+    9,
+    10
+  ]
+}

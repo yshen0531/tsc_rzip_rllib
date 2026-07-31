@@ -736,6 +736,10 @@
 - Scale-four new-direction saturation: `15/16`, `16/16`, `16/16`
 - Independent evidence: 512 unique referenced raw hashes exact, all 256
   odd responses exact, formal maximum error `4.44e-15`, current error 0
+- Exact frozen-velocity enumeration: all 165 global 8-of-11 subsets checked;
+  only T7's `[0,1,2,3,7,8,9,10]` passes condition <=25 on 32/32; compact
+  enumeration SHA
+  `b4512c71d64e1c43ce123b59c608a5cf09e990246936645c7683fbf4d4840e88`
 - Result / manifest / independent audit hashes:
   `5fba92cbe0690267d25a7b6f97f53c0d2144e9453420fc7945c05b29d45e18a1`,
   `a966edd0dfde43dbf16ce76372d13340d25b7361a0ca0b7637e6032639967602`,

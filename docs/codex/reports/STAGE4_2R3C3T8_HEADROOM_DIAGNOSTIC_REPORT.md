@@ -176,6 +176,17 @@ their amplitude changes the margin but does not supply enough independent
 temporal/actuator authority. Since current use stays baseline-dominated,
 the failure is not caused by the `0.55` current gate.
 
+A post-result route enumeration then checked all `C(11,8)=165` global
+eight-direction subsets with the exact frozen velocity definition. T7's
+`[0,1,2,3,7,8,9,10]` is the only subset that satisfies rank eight and
+condition `<=25` in all 32 contexts. Thus there is no untested
+condition-qualified global subset among the existing eleven directions.
+The compact enumeration SHA-256 is:
+
+```text
+b4512c71d64e1c43ce123b59c608a5cf09e990246936645c7683fbf4d4840e88
+```
+
 All scales above one are unvalidated linear extrapolations. Their failure is
 useful as a route veto; a hypothetical pass would not have been a real
 plant or controller result.
