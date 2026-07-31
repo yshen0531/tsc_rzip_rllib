@@ -785,3 +785,41 @@
   `docs/codex/audits/stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b/`
 - Next: implement the frozen independent `32 + 64 + 128 = 224` real
   identification identity; no R3c4/BC/DAgger/RL
+
+## Stage4.2R3c3T9 real-identification attempts
+
+- Implementation commit: `15e7033`
+- Cross-process/reporting-only hotfix commit: `b489acc`
+- Frozen controller revision:
+  `pc3_mixed_interaction_probe_v42r3c3t9_v1`
+- First v1 run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_runs/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_083514_15e7033`
+- First-run result: 224/224 structured startup failures, all trajectory
+  and controller-trace lengths zero; no real TSC/plant conclusion
+- First-run cause: T9 contract installed only in the driver process while
+  fresh Ray workers instantiated the inherited T6 worker; the summarizer
+  then crashed while reshaping empty requested rows
+- First-run raw inventory digest:
+  `05052110c7575c43d176fb42c63ca7c3a6480673113da0c0d86d0f9ee1519845`
+- First-run compact forensic audit SHA-256:
+  `45dbbabc7bdcfaad3fa2f2e0e1aa587edbd42e0f9fc30db31748198aee78b205`
+- Hotfix classification: Ray-worker runtime adapter and reporting robustness
+  only; 224-task identity, controller action semantics, and formal gates
+  unchanged; new run required because v1 had no TSC trajectories
+- v1h1 validation: local and empty deployment complete tests 596/596;
+  server focused 13/13 and complete 596/596; offline 224/224 PASS with zero
+  plant advance
+- v1h1 run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_runs/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005`
+- v1h1 real log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090158.log`
+- Last verified state at `2026-07-31 17:51:54 +08:00`: PID `1618922`
+  alive, 128/224 raw complete, 96 second-batch `gotsc` active, no logged
+  fatal exception
+- First-batch health: 128/128 successful real T9 results, each with 51
+  trajectory states, 50 trace rows and 48 wire currents per state; zero
+  solver, forbidden-input, or abnormal-state rows
+- External incident: SSH became unreachable after the last check. No new
+  run, resume, stop, cleanup, postprocess, or scientific classification was
+  performed. Resume from the exact run only after connectivity, interruption
+  cause, and package compatibility are established.

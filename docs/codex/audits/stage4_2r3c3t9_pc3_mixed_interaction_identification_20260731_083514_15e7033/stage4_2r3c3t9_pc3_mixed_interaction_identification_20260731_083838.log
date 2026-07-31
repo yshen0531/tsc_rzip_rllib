@@ -1,0 +1,62 @@
+[Stage4.2R3c3T9] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T9] source_r3b=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+source_r3c3=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+source_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+source_t1=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t1_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t7_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t7_basis_feasibility/stage4_2r3c3t7_basis_feasibility_20260731_d530ed5/stage4_2r3c3t7_controller_bank_v1.json
+[Stage4.2R3c3T9] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_runs/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_083514_15e7033 command=all backend=ray resume=1 workers=128
+[Stage4.2R3c3T9] 32 baselines + 64 standalone PC3 + 128 direct mixed-factorial probes.
+[Stage4.2R3C3T9] Formal 250/270 and 350/370 ms timing is unchanged; 500 ms is identification-only.
+2026-07-31 16:39:33,887	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R3c3T6] ray_capacity requested=128 cluster_cpus=128 pending=224 actors=128 initialized_now=1
+[Stage4.2R3c3T6] maximum_actor_count=128 pending=224
+[Stage4.2R3c3T6] 8/224
+[Stage4.2R3c3T6] 16/224
+[Stage4.2R3c3T6] 24/224
+[Stage4.2R3c3T6] 32/224
+[Stage4.2R3c3T6] 40/224
+[Stage4.2R3c3T6] 48/224
+[Stage4.2R3c3T6] 56/224
+[Stage4.2R3c3T6] 64/224
+[Stage4.2R3c3T6] 72/224
+[Stage4.2R3c3T6] 80/224
+[Stage4.2R3c3T6] 88/224
+[Stage4.2R3c3T6] 96/224
+[Stage4.2R3c3T6] 104/224
+[Stage4.2R3c3T6] 112/224
+[Stage4.2R3c3T6] 120/224
+[Stage4.2R3c3T6] 128/224
+[Stage4.2R3c3T6] 136/224
+[Stage4.2R3c3T6] 144/224
+[Stage4.2R3c3T6] 152/224
+[Stage4.2R3c3T6] 160/224
+[Stage4.2R3c3T6] 168/224
+[Stage4.2R3c3T6] 176/224
+[Stage4.2R3c3T6] 184/224
+[Stage4.2R3c3T6] 192/224
+[Stage4.2R3c3T6] 200/224
+[Stage4.2R3c3T6] 208/224
+[Stage4.2R3c3T6] 216/224
+[Stage4.2R3c3T6] 224/224
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_2r3c3t9_pc3_mixed_interaction_identification.py", line 10, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t9_pc3_mixed_interaction_identification.py", line 1888, in main
+    result = execute(
+             ^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t9_pc3_mixed_interaction_identification.py", line 1751, in execute
+    summary = summarize_control(ctx, results, selected_pairs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t9_pc3_mixed_interaction_identification.py", line 979, in summarize_control
+    phase = _phase_trace_valid(result)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t9_pc3_mixed_interaction_identification.py", line 860, in _phase_trace_valid
+    checked = t6._phase_trace_valid(shadow)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t6_target_residual_new_direction_identification.py", line 1119, in _phase_trace_valid
+    requested_array = np.asarray(requested_rows, dtype=float).reshape(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: cannot reshape array of size 0 into shape (41,3)

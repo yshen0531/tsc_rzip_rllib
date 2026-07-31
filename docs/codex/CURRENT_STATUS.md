@@ -222,3 +222,93 @@ This preflight does not authorize R3c4. Reliable MPC, independent unseen
 histories/targets, continuous parameters, noise, disturbance recovery, and
 independent long hold remain unvalidated. BC, DAgger, and residual RL remain
 prohibited.
+
+## Stage4.2R3c3T9 real-identification live handoff
+
+The frozen 224-task T9 implementation is committed at `15e7033`. The
+cross-process adapter/reporting-only hotfix is committed at `b489acc`:
+
+```text
+package revision
+  r42r3c3t9_pc3_mixed_interaction_identification_v1h1
+
+controller revision
+  pc3_mixed_interaction_probe_v42r3c3t9_v1
+
+remote run
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/
+  stage4_2r3c3t9_runs/
+  stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005
+
+real launch log
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/
+  stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090158.log
+
+launch PID
+  1618922
+```
+
+The v1h1 offline audit passed all 224 specs with zero plant advance. Server
+validation passed 13/13 focused tests and 596/596 complete tests.
+
+The real run produced its first result after about 1900 seconds. At the
+first-batch boundary, 128/128 raw files decoded successfully:
+
+```text
+success / completed                                  128/128
+Stage4.2R3c3T9 identity                              128/128
+51-state trajectory / 50-row trace                   128/128
+solver failures / forbidden-input rows                     0
+abnormal trajectory rows                                   0
+wire-current count in every recorded state                  48
+```
+
+The last remotely verified live state was:
+
+```text
+time                                      2026-07-31 17:51:54 +08:00
+PID 1618922                                                   alive
+raw files                                                   128/224
+active second-batch gotsc processes                              96
+main-log fatal/exception count                                    0
+```
+
+After that check, a read-only SSH poll hung and the server reset the
+connection. Repeated direct SSH attempts then timed out before
+authentication; the configured `tsc-airgap` hostname also remained
+unresolved locally. This is an external connectivity/availability blocker,
+not a TSC, Ray, controller, restart, statistics, or reporting result.
+
+No new run, resume, stop, cleanup, postprocess, or server mutation was
+performed after connectivity was lost. When access returns:
+
+1. inspect PID `1618922`, the exact run above, raw count, full launch log,
+   state, summary, and verdict;
+2. do not create a new identity;
+3. if all 224 raw are present, run the independent server postprocessor
+   before deploying any later package;
+4. if fewer than 224 raw are present, first establish the exact interruption
+   cause and v1h1 package/source compatibility before any semantics-preserving
+   resume;
+5. keep large raw and snapshots on the server and download only compact
+   audits, manifests, state, summaries, verdicts, and logs.
+
+The earlier v1 run is separately classified by a compact forensic audit:
+
+```text
+run
+  stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_083514_15e7033
+
+raw decoded                                              224/224
+structured startup failures                             224/224
+trajectory / controller-trace lengths                         0/0
+raw inventory digest
+  05052110c7575c43d176fb42c63ca7c3a6480673113da0c0d86d0f9ee1519845
+
+compact audit SHA-256
+  45dbbabc7bdcfaad3fa2f2e0e1aa587edbd42e0f9fc30db31748198aee78b205
+```
+
+That v1 event is a Ray-worker contract installation/runtime code defect plus
+a reporting-robustness defect. It contains no real TSC trajectory and yields
+no plant, restart, or control conclusion.

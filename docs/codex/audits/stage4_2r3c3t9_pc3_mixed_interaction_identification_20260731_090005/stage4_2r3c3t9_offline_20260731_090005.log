@@ -1,0 +1,40 @@
+[Stage4.2R3c3T9] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T9] source_r3b=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+source_r3c3=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+source_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+source_t1=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t1_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t7_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t7_basis_feasibility/stage4_2r3c3t7_basis_feasibility_20260731_d530ed5/stage4_2r3c3t7_controller_bank_v1.json
+[Stage4.2R3c3T9] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_runs/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005 command=offline backend=serial resume=0 workers=128
+[Stage4.2R3c3T9] 32 baselines + 64 standalone PC3 + 128 direct mixed-factorial probes.
+[Stage4.2R3C3T9] Formal 250/270 and 350/370 ms timing is unchanged; 500 ms is identification-only.
+{
+  "finished": false,
+  "offline_probe_audit": {
+    "allow_existing_raw": false,
+    "baseline_context_count": 32,
+    "expected_probe_specs": 224,
+    "extended_baseline_spec_count": 32,
+    "finite_causal_action_count": 224,
+    "hidden_wire_invariant_action_count": 224,
+    "mixed_factorial_spec_count": 128,
+    "passed": true,
+    "payload_and_environment_horizon_exact_count": 224,
+    "phase": "offline_pc3_mixed_interaction_probe_audit",
+    "plant_advance_count": 0,
+    "probe_schedule_exact_count": 224,
+    "probe_spec_count": 224,
+    "raw_count": 0,
+    "raw_directory_gate_passed": true,
+    "real_tsc_executed": false,
+    "schema_version": 1,
+    "signed_probe_spec_count": 192,
+    "stage": "Stage4.2R3c3T9",
+    "standalone_pc3_spec_count": 64
+  },
+  "phase": "offline_pc3_mixed_interaction_probe_audit",
+  "primary_pass": false,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T9"
+}
