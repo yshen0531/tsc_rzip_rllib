@@ -385,3 +385,36 @@ continuous parameters, plant error, noise, disturbance recovery, or long
 hold.
 
 BC, DAgger, and bounded residual RL remain prohibited.
+
+## 12. Post-run disposition
+
+The valid H1 campaign completed all 160 real TSC tasks in:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t2_runs/
+stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_225902
+```
+
+Independent raw recomputation certified every prospective identification gate:
+
+```text
+execution / restart / causal                       160/160
+extended baseline prefix exact                       32/32
+central symmetry                                     64/64
+matched hidden history                               32/32
+transport condition                                  32/32
+combined six-basis condition                         32/32
+maximum combined condition                        22.893801
+maximum current utilization                         0.3904
+```
+
+The formal tracking diagnostic was 70/160, exactly as a non-acceptance
+diagnostic under this prospective design. The result is therefore an
+identification pass, not a real-control pass.
+
+The complete forensic report and compact audit are:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T2_FORENSIC_REPORT.md
+docs/codex/audits/stage4_2r3c3t2_result_20260730_225902/
+```

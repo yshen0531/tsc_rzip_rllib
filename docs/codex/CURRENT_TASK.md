@@ -1,4 +1,4 @@
-# CURRENT_TASK.md — Stage4.2R3c3T2 held-transport identification
+# CURRENT_TASK.md — post-T2 six-basis optimistic feasibility
 
 ## 1. Terminology and certified checkpoint
 
@@ -86,9 +86,9 @@ Full report:
 docs/codex/reports/STAGE4_2R3C3T1_FORENSIC_REPORT.md
 ```
 
-## 3. Active task
+## 3. Final Stage4.2R3c3T2 result
 
-Implement Stage4.2R3c3T2 as a new independent identity:
+Stage4.2R3c3T2 was executed as a new independent identity:
 
 ```text
 purpose
@@ -130,10 +130,54 @@ The first v2 execution attempt is preserved at run
 `stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_222433`.
 Its 11/11 saved raw files are structured runtime failures caused by an
 inherited 35/37-step episode limit; zero trajectories succeeded. This is not
-a scientific T2 result. Package v2h1 restores the preregistered 50-step
+a scientific T2 result. Package v2h1 restored the preregistered 50-step
 episode horizon and adds payload/environment horizon guards without changing
 controller or experiment semantics. The failed run must not be overwritten
-or resumed; execute v2h1 in a fresh run directory.
+or resumed.
+
+The exact valid run is:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t2_runs/
+stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_225902
+```
+
+Independent raw recomputation certified:
+
+```text
+raw / execution / exact restart / causal trace          160/160
+extended zero-probe prefix exact                          32/32
+central symmetry                                          64/64
+matched hidden history                                    32/32
+transport rank and condition                              32/32
+combined six-basis rank and condition                     32/32
+worst combined condition                              22.893801
+maximum current utilization                              0.3904
+runtime / restart / causality / solver errors                  0
+formal tracking diagnostic                               70/160
+```
+
+Load-bearing evidence:
+
+```text
+raw inventory
+  e40dbf9b531886344bd97a18590db342897570ec8f21b18a37d16c4fb528c90f
+
+server audit
+  e96f9538f5878ac745424d783e8f57c5ff41d61220b7d22ea66bfb1a08107d9c
+```
+
+Two post-run reporting/resume bugs were repaired without rerunning TSC or
+changing raw/controller semantics: the 50-step result is copied and truncated
+to the frozen 35/37-step evaluator, and completed-run resume no longer treats
+authenticated existing raw as a failed first-run empty-directory gate.
+Package v2h2 contains these normal-source fixes and passed 549/549 tests.
+
+Full report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T2_FORENSIC_REPORT.md
+```
 
 ## 4. Formal timing remains immutable
 
@@ -218,11 +262,11 @@ improve the controller-use condition matrix.
 
 Formal tracking of signed probes is diagnostic-only.
 
-## 8. Server result loop
+## 8. Completed server result loop
 
-Run exactly one new 160-task T2 identity after validation. Monitor its exact PID,
-run directory, log, state, and raw task count. Postprocess all raw and
-snapshots on the server. Download compact audit JSON and logs only.
+The valid 160-task identity is complete. All raw and snapshots remain on the
+server. Only compact audit JSON, state, manifest, config, summary, verdict,
+and logs were downloaded.
 
 Always distinguish:
 
@@ -234,10 +278,9 @@ Always distinguish:
 - identification-design failure;
 - real plant-restart or closed-loop control failure.
 
-## 9. Advancement
+## 9. Active task and advancement gate
 
-If T2 identification passes, build a new combined bank on the server and
-require:
+Build a new authenticated combined bank on the server and require:
 
 ```text
 six-basis optimistic formal feasibility                 32/32
@@ -246,7 +289,14 @@ baseline pass regression                                      0
 formal timing unchanged                                      yes
 ```
 
-If this fails, do not implement or launch R3c4.
+This is an offline/server-side audit stage, not a real TSC campaign. It must
+authenticate the exact R3c3 and T2 inventories, regenerate the six response
+bases without using report verdicts as evidence, and emit a compact audit with
+per-context coefficients and formal metrics.
+
+If this fails, do not implement or launch R3c4. If it passes 32/32 with no
+route choice, prospectively freeze and implement R3c4 as a new independent
+controller identity, then complete the local-server-download-analysis loop.
 
 Even a pass does not validate a reliable restart MPC, independent histories,
 unseen targets, continuous actuator/plant parameters, noise, disturbance

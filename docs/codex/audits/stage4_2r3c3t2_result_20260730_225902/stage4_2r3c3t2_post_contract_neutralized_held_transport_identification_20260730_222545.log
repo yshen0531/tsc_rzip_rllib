@@ -1,0 +1,74 @@
+[Stage4.2R3c3T2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T2] source_r3b=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+source_r3c3=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+source_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+source_t1=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t1_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+[Stage4.2R3c3T2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t2_runs/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_222433 command=all backend=ray resume=1 workers=128
+[Stage4.2R3c3T2] 32 extended baselines + 128 signed probes; first neutralizing physical effect is state 39.
+[Stage4.2R3c3T2] Formal 250/270 and 350/370 ms timing is unchanged; 500 ms is identification-only.
+2026-07-31 06:26:31,713	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R3c3T2] ray_capacity requested=128 cluster_cpus=128 pending=160 actors=128 initialized_now=1
+[Stage4.2R3c3T2] maximum_actor_count=128 pending=160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] 8/160
+*** SIGTERM received at time=1785451776 on cpu 103 ***
+PC: @     0x7f3915cfcde2  (unknown)  pthread_cond_timedwait@@GLIBC_2.3.2
+    @     0x7f3915d00630  (unknown)  (unknown)
+    @     0x7f37b239e987       1328  ray::core::CoreWorkerMemoryStore::GetImpl()
+    @     0x7f37b239fbed       1360  ray::core::CoreWorkerMemoryStore::Wait()
+    @     0x7f37b223decb       1776  ray::core::CoreWorker::Wait()
+    @     0x7f37b2165c6f        352  __pyx_pw_3ray_7_raylet_10CoreWorker_53wait()
+    @           0x5158b4  (unknown)  PyObject_Vectorcall
+    @     0x7f37b357b9c0  (unknown)  (unknown)
+[2026-07-31 06:49:36,833 E 1458105 1458105] logging.cc:474: *** SIGTERM received at time=1785451776 on cpu 103 ***
+[2026-07-31 06:49:36,833 E 1458105 1458105] logging.cc:474: PC: @     0x7f3915cfcde2  (unknown)  pthread_cond_timedwait@@GLIBC_2.3.2
+[2026-07-31 06:49:36,837 E 1458105 1458105] logging.cc:474:     @     0x7f3915d00630  (unknown)  (unknown)
+[2026-07-31 06:49:36,837 E 1458105 1458105] logging.cc:474:     @     0x7f37b239e987       1328  ray::core::CoreWorkerMemoryStore::GetImpl()
+[2026-07-31 06:49:36,837 E 1458105 1458105] logging.cc:474:     @     0x7f37b239fbed       1360  ray::core::CoreWorkerMemoryStore::Wait()
+[2026-07-31 06:49:36,837 E 1458105 1458105] logging.cc:474:     @     0x7f37b223decb       1776  ray::core::CoreWorker::Wait()
+[2026-07-31 06:49:36,837 E 1458105 1458105] logging.cc:474:     @     0x7f37b2165c6f        352  __pyx_pw_3ray_7_raylet_10CoreWorker_53wait()
+[2026-07-31 06:49:36,837 E 1458105 1458105] logging.cc:474:     @           0x5158b4  (unknown)  PyObject_Vectorcall
+[2026-07-31 06:49:36,840 E 1458105 1458105] logging.cc:474:     @     0x7f37b357b9c0  (unknown)  (unknown)

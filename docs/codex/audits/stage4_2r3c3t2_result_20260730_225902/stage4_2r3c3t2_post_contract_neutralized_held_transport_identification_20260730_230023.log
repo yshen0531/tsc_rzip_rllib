@@ -1,0 +1,139 @@
+[Stage4.2R3c3T2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T2] source_r3b=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+source_r3c3=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+source_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+source_t1=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t1_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+[Stage4.2R3c3T2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t2_runs/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_225902 command=all backend=ray resume=1 workers=128
+[Stage4.2R3c3T2] 32 extended baselines + 128 signed probes; first neutralizing physical effect is state 39.
+[Stage4.2R3c3T2] Formal 250/270 and 350/370 ms timing is unchanged; 500 ms is identification-only.
+2026-07-31 07:01:08,237	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R3c3T2] ray_capacity requested=128 cluster_cpus=128 pending=160 actors=128 initialized_now=1
+[Stage4.2R3c3T2] maximum_actor_count=128 pending=160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 0/160
+[Stage4.2R3c3T2] waiting 1/160
+[Stage4.2R3c3T2] waiting 2/160
+[Stage4.2R3c3T2] waiting 2/160
+[Stage4.2R3c3T2] 8/160
+[Stage4.2R3c3T2] 16/160
+[Stage4.2R3c3T2] 24/160
+[Stage4.2R3c3T2] 32/160
+[Stage4.2R3c3T2] 40/160
+[Stage4.2R3c3T2] 48/160
+[Stage4.2R3c3T2] 56/160
+[Stage4.2R3c3T2] 64/160
+[Stage4.2R3c3T2] 72/160
+[Stage4.2R3c3T2] 80/160
+[Stage4.2R3c3T2] 88/160
+[Stage4.2R3c3T2] 96/160
+[Stage4.2R3c3T2] 104/160
+[Stage4.2R3c3T2] 112/160
+[Stage4.2R3c3T2] 120/160
+[Stage4.2R3c3T2] 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] waiting 128/160
+[Stage4.2R3c3T2] 136/160
+[Stage4.2R3c3T2] 144/160
+[Stage4.2R3c3T2] 152/160
+[Stage4.2R3c3T2] 160/160
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification.py", line 10, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification.py", line 2559, in main
+    result = execute(
+             ^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification.py", line 2424, in execute
+    summary = summarize_control(ctx, results, selected_pairs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification.py", line 1430, in summarize_control
+    base = t1.r3b._control_row(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3b_confirmatory_hidden_history_initial_state.py", line 2711, in _control_row
+    formal = r1.r8.tracking_metrics(
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_1r8_trusted_batch_calibration_queue_tail_closure.py", line 1560, in tracking_metrics
+    raise ValueError(f"unexpected R8 queue-tail horizon {horizon}; expected {expected_horizon}")
+ValueError: unexpected R8 queue-tail horizon 50; expected 35

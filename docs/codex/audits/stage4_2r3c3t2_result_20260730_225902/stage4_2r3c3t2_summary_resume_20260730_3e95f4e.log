@@ -1,0 +1,17 @@
+{"summary_hotfix_preflight": {"controller_semantics_changed": false, "formal_prefix_only": true, "manifest_sha256": "e1ebc16282fec2cd426a2f3f05f3a8b61be39546d3bf481acb7eea3f9370ed33", "pending_real_tsc_tasks": 0, "raw_count": 160, "raw_files_modified": false, "raw_inventory_digest": "e40dbf9b531886344bd97a18590db342897570ec8f21b18a37d16c4fb528c90f", "run_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t2_runs/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_20260730_225902", "runtime_package_fingerprint_digest": "5544b0fe4bc50e03d4dc83183f846c9315db353dcb17c7179371f8fe1b046011", "state_sha256_before": "bb8dc84091a3691692aa65a3f1e085a0d6ad93619112ddd3897ca9c83dceddca", "wrapper_path": "/home/yangshen0711/tsc_software/stage4_2r3c3t2_summary_hotfix_3e95f4e/stage4_2r3c3t2_summary_resume_hotfix.py", "wrapper_sha256": "8e9815f71b7df328bb5afd0506bfef7b5a15f91f346eb77d65da112b85e093c4"}}
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_software/stage4_2r3c3t2_summary_hotfix_3e95f4e/stage4_2r3c3t2_summary_resume_hotfix.py", line 192, in <module>
+    main()
+  File "/home/yangshen0711/tsc_software/stage4_2r3c3t2_summary_hotfix_3e95f4e/stage4_2r3c3t2_summary_resume_hotfix.py", line 186, in main
+    runpy.run_path(str(target), run_name="__main__")
+  File "<frozen runpy>", line 286, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification.py", line 10, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification.py", line 2559, in main
+    result = execute(
+             ^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification.py", line 2396, in execute
+    raise RuntimeError(
+RuntimeError: Stage4.2R3c3T2 offline gate failed; no real TSC started
