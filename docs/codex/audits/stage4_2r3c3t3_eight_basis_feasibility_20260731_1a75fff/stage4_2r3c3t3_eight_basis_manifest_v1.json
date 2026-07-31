@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T3",
+  "provenance_digest": "a536183fc8e192fafc8c28bdc9897ecf3acb5dc9f0c5ed6257f236e2e8c03935",
+  "outputs": [
+    {
+      "path": "stage4_2r3c3t3_eight_basis_audit_bank_v1.json",
+      "size_bytes": 4881221,
+      "sha256": "f6cf5ae8642b68fc9947eaa1c2a3d18074e4e3e5be1f422f50ffa03f1a1a1970"
+    },
+    {
+      "path": "stage4_2r3c3t3_eight_basis_controller_bank_v1.json",
+      "size_bytes": 2551396,
+      "sha256": "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86"
+    },
+    {
+      "path": "stage4_2r3c3t3_eight_basis_feasibility_v1.json",
+      "size_bytes": 20451,
+      "sha256": "08c253f7e8b66165704ec22e7b56c7e5c1abb1a30b8738be8b1d240211729744"
+    }
+  ],
+  "all_preregistered_gates_pass": false
+}
