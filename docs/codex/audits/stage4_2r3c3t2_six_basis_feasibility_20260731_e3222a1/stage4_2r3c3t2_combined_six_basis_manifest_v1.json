@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T2_six_basis_feasibility",
+  "provenance_digest": "56f7f911d6218a31cb045ae263c8adb814e6a2424ef7a17a9fe23d2501108c9f",
+  "outputs": [
+    {
+      "path": "stage4_2r3c3t2_combined_six_basis_audit_bank_v1.json",
+      "size_bytes": 4171673,
+      "sha256": "0ef668da87d97012c101245556ee268b00cac535011b6025aa3fecc82bbb6081"
+    },
+    {
+      "path": "stage4_2r3c3t2_combined_six_basis_controller_bank_v1.json",
+      "size_bytes": 1863036,
+      "sha256": "81e3c309d9055ba23587f4162641692680464d465f68342a845184e03b53b2fe"
+    },
+    {
+      "path": "stage4_2r3c3t2_six_basis_optimistic_feasibility_v1.json",
+      "size_bytes": 40664,
+      "sha256": "1c74a6c1ef05ff447eb1030f7a7ef1e13390eacfc74e795a556899405c95eacb"
+    }
+  ],
+  "all_preregistered_gates_pass": false
+}

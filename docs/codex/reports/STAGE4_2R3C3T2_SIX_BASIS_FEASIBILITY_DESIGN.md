@@ -160,3 +160,23 @@ design, implementation, full validation, and server preflight are complete.
 
 BC, DAgger, and bounded residual RL remain prohibited.
 
+## Post-run disposition
+
+The exact frozen audit completed without starting TSC:
+
+```text
+condition pass                                      32/32
+maximum condition                               22.893801
+optimistic formal pass                              16/32
+failed baseline repair                               0/16
+baseline-pass regression                             0/16
+all preregistered gates pass                           false
+```
+
+Therefore this design is frozen as a pre-execution failure and R3c4 remains
+unauthorized. See:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T2_SIX_BASIS_FEASIBILITY_REPORT.md
+```
+

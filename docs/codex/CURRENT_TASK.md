@@ -278,21 +278,43 @@ Always distinguish:
 - identification-design failure;
 - real plant-restart or closed-loop control failure.
 
-## 9. Active task and advancement gate
+## 9. Failed six-basis gate and active complementarity audit
 
-Build a new authenticated combined bank on the server and require:
+The authenticated post-T2 six-basis bank was built on the server. The frozen
+gate result is:
 
 ```text
-six-basis optimistic formal feasibility                 32/32
+condition pass                                      32/32
+maximum condition                               22.893801
+optimistic formal pass                              16/32
+failed baseline repair                               0/16
+baseline-pass regression                             0/16
+```
+
+This is a pre-execution design failure. R3c4 must not be implemented or
+launched.
+
+The active task is a new read-only eight-basis complementarity audit:
+
+```text
+R3c3 local four
++ T1 long-separation two
++ T2 held-transport two
+```
+
+It must retain the unchanged gate:
+
+```text
+eight-basis optimistic formal feasibility               32/32
 coefficients                                             [-1,1]
 baseline pass regression                                      0
 formal timing unchanged                                      yes
 ```
 
-This is an offline/server-side audit stage, not a real TSC campaign. It must
-authenticate the exact R3c3 and T2 inventories, regenerate the six response
-bases without using report verdicts as evidence, and emit a compact audit with
-per-context coefficients and formal metrics.
+All numeric thresholds, coefficient bounds, timing, baselines, and 32
+contexts stay unchanged. It must authenticate exact R3c3, T1, and T2
+raw/bank inventories and emit compact per-context evidence. It is not a real
+TSC campaign.
 
 If this fails, do not implement or launch R3c4. If it passes 32/32 with no
 route choice, prospectively freeze and implement R3c4 as a new independent
