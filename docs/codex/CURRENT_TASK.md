@@ -348,6 +348,32 @@ discrimination:
 Do not relax or reinterpret the failed T3 gate. A diagnostic extrapolation
 cannot authorize R3c4 or a real TSC controller run.
 
+The first route discriminator is frozen as Stage4.2R3c3T4:
+
+```text
+profiles
+  transport-only coefficient expansion
+  uniform eight-basis coefficient expansion
+
+scales
+  1.25, 1.50, 2.00
+
+execution
+  server-side authenticated offline postprocessing only
+  no Ray, gotsc, TSC, trajectory, or snapshot creation
+
+interpretation
+  unvalidated linear amplitude requirement only
+  never an R3c4 authorization
+```
+
+Prospective design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T4_AMPLITUDE_ENVELOPE_DESIGN.md
+```
+
 Even a pass does not validate a reliable restart MPC, independent histories,
 unseen targets, continuous actuator/plant parameters, noise, disturbance
 recovery, or long hold.
