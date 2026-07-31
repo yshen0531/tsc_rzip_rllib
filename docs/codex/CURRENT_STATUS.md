@@ -419,3 +419,17 @@ Next action after connectivity recovery is one guarded run of
 server-side inspection and download of only the compact JSON/log. Do not
 implement or launch the prospective 416 real tasks unless that exact
 corrected preflight passes every frozen gate.
+
+## Stage4.2R3c3T11 preflight final resolution
+
+Connectivity recovered. The guarded corrected v3 paths were absent, and one
+offline preflight completed successfully. Both actuator cases passed rank,
+conditioning, novelty, bound, and zero-net gates. Maximum condition was
+`3.1459620743`; minimum novelty residual was `0.7726912050`.
+
+The compact JSON SHA-256 is
+`a449fd5447bd174b5fa067f464c651bc5a1d3e146bae7f67d22535eed076dfbd`.
+No real TSC, Ray, `gotsc`, controller, or snapshot was executed.
+
+The active work is the independently implemented 416-task real
+identification identity. R3c4 and all BC/DAgger/RL work remain prohibited.

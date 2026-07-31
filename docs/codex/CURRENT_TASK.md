@@ -941,3 +941,30 @@ frozen gates, then and only then implement the exact 416-task authentic
 identification campaign. If it fails, write the compact result and redesign
 without weakening novelty, conditioning, current, or formal timing. R3c4,
 BC, DAgger, and residual RL remain unauthorized.
+
+## 19. Final corrected T11 preflight result
+
+SSH recovered and both guarded v3 paths were absent. The corrected offline
+preflight then completed normally and passed all frozen gates:
+
+```text
+actuator cases                                             2/2
+existing / new / augmented rank                       12 / 6 / 18
+maximum augmented normalized condition              3.1459621
+minimum novelty residual                            0.7726912
+bounded and exact zero net                                2/2
+real TSC / Ray / gotsc executions                         0/0/0
+```
+
+Exact compact hashes:
+
+```text
+JSON  a449fd5447bd174b5fa067f464c651bc5a1d3e146bae7f67d22535eed076dfbd
+log   aec6db4f4c35436825b66181adb888dc0b9b1622c6aaf2c6c0886ca2eb009050
+```
+
+This is an action-design PASS only. The active task is now to implement the
+exact preregistered 416-task authentic persistent-step identification and
+complete the local-package-server-raw-audit loop. It must not change the six
+schedules, 32 contexts, symmetry/history/current/rank/condition gates, or
+formal timing. It does not authorize R3c4, BC, DAgger, or residual RL.

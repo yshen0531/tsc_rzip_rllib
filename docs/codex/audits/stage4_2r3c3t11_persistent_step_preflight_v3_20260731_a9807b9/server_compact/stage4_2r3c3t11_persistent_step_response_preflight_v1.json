@@ -1,0 +1,1731 @@
+{
+  "actuator_cases": [
+    {
+      "augmented_schedule_normalized_condition": 3.1459620742680676,
+      "augmented_schedule_rank": 18,
+      "bounded_and_zero_net": true,
+      "delay_steps": 0,
+      "effective_formal_issue_count": 35,
+      "existing_T9_reproduction_error": 1.3322676295501878e-15,
+      "existing_schedule_normalized_condition": 2.5510604233733027,
+      "existing_schedule_rank": 12,
+      "formal_hold_step": 35,
+      "maximum_new_column_residual_norm_outside_existing_span": 0.99473815568266,
+      "minimum_new_column_residual_norm_outside_existing_span": 0.7726912050226369,
+      "new_schedule_rank": 6,
+      "passed": true,
+      "probe_schedules": [
+        {
+          "cancellation_issue_schedule": [
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 3,
+          "formal_issue_schedule": [
+            [
+              2,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 0,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              2,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_transport_step_mode0",
+          "requested_full_net": [
+            -1.3010426069826053e-18,
+            0.0,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.877361550691708
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 3,
+          "formal_issue_schedule": [
+            [
+              2,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 1,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              2,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_transport_step_mode1",
+          "requested_full_net": [
+            0.0,
+            -1.3010426069826053e-18,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.7726912050226369
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 3,
+          "formal_issue_schedule": [
+            [
+              2,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009826,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 2,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              2,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "probe_id": "persistent_transport_step_mode2",
+          "requested_full_net": [
+            0.0,
+            0.0,
+            -1.3010426069826053e-18
+          ],
+          "residual_norm_outside_existing_span": 0.9580433065094887
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 17,
+          "formal_issue_schedule": [
+            [
+              16,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 0,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              16,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_braking_step_mode0",
+          "requested_full_net": [
+            -1.3010426069826053e-18,
+            0.0,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.8063808687047628
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 17,
+          "formal_issue_schedule": [
+            [
+              16,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 1,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              16,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_braking_step_mode1",
+          "requested_full_net": [
+            0.0,
+            -1.3010426069826053e-18,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.80558476788207
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 17,
+          "formal_issue_schedule": [
+            [
+              16,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009826,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 2,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              16,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              42,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              43,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "probe_id": "persistent_braking_step_mode2",
+          "requested_full_net": [
+            0.0,
+            0.0,
+            -1.3010426069826053e-18
+          ],
+          "residual_norm_outside_existing_span": 0.99473815568266
+        }
+      ],
+      "slew_scale": 1.0
+    },
+    {
+      "augmented_schedule_normalized_condition": 3.090045477765618,
+      "augmented_schedule_rank": 18,
+      "bounded_and_zero_net": true,
+      "delay_steps": 2,
+      "effective_formal_issue_count": 35,
+      "existing_T9_reproduction_error": 0,
+      "existing_schedule_normalized_condition": 2.5510604233733036,
+      "existing_schedule_rank": 12,
+      "formal_hold_step": 37,
+      "maximum_new_column_residual_norm_outside_existing_span": 0.9953268278402838,
+      "minimum_new_column_residual_norm_outside_existing_span": 0.7904113901658903,
+      "new_schedule_rank": 6,
+      "passed": true,
+      "probe_schedules": [
+        {
+          "cancellation_issue_schedule": [
+            [
+              36,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 3,
+          "formal_issue_schedule": [
+            [
+              0,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 0,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              0,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              36,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_transport_step_mode0",
+          "requested_full_net": [
+            -1.3010426069826053e-18,
+            0.0,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.8500762808778349
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              36,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 3,
+          "formal_issue_schedule": [
+            [
+              0,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 1,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              0,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ],
+            [
+              36,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_transport_step_mode1",
+          "requested_full_net": [
+            0.0,
+            -1.3010426069826053e-18,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.8696244726861805
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              36,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 3,
+          "formal_issue_schedule": [
+            [
+              0,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009826,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 2,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              0,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ],
+            [
+              36,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "probe_id": "persistent_transport_step_mode2",
+          "requested_full_net": [
+            0.0,
+            0.0,
+            -1.3010426069826053e-18
+          ],
+          "residual_norm_outside_existing_span": 0.9533733570625161
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              36,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 17,
+          "formal_issue_schedule": [
+            [
+              14,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 0,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              14,
+              [
+                0.0075,
+                0.0,
+                0.0
+              ]
+            ],
+            [
+              36,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.00125,
+                -0.0,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_braking_step_mode0",
+          "requested_full_net": [
+            -1.3010426069826053e-18,
+            0.0,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.7904113901658903
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              36,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 17,
+          "formal_issue_schedule": [
+            [
+              14,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009824,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 1,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              14,
+              [
+                0.0,
+                0.0075,
+                0.0
+              ]
+            ],
+            [
+              36,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.00125,
+                -0.0
+              ]
+            ]
+          ],
+          "probe_id": "persistent_braking_step_mode1",
+          "requested_full_net": [
+            0.0,
+            -1.3010426069826053e-18,
+            0.0
+          ],
+          "residual_norm_outside_existing_span": 0.8050580279646842
+        },
+        {
+          "cancellation_issue_schedule": [
+            [
+              36,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "cancellation_max_abs_component": 0.00125,
+          "first_cancellation_effect_state": 39,
+          "first_effect_state": 17,
+          "formal_issue_schedule": [
+            [
+              14,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ]
+          ],
+          "formal_l2_norm": 0.0075,
+          "formal_max_abs_component": 0.0075,
+          "full_l2_norm": 0.008100925873009826,
+          "last_cancellation_effect_state": 44,
+          "mode_index": 2,
+          "nonzero_issue_count": 7,
+          "positive_schedule_by_task_issue_step": [
+            [
+              14,
+              [
+                0.0,
+                0.0,
+                0.0075
+              ]
+            ],
+            [
+              36,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              37,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              38,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              39,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              40,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ],
+            [
+              41,
+              [
+                -0.0,
+                -0.0,
+                -0.00125
+              ]
+            ]
+          ],
+          "probe_id": "persistent_braking_step_mode2",
+          "requested_full_net": [
+            0.0,
+            0.0,
+            -1.3010426069826053e-18
+          ],
+          "residual_norm_outside_existing_span": 0.9953268278402838
+        }
+      ],
+      "slew_scale": 0.9
+    }
+  ],
+  "all_preflight_gates_pass": true,
+  "bc_dagger_or_rl_allowed": false,
+  "controller_implementation_authorized": false,
+  "design_config_sha256": "073ac84d4d9c8c3caf9fdcb485e2cc8aeb0ae65c5c7b5aed7e65b579d440e4dd",
+  "formal_timing_contract": {
+    "ip_threshold_unchanged": true,
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "position_tolerance_m": 0.03,
+    "speed_threshold_m_per_s": 0.1,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37
+  },
+  "gotsc_executed": false,
+  "identity": "persistent_transport_braking_step_response_preflight_v1",
+  "prospective_real_identification_contract": {
+    "central_symmetry_maximum_even_ip_rmse_A": 20.0,
+    "central_symmetry_maximum_even_position_rmse_m": 0.0005,
+    "central_symmetry_maximum_even_velocity_rmse_m_per_s": 0.004,
+    "context_count": 32,
+    "extended_baseline_count": 32,
+    "formal_timing_changed": false,
+    "formal_tracking_is_identification_gate": false,
+    "matched_history_maximum_odd_ip_rmse_A": 40.0,
+    "matched_history_maximum_odd_position_rmse_m": 0.001,
+    "matched_history_maximum_odd_velocity_rmse_m_per_s": 0.006,
+    "maximum_current_utilization": 0.55,
+    "maximum_response_velocity_condition_number": 25.0,
+    "probe_basis_count": 6,
+    "probe_sign_count": 2,
+    "required_response_rank": 6,
+    "signed_probe_count": 384,
+    "total_task_count": 416
+  },
+  "ray_executed": false,
+  "real_identification_implementation_authorized": true,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "scientific_scope": {
+    "action_schedule_novelty_is_plant_response_validation": false,
+    "bc_dagger_or_rl_allowed": false,
+    "controller_implementation_authorized_by_preflight": false,
+    "development_set_only": true,
+    "independent_hidden_history_confirmation": false,
+    "persistent_step_linearization_is_global_nonlinear_validation": false,
+    "preflight_executes_real_tsc": false,
+    "probe_trajectories_are_demonstrations": false,
+    "real_tsc_controller_execution_authorized_by_preflight": false
+  },
+  "source_hashes": {
+    "t10_audit": "8c15b5339a10d45987839a28d57aa3294e765a2ee0175b6ce1247a2229d0f1a0",
+    "t10_feasibility": "9d792677e9bccfea4159ee31f9132e24b9ffba1192694696528af9a4e6b52aa3",
+    "t10_manifest": "1bed61bc20f47545fdfcaf9acf665623aae985edfa2414cb6f3af00d9787a834",
+    "t3_eight_basis_controller_bank": "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86",
+    "t6_preflight": "94ad5216c147a71cb5dbb907f3451f7c29d83c75394d778e1c11e3fb4112ffa7",
+    "t6_preflight_tool": "c3b0f53567f467ec64e9f5110a0cc5a8620382ed994bbdfb138db9c4a2c940ea",
+    "t9_preflight": "9a37168cce679df7deeb242bceb996c11f41bf9e589459e27386ece45f41e560"
+  },
+  "stage": "Stage4.2R3c3T11"
+}

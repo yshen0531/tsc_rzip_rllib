@@ -921,3 +921,15 @@
 - Next: when SSH returns, assert the corrected v3 output/log paths are absent,
   run exactly one offline preflight, retain compact evidence, and authorize
   the 416-task implementation only on an all-gates PASS
+- Connectivity recovered; corrected v3 paths were absent and the one guarded
+  offline preflight passed 2/2 actuator cases
+- Corrected preflight JSON SHA-256:
+  `a449fd5447bd174b5fa067f464c651bc5a1d3e146bae7f67d22535eed076dfbd`
+- Corrected preflight log SHA-256:
+  `aec6db4f4c35436825b66181adb888dc0b9b1622c6aaf2c6c0886ca2eb009050`
+- Existing/new/augmented ranks: `12/6/18`; maximum condition
+  `3.1459620743`; minimum novelty residual `0.7726912050`
+- Classification: clean offline action-design PASS; no plant, restart,
+  hidden-history, controller, or real-MPC conclusion
+- Next: implement and validate the exact frozen 416-task real identification
+  identity; do not change its schedule or gates and do not authorize R3c4
