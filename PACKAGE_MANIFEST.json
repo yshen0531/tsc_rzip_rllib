@@ -184,7 +184,7 @@
                           "large_raw_postprocess_on_server":  true,
                           "compact_audits_only_downloaded":  true
                       },
-    "declared_file_count":  190,
+    "declared_file_count":  191,
     "file_inventory":  [
                            "AGENTS.md",
                            "PACKAGE_MANIFEST.json",
