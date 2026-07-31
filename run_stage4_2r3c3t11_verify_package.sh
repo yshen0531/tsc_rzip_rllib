@@ -14,7 +14,7 @@ expected={
  'stage':'Stage4.2R3c3T11',
  'run_name':'stage4_2r3c3t11_persistent_step_response_preflight',
  'controller_revision':'no_controller_offline_preflight_v1',
- 'package_revision':'r42r3c3t11_persistent_step_preflight_v1'}
+ 'package_revision':'r42r3c3t11_persistent_step_preflight_v2'}
 for key,value in expected.items():
     if m.get(key)!=value: raise SystemExit(f'PACKAGE_MANIFEST {key} mismatch')
 listed=m['file_inventory']

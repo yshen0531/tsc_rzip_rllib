@@ -41,7 +41,7 @@ hold. Compensation begins only after both formal hold endpoints.
 
 ## Frozen offline gates
 
-The preflight must authenticate the exact T6, T7, T9, and T10 chain. It must
+The preflight must authenticate the exact T3, T6, T9, and T10 chain. It must
 reconstruct the old 12-column action schedule matrix exactly, then require in
 both public actuator cases:
 
@@ -51,6 +51,14 @@ both public actuator cases:
 - every new normalized column has residual norm at least 0.25 outside the
   old 12-column span;
 - all issue/effect states, amplitudes, zero-net sums, and bounds are exact.
+
+The old eight columns are read from the T3 eight-basis bank with SHA-256
+`6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86`,
+which is the exact bank authenticated by the frozen T6 and T9 preflights.
+Two initial T11 invocations stopped before producing an output because the
+launcher incorrectly supplied the same-shape T7 controller bank. Correcting
+that source reference changes no new schedule, gate, task count, or formal
+timing term.
 
 If the preflight passes, the prospective real identity is fixed at 32 fresh
 extended baselines plus `32 x 6 x 2 = 384` signed probes, 416 real rollouts

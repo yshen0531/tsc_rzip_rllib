@@ -64,6 +64,7 @@ def _authenticate(path: Path, expected: str, label: str) -> Mapping[str, Any]:
 
 
 def _validate_design(cfg: Mapping[str, Any]) -> None:
+    source = cfg["source_contract"]
     step = cfg["persistent_step_contract"]
     gate = cfg["action_preflight_gate"]
     real = cfg["prospective_real_identification_contract"]
@@ -73,6 +74,8 @@ def _validate_design(cfg: Mapping[str, Any]) -> None:
         int(cfg.get("schema_version", -1)) != 1
         or cfg.get("stage") != STAGE
         or cfg.get("identity") != IDENTITY
+        or source["t3_eight_basis_controller_bank_sha256"]
+        != "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86"
         or list(map(int, step["mode_indices"])) != [0, 1, 2]
         or int(step["transport_first_effect_state"]) != 3
         or int(step["braking_first_effect_state"]) != 17
@@ -220,8 +223,12 @@ def build_preflight(args: argparse.Namespace) -> dict[str, Any]:
     t10_manifest = _authenticate(args.t10_manifest.resolve(), str(source["t10_manifest_sha256"]), "T10 manifest")
     t10_audit = _authenticate(args.t10_audit.resolve(), str(source["t10_audit_sha256"]), "T10 audit")
     t10_feasibility = _authenticate(args.t10_feasibility.resolve(), str(source["t10_feasibility_sha256"]), "T10 feasibility")
-    bank_path = args.t7_controller_bank.resolve()
-    bank = _authenticate(bank_path, str(source["t7_controller_bank_sha256"]), "T7 controller bank")
+    bank_path = args.eight_basis_bank.resolve()
+    bank = _authenticate(
+        bank_path,
+        str(source["t3_eight_basis_controller_bank_sha256"]),
+        "T3 eight-basis controller bank",
+    )
     failed_baseline_rows = [
         row
         for row in t10_feasibility["context_rows"]
@@ -365,7 +372,7 @@ def build_preflight(args: argparse.Namespace) -> dict[str, Any]:
         "source_hashes": {
             "t6_preflight_tool": _sha256(T6_TOOL_PATH),
             "t6_preflight": _sha256(args.t6_preflight.resolve()),
-            "t7_controller_bank": _sha256(bank_path),
+            "t3_eight_basis_controller_bank": _sha256(bank_path),
             "t9_preflight": _sha256(args.t9_preflight.resolve()),
             "t10_manifest": _sha256(args.t10_manifest.resolve()),
             "t10_audit": _sha256(args.t10_audit.resolve()),
@@ -409,7 +416,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True, type=Path)
     parser.add_argument("--t6-preflight", required=True, type=Path)
-    parser.add_argument("--t7-controller-bank", required=True, type=Path)
+    parser.add_argument("--eight-basis-bank", required=True, type=Path)
     parser.add_argument("--t9-preflight", required=True, type=Path)
     parser.add_argument("--t10-manifest", required=True, type=Path)
     parser.add_argument("--t10-audit", required=True, type=Path)

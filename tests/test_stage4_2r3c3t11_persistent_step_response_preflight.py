@@ -39,6 +39,10 @@ class Stage42R3C3T11PreflightTests(unittest.TestCase):
         }
         for path, field in checks.items():
             self.assertEqual(T11._sha256(path), source[field])
+        self.assertEqual(
+            source["t3_eight_basis_controller_bank_sha256"],
+            "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86",
+        )
 
     def test_frozen_design_rejects_scientific_weakening(self) -> None:
         mutations = [
@@ -115,6 +119,12 @@ class Stage42R3C3T11PreflightTests(unittest.TestCase):
         self.assertIn("250/270 ms arrival", text)
         self.assertIn("350/370 ms hold", text)
         self.assertIn("R3c4, BC, DAgger, and residual RL", text)
+        self.assertIn("Two initial T11 invocations stopped", text)
+
+    def test_launcher_uses_the_exact_t9_eight_basis_source(self) -> None:
+        text = (ROOT / "run_stage4_2r3c3t11_preflight.sh").read_text(encoding="utf-8")
+        self.assertIn("stage4_2r3c3t3_eight_basis_controller_bank_v1.json", text)
+        self.assertNotIn("stage4_2r3c3t7_controller_bank_v1.json", text)
 
 
 if __name__ == "__main__":

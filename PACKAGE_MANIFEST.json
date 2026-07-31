@@ -3,11 +3,11 @@
     "stage":  "Stage4.2R3c3T11",
     "run_name":  "stage4_2r3c3t11_persistent_step_response_preflight",
     "controller_revision":  "no_controller_offline_preflight_v1",
-    "package_revision":  "r42r3c3t11_persistent_step_preflight_v1",
-    "source_stage":  "Certified Stage4.2R3c3T6, T7, T9, and T10 artifacts; T11 itself is an offline action-schedule preflight with no new TSC rollout.",
+    "package_revision":  "r42r3c3t11_persistent_step_preflight_v2",
+    "source_stage":  "Certified Stage4.2R3c3T3, T6, T9, and T10 artifacts; T11 itself is an offline action-schedule preflight with no new TSC rollout.",
     "source_controller_revision":  "authenticated_visible_manifold_phase_mpc_v42r3c1",
     "source_package_revision":  "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
-    "purpose":  "Authenticate the frozen T6/T7/T9/T10 evidence chain and test whether six bounded persistent transport/braking step schedules add a full-rank, conditioned action subspace before implementing or executing any real TSC identification campaign.",
+    "purpose":  "Authenticate the frozen T3/T6/T9/T10 evidence chain and test whether six bounded persistent transport/braking step schedules add a full-rank, conditioned action subspace before implementing or executing any real TSC identification campaign.",
     "campaigns":  {
                       "offline_actuator_cases":  2,
                       "authenticated_existing_schedule_columns":  12,
@@ -22,7 +22,7 @@
     "candidate_preflight":  {
                                 "config":  "configs/stage4_2r3c3t11_persistent_step_response_preflight_v1.json",
                                 "source_t6_preflight_sha256":  "94ad5216c147a71cb5dbb907f3451f7c29d83c75394d778e1c11e3fb4112ffa7",
-                                "source_t7_controller_bank_sha256":  "fef1eb299cede180c1f43d8713b3174aa9afd8724ea6af4509b06ad5d92febd8",
+                                "source_t3_eight_basis_controller_bank_sha256":  "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86",
                                 "source_t9_preflight_sha256":  "9a37168cce679df7deeb242bceb996c11f41bf9e589459e27386ece45f41e560",
                                 "source_t10_manifest_sha256":  "1bed61bc20f47545fdfcaf9acf665623aae985edfa2414cb6f3af00d9787a834",
                                 "source_t10_audit_sha256":  "8c15b5339a10d45987839a28d57aa3294e765a2ee0175b6ce1247a2229d0f1a0",

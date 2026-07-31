@@ -4,7 +4,7 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PYTHON_BIN="${STAGE4_2R3C3T11_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
 CONFIG="${PROJECT_DIR}/configs/stage4_2r3c3t11_persistent_step_response_preflight_v1.json"
 T6_PREFLIGHT="${PROJECT_DIR}/docs/codex/audits/stage4_2r3c3t6_new_direction_preflight_20260731_428a0bd/stage4_2r3c3t6_new_direction_preflight_v1.json"
-T7_BANK="${PROJECT_DIR}/stage4_2r3c3t7_basis_feasibility/stage4_2r3c3t7_basis_feasibility_20260731_d530ed5/stage4_2r3c3t7_controller_bank_v1.json"
+EIGHT_BASIS_BANK="${PROJECT_DIR}/stage4_2r3c3t3_eight_basis_feasibility/stage4_2r3c3t3_eight_basis_feasibility_20260731_1a75fff/stage4_2r3c3t3_eight_basis_controller_bank_v1.json"
 T9_PREFLIGHT="${PROJECT_DIR}/docs/codex/audits/stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b/stage4_2r3c3t9_pc3_mixed_interaction_preflight_v1.json"
 T10_DIR="${PROJECT_DIR}/stage4_2r3c3t10_interaction_feasibility/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505"
 OUTPUT_ROOT="${PROJECT_DIR}/stage4_2r3c3t11_preflights"
@@ -22,7 +22,7 @@ exec "${PYTHON_BIN}" \
   docs/codex/audit_tools/stage4_2r3c3t11_persistent_step_response_preflight.py \
   --config "${CONFIG}" \
   --t6-preflight "${T6_PREFLIGHT}" \
-  --t7-controller-bank "${T7_BANK}" \
+  --eight-basis-bank "${EIGHT_BASIS_BANK}" \
   --t9-preflight "${T9_PREFLIGHT}" \
   --t10-manifest "${T10_DIR}/stage4_2r3c3t10_manifest_v1.json" \
   --t10-audit "${T10_DIR}/stage4_2r3c3t10_audit_v1.json" \
