@@ -413,6 +413,26 @@ terms cannot be authenticated, or the diagnostic fails, proceed to a new
 real identification identity with genuinely new target-relevant temporal or
 actuator directions. Do not return to amplitude-only scaling.
 
+The read-only availability check found:
+
+```text
+signed raw files / pairs                         512/512, 256/256
+raw success and hash failures                                  0
+odd-response maximum reproduction error                       0.0
+```
+
+T5 is now prospectively frozen with coefficients `[-1,1]`, exact formal
+timing, and all cross interactions explicitly omitted:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T5_SEPARABLE_QUADRATIC_DESIGN.md
+```
+
+It is a server-side offline route diagnostic only. Regardless of its formal
+count, it cannot repair the measured T3 odd-column condition failure or
+authorize R3c4.
+
 Even a pass does not validate a reliable restart MPC, independent histories,
 unseen targets, continuous actuator/plant parameters, noise, disturbance
 recovery, or long hold.
