@@ -823,3 +823,33 @@
   run, resume, stop, cleanup, postprocess, or scientific classification was
   performed. Resume from the exact run only after connectivity, interruption
   cause, and package compatibility are established.
+- Connectivity recovered with no intervention to the run. PID `1618922`
+  had exited, 224/224 raw and all final files were present, and no T9 or
+  `gotsc` process remained.
+- Final raw health: 224/224 strict JSON, success, unique identities, exact
+  specs, 51-state trajectories, 50-row traces; 11424/11424 states contain 48
+  wire currents; zero abnormal, solver, forbidden-input, restart, causal, or
+  runtime rows.
+- Independent postprocess: raw/manifest integrity PASS, snapshots 8/8,
+  reported summary exact, statistics/reporting error count zero.
+- Identification gates: execution 224/224, baselines 32/32, standalone
+  symmetry 32/32, PC3 history 16/16, mixed response 32/32, mixed history
+  16/16, selected rank/condition 32/32, worst condition `23.1552081`, current
+  maximum `0.3904`.
+- Linear route: 0/32. Mixed velocity ratio passes 2/32 with range
+  `0.0716381--0.3002820`; PC3 background modulation passes 0/32 with range
+  `0.1810114--1.0798643`.
+- Formal tracking: 104/224, diagnostic-only for probes; not a T9 acceptance
+  gate and not a real R3c4 result.
+- Raw inventory digest:
+  `e53f06fc772682d85144b578a915e614b1a5d24b34aea6dfa77ab35f5091eea2`
+- Server audit SHA-256:
+  `05547765ca5e1282e58b0d33e454b0a2a4dd87ee16e85146261650510ebd05f8`
+- Classification: clean real identification PASS; fixed linear/separable
+  model-route FAIL; no runtime/restart/corruption/reporting failure and no
+  real MPC conclusion.
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3T9_PC3_MIXED_INTERACTION_IDENTIFICATION_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005/`
+- Next: preregister an interaction-aware offline model using the measured
+  Walsh mixed contrast and background modulation; no R3c4/BC/DAgger/RL.

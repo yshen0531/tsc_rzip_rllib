@@ -733,3 +733,74 @@ A reproducible larger interaction must be retained in a separately validated
 interaction-aware model; it may not be discarded.
 
 R3c4, BC, DAgger, and residual RL remain unauthorized.
+
+## 16. Final T9 real-identification result
+
+The exact valid run is:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/
+stage4_2r3c3t9_runs/
+stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005
+```
+
+Package v1h1 completed all 224 authentic restart TSC probes:
+
+```text
+raw / execution / exact restart / causal trace          224/224
+extended baseline prefix exact                            32/32
+standalone PC3 central symmetry                           32/32
+PC3 matched-history response                              16/16
+mixed-factorial response                                  32/32
+mixed-contrast matched-history response                   16/16
+selected nine-basis rank / condition <=25                 32/32
+maximum selected condition                            23.1552081
+maximum current utilization                               0.3904
+runtime / restart / causal / solver / reporting errors         0
+```
+
+The independent raw and snapshot audit passed with exact reported-summary
+recomputation:
+
+```text
+raw inventory
+  e53f06fc772682d85144b578a915e614b1a5d24b34aea6dfa77ab35f5091eea2
+
+server audit
+  05547765ca5e1282e58b0d33e454b0a2a4dd87ee16e85146261650510ebd05f8
+```
+
+The identification gate passed, but the separately preregistered linear
+route failed:
+
+```text
+mixed velocity ratio <=0.10                              2/32
+PC3 background modulation <=0.10                         0/32
+both linear-route conditions                              0/32
+mixed ratio range                              0.071638--0.300282
+PC3 modulation range                           0.181011--1.079864
+```
+
+The interaction is reproducible across the matched histories and cannot be
+discarded. A fixed linear nine-column response bank is invalid for the
+combined actions measured here. This is a model-route failure, not a T9
+runtime, restart, corruption, reporting, or identification-design failure.
+
+Formal tracking passed 104/224 as a preregistered probe diagnostic only. T9
+did not run a new MPC controller, and its trajectories remain forbidden from
+expert datasets.
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T9_PC3_MIXED_INTERACTION_IDENTIFICATION_REPORT.md
+```
+
+The active next task is to prospectively freeze and execute an independent
+interaction-aware offline model audit. It must authenticate the exact T9
+chain, retain stress, PC3, stress-by-PC3 Walsh contrast, and measured PC3
+background modulation, preserve coefficients/current/formal timing, and
+require unchanged-contract optimistic feasibility before any R3c4
+implementation. It may not silently fall back to a fixed linear column,
+separable-even model, amplitude expansion, BC, DAgger, or residual RL.

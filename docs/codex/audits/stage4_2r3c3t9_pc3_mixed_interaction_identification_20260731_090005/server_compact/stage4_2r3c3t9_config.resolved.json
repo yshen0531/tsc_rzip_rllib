@@ -1,0 +1,211 @@
+{
+  "stage": "Stage4.2R3c3T9",
+  "stage_label": "Stage4.2R3c3T9",
+  "design_revision": 1,
+  "run_name": "stage4_2r3c3t9_pc3_mixed_interaction_identification",
+  "output_root": "stage4_2r3c3t9_runs",
+  "controller_revision": "pc3_mixed_interaction_probe_v42r3c3t9_v1",
+  "package_revision": "r42r3c3t9_pc3_mixed_interaction_identification_v1h1",
+  "base_stage_config": "configs/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_500ms.json",
+  "base_stage_config_sha256": "08c5845f882af8b7b5f12fe96fa8a1e792ceefa8446b0a5c80ea51b7adb7ce61",
+  "candidate_preflight": {
+    "path": "docs/codex/audits/stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b/stage4_2r3c3t9_pc3_mixed_interaction_preflight_v1.json",
+    "sha256": "9a37168cce679df7deeb242bceb996c11f41bf9e589459e27386ece45f41e560",
+    "tool_commit": "cbb970b",
+    "tool_sha256": "bfd657697132790b3ba2b3cbb92440c29f863009089d66ac638f436e7a98a0fb",
+    "required_all_preflight_gates_pass": true,
+    "required_r17_authenticated_count": 18,
+    "required_r3c1_authenticated_count": 32,
+    "required_complete_schedule_rank": 12,
+    "required_selected_schedule_rank": 9,
+    "maximum_normalized_schedule_condition": 3.0,
+    "required_first_cancellation_effect_state": 39,
+    "required_last_cancellation_effect_state": 44,
+    "required_issue_count_per_nonbaseline_probe": 41
+  },
+  "source_T7_controller_bank": {
+    "sha256": "fef1eb299cede180c1f43d8713b3174aa9afd8724ea6af4509b06ad5d92febd8",
+    "required_sample_count": 32,
+    "required_basis_count": 8,
+    "required_basis_order": [
+      "t3_basis_0",
+      "t3_basis_1",
+      "t3_basis_2",
+      "t3_basis_3",
+      "t3_basis_7",
+      "r17_target_action_residual",
+      "matched_visible_target_equal_pc1",
+      "matched_visible_target_equal_pc2"
+    ]
+  },
+  "identification_probe": {
+    "baseline_controller": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "baseline_package": "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
+    "observation_horizon_steps": 50,
+    "formal_prefix_by_slew": {
+      "1.0": 35,
+      "0.9": 37
+    },
+    "standalone_probe_id": "matched_visible_target_equal_pc3",
+    "factorial_probe_ids": [
+      "stress_plus_pc3_plus",
+      "stress_plus_pc3_minus",
+      "stress_minus_pc3_plus",
+      "stress_minus_pc3_minus"
+    ],
+    "factorial_signs": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        -1
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        -1,
+        -1
+      ]
+    ],
+    "extended_baseline_probe_id": "pc3_mixed_interaction_baseline",
+    "required_issue_count_per_nonbaseline_probe": 41,
+    "require_requested_and_applied_zero_net": true,
+    "zero_net_atol": 1e-12,
+    "maximum_formal_schedule_l2": 0.015,
+    "maximum_schedule_component_abs": 0.0075,
+    "cancellation_effect_states": [
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
+    ],
+    "maximum_current_utilization": 0.55,
+    "standalone_central_symmetry": {
+      "maximum_even_velocity_rmse_m_per_s": 0.004,
+      "maximum_even_position_rmse_m": 0.0005,
+      "maximum_even_ip_rmse_A": 20.0
+    },
+    "matched_hidden_history_pc3": {
+      "maximum_odd_velocity_rmse_m_per_s": 0.006,
+      "maximum_odd_position_rmse_m": 0.001,
+      "maximum_odd_ip_rmse_A": 40.0
+    },
+    "matched_hidden_history_mixed_contrast": {
+      "maximum_velocity_rmse_m_per_s": 0.006,
+      "maximum_position_rmse_m": 0.001,
+      "maximum_ip_rmse_A": 40.0
+    },
+    "maximum_selected_nine_velocity_condition_number": 25.0,
+    "maximum_mixed_velocity_norm_ratio_for_linear_route": 0.1,
+    "maximum_pc3_main_effect_modulation_ratio_for_linear_route": 0.1,
+    "formal_tracking_pass_required": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "pair_or_history_label_input_allowed": false,
+    "source_result_input_allowed": false,
+    "source_action_input_allowed": false,
+    "source_or_current_wire_input_allowed": false
+  },
+  "control_matrix": {
+    "targets": [
+      "nominal",
+      "RZ_p10_m10"
+    ],
+    "future_actuator_cases": [
+      {
+        "actual_delay_steps": 0,
+        "actual_slew_scale": 1.0
+      },
+      {
+        "actual_delay_steps": 2,
+        "actual_slew_scale": 0.9
+      }
+    ],
+    "history_members": [
+      "plus_first",
+      "minus_first"
+    ],
+    "extended_baseline_count_per_context": 1,
+    "standalone_pc3_sign_count": 2,
+    "mixed_factorial_count": 4,
+    "expected_standalone_signed_probe_rollouts": 64,
+    "expected_mixed_factorial_rollouts": 128,
+    "expected_nonbaseline_rollouts": 192,
+    "expected_extended_baseline_rollouts": 32,
+    "expected_rollouts_per_baseline_context": 7,
+    "expected_baseline_contexts_per_selected_pair": 8,
+    "expected_rollouts_per_selected_pair": 56,
+    "expected_selected_pairs": 4,
+    "expected_baseline_contexts": 32,
+    "expected_rollouts": 224,
+    "expected_standalone_response_groups": 32,
+    "expected_mixed_factorial_groups": 32,
+    "expected_matched_hidden_history_pc3_groups": 16,
+    "expected_matched_hidden_history_mixed_groups": 16,
+    "require_fresh_controller": true,
+    "require_fresh_tsc_process": true,
+    "forbid_future_actions": true,
+    "forbid_future_measurements": true,
+    "require_online_action_computation": true
+  },
+  "formal_timing_contract": {
+    "normal": {
+      "slew_scales": [
+        1.0,
+        1.1
+      ],
+      "arrival_deadline_step": 25,
+      "arrival_deadline_ms": 250,
+      "hold_through_step": 35,
+      "hold_through_ms": 350
+    },
+    "weak": {
+      "slew_scales": [
+        0.9
+      ],
+      "arrival_deadline_step": 27,
+      "arrival_deadline_ms": 270,
+      "hold_through_step": 37,
+      "hold_through_ms": 370
+    },
+    "arrival_streak_steps_unchanged": true,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_threshold_unchanged": true,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "parallel": {
+    "n_workers": 128,
+    "reserve_logical_cpus": 16,
+    "minimum_available_memory_gb": 72.0,
+    "ray_tmpdir": "/tmp/stage4_2r3c3t9"
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "development_set_only": true,
+  "independent_hidden_history_confirmation": false,
+  "different_initial_state_validated": false,
+  "unseen_target_validated": false,
+  "continuous_parameter_change_validated": false,
+  "plant_jacobian_error_validated": false,
+  "measurement_noise_validated": false,
+  "disturbance_recovery_validated": false,
+  "independent_long_hold_validated": false,
+  "bc_dagger_or_rl_allowed": false,
+  "next_if_identification_and_linear_route_pass": "Build an authenticated measured nine-basis response bank and require unchanged-contract optimistic feasibility 32/32 before any R3c4 implementation",
+  "next_if_identification_pass_but_linear_route_fails": "Retain the measured mixed contrast only in a separately preregistered interaction-aware model; do not discard it or execute R3c4",
+  "next_if_identification_fails": "Preserve all raw and redesign target-relevant response identification without weakening timing, symmetry, history, current, or condition gates",
+  "final_task": "reliable causal MPC expert across restart, hidden history, initial states, targets, continuous actuator parameters, plant error, noise, disturbances, and independent long hold"
+}

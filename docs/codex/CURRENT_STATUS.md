@@ -312,3 +312,47 @@ compact audit SHA-256
 That v1 event is a Ray-worker contract installation/runtime code defect plus
 a reporting-robustness defect. It contains no real TSC trajectory and yields
 no plant, restart, or control conclusion.
+
+## Stage4.2R3c3T9 final resolution
+
+The connectivity incident ended without any server intervention. The exact
+v1h1 run continued to 224/224 and produced complete summary/state/verdict
+files. PID `1618922` exited normally and no T9 or `gotsc` process remains.
+
+Independent server-side raw/snapshot postprocessing and a second strict raw
+scan found:
+
+```text
+raw strict / successful                                  224/224
+51-state trajectory / 50-row trace                       224/224
+48-wire states                                      11424/11424
+snapshot integrity                                           8/8
+runtime / restart / causality / solver / forbidden errors       0
+reported summary exact on recomputation                       yes
+```
+
+The final result is identification PASS and fixed-linear-route FAIL:
+
+```text
+standalone symmetry                                       32/32
+PC3 history                                                16/16
+mixed response                                             32/32
+mixed history                                              16/16
+nine-basis condition <=25                                  32/32
+maximum condition                                      23.155208
+mixed ratio <=0.10                                          2/32
+PC3 modulation <=0.10                                       0/32
+```
+
+Load-bearing hashes:
+
+```text
+raw inventory
+  e53f06fc772682d85144b578a915e614b1a5d24b34aea6dfa77ab35f5091eea2
+server audit
+  05547765ca5e1282e58b0d33e454b0a2a4dd87ee16e85146261650510ebd05f8
+```
+
+Large raw and snapshot trees remain on the server. The active local work is
+the prospectively frozen interaction-aware offline model audit. R3c4 and all
+BC/DAgger/RL work remain unauthorized.
