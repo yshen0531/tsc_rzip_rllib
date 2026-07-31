@@ -1,0 +1,4943 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T5",
+  "identity": "separable_even_odd_quadratic_diagnostic_v1",
+  "purpose": "route-selection diagnostic for exact per-basis even response terms with all cross interactions omitted",
+  "provenance": {
+    "stage": "Stage4.2R3c3T5",
+    "identity": "separable_even_odd_quadratic_diagnostic_v1",
+    "t3_manifest_sha256": "2c9389af0ea8d0f9538a0e4af34e604331981e77cfc0bc9c5bf353617c541b09",
+    "t3_audit_bank_sha256": "f6cf5ae8642b68fc9947eaa1c2a3d18074e4e3e5be1f422f50ffa03f1a1a1970",
+    "t3_controller_bank_sha256": "6328ef4116ea5a2ecac66d04583fb92af7830ad5ff6ea484486524cbd2021e86",
+    "t3_feasibility_sha256": "08c253f7e8b66165704ec22e7b56c7e5c1abb1a30b8738be8b1d240211729744",
+    "t3_audit_tool_sha256": "e3c067574ebcb98dc6f30d4e29a41521c38368862fa23f01c0714e8d28dac093",
+    "frozen_formal_evaluator_sha256": "7b7b3d15b770efaa9a6d648aa69e4dfb35dbdb596c34dc8d6e38fdfba65f31b2",
+    "coefficient_lower_bound": -1.0,
+    "coefficient_upper_bound": 1.0,
+    "formal_timing_changed": false
+  },
+  "provenance_digest": "ad8a07dba34722f4ff0f7541c4e01c7073808275670ad4c1d27cbbc5dbe2d52f",
+  "input_authentication": {
+    "signed_raw_file_count": 512,
+    "signed_pair_count": 256,
+    "signed_inventory_digest": "94fcd2269723b7fb974963c91264546d0ef4e07e1fa06dfcbe79f0c2bdb9fa5b",
+    "maximum_odd_reproduction_error": 0.0,
+    "maximum_signed_endpoint_reproduction_error": 0.0,
+    "t3_reproduction_context_count": 32,
+    "t3_reproduction_pass_match_count": 32,
+    "maximum_t3_margin_reproduction_error": 0.0,
+    "t3_reproduction_rows": [
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.16060573317287252,
+        "reproduced_margin": -0.16060573317287252,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.3255933166666698,
+        "reproduced_margin": -0.3255933166666698,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.004718200000000672,
+        "reproduced_margin": 0.004718200000000672,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.02847459999999935,
+        "reproduced_margin": -0.02847459999999935,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.1612887041759039,
+        "reproduced_margin": -0.1612887041759039,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.31749086666666715,
+        "reproduced_margin": -0.31749086666666715,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.004738299999998419,
+        "reproduced_margin": 0.004738299999998419,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.02846064999999598,
+        "reproduced_margin": -0.02846064999999598,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.15567084195090497,
+        "reproduced_margin": -0.15567084195090497,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.3243887333333335,
+        "reproduced_margin": -0.3243887333333335,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.005323333333331903,
+        "reproduced_margin": 0.005323333333331903,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.027159166666669066,
+        "reproduced_margin": -0.027159166666669066,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.1626637666666717,
+        "reproduced_margin": -0.1626637666666717,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.3179603666666633,
+        "reproduced_margin": -0.3179603666666633,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.004227900000000617,
+        "reproduced_margin": 0.004227900000000617,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.031239983333335664,
+        "reproduced_margin": -0.031239983333335664,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.012413308956406133,
+        "reproduced_margin": 0.012413308956406133,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.04856849999999868,
+        "reproduced_margin": -0.04856849999999868,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.09697009954940039,
+        "reproduced_margin": 0.09697009954940039,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.2234745999999982,
+        "reproduced_margin": 0.2234745999999982,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.03386863666666673,
+        "reproduced_margin": 0.03386863666666673,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.052510499999999904,
+        "reproduced_margin": -0.052510499999999904,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.10378758104765473,
+        "reproduced_margin": 0.10378758104765473,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.22812333333333268,
+        "reproduced_margin": 0.22812333333333268,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.014148986053374446,
+        "reproduced_margin": 0.014148986053374446,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.0501859833333369,
+        "reproduced_margin": -0.0501859833333369,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.10544524405844569,
+        "reproduced_margin": 0.10544524405844569,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.2248572000000013,
+        "reproduced_margin": 0.2248572000000013,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.032832263333333334,
+        "reproduced_margin": 0.032832263333333334,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "saved_pass": false,
+        "reproduced_pass": false,
+        "saved_margin": -0.053480133333328794,
+        "reproduced_margin": -0.053480133333328794,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.10281705403080599,
+        "reproduced_margin": 0.10281705403080599,
+        "absolute_margin_error": 0.0
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "saved_pass": true,
+        "reproduced_pass": true,
+        "saved_margin": 0.22747463333333462,
+        "reproduced_margin": 0.22747463333333462,
+        "absolute_margin_error": 0.0
+      }
+    ]
+  },
+  "model_contract": {
+    "formula": "baseline + sum(c_i * odd_i + c_i^2 * even_i)",
+    "basis_count": 8,
+    "coefficient_lower_bound": -1.0,
+    "coefficient_upper_bound": 1.0,
+    "single_basis_signed_endpoints_exact": true,
+    "cross_interactions_included": false,
+    "combined_action_safety_validated": false,
+    "formal_timing_changed": false
+  },
+  "even_term_metrics": {
+    "row_count": 256,
+    "maximum_even_RZ_m": 0.00043210318499999935,
+    "median_even_RZ_m": 7.66057500000139e-05,
+    "maximum_even_Ip_A": 8.118500000000495,
+    "maximum_even_speed_m_per_s": 0.00656950436878705,
+    "rows": [
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 1.4713999999860228e-05,
+        "maximum_even_Ip_A": 1.5034500000001572,
+        "maximum_even_speed_m_per_s": 0.0003008067871577718
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 1.777950000003692e-05,
+        "maximum_even_Ip_A": 1.6382999999987078,
+        "maximum_even_speed_m_per_s": 0.00025624656217102643
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 1.96280499999979e-05,
+        "maximum_even_Ip_A": 0.8540999999968335,
+        "maximum_even_speed_m_per_s": 0.00021913857059544176
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.3141200000002276e-05,
+        "maximum_even_Ip_A": 3.018100000001141,
+        "maximum_even_speed_m_per_s": 0.00055694147806482
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 3.733629999999946e-05,
+        "maximum_even_Ip_A": 2.159350000001723,
+        "maximum_even_speed_m_per_s": 0.002135721493669199
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00010908300000000981,
+        "maximum_even_Ip_A": 3.6173999999991793,
+        "maximum_even_speed_m_per_s": 0.002311225275135059
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 6.654771500000031e-05,
+        "maximum_even_Ip_A": 2.4470500000024913,
+        "maximum_even_speed_m_per_s": 0.0010235064545944404
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 9.002449999995221e-05,
+        "maximum_even_Ip_A": 3.6173999999991793,
+        "maximum_even_speed_m_per_s": 0.0021528339027660293
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 8.896505000000055e-05,
+        "maximum_even_Ip_A": 1.5405500000015309,
+        "maximum_even_speed_m_per_s": 0.0008780756605393273
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 3.092539999999949e-05,
+        "maximum_even_Ip_A": 1.7056999999986147,
+        "maximum_even_speed_m_per_s": 0.0005932351133588234
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 5.431300000000028e-05,
+        "maximum_even_Ip_A": 1.916849999997794,
+        "maximum_even_speed_m_per_s": 0.0013280791187271948
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.450195000000074e-05,
+        "maximum_even_Ip_A": 2.083699999999226,
+        "maximum_even_speed_m_per_s": 0.0017635170778070267
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 7.396385000000075e-05,
+        "maximum_even_Ip_A": 2.563799999999901,
+        "maximum_even_speed_m_per_s": 0.001393448598353664
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00012301124999999913,
+        "maximum_even_Ip_A": 3.488550000001851,
+        "maximum_even_speed_m_per_s": 0.0027841143694352635
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 3.633150000004193e-05,
+        "maximum_even_Ip_A": 3.715149999999994,
+        "maximum_even_speed_m_per_s": 0.0015538009049415513
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 6.123349999997973e-05,
+        "maximum_even_Ip_A": 2.933099999998376,
+        "maximum_even_speed_m_per_s": 0.0026714398938172857
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.0001126555500000001,
+        "maximum_even_Ip_A": 2.970949999998993,
+        "maximum_even_speed_m_per_s": 0.0009993431956750157
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 0.00023473538000000002,
+        "maximum_even_Ip_A": 4.196850000000268,
+        "maximum_even_speed_m_per_s": 0.0028052880356057718
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 1.4504200000001188e-05,
+        "maximum_even_Ip_A": 1.5693500000015774,
+        "maximum_even_speed_m_per_s": 0.00047397319291698207
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.443890999999937e-05,
+        "maximum_even_Ip_A": 2.156599999998434,
+        "maximum_even_speed_m_per_s": 0.0007776618980036554
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.0003995714250000018,
+        "maximum_even_Ip_A": 3.8140999999995984,
+        "maximum_even_speed_m_per_s": 0.002413193631376863
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00013534130000000116,
+        "maximum_even_Ip_A": 7.801400000000285,
+        "maximum_even_speed_m_per_s": 0.004168384368475433
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00011072533500000072,
+        "maximum_even_Ip_A": 2.908400000000256,
+        "maximum_even_speed_m_per_s": 0.0019990696639749827
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 8.752350000007514e-05,
+        "maximum_even_Ip_A": 7.801400000000285,
+        "maximum_even_speed_m_per_s": 0.004212172119050821
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 4.874554999999975e-05,
+        "maximum_even_Ip_A": 2.141749999998865,
+        "maximum_even_speed_m_per_s": 0.0013653772751589675
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 3.675749999998423e-05,
+        "maximum_even_Ip_A": 2.2322000000021944,
+        "maximum_even_speed_m_per_s": 0.0018946273503968923
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 6.752050000002896e-05,
+        "maximum_even_Ip_A": 1.9755999999979394,
+        "maximum_even_speed_m_per_s": 0.0027020085597878685
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 0.00011844939999999804,
+        "maximum_even_Ip_A": 3.701600000000326,
+        "maximum_even_speed_m_per_s": 0.0036158267542196697
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00021176604999999932,
+        "maximum_even_Ip_A": 2.6950999999971827,
+        "maximum_even_speed_m_per_s": 0.0033748297743743916
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00017831155000000085,
+        "maximum_even_Ip_A": 3.881099999998696,
+        "maximum_even_speed_m_per_s": 0.0028511132660154347
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 7.598409999999903e-05,
+        "maximum_even_Ip_A": 2.526499999999942,
+        "maximum_even_speed_m_per_s": 0.002851916765911961
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.00016187114999999946,
+        "maximum_even_Ip_A": 1.6377000000029511,
+        "maximum_even_speed_m_per_s": 0.002298457852065129
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 8.986150000001025e-05,
+        "maximum_even_Ip_A": 5.919099999995524,
+        "maximum_even_speed_m_per_s": 0.003581395768490606
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 7.643149999991827e-05,
+        "maximum_even_Ip_A": 6.657149999995454,
+        "maximum_even_speed_m_per_s": 0.0025168555406476995
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 1.983100000002569e-05,
+        "maximum_even_Ip_A": 3.538749999999709,
+        "maximum_even_speed_m_per_s": 0.0005635156275579428
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 0.00010153474999999995,
+        "maximum_even_Ip_A": 4.432299999996758,
+        "maximum_even_speed_m_per_s": 0.0009722266433797033
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 5.7787449999999185e-05,
+        "maximum_even_Ip_A": 2.9580499999974563,
+        "maximum_even_speed_m_per_s": 0.0013165467420866216
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 9.49006500000002e-05,
+        "maximum_even_Ip_A": 4.51104999999734,
+        "maximum_even_speed_m_per_s": 0.0014609052487685927
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 5.430078500000008e-05,
+        "maximum_even_Ip_A": 3.2797499999978754,
+        "maximum_even_speed_m_per_s": 0.0013522032959242584
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.455179999999936e-05,
+        "maximum_even_Ip_A": 3.73149999999805,
+        "maximum_even_speed_m_per_s": 0.001203258605298444
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 4.200359999999986e-05,
+        "maximum_even_Ip_A": 0.8858000000000175,
+        "maximum_even_speed_m_per_s": 0.0010508788742512338
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 4.647510000000028e-05,
+        "maximum_even_Ip_A": 1.3313000000016473,
+        "maximum_even_speed_m_per_s": 0.0018253086647883273
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 7.274795000000028e-05,
+        "maximum_even_Ip_A": 1.8879500000002736,
+        "maximum_even_speed_m_per_s": 0.0016722942452240298
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 4.8400850000001466e-05,
+        "maximum_even_Ip_A": 1.4748500000023341,
+        "maximum_even_speed_m_per_s": 0.0022065042791840537
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 9.373485000000077e-05,
+        "maximum_even_Ip_A": 3.2119999999995343,
+        "maximum_even_speed_m_per_s": 0.002948214401965704
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00017637610000000026,
+        "maximum_even_Ip_A": 4.1445999999996275,
+        "maximum_even_speed_m_per_s": 0.0037656393028983833
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 4.505425000000084e-05,
+        "maximum_even_Ip_A": 2.7968500000024505,
+        "maximum_even_speed_m_per_s": 0.0032966197620408395
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.0001134752499999999,
+        "maximum_even_Ip_A": 4.1445999999996275,
+        "maximum_even_speed_m_per_s": 0.003743388009387941
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.00010429195000000169,
+        "maximum_even_Ip_A": 1.3229999999966822,
+        "maximum_even_speed_m_per_s": 0.0011777022540557344
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 0.00023838575000000028,
+        "maximum_even_Ip_A": 2.753600000000006,
+        "maximum_even_speed_m_per_s": 0.0027563640237579447
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 1.604550000000593e-05,
+        "maximum_even_Ip_A": 1.5872499999968568,
+        "maximum_even_speed_m_per_s": 0.0004841001413935798
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 3.7888500000082814e-05,
+        "maximum_even_Ip_A": 2.8087999999988824,
+        "maximum_even_speed_m_per_s": 0.0007458275021968808
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.0004267513300000008,
+        "maximum_even_Ip_A": 2.934000000001106,
+        "maximum_even_speed_m_per_s": 0.0024362762986017963
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 7.788750000004008e-05,
+        "maximum_even_Ip_A": 5.852399999999761,
+        "maximum_even_speed_m_per_s": 0.002612086126628722
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00014814344500000028,
+        "maximum_even_Ip_A": 2.3931999999986147,
+        "maximum_even_speed_m_per_s": 0.0017139256251825835
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.827199999999035e-05,
+        "maximum_even_Ip_A": 5.852399999999761,
+        "maximum_even_speed_m_per_s": 0.002580018367692348
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 4.0810400000000635e-05,
+        "maximum_even_Ip_A": 2.488900000003923,
+        "maximum_even_speed_m_per_s": 0.0008052770098472631
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 9.922429999999899e-05,
+        "maximum_even_Ip_A": 2.083149999998568,
+        "maximum_even_speed_m_per_s": 0.0008465930288659749
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 7.168944999999885e-05,
+        "maximum_even_Ip_A": 2.1600499999985914,
+        "maximum_even_speed_m_per_s": 0.0012914678923745255
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 4.745500000014058e-05,
+        "maximum_even_Ip_A": 3.117949999999837,
+        "maximum_even_speed_m_per_s": 0.0010464902845316215
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.0002646607499999995,
+        "maximum_even_Ip_A": 3.3937499999992724,
+        "maximum_even_speed_m_per_s": 0.0030770903490876748
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 7.981550000002446e-05,
+        "maximum_even_Ip_A": 3.3659000000043306,
+        "maximum_even_speed_m_per_s": 0.0021081502277735123
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 6.640900000010053e-05,
+        "maximum_even_Ip_A": 2.5230999999985215,
+        "maximum_even_speed_m_per_s": 0.003181959031811394
+      },
+      {
+        "context": [
+          "p5_q1_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.678000000010954e-05,
+        "maximum_even_Ip_A": 2.4844000000011874,
+        "maximum_even_speed_m_per_s": 0.0024461586580060667
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 5.07795500000012e-05,
+        "maximum_even_Ip_A": 1.7171999999991385,
+        "maximum_even_speed_m_per_s": 0.0006267573176438107
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 4.208680000000048e-05,
+        "maximum_even_Ip_A": 2.239799999995739,
+        "maximum_even_speed_m_per_s": 0.0004982265261869061
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 7.44309999999998e-05,
+        "maximum_even_Ip_A": 2.0108499999987544,
+        "maximum_even_speed_m_per_s": 0.0007291353739362875
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.009845000000096e-05,
+        "maximum_even_Ip_A": 3.1692499999990105,
+        "maximum_even_speed_m_per_s": 0.000569099758735426
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 4.247049999999905e-05,
+        "maximum_even_Ip_A": 2.098500000000058,
+        "maximum_even_speed_m_per_s": 0.0018762726594070986
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00011784049999996604,
+        "maximum_even_Ip_A": 3.0190999999977066,
+        "maximum_even_speed_m_per_s": 0.0022486927626002426
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 8.845175499999983e-05,
+        "maximum_even_Ip_A": 2.5789500000028056,
+        "maximum_even_speed_m_per_s": 0.001094831651118538
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 8.513549999999981e-05,
+        "maximum_even_Ip_A": 3.886050000000978,
+        "maximum_even_speed_m_per_s": 0.00215188107991672
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 5.836785000000108e-05,
+        "maximum_even_Ip_A": 1.3966499999987718,
+        "maximum_even_speed_m_per_s": 0.000644310029878104
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 1.6715900000000353e-05,
+        "maximum_even_Ip_A": 1.0362000000022817,
+        "maximum_even_speed_m_per_s": 0.00029531231796745694
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 4.8539800000000494e-05,
+        "maximum_even_Ip_A": 2.134299999997893,
+        "maximum_even_speed_m_per_s": 0.0009225624003403288
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 6.645634999999893e-05,
+        "maximum_even_Ip_A": 2.5262000000002445,
+        "maximum_even_speed_m_per_s": 0.001987689157292517
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 6.649849999999964e-05,
+        "maximum_even_Ip_A": 3.1340500000005704,
+        "maximum_even_speed_m_per_s": 0.0017044200394575096
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00013134555000000013,
+        "maximum_even_Ip_A": 2.894899999999325,
+        "maximum_even_speed_m_per_s": 0.0032177563446798606
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 4.7031700000000135e-05,
+        "maximum_even_Ip_A": 3.30199999999968,
+        "maximum_even_speed_m_per_s": 0.0018033880051822855
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 6.856350000006284e-05,
+        "maximum_even_Ip_A": 3.3673500000004424,
+        "maximum_even_speed_m_per_s": 0.003154296807649609
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.00012743774999999895,
+        "maximum_even_Ip_A": 3.254899999999907,
+        "maximum_even_speed_m_per_s": 0.001078166779996629
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 0.00022183379999999968,
+        "maximum_even_Ip_A": 4.7570999999989,
+        "maximum_even_speed_m_per_s": 0.0028247042711477778
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 2.0081599999999256e-05,
+        "maximum_even_Ip_A": 1.4680499999994936,
+        "maximum_even_speed_m_per_s": 0.0005383747301171746
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.7061570000000936e-05,
+        "maximum_even_Ip_A": 2.560349999999744,
+        "maximum_even_speed_m_per_s": 0.0008257469907401296
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00043210318499999935,
+        "maximum_even_Ip_A": 4.072000000000116,
+        "maximum_even_speed_m_per_s": 0.0024633967211011134
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00014376554999999923,
+        "maximum_even_Ip_A": 8.118500000000495,
+        "maximum_even_speed_m_per_s": 0.004178840676183995
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00011928914999999839,
+        "maximum_even_Ip_A": 3.1101999999991676,
+        "maximum_even_speed_m_per_s": 0.0017283745924292233
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 8.756799999998233e-05,
+        "maximum_even_Ip_A": 8.118500000000495,
+        "maximum_even_speed_m_per_s": 0.004275497326350402
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 7.719369999999864e-05,
+        "maximum_even_Ip_A": 4.057999999997264,
+        "maximum_even_speed_m_per_s": 0.0012366959078131056
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 8.271500000000057e-05,
+        "maximum_even_Ip_A": 2.743800000000192,
+        "maximum_even_speed_m_per_s": 0.0010262276726078405
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 3.6355799999998606e-05,
+        "maximum_even_Ip_A": 2.684049999999843,
+        "maximum_even_speed_m_per_s": 0.0012365499469953703
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 0.00011731669999999819,
+        "maximum_even_Ip_A": 4.079200000000128,
+        "maximum_even_speed_m_per_s": 0.0018318138237838233
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00013411350000003264,
+        "maximum_even_Ip_A": 4.796249999999418,
+        "maximum_even_speed_m_per_s": 0.00318216508083754
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.0002434341999999999,
+        "maximum_even_Ip_A": 5.536000000000058,
+        "maximum_even_speed_m_per_s": 0.002366781591548037
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00011192749999999752,
+        "maximum_even_Ip_A": 4.248950000001059,
+        "maximum_even_speed_m_per_s": 0.0029868983133314866
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.0002194837499999991,
+        "maximum_even_Ip_A": 3.12275000000227,
+        "maximum_even_speed_m_per_s": 0.0019782356667290358
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 8.223559999999755e-05,
+        "maximum_even_Ip_A": 0.9559499999995751,
+        "maximum_even_speed_m_per_s": 0.001037615218130129
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 6.93714499999977e-05,
+        "maximum_even_Ip_A": 1.4162999999971362,
+        "maximum_even_speed_m_per_s": 0.0008152836865348286
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 2.9664499999970673e-05,
+        "maximum_even_Ip_A": 3.1323000000011234,
+        "maximum_even_speed_m_per_s": 0.0018486086946740022
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 0.00013503859999999812,
+        "maximum_even_Ip_A": 1.5905999999995402,
+        "maximum_even_speed_m_per_s": 0.0015015100667470326
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00010364590000000104,
+        "maximum_even_Ip_A": 2.9981000000007043,
+        "maximum_even_speed_m_per_s": 0.00287334411626588
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 7.35831000000034e-05,
+        "maximum_even_Ip_A": 2.9395000000004075,
+        "maximum_even_speed_m_per_s": 0.0015543345370960418
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 7.03960000000281e-05,
+        "maximum_even_Ip_A": 2.5794500000010885,
+        "maximum_even_speed_m_per_s": 0.002006922572607968
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 5.97649999999339e-05,
+        "maximum_even_Ip_A": 3.086750000002212,
+        "maximum_even_speed_m_per_s": 0.0019465496540291274
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 5.7576000000000155e-05,
+        "maximum_even_Ip_A": 1.1819499999983236,
+        "maximum_even_speed_m_per_s": 0.00048247291374594383
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 3.2668500000054834e-05,
+        "maximum_even_Ip_A": 1.7880999999979394,
+        "maximum_even_speed_m_per_s": 0.0015771014717166124
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 5.852179999999915e-05,
+        "maximum_even_Ip_A": 1.195449999999255,
+        "maximum_even_speed_m_per_s": 0.0018004341674229948
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 2.759299999999243e-05,
+        "maximum_even_Ip_A": 2.183099999998376,
+        "maximum_even_speed_m_per_s": 0.0011496936874574848
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 7.857550000001101e-05,
+        "maximum_even_Ip_A": 4.350000000002183,
+        "maximum_even_speed_m_per_s": 0.003186529158012089
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00013327764999999936,
+        "maximum_even_Ip_A": 3.1484999999993306,
+        "maximum_even_speed_m_per_s": 0.0038133352453676673
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 6.493649999994577e-05,
+        "maximum_even_Ip_A": 3.0599999999976717,
+        "maximum_even_speed_m_per_s": 0.0033822155442118037
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.234099999997579e-05,
+        "maximum_even_Ip_A": 3.666400000001886,
+        "maximum_even_speed_m_per_s": 0.0038133352453676673
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.00010538184999999908,
+        "maximum_even_Ip_A": 1.1251499999998487,
+        "maximum_even_speed_m_per_s": 0.0005689077340255213
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 0.0002603247000000017,
+        "maximum_even_Ip_A": 2.698100000001432,
+        "maximum_even_speed_m_per_s": 0.0027188346856882404
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 1.1376399999998843e-05,
+        "maximum_even_Ip_A": 1.883849999998347,
+        "maximum_even_speed_m_per_s": 0.00040322259287424146
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 4.535750000000949e-05,
+        "maximum_even_Ip_A": 3.434849999997823,
+        "maximum_even_speed_m_per_s": 0.0007485814655880054
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00042636168000000085,
+        "maximum_even_Ip_A": 3.149599999997008,
+        "maximum_even_speed_m_per_s": 0.002424588642405796
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 7.344450000001945e-05,
+        "maximum_even_Ip_A": 5.863150000001042,
+        "maximum_even_speed_m_per_s": 0.0027434413672600415
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00013549290000000082,
+        "maximum_even_Ip_A": 1.8439500000022235,
+        "maximum_even_speed_m_per_s": 0.0017319918788008426
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.331200000004756e-05,
+        "maximum_even_Ip_A": 5.863150000001042,
+        "maximum_even_speed_m_per_s": 0.0027434413672600415
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 6.328349999995542e-05,
+        "maximum_even_Ip_A": 1.9294499999959953,
+        "maximum_even_speed_m_per_s": 0.0010812944680311713
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 0.00010204230000000064,
+        "maximum_even_Ip_A": 1.9598500000029162,
+        "maximum_even_speed_m_per_s": 0.0012744567462657595
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 6.0846499999999554e-05,
+        "maximum_even_Ip_A": 2.215699999997014,
+        "maximum_even_speed_m_per_s": 0.0015803954341799457
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.81269999999634e-05,
+        "maximum_even_Ip_A": 2.115399999998772,
+        "maximum_even_speed_m_per_s": 0.0017783113696343712
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00040411029999999973,
+        "maximum_even_Ip_A": 3.4528000000027532,
+        "maximum_even_speed_m_per_s": 0.004594921007654804
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 8.214900000003134e-05,
+        "maximum_even_Ip_A": 1.8855000000003201,
+        "maximum_even_speed_m_per_s": 0.0014524944468519332
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00017994744999999882,
+        "maximum_even_Ip_A": 4.574400000001333,
+        "maximum_even_speed_m_per_s": 0.003517907194083644
+      },
+      {
+        "context": [
+          "p5_q2_a0p900_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 6.129529999999994e-05,
+        "maximum_even_Ip_A": 1.33495000000039,
+        "maximum_even_speed_m_per_s": 0.000699266544303349
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 6.966599999999948e-05,
+        "maximum_even_Ip_A": 2.3460999999988417,
+        "maximum_even_speed_m_per_s": 0.001439372735211818
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 6.235549999988876e-05,
+        "maximum_even_Ip_A": 2.5213500000027125,
+        "maximum_even_speed_m_per_s": 0.0021425301790626073
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 0.00013391775000000036,
+        "maximum_even_Ip_A": 4.001499999998487,
+        "maximum_even_speed_m_per_s": 0.002090416129992779
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 0.0001598880000000004,
+        "maximum_even_Ip_A": 3.9294499999996333,
+        "maximum_even_speed_m_per_s": 0.002180551479551841
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00015219053000000045,
+        "maximum_even_Ip_A": 4.717799999998533,
+        "maximum_even_speed_m_per_s": 0.0029348639400262598
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 9.311879999999995e-05,
+        "maximum_even_Ip_A": 6.593399999997928,
+        "maximum_even_speed_m_per_s": 0.002767016318658767
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00017370225000000114,
+        "maximum_even_Ip_A": 6.172599999998056,
+        "maximum_even_speed_m_per_s": 0.004789459430891153
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 9.572038999999984e-05,
+        "maximum_even_Ip_A": 6.0560999999979686,
+        "maximum_even_speed_m_per_s": 0.0029800826787725605
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.0002219749749999998,
+        "maximum_even_Ip_A": 6.647300000000541,
+        "maximum_even_speed_m_per_s": 0.004133462370792035
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 0.00013709600000000322,
+        "maximum_even_Ip_A": 6.917949999999109,
+        "maximum_even_speed_m_per_s": 0.003627569871708196
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 7.010950000008176e-05,
+        "maximum_even_Ip_A": 5.733649999998306,
+        "maximum_even_speed_m_per_s": 0.0036786801059652025
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 0.00013051200000002705,
+        "maximum_even_Ip_A": 6.228800000000774,
+        "maximum_even_speed_m_per_s": 0.0041409198902263265
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 4.18903150000002e-05,
+        "maximum_even_Ip_A": 4.33810000000085,
+        "maximum_even_speed_m_per_s": 0.0026353055291594507
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00014787333499999972,
+        "maximum_even_Ip_A": 4.805550000000949,
+        "maximum_even_speed_m_per_s": 0.0014900289075412305
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00011198602000000004,
+        "maximum_even_Ip_A": 6.865350000000035,
+        "maximum_even_speed_m_per_s": 0.0025330496521399864
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.0001611034049999998,
+        "maximum_even_Ip_A": 5.492849999998725,
+        "maximum_even_speed_m_per_s": 0.00426165071513359
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 3.7094300000000205e-05,
+        "maximum_even_Ip_A": 0.615749999997206,
+        "maximum_even_speed_m_per_s": 0.00039873173624364124
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 8.295759999999569e-05,
+        "maximum_even_Ip_A": 1.932250000001659,
+        "maximum_even_speed_m_per_s": 0.0006323076899421802
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 7.348940000000137e-05,
+        "maximum_even_Ip_A": 1.8733499999980268,
+        "maximum_even_speed_m_per_s": 0.0009521249237973236
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 4.0533499999998585e-05,
+        "maximum_even_Ip_A": 1.7105500000034226,
+        "maximum_even_speed_m_per_s": 0.0004663633614427656
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.0002123216499999997,
+        "maximum_even_Ip_A": 3.7260000000023865,
+        "maximum_even_speed_m_per_s": 0.0023840322293412716
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00013536529999999547,
+        "maximum_even_Ip_A": 3.1322999999974854,
+        "maximum_even_speed_m_per_s": 0.001641965552497195
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00015551420000000163,
+        "maximum_even_Ip_A": 2.462500000001455,
+        "maximum_even_speed_m_per_s": 0.0017427666780224762
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 8.953664999999944e-05,
+        "maximum_even_Ip_A": 3.210899999998219,
+        "maximum_even_speed_m_per_s": 0.0012178614282442868
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 7.20543050000003e-05,
+        "maximum_even_Ip_A": 3.557749999999942,
+        "maximum_even_speed_m_per_s": 0.0009752519726780166
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 3.8967844999999654e-05,
+        "maximum_even_Ip_A": 2.710299999998824,
+        "maximum_even_speed_m_per_s": 0.0008568631445862349
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 2.208545999999971e-05,
+        "maximum_even_Ip_A": 2.6331499999978405,
+        "maximum_even_speed_m_per_s": 0.0004709664102200166
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.062818500000017e-05,
+        "maximum_even_Ip_A": 3.0873500000016065,
+        "maximum_even_speed_m_per_s": 0.0010448005361790842
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 4.46753749999999e-05,
+        "maximum_even_Ip_A": 4.0296999999991385,
+        "maximum_even_speed_m_per_s": 0.0017022631777357472
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 9.421785000000068e-05,
+        "maximum_even_Ip_A": 2.647499999999127,
+        "maximum_even_speed_m_per_s": 0.001861337776844145
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 3.819999999998824e-05,
+        "maximum_even_Ip_A": 2.123600000002625,
+        "maximum_even_speed_m_per_s": 0.0015613578393478078
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.00010190204499999946,
+        "maximum_even_Ip_A": 2.618399999999383,
+        "maximum_even_speed_m_per_s": 0.002311971435675028
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.00012028904999999979,
+        "maximum_even_Ip_A": 1.7744999999995343,
+        "maximum_even_speed_m_per_s": 0.001437758279441702
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 0.00011662345000000227,
+        "maximum_even_Ip_A": 2.7277000000030966,
+        "maximum_even_speed_m_per_s": 0.0012454483959187103
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 0.00014469894999999747,
+        "maximum_even_Ip_A": 3.049299999998766,
+        "maximum_even_speed_m_per_s": 0.0016616705301053245
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 7.586890000000138e-05,
+        "maximum_even_Ip_A": 1.691899999997986,
+        "maximum_even_speed_m_per_s": 0.0007453960665499467
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00012151694500000046,
+        "maximum_even_Ip_A": 3.606999999996333,
+        "maximum_even_speed_m_per_s": 0.0031049719578970674
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.0001034276400000006,
+        "maximum_even_Ip_A": 3.097799999999552,
+        "maximum_even_speed_m_per_s": 0.002184754068276047
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00012401259999999907,
+        "maximum_even_Ip_A": 2.5817000000024564,
+        "maximum_even_speed_m_per_s": 0.0015843879077024295
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.00010160312000000171,
+        "maximum_even_Ip_A": 2.488900000000285,
+        "maximum_even_speed_m_per_s": 0.001829450528577445
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 6.129553799999997e-05,
+        "maximum_even_Ip_A": 2.831450000001496,
+        "maximum_even_speed_m_per_s": 0.0018048027947995815
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 5.568400000000029e-05,
+        "maximum_even_Ip_A": 2.260949999999866,
+        "maximum_even_speed_m_per_s": 0.001110941199570188
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 2.8912707499999962e-05,
+        "maximum_even_Ip_A": 3.10570000000007,
+        "maximum_even_speed_m_per_s": 0.0006445945004969386
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 2.344481399999996e-05,
+        "maximum_even_Ip_A": 2.847299999997631,
+        "maximum_even_speed_m_per_s": 0.0007599836072459181
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00010040745600000002,
+        "maximum_even_Ip_A": 3.374500000001717,
+        "maximum_even_speed_m_per_s": 0.0036493437266554643
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00011870174949999996,
+        "maximum_even_Ip_A": 2.927299999999377,
+        "maximum_even_speed_m_per_s": 0.003014779879856338
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 9.633549999987778e-05,
+        "maximum_even_Ip_A": 2.8537500000020373,
+        "maximum_even_speed_m_per_s": 0.003951368982060937
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.0001725353334999999,
+        "maximum_even_Ip_A": 2.445800000001327,
+        "maximum_even_speed_m_per_s": 0.002087436097740179
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.00015450084999999933,
+        "maximum_even_Ip_A": 5.010549999999057,
+        "maximum_even_speed_m_per_s": 0.001343007171420287
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 2.4133000000037264e-05,
+        "maximum_even_Ip_A": 1.8892999999989115,
+        "maximum_even_speed_m_per_s": 0.0017414779614913476
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 5.6996849999999336e-05,
+        "maximum_even_Ip_A": 4.729699999999866,
+        "maximum_even_speed_m_per_s": 0.0010516770158139704
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 7.41739499999991e-05,
+        "maximum_even_Ip_A": 3.6323000000011234,
+        "maximum_even_speed_m_per_s": 0.0010522746778824715
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 9.980820000000078e-05,
+        "maximum_even_Ip_A": 4.017299999999523,
+        "maximum_even_speed_m_per_s": 0.0027793369232916552
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 8.480994999999873e-05,
+        "maximum_even_Ip_A": 3.974549999998999,
+        "maximum_even_speed_m_per_s": 0.0020179642747908443
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 8.12275000000584e-05,
+        "maximum_even_Ip_A": 3.6713999999992666,
+        "maximum_even_speed_m_per_s": 0.0031181589550258225
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.19715499999992e-05,
+        "maximum_even_Ip_A": 1.6167000000023108,
+        "maximum_even_speed_m_per_s": 0.0020323440349932086
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 4.50730000001176e-05,
+        "maximum_even_Ip_A": 3.2197500000002037,
+        "maximum_even_speed_m_per_s": 0.0018243580115673947
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 3.253666000000051e-05,
+        "maximum_even_Ip_A": 1.5942500000019209,
+        "maximum_even_speed_m_per_s": 0.0008308324237907306
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 2.6018000000016528e-05,
+        "maximum_even_Ip_A": 2.428299999999581,
+        "maximum_even_speed_m_per_s": 0.0006130459126277491
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 1.7120799999999214e-05,
+        "maximum_even_Ip_A": 2.075200000002951,
+        "maximum_even_speed_m_per_s": 0.0007431823227952174
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 5.6629869999999874e-05,
+        "maximum_even_Ip_A": 3.3546000000023923,
+        "maximum_even_speed_m_per_s": 0.0029009774265309585
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00015540823500000047,
+        "maximum_even_Ip_A": 2.0301499999986845,
+        "maximum_even_speed_m_per_s": 0.002853713302112703
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 4.829649999993357e-05,
+        "maximum_even_Ip_A": 1.9076500000010128,
+        "maximum_even_speed_m_per_s": 0.001725445295922449
+      },
+      {
+        "context": [
+          "p9_q1_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.0001492775549999997,
+        "maximum_even_Ip_A": 2.3973000000041793,
+        "maximum_even_speed_m_per_s": 0.002621587268576218
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 5.3720585000000855e-05,
+        "maximum_even_Ip_A": 2.696800000001531,
+        "maximum_even_speed_m_per_s": 0.0015015077031173079
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 5.0898000000021426e-05,
+        "maximum_even_Ip_A": 2.6508499999981723,
+        "maximum_even_speed_m_per_s": 0.0020302786647411353
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 0.0001232385999999988,
+        "maximum_even_Ip_A": 6.021550000001298,
+        "maximum_even_speed_m_per_s": 0.002291175744146673
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 0.0001628908499999998,
+        "maximum_even_Ip_A": 4.697750000002998,
+        "maximum_even_speed_m_per_s": 0.0027467718838894554
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00020561784000000007,
+        "maximum_even_Ip_A": 5.276099999999133,
+        "maximum_even_speed_m_per_s": 0.0028868989288624264
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00012563223500000002,
+        "maximum_even_Ip_A": 6.353899999998248,
+        "maximum_even_speed_m_per_s": 0.0028048438113517705
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.0001900372949999998,
+        "maximum_even_Ip_A": 6.0345500000003085,
+        "maximum_even_speed_m_per_s": 0.0038395678705325687
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.0001266578700000005,
+        "maximum_even_Ip_A": 6.486549999997806,
+        "maximum_even_speed_m_per_s": 0.0030022600724464014
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.00015556026000000016,
+        "maximum_even_Ip_A": 3.403599999997823,
+        "maximum_even_speed_m_per_s": 0.0028767031580208737
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 8.557499999994889e-05,
+        "maximum_even_Ip_A": 4.931799999998475,
+        "maximum_even_speed_m_per_s": 0.003629272275995194
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 4.880249999994479e-05,
+        "maximum_even_Ip_A": 2.3229499999979453,
+        "maximum_even_speed_m_per_s": 0.0020973051253645506
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 4.081049999993258e-05,
+        "maximum_even_Ip_A": 4.794200000000274,
+        "maximum_even_speed_m_per_s": 0.00256715945873439
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00011796097499999986,
+        "maximum_even_Ip_A": 4.671099999995931,
+        "maximum_even_speed_m_per_s": 0.004992164332515614
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00018424450000009696,
+        "maximum_even_Ip_A": 7.1203999999997905,
+        "maximum_even_speed_m_per_s": 0.00656950436878705
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00010411449999991884,
+        "maximum_even_Ip_A": 4.805299999999988,
+        "maximum_even_speed_m_per_s": 0.004798448051771729
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.00010071896500000012,
+        "maximum_even_Ip_A": 5.530249999999796,
+        "maximum_even_speed_m_per_s": 0.006059976398771044
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 6.927124999999909e-05,
+        "maximum_even_Ip_A": 1.774249999998574,
+        "maximum_even_speed_m_per_s": 0.0009127488816852922
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 4.487706999999931e-05,
+        "maximum_even_Ip_A": 1.7185499999977765,
+        "maximum_even_speed_m_per_s": 0.0006346253371872051
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 0.00010184375000000037,
+        "maximum_even_Ip_A": 1.5460999999995693,
+        "maximum_even_speed_m_per_s": 0.0013748323963662357
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 1.7796000000000478e-05,
+        "maximum_even_Ip_A": 1.8171499999989464,
+        "maximum_even_speed_m_per_s": 0.000562208652453949
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00028262855000000045,
+        "maximum_even_Ip_A": 3.7449999999989814,
+        "maximum_even_speed_m_per_s": 0.0029743682428748554
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 4.205065000000008e-05,
+        "maximum_even_Ip_A": 2.0235499999980675,
+        "maximum_even_speed_m_per_s": 0.0010095981551698063
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.00022971789999999895,
+        "maximum_even_Ip_A": 2.3215500000005704,
+        "maximum_even_speed_m_per_s": 0.0029212552802225177
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.164705000000174e-05,
+        "maximum_even_Ip_A": 2.507850000001781,
+        "maximum_even_speed_m_per_s": 0.0011325288830782837
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 4.0733009999999355e-05,
+        "maximum_even_Ip_A": 2.3651999999965483,
+        "maximum_even_speed_m_per_s": 0.0007019459579891849
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 2.5076999999984473e-05,
+        "maximum_even_Ip_A": 2.4250500000016473,
+        "maximum_even_speed_m_per_s": 0.0005690879529076947
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 1.5451999999971378e-05,
+        "maximum_even_Ip_A": 4.7581499999978405,
+        "maximum_even_speed_m_per_s": 0.00047332563164280395
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 5.545776499999919e-05,
+        "maximum_even_Ip_A": 2.534350000001723,
+        "maximum_even_speed_m_per_s": 0.0010049124246675957
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 4.214791500000044e-05,
+        "maximum_even_Ip_A": 3.8180499999980384,
+        "maximum_even_speed_m_per_s": 0.001677775118323883
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00012692885499999973,
+        "maximum_even_Ip_A": 3.9738000000033935,
+        "maximum_even_speed_m_per_s": 0.00246453214486328
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 4.8348500000017225e-05,
+        "maximum_even_Ip_A": 3.3374000000003434,
+        "maximum_even_speed_m_per_s": 0.0015231645119237666
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "minus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.00011434155999999994,
+        "maximum_even_Ip_A": 3.267199999998411,
+        "maximum_even_speed_m_per_s": 0.0026976237013427396
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 8.873990000000248e-05,
+        "maximum_even_Ip_A": 2.1737000000030093,
+        "maximum_even_speed_m_per_s": 0.001256381552923339
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 4.2921245000000774e-05,
+        "maximum_even_Ip_A": 2.871950000000652,
+        "maximum_even_speed_m_per_s": 0.0008658372080523901
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 0.00012667055000000274,
+        "maximum_even_Ip_A": 4.405350000000908,
+        "maximum_even_speed_m_per_s": 0.0012144741889957226
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 9.243574999999796e-05,
+        "maximum_even_Ip_A": 2.5485499999995227,
+        "maximum_even_speed_m_per_s": 0.0010430134385050267
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00012137200500000021,
+        "maximum_even_Ip_A": 4.151549999998679,
+        "maximum_even_speed_m_per_s": 0.002604856658254025
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 7.142490999999945e-05,
+        "maximum_even_Ip_A": 2.94314999999915,
+        "maximum_even_speed_m_per_s": 0.0018880705818488752
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 0.0001271850599999999,
+        "maximum_even_Ip_A": 3.1503499999998894,
+        "maximum_even_speed_m_per_s": 0.0016596230122178427
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 7.231993000000013e-05,
+        "maximum_even_Ip_A": 2.94314999999915,
+        "maximum_even_speed_m_per_s": 0.0015041369499741422
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 8.461850699999999e-05,
+        "maximum_even_Ip_A": 3.343349999999191,
+        "maximum_even_speed_m_per_s": 0.0015007490779927366
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 4.9501000000007345e-05,
+        "maximum_even_Ip_A": 1.9548500000018976,
+        "maximum_even_speed_m_per_s": 0.000509543673120377
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 3.721899999997724e-05,
+        "maximum_even_Ip_A": 3.3726500000011583,
+        "maximum_even_speed_m_per_s": 0.0010974323609911484
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 4.564200000012342e-05,
+        "maximum_even_Ip_A": 3.083200000004581,
+        "maximum_even_speed_m_per_s": 0.0006738314899845059
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 8.559899999993625e-05,
+        "maximum_even_Ip_A": 2.817749999998341,
+        "maximum_even_speed_m_per_s": 0.003219559442778627
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00013557200000002823,
+        "maximum_even_Ip_A": 3.9021500000017113,
+        "maximum_even_speed_m_per_s": 0.003317094011441713
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 9.518825799999998e-05,
+        "maximum_even_Ip_A": 3.022900000003574,
+        "maximum_even_speed_m_per_s": 0.003520560854554509
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "RZ_p10_m10",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.00010810683450000009,
+        "maximum_even_Ip_A": 2.4913999999989755,
+        "maximum_even_speed_m_per_s": 0.0021788756391295052
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 0.0001355642000000004,
+        "maximum_even_Ip_A": 3.913649999998597,
+        "maximum_even_speed_m_per_s": 0.0012177451944437334
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 3.3173499999983314e-05,
+        "maximum_even_Ip_A": 1.618399999999383,
+        "maximum_even_speed_m_per_s": 0.0012798190272634868
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 6.11175000000009e-05,
+        "maximum_even_Ip_A": 3.045750000001135,
+        "maximum_even_speed_m_per_s": 0.0006614198882160411
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 3.165984999999906e-05,
+        "maximum_even_Ip_A": 4.471699999998236,
+        "maximum_even_speed_m_per_s": 0.0005872528226685742
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 0.00015951430000000003,
+        "maximum_even_Ip_A": 4.570299999999406,
+        "maximum_even_speed_m_per_s": 0.0023355341857311924
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 6.186633999999977e-05,
+        "maximum_even_Ip_A": 3.990399999998772,
+        "maximum_even_speed_m_per_s": 0.0018886986734391962
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 9.413599999985589e-05,
+        "maximum_even_Ip_A": 4.180899999999383,
+        "maximum_even_speed_m_per_s": 0.0028362414675854523
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          0,
+          1.0
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 5.7219500000038614e-05,
+        "maximum_even_Ip_A": 2.9570500000008906,
+        "maximum_even_speed_m_per_s": 0.0018907668127209234
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 0,
+        "probe_id": "early_mode0",
+        "maximum_even_RZ_m": 7.058150000005536e-05,
+        "maximum_even_Ip_A": 1.7070500000008906,
+        "maximum_even_speed_m_per_s": 0.0016355765991362156
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 1,
+        "probe_id": "early_mode1",
+        "maximum_even_RZ_m": 4.985492499999956e-05,
+        "maximum_even_Ip_A": 1.5367999999980384,
+        "maximum_even_speed_m_per_s": 0.0009099179872750405
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 2,
+        "probe_id": "deadline_mode0",
+        "maximum_even_RZ_m": 2.8259450000001768e-05,
+        "maximum_even_Ip_A": 2.256649999999354,
+        "maximum_even_speed_m_per_s": 0.0009517399283814298
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 3,
+        "probe_id": "deadline_mode1",
+        "maximum_even_RZ_m": 1.8930420000000392e-05,
+        "maximum_even_Ip_A": 0.7518000000018219,
+        "maximum_even_speed_m_per_s": 0.000705509644081106
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 4,
+        "probe_id": "transport_mode0",
+        "maximum_even_RZ_m": 7.016850000007846e-05,
+        "maximum_even_Ip_A": 2.2426500000001397,
+        "maximum_even_speed_m_per_s": 0.002592673417180772
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 5,
+        "probe_id": "transport_mode1",
+        "maximum_even_RZ_m": 0.00015041456000000012,
+        "maximum_even_Ip_A": 2.929500000002008,
+        "maximum_even_speed_m_per_s": 0.0029826577195407682
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 6,
+        "probe_id": "held_transport_mode0",
+        "maximum_even_RZ_m": 6.872800000001789e-05,
+        "maximum_even_Ip_A": 1.6221499999992375,
+        "maximum_even_speed_m_per_s": 0.002841798296024888
+      },
+      {
+        "context": [
+          "p9_q2_a0p750_gap2_settle4",
+          "plus_first",
+          "nominal",
+          2,
+          0.9
+        ],
+        "basis_index": 7,
+        "probe_id": "held_transport_mode1",
+        "maximum_even_RZ_m": 0.00015245351,
+        "maximum_even_Ip_A": 1.798000000002503,
+        "maximum_even_speed_m_per_s": 0.003192310225138476
+      }
+    ]
+  },
+  "context_count": 32,
+  "optimistic_formal_pass_count": 16,
+  "optimistic_formal_failure_count": 16,
+  "failed_baseline_repair_count": 0,
+  "baseline_pass_regression_count": 0,
+  "unchanged_odd_condition_pass_count": 11,
+  "maximum_unchanged_odd_condition_number": 78.15446615587746,
+  "best_remaining_failed_margin": -0.016977966666673172,
+  "worst_remaining_failed_margin": -0.32152175429696905,
+  "context_rows": [
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.16060573317287252,
+      "margin_delta_vs_t3": -0.0006468714770035966,
+      "passed": false,
+      "best_minimum_signed_margin": -0.16125260464987612,
+      "best_endpoint_step": 21,
+      "best_coefficients": [
+        0.350361271192,
+        0.844446796688,
+        -0.603940367856,
+        0.499140424279,
+        -0.999999999433,
+        1.0,
+        -0.999999999714,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.3255933166666698,
+      "margin_delta_vs_t3": 0.004071562369700743,
+      "passed": false,
+      "best_minimum_signed_margin": -0.32152175429696905,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        1.0,
+        -1.0,
+        0.62357553871,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.004718200000000672,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.004718200000000672,
+      "best_endpoint_step": 25,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.02847459999999935,
+      "margin_delta_vs_t3": 0.009066033333323231,
+      "passed": false,
+      "best_minimum_signed_margin": -0.01940856666667612,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "exhaustive_quadratic_ternary_grid"
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.1612887041759039,
+      "margin_delta_vs_t3": -0.0023476678764160486,
+      "passed": false,
+      "best_minimum_signed_margin": -0.16363637205231996,
+      "best_endpoint_step": 21,
+      "best_coefficients": [
+        0.08055737302,
+        0.406015695962,
+        0.920223364585,
+        0.031965494152,
+        -1.0,
+        0.999999981977,
+        -0.99999999996,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.31749086666666715,
+      "margin_delta_vs_t3": 0.008100933333340166,
+      "passed": false,
+      "best_minimum_signed_margin": -0.309389933333327,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "exhaustive_quadratic_ternary_grid"
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.004738299999998419,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.004738299999998419,
+      "best_endpoint_step": 25,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.02846064999999598,
+      "margin_delta_vs_t3": 0.006765750000007564,
+      "passed": false,
+      "best_minimum_signed_margin": -0.021694899999988415,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "exhaustive_quadratic_ternary_grid"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.15567084195090497,
+      "margin_delta_vs_t3": -0.006431957442740943,
+      "passed": false,
+      "best_minimum_signed_margin": -0.1621027993936459,
+      "best_endpoint_step": 21,
+      "best_coefficients": [
+        0.165942465706,
+        0.2856319437,
+        0.460127282367,
+        -0.045802974032,
+        -1.0,
+        0.999999897817,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.3243887333333335,
+      "margin_delta_vs_t3": 0.005831315007424509,
+      "passed": false,
+      "best_minimum_signed_margin": -0.318557418325909,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        1.0,
+        -1.0,
+        0.750946145432,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.005323333333331903,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.005323333333331903,
+      "best_endpoint_step": 25,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.027159166666669066,
+      "margin_delta_vs_t3": 0.010181199999995894,
+      "passed": false,
+      "best_minimum_signed_margin": -0.016977966666673172,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "exhaustive_quadratic_ternary_grid"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.1626637666666717,
+      "margin_delta_vs_t3": -0.009187419963171184,
+      "passed": false,
+      "best_minimum_signed_margin": -0.1718511866298429,
+      "best_endpoint_step": 21,
+      "best_coefficients": [
+        0.06578720805,
+        0.366113173171,
+        1.0,
+        0.044028242911,
+        -1.0,
+        0.621385013336,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "post_speed",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.3179603666666633,
+      "margin_delta_vs_t3": 0.008745633333325342,
+      "passed": false,
+      "best_minimum_signed_margin": -0.30921473333333793,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "exhaustive_quadratic_ternary_grid"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.004227900000000617,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.004227900000000617,
+      "best_endpoint_step": 25,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p5_q2_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.031239983333335664,
+      "margin_delta_vs_t3": 0.010783450000010797,
+      "passed": false,
+      "best_minimum_signed_margin": -0.020456533333324867,
+      "best_endpoint_step": 27,
+      "best_coefficients": [
+        -1.0,
+        1.0,
+        -1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "exhaustive_quadratic_ternary_grid"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.012413308956406133,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.012413308956406133,
+      "best_endpoint_step": 18,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "post_speed",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.04856849999999868,
+      "margin_delta_vs_t3": -0.001241217615484791,
+      "passed": false,
+      "best_minimum_signed_margin": -0.04980971761548347,
+      "best_endpoint_step": 25,
+      "best_coefficients": [
+        -1.0,
+        -0.40716891174,
+        -0.270626937969,
+        0.572967007908,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.09697009954940039,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.09697009954940039,
+      "best_endpoint_step": 12,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "endpoint_late_speed",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.2234745999999982,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.2234745999999982,
+      "best_endpoint_step": 23,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.03386863666666673,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.03386863666666673,
+      "best_endpoint_step": 18,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.052510499999999904,
+      "margin_delta_vs_t3": 0.00566639245045053,
+      "passed": false,
+      "best_minimum_signed_margin": -0.046844107549549374,
+      "best_endpoint_step": 26,
+      "best_coefficients": [
+        1.0,
+        1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        0.117174749528
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.10378758104765473,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.10378758104765473,
+      "best_endpoint_step": 14,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "post_speed",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.22812333333333268,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.22812333333333268,
+      "best_endpoint_step": 22,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.014148986053374446,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.014148986053374446,
+      "best_endpoint_step": 18,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "post_speed",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.0501859833333369,
+      "margin_delta_vs_t3": 0.0020618062677799642,
+      "passed": false,
+      "best_minimum_signed_margin": -0.04812417706555694,
+      "best_endpoint_step": 24,
+      "best_coefficients": [
+        -1.0,
+        -0.329687404116,
+        -0.742219687699,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        1.0
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.10544524405844569,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.10544524405844569,
+      "best_endpoint_step": 13,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "post_speed",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.2248572000000013,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.2248572000000013,
+      "best_endpoint_step": 23,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.032832263333333334,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.032832263333333334,
+      "best_endpoint_step": 18,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": false,
+      "t3_passed": false,
+      "t3_minimum_signed_margin": -0.053480133333328794,
+      "margin_delta_vs_t3": 0.010172413538422909,
+      "passed": false,
+      "best_minimum_signed_margin": -0.043307719794905886,
+      "best_endpoint_step": 26,
+      "best_coefficients": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        0.319107620146
+      ],
+      "active_constraint": "position",
+      "method": "per_endpoint_quadratic_multistart_slsqp"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 0,
+      "actual_slew_scale": 1.0,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.10281705403080599,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.10281705403080599,
+      "best_endpoint_step": 14,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "post_speed",
+      "method": "exact_baseline_already_passes"
+    },
+    {
+      "pair_id": "p9_q2_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "actual_delay_steps": 2,
+      "actual_slew_scale": 0.9,
+      "saved_baseline_pass": true,
+      "t3_passed": true,
+      "t3_minimum_signed_margin": 0.22747463333333462,
+      "margin_delta_vs_t3": 0.0,
+      "passed": true,
+      "best_minimum_signed_margin": 0.22747463333333462,
+      "best_endpoint_step": 22,
+      "best_coefficients": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "active_constraint": "position",
+      "method": "exact_baseline_already_passes"
+    }
+  ],
+  "route_summary": {
+    "separable_quadratic_formal_32_of_32": false,
+    "separable_quadratic_repairs_all_16": false,
+    "unchanged_odd_condition_32_of_32": false,
+    "r3c4_implementation_authorized": false
+  },
+  "scientific_classification": {
+    "real_tsc_executed_by_this_tool": false,
+    "runtime_error": false,
+    "statistics_or_reporting_error": false,
+    "optimistic_separable_quadratic_only": true,
+    "cross_interactions_validated": false,
+    "combined_action_safety_validated": false,
+    "r3c4_implementation_authorized": false,
+    "r3c4_real_tsc_execution_authorized": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}

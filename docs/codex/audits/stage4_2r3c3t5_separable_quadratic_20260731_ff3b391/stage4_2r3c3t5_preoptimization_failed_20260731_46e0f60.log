@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_software/stage4_2r3c3t5_quadratic_46e0f60/stage4_2r3c3t5_separable_quadratic_diagnostic.py", line 825, in <module>
+    main()
+  File "/home/yangshen0711/tsc_software/stage4_2r3c3t5_quadratic_46e0f60/stage4_2r3c3t5_separable_quadratic_diagnostic.py", line 543, in main
+    raise ValueError(
+ValueError: signed response reproduction mismatch: ('p5_q1_a0p900_gap2_settle4', 'minus_first', 'RZ_p10_m10', 0, 1.0) 0

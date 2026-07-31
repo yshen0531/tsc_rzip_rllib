@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T5_result_forensics",
+  "input_hashes": {
+    "stage4_2r3c3t5_separable_quadratic_20260731_ff3b391.json": "960a82aea9eef90c85bb2b2bc5f6ebb0772c8a8f263915b1122904a3bd13bf82",
+    "stage4_2r3c3t5_separable_quadratic_20260731_ff3b391.log": "bac22789eeb7d9e229cbb49d4f2a99293ce2941f59e919bb9ab0cb6bf1b84dd4",
+    "stage4_2r3c3t5_preoptimization_failed_20260731_46e0f60.log": "ec91d06110c36ce5a30cef622c8cb792298f82b6c761b700bab2483662e32945"
+  },
+  "integrity": {
+    "strict_json_parse": true,
+    "signed_raw_file_count": 512,
+    "signed_pair_count": 256,
+    "odd_reproduction_maximum_error": 0.0,
+    "signed_endpoint_reproduction_maximum_error": 0.0,
+    "t3_pass_match_count": 32,
+    "t3_margin_reproduction_maximum_error": 0.0,
+    "context_count": 32,
+    "coefficient_bound_violation_count": 0
+  },
+  "outcome": {
+    "optimistic_formal_pass_count": 16,
+    "optimistic_formal_failure_count": 16,
+    "failed_baseline_repair_count": 0,
+    "baseline_pass_regression_count": 0,
+    "unchanged_odd_condition_pass_count": 11,
+    "maximum_unchanged_odd_condition_number": 78.15446615587746,
+    "separable_quadratic_route_rejected": true,
+    "r3c4_implementation_authorized": false,
+    "real_tsc_executed": false
+  },
+  "failed_margin_summary": {
+    "best": -0.016977966666673172,
+    "worst": -0.32152175429696905,
+    "mean": -0.13650940566921163,
+    "median": -0.1055311611326798
+  },
+  "margin_change_vs_t3": {
+    "count": 16,
+    "improved_count": 11,
+    "unchanged_count": 0,
+    "worsened_count": 5,
+    "minimum_delta": -0.009187419963171184,
+    "maximum_delta": 0.010783450000010797,
+    "mean_delta": 0.003849459703685318,
+    "median_delta": 0.00574885372893752
+  },
+  "failure_strata": {
+    "delay_counts": {
+      "0": 4,
+      "2": 12
+    },
+    "slew_counts": {
+      "0.9": 12,
+      "1.0": 4
+    },
+    "target_counts": {
+      "RZ_p10_m10": 12,
+      "nominal": 4
+    },
+    "history_counts": {
+      "minus_first": 8,
+      "plus_first": 8
+    },
+    "active_constraint_counts": {
+      "position": 15,
+      "post_speed": 1
+    }
+  },
+  "coefficient_saturation_count_by_basis": [
+    12,
+    10,
+    11,
+    9,
+    16,
+    13,
+    16,
+    14
+  ],
+  "even_term_metrics": {
+    "maximum_even_RZ_m": 0.00043210318499999935,
+    "median_even_RZ_m": 7.66057500000139e-05,
+    "maximum_even_Ip_A": 8.118500000000495,
+    "maximum_even_speed_m_per_s": 0.00656950436878705
+  },
+  "attempt_classification": {
+    "first_attempt_runtime_authentication_error": true,
+    "first_attempt_created_output": false,
+    "hotfix_changed_scientific_semantics": false,
+    "final_runtime_error": false
+  },
+  "classification": {
+    "runtime_or_environment_error_in_final_run": false,
+    "deployment_or_import_error_in_final_run": false,
+    "raw_or_bank_corruption": false,
+    "statistics_or_reporting_error": false,
+    "pre_execution_model_route_failure": true,
+    "real_closed_loop_control_failure": false,
+    "r3c4_implementation_authorized": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
