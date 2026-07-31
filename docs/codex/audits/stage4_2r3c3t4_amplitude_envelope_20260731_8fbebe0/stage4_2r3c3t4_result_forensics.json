@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T4_result_forensics",
+  "input_hashes": {
+    "stage4_2r3c3t4_amplitude_envelope_20260731_8fbebe0.json": "64c5ee745e93cc291c58e06974c7d6292594750a81b9e5dcf81966d32cd840f3",
+    "stage4_2r3c3t4_amplitude_envelope_20260731_8fbebe0.log": "89cbed85105fbad91d75d224e76ecf17ff4cf0aa25c0fedf0e8225cd907dcc66"
+  },
+  "integrity": {
+    "strict_json_parse": true,
+    "t3_reproduction_context_count": 32,
+    "t3_reproduction_pass_match_count": 32,
+    "t3_reproduction_maximum_margin_error": 0.0,
+    "profile_count": 6,
+    "profile_context_count_each": 32,
+    "all_matrix_ranks": 8,
+    "all_coefficients_within_profile_bounds": true
+  },
+  "profile_forensics": [
+    {
+      "profile_id": "transport_only_x1p25",
+      "profile_name": "transport_only",
+      "amplitude_scale": 1.25,
+      "formal_pass_count": 16,
+      "repair_count": 0,
+      "regression_count": 0,
+      "remaining_failure_count": 16,
+      "remaining_failure_margin_summary": {
+        "minimum": -0.3173626875000011,
+        "maximum": -0.018870279166669057,
+        "mean": -0.12958612929669217,
+        "median": -0.08905384004212946
+      },
+      "remaining_failure_active_constraints": {
+        "position": 13,
+        "post_speed": 3
+      },
+      "remaining_failure_saturation_count_by_basis": [
+        15,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "repaired_contexts": [],
+      "rank_counts": {
+        "8": 32
+      },
+      "condition_pass_count": 2,
+      "maximum_condition_number": 96.01739158491932,
+      "coefficient_bounds_exact": true
+    },
+    {
+      "profile_id": "transport_only_x1p50",
+      "profile_name": "transport_only",
+      "amplitude_scale": 1.5,
+      "formal_pass_count": 16,
+      "repair_count": 0,
+      "regression_count": 0,
+      "remaining_failure_count": 16,
+      "remaining_failure_margin_summary": {
+        "minimum": -0.30913205833333635,
+        "maximum": -0.010581391666668827,
+        "mean": -0.1192076960672293,
+        "median": -0.08094494999999757
+      },
+      "remaining_failure_active_constraints": {
+        "position": 15,
+        "post_speed": 1
+      },
+      "remaining_failure_saturation_count_by_basis": [
+        16,
+        16,
+        16,
+        15,
+        16,
+        16,
+        16,
+        16
+      ],
+      "repaired_contexts": [],
+      "rank_counts": {
+        "8": 32
+      },
+      "condition_pass_count": 2,
+      "maximum_condition_number": 114.14193877740523,
+      "coefficient_bounds_exact": true
+    },
+    {
+      "profile_id": "transport_only_x2p00",
+      "profile_name": "transport_only",
+      "amplitude_scale": 2.0,
+      "formal_pass_count": 20,
+      "repair_count": 4,
+      "regression_count": 0,
+      "remaining_failure_count": 12,
+      "remaining_failure_margin_summary": {
+        "minimum": -0.2926708000000029,
+        "maximum": -0.02413463333333654,
+        "mean": -0.134554099983586,
+        "median": -0.08642976505857114
+      },
+      "remaining_failure_active_constraints": {
+        "position": 10,
+        "post_speed": 2
+      },
+      "remaining_failure_saturation_count_by_basis": [
+        11,
+        12,
+        11,
+        12,
+        12,
+        11,
+        12,
+        12
+      ],
+      "repaired_contexts": [
+        {
+          "context": [
+            "p5_q1_a0p900_gap2_settle4",
+            "minus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.004694516666665427
+        },
+        {
+          "context": [
+            "p5_q1_a0p900_gap2_settle4",
+            "plus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.0033953000000114253
+        },
+        {
+          "context": [
+            "p5_q2_a0p900_gap2_settle4",
+            "minus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.005996383333331523
+        },
+        {
+          "context": [
+            "p5_q2_a0p900_gap2_settle4",
+            "plus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.0014926499999965426
+        }
+      ],
+      "rank_counts": {
+        "8": 32
+      },
+      "condition_pass_count": 0,
+      "maximum_condition_number": 150.77070769516737,
+      "coefficient_bounds_exact": true
+    },
+    {
+      "profile_id": "uniform_all_x1p25",
+      "profile_name": "uniform_all",
+      "amplitude_scale": 1.25,
+      "formal_pass_count": 16,
+      "repair_count": 0,
+      "regression_count": 0,
+      "remaining_failure_count": 16,
+      "remaining_failure_margin_summary": {
+        "minimum": -0.3165453041666719,
+        "maximum": -0.01714590000000138,
+        "mean": -0.1281539834160902,
+        "median": -0.08819944638409905
+      },
+      "remaining_failure_active_constraints": {
+        "position": 13,
+        "post_speed": 3
+      },
+      "remaining_failure_saturation_count_by_basis": [
+        15,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16,
+        16
+      ],
+      "repaired_contexts": [],
+      "rank_counts": {
+        "8": 32
+      },
+      "condition_pass_count": 11,
+      "maximum_condition_number": 78.15446615587743,
+      "coefficient_bounds_exact": true
+    },
+    {
+      "profile_id": "uniform_all_x1p50",
+      "profile_name": "uniform_all",
+      "amplitude_scale": 1.5,
+      "formal_pass_count": 16,
+      "repair_count": 0,
+      "regression_count": 0,
+      "remaining_failure_count": 16,
+      "remaining_failure_margin_summary": {
+        "minimum": -0.3074972916666705,
+        "maximum": -0.007132633333337246,
+        "mean": -0.11681375794557147,
+        "median": -0.07921808749999659
+      },
+      "remaining_failure_active_constraints": {
+        "position": 16
+      },
+      "remaining_failure_saturation_count_by_basis": [
+        16,
+        16,
+        14,
+        15,
+        16,
+        16,
+        16,
+        16
+      ],
+      "repaired_contexts": [],
+      "rank_counts": {
+        "8": 32
+      },
+      "condition_pass_count": 11,
+      "maximum_condition_number": 78.15446615587744,
+      "coefficient_bounds_exact": true
+    },
+    {
+      "profile_id": "uniform_all_x2p00",
+      "profile_name": "uniform_all",
+      "amplitude_scale": 2.0,
+      "formal_pass_count": 20,
+      "repair_count": 4,
+      "regression_count": 0,
+      "remaining_failure_count": 12,
+      "remaining_failure_margin_summary": {
+        "minimum": -0.28940126666667143,
+        "maximum": -0.017995233333335303,
+        "mean": -0.13003347704825383,
+        "median": -0.08296964322278644
+      },
+      "remaining_failure_active_constraints": {
+        "position": 10,
+        "post_speed": 2
+      },
+      "remaining_failure_saturation_count_by_basis": [
+        11,
+        12,
+        9,
+        11,
+        12,
+        11,
+        12,
+        12
+      ],
+      "repaired_contexts": [
+        {
+          "context": [
+            "p5_q1_a0p900_gap2_settle4",
+            "minus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.011125900000000244
+        },
+        {
+          "context": [
+            "p5_q1_a0p900_gap2_settle4",
+            "plus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.011132533333345851
+        },
+        {
+          "context": [
+            "p5_q2_a0p900_gap2_settle4",
+            "minus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.012893899999994796
+        },
+        {
+          "context": [
+            "p5_q2_a0p900_gap2_settle4",
+            "plus_first",
+            "nominal",
+            2,
+            0.9
+          ],
+          "minimum_signed_margin": 0.00787043333332993
+        }
+      ],
+      "rank_counts": {
+        "8": 32
+      },
+      "condition_pass_count": 11,
+      "maximum_condition_number": 78.15446615587746,
+      "coefficient_bounds_exact": true
+    }
+  ],
+  "first_passing_grid_scale_contexts": [
+    {
+      "context": [
+        "p5_q1_a0p900_gap2_settle4",
+        "minus_first",
+        "nominal",
+        2,
+        0.9
+      ],
+      "t3_minimum_signed_margin": -0.02847459999999935,
+      "transport_only_first_passing_grid_scale": 2.0,
+      "uniform_all_first_passing_grid_scale": 2.0
+    },
+    {
+      "context": [
+        "p5_q1_a0p900_gap2_settle4",
+        "plus_first",
+        "nominal",
+        2,
+        0.9
+      ],
+      "t3_minimum_signed_margin": -0.02846064999999598,
+      "transport_only_first_passing_grid_scale": 2.0,
+      "uniform_all_first_passing_grid_scale": 2.0
+    },
+    {
+      "context": [
+        "p5_q2_a0p900_gap2_settle4",
+        "minus_first",
+        "nominal",
+        2,
+        0.9
+      ],
+      "t3_minimum_signed_margin": -0.027159166666669066,
+      "transport_only_first_passing_grid_scale": 2.0,
+      "uniform_all_first_passing_grid_scale": 2.0
+    },
+    {
+      "context": [
+        "p5_q2_a0p900_gap2_settle4",
+        "plus_first",
+        "nominal",
+        2,
+        0.9
+      ],
+      "t3_minimum_signed_margin": -0.031239983333335664,
+      "transport_only_first_passing_grid_scale": 2.0,
+      "uniform_all_first_passing_grid_scale": 2.0
+    }
+  ],
+  "route_result": {
+    "transport_only_formal_32_by_2x": false,
+    "uniform_all_formal_32_by_2x": false,
+    "any_profile_formal_and_condition_32_by_2x": false,
+    "amplitude_only_route_within_2x_rejected": true,
+    "remaining_failures_at_2x": 12,
+    "repairs_at_2x": 4
+  },
+  "warning_inventory": {
+    "slsqp_internal_bound_clipping_warning_count": 2,
+    "final_coefficient_bound_violation_count": 0,
+    "classification": "optimizer diagnostic warning, not a runtime failure"
+  },
+  "classification": {
+    "runtime_or_environment_error": false,
+    "deployment_or_import_error_in_final_run": false,
+    "raw_or_bank_corruption": false,
+    "statistics_or_reporting_error": false,
+    "pre_execution_amplitude_route_rejection": true,
+    "real_closed_loop_control_failure": false,
+    "r3c4_implementation_authorized": false,
+    "r3c4_real_tsc_execution_authorized": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
