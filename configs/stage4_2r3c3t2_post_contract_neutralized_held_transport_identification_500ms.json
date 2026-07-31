@@ -5,7 +5,7 @@
   "run_name": "stage4_2r3c3t2_post_contract_neutralized_held_transport_identification",
   "output_root": "stage4_2r3c3t2_runs",
   "controller_revision": "post_contract_neutralized_held_transport_probe_v42r3c3t2_v2",
-  "package_revision": "r42r3c3t2_post_contract_held_transport_identification_v2h1",
+  "package_revision": "r42r3c3t2_post_contract_held_transport_identification_v2h2",
   "base_stage_config": "configs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_370ms.json",
   "base_stage_config_sha256": "b6b8133977e6682a5fd7df70aa94142bd6a16a941ff3533cebd98ff88ae62746",
   "source_t1_requirements": {

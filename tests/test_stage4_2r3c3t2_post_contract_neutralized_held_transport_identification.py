@@ -39,7 +39,7 @@ class Stage42R3C3T2DesignTests(unittest.TestCase):
         )
         self.assertEqual(
             cfg["package_revision"],
-            "r42r3c3t2_post_contract_held_transport_identification_v2h1",
+            "r42r3c3t2_post_contract_held_transport_identification_v2h2",
         )
         self.assertEqual(cfg["control_matrix"]["expected_rollouts"], 160)
         self.assertEqual(
@@ -292,12 +292,36 @@ class Stage42R3C3T2DesignTests(unittest.TestCase):
             self.assertEqual(truncated["spec"]["horizon_steps"], 35)
             return {"passed": True}
 
+        truncated = t2._formal_prefix_result(result)
+        self.assertEqual(len(truncated["trajectory"]), 36)
+        self.assertEqual(len(truncated["controller_trace"]), 35)
+        self.assertEqual(truncated["spec"]["horizon_steps"], 35)
+        self.assertEqual(len(result["trajectory"]), 51)
+        self.assertEqual(result["spec"]["horizon_steps"], 50)
         with mock.patch.object(
             t2.t1.r3c3, "_formal_metrics", side_effect=fake_formal
         ):
             self.assertEqual(
                 t2._formal_prefix_metrics(ctx, result), {"passed": True}
             )
+
+    def test_offline_raw_gate_distinguishes_first_run_and_resume(self) -> None:
+        gate = t2._offline_raw_directory_gate
+        self.assertTrue(
+            gate(raw_count=0, expected=160, allow_existing_raw=False)
+        )
+        self.assertFalse(
+            gate(raw_count=1, expected=160, allow_existing_raw=False)
+        )
+        self.assertTrue(
+            gate(raw_count=0, expected=160, allow_existing_raw=True)
+        )
+        self.assertTrue(
+            gate(raw_count=160, expected=160, allow_existing_raw=True)
+        )
+        self.assertFalse(
+            gate(raw_count=161, expected=160, allow_existing_raw=True)
+        )
 
     def test_payload_overrides_inherited_formal_episode_horizon(self) -> None:
         ctx = SimpleNamespace(

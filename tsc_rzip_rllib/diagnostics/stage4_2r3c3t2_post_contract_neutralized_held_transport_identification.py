@@ -42,7 +42,7 @@ CONTROLLER_REVISION = (
     "post_contract_neutralized_held_transport_probe_v42r3c3t2_v2"
 )
 PACKAGE_REVISION = (
-    "r42r3c3t2_post_contract_held_transport_identification_v2h1"
+    "r42r3c3t2_post_contract_held_transport_identification_v2h2"
 )
 RUN_NAME = (
     "stage4_2r3c3t2_post_contract_neutralized_held_transport_"
@@ -1220,8 +1220,7 @@ def _phase_trace_valid(
     }
 
 
-def _formal_prefix_metrics(
-    ctx: Stage42R3C3T2Context,
+def _formal_prefix_result(
     result: Mapping[str, Any],
 ) -> dict[str, Any]:
     horizon = int(result["spec"]["formal_horizon_steps"])
@@ -1232,8 +1231,15 @@ def _formal_prefix_metrics(
     )[:horizon]
     truncated["spec"] = copy.deepcopy(dict(result["spec"]))
     truncated["spec"]["horizon_steps"] = horizon
+    return truncated
+
+
+def _formal_prefix_metrics(
+    ctx: Stage42R3C3T2Context,
+    result: Mapping[str, Any],
+) -> dict[str, Any]:
     return t1.r3c3._formal_metrics(
-        ctx.source_ctx.base_ctx, truncated
+        ctx.source_ctx.base_ctx, _formal_prefix_result(result)
     )
 
 
@@ -1428,7 +1434,9 @@ def summarize_control(
         ] = result
         state_id = str(spec["state_generation_experiment_id"])
         base = t1.r3b._control_row(
-            base_source_ctx, result, state_map[state_id]
+            base_source_ctx,
+            _formal_prefix_result(result),
+            state_map[state_id],
         )
         phase = _phase_trace_valid(result)
         formal = (
@@ -2091,9 +2099,22 @@ def prepare(
     return list(selected_pairs), specs
 
 
+def _offline_raw_directory_gate(
+    *,
+    raw_count: int,
+    expected: int,
+    allow_existing_raw: bool,
+) -> bool:
+    if allow_existing_raw:
+        return 0 <= raw_count <= expected
+    return raw_count == 0
+
+
 def run_offline_probe_audit(
     ctx: Stage42R3C3T2Context,
     selected_pairs: Sequence[Mapping[str, Any]],
+    *,
+    allow_existing_raw: bool = False,
 ) -> dict[str, Any]:
     specs = build_control_specs(ctx, selected_pairs)
     library, bundle, selector = t1.r1._library_bundle_selector(
@@ -2265,6 +2286,11 @@ def run_offline_probe_audit(
             plant.close()
     expected = int(ctx.cfg["control_matrix"]["expected_rollouts"])
     raw_count = len(list(ctx.paths.raw.glob("*.json.gz")))
+    raw_directory_gate_passed = _offline_raw_directory_gate(
+        raw_count=raw_count,
+        expected=expected,
+        allow_existing_raw=allow_existing_raw,
+    )
     summary = {
         "schema_version": SCHEMA_VERSION,
         "stage": STAGE,
@@ -2294,6 +2320,8 @@ def run_offline_probe_audit(
             for row in action_rows
         ),
         "raw_count": raw_count,
+        "allow_existing_raw": allow_existing_raw,
+        "raw_directory_gate_passed": raw_directory_gate_passed,
         "plant_advance_count": 0,
         "real_tsc_executed": False,
     }
@@ -2310,7 +2338,7 @@ def run_offline_probe_audit(
             "payload_and_environment_horizon_exact_count"
         ]
         == expected
-        and raw_count == 0
+        and raw_directory_gate_passed
     )
     t1.r3c3.atomic_write_json(
         ctx.paths.source_reference / "offline_held_transport_audit.json",
@@ -2391,7 +2419,11 @@ def execute(
     resume: bool,
 ) -> dict[str, Any]:
     selected_pairs, specs = prepare(ctx, resume=resume)
-    offline = run_offline_probe_audit(ctx, selected_pairs)
+    offline = run_offline_probe_audit(
+        ctx,
+        selected_pairs,
+        allow_existing_raw=resume,
+    )
     if not bool(offline.get("passed")):
         raise RuntimeError(
             "Stage4.2R3c3T2 offline gate failed; no real TSC started"
