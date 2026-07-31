@@ -93,6 +93,11 @@ class Stage42R3C3T11PreflightTests(unittest.TestCase):
                     columns.append(T11._formal_schedule(probe, hold).reshape(-1))
             self.assertEqual(np.linalg.matrix_rank(np.column_stack(columns)), 6)
 
+    def test_rank_gate_is_invariant_to_column_amplitude(self) -> None:
+        scaled_identity = np.diag([1.0e6, 1.0e-12, 1.0])
+        self.assertLess(np.linalg.matrix_rank(scaled_identity), 3)
+        self.assertEqual(np.linalg.matrix_rank(T11._normalized(scaled_identity)), 3)
+
     def test_scope_and_task_identity_are_conservative(self) -> None:
         real = self.config["prospective_real_identification_contract"]
         scope = self.config["scientific_scope"]

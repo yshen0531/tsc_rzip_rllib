@@ -271,7 +271,7 @@ def build_preflight(args: argparse.Namespace) -> dict[str, Any]:
         pc3 = _formal_schedule(t9_case["standalone_pc3_probe"], hold).reshape(-1)
         existing = np.column_stack([old, *t6_columns, pc3])
         existing_normalized = _normalized(existing)
-        old_rank = int(np.linalg.matrix_rank(existing))
+        old_rank = int(np.linalg.matrix_rank(existing_normalized))
         old_condition = float(np.linalg.cond(existing_normalized))
         if old_rank != 12:
             raise ValueError("existing 12-column schedule rank changed")
@@ -306,9 +306,11 @@ def build_preflight(args: argparse.Namespace) -> dict[str, Any]:
                 residual_norms.append(residual_norm)
         new_matrix = np.column_stack(new_columns)
         augmented = np.column_stack([existing, new_matrix])
-        new_rank = int(np.linalg.matrix_rank(new_matrix))
-        augmented_rank = int(np.linalg.matrix_rank(augmented))
-        augmented_condition = float(np.linalg.cond(_normalized(augmented)))
+        new_normalized = _normalized(new_matrix)
+        augmented_normalized = _normalized(augmented)
+        new_rank = int(np.linalg.matrix_rank(new_normalized))
+        augmented_rank = int(np.linalg.matrix_rank(augmented_normalized))
+        augmented_condition = float(np.linalg.cond(augmented_normalized))
         bounded = all(
             int(probe["nonzero_issue_count"]) == int(step_cfg["required_nonzero_issue_count"])
             and len({int(row[0]) for row in probe["positive_schedule_by_task_issue_step"]})
