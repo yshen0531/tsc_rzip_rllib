@@ -139,6 +139,56 @@ class Stage42R3C3T6Tests(unittest.TestCase):
         self.assertEqual(rank, 1)
         self.assertFalse(passed)
 
+    def test_control_payload_uses_frozen_base_runtime_config(self) -> None:
+        _, preflight = t6._authenticate_preflight(self.cfg)
+        paths = t6._paths(ROOT / ".codex_tmp" / "unused_t6_payload_test")
+        base_cfg = {
+            "runtime": {"tsc_timeout_s": 321.0},
+            "storage": {"placeholder": True},
+        }
+        ctx = t6.Stage42R3C3T6Context(
+            cfg=copy.deepcopy(self.cfg),
+            base_config_path=Path("base.json"),
+            base_ctx=SimpleNamespace(
+                cfg=base_cfg,
+                source_ctx=SimpleNamespace(source_ctx=object()),
+            ),
+            preflight_path=Path("preflight.json"),
+            preflight=preflight,
+            t3_controller_bank_path=Path("bank.json"),
+            paths=paths,
+        )
+        spec = {
+            "experiment_id": "payload-test",
+            "restart_snapshot_dir": "/server/snapshot",
+            "restart_snapshot_manifest_digest": "a" * 64,
+        }
+
+        def frozen_payload(proxy, *, spec):
+            self.assertIs(proxy.cfg, base_cfg)
+            self.assertEqual(proxy.cfg["runtime"]["tsc_timeout_s"], 321.0)
+            self.assertIs(proxy.source_ctx, ctx.base_ctx.source_ctx.source_ctx)
+            return {
+                "train_cfg": {
+                    "episode": {"max_episode_steps": 37}
+                }
+            }
+
+        with mock.patch.object(
+            t6.t1.r3c3,
+            "_control_payload",
+            side_effect=frozen_payload,
+        ), mock.patch.object(t6.t1.r3c3, "atomic_write_json"):
+            payload = t6._control_payload(ctx, spec=spec)
+        self.assertEqual(
+            payload["train_cfg"]["episode"]["max_episode_steps"], 50
+        )
+        self.assertEqual(payload["stage4_1r4_horizon_steps"], 50)
+        self.assertEqual(
+            payload["stage4_2r3c3t6_restart_snapshot_dir"],
+            spec["restart_snapshot_dir"],
+        )
+
     def test_snapshot_audit_requires_one_exact_identity_per_state(self) -> None:
         specs = [
             {

@@ -3,7 +3,7 @@
     "stage":  "Stage4.2R3c3T6",
     "run_name":  "stage4_2r3c3t6_target_residual_new_direction_identification",
     "controller_revision":  "target_residual_new_direction_probe_v42r3c3t6_v1",
-    "package_revision":  "r42r3c3t6_target_residual_identification_v1",
+    "package_revision":  "r42r3c3t6_target_residual_identification_v1h1",
     "source_stage":  "Exact failed Stage4.2R3c3T1/T2/T3/T4/T5 diagnostics plus authenticated Stage4.2R3c3, R3c1, R3b, R17, R1c, and R2 source chain; no failed-probe trajectory is treated as expert data.",
     "source_controller_revision":  "authenticated_visible_manifold_phase_mpc_v42r3c1",
     "source_package_revision":  "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",

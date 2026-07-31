@@ -22,7 +22,7 @@ expected = {
         "target_residual_new_direction_probe_v42r3c3t6_v1"
     ),
     "package_revision": (
-        "r42r3c3t6_target_residual_identification_v1"
+        "r42r3c3t6_target_residual_identification_v1h1"
     ),
     "run_name": (
         "stage4_2r3c3t6_target_residual_new_direction_identification"

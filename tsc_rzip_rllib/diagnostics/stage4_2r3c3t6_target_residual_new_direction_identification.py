@@ -37,7 +37,7 @@ except ImportError:  # pragma: no cover - Windows validation
 SCHEMA_VERSION = 1
 STAGE = "Stage4.2R3c3T6"
 CONTROLLER_REVISION = "target_residual_new_direction_probe_v42r3c3t6_v1"
-PACKAGE_REVISION = "r42r3c3t6_target_residual_identification_v1"
+PACKAGE_REVISION = "r42r3c3t6_target_residual_identification_v1h1"
 RUN_NAME = "stage4_2r3c3t6_target_residual_new_direction_identification"
 OBSERVATION_HORIZON = 50
 BASELINE_PROBE_ID = "target_residual_baseline"
@@ -546,7 +546,7 @@ def _control_payload(
 ) -> dict[str, Any]:
     proxy = SimpleNamespace(
         source_ctx=ctx.base_ctx.source_ctx.source_ctx,
-        cfg=ctx.cfg,
+        cfg=ctx.base_ctx.cfg,
         paths=ctx.paths,
     )
     payload = t1.r3c3._control_payload(proxy, spec=spec)

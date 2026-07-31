@@ -5,7 +5,7 @@
   "run_name": "stage4_2r3c3t6_target_residual_new_direction_identification",
   "output_root": "stage4_2r3c3t6_runs",
   "controller_revision": "target_residual_new_direction_probe_v42r3c3t6_v1",
-  "package_revision": "r42r3c3t6_target_residual_identification_v1",
+  "package_revision": "r42r3c3t6_target_residual_identification_v1h1",
   "base_stage_config": "configs/stage4_2r3c3t2_post_contract_neutralized_held_transport_identification_500ms.json",
   "base_stage_config_sha256": "08c5845f882af8b7b5f12fe96fa8a1e792ceefa8446b0a5c80ea51b7adb7ce61",
   "candidate_preflight": {
