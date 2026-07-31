@@ -754,3 +754,34 @@
   `docs/codex/audits/stage4_2r3c3t8_headroom_diagnostic_20260731_d98820e/`
 - Next: preregister new temporal/actuator combined-action identification;
   no amplitude-only, separable-even, R3c4, BC, DAgger or residual RL
+
+## Stage4.2R3c3T9 PC3 and mixed-interaction preflight
+
+- Local implementation/design commit: `cbb970b`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_preflights/stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b`
+- Execution: authenticated server-side offline preflight only; no Ray,
+  `gotsc`, TSC, trajectory, raw, or snapshot creation
+- Exact source authentication: R17 `18/18`, R3c1 `32/32`, T3 bank `32/32`,
+  T6/T7/T8 compact hashes exact
+- PC3 singular values: normal `1.1347038781`, weak `0.7778123389`
+- Four-direction minimum residual coverage: normal `0.9999124092`, weak
+  `0.9953619114`
+- Action schedule gates: complete rank `12/12`, condition `2.5510604`;
+  selected rank `9/9`, condition `1.2300223`; T6 schedule reproduction
+  maximum error `0`
+- Mixed factorial: exact four signs, common amplitude
+  `0.01060660171779821`, formal L2 `0.015`, bounded components, exact
+  zero-net, first cancellation state `39`
+- Output hash:
+  `9a37168cce679df7deeb242bceb996c11f41bf9e589459e27386ece45f41e560`
+- Validation: local and empty-deploy `587/587`; remote complete `587/587`;
+  installed package `203/203` exact
+- Classification: action-design PASS only; plant response, mixed
+  interaction, selected nine-basis response condition, control and
+  feasibility remain unrun
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3T9_PC3_MIXED_INTERACTION_PREFLIGHT_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b/`
+- Next: implement the frozen independent `32 + 64 + 128 = 224` real
+  identification identity; no R3c4/BC/DAgger/RL

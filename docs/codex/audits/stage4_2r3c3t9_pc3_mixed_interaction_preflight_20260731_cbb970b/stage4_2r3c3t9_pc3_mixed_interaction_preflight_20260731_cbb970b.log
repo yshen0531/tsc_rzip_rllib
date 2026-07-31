@@ -1,0 +1,29 @@
+{
+  "actuator_cases": [
+    {
+      "complete_condition": 2.551060423373304,
+      "complete_rank": 12,
+      "delay_steps": 0,
+      "factorial_common_amplitude": 0.010606601717798212,
+      "minimum_four_direction_coverage": 0.9999124091687069,
+      "pc3_singular_value": 1.1347038780886947,
+      "selected_nine_condition": 1.2300222509675736,
+      "selected_nine_rank": 9,
+      "slew_scale": 1.0
+    },
+    {
+      "complete_condition": 2.5510604233733036,
+      "complete_rank": 12,
+      "delay_steps": 2,
+      "factorial_common_amplitude": 0.01060660171779821,
+      "minimum_four_direction_coverage": 0.9953619114304674,
+      "pc3_singular_value": 0.7778123388745579,
+      "selected_nine_condition": 1.230022250967573,
+      "selected_nine_rank": 9,
+      "slew_scale": 0.9
+    }
+  ],
+  "all_preflight_gates_pass": true,
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_preflights/stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b/stage4_2r3c3t9_pc3_mixed_interaction_preflight_v1.json",
+  "prospective_task_count": 224
+}

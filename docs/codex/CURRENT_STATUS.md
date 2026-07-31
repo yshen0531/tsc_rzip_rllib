@@ -181,3 +181,44 @@ unseen targets, continuous actuator and plant variation, noise, observer,
 disturbance recovery, and independent long hold remain unvalidated.
 
 BC, DAgger, and bounded residual RL remain prohibited.
+
+## Stage4.2R3c3T9 preflight handoff
+
+The post-T8 PC3/mixed-action preflight is complete at commit `cbb970b`.
+No T9 TSC was executed.
+
+```text
+preflight gates                                      all PASS
+PC3 singular value normal / weak            1.134704 / 0.777812
+minimum four-direction coverage             0.999912 / 0.995362
+complete action rank / condition             12 / 2.551060
+selected action rank / condition              9 / 1.230022
+factorial common amplitude                         0.0106066
+prospective real task count                                224
+```
+
+Exact compact output:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/
+stage4_2r3c3t9_preflights/
+stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b/
+stage4_2r3c3t9_pc3_mixed_interaction_preflight_v1.json
+
+SHA-256
+9a37168cce679df7deeb242bceb996c11f41bf9e589459e27386ece45f41e560
+```
+
+The active work is implementation of the frozen independent real
+identification matrix:
+
+```text
+32 extended baselines
+64 standalone PC3 signed probes
+128 direct stress-by-PC3 factorial probes
+```
+
+This preflight does not authorize R3c4. Reliable MPC, independent unseen
+histories/targets, continuous parameters, noise, disturbance recovery, and
+independent long hold remain unvalidated. BC, DAgger, and residual RL remain
+prohibited.

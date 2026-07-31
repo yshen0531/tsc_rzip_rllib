@@ -658,3 +658,78 @@ target-relevant temporal/actuator combined-action identification:
 5. require response symmetry, history invariance, conditioning and a
    prospective feasibility gate before any R3c4 implementation;
 6. run no BC, DAgger or residual RL.
+
+## 15. Final T9 PC3 and mixed-interaction preflight result
+
+T9 preflight implementation/design commit:
+
+```text
+cbb970b
+```
+
+The preflight executed no Ray, gotsc, or TSC. It authenticated the exact
+R17/R3c1/T3/T6/T7/T8 source chain, reproduced the first three T6 schedules
+with zero error, and added the third equal-context target-residual principal
+direction outside the complete eleven-schedule T6 span:
+
+```text
+actuator                         delay 0 / slew 1.0   delay 2 / slew 0.9
+PC3 singular value                         1.134704              0.777812
+minimum four-direction coverage            0.999912              0.995362
+complete action rank                          12/12                 12/12
+complete normalized condition               2.55106               2.55106
+selected action rank                            9/9                   9/9
+selected normalized condition               1.23002               1.23002
+```
+
+The direct mixed-action design uses one label-independent T8 failure-stress
+schedule per public actuator case and the exact four signs:
+
+```text
++stress +pc3
++stress -pc3
+-stress +pc3
+-stress -pc3
+```
+
+The common factorial amplitude is `0.01060660171779821`. Every schedule
+retains formal L2 `<= 0.015`, component magnitude `<= 0.0075`, exact zero
+net, and physical cancellation only at states 39 through 44.
+
+Exact preflight hash:
+
+```text
+9a37168cce679df7deeb242bceb996c11f41bf9e589459e27386ece45f41e560
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T9_PC3_MIXED_INTERACTION_PREFLIGHT_REPORT.md
+```
+
+This is an action-design PASS only. It does not validate the PC3 plant
+response, combined-action linearity, hidden-history control, formal control,
+or R3c4 feasibility.
+
+The active task is to implement and validate the frozen independent T9 real
+identification identity:
+
+```text
+32 contexts x (
+  1 extended baseline
+  + 2 standalone PC3 signs
+  + 4 stress-by-PC3 factorial signs
+)
+= 224 real TSC tasks
+```
+
+The real campaign must preserve exact restart/causality, current utilization
+`<= 0.55`, standalone symmetry, PC3 and mixed-contrast history invariance,
+and selected nine-basis response rank/condition `9/9, <=25`. A linear route
+also requires mixed-response and PC3-background modulation ratios `<=0.10`.
+A reproducible larger interaction must be retained in a separately validated
+interaction-aware model; it may not be discarded.
+
+R3c4, BC, DAgger, and residual RL remain unauthorized.
