@@ -167,6 +167,97 @@ class Stage42R3C3T9IdentificationTests(unittest.TestCase):
         )
         self.assertGreater(t9._norm_ratio(numerator, 5.0), 0.1)
 
+    def test_failed_probe_trace_is_finite_structured_failure(self) -> None:
+        schedule = {str(step): [0.0, 0.0, 0.0] for step in range(41)}
+        result = {
+            "spec": {
+                "r3c3_probe_id": t9.PC3_PROBE_ID,
+                "r3c3_probe_delta_by_task_issue_step": schedule,
+            },
+            "controller_trace": [],
+        }
+        with mock.patch.object(
+            t9.t1.r3c1,
+            "_phase_trace_valid",
+            return_value={"passed": False},
+        ):
+            checked = t9._phase_trace_valid(result)
+        self.assertFalse(checked["passed"])
+        self.assertEqual(checked["probe_issued_count"], 0)
+        self.assertFalse(checked["probe_applied_exact"])
+        self.assertFalse(checked["probe_zero_net"])
+        self.assertFalse(checked["t9_identification_flags_exact"])
+
+    def test_worker_process_installs_t9_contract_before_t6_worker(self) -> None:
+        contracts = []
+
+        class FakeT6Worker:
+            def __init__(self, *_args, **_kwargs):
+                contracts.append(
+                    (
+                        t9.t6.BASELINE_PROBE_ID,
+                        t9.t6.PROBE_IDS,
+                        t9.t6.TargetResidualNewDirectionProbeController,
+                    )
+                )
+
+            def evaluate(self, spec):
+                return spec
+
+            def close(self):
+                return None
+
+        with mock.patch.object(
+            t9.t6, "LocalTargetResidualProbeWorker", FakeT6Worker
+        ):
+            worker = t9.LocalPC3MixedInteractionProbeWorker(
+                {}, {}, {}, "worker", {}
+            )
+            self.assertEqual(worker.evaluate({"ok": True}), {"ok": True})
+            worker.close()
+        self.assertEqual(
+            contracts,
+            [
+                (
+                    t9.BASELINE_PROBE_ID,
+                    t9.NONBASELINE_PROBE_IDS,
+                    t9.PC3MixedInteractionProbeController,
+                )
+            ],
+        )
+
+    def test_ray_actor_factory_uses_t9_process_worker(self) -> None:
+        constructed = []
+
+        class FakeProcessWorker:
+            def __init__(self, *_args, **_kwargs):
+                constructed.append(True)
+
+            def evaluate(self, spec):
+                return spec
+
+            def close(self):
+                return None
+
+        fake_ray = SimpleNamespace(
+            remote=lambda **_kwargs: lambda actor_class: actor_class
+        )
+        old_actor = t9._CONTROL_RAY_ACTOR
+        try:
+            t9._CONTROL_RAY_ACTOR = None
+            with mock.patch.dict("sys.modules", {"ray": fake_ray}), mock.patch.object(
+                t9,
+                "LocalPC3MixedInteractionProbeWorker",
+                FakeProcessWorker,
+            ):
+                actor_class = t9._control_ray_actor_class()
+                actor = actor_class({}, {}, {}, "worker", {})
+                self.assertEqual(actor.evaluate({"ok": True}), {"ok": True})
+                self.assertTrue(actor.close())
+        finally:
+            t9._CONTROL_RAY_ACTOR = old_actor
+        self.assertEqual(constructed, [True])
+
     def test_postprocess_preserves_separate_route_classification(self) -> None:
         fields = postprocess._summary_fields(
             {

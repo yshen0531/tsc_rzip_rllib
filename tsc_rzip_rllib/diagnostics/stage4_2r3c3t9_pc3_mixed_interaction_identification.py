@@ -36,7 +36,7 @@ from tsc_rzip_rllib.diagnostics import (
 SCHEMA_VERSION = 1
 STAGE = "Stage4.2R3c3T9"
 CONTROLLER_REVISION = "pc3_mixed_interaction_probe_v42r3c3t9_v1"
-PACKAGE_REVISION = "r42r3c3t9_pc3_mixed_interaction_identification_v1"
+PACKAGE_REVISION = "r42r3c3t9_pc3_mixed_interaction_identification_v1h1"
 RUN_NAME = "stage4_2r3c3t9_pc3_mixed_interaction_identification"
 OBSERVATION_HORIZON = 50
 BASELINE_PROBE_ID = "pc3_mixed_interaction_baseline"
@@ -643,6 +643,7 @@ def _control_payload(
 def _install_t6_runtime_adapter(*, reset_ray_actor: bool) -> None:
     """Install the T9 identity in the current process's T6 runtime shell."""
 
+    global _CONTROL_RAY_ACTOR
     t6.STAGE = STAGE
     t6.CONTROLLER_REVISION = CONTROLLER_REVISION
     t6.PACKAGE_REVISION = PACKAGE_REVISION
@@ -652,10 +653,64 @@ def _install_t6_runtime_adapter(*, reset_ray_actor: bool) -> None:
     t6.TargetResidualNewDirectionProbeController = (
         PC3MixedInteractionProbeController
     )
+    t6._control_ray_actor_class = _control_ray_actor_class
     t6._control_payload = _control_payload
     t6.build_control_specs = build_control_specs
     if reset_ray_actor:
+        _CONTROL_RAY_ACTOR = None
         t6._CONTROL_RAY_ACTOR = None
+
+
+class LocalPC3MixedInteractionProbeWorker:
+    """Install the T9 contract inside each fresh Ray worker process."""
+
+    def __init__(
+        self,
+        payload: dict[str, Any],
+        library: dict[str, Any],
+        bundle: dict[str, Any],
+        worker_id: str,
+        selector_cfg: dict[str, Any],
+    ):
+        _install_t6_runtime_adapter(reset_ray_actor=False)
+        self.worker = t6.LocalTargetResidualProbeWorker(
+            payload, library, bundle, worker_id, selector_cfg
+        )
+
+    def evaluate(self, spec: dict[str, Any]) -> dict[str, Any]:
+        _install_t6_runtime_adapter(reset_ray_actor=False)
+        return self.worker.evaluate(spec)
+
+    def close(self) -> None:
+        self.worker.close()
+
+
+_CONTROL_RAY_ACTOR = None
+
+
+def _control_ray_actor_class():
+    global _CONTROL_RAY_ACTOR
+    if _CONTROL_RAY_ACTOR is None:
+        import ray
+
+        @ray.remote(num_cpus=1, max_restarts=0)
+        class Stage42R3C3T9ControlActor:
+            def __init__(
+                self, payload, library, bundle, worker_id, selector_cfg
+            ):
+                self.worker = LocalPC3MixedInteractionProbeWorker(
+                    payload, library, bundle, worker_id, selector_cfg
+                )
+
+            def evaluate(self, spec):
+                return self.worker.evaluate(spec)
+
+            def close(self):
+                self.worker.close()
+                return True
+
+        _CONTROL_RAY_ACTOR = Stage42R3C3T9ControlActor
+    return _CONTROL_RAY_ACTOR
 
 
 def _prepare_dirs(paths: Stage42R3C3T9Paths) -> None:
@@ -844,23 +899,124 @@ def _formal_prefix_result(
 
 
 def _phase_trace_valid(result: Mapping[str, Any]) -> dict[str, Any]:
-    """Use the frozen T6 trace checker with an explicit T9 flag bridge."""
+    """Validate T9 traces and preserve finite failure data."""
 
-    shadow = copy.deepcopy(dict(result))
-    original = list(result.get("controller_trace") or [])
-    shadow_trace = copy.deepcopy(original)
+    base = t1.r3c1._phase_trace_valid(result)
+    trace = list(result.get("controller_trace") or [])
+    spec = dict(result.get("spec") or {})
+    schedule = {
+        int(step): np.asarray(value, dtype=float).reshape(N_MODES)
+        for step, value in (
+            spec.get("r3c3_probe_delta_by_task_issue_step") or {}
+        ).items()
+    }
+    baseline = str(spec.get("r3c3_probe_id")) == BASELINE_PROBE_ID
+    expected_count = 0 if baseline else 41
     t9_flags_exact = bool(
-        len(original) == OBSERVATION_HORIZON
-        and all(bool(row.get("r3c3t9_identification_only")) for row in original)
-        and not any(bool(row.get("r3c3t6_identification_only")) for row in original)
+        len(trace) == OBSERVATION_HORIZON
+        and all(bool(row.get("r3c3t9_identification_only")) for row in trace)
+        and not any(bool(row.get("r3c3t6_identification_only")) for row in trace)
     )
-    for row in shadow_trace:
-        row["r3c3t6_identification_only"] = True
-    shadow["controller_trace"] = shadow_trace
-    checked = t6._phase_trace_valid(shadow)
-    checked["t9_identification_flags_exact"] = t9_flags_exact
-    checked["passed"] = bool(checked["passed"] and t9_flags_exact)
-    return checked
+    exact = bool(
+        len(trace) == OBSERVATION_HORIZON
+        and len(schedule) == expected_count
+    )
+    requested_rows = []
+    applied_rows = []
+    solver_failures = 0
+    forbidden_count = 0
+    issued_count = 0
+    for row in trace:
+        step = int(row.get("task_step", -1))
+        expected = schedule.get(step, np.zeros(N_MODES))
+        requested = np.asarray(
+            row.get("r3c3_probe_requested_delta", []), dtype=float
+        ).reshape(-1)
+        applied = np.asarray(
+            row.get("r3c3_probe_applied_desired_delta", []), dtype=float
+        ).reshape(-1)
+        issued = bool(row.get("r3c3_probe_issued"))
+        exact = bool(
+            exact
+            and requested.shape == applied.shape == (N_MODES,)
+            and issued == (step in schedule)
+            and np.array_equal(requested, expected)
+        )
+        if issued:
+            issued_count += 1
+            requested_rows.append(requested)
+            applied_rows.append(applied)
+        solver_failures += not bool(row.get("solver_success"))
+        forbidden_count += any(
+            bool(row.get(key))
+            for key in (
+                "pair_or_history_label_used",
+                "source_result_used",
+                "hidden_wire_used",
+                "source_action_used",
+                "source_coil_current_used",
+                "source_wire_current_used",
+                "current_run_future_used",
+                "future_measurement_used",
+            )
+        )
+
+    def stack(rows: Sequence[np.ndarray]) -> np.ndarray:
+        if not rows:
+            return np.empty((0, N_MODES), dtype=float)
+        array = np.asarray(rows, dtype=float)
+        if array.ndim != 2 or array.shape[1:] != (N_MODES,):
+            return np.empty((0, N_MODES), dtype=float)
+        return array
+
+    requested_array = stack(requested_rows)
+    applied_array = stack(applied_rows)
+    shape_exact = bool(
+        requested_array.shape
+        == applied_array.shape
+        == (expected_count, N_MODES)
+    )
+    applied_exact = bool(
+        shape_exact
+        and np.allclose(
+            requested_array, applied_array, rtol=0.0, atol=1e-12
+        )
+    )
+    requested_net = np.sum(requested_array, axis=0)
+    applied_net = np.sum(applied_array, axis=0)
+    zero_net = bool(
+        shape_exact
+        and np.allclose(
+            requested_net, np.zeros(N_MODES), rtol=0.0, atol=1e-12
+        )
+        and np.allclose(
+            applied_net, np.zeros(N_MODES), rtol=0.0, atol=1e-12
+        )
+    )
+    passed = bool(
+        base["passed"]
+        and exact
+        and t9_flags_exact
+        and issued_count == expected_count
+        and applied_exact
+        and zero_net
+        and forbidden_count == 0
+        and solver_failures == 0
+    )
+    return {
+        **base,
+        "passed": passed,
+        "probe_trace_exact": exact,
+        "probe_issued_count": issued_count,
+        "probe_applied_exact": applied_exact,
+        "probe_requested_net": requested_net.tolist(),
+        "probe_applied_net": applied_net.tolist(),
+        "probe_zero_net": zero_net,
+        "forbidden_trace_count": forbidden_count,
+        "solver_failure_count": solver_failures,
+        "extended_baseline": baseline,
+        "t9_identification_flags_exact": t9_flags_exact,
+    }
 
 
 def _arrays(

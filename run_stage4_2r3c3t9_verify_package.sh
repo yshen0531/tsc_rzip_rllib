@@ -19,7 +19,7 @@ manifest = json.loads(
 expected = {
     "stage": "Stage4.2R3c3T9",
     "controller_revision": "pc3_mixed_interaction_probe_v42r3c3t9_v1",
-    "package_revision": "r42r3c3t9_pc3_mixed_interaction_identification_v1",
+    "package_revision": "r42r3c3t9_pc3_mixed_interaction_identification_v1h1",
     "run_name": "stage4_2r3c3t9_pc3_mixed_interaction_identification",
 }
 for key, value in expected.items():

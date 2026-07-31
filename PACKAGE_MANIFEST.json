@@ -3,7 +3,7 @@
     "stage":  "Stage4.2R3c3T9",
     "run_name":  "stage4_2r3c3t9_pc3_mixed_interaction_identification",
     "controller_revision":  "pc3_mixed_interaction_probe_v42r3c3t9_v1",
-    "package_revision":  "r42r3c3t9_pc3_mixed_interaction_identification_v1",
+    "package_revision":  "r42r3c3t9_pc3_mixed_interaction_identification_v1h1",
     "source_stage":  "Authenticated Stage4.2R3c3T7 selected eight-basis bank plus the frozen T9 PC3 and direct mixed-interaction preflight; no probe trajectory is treated as expert data.",
     "source_controller_revision":  "authenticated_visible_manifold_phase_mpc_v42r3c1",
     "source_package_revision":  "r42r3c1_authenticated_visible_manifold_phase_mpc_v1",
