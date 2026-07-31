@@ -1,0 +1,25 @@
+{
+  "all_preflight_gates_pass": true,
+  "case_summary": [
+    {
+      "augmented_condition": 2.5510604233733036,
+      "augmented_rank": 11,
+      "delay_steps": 0,
+      "matched_median_relative_residual": 0.9610883669722333,
+      "minimum_candidate_coverage": 0.6773234175429302,
+      "r17_relative_residual": 0.8644427717029558,
+      "slew_scale": 1.0
+    },
+    {
+      "augmented_condition": 2.551060423373304,
+      "augmented_rank": 11,
+      "delay_steps": 2,
+      "matched_median_relative_residual": 0.9532910100226204,
+      "minimum_candidate_coverage": 0.8485445986158973,
+      "r17_relative_residual": 0.8204042992491695,
+      "slew_scale": 0.9
+    }
+  ],
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t6_new_direction_preflight/stage4_2r3c3t6_new_direction_preflight_20260731_428a0bd/stage4_2r3c3t6_new_direction_preflight_v1.json",
+  "prospective_task_count": 224
+}
