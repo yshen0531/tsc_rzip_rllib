@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T8",
+  "identity": "measured_current_constrained_target_direction_headroom_diagnostic_v1",
+  "status": "prospectively_frozen_after_T7_failure_before_T8_optimization",
+  "selected_basis_ids": [
+    "t3_basis_0",
+    "t3_basis_1",
+    "t3_basis_2",
+    "t3_basis_3",
+    "t3_basis_7",
+    "r17_target_action_residual",
+    "matched_visible_target_equal_pc1",
+    "matched_visible_target_equal_pc2"
+  ],
+  "source_contract": {
+    "t7_manifest_sha256": "e69980452e756686c43ce37b6f3a471b37d6c804b3a6109fa22ea5905921ed74",
+    "t7_audit_bank_sha256": "e18f5cfc7fb510f32f0f35128274e108f224c1c4a2afec262ec6fb8d91cf0d61",
+    "t7_controller_bank_sha256": "fef1eb299cede180c1f43d8713b3174aa9afd8724ea6af4509b06ad5d92febd8",
+    "t7_feasibility_sha256": "d4dbcd4a114eec10110432d6bf4337182bcb805b27ab83d689a9e216a052ed30",
+    "t7_config_sha256": "0d662f7cb0ef5cd4373c5740cdf4c9dde64c6a8b4665a62f8daf54b42eb3d84f",
+    "frozen_t7_tool_sha256": "c70490579ad812f5937ed3311fe13ea66f718108a2b62fd3efc544c17a30ee96",
+    "t6_config_sha256": "e27d44edb2ee50eb6922a65ab4b3e5cdfc36d59efcc058d91084a104a348096f",
+    "t6_runtime_source_sha256": "a4ca94c711c1ba1cf6c99eaafafe97704162a42c42749878b3ab0867871b4f67",
+    "t6_raw_count": 224,
+    "t6_raw_inventory_digest": "594b4333eb848c762aec557744fe2dcef9101e1cc495f8713ed8bbe2f2913f61",
+    "frozen_formal_evaluator_sha256": "7b7b3d15b770efaa9a6d648aa69e4dfb35dbdb596c34dc8d6e38fdfba65f31b2"
+  },
+  "diagnostic_contract": {
+    "context_count": 32,
+    "baseline_formal_pass_count": 16,
+    "old_basis_count": 5,
+    "target_direction_basis_indices": [5, 6, 7],
+    "old_coefficient_lower_bound": -1.0,
+    "old_coefficient_upper_bound": 1.0,
+    "target_direction_common_scale_grid": [1.0, 1.25, 1.5, 2.0, 3.0, 4.0],
+    "maximum_predicted_current_utilization": 0.55,
+    "maximum_midpoint_current_model_error_utilization": 0.0013,
+    "scale_one_must_exactly_reproduce_T7": true,
+    "formal_timing_changed": false,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1
+  },
+  "scientific_scope": {
+    "development_set_only": true,
+    "optimistic_linear_superposition_only": true,
+    "current_response_is_signed_pair_odd_component": true,
+    "response_extrapolation_beyond_measured_amplitude_is_validation": false,
+    "real_tsc_executed": false,
+    "controller_implementation_authorized": false,
+    "real_tsc_controller_execution_authorized": false,
+    "probe_trajectories_are_demonstrations": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
