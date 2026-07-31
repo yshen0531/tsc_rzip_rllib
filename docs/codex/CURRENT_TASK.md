@@ -804,3 +804,69 @@ background modulation, preserve coefficients/current/formal timing, and
 require unchanged-contract optimistic feasibility before any R3c4
 implementation. It may not silently fall back to a fixed linear column,
 separable-even model, amplitude expansion, BC, DAgger, or residual RL.
+
+## 17. Final T10 interaction-aware feasibility result
+
+T10 implementation/design commit `0af50e1` and package-marker compatibility
+fix `d36f7b4` were fully validated before execution. The marker fix changed
+no source, model, input, optimizer, gate, or physical semantics. Local tests
+passed 602/602; the installed server package passed 15/15 focused and 602/602
+complete tests.
+
+T10 authenticated all 224 immutable T9 raw trajectories in place and ran no
+new TSC, Ray campaign, plant step, or real MPC. Its six-term interaction-aware
+surface passed rank, conditioning, and exact measured-node reconstruction in
+32/32 contexts:
+
+```text
+design rank                                                6
+maximum design condition                    2.9897369702272503
+maximum node reconstruction error          1.0842021724855044e-19
+formal baseline pass/margin match                          32/32
+```
+
+The unchanged-contract optimistic result nevertheless remained:
+
+```text
+formal feasibility                                        16/32
+failed baseline repairs                                    0/16
+baseline pass regressions                                     0
+```
+
+All 16 failed optima were exact measured T9 factorial corners: 11 used
+`(+1,+1)` and 5 used `(+1,-1)`. Their optimized margins equal the certified
+T9 raw-derived corner margins exactly. The failure is therefore not caused
+by unvalidated interior interpolation or a reporting error. Helpful margin
+gains of `0.00471--0.01758` are too small; 13 failures remain position-limited
+and 3 post-speed-limited.
+
+Exact output:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/
+stage4_2r3c3t10_interaction_feasibility/
+stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505
+```
+
+Primary hashes:
+
+```text
+manifest     1bed61bc20f47545fdfcaf9acf665623aae985edfa2414cb6f3af00d9787a834
+audit        8c15b5339a10d45987839a28d57aa3294e765a2ee0175b6ce1247a2229d0f1a0
+feasibility  9d792677e9bccfea4159ee31f9132e24b9ffba1192694696528af9a4e6b52aa3
+model bank   8039b5b61255cf53e49848a9d2f61e85d3c3c887f084ccdf5482d8fb40d6fd31
+```
+
+T10 is a clean offline measured-authority FAIL, not a runtime, corruption,
+restart, real-control, or reporting failure. The 128-task axis de-aliasing
+campaign is vetoed, and R3c4 remains unauthorized.
+
+The active next task is to prospectively design and preflight a genuinely
+new time-localized plant-response identification that separates early
+transport authority from late braking authority. It must not scale the
+failed T7/T8/T10 episode-wide schedules, must preserve exact restart and
+paired hidden histories, must keep probe actions out of expert data, and
+must leave the 250/270 ms arrival and 350/370 ms hold contract unchanged.
+No real TSC should run until the new action schedule, current envelope,
+context matrix, symmetry/history gates, and downstream MPC-identifiability
+criterion are frozen independently of outcomes.

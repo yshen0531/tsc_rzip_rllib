@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T10",
+  "audit_status": "final",
+  "classification": "clean_offline_model_fit_pass_but_measured_authority_feasibility_fail",
+  "local_branch": "codex/stage4_2r3c3t10-interaction-aware-feasibility",
+  "implementation_commit": "0af50e1",
+  "packaging_compatibility_fix_commit": "d36f7b4",
+  "remote_project": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+  "remote_output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t10_interaction_feasibility/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505",
+  "remote_log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505.log",
+  "source_t9_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_runs/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005",
+  "source_t9_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_audits/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005",
+  "deployed_hashes": {
+    "PACKAGE_MANIFEST.json": "f3db9ed9b1fe20e42cf3d71cda30861137fe50d3d5a607e50377fde2259a0083",
+    "SHA256SUMS": "06c2b1e8a9b52bb68fc3f9f99d9da5b42e9373b197408b1e10a17d10c4712502",
+    "config": "4187c86daeecf04c303a410ec8f3a3fe5be0bea889e923a66a0f639c1bea7fec",
+    "tool": "971aa7e41294875eb0e0ea14e16b74b981fa60997a937f2eace54a77f8c6264d",
+    "frozen_formal_evaluator": "7b7b3d15b770efaa9a6d648aa69e4dfb35dbdb596c34dc8d6e38fdfba65f31b2"
+  },
+  "source_authentication": {
+    "expected_raw": 224,
+    "actual_raw": 224,
+    "raw_inventory_digest": "e53f06fc772682d85144b578a915e614b1a5d24b34aea6dfa77ab35f5091eea2",
+    "spec_identity_exact": true,
+    "execution_authentication_exact": true,
+    "t9_identification_passed": true,
+    "t9_linear_route_passed": false
+  },
+  "model_fit": {
+    "context_count": 32,
+    "pass_count": 32,
+    "design_rank": 6,
+    "maximum_design_condition_number": 2.9897369702272503,
+    "maximum_node_reconstruction_abs_error": 1.0842021724855044e-19
+  },
+  "formal_reproduction": {
+    "context_count": 32,
+    "saved_pass_count": 16,
+    "pass_match_count": 32,
+    "maximum_absolute_margin_error": 0.0
+  },
+  "feasibility": {
+    "context_count": 32,
+    "optimistic_formal_pass_count": 16,
+    "failed_baseline_repair_count": 0,
+    "baseline_pass_regression_count": 0,
+    "failed_optima_at_measured_factorial_corners": 16,
+    "failed_corner_margin_match_count": 16,
+    "maximum_failed_corner_margin_error": 0.0,
+    "failed_margin_gain_minimum": 0.004710000000000436,
+    "failed_margin_gain_mean": 0.008500234341676335,
+    "failed_margin_gain_maximum": 0.01757950249459128,
+    "failed_best_margin_range": [-0.3562991999999996, -0.05849723333333312],
+    "failed_active_constraint_counts": {
+      "position": 13,
+      "post_speed": 3
+    },
+    "prefix5_pass_count": 4,
+    "prefix9_pass_count": 12,
+    "nominal_target_pass_count": 12,
+    "offset_target_pass_count": 4,
+    "normal_actuator_pass_count": 12,
+    "weak_actuator_pass_count": 4
+  },
+  "output_hashes": {
+    "manifest": "1bed61bc20f47545fdfcaf9acf665623aae985edfa2414cb6f3af00d9787a834",
+    "audit": "8c15b5339a10d45987839a28d57aa3294e765a2ee0175b6ce1247a2229d0f1a0",
+    "feasibility": "9d792677e9bccfea4159ee31f9132e24b9ffba1192694696528af9a4e6b52aa3",
+    "model_bank_server_only": "8039b5b61255cf53e49848a9d2f61e85d3c3c887f084ccdf5482d8fb40d6fd31",
+    "execution_log": "db9e325e83b653f78df43462ffec6c164d19ea368bca90b550f86f603204a09f",
+    "installed_verify_log": "e3cf805830adf61c4bb64d308bb5f59d4eaa0ef325a8d2461837d7ee0f6c30ca",
+    "server_full_tests_log": "72ddf8f57e1ab1df8c8efefa8b9098946289ec71e8cf4da5d07f3a96346bec84"
+  },
+  "error_classification": {
+    "runtime_or_environment_error": false,
+    "raw_or_snapshot_corruption": false,
+    "statistics_or_reporting_error": false,
+    "model_fit_or_condition_failure": false,
+    "packaging_compatibility_bug_before_execution": true,
+    "packaging_bug_changed_scientific_semantics": false,
+    "real_plant_restart_failure": false,
+    "real_closed_loop_control_failure": false,
+    "measured_bounded_authority_insufficient": true
+  },
+  "scientific_scope": {
+    "real_tsc_executed_by_t10": false,
+    "real_mpc_executed_by_t10": false,
+    "continuous_surface_validated": false,
+    "probe_trajectories_are_demonstrations": false,
+    "axis_validation_campaign_authorized": false,
+    "r3c4_implementation_authorized": false,
+    "bc_dagger_or_rl_allowed": false
+  },
+  "next_action": "Veto the de-aliasing axis campaign and preregister a genuinely new time-localized target-relevant plant-response identification that separates transport from braking; do not scale the failed T7/T8/T10 schedules."
+}

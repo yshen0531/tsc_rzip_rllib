@@ -1,0 +1,7 @@
+[Stage4.2R3c3T10] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T10] source_t9_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_runs/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005
+source_t9_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t9_audits/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005
+output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t10_interaction_feasibility/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505
+[Stage4.2R3c3T10] read-only offline audit: no new TSC and no real MPC.
+[Stage4.2R3c3T10] Formal 250/270 and 350/370 ms timing is unchanged.
+{"all_preregistered_gates_pass": false, "audit_sha256": "8c15b5339a10d45987839a28d57aa3294e765a2ee0175b6ce1247a2229d0f1a0", "baseline_pass_regression_count": 0, "context_count": 32, "failed_baseline_repair_count": 0, "feasibility_sha256": "9d792677e9bccfea4159ee31f9132e24b9ffba1192694696528af9a4e6b52aa3", "manifest_sha256": "1bed61bc20f47545fdfcaf9acf665623aae985edfa2414cb6f3af00d9787a834", "model_bank_sha256": "8039b5b61255cf53e49848a9d2f61e85d3c3c887f084ccdf5482d8fb40d6fd31", "model_fit_pass_count": 32, "next_axis_validation_campaign_authorized": false, "optimistic_formal_pass_count": 16, "output_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t10_interaction_feasibility/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505", "r3c4_implementation_authorized": false, "real_tsc_executed": false}

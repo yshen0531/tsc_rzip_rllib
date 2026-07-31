@@ -1,5 +1,16 @@
 # Current status
 
+> Superseding status (2026-07-31 Asia/Shanghai): T9 completed a clean
+> 224/224 mixed-interaction identification, and T10 then authenticated those
+> raw trajectories in a preregistered six-term interaction-aware offline
+> audit. Model fitting passed 32/32, but formal feasibility stayed 16/32 with
+> 0/16 repairs. Every failed optimum was an exact measured T9 factorial
+> corner, so interpolation and reporting explanations are excluded. The
+> axis de-aliasing campaign and R3c4 are vetoed. The active route is a new
+> time-localized transport-versus-braking response identification; no
+> amplitude expansion, BC, DAgger, or residual RL is allowed. See
+> `STAGE4_2R3C3T10_INTERACTION_AWARE_FEASIBILITY_REPORT.md`.
+
 > Superseding status (2026-07-31 Asia/Shanghai): T6 completed 224/224 but
 > failed its combined-bank design gate after a reporting-only hotfix. T7
 > repaired conditioning but remained 16/32 with 0/16 repairs. T8 then

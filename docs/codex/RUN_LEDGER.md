@@ -853,3 +853,37 @@
   `docs/codex/audits/stage4_2r3c3t9_pc3_mixed_interaction_identification_20260731_090005/`
 - Next: preregister an interaction-aware offline model using the measured
   Walsh mixed contrast and background modulation; no R3c4/BC/DAgger/RL.
+
+## Stage4.2R3c3T10 interaction-aware feasibility
+
+- Implementation/design commit: `0af50e1`
+- Package-marker compatibility fix: `d36f7b4`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t10_interaction_feasibility/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505`
+- Execution: server-side offline raw audit only; no Ray, `gotsc`, plant step,
+  new trajectory, real controller, or new snapshot
+- Source authentication: T9 raw 224/224, exact spec set, raw digest
+  `e53f06fc772682d85144b578a915e614b1a5d24b34aea6dfa77ab35f5091eea2`
+- Model: fixed six-term stress/PC3 surface; rank 6; condition
+  `2.9897369702`; fit 32/32; maximum measured-node error `1.0842e-19`
+- Formal reproduction: 32/32 pass/margin exact; baseline passes 16/32
+- Feasibility: 16/32; repairs 0/16; regressions 0
+- All 16 failed optima are real T9 corners: 11 at `(+1,+1)`, 5 at
+  `(+1,-1)`; T10/T9 corner margins match with maximum error 0
+- Failed margin gain range `0.00471--0.01758`; best remaining margin
+  `-0.0584972`; worst `-0.3562992`; active constraints position 13 and
+  post-speed 3
+- Output hashes: manifest
+  `1bed61bc20f47545fdfcaf9acf665623aae985edfa2414cb6f3af00d9787a834`;
+  audit `8c15b5339a10d45987839a28d57aa3294e765a2ee0175b6ce1247a2229d0f1a0`;
+  feasibility `9d792677e9bccfea4159ee31f9132e24b9ffba1192694696528af9a4e6b52aa3`;
+  server-only model bank
+  `8039b5b61255cf53e49848a9d2f61e85d3c3c887f084ccdf5482d8fb40d6fd31`
+- Classification: clean offline measured-authority/design failure; not
+  runtime, corruption, restart, reporting, or real MPC failure
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3T10_INTERACTION_AWARE_FEASIBILITY_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505/`
+- Next: veto axis de-aliasing and preregister time-localized target-relevant
+  transport-versus-braking response identification; no amplitude expansion,
+  R3c4, BC, DAgger, or residual RL

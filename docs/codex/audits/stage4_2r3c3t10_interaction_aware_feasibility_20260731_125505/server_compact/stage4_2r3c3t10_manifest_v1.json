@@ -1,0 +1,26 @@
+{
+  "all_preregistered_gates_pass": false,
+  "identity": "measured_two_coordinate_interaction_aware_feasibility_v1",
+  "next_axis_validation_campaign_authorized": false,
+  "outputs": [
+    {
+      "path": "stage4_2r3c3t10_interaction_model_bank_v1.json",
+      "sha256": "8039b5b61255cf53e49848a9d2f61e85d3c3c887f084ccdf5482d8fb40d6fd31",
+      "size_bytes": 1413182
+    },
+    {
+      "path": "stage4_2r3c3t10_audit_v1.json",
+      "sha256": "8c15b5339a10d45987839a28d57aa3294e765a2ee0175b6ce1247a2229d0f1a0",
+      "size_bytes": 71774
+    },
+    {
+      "path": "stage4_2r3c3t10_feasibility_v1.json",
+      "sha256": "9d792677e9bccfea4159ee31f9132e24b9ffba1192694696528af9a4e6b52aa3",
+      "size_bytes": 17098
+    }
+  ],
+  "provenance_digest": "c8a3facd3d91186248339c6353cd8c872f332a3dc166bfa75470d40671dea88a",
+  "r3c4_implementation_authorized": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T10"
+}
