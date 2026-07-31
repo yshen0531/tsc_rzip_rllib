@@ -1,4 +1,4 @@
-# CURRENT_TASK.md — post-T2 six-basis optimistic feasibility
+# CURRENT_TASK.md — post-T3 route discrimination
 
 ## 1. Terminology and certified checkpoint
 
@@ -278,7 +278,7 @@ Always distinguish:
 - identification-design failure;
 - real plant-restart or closed-loop control failure.
 
-## 9. Failed six-basis gate and active complementarity audit
+## 9. Final T3 eight-basis complementarity result
 
 The authenticated post-T2 six-basis bank was built on the server. The frozen
 gate result is:
@@ -294,7 +294,7 @@ baseline-pass regression                             0/16
 This is a pre-execution design failure. R3c4 must not be implemented or
 launched.
 
-The active task is a new read-only eight-basis complementarity audit:
+The new read-only eight-basis complementarity audit used:
 
 ```text
 R3c3 local four
@@ -302,7 +302,7 @@ R3c3 local four
 + T2 held-transport two
 ```
 
-It must retain the unchanged gate:
+It retained the unchanged gate:
 
 ```text
 eight-basis optimistic formal feasibility               32/32
@@ -311,14 +311,42 @@ baseline pass regression                                      0
 formal timing unchanged                                      yes
 ```
 
-All numeric thresholds, coefficient bounds, timing, baselines, and 32
-contexts stay unchanged. It must authenticate exact R3c3, T1, and T2
-raw/bank inventories and emit compact per-context evidence. It is not a real
-TSC campaign.
+The final result is:
 
-If this fails, do not implement or launch R3c4. If it passes 32/32 with no
-route choice, prospectively freeze and implement R3c4 as a new independent
-controller identity, then complete the local-server-download-analysis loop.
+```text
+eight-basis rank                                    32/32
+eight-basis condition <= 25                         11/32
+maximum condition                              78.1544662
+optimistic formal feasibility                       16/32
+failed baseline contexts repaired                    0/16
+baseline-pass regressions                            0/16
+real TSC executed                                      no
+```
+
+All 16 failed contexts improve relative to the old four-basis, T1 six-basis,
+and T2 six-basis alternatives, but all remain below zero signed margin. The
+eight coefficients are saturated in 15 or 16 of the 16 failed contexts.
+This proves useful complementarity but insufficient bounded causal authority,
+and the eight-column representation is also partly redundant.
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T3_EIGHT_BASIS_COMPLEMENTARITY_REPORT.md
+```
+
+R3c4 remains unauthorized. The active task is prospective, no-new-TSC route
+discrimination:
+
+1. quantify the response-amplitude extrapolation required to repair the
+   locked failed contexts, without treating extrapolation as validation;
+2. determine whether an authenticated richer response model is available;
+3. freeze any new real identification schedule/amplitude as a new identity
+   before execution.
+
+Do not relax or reinterpret the failed T3 gate. A diagnostic extrapolation
+cannot authorize R3c4 or a real TSC controller run.
 
 Even a pass does not validate a reliable restart MPC, independent histories,
 unseen targets, continuous actuator/plant parameters, noise, disturbance
