@@ -10,6 +10,7 @@ import itertools
 import json
 import math
 import statistics
+from decimal import Decimal, localcontext
 from pathlib import Path
 from types import ModuleType
 from typing import Any, Mapping, Sequence
@@ -156,6 +157,34 @@ def _predict(
         + np.tensordot(odd, coefficient_array, axes=(2, 0))
         + np.tensordot(even, coefficient_array**2, axes=(2, 0))
     )
+
+
+def _signed_endpoint_reproduction_error(
+    baseline: np.ndarray,
+    plus: np.ndarray,
+    minus: np.ndarray,
+) -> float:
+    """Evaluate the defining identity without platform float-width variance."""
+    maximum = Decimal(0)
+    two = Decimal(2)
+    with localcontext() as context:
+        context.prec = 80
+        for baseline_value, plus_value, minus_value in zip(
+            np.asarray(baseline, dtype=float).flat,
+            np.asarray(plus, dtype=float).flat,
+            np.asarray(minus, dtype=float).flat,
+        ):
+            base_high = Decimal.from_float(float(baseline_value))
+            plus_high = Decimal.from_float(float(plus_value))
+            minus_high = Decimal.from_float(float(minus_value))
+            odd_high = (plus_high - minus_high) / two
+            even_high = (plus_high + minus_high) / two - base_high
+            maximum = max(
+                maximum,
+                abs(base_high + odd_high + even_high - plus_high),
+                abs(base_high - odd_high + even_high - minus_high),
+            )
+    return float(maximum)
 
 
 def _deduplicate_starts(starts: Sequence[np.ndarray]) -> list[np.ndarray]:
@@ -531,9 +560,10 @@ def main() -> None:
                 response["delta_RZI_by_state"], dtype=float
             )
             odd_error = float(np.max(np.abs(odd - saved_odd)))
-            signed_error = max(
-                float(np.max(np.abs(baseline + odd + even - plus))),
-                float(np.max(np.abs(baseline - odd + even - minus))),
+            signed_error = _signed_endpoint_reproduction_error(
+                baseline,
+                plus,
+                minus,
             )
             maximum_odd_error = max(maximum_odd_error, odd_error)
             maximum_signed_endpoint_error = max(

@@ -71,6 +71,24 @@ class Stage42R3C3T5SeparableQuadraticDiagnosticTests(
         self.assertAlmostEqual(plus[-1, 0], 0.5)
         self.assertAlmostEqual(minus[-1, 0], -0.1)
 
+    def test_high_precision_endpoint_auth_avoids_one_ip_ulp(self) -> None:
+        baseline = np.asarray([[0.0, 0.0, 29_600.0]], dtype=float)
+        plus = np.asarray([[0.0, 0.0, 29_618.8526]], dtype=float)
+        minus = np.asarray([[0.0, 0.0, 29_648.7562]], dtype=float)
+        odd = (plus - minus) / 2.0
+        even = (plus + minus) / 2.0 - baseline
+        float64_error = max(
+            float(np.max(np.abs(baseline + odd + even - plus))),
+            float(np.max(np.abs(baseline - odd + even - minus))),
+        )
+        self.assertGreater(float64_error, 1.0e-12)
+        self.assertEqual(
+            diagnostic._signed_endpoint_reproduction_error(
+                baseline, plus, minus
+            ),
+            0.0,
+        )
+
     def test_quadratic_optimizer_can_use_even_term(self) -> None:
         baseline = np.zeros((2, 3), dtype=float)
         odd = [np.zeros_like(baseline) for _ in range(8)]
