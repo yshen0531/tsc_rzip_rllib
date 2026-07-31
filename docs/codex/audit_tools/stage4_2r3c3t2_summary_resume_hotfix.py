@@ -62,6 +62,29 @@ def _authenticate_run(run_dir: Path, target_args: list[str]) -> dict[str, Any]:
     )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     state = json.loads(state_path.read_text(encoding="utf-8"))
+    offline = state.get("offline_probe_audit")
+    expected_offline = {
+        "expected_probe_specs": 160,
+        "probe_spec_count": 160,
+        "extended_baseline_spec_count": 32,
+        "signed_probe_spec_count": 128,
+        "probe_schedule_exact_count": 160,
+        "finite_causal_action_count": 160,
+        "baseline_context_count": 32,
+        "hidden_wire_invariant_action_count": 160,
+        "payload_and_environment_horizon_exact_count": 160,
+        "raw_count": 0,
+        "plant_advance_count": 0,
+        "real_tsc_executed": False,
+        "passed": True,
+    }
+    offline_exact = bool(
+        isinstance(offline, Mapping)
+        and all(
+            offline.get(key) == value
+            for key, value in expected_offline.items()
+        )
+    )
     raw_paths = sorted(raw_dir.glob("*.json.gz"))
     experiment_ids = set()
     raw_rows = []
@@ -100,6 +123,7 @@ def _authenticate_run(run_dir: Path, target_args: list[str]) -> dict[str, Any]:
         or len(raw_paths) != 160
         or len(experiment_ids) != 160
         or not all(row["valid"] for row in raw_rows)
+        or not offline_exact
         or bool(state.get("finished"))
     ):
         raise SystemExit("T2 summary-hotfix run authentication failed")
@@ -132,6 +156,8 @@ def _authenticate_run(run_dir: Path, target_args: list[str]) -> dict[str, Any]:
         "raw_files_modified": False,
         "controller_semantics_changed": False,
         "formal_prefix_only": True,
+        "cached_initial_offline_audit_reused": resume_target,
+        "_cached_initial_offline_audit": dict(offline),
     }
 
 
@@ -163,6 +189,9 @@ def main() -> None:
     target_args = sys.argv[3:]
     run_dir = Path(_argument_value(target_args, "--run-dir"))
     authentication = _authenticate_run(run_dir, target_args)
+    cached_initial_offline_audit = authentication.pop(
+        "_cached_initial_offline_audit"
+    )
     wrapper = Path(__file__).resolve()
     authentication["wrapper_path"] = str(wrapper)
     authentication["wrapper_sha256"] = _sha256(wrapper)
@@ -174,6 +203,7 @@ def main() -> None:
         flush=True,
     )
     original = t2.t1.r3b._control_row
+    original_offline_audit = t2.run_offline_probe_audit
 
     def patched(source_ctx, result, state_row):
         return _formal_prefix_control_row(
@@ -181,11 +211,22 @@ def main() -> None:
         )
 
     t2.t1.r3b._control_row = patched
+    if target.name == (
+        "stage4_2r3c3t2_post_contract_neutralized_held_transport_"
+        "identification.py"
+    ):
+
+        def authenticated_cached_offline_audit(ctx, selected_pairs):
+            del ctx, selected_pairs
+            return copy.deepcopy(cached_initial_offline_audit)
+
+        t2.run_offline_probe_audit = authenticated_cached_offline_audit
     sys.argv = [str(target), *target_args]
     try:
         runpy.run_path(str(target), run_name="__main__")
     finally:
         t2.t1.r3b._control_row = original
+        t2.run_offline_probe_audit = original_offline_audit
 
 
 if __name__ == "__main__":
