@@ -441,6 +441,44 @@ that defining identity in 80-digit decimal arithmetic, preserves the
 original threshold and all scientific semantics, and must run under a new
 output/log identity.
 
+## 11. Final T5 separable-quadratic result
+
+T5h1 authenticated all raw inputs and completed:
+
+```text
+signed raw files / pairs                         512/512, 256/256
+odd and signed-endpoint reproduction error                    0.0
+optimistic quadratic formal pass                         16/32
+failed T3 contexts repaired                               0/16
+baseline-pass regressions                                  0/16
+unchanged odd condition <= 25                            11/32
+real TSC executed                                           no
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T5_SEPARABLE_QUADRATIC_REPORT.md
+```
+
+The separable even terms improve 11 failed margins and worsen five, but
+repair none. All zero-new-TSC variants of the existing eight response
+directions are now exhausted. R3c4 remains unauthorized.
+
+The active task is a new-direction design preflight:
+
+1. use authenticated R17 source actions, visible target error, and existing
+   response-bank spans to quantify the residual action direction;
+2. prove the candidate adds a target-relevant direction rather than another
+   scaled or collinear copy of the existing eight;
+3. prospectively freeze a new bounded signed-probe identity before any real
+   TSC execution;
+4. retain plant restart, causal information, current limit, and formal timing
+   unchanged.
+
+Do not run another amplitude-only or interaction-free-model audit.
+
 Even a pass does not validate a reliable restart MPC, independent histories,
 unseen targets, continuous actuator/plant parameters, noise, disturbance
 recovery, or long hold.
