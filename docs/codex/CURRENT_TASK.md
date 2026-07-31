@@ -1,4 +1,4 @@
-# CURRENT_TASK.md — post-T3 route discrimination
+# CURRENT_TASK.md — post-T7 target-authority redesign
 
 ## 1. Terminology and certified checkpoint
 
@@ -484,3 +484,112 @@ unseen targets, continuous actuator/plant parameters, noise, disturbance
 recovery, or long hold.
 
 BC, DAgger, and bounded residual RL remain prohibited.
+
+## 12. Final T6 target-residual identification result
+
+T6 executed 224/224 authentic restart TSC tasks. A reporting bug initially
+matched native-TSC bank currents against presentation-order raw currents, so
+all 32 combined matrices were incorrectly reported as unrun. Commits
+`62af8ef` and `1a070f7` corrected only that join and added an exact
+semantics-preserving resume/package chain.
+
+The resume reused all 224 raw files; before/after raw SHA-256 inventories are
+byte-identical:
+
+```text
+3a119e0f255b0d09bfc8b1e6401c94c970076fca3e5ac5b5e40dd7aa3e28938b
+```
+
+Independent corrected result:
+
+```text
+raw / execution                                     224/224
+central symmetry                                      96/96
+matched hidden history                                48/48
+new three-basis condition <= 25                       32/32
+maximum new condition                               5.609780
+combined eleven-basis rank                            32/32
+combined condition <= 25                               2/32
+maximum combined condition                         79.135929
+runtime / restart / causal / probe / solver errors          0
+```
+
+The inherited T3 bank itself passes condition <=25 in only 11/32 contexts,
+with maximum 78.154466. T6 preflight checked schedule conditioning but not
+this inherited response condition, making the combined gate structurally
+unreachable in at least 21 contexts. This is a preregistration/design defect.
+It does not change T6 to PASS.
+
+Corrected server audit SHA-256:
+
+```text
+6e04a023ddfa36216c74d669a4848261a7f4581b31ac74a4b35561f06b638dfa
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T6_FORENSIC_REPORT.md
+```
+
+## 13. Final T7 authenticated target-basis feasibility result
+
+T7 froze the same label-independent global 8-of-11 subset for every context:
+
+```text
+T3 indices                                 0,1,2,3,7
+T6 directions                              all three
+```
+
+It executed no TSC. The exact old evaluator and `[-1,1]` bounds produced:
+
+```text
+rank / condition <=25                               32/32
+maximum condition                                20.517347
+optimistic formal pass                              16/32
+failed baseline repairs                               0/16
+baseline-pass regressions                              0/16
+```
+
+All three new-direction coefficients saturate in 15/16, 16/16 and 16/16
+failed contexts. Every failed T7 margin is worse than the corresponding T3
+solution. The bank representation is now well-conditioned, but measured
+bounded linear authority remains insufficient.
+
+Exact hashes:
+
+```text
+implementation/design commit
+d530ed5
+
+feasibility
+d4dbcd4a114eec10110432d6bf4337182bcb805b27ab83d689a9e216a052ed30
+
+manifest
+e69980452e756686c43ce37b6f3a471b37d6c804b3a6109fa22ea5905921ed74
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T7_TARGET_BASIS_FEASIBILITY_REPORT.md
+```
+
+R3c4 remains unauthorized.
+
+The active task is a new post-T7 route discriminator:
+
+1. quantify, without claiming validation, whether the unused current
+   headroom can close the T7 margins for the newly measured target-relevant
+   directions;
+2. retain exact `[-1,1]` T7 as failed and do not weaken any gate;
+3. if headroom is insufficient, freeze a new real identification identity
+   with genuinely new target-relevant temporal/actuator authority and
+   combined-action nonlinearity measurement;
+4. do not repeat the old T4 amplitude-only or T5 separable-even routes;
+5. do not implement R3c4, BC, DAgger or residual RL.
+
+Even a future development-set feasibility pass will not establish
+independent histories, unseen targets, continuous actuator/plant
+parameters, noise, disturbance recovery or long hold.

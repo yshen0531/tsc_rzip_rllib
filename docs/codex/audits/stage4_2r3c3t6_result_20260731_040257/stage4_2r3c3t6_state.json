@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T6",
+  "controller_revision": "target_residual_new_direction_probe_v42r3c3t6_v1",
+  "package_revision": "r42r3c3t6_target_residual_identification_v1h1",
+  "prepared": true,
+  "finished": true,
+  "primary_pass": false,
+  "phase_status": "campaign_complete",
+  "stop_reason": "identification_gate_failed",
+  "updated_utc": "20260731_052613",
+  "verdict": {
+    "schema_version": 1,
+    "stage": "Stage4.2R3c3T6",
+    "verdict": "STAGE4_2R3C3T6_NEW_DIRECTION_IDENTIFICATION_FAIL",
+    "primary_pass": false,
+    "identification_only": true,
+    "formal_tracking_is_acceptance_gate": false,
+    "observation_horizon_is_long_hold_validation": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "development_set_only": true,
+    "independent_hidden_history_confirmation": false,
+    "bc_dagger_or_rl_allowed": false,
+    "next_if_pass": "Build an authenticated eleven-basis bank and run a new unchanged-contract optimistic feasibility audit; do not execute R3c4 directly.",
+    "next_if_fail": "Preserve raw and redesign target-relevant identification without weakening timing or response gates."
+  },
+  "semantics_preserving_summary_hotfix": {
+    "hotfix_id": "r3c3t6_tsc_order_combined_condition_key_v1",
+    "original_deployed_package_digest": "4502545134ce2b4bc298fd99c3011e663b101ed6f26dbeced78ff8fe18aaba26",
+    "active_deployed_package_digest": "86fd4d25abccce2b3714a93a30941059690b555e66ec880e381c6dd90132320e",
+    "controller_action_semantics_changed": false,
+    "reporting_logic_only": true
+  }
+}

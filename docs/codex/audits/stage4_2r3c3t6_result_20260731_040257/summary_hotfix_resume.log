@@ -1,0 +1,81 @@
+SUMMARY_HOTFIX_RESUME_COMMIT=1a070f7
+RUN=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t6_runs/stage4_2r3c3t6_target_residual_new_direction_identification_20260731_040257
+RAW_BEFORE=224
+[Stage4.2R3c3T6] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T6] source_r3b=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+source_r3c3=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+source_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+source_t1=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t1_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t3_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t3_eight_basis_feasibility/stage4_2r3c3t3_eight_basis_feasibility_20260731_1a75fff/stage4_2r3c3t3_eight_basis_controller_bank_v1.json
+[Stage4.2R3c3T6] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t6_runs/stage4_2r3c3t6_target_residual_new_direction_identification_20260731_040257 command=all backend=ray resume=1 workers=128
+[Stage4.2R3c3T6] 32 baselines + 192 signed probes; first neutralizing effect is state 39.
+[Stage4.2R3C3T6] Formal 250/270 and 350/370 ms timing is unchanged; 500 ms is identification-only.
+{
+  "control_summary": {
+    "central_symmetry_gate_passed": true,
+    "central_symmetry_pass_count": 96,
+    "combined_condition_group_count": 32,
+    "combined_condition_number_gate_passed": false,
+    "combined_condition_pass_count": 2,
+    "condition_number_gate_passed": true,
+    "condition_number_group_count": 32,
+    "condition_number_pass_count": 32,
+    "controller_causality_failure_count": 0,
+    "current_utilization_pass": true,
+    "development_set_only": true,
+    "execution_gate_passed": true,
+    "execution_pass_count": 224,
+    "expected_combined_condition_group_count": 32,
+    "expected_condition_number_group_count": 32,
+    "expected_extended_baseline_count": 32,
+    "expected_matched_hidden_history_group_count": 48,
+    "expected_response_group_count": 96,
+    "expected_rollouts": 224,
+    "extended_baseline_prefix_exact_count": 32,
+    "extended_baseline_prefix_mismatch_count": 0,
+    "forbidden_controller_input_count": 0,
+    "formal_contract_failure_count": 124,
+    "formal_contract_pass_count": 100,
+    "formal_timing_unchanged": true,
+    "formal_tracking_is_acceptance_gate": false,
+    "identification_only": true,
+    "identification_probe_execution_failure_count": 0,
+    "independent_hidden_history_confirmation": false,
+    "matched_hidden_history_gate_passed": true,
+    "matched_hidden_history_group_count": 48,
+    "matched_hidden_history_pass_count": 48,
+    "maximum_combined_velocity_condition_number": 79.13592858503868,
+    "maximum_current_utilization": 0.39039999999999997,
+    "maximum_current_utilization_allowed": 0.55,
+    "maximum_selected_velocity_condition_number": 5.609780306128845,
+    "n_rollouts": 224,
+    "observation_horizon_steps": 50,
+    "passed": false,
+    "phase": "target_residual_new_direction_identification",
+    "plant_restart_fidelity_failure_count": 0,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "response_group_count": 96,
+    "runtime_or_environment_error_count": 0,
+    "schema_version": 1,
+    "solver_failure_count": 0,
+    "stage": "Stage4.2R3c3T6"
+  },
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T6",
+  "verdict": {
+    "bc_dagger_or_rl_allowed": false,
+    "development_set_only": true,
+    "formal_tracking_is_acceptance_gate": false,
+    "identification_only": true,
+    "independent_hidden_history_confirmation": false,
+    "next_if_fail": "Preserve raw and redesign target-relevant identification without weakening timing or response gates.",
+    "next_if_pass": "Build an authenticated eleven-basis bank and run a new unchanged-contract optimistic feasibility audit; do not execute R3c4 directly.",
+    "observation_horizon_is_long_hold_validation": false,
+    "primary_pass": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "schema_version": 1,
+    "stage": "Stage4.2R3c3T6",
+    "verdict": "STAGE4_2R3C3T6_NEW_DIRECTION_IDENTIFICATION_FAIL"
+  }
+}

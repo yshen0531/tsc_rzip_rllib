@@ -1,0 +1,24 @@
+{
+  "all_preregistered_gates_pass": false,
+  "identity": "authenticated_target_residual_global_eight_basis_feasibility_v1",
+  "outputs": [
+    {
+      "path": "stage4_2r3c3t7_audit_bank_v1.json",
+      "sha256": "e18f5cfc7fb510f32f0f35128274e108f224c1c4a2afec262ec6fb8d91cf0d61",
+      "size_bytes": 5125885
+    },
+    {
+      "path": "stage4_2r3c3t7_controller_bank_v1.json",
+      "sha256": "fef1eb299cede180c1f43d8713b3174aa9afd8724ea6af4509b06ad5d92febd8",
+      "size_bytes": 3165060
+    },
+    {
+      "path": "stage4_2r3c3t7_feasibility_v1.json",
+      "sha256": "d4dbcd4a114eec10110432d6bf4337182bcb805b27ab83d689a9e216a052ed30",
+      "size_bytes": 21938
+    }
+  ],
+  "provenance_digest": "a9d0017ad8d8a16cc5282b7ba882d398d476ba940b0cef96f2e3d12d1e1ce2d6",
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T7"
+}

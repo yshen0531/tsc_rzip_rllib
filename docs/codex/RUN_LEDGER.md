@@ -660,3 +660,62 @@
 - Next:
   Stage4.2R3c3T2 post-contract-neutralized held-transport identification;
   amplitude-only T2 and current six-basis R3c4 are vetoed; no BC/DAgger/RL
+
+## Stage4.2R3c3T6 target-residual new-direction identification
+
+- Local implementation commits: `2735f99`, `256cc4b`, `71ee63c`
+- Reporting-only hotfix commits: `62af8ef`, `1a070f7`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t6_runs/stage4_2r3c3t6_target_residual_new_direction_identification_20260731_040257`
+- Expected/actual raw: `224/224`; raw inventory digest
+  `594b4333eb848c762aec557744fe2dcef9101e1cc495f8713ed8bbe2f2913f61`
+- Runtime/restart/causal/probe/solver errors: all 0; snapshots `8/8`
+- Passing T6 gates: central symmetry `96/96`; matched history `48/48`;
+  new three-basis condition `32/32`, maximum `5.6097803`; current
+  utilization maximum `0.3904`
+- Failing gate: combined eleven-basis rank `32/32`, condition pass `2/32`,
+  maximum `79.1359286`
+- Reporting incident: native bank currents were initially joined to
+  presentation-order raw currents. Safe resume changed no raw file; the
+  before/after inventory hash is
+  `3a119e0f255b0d09bfc8b1e6401c94c970076fca3e5ac5b5e40dd7aa3e28938b`
+- Structural design finding: inherited T3 condition passes only `11/32`,
+  so the combined <=25 gate was unreachable in at least 21 contexts
+- Corrected independent server audit:
+  `6e04a023ddfa36216c74d669a4848261a7f4581b31ac74a4b35561f06b638dfa`
+- Classification: corrected statistics/reporting bug plus genuine
+  preregistration/combined-bank design failure; no real MPC was run
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3T6_FORENSIC_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c3t6_result_20260731_040257/`
+
+## Stage4.2R3c3T7 authenticated target-basis feasibility
+
+- Local implementation/design commit: `d530ed5`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t7_basis_feasibility/stage4_2r3c3t7_basis_feasibility_20260731_d530ed5`
+- Execution: server-side offline postprocessing only; no Ray, `gotsc`, TSC,
+  raw trajectory or snapshot creation
+- Fixed global subset: T3 indices `0,1,2,3,7` plus all three T6 directions;
+  no pair/history label conditioning and no posthoc response scaling
+- Condition result: rank/condition pass `32/32`; maximum `20.517347`
+- Formal result: optimistic pass `16/32`; repair `0/16`; regression `0/16`
+- Authority forensics: new direction coefficients saturated in `15/16`,
+  `16/16`, `16/16` failed contexts; all 16 margins worsened relative to T3
+- Output hashes: manifest
+  `e69980452e756686c43ce37b6f3a471b37d6c804b3a6109fa22ea5905921ed74`;
+  audit bank
+  `e18f5cfc7fb510f32f0f35128274e108f224c1c4a2afec262ec6fb8d91cf0d61`;
+  controller bank
+  `fef1eb299cede180c1f43d8713b3174aa9afd8724ea6af4509b06ad5d92febd8`;
+  feasibility
+  `d4dbcd4a114eec10110432d6bf4337182bcb805b27ab83d689a9e216a052ed30`
+- Classification: well-conditioned representation but real bounded linear
+  authority failure in a pre-execution optimistic audit; not a real
+  closed-loop failure; R3c4 remains unauthorized
+- Evidence:
+  `docs/codex/reports/STAGE4_2R3C3T7_TARGET_BASIS_FEASIBILITY_REPORT.md`;
+  `docs/codex/audits/stage4_2r3c3t7_basis_feasibility_20260731_d530ed5/`
+- Next: quantify target-direction current-headroom requirement as a
+  diagnostic, then preregister new combined-action/temporal identification
+  if insufficient; no R3c4/BC/DAgger/RL
