@@ -1122,7 +1122,7 @@ docs/codex/reports/
 STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_REPORT.md
 ```
 
-The active task is now Stage4.2R3c3T13, frozen in scope by:
+Stage4.2R3c3T13 was frozen in scope by:
 
 ```text
 docs/codex/reports/
@@ -1221,17 +1221,78 @@ V4 authenticates those exact full horizons and still feeds only states
 0--35/actions 0--34 to the Stage3.4 model. It changes no model threshold,
 comparison, timing, or route rule and creates a new output identity.
 
-T13 ends with exactly one of:
+The complete V4 audit then authenticated 1,408 immutable raw files totaling
+62,444,406 bytes and evaluated the frozen matrix:
+
+```text
+signed prediction                                 0 / 576 PASS
+finite measured-node prediction                   0 / 896 PASS
+T9 Walsh interaction prediction                    0 / 32 PASS
+causality                                       1504 / 1504 PASS
+first physical effect-state match               1504 / 1504 PASS
+```
+
+All 1,504 comparisons failed the scaled relative-response gate. The signed
+and interaction tiers passed every absolute gate; finite nodes passed every
+absolute gate except four endpoint-late errors with maximum `0.00411513 m/s`
+against the unchanged `0.004 m/s` gate. A retrospective optimal-scalar
+diagnostic repaired 0/1,504 responses to relative error `<= 0.10`, so the
+mismatch is direction/time shape rather than a global gain.
+
+There was no runtime, environment, packaging, raw, snapshot, statistics,
+reporting, restart, or causality error. V1--V3 were pre-prediction
+audit-design/schema corrections and have no model result. T13 ran no real
+controller, optimizer, Ray, `gotsc`, TSC plant step, or snapshot.
+
+The exact T13 result and architecture are:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_REPORT.md
+STAGE4_2R3C3T13_RESTART_MPC_ARCHITECTURE_SPEC.md
+```
+
+T13 was required to end with exactly one of:
 
 ```text
 OFFLINE_ARCHITECTURE_COMPLETE
 MINIMAL_SENTINEL_REQUIRED
 ```
 
-The second outcome must name one specific missing task-relevant response and
-freeze a small prospective sentinel with a fail-stop gate. It may not
-automatically authorize a full 32-context identification campaign.
+The final T13 outcome is:
 
-Do not implement or launch a real controller while T13 is incomplete. Do not
-build a T11 bank, run R3c4, change the formal timing or physical thresholds,
-or start BC, DAgger, or bounded residual RL.
+```text
+MINIMAL_SENTINEL_REQUIRED
+```
+
+The fixed Stage3.4 lifted Jacobian is vetoed as an unqualified restart
+predictor. It is not evidence of global unreachability or a new closed-loop
+failure. The missing object is an immediately neutralized, state- and
+issue-time-conditioned single-step transition response at transport and
+braking time, including the real delay queue and matched hidden histories.
+
+The active prospective design is Stage4.2R3c3T13S1, frozen before code or
+execution in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S1_MINIMAL_TRANSITION_SENTINEL_DESIGN.md
+```
+
+Its exact matrix is four bookend contexts, four extended baselines, and
+48 signed probes: three modes by two signs by two physical effect windows,
+for 52 real rollouts if later authorized. Each probe uses `+/-0.0075` at one
+issue and the exact inverse at the next issue, producing physical effects at
+states 3/4 or 17/18 with exact zero requested net. It observes through state
+50 without changing formal endpoints.
+
+T13S1 is not implemented and has zero real trajectories. Its PASS can
+authorize only an offline local-transition model and prospective holdout
+design. Its scientific FAIL stops identification expansion. Neither outcome
+automatically authorizes a 32-context campaign or a real controller.
+
+Do not implement or launch a real controller. Do not build a T11 bank, run
+R3c4, change the formal timing or physical thresholds, or start BC, DAgger,
+or bounded residual RL. Before any T13S1 implementation or run, preserve its
+frozen design, complete all local/server validation, and obtain separate run
+authority.

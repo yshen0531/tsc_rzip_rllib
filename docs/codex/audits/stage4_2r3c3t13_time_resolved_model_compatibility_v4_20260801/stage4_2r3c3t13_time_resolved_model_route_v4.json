@@ -1,0 +1,39 @@
+{
+  "formal_timing_changed": false,
+  "identity": "time_resolved_stage3_4_restart_model_compatibility_v4",
+  "provenance_digest": "fe92e5cc4e8ce6a282c24cc1e05bd27ab1fd6a52d3e591fafe25c7cf8fe46e01",
+  "real_controller_executed": false,
+  "real_tsc_executed": false,
+  "route": {
+    "bc_dagger_or_residual_rl_authorized": false,
+    "full_identification_campaign_authorized": false,
+    "provisional_next_step": "specify one state-and-issue-time-conditioned minimal sentinel",
+    "r3c4_authorized": false,
+    "real_controller_authorized": false,
+    "stage3_4_predictor_eligible_for_remaining_offline_t13": false,
+    "stage3_4_unqualified_restart_predictor_vetoed": true,
+    "t13_final_route_decision_made": false
+  },
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13",
+  "tier_results": {
+    "finite_node": {
+      "comparison_count": 896,
+      "fail_count": 896,
+      "pass_count": 0,
+      "tier_pass": false
+    },
+    "interaction": {
+      "comparison_count": 32,
+      "fail_count": 32,
+      "pass_count": 0,
+      "tier_pass": false
+    },
+    "signed": {
+      "comparison_count": 576,
+      "fail_count": 576,
+      "pass_count": 0,
+      "tier_pass": false
+    }
+  }
+}

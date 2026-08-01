@@ -3,9 +3,10 @@
 ## Status
 
 This is the first T13 evidence-mapping checkpoint. It is a read-only audit of
-the current local source and frozen result reports. No controller code,
-prediction model, optimizer, sentinel schedule, or experiment was created.
-The final T13 route decision remains open.
+the current local source and frozen result reports. At this checkpoint no
+controller code, prediction model, optimizer, sentinel schedule, or
+experiment had been created. The later V4 audit and final T13 architecture
+documents supersede the route-open statement below.
 
 ## Authenticated local source identity
 
@@ -180,4 +181,23 @@ prediction errors are computed.
 If yes, T13 can specify an offline controller implementation and validation
 plan without new TSC. If no, the missing object is a state- and issue-time
 conditioned transition response, and T13 must design a small sentinel that
-tests exactly that object. This checkpoint does not yet choose either route.
+tests exactly that object.
+
+## Final T13 resolution
+
+The prospectively frozen V4 audit subsequently authenticated 1,408 raw files
+and evaluated all 1,504 comparisons. Causality passed 1,504/1,504, but the
+fixed Stage3.4 lifted Jacobian passed the relative response gate 0/1,504.
+The final route is therefore:
+
+```text
+MINIMAL_SENTINEL_REQUIRED
+```
+
+The exact result, architecture, and prospective sentinel are recorded in:
+
+```text
+STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_REPORT.md
+STAGE4_2R3C3T13_RESTART_MPC_ARCHITECTURE_SPEC.md
+STAGE4_2R3C3T13S1_MINIMAL_TRANSITION_SENTINEL_DESIGN.md
+```

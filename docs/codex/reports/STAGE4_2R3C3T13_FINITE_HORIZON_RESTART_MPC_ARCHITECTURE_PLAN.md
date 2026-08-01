@@ -2,11 +2,11 @@
 
 ## Status
 
-Stage4.2R3c3T13 is the active no-new-TSC architecture and evidence-mapping
-stage after the completed T12 route discriminator. This document freezes the
-scope and stopping rules for the architecture analysis. It does not yet
-freeze controller gains, a prediction model, an optimizer, a sentinel action
-schedule, or a real experiment identity.
+Stage4.2R3c3T13 was the no-new-TSC architecture and evidence-mapping stage
+after the completed T12 route discriminator. This document froze its scope
+and stopping rules. The completed result and final route are recorded in the
+T13 time-resolved report and architecture specification; no controller,
+optimizer, or real experiment was created by T13.
 
 T13 may inspect local source and compact evidence and may perform read-only
 server-side postprocessing of large existing raw files. It may not launch
@@ -181,3 +181,29 @@ or actuator parameters, noise, disturbance recovery, or long hold. Those
 remain sequential prerequisites before expert-data collection.
 
 R3c4, BC, DAgger, and bounded residual RL remain unauthorized.
+
+## Completed T13 decision
+
+The V4 read-only audit passed raw/source/causality authentication but failed
+all three prospectively frozen prediction tiers:
+
+```text
+signed differential                              0 / 576 PASS
+finite measured nodes                            0 / 896 PASS
+T9 Walsh interactions                              0 / 32 PASS
+causality                                      1504 / 1504 PASS
+```
+
+The fixed Stage3.4 lifted Jacobian is vetoed as the unqualified restart
+predictor. The complete architecture and evidence/model-gap maps now exist,
+so T13 ends with:
+
+```text
+MINIMAL_SENTINEL_REQUIRED
+```
+
+The missing object is one immediately neutralized, state- and issue-time-
+conditioned transition response at transport and braking time. The frozen
+52-rollout T13S1 design is in
+`STAGE4_2R3C3T13S1_MINIMAL_TRANSITION_SENTINEL_DESIGN.md`. It is not
+implemented or run and grants no automatic full-campaign authority.

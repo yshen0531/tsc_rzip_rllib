@@ -389,23 +389,31 @@ probe, with best gap coverage only 0.47%--11.46%. It froze the fixed
 condition-first response-basis route as vetoed without changing T11's FAIL or
 claiming global plant unreachability.
 
-The current task is Stage4.2R3c3T13, a no-new-TSC finite-horizon restart MPC
-architecture and evidence-mapping stage. It must separate formal task time
-from local model phase; preserve target-conditioned transport; represent
-transport, braking, arrival, and hold in one delay/current/slew-constrained
-sequence problem; and define causal state/queue reconstruction, robust model
-validity, solver fallback, and trace audit. T13 may end only with an offline
-architecture specification or one specific separately preregistered minimal
-sentinel requirement.
+Stage4.2R3c3T13 completed its no-new-TSC finite-horizon restart MPC
+architecture and evidence map. Its V4 read-only audit authenticated 1,408
+existing raw trajectories. All 1,504 causality/effect-state gates passed, but
+the fixed Stage3.4 lifted Jacobian passed the relative prediction gate
+0/1,504. This is a prediction-model/design gap, not runtime, restart, raw,
+reporting, global reachability, or real closed-loop evidence. T13 ends as
+`MINIMAL_SENTINEL_REQUIRED`.
+
+The active prospective design is Stage4.2R3c3T13S1: exactly four bookend
+contexts, four fresh extended baselines, and 48 immediately neutralized
+single-step probes for 52 rollouts if later authorized. It is frozen in
+`STAGE4_2R3C3T13S1_MINIMAL_TRANSITION_SENTINEL_DESIGN.md`, is not implemented
+or run, and has no server-run authority from the design alone. PASS permits
+only offline local-transition model work; a scientific FAIL stops campaign
+expansion. Neither outcome automatically authorizes a full 32-context
+campaign or a real controller.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
 the failed T11 response bank, resume R3c4, or enter BC, DAgger, or residual
 RL. Do not launch a full new identification campaign directly from the seven
-T11 condition failures. Do not implement or run a new real controller until
-the T13 architecture, evidence coverage, model-gap table, constraints, and
-stopping rules are complete. If new TSC is still needed, use a separately
-preregistered small sentinel with an explicit stop/continue gate.
+T11 condition failures. Do not implement or run a new real controller.
+T13S1 may proceed only under its exact frozen design, after complete
+local/server validation and separate run authority; it may not be enlarged
+after results.
 
 ## 10. Required validation before server execution
 

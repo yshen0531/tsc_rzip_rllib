@@ -1,5 +1,24 @@
 # Current status
 
+> Superseding status (2026-08-01 Asia/Shanghai): Stage4.2R3c3T13 completed
+> its no-new-TSC source architecture and time-resolved model audit. The V4
+> audit authenticated 1,408 immutable R3c3/T1/T2/T6/T9/T11 raw files
+> (62,444,406 bytes) in place. Causality and first-effect state passed
+> 1,504/1,504, but the fixed Stage3.4 lifted Jacobian passed 0/576 signed,
+> 0/896 finite-node, and 0/32 interaction prediction comparisons because
+> every response failed the frozen relative time-shape gate. There was no
+> runtime, deployment, raw, snapshot, statistics, reporting, restart, or
+> causality error and no new controller/TSC run. T13 ends as
+> `MINIMAL_SENTINEL_REQUIRED`; this vetoes the fixed Jacobian as an
+> unqualified restart predictor, not the plant or global reachability. The
+> 52-rollout Stage4.2R3c3T13S1 single-step transition sentinel is now frozen
+> prospectively but is not implemented, authorized, or run. A sentinel PASS
+> permits only offline model work; a scientific FAIL stops campaign
+> expansion. R3c4, real MPC, BC, DAgger, and residual RL remain blocked. See
+> `STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_REPORT.md`,
+> `STAGE4_2R3C3T13_RESTART_MPC_ARCHITECTURE_SPEC.md`, and
+> `STAGE4_2R3C3T13S1_MINIMAL_TRANSITION_SENTINEL_DESIGN.md`.
+
 > Superseding status (2026-08-01 Asia/Shanghai): Stage4.2R3c3T12 completed a
 > read-only authentication of all 416 immutable T11 raw files. It reproduced
 > the exact 12/4/13/3 formal-versus-condition cross table, 0/16 measured

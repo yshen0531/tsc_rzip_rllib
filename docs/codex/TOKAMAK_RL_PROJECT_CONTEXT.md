@@ -250,16 +250,24 @@ T11 raw files and froze the condition-first fixed-basis route as vetoed. It
 ran no controller or plant and did not change T11's clean identification
 FAIL.
 
-The active no-new-TSC Stage4.2R3c3T13 task specifies a finite-horizon,
-state-conditioned, interaction-aware transport/braking MPC with formal task
-time separated from local model phase and with deterministic causal
-restart-state and actuator-queue reconstruction. It must map every model and
-constraint component to exact raw-backed evidence and distinguish measured
-support from interpolation and extrapolation. Any later real identification
-first requires a separately preregistered small sentinel and an explicit
-task-authority stop/continue gate. A successful development controller must
-still be followed by independent new histories and restart states before
-new-target work.
+The no-new-TSC Stage4.2R3c3T13 task completed the specification for a
+finite-horizon, state-conditioned, interaction-aware transport/braking MPC
+with formal task time separated from local model phase and deterministic
+causal restart-state/actuator-queue reconstruction. Its V4 audit
+authenticated 1,408 existing raw files and passed causality 1,504/1,504, but
+the fixed Stage3.4 lifted Jacobian passed the relative prediction gate
+0/1,504. It is therefore vetoed as an unqualified restart predictor; this is
+a model-design conclusion, not global plant unreachability or a new
+closed-loop failure.
+
+T13 ends as `MINIMAL_SENTINEL_REQUIRED`. The active prospective design is
+the unimplemented Stage4.2R3c3T13S1 52-rollout single-step transition
+sentinel over four bookend contexts, two physical effect times, three modes,
+two signs, and matched histories. It has zero real trajectories and does not
+yet grant server-run authority. PASS authorizes only offline transition-model
+work; scientific FAIL stops a larger campaign. A later successful
+development controller must still be followed by independent new histories
+and restart states before new-target work.
 
 ## 7. Medium-term objectives
 
