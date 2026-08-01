@@ -55,5 +55,5 @@ print("[T13S4 verify] Python/JSON/scientific guards passed.")
 PY
 mapfile -t SHELLS < <(find . -maxdepth 2 -type f -name '*.sh' -print | sort)
 for script in "${SHELLS[@]}"; do bash -n "${script}"; done
-"${PYTHON_BIN}" -m pytest -q tests/test_stage4_2r3c3t13s4_lattice_transition_holdout.py
+"${PYTHON_BIN}" -m unittest -v tests.test_stage4_2r3c3t13s4_lattice_transition_holdout
 printf '[T13S4 verify] checksums, shell syntax and focused tests passed.\n'
