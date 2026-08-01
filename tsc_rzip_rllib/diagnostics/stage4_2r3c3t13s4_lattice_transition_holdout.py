@@ -37,7 +37,7 @@ STAGE = "Stage4.2R3c3T13S4"
 RUN_NAME = "stage4_2r3c3t13s4_lattice_transition_holdout"
 CAMPAIGN_IDENTITY = "quantized_lattice_two_step_blind_holdout_v1"
 CONTROLLER_REVISION = "quantized_lattice_transition_probe_v42r3c3t13s4_v1"
-PACKAGE_REVISION = "r42r3c3t13s4_lattice_transition_holdout_v1h1"
+PACKAGE_REVISION = "r42r3c3t13s4_lattice_transition_holdout_v1h2"
 BASELINE_PROBE_ID = "lattice_baseline"
 WINDOWS = ("transport", "braking")
 MODES = (0, 1, 2)
@@ -815,7 +815,10 @@ class LatticeTransitionProbeController(
                 cfg=self.lattice_cfg,
             )
             if not bool(inverse["passed"]):
-                raise ValueError("T13S4 exact inverse failed frozen bounds")
+                raise ValueError(
+                    "T13S4 exact inverse failed frozen bounds: "
+                    + json.dumps(inverse, sort_keys=True)
+                )
             selected_action = np.asarray(inverse["action_norm_tsc"], dtype=float)
             lattice = inverse
         selected = self.actuator.apply(currents, selected_action)
@@ -1335,24 +1338,13 @@ def run_offline_lattice_audit(
             ).action(hidden)[0]
             hidden_invariant_count += np.array_equal(a, b)
         except ValueError as exc:
-            prefix = "no frozen T13S4 lattice multiplier passed: "
             message = str(exc)
-            if not message.startswith(prefix):
-                raise
-            candidates = json.loads(message[len(prefix):])
-            lattice_design_failures.append({
-                "experiment_id": str(spec["experiment_id"]),
-                "offline_role": str(spec["r3c3t13s4_offline_role"]),
-                "stratum": str(spec["r3c3t13s4_stratum"]),
-                "pair_id": str(spec["pair_id"]),
-                "history_member": str(spec["history_member"]),
-                "target_id": str(spec["target_id"]),
-                "action_delay_steps": int(spec["action_delay_steps"]),
-                "slew_scale": float(spec["slew_scale"]),
-                "probe_window": str(spec["r3c3_probe_window"]),
-                "probe_mode": int(spec["r3c3_probe_mode"]),
-                "probe_sign": int(spec["r3c3_probe_sign"]),
-                "candidate_metrics": [
+            issue_prefix = "no frozen T13S4 lattice multiplier passed: "
+            inverse_prefix = "T13S4 exact inverse failed frozen bounds: "
+            if message.startswith(issue_prefix):
+                failure_phase = "issue"
+                candidates = json.loads(message[len(issue_prefix):])
+                metrics = [
                     {
                         key: candidate[key]
                         for key in (
@@ -1370,7 +1362,37 @@ def run_offline_lattice_audit(
                         )
                     }
                     for candidate in candidates
-                ],
+                ]
+            elif message.startswith(inverse_prefix):
+                failure_phase = "cancel"
+                inverse = json.loads(message[len(inverse_prefix):])
+                metrics = [{
+                    key: inverse[key]
+                    for key in (
+                        "incremental_normalized_action_linf",
+                        "total_normalized_action_abs",
+                        "current_bounds_pass",
+                        "predicted_maximum_current_utilization",
+                        "exact_negative_of_issued_displacement",
+                        "passed",
+                    )
+                }]
+            else:
+                raise
+            lattice_design_failures.append({
+                "experiment_id": str(spec["experiment_id"]),
+                "offline_role": str(spec["r3c3t13s4_offline_role"]),
+                "stratum": str(spec["r3c3t13s4_stratum"]),
+                "pair_id": str(spec["pair_id"]),
+                "history_member": str(spec["history_member"]),
+                "target_id": str(spec["target_id"]),
+                "action_delay_steps": int(spec["action_delay_steps"]),
+                "slew_scale": float(spec["slew_scale"]),
+                "probe_window": str(spec["r3c3_probe_window"]),
+                "probe_mode": int(spec["r3c3_probe_mode"]),
+                "probe_sign": int(spec["r3c3_probe_sign"]),
+                "failure_phase": failure_phase,
+                "candidate_metrics": metrics,
             })
         finally:
             worker.close()

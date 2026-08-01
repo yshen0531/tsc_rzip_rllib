@@ -5,7 +5,7 @@
     "campaign_identity":  "quantized_lattice_two_step_blind_holdout_v1",
     "controller_revision":  "quantized_lattice_transition_probe_v42r3c3t13s4_v1",
     "underlying_controller_revision":  "authenticated_visible_manifold_phase_mpc_v42r3c1",
-    "package_revision":  "r42r3c3t13s4_lattice_transition_holdout_v1h1",
+    "package_revision":  "r42r3c3t13s4_lattice_transition_holdout_v1h2",
     "source_stage":  "Exact authenticated R3c1 restart chain, T13S3 quantized causal tube interface, and frozen q2 development/blind split.",
     "source_controller_revision":  "authenticated_visible_manifold_phase_mpc_v42r3c1",
     "source_package_revision":  "r42r3c3t13s3_quantized_causal_tube_interface",
