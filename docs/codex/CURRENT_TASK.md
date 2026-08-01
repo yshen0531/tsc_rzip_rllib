@@ -1166,6 +1166,27 @@ three-mode projection of the actual 14-coil current increment, not the
 requested probe schedule. No prediction error was inspected before this
 design was frozen.
 
+The first V1 invocation then stopped on its very first raw file before any
+Jacobian multiplication or output creation. Source inspection proved that
+the trajectory coil-current difference is a post-Card-15 TSC observation,
+whereas the trace action is the exact pre-Card-15 command and Card 15 uses
+`.3E` finite-precision formatting. V1 had incorrectly required those two
+different quantities to agree to `1e-9 A`.
+
+The corrected, still pre-prediction design is frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V2.md
+```
+
+V2 uses the exact recorded 14-coil trace action, multiplied by the actual
+slew and projected into the authenticated Stage3.4 mode basis, as the native
+Jacobian input. Observed adjacent coil-current differences remain a reported
+TSC quantization diagnostic and are not used to select or tune a predictor.
+This is an audit-design correction, not a code/summary bug in an experiment
+and not a Jacobian, plant, restart, or controller result.
+
 T13 ends with exactly one of:
 
 ```text
