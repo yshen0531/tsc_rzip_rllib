@@ -1187,6 +1187,23 @@ TSC quantization diagnostic and are not used to select or tune a predictor.
 This is an audit-design correction, not a code/summary bug in an experiment
 and not a Jacobian, plant, restart, or controller result.
 
+Before starting the complete V2 audit, an input-only one-file preflight found
+that the trace action's source-defined `float32` representation produces a
+`3.81e-8 A` modal residual. V2's `1e-9 A` gate was therefore below the source
+numerical precision; no V2 output identity or Jacobian multiplication was
+started. The source-derived conservative bound is `6.7e-7 A`.
+
+The final pre-prediction numerical correction is frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V3.md
+```
+
+V3 changes only the command-subspace numerical gate to `1e-6 A`. All raw
+identities, comparison counts, output-error thresholds, causality gates,
+formal timing, route rules, and prohibitions remain unchanged.
+
 T13 ends with exactly one of:
 
 ```text
