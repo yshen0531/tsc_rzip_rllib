@@ -18,7 +18,7 @@ expected = {
     "run_name": "stage4_2r3c3t13s4_lattice_transition_holdout",
     "campaign_identity": "quantized_lattice_two_step_blind_holdout_v1",
     "controller_revision": "quantized_lattice_transition_probe_v42r3c3t13s4_v1",
-    "package_revision": "r42r3c3t13s4_lattice_transition_holdout_v1",
+    "package_revision": "r42r3c3t13s4_lattice_transition_holdout_v1h1",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:

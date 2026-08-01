@@ -5,6 +5,7 @@ import math
 import sys
 import types
 import unittest
+from unittest import mock
 
 import numpy as np
 
@@ -180,6 +181,47 @@ class Stage42R3C3T13S4Tests(unittest.TestCase):
         self.assertTrue(result["passed"])
         self.assertFalse(result["real_tsc_executed"])
         self.assertFalse(result["bc_dagger_or_rl_allowed"])
+
+    def test_offline_design_failure_is_recorded_without_tsc(self):
+        ctx = types.SimpleNamespace(
+            paths=types.SimpleNamespace(state="state.json")
+        )
+        offline = {
+            "passed": False,
+            "route": "LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC",
+            "lattice_design_failure_count": 40,
+            "raw_count": 0,
+            "plant_advance_count": 0,
+            "real_tsc_executed": False,
+        }
+        writes = []
+        with (
+            mock.patch.object(s4, "prepare", return_value=([], [])),
+            mock.patch.object(
+                s4, "run_offline_lattice_audit", return_value=offline
+            ),
+            mock.patch.object(
+                s4.t11.t1.r3c3, "read_json", return_value={"prepared": True}
+            ),
+            mock.patch.object(
+                s4.t11.t1.r3c3,
+                "atomic_write_json",
+                side_effect=lambda path, payload: writes.append((path, payload)),
+            ),
+        ):
+            result = s4.execute(
+                ctx, command="offline", backend="local", resume=False
+            )
+        self.assertTrue(result["finished"])
+        self.assertFalse(result["primary_pass"])
+        self.assertFalse(result["real_tsc_executed"])
+        self.assertEqual(len(writes), 1)
+        state = writes[0][1]
+        self.assertEqual(state["phase_status"], "offline_gate_failed")
+        self.assertEqual(
+            state["stop_reason"], "frozen_dynamic_lattice_infeasible"
+        )
+        self.assertFalse(state["real_tsc_executed"])
 
 
 if __name__ == "__main__":

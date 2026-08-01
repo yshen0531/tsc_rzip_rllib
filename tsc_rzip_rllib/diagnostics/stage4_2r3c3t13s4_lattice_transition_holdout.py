@@ -37,7 +37,7 @@ STAGE = "Stage4.2R3c3T13S4"
 RUN_NAME = "stage4_2r3c3t13s4_lattice_transition_holdout"
 CAMPAIGN_IDENTITY = "quantized_lattice_two_step_blind_holdout_v1"
 CONTROLLER_REVISION = "quantized_lattice_transition_probe_v42r3c3t13s4_v1"
-PACKAGE_REVISION = "r42r3c3t13s4_lattice_transition_holdout_v1"
+PACKAGE_REVISION = "r42r3c3t13s4_lattice_transition_holdout_v1h1"
 BASELINE_PROBE_ID = "lattice_baseline"
 WINDOWS = ("transport", "braking")
 MODES = (0, 1, 2)
@@ -1268,6 +1268,7 @@ def run_offline_lattice_audit(
     pass_count = 0
     event_count = 0
     hidden_invariant_count = 0
+    lattice_design_failures: list[dict[str, Any]] = []
     context_source: dict[tuple[Any, ...], Mapping[str, Any]] = {}
     for spec in specs:
         key = _context_key(spec)
@@ -1333,6 +1334,44 @@ def run_offline_lattice_audit(
                 ctx.cfg["lattice_probe"],
             ).action(hidden)[0]
             hidden_invariant_count += np.array_equal(a, b)
+        except ValueError as exc:
+            prefix = "no frozen T13S4 lattice multiplier passed: "
+            message = str(exc)
+            if not message.startswith(prefix):
+                raise
+            candidates = json.loads(message[len(prefix):])
+            lattice_design_failures.append({
+                "experiment_id": str(spec["experiment_id"]),
+                "offline_role": str(spec["r3c3t13s4_offline_role"]),
+                "stratum": str(spec["r3c3t13s4_stratum"]),
+                "pair_id": str(spec["pair_id"]),
+                "history_member": str(spec["history_member"]),
+                "target_id": str(spec["target_id"]),
+                "action_delay_steps": int(spec["action_delay_steps"]),
+                "slew_scale": float(spec["slew_scale"]),
+                "probe_window": str(spec["r3c3_probe_window"]),
+                "probe_mode": int(spec["r3c3_probe_mode"]),
+                "probe_sign": int(spec["r3c3_probe_sign"]),
+                "candidate_metrics": [
+                    {
+                        key: candidate[key]
+                        for key in (
+                            "lambda_multiplier",
+                            "lambda_A",
+                            "minimum_significant_grid_steps_actual",
+                            "target_field_central_symmetry_exact",
+                            "coil_space_cosine",
+                            "relative_off_mode_residual",
+                            "incremental_normalized_action_linf",
+                            "total_normalized_action_abs",
+                            "current_bounds_pass",
+                            "predicted_maximum_current_utilization",
+                            "passed",
+                        )
+                    }
+                    for candidate in candidates
+                ],
+            })
         finally:
             worker.close()
     expected = int(ctx.cfg["control_matrix"]["expected_rollouts"])
@@ -1355,6 +1394,8 @@ def run_offline_lattice_audit(
         "expected_lattice_event_count": 96,
         "lattice_event_count": event_count,
         "hidden_wire_invariant_action_count": hidden_invariant_count,
+        "lattice_design_failure_count": len(lattice_design_failures),
+        "lattice_design_failures": lattice_design_failures,
         "expected_current_components": EXPECTED_CURRENT_COMPONENTS,
         "raw_count": raw_count,
         "allow_existing_raw": allow_existing_raw,
@@ -1368,6 +1409,11 @@ def run_offline_lattice_audit(
         and summary["blind_holdout_spec_count"] == 26
         and event_count == 96
         and raw_gate
+    )
+    summary["route"] = (
+        "LATTICE_PREFLIGHT_PASS_REAL_TSC_NOT_STARTED"
+        if summary["passed"]
+        else "LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC"
     )
     t11.t1.r3c3.atomic_write_json(
         ctx.paths.source_reference / "offline_dynamic_lattice_audit.json", summary
@@ -2528,6 +2574,27 @@ def execute(
         ctx, selected_pairs, allow_existing_raw=resume
     )
     if not bool(offline.get("passed")):
+        state = t11.t1.r3c3.read_json(ctx.paths.state)
+        state.update({
+            "finished": True,
+            "primary_pass": False,
+            "phase_status": "offline_gate_failed",
+            "stop_reason": "frozen_dynamic_lattice_infeasible",
+            "offline_lattice_audit": offline,
+            "real_tsc_executed": False,
+            "updated_utc": t11.t1.r3c3.utc_timestamp(),
+        })
+        t11.t1.r3c3.atomic_write_json(ctx.paths.state, state)
+        if command == "offline":
+            return {
+                "schema_version": SCHEMA_VERSION,
+                "stage": STAGE,
+                "phase": "offline_dynamic_lattice_preflight",
+                "offline_lattice_audit": offline,
+                "real_tsc_executed": False,
+                "finished": True,
+                "primary_pass": False,
+            }
         raise RuntimeError("T13S4 offline lattice gate failed; no real TSC started")
     if command == "offline":
         state = t11.t1.r3c3.read_json(ctx.paths.state)
