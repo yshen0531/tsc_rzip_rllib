@@ -939,6 +939,7 @@
 - Branch: `codex/stage4_2r3c3t11-persistent-step-identification`
 - Implementation commit: `322ade2`
 - Deployed inventory-order fix: `40944f9`
+- Forensics evidence checkpoint: `5e9d3d0`
 - Remote run:
   `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9`
 - Remote log:
