@@ -52,6 +52,7 @@
                           "server_network_required":  false,
                           "external_source_tree_allowed":  false,
                           "local_archive_operations_allowed":  false,
+                          "root_shell_scripts_are_declared_stage_dependencies_only":  true,
                           "large_raw_retained_and_postprocessed_on_server":  true,
                           "compact_audits_only_downloaded":  true,
                           "installed_project_complete_test_suite_required":  true
