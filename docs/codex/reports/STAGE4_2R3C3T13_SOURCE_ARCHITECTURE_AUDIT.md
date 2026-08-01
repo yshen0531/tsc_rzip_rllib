@@ -166,9 +166,16 @@ answer one precise question before choosing a sentinel:
 ```text
 Can the frozen Stage3.4 lifted Jacobian, after a causal state/clock
 reparameterization but without outcome tuning, predict the measured
-time-resolved signed R3c3/T1/T3/T9/T11 perturbations within prospective
+time-resolved signed R3c3/T1/T2/T6/T9/T11 perturbations within prospective
 task-relevant error bounds at the failed restart contexts?
 ```
+
+T3 is deliberately absent from that raw list: it was an offline feasibility
+audit with zero real trajectories. The exact prospective comparison,
+actual-applied-input reconstruction, thresholds, and route interpretation are
+frozen in
+`STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN.md` before any
+prediction errors are computed.
 
 If yes, T13 can specify an offline controller implementation and validation
 plan without new TSC. If no, the missing object is a state- and issue-time

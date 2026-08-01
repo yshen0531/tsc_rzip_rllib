@@ -1149,7 +1149,22 @@ Jacobian, soft weighted least squares, a separately applied nonlinear coil
 scheduler, and fresh-state initialization with zero integral/previous
 correction and nominally primed delay queue. The next read-only T13 step is
 to test whether that lifted model can predict the time-resolved signed
-restart perturbations already present in R3c3/T1/T3/T9/T11 raw evidence.
+restart perturbations already present in R3c3/T1/T2/T6/T9/T11 raw evidence.
+
+That no-new-TSC model audit is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN.md
+```
+
+It corrects `T3` to `T2/T6` in the measured-raw list because T3 produced no
+real trajectories. It authenticates 1,408 existing raw files in place and
+predefines 576 signed comparisons, 896 same-run baseline-relative measured
+nodes, and 32 T9 Walsh interaction contrasts. Its primary input is the
+three-mode projection of the actual 14-coil current increment, not the
+requested probe schedule. No prediction error was inspected before this
+design was frozen.
 
 T13 ends with exactly one of:
 
