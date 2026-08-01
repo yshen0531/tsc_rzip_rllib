@@ -24,8 +24,8 @@ import numpy as np
 
 
 STAGE = "Stage4.2R3c3T13"
-IDENTITY = "time_resolved_stage3_4_restart_model_compatibility_v3"
-DESIGN_SHA256 = "49ff799bf20fd3098ef71536e8151bf846d7226a41c77ba329e689df7f56dd3f"
+IDENTITY = "time_resolved_stage3_4_restart_model_compatibility_v4"
+DESIGN_SHA256 = "946993c085d04c3d8eb9030f5b5502e1eb02a0238ba0deb2aea7f43fd154bd3c"
 STAGE34_SOURCE_SHA256 = "a6097b8dea3293bdccf0e742ee86dc9df65b5318f2bd700ee4e5e81d72968f27"
 STAGE34_BUNDLE_SHA256 = "7b307e82c35bc12beea51be303be90d0a5dd7554f54156e3684b167f37ee8987"
 STAGE34_CONFIG_SHA256 = "6d705aaad12bc6872af776a0adf041041cbda38a4d545581017ad5ecdc7b34b4"
@@ -308,6 +308,24 @@ def _forbidden_contract_clean(raw: Mapping[str, Any]) -> bool:
     )
 
 
+def _expected_raw_lengths(
+    stage_name: str,
+    spec: Mapping[str, Any],
+    contract: Mapping[str, Any],
+) -> tuple[int, int]:
+    if stage_name in {"R3c3", "T1"}:
+        actuator = (
+            int(spec["action_delay_steps"]),
+            float(spec["slew_scale"]),
+        )
+        if actuator == (0, 1.0):
+            return 36, 35
+        if actuator == (2, 0.9):
+            return 38, 37
+        raise ValueError(f"{stage_name} unexpected actuator case: {actuator}")
+    return int(contract["trajectory"]), int(contract["trace"])
+
+
 def _load_model(project_root: Path) -> tuple[np.ndarray, np.ndarray, dict[str, Any]]:
     stage34_run = (
         project_root
@@ -415,14 +433,17 @@ def _load_raw(
         for path in paths:
             raw = _read_gz(path)
             experiment_id = str(raw.get("experiment_id", ""))
+            expected_trajectory, expected_trace = _expected_raw_lengths(
+                stage_name, raw["spec"], contract
+            )
             if (
                 not experiment_id
                 or experiment_id in all_ids
                 or raw.get("stage") != contract["stage"]
                 or not bool(raw.get("success"))
                 or not bool(raw.get("completed"))
-                or len(raw.get("trajectory", [])) != int(contract["trajectory"])
-                or len(raw.get("controller_trace", [])) != int(contract["trace"])
+                or len(raw.get("trajectory", [])) != expected_trajectory
+                or len(raw.get("controller_trace", [])) != expected_trace
                 or not _forbidden_contract_clean(raw)
             ):
                 raise ValueError(f"{stage_name} raw authentication failed: {path.name}")
@@ -914,8 +935,8 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
     }
 
     output.mkdir(parents=True, exist_ok=False)
-    audit_path = output / "stage4_2r3c3t13_time_resolved_model_audit_v3.json"
-    route_path = output / "stage4_2r3c3t13_time_resolved_model_route_v3.json"
+    audit_path = output / "stage4_2r3c3t13_time_resolved_model_audit_v4.json"
+    route_path = output / "stage4_2r3c3t13_time_resolved_model_route_v4.json"
     _write_json(audit_path, audit)
     _write_json(
         route_path,
@@ -939,7 +960,7 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
             "real_controller_executed": False,
         },
     )
-    manifest_path = output / "stage4_2r3c3t13_time_resolved_model_manifest_v3.json"
+    manifest_path = output / "stage4_2r3c3t13_time_resolved_model_manifest_v4.json"
     _write_json(
         manifest_path,
         {

@@ -25,7 +25,7 @@ SPEC.loader.exec_module(T13)
 
 class Stage42R3C3T13ModelCompatibilityTests(unittest.TestCase):
     def test_frozen_matrix_and_counts(self) -> None:
-        self.assertTrue(T13.IDENTITY.endswith("_v3"))
+        self.assertTrue(T13.IDENTITY.endswith("_v4"))
         self.assertEqual(T13.GATES["command_modal_residual_max_A"], 1e-6)
         self.assertEqual(sum(row["count"] for row in T13.RUNS.values()), 1408)
         self.assertEqual(sum(row["bytes"] for row in T13.RUNS.values()), 62444406)
@@ -38,9 +38,34 @@ class Stage42R3C3T13ModelCompatibilityTests(unittest.TestCase):
     def test_design_hash_matches_preregistered_document(self) -> None:
         design = (
             ROOT
-            / "docs/codex/reports/STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V3.md"
+            / "docs/codex/reports/STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V4.md"
         )
         self.assertEqual(T13._sha256(design), T13.DESIGN_SHA256)
+
+    def test_actuator_conditioned_raw_horizons(self) -> None:
+        contract = T13.RUNS["R3c3"]
+        self.assertEqual(
+            T13._expected_raw_lengths(
+                "R3c3",
+                {"action_delay_steps": 0, "slew_scale": 1.0},
+                contract,
+            ),
+            (36, 35),
+        )
+        self.assertEqual(
+            T13._expected_raw_lengths(
+                "R3c3",
+                {"action_delay_steps": 2, "slew_scale": 0.9},
+                contract,
+            ),
+            (38, 37),
+        )
+        with self.assertRaisesRegex(ValueError, "unexpected actuator case"):
+            T13._expected_raw_lengths(
+                "R3c3",
+                {"action_delay_steps": 1, "slew_scale": 1.0},
+                contract,
+            )
 
     def test_exact_prediction_passes_all_gates(self) -> None:
         rng = np.random.default_rng(17)
