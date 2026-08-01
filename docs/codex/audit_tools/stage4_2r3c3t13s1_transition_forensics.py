@@ -217,14 +217,23 @@ def _grid_metrics(
     active = np.abs(command) > 1e-12
     ratios = np.abs(command[active]) / grid[active]
     observed_grid_units = observed / grid
+    ratio_metrics = {
+        "minimum_command_to_grid_ratio": None,
+        "median_command_to_grid_ratio": None,
+        "maximum_command_to_grid_ratio": None,
+    }
+    if len(ratios):
+        ratio_metrics = {
+            "minimum_command_to_grid_ratio": float(np.min(ratios)),
+            "median_command_to_grid_ratio": float(np.median(ratios)),
+            "maximum_command_to_grid_ratio": float(np.max(ratios)),
+        }
     return {
         "active_command_component_count": int(np.sum(active)),
         "command_components_below_one_grid": int(
             np.sum(np.abs(command[active]) < grid[active])
         ),
-        "minimum_command_to_grid_ratio": float(np.min(ratios)),
-        "median_command_to_grid_ratio": float(np.median(ratios)),
-        "maximum_command_to_grid_ratio": float(np.max(ratios)),
+        **ratio_metrics,
         "minimum_formatter_grid_A": float(np.min(grid)),
         "maximum_formatter_grid_A": float(np.max(grid)),
         "maximum_observed_integer_grid_residual": float(

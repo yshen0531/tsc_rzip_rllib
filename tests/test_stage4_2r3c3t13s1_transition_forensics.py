@@ -197,3 +197,12 @@ def test_card15_grid_matches_turns_and_scientific_exponent():
     assert metrics["active_command_component_count"] == 14
     assert metrics["command_components_below_one_grid"] == 9
     assert metrics["maximum_observed_integer_grid_residual"] == 0.0
+    zero = tool._grid_metrics(
+        np.zeros(14, dtype=float),
+        np.zeros(14, dtype=float),
+        current,
+    )
+    assert zero["active_command_component_count"] == 0
+    assert zero["minimum_command_to_grid_ratio"] is None
+    assert zero["median_command_to_grid_ratio"] is None
+    assert zero["maximum_command_to_grid_ratio"] is None
