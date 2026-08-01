@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S1",
+  "design_revision": 1,
+  "run_name": "stage4_2r3c3t13s1_minimal_transition_sentinel",
+  "campaign_identity": "restart_issue_time_single_step_transition_sentinel_v1",
+  "controller_revision": "single_step_transition_probe_v42r3c3t13s1_v1",
+  "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+  "package_revision": "r42r3c3t13s1_minimal_transition_sentinel_v1",
+  "base_stage_config": "configs/stage4_2r3c3t11_persistent_step_response_identification_500ms.json",
+  "base_stage_config_sha256": "412349c35b6622c38d5d0d58cbe3a9bbeb3cd8ded2a8f8a043705ee94946ac72",
+  "bookend_contexts": [
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "RZ_p10_m10",
+      "action_delay_steps": 2,
+      "slew_scale": 0.9,
+      "expected_formal_pass": false,
+      "expected_formal_minimum_signed_margin": -0.361785367
+    },
+    {
+      "pair_id": "p5_q1_a0p900_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "RZ_p10_m10",
+      "action_delay_steps": 2,
+      "slew_scale": 0.9,
+      "expected_formal_pass": false,
+      "expected_formal_minimum_signed_margin": -0.3596055
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "minus_first",
+      "target_id": "nominal",
+      "action_delay_steps": 0,
+      "slew_scale": 1.0,
+      "expected_formal_pass": true,
+      "expected_formal_minimum_signed_margin": 0.0969701
+    },
+    {
+      "pair_id": "p9_q1_a0p750_gap2_settle4",
+      "history_member": "plus_first",
+      "target_id": "nominal",
+      "action_delay_steps": 0,
+      "slew_scale": 1.0,
+      "expected_formal_pass": true,
+      "expected_formal_minimum_signed_margin": 0.103787581
+    }
+  ],
+  "identification_probe": {
+    "observation_horizon_steps": 50,
+    "probe_modes": [0, 1, 2],
+    "probe_signs": [-1, 1],
+    "effect_windows": ["transport", "braking"],
+    "amplitude_by_mode": [0.0075, 0.0075, 0.0075],
+    "schedule_by_delay": {
+      "0": {
+        "transport": {"issue_step": 2, "cancel_step": 3, "first_effect_state": 3, "cancel_effect_state": 4},
+        "braking": {"issue_step": 16, "cancel_step": 17, "first_effect_state": 17, "cancel_effect_state": 18}
+      },
+      "2": {
+        "transport": {"issue_step": 0, "cancel_step": 1, "first_effect_state": 3, "cancel_effect_state": 4},
+        "braking": {"issue_step": 14, "cancel_step": 15, "first_effect_state": 17, "cancel_effect_state": 18}
+      }
+    },
+    "required_issue_count_per_signed_probe": 2,
+    "requested_and_applied_zero_net_atol": 1e-12,
+    "requested_and_applied_schedule_atol": 1e-12,
+    "command_mode_subspace_residual_max_A": 1e-6,
+    "scheduler_increment_residual_max_A": 1e-6,
+    "pre_effect_position_max_m": 1e-9,
+    "pre_effect_velocity_max_m_per_s": 1e-7,
+    "pre_effect_ip_max_A": 1e-4,
+    "maximum_current_utilization": 0.55,
+    "response_start_state": 3,
+    "response_scales": [0.03, 0.03, 0.1, 0.1, 2000.0],
+    "signal_floor_multiplier": 10.0,
+    "maximum_even_to_odd_scaled_l2": 0.1,
+    "maximum_even_velocity_rmse_m_per_s": 0.004,
+    "maximum_even_position_rmse_m": 0.0005,
+    "maximum_even_ip_rmse_A": 20.0,
+    "matched_hidden_history": {
+      "relative_reference_member": "minus_first",
+      "maximum_scaled_relative_response_difference": 0.1,
+      "maximum_velocity_component_rmse_m_per_s": 0.008,
+      "maximum_endpoint_late_response_speed_error_m_per_s": 0.004,
+      "maximum_final_response_speed_error_m_per_s": 0.01,
+      "maximum_position_rmse_m": 0.001,
+      "maximum_ip_rmse_A": 30.0
+    },
+    "required_local_response_rank": 6,
+    "maximum_normalized_condition_number": 15.0,
+    "baseline_margin_reproduction_atol": 5e-10,
+    "formal_tracking_is_acceptance_gate_for_probes": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "pair_or_history_label_input_allowed": false,
+    "source_result_input_allowed": false,
+    "source_action_input_allowed": false,
+    "source_or_current_wire_input_allowed": false
+  },
+  "control_matrix": {
+    "expected_baseline_contexts": 4,
+    "expected_extended_baseline_rollouts": 4,
+    "expected_signed_probe_rollouts": 48,
+    "expected_rollouts_per_context": 13,
+    "expected_rollouts": 52,
+    "expected_central_symmetry_groups": 24,
+    "expected_matched_hidden_history_groups": 12,
+    "expected_local_response_matrices": 4,
+    "require_fresh_controller": true,
+    "require_fresh_tsc_process": true,
+    "forbid_future_actions": true,
+    "forbid_future_measurements": true,
+    "require_online_action_computation": true
+  },
+  "formal_timing_contract": {
+    "normal": {"arrival_deadline_step": 25, "hold_through_step": 35},
+    "weak": {"arrival_deadline_step": 27, "hold_through_step": 37},
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "parallel": {
+    "n_workers": 52
+  },
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "ray_tmpdir": "/tmp/stage4_2r3c3t13s1",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "development_set_only": true,
+  "identification_only": true,
+  "independent_hidden_history_confirmation": false,
+  "independent_long_hold_validated": false,
+  "bc_dagger_or_rl_allowed": false
+}
