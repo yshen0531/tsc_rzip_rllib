@@ -305,4 +305,3 @@ Regardless of outcome, this audit does not validate:
   recovery, or independent long hold.
 
 Formal arrival remains 250/270 ms and hold remains through 350/370 ms.
-
