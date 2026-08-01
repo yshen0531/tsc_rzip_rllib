@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${PROJECT_DIR}/scripts/stage4_2r3c3t13s5_shell_common.sh"
+stage4_2r3c3t13s5_validate_common
+mkdir -p "${PROJECT_DIR}/logs/nohup" "${STAGE4_2R3C3T13S5_OUTPUT_ROOT}"
+if [[ -z "${STAGE4_2R3C3T13S5_RUN_DIR:-}" ]]; then
+  STAGE4_2R3C3T13S5_RUN_DIR="$(stage4_2r3c3t13s5_new_run_dir)"
+  export STAGE4_2R3C3T13S5_RUN_DIR
+fi
+STAMP="$(date -u +%Y%m%d_%H%M%S)"
+LOG_FILE="${PROJECT_DIR}/logs/nohup/stage4_2r3c3t13s5_lattice_native_split_holdout_${STAMP}.log"
+PID_FILE="${STAGE4_2R3C3T13S5_OUTPUT_ROOT}/stage4_2r3c3t13s5_driver.pid"
+printf '%s\n' "${STAGE4_2R3C3T13S5_RUN_DIR}" > "${STAGE4_2R3C3T13S5_OUTPUT_ROOT}/latest_stage4_2r3c3t13s5_run.txt"
+printf '%s\n' "${LOG_FILE}" > "${PROJECT_DIR}/logs/nohup/latest_stage4_2r3c3t13s5_lattice_native_split_holdout.log"
+nohup env \
+  STAGE4_2R3C3T13S5_PROJECT_DIR="${STAGE4_2R3C3T13S5_PROJECT_DIR}" \
+  STAGE4_2R3C3T13S5_CONFIG="${STAGE4_2R3C3T13S5_CONFIG}" \
+  STAGE4_2R3C3T13S5_PYTHON="${STAGE4_2R3C3T13S5_PYTHON}" \
+  STAGE4_2R3C3T13S5_WORKERS="${STAGE4_2R3C3T13S5_WORKERS}" \
+  STAGE4_2R3C3T13S5_BACKEND="${STAGE4_2R3C3T13S5_BACKEND}" \
+  STAGE4_2R3C3T13S5_COMMAND="${STAGE4_2R3C3T13S5_COMMAND}" \
+  STAGE4_2R3C3T13S5_RESUME="${STAGE4_2R3C3T13S5_RESUME}" \
+  STAGE4_2R3C3T13S5_RUN_DIR="${STAGE4_2R3C3T13S5_RUN_DIR}" \
+  STAGE4_2R3C3T13S5_TSC_WORKSPACE_ROOT="${STAGE4_2R3C3T13S5_TSC_WORKSPACE_ROOT}" \
+  STAGE4_2R3C3T13S5_TSC_RUN_ROOT="${STAGE4_2R3C3T13S5_TSC_RUN_ROOT}" \
+  RAY_TMPDIR="${RAY_TMPDIR}" \
+  "${PROJECT_DIR}/run_stage4_2r3c3t13s5_native.sh" >"${LOG_FILE}" 2>&1 < /dev/null &
+PID=$!
+printf '%s\n' "${PID}" > "${PID_FILE}"
+printf '[T13S5] pid=%s\n[T13S5] run_dir=%s\n[T13S5] log=%s\n' "${PID}" "${STAGE4_2R3C3T13S5_RUN_DIR}" "${LOG_FILE}"
