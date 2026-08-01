@@ -174,3 +174,26 @@ def test_repository_input_formatter_contract_is_detectable():
     text = (ROOT / "tsc_rzip_rllib/core/inputa.py").read_text(encoding="utf-8")
     assert 'f"{float(value):.3E}"' in text
     assert tool.RELATIVE_GATE == 0.10
+
+
+def test_card15_grid_matches_turns_and_scientific_exponent():
+    tool = _load_tool()
+    current = np.asarray(
+        [-84.0] * 8 + [-6.0, 7.0, -78.0, -125.0, -78.0, -67.0],
+        dtype=float,
+    )
+    grid = tool._card15_formatter_grid_a(current)
+    np.testing.assert_allclose(
+        grid,
+        [1.0 / 48.0] * 8 + [0.005, 0.005, 0.01, 0.1, 0.01, 0.01],
+        rtol=0.0,
+        atol=1e-15,
+    )
+    metrics = tool._grid_metrics(
+        np.asarray([0.01] * 14),
+        np.asarray([0.0] * 14),
+        current,
+    )
+    assert metrics["active_command_component_count"] == 14
+    assert metrics["command_components_below_one_grid"] == 9
+    assert metrics["maximum_observed_integer_grid_residual"] == 0.0

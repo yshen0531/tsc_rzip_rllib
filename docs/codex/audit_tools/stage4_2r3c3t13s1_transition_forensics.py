@@ -36,6 +36,19 @@ NOMINAL_MAX_DELTA_A = 3.0
 SCALES = np.asarray([0.03, 0.03, 0.1, 0.1, 2000.0], dtype=float)
 RELATIVE_GATE = 0.10
 WINDOW_OFFSETS = (0, 1, 3, 7)
+TURNS_TSC = np.asarray(
+    [480.0] * 8 + [200.0, 200.0, 100.0, 100.0, 100.0, 100.0],
+    dtype=float,
+)
+TURN_SOURCE_RELATIVE = Path(
+    "stage4_1r17_runs/"
+    "stage4_1r17_original_deadline_one_sided_robust_braking_closure_"
+    "20260729_142501/stage4_1r4_environment_variants/"
+    "env_slew_0p900_h37.json"
+)
+TURN_SOURCE_SHA256 = (
+    "2305ae9750afc534c6c270651ec3aabda82308edd1dacad103501a653a94993e"
+)
 
 
 def _canonical_digest(value: Any) -> str:
@@ -180,6 +193,44 @@ def _scaled_relative(numerator: np.ndarray, denominator: np.ndarray) -> float:
     num = np.asarray(numerator, dtype=float) / SCALES
     den = np.asarray(denominator, dtype=float) / SCALES
     return _relative(num, den)
+
+
+def _card15_formatter_grid_a(current_a_tsc: np.ndarray) -> np.ndarray:
+    """Return one ``.3E`` Card15 least-significant step in single-turn A."""
+    current = np.asarray(current_a_tsc, dtype=float).reshape(14)
+    current_kat = np.abs(current * TURNS_TSC / 1000.0)
+    exponents = np.zeros(14, dtype=int)
+    nonzero = current_kat > 0.0
+    exponents[nonzero] = np.floor(np.log10(current_kat[nonzero])).astype(int)
+    grid_kat = np.power(10.0, exponents - 3)
+    return grid_kat * 1000.0 / TURNS_TSC
+
+
+def _grid_metrics(
+    command: np.ndarray,
+    observed: np.ndarray,
+    baseline_current: np.ndarray,
+) -> dict[str, Any]:
+    command = np.asarray(command, dtype=float).reshape(14)
+    observed = np.asarray(observed, dtype=float).reshape(14)
+    grid = _card15_formatter_grid_a(baseline_current)
+    active = np.abs(command) > 1e-12
+    ratios = np.abs(command[active]) / grid[active]
+    observed_grid_units = observed / grid
+    return {
+        "active_command_component_count": int(np.sum(active)),
+        "command_components_below_one_grid": int(
+            np.sum(np.abs(command[active]) < grid[active])
+        ),
+        "minimum_command_to_grid_ratio": float(np.min(ratios)),
+        "median_command_to_grid_ratio": float(np.median(ratios)),
+        "maximum_command_to_grid_ratio": float(np.max(ratios)),
+        "minimum_formatter_grid_A": float(np.min(grid)),
+        "maximum_formatter_grid_A": float(np.max(grid)),
+        "maximum_observed_integer_grid_residual": float(
+            np.max(np.abs(observed_grid_units - np.rint(observed_grid_units)))
+        ),
+    }
 
 
 def _window_metrics(
@@ -327,6 +378,7 @@ def analyze_results(results: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
         command_even = (command_plus + command_minus) / 2.0
         observed_plus = p_current[first] - b_current[first]
         observed_minus = m_current[first] - b_current[first]
+        baseline_current = b_current[first]
 
         row = {
             **_context_fields(group[:5]),
@@ -374,6 +426,12 @@ def analyze_results(results: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
                 ),
                 "maximum_abs_even_component_A": float(
                     np.max(np.abs(current_even[first]))
+                ),
+                "plus_card15_grid_diagnostic": _grid_metrics(
+                    command_plus, observed_plus, baseline_current
+                ),
+                "minus_card15_grid_diagnostic": _grid_metrics(
+                    command_minus, observed_minus, baseline_current
                 ),
             },
             "plant_response": {
@@ -514,6 +572,42 @@ def analyze_results(results: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
         "pre_effect_exact_count": int(
             sum(bool(row["pre_effect_exact"]) for row in central_rows)
         ),
+        "command_components_below_one_card15_grid": int(
+            sum(
+                row["observed_current_first_effect"][side][
+                    "command_components_below_one_grid"
+                ]
+                for row in central_rows
+                for side in (
+                    "plus_card15_grid_diagnostic",
+                    "minus_card15_grid_diagnostic",
+                )
+            )
+        ),
+        "active_command_component_count": int(
+            sum(
+                row["observed_current_first_effect"][side][
+                    "active_command_component_count"
+                ]
+                for row in central_rows
+                for side in (
+                    "plus_card15_grid_diagnostic",
+                    "minus_card15_grid_diagnostic",
+                )
+            )
+        ),
+        "maximum_observed_integer_card15_grid_residual": float(
+            max(
+                row["observed_current_first_effect"][side][
+                    "maximum_observed_integer_grid_residual"
+                ]
+                for row in central_rows
+                for side in (
+                    "plus_card15_grid_diagnostic",
+                    "minus_card15_grid_diagnostic",
+                )
+            )
+        ),
     }
     route_metrics["action_resolution_material"] = bool(
         route_metrics["observed_current_first_effect_symmetry_pass_count"] < 24
@@ -556,8 +650,16 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
     official_state = _read_json(run_dir / "stage4_2r3c3t13s1_state.json")
     inputa_source = project_root / "tsc_rzip_rllib/core/inputa.py"
     runner_source = project_root / "tsc_rzip_rllib/core/runner.py"
+    turn_source = project_root / TURN_SOURCE_RELATIVE
     source_text = inputa_source.read_text(encoding="utf-8")
     formatter_contract_present = 'f"{float(value):.3E}"' in source_text
+    turn_config = _read_json(turn_source)
+    if (
+        _sha256(turn_source) != TURN_SOURCE_SHA256
+        or np.asarray(turn_config["turns_display_order"], dtype=float).tolist()
+        != TURNS_TSC.tolist()
+    ):
+        raise ValueError("T13S1 Card15 turn-count source mismatch")
     report = {
         "schema_version": 1,
         "stage": STAGE,
@@ -567,6 +669,9 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
         "source_provenance": {
             "inputa_source_sha256": _sha256(inputa_source),
             "runner_source_sha256": _sha256(runner_source),
+            "turn_count_source": TURN_SOURCE_RELATIVE.as_posix(),
+            "turn_count_source_sha256": _sha256(turn_source),
+            "turns_tsc": TURNS_TSC.tolist(),
             "ten_character_scientific_3_decimal_formatter_present": (
                 formatter_contract_present
             ),
