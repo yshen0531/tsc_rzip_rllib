@@ -1,4 +1,4 @@
-# CURRENT_TASK.md — post-T7 target-authority redesign
+# CURRENT_TASK.md — post-T11 formal-gap route discriminator
 
 ## 1. Terminology and certified checkpoint
 
@@ -1013,3 +1013,58 @@ response bank or R3c4 feasibility model, run R3c4, or start
 BC/DAgger/residual RL. No new real TSC is authorized until the new schedule,
 action-space novelty, current envelope, context matrix, and downstream
 identifiability gate are frozen before outcomes.
+
+## 21. Post-T11 route update and active T12 audit
+
+Read-only server forensics added the missing T11 formal-versus-condition
+cross table:
+
+```text
+baseline formal PASS / condition PASS                  12
+baseline formal PASS / condition FAIL                   4
+baseline formal FAIL / condition PASS                  13
+baseline formal FAIL / condition FAIL                   3
+```
+
+Thus only three of the seven T11 condition failures overlap the sixteen
+authentic baseline formal failures. Repairing condition alone would spend
+most of its effort on four contexts whose baseline control already passes
+and would miss thirteen formal failures whose condition already passes.
+
+The same server-side read-only audit inspected all twelve authentic signed
+T11 probe corners around every failed baseline:
+
+```text
+failed baselines with any real single-probe repair       0/16
+real single-probe repairs in failed contexts                 0
+best per-context signed-margin gain range       0.00117--0.00807
+probe regressions around passing baselines               1/192
+```
+
+These are diagnostic measured-corner facts, not a response-bank combination
+or controller-feasibility result. T11 remains a clean identification-design
+FAIL under its original 25/32 condition result.
+
+The active stage is now Stage4.2R3c3T12, frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_DESIGN.md
+```
+
+T12 is a server-side retrospective route audit. It authenticates all T11 raw
+in place, reproduces the cross table and actual measured-corner formal-gap
+coverage, and records whether condition-first basis expansion is aligned with
+the real control deficit. It runs no Ray, `gotsc`, TSC, controller, optimizer,
+plant step, or new snapshot.
+
+Do not implement a full new identification campaign directly from the T11
+condition failures. After T12, first freeze the downstream finite-horizon,
+state-conditioned transport/braking MPC architecture and its task-relevant
+authority requirements. If existing evidence is insufficient, use a separate
+prospective small sentinel with an explicit stop/continue gate before any
+full 32-context campaign.
+
+Formal timing, T11's verdict, the controller information boundary, current
+limits, and the prohibition on T11-bank/R3c4/BC/DAgger/residual RL remain
+unchanged.

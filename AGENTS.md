@@ -369,14 +369,33 @@ success test. T11 probe trajectories are forbidden from expert datasets;
 its matched-history response gate does not independently validate
 hidden-history closed-loop robustness.
 
-The current task is to prospectively design a genuinely new time-localized
-identification that improves weak-mode authority and separates the p9/minus
-near-collinear responses. Do not repair T11 by post-hoc column
-normalization, threshold relaxation, or amplitude-only rescaling. Preserve
-the T11 raw on the server. Do not build the failed T11 response bank, resume
-R3c4, or enter BC, DAgger, or residual RL. No new real TSC is authorized
-until the new schedule, action-space novelty, current envelope, context
-matrix, and downstream identifiability gate are frozen before outcomes.
+Post-T11 read-only server forensics found that response conditioning and
+formal control are largely different axes:
+
+```text
+baseline formal PASS / condition PASS                  12
+baseline formal PASS / condition FAIL                   4
+baseline formal FAIL / condition PASS                  13
+baseline formal FAIL / condition FAIL                   3
+failed baselines repaired by any real T11 single probe  0/16
+best per-context measured margin gain          0.00117--0.00807
+```
+
+The current task is Stage4.2R3c3T12, a retrospective server-side formal-gap
+route discriminator. It authenticates the immutable T11 raw in place and
+reproduces the condition/formal cross table and actual measured-corner gap
+coverage. It runs no Ray, `gotsc`, TSC, controller, optimizer, plant step, or
+snapshot creation. T12 cannot change T11's frozen FAIL or claim global plant
+unreachability.
+
+Do not repair T11 by post-hoc column normalization, threshold relaxation, or
+amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
+the failed T11 response bank, resume R3c4, or enter BC, DAgger, or residual
+RL. Do not launch a full new identification campaign directly from the seven
+T11 condition failures. First freeze the downstream finite-horizon,
+state-conditioned transport/braking MPC architecture and its task-relevant
+authority requirements. If new TSC is still needed, use a separately
+preregistered small sentinel with an explicit stop/continue gate.
 
 ## 10. Required validation before server execution
 

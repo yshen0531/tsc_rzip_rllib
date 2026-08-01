@@ -1,5 +1,17 @@
 # Current status
 
+> Superseding status (2026-08-01 Asia/Shanghai): final T11 forensics remain a
+> clean identification-design FAIL at 25/32 condition passes. A new read-only
+> server cross audit found that condition and formal control are largely
+> different axes: 12 contexts pass both, four formal-PASS contexts fail
+> condition, thirteen formal-FAIL contexts pass condition, and only three fail
+> both. None of the twelve authentic T11 signed probe corners repairs any of
+> the sixteen failed baselines; the best per-context margin gains are only
+> 0.00117--0.00807. The active stage is the no-new-TSC
+> Stage4.2R3c3T12 formal-gap route discriminator. It must not build a T11 bank,
+> run R3c4, or authorize a full new identification campaign. See
+> `STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_DESIGN.md`.
+
 > Superseding status (2026-07-31 Asia/Shanghai): T9 completed a clean
 > 224/224 mixed-interaction identification, and T10 then authenticated those
 > raw trajectories in a preregistered six-term interaction-aware offline

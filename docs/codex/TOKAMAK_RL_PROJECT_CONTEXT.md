@@ -228,18 +228,34 @@ It selected phases 11--13 while the same states were nearest to authenticated
 actual R17 visible phases 12--20, with the largest underestimate under delay
 2 / slew 0.9.
 
-Stage4.2R3c1 is now the active development stage. Its frozen design replaces
-only the ideal-nominal phase reference with a hashed, read-only R17 actual
-closed-loop R/Z/Ip reference manifold for the same target/actuator case.
-Current-run future values, source actions, source coil/wire currents, and
-hidden wire state remain forbidden. Formal task time stays zero and the exact
-32-case R3c matrix and gate remain unchanged. The design is frozen in
-`docs/codex/reports/STAGE4_2R3C1_PREREGISTERED_DESIGN.md`.
+R3c1 later completed 32/32 authentic controls with exact restart and causal
+execution but passed formal control only 16/32. R3c2's zero-nominal terminal
+regulator then passed only 12/32. Both are genuine controller-development
+failures, not restart, runtime, corruption, or reporting failures.
 
-Because R3c1 was selected after inspecting R3b and R3c and reuses the same
-snapshots, it is development evidence only. A successful R3c1 must be
-followed by R3d on new, prospectively generated unseen histories before
-new-target work.
+R3c3 and T1--T11 subsequently identified bounded restart responses and
+tested fixed linear, quadratic, target-residual, interaction-aware, and
+time-localized response families. T9 proved material reproducible
+combined-action interaction. T10 exactly fitted its measured interaction
+nodes but remained 16/32 with 0/16 repairs. T11 completed 416/416 authentic
+persistent-step probes and passed restart, causality, symmetry, matched
+history, rank, and current gates, but its frozen condition gate passed only
+25/32.
+
+Post-T11 read-only server forensics found that four condition failures occur
+in baseline formal passes, while thirteen baseline formal failures already
+pass condition. None of the twelve measured T11 single-probe corners repairs
+any of the sixteen failed baselines. The active stage is therefore the
+no-new-TSC Stage4.2R3c3T12 formal-gap route discriminator, not another
+condition-first full probe campaign.
+
+The near-term architecture target is a finite-horizon, state-conditioned,
+interaction-aware transport/braking MPC with formal task time separated from
+local model phase and with deterministic causal restart-state reconstruction.
+Any later real identification first requires a separately preregistered
+small sentinel and an explicit task-authority stop/continue gate. A successful
+development controller must still be followed by independent new histories
+and restart states before new-target work.
 
 ## 7. Medium-term objectives
 
