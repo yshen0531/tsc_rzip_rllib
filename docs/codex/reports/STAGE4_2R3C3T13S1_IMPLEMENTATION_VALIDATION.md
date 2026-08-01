@@ -8,6 +8,7 @@ contain a T13S1 scientific result.
 ```text
 branch       codex/stage4_2r3c3t13s1-transition-sentinel
 commit       898b559ba5d2f716f4e2e255f9a570b87af3bbb2
+package fix  ecc05f61838e5c9214bad75fe0a61295429f7a33
 real TSC     not run
 raw count    0
 scientific verdict NOT_RUN
@@ -63,11 +64,11 @@ Probe trajectories remain forbidden from expert datasets.
 79cebd0ff36d43de6f4a4fce42cbab925ddc201d3cde00ab79e0aad22fba78ad  configs/stage4_2r3c3t13s1_minimal_transition_sentinel_500ms.json
 685769f931cc6cb695ea534aa285b28c3932384a34df7c32ed5589d7543ebd38  tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s1_minimal_transition_sentinel.py
 0823d3cb3f9774e15704498e5dea0d2b538fd8627b4549fb586e83c5a01b2f83  scripts/stage4_2r3c3t13s1_server_postprocess.py
-59f352bd55766bafb289e777ba165952c7e2ddf0c8e9c841316b03cc2da5457e  PACKAGE_MANIFEST.json
-3ceb2b90932461571cb236fd6d776dab7f3ee4c0c0d5acd96e340de46f6ca8bc  SHA256SUMS
+4d73483a27cb6d057446192fac4ba267f338e5b3100432c27b77b1a322750d93  PACKAGE_MANIFEST.json
+313a0331966cd61b9762645fd54c24a6082ae3d77d2aa76fe13b3a4840932458  SHA256SUMS
 ```
 
-The package declares 267 unique, sorted source files and contains the full
+The package declares 269 unique, sorted source files and contains the full
 import closure plus the exact T13S1 launch, stop, verify, and server-audit
 entry points.
 
@@ -78,12 +79,13 @@ focused T13S1 unit tests                         7 / 7 PASS
 complete repository unit tests                639 / 639 PASS
 Python compileall                                  PASS
 all configs/*.json parse                           PASS
-manifest inventory 267/267 unique and sorted       PASS
-SHA256SUMS 267/267                                  PASS
-empty-directory direct-copy file count              268
+manifest inventory 269/269 unique and sorted       PASS
+SHA256SUMS 269/269                                  PASS
+empty-directory direct-copy file count              270
 empty-directory checksum verification              PASS
 empty-directory isolated T13S1 import/self-test     PASS
 empty-directory compileall                          PASS
+empty-directory complete tests              639 PASS, 1 expected skip
 ```
 
 The first system-Python full-test invocation reported only Windows import
@@ -98,6 +100,16 @@ The local `bash` command maps to WSL but no WSL distribution is installed,
 so local Bash syntax execution was not available. Exact `bash -n` for all
 declared shell scripts is mandatory on the Linux server before any offline
 audit or real TSC launch.
+
+The first Linux staging full-test run then exposed one package/import-closure
+error: the newly declared T13 V4 compatibility test dynamically imports its
+audit tool and reads its frozen V4 design, but those two files were absent
+from the 267-file package. No server project file or experiment had been
+started. Commit `ecc05f61838e5c9214bad75fe0a61295429f7a33` added both exact
+dependencies, regenerated the 269-file inventory, and the isolated package
+then passed all 639 tests with one pre-existing expected skip. This is a
+packaging/import error only, not a runtime, reporting, restart, plant, or
+control result.
 
 ## Resume and evidence behavior
 

@@ -1290,6 +1290,7 @@ T13S1 was implemented under a new campaign/package identity at local commit:
 
 ```text
 898b559ba5d2f716f4e2e255f9a570b87af3bbb2
+ecc05f61838e5c9214bad75fe0a61295429f7a33  package import-closure fix
 ```
 
 The implementation and local validation record is:
@@ -1301,7 +1302,9 @@ STAGE4_2R3C3T13S1_IMPLEMENTATION_VALIDATION.md
 
 Focused tests pass 7/7, the complete repository suite passes 639/639 in the
 repository-local virtual environment, all JSON/compile/checksum gates pass,
-and an isolated empty-directory direct-copy import/compile simulation passes.
+and an isolated empty-directory direct-copy import/compile/full-test
+simulation passes. The package now declares 269 hashed files plus
+`SHA256SUMS`.
 The local Windows `bash` maps to an unavailable WSL distribution, so exact
 Linux `bash -n` remains a mandatory server pre-run gate.
 
