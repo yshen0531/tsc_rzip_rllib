@@ -1,0 +1,66 @@
+{
+  "classification": {
+    "design_flaw": false,
+    "interface_implementation_failure": false,
+    "packaging_or_import_error": false,
+    "point_model_certified": false,
+    "raw_or_snapshot_corruption": false,
+    "real_closed_loop_control_tested": false,
+    "real_mpc_authorized": false,
+    "reporting_or_statistics_error": false,
+    "robust_controller_authorized": false,
+    "runtime_or_environment_error": false
+  },
+  "code": {
+    "commit": "37e391361b7d397b90bd2f2747918084bf443e0a",
+    "files": {
+      "tests/test_stage4_2r3c3t13s3_quantized_causal_tube_interface.py": "8b158d3ed95aa0710c32117ba0cb9004d1ee5bb578843589d408c59f07944280",
+      "tsc_rzip_rllib/control/__init__.py": "5b9a64a0db1da5b2f065a18b3e6c6096c9a99d5afdf6f14304d2e84cf0062ac4",
+      "tsc_rzip_rllib/control/causal_observer.py": "fd3decf7fc3b53186909f0d0cf2f6e7ebcc97a074b59bb15be2b14aa2313afaa",
+      "tsc_rzip_rllib/control/quantized_actuator.py": "3f2b53bd8c2d298a786f5ca59101a525c3e3fa9140ffd7976292b2145ef513d8",
+      "tsc_rzip_rllib/control/transition_tube.py": "e6cdc8da51f878b0abffd2b1afdd33ef2c1b6e5890249fd694dd50adb446758b"
+    }
+  },
+  "design_sha256": "7f0259e8b7f7d33446dd9d6efde608731705b484f8aa1e85155ff24a6a8aeb4a",
+  "formal_contract_changed": false,
+  "interface_gates": {
+    "card15_serialization": true,
+    "development_bias_provenance": true,
+    "fail_closed_empty_or_unsupported_hypotheses": true,
+    "forbidden_and_unknown_field_rejection": true,
+    "formal_clock_monotonicity": true,
+    "multi_hypothesis_union": true,
+    "nonzero_readback_interval_all_coils": true,
+    "queue_immutability": true,
+    "restart_velocity_unknown_interval": true,
+    "serialization_round_trip": true
+  },
+  "outcome": "INTERFACE_COMPLETE_HOLDOUT_REQUIRED",
+  "provenance": {
+    "development_bias_grid_units_tsc": [2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 1, 0, 0],
+    "development_bias_scope": "retrospective_T13S1_development_nominal_only",
+    "t13s2r1_report_sha256": "62b28bec07bde398cfec6b4aaf42899960e63a8761ce19316f83e8c929903c87",
+    "uncertainty_radius_minimum_output_grid_units_per_coil": 1.0
+  },
+  "schema_version": 1,
+  "server": {
+    "installed_project": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+    "staging": "/home/yangshen0711/tsc_software/stage4_2r3c3t13s3_quantized_tube_37e3913",
+    "validation_log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s3_server_validation_37e3913.log",
+    "validation_log_sha256": "f70598458c08aee524298bb402789c7097b66203e50cc9332a2b5942ce15dfc5"
+  },
+  "stage": "Stage4.2R3c3T13S3",
+  "tests": {
+    "local_focused": {"passed": 15, "failed": 0},
+    "local_full": {
+      "executed": 287,
+      "import_errors": 27,
+      "limitation": "Windows lacks the POSIX resource module; no T13S3 test failed"
+    },
+    "local_isolated_direct_copy": {"passed": 15, "failed": 0},
+    "server_focused": {"passed": 15, "failed": 0},
+    "server_full": {"passed": 654, "failed": 0, "skipped": 1},
+    "server_nonrun_json_parsed": 189
+  },
+  "tsc_or_plant_steps_executed": 0
+}

@@ -1,0 +1,84 @@
+STAGE=Stage4.2R3c3T13S3
+COMMIT=37e391361b7d397b90bd2f2747918084bf443e0a
+PROJECT=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+tsc_rzip_rllib/control/__init__.py: OK
+tsc_rzip_rllib/control/causal_observer.py: OK
+tsc_rzip_rllib/control/quantized_actuator.py: OK
+tsc_rzip_rllib/control/transition_tube.py: OK
+tests/test_stage4_2r3c3t13s3_quantized_causal_tube_interface.py: OK
+Python 3.12.4
+test_causal_update_and_queue_immutability (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.CausalObserverTests.test_causal_update_and_queue_immutability) ... ok
+test_deterministic_json_serialization (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.CausalObserverTests.test_deterministic_json_serialization) ... ok
+test_forbidden_and_unknown_fields_fail_closed (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.CausalObserverTests.test_forbidden_and_unknown_fields_fail_closed) ... ok
+test_restart_velocity_is_explicitly_unknown (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.CausalObserverTests.test_restart_velocity_is_explicitly_unknown) ... ok
+test_action_and_current_clipping (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.QuantizedActuatorTests.test_action_and_current_clipping) ... ok
+test_active_command_can_collapse_to_grid (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.QuantizedActuatorTests.test_active_command_can_collapse_to_grid) ... ok
+test_development_bias_and_nonzero_interval (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.QuantizedActuatorTests.test_development_bias_and_nonzero_interval) ... ok
+test_exact_positive_negative_zero_card15_serialization (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.QuantizedActuatorTests.test_exact_positive_negative_zero_card15_serialization) ... ok
+test_interval_contains_all_bias_radius_edges (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.QuantizedActuatorTests.test_interval_contains_all_bias_radius_edges) ... ok
+test_uncertainty_cannot_collapse (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.QuantizedActuatorTests.test_uncertainty_cannot_collapse) ... ok
+test_empty_or_unsupported_fails_closed (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.TransitionTubeTests.test_empty_or_unsupported_fails_closed) ... ok
+test_measured_interpolation_and_extrapolation_classes (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.TransitionTubeTests.test_measured_interpolation_and_extrapolation_classes) ... ok
+test_multiple_hypothesis_union_and_formal_clock (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.TransitionTubeTests.test_multiple_hypothesis_union_and_formal_clock) ... ok
+test_prediction_serialization_is_deterministic (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.TransitionTubeTests.test_prediction_serialization_is_deterministic) ... ok
+test_transition_forbidden_label_and_unknown_field_rejection (tests.test_stage4_2r3c3t13s3_quantized_causal_tube_interface.TransitionTubeTests.test_transition_forbidden_label_and_unknown_field_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.013s
+
+OK
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=120 actors=96 initialized_now=0
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=24 actors=24 initialized_now=0
+[test] ray_capacity requested=96 cluster_cpus=96 pending=150 actors=96 initialized_now=0
+..{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "created_utc": "20260801_160302",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041,
+      "max_terminal_velocity_m_per_s": 0.02,
+      "max_late_velocity_rms_m_per_s": 0.08
+    }
+  ]
+}
+.{
+  "verdict": "NO_CONFIRMED_HOLD",
+  "created_utc": "20260801_160302",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 0,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 99,
+      "mean_terminal_RZ_error_m": null,
+      "max_terminal_velocity_m_per_s": null,
+      "max_late_velocity_rms_m_per_s": null
+    }
+  ]
+}
+.....[Stage2 evaluation] candidate stored as failure because the result was not strict-JSON serializable: non-finite JSON number at $.trajectory[0].R: nan
+.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s..............................................................................................................
+----------------------------------------------------------------------
+Ran 654 tests in 3.432s
+
+OK (skipped=1)
+SERVER_NONRUN_JSON_OK=189
+PYTHON_PROCESSES_AFTER=3
+RAY_PROCESSES_AFTER=0
+TSC_STEPS_EXECUTED=0
+SERVER_INSTALLED_VALIDATION=PASS
