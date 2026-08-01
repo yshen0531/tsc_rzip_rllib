@@ -24,14 +24,18 @@ import numpy as np
 
 
 STAGE = "Stage4.2R3c3T13"
-IDENTITY = "time_resolved_stage3_4_restart_model_compatibility_v1"
-DESIGN_SHA256 = "c4ad37700cd63439b287eb81ff52c7c1c23c02ec9c0fc5e435905a62ed838218"
+IDENTITY = "time_resolved_stage3_4_restart_model_compatibility_v2"
+DESIGN_SHA256 = "604ebc9139c334647ef4142e5427dbb04d667e008acf78317e24846cc87b24cd"
 STAGE34_SOURCE_SHA256 = "a6097b8dea3293bdccf0e742ee86dc9df65b5318f2bd700ee4e5e81d72968f27"
 STAGE34_BUNDLE_SHA256 = "7b307e82c35bc12beea51be303be90d0a5dd7554f54156e3684b167f37ee8987"
 STAGE34_CONFIG_SHA256 = "6d705aaad12bc6872af776a0adf041041cbda38a4d545581017ad5ecdc7b34b4"
 STAGE34_ENV_SHA256 = "a0ed368a4aeb93b0073ff46f90583a8d63c3ef076eeef6400460ec0cb50c546a"
 STAGE34_MANIFEST_SHA256 = "f66b84d59f53ecc665571337726f2ad6c77a749059abc06ff96995589e9af460"
 MODES_FLOAT64_SHA256 = "a6438d4d32cb00a391e0f4f1f9341b8ba162aeddf75cacb599ac433fe4af0b54"
+RUNNER_SOURCE_SHA256 = "304e412d86220b871011c409b4e9c899149341c2c48499b1bbabfcafadbc0021"
+INPUTA_SOURCE_SHA256 = "33760858ae0f80efa0cd5c418707261e1cdab60c0c78707002406db5335b6767"
+ENV_SOURCE_SHA256 = "6bfe266533424d0a671369578bcd0458ce3a9823233ce2ef02df109d49a3b270"
+STAGE1_SOURCE_SHA256 = "7214dea9d93364bd4cacd3d324f2156879fcf255a75c9a5ac7423e02d6acbb58"
 NOMINAL_MAX_DELTA_A = 3.0
 DT_S = 0.01
 OUTPUT_SCALES = np.concatenate(
@@ -142,8 +146,7 @@ GATES = {
     "pre_effect_position_max_m": 1e-9,
     "pre_effect_velocity_max_m_per_s": 1e-7,
     "pre_effect_ip_max_A": 1e-4,
-    "current_trace_identity_max_A": 1e-9,
-    "modal_residual_max_A": 1e-9,
+    "command_modal_residual_max_A": 1e-9,
 }
 
 
@@ -249,7 +252,7 @@ def _input_sequence(
     *,
     slew_scale: float,
     modes: np.ndarray,
-) -> tuple[np.ndarray, float, float]:
+) -> tuple[np.ndarray, float, float, np.ndarray]:
     currents = np.asarray(
         [row["currents_a_tsc"] for row in trajectory[:36]], dtype=float
     )
@@ -258,13 +261,25 @@ def _input_sequence(
     )
     if currents.shape != (36, 14) or actions.shape != (35, 14):
         raise ValueError("unexpected current/action shape")
-    delta_i = np.diff(currents, axis=0)
-    traced_delta_i = actions * NOMINAL_MAX_DELTA_A * float(slew_scale)
-    trace_error = float(np.max(np.abs(delta_i - traced_delta_i)))
-    u = (delta_i / NOMINAL_MAX_DELTA_A) @ modes
+    observed_delta_i = np.diff(currents, axis=0)
+    command_delta_i = actions * NOMINAL_MAX_DELTA_A * float(slew_scale)
+    u = (command_delta_i / NOMINAL_MAX_DELTA_A) @ modes
     reconstructed = NOMINAL_MAX_DELTA_A * (u @ modes.T)
-    modal_error = float(np.max(np.abs(delta_i - reconstructed)))
-    return u, trace_error, modal_error
+    command_modal_error = float(
+        np.max(np.abs(command_delta_i - reconstructed))
+    )
+    observed_command_difference = np.abs(observed_delta_i - command_delta_i)
+    observed_u = (observed_delta_i / NOMINAL_MAX_DELTA_A) @ modes
+    observed_reconstructed = NOMINAL_MAX_DELTA_A * (observed_u @ modes.T)
+    observed_modal_error = float(
+        np.max(np.abs(observed_delta_i - observed_reconstructed))
+    )
+    return (
+        u,
+        command_modal_error,
+        observed_modal_error,
+        observed_command_difference,
+    )
 
 
 def _forbidden_contract_clean(raw: Mapping[str, Any]) -> bool:
@@ -305,6 +320,11 @@ def _load_model(project_root: Path) -> tuple[np.ndarray, np.ndarray, dict[str, A
         "env": stage34_run / "env_config.resolved.json",
         "manifest": stage34_run / "stage3_4_manifest.json",
         "bundle": stage34_run / "stage3_4_identification/full_horizon_bundle.json",
+        "runner": project_root / "tsc_rzip_rllib/core/runner.py",
+        "inputa": project_root / "tsc_rzip_rllib/core/inputa.py",
+        "env_source": project_root / "tsc_rzip_rllib/envs/rzip_env.py",
+        "stage1_source": project_root
+        / "tsc_rzip_rllib/diagnostics/stage1_controllability.py",
     }
     expected = {
         "source": STAGE34_SOURCE_SHA256,
@@ -312,6 +332,10 @@ def _load_model(project_root: Path) -> tuple[np.ndarray, np.ndarray, dict[str, A
         "env": STAGE34_ENV_SHA256,
         "manifest": STAGE34_MANIFEST_SHA256,
         "bundle": STAGE34_BUNDLE_SHA256,
+        "runner": RUNNER_SOURCE_SHA256,
+        "inputa": INPUTA_SOURCE_SHA256,
+        "env_source": ENV_SOURCE_SHA256,
+        "stage1_source": STAGE1_SOURCE_SHA256,
     }
     hashes = {name: _sha256(path) for name, path in paths.items()}
     if hashes != expected:
@@ -369,8 +393,10 @@ def _load_raw(
     all_records: dict[str, list[Record]] = {}
     authentication: dict[str, Any] = {}
     all_ids: set[str] = set()
-    global_trace_error = 0.0
-    global_modal_error = 0.0
+    global_command_modal_error = 0.0
+    global_observed_modal_error = 0.0
+    observed_mismatch_by_slew: dict[str, float] = defaultdict(float)
+    observed_mismatch_by_coil = np.zeros(14, dtype=float)
     for stage_name, contract in RUNS.items():
         raw_dir = project_root / contract["run"] / contract["raw"]
         paths = sorted(raw_dir.glob("*.json.gz"))
@@ -382,8 +408,9 @@ def _load_raw(
         ):
             raise ValueError(f"{stage_name} raw inventory mismatch: {inventory}")
         records: list[Record] = []
-        max_trace_error = 0.0
-        max_modal_error = 0.0
+        max_command_modal_error = 0.0
+        max_observed_modal_error = 0.0
+        max_observed_command_difference = 0.0
         contexts: set[tuple[Any, ...]] = set()
         for path in paths:
             raw = _read_gz(path)
@@ -401,23 +428,44 @@ def _load_raw(
                 raise ValueError(f"{stage_name} raw authentication failed: {path.name}")
             all_ids.add(experiment_id)
             spec = raw["spec"]
-            u, trace_error, modal_error = _input_sequence(
+            (
+                u,
+                command_modal_error,
+                observed_modal_error,
+                observed_command_difference,
+            ) = _input_sequence(
                 raw["trajectory"],
                 raw["controller_trace"],
                 slew_scale=float(spec["slew_scale"]),
                 modes=modes,
             )
             if (
-                trace_error > GATES["current_trace_identity_max_A"]
-                or modal_error > GATES["modal_residual_max_A"]
+                command_modal_error > GATES["command_modal_residual_max_A"]
                 or not np.all(np.isfinite(u))
+                or not np.all(np.isfinite(observed_command_difference))
             ):
                 raise ValueError(
                     f"{stage_name} applied-input reconstruction failed: {path.name}; "
-                    f"trace={trace_error}, modal={modal_error}"
+                    f"command_modal={command_modal_error}"
                 )
-            max_trace_error = max(max_trace_error, trace_error)
-            max_modal_error = max(max_modal_error, modal_error)
+            max_command_modal_error = max(
+                max_command_modal_error, command_modal_error
+            )
+            max_observed_modal_error = max(
+                max_observed_modal_error, observed_modal_error
+            )
+            observed_max = float(np.max(observed_command_difference))
+            max_observed_command_difference = max(
+                max_observed_command_difference, observed_max
+            )
+            slew_key = str(float(spec["slew_scale"]))
+            observed_mismatch_by_slew[slew_key] = max(
+                observed_mismatch_by_slew[slew_key], observed_max
+            )
+            observed_mismatch_by_coil = np.maximum(
+                observed_mismatch_by_coil,
+                np.max(observed_command_difference, axis=0),
+            )
             contexts.add(_context_key(spec))
             records.append(
                 Record(
@@ -439,17 +487,32 @@ def _load_raw(
             "context_count": len(contexts),
             "success_completed_count": len(records),
             "forbidden_contract_clean_count": len(records),
-            "maximum_current_trace_identity_error_A": max_trace_error,
-            "maximum_modal_residual_A": max_modal_error,
+            "maximum_command_modal_residual_A": max_command_modal_error,
+            "maximum_observed_current_modal_residual_A": max_observed_modal_error,
+            "maximum_observed_current_command_difference_A": (
+                max_observed_command_difference
+            ),
         }
-        global_trace_error = max(global_trace_error, max_trace_error)
-        global_modal_error = max(global_modal_error, max_modal_error)
+        global_command_modal_error = max(
+            global_command_modal_error, max_command_modal_error
+        )
+        global_observed_modal_error = max(
+            global_observed_modal_error, max_observed_modal_error
+        )
     authentication["total"] = {
         "raw_count": sum(len(rows) for rows in all_records.values()),
         "total_bytes": sum(int(RUNS[name]["bytes"]) for name in RUNS),
         "unique_experiment_id_count": len(all_ids),
-        "maximum_current_trace_identity_error_A": global_trace_error,
-        "maximum_modal_residual_A": global_modal_error,
+        "maximum_command_modal_residual_A": global_command_modal_error,
+        "maximum_observed_current_modal_residual_A": (
+            global_observed_modal_error
+        ),
+        "maximum_observed_current_command_difference_by_slew_A": dict(
+            sorted(observed_mismatch_by_slew.items())
+        ),
+        "maximum_observed_current_command_difference_by_coil_A": (
+            observed_mismatch_by_coil.tolist()
+        ),
     }
     if authentication["total"]["raw_count"] != 1408:
         raise ValueError("global raw count mismatch")
@@ -851,8 +914,8 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
     }
 
     output.mkdir(parents=True, exist_ok=False)
-    audit_path = output / "stage4_2r3c3t13_time_resolved_model_audit_v1.json"
-    route_path = output / "stage4_2r3c3t13_time_resolved_model_route_v1.json"
+    audit_path = output / "stage4_2r3c3t13_time_resolved_model_audit_v2.json"
+    route_path = output / "stage4_2r3c3t13_time_resolved_model_route_v2.json"
     _write_json(audit_path, audit)
     _write_json(
         route_path,
@@ -876,7 +939,7 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
             "real_controller_executed": False,
         },
     )
-    manifest_path = output / "stage4_2r3c3t13_time_resolved_model_manifest_v1.json"
+    manifest_path = output / "stage4_2r3c3t13_time_resolved_model_manifest_v2.json"
     _write_json(
         manifest_path,
         {

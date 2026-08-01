@@ -36,7 +36,7 @@ class Stage42R3C3T13ModelCompatibilityTests(unittest.TestCase):
     def test_design_hash_matches_preregistered_document(self) -> None:
         design = (
             ROOT
-            / "docs/codex/reports/STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN.md"
+            / "docs/codex/reports/STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V2.md"
         )
         self.assertEqual(T13._sha256(design), T13.DESIGN_SHA256)
 
@@ -96,6 +96,31 @@ class Stage42R3C3T13ModelCompatibilityTests(unittest.TestCase):
         reconstructed = T13.NOMINAL_MAX_DELTA_A * (recovered @ q.T)
         self.assertTrue(np.allclose(recovered, u, atol=1e-12))
         self.assertTrue(np.allclose(reconstructed, delta_i, atol=1e-12))
+
+    def test_trace_command_is_primary_and_observed_current_is_diagnostic(self) -> None:
+        rng = np.random.default_rng(8)
+        q, _ = np.linalg.qr(rng.normal(size=(14, 3)))
+        commanded_u = rng.normal(size=(35, 3)) * 0.01
+        slew = 0.9
+        actions = (commanded_u @ q.T) / slew
+        command_delta = actions * T13.NOMINAL_MAX_DELTA_A * slew
+        observed_delta = command_delta.copy()
+        observed_delta[:, 13] += 0.02
+        currents = np.vstack([np.zeros(14), np.cumsum(observed_delta, axis=0)])
+        trajectory = [{"currents_a_tsc": row.tolist()} for row in currents]
+        trace = [{"action_norm_tsc": row.tolist()} for row in actions]
+        recovered, command_modal, observed_modal, observed_difference = (
+            T13._input_sequence(
+                trajectory,
+                trace,
+                slew_scale=slew,
+                modes=q,
+            )
+        )
+        self.assertTrue(np.allclose(recovered, commanded_u, atol=1e-12))
+        self.assertLess(command_modal, 1e-12)
+        self.assertGreater(observed_modal, 0.0)
+        self.assertAlmostEqual(float(np.max(observed_difference)), 0.02)
 
 
 if __name__ == "__main__":
