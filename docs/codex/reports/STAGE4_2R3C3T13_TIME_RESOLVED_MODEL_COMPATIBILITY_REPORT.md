@@ -45,6 +45,9 @@ local branch
 V4 implementation checkpoint
   a97332d fix(stage4.2r3c3t13): authenticate weak formal horizon
 
+T13 result/architecture/sentinel checkpoint
+  c8d6715 docs(stage4.2r3c3t13): freeze transition sentinel route
+
 V4 design SHA-256
   946993c085d04c3d8eb9030f5b5502e1eb02a0238ba0deb2aea7f43fd154bd3c
 
@@ -53,6 +56,12 @@ audit implementation SHA-256
 
 focused test SHA-256
   52c543d99e4134210485535f00bed37a2f6bebed75b0426656d6f6ff6a2059f4
+
+architecture specification SHA-256 at c8d6715
+  9a80fc5c0342ed18e6a1b5a104842d0556758ee1ebd9d700d435669224112ec3
+
+prospective T13S1 sentinel design SHA-256 at c8d6715
+  347af7e53b2164865476367000aae1102a87dca213795bbe47f5671919edd045
 ```
 
 The authenticated Stage3.4 model identities are:
@@ -278,7 +287,7 @@ Repository-side validation for the final V4 implementation:
 
 ```text
 Python compileall                                   PASS
-all repository JSON parse                    2,507/2,507
+all workspace JSON parse                     2,509/2,509
 focused T13 tests                                  8/8 PASS
 ```
 
