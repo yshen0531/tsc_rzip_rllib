@@ -1,5 +1,32 @@
 # Current status
 
+> Superseding status (2026-08-01 20:08 Asia/Shanghai):
+> Stage4.2R3c3T13S1 completed its one authorized real campaign at remote run
+> `stage4_2r3c3t13s1_runs/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6`.
+> All 52/52 fresh `gotsc` trajectories completed successfully; the immutable
+> raw inventory is 52 JSON.GZ files, 2,463,366 bytes, digest
+> `de2be508888aa503628538a795474fbf70788252e7913f87af7603c5bc034603`.
+> Exact restart, causality, solver, scheduler, current, rank, condition,
+> snapshot, package, raw-parse, and summary-recomputation gates passed. The
+> frozen scientific gates did not: central symmetry was 0/24 and matched
+> hidden-history response was 0/12, although all corresponding absolute
+> response gates passed. The official route is therefore
+> `SENTINEL_FAIL_STOP_IDENTIFICATION`. This is an identification/model/action-
+> resolution design failure, not a runtime, restart, raw-corruption,
+> reporting, or real-MPC failure. The experiment must not be rerun or enlarged
+> under the same identity, and its probe trajectories remain forbidden from
+> expert data. A read-only raw forensic at commits `34a3a21` and `0fe3077`
+> now separates requested commands, observed first-effect coil currents,
+> immediate plant response, later accumulation, matched histories, and the
+> exact Card15 `.3E` current grid. Local compile and four direct focused tests
+> pass. Its server focused/full tests, execution against the 52 immutable raw
+> files, and compact evidence download remain pending because TCP/22 to
+> `10.10.60.108` has repeatedly timed out after the campaign and official
+> audit completed. Do not start TSC while recovering this read-only step.
+> The next route, after this final current-layer classification, is a
+> zero-new-TSC quantization-aware causal-state/observer sufficiency audit;
+> T11 bank, R3c4, BC, DAgger, and residual RL remain blocked.
+
 > Superseding status (2026-08-01 Asia/Shanghai): Stage4.2R3c3T13 completed
 > its no-new-TSC source architecture and time-resolved model audit. The V4
 > audit authenticated 1,408 immutable R3c3/T1/T2/T6/T9/T11 raw files
