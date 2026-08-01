@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T11",
+  "downloaded_file_count": 17,
+  "downloaded_total_bytes": 333969,
+  "json_parse_count": 10,
+  "load_bearing_hash_check_count": 14,
+  "all_load_bearing_hashes_match_remote": true,
+  "compact_forensics_sha256": "8cf365fcac69924c09bae51c9c5c1c3cc003959ff3e7a92111b387316a8b617b",
+  "installed_validation_log_sha256": "dd340ad728d7bf97213bbe6003a9d72500b6a942983e7086a695cac0cccf7765",
+  "large_raw_downloaded": false,
+  "full_server_audit_downloaded": false,
+  "full_run_inventory_downloaded": false,
+  "verification_file_excluded_from_download_counts": true,
+  "verification_note": "All downloaded load-bearing files matched the server hashes recorded in stage4_2r3c3t11_compact_forensics.json; CSV copies are convenience views and the JSON files are authoritative."
+}

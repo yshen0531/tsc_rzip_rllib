@@ -341,33 +341,42 @@ conditioning to 32/32 but left formal feasibility at 16/32 and repaired
 0/16 failed contexts. An amplitude-only T2 and the current six-basis R3c4
 are vetoed.
 
-The current stage is Stage4.2R3c3T2 post-contract-neutralized
-held-transport identification. Its fixed design is:
+Stage4.2R3c3T11 then completed its exact preregistered persistent-step
+identification campaign:
 
 ```text
-mode 0 amplitude 0.0060
-mode 1 amplitude 0.0075
-positive physical effect states 3 through 8
-negative physical effect states 39 through 44
-observation through state 50
-exact zero net
-32 extended zero-probe baselines
-32 contexts × 2 bases × 2 signs = 128 signed-probe rollouts
-160 real rollouts total
+authentic restart rollouts                 416/416
+execution / restart / causality            416/416
+central symmetry                           192/192
+matched hidden-history response              96/96
+response rank 6                              32/32
+response condition <= 25                     25/32
+maximum response condition               38.9150751
+maximum current utilization                  0.3904
 ```
 
-The full gates are frozen in
-`docs/codex/reports/STAGE4_2R3C3T2_PREREGISTERED_DESIGN.md` and
-`docs/codex/CURRENT_TASK.md`. R3c3T2 may never use source actions/results,
-current-run future values, source/current wire currents, or
-pair/history/prefix labels inside the controller.
+Independent server-side raw/snapshot/manifest postprocessing reproduced the
+reported result exactly. Independent raw R/Z differencing and SVD reproduced
+all 32 condition values to `4.97e-14`. T11 is frozen as a clean
+identification-design FAIL due to seven context-dependent weak or
+near-collinear response matrices. It is not a runtime, restart, corruption,
+reporting, or real MPC failure. Formal tracking was diagnostic only: 207/416
+overall and exactly 16/32 unprobed baselines.
 
-The 500 ms T2 horizon does not change the 250/270 ms arrival deadlines or
-the 350/370 ms formal hold endpoints and is not a long-hold success test.
+The 500 ms T11 observation horizon does not change the 250/270 ms arrival
+deadlines or the 350/370 ms formal hold endpoints and is not a long-hold
+success test. T11 probe trajectories are forbidden from expert datasets;
+its matched-history response gate does not independently validate
+hidden-history closed-loop robustness.
 
-R3c4 may resume only if the combined R3c3 plus R3c3T2 six-basis optimistic
-oracle is feasible 32/32 with every coefficient inside `[-1,1]` and no
-formal-gate change.
+The current task is to prospectively design a genuinely new time-localized
+identification that improves weak-mode authority and separates the p9/minus
+near-collinear responses. Do not repair T11 by post-hoc column
+normalization, threshold relaxation, or amplitude-only rescaling. Preserve
+the T11 raw on the server. Do not build the failed T11 response bank, resume
+R3c4, or enter BC, DAgger, or residual RL. No new real TSC is authorized
+until the new schedule, action-space novelty, current envelope, context
+matrix, and downstream identifiability gate are frozen before outcomes.
 
 ## 10. Required validation before server execution
 

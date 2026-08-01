@@ -933,3 +933,38 @@
   hidden-history, controller, or real-MPC conclusion
 - Next: implement and validate the exact frozen 416-task real identification
   identity; do not change its schedule or gates and do not authorize R3c4
+
+## Stage4.2R3c3T11 authentic persistent-step identification
+
+- Branch: `codex/stage4_2r3c3t11-persistent-step-identification`
+- Implementation commit: `322ade2`
+- Deployed inventory-order fix: `40944f9`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t11_persistent_step_response_identification_20260731_224518.log`
+- Execution: 416/416 real authentic restart TSC rollouts in fixed batches
+  `128 + 128 + 128 + 32`; 32 baselines and 384 signed probes
+- Raw: 416/416 parse, 19,273,198 bytes, inventory digest
+  `f84fd31fcbe6db03bd9db0a1d694097b8532120915ec0e3e03668cff0dd908c3`
+- Integrity: exact spec/filename/manifest/package; 8/8 snapshots; reported
+  summary exact on independent recomputation
+- Execution/restart/causality/probe/solver/forbidden/reporting errors: zero
+- Identification gates: execution 416/416, baseline prefix 32/32, symmetry
+  192/192, matched history 96/96, rank 6 in 32/32, current maximum `0.3904`
+- Failed gate: response condition <=25 in 25/32; maximum `38.9150751`
+- Independent SVD: every reported condition reproduced with maximum absolute
+  difference `4.97e-14`; seven failures retain rank 6
+- Formal tracking: 207/416 diagnostic-only; baselines remain exactly 16/32
+- Independent server audit SHA-256:
+  `02933f9ee05f91f6db565e955e0106c65dc6591f273fb562e68ac2767d28c19c`
+- Compact forensic SHA-256:
+  `8cf365fcac69924c09bae51c9c5c1c3cc003959ff3e7a92111b387316a8b617b`
+- Classification: clean identification-design FAIL due to context-dependent
+  weak/near-collinear response columns; not runtime, restart, corruption,
+  reporting, or real MPC failure
+- Large raw/full inventory remain server-side; only compact derived evidence
+  was downloaded
+- Next: preserve raw and preregister a genuinely new time-localized response
+  experiment; no post-hoc normalization, threshold relaxation,
+  amplitude-only rescaling, R3c4, BC, DAgger, or residual RL

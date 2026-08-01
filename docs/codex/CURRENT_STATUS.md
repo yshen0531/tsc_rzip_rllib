@@ -433,3 +433,41 @@ No real TSC, Ray, `gotsc`, controller, or snapshot was executed.
 
 The active work is the independently implemented 416-task real
 identification identity. R3c4 and all BC/DAgger/RL work remain prohibited.
+
+## Stage4.2R3c3T11 authentic identification final result
+
+The package at commit `40944f9` passed local and server validation, the
+offline no-plant audit, and then completed all 416 real TSC tasks once. The
+campaign used fixed batches `128 + 128 + 128 + 32`; all 416 raw files parse
+and pass execution, exact restart, causality, schedule/application,
+zero-net, solver, and forbidden-input checks.
+
+Independent server postprocessing authenticated 8/8 snapshots, the exact
+runtime package and manifest, and the reported summary. The only failed gate
+is six-basis response conditioning:
+
+```text
+central symmetry                                      192/192
+matched hidden-history response                         96/96
+rank 6                                                  32/32
+condition <= 25                                         25/32
+maximum condition                                   38.9150751
+maximum current                                      0.3904/0.55
+```
+
+Independent raw differencing/SVD matches the report to `4.97e-14`. This is a
+clean identification-design FAIL, not a runtime, restart, raw, snapshot,
+solver, reporting, or real-MPC failure. Formal tracking is diagnostic only:
+207/416 overall and the unchanged 16/32 extended baselines.
+
+Large raw and full inventories remain server-side. Compact local evidence is
+under
+`docs/codex/audits/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/server_compact/`.
+The detailed report is
+`docs/codex/reports/STAGE4_2R3C3T11_PERSISTENT_STEP_IDENTIFICATION_REPORT.md`.
+
+Do not build the T11 response bank or R3c4. The active route is a new
+prospectively frozen time-localized identification design that improves
+weak-mode authority and separates the p9/minus near-collinear responses
+without post-hoc normalization, amplitude-only rescaling, threshold changes,
+or formal-timing changes. BC, DAgger, and residual RL remain prohibited.

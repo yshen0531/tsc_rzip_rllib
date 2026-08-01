@@ -1,0 +1,437 @@
+{
+  "campaign": {
+    "actual_raw": 416,
+    "batch_plan": [
+      128,
+      128,
+      128,
+      32
+    ],
+    "expected_rollouts": 416,
+    "log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t11_persistent_step_response_identification_20260731_224518.log",
+    "raw_inventory_digest_recomputed": "f84fd31fcbe6db03bd9db0a1d694097b8532120915ec0e3e03668cff0dd908c3",
+    "raw_inventory_digest_reported": "f84fd31fcbe6db03bd9db0a1d694097b8532120915ec0e3e03668cff0dd908c3",
+    "raw_inventory_match": true,
+    "raw_parse_error_count": 0,
+    "raw_parse_errors": [],
+    "raw_total_bytes": 19273198,
+    "run_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9",
+    "state": {
+      "controller_revision": "persistent_step_response_probe_v42r3c3t11_v1",
+      "finished": true,
+      "offline_probe_audit": {
+        "allow_existing_raw": false,
+        "baseline_context_count": 32,
+        "expected_probe_specs": 416,
+        "extended_baseline_spec_count": 32,
+        "finite_causal_action_count": 416,
+        "hidden_wire_invariant_action_count": 416,
+        "passed": true,
+        "payload_and_environment_horizon_exact_count": 416,
+        "phase": "offline_persistent_step_probe_audit",
+        "plant_advance_count": 0,
+        "probe_schedule_exact_count": 416,
+        "probe_spec_count": 416,
+        "raw_count": 0,
+        "raw_directory_gate_passed": true,
+        "real_tsc_executed": false,
+        "schema_version": 1,
+        "signed_probe_spec_count": 384,
+        "stage": "Stage4.2R3c3T11"
+      },
+      "package_revision": "r42r3c3t11_persistent_step_response_identification_v1",
+      "phase_status": "campaign_complete",
+      "prepared": true,
+      "primary_pass": false,
+      "schema_version": 1,
+      "stage": "Stage4.2R3c3T11",
+      "stop_reason": "identification_gate_failed",
+      "updated_utc": "20260801_004914",
+      "verdict": {
+        "bc_dagger_or_rl_allowed": false,
+        "development_set_only": true,
+        "formal_tracking_is_acceptance_gate": false,
+        "identification_only": true,
+        "independent_hidden_history_confirmation": false,
+        "next_if_fail": "Preserve raw and redesign time-localized plant-response identification without weakening timing or response gates.",
+        "next_if_pass": "Build an authenticated six-basis persistent-step response bank and require prospective nonlinear local transport-MPC feasibility before any R3c4 controller implementation.",
+        "observation_horizon_is_long_hold_validation": false,
+        "primary_pass": false,
+        "probe_trajectories_allowed_in_expert_dataset": false,
+        "schema_version": 1,
+        "stage": "Stage4.2R3c3T11",
+        "verdict": "STAGE4_2R3C3T11_PERSISTENT_STEP_IDENTIFICATION_FAIL"
+      }
+    }
+  },
+  "classification": "identification_design_failure_response_conditioning",
+  "error_counts": {
+    "baseline_prefix_mismatch": 0,
+    "controller_causality": 0,
+    "forbidden_controller_input": 0,
+    "plant_restart_fidelity": 0,
+    "probe_execution": 0,
+    "runtime_or_environment": 0,
+    "solver": 0,
+    "statistics_or_reporting": 0
+  },
+  "evidence_files": {
+    "logs/nohup/stage4_2r3c3t11_offline_gate_20260801_40944f9.log": {
+      "sha256": "b7eadce0d5716ab6e68e8975ca28e7d5673ac9a5cbf0d6f3843665e933da4121",
+      "size_bytes": 2254
+    },
+    "logs/nohup/stage4_2r3c3t11_persistent_step_response_identification_20260731_224518.log": {
+      "sha256": "bcbd8966e260ac1636da40f382dde64620e264ac9249cb229e5554b00e76525f",
+      "size_bytes": 13093
+    },
+    "logs/nohup/stage4_2r3c3t11_postprocess_20260801_40944f9.log": {
+      "sha256": "ce0975fd9f64b686395f7b9cafd099ad4d7ee21fa54a01ccda59575640b0b962",
+      "size_bytes": 491
+    },
+    "stage4_2r3c3t11_audits/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_server_audit.json": {
+      "sha256": "02933f9ee05f91f6db565e955e0106c65dc6591f273fb562e68ac2767d28c19c",
+      "size_bytes": 479503
+    },
+    "stage4_2r3c3t11_audits/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_snapshot_audit.json": {
+      "sha256": "6c156b354307255893c30a5e08510880d7ab15a6484d20c9b09209ab8d344495",
+      "size_bytes": 5527
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_analysis/stage4_2r3c3t11_summary.json": {
+      "sha256": "587f75dd3e89162455473023932fe7e58aba6bca662dd5c62654aa8d01a33d72",
+      "size_bytes": 1701
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_analysis/stage4_2r3c3t11_verdict.json": {
+      "sha256": "339531e897b2d75c02790aea2086c40a82d49af5c11ada813e6415d1686577c9",
+      "size_bytes": 789
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_config.resolved.json": {
+      "sha256": "9f1a658f48472f31f8f46f06cb6aba853310a09ee7c48ae38f12d1ff5f55f5cc",
+      "size_bytes": 6522
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_manifest.json": {
+      "sha256": "4bdf50b4c1dd3ed21ea6450f3a7c74fac728bdc679cc4d4a1d54f19505ba9fc0",
+      "size_bytes": 58371
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_persistent_step_response_identification/central_response_results.json": {
+      "sha256": "ce193e392c06f0806bc274945d30da5a19ca3b50f793b46b9edd4c6969b5041f",
+      "size_bytes": 104824
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_persistent_step_response_identification/condition_number_results.json": {
+      "sha256": "56a7743a8e318a597f3338ff16c1b6858c8f8664ed80a30f1db1b037660d7d5b",
+      "size_bytes": 13084
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_persistent_step_response_identification/matched_hidden_history_results.json": {
+      "sha256": "627cd1a390d0b3bad4302072d57928020c9ee1d7f7d79e3f96778d81592e4ec9",
+      "size_bytes": 39353
+    },
+    "stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9/stage4_2r3c3t11_state.json": {
+      "sha256": "78999c7609374c996bd4abd941db6ce53ea0401bf4add35615bc233fc70ef72e",
+      "size_bytes": 1893
+    }
+  },
+  "formal_tracking_diagnostic_only": {
+    "acceptance_gate": false,
+    "all_rollouts_fail": 209,
+    "all_rollouts_pass": 207,
+    "baseline_pass": 16,
+    "baseline_total": 32,
+    "probe_pass": 191,
+    "probe_total": 384,
+    "timing_contract_unchanged": true
+  },
+  "gates": {
+    "central_symmetry": {
+      "count": 192,
+      "expected": 192,
+      "maxima": {
+        "even_ip_rmse_A": 2.9065034440835724,
+        "even_position_rmse_m": 8.922324613745793e-05,
+        "even_velocity_rmse_m_per_s": 0.0016787348275169704
+      },
+      "passed": true,
+      "thresholds": {
+        "Ip": 20.0,
+        "position": 0.0005,
+        "velocity": 0.004
+      }
+    },
+    "current": {
+      "maximum": 0.39039999999999997,
+      "maximum_allowed": 0.55,
+      "passed": true
+    },
+    "execution": {
+      "count": 416,
+      "expected": 416,
+      "passed": true
+    },
+    "matched_hidden_history": {
+      "count": 96,
+      "expected": 96,
+      "maxima": {
+        "odd_ip_rmse_A": 3.398548173255303,
+        "odd_position_rmse_m": 0.00024413404518618936,
+        "odd_velocity_rmse_m_per_s": 0.0015981370673709564
+      },
+      "passed": true,
+      "thresholds": {
+        "Ip": 40.0,
+        "position": 0.001,
+        "velocity": 0.006
+      }
+    },
+    "response_conditioning": {
+      "count": 25,
+      "expected": 32,
+      "failed_groups": [
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "column_norms": {
+            "persistent_braking_step_mode0": 0.009636437122262823,
+            "persistent_braking_step_mode1": 0.001820250067896531,
+            "persistent_braking_step_mode2": 0.0029543366166540196,
+            "persistent_transport_step_mode0": 0.012285424406871217,
+            "persistent_transport_step_mode1": 0.0032533753479257062,
+            "persistent_transport_step_mode2": 0.0006757906040894648
+          },
+          "condition": 28.323273587022754,
+          "history_member": "minus_first",
+          "max_abs_column_cosine_diagnostic_only": 0.6765134246705407,
+          "normalized_condition_diagnostic_only": 4.785470186231418,
+          "pair_id": "p5_q1_a0p900_gap2_settle4",
+          "rank": 6,
+          "singular_values": [
+            0.014452784660609102,
+            0.00660888288052345,
+            0.0029111764951300135,
+            0.0020413459579281387,
+            0.001188439360393195,
+            0.0005102794567938334
+          ],
+          "target_id": "RZ_p10_m10"
+        },
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "column_norms": {
+            "persistent_braking_step_mode0": 0.009651253446129235,
+            "persistent_braking_step_mode1": 0.0012121911714135446,
+            "persistent_braking_step_mode2": 0.003260510930026145,
+            "persistent_transport_step_mode0": 0.011957441852383253,
+            "persistent_transport_step_mode1": 0.0032136331839367656,
+            "persistent_transport_step_mode2": 0.0007121274728540852
+          },
+          "condition": 27.53697612988261,
+          "history_member": "minus_first",
+          "max_abs_column_cosine_diagnostic_only": 0.648476805924793,
+          "normalized_condition_diagnostic_only": 4.061813684921552,
+          "pair_id": "p5_q2_a0p900_gap2_settle4",
+          "rank": 6,
+          "singular_values": [
+            0.01386621854049587,
+            0.007343345959607836,
+            0.002537035365579074,
+            0.0023367918873254947,
+            0.0008453156501932127,
+            0.0005035490634517604
+          ],
+          "target_id": "RZ_p10_m10"
+        },
+        {
+          "actual_delay_steps": 2,
+          "actual_slew_scale": 0.9,
+          "column_norms": {
+            "persistent_braking_step_mode0": 0.01157438881498652,
+            "persistent_braking_step_mode1": 0.008140832790753531,
+            "persistent_braking_step_mode2": 0.004959213888323203,
+            "persistent_transport_step_mode0": 0.013508590454060672,
+            "persistent_transport_step_mode1": 0.0024844161610378533,
+            "persistent_transport_step_mode2": 0.0006834219716184916
+          },
+          "condition": 37.21473908260279,
+          "history_member": "minus_first",
+          "max_abs_column_cosine_diagnostic_only": 0.6976892152869836,
+          "normalized_condition_diagnostic_only": 4.21140275612425,
+          "pair_id": "p5_q2_a0p900_gap2_settle4",
+          "rank": 6,
+          "singular_values": [
+            0.016288900584476677,
+            0.009837864106607077,
+            0.006393994659991416,
+            0.0029958411217511963,
+            0.0013390955856093611,
+            0.0004377002495791094
+          ],
+          "target_id": "nominal"
+        },
+        {
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "column_norms": {
+            "persistent_braking_step_mode0": 0.006285399626737502,
+            "persistent_braking_step_mode1": 0.0030540361970908887,
+            "persistent_braking_step_mode2": 0.0010754139598179856,
+            "persistent_transport_step_mode0": 0.008668866093480823,
+            "persistent_transport_step_mode1": 0.0032358716155778283,
+            "persistent_transport_step_mode2": 0.0008788210056602351
+          },
+          "condition": 38.91507507424108,
+          "history_member": "minus_first",
+          "max_abs_column_cosine_diagnostic_only": 0.9148000607879332,
+          "normalized_condition_diagnostic_only": 12.301888097298304,
+          "pair_id": "p9_q1_a0p750_gap2_settle4",
+          "rank": 6,
+          "singular_values": [
+            0.010593260993477701,
+            0.003731910599436792,
+            0.002872610092247937,
+            0.0013258724772163446,
+            0.0003925160877127302,
+            0.00027221484150469135
+          ],
+          "target_id": "RZ_p10_m10"
+        },
+        {
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "column_norms": {
+            "persistent_braking_step_mode0": 0.008158304607041793,
+            "persistent_braking_step_mode1": 0.0009114253124886554,
+            "persistent_braking_step_mode2": 0.0010024828137339208,
+            "persistent_transport_step_mode0": 0.002866210386297648,
+            "persistent_transport_step_mode1": 0.0021950085754285373,
+            "persistent_transport_step_mode2": 0.0014433119471538621
+          },
+          "condition": 30.828025582671746,
+          "history_member": "minus_first",
+          "max_abs_column_cosine_diagnostic_only": 0.8816211546550875,
+          "normalized_condition_diagnostic_only": 12.128990247248293,
+          "pair_id": "p9_q1_a0p750_gap2_settle4",
+          "rank": 6,
+          "singular_values": [
+            0.008603450015860423,
+            0.002498188506321116,
+            0.0014415598800688175,
+            0.0008994154779743622,
+            0.0005336195933358806,
+            0.0002790788528700447
+          ],
+          "target_id": "nominal"
+        },
+        {
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "column_norms": {
+            "persistent_braking_step_mode0": 0.007202170474116505,
+            "persistent_braking_step_mode1": 0.003019927028600033,
+            "persistent_braking_step_mode2": 0.001109142844178357,
+            "persistent_transport_step_mode0": 0.011687842856975245,
+            "persistent_transport_step_mode1": 0.0034332906507877946,
+            "persistent_transport_step_mode2": 0.0004984856645314665
+          },
+          "condition": 37.628534484925915,
+          "history_member": "minus_first",
+          "max_abs_column_cosine_diagnostic_only": 0.918226815246601,
+          "normalized_condition_diagnostic_only": 8.194810962927628,
+          "pair_id": "p9_q2_a0p750_gap2_settle4",
+          "rank": 6,
+          "singular_values": [
+            0.013699031302681434,
+            0.0037330508211249748,
+            0.0027263027774979366,
+            0.001234245626145788,
+            0.00041869361947479897,
+            0.0003640596555300154
+          ],
+          "target_id": "RZ_p10_m10"
+        },
+        {
+          "actual_delay_steps": 0,
+          "actual_slew_scale": 1.0,
+          "column_norms": {
+            "persistent_braking_step_mode0": 0.004466476208591178,
+            "persistent_braking_step_mode1": 0.0016287748392304745,
+            "persistent_braking_step_mode2": 0.0006392029477345702,
+            "persistent_transport_step_mode0": 0.007666213070665489,
+            "persistent_transport_step_mode1": 0.0023598589595167584,
+            "persistent_transport_step_mode2": 0.0007253564236419604
+          },
+          "condition": 28.487493962194627,
+          "history_member": "plus_first",
+          "max_abs_column_cosine_diagnostic_only": 0.7097059449968857,
+          "normalized_condition_diagnostic_only": 4.2523457004425245,
+          "pair_id": "p9_q2_a0p750_gap2_settle4",
+          "rank": 6,
+          "singular_values": [
+            0.008427004630648494,
+            0.0029193492646220572,
+            0.0023357500354145673,
+            0.0015147527431676189,
+            0.0007085756128686683,
+            0.00029581417873512705
+          ],
+          "target_id": "RZ_p10_m10"
+        }
+      ],
+      "independent_vs_reported_max_abs_difference": 4.973799150320701e-14,
+      "maximum_allowed": 25.0,
+      "maximum_condition": 38.91507507424108,
+      "passed": false,
+      "rank6_count": 32
+    }
+  },
+  "integrity": {
+    "manifest_compatibility": {
+      "candidate_preflight_path": true,
+      "candidate_preflight_sha256": true,
+      "config_digest": true,
+      "control_matrix": true,
+      "control_spec_digest": true,
+      "controller_revision": true,
+      "deployed_package_fingerprint": true,
+      "evidence_files_exact": true,
+      "formal_timing_contract": true,
+      "identification_probe": true,
+      "package_revision": true,
+      "passed": true,
+      "source_stage4_2r3b_run": true,
+      "source_stage4_2r3c1_run": true,
+      "source_stage4_2r3c3_bank_dir": true,
+      "source_stage4_2r3c3_run": true,
+      "source_stage4_2r3c3t1_audit_dir": true,
+      "source_stage4_2r3c3t1_fingerprint": true,
+      "source_stage4_2r3c3t1_run": true,
+      "source_stage4_2r3c3t3_controller_bank": true,
+      "source_stage4_2r3c3t3_controller_bank_sha256": true,
+      "stage": true
+    },
+    "package_compatibility": {
+      "audit_package_digest": "7e5020174ac7b2ec89e3a0f471b1a4e7f21c4aa69eb5aaad8fe829c54fe77a53",
+      "changed_paths": [],
+      "passed": true,
+      "runtime_package_digest": "7e5020174ac7b2ec89e3a0f471b1a4e7f21c4aa69eb5aaad8fe829c54fe77a53"
+    },
+    "raw_and_manifest_integrity_passed": true,
+    "reported_summary_exact_on_recomputation": true,
+    "snapshot_integrity": {
+      "actual_unique_state_count": 8,
+      "expected_unique_state_count": 8,
+      "failed_count": 0,
+      "passed": true,
+      "passed_count": 8
+    },
+    "statistics_or_reporting_error_count": 0
+  },
+  "primary_pass": false,
+  "schema_version": 1,
+  "scope": {
+    "bc_dagger_or_rl_allowed": false,
+    "development_set_only": true,
+    "identification_only": true,
+    "independent_hidden_history_confirmation": false,
+    "observation_horizon_is_long_hold_validation": false,
+    "probe_trajectories_allowed_in_expert_dataset": false
+  },
+  "stage": "Stage4.2R3c3T11"
+}

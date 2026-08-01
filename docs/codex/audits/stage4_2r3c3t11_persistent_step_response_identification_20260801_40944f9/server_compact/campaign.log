@@ -1,0 +1,341 @@
+[Stage4.2R3c3T11] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T11] source_r3b=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526
+source_r3c3=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3_runs/stage4_2r3c3_restart_task_clock_local_response_identification_20260730_182427
+source_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c4_response_bank
+source_t1=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t1_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_audits/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441
+source_t3_bank=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t3_eight_basis_feasibility/stage4_2r3c3t3_eight_basis_feasibility_20260731_1a75fff/stage4_2r3c3t3_eight_basis_controller_bank_v1.json
+[Stage4.2R3c3T11] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9 command=all backend=ray resume=1 workers=128
+[Stage4.2R3c3T11] 32 baselines + 384 signed probes; first neutralizing effect is state 39.
+[Stage4.2R3c3T11] Formal 250/270 and 350/370 ms timing is unchanged; 500 ms is identification-only.
+2026-08-01 06:46:43,961	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[Stage4.2R3c3T11] ray_capacity requested=128 cluster_cpus=128 pending=416 actors=128 initialized_now=1
+[Stage4.2R3c3T11] maximum_actor_count=128 pending=416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 0/416
+[Stage4.2R3c3T11] waiting 1/416
+[Stage4.2R3c3T11] 8/416
+[Stage4.2R3c3T11] 16/416
+[Stage4.2R3c3T11] 24/416
+[Stage4.2R3c3T11] 32/416
+[Stage4.2R3c3T11] 40/416
+[Stage4.2R3c3T11] 48/416
+[Stage4.2R3c3T11] 56/416
+[Stage4.2R3c3T11] 64/416
+[Stage4.2R3c3T11] 72/416
+[Stage4.2R3c3T11] 80/416
+[Stage4.2R3c3T11] 88/416
+[Stage4.2R3c3T11] 96/416
+[Stage4.2R3c3T11] 104/416
+[Stage4.2R3c3T11] 112/416
+[Stage4.2R3c3T11] 120/416
+[Stage4.2R3c3T11] 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 128/416
+[Stage4.2R3c3T11] waiting 129/416
+[Stage4.2R3c3T11] 136/416
+[Stage4.2R3c3T11] 144/416
+[Stage4.2R3c3T11] 152/416
+[Stage4.2R3c3T11] 160/416
+[Stage4.2R3c3T11] 168/416
+[Stage4.2R3c3T11] 176/416
+[Stage4.2R3c3T11] 184/416
+[Stage4.2R3c3T11] 192/416
+[Stage4.2R3c3T11] 200/416
+[Stage4.2R3c3T11] 208/416
+[Stage4.2R3c3T11] 216/416
+[Stage4.2R3c3T11] 224/416
+[Stage4.2R3c3T11] 232/416
+[Stage4.2R3c3T11] 240/416
+[Stage4.2R3c3T11] 248/416
+[Stage4.2R3c3T11] 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] waiting 256/416
+[Stage4.2R3c3T11] 264/416
+[Stage4.2R3c3T11] 272/416
+[Stage4.2R3c3T11] 280/416
+[Stage4.2R3c3T11] 288/416
+[Stage4.2R3c3T11] 296/416
+[Stage4.2R3c3T11] 304/416
+[Stage4.2R3c3T11] 312/416
+[Stage4.2R3c3T11] 320/416
+[Stage4.2R3c3T11] 328/416
+[Stage4.2R3c3T11] 336/416
+[Stage4.2R3c3T11] 344/416
+[Stage4.2R3c3T11] 352/416
+[Stage4.2R3c3T11] 360/416
+[Stage4.2R3c3T11] 368/416
+[Stage4.2R3c3T11] 376/416
+[Stage4.2R3c3T11] 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] waiting 384/416
+[Stage4.2R3c3T11] 392/416
+[Stage4.2R3c3T11] 400/416
+[Stage4.2R3c3T11] 408/416
+[Stage4.2R3c3T11] 416/416
+{
+  "control_summary": {
+    "central_symmetry_gate_passed": true,
+    "central_symmetry_pass_count": 192,
+    "condition_number_gate_passed": false,
+    "condition_number_group_count": 32,
+    "condition_number_pass_count": 25,
+    "controller_causality_failure_count": 0,
+    "current_utilization_pass": true,
+    "development_set_only": true,
+    "execution_gate_passed": true,
+    "execution_pass_count": 416,
+    "expected_condition_number_group_count": 32,
+    "expected_extended_baseline_count": 32,
+    "expected_matched_hidden_history_group_count": 96,
+    "expected_response_group_count": 192,
+    "expected_rollouts": 416,
+    "extended_baseline_prefix_exact_count": 32,
+    "extended_baseline_prefix_mismatch_count": 0,
+    "forbidden_controller_input_count": 0,
+    "formal_contract_failure_count": 209,
+    "formal_contract_pass_count": 207,
+    "formal_timing_unchanged": true,
+    "formal_tracking_is_acceptance_gate": false,
+    "identification_only": true,
+    "identification_probe_execution_failure_count": 0,
+    "independent_hidden_history_confirmation": false,
+    "matched_hidden_history_gate_passed": true,
+    "matched_hidden_history_group_count": 96,
+    "matched_hidden_history_pass_count": 96,
+    "maximum_current_utilization": 0.39039999999999997,
+    "maximum_current_utilization_allowed": 0.55,
+    "maximum_response_velocity_condition_number": 38.915075074241074,
+    "n_rollouts": 416,
+    "observation_horizon_steps": 50,
+    "passed": false,
+    "phase": "persistent_step_response_identification",
+    "plant_restart_fidelity_failure_count": 0,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "response_group_count": 192,
+    "runtime_or_environment_error_count": 0,
+    "schema_version": 1,
+    "solver_failure_count": 0,
+    "stage": "Stage4.2R3c3T11"
+  },
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T11",
+  "verdict": {
+    "bc_dagger_or_rl_allowed": false,
+    "development_set_only": true,
+    "formal_tracking_is_acceptance_gate": false,
+    "identification_only": true,
+    "independent_hidden_history_confirmation": false,
+    "next_if_fail": "Preserve raw and redesign time-localized plant-response identification without weakening timing or response gates.",
+    "next_if_pass": "Build an authenticated six-basis persistent-step response bank and require prospective nonlinear local transport-MPC feasibility before any R3c4 controller implementation.",
+    "observation_horizon_is_long_hold_validation": false,
+    "primary_pass": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "schema_version": 1,
+    "stage": "Stage4.2R3c3T11",
+    "verdict": "STAGE4_2R3C3T11_PERSISTENT_STEP_IDENTIFICATION_FAIL"
+  }
+}

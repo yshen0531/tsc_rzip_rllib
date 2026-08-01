@@ -968,3 +968,48 @@ exact preregistered 416-task authentic persistent-step identification and
 complete the local-package-server-raw-audit loop. It must not change the six
 schedules, 32 contexts, symmetry/history/current/rank/condition gates, or
 formal timing. It does not authorize R3c4, BC, DAgger, or residual RL.
+
+## 20. Final Stage4.2R3c3T11 authentic identification result
+
+The exact package at commit `40944f9` completed the frozen 416-task campaign
+once, in fixed Ray batches `128 + 128 + 128 + 32`. Independent server-side
+raw/snapshot/manifest postprocessing reproduced the reported result exactly.
+
+```text
+raw parsed / expected                                      416/416
+execution / restart / causality                            416/416
+extended baseline prefix                                    32/32
+central symmetry                                           192/192
+matched hidden-history response                              96/96
+response rank 6                                             32/32
+response condition <= 25                                    25/32
+maximum response condition                              38.9150751
+maximum current utilization                            0.3904/0.55
+runtime / restart / solver / reporting errors                    0
+```
+
+The raw inventory digest is
+`f84fd31fcbe6db03bd9db0a1d694097b8532120915ec0e3e03668cff0dd908c3`.
+The independent server audit SHA-256 is
+`02933f9ee05f91f6db565e955e0106c65dc6591f273fb562e68ac2767d28c19c`.
+The compact forensic JSON SHA-256 is
+`8cf365fcac69924c09bae51c9c5c1c3cc003959ff3e7a92111b387316a8b617b`.
+
+This is a clean identification-design FAIL. Seven context matrices retain
+rank 6 but violate the frozen unnormalized condition gate. Independent raw
+R/Z differencing and SVD reproduce all reported values to `4.97e-14`, so the
+result is not a statistics or reporting bug. Do not normalize columns or
+relax the threshold after seeing the result.
+
+Formal tracking remains diagnostic: 207/416 overall, with the exact 16/32
+unprobed baseline result preserved. The 500 ms observation horizon changes no
+formal deadline and is not a long-hold result.
+
+The active task is now to prospectively design a genuinely new
+time-localized identification that improves weak-mode authority and separates
+the p9/minus near-collinear response columns without amplitude-only rescaling
+or gate weakening. Preserve all T11 raw on the server. Do not build a T11
+response bank or R3c4 feasibility model, run R3c4, or start
+BC/DAgger/residual RL. No new real TSC is authorized until the new schedule,
+action-space novelty, current envelope, context matrix, and downstream
+identifiability gate are frozen before outcomes.
