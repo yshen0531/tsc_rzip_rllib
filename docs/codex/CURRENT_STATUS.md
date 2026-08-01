@@ -1,5 +1,30 @@
 # Current status
 
+> Superseding live handoff (2026-08-01 Asia/Shanghai):
+> Stage4.2R3c3T13S5 is implemented at package commit `d048686`; the local
+> validation report is committed at `4d3e884`. Its frozen 68-rollout code,
+> return-first cancellation audit, server postprocessor, launchers, tests,
+> 307-file manifest, and checksums are complete. Local compile/JSON/hash and
+> focused tests passed (13/13); the full Windows suite passed 677/677 with
+> the established POSIX-`resource` shim. An empty direct-copy package passed
+> 307/307 hashes and 677/677 tests with one expected isolated-data skip. The
+> uncompressed package was transferred to
+> `/home/yangshen0711/tsc_software/stage4_2r3c3t13s5_d048686`; staging Linux
+> checks passed 307/307 hashes, all `bash -n` checks, Python/JSON/scientific
+> guards, and 13/13 focused tests. The last verified installed project before
+> connectivity loss was still T13S4 v1h2 with no T13S5 process. The subsequent
+> install command never obtained an SSH session, and ten additional guarded
+> attempts timed out before the SSH banner. Therefore installed T13S5 status
+> is not claimed, no offline gate is claimed, and no T13S5 TSC/raw/result is
+> claimed. On connectivity recovery: (1) read-only verify project manifest,
+> four code directories, validation log, T13S5 PID/process and run/raw paths;
+> (2) install from the exact staging path only if the project is still T13S4;
+> (3) run installed package verification and the complete server suite;
+> (4) run a fresh `COMMAND=offline` zero-plant gate; (5) only if it passes,
+> launch exactly one 68-rollout T13S5 identity. Large raw must remain server-
+> side. Real MPC, expert data, BC, DAgger, and bounded residual RL remain
+> blocked.
+
 > Superseding status (2026-08-02 Asia/Shanghai):
 > Stage4.2R3c3T13S4 is final as
 > `LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC`. Its mandatory offline audit covered
