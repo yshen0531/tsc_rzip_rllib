@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+import json
 
 import numpy as np
 import pytest
@@ -160,6 +161,7 @@ def test_controller_spec_strips_all_identity_and_history_labels():
 
 def test_self_test_is_zero_tsc_and_passes():
     result = s4.self_test()
+    json.dumps(result, sort_keys=True, allow_nan=False)
     assert result["passed"]
     assert not result["real_tsc_executed"]
     assert not result["bc_dagger_or_rl_allowed"]

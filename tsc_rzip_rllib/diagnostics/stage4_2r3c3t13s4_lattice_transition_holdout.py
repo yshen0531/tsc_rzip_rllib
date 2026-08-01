@@ -598,7 +598,9 @@ def choose_lattice_displacement(
         }
         candidate_rows.append(row)
         if passed:
-            row["candidate_rows_evaluated"] = candidate_rows
+            row["candidate_rows_evaluated"] = [
+                dict(candidate) for candidate in candidate_rows
+            ]
             return row
     raise ValueError(
         "no frozen T13S4 lattice multiplier passed: "
