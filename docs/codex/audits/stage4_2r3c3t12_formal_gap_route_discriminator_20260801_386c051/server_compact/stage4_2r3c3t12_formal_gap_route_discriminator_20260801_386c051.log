@@ -1,0 +1,22 @@
+[Stage4.2R3c3T12] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T12] source_t11_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t11_runs/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9
+source_t11_audit=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t11_audits/stage4_2r3c3t11_persistent_step_response_identification_20260801_40944f9
+output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t12_route_audits/stage4_2r3c3t12_formal_gap_route_discriminator_20260801_386c051
+[Stage4.2R3c3T12] read-only source audit: no plant, controller, optimizer, or snapshot execution.
+[Stage4.2R3c3T12] Formal 250/270 and 350/370 ms timing is unchanged.
+{
+  "audit_sha256": "3e5e8e4c52e5b7efb3e068146ceb012f3bb2dc2717c9b5f05107b51ed8fa2970",
+  "cross_table": {
+    "formal_fail_condition_fail": 3,
+    "formal_fail_condition_pass": 13,
+    "formal_pass_condition_fail": 4,
+    "formal_pass_condition_pass": 12
+  },
+  "failed_baseline_with_any_single_probe_repair": 0,
+  "fixed_condition_first_route_vetoed": true,
+  "manifest_sha256": "1efd48c7ce5be3cd3530fa8aa27c2478e661c9e8338b105fd73592515e7cec19",
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t12_route_audits/stage4_2r3c3t12_formal_gap_route_discriminator_20260801_386c051",
+  "real_mpc_executed": false,
+  "real_tsc_executed": false,
+  "route_result_sha256": "9a334aadc45d118ebc8cb58acd6171876c2a9da9f5d2aadf3b46ae9ae1d0be25"
+}

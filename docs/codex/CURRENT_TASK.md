@@ -1,4 +1,4 @@
-# CURRENT_TASK.md — post-T11 formal-gap route discriminator
+# CURRENT_TASK.md — finite-horizon restart MPC architecture evidence stage
 
 ## 1. Terminology and certified checkpoint
 
@@ -1068,3 +1068,100 @@ full 32-context campaign.
 Formal timing, T11's verdict, the controller information boundary, current
 limits, and the prohibition on T11-bank/R3c4/BC/DAgger/residual RL remain
 unchanged.
+
+## 22. Final Stage4.2R3c3T12 result and active T13 task
+
+Stage4.2R3c3T12 completed one guarded, read-only server audit at package
+commit `386c051`. It authenticated all 416 immutable T11 raw files in place
+and reproduced the exact T11 report and route expectations. It ran no Ray,
+`gotsc`, TSC, plant step, controller, optimizer, or snapshot creation.
+
+Exact output:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/
+stage4_2r3c3t12_route_audits/
+stage4_2r3c3t12_formal_gap_route_discriminator_20260801_386c051
+```
+
+Load-bearing compact hashes:
+
+```text
+audit
+  3e5e8e4c52e5b7efb3e068146ceb012f3bb2dc2717c9b5f05107b51ed8fa2970
+route result
+  9a334aadc45d118ebc8cb58acd6171876c2a9da9f5d2aadf3b46ae9ae1d0be25
+manifest
+  1efd48c7ce5be3cd3530fa8aa27c2478e661c9e8338b105fd73592515e7cec19
+raw inventory digest
+  f84fd31fcbe6db03bd9db0a1d694097b8532120915ec0e3e03668cff0dd908c3
+```
+
+Final route facts:
+
+```text
+formal PASS / condition PASS                              12
+formal PASS / condition FAIL                               4
+formal FAIL / condition PASS                              13
+formal FAIL / condition FAIL                               3
+failed baselines repaired by a measured single probe     0/16
+best measured gap coverage                         0.47%--11.46%
+fixed condition-first route                            VETOED
+```
+
+This is a route/design conclusion, not a new real closed-loop result. There
+was no runtime, environment, packaging, raw, snapshot, statistics, or
+reporting error. T11 remains a clean identification-design FAIL at 25/32
+condition passes, and the R3c1/T11 unprobed baselines remain a genuine 16/32
+controller result.
+
+The detailed report is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_REPORT.md
+```
+
+The active task is now Stage4.2R3c3T13, frozen in scope by:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13_FINITE_HORIZON_RESTART_MPC_ARCHITECTURE_PLAN.md
+```
+
+T13 is a no-new-TSC architecture and evidence-mapping stage. It must specify
+the causal controller state, independent formal clock and local model
+coordinate, target-conditioned transport/braking sequence, actuator queue,
+hard constraints, robust/model-validity interface, solver fallback, and
+audit trace. It must map every component to exact source code and raw-backed
+evidence and explicitly distinguish measured support from interpolation and
+extrapolation.
+
+The first source-call-graph checkpoint is recorded in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13_SOURCE_ARCHITECTURE_AUDIT.md
+```
+
+It confirms that the inherited controller uses a fixed Stage3.4 lifted
+Jacobian, soft weighted least squares, a separately applied nonlinear coil
+scheduler, and fresh-state initialization with zero integral/previous
+correction and nominally primed delay queue. The next read-only T13 step is
+to test whether that lifted model can predict the time-resolved signed
+restart perturbations already present in R3c3/T1/T3/T9/T11 raw evidence.
+
+T13 ends with exactly one of:
+
+```text
+OFFLINE_ARCHITECTURE_COMPLETE
+MINIMAL_SENTINEL_REQUIRED
+```
+
+The second outcome must name one specific missing task-relevant response and
+freeze a small prospective sentinel with a fail-stop gate. It may not
+automatically authorize a full 32-context identification campaign.
+
+Do not implement or launch a real controller while T13 is incomplete. Do not
+build a T11 bank, run R3c4, change the formal timing or physical thresholds,
+or start BC, DAgger, or bounded residual RL.

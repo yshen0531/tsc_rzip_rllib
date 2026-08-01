@@ -1,0 +1,30 @@
+{
+  "identity": "post_t11_formal_gap_route_discriminator_v1",
+  "provenance_digest": "c071cb7ac88cb4fcd3b921568c1b481b57e2e7f29a58fdc02868ac1d5e020325",
+  "route_result": {
+    "all_failed_baselines_repaired_by_a_measured_single_probe": false,
+    "bc_dagger_or_rl_allowed": false,
+    "condition_failure_is_not_necessary_for_formal_failure": true,
+    "condition_failure_is_not_sufficient_for_formal_failure": true,
+    "condition_pass_is_not_sufficient_for_formal_control": true,
+    "fixed_condition_first_route_vetoed": true,
+    "full_size_new_identification_campaign_authorized": false,
+    "next_route": "architecture_first_formal_gap_analysis_then_separately_preregistered_minimal_sentinel_only_if_existing_evidence_is_insufficient",
+    "r3c4_authorized": false,
+    "r3c4_feasibility_model_created": false,
+    "t11_response_bank_created": false,
+    "t11_verdict_changed": false
+  },
+  "schema_version": 1,
+  "scientific_classification": {
+    "global_plant_reachability_conclusion": "not_tested",
+    "raw_or_snapshot_corruption": false,
+    "real_closed_loop_conclusion_from_t12": "not_tested",
+    "real_mpc_executed_by_t12": false,
+    "real_tsc_executed_by_t12": false,
+    "runtime_or_environment_error": false,
+    "statistics_or_reporting_error": false,
+    "t11_identification_design_failure_preserved": true
+  },
+  "stage": "Stage4.2R3c3T12"
+}

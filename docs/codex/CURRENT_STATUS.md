@@ -1,16 +1,18 @@
 # Current status
 
-> Superseding status (2026-08-01 Asia/Shanghai): final T11 forensics remain a
-> clean identification-design FAIL at 25/32 condition passes. A new read-only
-> server cross audit found that condition and formal control are largely
-> different axes: 12 contexts pass both, four formal-PASS contexts fail
-> condition, thirteen formal-FAIL contexts pass condition, and only three fail
-> both. None of the twelve authentic T11 signed probe corners repairs any of
-> the sixteen failed baselines; the best per-context margin gains are only
-> 0.00117--0.00807. The active stage is the no-new-TSC
-> Stage4.2R3c3T12 formal-gap route discriminator. It must not build a T11 bank,
-> run R3c4, or authorize a full new identification campaign. See
-> `STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_DESIGN.md`.
+> Superseding status (2026-08-01 Asia/Shanghai): Stage4.2R3c3T12 completed a
+> read-only authentication of all 416 immutable T11 raw files. It reproduced
+> the exact 12/4/13/3 formal-versus-condition cross table, 0/16 measured
+> single-probe repairs, 0.47%--11.46% best gap coverage, and one regression in
+> 192 passing-baseline probe corners. There was no runtime, packaging, raw,
+> snapshot, statistics, or reporting error and no new plant/controller run.
+> T11 remains a 25/32 identification-design FAIL; the condition-first fixed
+> response-basis route is vetoed. The active stage is the no-new-TSC
+> Stage4.2R3c3T13 finite-horizon restart MPC architecture/evidence map. It may
+> end only with an offline architecture specification or a separately frozen
+> minimal sentinel requirement. R3c4 and BC/DAgger/residual RL remain blocked.
+> See `STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_REPORT.md` and
+> `STAGE4_2R3C3T13_FINITE_HORIZON_RESTART_MPC_ARCHITECTURE_PLAN.md`.
 
 > Superseding status (2026-07-31 Asia/Shanghai): T9 completed a clean
 > 224/224 mixed-interaction identification, and T10 then authenticated those

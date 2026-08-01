@@ -245,17 +245,21 @@ history, rank, and current gates, but its frozen condition gate passed only
 Post-T11 read-only server forensics found that four condition failures occur
 in baseline formal passes, while thirteen baseline formal failures already
 pass condition. None of the twelve measured T11 single-probe corners repairs
-any of the sixteen failed baselines. The active stage is therefore the
-no-new-TSC Stage4.2R3c3T12 formal-gap route discriminator, not another
-condition-first full probe campaign.
+any of the sixteen failed baselines. Stage4.2R3c3T12 authenticated all 416
+T11 raw files and froze the condition-first fixed-basis route as vetoed. It
+ran no controller or plant and did not change T11's clean identification
+FAIL.
 
-The near-term architecture target is a finite-horizon, state-conditioned,
-interaction-aware transport/braking MPC with formal task time separated from
-local model phase and with deterministic causal restart-state reconstruction.
-Any later real identification first requires a separately preregistered
-small sentinel and an explicit task-authority stop/continue gate. A successful
-development controller must still be followed by independent new histories
-and restart states before new-target work.
+The active no-new-TSC Stage4.2R3c3T13 task specifies a finite-horizon,
+state-conditioned, interaction-aware transport/braking MPC with formal task
+time separated from local model phase and with deterministic causal
+restart-state and actuator-queue reconstruction. It must map every model and
+constraint component to exact raw-backed evidence and distinguish measured
+support from interpolation and extrapolation. Any later real identification
+first requires a separately preregistered small sentinel and an explicit
+task-authority stop/continue gate. A successful development controller must
+still be followed by independent new histories and restart states before
+new-target work.
 
 ## 7. Medium-term objectives
 

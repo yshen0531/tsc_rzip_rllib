@@ -1,0 +1,20 @@
+{
+  "identity": "post_t11_formal_gap_route_discriminator_v1",
+  "output_files": [
+    {
+      "path": "stage4_2r3c3t12_audit_v1.json",
+      "sha256": "3e5e8e4c52e5b7efb3e068146ceb012f3bb2dc2717c9b5f05107b51ed8fa2970",
+      "size_bytes": 25804
+    },
+    {
+      "path": "stage4_2r3c3t12_route_result_v1.json",
+      "sha256": "9a334aadc45d118ebc8cb58acd6171876c2a9da9f5d2aadf3b46ae9ae1d0be25",
+      "size_bytes": 1365
+    }
+  ],
+  "provenance_digest": "c071cb7ac88cb4fcd3b921568c1b481b57e2e7f29a58fdc02868ac1d5e020325",
+  "raw_files_copied_or_modified": 0,
+  "ray_gotsc_tsc_or_controller_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T12"
+}

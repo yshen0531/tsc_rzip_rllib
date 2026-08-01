@@ -2,6 +2,11 @@
 
 ## Status and purpose
 
+Final status: completed at package commit `386c051`; the fixed
+condition-first route was vetoed. The immutable design below is retained for
+audit. The final result is in
+`STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_REPORT.md`.
+
 This design is frozen after the final T11 identification result and its
 read-only server forensics. T12 is a retrospective, server-side route audit
 of immutable T11 evidence. It is not a new identification campaign and it
