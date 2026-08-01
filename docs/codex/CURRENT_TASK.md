@@ -1204,6 +1204,23 @@ V3 changes only the command-subspace numerical gate to `1e-6 A`. All raw
 identities, comparison counts, output-error thresholds, causality gates,
 formal timing, route rules, and prohibitions remain unchanged.
 
+The first complete V3 invocation then stopped before any Jacobian
+multiplication because its raw-schema code expected every R3c3/T1 member to
+have 36/35 rows. Exact raw inventory shows the normal cases are 36/35 and the
+weak-slew 370 ms cases are authentically 38/37; all were successful and the
+forbidden-input checks were clean. T2/T6/T9/T11 remain 51/50.
+
+The V4 schema correction is frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V4.md
+```
+
+V4 authenticates those exact full horizons and still feeds only states
+0--35/actions 0--34 to the Stage3.4 model. It changes no model threshold,
+comparison, timing, or route rule and creates a new output identity.
+
 T13 ends with exactly one of:
 
 ```text
