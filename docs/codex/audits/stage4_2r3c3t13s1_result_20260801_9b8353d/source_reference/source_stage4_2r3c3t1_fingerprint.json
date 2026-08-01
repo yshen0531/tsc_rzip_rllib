@@ -1,0 +1,12 @@
+{
+  "run_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t1_runs/stage4_2r3c3t1_long_separation_zero_net_transport_identification_20260730_204441",
+  "manifest_sha256": "53b2560e8c114da2e082d3d9a8c62b23008915de847e25b4650b3c26554d28da",
+  "state_sha256": "d5df699e379750280e93895ec81e797138083671524af95d4b4817e64f509f01",
+  "server_audit_sha256": "0f24b44f32493b390832474d5c78cc2455a8ba0c455b496b16c04f8deaf3a2bd",
+  "corrected_diagnostic_sha256": "e7bc8f0168ff1d2019f1a9a232b5152a27d46a66a92f9542d31d80c6942c3164",
+  "raw_count": 128,
+  "raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+  "runtime_package_fingerprint_digest": "cea1e49470afed77387cdf3d636de38541c47998846a817edc32dafd9b60f44a",
+  "primary_pass": false,
+  "failure_class": "identification_design_failure"
+}

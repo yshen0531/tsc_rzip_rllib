@@ -397,23 +397,40 @@ the fixed Stage3.4 lifted Jacobian passed the relative prediction gate
 reporting, global reachability, or real closed-loop evidence. T13 ends as
 `MINIMAL_SENTINEL_REQUIRED`.
 
-The active prospective design is Stage4.2R3c3T13S1: exactly four bookend
-contexts, four fresh extended baselines, and 48 immediately neutralized
-single-step probes for 52 rollouts if later authorized. It is frozen in
-`STAGE4_2R3C3T13S1_MINIMAL_TRANSITION_SENTINEL_DESIGN.md`, is not implemented
-or run, and has no server-run authority from the design alone. PASS permits
-only offline local-transition model work; a scientific FAIL stops campaign
-expansion. Neither outcome automatically authorizes a full 32-context
-campaign or a real controller.
+Stage4.2R3c3T13S1 completed its one authorized 52-rollout campaign with
+exact package, restart, causality, execution, raw, snapshot, rank, condition,
+current, and report integrity. Its frozen scientific gates failed: central
+symmetry was 0/24 and matched hidden-history response was 0/12. The official
+route is `SENTINEL_FAIL_STOP_IDENTIFICATION`. Read-only immutable-raw
+forensics separated the failure layers: requested command symmetry was
+24/24, observed first-effect current symmetry 0/24, immediate plant symmetry
+3/24, full-window plant symmetry 0/24, immediate matched history 6/12, and
+full-window matched history 0/12. Of 336 active compared coil-command
+components, 304 were smaller than one source-defined Card15 `.3E` grid.
+
+T13S1 is a clean identification/model/action-resolution design FAIL, not a
+runtime, restart, corruption, reporting, real-MPC, or global-reachability
+result. It may not be rerun or enlarged under the same identity and its probe
+trajectories are forbidden from expert data.
+
+The active stage is the zero-new-TSC Stage4.2R3c3T13S2 exact Card15
+quantized-actuation and causal-observability audit, prospectively frozen in
+`STAGE4_2R3C3T13S2_QUANTIZED_ACTUATION_CAUSAL_OBSERVABILITY_DESIGN.md`. It
+must authenticate the 52 immutable raw files in place, reconstruct all 2,600
+transitions/36,400 coil components from exact source semantics, and test only
+exact causal-feature collisions. It may authorize only a quantized actuator
+primitive, causal observer schema, multi-hypothesis/tube interface, and a
+separately frozen minimal lattice-aligned holdout if needed. It cannot run
+TSC, fit a certified point plant model, or authorize a full campaign or real
+controller.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
 the failed T11 response bank, resume R3c4, or enter BC, DAgger, or residual
 RL. Do not launch a full new identification campaign directly from the seven
-T11 condition failures. Do not implement or run a new real controller.
-T13S1 may proceed only under its exact frozen design, after complete
-local/server validation and separate run authority; it may not be enlarged
-after results.
+T11 condition failures or the T13S1 result. Do not implement or run a new
+real controller until the T13S2 route and its separately preregistered next
+gate permit it.
 
 ## 10. Required validation before server execution
 

@@ -1324,3 +1324,95 @@ thresholds, or start BC, DAgger, or bounded residual RL. Continue the full
 roadmap autonomously, freezing and validating each new physical experiment,
 and pause for user confirmation only when bounded residual RL is genuinely
 ready to begin.
+
+## 23. Final Stage4.2R3c3T13S1 result and active T13S2 task
+
+Stage4.2R3c3T13S1 completed its one authorized real campaign at deployed
+package commit `ecc05f6`:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/
+stage4_2r3c3t13s1_runs/
+stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6
+```
+
+All 52/52 authentic restart `gotsc` trajectories completed. The immutable
+raw inventory is 52 JSON.GZ files, 2,463,366 bytes, digest:
+
+```text
+de2be508888aa503628538a795474fbf70788252e7913f87af7603c5bc034603
+```
+
+Package, four snapshots, restart, causality, solver, scheduler, current,
+signal, local rank/condition, raw parse, manifest, and summary recomputation
+passed. The frozen scientific response gates did not:
+
+```text
+central symmetry                             0 / 24 PASS
+matched hidden-history response              0 / 12 PASS
+official route          SENTINEL_FAIL_STOP_IDENTIFICATION
+```
+
+The official result is final. T13S1 may not be rerun or enlarged under the
+same identity. It did not test a real MPC and does not prove plant
+unreachability. Its 26 formal trajectory passes are diagnostic only because
+formal tracking was not the identification-probe acceptance gate. All probe
+trajectories remain forbidden from expert data.
+
+The final read-only forensic at commit `9b8353d` authenticated all 52 raw
+files in place and ran zero controller, Ray, `gotsc`, TSC, or plant steps:
+
+```text
+requested first-issue command symmetry        24 / 24 PASS
+observed first-effect current symmetry          0 / 24 PASS
+immediate plant symmetry                        3 / 24 PASS
+plant symmetry through formal endpoint          0 / 24 PASS
+immediate matched-history response               6 / 12 PASS
+full-window matched-history response             0 / 12 PASS
+active compared coil-command components             336
+components below one Card15 .3E grid                304
+maximum observed integer-grid residual       2.1032e-12
+```
+
+Finite Card15 action resolution is therefore material. It does not explain
+all immediate or later plant behavior. Small causal visible-state/velocity
+differences and different forbidden wire-current histories also coexist in
+the matched pairs, so the failed matched-history ratio is not a clean proof
+of one hidden-current mechanism. The required classification is a clean
+identification/model/action-resolution design FAIL: zero runtime,
+deployment, restart, corruption, reporting, or real-MPC error.
+
+The formal report and compact downloaded evidence are:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S1_FORENSIC_REPORT.md
+docs/codex/audits/stage4_2r3c3t13s1_result_20260801_9b8353d/
+```
+
+The active task is Stage4.2R3c3T13S2, prospectively frozen before audit code
+or output in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S2_QUANTIZED_ACTUATION_CAUSAL_OBSERVABILITY_DESIGN.md
+```
+
+T13S2 is zero-new-TSC. It must reconstruct all 2,600 T13S1 transitions and
+36,400 coil components from the exact Card15 formatter, current-run measured
+current, trace action, resolved slew/current bounds, and authenticated turn
+counts. It must then audit exact collisions in a causal feature containing
+only current/past R/Z/Ip, causal velocity or explicit unknown initial
+velocity, measured coil current, already-issued current-run commands/queue,
+formal task time, target, and finite development actuator setting.
+
+Pair/history/prefix labels, wire/vessel currents, source action/result,
+future measurements, and future probe schedules remain forbidden. Absence of
+an exact collision is only finite clean separability, not observer or hidden-
+history robustness. Unresolved latent effects must remain a
+multi-hypothesis/tube uncertainty.
+
+T13S2 may authorize only an exact quantized-actuator primitive, causal
+observer-state schema, set-valued transition interface, and a separately
+preregistered minimal lattice-aligned holdout sentinel if existing raw is
+insufficient. It cannot authorize a full identification campaign, real MPC,
+R3c4, expert data, BC, DAgger, or bounded residual RL.

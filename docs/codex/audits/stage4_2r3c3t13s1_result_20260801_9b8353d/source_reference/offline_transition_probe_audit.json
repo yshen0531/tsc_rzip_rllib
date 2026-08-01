@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S1",
+  "campaign_identity": "restart_issue_time_single_step_transition_sentinel_v1",
+  "phase": "offline_minimal_transition_probe_audit",
+  "expected_probe_specs": 52,
+  "probe_spec_count": 52,
+  "extended_baseline_spec_count": 4,
+  "signed_probe_spec_count": 48,
+  "probe_schedule_exact_count": 52,
+  "finite_causal_action_count": 52,
+  "baseline_context_count": 4,
+  "hidden_wire_invariant_action_count": 52,
+  "payload_and_environment_horizon_exact_count": 52,
+  "conservative_14_coil_current_and_slew_preflight_count": 48,
+  "raw_count": 0,
+  "allow_existing_raw": true,
+  "raw_directory_gate_passed": true,
+  "plant_advance_count": 0,
+  "real_tsc_executed": false,
+  "passed": true
+}

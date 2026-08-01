@@ -1,0 +1,11 @@
+{
+  "controller_ray_gotsc_tsc_or_plant_steps_executed": 0,
+  "raw_files_copied_or_modified": 0,
+  "report": {
+    "path": "stage4_2r3c3t13s1_transition_forensics.json",
+    "sha256": "4f852c632b0d62e1298e8684427870815b853d20af41b7e684cda5159532c84e",
+    "size_bytes": 97098
+  },
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S1"
+}

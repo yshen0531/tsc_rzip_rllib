@@ -260,14 +260,28 @@ the fixed Stage3.4 lifted Jacobian passed the relative prediction gate
 a model-design conclusion, not global plant unreachability or a new
 closed-loop failure.
 
-T13 ends as `MINIMAL_SENTINEL_REQUIRED`. The active prospective design is
-the unimplemented Stage4.2R3c3T13S1 52-rollout single-step transition
-sentinel over four bookend contexts, two physical effect times, three modes,
-two signs, and matched histories. It has zero real trajectories and does not
-yet grant server-run authority. PASS authorizes only offline transition-model
-work; scientific FAIL stops a larger campaign. A later successful
-development controller must still be followed by independent new histories
-and restart states before new-target work.
+T13 ends as `MINIMAL_SENTINEL_REQUIRED`. Stage4.2R3c3T13S1 then completed
+its one authorized 52-rollout single-step transition sentinel over four
+bookend contexts. Exact execution, restart, causality, snapshot, package,
+raw, rank, condition, current, and reporting gates passed, but central
+symmetry passed 0/24 and matched hidden-history response passed 0/12. Its
+official route is `SENTINEL_FAIL_STOP_IDENTIFICATION`.
+
+Read-only raw forensics found that requested actions were symmetric 24/24,
+while actual first-effect coil-current symmetry was 0/24. Of 336 active
+compared command components, 304 were smaller than one Card15 `.3E`
+formatter grid. Immediate plant symmetry remained only 3/24, immediate
+matched-history agreement 6/12, and all full formal windows failed. Thus
+finite action resolution is material but is not the only model gap. This is
+an identification/model/action-resolution design FAIL, not runtime, restart,
+reporting, real-MPC, or global-unreachability evidence.
+
+The active Stage4.2R3c3T13S2 task is a zero-new-TSC exact Card15 actuator and
+causal-observability audit over the immutable T13S1 raw. It must preserve
+pair/history/wire/future-input prohibitions and route unresolved latent state
+to a multi-hypothesis/tube model. A later successful development controller
+must still be followed by independent new histories and restart states
+before new-target work.
 
 ## 7. Medium-term objectives
 

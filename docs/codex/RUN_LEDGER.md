@@ -969,3 +969,39 @@
 - Next: preserve raw and preregister a genuinely new time-localized response
   experiment; no post-hoc normalization, threshold relaxation,
   amplitude-only rescaling, R3c4, BC, DAgger, or residual RL
+
+## Stage4.2R3c3T13S1 minimal transition sentinel
+
+- Branch: `codex/stage4_2r3c3t13s1-transition-sentinel`
+- Implementation commit: `898b559`
+- Deployed package-closure commit: `ecc05f6`
+- Final transition-forensic commit: `9b8353d`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s1_runs/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_110302.log`
+- Execution: 52/52 fresh authentic restart `gotsc` trajectories
+- Raw: 52 JSON.GZ, 2,463,366 bytes, digest
+  `de2be508888aa503628538a795474fbf70788252e7913f87af7603c5bc034603`
+- Integrity: exact package/manifest/config, 4/4 snapshots, 4/4 baseline
+  prefixes, 52/52 raw parse, exact independent summary recomputation
+- Runtime/restart/causality/solver/scheduler/saturation/reporting errors: zero
+- Passed scientific support gates: execution 52/52, causality 24/24, signal
+  24/24, local rank/condition 4/4, maximum condition `9.1719426463`, maximum
+  current utilization `0.3904 <= 0.55`
+- Failed frozen gates: central symmetry 0/24 and matched hidden-history
+  response 0/12
+- Official route: `SENTINEL_FAIL_STOP_IDENTIFICATION`
+- Read-only actual-current forensic: requested command symmetry 24/24,
+  observed current symmetry 0/24, immediate plant symmetry 3/24,
+  full-window plant symmetry 0/24, immediate matched history 6/12,
+  full-window matched history 0/12
+- Card15 resolution: 304/336 active compared command components below one
+  `.3E` grid; maximum observed integer-grid residual `2.1032e-12`
+- Classification: clean identification/model/action-resolution design FAIL;
+  not runtime, restart, corruption, reporting, real MPC, or global
+  unreachability
+- Compact evidence downloaded directly; all 52 raw remain server-side
+- Next: zero-new-TSC Stage4.2R3c3T13S2 exact Card15 actuator and causal-
+  observability audit; no rerun/enlargement, T11 bank, R3c4, expert data, BC,
+  DAgger, or residual RL

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S1",
+  "source_host": "tsc-airgap fixed authorized endpoint",
+  "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s1_runs/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6",
+  "source_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s1_audits/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6",
+  "source_forensics": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s1_forensics/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6_9b8353d",
+  "raw_files_downloaded": 0,
+  "raw_inventory": {
+    "files": 52,
+    "bytes": 2463366,
+    "digest": "de2be508888aa503628538a795474fbf70788252e7913f87af7603c5bc034603"
+  },
+  "verification": {
+    "downloaded_file_count": 20,
+    "json_file_count": 19,
+    "json_parse_passed": true,
+    "run_inventory_file_matches": 13,
+    "known_remote_hash_matches": 7,
+    "forensic_manifest_match": true,
+    "compression_or_extraction_used_locally": false
+  },
+  "files": [
+    {"path": "analysis/stage4_2r3c3t13s1_summary.json", "size_bytes": 2108, "sha256": "ecc463834e4b6818277ee704032d85405b5775107f10935f334008252fca4486"},
+    {"path": "analysis/stage4_2r3c3t13s1_verdict.json", "size_bytes": 813, "sha256": "d66cb43f676cffceb3c4894f2f5cbb2f05b704025a8a3d0d7a9d29469dc134ed"},
+    {"path": "forensics/stage4_2r3c3t13s1_transition_forensics.json", "size_bytes": 97098, "sha256": "4f852c632b0d62e1298e8684427870815b853d20af41b7e684cda5159532c84e"},
+    {"path": "forensics/stage4_2r3c3t13s1_transition_forensics_manifest.json", "size_bytes": 336, "sha256": "6e069165ca55f775f160b73e374736e07c65a1a1fd9962189676ca6e14657453"},
+    {"path": "log/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_110302.log", "size_bytes": 6443, "sha256": "7f713e1a91f37dea199be15af8ccf7f02059a3532367a385652ea8ea61c7cdf7"},
+    {"path": "official_audit/stage4_2r3c3t13s1_raw_inventory.json", "size_bytes": 9347, "sha256": "be33af274c6f9a96b14fe113e9da7cf8d4e7d21c1905aa985fed4cd4dfff5985"},
+    {"path": "official_audit/stage4_2r3c3t13s1_run_inventory.json", "size_bytes": 49650, "sha256": "b5ce7f65747a9ba085e9c8aa731e004070ec2428f09a27a908c23ea716c91eca"},
+    {"path": "official_audit/stage4_2r3c3t13s1_server_audit.json", "size_bytes": 69453, "sha256": "5695dd9ff5fbcc901182d7f3b3c86cedf9d3375ec12dbebf63152e2d03ba8951"},
+    {"path": "official_audit/stage4_2r3c3t13s1_snapshot_audit.json", "size_bytes": 2839, "sha256": "e2bb3fa8fc186a87d635dff7e8220f32a3338828cfdb4226da4fc22bc46b6853"},
+    {"path": "run_root/stage4_2r3c3t13s1_config.resolved.json", "size_bytes": 5962, "sha256": "65ecef19c0444419e2eb05a13271e5571dbd0e1cb261c2e6b598c3c4fdc06354"},
+    {"path": "run_root/stage4_2r3c3t13s1_manifest.json", "size_bytes": 64320, "sha256": "971f0b1fa0d5b13f17696e7f601acce750822b5a89afc6859bea222c6c972dd9"},
+    {"path": "run_root/stage4_2r3c3t13s1_state.json", "size_bytes": 2139, "sha256": "c07890533574dfc4e852af64091524b5786601b8aba195548ea31fd4765e05cc"},
+    {"path": "sentinel/central_response_results.json", "size_bytes": 25267, "sha256": "e7587a051e69910722a2e101e394de4a79f17ec5de24958ba64d589ba64cb47a"},
+    {"path": "sentinel/local_identifiability_results.json", "size_bytes": 3536, "sha256": "096ff1ade71b6e509a11298fdd641995a40504c2b2fe7ee1baed5278be1bd4a3"},
+    {"path": "sentinel/matched_hidden_history_results.json", "size_bytes": 7376, "sha256": "d2f43ae697a82a9de37a0b119e41b8e7ab35867480bc6b5316945e18b23f1416"},
+    {"path": "sentinel/results.json", "size_bytes": 101946, "sha256": "d812892edf99539641c59ddc58f7bb9b4ca24980c36a0deaa6a51130cd9e0830"},
+    {"path": "sentinel/summary.json", "size_bytes": 2108, "sha256": "ecc463834e4b6818277ee704032d85405b5775107f10935f334008252fca4486"},
+    {"path": "source_reference/deployed_package_fingerprint.json", "size_bytes": 54741, "sha256": "136bdba75bcd0a5378fa15b7a2005c2f3c0d41bf9f1f39887d06e7a1bd1c6f17"},
+    {"path": "source_reference/offline_transition_probe_audit.json", "size_bytes": 741, "sha256": "4e004f4fb11040b4f78b4f1c3bad722eafb01b23d532e9148f972b8b0df1ad79"},
+    {"path": "source_reference/source_stage4_2r3c3t1_fingerprint.json", "size_bytes": 830, "sha256": "993e518918665b283a3888f082580c01bcd727685a401352e0a4fe10721eaeb1"}
+  ]
+}

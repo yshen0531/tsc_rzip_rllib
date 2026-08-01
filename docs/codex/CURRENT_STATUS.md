@@ -1,6 +1,6 @@
 # Current status
 
-> Superseding status (2026-08-01 20:08 Asia/Shanghai):
+> Superseding status (2026-08-01 23:22 Asia/Shanghai):
 > Stage4.2R3c3T13S1 completed its one authorized real campaign at remote run
 > `stage4_2r3c3t13s1_runs/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6`.
 > All 52/52 fresh `gotsc` trajectories completed successfully; the immutable
@@ -15,17 +15,17 @@
 > resolution design failure, not a runtime, restart, raw-corruption,
 > reporting, or real-MPC failure. The experiment must not be rerun or enlarged
 > under the same identity, and its probe trajectories remain forbidden from
-> expert data. A read-only raw forensic at commits `34a3a21` and `0fe3077`
-> now separates requested commands, observed first-effect coil currents,
-> immediate plant response, later accumulation, matched histories, and the
-> exact Card15 `.3E` current grid. Local compile and four direct focused tests
-> pass. Its server focused/full tests, execution against the 52 immutable raw
-> files, and compact evidence download remain pending because TCP/22 to
-> `10.10.60.108` has repeatedly timed out after the campaign and official
-> audit completed. Do not start TSC while recovering this read-only step.
-> The next route, after this final current-layer classification, is a
-> zero-new-TSC quantization-aware causal-state/observer sufficiency audit;
-> T11 bank, R3c4, BC, DAgger, and residual RL remain blocked.
+> expert data. The final read-only forensic at commit `9b8353d` completed on
+> the server with 4/4 focused tests and the full 639-test suite passing (one
+> skipped). It executed zero TSC/plant steps. Requested command symmetry was
+> 24/24, but actual first-effect current symmetry was 0/24, immediate plant
+> symmetry 3/24, full-window plant symmetry 0/24, immediate matched history
+> 6/12, and full-window matched history 0/12. Of 336 active compared command
+> components, 304 were below one Card15 `.3E` grid. Twenty compact evidence
+> files were downloaded and authenticated; all 52 raw JSON.GZ remain on the
+> server. The active task is the prospectively frozen, zero-new-TSC T13S2
+> exact Card15 and causal-observability audit. T11 bank, R3c4, real MPC, BC,
+> DAgger, and residual RL remain blocked.
 
 > Superseding status (2026-08-01 Asia/Shanghai): Stage4.2R3c3T13 completed
 > its no-new-TSC source architecture and time-resolved model audit. The V4

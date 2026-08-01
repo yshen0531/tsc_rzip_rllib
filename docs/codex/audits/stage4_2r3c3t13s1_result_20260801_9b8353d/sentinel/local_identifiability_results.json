@@ -1,0 +1,118 @@
+[
+  {
+    "pair_id": "p5_q1_a0p900_gap2_settle4",
+    "history_member": "minus_first",
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 0.9,
+    "basis_count": 6,
+    "all_columns_signal_pass": true,
+    "normalized_response_matrix_rank": 6,
+    "normalized_response_condition_number": 9.17194264627853,
+    "transport_braking_geometry": [
+      {
+        "mode": 0,
+        "transport_braking_cosine": 0.6628539395356617,
+        "transport_to_braking_norm_ratio": 1.357684803761209
+      },
+      {
+        "mode": 1,
+        "transport_braking_cosine": -0.21253299319314564,
+        "transport_to_braking_norm_ratio": 0.2827290770431757
+      },
+      {
+        "mode": 2,
+        "transport_braking_cosine": 0.07607236628322557,
+        "transport_to_braking_norm_ratio": 0.5794369677884782
+      }
+    ],
+    "condition_number_pass": true
+  },
+  {
+    "pair_id": "p5_q1_a0p900_gap2_settle4",
+    "history_member": "plus_first",
+    "target_id": "RZ_p10_m10",
+    "actual_delay_steps": 2,
+    "actual_slew_scale": 0.9,
+    "basis_count": 6,
+    "all_columns_signal_pass": true,
+    "normalized_response_matrix_rank": 6,
+    "normalized_response_condition_number": 6.332194961142804,
+    "transport_braking_geometry": [
+      {
+        "mode": 0,
+        "transport_braking_cosine": 0.6916672554194521,
+        "transport_to_braking_norm_ratio": 1.8410115276302457
+      },
+      {
+        "mode": 1,
+        "transport_braking_cosine": 0.36031984896481734,
+        "transport_to_braking_norm_ratio": 1.4655808240587456
+      },
+      {
+        "mode": 2,
+        "transport_braking_cosine": -0.05690088258351577,
+        "transport_to_braking_norm_ratio": 0.9679088023954956
+      }
+    ],
+    "condition_number_pass": true
+  },
+  {
+    "pair_id": "p9_q1_a0p750_gap2_settle4",
+    "history_member": "minus_first",
+    "target_id": "nominal",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.0,
+    "basis_count": 6,
+    "all_columns_signal_pass": true,
+    "normalized_response_matrix_rank": 6,
+    "normalized_response_condition_number": 6.704959294582189,
+    "transport_braking_geometry": [
+      {
+        "mode": 0,
+        "transport_braking_cosine": 0.6499935684999234,
+        "transport_to_braking_norm_ratio": 0.8600028322495653
+      },
+      {
+        "mode": 1,
+        "transport_braking_cosine": 0.005385560560937771,
+        "transport_to_braking_norm_ratio": 0.6357265050684456
+      },
+      {
+        "mode": 2,
+        "transport_braking_cosine": -0.008453204316255666,
+        "transport_to_braking_norm_ratio": 2.149334545367112
+      }
+    ],
+    "condition_number_pass": true
+  },
+  {
+    "pair_id": "p9_q1_a0p750_gap2_settle4",
+    "history_member": "plus_first",
+    "target_id": "nominal",
+    "actual_delay_steps": 0,
+    "actual_slew_scale": 1.0,
+    "basis_count": 6,
+    "all_columns_signal_pass": true,
+    "normalized_response_matrix_rank": 6,
+    "normalized_response_condition_number": 5.160879286904737,
+    "transport_braking_geometry": [
+      {
+        "mode": 0,
+        "transport_braking_cosine": 0.0016322649594799371,
+        "transport_to_braking_norm_ratio": 0.3294011819849235
+      },
+      {
+        "mode": 1,
+        "transport_braking_cosine": -0.5132575177995641,
+        "transport_to_braking_norm_ratio": 1.188674827214427
+      },
+      {
+        "mode": 2,
+        "transport_braking_cosine": -0.32123161982483506,
+        "transport_to_braking_norm_ratio": 0.5560251854723132
+      }
+    ],
+    "condition_number_pass": true
+  }
+]
