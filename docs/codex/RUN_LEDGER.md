@@ -1058,3 +1058,28 @@
   reporting, raw, point-model, observer, control, or robustness result
 - Next: implement and validate the separately frozen 52-rollout T13S4
   dynamic-Card15 lattice transition holdout; do not run real MPC
+
+## Stage4.2R3c3T13S4 offline lattice holdout preflight
+
+- Frozen design commit: `5c14577`
+- Implementation/package checkpoints: `1762862`, `586cc8a`
+- Final offline aggregation commits: `ec5410b`, `21df2dc`
+- Package revision: `r42r3c3t13s4_lattice_transition_holdout_v1h2`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s4_runs/stage4_2r3c3t13s4_lattice_transition_holdout_20260801_21df2dc`
+- Route: `LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC`
+- Offline specs/pass/fail: `52 / 11 / 41`
+- Failure phase: issue `40`, exact cancellation `1`
+- Raw / plant / Ray / gotsc / TSC: `0 / 0 / 0 / 0 / 0`
+- Audit SHA-256:
+  `1e60d04dfc7a9b5a26558aff9bee3cfd40ece0f1deed95988b592b0af8a8e6d2`
+- Installed validation: `664/664`, one expected skip; log SHA-256
+  `1bbc3aa354e0b6ed2f611c4633af675d3705965f8e020773781cb3f9f870d01b`
+- Classification: frozen prospective identification-design failure; two
+  semantics-neutral offline aggregation/report defects repaired; no runtime,
+  deployment, restart, raw, plant-control, or real-MPC result
+- T13S5 zero-TSC route audit: split mode-0 plus modes 1/2, return-first hybrid
+  cancellation, `8/8`, maximum input condition `7.9547833`, SHA-256
+  `378ff7d945a10b4d5c544460ed733cdbe0c25004d07b651af9f03a5c1f5a478b`
+- Next: implement and validate the separately frozen 68-rollout T13S5
+  lattice-native split-direction holdout; all expert/RL routes remain blocked

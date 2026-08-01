@@ -1,5 +1,23 @@
 # Current status
 
+> Superseding status (2026-08-02 Asia/Shanghai):
+> Stage4.2R3c3T13S4 is final as
+> `LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC`. Its mandatory offline audit covered
+> 52/52 specifications and found 41 frozen lattice-design failures: 40 at
+> issue because the four-local-step displacement exceeded the unchanged
+> 0.25 incremental-action gate, and one exact Card15 cancellation failure.
+> Only four baselines and seven signed probes completed offline. Raw, plant
+> advances, Ray, `gotsc`, and TSC were all zero. Two aggregation/reporting
+> defects were fixed under package revisions v1h1/v1h2 without changing any
+> controller, threshold, schedule, or physical semantics; installed Linux
+> validation passed 664/664 with one expected skip. T13S4 is an
+> identification-design FAIL, not a runtime, restart, raw, plant-control, or
+> MPC result. The active T13S5 design is separately frozen: 68 fresh
+> trajectories, four lattice-native split directions, causal return-first
+> cancellation, and the same q2 development/blind split. Its zero-TSC
+> actuator preflight passed 8/8 with maximum input condition 7.9548. Real
+> MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
+
 > Superseding status (2026-08-01 Asia/Shanghai):
 > Stage4.2R3c3T13S3 implemented and validated the exact quantized actuator,
 > T13S2R1 development nominal plus a nonzero interval on every coil,

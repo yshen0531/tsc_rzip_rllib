@@ -1565,3 +1565,86 @@ finite-horizon MPC prototype and a separately preregistered minimal real-MPC
 sentinel. T13S4 raw remains forbidden from expert data. Formal timing is
 unchanged and R3c4, real MPC, BC, DAgger, and bounded residual RL remain
 blocked during T13S4.
+
+## 26. Final T13S4 result and active T13S5 task
+
+T13S4 completed its mandatory offline gate but did not enter its real TSC
+campaign. The exact final identity is:
+
+```text
+commit/package
+  21df2dc / r42r3c3t13s4_lattice_transition_holdout_v1h2
+remote run
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/
+  stage4_2r3c3t13s4_runs/
+  stage4_2r3c3t13s4_lattice_transition_holdout_20260801_21df2dc
+route
+  LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC
+```
+
+Independent machine-readable audit:
+
+```text
+specifications                                      52/52
+offline complete                                    11/52
+issue design failures                               40/52
+exact cancellation failures                          1/52
+raw / plant advances / real TSC                       0/0/0
+audit SHA-256
+  1e60d04dfc7a9b5a26558aff9bee3cfd40ece0f1deed95988b592b0af8a8e6d2
+```
+
+The 40 issue failures have first-candidate incremental normalized action
+`0.264604..0.403766`, above the unchanged `0.25` gate. Their direction
+cosine, off-direction residual, total action, current bounds, and utilization
+otherwise remain inside their frozen limits, although ten also cross a
+Card15 exact-symmetry boundary. One p9 development transport mode-1 negative
+probe passes issue but cannot express the exact negative displacement at the
+next Card15 center.
+
+Two preflight aggregation bugs originally stopped before writing the full
+audit/state. Revisions v1h1/v1h2 repaired only failure aggregation and
+terminal state reporting; every threshold, action selector, controller,
+schedule, formal horizon, context, and physical semantic remained unchanged.
+Each attempt had a new zero-raw directory. Installed validation passed
+664/664 with one expected skip.
+
+T13S4 is a prospective identification-design FAIL. It is not a runtime,
+restart, corruption, plant-control, or real-MPC result, and its unrun 52-task
+matrix must not be launched under the old identity.
+
+The active task is the separately frozen Stage4.2R3c3T13S5 design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S5_LATTICE_NATIVE_SPLIT_HOLDOUT_DESIGN.md
+```
+
+T13S5 retains the same independent q2 development/blind split but uses four
+lattice-native identification directions:
+
+```text
+physical mode 0 without coil index 8
+the separately scaled physical-mode-0 coil-index-8 component
+physical mode 1
+physical mode 2
+```
+
+It uses causal return-first hybrid cancellation and 68 fresh trajectories:
+four baselines plus 64 signed direction/window probes. The exact zero-TSC
+actuator/input preflight passed 8/8 context-window groups with rank 4,
+maximum condition `7.9547833`, maximum issue increment `0.1028397`, and
+maximum selected cancel increment `0.1873576`. Audit SHA-256:
+
+```text
+378ff7d945a10b4d5c544460ed733cdbe0c25004d07b651af9f03a5c1f5a478b
+```
+
+This preflight is not plant/model/MPC evidence. Implement T13S5 completely,
+validate and deploy it under a new identity, run exactly its authorized real
+matrix only after a zero-plant offline gate, retain large raw on the server,
+and independently analyze development before opening blind holdout raw.
+
+Formal timing and tolerances remain immutable. T13S5 probes are forbidden
+from expert data. R3c4, real MPC, BC, DAgger, and bounded residual RL remain
+blocked until the T13S5 route authorizes the next offline MPC step.

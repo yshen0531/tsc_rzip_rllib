@@ -304,12 +304,21 @@ fail-closed multi-hypothesis transition tube. Its isolated tests passed
 It ran no TSC and closes as `INTERFACE_COMPLETE_HOLDOUT_REQUIRED`, not a
 plant-model or controller result.
 
-The active T13S4 stage is a prospectively frozen 52-rollout dynamic-Card15
-lattice transition campaign over the two q2 matched pairs withheld from
-T13S1/T13S2R1 transition development. One history member is fixed as
-development and the other remains blind until the local model/tube is
-hashed. This is only a finite local transition/actuator holdout; it is not a
-new-history or real-MPC campaign.
+T13S4 then stopped at its mandatory offline lattice gate before any real
+trajectory. The complete 52-spec audit found only 11 offline-complete specs
+and 41 design failures: 40 issue actions conflicted with the frozen
+four-local-step and 0.25 incremental-action requirements, and one exact
+Card15 inverse was not representable. Raw, plant advances, and TSC were all
+zero. T13S4 is final as `LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC`; it is not a
+runtime, restart, plant-control, or real-MPC failure.
+
+The active T13S5 design is a new 68-rollout q2 development/blind holdout. It
+splits physical mode 0 into a non-coil-8 direction and a separately scaled
+coil-8 direction, retains modes 1 and 2, and uses a causal return-first
+hybrid cancellation. Its zero-TSC actuator/input audit passed 8/8
+context-window cases with maximum condition 7.9548. This is still only a
+prospective finite local transition/actuator holdout, not new-history or
+real-MPC certification.
 
 ## 7. Medium-term objectives
 
