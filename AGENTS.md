@@ -413,24 +413,38 @@ runtime, restart, corruption, reporting, real-MPC, or global-reachability
 result. It may not be rerun or enlarged under the same identity and its probe
 trajectories are forbidden from expert data.
 
-The active stage is the zero-new-TSC Stage4.2R3c3T13S2 exact Card15
-quantized-actuation and causal-observability audit, prospectively frozen in
-`STAGE4_2R3C3T13S2_QUANTIZED_ACTUATION_CAUSAL_OBSERVABILITY_DESIGN.md`. It
-must authenticate the 52 immutable raw files in place, reconstruct all 2,600
-transitions/36,400 coil components from exact source semantics, and test only
-exact causal-feature collisions. It may authorize only a quantized actuator
-primitive, causal observer schema, multi-hypothesis/tube interface, and a
-separately frozen minimal lattice-aligned holdout if needed. It cannot run
-TSC, fit a certified point plant model, or authorize a full campaign or real
-controller.
+Stage4.2R3c3T13S2 completed its zero-new-TSC audit of all 2,600 transitions
+and 36,400 coil components. Exact Card15 target reconstruction matched only
+13,000 components at `1e-9 A`; the maximum target-to-TSC-readback difference
+was `1.0000000003174137e-5 A`, so its exact frozen route is
+`ACTUATOR_MAPPING_IMPLEMENTATION_GAP`. It found eight exact causal-feature
+collision groups but zero groups with both the same feature and the same
+applied current path, hence zero exact observational aliases. All 24 matched
+histories were finitely separable by allowed clean causal features, which is
+not observer or hidden-history robustness.
+
+The separately frozen read-only T13S2R1 forensic identified a per-coil fixed
+development readback bias from only four baselines and reproduced all 33,600
+signed-probe components within `1e-9 A`. The TSC-order bias units are
+`[2,2,2,2,2,2,2,1,0,0,0,1,0,0] * 1e-6 kA-turn`. This is a retrospective
+development-set structure result, not an independent holdout. T13S1 remains
+FAIL and T13S2 remains an exact-reconstruction FAIL.
+
+The active stage is Stage4.2R3c3T13S3, an offline quantized causal tube
+interface frozen in
+`STAGE4_2R3C3T13S3_QUANTIZED_CAUSAL_TUBE_INTERFACE_DESIGN.md`. It may
+implement exact Card15 target serialization, the traced fixed bias as a
+nominal term, a nonzero actuator uncertainty interval, an unknown-velocity
+causal restart state, and a fail-closed multi-hypothesis transition contract.
+It runs no TSC and cannot certify a point plant model or real controller.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
 the failed T11 response bank, resume R3c4, or enter BC, DAgger, or residual
 RL. Do not launch a full new identification campaign directly from the seven
 T11 condition failures or the T13S1 result. Do not implement or run a new
-real controller until the T13S2 route and its separately preregistered next
-gate permit it.
+real controller until T13S3 is complete and a separate lattice-aligned
+holdout/controller gate prospectively permits it.
 
 ## 10. Required validation before server execution
 

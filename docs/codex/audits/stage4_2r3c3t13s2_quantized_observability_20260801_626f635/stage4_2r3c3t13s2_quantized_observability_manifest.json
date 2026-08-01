@@ -1,0 +1,13 @@
+{
+  "audit_identity": "exact_card15_and_causal_observable_sufficiency_v1",
+  "controller_ray_gotsc_tsc_or_plant_steps_executed": 0,
+  "raw_files_copied_or_modified": 0,
+  "report": {
+    "path": "stage4_2r3c3t13s2_quantized_observability_audit.json",
+    "sha256": "9ef183d20f3354d11bb70c2324bade6829879f00c05dd96b99c1312bcfd53d58",
+    "size_bytes": 621237
+  },
+  "schema_version": 1,
+  "source_raw_inventory_digest": "de2be508888aa503628538a795474fbf70788252e7913f87af7603c5bc034603",
+  "stage": "Stage4.2R3c3T13S2"
+}

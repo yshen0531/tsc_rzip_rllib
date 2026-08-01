@@ -1005,3 +1005,30 @@
 - Next: zero-new-TSC Stage4.2R3c3T13S2 exact Card15 actuator and causal-
   observability audit; no rerun/enlargement, T11 bank, R3c4, expert data, BC,
   DAgger, or residual RL
+
+## Stage4.2R3c3T13S2 quantized observability and T13S2R1 readback forensics
+
+- T13S2 implementation commit: `626f635`
+- T13S2R1 design/implementation commits: `c926dad`, `ae4241b`
+- T13S2 remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s2_audits/stage4_2r3c3t13s2_quantized_observability_20260801_626f635`
+- T13S2 report/manifest SHA-256: `9ef183d20f3354d11bb70c2324bade6829879f00c05dd96b99c1312bcfd53d58`,
+  `564569ec948399792d2db49c4d5742e70a2b20c9ad48efaad7eda34f95f096dd`
+- Exact Card15 target reconstruction: 2,600 transitions, 36,400 components,
+  only 13,000 within `1e-9 A`; maximum readback residual `1.0e-5 A`
+- T13S2 primary route: `ACTUATOR_MAPPING_IMPLEMENTATION_GAP`
+- Causal audit: 48 records, 8 feature collisions, 0 same-feature/same-input-
+  path collisions, 0 exact aliases, 24/24 finite clean history separations
+- T13S2R1 remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s2r1_audits/stage4_2r3c3t13s2r1_readback_residual_forensics_20260801_ae4241b`
+- T13S2R1 report/manifest SHA-256: `62b28bec07bde398cfec6b4aaf42899960e63a8761ce19316f83e8c929903c87`,
+  `adf0cc73a6bc9b05a6dbe7a9fdae09b80346fe54a41a4723fb9cfce0d0bf2edf`
+- Baseline-derived fixed readback units:
+  `[2,2,2,2,2,2,2,1,0,0,0,1,0,0] * 1e-6 kA-turn`
+- Signed-probe retrospective holdout: 33,600/33,600 within `1e-9 A`, maximum
+  residual `2.8422e-14 A`
+- Runtime/raw/restart/reporting/TSC/plant errors or steps: zero
+- Classification: finite development actuator/readback structure only; no
+  observer, plant model, real MPC, or independent holdout validation
+- Next: offline T13S3 quantized causal multi-hypothesis/tube interface; then
+  a separately preregistered minimal lattice-aligned holdout

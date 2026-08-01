@@ -1,0 +1,12 @@
+{
+  "audit_identity": "card15_target_tsc_readback_residual_forensics_v1",
+  "controller_ray_gotsc_tsc_or_plant_steps_executed": 0,
+  "raw_files_copied_or_modified": 0,
+  "report": {
+    "path": "stage4_2r3c3t13s2r1_readback_residual_forensics.json",
+    "sha256": "62b28bec07bde398cfec6b4aaf42899960e63a8761ce19316f83e8c929903c87",
+    "size_bytes": 19443
+  },
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S2R1"
+}

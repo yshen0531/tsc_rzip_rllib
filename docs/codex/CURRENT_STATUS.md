@@ -1,5 +1,22 @@
 # Current status
 
+> Superseding status (2026-08-01 23:58 Asia/Shanghai):
+> Stage4.2R3c3T13S2 completed a zero-new-TSC audit of all 52 immutable T13S1
+> raw files. Exact Card15 target-current reconstruction matched 13,000/36,400
+> observed current components at `1e-9 A`; maximum residual was `1.0e-5 A`,
+> so its frozen route is `ACTUATOR_MAPPING_IMPLEMENTATION_GAP`. It found 8
+> exact causal-feature collision groups, 0 same-feature/same-applied-path
+> groups, 0 exact observational aliases, and finite clean separation in all
+> 24 matched-history pairs. This does not validate observer robustness.
+> T13S2R1 then used only four baselines to identify a fixed TSC-order
+> readback-bias vector `[2,2,2,2,2,2,2,1,0,0,0,1,0,0] * 1e-6 kA-turn` and
+> reproduced all 33,600 signed-probe components within `1e-9 A`; this is a
+> retrospective development split, not an independent holdout. Both audits
+> ran 0 TSC/plant steps, and server validation passed 639 tests with 1
+> skipped. The active stage is the prospectively frozen offline T13S3
+> quantized causal multi-hypothesis/tube interface. Real MPC, expert data,
+> BC, DAgger, and residual RL remain blocked.
+
 > Superseding status (2026-08-01 23:22 Asia/Shanghai):
 > Stage4.2R3c3T13S1 completed its one authorized real campaign at remote run
 > `stage4_2r3c3t13s1_runs/stage4_2r3c3t13s1_minimal_transition_sentinel_20260801_ecc05f6`.

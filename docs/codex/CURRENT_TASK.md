@@ -1416,3 +1416,79 @@ observer-state schema, set-valued transition interface, and a separately
 preregistered minimal lattice-aligned holdout sentinel if existing raw is
 insufficient. It cannot authorize a full identification campaign, real MPC,
 R3c4, expert data, BC, DAgger, or bounded residual RL.
+
+## 24. Final T13S2/T13S2R1 results and active T13S3 task
+
+Stage4.2R3c3T13S2 completed its frozen zero-new-TSC audit at implementation
+commit `626f635`. It authenticated all 52 T13S1 raw files and all 52 exact
+environment variants in place. It ran no controller, Ray, `gotsc`, TSC, or
+plant step.
+
+Exact source Card15 target reconstruction produced:
+
+```text
+transitions                                   2,600 / 2,600
+coil components                             36,400 / 36,400
+within 1e-9 A                               13,000 / 36,400
+maximum target-to-readback residual A             1.0e-5
+primary route          ACTUATOR_MAPPING_IMPLEMENTATION_GAP
+```
+
+This is an actuator-model completeness gap, not a runtime, raw, restart,
+reporting, plant-control, or real-MPC failure. The T13S2 gate and result are
+unchanged.
+
+Causal feature and actual-current-path separation found:
+
+```text
+issue records                                             48
+exact causal-feature collision groups                      8
+same feature and same applied-current-path groups           0
+exact observational aliases                                0
+finite clean matched-history separations                24 / 24
+route                           FINITE_CLEAN_SEPARATION_ONLY
+```
+
+Finite clean separation is not observer certification. Independent histories,
+arbitrary restart states, measurement noise, and continuous parameters remain
+unvalidated.
+
+Stage4.2R3c3T13S2R1 was separately frozen and executed as a read-only
+target-to-readback residual forensic at commit `ae4241b`. Four baselines
+identified a constant per-coil residual:
+
+```text
+[2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 1, 0, 0] * 1e-6 kA-turn
+```
+
+That fixed development bias then reproduced all 33,600 signed-probe
+components within the unchanged `1e-9 A` numerical comparison; maximum
+residual was `2.8422e-14 A`. This is a retrospective development-set split,
+not an independent holdout. The bias may be a traced nominal term only and
+must retain a nonzero uncertainty set.
+
+The detailed report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S2_QUANTIZED_OBSERVABILITY_REPORT.md
+```
+
+The active task is the prospectively frozen, offline Stage4.2R3c3T13S3
+quantized causal tube interface:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S3_QUANTIZED_CAUSAL_TUBE_INTERFACE_DESIGN.md
+```
+
+T13S3 must implement exact Card15 serialization, the traced development bias
+as a nominal term, at least one nonzero output-grid uncertainty unit on every
+coil, unknown restart velocity, a causal numeric queue, forbidden-field
+rejection, and a fail-closed multi-hypothesis/tube transition contract. It
+runs no TSC and may end only as `INTERFACE_COMPLETE_HOLDOUT_REQUIRED` or
+`INTERFACE_IMPLEMENTATION_FAIL`.
+
+Do not claim point-model, observer, hidden-history, real-MPC, or robustness
+validation from T13S3. A complete interface permits only a separately frozen
+minimal lattice-aligned holdout. Formal timing and all RL prohibitions remain
+unchanged.

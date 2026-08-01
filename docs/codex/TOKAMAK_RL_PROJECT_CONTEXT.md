@@ -283,6 +283,22 @@ to a multi-hypothesis/tube model. A later successful development controller
 must still be followed by independent new histories and restart states
 before new-target work.
 
+T13S2 then completed with zero new plant steps. Exact Card15 target current
+did not exactly equal TSC current readback: only 13,000/36,400 components
+matched at `1e-9 A`, with maximum residual `1.0e-5 A`, so the frozen route is
+`ACTUATOR_MAPPING_IMPLEMENTATION_GAP`. Eight exact causal-state collisions
+had different applied current paths; no exact same-feature/same-input
+observational alias was present. All 24 matched histories were finitely
+separable in the clean allowed feature, but observer/noise/history
+extrapolation remains unvalidated.
+
+T13S2R1 read-only forensics found a fixed 14-coil development readback bias
+from four baselines and reproduced all 33,600 signed-probe components within
+`1e-9 A`. This retrospective split supports a quantized actuator nominal plus
+nonzero uncertainty, not a point plant model. The active T13S3 task is to
+implement and validate that causal multi-hypothesis/tube software interface
+without TSC.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:
