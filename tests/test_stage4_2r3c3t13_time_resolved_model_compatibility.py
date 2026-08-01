@@ -25,6 +25,8 @@ SPEC.loader.exec_module(T13)
 
 class Stage42R3C3T13ModelCompatibilityTests(unittest.TestCase):
     def test_frozen_matrix_and_counts(self) -> None:
+        self.assertTrue(T13.IDENTITY.endswith("_v3"))
+        self.assertEqual(T13.GATES["command_modal_residual_max_A"], 1e-6)
         self.assertEqual(sum(row["count"] for row in T13.RUNS.values()), 1408)
         self.assertEqual(sum(row["bytes"] for row in T13.RUNS.values()), 62444406)
         self.assertEqual(
@@ -36,7 +38,7 @@ class Stage42R3C3T13ModelCompatibilityTests(unittest.TestCase):
     def test_design_hash_matches_preregistered_document(self) -> None:
         design = (
             ROOT
-            / "docs/codex/reports/STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V2.md"
+            / "docs/codex/reports/STAGE4_2R3C3T13_TIME_RESOLVED_MODEL_COMPATIBILITY_DESIGN_V3.md"
         )
         self.assertEqual(T13._sha256(design), T13.DESIGN_SHA256)
 

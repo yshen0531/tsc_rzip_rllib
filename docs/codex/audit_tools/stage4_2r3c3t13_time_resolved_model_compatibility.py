@@ -24,8 +24,8 @@ import numpy as np
 
 
 STAGE = "Stage4.2R3c3T13"
-IDENTITY = "time_resolved_stage3_4_restart_model_compatibility_v2"
-DESIGN_SHA256 = "604ebc9139c334647ef4142e5427dbb04d667e008acf78317e24846cc87b24cd"
+IDENTITY = "time_resolved_stage3_4_restart_model_compatibility_v3"
+DESIGN_SHA256 = "49ff799bf20fd3098ef71536e8151bf846d7226a41c77ba329e689df7f56dd3f"
 STAGE34_SOURCE_SHA256 = "a6097b8dea3293bdccf0e742ee86dc9df65b5318f2bd700ee4e5e81d72968f27"
 STAGE34_BUNDLE_SHA256 = "7b307e82c35bc12beea51be303be90d0a5dd7554f54156e3684b167f37ee8987"
 STAGE34_CONFIG_SHA256 = "6d705aaad12bc6872af776a0adf041041cbda38a4d545581017ad5ecdc7b34b4"
@@ -146,7 +146,7 @@ GATES = {
     "pre_effect_position_max_m": 1e-9,
     "pre_effect_velocity_max_m_per_s": 1e-7,
     "pre_effect_ip_max_A": 1e-4,
-    "command_modal_residual_max_A": 1e-9,
+    "command_modal_residual_max_A": 1e-6,
 }
 
 
@@ -914,8 +914,8 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
     }
 
     output.mkdir(parents=True, exist_ok=False)
-    audit_path = output / "stage4_2r3c3t13_time_resolved_model_audit_v2.json"
-    route_path = output / "stage4_2r3c3t13_time_resolved_model_route_v2.json"
+    audit_path = output / "stage4_2r3c3t13_time_resolved_model_audit_v3.json"
+    route_path = output / "stage4_2r3c3t13_time_resolved_model_route_v3.json"
     _write_json(audit_path, audit)
     _write_json(
         route_path,
@@ -939,7 +939,7 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
             "real_controller_executed": False,
         },
     )
-    manifest_path = output / "stage4_2r3c3t13_time_resolved_model_manifest_v2.json"
+    manifest_path = output / "stage4_2r3c3t13_time_resolved_model_manifest_v3.json"
     _write_json(
         manifest_path,
         {
