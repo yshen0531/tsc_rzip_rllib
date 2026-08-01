@@ -1286,13 +1286,38 @@ issue and the exact inverse at the next issue, producing physical effects at
 states 3/4 or 17/18 with exact zero requested net. It observes through state
 50 without changing formal endpoints.
 
-T13S1 is not implemented and has zero real trajectories. Its PASS can
-authorize only an offline local-transition model and prospective holdout
-design. Its scientific FAIL stops identification expansion. Neither outcome
-automatically authorizes a 32-context campaign or a real controller.
+T13S1 was implemented under a new campaign/package identity at local commit:
 
-Do not implement or launch a real controller. Do not build a T11 bank, run
-R3c4, change the formal timing or physical thresholds, or start BC, DAgger,
-or bounded residual RL. Before any T13S1 implementation or run, preserve its
-frozen design, complete all local/server validation, and obtain separate run
-authority.
+```text
+898b559ba5d2f716f4e2e255f9a570b87af3bbb2
+```
+
+The implementation and local validation record is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S1_IMPLEMENTATION_VALIDATION.md
+```
+
+Focused tests pass 7/7, the complete repository suite passes 639/639 in the
+repository-local virtual environment, all JSON/compile/checksum gates pass,
+and an isolated empty-directory direct-copy import/compile simulation passes.
+The local Windows `bash` maps to an unavailable WSL distribution, so exact
+Linux `bash -n` remains a mandatory server pre-run gate.
+
+T13S1 still has zero real trajectories and its scientific result is
+`NOT_RUN`. The user authorized continued execution through the prerequisites
+for RL on 2026-08-01. Proceed with exact server deployment, server validation,
+the zero-plant-step 52-spec offline audit, and then the authentic 52-rollout
+campaign only if every pre-run gate passes.
+
+T13S1 PASS can authorize only an offline local-transition model and
+prospective holdout design. Its scientific FAIL stops identification
+expansion and routes to observer/model/action-resolution redesign. Neither
+outcome authorizes a 32-context campaign or a real controller by itself.
+
+Do not build a T11 bank, run R3c4, change formal timing or physical
+thresholds, or start BC, DAgger, or bounded residual RL. Continue the full
+roadmap autonomously, freezing and validating each new physical experiment,
+and pause for user confirmation only when bounded residual RL is genuinely
+ready to begin.
