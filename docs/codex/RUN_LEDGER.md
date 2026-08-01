@@ -1032,3 +1032,29 @@
   observer, plant model, real MPC, or independent holdout validation
 - Next: offline T13S3 quantized causal multi-hypothesis/tube interface; then
   a separately preregistered minimal lattice-aligned holdout
+
+## Stage4.2R3c3T13S3 quantized causal tube interface
+
+- Implementation commit: `37e3913`
+- Evidence/report commit: `67543b8`
+- Outcome: `INTERFACE_COMPLETE_HOLDOUT_REQUIRED`
+- Implemented exact Card15 serializer, T13S2R1 development nominal plus
+  nonzero per-coil interval, immutable unknown-velocity causal restart state,
+  numeric issued-command/queue state, forbidden-field rejection, and
+  fail-closed multi-hypothesis additive transition tube
+- Point model certified / robust controller authorized: `false / false`
+- Local focused and isolated direct-copy tests: `15/15`, `15/15`
+- Server isolated and installed focused tests: `15/15`, `15/15`
+- Server installed complete suite: `654/654`, one expected skip
+- Frozen predeployment package checksum: `269/269`
+- Server staging:
+  `/home/yangshen0711/tsc_software/stage4_2r3c3t13s3_quantized_tube_37e3913`
+- Server validation log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s3_server_validation_37e3913.log`
+- Validation log SHA-256:
+  `f70598458c08aee524298bb402789c7097b66203e50cc9332a2b5942ce15dfc5`
+- Controller/Ray/gotsc/TSC/plant steps: zero
+- Classification: software interface PASS only; no runtime, package,
+  reporting, raw, point-model, observer, control, or robustness result
+- Next: implement and validate the separately frozen 52-rollout T13S4
+  dynamic-Card15 lattice transition holdout; do not run real MPC

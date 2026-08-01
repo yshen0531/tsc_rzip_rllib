@@ -430,21 +430,31 @@ signed-probe components within `1e-9 A`. The TSC-order bias units are
 development-set structure result, not an independent holdout. T13S1 remains
 FAIL and T13S2 remains an exact-reconstruction FAIL.
 
-The active stage is Stage4.2R3c3T13S3, an offline quantized causal tube
-interface frozen in
-`STAGE4_2R3C3T13S3_QUANTIZED_CAUSAL_TUBE_INTERFACE_DESIGN.md`. It may
-implement exact Card15 target serialization, the traced fixed bias as a
-nominal term, a nonzero actuator uncertainty interval, an unknown-velocity
-causal restart state, and a fail-closed multi-hypothesis transition contract.
-It runs no TSC and cannot certify a point plant model or real controller.
+Stage4.2R3c3T13S3 implemented the exact Card15 actuator boundary, traced
+development bias plus nonzero per-coil interval, unknown-velocity causal
+restart state, forbidden-field rejection, and fail-closed multi-hypothesis
+transition tube at commit `37e3913`. Local isolated tests passed 15/15 and
+the installed server suite passed 654/654 with one expected skip. T13S3 ran
+zero TSC/plant steps and ends as `INTERFACE_COMPLETE_HOLDOUT_REQUIRED`; it
+does not certify a point plant model, observer, robust controller, or MPC.
+
+The active stage is the prospectively frozen Stage4.2R3c3T13S4
+lattice-aligned transition holdout in
+`STAGE4_2R3C3T13S4_LATTICE_TRANSITION_HOLDOUT_DESIGN.md`. It uses only the
+two q2 pairs withheld from T13S1/T13S2R1 transition development, with
+`plus_first` fixed as development and `minus_first` blind until a hashed
+local model/tube exists. Its 52-rollout maximum is a minimal dynamic-Card15
+lattice transition campaign, not a real MPC or full identification campaign.
+Passing may authorize only an offline robust MPC prototype and a separately
+preregistered real-MPC sentinel.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
 the failed T11 response bank, resume R3c4, or enter BC, DAgger, or residual
 RL. Do not launch a full new identification campaign directly from the seven
 T11 condition failures or the T13S1 result. Do not implement or run a new
-real controller until T13S3 is complete and a separate lattice-aligned
-holdout/controller gate prospectively permits it.
+real controller until T13S4 passes and a separate real-MPC sentinel is
+prospectively frozen.
 
 ## 10. Required validation before server execution
 

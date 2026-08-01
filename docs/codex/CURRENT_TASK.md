@@ -1492,3 +1492,76 @@ Do not claim point-model, observer, hidden-history, real-MPC, or robustness
 validation from T13S3. A complete interface permits only a separately frozen
 minimal lattice-aligned holdout. Formal timing and all RL prohibitions remain
 unchanged.
+
+## 25. Final T13S3 result and active T13S4 task
+
+Stage4.2R3c3T13S3 implemented the frozen offline software interface at
+commit `37e391361b7d397b90bd2f2747918084bf443e0a`. It contains:
+
+```text
+exact TSC-order Card15 serialization and clipping
+T13S2R1 development nominal with exact report-hash provenance
+at least one nonzero 1e-6 kA-turn uncertainty unit per coil
+immutable causal restart state with unknown initial velocity
+current-run numeric command and delay queue only
+strict forbidden and unknown field rejection
+multi-hypothesis affine prediction with propagated additive tube
+measured/interpolation/extrapolation support reporting
+point_model_certified = false
+robust_controller_authorized = false
+```
+
+Validation completed as follows:
+
+```text
+local focused tests                           15/15
+local isolated direct-copy tests              15/15
+server isolated tests                         15/15
+frozen predeployment package checksums       269/269
+server installed complete tests              654/654, one skip
+TSC/controller/Ray/gotsc/plant steps                0
+```
+
+The exact server validation log is:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/
+stage4_2r3c3t13s3_server_validation_37e3913.log
+SHA-256 f70598458c08aee524298bb402789c7097b66203e50cc9332a2b5942ce15dfc5
+```
+
+T13S3 ends as `INTERFACE_COMPLETE_HOLDOUT_REQUIRED`. There was no runtime,
+packaging, interface, statistics/reporting, raw, or snapshot error, but also
+no plant model, real controller, restart, or robustness result. The detailed
+report and compact audit are:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S3_QUANTIZED_CAUSAL_TUBE_INTERFACE_REPORT.md
+docs/codex/audits/
+stage4_2r3c3t13s3_interface_20260801_37e3913/
+```
+
+The active task is the separately frozen Stage4.2R3c3T13S4 design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S4_LATTICE_TRANSITION_HOLDOUT_DESIGN.md
+```
+
+T13S4 uses the `q2` p5/p9 matched pairs that were not used in the T13S1
+probe or T13S2R1 bias fit. `plus_first` is fixed as development and
+`minus_first` remains unopened by the model builder until the local model
+and non-vacuous tube artifact is hashed. Its maximum matrix is 52 fresh
+rollouts: four baselines plus 48 dynamic-lattice signed probes at transport
+and braking time. The probe moves exact symmetric Card15 fields by at least
+four local formatter steps on significant mode coils; it is not an
+amplitude-only T13S1 rerun.
+
+T13S4 may end only as
+`LATTICE_HOLDOUT_PASS_LOCAL_MODEL_ONLY` or
+`LATTICE_HOLDOUT_FAIL_REDESIGN`. A PASS authorizes only an offline robust
+finite-horizon MPC prototype and a separately preregistered minimal real-MPC
+sentinel. T13S4 raw remains forbidden from expert data. Formal timing is
+unchanged and R3c4, real MPC, BC, DAgger, and bounded residual RL remain
+blocked during T13S4.

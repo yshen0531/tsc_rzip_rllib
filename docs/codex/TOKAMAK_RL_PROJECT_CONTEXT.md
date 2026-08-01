@@ -295,9 +295,21 @@ extrapolation remains unvalidated.
 T13S2R1 read-only forensics found a fixed 14-coil development readback bias
 from four baselines and reproduced all 33,600 signed-probe components within
 `1e-9 A`. This retrospective split supports a quantized actuator nominal plus
-nonzero uncertainty, not a point plant model. The active T13S3 task is to
-implement and validate that causal multi-hypothesis/tube software interface
-without TSC.
+nonzero uncertainty, not a point plant model.
+
+T13S3 then implemented the exact quantized actuator, immutable causal
+unknown-velocity restart observer, forbidden-field rejection, and
+fail-closed multi-hypothesis transition tube. Its isolated tests passed
+15/15 and the installed Linux suite passed 654/654 with one expected skip.
+It ran no TSC and closes as `INTERFACE_COMPLETE_HOLDOUT_REQUIRED`, not a
+plant-model or controller result.
+
+The active T13S4 stage is a prospectively frozen 52-rollout dynamic-Card15
+lattice transition campaign over the two q2 matched pairs withheld from
+T13S1/T13S2R1 transition development. One history member is fixed as
+development and the other remains blind until the local model/tube is
+hashed. This is only a finite local transition/actuator holdout; it is not a
+new-history or real-MPC campaign.
 
 ## 7. Medium-term objectives
 

@@ -1,5 +1,21 @@
 # Current status
 
+> Superseding status (2026-08-01 Asia/Shanghai):
+> Stage4.2R3c3T13S3 implemented and validated the exact quantized actuator,
+> T13S2R1 development nominal plus a nonzero interval on every coil,
+> immutable unknown-velocity causal restart state, strict forbidden/unknown
+> field rejection, and fail-closed multi-hypothesis transition tube at commit
+> `37e3913`. Local focused and isolated tests passed 15/15; the installed
+> server suite passed 654/654 with one expected skip. All deployed hashes and
+> the frozen predeployment 269-file package verified, and T13S3 executed zero
+> TSC/plant steps. Its final route is
+> `INTERFACE_COMPLETE_HOLDOUT_REQUIRED`, not point-model, observer, control,
+> or robustness certification. The active T13S4 design is frozen before code
+> or results. It uses dynamic symmetric Card15 field steps over the q2 pairs
+> withheld from T13S1/T13S2R1, with `plus_first` development and
+> `minus_first` blind until a hashed model/tube exists. Real MPC, expert data,
+> BC, DAgger, and bounded residual RL remain blocked.
+
 > Superseding status (2026-08-01 23:58 Asia/Shanghai):
 > Stage4.2R3c3T13S2 completed a zero-new-TSC audit of all 52 immutable T13S1
 > raw files. Exact Card15 target-current reconstruction matched 13,000/36,400
