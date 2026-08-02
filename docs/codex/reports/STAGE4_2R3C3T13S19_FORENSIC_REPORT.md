@@ -49,8 +49,8 @@ successful complete raw                   23
 structured failed raw                      1
 raw parse/corruption failures              0
 raw bytes                           1,300,417
-raw inventory digest
-  dc31ee4be1159636cdf2d64638345f639ac0006d70d99862d7ce7af7774cd817
+canonical S19 `_raw_inventory` digest
+  3a2a468a92ea656b240280125ebac9b4e947d14bc3beb8e61a0fcdd82d1e01da
 terminal state sha256
   4e4d4247be7478f4a2352d092b6b72dba2916df69deba0d15cee7eaad203bdc2
 ```
@@ -67,6 +67,14 @@ The terminal state is `finished=true`, `primary_pass=false`, and
 `stop_reason=training_baseline_or_lattice_gate_failed`. Training probes,
 calibration baselines/probes, and holdout baselines/probes were never run.
 Calibration and holdout outcomes therefore remain unopened.
+
+An earlier compact forensic note recorded
+`dc31ee4be1159636cdf2d64638345f639ac0006d70d99862d7ce7af7774cd817`
+as the inventory digest. During S20 offline authentication, direct server
+execution of S19's frozen `_raw_inventory` over the unchanged 24 files
+reproduced `3a2a468a...1e01da`, together with the same count and 1,300,417
+bytes. The earlier token was therefore a statistics/recording error and is not
+used as a source-authentication gate. No raw file or experiment result changed.
 
 ## Independent raw and TSC forensics
 

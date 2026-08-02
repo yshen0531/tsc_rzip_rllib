@@ -46,6 +46,18 @@ class Stage4R3C3T13S20Tests(unittest.TestCase):
         with self.assertRaises(ValueError):
             s20._validate_config(cfg)
 
+    def test_s19_source_uses_canonical_frozen_inventory_digest(self):
+        self.assertEqual(
+            self.config["source_s19_development"]["raw_inventory_digest"],
+            "3a2a468a92ea656b240280125ebac9b4e947d14bc3beb8e61a0fcdd82d1e01da",
+        )
+        cfg = copy.deepcopy(self.config)
+        cfg["source_s19_development"]["raw_inventory_digest"] = (
+            "dc31ee4be1159636cdf2d64638345f639ac0006d70d99862d7ce7af7774cd817"
+        )
+        with self.assertRaises(ValueError):
+            s20._validate_config(cfg)
+
     def test_rl_or_expert_data_mutation_fails_closed(self):
         for key in ("bc_dagger_or_rl_allowed", "probe_trajectories_allowed_in_expert_dataset"):
             cfg = copy.deepcopy(self.config)

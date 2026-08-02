@@ -2616,7 +2616,7 @@ structured raw files: 23 complete successes and one deterministic controller
 exception. The raw inventory digest is:
 
 ```text
-dc31ee4be1159636cdf2d64638345f639ac0006d70d99862d7ce7af7774cd817
+3a2a468a92ea656b240280125ebac9b4e947d14bc3beb8e61a0fcdd82d1e01da
 ```
 
 Independent raw audit found exact restart, causality, actuator execution,
@@ -2659,3 +2659,14 @@ The model must be hashed before calibration and the tube before holdout.
 Even a complete S20 pass authorizes only robust-transport MPC feasibility.
 Probe raw remains forbidden from expert data; BC, DAgger, and bounded residual
 RL remain prohibited.
+
+The first S20 package (`1861dbd`) stopped during zero-plant offline
+authentication with zero raw and zero TSC because its config carried the
+legacy recorded S19 inventory token `dc31ee...` rather than the digest produced
+by S19's frozen `_raw_inventory`. Server recomputation over the unchanged 24
+files reproduced 24 files, 1,300,417 bytes, and canonical digest
+`3a2a468a...1e01da`; all other source hashes and semantic counts were exact.
+This is a package/statistics reference bug only. The action semantics, split,
+gates, controller revision, and campaign identity remain unchanged. The failed
+offline run is preserved and cannot be resumed; package v2 must use a new empty
+run directory.

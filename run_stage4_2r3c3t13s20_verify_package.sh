@@ -18,7 +18,7 @@ expected = {
     "run_name": "stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign",
     "campaign_identity": "dynamic_exact_card15_pooled_causal_observer_campaign_v1",
     "controller_revision": "dynamic_exact_card15_calibration_probe_v42r3c3t13s20_v1",
-    "package_revision": "r42r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_v1",
+    "package_revision": "r42r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_v2",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:

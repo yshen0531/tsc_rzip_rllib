@@ -39,7 +39,7 @@ SCHEMA_VERSION = 1
 RUN_NAME = "stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign"
 CAMPAIGN_IDENTITY = "dynamic_exact_card15_pooled_causal_observer_campaign_v1"
 CONTROLLER_REVISION = "dynamic_exact_card15_calibration_probe_v42r3c3t13s20_v1"
-PACKAGE_REVISION = "r42r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_v1"
+PACKAGE_REVISION = "r42r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_v2"
 BASELINE_PROBE_ID = s16.BASELINE_PROBE_ID
 DIRECTIONS = s16.DIRECTIONS
 SIGNS = s16.SIGNS
@@ -275,7 +275,7 @@ def _validate_config(cfg: Mapping[str, Any]) -> None:
         ),
         "final_state_sha256": "4e4d4247be7478f4a2352d092b6b72dba2916df69deba0d15cee7eaad203bdc2",
         "raw_inventory_count": 24,
-        "raw_inventory_digest": "dc31ee4be1159636cdf2d64638345f639ac0006d70d99862d7ce7af7774cd817",
+        "raw_inventory_digest": "3a2a468a92ea656b240280125ebac9b4e947d14bc3beb8e61a0fcdd82d1e01da",
         "successful_training_baselines": 23,
         "failed_training_baselines": 1,
         "failed_experiment_id": "s42r3c3_6bc94530a3ae407830ff",
