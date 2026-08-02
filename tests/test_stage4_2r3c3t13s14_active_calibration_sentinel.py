@@ -4,6 +4,7 @@ import copy
 from decimal import Decimal
 import inspect
 import json
+import math
 from pathlib import Path
 import sys
 import types
@@ -254,6 +255,25 @@ class Stage42R3C3T13S14Tests(unittest.TestCase):
         self.assertEqual(len(audit["folds"]), 8)
         self.assertTrue(all(row["held_row_count"] == 16 for row in audit["folds"]))
         self.assertEqual(audit["held_row_count"], 128)
+
+    def test_structurally_ineligible_candidate_uses_strict_json_nulls(self):
+        rows = self._model_rows()
+        model = {
+            "family": "kernel", "eligible": False,
+            "interaction_condition": math.inf, "failure_reason": "ill conditioned",
+        }
+        with mock.patch.object(s14, "_fit_family", return_value=model):
+            audit = s14._cross_validate_candidate(
+                rows,
+                {"family": "kernel", "bandwidth_multiplier": 0.5, "ridge": 1e-8},
+                self.cfg["observer"],
+            )
+        self.assertFalse(audit["eligible"])
+        self.assertIsNone(audit["maximum_error"])
+        self.assertIsNone(audit["mean_error"])
+        self.assertIsNone(audit["maximum_condition"])
+        self.assertTrue(all(row["condition"] is None for row in audit["folds"]))
+        json.dumps(audit, allow_nan=False)
 
     def test_history_signature_fails_near_alias(self):
         rows = self._model_rows()

@@ -1377,6 +1377,61 @@ def _postprobe_reporting_hotfix_audit(
     }
 
 
+def _finalize_serialization_hotfix_audit(
+    ctx: Context, specs: Sequence[Mapping[str, Any]], raw_paths: Sequence[Path],
+) -> dict[str, Any]:
+    by_id = {str(spec["experiment_id"]): spec for spec in specs}
+    observed_ids, inventory = set(), []
+    for path in raw_paths:
+        inventory.append({
+            "path": path.name, "size_bytes": path.stat().st_size, "sha256": _sha256(path),
+        })
+        result = s9.t11.t1.r3c3.read_json_gz(path)
+        experiment_id = str(result.get("experiment_id"))
+        if (
+            experiment_id not in by_id or result.get("spec") != by_id[experiment_id]
+            or not bool(result.get("success")) or not bool(result.get("completed"))
+        ):
+            raise ValueError("T13S14 finalize serialization hotfix raw mismatch")
+        observed_ids.add(experiment_id)
+    report_path = ctx.paths.analysis / "probe_execution.json"
+    if not report_path.is_file():
+        raise ValueError("T13S14 finalize serialization hotfix probe evidence missing")
+    report = _read_json(report_path)
+    execution = report.get("execution") or {}
+    evidence = report.get("probe_evidence_audit") or {}
+    final_model_path = ctx.paths.analysis / "final_model_audit.json"
+    final_result_path = ctx.paths.analysis / "final_result.json"
+    passed = bool(
+        len(raw_paths) == len(observed_ids) == len(by_id) == 144
+        and observed_ids == set(by_id)
+        and execution == {
+            "expected": 128, "pending_before": 0, "complete": 128,
+            "reused": 128, "real_tsc_executed": False, "passed": True,
+        }
+        and int(evidence.get("expected", -1)) == 128
+        and int(evidence.get("actual", -1)) == 128
+        and int(evidence.get("pass_count", -1)) == 128
+        and bool(evidence.get("passed"))
+        and not final_model_path.exists() and not final_result_path.exists()
+    )
+    if not passed:
+        raise ValueError("T13S14 finalize serialization hotfix provenance mismatch")
+    inventory.sort(key=lambda row: row["path"])
+    return {
+        "raw_count": len(raw_paths), "successful_raw_preserved_count": 144,
+        "response_probe_raw_count": 128,
+        "probe_execution_sha256": _sha256(report_path),
+        "probe_execution_pass_count": 128,
+        "final_model_audit_existed_before_hotfix": False,
+        "final_result_existed_before_hotfix": False,
+        "failed_json_path": "$.candidates[54].maximum_error",
+        "failed_nonfinite_value": "inf",
+        "finalize_plant_advance_count_before_hotfix": 0,
+        "raw_inventory_digest_before_hotfix": _digest(inventory), "passed": True,
+    }
+
+
 def _validate_snapshots(table: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     rows = []
     for context in table:
@@ -1471,10 +1526,21 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                     ctx, specs, raw_before
                 )
             elif successful_raw_count == 144:
-                runtime_hotfix_kind = "probe_timing_only_reporting_repair"
-                prehotfix_audit = _postprobe_reporting_hotfix_audit(
-                    ctx, specs, raw_before
-                )
+                state_hint = _read_json(ctx.paths.state) if ctx.paths.state.is_file() else {}
+                if (
+                    state_hint.get("phase_status") == "probe_complete"
+                    and not bool(state_hint.get("finished"))
+                    and not str(state_hint.get("stop_reason", ""))
+                ):
+                    runtime_hotfix_kind = "finalize_nonfinite_serialization_repair"
+                    prehotfix_audit = _finalize_serialization_hotfix_audit(
+                        ctx, specs, raw_before
+                    )
+                else:
+                    runtime_hotfix_kind = "probe_timing_only_reporting_repair"
+                    prehotfix_audit = _postprobe_reporting_hotfix_audit(
+                        ctx, specs, raw_before
+                    )
             else:
                 raise ValueError("T13S14 runtime hotfix raw success count mismatch")
             runtime_hotfix = True
@@ -1511,7 +1577,14 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                 and old_state.get("stop_reason") == "probe_runtime_gate_failed"
                 and int(old_state.get("new_raw_count", -1)) == 144
             )
-            if not (stopped_baseline or stopped_probe_report):
+            open_finalize_report = bool(
+                runtime_hotfix_kind == "finalize_nonfinite_serialization_repair"
+                and not bool(old_state.get("finished"))
+                and old_state.get("phase_status") == "probe_complete"
+                and not str(old_state.get("stop_reason", ""))
+                and int(old_state.get("new_raw_count", -1)) == 144
+            )
+            if not (stopped_baseline or stopped_probe_report or open_finalize_report):
                 raise ValueError("T13S14 runtime hotfix found an incompatible stopped state")
     elif runtime_hotfix:
         raise ValueError("T13S14 runtime hotfix requires the frozen stopped state")
@@ -1530,24 +1603,20 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                 "package_digest": package["digest"],
             })
             _write_json(ctx.paths.state, old_state)
-            audit_path = ctx.paths.analysis / (
-                "semantics_preserving_runtime_hotfix.json"
-                if runtime_hotfix_kind == "calibration_preaction_count_repair"
-                else (
-                    "semantics_preserving_response_lattice_hotfix.json"
-                    if runtime_hotfix_kind == "response_lattice_zero_tsc_count_repair"
-                    else "semantics_preserving_probe_reporting_hotfix.json"
-                )
-            )
-            contract = (
-                "t13s14_nearest_exact_integer_count_runtime_hotfix_v1"
-                if runtime_hotfix_kind == "calibration_preaction_count_repair"
-                else (
-                    "t13s14_response_nearest_exact_integer_count_runtime_hotfix_v1"
-                    if runtime_hotfix_kind == "response_lattice_zero_tsc_count_repair"
-                    else "t13s14_probe_timing_only_reporting_hotfix_v1"
-                )
-            )
+            audit_names = {
+                "calibration_preaction_count_repair": "semantics_preserving_runtime_hotfix.json",
+                "response_lattice_zero_tsc_count_repair": "semantics_preserving_response_lattice_hotfix.json",
+                "probe_timing_only_reporting_repair": "semantics_preserving_probe_reporting_hotfix.json",
+                "finalize_nonfinite_serialization_repair": "semantics_preserving_finalize_reporting_hotfix.json",
+            }
+            contracts = {
+                "calibration_preaction_count_repair": "t13s14_nearest_exact_integer_count_runtime_hotfix_v1",
+                "response_lattice_zero_tsc_count_repair": "t13s14_response_nearest_exact_integer_count_runtime_hotfix_v1",
+                "probe_timing_only_reporting_repair": "t13s14_probe_timing_only_reporting_hotfix_v1",
+                "finalize_nonfinite_serialization_repair": "t13s14_nonfinite_candidate_reporting_hotfix_v1",
+            }
+            audit_path = ctx.paths.analysis / audit_names[runtime_hotfix_kind]
+            contract = contracts[runtime_hotfix_kind]
             _write_json(audit_path, {
                 "schema_version": 1, "stage": STAGE,
                 "contract": contract, "runtime_hotfix_kind": runtime_hotfix_kind,
@@ -1558,7 +1627,10 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                 "successful_raw_preserved": True,
                 "failed_raw_had_no_plant_advance": True,
                 "response_probe_raw_count": (
-                    128 if runtime_hotfix_kind == "probe_timing_only_reporting_repair" else 0
+                    128 if runtime_hotfix_kind in {
+                        "probe_timing_only_reporting_repair",
+                        "finalize_nonfinite_serialization_repair",
+                    } else 0
                 ),
                 "hotfix_additional_plant_advance_count": 0,
                 "raw_rollouts_reexecuted_by_hotfix": 0,
@@ -2100,6 +2172,14 @@ def _predict_family(
     return _predict_kernel(row, model, observer_cfg)
 
 
+def _finite_number_or_none(value: Any) -> float | None:
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if math.isfinite(number) else None
+
+
 def _candidate_key(audit: Mapping[str, Any]) -> tuple[Any, ...]:
     hyper = audit["hyper"]
     family = str(hyper["family"])
@@ -2134,7 +2214,7 @@ def _cross_validate_candidate(
             structural_eligible = False
             fold_audits.append({
                 "held_pair": held_pair, "eligible": False,
-                "condition": model.get("interaction_condition", math.inf),
+                "condition": _finite_number_or_none(model.get("interaction_condition")),
                 "failure_reason": model.get("failure_reason", "fit failed"),
             })
             continue
@@ -2176,6 +2256,10 @@ def _cross_validate_candidate(
     full_rows = len(row_audits) == len(rows)
     all_gates = bool(full_rows and all(row["passed"] for row in row_audits))
     eligible = bool(structural_eligible and len(fold_audits) == len(pairs) and all_gates)
+    conditions = [
+        value for row in fold_audits
+        if (value := _finite_number_or_none(row.get("condition"))) is not None
+    ]
     return {
         "hyper": dict(hyper), "eligible": eligible,
         "structural_fit_eligible": structural_eligible,
@@ -2183,9 +2267,9 @@ def _cross_validate_candidate(
         "center_error_pass_count": sum(row["center_error_pass"] for row in row_audits),
         "tube_containment_pass_count": sum(row["tube_containment_pass"] for row in row_audits),
         "tube_cap_pass_count": sum(row["tube_cap_pass"] for row in row_audits),
-        "maximum_error": max(errors, default=math.inf),
-        "mean_error": float(np.mean(errors)) if errors else math.inf,
-        "maximum_condition": max((float(row.get("condition", math.inf)) for row in fold_audits), default=math.inf),
+        "maximum_error": max(errors) if errors else None,
+        "mean_error": float(np.mean(errors)) if errors else None,
+        "maximum_condition": max(conditions) if conditions else None,
         "folds": fold_audits, "rows": row_audits,
     }
 
@@ -2199,9 +2283,11 @@ def evaluate_models(ctx: Context, table: Sequence[Mapping[str, Any]], specs: Seq
     for index, hyper in enumerate(grid):
         audit = _cross_validate_candidate(rows, hyper, ctx.cfg["observer"])
         candidates.append(audit)
+        maximum_error = audit["maximum_error"]
+        maximum_error_text = "unavailable" if maximum_error is None else f"{maximum_error:.9g}"
         print(
             f"[T13S14] model {index + 1}/{len(grid)} family={hyper['family']} "
-            f"eligible={audit['eligible']} max={audit['maximum_error']:.9g}",
+            f"eligible={audit['eligible']} max={maximum_error_text}",
             flush=True,
         )
     eligible = sorted((row for row in candidates if row["eligible"]), key=_candidate_key)
