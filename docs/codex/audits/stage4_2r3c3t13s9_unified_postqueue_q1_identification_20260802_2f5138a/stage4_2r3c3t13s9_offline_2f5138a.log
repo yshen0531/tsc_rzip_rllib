@@ -1,0 +1,37 @@
+[T13S9] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S9] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s9_runs/stage4_2r3c3t13s9_unified_postqueue_q1_identification_20260802_2f5138a command=offline backend=serial resume=0 workers=68
+[T13S9] 4 formal-end baselines + 64 lattice-native Card15 probes = 68 real TSC rollouts.
+[T13S9] Development raw is opened and model-hashed before blind holdout raw.
+{
+  "finished": false,
+  "offline_lattice_audit": {
+    "allow_existing_raw": false,
+    "blind_holdout_spec_count": 34,
+    "campaign_identity": "unified_postqueue_q1_identification_v1",
+    "development_spec_count": 34,
+    "dynamic_lattice_preflight_pass_count": 68,
+    "expected_current_components": 34272,
+    "expected_lattice_event_count": 128,
+    "expected_specs": 68,
+    "hidden_wire_invariant_action_count": 68,
+    "lattice_design_failure_count": 0,
+    "lattice_design_failures": [],
+    "lattice_event_count": 128,
+    "passed": true,
+    "phase": "offline_dynamic_lattice_preflight",
+    "plant_advance_count": 0,
+    "raw_count": 0,
+    "raw_directory_gate_passed": true,
+    "real_tsc_executed": false,
+    "route": "LATTICE_PREFLIGHT_PASS_REAL_TSC_NOT_STARTED",
+    "schema_version": 1,
+    "spec_count": 68,
+    "stage": "Stage4.2R3c3T13S9"
+  },
+  "phase": "offline_dynamic_lattice_preflight",
+  "primary_pass": false,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S9"
+}
+OFFLINE_GATE_COMMAND_OK

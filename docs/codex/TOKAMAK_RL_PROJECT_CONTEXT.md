@@ -358,10 +358,23 @@ S1 pre-queue rows remained unsupported while all S5 post-queue rows became
 supported, proving both an excitation incompatibility and a remaining
 supported cross-history model failure.
 
-The active T13S9 campaign prospectively applies the exact S5 post-queue
-lattice action to all four q1 restart contexts with correct immediate effect
-states. Its only possible positive route creates compatible development raw
-for a separately frozen combined q1/q2 audit. Formal timing is unchanged.
+T13S9 then completed 68/68 authentic q1 identification trajectories through
+the same post-queue Card15 coordinate as T13S5 q2. Raw, snapshot, restart,
+causality, runtime, current, statistics, and reporting integrity passed, as
+did all four development rank/condition/tube gates. Its consumed internal q1
+history diagnostic nevertheless passed containment only 15/32 and relative
+error only 20/32. T13S9 is therefore an identification completion result,
+not a controller or MPC pass.
+
+The active T13S10 task is a prospectively frozen zero-new-TSC combined
+first-effect audit over all T13S5 q2 and T13S9 q1 raw. It uses only measured
+14-coil current and causal R/Z/vR/vZ/Ip at the common post-queue
+`issue_step + 1` effect state, with eight leave-one-context-out folds and a
+label-free same-stratum hypothesis bank. A pass permits only a fresh q3
+identification holdout design; a failure requires observer, active
+calibration, or nonlinear state-conditioned tube redesign. Formal timing is
+unchanged and no controller, MPC, expert data, BC, DAgger, or RL is
+authorized.
 
 ## 7. Medium-term objectives
 

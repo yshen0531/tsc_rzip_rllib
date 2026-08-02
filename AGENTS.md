@@ -493,13 +493,24 @@ support improved to 64/112, but containment was 29/112 and relative error
 were supported, yet their cross-history accuracy still failed. T13S8 is
 final as `FIRST_EFFECT_CAUSAL_TRANSITION_INSUFFICIENT_REDESIGN`.
 
-The active stage is the prospectively frozen real-TSC T13S9 identification
-campaign in `STAGE4_2R3C3T13S9_UNIFIED_POSTQUEUE_Q1_DESIGN.md`. It applies
-the exact S5-style post-queue Card15 lattice excitation to the four q1
-restart contexts, with the correct immediate physical effect declarations.
-It may only create compatible q1 development raw for a separately frozen
-combined q1/q2 audit. It authorizes no controller, MPC, expert data, q3
-holdout, BC, DAgger, or RL.
+T13S9 completed 68/68 authentic q1 identification trajectories through the
+same post-queue Card15 coordinate as T13S5 q2. Raw, snapshot, restart,
+causality, runtime, current, statistics, and reporting integrity passed.
+All four development maps passed rank, condition, and non-vacuous tube
+gates, but the consumed internal q1 history diagnostic passed containment
+only 15/32 and relative error only 20/32. T13S9 is final as
+`UNIFIED_POSTQUEUE_Q1_IDENTIFICATION_COMPLETE_COMBINE_Q2_REQUIRED`; it is an
+identification completion result, not a controller or MPC pass.
+
+The active stage is the prospectively frozen zero-new-TSC T13S10 audit in
+`STAGE4_2R3C3T13S10_COMBINED_POSTQUEUE_FIRST_EFFECT_DESIGN.md`. It must
+authenticate and combine all 68 T13S5 q2 and 68 T13S9 q1 raw trajectories,
+extract only each probe's post-queue `issue_step + 1` measured-current and
+causal visible-state transition, and run the frozen eight-context
+leave-one-context-out hypothesis-bank gates. A pass authorizes only a fresh
+q3 identification holdout design. A failure routes to observer, active
+calibration, or nonlinear state-conditioned tube redesign. It authorizes no
+controller, MPC, expert data, BC, DAgger, or RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

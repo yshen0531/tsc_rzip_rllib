@@ -1,0 +1,53 @@
+{
+  "expected_unique_state_count": 4,
+  "actual_unique_state_count": 4,
+  "passed_count": 4,
+  "failed_count": 0,
+  "passed": true,
+  "states": [
+    {
+      "state_generation_experiment_id": "s42r3b_03abcc6378f04ba5be30",
+      "snapshot_identity_count": 1,
+      "passed": true,
+      "failure_reason": "",
+      "snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_03abcc6378f04ba5be30/1270ms",
+      "expected_manifest_digest": "1edbbc2b7a2d31c7dcdf8e3bbade06e2a55ee91c33bedfa9d13fa0681fa7d910",
+      "actual_manifest_digest": "1edbbc2b7a2d31c7dcdf8e3bbade06e2a55ee91c33bedfa9d13fa0681fa7d910",
+      "manifest_file_count": 8,
+      "manifest_total_bytes": 118528613
+    },
+    {
+      "state_generation_experiment_id": "s42r3b_46ca1104e9f7129c703b",
+      "snapshot_identity_count": 1,
+      "passed": true,
+      "failure_reason": "",
+      "snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_46ca1104e9f7129c703b/1230ms",
+      "expected_manifest_digest": "4add3b5354fa2a0660cdd9c3f02212989e1f81f76804a8f9f7eba5a2969548b7",
+      "actual_manifest_digest": "4add3b5354fa2a0660cdd9c3f02212989e1f81f76804a8f9f7eba5a2969548b7",
+      "manifest_file_count": 8,
+      "manifest_total_bytes": 118562301
+    },
+    {
+      "state_generation_experiment_id": "s42r3b_4b608db7a281e5e3ca9a",
+      "snapshot_identity_count": 1,
+      "passed": true,
+      "failure_reason": "",
+      "snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_4b608db7a281e5e3ca9a/1270ms",
+      "expected_manifest_digest": "2af7aee6a2fc773ea3c25f4ebb92255300328a3bf4c0ab56bb9ed9aba5be27eb",
+      "actual_manifest_digest": "2af7aee6a2fc773ea3c25f4ebb92255300328a3bf4c0ab56bb9ed9aba5be27eb",
+      "manifest_file_count": 8,
+      "manifest_total_bytes": 118528613
+    },
+    {
+      "state_generation_experiment_id": "s42r3b_58701a99165df704aa4d",
+      "snapshot_identity_count": 1,
+      "passed": true,
+      "failure_reason": "",
+      "snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_58701a99165df704aa4d/1230ms",
+      "expected_manifest_digest": "0c4141fe324eb930c9929db60c52190e1f745cf7a4c1cc4ff4badcfbb4ab8cf4",
+      "actual_manifest_digest": "0c4141fe324eb930c9929db60c52190e1f745cf7a4c1cc4ff4badcfbb4ab8cf4",
+      "manifest_file_count": 8,
+      "manifest_total_bytes": 118562301
+    }
+  ]
+}

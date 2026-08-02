@@ -1,0 +1,136 @@
+[T13S9] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S9] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s9_runs/stage4_2r3c3t13s9_unified_postqueue_q1_identification_20260802_2f5138a command=all backend=ray resume=1 workers=68
+[T13S9] 4 formal-end baselines + 64 lattice-native Card15 probes = 68 real TSC rollouts.
+[T13S9] Development raw is opened and model-hashed before blind holdout raw.
+2026-08-02 13:08:52,105	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[T13S9] ray_capacity requested=68 cluster_cpus=68 pending=68 actors=68 initialized_now=1
+[T13S9] maximum_actor_count=68 pending=68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] waiting 0/68
+[T13S9] 4/68
+[T13S9] 8/68
+[T13S9] 12/68
+[T13S9] 16/68
+[T13S9] 20/68
+[T13S9] 24/68
+[T13S9] 28/68
+[T13S9] 32/68
+[T13S9] 36/68
+[T13S9] 40/68
+[T13S9] 44/68
+[T13S9] 48/68
+[T13S9] 52/68
+[T13S9] 56/68
+[T13S9] 60/68
+[T13S9] 64/68
+[T13S9] 68/68
+{
+  "control_summary": {
+    "actuator_component_count": 34272,
+    "actuator_component_expected": 34272,
+    "actuator_inside_interval_count": 34272,
+    "actuator_interval_gate_passed": true,
+    "actuator_interval_or_serialization_failure_count": 0,
+    "actuator_signed_group_gate_passed": true,
+    "baseline_formal_reproduction_count": 4,
+    "baseline_formal_reproduction_mismatch_count": 0,
+    "baseline_prefix_mismatch_count": 0,
+    "blind_holdout_gate_passed": false,
+    "campaign_identity": "unified_postqueue_q1_identification_v1",
+    "cancellation_policy_pass_count": 68,
+    "card15_field_count": 34272,
+    "card15_length_exact_count": 34272,
+    "clip_or_rescale_count": 0,
+    "controller_causality_failure_count": 0,
+    "current_utilization_pass": true,
+    "development_before_holdout_open_order_pass": true,
+    "development_model_gate_passed": true,
+    "development_signal_pass_count": 16,
+    "development_signed_group_count": 16,
+    "diagnostic_blind_holdout_passed": false,
+    "execution_gate_passed": true,
+    "execution_pass_count": 68,
+    "expected_rollouts": 68,
+    "extended_baseline_prefix_exact_count": 4,
+    "forbidden_controller_input_count": 0,
+    "forbidden_model_input_count": 0,
+    "formal_timing_unchanged": true,
+    "holdout_componentwise_containment_pass_count": 15,
+    "holdout_pre_effect_causality_pass_count": 32,
+    "holdout_scaled_center_error_pass_count": 20,
+    "holdout_signed_response_count": 32,
+    "identification_only": true,
+    "independent_long_hold_validated": false,
+    "independent_new_history_confirmation": false,
+    "lattice_probe_execution_failure_count": 0,
+    "maximum_actuator_interval_excess_A": 0.0,
+    "maximum_current_utilization": 0.39039999999999997,
+    "maximum_current_utilization_allowed": 0.55,
+    "maximum_development_condition_number": 7.954783284552777,
+    "maximum_holdout_scaled_center_relative_error": 1.7167681161541348,
+    "maximum_tube_to_cap_ratio": 0.1471974999997585,
+    "model_canonical_core_sha256": "6c949c788b07f7716cc72918071f21f63201133b33657373231dac251b189a77",
+    "model_file_sha256": "c958c044cd4818909160c67309f07aa6487d7a86a882e8b735f60e09263bde51",
+    "model_fit_count": 4,
+    "model_non_vacuous_tube_pass_count": 4,
+    "model_rank_condition_pass_count": 4,
+    "n_rollouts": 68,
+    "negative_current_center_count": 16,
+    "nonfinite_development_condition_count": 0,
+    "observed_current_signal_pass_count": 32,
+    "observed_current_symmetry_pass_count": 32,
+    "passed": true,
+    "phase": "unified_postqueue_q1_identification",
+    "plant_restart_fidelity_failure_count": 0,
+    "pre_effect_causality_gate_passed": true,
+    "pre_effect_causality_pass_count": 32,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "raw_file_count": 68,
+    "raw_inventory_digest": "9ccc67d5eda2b0710d658812207d99666a50af352e42d950086b694a3fa928ad",
+    "raw_total_bytes": 3610295,
+    "return_to_stored_center_count": 48,
+    "runtime_or_environment_error_count": 0,
+    "schema_version": 1,
+    "signed_group_count": 32,
+    "stage": "Stage4.2R3c3T13S9",
+    "target_field_central_symmetry_exact_count": 32
+  },
+  "verdict": {
+    "bc_dagger_or_rl_allowed": false,
+    "campaign_identity": "unified_postqueue_q1_identification_v1",
+    "identification_only": true,
+    "independent_long_hold_validated": false,
+    "independent_new_history_confirmation": false,
+    "next_if_fail": "Preserve raw and distinguish actuator uncertainty, signal, off-mode quantization, latent-history dependence, and local-model error.",
+    "next_if_pass": "Preregister a zero-new-TSC combined q1/q2 first-effect audit; do not implement a controller.",
+    "primary_pass": true,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "real_mpc_executed": false,
+    "schema_version": 1,
+    "stage": "Stage4.2R3c3T13S9",
+    "verdict": "UNIFIED_POSTQUEUE_Q1_IDENTIFICATION_COMPLETE_COMBINE_Q2_REQUIRED"
+  }
+}

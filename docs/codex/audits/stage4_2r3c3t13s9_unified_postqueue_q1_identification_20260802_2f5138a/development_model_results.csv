@@ -1,0 +1,5 @@
+stratum,probe_window,development_rank,development_condition_number,development_condition_number_finite,development_signal_pass,development_rank_condition_pass,maximum_tube_to_cap_ratio,tube_non_vacuous_pass,passed
+easy,braking,4,7.9547832845527395,True,True,True,0.1471974999997585,True,True
+easy,transport,4,7.954783284552777,True,True,True,0.0003268749999982712,True,True
+hard,braking,4,7.954783284552702,True,True,True,0.0006080499999996969,True,True
+hard,transport,4,7.953196179443906,True,True,True,0.0025570000000205142,True,True

@@ -1,0 +1,50 @@
+[
+  {
+    "stratum": "easy",
+    "probe_window": "braking",
+    "development_rank": 4,
+    "development_condition_number": 7.9547832845527395,
+    "development_condition_number_finite": true,
+    "development_signal_pass": true,
+    "development_rank_condition_pass": true,
+    "maximum_tube_to_cap_ratio": 0.1471974999997585,
+    "tube_non_vacuous_pass": true,
+    "passed": true
+  },
+  {
+    "stratum": "easy",
+    "probe_window": "transport",
+    "development_rank": 4,
+    "development_condition_number": 7.954783284552777,
+    "development_condition_number_finite": true,
+    "development_signal_pass": true,
+    "development_rank_condition_pass": true,
+    "maximum_tube_to_cap_ratio": 0.0003268749999982712,
+    "tube_non_vacuous_pass": true,
+    "passed": true
+  },
+  {
+    "stratum": "hard",
+    "probe_window": "braking",
+    "development_rank": 4,
+    "development_condition_number": 7.954783284552702,
+    "development_condition_number_finite": true,
+    "development_signal_pass": true,
+    "development_rank_condition_pass": true,
+    "maximum_tube_to_cap_ratio": 0.0006080499999996969,
+    "tube_non_vacuous_pass": true,
+    "passed": true
+  },
+  {
+    "stratum": "hard",
+    "probe_window": "transport",
+    "development_rank": 4,
+    "development_condition_number": 7.953196179443906,
+    "development_condition_number_finite": true,
+    "development_signal_pass": true,
+    "development_rank_condition_pass": true,
+    "maximum_tube_to_cap_ratio": 0.0025570000000205142,
+    "tube_non_vacuous_pass": true,
+    "passed": true
+  }
+]

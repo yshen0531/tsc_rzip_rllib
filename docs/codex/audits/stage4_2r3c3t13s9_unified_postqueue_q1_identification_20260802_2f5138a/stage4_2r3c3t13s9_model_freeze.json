@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S9",
+  "model_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s9_runs/stage4_2r3c3t13s9_unified_postqueue_q1_identification_20260802_2f5138a/stage4_2r3c3t13s9_frozen_model/stage4_2r3c3t13s9_local_model_tube.json",
+  "model_size_bytes": 26430,
+  "model_file_sha256": "c958c044cd4818909160c67309f07aa6487d7a86a882e8b735f60e09263bde51",
+  "model_canonical_core_sha256": "6c949c788b07f7716cc72918071f21f63201133b33657373231dac251b189a77",
+  "holdout_opened_before_model_hash": false,
+  "frozen_utc": "20260802_052131"
+}

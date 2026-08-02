@@ -2007,3 +2007,80 @@ declared immediate at states 1/2 and 15/16; delay-0 remains states 3/4 and
 17/18. A complete campaign authorizes only a separately frozen combined
 q1/q2 first-effect audit. It does not authorize a controller, MPC, q3,
 expert data, BC, DAgger, or RL.
+
+## 32. Final T13S9 result and active T13S10 task
+
+T13S9 completed its frozen authentic campaign at executed package checkpoint
+`2f5138a`. Its exact final route is:
+
+```text
+UNIFIED_POSTQUEUE_Q1_IDENTIFICATION_COMPLETE_COMBINE_Q2_REQUIRED
+```
+
+Exact evidence identities:
+
+```text
+raw JSON.GZ files / bytes                            68 / 3,610,295
+raw inventory digest
+  9ccc67d5eda2b0710d658812207d99666a50af352e42d950086b694a3fa928ad
+server audit SHA-256
+  df4d7982f98a6216997d89ac5adea9ca2e3b2bf367451c3412d5458ccc5c60e0
+run inventory files / bytes                         295 / 8,469,039
+run inventory digest
+  e4dbef249beeba52de433f1112cf894d6d930daf1856dd4b66143f188a6be8b2
+```
+
+Independent server postprocessing recomputed all 68 raw results and the
+reported summary exactly. Authentic execution, restart, controller
+causality, target-current symmetry, observed-current symmetry, and
+pre-effect causality all passed. Card15 and current interval checks passed
+34,272/34,272. All four development maps passed rank/condition and
+non-vacuous tubes; maximum condition was `7.9547833`, maximum tube/cap ratio
+`0.1471975`, and maximum current utilization `0.3904`.
+
+The consumed internal q1 diagnostic passed componentwise containment only
+15/32 and scaled relative error only 20/32, with maximum finite error
+`1.7167681`. This is a cross-history diagnostic model failure, not a runtime,
+restart, raw-corruption, statistics, or reporting error. T13S9 ran no
+controller or MPC and makes no real control claim.
+
+Two pre-execution workflow defects were repaired before real TSC: missing
+empty-package import closure and Windows-transfer executable-bit loss. The
+failed shell attempt created no run, raw, snapshot, Ray, `gotsc`, or plant
+advance. Neither repair changed experiment semantics.
+
+The active task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S10_COMBINED_POSTQUEUE_FIRST_EFFECT_DESIGN.md
+```
+
+T13S10 is a zero-new-TSC read-only audit over all 68 T13S5 q2 and 68 T13S9
+q1 raw trajectories. Both campaigns use the same post-queue Card15 action,
+so every signed probe is extracted only at `issue_step + 1`:
+
+```text
+x = measured 14-coil current difference
+y = causal single-state R/Z/vR/vZ/Ip difference
+```
+
+It freezes eight contexts, two windows, 16 local maps, eight
+leave-one-context-out folds, and 128 signed held rows. All three
+same-stratum training maps remain as a label-free hypothesis bank. Required
+exact gates include 16/16 rank/condition/tube, 128/128 support,
+componentwise containment, and relative error `<=0.10`, with unchanged
+support `<=0.15`, tube caps, causality, collision, and forbidden-input rules.
+
+T13S10 may end only as:
+
+```text
+UNIFIED_POSTQUEUE_Q1_Q2_FIRST_EFFECT_CANDIDATE_Q3_HOLDOUT_REQUIRED
+UNIFIED_POSTQUEUE_Q1_Q2_FIRST_EFFECT_INSUFFICIENT_OBSERVER_REDESIGN
+```
+
+A pass authorizes only prospective design of a fresh q3 identification
+holdout. A failure stops this static bank and requires persistent
+state/observer, active calibration, or nonlinear state-conditioned tube
+redesign. Neither route authorizes a controller, MPC, expert data, BC,
+DAgger, or bounded residual RL.
