@@ -228,6 +228,14 @@ class Stage42R3C3T13S13Tests(unittest.TestCase):
         self.assertFalse(audit["passed"])
         self.assertEqual(audit["disjoint_near_nonexact_alias_pair_count"], 1)
 
+    def test_launcher_treats_controller_bank_as_file(self):
+        text = (ROOT / "run_stage4_2r3c3t13s13_common.sh").read_text(encoding="utf-8")
+        self.assertIn(
+            'for path in "${SOURCE_T3_BANK}" "${Q1_AUDIT}"', text,
+        )
+        directory_loop = text.split('for path in "${SOURCE_R3B}"', 1)[1].split("done", 1)[0]
+        self.assertNotIn('"${SOURCE_T3_BANK}"', directory_loop)
+
 
 if __name__ == "__main__":
     unittest.main()

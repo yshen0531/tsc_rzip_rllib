@@ -15,10 +15,10 @@ Q1_AUDIT="$(stage4_2r3c3t13s13_q1_audit)"
 Q2_AUDIT="$(stage4_2r3c3t13s13_q2_audit)"
 R3B_AUDIT="$(stage4_2r3c3t13s13_r3b_audit)"
 R3B_SNAPSHOTS="$(stage4_2r3c3t13s13_r3b_snapshot_checks)"
-for path in "${SOURCE_R3B}" "${SOURCE_R3C3}" "${SOURCE_BANK}" "${SOURCE_T1}" "${SOURCE_T1_AUDIT}" "${SOURCE_T3_BANK}" "${Q1_RUN}" "${Q2_RUN}"; do
+for path in "${SOURCE_R3B}" "${SOURCE_R3C3}" "${SOURCE_BANK}" "${SOURCE_T1}" "${SOURCE_T1_AUDIT}" "${Q1_RUN}" "${Q2_RUN}"; do
   [[ -d "${path}" ]] || { echo "ERROR: source directory missing: ${path}" >&2; exit 1; }
 done
-for path in "${Q1_AUDIT}" "${Q2_AUDIT}" "${R3B_AUDIT}" "${R3B_SNAPSHOTS}"; do
+for path in "${SOURCE_T3_BANK}" "${Q1_AUDIT}" "${Q2_AUDIT}" "${R3B_AUDIT}" "${R3B_SNAPSHOTS}"; do
   [[ -f "${path}" ]] || { echo "ERROR: source audit missing: ${path}" >&2; exit 1; }
 done
 RUN_DIR="${STAGE4_2R3C3T13S13_RUN_DIR:-$(stage4_2r3c3t13s13_new_run_dir)}"
