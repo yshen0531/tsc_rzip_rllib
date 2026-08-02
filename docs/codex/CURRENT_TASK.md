@@ -2084,3 +2084,70 @@ holdout. A failure stops this static bank and requires persistent
 state/observer, active calibration, or nonlinear state-conditioned tube
 redesign. Neither route authorizes a controller, MPC, expert data, BC,
 DAgger, or bounded residual RL.
+
+## 33. Final T13S10 result and active T13S11 task
+
+T13S10 completed at executed audit package checkpoint `723c6bf` with zero
+new TSC. Its exact final route is:
+
+```text
+UNIFIED_POSTQUEUE_Q1_Q2_FIRST_EFFECT_INSUFFICIENT_OBSERVER_REDESIGN
+```
+
+The audit authenticated 68 T13S5 q2 and 68 T13S9 q1 raw files against their
+independent source audits. All 136 trace identities, 64 post-queue effect
+contracts, 128 signed first-effect extractions, and 128 pre-effect causality
+checks passed. All 16 local models passed signal, rank/condition, and
+non-vacuous tube gates. Every held row had all three same-stratum hypotheses
+inside the frozen input-support gate.
+
+The response result nevertheless failed:
+
+```text
+componentwise containment                              107 / 128
+scaled relative error <= 0.10                          110 / 128
+both frozen response gates                              92 / 128
+maximum finite scaled relative error                  0.9307636
+```
+
+Both campaigns, strata, and windows contain failures. The nearest
+visible-feature map passed both gates only 64/128, and even an oracle single
+hypothesis passed both only 72/128. This is a static causal transition-model
+design failure. There were no runtime, deployment, raw, restart, causality,
+statistics, or reporting errors, and no controller, optimizer, plant step,
+Ray, `gotsc`, or TSC ran.
+
+Exact compact audit SHA-256:
+
+```text
+f24768f7b4899c73f68fd0a4e3991f524239951883abf3d2809461b5ab82509b
+```
+
+The active task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S11_CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_DESIGN.md
+```
+
+T13S11 uses the consumed q1/q2 raw only. In each context, one positive
+`mode0_coil8_component` transport transition supplies an eight-dimensional
+absolute same-trajectory causal signature. Eight LOCO folds compute a
+training-only rank-2 calibration state basis, a rank-4 braking-current basis,
+and a 12-column state/current interaction model. It tests 64 later braking
+first-effect rows under unchanged support `0.15`, error `0.10`, response
+scales, tube multiplier, component caps, causality, collision, and
+forbidden-input rules.
+
+T13S11 may end only as:
+
+```text
+CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_CANDIDATE_DUAL_WINDOW_TSC_REQUIRED
+CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_INSUFFICIENT_PERSISTENT_OBSERVER_REDESIGN
+```
+
+A pass authorizes only a new authentic campaign in which calibration and
+braking execute on the same physical trajectory. A failure requires a
+longer observation sequence, multiple safe calibrations, or a persistent
+nonlinear observer. Neither route authorizes a controller, MPC, expert data,
+BC, DAgger, or bounded residual RL.

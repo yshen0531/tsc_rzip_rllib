@@ -502,15 +502,23 @@ only 15/32 and relative error only 20/32. T13S9 is final as
 `UNIFIED_POSTQUEUE_Q1_IDENTIFICATION_COMPLETE_COMBINE_Q2_REQUIRED`; it is an
 identification completion result, not a controller or MPC pass.
 
-The active stage is the prospectively frozen zero-new-TSC T13S10 audit in
-`STAGE4_2R3C3T13S10_COMBINED_POSTQUEUE_FIRST_EFFECT_DESIGN.md`. It must
-authenticate and combine all 68 T13S5 q2 and 68 T13S9 q1 raw trajectories,
-extract only each probe's post-queue `issue_step + 1` measured-current and
-causal visible-state transition, and run the frozen eight-context
-leave-one-context-out hypothesis-bank gates. A pass authorizes only a fresh
-q3 identification holdout design. A failure routes to observer, active
-calibration, or nonlinear state-conditioned tube redesign. It authorizes no
-controller, MPC, expert data, BC, DAgger, or RL.
+T13S10 then authenticated all 136 T13S5/T13S9 raw files and completed its
+zero-new-TSC combined audit. Input support, local signal, rank, condition,
+and tube gates passed exactly, but containment passed only 107/128 and
+relative error only 110/128; only 92/128 rows passed both. Its final route is
+`UNIFIED_POSTQUEUE_Q1_Q2_FIRST_EFFECT_INSUFFICIENT_OBSERVER_REDESIGN`. This
+is a finite causal transition-model design failure, not a runtime, raw,
+restart, causality, reporting, controller, or real-MPC failure.
+
+The active stage is the prospectively frozen zero-new-TSC T13S11 preflight
+in `STAGE4_2R3C3T13S11_CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_DESIGN.md`.
+It uses exactly one positive coil-8-component transport transition as a
+causal observable calibration signature, then tests a training-only rank-2
+state-conditioned interaction model for the later braking transition in
+eight LOCO folds. A pass authorizes only a fresh authentic dual-window
+calibration/braking campaign. A failure requires a longer or nonlinear
+persistent observer. It authorizes no controller, MPC, expert data, BC,
+DAgger, or RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

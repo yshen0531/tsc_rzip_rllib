@@ -1,0 +1,5330 @@
+{
+  "adjacent_cancellation_transition_used": false,
+  "all_source_data_consumed_not_blind": true,
+  "all_three_training_hypotheses_retained": true,
+  "audit_revision": "combined_postqueue_first_effect_all_hypotheses_loco_v1",
+  "bc_dagger_or_rl_allowed": false,
+  "controller_optimizer_or_plant_step_executed": false,
+  "feature_schema": [
+    "R",
+    "Z",
+    "Ip",
+    "vR",
+    "vZ",
+    "velocity_known",
+    "coil_current_0",
+    "coil_current_1",
+    "coil_current_2",
+    "coil_current_3",
+    "coil_current_4",
+    "coil_current_5",
+    "coil_current_6",
+    "coil_current_7",
+    "coil_current_8",
+    "coil_current_9",
+    "coil_current_10",
+    "coil_current_11",
+    "coil_current_12",
+    "coil_current_13",
+    "coil_current_delta_0",
+    "coil_current_delta_1",
+    "coil_current_delta_2",
+    "coil_current_delta_3",
+    "coil_current_delta_4",
+    "coil_current_delta_5",
+    "coil_current_delta_6",
+    "coil_current_delta_7",
+    "coil_current_delta_8",
+    "coil_current_delta_9",
+    "coil_current_delta_10",
+    "coil_current_delta_11",
+    "coil_current_delta_12",
+    "coil_current_delta_13",
+    "coil_history_known",
+    "target_R_offset",
+    "target_Z_offset",
+    "target_Ip_offset",
+    "formal_issue_fraction",
+    "normalized_delay",
+    "normalized_slew"
+  ],
+  "feature_uses_pair_history_prefix_source_wire_or_future": false,
+  "first_effect_transition_only": true,
+  "formal_timing_unchanged": true,
+  "in_memory_event_field_adapter_only": true,
+  "local_models": [
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.954783284552777,
+      "context_id": "context_00",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0003268749999982712,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.9547832845527395,
+      "context_id": "context_00",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.1471974999997585,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.954783284552777,
+      "context_id": "context_01",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0003278499999992095,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.9547832845527955,
+      "context_id": "context_01",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.13222750000014225,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.954783284552764,
+      "context_id": "context_02",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0021257499999892022,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.954783284552801,
+      "context_id": "context_02",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 3.2500000196941805e-05,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.954783284552764,
+      "context_id": "context_03",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0007525000000027123,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.954783284552878,
+      "context_id": "context_03",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 4.3975000000014527e-05,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "easy",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.953196179443906,
+      "context_id": "context_04",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0025570000000205142,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.954783284552702,
+      "context_id": "context_04",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0006080499999996969,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.953196179443906,
+      "context_id": "context_05",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.11879499999951024,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.954783284552702,
+      "context_id": "context_05",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0004900000005813826,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.953196179443906,
+      "context_id": "context_06",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0020582500000004477,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q2_t13s5",
+      "condition_finite": true,
+      "condition_number": 7.954783284552702,
+      "context_id": "context_06",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0009728500000011622,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.953196179443906,
+      "context_id": "context_07",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.0913224999996068,
+      "probe_window": "transport",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    },
+    {
+      "campaign": "q1_t13s9",
+      "condition_finite": true,
+      "condition_number": 7.954783284552702,
+      "context_id": "context_07",
+      "expected_rank": 4,
+      "maximum_tube_to_cap_ratio": 0.001046424999997548,
+      "probe_window": "braking",
+      "rank": 4,
+      "rank_condition_pass": true,
+      "signal_pass": true,
+      "stratum": "hard",
+      "tube_pass": true
+    }
+  ],
+  "new_q3_holdout_required_before_controller": false,
+  "observer_or_state_conditioned_redesign_required": true,
+  "passed": false,
+  "preregistered_design": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/reports/STAGE4_2R3C3T13S10_COMBINED_POSTQUEUE_FIRST_EFFECT_DESIGN.md",
+  "preregistered_design_sha256": "ecac014c21bebb04ec8940e7de41f1e82eb294638c500809767d66b40174497c",
+  "probe_trajectories_allowed_in_expert_dataset": false,
+  "real_mpc_authorized": false,
+  "real_tsc_executed": false,
+  "route": "UNIFIED_POSTQUEUE_Q1_Q2_FIRST_EFFECT_INSUFFICIENT_OBSERVER_REDESIGN",
+  "schema_version": 1,
+  "source_q1_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s9_audits/stage4_2r3c3t13s9_unified_postqueue_q1_identification_20260802_2f5138a/stage4_2r3c3t13s9_server_audit.json",
+  "source_q1_audit_sha256": "df4d7982f98a6216997d89ac5adea9ca2e3b2bf367451c3412d5458ccc5c60e0",
+  "source_q1_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s9_runs/stage4_2r3c3t13s9_unified_postqueue_q1_identification_20260802_2f5138a",
+  "source_q2_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s5_audits/stage4_2r3c3t13s5_real_20260802_d048686/stage4_2r3c3t13s5_server_audit.json",
+  "source_q2_audit_sha256": "dc4d0147ce4fdd8a00105f8fc8ad45466513bac8b012f6843327b1efc271b033",
+  "source_q2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s5_runs/stage4_2r3c3t13s5_real_20260802_d048686",
+  "source_raw_rewritten": false,
+  "stage": "Stage4.2R3c3T13S10",
+  "summary": {
+    "combined_baseline_count": 8,
+    "combined_context_count": 8,
+    "combined_raw_count": 136,
+    "combined_signed_probe_count": 128,
+    "componentwise_containment_pass_count": 107,
+    "disjoint_exact_causal_alias_pair_count": 0,
+    "exact_feature_input_collision_group_count": 0,
+    "forbidden_feature_or_trace_input_count": 0,
+    "heldout_prediction_count": 128,
+    "leave_one_context_out_fold_count": 8,
+    "local_model_count": 16,
+    "local_rank_condition_pass_count": 16,
+    "local_signal_pass_count": 16,
+    "local_tube_pass_count": 16,
+    "maximum_finite_condition_number": 7.954783284552878,
+    "maximum_finite_scaled_relative_error": 0.9307636454854448,
+    "maximum_local_tube_to_cap_ratio": 0.1471974999997585,
+    "nonfinite_condition_count": 0,
+    "postqueue_first_effect_contract_expected": 64,
+    "postqueue_first_effect_contract_pass_count": 64,
+    "pre_effect_causality_pass_count": 128,
+    "q1_raw_bytes": 3610295,
+    "q1_raw_count": 68,
+    "q1_raw_digest": "9ccc67d5eda2b0710d658812207d99666a50af352e42d950086b694a3fa928ad",
+    "q1_source_audit_certified": true,
+    "q2_raw_bytes": 3610097,
+    "q2_raw_count": 68,
+    "q2_raw_digest": "09ee846d2fd8c2a516ec01f1b91bcbf8f303885c2377373000ab85dfc45e0f01",
+    "q2_source_audit_certified": true,
+    "scaled_relative_error_pass_count": 110,
+    "single_transition_signed_extraction_count": 128,
+    "single_transition_signed_extraction_expected": 128,
+    "supported_hypothesis_pass_count": 128,
+    "trace_identity_expected": 136,
+    "trace_identity_pass_count": 136
+  },
+  "validation_results": [
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 2.579363775143097e-14,
+          "scaled_relative_error": 0.005966703705237997,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 2.8448673538150074e-14,
+          "scaled_relative_error": 0.04806941603546382,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 2.8448673538150074e-14,
+          "scaled_relative_error": 0.04471119699854848,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.005966703705237997,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 2.591783512790654e-14,
+          "scaled_relative_error": 0.016278401762383245,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 3.194655678857736e-14,
+          "scaled_relative_error": 0.058694314340018344,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 3.194655678857736e-14,
+          "scaled_relative_error": 0.05529990618392991,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.016278401762383245,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 2.877569270803081e-17,
+          "scaled_relative_error": 0.001425725230708673,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 2.2416251258143857e-16,
+          "scaled_relative_error": 0.004299779212818173,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 2.2416251258143857e-16,
+          "scaled_relative_error": 0.019691074075635476,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.001425725230708673,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 1.8746812111919718e-17,
+          "scaled_relative_error": 0.00342408813456135,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 1.1867248997421353e-16,
+          "scaled_relative_error": 0.005869384833618237,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 1.1867248997421353e-16,
+          "scaled_relative_error": 0.022232447868182334,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00342408813456135,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 5.29832953363906e-14,
+          "scaled_relative_error": 0.010550971974531278,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 5.592291315403519e-14,
+          "scaled_relative_error": 0.01183098638822201,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 5.592291315403519e-14,
+          "scaled_relative_error": 0.02098711361480949,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.010550971974531278,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 5.297318575115717e-14,
+          "scaled_relative_error": 0.009386508108788945,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 5.6818003172633144e-14,
+          "scaled_relative_error": 0.009396352332757835,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 5.6818003172633144e-14,
+          "scaled_relative_error": 0.006812615027127917,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.006812615027127917,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 3.967093603496276e-14,
+          "scaled_relative_error": 0.006227550054691165,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 3.97400124370609e-14,
+          "scaled_relative_error": 0.008270308485796206,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 3.97400124370609e-14,
+          "scaled_relative_error": 0.014297259982529712,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.006227550054691165,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 3.97227795373148e-14,
+          "scaled_relative_error": 0.005612270394933793,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 3.966905689025209e-14,
+          "scaled_relative_error": 0.017055389847152904,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 3.966905689025209e-14,
+          "scaled_relative_error": 0.026310351675736532,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.005612270394933793,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 1.5872504655705845e-14,
+          "scaled_relative_error": 0.6025193716033393,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 2.4467910173630374e-14,
+          "scaled_relative_error": 1.0638683361277932,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 2.5395829571664395e-14,
+          "scaled_relative_error": 1.064098612117924,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.6025193716033393,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 1.9909836891012828e-14,
+          "scaled_relative_error": 1.229592321856269,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 2.2938386992055872e-14,
+          "scaled_relative_error": 0.01734102547339731,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 2.6346455635355802e-14,
+          "scaled_relative_error": 0.01590472854192058,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.01590472854192058,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 3.69167063978686e-16,
+          "scaled_relative_error": 0.0011172511796716795,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 3.643055226423772e-16,
+          "scaled_relative_error": 0.025456347423008764,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 2.805702247954702e-16,
+          "scaled_relative_error": 0.024870580477790543,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0011172511796716795,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 5.319818460659298e-16,
+          "scaled_relative_error": 0.0010959108205823664,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 1.996341834951973e-16,
+          "scaled_relative_error": 0.02532822778520844,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 3.1248249707810234e-16,
+          "scaled_relative_error": 0.024742731630501374,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0010959108205823664,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 4.3738345731164855e-14,
+          "scaled_relative_error": 1.528976397664292,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 5.893170474997351e-14,
+          "scaled_relative_error": 0.014904160865822587,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 6.751654035493714e-14,
+          "scaled_relative_error": 0.014678538192576853,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.014678538192576853,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 3.7268201366694214e-14,
+          "scaled_relative_error": 0.5926055895129204,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 4.349081076462045e-14,
+          "scaled_relative_error": 1.0669703504201458,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 4.940352856587992e-14,
+          "scaled_relative_error": 1.0669795665864952,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.5926055895129204,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 3.2811717393483284e-14,
+          "scaled_relative_error": 0.41571802964585997,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 4.267430450614241e-14,
+          "scaled_relative_error": 0.7515314959354051,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 4.2701006835708034e-14,
+          "scaled_relative_error": 0.7516083367525983,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.41571802964585997,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_00",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 2.8391041335791936e-14,
+          "scaled_relative_error": 0.4792365732416947,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 3.129075275268578e-14,
+          "scaled_relative_error": 0.008247692431723259,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 3.119456960920384e-14,
+          "scaled_relative_error": 0.008334352330396599,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.008247692431723259,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 2.8280995547093707e-14,
+          "scaled_relative_error": 0.02555175583799223,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 3.010082836349653e-14,
+          "scaled_relative_error": 0.02685973730153012,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 3.010082836349653e-14,
+          "scaled_relative_error": 0.023668918362720386,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.023668918362720386,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 2.837277126301056e-14,
+          "scaled_relative_error": 0.003919720152780281,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 3.451161681929907e-14,
+          "scaled_relative_error": 0.05743676448167281,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 3.451161681929907e-14,
+          "scaled_relative_error": 0.0540459082177409,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.003919720152780281,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 2.877569270803081e-17,
+          "scaled_relative_error": 0.00225611219103296,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 2.2416251258143857e-16,
+          "scaled_relative_error": 0.0037198376042856807,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 2.2416251258143857e-16,
+          "scaled_relative_error": 0.01932053319415178,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00225611219103296,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 1.8746812111919718e-17,
+          "scaled_relative_error": 0.00238074299443408,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 1.1867248997421353e-16,
+          "scaled_relative_error": 0.00288806242813878,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 1.1867248997421353e-16,
+          "scaled_relative_error": 0.018975104396044093,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00238074299443408,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 5.1735081168262066e-14,
+          "scaled_relative_error": 0.007542406406294129,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 5.290834616284433e-14,
+          "scaled_relative_error": 0.009279031988130824,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 5.290834616284433e-14,
+          "scaled_relative_error": 0.01840432790275622,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.007542406406294129,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 5.166532412433406e-14,
+          "scaled_relative_error": 0.008388880901126897,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 5.743932750970937e-14,
+          "scaled_relative_error": 0.008013043462097306,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 5.743932750970937e-14,
+          "scaled_relative_error": 0.00683598878445492,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00683598878445492,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 4.0281082455050817e-14,
+          "scaled_relative_error": 0.005565061528801862,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 4.043618914341584e-14,
+          "scaled_relative_error": 0.00842335800569486,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 4.043618914341584e-14,
+          "scaled_relative_error": 0.014626958799564747,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.005565061528801862,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006943839870422354,
+          "input_projection_residual": 4.048446983698113e-14,
+          "scaled_relative_error": 0.006321903247190031,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 4.030659837574185e-14,
+          "scaled_relative_error": 0.01734910255567782,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 4.030659837574185e-14,
+          "scaled_relative_error": 0.02667704216439123,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.006321903247190031,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 2.6168096178232077e-14,
+          "scaled_relative_error": 0.45623705809968057,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.532544005999872e-14,
+          "scaled_relative_error": 1.0620996989948799,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 2.7618186418647427e-14,
+          "scaled_relative_error": 1.062363473690214,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.45623705809968057,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 1.589233962433942e-14,
+          "scaled_relative_error": 1.4088974394948044,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 2.2938386992055872e-14,
+          "scaled_relative_error": 0.017498469085561165,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 2.6346455635355802e-14,
+          "scaled_relative_error": 0.016044539048227308,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.016044539048227308,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 7.798479993870173e-16,
+          "scaled_relative_error": 0.002149979395147357,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.643055226423772e-16,
+          "scaled_relative_error": 0.024872422098015302,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 2.805702247954702e-16,
+          "scaled_relative_error": 0.02424946451997459,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.002149979395147357,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 7.798479993870173e-16,
+          "scaled_relative_error": 0.00021269725497084844,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.643055226423772e-16,
+          "scaled_relative_error": 0.025583231393425426,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 2.805702247954702e-16,
+          "scaled_relative_error": 0.024995294168476952,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00021269725497084844,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 3.8834557935670996e-14,
+          "scaled_relative_error": 1.71483796925284,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 6.305476620028065e-14,
+          "scaled_relative_error": 0.015962349802990695,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 7.180970131857779e-14,
+          "scaled_relative_error": 0.01570564652982071,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.01570564652982071,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 5.590662986035241e-14,
+          "scaled_relative_error": 0.4697550242703753,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 4.419359005317004e-14,
+          "scaled_relative_error": 1.0684841408999572,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 3.9060534692215844e-14,
+          "scaled_relative_error": 1.0684942474231685,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.4697550242703753,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 2.8546984548296266e-14,
+          "scaled_relative_error": 0.3166119191705019,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 4.272589237515172e-14,
+          "scaled_relative_error": 0.7117116093118324,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 4.275791938915944e-14,
+          "scaled_relative_error": 0.711792548883752,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.3166119191705019,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_01",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0010891731113156626,
+          "input_projection_residual": 3.9712845385477393e-14,
+          "scaled_relative_error": 0.533601771618751,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.047102905816963e-14,
+          "scaled_relative_error": 0.00804062291951991,
+          "source_context_id": "context_02"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 3.040143234173874e-14,
+          "scaled_relative_error": 0.008124403434650016,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00804062291951991,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 4.110623819773623e-14,
+          "scaled_relative_error": 0.03438807651036887,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 4.110623819773623e-14,
+          "scaled_relative_error": 0.023694638044483615,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 3.4533294796519614e-14,
+          "scaled_relative_error": 0.014689598842395369,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.014689598842395369,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 3.440958867344615e-14,
+          "scaled_relative_error": 0.06739280423260481,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 3.440958867344615e-14,
+          "scaled_relative_error": 0.05696313967496601,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 3.449194325688727e-14,
+          "scaled_relative_error": 0.020303363684419408,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.020303363684419408,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 2.2423347567059045e-17,
+          "scaled_relative_error": 0.006994867646938558,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 2.2423347567059045e-17,
+          "scaled_relative_error": 0.005108434269786793,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 2.160514902338262e-16,
+          "scaled_relative_error": 0.014740238947241028,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.005108434269786793,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 1.7526374608846382e-16,
+          "scaled_relative_error": 0.002957750208688371,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 1.7526374608846382e-16,
+          "scaled_relative_error": 0.0018503270041744832,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 2.2034107890363959e-16,
+          "scaled_relative_error": 0.019156322379634154,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0018503270041744832,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 7.479701486182227e-14,
+          "scaled_relative_error": 0.0011987168314061014,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 7.479701486182227e-14,
+          "scaled_relative_error": 0.0016195960306268152,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 6.764020891651394e-14,
+          "scaled_relative_error": 0.012281066572231943,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0011987168314061014,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 6.557768471533219e-14,
+          "scaled_relative_error": 0.007707810402001443,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 6.557768471533219e-14,
+          "scaled_relative_error": 0.007246294466680385,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 6.76837379366153e-14,
+          "scaled_relative_error": 0.006831584518897858,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.006831584518897858,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 4.8311432690044906e-14,
+          "scaled_relative_error": 0.0024788359797134002,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 4.8311432690044906e-14,
+          "scaled_relative_error": 0.0028278027249699846,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 4.8131919109692896e-14,
+          "scaled_relative_error": 0.017914206524160644,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0024788359797134002,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010798348652225363,
+          "input_projection_residual": 4.814462978906438e-14,
+          "scaled_relative_error": 0.022002799937333176,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010220631212672084,
+          "input_projection_residual": 4.814462978906438e-14,
+          "scaled_relative_error": 0.022222808484763972,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 4.83721240659514e-14,
+          "scaled_relative_error": 0.013932500603432329,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.013932500603432329,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 2.7188936552073978e-14,
+          "scaled_relative_error": 1.417287357102641,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 2.8336391066636313e-14,
+          "scaled_relative_error": 1.235217810959945,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.3521169575626484e-14,
+          "scaled_relative_error": 0.0026990105128317683,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0026990105128317683,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 3.0209717330225454e-14,
+          "scaled_relative_error": 1.41485940457404,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.4815639685334864e-14,
+          "scaled_relative_error": 1.23310282086649,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 3.3236755860164114e-14,
+          "scaled_relative_error": 0.0013959398188604563,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0013959398188604563,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 7.798479993870173e-16,
+          "scaled_relative_error": 0.024728156547058282,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.69167063978686e-16,
+          "scaled_relative_error": 0.024563764951019525,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.805702247954702e-16,
+          "scaled_relative_error": 0.0014481310868956483,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0014481310868956483,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 7.876658708016333e-16,
+          "scaled_relative_error": 0.024847440566241483,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.676413878793289e-16,
+          "scaled_relative_error": 0.024675626418624332,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 3.2546662067846797e-16,
+          "scaled_relative_error": 0.0014445334470229688,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0014445334470229688,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 3.073277186658071e-14,
+          "scaled_relative_error": 1.715046159795005,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 2.9934983650847845e-14,
+          "scaled_relative_error": 1.5274684197378972,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 4.748551191190211e-14,
+          "scaled_relative_error": 0.0005413182823915322,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0005413182823915322,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 7.031260799298294e-14,
+          "scaled_relative_error": 1.717896558553846,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 6.498792182718772e-14,
+          "scaled_relative_error": 1.5300318587898594,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 3.961740738902194e-14,
+          "scaled_relative_error": 0.0016335860432309475,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0016335860432309475,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 4.2056756816029126e-14,
+          "scaled_relative_error": 0.5266731729917713,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 3.7943240223684947e-14,
+          "scaled_relative_error": 0.4724125038063034,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.7344616696234434e-14,
+          "scaled_relative_error": 0.00037981015774760665,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00037981015774760665,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_02",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08847954564494423,
+          "input_projection_residual": 3.010453707505091e-14,
+          "scaled_relative_error": 0.5262910041338464,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08841037132014562,
+          "input_projection_residual": 2.5670457605318657e-14,
+          "scaled_relative_error": 0.4720530389899342,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.7421937766349043e-14,
+          "scaled_relative_error": 0.00019975423401126705,
+          "source_context_id": "context_03"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00019975423401126705,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 4.110623819773623e-14,
+          "scaled_relative_error": 0.024476767151181376,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 4.110623819773623e-14,
+          "scaled_relative_error": 0.015478739032291815,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 3.4533294796519614e-14,
+          "scaled_relative_error": 0.031037256976062938,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.015478739032291815,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 3.440958867344615e-14,
+          "scaled_relative_error": 0.07250972224153314,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 3.440958867344615e-14,
+          "scaled_relative_error": 0.06207387733236614,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 3.449194325688727e-14,
+          "scaled_relative_error": 0.02272456515285796,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.02272456515285796,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 2.2423347567059045e-17,
+          "scaled_relative_error": 0.0272999226553494,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 2.2423347567059045e-17,
+          "scaled_relative_error": 0.02540584622470017,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 2.160514902338262e-16,
+          "scaled_relative_error": 0.0232126382954117,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0232126382954117,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 1.7526374608846382e-16,
+          "scaled_relative_error": 0.015515633130872682,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 1.7526374608846382e-16,
+          "scaled_relative_error": 0.013625597121401165,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 2.2034107890363959e-16,
+          "scaled_relative_error": 0.011285137410877714,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.011285137410877714,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 7.479701486182227e-14,
+          "scaled_relative_error": 0.05305170787726909,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 7.479701486182227e-14,
+          "scaled_relative_error": 0.05254217698734502,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 6.764020891651394e-14,
+          "scaled_relative_error": 0.05144121654503368,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.05144121654503368,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 6.557768471533219e-14,
+          "scaled_relative_error": 0.03696930384118754,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 6.557768471533219e-14,
+          "scaled_relative_error": 0.03743763339442543,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 6.76837379366153e-14,
+          "scaled_relative_error": 0.037958330227836096,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.03696930384118754,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 4.8311432690044906e-14,
+          "scaled_relative_error": 0.016416588595708145,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 4.8311432690044906e-14,
+          "scaled_relative_error": 0.016755878608035374,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 4.8131919109692896e-14,
+          "scaled_relative_error": 0.010157374621111773,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.010157374621111773,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.010891775870121119,
+          "input_projection_residual": 4.814462978906438e-14,
+          "scaled_relative_error": 0.023350057089416832,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.010296003947497214,
+          "input_projection_residual": 4.814462978906438e-14,
+          "scaled_relative_error": 0.023678195639812254,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006039278373950081,
+          "input_projection_residual": 4.83721240659514e-14,
+          "scaled_relative_error": 0.014681452902224675,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.014681452902224675,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 2.859666104640639e-14,
+          "scaled_relative_error": 1.415486042875044,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 2.903630940254942e-14,
+          "scaled_relative_error": 1.233721474259572,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.5485659666367555e-14,
+          "scaled_relative_error": 0.0011351535797702672,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0011351535797702672,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 2.999687114326315e-14,
+          "scaled_relative_error": 1.4127277108492702,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 2.6573857952714027e-14,
+          "scaled_relative_error": 1.231326899451578,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.940353290926891e-14,
+          "scaled_relative_error": 0.002855805309120539,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.002855805309120539,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 7.798479993870173e-16,
+          "scaled_relative_error": 0.02425426710270644,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 3.69167063978686e-16,
+          "scaled_relative_error": 0.02406973451290627,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 3.643055226423772e-16,
+          "scaled_relative_error": 0.0006676263525203662,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0006676263525203662,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 7.798479993870173e-16,
+          "scaled_relative_error": 0.024264721258384494,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 3.69167063978686e-16,
+          "scaled_relative_error": 0.024073569952700005,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 3.643055226423772e-16,
+          "scaled_relative_error": 0.0025945627895285687,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0025945627895285687,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 5.6189754659180817e-14,
+          "scaled_relative_error": 1.7137670079644225,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 4.6286674655442366e-14,
+          "scaled_relative_error": 1.5263218650727124,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 4.7813197713399164e-14,
+          "scaled_relative_error": 0.0016717966466836792,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0016717966466836792,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 6.865341987106492e-14,
+          "scaled_relative_error": 1.7167681161541348,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 6.40011102492826e-14,
+          "scaled_relative_error": 1.5290382731617667,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 4.340272546096882e-14,
+          "scaled_relative_error": 0.0006373138637137502,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0006373138637137502,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 4.207038320365276e-14,
+          "scaled_relative_error": 0.5266630614518775,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 3.795136785546971e-14,
+          "scaled_relative_error": 0.47241435876963134,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.739747421876767e-14,
+          "scaled_relative_error": 0.00018774768339012722,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00018774768339012722,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_03",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.08757129967444727,
+          "input_projection_residual": 3.010453707505091e-14,
+          "scaled_relative_error": 0.5263494462305816,
+          "source_context_id": "context_00"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.08750267493250063,
+          "input_projection_residual": 2.5670457605318657e-14,
+          "scaled_relative_error": 0.4721167355279744,
+          "source_context_id": "context_01"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0009893882580540789,
+          "input_projection_residual": 2.7415430321821645e-14,
+          "scaled_relative_error": 0.0003211356356243061,
+          "source_context_id": "context_02"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0003211356356243061,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "easy",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.8085117994669128,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.09814314748146277,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.5314269101408621,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.09814314748146277,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.7990757379325768,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.06594196397114613,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.5047720885637434,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.06594196397114613,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.002925473253546016,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0014577031884086807,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.001436597761482066,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.001436597761482066,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.004430931122145868,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0018164795815438506,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0038265317534051215,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0018164795815438506,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.8130895391692661,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.030799624714487987,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.4897518976087698,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.030799624714487987,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.744408147050154,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.0810715456199292,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.527295979722888,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0810715456199292,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.3030472393883869,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.025772715526771402,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.1978983154939578,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.025772715526771402,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.30081206656127385,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.018486686908248562,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.19483093244252547,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.018486686908248562,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.04958626444162827,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.020342021307654425,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.03675593283689322,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.020342021307654425,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.022468835492329142,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.007596738393047531,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.011464158746125445,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.007596738393047531,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.23228850059235776,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.007200032466607983,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.004948749402828985,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.004948749402828985,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.23494148824897368,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.009093286143810386,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.0029325012039993414,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0029325012039993414,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.011948651644954289,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.01747002226464725,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.01183330054302139,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.01183330054302139,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.05196573116172543,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.02195594260976516,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.05035265388619837,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.02195594260976516,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.02442867665707898,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.018192108190581178,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.02322255640382782,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.018192108190581178,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_04",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.002558216579230421,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.0042726278806386195,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.001969205957029581,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.001969205957029581,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.9307636454854448,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.9504107650772421,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 1.14984690569383,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.9307636454854448,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.4374041738956188,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.3902264653532505,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.012151333151370288,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.012151333151370288,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.005539427324419439,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0056057885786457125,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.003875015182923254,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.003875015182923254,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0022701256962634106,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0024403386264319573,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0015913884547664777,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0015913884547664777,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.5247361330896624,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.4911698945368546,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.014869086581994324,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.014869086581994324,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.8479333650512002,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.855780438577434,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 1.0502525151148892,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.8479333650512002,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.5895016375099246,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.599525871542629,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.442162499096191,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.442162499096191,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0029513320314961218,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.18502818747210154,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.16762013462888836,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.3722944726786549,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.16762013462888836,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.018917134448459896,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.013547307899595034,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.004881551936809337,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.004881551936809337,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.050560031352960645,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.04491638630813087,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.028734343791168793,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.028734343791168793,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.20386795852370976,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.19824543833763267,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.20680314267745648,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.19824543833763267,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.1776148150222258,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.17186426116126893,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.18062890382856456,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.17186426116126893,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.04565748132804489,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.04382131047409596,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.017525809786884113,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.017525809786884113,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.01725863694882196,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.0158129256482874,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.016814766908939304,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0158129256482874,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.012532575138235136,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.006292639197560256,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.002018650111020277,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.002018650111020277,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_05",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0036405104940262973,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.013601975824786967,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.007026827610454745,
+          "source_context_id": "context_06"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.0028313053851745937,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0028313053851745937,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.09629137801107579,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.785731107103163,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.4303717972622086,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.09629137801107579,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.061530474622930556,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.8112559772228654,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.4480801427842699,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.061530474622930556,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0001877638084865551,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0033281536516854733,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.002278804439773333,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0001877638084865551,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0008143120590822556,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.003738046740012106,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0025831329069521667,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0008143120590822556,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.03071787303671747,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.806558619022797,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.49324474946658525,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.03071787303671747,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.08060075652515893,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.8068165671744147,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.4775146917318115,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.08060075652515893,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.02837858186167382,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.3153306175250867,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.2091744239194465,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.02837858186167382,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0004470699522468507,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.015338575647490022,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0031652448388278438,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.31253631066933774,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.20653883008892812,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.015338575647490022,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.0414337517063348,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.07781398252074614,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.06461735236212639,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0414337517063348,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.050241728276509225,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.01873259415377194,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.03020592589948103,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.01873259415377194,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.008742430445001793,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.2234263713122303,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.012622705825828692,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.008742430445001793,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.007809833287869859,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.22670364206576515,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.011492696543665134,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.007809833287869859,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.04692909864429083,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.01764951585624866,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.01925644224702795,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.01764951585624866,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.04698544337787869,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.07953820563394622,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.07806139520399936,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.04698544337787869,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.007946360460062484,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.021040329482412252,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.01983640574839689,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.007946360460062484,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q2_t13s5",
+      "held_context_id": "context_06",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0006155839067961814,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.021088835390122157,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.004040368260183342,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.008680368024977441,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.009838888876718781,
+          "source_context_id": "context_07"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.008680368024977441,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.43901664457582135,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 1.089950075673209,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.3994700963377587e-14,
+          "scaled_relative_error": 0.3920616621495573,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.3920616621495573,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.44455278337215853,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 1.101898801626341,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.4007128344749696e-14,
+          "scaled_relative_error": 0.3983295205460131,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.3983295205460131,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.003051269569845028,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.001005141694971901,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.003048823505792714,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.001005141694971901,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0024127003771437132,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.0027086263108389843,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 2.3470248322072575e-16,
+          "scaled_relative_error": 0.002383410697113919,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.002383410697113919,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.5252709915538746,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 1.291590946506291,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 4.345327195662034e-14,
+          "scaled_relative_error": 0.49164589130466285,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.49164589130466285,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.5096931659348285,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 1.253926406492172,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 4.339380884980408e-14,
+          "scaled_relative_error": 0.4766799576390671,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.4766799576390671,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.47322160044208317,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.22239058345578372,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 3.5844187381424735e-14,
+          "scaled_relative_error": 0.4844573540851939,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.22239058345578372,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.002809481111338397,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.18489973933606021,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.00037365133893570027,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.4784882899639484,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.002977842832768918,
+          "input_projection_residual": 3.5702602935285607e-14,
+          "scaled_relative_error": 0.1674856244257852,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.1674856244257852,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "transport",
+      "scaled_relative_error_pass": false,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.011551820937521409,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.027021316046161183,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.22773069004883e-14,
+          "scaled_relative_error": 0.00929694252809154,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.00929694252809154,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.03572876164593073,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.0023811024252120834,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.2163895552626624e-14,
+          "scaled_relative_error": 0.0300077583659092,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.0023811024252120834,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_without_coil8",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.004055360922597163,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.23732345010181494,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.012143197567033243,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.004055360922597163,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.004377493182115185,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.23895386837910043,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": true,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 1.0556807147581836e-16,
+          "scaled_relative_error": 0.012149722973493421,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.004377493182115185,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode0_coil8_component",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.07663224542005578,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.04745956761460435,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 3.551852125323908e-14,
+          "scaled_relative_error": 0.07488772676805942,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.04745956761460435,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": true,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": true,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.02331509292150013,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.05524519170254209,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 3.555415339667136e-14,
+          "scaled_relative_error": 0.02524056020371834,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.02331509292150013,
+      "passed": true,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode1",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.007561522972543105,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.0205617150565841,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.955224603248742e-14,
+          "scaled_relative_error": 0.014400333823705161,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.007561522972543105,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": -1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    },
+    {
+      "componentwise_containment_pass": false,
+      "held_campaign": "q1_t13s9",
+      "held_context_id": "context_07",
+      "hypotheses": [
+        {
+          "contained": false,
+          "feature_distance": 0.0033924460932096964,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.030132000760663094,
+          "source_context_id": "context_04"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0004115231662146556,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.01747991001653582,
+          "source_context_id": "context_05"
+        },
+        {
+          "contained": false,
+          "feature_distance": 0.0037584793643031978,
+          "input_projection_residual": 2.9757933702059136e-14,
+          "scaled_relative_error": 0.02356040509457416,
+          "source_context_id": "context_06"
+        }
+      ],
+      "nearest_scaled_relative_error": 0.01747991001653582,
+      "passed": false,
+      "pre_effect_causality_pass": true,
+      "probe_direction": "mode2",
+      "probe_sign": 1,
+      "probe_window": "braking",
+      "scaled_relative_error_pass": true,
+      "selected_context_count": 3,
+      "stratum": "hard",
+      "supported_hypothesis_count": 3,
+      "supported_hypothesis_pass": true
+    }
+  ]
+}

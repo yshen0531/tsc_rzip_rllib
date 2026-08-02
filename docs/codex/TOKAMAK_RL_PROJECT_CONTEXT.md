@@ -366,15 +366,21 @@ history diagnostic nevertheless passed containment only 15/32 and relative
 error only 20/32. T13S9 is therefore an identification completion result,
 not a controller or MPC pass.
 
-The active T13S10 task is a prospectively frozen zero-new-TSC combined
-first-effect audit over all T13S5 q2 and T13S9 q1 raw. It uses only measured
-14-coil current and causal R/Z/vR/vZ/Ip at the common post-queue
-`issue_step + 1` effect state, with eight leave-one-context-out folds and a
-label-free same-stratum hypothesis bank. A pass permits only a fresh q3
-identification holdout design; a failure requires observer, active
-calibration, or nonlinear state-conditioned tube redesign. Formal timing is
-unchanged and no controller, MPC, expert data, BC, DAgger, or RL is
-authorized.
+T13S10 then authenticated all 136 T13S5/T13S9 raw files and completed its
+zero-new-TSC combined audit. Unified post-queue input support, all 16 local
+signal/rank/condition/tube gates, restart evidence, and causality passed.
+Containment reached only 107/128, relative error 110/128, and only 92/128
+held rows passed both. The static map bank is therefore insufficient even
+after the excitation-coordinate bug was removed.
+
+The active T13S11 preflight is prospectively frozen and adds a causal active
+calibration observation rather than a hidden label. It uses one positive
+coil-8-component transport transition to form a same-trajectory visible
+state signature and tests a training-only rank-2 state-conditioned braking
+interaction model in eight LOCO folds. A pass permits only a new authentic
+dual-window calibration/braking campaign; a failure requires a longer or
+nonlinear persistent observer. Formal timing is unchanged and no controller,
+MPC, expert data, BC, DAgger, or RL is authorized.
 
 ## 7. Medium-term objectives
 
