@@ -374,7 +374,7 @@ def _nearest_exact_symmetric_count(
     )
 
 
-def _choose_calibration_displacement(
+def _choose_exact_symmetric_displacement(
     *, center_fields: Sequence[str], measured_current_a_tsc: Sequence[float],
     baseline_action_norm_tsc: Sequence[float], mode_vector_tsc: Sequence[float],
     turns_tsc: Sequence[float], max_slew_step_a: float,
@@ -409,14 +409,14 @@ def _choose_calibration_displacement(
     step_a = np.asarray([float(value) for value in steps]) * 1000.0 / turns
     significant = np.abs(mode) >= float(cfg["significant_mode_fraction"]) * float(np.max(np.abs(mode)))
     if not np.any(significant):
-        raise ValueError("T13S14 calibration mode has no significant coil")
+        raise ValueError("T13S14 exact-symmetric mode has no significant coil")
     lambda_min = float(np.max(
         int(cfg["minimum_significant_grid_steps"]) * step_a[significant]
         / np.abs(mode[significant])
     ))
     mode_norm = float(np.linalg.norm(mode))
     if not math.isclose(mode_norm, 1.0, rel_tol=0.0, abs_tol=1e-10):
-        raise ValueError("T13S14 calibration mode vector is not unit length")
+        raise ValueError("T13S14 exact-symmetric mode vector is not unit length")
     candidate_rows = []
     for multiplier in map(int, cfg["lambda_multipliers"]):
         lam = lambda_min * multiplier
@@ -502,7 +502,7 @@ def _choose_calibration_displacement(
             row["candidate_rows_evaluated"] = [dict(candidate) for candidate in candidate_rows]
             return row
     raise ValueError(
-        "no exact T13S14 calibration lattice multiplier passed after nearby-count repair: "
+        "no exact T13S14 lattice multiplier passed after nearby-count repair: "
         + json.dumps(candidate_rows, sort_keys=True)
     )
 
@@ -543,7 +543,7 @@ class ActiveCalibrationProbeController(s9.LatticeTransitionProbeController):
             center_fields=center.card15_fields, turns_tsc=self.turns_tsc,
             direction=direction, cfg=self.lattice_cfg,
         )
-        plan = _choose_calibration_displacement(
+        plan = _choose_exact_symmetric_displacement(
             center_fields=center.card15_fields,
             measured_current_a_tsc=currents,
             baseline_action_norm_tsc=baseline_action,
@@ -598,10 +598,152 @@ class ActiveCalibrationProbeController(s9.LatticeTransitionProbeController):
         }
         return np.asarray(chosen["action_norm_tsc"], dtype=float), lattice, center
 
+    def _response_lattice_action(
+        self, current_state: Mapping[str, Any],
+    ) -> tuple[np.ndarray, dict[str, Any]]:
+        """Execute only the frozen response issue/cancel with exact count repair."""
+        task_step = self.step
+        if task_step not in {self.issue_step, self.cancel_step} or self.issue_step < 0:
+            raise ValueError("T13S14 response lattice helper called outside response steps")
+        currents = np.asarray(current_state["currents_a_tsc"], dtype=float).reshape(N_COILS)
+        baseline_action, trace = (
+            s9.t11.t1.r3c1.AuthenticatedVisibleManifoldPhaseTaskController.action(
+                self, current_state
+            )
+        )
+        baseline_action = np.asarray(baseline_action, dtype=float).reshape(N_COILS)
+        center = self.actuator.apply(currents, baseline_action)
+        if task_step == self.issue_step:
+            event = "issue"
+            mode_vector = s9.lattice_native_direction(
+                self.base.modes_tsc, self.probe_direction,
+                split_coil=int(self.lattice_cfg["split_coil_index_tsc"]),
+            )
+            direction_cfg = s9.direction_lattice_config(
+                center_fields=center.card15_fields, turns_tsc=self.turns_tsc,
+                direction=self.probe_direction, cfg=self.lattice_cfg,
+            )
+            plan = _choose_exact_symmetric_displacement(
+                center_fields=center.card15_fields,
+                measured_current_a_tsc=currents,
+                baseline_action_norm_tsc=baseline_action,
+                mode_vector_tsc=mode_vector, turns_tsc=self.turns_tsc,
+                max_slew_step_a=float(self.base.max_delta_a),
+                minimum_current_a_tsc=self.base.min_current,
+                maximum_current_a_tsc=self.base.max_current, cfg=direction_cfg,
+            )
+            target_key = (
+                "positive_action_norm_tsc" if self.probe_sign > 0
+                else "negative_action_norm_tsc"
+            )
+            selected_action = np.asarray(plan[target_key], dtype=float)
+            signed_delta = self.probe_sign * np.asarray(
+                plan["delta_field_kAt_tsc"], dtype=float
+            )
+            self._signed_issue_delta_kat = tuple(map(float, signed_delta))
+            self._issue_center_fields = tuple(map(str, center.card15_fields))
+            plan["direction_lattice_config"] = direction_cfg
+            lattice = plan
+        else:
+            event = "cancel"
+            if self._signed_issue_delta_kat is None or self._issue_center_fields is None:
+                raise ValueError("T13S14 response cancellation has no causal issued displacement")
+            returned = s9.exact_stored_center_action(
+                stored_fields=self._issue_center_fields,
+                measured_current_a_tsc=currents,
+                baseline_action_norm_tsc=baseline_action,
+                turns_tsc=self.turns_tsc,
+                max_slew_step_a=float(self.base.max_delta_a),
+                minimum_current_a_tsc=self.base.min_current,
+                maximum_current_a_tsc=self.base.max_current, cfg=self.lattice_cfg,
+            )
+            inverse = s9.exact_inverse_lattice_action(
+                center_fields=center.card15_fields,
+                signed_issue_delta_kAt_tsc=self._signed_issue_delta_kat,
+                measured_current_a_tsc=currents,
+                baseline_action_norm_tsc=baseline_action,
+                turns_tsc=self.turns_tsc,
+                max_slew_step_a=float(self.base.max_delta_a),
+                minimum_current_a_tsc=self.base.min_current,
+                maximum_current_a_tsc=self.base.max_current, cfg=self.lattice_cfg,
+            )
+            if bool(returned["passed"]):
+                selected_method, selected_cancel = (
+                    "exact_return_to_stored_issue_center", returned
+                )
+            elif bool(inverse["passed"]):
+                selected_method, selected_cancel = (
+                    "exact_negative_relative_current_center", inverse
+                )
+            else:
+                raise ValueError(
+                    "T13S14 both causal response cancellation candidates failed: "
+                    + json.dumps({"return": returned, "inverse": inverse}, sort_keys=True)
+                )
+            selected_action = np.asarray(selected_cancel["action_norm_tsc"], dtype=float)
+            lattice = {
+                **selected_cancel, "selected_method": selected_method,
+                "return_candidate": returned, "inverse_candidate": inverse,
+            }
+        selected = self.actuator.apply(currents, selected_action)
+        if (
+            any(selected.action_saturated) or any(selected.current_limit_clipped)
+            or any(len(field) != 10 for field in selected.card15_fields)
+        ):
+            raise ValueError("T13S14 response Card15 action clipped or malformed")
+        if event == "issue":
+            expected_fields = (
+                lattice["positive_target_fields"] if self.probe_sign > 0
+                else lattice["negative_target_fields"]
+            )
+            if list(selected.card15_fields) != list(expected_fields):
+                raise ValueError("T13S14 response issue target mismatch")
+        elif list(selected.card15_fields) != list(lattice["target_fields"]):
+            raise ValueError("T13S14 response cancellation target mismatch")
+        trace.update({
+            "task_step": task_step,
+            "baseline_controller_revision": s9.t11.t1.r3c1.CONTROLLER_REVISION,
+            "r3c3_identification_only": True,
+            "r3c3t13s9_identification_only": True,
+            "r3c3_probe_id": self.probe_id,
+            "r3c3_probe_window": self.probe_window,
+            "r3c3_probe_direction": self.probe_direction,
+            "r3c3_probe_sign": self.probe_sign,
+            "r3c3_probe_first_effect_state": self.first_effect_state,
+            "r3c3_probe_cancel_effect_state": self.cancel_effect_state,
+            "r3c3t13s9_lattice_event": event,
+            "r3c3t13s9_probe_issued": True,
+            "r3c3t13s9_baseline_action_norm_tsc": baseline_action.tolist(),
+            "r3c3t13s9_center_card15_fields": list(center.card15_fields),
+            "r3c3t13s9_lattice": lattice,
+            "r3c3t13s9_signed_issue_delta_kAt_tsc": (
+                [0.0] * N_COILS if self._signed_issue_delta_kat is None
+                else list(self._signed_issue_delta_kat)
+            ),
+            "r3c3t13s9_requested_net_kAt_tsc": [0.0] * N_COILS,
+            "action_norm_tsc": selected_action.tolist(),
+            "r3c3t13s9_actuator_prediction": selected.to_dict(),
+            "mode_action_normalization_scale": 1.0,
+            "mode_action_current_limit_scale": 1.0,
+            "mode_action_rescaled": False,
+            "pair_or_history_label_used": False,
+            "source_result_used": False,
+            "source_action_used": False,
+            "source_coil_current_used": False,
+            "source_wire_current_used": False,
+            "current_run_future_used": False,
+            "hidden_wire_used": False,
+            "future_probe_schedule_available_to_underlying_controller": False,
+        })
+        return selected_action, trace
+
     def action(self, current_state: Mapping[str, Any]) -> tuple[np.ndarray, dict[str, Any]]:
         task_step = self.step
         currents = np.asarray(current_state["currents_a_tsc"], dtype=float).reshape(N_COILS)
-        inherited_action, trace = super().action(current_state)
+        if task_step in {self.issue_step, self.cancel_step} and self.issue_step >= 0:
+            inherited_action, trace = self._response_lattice_action(current_state)
+        else:
+            inherited_action, trace = super().action(current_state)
         selected_action = np.asarray(inherited_action, dtype=float).reshape(N_COILS)
         event = "none"
         event_index = -1
@@ -1074,6 +1216,75 @@ def _prehotfix_failure_audit(
     }
 
 
+def _postbaseline_response_lattice_hotfix_audit(
+    ctx: Context, specs: Sequence[Mapping[str, Any]], raw_paths: Sequence[Path],
+) -> dict[str, Any]:
+    baseline_specs = _baseline_specs(specs)
+    by_id = {str(spec["experiment_id"]): spec for spec in baseline_specs}
+    inventory, observed_ids = [], set()
+    for path in raw_paths:
+        inventory.append({
+            "path": path.name, "size_bytes": path.stat().st_size, "sha256": _sha256(path),
+        })
+        result = s9.t11.t1.r3c3.read_json_gz(path)
+        experiment_id = str(result.get("experiment_id"))
+        if (
+            experiment_id not in by_id or result.get("spec") != by_id[experiment_id]
+            or not bool(result.get("success")) or not bool(result.get("completed"))
+            or not result.get("trajectory") or not result.get("controller_trace")
+        ):
+            raise ValueError("T13S14 post-baseline hotfix raw identity/evidence mismatch")
+        observed_ids.add(experiment_id)
+    gate_path = ctx.paths.analysis / "baseline_gate.json"
+    if not gate_path.is_file():
+        raise ValueError("T13S14 post-baseline hotfix gate evidence missing")
+    gate = _read_json(gate_path)
+    execution = gate.get("execution") or {}
+    baseline = gate.get("baseline_evidence_audit") or {}
+    lattice = gate.get("dynamic_response_lattice_audit") or {}
+    failed_rows = [row for row in lattice.get("rows") or [] if not bool(row.get("passed"))]
+    passed = bool(
+        len(raw_paths) == len(by_id) == 16
+        and observed_ids == set(by_id)
+        and execution == {
+            "expected": 16, "pending_before": 3, "complete": 16,
+            "reused": 13, "real_tsc_executed": True, "passed": True,
+        }
+        and int(baseline.get("expected", -1)) == 16
+        and int(baseline.get("actual", -1)) == 16
+        and int(baseline.get("pass_count", -1)) == 16
+        and bool(baseline.get("passed"))
+        and int(lattice.get("expected", -1)) == 128
+        and int(lattice.get("actual", -1)) == 128
+        and int(lattice.get("pass_count", -1)) == 104
+        and int(lattice.get("plant_advance_count", -1)) == 0
+        and not bool(lattice.get("real_tsc_executed"))
+        and not bool(lattice.get("passed"))
+        and len(failed_rows) == 24
+        and all(
+            "no frozen T13S9 lattice multiplier passed" in str(row.get("failure_reason"))
+            and '"target_field_central_symmetry_exact": false' in str(row.get("failure_reason"))
+            for row in failed_rows
+        )
+    )
+    if not passed:
+        raise ValueError("T13S14 post-baseline lattice-only provenance mismatch")
+    inventory.sort(key=lambda row: row["path"])
+    failure_counts: dict[str, int] = defaultdict(int)
+    for row in failed_rows:
+        key = f"{row['probe_direction']}:{int(row['probe_sign']):+d}"
+        failure_counts[key] += 1
+    return {
+        "raw_count": len(raw_paths), "successful_baseline_raw_preserved_count": 16,
+        "response_probe_raw_count": 0, "response_probe_plant_advance_count": 0,
+        "previous_baseline_gate_sha256": _sha256(gate_path),
+        "previous_lattice_pass_count": 104, "previous_lattice_expected": 128,
+        "exact_symmetry_only_failure_count": len(failed_rows),
+        "failure_counts_by_direction_and_sign": dict(sorted(failure_counts.items())),
+        "raw_inventory_digest_before_hotfix": _digest(inventory), "passed": True,
+    }
+
+
 def _validate_snapshots(table: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     rows = []
     for context in table:
@@ -1141,6 +1352,7 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
         "bc_dagger_or_rl_allowed": False,
     }
     runtime_hotfix = False
+    runtime_hotfix_kind = ""
     runtime_hotfix_changes: list[dict[str, Any]] = []
     execution_package_digest = package["digest"]
     prehotfix_audit: dict[str, Any] | None = None
@@ -1154,7 +1366,20 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
             )
             if not (resume and compatible):
                 raise ValueError("T13S14 resume manifest mismatch")
-            prehotfix_audit = _prehotfix_failure_audit(ctx, specs, raw_before)
+            successful_raw_count = sum(
+                bool(s9.t11.t1.r3c3.read_json_gz(path).get("success"))
+                for path in raw_before
+            )
+            if successful_raw_count == 13:
+                runtime_hotfix_kind = "calibration_preaction_count_repair"
+                prehotfix_audit = _prehotfix_failure_audit(ctx, specs, raw_before)
+            elif successful_raw_count == 16:
+                runtime_hotfix_kind = "response_lattice_zero_tsc_count_repair"
+                prehotfix_audit = _postbaseline_response_lattice_hotfix_audit(
+                    ctx, specs, raw_before
+                )
+            else:
+                raise ValueError("T13S14 runtime hotfix raw success count mismatch")
             runtime_hotfix = True
     elif ctx.paths.state.exists():
         raise ValueError("T13S14 state exists without manifest")
@@ -1199,9 +1424,19 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                 "package_digest": package["digest"],
             })
             _write_json(ctx.paths.state, old_state)
-            _write_json(ctx.paths.analysis / "semantics_preserving_runtime_hotfix.json", {
+            audit_path = ctx.paths.analysis / (
+                "semantics_preserving_runtime_hotfix.json"
+                if runtime_hotfix_kind == "calibration_preaction_count_repair"
+                else "semantics_preserving_response_lattice_hotfix.json"
+            )
+            contract = (
+                "t13s14_nearest_exact_integer_count_runtime_hotfix_v1"
+                if runtime_hotfix_kind == "calibration_preaction_count_repair"
+                else "t13s14_response_nearest_exact_integer_count_runtime_hotfix_v1"
+            )
+            _write_json(audit_path, {
                 "schema_version": 1, "stage": STAGE,
-                "contract": "t13s14_nearest_exact_integer_count_runtime_hotfix_v1",
+                "contract": contract, "runtime_hotfix_kind": runtime_hotfix_kind,
                 "execution_package_digest": execution_package_digest,
                 "reporting_package_digest": package["digest"],
                 "changed_files": runtime_hotfix_changes,
@@ -1209,12 +1444,14 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                 "successful_raw_preserved": True,
                 "failed_raw_had_no_plant_advance": True,
                 "response_probe_raw_count": 0,
+                "response_probe_plant_advance_count": 0,
                 "config_unchanged": True, "context_table_unchanged": True,
                 "spec_matrix_unchanged": True, "formal_timing_unchanged": True,
                 "direction_sign_and_multiplier_order_unchanged": True,
                 "central_symmetry_gate_unchanged": True,
                 "all_safety_gates_unchanged": True,
                 "successful_action_semantics_unchanged": True,
+                "baseline_controller_path_unchanged": True,
                 "passed": True,
             })
     else:
@@ -1228,6 +1465,7 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
         "snapshot_expected": 16, "new_raw_count": len(raw_before),
         "real_tsc_executed": bool(raw_before),
         "semantics_preserving_runtime_hotfix": runtime_hotfix,
+        "runtime_hotfix_kind": runtime_hotfix_kind,
         "execution_package_digest": execution_package_digest,
         "reporting_package_digest": package["digest"],
         "passed": bool(source["passed"] and snapshots["passed"] and (resume or not raw_before)),

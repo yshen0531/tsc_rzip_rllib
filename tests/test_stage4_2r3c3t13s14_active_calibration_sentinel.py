@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 from decimal import Decimal
+import inspect
 import json
 from pathlib import Path
 import sys
@@ -171,6 +172,19 @@ class Stage42R3C3T13S14Tests(unittest.TestCase):
         self.assertEqual([row["path"] for row in changed], [module])
         new["deployed_package_fingerprint"]["files"][0]["path"] = "configs/changed.json"
         self.assertFalse(s14._runtime_hotfix_manifest_compatible(old, new)[0])
+
+    def test_response_count_repair_is_scoped_without_global_monkeypatch(self):
+        action_source = inspect.getsource(s14.ActiveCalibrationProbeController.action)
+        response_source = inspect.getsource(
+            s14.ActiveCalibrationProbeController._response_lattice_action
+        )
+        self.assertIn("task_step in {self.issue_step, self.cancel_step}", action_source)
+        self.assertIn("inherited_action, trace = super().action", action_source)
+        self.assertIn("_choose_exact_symmetric_displacement", response_source)
+        self.assertIn(
+            "AuthenticatedVisibleManifoldPhaseTaskController.action", response_source
+        )
+        self.assertNotIn("s9.choose_lattice_displacement =", response_source)
 
     def test_kernel_prediction_is_exactly_zero_at_zero_action(self):
         model = {
