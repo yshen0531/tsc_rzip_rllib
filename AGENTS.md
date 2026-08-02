@@ -510,15 +510,23 @@ relative error only 110/128; only 92/128 rows passed both. Its final route is
 is a finite causal transition-model design failure, not a runtime, raw,
 restart, causality, reporting, controller, or real-MPC failure.
 
-The active stage is the prospectively frozen zero-new-TSC T13S11 preflight
-in `STAGE4_2R3C3T13S11_CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_DESIGN.md`.
-It uses exactly one positive coil-8-component transport transition as a
-causal observable calibration signature, then tests a training-only rank-2
-state-conditioned interaction model for the later braking transition in
-eight LOCO folds. A pass authorizes only a fresh authentic dual-window
-calibration/braking campaign. A failure requires a longer or nonlinear
-persistent observer. It authorizes no controller, MPC, expert data, BC,
-DAgger, or RL.
+T13S11 then completed its zero-new-TSC calibration-conditioned preflight. A
+numerical affine-rank reporting bug was repaired without changing any model
+or prediction. Final calibration/causality/support/rank/tube gates passed,
+but all eight unwhitened interaction conditions exceeded 23,000 and only
+36/64 rows passed both response gates even if the condition gate is ignored.
+Its final route is `CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_INSUFFICIENT_PERSISTENT_OBSERVER_REDESIGN`.
+
+The active stage is the prospectively frozen zero-new-TSC T13S12 preflight
+in `STAGE4_2R3C3T13S12_CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_DESIGN.md`.
+It replaces the insufficient single pulse with the complete deployable
+baseline R/Z/Ip, causal-velocity, and measured-coil-current history available
+through the braking issue. Fold-local rank-2 history and rank-4 current
+coordinates are whitened before the 12-column interaction fit, while support
+is checked in the original non-vacuous spaces. A pass authorizes only a new
+q3 same-trajectory sequence campaign; a failure requires a broader
+recurrent/nonlinear observer design. No controller, MPC, expert data, BC,
+DAgger, or RL is authorized.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

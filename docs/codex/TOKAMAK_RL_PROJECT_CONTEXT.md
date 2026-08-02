@@ -373,14 +373,23 @@ Containment reached only 107/128, relative error 110/128, and only 92/128
 held rows passed both. The static map bank is therefore insufficient even
 after the excitation-coordinate bug was removed.
 
-The active T13S11 preflight is prospectively frozen and adds a causal active
-calibration observation rather than a hidden label. It uses one positive
-coil-8-component transport transition to form a same-trajectory visible
-state signature and tests a training-only rank-2 state-conditioned braking
-interaction model in eight LOCO folds. A pass permits only a new authentic
-dual-window calibration/braking campaign; a failure requires a longer or
-nonlinear persistent observer. Formal timing is unchanged and no controller,
-MPC, expert data, BC, DAgger, or RL is authorized.
+T13S11 then completed its zero-new-TSC calibration-conditioned preflight. A
+semantics-preserving hotfix corrected floating affine-rank reporting from
+4/8 to the mathematical 8/8. Calibration, causality, non-vacuous support,
+rank, and tube passed, but the unwhitened interaction condition exceeded
+23,000 in every fold. Only 36/64 rows passed both response gates even if that
+condition gate is ignored. One active transition is not a sufficient causal
+observer state.
+
+The active T13S12 preflight prospectively replaces that pulse with the full
+deployable visible baseline history through the braking issue: target error,
+backward-causal velocity, and measured 14-coil current/current-difference
+sequence. Training-fold history and current coordinates are whitened before
+the interaction fit, while support remains in the original high-dimensional
+spaces. A pass permits only a new q3 same-trajectory sequence campaign; a
+failure requires a broader recurrent/nonlinear observer design. Formal
+timing is unchanged and no controller, MPC, expert data, BC, DAgger, or RL
+is authorized.
 
 ## 7. Medium-term objectives
 

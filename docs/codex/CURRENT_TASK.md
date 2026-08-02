@@ -2155,3 +2155,72 @@ braking execute on the same physical trajectory. A failure requires a
 longer observation sequence, multiple safe calibrations, or a persistent
 nonlinear observer. Neither route authorizes a controller, MPC, expert data,
 BC, DAgger, or bounded residual RL.
+
+## 34. Final T13S11 result and active T13S12 task
+
+T13S11 completed with zero new TSC. The final executed audit implementation
+is `c8ca408`, and the exact final route is:
+
+```text
+CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_INSUFFICIENT_PERSISTENT_OBSERVER_REDESIGN
+```
+
+The preliminary `75c2751` result exposed a numerical affine-rank reporting
+bug: mean-cancellation residue made three training points appear rank three.
+The `c8ca408` hotfix computes the equivalent affine rank from two training
+differences. It changed the reported rank gate from 4/8 to 8/8 and changed no
+feature, basis, fit, tube, support, prediction, threshold, or route.
+
+Final result:
+
+```text
+source raw / trace identity                              136 / 136
+causal calibration / calibration causality                    8 / 8
+signed braking extraction / causality                       64 / 64
+calibration affine and current basis rank                     8 / 8
+held state and current support                         8 / 8, 64 / 64
+interaction rank 12                                           8 / 8
+interaction condition <= 30                                   0 / 8
+finite condition range                           23,065.6 -- 91,958.0
+non-vacuous tube                                               8 / 8
+containment / relative error                         56 / 64, 44 / 64
+both response gates ignoring condition                       36 / 64
+formal passed rows                                            0 / 64
+```
+
+Final compact audit SHA-256:
+
+```text
+6e595fbd4e86276d449fc953edcb06b676bd282b6f0bd68d4e5ac3effe97ffbe
+```
+
+This is an observer/model design failure, not a runtime, raw, restart,
+causality, final-reporting, controller, or real-MPC failure. T13S11 ran no
+Ray, `gotsc`, TSC, controller, optimizer, plant step, snapshot, or new raw.
+
+The active task is frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S12_CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_DESIGN.md
+```
+
+T13S12 uses the full deployable baseline visible sequence through the
+braking issue: target errors, backward-causal R/Z velocity, and measured
+14-coil currents/current differences. Eight LOCO folds build a training-only
+rank-2 history basis and rank-4 braking-current basis, whiten both coordinate
+sets, and fit the same zero-at-zero-current 12-column interaction model.
+Support remains separately non-vacuous in the original history and current
+spaces at `0.15`; response error remains `0.10` with unchanged tube rules.
+
+T13S12 may end only as:
+
+```text
+CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_CANDIDATE_Q3_SEQUENCE_TSC_REQUIRED
+CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_INSUFFICIENT_NONLINEAR_OBSERVER_REDESIGN
+```
+
+A pass authorizes only a new q3 same-trajectory observation/probe campaign.
+A failure stops the affine observer and requires a broader prospective
+history campaign plus recurrent/nonlinear observer. Neither route authorizes
+a controller, MPC, expert data, BC, DAgger, or bounded residual RL.
