@@ -327,12 +327,22 @@ still achieved 0/16 relative-error validation across the independent q2
 history. The single static cross-history map is therefore also genuinely
 insufficient in this finite envelope.
 
-The active T13S6 task is a frozen zero-new-TSC audit of the same 68 immutable
-raw trajectories at `issue_step + 1` and `cancel_step + 1`. It preserves all
-thresholds and the original development/already-consumed-validation roles.
-Its only routes are a candidate requiring a new independent-history holdout,
-or causal state-conditioned/multi-hypothesis redesign. It cannot recover
-blind status or authorize a real controller.
+T13S6 then completed that zero-new-TSC reinterpretation and was independently
+recomputed directly from all raw. Corrected timing restored all four
+development maps to rank four with maximum condition 7.9548 and all four
+tubes inside their caps. The consumed q2 validation nevertheless passed
+containment only 14/32 and relative error only 2/32, with maximum scaled
+error 1.0974. Its certified route is
+`IMMEDIATE_EFFECT_LOCAL_MAP_INSUFFICIENT_REDESIGN`. The effect-time bug and
+cross-history model failure are therefore distinct, real findings.
+
+The active T13S7 task is a prospectively frozen, zero-new-TSC
+leave-one-context-out feasibility audit over all 52 q1 S1 and 68 q2 S5 raw
+files. It tests whether allowed current/past visible state, causal velocity,
+measured coil current, formal time, target, and finite actuator settings can
+select a non-vacuous set of local transition hypotheses without any
+pair/history/wire/source/future input. A pass still requires a fresh q3
+history holdout; a fail requires observer/tube redesign before more TSC.
 
 ## 7. Medium-term objectives
 

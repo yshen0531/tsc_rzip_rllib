@@ -457,15 +457,24 @@ explain the delay-zero validation failure, which independently rejects the
 single static cross-history map. T13S5 is not a runtime, restart, corruption,
 real-MPC, or global-reachability failure.
 
+Stage4.2R3c3T13S6 then authenticated and independently recomputed all 68
+immutable T13S5 raw trajectories at `issue_step + 1` and `cancel_step + 1`.
+The corrected timing restored development signal/rank/condition/tube to
+16/16 and 4/4, but the already-consumed validation passed containment only
+14/32 and relative error only 2/32, with maximum scaled error 1.0973948. The
+final route is `IMMEDIATE_EFFECT_LOCAL_MAP_INSUFFICIENT_REDESIGN`. This is a
+cross-history model-design failure, not a runtime, raw, restart, reporting,
+real-MPC, or global-reachability result.
+
 The active stage is the prospectively frozen zero-new-TSC
-Stage4.2R3c3T13S6 immediate-effect reinterpretation audit in
-`STAGE4_2R3C3T13S6_IMMEDIATE_EFFECT_REINTERPRETATION_DESIGN.md`. It must
-authenticate and recompute all 68 immutable T13S5 raw trajectories at
-`issue_step + 1` and `cancel_step + 1`, preserve the original development
-and already-consumed validation roles, and change no threshold. It may only
-authorize a new independent-history holdout candidate or require a causal
-state-conditioned/multi-hypothesis redesign; it cannot authorize a
-controller or MPC.
+Stage4.2R3c3T13S7 causal multi-history tube feasibility audit in
+`STAGE4_2R3C3T13S7_CAUSAL_MULTI_HISTORY_TUBE_FEASIBILITY_DESIGN.md`. It must
+authenticate all 52 S1 q1 and 68 S5 q2 raw files, use corrected immediate
+effect states, and perform leave-one-context-out validation of a causal
+visible-state-conditioned set of local hypotheses. Pair/history/prefix,
+wire/vessel current, source data, and future values remain forbidden model
+inputs. Both possible routes require either a new independent q3 holdout or
+observer/tube redesign; neither authorizes a controller or MPC.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

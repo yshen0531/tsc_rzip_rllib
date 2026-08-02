@@ -1743,3 +1743,85 @@ It runs no controller, Ray, `gotsc`, TSC, plant step, or snapshot creation.
 Neither route authorizes a controller, real MPC, expert data, BC, DAgger, or
 bounded residual RL. T13S5 probes remain forbidden from expert data and the
 formal timing contract remains unchanged.
+
+## 28. Final T13S6 result and active T13S7 task
+
+T13S6 completed its frozen zero-new-TSC reinterpretation at audit commit
+`efc5b30`. It opened the immutable T13S5 development files before the
+already-consumed validation files, changed only the retrospective response
+states to `issue_step + 1` and `cancel_step + 1`, and retained every S5
+threshold.
+
+```text
+main result SHA-256
+  2f3f373fd1ff6c4080af18147783f8a0a009b6b490b4b4e773c4e106b8044375
+independent raw-to-route audit SHA-256
+  fc96514c1eb054c858fca8ee58085d4d7d78de470c3685c210e523e5021ebea4
+raw files / bytes                                      68 / 3,610,097
+raw inventory digest
+  09ee846d2fd8c2a516ec01f1b91bcbf8f303885c2377373000ab85dfc45e0f01
+route
+  IMMEDIATE_EFFECT_LOCAL_MAP_INSUFFICIENT_REDESIGN
+```
+
+Exact recomputed gates:
+
+```text
+trace / target symmetry / causality / current signal     68/68, 32/32
+development signal                                       16 / 16
+development rank/condition                                  4 / 4
+development non-vacuous tube                                4 / 4
+maximum condition                                      7.9547833
+maximum tube/cap ratio                                 0.2020750
+consumed validation containment                          14 / 32
+consumed validation relative error <= 0.10                2 / 32
+maximum validation scaled relative error               1.0973948
+forbidden model or trace inputs                                 0
+```
+
+The independent audit directly hashed and parsed every JSON.GZ, rebuilt
+causal velocity and two-state measured-current/plant responses, refit every
+map and tube, and reproduced every validation value and the route within
+`1e-12`. Its first invocation stopped before output on a wrong forensic
+payload-directory assumption. The run-level environment-variant layout was
+then fixed under commit/staging `99d2b2d`; this was an independent-audit
+layout bug, not an experiment, raw, or result error.
+
+T13S6 confirms two distinct design findings. Correcting effect timing repairs
+the hard-cell rank failure, but it does not repair cross-history transfer.
+The result has zero runtime, deployment, raw, snapshot, restart, causality,
+or final reporting errors. It ran no controller, Ray, `gotsc`, TSC, plant
+step, snapshot, or real MPC.
+
+The active task is the prospectively frozen T13S7 design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S7_CAUSAL_MULTI_HISTORY_TUBE_FEASIBILITY_DESIGN.md
+```
+
+T13S7 is a zero-new-TSC, leave-one-context-out feasibility audit over all 52
+S1 q1 and 68 S5 q2 raw trajectories. It uses immediate post-queue effects
+and only current/past R/Z/Ip, causal velocity/unknown flags, measured coil
+current/history, target, formal time, and finite delay/slew as selector
+features. It fits local response hypotheses only on each fold's three
+training contexts, preserves the S6 tube caps and `0.10` relative-error gate,
+and evaluates the held-out context without refit.
+
+Pair/q/history/prefix/source identifiers, source action/result, wire/vessel
+currents, and future values are forbidden from the feature, selector, model,
+support check, and prediction. Labels may be used only after prediction to
+audit the split.
+
+T13S7 may end only as:
+
+```text
+FINITE_CAUSAL_MULTI_HYPOTHESIS_CANDIDATE_Q3_HOLDOUT_REQUIRED
+CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN
+```
+
+The q1/q2 files are already consumed development evidence, so neither route
+can authorize a controller. A pass requires a fresh prospective q3 history
+holdout; a fail requires observer/state/tube redesign before another
+physical campaign. Probe data remain forbidden from expert datasets and all
+MPC/BC/DAgger/RL gates remain closed.

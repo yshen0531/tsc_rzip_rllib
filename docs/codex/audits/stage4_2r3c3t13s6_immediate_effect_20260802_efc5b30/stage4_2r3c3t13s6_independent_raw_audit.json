@@ -1,0 +1,83 @@
+{
+  "audit_revision": "independent_raw_to_route_v1",
+  "bc_dagger_or_rl_allowed": false,
+  "certified_scientific_result": true,
+  "design_failure": true,
+  "formal_timing_unchanged": true,
+  "independent_model_max_abs_discrepancy": 0.0,
+  "independent_validation_error_max_abs_discrepancy": 0.0,
+  "probe_trajectories_allowed_in_expert_dataset": false,
+  "raw_inventory": {
+    "count": 68,
+    "digest": "09ee846d2fd8c2a516ec01f1b91bcbf8f303885c2377373000ab85dfc45e0f01",
+    "total_bytes": 3610097
+  },
+  "raw_or_snapshot_corruption": false,
+  "raw_to_reported_array_max_abs_discrepancy": 0.0,
+  "real_controller_or_mpc_executed": false,
+  "route": "IMMEDIATE_EFFECT_LOCAL_MAP_INSUFFICIENT_REDESIGN",
+  "runtime_or_environment_error": false,
+  "schema_version": 1,
+  "source_result": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s6_audits/stage4_2r3c3t13s6_immediate_effect_20260802_efc5b30/stage4_2r3c3t13s6_immediate_effect_audit.json",
+  "source_result_sha256": "2f3f373fd1ff6c4080af18147783f8a0a009b6b490b4b4e773c4e106b8044375",
+  "source_t13s5_audit": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s5_audits/stage4_2r3c3t13s5_real_20260802_d048686/stage4_2r3c3t13s5_server_audit.json",
+  "source_t13s5_audit_sha256": "dc4d0147ce4fdd8a00105f8fc8ad45466513bac8b012f6843327b1efc271b033",
+  "stage": "Stage4.2R3c3T13S6",
+  "statistics_or_reporting_error": false,
+  "summary": {
+    "consumed_validation_row_count": 32,
+    "corrected_pre_effect_causality_pass_count": 32,
+    "development_group_count": 16,
+    "development_signal_pass_count": 16,
+    "forbidden_model_or_trace_input_count": 0,
+    "maximum_finite_condition_number": 7.9547832845527955,
+    "maximum_tube_to_cap_ratio": 0.20207499999897532,
+    "maximum_validation_scaled_relative_error": 1.0973948279462566,
+    "model_cell_count": 4,
+    "model_rank_condition_pass_count": 4,
+    "model_tube_pass_count": 4,
+    "nonfinite_condition_count": 0,
+    "observed_current_signal_pass_count": 32,
+    "observed_current_symmetry_pass_count": 32,
+    "raw_expected": 68,
+    "raw_identity_pass_count": 68,
+    "raw_inventory_digest": "09ee846d2fd8c2a516ec01f1b91bcbf8f303885c2377373000ab85dfc45e0f01",
+    "raw_total_bytes": 3610097,
+    "signed_group_count": 32,
+    "source_t13s5_audit_certified": true,
+    "target_field_symmetry_pass_count": 32,
+    "trace_identity_expected": 68,
+    "trace_identity_pass_count": 68,
+    "validation_containment_pass_count": 14,
+    "validation_pre_effect_causality_pass_count": 32,
+    "validation_relative_error_pass_count": 2
+  },
+  "summary_exact": true,
+  "validation_boolean_exact": true,
+  "validation_breakdown": {
+    "easy/braking": {
+      "containment_pass": 8,
+      "maximum_scaled_relative_error": 1.0392374356631169,
+      "relative_error_pass": 0,
+      "rows": 8
+    },
+    "easy/transport": {
+      "containment_pass": 2,
+      "maximum_scaled_relative_error": 0.9990279194497782,
+      "relative_error_pass": 0,
+      "rows": 8
+    },
+    "hard/braking": {
+      "containment_pass": 2,
+      "maximum_scaled_relative_error": 1.0973948279462566,
+      "relative_error_pass": 0,
+      "rows": 8
+    },
+    "hard/transport": {
+      "containment_pass": 2,
+      "maximum_scaled_relative_error": 0.6005729216413679,
+      "relative_error_pass": 2,
+      "rows": 8
+    }
+  }
+}
