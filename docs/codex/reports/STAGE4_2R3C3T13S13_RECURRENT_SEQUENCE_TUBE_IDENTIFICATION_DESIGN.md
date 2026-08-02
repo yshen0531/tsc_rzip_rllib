@@ -316,7 +316,10 @@ Support is independent of the interaction design:
   interval expanded by 10%.
 
 Unsupported values fail closed. Exact or near-exact causal-history/action
-aliases across disjoint source pairs are reported and forbidden.
+aliases across disjoint source pairs are reported and forbidden. Here
+near-exact means a maximum absolute difference no greater than `1e-12` in
+the concatenated fixed-scaled padded-history and action-center coordinates;
+this numerical threshold is frozen before any T13S13 response is opened.
 
 After Phase A, a provisional component radius is the numerical floor plus
 `1.5 * max_abs_training_residual`. It must remain below:
