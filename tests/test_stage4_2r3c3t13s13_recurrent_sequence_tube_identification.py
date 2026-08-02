@@ -180,6 +180,46 @@ class Stage42R3C3T13S13Tests(unittest.TestCase):
         self.assertFalse(np.array_equal(response["u_center"], response["actual_current"]))
         self.assertTrue(response["actuator_input_box_containment_pass"])
         self.assertFalse(response["post_effect_current_model_input_used"])
+        self.assertEqual(response["effective_first_effect_state"], 1)
+        self.assertFalse(response["legacy_s5_delay2_effect_reinterpretation"])
+
+    def test_authenticated_s5_delay2_uses_physical_postqueue_effect(self):
+        baseline = self._baseline(length=4)
+        baseline["spec"].update({
+            "r3c3_probe_issue_step": -1, "r3c3_probe_first_effect_state": -1,
+        })
+        baseline["controller_trace"][0]["r3c3t13s5_actuator_prediction"] = {
+            "nominal_readback_current_a_tsc": [0.0] * 14,
+            "readback_lower_a_tsc": [-0.1] * 14,
+            "readback_upper_a_tsc": [0.1] * 14,
+            "card15_fields": ["0.00000000"] * 14,
+        }
+        baseline["controller_trace"][0]["r3c3t13s5_center_card15_fields"] = ["0.00000000"] * 14
+        probe = copy.deepcopy(baseline)
+        probe["spec"].update({
+            "stage": "Stage4.2R3c3T13S5", "action_delay_steps": 2,
+            "r3c3_probe_issue_step": 0, "r3c3_probe_first_effect_state": 3,
+        })
+        probe["controller_trace"][0]["r3c3t13s5_actuator_prediction"] = {
+            "nominal_readback_current_a_tsc": [1.0] * 14,
+            "readback_lower_a_tsc": [0.9] * 14,
+            "readback_upper_a_tsc": [1.1] * 14,
+            "card15_fields": ["0.00000000"] * 14,
+        }
+        probe["controller_trace"][0]["r3c3t13s5_center_card15_fields"] = ["0.00000000"] * 14
+        probe["trajectory"][1]["currents_a_tsc"] = [2.05] * 14
+        response = s13._response(probe, baseline, self._payload())
+        self.assertEqual(response["effective_first_effect_state"], 1)
+        self.assertEqual(response["source_declared_first_effect_state"], 3)
+        self.assertTrue(response["legacy_s5_delay2_effect_reinterpretation"])
+
+    def test_unrecognized_effect_mismatch_fails_closed(self):
+        spec = {
+            "stage": s13.STAGE, "action_delay_steps": 2,
+            "r3c3_probe_issue_step": 0, "r3c3_probe_first_effect_state": 3,
+        }
+        with self.assertRaisesRegex(ValueError, "post-queue effect contract mismatch"):
+            s13._postqueue_first_effect_contract(spec)
 
     def test_reservoir_is_deterministic(self):
         recurrent, inputs = s13._reservoir_weights(20260802, 32)

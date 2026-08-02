@@ -1472,15 +1472,32 @@ def _center_card15_fields(trace_row: Mapping[str, Any]) -> list[str]:
     raise ValueError("T13S13 center Card15 fields missing")
 
 
+def _postqueue_first_effect_contract(spec: Mapping[str, Any]) -> tuple[int, int, bool]:
+    issue = int(spec["r3c3_probe_issue_step"])
+    declared = int(spec["r3c3_probe_first_effect_state"])
+    effective = issue + 1
+    legacy_s5_reinterpretation = False
+    if declared != effective:
+        delay = int(spec["action_delay_steps"])
+        legacy_s5_reinterpretation = bool(
+            str(spec.get("stage")) == "Stage4.2R3c3T13S5"
+            and delay == 2
+            and declared == issue + delay + 1
+        )
+        if not legacy_s5_reinterpretation:
+            raise ValueError("T13S13 post-queue effect contract mismatch")
+    return effective, declared, legacy_s5_reinterpretation
+
+
 def _response(
     result: Mapping[str, Any], baseline: Mapping[str, Any], payload: Mapping[str, Any],
 ) -> dict[str, Any]:
     spec = result["spec"]
     issue = int(spec["r3c3_probe_issue_step"])
-    effect = int(spec["r3c3_probe_first_effect_state"])
+    effect, declared_effect, legacy_s5_effect = _postqueue_first_effect_contract(spec)
     base_traj = baseline["trajectory"]
     probe_traj = result["trajectory"]
-    if effect != issue + 1 or len(base_traj) <= effect or len(probe_traj) <= effect:
+    if len(base_traj) <= effect or len(probe_traj) <= effect:
         raise ValueError("T13S13 post-queue effect contract mismatch")
     radius_a = float(s9.OUTPUT_GRID_KAT) * 1000.0 / _turns_tsc(payload)
     pre_position = 0.0
@@ -1554,6 +1571,9 @@ def _response(
         ),
         "actuator_input_box_containment_pass": input_box,
         "post_effect_current_model_input_used": False,
+        "effective_first_effect_state": effect,
+        "source_declared_first_effect_state": declared_effect,
+        "legacy_s5_delay2_effect_reinterpretation": legacy_s5_effect,
     }
 
 
@@ -1593,6 +1613,12 @@ def extract_rows(
     expected = len(table_by_key) * 16
     if len(rows) != expected or len(histories) != len(table_by_key) * 2:
         raise ValueError("T13S13 extracted response coverage mismatch")
+    expected_legacy_s5 = 32 if partition == "training" else 0
+    actual_legacy_s5 = sum(
+        bool(row["legacy_s5_delay2_effect_reinterpretation"]) for row in rows
+    )
+    if actual_legacy_s5 != expected_legacy_s5:
+        raise ValueError("T13S13 legacy S5 delay-2 effect provenance mismatch")
     return rows, histories
 
 
@@ -1957,6 +1983,9 @@ def _identification_gates(rows: Sequence[Mapping[str, Any]], cfg: Mapping[str, A
         ),
         "pre_effect_pass_count": sum(bool(row["pre_effect_causality_pass"]) for row in rows),
         "input_box_pass_count": sum(bool(row["actuator_input_box_containment_pass"]) for row in rows),
+        "legacy_s5_delay2_effect_reinterpretation_count": sum(
+            bool(row["legacy_s5_delay2_effect_reinterpretation"]) for row in rows
+        ),
         "passed": len(details) == len(rows) // 2 and all(row["passed"] for row in details),
         "rows": details,
     }
