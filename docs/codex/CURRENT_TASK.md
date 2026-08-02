@@ -2274,11 +2274,30 @@ deployment, raw, restart, causality, statistics, or reporting error and no
 controller, optimizer, Ray, `gotsc`, TSC, plant step, or snapshot creation.
 The failure is a finite affine observer/model design failure.
 
-The active task is Stage4.2R3c3T13S13 prospective design. It must not train a
-higher-capacity model on only the eight consumed q1/q2 contexts and claim
-validation. It must freeze a broader same-trajectory causal history/response
-campaign with independent history groups, a training-only recurrent or
-nonlinear set-valued predictor, fail-closed support/tube semantics, and a
-fresh history holdout before real TSC. The 250/270 ms arrival and 350/370 ms
-hold contract remains immutable. No controller, MPC, expert data, BC,
-DAgger, or bounded residual RL is authorized.
+The active task is Stage4.2R3c3T13S13, prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S13_RECURRENT_SEQUENCE_TUBE_IDENTIFICATION_DESIGN.md
+```
+
+It covers all 36 R3b source pairs and all 72 authentic restart histories.
+Whole pairs are split into 32 training, 20 calibration, and 20 fresh holdout
+contexts. Eight consumed q1/q2 contexts contribute 136 training raw; the
+remaining 64 contexts require 1,088 new trajectories. New execution is
+strictly gated as training baseline/probe, calibration baseline/probe, then
+fresh-holdout baseline/probe. Later-phase raw may not be created or opened
+early, and a failed context may not be dropped.
+
+The recurrent observer uses only current-run causal visible measurements and
+previously issued commands. Its action coordinate is the pre-action Card15
+nominal readback displacement plus an uncertainty box. Post-effect measured
+current is outcome evidence and is forbidden from the fit input. The center
+model is selected using training whole-pair CV; calibration may only freeze
+the tube; the 20-context holdout is never refit.
+
+The immediate work is a complete independent S13 implementation and zero-TSC
+source/split/snapshot/safety preflight. Real TSC is allowed only after local,
+empty-package, staging, and installed validations pass. The 250/270 ms
+arrival and 350/370 ms hold contract remains immutable. No controller, MPC,
+expert data, BC, DAgger, or bounded residual RL is authorized.
