@@ -287,6 +287,40 @@ class Stage4R3C3T13S19Tests(unittest.TestCase):
             translated["source_stage42r3b_run"], Path("source_stage4_2r3b_run")
         )
 
+    def test_payload_reuses_complete_s16_context_adapter(self):
+        t11_base = SimpleNamespace(source_ctx=SimpleNamespace(source_ctx=object()), cfg={})
+        t11_context = SimpleNamespace(base_ctx=t11_base)
+        s9_context = SimpleNamespace(base_ctx=t11_context)
+        s13_context = SimpleNamespace(base_ctx=s9_context)
+        s16_context = SimpleNamespace(base_ctx=s13_context)
+        context = SimpleNamespace(
+            base_ctx=s16_context,
+            paths=SimpleNamespace(variants=Path("unused-variants")),
+        )
+        spec = {
+            "experiment_id": "payload-contract",
+            "restart_snapshot_dir": "/server/snapshot",
+            "restart_snapshot_manifest_digest": "snapshot-digest",
+        }
+
+        def bottom_payload(inner_context, *, spec):
+            self.assertIs(inner_context.base_ctx, t11_context)
+            self.assertEqual(spec["experiment_id"], "payload-contract")
+            return {}
+
+        with mock.patch.object(
+            s19.s16.s9, "_control_payload", side_effect=bottom_payload
+        ), mock.patch.object(s19.s13, "_write_json"), mock.patch.object(
+            s19.s16, "_write_json"
+        ), mock.patch.object(s19, "_write_json"):
+            payload = s19._payload(context, spec)
+        self.assertEqual(
+            payload["stage4_2r3c3t13s19_snapshot_manifest_digest"], "snapshot-digest"
+        )
+        self.assertFalse(
+            payload["stage4_2r3c3t13s19_pair_history_partition_label_available_to_controller"]
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

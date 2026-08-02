@@ -416,7 +416,7 @@ def _partition_specs(
 
 def _payload(ctx: Context, spec: Mapping[str, Any]) -> dict[str, Any]:
     proxy = SimpleNamespace(base_ctx=ctx.base_ctx.base_ctx, paths=ctx.paths)
-    payload = s13._payload(proxy, spec)
+    payload = s16._payload(proxy, spec)
     experiment_id = str(spec["experiment_id"])
     payload.update({
         "variant_id": f"stage4_2r3c3t13s19_{experiment_id}",
