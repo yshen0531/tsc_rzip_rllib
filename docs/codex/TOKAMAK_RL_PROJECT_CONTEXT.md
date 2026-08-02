@@ -399,13 +399,22 @@ holdout were never opened. This is a causal observer/model design failure,
 not a runtime, restart, reporting, controller, MPC, or plant-unreachability
 result.
 
-The active task is Stage4.2R3c3T13S14, a 144-rollout same-trajectory active
-calibration sentinel over 16 factor-selected authenticated contexts. Every
-rollout executes the same fixed zero-net early excitation before a bounded
-response probe. A pass permits only a separately frozen full
-train/calibration/fresh-holdout identification campaign. Formal timing is
-unchanged and no controller, MPC, expert data, BC, DAgger, or RL is
-authorized.
+Stage4.2R3c3T13S14 completed all 144 authentic trajectories with exact raw,
+restart, causality, Card15, zero-net, current, and reporting integrity after
+four narrowly audited code/reporting corrections. All identification gates
+passed, but the best ESN center model passed only 36/128 and every frozen
+kernel failed. Its certified route is
+`ACTIVE_CALIBRATION_SENTINEL_FAIL_REDESIGN`. Retrospective diagnostics rejected
+simple regularization, raw-history PCA, nearest-history/oracle mappings,
+multi-hypothesis boxes, and uniform tube expansion.
+
+The active task is Stage4.2R3c3T13S15. It freezes four exact physical
+calibration increments at the initial visible state, applies explicit signed
+pairs relative to contemporaneous controller centers, and estimates a local
+response from the same trajectory with a fixed rank-seven drift-plus-input
+design. It preserves the eight-step calibration duration and immutable formal
+timing. S15 is still a development sentinel; no controller, MPC, expert data,
+BC, DAgger, or RL is authorized.
 
 ## 7. Medium-term objectives
 

@@ -2354,3 +2354,52 @@ zero-net post-queue calibration pulses before a response probe at task step
 causally observable enough for whole-pair response prediction. A pass permits
 only a separately frozen full train/calibration/fresh-holdout campaign. No
 controller, MPC, expert data, BC, DAgger, or bounded residual RL is authorized.
+
+## 37. Final T13S14 result and active T13S15 task
+
+T13S14 completed 16/16 calibrated baselines and 128/128 signed response
+trajectories. All 144 raw parsed and passed runtime, exact restart, causality,
+Card15, zero-net, current, and corruption checks. Four narrowly audited code
+or reporting corrections preserved the experiment identity; the final two
+reran zero raw and added zero plant advances. Independent recomputation
+matched the final report exactly.
+
+Its exact route is:
+
+```text
+ACTIVE_CALIBRATION_SENTINEL_FAIL_REDESIGN
+```
+
+All identification/interface gates passed, but no point response model did.
+The best ESN passed only 36/128 center rows with maximum scaled error 1.18137.
+All 12 frozen kernels failed their condition gate. Failed-data diagnostics
+also rejected wider-ridge kernels, direct raw-history PCA, nearest-history
+prediction, simple multi-hypothesis boxes, and uniformly enlarged residual
+tubes. The failure is a genuine finite observer/experimental-design failure,
+not a runtime, restart, reporting, or plant-control conclusion.
+
+The decisive forensic finding is that S14 replanned every signed calibration
+action around a changing underlying-controller Card15 center. Within each
+trajectory, the eight calibration deviations therefore span rank eight, not
+a frozen four-dimensional local input experiment. Eight visible transitions
+cannot identify those input changes plus natural drift.
+
+The complete result is frozen in:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S14_FORENSIC_REPORT.md
+```
+
+The active task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S15_FIXED_BASIS_LOCAL_IDENTIFICATION_DESIGN.md
+```
+
+T13S15 freezes four exact physical field increments at task step zero, applies
+explicit adjacent plus/minus pairs relative to each contemporaneous baseline
+center, and fits a rank-seven constant/linear/quadratic-drift plus fixed-input
+model from states 1--8. It keeps the same eight calibration steps, response
+time, horizons, current limits, and immutable formal timing. It is a
+development sentinel; no MPC, expert data, BC, DAgger, or RL is authorized.

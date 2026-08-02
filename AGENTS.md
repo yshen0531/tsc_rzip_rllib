@@ -534,16 +534,20 @@ training response rows, so it stopped before calibration/holdout as
 `RECURRENT_CAUSAL_SEQUENCE_TUBE_INSUFFICIENT_REDESIGN`. No model, tube,
 controller, or MPC was certified.
 
-The active task is T13S14, a prospectively frozen same-trajectory active-
-calibration sentinel over eight whole factor-selected pairs and 16 authentic
-contexts. Its 16 calibrated baselines and 128 signed probes all execute the
-same four fixed zero-net post-queue calibration pulses before a response
-issue at task step 10. The full gates are in
-`docs/codex/reports/STAGE4_2R3C3T13S14_ACTIVE_CALIBRATION_SENTINEL_DESIGN.md`.
-Calibration consumes real task time and does not change the 250/270 ms
-arrival or 350/370 ms hold contract. A pass authorizes only a separately
-frozen full partitioned identification campaign. No controller, MPC, expert
-data, BC, DAgger, or RL is authorized.
+T13S14 completed all 144 authentic trajectories with exact raw, restart,
+causality, Card15, zero-net, current, and reporting integrity. Its best ESN
+passed only 36/128 center rows and no kernel was eligible. The final route is
+`ACTIVE_CALIBRATION_SENTINEL_FAIL_REDESIGN`; this is an observer and
+experimental-design failure, not a runtime, restart, reporting, controller,
+MPC, or plant-unreachability result.
+
+The current stage is T13S15 fixed-basis within-trajectory local
+identification. It freezes four exact physical increments at task step zero,
+applies explicit adjacent signed pairs relative to contemporaneous baseline
+centers, and fits a causal constant/linear/quadratic-drift plus four-input model
+from states 1--8. It remains a development sentinel. A pass permits only a
+separately frozen fresh-context campaign and robust-MPC feasibility; it does
+not authorize a controller, expert data, BC, DAgger, or RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
