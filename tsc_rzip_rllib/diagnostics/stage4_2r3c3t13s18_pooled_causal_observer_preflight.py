@@ -208,14 +208,32 @@ def _basis_and_coordinate(
     off_basis = float(np.linalg.norm(requested_current - reconstructed) / max(request_norm, 1e-300))
     prediction = s17._prediction(trace[10])
     uncertainty_units = np.asarray(prediction["uncertainty_radius_grid_units_tsc"], dtype=float)
+    bias_units = np.asarray(prediction["bias_grid_units_tsc"], dtype=float)
     output_grid = float(prediction["output_grid_kAt"])
     if (
-        uncertainty_units.shape != (14,) or np.any(uncertainty_units < 1.0)
+        uncertainty_units.shape != (14,) or bias_units.shape != (14,)
+        or np.any(uncertainty_units < 1.0)
         or output_grid != 1e-6
     ):
         raise ValueError("T13S18 current-run quantized uncertainty changed")
-    current_run_radius = uncertainty_units * output_grid * 1000.0 / turns
-    coordinate_radius = np.abs(np.linalg.pinv(basis)) @ (2.0 * current_run_radius)
+    grid_a = output_grid * 1000.0 / turns
+    center_fields = trace[10].get("r3c3t13s16_center_card15_fields") or []
+    if len(center_fields) != 14:
+        raise ValueError("T13S18 same-trajectory Card15 center fields are missing")
+    center_target = np.asarray([
+        float(str(field).strip()) * 1000.0 / turn
+        for field, turn in zip(center_fields, turns)
+    ])
+    center_nominal = center_target - bias_units * grid_a
+    center_lower = center_nominal - uncertainty_units * grid_a
+    center_upper = center_nominal + uncertainty_units * grid_a
+    center_radius = 0.5 * (center_upper - center_lower)
+    probe_lower = np.asarray(prediction["readback_lower_a_tsc"], dtype=float)
+    probe_upper = np.asarray(prediction["readback_upper_a_tsc"], dtype=float)
+    if probe_lower.shape != (14,) or probe_upper.shape != (14,):
+        raise ValueError("T13S18 current-run probe readback interval is missing")
+    probe_radius = 0.5 * (probe_upper - probe_lower)
+    coordinate_radius = np.abs(np.linalg.pinv(basis)) @ (center_radius + probe_radius)
     return basis, coordinate, coordinate_radius, cosine, off_basis
 
 

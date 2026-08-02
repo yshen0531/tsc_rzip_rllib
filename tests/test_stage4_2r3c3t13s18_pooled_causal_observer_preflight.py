@@ -61,9 +61,18 @@ class Stage4R3c3T13S18Tests(unittest.TestCase):
         basis_fields[:, :4] = np.eye(4) * 0.1
         coordinate = np.asarray([0.5, -0.25, 0.75, -0.5])
         signed = basis_fields.T @ coordinate
+        turns = np.asarray([100.0] * 14)
+        grid_a = 1e-6 * 1000.0 / turns
+        center_fields = ["1.000E-01"] * 14
+        center_target = np.asarray([float(field) * 1000.0 / 100.0 for field in center_fields])
+        nominal = center_target - np.asarray([2.0] * 14) * grid_a
+        radius_a = np.asarray([1.0] * 14) * grid_a
         prediction = {
             "uncertainty_radius_grid_units_tsc": [1.0] * 14,
+            "bias_grid_units_tsc": [2.0] * 14,
             "output_grid_kAt": 1e-6,
+            "readback_lower_a_tsc": (nominal - radius_a).tolist(),
+            "readback_upper_a_tsc": (nominal + radius_a).tolist(),
         }
         trace = []
         for _ in range(11):
@@ -71,6 +80,7 @@ class Stage4R3c3T13S18Tests(unittest.TestCase):
                 "r3c3t13s16_fixed_basis_delta_field_kAt_tsc": basis_fields.tolist(),
                 "r3c3t13s9_signed_issue_delta_kAt_tsc": signed.tolist(),
                 "r3c3t13s9_actuator_prediction": prediction,
+                "r3c3t13s16_center_card15_fields": center_fields,
             })
         result = {"controller_trace": trace}
         payload = {"env_cfg": {"turns_display_order": [100.0] * 14}}
