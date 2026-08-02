@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$PROJECT_ROOT"
+python -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s18_pooled_causal_observer_preflight --self-test
+python -m unittest tests.test_stage4_2r3c3t13s18_pooled_causal_observer_preflight

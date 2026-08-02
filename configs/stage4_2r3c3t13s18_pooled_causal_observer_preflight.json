@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S18",
+  "design_revision": 1,
+  "audit_identity": "pooled_causal_observer_preflight_v1",
+  "package_revision": "r42r3c3t13s18_pooled_causal_observer_preflight_v1",
+  "source": {
+    "stage": "Stage4.2R3c3T13S16",
+    "campaign_identity": "orthogonal_fixed_basis_identification_sentinel_v1",
+    "controller_revision": "orthogonal_fixed_basis_identification_probe_v42r3c3t13s16_v1",
+    "package_digest": "9437a6b09945da5ee843def84b614ce8f7f81d1082e02ed18a629add6e70f461",
+    "raw_expected": 144,
+    "raw_total_bytes": 8188964,
+    "raw_inventory_digest": "b0bf9c03b94cd353b3ccb68b0de318c46285a4805acfb0c25016704f79057668",
+    "required_file_sha256": {
+      "stage4_2r3c3t13s16_manifest.json": "088a8b7c8f6c63e44414d143b636abc3b7bd110829cab5c653a3560c5b888c83",
+      "stage4_2r3c3t13s16_state.json": "07e79d3b8d622de264c22cb59fe22e0dc043c8886cf0375798f01a00eda03ffd",
+      "stage4_2r3c3t13s16_analysis/final_result.json": "c7da6d257bc361c8cdfa3a0da9af7a353172d2c73ed258147f4fce99f50a0ed6",
+      "stage4_2r3c3t13s16_analysis/final_model_audit.json": "2184e326078a45cfb72868b3cfb791815f38662d1631d1c4fbecebb4c56764a4",
+      "stage4_2r3c3t13s16_analysis/server_independent_postprocess.json": "dbe9ea6050cfaf71501bda0afb0077028719fe76df407282270986533bc4e231",
+      "stage4_2r3c3t13s16_analysis/probe_execution.json": "4321414bbaa97fbba1bfe6990d094770603ff78736df4055dee62df224abeea1",
+      "stage4_2r3c3t13s16_analysis/baseline_gate.json": "d39a62bd71871693d5e9ee034a8213b41f3719a6f8882d34fce029c8932dc378",
+      "stage4_2r3c3t13s16_frozen_model/fixed_basis_local_estimators.json": "e0b5e96ccb7c6ec9eab1b2dc00ad36d43c28d9bf11155ad8638f265cc2ccac24",
+      "stage4_2r3c3t13s16_source_reference/snapshot_audit.json": "52f0ba44e3a1032fc859ce0a830909ba45abadffd5585b779f68543b9a331c59",
+      "stage4_2r3c3t13s16_source_reference/source_authentication.json": "bc4ea35c265ec73f8bd00f261c89b134b9be497b4a2a6f168ba6d3a269cbed8b",
+      "stage4_2r3c3t13s16_source_reference/context_table.json": "42c882f58ea7219874aa24864da32fed25df71eca1b185b50b556a0cdb12ae2e",
+      "stage4_2r3c3t13s16_specs/all_specs.json": "b0767c24870f2e1d9ce1ce71bcace6fa4035d79e21795e8ea50c74c06c997980"
+    }
+  },
+  "prior_s17": {
+    "audit_identity": "causal_multi_drift_belief_preflight_v1",
+    "causal_belief_sha256": "d8c8ee8f0c3f2e80cb1642c7f6400f47d5280e47459361dfa274421c37fdca76",
+    "final_result_sha256": "98afee17ff682326853e7caa708264186c87ccf88bec92ddf2cd3275855b9a69",
+    "state_sha256": "141bbc5f6ba670b9a560d02c99830eb02c2c67540fcc2c74f944c5cae88987ef",
+    "expected_route": "CAUSAL_MULTI_DRIFT_BELIEF_PREFLIGHT_FAIL_ROBUST_OBSERVER_REDESIGN"
+  },
+  "causal_features": {
+    "visible_state_indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "input_steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "fixed_input_codes": [
+      [1, 0, 0, 0], [-1, 0, 0, 0],
+      [0, 1, 0, 0], [0, -1, 0, 0],
+      [0, 0, 1, 0], [0, 0, -1, 0],
+      [0, 0, 0, 1], [0, 0, 0, -1],
+      [0, 0, 0, 0], [0, 0, 0, 0]
+    ],
+    "legendre_degree": 3,
+    "feature_count": 9,
+    "response_issue_step": 10,
+    "response_first_effect_state": 11,
+    "response_floor": [1e-9, 1e-9, 1e-7, 1e-7, 1e-4],
+    "response_scales": [0.03, 0.03, 0.1, 0.1, 2000.0],
+    "belief_halfwidth_caps": [0.003, 0.003, 0.01, 0.01, 1000.0],
+    "feature_equivalence_tolerance": 1e-12,
+    "containment_tolerance": 1e-12,
+    "forbidden_predictor_fields": [
+      "pair_id", "history_member", "prefix_steps", "q_id", "regime_id",
+      "target_id", "action_delay_steps", "slew_scale", "response_direction",
+      "response_sign", "source_action", "source_result", "wire_currents",
+      "vessel_currents", "matched_baseline_value", "future_measurement",
+      "future_action", "future_probe_schedule"
+    ]
+  },
+  "pooled_model": {
+    "outer_fold_key": "pair_id",
+    "expected_outer_folds": 8,
+    "expected_rows_per_outer_fold": 16,
+    "ridge_grid": [0.0, 1e-8, 1e-6, 1e-4, 1e-2, 1.0, 100.0],
+    "standard_deviation_floor": 1e-12,
+    "tube_multiplier": 4.0,
+    "selection_order": [
+      "maximum_absolute_scaled_oof_error",
+      "mean_squared_scaled_oof_error",
+      "ridge_value"
+    ]
+  },
+  "gates": {
+    "expected_source_raw": 144,
+    "expected_response_rows": 128,
+    "expected_outer_folds": 8,
+    "expected_held_rows_per_fold": 16,
+    "require_artifact_before_held_outcome": true,
+    "require_all_response_contained": true,
+    "require_all_belief_caps": true,
+    "maximum_forbidden_predictor_input_count": 0,
+    "maximum_new_tsc_or_plant_steps": 0
+  },
+  "formal_timing_contract": {
+    "normal": {"arrival_deadline_step": 25, "hold_through_step": 35},
+    "weak": {"arrival_deadline_step": 27, "hold_through_step": 37},
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "execution": {
+    "new_tsc_allowed": false,
+    "ray_allowed": false,
+    "gotsc_allowed": false,
+    "controller_allowed": false,
+    "optimizer_allowed": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
