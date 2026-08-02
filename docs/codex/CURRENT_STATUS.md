@@ -1,5 +1,131 @@
 # Current status
 
+> **Network-pause handoff (2026-08-03 07:45 Asia/Shanghai).**
+> The user requested a controlled pause before disconnecting the network.
+> The final read-only process check found no actual S20 driver, Ray campaign,
+> or `gotsc` process; the only `pgrep` hit was the inspection shell matching
+> its own command text.  No stop, cleanup, server file change, resume, or new
+> experiment was performed.  Resume from the evidence below; do not create a
+> new run or repeat completed TSC work merely because connectivity was lost.
+
+## Active S20 forensic boundary at the network pause
+
+Local branch and package checkpoints:
+
+```text
+branch                         codex/stage4_2r3c3t13s16-whitened-basis
+S20 implementation             1861dbd
+S19-authentication hotfix       9113198
+installed package revision      r42r3c3t13s20_dynamic_exact_card15_pooled_observer_v2
+```
+
+Canonical remote run and logs:
+
+```text
+run
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/
+  stage4_2r3c3t13s20_runs/
+  stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_20260803_9113198
+
+offline log
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/
+  stage4_2r3c3t13s20_offline_20260803_9113198.log
+
+training-baseline log
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/
+  stage4_2r3c3t13s20_training_baseline_20260803_9113198.log
+```
+
+The v2 offline gate authenticated S19, found zero hits among 900 prior T13
+identities, passed all 40/40 snapshot and 40/40 preaction specifications,
+and executed zero TSC/plant advances.  Its fingerprints are:
+
+```text
+manifest SHA-256                496f5cb5e813023faccbfb0b2ed7d299e497c1358ed9f958e2c6e06f0247dee7
+initial-state SHA-256           d3cf0fe3203c87b216af8d8553e7559dfbf75534973433ea0ccb01e3790ec149
+offline-result SHA-256          e6d5c5227f2c0d2e8d1a8d13902ca1bc704a3c6ed904eeec9873226ae65a2b3d
+```
+
+The training-baseline phase produced 24 raw JSON.GZ results: 23 completed
+successfully and one is a correctly preserved structured partial failure.
+The phase then stopped before every training probe, calibration phase, and
+holdout phase.  The current terminal evidence is:
+
+```text
+state SHA-256                   940363eec1ac4b30691733571210b723146b245e8c3114543e619cc921f5ff59
+training-baseline gate SHA-256  a04b4c820c6051df63d6d92848c27fa9bdef2d1a9fce15fb116002c24bc73100
+raw count                       24
+complete successes              23
+structured partial failures      1
+```
+
+The failed specification is experiment
+`s42r3c3_a40f88ad021de4a85a93`, pair
+`p9_q1_a0p900_gap2_settle4`, `minus_first`, training regime D.  It completed
+seven plant advances and stopped before the eighth with
+`ValueError('T13S20 dynamic calibration sequence is not exact zero net')`.
+The partial trajectory has eight states and seven controller-trace rows.
+
+A zero-plant controller replay disabled only the final-net guard so that the
+already planned eighth action could be inspected.  It showed that the
+independently nearest-quantized eight-event sequence leaves only coil 8 at
+`+0.0004 kA-turn`; every other final net component is exactly zero.  Before
+the eighth action, the net is:
+
+```text
+[0.0, 0.01, 0.04, 0.02, 0.02, 0.02, 0.02,
+ 0.03, 0.0004, 0.024, 0.033, 0.02, 0.058, 0.048]
+```
+
+The cumulative inverse target exactly at the Card15 center is representable
+on all 14 coils.  That exact candidate passes the unchanged action gates:
+incremental norm `0.21480952666865222`, total norm
+`0.2160478395061697`, and current utilization `0.3761`.  The first-pass
+forensic output is
+`analysis/s20_final_net_forensic.json`, SHA-256
+`0ce1b4644fef05d029d588a6cfada32eca699b59ef41603238ae1b7676f75392`.
+The server ran the earlier forensic script SHA-256
+`eeb03ebfa817ab6db8459993fa75fbecaa3daadd515c1bb20114cbfc08f411c9`.
+
+Current classification:
+
+```text
+runtime/environment error             no evidence
+deployment/import error               no
+raw corruption                        no evidence
+partial-result reporting bug          no; preservation worked
+plant restart/control conclusion      not established by the failed task
+identified issue                      controller sequence-design defect
+```
+
+The 23 completed baselines have not yet received the independent full raw
+audit required for restart/control claims, because the phase-level execution
+gate failed closed.  Do not infer their scientific PASS from `success=true`.
+
+The local task file `.codex_tmp/s20_final_net_forensic.py` has been extended
+after the first server replay, but that revision has **not** been transferred
+or run.  It is intended to compute the cumulative inverse action's frozen-
+basis coordinate, cross-coordinate, cosine, and off-basis residual without
+advancing the plant.  This is the first action after network restoration.
+Use it to decide whether exact cumulative cancellation preserves the frozen
+scientific action semantics.  If action semantics change, freeze S20 and use
+a new S21 identity; do not resume S20.  If and only if the evidence proves a
+pure implementation/aggregation defect with unchanged experiment identity,
+controller semantics, task matrix, and physical actions, apply the repository
+resume rules rather than rerunning completed raw tasks.
+
+The earlier commit-`1861dbd` offline run failed before any TSC/raw because it
+expected a legacy S19 digest.  Direct recomputation over unchanged S19 raw
+proved the canonical inventory digest is
+`3a2a468a92ea656b240280125ebac9b4e947d14bc3beb8e61a0fcdd82d1e01da`
+(24 files, 1,300,417 bytes).  Commit `9113198` corrected only that
+authentication/reporting assumption.  The empty run is preserved separately
+and must not be resumed.
+
+Large raw, snapshots, and inventories remain on the server.  Continue to
+postprocess them there and download only compact evidence.  Reliable restart
+MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
+
 > Superseding live handoff (2026-08-02 Asia/Shanghai):
 > Stage4.2R3c3T13S12 completed its zero-new-TSC natural-history observer
 > preflight at hotfix commit `d2940b3`. The final server audit authenticated
