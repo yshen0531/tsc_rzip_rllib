@@ -217,9 +217,13 @@ def _basis_and_coordinate(
     ):
         raise ValueError("T13S18 current-run quantized uncertainty changed")
     grid_a = output_grid * 1000.0 / turns
-    center_fields = trace[10].get("r3c3t13s16_center_card15_fields") or []
+    # Response-issue actions inherit the frozen causal center from the S9
+    # controller.  S16's calibration-only center field is intentionally empty
+    # on these rows, so the inherited S9 field is the authentic same-trajectory
+    # center used to construct the selected action.
+    center_fields = trace[10].get("r3c3t13s9_center_card15_fields") or []
     if len(center_fields) != 14:
-        raise ValueError("T13S18 same-trajectory Card15 center fields are missing")
+        raise ValueError("T13S18 inherited same-trajectory Card15 center fields are missing")
     center_target = np.asarray([
         float(str(field).strip()) * 1000.0 / turn
         for field, turn in zip(center_fields, turns)

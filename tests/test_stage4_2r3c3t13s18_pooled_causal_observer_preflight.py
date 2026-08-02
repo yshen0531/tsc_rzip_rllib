@@ -80,7 +80,7 @@ class Stage4R3c3T13S18Tests(unittest.TestCase):
                 "r3c3t13s16_fixed_basis_delta_field_kAt_tsc": basis_fields.tolist(),
                 "r3c3t13s9_signed_issue_delta_kAt_tsc": signed.tolist(),
                 "r3c3t13s9_actuator_prediction": prediction,
-                "r3c3t13s16_center_card15_fields": center_fields,
+                "r3c3t13s9_center_card15_fields": center_fields,
             })
         result = {"controller_trace": trace}
         payload = {"env_cfg": {"turns_display_order": [100.0] * 14}}
