@@ -25,7 +25,7 @@ nohup env \
   STAGE4_2R3C3T13S9_TSC_WORKSPACE_ROOT="${STAGE4_2R3C3T13S9_TSC_WORKSPACE_ROOT}" \
   STAGE4_2R3C3T13S9_TSC_RUN_ROOT="${STAGE4_2R3C3T13S9_TSC_RUN_ROOT}" \
   RAY_TMPDIR="${RAY_TMPDIR}" \
-  "${PROJECT_DIR}/run_stage4_2r3c3t13s9_native.sh" >"${LOG_FILE}" 2>&1 < /dev/null &
+  bash "${PROJECT_DIR}/run_stage4_2r3c3t13s9_native.sh" >"${LOG_FILE}" 2>&1 < /dev/null &
 PID=$!
 printf '%s\n' "${PID}" > "${PID_FILE}"
 printf '[T13S9] pid=%s\n[T13S9] run_dir=%s\n[T13S9] log=%s\n' "${PID}" "${STAGE4_2R3C3T13S9_RUN_DIR}" "${LOG_FILE}"

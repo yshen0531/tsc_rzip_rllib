@@ -433,6 +433,23 @@ class Stage42R3C3T13S9Tests(unittest.TestCase):
         )
         self.assertFalse(state["real_tsc_executed"])
 
+    def test_launchers_do_not_require_transferred_executable_bits(self):
+        root = s4._project_root()
+        offline = (root / "run_stage4_2r3c3t13s9_offline.sh").read_text(
+            encoding="utf-8"
+        )
+        native = (root / "run_stage4_2r3c3t13s9_native.sh").read_text(
+            encoding="utf-8"
+        )
+        nohup = (root / "run_stage4_2r3c3t13s9_nohup.sh").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("exec bash", offline)
+        self.assertIn("exec bash", native)
+        self.assertIn(
+            'bash "${PROJECT_DIR}/run_stage4_2r3c3t13s9_native.sh"', nohup
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
