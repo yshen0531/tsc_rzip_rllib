@@ -345,12 +345,19 @@ and all 32 groups obey `issue+1`. The 24 apparent S1-hard successes at the
 wrong immediate states were zero-input/zero-output vacuity, not model
 evidence. T13S7 does not cleanly test multi-history compatibility.
 
-The active T13S7R1 task is a new frozen zero-new-TSC identity that changes
-only campaign-specific raw effect extraction. It preserves the exact causal
-feature, leave-one-context-out, nearest-neighbor, 0.15 input-support, tube,
-collision, 0.10 error, and forbidden-input contracts. A pass can only design
-a fresh q3 holdout; a fail routes to unified excitation/observer/tube
-redesign before more TSC.
+T13S7R1 corrected the campaign effect contracts and restored all 16 local
+ranks and tubes, but its frozen selector had input support for 0/112 held-out
+rows. Even searching all three same-stratum maps supported only 16/112 rows,
+all in one S5 hard/transport context pair, and cross-campaign support was
+zero. The final route is
+`CAMPAIGN_SPECIFIC_CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN`.
+
+The active T13S8 task is a frozen zero-new-TSC first-effect transition audit.
+It removes the incompatible adjacent cancellation transition from the input
+and evaluates a causal measured-current single-transition hypothesis bank.
+It changes no formal timing. A pass still requires a fresh q3 holdout; a
+failure requires active calibration/persistent-observer or unified
+post-queue excitation redesign before a controller.
 
 ## 7. Medium-term objectives
 

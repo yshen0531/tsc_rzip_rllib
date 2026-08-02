@@ -476,13 +476,24 @@ vacuous, while 88/112 held-out rows were unsupported. T13S7 remains final as
 as an audit-design/effect-contract failure rather than a valid
 multi-hypothesis scientific test.
 
-The active stage is the prospectively frozen zero-new-TSC T13S7R1 audit in
-`STAGE4_2R3C3T13S7R1_CAMPAIGN_SPECIFIC_EFFECT_CONTRACT_DESIGN.md`. It changes
-only raw response extraction: S1 uses `issue+delay+1`, while S5 uses
-`issue+1`. Feature, LOCO, neighbor, support, tube, collision, threshold, and
-prohibition rules remain unchanged. Either route still requires a new q3
-holdout or deeper observer/excitation redesign and cannot authorize a
-controller or MPC.
+Stage4.2R3c3T13S7R1 then applied the authenticated campaign-specific effect
+states and completed the zero-new-TSC audit. Local rank and tube gates
+recovered to 16/16, but the frozen feature selector found supported input
+hypotheses for 0/112 held-out rows. A post-result forensic found only 16/112
+rows supported by any same-stratum training map, all in the S5 hard
+transport pair; cross-campaign support was 0/112. The final route is
+`CAMPAIGN_SPECIFIC_CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN`.
+This is an excitation-coordinate/support design failure, not a runtime,
+restart, raw, real-controller, or plant result.
+
+The active stage is the prospectively frozen zero-new-TSC T13S8 audit in
+`STAGE4_2R3C3T13S8_FIRST_EFFECT_TRANSITION_DESIGN.md`. It removes the
+campaign-specific adjacent cancellation transition and models only the
+first physical effect from measured coil current to causal R/Z/vR/vZ/Ip.
+It retains all strict support, tube, relative-error, causality, and
+forbidden-input gates. A pass only permits a fresh q3 history holdout; a
+failure routes to active calibration/persistent-observer or new unified
+post-queue excitation design before any controller or MPC.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

@@ -1901,3 +1901,69 @@ Both source campaigns are consumed development evidence. A pass still only
 permits a new prospective q3 holdout; a fail requires unified excitation,
 observer, or transition-tube redesign. No controller, MPC, expert data, BC,
 DAgger, or RL is authorized.
+
+## 30. Final T13S7R1 result and active T13S8 task
+
+T13S7R1 completed at reporting revision `9e400e1` without any new TSC or
+plant execution. Its exact final route is:
+
+```text
+CAMPAIGN_SPECIFIC_CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN
+```
+
+Compact identities:
+
+```text
+main audit SHA-256
+  9fb7c8ce1efc03a66d69b8b8c848bff9509196cfc2e7b583f98eb547dd829c80
+support forensic SHA-256
+  6683df634729fee74294971f1e945bec0eddd7532bb06b650044da937f88c799
+```
+
+The final audit authenticated 52 S1 and 68 S5 raw files, 56/56 campaign
+effect groups, 120/120 traces, 112/112 signed responses, and 112/112
+pre-effect causality. Correct timing restored local rank and tube to 16/16,
+with maximum tube/cap ratio `0.202075`. The frozen feature selector found
+supported hypotheses for 0/112 held-out rows, so containment and relative
+error were not run and the finite maximum is correctly JSON `null`.
+
+The initial `0a4b39a` invocation exposed a summary-only `max(empty)` bug and
+wrote no result JSON. The `9e400e1` hotfix changed only empty-set reporting,
+added a regression test, and used `pipefail`; it did not alter scientific
+semantics or any gate.
+
+Post-result support forensics preserved the `0.15` threshold. Across all 336
+held-input/training-map comparisons, only 16 passed; they were the S5 hard
+transport pair and none was selected by the frozen visible feature rule.
+Cross-campaign support was 0/112, the minimum selected residual was
+`0.202537`, and the median all-training minimum residual was `0.790417`.
+This establishes an excitation/input-coordinate design failure, not a
+response-error measurement on the unsupported rows.
+
+The active task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S8_FIRST_EFFECT_TRANSITION_DESIGN.md
+```
+
+T13S8 is a zero-new-TSC leave-one-context-out audit using only each probe's
+campaign-authenticated first physical effect. Its input is the measured
+14-coil current difference at that state and its output is the causal
+single-state R/Z/vR/vZ/Ip response. It excludes the incompatible adjacent
+cancellation transition, considers all three same-stratum training maps as
+a label-free robust hypothesis bank, and preserves the `0.15` support,
+component tube caps, `0.10` relative error, causality, collision, and all
+forbidden-input gates.
+
+T13S8 may end only as:
+
+```text
+FIRST_EFFECT_CAUSAL_TRANSITION_CANDIDATE_Q3_HOLDOUT_REQUIRED
+FIRST_EFFECT_CAUSAL_TRANSITION_INSUFFICIENT_REDESIGN
+```
+
+A pass only authorizes a fresh prospective q3 history holdout. A failure
+routes to active calibration/persistent observer or a new unified post-queue
+excitation design. It authorizes no controller, MPC, expert data, BC,
+DAgger, or RL.
