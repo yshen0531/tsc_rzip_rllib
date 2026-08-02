@@ -617,7 +617,8 @@ def _validate_snapshots(table: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
         try:
             manifest = _read_json(manifest_path)
             passed = bool(
-                _sha256(manifest_path) == str(context["restart_snapshot_manifest_digest"])
+                str(manifest.get("digest", ""))
+                == str(context["restart_snapshot_manifest_digest"])
                 and s9.t11.t1.r1._validate_snapshot_inventory(directory, manifest)
             )
             if not passed:

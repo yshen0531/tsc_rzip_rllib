@@ -236,6 +236,21 @@ class Stage42R3C3T13S13Tests(unittest.TestCase):
         directory_loop = text.split('for path in "${SOURCE_R3B}"', 1)[1].split("done", 1)[0]
         self.assertNotIn('"${SOURCE_T3_BANK}"', directory_loop)
 
+    def test_snapshot_contract_uses_inventory_digest_not_manifest_file_hash(self):
+        context = {
+            "pair_id": "pair", "history_member": "plus_first",
+            "state_generation_experiment_id": "state",
+            "restart_snapshot_dir": str(ROOT / ".codex_tmp" / "snapshot_contract"),
+            "restart_snapshot_manifest_digest": "inventory-digest",
+        }
+        manifest = {"digest": "inventory-digest"}
+        with mock.patch.object(s13, "_read_json", return_value=manifest), mock.patch.object(
+            s13.s9.t11.t1.r1, "_validate_snapshot_inventory", return_value=True,
+        ), mock.patch.object(s13, "_sha256", side_effect=AssertionError("file SHA is not the snapshot identity")):
+            audit = s13._validate_snapshots([context] * 72)
+        self.assertTrue(audit["passed"])
+        self.assertEqual(audit["pass_count"], 72)
+
 
 if __name__ == "__main__":
     unittest.main()
