@@ -102,9 +102,22 @@ extended support       row-space residual <= 0.15
 scaled center error    <= 0.10
 ```
 
-The held braking input and held calibration signature are combined into the
-same 12-column interaction row. Every held row must pass the unchanged 0.15
-training row-space support gate before prediction.
+Do not apply support to the 12-column interaction design itself: exact rank
+12 would span that whole coordinate and make the gate vacuous. Before any
+prediction, require both of these independent non-vacuous gates:
+
+```text
+held centered z residual to the training rank-2 affine subspace   <= 0.15
+held 14-coil braking input residual to the training rank-4 space  <= 0.15
+```
+
+Each residual is its Euclidean projection residual divided by the norm of
+the held vector with only a numerical zero floor. The state residual is
+computed in the original physically scaled eight-dimensional signature
+space; the current residual is computed in the original measured 14-coil
+space. The two values are reported separately. Both must pass before the
+held calibration coordinates and braking input are combined into the frozen
+12-column interaction row for prediction.
 
 ## Exact gates
 
@@ -119,7 +132,8 @@ training-only calibration PCA rank                                 8 / 8
 training-only current basis rank                                   8 / 8
 interaction design rank/condition/signal                           8 / 8
 non-vacuous interaction tube                                       8 / 8
-held extended-input support                                      64 / 64
+held calibration-state affine support                              8 / 8
+held braking-current support                                     64 / 64
 held componentwise containment                                   64 / 64
 held scaled relative error <= 0.10                               64 / 64
 disjoint exact causal signature/input aliases                            0

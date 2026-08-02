@@ -2135,8 +2135,12 @@ T13S11 uses the consumed q1/q2 raw only. In each context, one positive
 absolute same-trajectory causal signature. Eight LOCO folds compute a
 training-only rank-2 calibration state basis, a rank-4 braking-current basis,
 and a 12-column state/current interaction model. It tests 64 later braking
-first-effect rows under unchanged support `0.15`, error `0.10`, response
-scales, tube multiplier, component caps, causality, collision, and
+first-effect rows. Support is tested non-vacuously and separately for the
+held eight-dimensional calibration signature against the training rank-2
+affine subspace and for the held 14-coil braking current against the training
+rank-4 subspace; applying support to the full-rank 12-column interaction
+coordinate is forbidden. Both retain `0.15`, with unchanged error `0.10`,
+response scales, tube multiplier, component caps, causality, collision, and
 forbidden-input rules.
 
 T13S11 may end only as:
