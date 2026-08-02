@@ -38,7 +38,7 @@ RUN_NAME = "stage4_2r3c3t13s5_lattice_native_split_holdout"
 CAMPAIGN_IDENTITY = "quantized_lattice_native_split_two_step_blind_holdout_v1"
 CONTROLLER_REVISION = "quantized_lattice_native_split_probe_v42r3c3t13s5_v1"
 EXECUTION_PACKAGE_REVISION = "r42r3c3t13s5_lattice_native_split_holdout_v1"
-PACKAGE_REVISION = "r42r3c3t13s5_lattice_native_split_holdout_v1h1"
+PACKAGE_REVISION = "r42r3c3t13s5_lattice_native_split_holdout_v1h2"
 BASELINE_PROBE_ID = "lattice_baseline"
 WINDOWS = ("transport", "braking")
 DIRECTIONS = (
@@ -1412,7 +1412,7 @@ def prepare(
         reporting_hotfix = False
         t11.t1.r3c3.atomic_write_json(ctx.paths.manifest, manifest)
     resolved_name = (
-        "stage4_2r3c3t13s5_config.resolved.v1h1.json"
+        "stage4_2r3c3t13s5_config.resolved.v1h2.json"
         if reporting_hotfix
         else "stage4_2r3c3t13s5_config.resolved.json"
     )
@@ -1421,7 +1421,7 @@ def prepare(
         ctx.paths.source_reference / "control_specs.json", specs
     )
     fingerprint_name = (
-        "deployed_package_fingerprint.v1h1.json"
+        "deployed_package_fingerprint.v1h2.json"
         if reporting_hotfix else "deployed_package_fingerprint.json"
     )
     t11.t1.r3c3.atomic_write_json(

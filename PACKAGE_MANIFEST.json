@@ -5,11 +5,11 @@
     "campaign_identity":  "quantized_lattice_native_split_two_step_blind_holdout_v1",
     "controller_revision":  "quantized_lattice_native_split_probe_v42r3c3t13s5_v1",
     "underlying_controller_revision":  "authenticated_visible_manifold_phase_mpc_v42r3c1",
-    "package_revision":  "r42r3c3t13s5_lattice_native_split_holdout_v1h1",
+    "package_revision":  "r42r3c3t13s5_lattice_native_split_holdout_v1h2",
     "source_stage":  "Exact authenticated R3c1 restart chain, T13S3 quantized causal tube interface, frozen q2 development/blind split, and the zero-TSC T13S5 actuator/input feasibility audit.",
     "source_controller_revision":  "authenticated_visible_manifold_phase_mpc_v42r3c1",
     "source_package_revision":  "r42r3c3t13s3_quantized_causal_tube_interface",
-    "purpose":  "Execute the prospectively frozen four-context 68-rollout lattice-native split Card15 transition campaign, freeze the four-direction local model from 34 development raw before opening 34 blind holdout raw, and independently audit runtime, restart, actuator, return-first cancellation, causality, signal, rank, tube, and holdout gates. Revision v1h1 is a semantics-preserving strict-JSON reporting hotfix for non-finite rank-deficient condition numbers.",
+    "purpose":  "Execute the prospectively frozen four-context 68-rollout lattice-native split Card15 transition campaign, freeze the four-direction local model from 34 development raw before opening 34 blind holdout raw, and independently audit runtime, restart, actuator, return-first cancellation, causality, signal, rank, tube, and holdout gates. Revision v1h2 is a semantics-preserving reporting hotfix for strict-JSON rank-deficient condition numbers and ordered existing-raw finalization without the ordinary control-resume scan.",
     "campaigns":  {
                       "fresh_formal_end_baselines":  4,
                       "fresh_signed_lattice_probes":  64,

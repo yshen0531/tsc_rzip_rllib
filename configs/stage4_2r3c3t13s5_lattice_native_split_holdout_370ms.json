@@ -6,7 +6,7 @@
   "campaign_identity": "quantized_lattice_native_split_two_step_blind_holdout_v1",
   "controller_revision": "quantized_lattice_native_split_probe_v42r3c3t13s5_v1",
   "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
-  "package_revision": "r42r3c3t13s5_lattice_native_split_holdout_v1h1",
+  "package_revision": "r42r3c3t13s5_lattice_native_split_holdout_v1h2",
   "base_stage_config": "configs/stage4_2r3c3t11_persistent_step_response_identification_500ms.json",
   "base_stage_config_sha256": "412349c35b6622c38d5d0d58cbe3a9bbeb3cd8ded2a8f8a043705ee94946ac72",
   "holdout_contexts": [

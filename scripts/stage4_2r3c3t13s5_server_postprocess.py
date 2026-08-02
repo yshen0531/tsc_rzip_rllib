@@ -84,6 +84,22 @@ def _snapshot_integrity(specs: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _finalize_existing_raw(
+    ctx: s4.Stage42R3C3T13S5Context,
+) -> dict[str, Any]:
+    """Finalize a completed run without the resume path pre-opening holdout raw."""
+    selected_pairs, specs = s4.prepare(ctx, resume=True)
+    offline = s4.run_offline_lattice_audit(
+        ctx, selected_pairs, allow_existing_raw=True
+    )
+    if not bool(offline.get("passed")):
+        raise RuntimeError("T13S5 offline gate failed during reporting finalization")
+    summary = s4.summarize_from_raw(
+        ctx, specs, selected_pairs, write_outputs=True
+    )
+    return s4.analyze(ctx, summary)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", required=True, type=Path)
@@ -95,6 +111,7 @@ def main() -> None:
     parser.add_argument("--source-stage4-2r3c3t3-controller-bank", required=True, type=Path)
     parser.add_argument("--run-dir", required=True, type=Path)
     parser.add_argument("--audit-dir", required=True, type=Path)
+    parser.add_argument("--finalize-existing-raw", action="store_true")
     args = parser.parse_args()
     run_dir = args.run_dir.expanduser().resolve()
     audit_dir = args.audit_dir.expanduser().resolve()
@@ -110,6 +127,8 @@ def main() -> None:
         source_stage42r3c3t3_controller_bank=args.source_stage4_2r3c3t3_controller_bank,
         run_dir_override=run_dir,
     )
+    if args.finalize_existing_raw:
+        _finalize_existing_raw(ctx)
     selected_pairs = s4._selected_pairs(ctx)
     specs = s4.build_control_specs(ctx, selected_pairs)
     # This must be the first raw read in this independent invocation. The

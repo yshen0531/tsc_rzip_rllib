@@ -25,6 +25,7 @@ from tsc_rzip_rllib.core.inputa import format_number
 from tsc_rzip_rllib.diagnostics import (
     stage4_2r3c3t13s5_lattice_native_split_holdout as s4,
 )
+from scripts import stage4_2r3c3t13s5_server_postprocess as postprocess
 
 
 def _cfg():
@@ -336,6 +337,33 @@ class Stage42R3C3T13S5Tests(unittest.TestCase):
         )
         with self.assertRaisesRegex(ValueError, "quantized_actuator"):
             s4._resume_compatible(old, new, allow_reporting_hotfix=True)
+
+    def test_reporting_finalizer_bypasses_control_evaluation(self):
+        ctx = object()
+        summary = {"passed": False}
+        final = {"verdict": "LATTICE_HOLDOUT_FAIL_REDESIGN"}
+        with (
+            mock.patch.object(s4, "prepare", return_value=(["pair"], ["spec"])),
+            mock.patch.object(
+                s4,
+                "run_offline_lattice_audit",
+                return_value={"passed": True},
+            ) as offline,
+            mock.patch.object(
+                s4, "summarize_from_raw", return_value=summary
+            ) as summarize,
+            mock.patch.object(s4, "analyze", return_value=final) as analyze,
+            mock.patch.object(s4, "_evaluate_control") as evaluate,
+        ):
+            self.assertEqual(postprocess._finalize_existing_raw(ctx), final)
+        offline.assert_called_once_with(
+            ctx, ["pair"], allow_existing_raw=True
+        )
+        summarize.assert_called_once_with(
+            ctx, ["spec"], ["pair"], write_outputs=True
+        )
+        analyze.assert_called_once_with(ctx, summary)
+        evaluate.assert_not_called()
 
     def test_offline_design_failure_is_recorded_without_tsc(self):
         ctx = types.SimpleNamespace(

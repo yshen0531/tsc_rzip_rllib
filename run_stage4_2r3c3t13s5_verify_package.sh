@@ -18,7 +18,7 @@ expected = {
     "run_name": "stage4_2r3c3t13s5_lattice_native_split_holdout",
     "campaign_identity": "quantized_lattice_native_split_two_step_blind_holdout_v1",
     "controller_revision": "quantized_lattice_native_split_probe_v42r3c3t13s5_v1",
-    "package_revision": "r42r3c3t13s5_lattice_native_split_holdout_v1h1",
+    "package_revision": "r42r3c3t13s5_lattice_native_split_holdout_v1h2",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:
