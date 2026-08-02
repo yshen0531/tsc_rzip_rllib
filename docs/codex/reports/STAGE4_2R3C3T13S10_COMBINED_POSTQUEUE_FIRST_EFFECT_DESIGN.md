@@ -135,4 +135,3 @@ T13S10 runs no controller, optimizer, Ray, `gotsc`, TSC, plant step, or new
 snapshot. Both source campaigns are consumed development evidence. Neither
 route authorizes real MPC, expert data, BC, DAgger, or bounded residual RL.
 Formal arrival and hold timing remains unchanged.
-
