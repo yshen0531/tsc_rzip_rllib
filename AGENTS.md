@@ -541,13 +541,32 @@ passed only 36/128 center rows and no kernel was eligible. The final route is
 experimental-design failure, not a runtime, restart, reporting, controller,
 MPC, or plant-unreachability result.
 
-The current stage is T13S15 fixed-basis within-trajectory local
-identification. It freezes four exact physical increments at task step zero,
-applies explicit adjacent signed pairs relative to contemporaneous baseline
-centers, and fits a causal constant/linear/quadratic-drift plus four-input model
-from states 1--8. It remains a development sentinel. A pass permits only a
-separately frozen fresh-context campaign and robust-MPC feasibility; it does
-not authorize a controller, expert data, BC, DAgger, or RL.
+T13S15 failed its frozen basis-condition gate before any plant advance.
+T13S16 repaired the basis geometry and completed 144/144 authentic
+trajectories, but its provisional local residual tube failed. T13S17's
+causal multi-drift tube retained 128/128 containment but exceeded the frozen
+caps. T13S18 then passed its zero-new-TSC whole-pair pooled observer preflight
+128/128 and authorized a prospective fresh campaign only.
+
+T13S19 produced 24 training-baseline raw files, with 23 complete successes
+and one deterministic controller exception before its third plant advance.
+Forensics proved that a frozen `-0.016` kAt calibration increment crossed a
+Card15 decimal exponent boundary and could not be represented exactly at the
+new causal center. This is an excitation-design defect plus a partial-failure
+reporting defect, not a TSC, restart, causality, raw, observer, control, or
+plant failure. S19 is frozen and cannot resume under changed action semantics;
+training probes, calibration, and holdout were not run.
+
+The current stage is the separately preregistered T13S20 dynamic-exact Card15
+campaign. It keeps S19's 12/4/4 whole-pair split but reruns all 360 trajectories
+under a new identity. At every calibration event it preserves the causal S16
+QR direction, selects the nearest exactly representable displacement around
+the current Card15 center, records the actual input coordinate, requires a
+rank-eight causal design with condition at most 4.0, and requires exact
+eight-event calibration net zero. The model must be hashed before calibration
+and the calibrated tube before holdout. Even a complete pass permits only
+robust-transport MPC feasibility and a separately frozen real-MPC campaign;
+it does not authorize expert data, BC, DAgger, or RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

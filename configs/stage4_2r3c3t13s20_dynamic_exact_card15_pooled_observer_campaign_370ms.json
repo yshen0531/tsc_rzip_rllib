@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S20",
+  "design_revision": 1,
+  "run_name": "stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign",
+  "campaign_identity": "dynamic_exact_card15_pooled_causal_observer_campaign_v1",
+  "controller_revision": "dynamic_exact_card15_calibration_probe_v42r3c3t13s20_v1",
+  "package_revision": "r42r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_v1",
+  "base_stage_config": "configs/stage4_2r3c3t13s16_orthogonal_fixed_basis_identification_370ms.json",
+  "base_stage_config_sha256": "5e9425977daebe7f667591f4ad1bdd5f7ebc8ae4e19d78be9624c547e4647e2a",
+  "freshness": {
+    "minimum_prior_identification_raw": 900,
+    "required_candidate_pair_count": 20,
+    "allowed_s19_training_baseline_raw_hits": 24,
+    "allowed_prior_training_probe_raw_hits": 0,
+    "allowed_prior_calibration_raw_hits": 0,
+    "allowed_prior_holdout_raw_hits": 0,
+    "forbid_outcome_based_selection": true
+  },
+  "source_s19_development": {
+    "run_relative_path": "stage4_2r3c3t13s19_runs/stage4_2r3c3t13s19_prospective_pooled_observer_campaign_20260803_14f3646",
+    "final_state_sha256": "4e4d4247be7478f4a2352d092b6b72dba2916df69deba0d15cee7eaad203bdc2",
+    "raw_inventory_count": 24,
+    "raw_inventory_digest": "dc31ee4be1159636cdf2d64638345f639ac0006d70d99862d7ce7af7774cd817",
+    "successful_training_baselines": 23,
+    "failed_training_baselines": 1,
+    "failed_experiment_id": "s42r3c3_6bc94530a3ae407830ff",
+    "failed_raw_sha256": "ebecebf89a465bfc9ddb66f7e089a9fdcb3803ab30d19c4ee121cd4a05a67ccc",
+    "dynamic_card15_development_sha256": "e16cfd02d1d7f0af1789c9ece07de8d8116eee11780ad8bf0e7cd23d1de14d64",
+    "failed_reproduction_v2_sha256": "cd3396e50f14cf3476709bb44423c5363b3cd56b551ad97380e1565e602fc7c1"
+  },
+  "split": {
+    "history_members": ["plus_first", "minus_first"],
+    "training": [
+      {"pair_id": "p5_q1_a0p750_gap2_settle4", "regime": "A"},
+      {"pair_id": "p5_q1_a0p750_gap3_settle4", "regime": "B"},
+      {"pair_id": "p5_q1_a0p900_gap4_settle4", "regime": "C"},
+      {"pair_id": "p5_q2_a0p750_gap2_settle4", "regime": "D"},
+      {"pair_id": "p5_q2_a0p750_gap4_settle4", "regime": "A"},
+      {"pair_id": "p5_q2_a0p900_gap3_settle4", "regime": "B"},
+      {"pair_id": "p9_q1_a0p750_gap3_settle4", "regime": "C"},
+      {"pair_id": "p9_q1_a0p900_gap2_settle4", "regime": "D"},
+      {"pair_id": "p9_q1_a0p900_gap4_settle4", "regime": "A"},
+      {"pair_id": "p9_q2_a0p750_gap4_settle4", "regime": "B"},
+      {"pair_id": "p9_q2_a0p900_gap2_settle4", "regime": "C"},
+      {"pair_id": "p9_q2_a0p900_gap3_settle4", "regime": "D"}
+    ],
+    "calibration": [
+      {"pair_id": "p5_q1_a0p900_gap3_settle4", "regime": "A"},
+      {"pair_id": "p5_q2_a0p750_gap3_settle4", "regime": "B"},
+      {"pair_id": "p9_q1_a0p900_gap3_settle4", "regime": "C"},
+      {"pair_id": "p9_q2_a0p750_gap3_settle4", "regime": "D"}
+    ],
+    "holdout": [
+      {"pair_id": "p5_q1_a0p750_gap4_settle4", "regime": "C"},
+      {"pair_id": "p5_q2_a0p900_gap4_settle4", "regime": "D"},
+      {"pair_id": "p9_q1_a0p750_gap4_settle4", "regime": "A"},
+      {"pair_id": "p9_q2_a0p900_gap4_settle4", "regime": "B"}
+    ],
+    "regimes": [
+      {"id": "A", "target_id": "nominal", "action_delay_steps": 0, "slew_scale": 1.0},
+      {"id": "B", "target_id": "nominal", "action_delay_steps": 2, "slew_scale": 0.9},
+      {"id": "C", "target_id": "RZ_p10_m10", "action_delay_steps": 0, "slew_scale": 1.0},
+      {"id": "D", "target_id": "RZ_p10_m10", "action_delay_steps": 2, "slew_scale": 0.9}
+    ]
+  },
+  "causal_model": {
+    "visible_state_indices": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "input_steps": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "dynamic_input_coordinates_from_same_trace": true,
+    "calibration_input_steps": [0, 1, 2, 3, 4, 5, 6, 7],
+    "settling_input_coordinates": [[0, 0, 0, 0], [0, 0, 0, 0]],
+    "legendre_degree": 3,
+    "feature_count": 9,
+    "minimum_signed_primary_coordinate": 0.85,
+    "maximum_signed_primary_coordinate": 1.15,
+    "maximum_cross_coordinate_abs": 0.15,
+    "minimum_dynamic_basis_cosine": 0.98,
+    "maximum_dynamic_off_basis_residual": 0.15,
+    "maximum_dynamic_design_condition": 4.0,
+    "require_exact_calibration_net_zero": true,
+    "response_scales": [0.03, 0.03, 0.1, 0.1, 2000.0],
+    "response_floor": [1e-9, 1e-9, 1e-7, 1e-7, 1e-4],
+    "belief_halfwidth_caps": [0.003, 0.003, 0.01, 0.01, 1000.0],
+    "maximum_absolute_scaled_point_error": 0.1,
+    "minimum_response_basis_cosine": 0.98,
+    "maximum_response_off_basis_residual": 0.15,
+    "feature_equivalence_tolerance": 1e-12,
+    "forbidden_predictor_fields": [
+      "pair_id", "history_member", "partition", "prefix", "amplitude", "gap",
+      "target_id", "action_delay_steps", "slew_scale", "response_direction",
+      "response_sign", "wire_current", "future_measurement", "future_action",
+      "source_result", "source_action", "matched_baseline_value", "post_effect_current"
+    ]
+  },
+  "pooled_model": {
+    "outer_group_key": "pair_id",
+    "ridge_grid": [0.0, 1e-8, 1e-6, 1e-4, 1e-2, 1.0, 100.0],
+    "selection_order": ["maximum_absolute_scaled_oof_error", "mean_squared_scaled_oof_error", "ridge"],
+    "standard_deviation_floor": 1e-12,
+    "tube_multiplier": 4.0,
+    "calibrated_residual_rule": "componentwise_max_training_oof_and_calibration_absolute_residual"
+  },
+  "control_matrix": {
+    "training_pairs": 12,
+    "calibration_pairs": 4,
+    "holdout_pairs": 4,
+    "history_members_per_pair": 2,
+    "signed_probes_per_context": 8,
+    "training_baselines": 24,
+    "training_probes": 192,
+    "calibration_baselines": 8,
+    "calibration_probes": 64,
+    "holdout_baselines": 8,
+    "holdout_probes": 64,
+    "total_real_rollouts": 360,
+    "require_fresh_controller": true,
+    "require_fresh_tsc_process": true,
+    "forbid_future_actions": true,
+    "forbid_future_measurements": true,
+    "require_online_action_computation": true
+  },
+  "formal_timing_contract": {
+    "normal": {"arrival_deadline_step": 25, "hold_through_step": 35},
+    "weak": {"arrival_deadline_step": 27, "hold_through_step": 37},
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "runtime": {"tsc_timeout_s": 180.0},
+  "parallel": {"n_workers": 128},
+  "storage": {
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "ray_tmpdir": "/tmp/stage4_2r3c3t13s20",
+    "actor_close_timeout_s": 1800.0,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "identification_only": true,
+  "fresh_holdout_required": true,
+  "probe_trajectories_allowed_in_expert_dataset": false,
+  "independent_long_hold_validated": false,
+  "bc_dagger_or_rl_allowed": false
+}

@@ -2607,3 +2607,55 @@ calibration, freeze the calibrated tube before holdout, and stop at the first
 failed boundary.  Even a complete pass authorizes only offline robust-
 transport MPC feasibility work.  Expert data, BC, DAgger, and bounded residual
 RL remain prohibited.
+
+## 42. Final T13S19 result and active T13S20 task
+
+T13S19 authenticated all sources and began its prospective campaign at
+implementation checkpoint `14f3646`. Its training-baseline phase produced 24
+structured raw files: 23 complete successes and one deterministic controller
+exception. The raw inventory digest is:
+
+```text
+dc31ee4be1159636cdf2d64638345f639ac0006d70d99862d7ce7af7774cd817
+```
+
+Independent raw audit found exact restart, causality, actuator execution,
+calibration schedule, zero net, and pre-response semantics in all 23 complete
+baselines. A separate authentic two-step TSC reproduction proved the failed
+path crossed a Card15 exponent boundary: the frozen `-0.016` kAt increment at
+center `-9.904E-01` requested unrepresentable `-1.0064`, while Card15 could
+encode only `-1.006E+00` at that precision. This is an excitation-design
+defect surfaced by a controller guard, plus a partial-failure reporting defect;
+it is not a TSC, restart, causality, raw, observer, MPC, control, or plant
+failure. Training probes, calibration, and holdout were not run.
+
+S19 is frozen and may not resume under changed action semantics. Its report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S19_FORENSIC_REPORT.md
+```
+
+A zero-new-TSC development replay of 187 causal events found that retaining
+the frozen QR directions while recomputing the nearest exact displacement at
+each current Card15 center passed 187/187 action gates. Complete baseline
+sequences were exact zero net 23/23; all causal designs retained rank eight,
+with maximum condition `3.1980986512`. The exponent-boundary event was repaired
+to actual increment `-0.0156` kAt and input coordinate `0.975`.
+
+The active task is the separately frozen T13S20 campaign in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S20_DYNAMIC_EXACT_CARD15_CAMPAIGN_DESIGN.md
+```
+
+S20 keeps the unchanged 12/4/4 whole-pair split but reruns all 360 trajectories
+under a new controller and campaign identity. It uses actual same-trajectory
+dynamic input coordinates, requires coordinate magnitude `[0.85,1.15]`, cross
+coordinate at most `0.15`, cosine at least `0.98`, off-basis residual at most
+`0.15`, causal design condition at most `4.0`, and exact calibration net zero.
+The model must be hashed before calibration and the tube before holdout.
+
+Even a complete S20 pass authorizes only robust-transport MPC feasibility.
+Probe raw remains forbidden from expert data; BC, DAgger, and bounded residual
+RL remain prohibited.
