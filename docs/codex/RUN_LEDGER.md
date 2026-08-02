@@ -1171,3 +1171,31 @@
   restart, raw, final-reporting, controller, real-MPC, or reachability failure
 - Next: zero-new-TSC S18 fixed pooled causal observer preflight; only a pass
   may authorize a separately frozen fresh whole-pair campaign
+
+## Stage4.2R3c3T13S18 pooled causal observer preflight
+
+- Branch: `codex/stage4_2r3c3t13s16-whitened-basis`
+- Implementation/package checkpoints: `e940fc8`, `d178001`
+- Exact Card15 reconstruction fixes: `fa76af1`, `fba9144`
+- Final batch-evaluation consistency fix: `960ac1e`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s18_audits/stage4_2r3c3t13s18_pooled_causal_observer_preflight_20260803_fba9144`
+- Source raw count / bytes / digest: `144` / `8,188,964` /
+  `b0bf9c03b94cd353b3ccb68b0de318c46285a4805acfb0c25016704f79057668`
+- New raw / snapshots / TSC / plant steps: `0 / 0 / 0 / 0`
+- Outer folds / held rows / response rows: `8 / 16 each / 128`
+- Containment / cap / joint: `128/128`, `128/128`, `128/128`
+- Maximum scaled point error: `0.0010531744`
+- Artifact / final / independent hashes:
+  `a7f35260e18894da763adba557b5c93ff599e2e4d81d94e4dd43e4824c9a5518`,
+  `12817946f1a1dee8557798f0e98a281e9015cfd7c26c07e4ca537729047836fb`,
+  `09f7377887f3a42a707456dc8ed8bafc21faddacae7034c3a412a7b297f7dc9c`
+- Route: `POOLED_CAUSAL_OBSERVER_PREFLIGHT_PASS_FRESH_CAMPAIGN_REQUIRED`
+- Incidents: exact Card15 interval reconstruction and batch-versus-single-row
+  BLAS consistency bugs; both stopped before TSC and changed no scientific
+  semantics.  One foreground resume SSH session reset before server execution.
+- Classification: consumed-development architecture PASS only; no independent
+  observer, controller, MPC, continuous-parameter, noise, disturbance,
+  long-hold, expert-data, BC, DAgger, or RL validation
+- Next: prospectively frozen 360-rollout S19 with 12/4/4 whole-pair
+  training/calibration/fresh holdout and strict phase-boundary artifact hashes

@@ -2566,3 +2566,44 @@ current-run Card15 feature uncertainty.  A pass can authorize only a new,
 separately preregistered training/calibration/fresh-context campaign.  No
 controller, MPC, expert data, BC, DAgger, or bounded residual RL is
 authorized.
+
+## 41. Final T13S18 result and active T13S19 task
+
+T13S18 completed its zero-new-TSC server audit with the fold artifact frozen
+under `fba9144` and the semantics-neutral batch-evaluation correction
+`960ac1e`.  It authenticated all 144 S16 source raw files and evaluated 128
+responses in eight exact whole-pair folds.  Frozen prediction, fold hash, and
+independent recomputation checks were exact.
+
+```text
+containment / cap / joint                       128 / 128 / 128
+maximum scaled point error                         0.0010531744
+held outcome access before fold hash                          0
+forbidden predictor inputs                                    0
+new raw / snapshots / TSC / plant steps             0 / 0 / 0 / 0
+```
+
+The final route is
+`POOLED_CAUSAL_OBSERVER_PREFLIGHT_PASS_FRESH_CAMPAIGN_REQUIRED`.  The result is
+a consumed-development architecture pass, not independent observer or MPC
+validation.  Two prepare/evaluate implementation defects were repaired without
+changing model, outcome, split, tube, or gate semantics; the final report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S18_FORENSIC_REPORT.md
+```
+
+The active task is the prospectively frozen 360-rollout T13S19 campaign in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S19_PROSPECTIVE_POOLED_OBSERVER_CAMPAIGN_DESIGN.md
+```
+
+A server-side freshness audit parsed 900 earlier T13 identification raw files
+and found zero responses for all 20 selected whole pairs.  S19 must keep the
+fixed 12/4/4 training/calibration/holdout split, freeze the pooled model before
+calibration, freeze the calibrated tube before holdout, and stop at the first
+failed boundary.  Even a complete pass authorizes only offline robust-
+transport MPC feasibility work.  Expert data, BC, DAgger, and bounded residual
+RL remain prohibited.

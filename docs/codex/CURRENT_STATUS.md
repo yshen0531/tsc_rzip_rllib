@@ -625,3 +625,18 @@ prospectively frozen time-localized identification design that improves
 weak-mode authority and separates the p9/minus near-collinear responses
 without post-hoc normalization, amplitude-only rescaling, threshold changes,
 or formal-timing changes. BC, DAgger, and residual RL remain prohibited.
+
+## Current handoff: S18 complete, S19 active
+
+Stage4.2R3c3T13S18 completed its development-only pooled observer preflight.
+All 128 held rows passed the frozen tube and unchanged caps, the eight fold
+hashes and saved predictions were exact, and independent server raw
+recomputation matched.  It ran zero new TSC or plant steps.  Exact evidence is
+in `docs/codex/reports/STAGE4_2R3C3T13S18_FORENSIC_REPORT.md`.
+
+The active work is the separately frozen Stage4.2R3c3T13S19 prospective
+campaign.  Its 20 whole-pair identities have zero hits in 900 parsed prior T13
+identification raw files.  S19 uses 12 training, four calibration, and four
+unopened holdout pairs for 360 real identification rollouts, with model and
+tube hashes at the two phase boundaries.  No real MPC, expert data, BC,
+DAgger, or residual RL is authorized.

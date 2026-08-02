@@ -435,13 +435,20 @@ plant-control conclusion.  A post-failure architecture screen is explicitly
 development-only; it found a compact pooled causal ridge model but provides
 no independent validation.
 
-The active task is zero-new-TSC Stage4.2R3c3T13S18.  Its fixed nine-feature
-observer uses the same-trajectory degree-three response estimate plus the
-numeric issued-action coordinate, eight outer whole-pair folds, train-only
-inner ridge selection, a fixed 4x OOF residual tube, and causal current-run
-Card15 sensitivity propagation.  A development pass can authorize only a
-separately frozen fresh whole-pair campaign.  No controller, MPC, expert
-data, BC, DAgger, or RL is authorized.
+Stage4.2R3c3T13S18 then completed its zero-new-TSC pooled causal observer
+preflight.  All eight fold hashes and frozen predictions were exact;
+containment, cap, and joint gates passed 128/128 with maximum scaled point
+error `0.0010531744`.  Independent server recomputation was exact.  S18 is a
+consumed-development architecture pass only, not independent validation.
+
+The active task is the prospectively frozen 360-rollout
+Stage4.2R3c3T13S19 training/calibration/fresh-holdout campaign.  A server-side
+scan found none of its 20 whole-pair identities in 900 prior T13
+identification raw files.  The split is fixed at 12/4/4 pairs, and the exact
+S18 nine-feature architecture, ridge selection, four-times calibrated tube,
+caps, and causal Card15 propagation are frozen before execution.  A pass can
+authorize only offline finite-horizon robust-transport MPC feasibility.  No
+controller, expert data, BC, DAgger, or RL is authorized.
 
 ## 7. Medium-term objectives
 
