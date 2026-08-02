@@ -41,6 +41,7 @@ SIGNS = s9.SIGNS
 N_COILS = s9.N_COILS
 RESPONSE_FLOOR = s13.RESPONSE_FLOOR
 PHASES = ("offline_ready", "baseline_complete", "probe_complete", "campaign_complete")
+NON_SEMANTIC_STATE_TIMING_FIELDS = frozenset({"gotsc_subprocess_s", "step_total_s"})
 PREHOTFIX_PREACTION_FAILURE_IDS = frozenset({
     "s42r3c3_24fab3975f36ed5290d7",
     "s42r3c3_d4cb50e20cbacf45225b",
@@ -1285,6 +1286,97 @@ def _postbaseline_response_lattice_hotfix_audit(
     }
 
 
+def _postprobe_reporting_hotfix_audit(
+    ctx: Context, specs: Sequence[Mapping[str, Any]], raw_paths: Sequence[Path],
+) -> dict[str, Any]:
+    by_id = {str(spec["experiment_id"]): spec for spec in specs}
+    results, inventory = {}, []
+    for path in raw_paths:
+        inventory.append({
+            "path": path.name, "size_bytes": path.stat().st_size, "sha256": _sha256(path),
+        })
+        result = s9.t11.t1.r3c3.read_json_gz(path)
+        experiment_id = str(result.get("experiment_id"))
+        if (
+            experiment_id not in by_id or result.get("spec") != by_id[experiment_id]
+            or not bool(result.get("success")) or not bool(result.get("completed"))
+        ):
+            raise ValueError("T13S14 post-probe reporting hotfix raw mismatch")
+        results[experiment_id] = result
+    report_path = ctx.paths.analysis / "probe_execution.json"
+    if not report_path.is_file():
+        raise ValueError("T13S14 post-probe reporting evidence missing")
+    report = _read_json(report_path)
+    execution = report.get("execution") or {}
+    evidence = report.get("probe_evidence_audit") or {}
+    old_rows = evidence.get("rows") or []
+    baseline_results = {
+        (str(spec["pair_id"]), str(spec["history_member"])): results[str(spec["experiment_id"])]
+        for spec in _baseline_specs(specs)
+    }
+    semantic_rows = []
+    for spec in _probe_specs(specs):
+        key = (str(spec["pair_id"]), str(spec["history_member"]))
+        semantic_rows.append(
+            _pre_response_semantic_exact(results[str(spec["experiment_id"])], baseline_results[key])
+        )
+    expected_events = [
+        "calibration_issue", "calibration_cancel", "calibration_issue", "calibration_cancel",
+        "calibration_issue", "calibration_cancel", "calibration_issue", "calibration_cancel",
+        "response_issue", "response_cancel",
+    ]
+    passed = bool(
+        len(raw_paths) == len(results) == len(by_id) == 144
+        and execution == {
+            "expected": 128, "pending_before": 128, "complete": 128,
+            "reused": 0, "real_tsc_executed": True, "passed": True,
+        }
+        and int(evidence.get("expected", -1)) == 128
+        and int(evidence.get("actual", -1)) == 128
+        and int(evidence.get("pass_count", -1)) == 0
+        and not bool(evidence.get("passed")) and len(old_rows) == 128
+        and all(
+            bool(row.get("complete")) and bool(row.get("success"))
+            and bool(row.get("fresh_controller")) and bool(row.get("fresh_tsc_process"))
+            and bool(row.get("initial_restart_exact"))
+            and bool(row.get("controller_trace_causal")) and bool(row.get("phase_trace_valid"))
+            and row.get("events") == expected_events
+            and int(row.get("calibration_pulse_pairs", -1)) == 4
+            and int(row.get("calibration_trace_events", -1)) == 8
+            and bool(row.get("calibration_zero_net_pass"))
+            and bool(row.get("response_zero_net_pass"))
+            and not bool(row.get("pre_response_baseline_exact"))
+            and bool(row.get("actuator_execution_pass"))
+            and int(row.get("forbidden_trace_count", -1)) == 0
+            and row.get("failure_class") == "controller_causality_or_schedule_error"
+            and not str(row.get("failure_reason", ""))
+            for row in old_rows
+        )
+        and len(semantic_rows) == 128 and all(row["passed"] for row in semantic_rows)
+        and sum(int(row["semantic_state_mismatch_count"]) for row in semantic_rows) == 0
+        and sum(int(row["action_prefix_mismatch_count"]) for row in semantic_rows) == 0
+        and sum(int(row["excluded_timing_difference_count"]) for row in semantic_rows) == 2560
+    )
+    if not passed:
+        raise ValueError("T13S14 post-probe timing-only reporting provenance mismatch")
+    inventory.sort(key=lambda row: row["path"])
+    probe_plant_advances = sum(
+        len(results[str(spec["experiment_id"])]["trajectory"]) - 1
+        for spec in _probe_specs(specs)
+    )
+    return {
+        "raw_count": len(raw_paths), "successful_raw_preserved_count": 144,
+        "response_probe_raw_count": 128,
+        "response_probe_plant_advance_count_before_hotfix": probe_plant_advances,
+        "previous_probe_execution_sha256": _sha256(report_path),
+        "previous_reported_pass_count": 0, "semantic_recomputed_pass_count": 128,
+        "semantic_state_mismatch_count": 0, "action_prefix_mismatch_count": 0,
+        "excluded_nonsemantic_state_fields": sorted(NON_SEMANTIC_STATE_TIMING_FIELDS),
+        "excluded_timing_difference_count": 2560,
+        "raw_inventory_digest_before_hotfix": _digest(inventory), "passed": True,
+    }
+
+
 def _validate_snapshots(table: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     rows = []
     for context in table:
@@ -1378,6 +1470,11 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                 prehotfix_audit = _postbaseline_response_lattice_hotfix_audit(
                     ctx, specs, raw_before
                 )
+            elif successful_raw_count == 144:
+                runtime_hotfix_kind = "probe_timing_only_reporting_repair"
+                prehotfix_audit = _postprobe_reporting_hotfix_audit(
+                    ctx, specs, raw_before
+                )
             else:
                 raise ValueError("T13S14 runtime hotfix raw success count mismatch")
             runtime_hotfix = True
@@ -1400,12 +1497,21 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
         ):
             raise ValueError("T13S14 resume state identity mismatch")
         if runtime_hotfix:
-            if not bool(
-                old_state.get("finished")
+            stopped_baseline = bool(
+                runtime_hotfix_kind != "probe_timing_only_reporting_repair"
+                and old_state.get("finished")
                 and old_state.get("phase_status") == "offline_ready"
                 and old_state.get("stop_reason") == "baseline_or_lattice_gate_failed"
                 and int(old_state.get("new_raw_count", -1)) == 16
-            ):
+            )
+            stopped_probe_report = bool(
+                runtime_hotfix_kind == "probe_timing_only_reporting_repair"
+                and old_state.get("finished")
+                and old_state.get("phase_status") == "baseline_complete"
+                and old_state.get("stop_reason") == "probe_runtime_gate_failed"
+                and int(old_state.get("new_raw_count", -1)) == 144
+            )
+            if not (stopped_baseline or stopped_probe_report):
                 raise ValueError("T13S14 runtime hotfix found an incompatible stopped state")
     elif runtime_hotfix:
         raise ValueError("T13S14 runtime hotfix requires the frozen stopped state")
@@ -1427,12 +1533,20 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
             audit_path = ctx.paths.analysis / (
                 "semantics_preserving_runtime_hotfix.json"
                 if runtime_hotfix_kind == "calibration_preaction_count_repair"
-                else "semantics_preserving_response_lattice_hotfix.json"
+                else (
+                    "semantics_preserving_response_lattice_hotfix.json"
+                    if runtime_hotfix_kind == "response_lattice_zero_tsc_count_repair"
+                    else "semantics_preserving_probe_reporting_hotfix.json"
+                )
             )
             contract = (
                 "t13s14_nearest_exact_integer_count_runtime_hotfix_v1"
                 if runtime_hotfix_kind == "calibration_preaction_count_repair"
-                else "t13s14_response_nearest_exact_integer_count_runtime_hotfix_v1"
+                else (
+                    "t13s14_response_nearest_exact_integer_count_runtime_hotfix_v1"
+                    if runtime_hotfix_kind == "response_lattice_zero_tsc_count_repair"
+                    else "t13s14_probe_timing_only_reporting_hotfix_v1"
+                )
             )
             _write_json(audit_path, {
                 "schema_version": 1, "stage": STAGE,
@@ -1443,8 +1557,11 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
                 "prehotfix_evidence": prehotfix_audit,
                 "successful_raw_preserved": True,
                 "failed_raw_had_no_plant_advance": True,
-                "response_probe_raw_count": 0,
-                "response_probe_plant_advance_count": 0,
+                "response_probe_raw_count": (
+                    128 if runtime_hotfix_kind == "probe_timing_only_reporting_repair" else 0
+                ),
+                "hotfix_additional_plant_advance_count": 0,
+                "raw_rollouts_reexecuted_by_hotfix": 0,
                 "config_unchanged": True, "context_table_unchanged": True,
                 "spec_matrix_unchanged": True, "formal_timing_unchanged": True,
                 "direction_sign_and_multiplier_order_unchanged": True,
@@ -1616,6 +1733,50 @@ def _calibration_trace_audit(result: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _pre_response_semantic_exact(
+    result: Mapping[str, Any], baseline: Mapping[str, Any],
+) -> dict[str, Any]:
+    trajectory = result.get("trajectory") or []
+    baseline_trajectory = baseline.get("trajectory") or []
+    trace = result.get("controller_trace") or []
+    baseline_trace = baseline.get("controller_trace") or []
+    if (
+        len(trajectory) < 11 or len(baseline_trajectory) < 11
+        or len(trace) < 10 or len(baseline_trace) < 10
+    ):
+        return {
+            "passed": False, "semantic_state_mismatch_count": 1,
+            "action_prefix_mismatch_count": 1, "excluded_timing_difference_count": 0,
+        }
+    semantic_state_mismatches = 0
+    excluded_timing_differences = 0
+    for current, reference in zip(trajectory[:11], baseline_trajectory[:11]):
+        current_semantic = {
+            key: value for key, value in current.items()
+            if key not in NON_SEMANTIC_STATE_TIMING_FIELDS
+        }
+        reference_semantic = {
+            key: value for key, value in reference.items()
+            if key not in NON_SEMANTIC_STATE_TIMING_FIELDS
+        }
+        semantic_state_mismatches += current_semantic != reference_semantic
+        excluded_timing_differences += sum(
+            current.get(key) != reference.get(key)
+            for key in NON_SEMANTIC_STATE_TIMING_FIELDS
+        )
+    action_mismatches = sum(
+        current.get("action_norm_tsc") != reference.get("action_norm_tsc")
+        for current, reference in zip(trace[:10], baseline_trace[:10])
+    )
+    return {
+        "passed": not semantic_state_mismatches and not action_mismatches,
+        "semantic_state_mismatch_count": semantic_state_mismatches,
+        "action_prefix_mismatch_count": action_mismatches,
+        "excluded_timing_difference_count": excluded_timing_differences,
+        "excluded_nonsemantic_state_fields": sorted(NON_SEMANTIC_STATE_TIMING_FIELDS),
+    }
+
+
 def _execution_audit(
     ctx: Context, specs: Sequence[Mapping[str, Any]], *, baseline: bool,
 ) -> dict[str, Any]:
@@ -1664,17 +1825,19 @@ def _execution_audit(
         ] + ([] if baseline else ["response_issue", "response_cancel"])
         response_cancel = s9._cancellation_policy_trace(result, baseline=baseline)
         key = (str(spec["pair_id"]), str(spec["history_member"]))
-        pre_response_exact = True
+        pre_response = {
+            "passed": True, "semantic_state_mismatch_count": 0,
+            "action_prefix_mismatch_count": 0, "excluded_timing_difference_count": 0,
+            "excluded_nonsemantic_state_fields": sorted(NON_SEMANTIC_STATE_TIMING_FIELDS),
+        }
         if not baseline:
             base = baselines.get(key)
             if base is None:
-                pre_response_exact = False
+                pre_response["passed"] = False
+                pre_response["semantic_state_mismatch_count"] = 1
             else:
-                pre_response_exact = bool(
-                    result["trajectory"][:11] == base["trajectory"][:11]
-                    and [row["action_norm_tsc"] for row in result["controller_trace"][:10]]
-                    == [row["action_norm_tsc"] for row in base["controller_trace"][:10]]
-                )
+                pre_response = _pre_response_semantic_exact(result, base)
+        pre_response_exact = bool(pre_response["passed"])
         forbidden = sum(any(bool(row.get(key_)) for key_ in forbidden_keys) for row in trace)
         runtime = bool(
             result["success"] and len(trajectory) == int(spec["horizon_steps"]) + 1
@@ -1729,6 +1892,18 @@ def _execution_audit(
             "calibration_zero_net_pass": bool(calibration["passed"]),
             "response_zero_net_pass": response_zero,
             "pre_response_baseline_exact": pre_response_exact,
+            "pre_response_semantic_state_mismatch_count": int(
+                pre_response["semantic_state_mismatch_count"]
+            ),
+            "pre_response_action_prefix_mismatch_count": int(
+                pre_response["action_prefix_mismatch_count"]
+            ),
+            "pre_response_excluded_timing_difference_count": int(
+                pre_response["excluded_timing_difference_count"]
+            ),
+            "pre_response_excluded_nonsemantic_state_fields": list(
+                pre_response.get("excluded_nonsemantic_state_fields") or []
+            ),
             "actuator_execution_pass": bool(actuator["passed"]),
             "maximum_current_utilization": utilization, "forbidden_trace_count": forbidden,
             "formal_contract_pass_diagnostic": bool(restart.get("formal_contract_pass")),

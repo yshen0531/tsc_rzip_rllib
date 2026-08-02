@@ -186,6 +186,26 @@ class Stage42R3C3T13S14Tests(unittest.TestCase):
         )
         self.assertNotIn("s9.choose_lattice_displacement =", response_source)
 
+    def test_pre_response_exact_ignores_only_wallclock_fields(self):
+        baseline = {
+            "trajectory": [
+                {"R": 1.0, "Z": 2.0, "gotsc_subprocess_s": 1.0, "step_total_s": 2.0}
+                for _ in range(11)
+            ],
+            "controller_trace": [{"action_norm_tsc": [0.0] * 14} for _ in range(10)],
+        }
+        probe = copy.deepcopy(baseline)
+        for row in probe["trajectory"]:
+            row["gotsc_subprocess_s"] = 30.0
+            row["step_total_s"] = 31.0
+        audit = s14._pre_response_semantic_exact(probe, baseline)
+        self.assertTrue(audit["passed"])
+        self.assertEqual(audit["semantic_state_mismatch_count"], 0)
+        self.assertEqual(audit["action_prefix_mismatch_count"], 0)
+        self.assertEqual(audit["excluded_timing_difference_count"], 22)
+        probe["trajectory"][3]["R"] = 1.1
+        self.assertFalse(s14._pre_response_semantic_exact(probe, baseline)["passed"])
+
     def test_kernel_prediction_is_exactly_zero_at_zero_action(self):
         model = {
             "family": "kernel", "bandwidth": 1.0,
