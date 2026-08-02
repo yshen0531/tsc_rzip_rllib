@@ -7,6 +7,7 @@ import argparse
 import copy
 from collections import defaultdict
 from dataclasses import dataclass
+from decimal import Decimal
 import hashlib
 import json
 import math
@@ -40,6 +41,11 @@ SIGNS = s9.SIGNS
 N_COILS = s9.N_COILS
 RESPONSE_FLOOR = s13.RESPONSE_FLOOR
 PHASES = ("offline_ready", "baseline_complete", "probe_complete", "campaign_complete")
+PREHOTFIX_PREACTION_FAILURE_IDS = frozenset({
+    "s42r3c3_24fab3975f36ed5290d7",
+    "s42r3c3_d4cb50e20cbacf45225b",
+    "s42r3c3_f866adad4cfb793fd1dc",
+})
 
 
 def _project_root() -> Path:
@@ -337,6 +343,170 @@ def _probe_specs(specs: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
     return output
 
 
+def _nearest_exact_symmetric_count(
+    center: Decimal, step: Decimal, nominal_count: int, *, search_radius: int = 8,
+) -> tuple[int, str, str]:
+    sign = 1 if nominal_count >= 0 else -1
+    offsets = [0]
+    for distance in range(1, search_radius + 1):
+        offsets.extend((-sign * distance, sign * distance))
+    for offset in offsets:
+        count = nominal_count + offset
+        if nominal_count > 0 and count < 0:
+            continue
+        if nominal_count < 0 and count > 0:
+            continue
+        delta = step * count
+        plus, minus = center + delta, center - delta
+        plus_field = s9.format_number(float(plus))
+        minus_field = s9.format_number(float(minus))
+        if bool(
+            len(plus_field) == len(minus_field) == 10
+            and s9._decimal_field(plus_field) == plus
+            and s9._decimal_field(minus_field) == minus
+            and s9._decimal_field(plus_field) - center
+            == center - s9._decimal_field(minus_field)
+        ):
+            return count, plus_field, minus_field
+    raise ValueError(
+        f"T13S14 no nearby exact symmetric count for center={center} "
+        f"step={step} nominal={nominal_count}"
+    )
+
+
+def _choose_calibration_displacement(
+    *, center_fields: Sequence[str], measured_current_a_tsc: Sequence[float],
+    baseline_action_norm_tsc: Sequence[float], mode_vector_tsc: Sequence[float],
+    turns_tsc: Sequence[float], max_slew_step_a: float,
+    minimum_current_a_tsc: Sequence[float], maximum_current_a_tsc: Sequence[float],
+    cfg: Mapping[str, Any],
+) -> dict[str, Any]:
+    try:
+        plan = s9.choose_lattice_displacement(
+            center_fields=center_fields,
+            measured_current_a_tsc=measured_current_a_tsc,
+            baseline_action_norm_tsc=baseline_action_norm_tsc,
+            mode_vector_tsc=mode_vector_tsc, turns_tsc=turns_tsc,
+            max_slew_step_a=max_slew_step_a,
+            minimum_current_a_tsc=minimum_current_a_tsc,
+            maximum_current_a_tsc=maximum_current_a_tsc, cfg=cfg,
+        )
+        plan["t13s14_nearest_exact_count_repair"] = False
+        plan["t13s14_nominal_integer_grid_steps_tsc"] = list(plan["integer_grid_steps_tsc"])
+        plan["t13s14_integer_count_repairs_tsc"] = [0] * N_COILS
+        return plan
+    except ValueError as original:
+        if "no frozen T13S9 lattice multiplier passed" not in str(original):
+            raise
+    centers = tuple(s9._decimal_field(field) for field in center_fields)
+    steps = tuple(s9.local_symmetric_card15_step(field) for field in center_fields)
+    current = np.asarray(measured_current_a_tsc, dtype=float).reshape(N_COILS)
+    baseline = np.asarray(baseline_action_norm_tsc, dtype=float).reshape(N_COILS)
+    mode = np.asarray(mode_vector_tsc, dtype=float).reshape(N_COILS)
+    turns = np.asarray(turns_tsc, dtype=float).reshape(N_COILS)
+    minimum = np.asarray(minimum_current_a_tsc, dtype=float).reshape(N_COILS)
+    maximum = np.asarray(maximum_current_a_tsc, dtype=float).reshape(N_COILS)
+    step_a = np.asarray([float(value) for value in steps]) * 1000.0 / turns
+    significant = np.abs(mode) >= float(cfg["significant_mode_fraction"]) * float(np.max(np.abs(mode)))
+    if not np.any(significant):
+        raise ValueError("T13S14 calibration mode has no significant coil")
+    lambda_min = float(np.max(
+        int(cfg["minimum_significant_grid_steps"]) * step_a[significant]
+        / np.abs(mode[significant])
+    ))
+    mode_norm = float(np.linalg.norm(mode))
+    if not math.isclose(mode_norm, 1.0, rel_tol=0.0, abs_tol=1e-10):
+        raise ValueError("T13S14 calibration mode vector is not unit length")
+    candidate_rows = []
+    for multiplier in map(int, cfg["lambda_multipliers"]):
+        lam = lambda_min * multiplier
+        nominal = np.rint(lam * mode / step_a).astype(np.int64)
+        repaired, plus_fields, minus_fields = [], [], []
+        exact_counts = True
+        for center, step, count in zip(centers, steps, nominal):
+            try:
+                chosen, plus, minus = _nearest_exact_symmetric_count(
+                    center, step, int(count)
+                )
+            except ValueError:
+                exact_counts = False
+                chosen, plus, minus = int(count), "", ""
+            repaired.append(chosen); plus_fields.append(plus); minus_fields.append(minus)
+        counts = np.asarray(repaired, dtype=np.int64)
+        delta_a = counts.astype(float) * step_a
+        if exact_counts:
+            plus_target = np.asarray([
+                float(s9._decimal_field(field)) * 1000.0 / turn
+                for field, turn in zip(plus_fields, turns)
+            ])
+            minus_target = np.asarray([
+                float(s9._decimal_field(field)) * 1000.0 / turn
+                for field, turn in zip(minus_fields, turns)
+            ])
+        else:
+            plus_target = minus_target = np.full(N_COILS, math.nan)
+        plus_action = (plus_target - current) / float(max_slew_step_a)
+        minus_action = (minus_target - current) / float(max_slew_step_a)
+        projection = float(np.dot(delta_a, mode)) * mode
+        cosine = float(np.dot(delta_a, mode) / max(np.linalg.norm(delta_a) * mode_norm, 1e-300))
+        off_mode = float(np.linalg.norm(delta_a - projection) / max(np.linalg.norm(delta_a), 1e-300))
+        min_steps = int(np.min(np.abs(counts[significant])))
+        incremental = float(max(
+            np.max(np.abs(plus_action - baseline)),
+            np.max(np.abs(minus_action - baseline)),
+        ))
+        total = float(max(np.max(np.abs(plus_action)), np.max(np.abs(minus_action))))
+        bounds = bool(
+            exact_counts and np.all(plus_target >= minimum) and np.all(plus_target <= maximum)
+            and np.all(minus_target >= minimum) and np.all(minus_target <= maximum)
+        )
+        utilization = (
+            max(
+                s9._current_utilization(plus_target, minimum, maximum),
+                s9._current_utilization(minus_target, minimum, maximum),
+            ) if bounds else math.inf
+        )
+        passed = bool(
+            exact_counts and min_steps >= int(cfg["minimum_significant_grid_steps"])
+            and cosine >= float(cfg["minimum_coil_space_cosine"])
+            and off_mode <= float(cfg["maximum_relative_off_mode_residual"])
+            and incremental <= float(cfg["maximum_incremental_normalized_action_linf"])
+            and total <= float(cfg["maximum_total_normalized_action_abs"])
+            and bounds and utilization <= float(cfg["maximum_current_utilization"])
+        )
+        row = {
+            "lambda_multiplier": multiplier, "lambda_A": lam,
+            "local_steps_kAt_tsc": [float(value) for value in steps],
+            "integer_grid_steps_tsc": counts.tolist(),
+            "delta_current_a_tsc": delta_a.tolist(),
+            "delta_field_kAt_tsc": [
+                float(step * int(count)) for step, count in zip(steps, counts)
+            ],
+            "positive_target_fields": plus_fields, "negative_target_fields": minus_fields,
+            "positive_action_norm_tsc": plus_action.tolist(),
+            "negative_action_norm_tsc": minus_action.tolist(),
+            "significant_coils_tsc": significant.tolist(),
+            "minimum_significant_grid_steps_actual": min_steps,
+            "target_field_central_symmetry_exact": exact_counts,
+            "coil_space_cosine": cosine, "relative_off_mode_residual": off_mode,
+            "incremental_normalized_action_linf": incremental,
+            "total_normalized_action_abs": total, "current_bounds_pass": bounds,
+            "predicted_maximum_current_utilization": utilization,
+            "t13s14_nearest_exact_count_repair": True,
+            "t13s14_nominal_integer_grid_steps_tsc": nominal.tolist(),
+            "t13s14_integer_count_repairs_tsc": (counts - nominal).tolist(),
+            "passed": passed,
+        }
+        candidate_rows.append(row)
+        if passed:
+            row["candidate_rows_evaluated"] = [dict(candidate) for candidate in candidate_rows]
+            return row
+    raise ValueError(
+        "no exact T13S14 calibration lattice multiplier passed after nearby-count repair: "
+        + json.dumps(candidate_rows, sort_keys=True)
+    )
+
+
 class ActiveCalibrationProbeController(s9.LatticeTransitionProbeController):
     """S9 response primitive preceded by four fixed post-queue pulse pairs."""
 
@@ -373,7 +543,7 @@ class ActiveCalibrationProbeController(s9.LatticeTransitionProbeController):
             center_fields=center.card15_fields, turns_tsc=self.turns_tsc,
             direction=direction, cfg=self.lattice_cfg,
         )
-        plan = s9.choose_lattice_displacement(
+        plan = _choose_calibration_displacement(
             center_fields=center.card15_fields,
             measured_current_a_tsc=currents,
             baseline_action_norm_tsc=baseline_action,
@@ -820,6 +990,90 @@ def _package_fingerprint(ctx: Context) -> dict[str, Any]:
     }
 
 
+def _runtime_hotfix_manifest_compatible(
+    old: Mapping[str, Any], new: Mapping[str, Any],
+) -> tuple[bool, list[dict[str, Any]]]:
+    old_package = old.get("deployed_package_fingerprint") or {}
+    new_package = new.get("deployed_package_fingerprint") or {}
+    if (
+        old_package.get("contract") != new_package.get("contract")
+        or old_package.get("package_revision") != new_package.get("package_revision")
+    ):
+        return False, []
+    old_files = {str(row["path"]): dict(row) for row in old_package.get("files") or []}
+    new_files = {str(row["path"]): dict(row) for row in new_package.get("files") or []}
+    if set(old_files) != set(new_files):
+        return False, []
+    changed = [
+        {
+            "path": path, "old_sha256": old_files[path]["sha256"],
+            "new_sha256": new_files[path]["sha256"],
+            "old_size_bytes": old_files[path]["size_bytes"],
+            "new_size_bytes": new_files[path]["size_bytes"],
+        }
+        for path in sorted(old_files) if old_files[path] != new_files[path]
+    ]
+    allowed = {
+        "tests/test_stage4_2r3c3t13s14_active_calibration_sentinel.py",
+        "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s14_active_calibration_sentinel.py",
+    }
+    if not changed or not {row["path"] for row in changed} <= allowed:
+        return False, changed
+    old_copy, new_copy = copy.deepcopy(dict(old)), copy.deepcopy(dict(new))
+    old_copy["deployed_package_fingerprint"] = copy.deepcopy(
+        new_copy["deployed_package_fingerprint"]
+    )
+    return old_copy == new_copy, changed
+
+
+def _prehotfix_failure_audit(
+    ctx: Context, specs: Sequence[Mapping[str, Any]], raw_paths: Sequence[Path],
+) -> dict[str, Any]:
+    by_id = {str(spec["experiment_id"]): spec for spec in specs}
+    successful, failed, inventory = [], [], []
+    for path in raw_paths:
+        inventory.append({
+            "path": path.name, "size_bytes": path.stat().st_size, "sha256": _sha256(path),
+        })
+        result = s9.t11.t1.r3c3.read_json_gz(path)
+        experiment_id = str(result.get("experiment_id"))
+        if experiment_id not in by_id or result.get("spec") != by_id[experiment_id]:
+            raise ValueError("T13S14 pre-hotfix raw identity mismatch")
+        if bool(result.get("success")):
+            successful.append(experiment_id)
+        else:
+            reason = str(result.get("failure_reason", ""))
+            if not bool(
+                result.get("completed")
+                and "no frozen T13S9 lattice multiplier passed" in reason
+                and len(result.get("trajectory") or []) == 0
+                and len(result.get("controller_trace") or []) == 0
+            ):
+                raise ValueError("T13S14 pre-hotfix failure is not the frozen count-rounding bug")
+            failed.append({
+                "experiment_id": experiment_id,
+                "pair_id": result["spec"]["pair_id"],
+                "history_member": result["spec"]["history_member"],
+                "failure_reason_sha256": hashlib.sha256(reason.encode()).hexdigest(),
+                "raw_sha256": inventory[-1]["sha256"],
+                "plant_advance_count": 0,
+            })
+    inventory.sort(key=lambda row: row["path"])
+    passed = bool(
+        len(raw_paths) == 16
+        and len(successful) == 13
+        and {row["experiment_id"] for row in failed} == PREHOTFIX_PREACTION_FAILURE_IDS
+    )
+    if not passed:
+        raise ValueError("T13S14 pre-hotfix raw count/provenance mismatch")
+    return {
+        "raw_count": len(raw_paths), "successful_raw_preserved_count": len(successful),
+        "failed_preaction_raw_replaced_count": len(failed),
+        "successful_experiment_ids": sorted(successful), "failed_rows": failed,
+        "raw_inventory_digest_before_hotfix": _digest(inventory), "passed": True,
+    }
+
+
 def _validate_snapshots(table: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     rows = []
     for context in table:
@@ -886,31 +1140,83 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
         "probe_trajectories_allowed_in_expert_dataset": False,
         "bc_dagger_or_rl_allowed": False,
     }
+    runtime_hotfix = False
+    runtime_hotfix_changes: list[dict[str, Any]] = []
+    execution_package_digest = package["digest"]
+    prehotfix_audit: dict[str, Any] | None = None
+    old_state: dict[str, Any] | None = None
     if ctx.paths.manifest.exists():
-        if _read_json(ctx.paths.manifest) != manifest:
-            raise ValueError("T13S14 resume manifest mismatch")
-    else:
-        _write_json(ctx.paths.manifest, manifest)
-    _write_json(ctx.paths.source_reference / "context_table.json", table)
-    _write_json(ctx.paths.source_reference / "source_authentication.json", source)
-    _write_json(ctx.paths.source_reference / "snapshot_audit.json", snapshots)
-    _write_json(ctx.paths.specs / "all_specs.json", specs)
+        old_manifest = _read_json(ctx.paths.manifest)
+        execution_package_digest = old_manifest["deployed_package_fingerprint"]["digest"]
+        if old_manifest != manifest:
+            compatible, runtime_hotfix_changes = _runtime_hotfix_manifest_compatible(
+                old_manifest, manifest
+            )
+            if not (resume and compatible):
+                raise ValueError("T13S14 resume manifest mismatch")
+            prehotfix_audit = _prehotfix_failure_audit(ctx, specs, raw_before)
+            runtime_hotfix = True
+    elif ctx.paths.state.exists():
+        raise ValueError("T13S14 state exists without manifest")
     state = {
         "schema_version": 1, "stage": STAGE, "phase_status": "offline_ready",
         "finished": False, "primary_pass": False,
         "real_tsc_executed": bool(raw_before), "new_raw_count": len(raw_before),
         "context_table_digest": context_digest, "spec_digest": spec_digest,
-        "package_digest": package["digest"], "stop_reason": "", "verdict": {},
+        "package_digest": execution_package_digest, "stop_reason": "", "verdict": {},
     }
     if ctx.paths.state.exists():
-        old = _read_json(ctx.paths.state)
+        old_state = _read_json(ctx.paths.state)
         if (
-            old.get("phase_status") not in PHASES
-            or old.get("context_table_digest") != context_digest
-            or old.get("spec_digest") != spec_digest
-            or old.get("package_digest") != package["digest"]
+            old_state.get("phase_status") not in PHASES
+            or old_state.get("context_table_digest") != context_digest
+            or old_state.get("spec_digest") != spec_digest
+            or old_state.get("package_digest") != execution_package_digest
         ):
             raise ValueError("T13S14 resume state identity mismatch")
+        if runtime_hotfix:
+            if not bool(
+                old_state.get("finished")
+                and old_state.get("phase_status") == "offline_ready"
+                and old_state.get("stop_reason") == "baseline_or_lattice_gate_failed"
+                and int(old_state.get("new_raw_count", -1)) == 16
+            ):
+                raise ValueError("T13S14 runtime hotfix found an incompatible stopped state")
+    elif runtime_hotfix:
+        raise ValueError("T13S14 runtime hotfix requires the frozen stopped state")
+
+    # Commit the new identity only after every old manifest/raw/state check has passed.
+    _write_json(ctx.paths.manifest, manifest)
+    _write_json(ctx.paths.source_reference / "context_table.json", table)
+    _write_json(ctx.paths.source_reference / "source_authentication.json", source)
+    _write_json(ctx.paths.source_reference / "snapshot_audit.json", snapshots)
+    _write_json(ctx.paths.specs / "all_specs.json", specs)
+    if old_state is not None:
+        if runtime_hotfix:
+            old_state.update({
+                "finished": False, "primary_pass": False, "stop_reason": "",
+                "verdict": {}, "runtime_hotfix_resume_authorized": True,
+                "package_digest": package["digest"],
+            })
+            _write_json(ctx.paths.state, old_state)
+            _write_json(ctx.paths.analysis / "semantics_preserving_runtime_hotfix.json", {
+                "schema_version": 1, "stage": STAGE,
+                "contract": "t13s14_nearest_exact_integer_count_runtime_hotfix_v1",
+                "execution_package_digest": execution_package_digest,
+                "reporting_package_digest": package["digest"],
+                "changed_files": runtime_hotfix_changes,
+                "prehotfix_evidence": prehotfix_audit,
+                "successful_raw_preserved": True,
+                "failed_raw_had_no_plant_advance": True,
+                "response_probe_raw_count": 0,
+                "config_unchanged": True, "context_table_unchanged": True,
+                "spec_matrix_unchanged": True, "formal_timing_unchanged": True,
+                "direction_sign_and_multiplier_order_unchanged": True,
+                "central_symmetry_gate_unchanged": True,
+                "all_safety_gates_unchanged": True,
+                "successful_action_semantics_unchanged": True,
+                "passed": True,
+            })
     else:
         _write_json(ctx.paths.state, state)
     output = {
@@ -920,7 +1226,10 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
         "context_table_digest": context_digest, "spec_count": len(specs),
         "spec_digest": spec_digest, "snapshot_pass_count": snapshots["pass_count"],
         "snapshot_expected": 16, "new_raw_count": len(raw_before),
-        "real_tsc_executed": bool(raw_before), "package_digest": package["digest"],
+        "real_tsc_executed": bool(raw_before),
+        "semantics_preserving_runtime_hotfix": runtime_hotfix,
+        "execution_package_digest": execution_package_digest,
+        "reporting_package_digest": package["digest"],
         "passed": bool(source["passed"] and snapshots["passed"] and (resume or not raw_before)),
     }
     _write_json(ctx.paths.analysis / "offline_preflight.json", output)

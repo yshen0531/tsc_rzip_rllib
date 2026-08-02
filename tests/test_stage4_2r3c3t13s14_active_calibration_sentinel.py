@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+from decimal import Decimal
 import json
 from pathlib import Path
 import sys
@@ -136,6 +137,40 @@ class Stage42R3C3T13S14Tests(unittest.TestCase):
         broken = copy.deepcopy(trace)
         broken[3]["r3c3t13s14_event_direction"] = "mode2"
         self.assertFalse(s14._calibration_trace_audit({"controller_trace": broken})["passed"])
+
+    def test_nearest_count_repairs_card15_rounding_without_weakening_symmetry(self):
+        count, plus, minus = s14._nearest_exact_symmetric_count(
+            Decimal("-0.9991"), Decimal("0.0001"), 150
+        )
+        self.assertEqual(count, 149)
+        center = Decimal("-0.9991")
+        self.assertEqual(s14.s9._decimal_field(plus) - center, center - s14.s9._decimal_field(minus))
+        self.assertEqual(s14.s9._decimal_field(plus), center + Decimal("0.0001") * count)
+        self.assertEqual(s14.s9._decimal_field(minus), center - Decimal("0.0001") * count)
+
+    def test_runtime_hotfix_manifest_compatibility_is_narrow(self):
+        module = "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s14_active_calibration_sentinel.py"
+        old = {
+            "identity": "unchanged",
+            "deployed_package_fingerprint": {
+                "contract": "r42r3c3t13s14_deployed_package_source_v1",
+                "package_revision": s14.PACKAGE_REVISION,
+                "digest": "old", "files": [
+                    {"path": module, "size_bytes": 1, "sha256": "old"}
+                ],
+            },
+        }
+        new = copy.deepcopy(old)
+        new["deployed_package_fingerprint"].update({
+            "digest": "new", "files": [
+                {"path": module, "size_bytes": 2, "sha256": "new"}
+            ],
+        })
+        compatible, changed = s14._runtime_hotfix_manifest_compatible(old, new)
+        self.assertTrue(compatible)
+        self.assertEqual([row["path"] for row in changed], [module])
+        new["deployed_package_fingerprint"]["files"][0]["path"] = "configs/changed.json"
+        self.assertFalse(s14._runtime_hotfix_manifest_compatible(old, new)[0])
 
     def test_kernel_prediction_is_exactly_zero_at_zero_action(self):
         model = {
