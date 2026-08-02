@@ -63,7 +63,7 @@
                           "compact_audits_only_downloaded":  true,
                           "installed_project_complete_test_suite_required":  true
                       },
-    "declared_file_count":  341,
+    "declared_file_count":  344,
     "file_inventory":  [
                            "AGENTS.md",
                            "PACKAGE_MANIFEST.json",
@@ -125,6 +125,7 @@
                            "docs/codex/audit_tools/stage4_2r3c3t12_formal_gap_route_discriminator.py",
                            "docs/codex/audit_tools/stage4_2r3c3t13_time_resolved_model_compatibility.py",
                            "docs/codex/audit_tools/stage4_2r3c3t13s10_combined_postqueue_first_effect_audit.py",
+                           "docs/codex/audit_tools/stage4_2r3c3t13s11_causal_calibration_conditioned_braking_preflight.py",
                            "docs/codex/audit_tools/stage4_2r3c3t13s1_transition_forensics.py",
                            "docs/codex/audit_tools/stage4_2r3c3t13s2_quantized_observability_audit.py",
                            "docs/codex/audit_tools/stage4_2r3c3t13s2r1_readback_residual_forensics.py",
@@ -153,6 +154,7 @@
                            "docs/codex/reports/STAGE4_2R3C3T11_PERSISTENT_STEP_PREFLIGHT_DESIGN.md",
                            "docs/codex/reports/STAGE4_2R3C3T12_FORMAL_GAP_ROUTE_DISCRIMINATOR_DESIGN.md",
                            "docs/codex/reports/STAGE4_2R3C3T13S10_COMBINED_POSTQUEUE_FIRST_EFFECT_DESIGN.md",
+                           "docs/codex/reports/STAGE4_2R3C3T13S11_CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_DESIGN.md",
                            "docs/codex/reports/STAGE4_2R3C3T13S4_LATTICE_TRANSITION_HOLDOUT_DESIGN.md",
                            "docs/codex/reports/STAGE4_2R3C3T13S5_LATTICE_NATIVE_SPLIT_HOLDOUT_DESIGN.md",
                            "docs/codex/reports/STAGE4_2R3C3T13S6_IMMEDIATE_EFFECT_REINTERPRETATION_DESIGN.md",
@@ -317,6 +319,7 @@
                            "tests/test_stage4_2r3c3t12_formal_gap_route_discriminator.py",
                            "tests/test_stage4_2r3c3t13_time_resolved_model_compatibility.py",
                            "tests/test_stage4_2r3c3t13s10_combined_postqueue_first_effect_audit.py",
+                           "tests/test_stage4_2r3c3t13s11_causal_calibration_conditioned_braking_preflight.py",
                            "tests/test_stage4_2r3c3t13s1_minimal_transition_sentinel.py",
                            "tests/test_stage4_2r3c3t13s1_transition_forensics.py",
                            "tests/test_stage4_2r3c3t13s2_quantized_observability_audit.py",
