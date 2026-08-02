@@ -251,6 +251,7 @@ def _effect_response(
     radius_a: np.ndarray,
     first_effect_state: int | None = None,
     cancel_effect_state: int | None = None,
+    single_transition: bool = False,
 ) -> tuple[np.ndarray, np.ndarray, bool]:
     first = issue + 1 if first_effect_state is None else int(first_effect_state)
     second = cancel + 1 if cancel_effect_state is None else int(cancel_effect_state)
@@ -260,9 +261,10 @@ def _effect_response(
     base_feature = common._feature_arrays(baseline, dt_s)
     currents = np.asarray([row["currents_a_tsc"] for row in result["trajectory"]])
     base_currents = np.asarray([row["currents_a_tsc"] for row in baseline["trajectory"]])
-    x = (currents[[first, second]] - base_currents[[first, second]]).reshape(-1)
+    effect_states = [first] if single_transition else [first, second]
+    x = (currents[effect_states] - base_currents[effect_states]).reshape(-1)
     y = np.concatenate(
-        (feature[first] - base_feature[first], feature[second] - base_feature[second])
+        [feature[state] - base_feature[state] for state in effect_states]
     )
     pre_feature = feature[:first] - base_feature[:first]
     pre_currents = currents[:first] - base_currents[:first]
@@ -283,6 +285,7 @@ def build_contexts(
     raw: Sequence[Mapping[str, Any]],
     payloads: Mapping[str, Mapping[str, Any]],
     campaign_specific_effects: bool = False,
+    single_transition: bool = False,
 ) -> tuple[list[dict[str, Any]], int, int]:
     grouped: dict[tuple[Any, ...], dict[Any, Mapping[str, Any]]] = defaultdict(dict)
     trace_count = 0
@@ -351,6 +354,7 @@ def build_contexts(
                         radius_a=_readback_radius_a(payload),
                         first_effect_state=first_effect_state,
                         cancel_effect_state=cancel_effect_state,
+                        single_transition=single_transition,
                     )
                     signed[sign] = {"input": x, "output": y}
                     pre_pass = pre_pass and causal
@@ -397,8 +401,13 @@ def fit_local_model(
             for sign in SIGNS
         ]
     )
-    floor = np.tile(np.asarray([1e-9, 1e-9, 1e-7, 1e-7, 1e-4]), 2)
-    caps = np.asarray(cfg["tube_caps_unscaled"], dtype=float)
+    response_states = residuals.shape[1] // 5
+    if response_states not in (1, 2) or residuals.shape[1] != 5 * response_states:
+        raise ValueError("unsupported transition response dimension")
+    floor = np.tile(
+        np.asarray([1e-9, 1e-9, 1e-7, 1e-7, 1e-4]), response_states
+    )
+    caps = np.asarray(cfg["tube_caps_unscaled"], dtype=float)[: 5 * response_states]
     radius = floor + float(cfg["tube_residual_multiplier"]) * np.max(
         np.abs(residuals), axis=0
     )
@@ -454,12 +463,15 @@ def nearest_contexts(
 
 
 def _scaled_relative(actual: np.ndarray, predicted: np.ndarray, scales: np.ndarray) -> float:
+    response_states = len(actual) // 5
+    if response_states not in (1, 2) or len(actual) != 5 * response_states:
+        raise ValueError("unsupported scaled response dimension")
     floor = float(
         np.linalg.norm(
             np.tile(
                 np.asarray([1e-9, 1e-9, 1e-7, 1e-7, 1e-4])
                 / scales[:5],
-                2,
+                response_states,
             )
         )
     )
@@ -473,8 +485,13 @@ def validate_leave_one_out(
     contexts: Sequence[Mapping[str, Any]],
     models: Mapping[tuple[str, str], Mapping[str, Any]],
     cfg: Mapping[str, Any],
+    all_training_hypotheses: bool = False,
+    single_transition: bool = False,
 ) -> list[dict[str, Any]]:
-    scales = np.tile(np.asarray(cfg["response_scales"], dtype=float), 2)
+    scales = np.tile(
+        np.asarray(cfg["response_scales"], dtype=float),
+        1 if single_transition else 2,
+    )
     rows = []
     for stratum in ("easy", "hard"):
         stratum_contexts = [row for row in contexts if row["stratum"] == stratum]
@@ -483,7 +500,20 @@ def validate_leave_one_out(
         for held in stratum_contexts:
             training = [row for row in stratum_contexts if row is not held]
             for window in WINDOWS:
-                selected = nearest_contexts(held, training, window=window)
+                selected = (
+                    [
+                        (
+                            _feature_distance(
+                                held["features"][window]["values"],
+                                context["features"][window]["values"],
+                            ),
+                            context,
+                        )
+                        for context in training
+                    ]
+                    if all_training_hypotheses
+                    else nearest_contexts(held, training, window=window)
+                )
                 for sample in held["samples"][window]:
                     for sign in SIGNS:
                         model_input = sample["signed"][sign]["input"]
@@ -594,7 +624,11 @@ def maximum_present(values: Sequence[float | None]) -> float | None:
 
 
 def run_audit(
-    args: argparse.Namespace, *, campaign_specific_effects: bool = False
+    args: argparse.Namespace,
+    *,
+    campaign_specific_effects: bool = False,
+    single_transition: bool = False,
+    all_training_hypotheses: bool = False,
 ) -> dict[str, Any]:
     s1_audit = common._strict_json(args.source_s1_audit)
     s5_audit = common._strict_json(args.source_s5_audit)
@@ -627,12 +661,14 @@ def run_audit(
         s1_raw,
         _payload_by_experiment("s1", args.s1_run),
         campaign_specific_effects=campaign_specific_effects,
+        single_transition=single_transition,
     )
     s5_contexts, s5_trace, s5_forbidden = build_contexts(
         "s5",
         s5_raw,
         _payload_by_experiment("s5", args.s5_run),
         campaign_specific_effects=campaign_specific_effects,
+        single_transition=single_transition,
     )
     contexts = s1_contexts + s5_contexts
     contexts.sort(key=lambda row: (row["stratum"], row["feature_digest"]))
@@ -644,7 +680,13 @@ def run_audit(
         for context in contexts
         for window in WINDOWS
     }
-    validation = validate_leave_one_out(contexts, models, probe_cfg)
+    validation = validate_leave_one_out(
+        contexts,
+        models,
+        probe_cfg,
+        all_training_hypotheses=all_training_hypotheses,
+        single_transition=single_transition,
+    )
     collisions = exact_collision_audit(contexts, models)
     forbidden_count = s1_forbidden + s5_forbidden
     feature_names = contexts[0]["features"]["transport"]["names"]

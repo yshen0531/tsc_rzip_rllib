@@ -55,6 +55,39 @@ class Stage42R3C3T13S7CausalMultiHistoryTubeAuditTests(unittest.TestCase):
         self.assertEqual(float(np.linalg.norm(default_x)), 0.0)
         self.assertGreater(float(np.linalg.norm(corrected_x)), 0.0)
 
+    def test_effect_response_can_extract_only_first_physical_transition(self) -> None:
+        baseline_rows = [
+            {"R": 0.0, "Z": 0.0, "Ip": 0.0, "currents_a_tsc": [0.0] * 14}
+            for _ in range(5)
+        ]
+        result_rows = [dict(row) for row in baseline_rows]
+        result_rows[3] = {
+            "R": 0.01,
+            "Z": 0.02,
+            "Ip": 3.0,
+            "currents_a_tsc": [1.0] * 14,
+        }
+        result_rows[4] = {
+            "R": 0.03,
+            "Z": 0.04,
+            "Ip": 5.0,
+            "currents_a_tsc": [2.0] * 14,
+        }
+        x, y, _ = audit._effect_response(
+            {"trajectory": result_rows},
+            {"trajectory": baseline_rows},
+            issue=0,
+            cancel=1,
+            dt_s=0.01,
+            radius_a=np.ones(14),
+            first_effect_state=3,
+            cancel_effect_state=4,
+            single_transition=True,
+        )
+        self.assertEqual(x.shape, (14,))
+        self.assertEqual(y.shape, (5,))
+        np.testing.assert_allclose(x, np.ones(14))
+
     def test_issue_cancel_reinterprets_both_campaigns_immediately(self) -> None:
         s1 = {
             "spec": {
