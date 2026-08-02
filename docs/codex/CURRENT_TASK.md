@@ -1825,3 +1825,79 @@ can authorize a controller. A pass requires a fresh prospective q3 history
 holdout; a fail requires observer/state/tube redesign before another
 physical campaign. Probe data remain forbidden from expert datasets and all
 MPC/BC/DAgger/RL gates remain closed.
+
+## 29. Final T13S7 result and active T13S7R1 task
+
+T13S7 executed its frozen zero-new-TSC audit at implementation commit
+`14ea327` and final route:
+
+```text
+CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN
+```
+
+Exact compact identities:
+
+```text
+main audit SHA-256
+  b62d7d49f2ce2ac47fa1245884a764a84f5372364f8e7f5f329867b50e1c101c
+compact forensic SHA-256
+  8a67ed6c1306bb3fcacbae46764be37c24d35dd5cdd9d8f2ee398ac3ac68066c
+campaign effect-contract forensic SHA-256
+  c78bd97c5c60c526d609ea5da15547abe5cb73927552086573f4a856d12e3f4a
+```
+
+The frozen output authenticated S1 52/52 and S5 68/68 raw files, 120/120
+traces, 112/112 extracted signed probes, 112/112 pre-effect causality, 16/16
+tubes, and zero forbidden inputs. Local rank passed only 12/16. Only 24/112
+held-out rows had a supported hypothesis; the other 88 failed closed before
+prediction. The reported maximum finite error `0.0` covers only those 24
+supported rows and is not a complete accuracy result.
+
+All 24 apparent passes were S1 hard/delay-2 zero-input/zero-output rows at the
+wrong effect states. All four S1 hard maps were rank zero. Every S1 easy row,
+S5 easy row, and S5 hard row was unsupported.
+
+Source and raw timing forensics establish the cause:
+
+```text
+S1 probe insertion                  before inherited software delay queue
+S1 physical effect state            issue + action_delay + 1
+S1 campaign-contract match                                  24 / 24
+S1 delay-2 immediate issue+1 match                            0 / 12
+
+S5 probe insertion                  after inherited software delay queue
+S5 physical effect state            issue + 1
+S5 immediate match                                          32 / 32
+S5 delay-2 immediate match                                  16 / 16
+```
+
+T13S7 is final under its frozen design and may not be rewritten. Its primary
+classification is a cross-campaign effect-contract audit-design failure, not
+a runtime, raw, restart, reporting, real-MPC, or valid multi-hypothesis
+scientific failure.
+
+The active task is the separately frozen T13S7R1 design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S7R1_CAMPAIGN_SPECIFIC_EFFECT_CONTRACT_DESIGN.md
+```
+
+T13S7R1 changes only S1 response extraction to its authenticated
+`issue+delay+1` states; S5 remains `issue+1`. The exact T13S7 causal feature,
+fixed scales, four-fold-per-stratum LOCO split, two-neighbor selection,
+0.15 input row-space support, local-map/tube rules, component caps, 0.10
+relative-error gate, collision audit, formal timing, and all forbidden-input
+rules remain unchanged.
+
+T13S7R1 may end only as:
+
+```text
+CAMPAIGN_SPECIFIC_CAUSAL_MULTI_HYPOTHESIS_CANDIDATE_Q3_HOLDOUT_REQUIRED
+CAMPAIGN_SPECIFIC_CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN
+```
+
+Both source campaigns are consumed development evidence. A pass still only
+permits a new prospective q3 holdout; a fail requires unified excitation,
+observer, or transition-tube redesign. No controller, MPC, expert data, BC,
+DAgger, or RL is authorized.

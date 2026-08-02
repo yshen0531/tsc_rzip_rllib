@@ -466,15 +466,23 @@ final route is `IMMEDIATE_EFFECT_LOCAL_MAP_INSUFFICIENT_REDESIGN`. This is a
 cross-history model-design failure, not a runtime, raw, restart, reporting,
 real-MPC, or global-reachability result.
 
-The active stage is the prospectively frozen zero-new-TSC
-Stage4.2R3c3T13S7 causal multi-history tube feasibility audit in
-`STAGE4_2R3C3T13S7_CAUSAL_MULTI_HISTORY_TUBE_FEASIBILITY_DESIGN.md`. It must
-authenticate all 52 S1 q1 and 68 S5 q2 raw files, use corrected immediate
-effect states, and perform leave-one-context-out validation of a causal
-visible-state-conditioned set of local hypotheses. Pair/history/prefix,
-wire/vessel current, source data, and future values remain forbidden model
-inputs. Both possible routes require either a new independent q3 holdout or
-observer/tube redesign; neither authorizes a controller or MPC.
+Stage4.2R3c3T13S7 authenticated all 120 S1/S5 raw files, but its frozen audit
+applied S5's post-queue `issue+1` effect rule to S1. S1 source inserts its
+probe before the inherited delay queue and all 24 raw odd-current groups
+match `issue+delay+1`; all 32 S5 groups match `issue+1`. Consequently S1
+hard maps were rank zero and 24 apparent zero-error validations were
+vacuous, while 88/112 held-out rows were unsupported. T13S7 remains final as
+`CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN`, classified primarily
+as an audit-design/effect-contract failure rather than a valid
+multi-hypothesis scientific test.
+
+The active stage is the prospectively frozen zero-new-TSC T13S7R1 audit in
+`STAGE4_2R3C3T13S7R1_CAMPAIGN_SPECIFIC_EFFECT_CONTRACT_DESIGN.md`. It changes
+only raw response extraction: S1 uses `issue+delay+1`, while S5 uses
+`issue+1`. Feature, LOCO, neighbor, support, tube, collision, threshold, and
+prohibition rules remain unchanged. Either route still requires a new q3
+holdout or deeper observer/excitation redesign and cannot authorize a
+controller or MPC.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

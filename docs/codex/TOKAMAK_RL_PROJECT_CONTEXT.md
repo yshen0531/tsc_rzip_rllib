@@ -336,13 +336,21 @@ error 1.0974. Its certified route is
 `IMMEDIATE_EFFECT_LOCAL_MAP_INSUFFICIENT_REDESIGN`. The effect-time bug and
 cross-history model failure are therefore distinct, real findings.
 
-The active T13S7 task is a prospectively frozen, zero-new-TSC
-leave-one-context-out feasibility audit over all 52 q1 S1 and 68 q2 S5 raw
-files. It tests whether allowed current/past visible state, causal velocity,
-measured coil current, formal time, target, and finite actuator settings can
-select a non-vacuous set of local transition hypotheses without any
-pair/history/wire/source/future input. A pass still requires a fresh q3
-history holdout; a fail requires observer/tube redesign before more TSC.
+T13S7 then authenticated all 120 q1/q2 raw files but failed its frozen audit.
+Only 24/112 held-out rows had a supported hypothesis and all four S1 hard
+maps had rank zero. Source and raw forensics proved this was primarily a new
+audit-design error: S1 probes enter before the inherited delay queue and all
+24 groups obey `issue+delay+1`, while S5 replaces the post-queue Card15 action
+and all 32 groups obey `issue+1`. The 24 apparent S1-hard successes at the
+wrong immediate states were zero-input/zero-output vacuity, not model
+evidence. T13S7 does not cleanly test multi-history compatibility.
+
+The active T13S7R1 task is a new frozen zero-new-TSC identity that changes
+only campaign-specific raw effect extraction. It preserves the exact causal
+feature, leave-one-context-out, nearest-neighbor, 0.15 input-support, tube,
+collision, 0.10 error, and forbidden-input contracts. A pass can only design
+a fresh q3 holdout; a fail routes to unified excitation/observer/tube
+redesign before more TSC.
 
 ## 7. Medium-term objectives
 
