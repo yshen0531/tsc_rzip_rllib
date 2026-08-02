@@ -249,9 +249,13 @@ def _effect_response(
     cancel: int,
     dt_s: float,
     radius_a: np.ndarray,
+    first_effect_state: int | None = None,
+    cancel_effect_state: int | None = None,
 ) -> tuple[np.ndarray, np.ndarray, bool]:
-    first = issue + 1
-    second = cancel + 1
+    first = issue + 1 if first_effect_state is None else int(first_effect_state)
+    second = cancel + 1 if cancel_effect_state is None else int(cancel_effect_state)
+    if second != first + 1:
+        raise ValueError("physical effect states are not adjacent")
     feature = common._feature_arrays(result, dt_s)
     base_feature = common._feature_arrays(baseline, dt_s)
     currents = np.asarray([row["currents_a_tsc"] for row in result["trajectory"]])
@@ -278,6 +282,7 @@ def build_contexts(
     campaign: str,
     raw: Sequence[Mapping[str, Any]],
     payloads: Mapping[str, Mapping[str, Any]],
+    campaign_specific_effects: bool = False,
 ) -> tuple[list[dict[str, Any]], int, int]:
     grouped: dict[tuple[Any, ...], dict[Any, Mapping[str, Any]]] = defaultdict(dict)
     trace_count = 0
@@ -309,6 +314,18 @@ def build_contexts(
         for window in WINDOWS:
             exemplar = members[(window, campaign_directions[0], -1)]
             issue, cancel = _issue_cancel(campaign, exemplar)
+            if campaign_specific_effects and campaign == "s1":
+                first_effect_state = int(
+                    exemplar["spec"]["r3c3_probe_first_effect_state"]
+                )
+                cancel_effect_state = int(
+                    exemplar["spec"]["r3c3_probe_cancel_effect_state"]
+                )
+                if first_effect_state != issue + int(spec["action_delay_steps"]) + 1:
+                    raise ValueError("S1 queue-aware effect contract mismatch")
+            else:
+                first_effect_state = issue + 1
+                cancel_effect_state = cancel + 1
             payload = payloads[str(baseline["experiment_id"])]
             feature, names = causal_feature(
                 baseline,
@@ -332,6 +349,8 @@ def build_contexts(
                         cancel=cancel,
                         dt_s=0.01,
                         radius_a=_readback_radius_a(payload),
+                        first_effect_state=first_effect_state,
+                        cancel_effect_state=cancel_effect_state,
                     )
                     signed[sign] = {"input": x, "output": y}
                     pre_pass = pre_pass and causal
@@ -568,7 +587,9 @@ def exact_collision_audit(
     }
 
 
-def run_audit(args: argparse.Namespace) -> dict[str, Any]:
+def run_audit(
+    args: argparse.Namespace, *, campaign_specific_effects: bool = False
+) -> dict[str, Any]:
     s1_audit = common._strict_json(args.source_s1_audit)
     s5_audit = common._strict_json(args.source_s5_audit)
     s1_config = common._strict_json(args.s1_config)
@@ -596,10 +617,16 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("T13S7 raw success/stage mismatch")
 
     s1_contexts, s1_trace, s1_forbidden = build_contexts(
-        "s1", s1_raw, _payload_by_experiment("s1", args.s1_run)
+        "s1",
+        s1_raw,
+        _payload_by_experiment("s1", args.s1_run),
+        campaign_specific_effects=campaign_specific_effects,
     )
     s5_contexts, s5_trace, s5_forbidden = build_contexts(
-        "s5", s5_raw, _payload_by_experiment("s5", args.s5_run)
+        "s5",
+        s5_raw,
+        _payload_by_experiment("s5", args.s5_run),
+        campaign_specific_effects=campaign_specific_effects,
     )
     contexts = s1_contexts + s5_contexts
     contexts.sort(key=lambda row: (row["stratum"], row["feature_digest"]))

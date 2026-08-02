@@ -10,6 +10,47 @@ from docs.codex.audit_tools import (
 
 
 class Stage42R3C3T13S7CausalMultiHistoryTubeAuditTests(unittest.TestCase):
+    def test_effect_response_can_use_new_campaign_specific_physical_states(self) -> None:
+        baseline_rows = [
+            {"R": 0.0, "Z": 0.0, "Ip": 0.0, "currents_a_tsc": [0.0] * 14}
+            for _ in range(5)
+        ]
+        result_rows = [dict(row) for row in baseline_rows]
+        result_rows[3] = {
+            "R": 0.01,
+            "Z": 0.0,
+            "Ip": 0.0,
+            "currents_a_tsc": [1.0] * 14,
+        }
+        result_rows[4] = {
+            "R": 0.02,
+            "Z": 0.0,
+            "Ip": 0.0,
+            "currents_a_tsc": [2.0] * 14,
+        }
+        result = {"trajectory": result_rows}
+        baseline = {"trajectory": baseline_rows}
+        default_x, _, _ = audit._effect_response(
+            result,
+            baseline,
+            issue=0,
+            cancel=1,
+            dt_s=0.01,
+            radius_a=np.ones(14),
+        )
+        corrected_x, _, _ = audit._effect_response(
+            result,
+            baseline,
+            issue=0,
+            cancel=1,
+            dt_s=0.01,
+            radius_a=np.ones(14),
+            first_effect_state=3,
+            cancel_effect_state=4,
+        )
+        self.assertEqual(float(np.linalg.norm(default_x)), 0.0)
+        self.assertGreater(float(np.linalg.norm(corrected_x)), 0.0)
+
     def test_issue_cancel_reinterprets_both_campaigns_immediately(self) -> None:
         s1 = {
             "spec": {
