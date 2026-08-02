@@ -128,8 +128,10 @@ remaining below `(0.003 m, 0.003 m, 0.010 m/s, 0.010 m/s, 1000 A)`.
 source snapshot identity                              16 / 16
 offline spec coverage                                144 / 144
 raw parse/success/restart/causality                   144 / 144
-calibration issue/cancel event groups                576 / 576
-calibration and response exact zero net               720 / 720
+calibration pulse-pair groups                         576 / 576
+calibration issue/cancel trace events                1152 / 1152
+calibration and response exact-zero-net groups         704 / 704
+response issue/cancel trace events                     256 / 256
 response signed groups                                  64 / 64
 target action symmetry/current signal/current symmetry  64 / 64
 pre-response causality/input-box containment          128 / 128
@@ -162,3 +164,10 @@ ACTIVE_CALIBRATION_SENTINEL_FAIL_REDESIGN
 
 Neither route authorizes a controller, MPC, expert dataset, BC, DAgger, or
 bounded residual RL. Sentinel trajectories are forbidden from expert data.
+
+The event-count wording above was corrected prospectively, before any S14
+raw or TSC execution: 144 rollouts times four calibration pulse pairs is 576
+calibration groups (1152 issue/cancel trace events), and the 128 nonbaseline
+response pulse pairs bring the exact-zero-net total to 704 groups (1408
+trace events). This arithmetic correction does not alter any rollout,
+controller, model, gate threshold, or route semantics.
