@@ -2403,3 +2403,50 @@ center, and fits a rank-seven constant/linear/quadratic-drift plus fixed-input
 model from states 1--8. It keeps the same eight calibration steps, response
 time, horizons, current limits, and immutable formal timing. It is a
 development sentinel; no MPC, expert data, BC, DAgger, or RL is authorized.
+
+## 38. Final T13S15 result and active T13S16 task
+
+T13S15 submitted all 16 baseline task functions but stopped before the first
+plant step in each task. All 16 structured raw files have empty trajectory
+and controller trace. Source-exact server recomputation proved:
+
+```text
+physical field-basis rank four                           16 / 16
+condition <= preregistered 3.0                            0 / 16
+condition range                            4.1405793 -- 4.1409175
+plant advances / successful trajectories                   0 / 0
+response raw opened                                            0
+```
+
+The exact route is:
+
+```text
+FIXED_BASIS_LOCAL_IDENTIFICATION_FAIL_REDESIGN
+```
+
+This is a pre-action excitation-geometry design failure, not a TSC runtime,
+restart, raw-corruption, reporting, statistics, or closed-loop control
+failure. S15's condition threshold remains unchanged and S15 may not resume
+as a successful identity.
+
+The complete report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S15_FORENSIC_REPORT.md
+```
+
+The active task is prospectively frozen as Stage4.2R3c3T13S16:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S16_ORTHOGONAL_FIXED_BASIS_DESIGN.md
+```
+
+S16 uses a deterministic causal QR field basis spanning the same four native
+directions, with fixed relative amplitude factors `(1,1,1,0.6)`. A zero-TSC
+development preflight passed rank, exact positive/negative action, unchanged
+action/current limits, and native-response projection in 16/16 contexts; its
+maximum normalized condition was `1.0245903`. This authorizes only independent
+S16 implementation and its baseline-gated 144-trajectory development
+sentinel. No controller, MPC, expert data, BC, DAgger, or bounded residual RL
+is authorized.
