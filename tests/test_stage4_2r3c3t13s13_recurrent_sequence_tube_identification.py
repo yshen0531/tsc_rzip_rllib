@@ -251,6 +251,29 @@ class Stage42R3C3T13S13Tests(unittest.TestCase):
         self.assertTrue(audit["passed"])
         self.assertEqual(audit["pass_count"], 72)
 
+    def test_reporting_hotfix_compatibility_is_narrow(self):
+        module = "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s13_recurrent_sequence_tube_identification.py"
+        old = {
+            "identity": "unchanged",
+            "deployed_package_fingerprint": {
+                "contract": "r42r3c3t13s13_deployed_package_source_v1",
+                "package_revision": s13.PACKAGE_REVISION,
+                "digest": "old",
+                "files": [{"path": module, "size_bytes": 1, "sha256": "old"}],
+            },
+        }
+        new = copy.deepcopy(old)
+        new["deployed_package_fingerprint"].update({
+            "digest": "new",
+            "files": [{"path": module, "size_bytes": 2, "sha256": "new"}],
+        })
+        compatible, changed = s13._reporting_hotfix_manifest_compatible(old, new)
+        self.assertTrue(compatible)
+        self.assertEqual([row["path"] for row in changed], [module])
+        disallowed = copy.deepcopy(new)
+        disallowed["deployed_package_fingerprint"]["files"][0]["path"] = "configs/changed.json"
+        self.assertFalse(s13._reporting_hotfix_manifest_compatible(old, disallowed)[0])
+
 
 if __name__ == "__main__":
     unittest.main()

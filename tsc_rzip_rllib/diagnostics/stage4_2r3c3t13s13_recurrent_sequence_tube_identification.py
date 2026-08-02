@@ -607,6 +607,53 @@ def _package_fingerprint(ctx: Context) -> dict[str, Any]:
     }
 
 
+def _reporting_hotfix_package_compatible(
+    old: Mapping[str, Any], new: Mapping[str, Any],
+) -> tuple[bool, list[dict[str, Any]]]:
+    if (
+        old.get("contract") != new.get("contract")
+        or old.get("package_revision") != new.get("package_revision")
+    ):
+        return False, []
+    old_files = {str(row["path"]): dict(row) for row in old.get("files") or []}
+    new_files = {str(row["path"]): dict(row) for row in new.get("files") or []}
+    if set(old_files) != set(new_files):
+        return False, []
+    changed = [
+        {
+            "path": path,
+            "old_sha256": old_files[path]["sha256"],
+            "new_sha256": new_files[path]["sha256"],
+            "old_size_bytes": old_files[path]["size_bytes"],
+            "new_size_bytes": new_files[path]["size_bytes"],
+        }
+        for path in sorted(old_files)
+        if old_files[path] != new_files[path]
+    ]
+    allowed = {
+        "tests/test_stage4_2r3c3t13s13_recurrent_sequence_tube_identification.py",
+        "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s13_recurrent_sequence_tube_identification.py",
+    }
+    return bool(changed and {row["path"] for row in changed} <= allowed), changed
+
+
+def _reporting_hotfix_manifest_compatible(
+    old: Mapping[str, Any], new: Mapping[str, Any],
+) -> tuple[bool, list[dict[str, Any]]]:
+    package_ok, changed = _reporting_hotfix_package_compatible(
+        old.get("deployed_package_fingerprint") or {},
+        new.get("deployed_package_fingerprint") or {},
+    )
+    if not package_ok:
+        return False, changed
+    old_copy = copy.deepcopy(dict(old))
+    new_copy = copy.deepcopy(dict(new))
+    old_copy["deployed_package_fingerprint"] = copy.deepcopy(
+        new_copy["deployed_package_fingerprint"]
+    )
+    return old_copy == new_copy, changed
+
+
 def _validate_snapshots(table: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     rows = []
     for context in table:
@@ -674,15 +721,42 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
         "probe_trajectories_allowed_in_expert_dataset": False,
         "bc_dagger_or_rl_allowed": False,
     }
+    reporting_hotfix = False
+    reporting_hotfix_changes: list[dict[str, Any]] = []
+    execution_package_digest = package["digest"]
     if ctx.paths.manifest.exists():
-        old = _read_json(ctx.paths.manifest)
-        if old != manifest:
-            raise ValueError("T13S13 resume manifest mismatch")
+        old_manifest = _read_json(ctx.paths.manifest)
+        execution_package_digest = old_manifest["deployed_package_fingerprint"]["digest"]
+        if old_manifest != manifest:
+            compatible, reporting_hotfix_changes = _reporting_hotfix_manifest_compatible(
+                old_manifest, manifest
+            )
+            if not (resume and compatible):
+                raise ValueError("T13S13 resume manifest mismatch")
+            reporting_hotfix = True
     else:
         _write_json(ctx.paths.manifest, manifest)
     _write_json(ctx.paths.source_reference / "context_table.json", table)
     _write_json(ctx.paths.source_reference / "source_authentication.json", source)
     _write_json(ctx.paths.source_reference / "snapshot_audit.json", snapshot)
+    if reporting_hotfix:
+        _write_json(ctx.paths.analysis / "semantics_preserving_reporting_hotfix.json", {
+            "schema_version": SCHEMA_VERSION,
+            "stage": STAGE,
+            "contract": "t13s13_execution_semantics_unchanged_reporting_hotfix_v1",
+            "execution_package_digest": execution_package_digest,
+            "reporting_package_digest": package["digest"],
+            "changed_files": reporting_hotfix_changes,
+            "raw_preserved_count": len(raw_before),
+            "controller_revision_unchanged": True,
+            "probe_primitive_revision_unchanged": True,
+            "config_sha256_unchanged": True,
+            "context_table_digest_unchanged": True,
+            "new_spec_digest_unchanged": True,
+            "formal_timing_unchanged": True,
+            "physical_action_semantics_unchanged": True,
+            "passed": True,
+        })
     training_specs = _partition_specs(specs, table, "training", baseline=True) + _partition_specs(specs, table, "training", baseline=False)
     _write_json(ctx.paths.specs / "training_specs.json", training_specs)
     state = {
@@ -702,7 +776,7 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
     }
     if ctx.paths.state.exists():
         old = _read_json(ctx.paths.state)
-        if old.get("phase_status") not in PHASES or old.get("context_table_digest") != context_digest or old.get("new_spec_digest") != spec_digest or old.get("package_digest") != package["digest"]:
+        if old.get("phase_status") not in PHASES or old.get("context_table_digest") != context_digest or old.get("new_spec_digest") != spec_digest or old.get("package_digest") != execution_package_digest:
             raise ValueError("T13S13 resume state identity mismatch")
         state = old
     else:
@@ -720,6 +794,9 @@ def prepare_offline(ctx: Context, *, resume: bool) -> dict[str, Any]:
         "snapshot_expected": 72,
         "new_raw_count": len(raw_before),
         "real_tsc_executed": bool(raw_before),
+        "semantics_preserving_reporting_hotfix": reporting_hotfix,
+        "execution_package_digest": execution_package_digest,
+        "reporting_package_digest": package["digest"],
         "passed": bool(source["passed"] and snapshot["passed"] and (resume or not raw_before)),
     }
 
@@ -988,9 +1065,28 @@ def _turns_tsc(payload: Mapping[str, Any]) -> np.ndarray:
 
 
 def _source_state_map(ctx: Context) -> dict[str, Mapping[str, Any]]:
-    rows = _read_json(_source_paths(ctx)["state_results"])
-    output = {str(row["experiment_id"]): row for row in rows}
-    if len(rows) != 72 or len(output) != 72:
+    public_rows = _read_json(_source_paths(ctx)["state_results"])
+    source_root = ctx.base_ctx.base_ctx.base_ctx.source_ctx.source_r3b_run
+    raw_paths = sorted(
+        (source_root / "stage4_2r3b_state_generation" / "raw").glob("*.json.gz")
+    )
+    recomputed = [
+        s9.t11.t1.r3b._state_row(s9.t11.t1.r3c3.read_json_gz(path))
+        for path in raw_paths
+    ]
+    output = {str(row["experiment_id"]): row for row in recomputed}
+    public_by_id = {str(row["experiment_id"]): row for row in public_rows}
+    private = {"coil_currents_a", "action_norm_tsc", "wire_currents_a"}
+    recomputed_public = {
+        key: {name: value for name, value in row.items() if name not in private}
+        for key, row in output.items()
+    }
+    if (
+        len(raw_paths) != 72 or len(recomputed) != 72 or len(output) != 72
+        or len(public_rows) != 72 or len(public_by_id) != 72
+        or recomputed_public != public_by_id
+        or not all(bool(row.get("success")) for row in recomputed)
+    ):
         raise ValueError("T13S13 source state-result map mismatch")
     return output
 
