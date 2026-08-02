@@ -10,6 +10,11 @@ from docs.codex.audit_tools import (
 
 
 class Stage42R3C3T13S6IndependentRawAuditTests(unittest.TestCase):
+    def test_server_layout_uses_run_level_environment_variants(self) -> None:
+        source = audit.Path(audit.__file__).read_text(encoding="utf-8")
+        self.assertIn('run_dir / "stage4_2r3c3t13s5_environment_variants"', source)
+        self.assertNotIn('"stage4_2r3c3t13s5_lattice_native_split_holdout" / "variants"', source)
+
     def test_feature_arrays_use_causal_backward_velocity(self) -> None:
         result = {
             "trajectory": [

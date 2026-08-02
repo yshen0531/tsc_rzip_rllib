@@ -452,7 +452,7 @@ def run_audit(
         raise ValueError("independent context/member coverage mismatch")
 
     payloads = sorted(
-        (run_dir / "stage4_2r3c3t13s5_lattice_native_split_holdout" / "variants").glob(
+        (run_dir / "stage4_2r3c3t13s5_environment_variants").glob(
             "payload_*.json"
         )
     )
