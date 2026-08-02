@@ -141,7 +141,7 @@ the result.
 pre-action basis preflight
   e9c89bbae2d929ec3d2fbad493c2ceac20d1094a0a793cee97001e3ad4c711fc
 offline preflight
-  c85dbd677c516ea4747c84b3b0433c8afda9598692c710ecfc6d19dd51568c43
+  13c434e71f3ecb985d1a2e8341deb062be5f40a085d4bf1c528486368e6b81e3
 baseline gate
   d39a62bd71871693d5e9ee034a8213b41f3719a6f8882d34fce029c8932dc378
 probe execution
@@ -192,4 +192,3 @@ construct a fixed multi-hypothesis response set.  It runs zero new TSC and
 cannot itself authorize a controller or expert data.  Only a complete S17
 development pass may authorize a separately preregistered fresh whole-pair
 identification campaign.
-
