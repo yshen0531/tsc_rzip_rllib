@@ -262,6 +262,31 @@ class Stage4R3C3T13S19Tests(unittest.TestCase):
         self.assertFalse(result["real_tsc_executed"])
         self.assertEqual(result["new_tsc_or_plant_step_count"], 0)
 
+    def test_cli_source_names_translate_to_load_config_contract(self):
+        cli_names = (
+            "source_stage4_2r3b_run", "source_stage4_2r3c3_run",
+            "source_stage4_2r3c3_bank_dir", "source_stage4_2r3c3t1_run",
+            "source_stage4_2r3c3t1_audit_dir", "source_stage4_2r3c3t3_controller_bank",
+            "q1_run", "q2_run", "q1_audit", "q2_audit", "r3b_server_audit",
+            "r3b_snapshot_checks", "run_dir",
+        )
+        args = SimpleNamespace(**{name: Path(name) for name in cli_names})
+        translated = s19._cli_source_kwargs(args)
+        self.assertEqual(len(translated), 13)
+        self.assertEqual(
+            set(translated),
+            {
+                "source_stage42r3b_run", "source_stage42r3c3_run",
+                "source_stage42r3c3_bank_dir", "source_stage42r3c3t1_run",
+                "source_stage42r3c3t1_audit_dir", "source_stage42r3c3t3_controller_bank",
+                "q1_run", "q2_run", "q1_audit", "q2_audit", "r3b_server_audit",
+                "r3b_snapshot_checks", "run_dir",
+            },
+        )
+        self.assertEqual(
+            translated["source_stage42r3b_run"], Path("source_stage4_2r3b_run")
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

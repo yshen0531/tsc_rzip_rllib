@@ -1479,6 +1479,25 @@ def self_test(config_path: Path) -> dict[str, Any]:
     }
 
 
+def _cli_source_kwargs(args: argparse.Namespace) -> dict[str, Path | None]:
+    """Translate argparse destinations to the frozen internal source names."""
+    return {
+        "source_stage42r3b_run": args.source_stage4_2r3b_run,
+        "source_stage42r3c3_run": args.source_stage4_2r3c3_run,
+        "source_stage42r3c3_bank_dir": args.source_stage4_2r3c3_bank_dir,
+        "source_stage42r3c3t1_run": args.source_stage4_2r3c3t1_run,
+        "source_stage42r3c3t1_audit_dir": args.source_stage4_2r3c3t1_audit_dir,
+        "source_stage42r3c3t3_controller_bank": args.source_stage4_2r3c3t3_controller_bank,
+        "q1_run": args.q1_run,
+        "q2_run": args.q2_run,
+        "q1_audit": args.q1_audit,
+        "q2_audit": args.q2_audit,
+        "r3b_server_audit": args.r3b_server_audit,
+        "r3b_snapshot_checks": args.r3b_snapshot_checks,
+        "run_dir": args.run_dir,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -1507,16 +1526,7 @@ def main() -> None:
     if args.self_test:
         result = self_test(args.config)
     else:
-        required = {
-            key: value for key, value in vars(args).items()
-            if key in {
-                "source_stage4_2r3b_run", "source_stage4_2r3c3_run",
-                "source_stage4_2r3c3_bank_dir", "source_stage4_2r3c3t1_run",
-                "source_stage4_2r3c3t1_audit_dir", "source_stage4_2r3c3t3_controller_bank",
-                "q1_run", "q2_run", "q1_audit", "q2_audit", "r3b_server_audit",
-                "r3b_snapshot_checks", "run_dir",
-            }
-        }
+        required = _cli_source_kwargs(args)
         if any(value is None for value in required.values()) or len(required) != 13:
             parser.error("all source paths and --run-dir are required")
         ctx = load_config(args.config, **required)
