@@ -37,7 +37,8 @@ STAGE = "Stage4.2R3c3T13S5"
 RUN_NAME = "stage4_2r3c3t13s5_lattice_native_split_holdout"
 CAMPAIGN_IDENTITY = "quantized_lattice_native_split_two_step_blind_holdout_v1"
 CONTROLLER_REVISION = "quantized_lattice_native_split_probe_v42r3c3t13s5_v1"
-PACKAGE_REVISION = "r42r3c3t13s5_lattice_native_split_holdout_v1"
+EXECUTION_PACKAGE_REVISION = "r42r3c3t13s5_lattice_native_split_holdout_v1"
+PACKAGE_REVISION = "r42r3c3t13s5_lattice_native_split_holdout_v1h1"
 BASELINE_PROBE_ID = "lattice_baseline"
 WINDOWS = ("transport", "braking")
 DIRECTIONS = (
@@ -51,6 +52,14 @@ N_MODES = 3
 N_DIRECTIONS = 4
 N_COILS = 14
 EXPECTED_CURRENT_COMPONENTS = 34_272
+REPORTING_HOTFIX_PATHS = frozenset({
+    "PACKAGE_MANIFEST.json",
+    "configs/stage4_2r3c3t13s5_lattice_native_split_holdout_370ms.json",
+    "run_stage4_2r3c3t13s5_verify_package.sh",
+    "scripts/stage4_2r3c3t13s5_server_postprocess.py",
+    "tests/test_stage4_2r3c3t13s5_lattice_native_split_holdout.py",
+    "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s5_lattice_native_split_holdout.py",
+})
 
 
 @dataclass
@@ -1293,7 +1302,12 @@ def _prepare_dirs(paths: Stage42R3C3T13S5Paths) -> None:
         path.mkdir(parents=True, exist_ok=True)
 
 
-def _resume_compatible(old: Mapping[str, Any], new: Mapping[str, Any]) -> None:
+def _resume_compatible(
+    old: Mapping[str, Any],
+    new: Mapping[str, Any],
+    *,
+    allow_reporting_hotfix: bool = False,
+) -> None:
     if old == new:
         return
     old_by_path = {row["path"]: row for row in old.get("files", [])}
@@ -1302,10 +1316,32 @@ def _resume_compatible(old: Mapping[str, Any], new: Mapping[str, Any]) -> None:
         path for path in set(old_by_path) | set(new_by_path)
         if old_by_path.get(path) != new_by_path.get(path)
     )
+    if (
+        allow_reporting_hotfix
+        and old.get("package_revision") == EXECUTION_PACKAGE_REVISION
+        and new.get("package_revision") == PACKAGE_REVISION
+        and changed
+        and set(changed) <= REPORTING_HOTFIX_PATHS
+    ):
+        return
     raise ValueError(
         "T13S5 automatic resume requires exact package identity; changed="
         + repr(changed)
     )
+
+
+def _reporting_hotfix_config_compatible(
+    old: Mapping[str, Any], new: Mapping[str, Any]
+) -> bool:
+    old_copy = copy.deepcopy(dict(old))
+    new_copy = copy.deepcopy(dict(new))
+    if (
+        old_copy.get("package_revision") != EXECUTION_PACKAGE_REVISION
+        or new_copy.get("package_revision") != PACKAGE_REVISION
+    ):
+        return False
+    old_copy["package_revision"] = PACKAGE_REVISION
+    return old_copy == new_copy
 
 
 def prepare(
@@ -1350,24 +1386,46 @@ def prepare(
         if not resume:
             raise FileExistsError("T13S5 run exists; use resume or a fresh run")
         old = t11.t1.r3c3.read_json(ctx.paths.manifest)
+        old_resolved_path = (
+            ctx.paths.run_dir / "stage4_2r3c3t13s5_config.resolved.json"
+        )
+        reporting_hotfix = bool(
+            old.get("package_revision") == EXECUTION_PACKAGE_REVISION
+            and old_resolved_path.is_file()
+            and _reporting_hotfix_config_compatible(
+                t11.t1.r3c3.read_json(old_resolved_path), ctx.cfg
+            )
+        )
         for key, value in manifest.items():
             if key == "deployed_package_fingerprint":
+                continue
+            if reporting_hotfix and key in {"package_revision", "config_digest"}:
                 continue
             if old.get(key) != value:
                 raise ValueError(f"T13S5 resume incompatibility in {key}")
         _resume_compatible(
-            dict(old.get("deployed_package_fingerprint") or {}), package
+            dict(old.get("deployed_package_fingerprint") or {}),
+            package,
+            allow_reporting_hotfix=reporting_hotfix,
         )
     else:
+        reporting_hotfix = False
         t11.t1.r3c3.atomic_write_json(ctx.paths.manifest, manifest)
-    t11.t1.r3c3.atomic_write_json(
-        ctx.paths.run_dir / "stage4_2r3c3t13s5_config.resolved.json", ctx.cfg
+    resolved_name = (
+        "stage4_2r3c3t13s5_config.resolved.v1h1.json"
+        if reporting_hotfix
+        else "stage4_2r3c3t13s5_config.resolved.json"
     )
+    t11.t1.r3c3.atomic_write_json(ctx.paths.run_dir / resolved_name, ctx.cfg)
     t11.t1.r3c3.atomic_write_json(
         ctx.paths.source_reference / "control_specs.json", specs
     )
+    fingerprint_name = (
+        "deployed_package_fingerprint.v1h1.json"
+        if reporting_hotfix else "deployed_package_fingerprint.json"
+    )
     t11.t1.r3c3.atomic_write_json(
-        ctx.paths.source_reference / "deployed_package_fingerprint.json", package
+        ctx.paths.source_reference / fingerprint_name, package
     )
     state = (
         t11.t1.r3c3.read_json(ctx.paths.state)
@@ -1385,6 +1443,10 @@ def prepare(
             "stop_reason": "",
         }
     )
+    if reporting_hotfix:
+        state["execution_package_revision"] = EXECUTION_PACKAGE_REVISION
+        state["reporting_package_revision"] = PACKAGE_REVISION
+        state["semantics_preserving_reporting_resume"] = True
     state["updated_utc"] = t11.t1.r3c3.utc_timestamp()
     t11.t1.r3c3.atomic_write_json(ctx.paths.state, state)
     return selected_pairs, specs
@@ -2205,8 +2267,15 @@ def _build_model_artifact(
             raise ValueError("T13S5 development direction coverage mismatch")
         x = np.asarray([row["odd_input_measured_current_A"] for row in rows], dtype=float)
         y = np.asarray([row["odd_response_unscaled"] for row in rows], dtype=float)
-        rank = int(np.linalg.matrix_rank(x))
-        condition = float(np.linalg.cond(x))
+        rank, condition_json, condition_finite, rank_pass = (
+            _development_matrix_diagnostics(
+                x,
+                required_rank=int(cfg["required_development_rank"]),
+                maximum_condition=float(
+                    cfg["maximum_development_condition_number"]
+                ),
+            )
+        )
         jacobian = np.linalg.lstsq(x, y, rcond=None)[0]
         signed_residuals = []
         for row in rows:
@@ -2219,11 +2288,6 @@ def _build_model_artifact(
             np.abs(residuals), axis=0
         )
         tube_pass = bool(np.all(radius <= caps))
-        rank_pass = bool(
-            rank == int(cfg["required_development_rank"])
-            and math.isfinite(condition)
-            and condition <= float(cfg["maximum_development_condition_number"])
-        )
         signal_pass = all(bool(row["development_signal_pass"]) for row in rows)
         entry = {
             "stratum": key[0],
@@ -2239,7 +2303,8 @@ def _build_model_artifact(
             "input_support_min": np.min(x, axis=0).tolist(),
             "input_support_max": np.max(x, axis=0).tolist(),
             "development_rank": rank,
-            "development_condition_number": condition,
+            "development_condition_number": condition_json,
+            "development_condition_number_finite": condition_finite,
             "development_signal_pass": signal_pass,
             "development_rank_condition_pass": rank_pass,
             "tube_non_vacuous_pass": tube_pass,
@@ -2252,7 +2317,8 @@ def _build_model_artifact(
             "stratum": key[0],
             "probe_window": key[1],
             "development_rank": rank,
-            "development_condition_number": condition,
+            "development_condition_number": condition_json,
+            "development_condition_number_finite": condition_finite,
             "development_signal_pass": signal_pass,
             "development_rank_condition_pass": rank_pass,
             "maximum_tube_to_cap_ratio": float(np.max(radius / caps)),
@@ -2299,6 +2365,31 @@ def _build_model_artifact(
         "canonical_core_sha256": _canonical_digest(core),
     }
     return artifact, fit_rows
+
+
+def _json_condition_number(matrix: np.ndarray) -> tuple[float | None, bool]:
+    """Return a strict-JSON condition number without changing rank semantics."""
+    condition = float(np.linalg.cond(np.asarray(matrix, dtype=float)))
+    finite = math.isfinite(condition)
+    return (condition if finite else None), finite
+
+
+def _development_matrix_diagnostics(
+    matrix: np.ndarray,
+    *,
+    required_rank: int,
+    maximum_condition: float,
+) -> tuple[int, float | None, bool, bool]:
+    values = np.asarray(matrix, dtype=float)
+    rank = int(np.linalg.matrix_rank(values))
+    condition, finite = _json_condition_number(values)
+    passed = bool(
+        rank == required_rank
+        and finite
+        and condition is not None
+        and condition <= maximum_condition
+    )
+    return rank, condition, finite, passed
 
 
 def _freeze_model(
@@ -2621,8 +2712,16 @@ def summarize_from_raw(
             fit_rows, "tube_non_vacuous_pass"
         ),
         "maximum_development_condition_number": max(
-            (float(row["development_condition_number"]) for row in fit_rows),
+            (
+                float(row["development_condition_number"])
+                for row in fit_rows
+                if row["development_condition_number"] is not None
+            ),
             default=None,
+        ),
+        "nonfinite_development_condition_count": sum(
+            not bool(row["development_condition_number_finite"])
+            for row in fit_rows
         ),
         "maximum_tube_to_cap_ratio": max(
             (float(row["maximum_tube_to_cap_ratio"]) for row in fit_rows),

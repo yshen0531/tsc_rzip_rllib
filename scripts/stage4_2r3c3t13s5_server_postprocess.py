@@ -130,14 +130,36 @@ def main() -> None:
     )
     manifest = s4.t11.t1.r3c3.read_json(ctx.paths.manifest)
     package = s4._deployed_package_fingerprint(ctx)
-    manifest_exact = bool(
+    execution_config_path = (
+        run_dir / "stage4_2r3c3t13s5_config.resolved.json"
+    )
+    execution_config = s4.t11.t1.r3c3.read_json(execution_config_path)
+    reporting_hotfix = bool(
+        manifest.get("package_revision") == s4.EXECUTION_PACKAGE_REVISION
+        and s4._reporting_hotfix_config_compatible(execution_config, ctx.cfg)
+    )
+    package_resume_compatible = False
+    try:
+        s4._resume_compatible(
+            dict(manifest.get("deployed_package_fingerprint") or {}),
+            package,
+            allow_reporting_hotfix=reporting_hotfix,
+        )
+        package_resume_compatible = True
+    except ValueError:
+        package_resume_compatible = False
+    execution_manifest_exact = bool(
         manifest.get("stage") == s4.STAGE
         and manifest.get("campaign_identity") == s4.CAMPAIGN_IDENTITY
         and manifest.get("controller_revision") == s4.CONTROLLER_REVISION
-        and manifest.get("package_revision") == s4.PACKAGE_REVISION
-        and manifest.get("deployed_package_fingerprint") == package
-        and manifest.get("config_digest") == s4._canonical_digest(ctx.cfg)
+        and manifest.get("package_revision")
+        in {s4.EXECUTION_PACKAGE_REVISION, s4.PACKAGE_REVISION}
+        and manifest.get("config_digest")
+        == s4._canonical_digest(execution_config)
         and manifest.get("control_spec_digest") == s4._canonical_digest(specs)
+    )
+    manifest_exact = bool(
+        execution_manifest_exact and package_resume_compatible
     )
     snapshots = _snapshot_integrity(specs)
     run_paths = [path for path in run_dir.rglob("*") if path.is_file()]
@@ -153,7 +175,11 @@ def main() -> None:
         "campaign_identity": s4.CAMPAIGN_IDENTITY,
         "run_dir": str(run_dir),
         "controller_revision": s4.CONTROLLER_REVISION,
-        "package_revision": s4.PACKAGE_REVISION,
+        "execution_package_revision": manifest.get("package_revision"),
+        "reporting_package_revision": s4.PACKAGE_REVISION,
+        "semantics_preserving_reporting_hotfix": reporting_hotfix,
+        "execution_manifest_exact": execution_manifest_exact,
+        "reporting_package_resume_compatible": package_resume_compatible,
         "package_exact": manifest_exact,
         "control_raw_expected": 68,
         "control_raw_actual": raw_inventory["n_files"],

@@ -277,6 +277,66 @@ class Stage42R3C3T13S5Tests(unittest.TestCase):
         self.assertFalse(result["real_tsc_executed"])
         self.assertFalse(result["bc_dagger_or_rl_allowed"])
 
+    def test_rank_deficient_condition_is_strict_json_safe(self):
+        rank, condition, finite, passed = s4._development_matrix_diagnostics(
+            np.zeros((4, 28)), required_rank=4, maximum_condition=15.0
+        )
+        self.assertEqual(rank, 0)
+        self.assertIsNone(condition)
+        self.assertFalse(finite)
+        self.assertFalse(passed)
+        json.dumps(
+            {
+                "development_condition_number": condition,
+                "development_condition_number_finite": finite,
+            },
+            sort_keys=True,
+            allow_nan=False,
+        )
+        rank, condition, finite, passed = s4._development_matrix_diagnostics(
+            np.eye(4), required_rank=4, maximum_condition=15.0
+        )
+        self.assertEqual(rank, 4)
+        self.assertEqual(condition, 1.0)
+        self.assertTrue(finite)
+        self.assertTrue(passed)
+
+    def test_reporting_hotfix_resume_is_narrow_and_semantics_preserving(self):
+        old_cfg = _cfg()
+        old_cfg["package_revision"] = s4.EXECUTION_PACKAGE_REVISION
+        self.assertTrue(s4._reporting_hotfix_config_compatible(old_cfg, _cfg()))
+        changed_cfg = _cfg()
+        changed_cfg["lattice_probe"]["maximum_development_condition_number"] = 16.0
+        self.assertFalse(
+            s4._reporting_hotfix_config_compatible(old_cfg, changed_cfg)
+        )
+
+        old = {
+            "package_revision": s4.EXECUTION_PACKAGE_REVISION,
+            "files": [
+                {"path": path, "sha256": "old"}
+                for path in sorted(s4.REPORTING_HOTFIX_PATHS)
+            ],
+        }
+        new = {
+            "package_revision": s4.PACKAGE_REVISION,
+            "files": [
+                {"path": path, "sha256": "new"}
+                for path in sorted(s4.REPORTING_HOTFIX_PATHS)
+            ],
+        }
+        s4._resume_compatible(old, new, allow_reporting_hotfix=True)
+        with self.assertRaisesRegex(ValueError, "automatic resume"):
+            s4._resume_compatible(old, new, allow_reporting_hotfix=False)
+        new["files"].append(
+            {
+                "path": "tsc_rzip_rllib/control/quantized_actuator.py",
+                "sha256": "changed-controller-semantics",
+            }
+        )
+        with self.assertRaisesRegex(ValueError, "quantized_actuator"):
+            s4._resume_compatible(old, new, allow_reporting_hotfix=True)
+
     def test_offline_design_failure_is_recorded_without_tsc(self):
         ctx = types.SimpleNamespace(
             paths=types.SimpleNamespace(state="state.json")
