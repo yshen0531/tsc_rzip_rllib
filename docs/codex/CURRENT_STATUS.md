@@ -1,5 +1,23 @@
 # Current status
 
+> Superseding live handoff (2026-08-02 Asia/Shanghai):
+> Stage4.2R3c3T13S12 completed its zero-new-TSC natural-history observer
+> preflight at hotfix commit `d2940b3`. The final server audit authenticated
+> all 136 q1/q2 raw trajectories and passed history/current support, rank,
+> fold-local whitening, interaction condition, tube, causality, and
+> forbidden-input gates. Response containment passed 61/64, relative error
+> 44/64, and both only 41/64; maximum scaled error was 1.701539079 despite a
+> maximum interaction condition of 1.000000000000045. The final route is
+> `CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_INSUFFICIENT_NONLINEAR_OBSERVER_REDESIGN`.
+> One payload-target schema error and one module-path launch error are
+> preserved as separate no-result, zero-plant incidents. Final result SHA is
+> `1ccaaea1f8da5b5271331758a0a390c5dc663f98c5099299ff3a440007b94b4a`.
+> This is an affine observer/model design failure, not runtime, raw, restart,
+> reporting, controller, or real-MPC failure. The active task is prospective
+> T13S13 broader same-trajectory sequence identification and recurrent or
+> nonlinear set-valued observer design with a fresh history holdout. All
+> MPC/expert/BC/DAgger/RL gates remain closed.
+
 > Superseding live handoff (2026-08-01 Asia/Shanghai):
 > Stage4.2R3c3T13S5 is implemented at package commit `d048686`; the local
 > validation report is committed at `4d3e884`. Its frozen 68-rollout code,

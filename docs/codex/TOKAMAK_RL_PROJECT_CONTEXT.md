@@ -381,15 +381,20 @@ rank, and tube passed, but the unwhitened interaction condition exceeded
 condition gate is ignored. One active transition is not a sufficient causal
 observer state.
 
-The active T13S12 preflight prospectively replaces that pulse with the full
-deployable visible baseline history through the braking issue: target error,
-backward-causal velocity, and measured 14-coil current/current-difference
-sequence. Training-fold history and current coordinates are whitened before
-the interaction fit, while support remains in the original high-dimensional
-spaces. A pass permits only a new q3 same-trajectory sequence campaign; a
-failure requires a broader recurrent/nonlinear observer design. Formal
-timing is unchanged and no controller, MPC, expert data, BC, DAgger, or RL
-is authorized.
+T13S12 then authenticated all 136 q1/q2 raw trajectories and completed that
+zero-new-TSC natural-history preflight. Its causal histories, current inputs,
+rank, fold-local whitening, condition, support, and tubes all passed, but the
+response center failed: containment was 61/64, relative error was 44/64, and
+only 41/64 rows passed both. The maximum scaled error was 1.701539079 despite
+an interaction condition effectively equal to one. This is a finite affine
+observer/model design failure, not a runtime, raw, restart, reporting,
+controller, or real-MPC result.
+
+The active task is a prospective broader same-trajectory history/response
+campaign and recurrent or nonlinear set-valued observer design with a fresh
+history holdout. The eight consumed q1/q2 contexts cannot by themselves
+validate a higher-capacity model. Formal timing is unchanged and no
+controller, MPC, expert data, BC, DAgger, or RL is authorized.
 
 ## 7. Medium-term objectives
 

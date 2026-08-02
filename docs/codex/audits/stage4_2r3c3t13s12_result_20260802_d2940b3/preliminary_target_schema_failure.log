@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s12_causal_natural_history_observer_preflight.py", line 579, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s12_causal_natural_history_observer_preflight.py", line 556, in main
+    output = run_audit(args)
+             ^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s12_causal_natural_history_observer_preflight.py", line 391, in run_audit
+    q1_histories = _history_by_digest(q1_raw, q1_payloads)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s12_causal_natural_history_observer_preflight.py", line 137, in _history_by_digest
+    output[digest] = _history_signature(baseline, payload)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s12_causal_natural_history_observer_preflight.py", line 76, in _history_signature
+    raise ValueError("T13S12 deployed target does not match source target contract")
+ValueError: T13S12 deployed target does not match source target contract

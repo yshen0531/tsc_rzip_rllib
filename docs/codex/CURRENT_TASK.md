@@ -2224,3 +2224,61 @@ A pass authorizes only a new q3 same-trajectory observation/probe campaign.
 A failure stops the affine observer and requires a broader prospective
 history campaign plus recurrent/nonlinear observer. Neither route authorizes
 a controller, MPC, expert data, BC, DAgger, or bounded residual RL.
+
+## 35. Final T13S12 result and active T13S13 design task
+
+T13S12 completed its frozen zero-new-TSC audit after a semantics-preserving
+target-schema hotfix at commit `d2940b3`. The first implementation had
+incorrectly required the payload base target to include the raw task offsets;
+the authenticated controller contract is base target plus specification
+offset. The failed invocation wrote only a log. A later direct-file
+invocation also stopped before import because the project root was absent
+from `sys.path`; it likewise wrote no result. The unchanged module invocation
+completed under a new output identity.
+
+Exact final output:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/
+stage4_2r3c3t13s12_audits/
+stage4_2r3c3t13s12_causal_natural_history_observer_20260802_d2940b3m1
+```
+
+Final gates:
+
+```text
+source raw and trace identity                           136 / 136
+causal history schema                                      8 / 8
+braking extraction and pre-effect causality               64 / 64
+history rank / whitening / current rank                     8 / 8
+interaction rank / condition / signal                       8 / 8
+maximum interaction condition                  1.000000000000045
+tube / history support / current support            8/8, 8/8, 64/64
+componentwise containment                                  61 / 64
+scaled relative error <= 0.10                              44 / 64
+both response gates                                        41 / 64
+maximum scaled relative error                        1.701539079
+forbidden inputs / disjoint exact aliases                       0 / 0
+```
+
+The final route is:
+
+```text
+CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_INSUFFICIENT_NONLINEAR_OBSERVER_REDESIGN
+```
+
+Final audit SHA-256 is
+`1ccaaea1f8da5b5271331758a0a390c5dc663f98c5099299ff3a440007b94b4a`.
+All 136 large raw files remain on the server. There is no final runtime,
+deployment, raw, restart, causality, statistics, or reporting error and no
+controller, optimizer, Ray, `gotsc`, TSC, plant step, or snapshot creation.
+The failure is a finite affine observer/model design failure.
+
+The active task is Stage4.2R3c3T13S13 prospective design. It must not train a
+higher-capacity model on only the eight consumed q1/q2 contexts and claim
+validation. It must freeze a broader same-trajectory causal history/response
+campaign with independent history groups, a training-only recurrent or
+nonlinear set-valued predictor, fail-closed support/tube semantics, and a
+fresh history holdout before real TSC. The 250/270 ms arrival and 350/370 ms
+hold contract remains immutable. No controller, MPC, expert data, BC,
+DAgger, or bounded residual RL is authorized.

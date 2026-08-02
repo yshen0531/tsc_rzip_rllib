@@ -1083,3 +1083,30 @@
   `378ff7d945a10b4d5c544460ed733cdbe0c25004d07b651af9f03a5c1f5a478b`
 - Next: implement and validate the separately frozen 68-rollout T13S5
   lattice-native split-direction holdout; all expert/RL routes remain blocked
+
+## Stage4.2R3c3T13S12 causal natural-history observer preflight
+
+- Branch: `codex/stage4_2r3c3t13s1-transition-sentinel`
+- Initial implementation / target hotfix: `3eda0cb` / `d2940b3`
+- Execution: zero-new-TSC server-side raw audit
+- Final remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s12_audits/stage4_2r3c3t13s12_causal_natural_history_observer_20260802_d2940b3m1`
+- Source raw: q1 68 / 3,610,295 bytes, q2 68 / 3,610,097 bytes
+- Source raw digests: `9ccc67d5eda2b0710d658812207d99666a50af352e42d950086b694a3fa928ad`,
+  `09ee846d2fd8c2a516ec01f1b91bcbf8f303885c2377373000ab85dfc45e0f01`
+- Final audit/log SHA-256: `1ccaaea1f8da5b5271331758a0a390c5dc663f98c5099299ff3a440007b94b4a`,
+  `42b2b4e295e731a04c6142e69f87d9efe095e5244b7439ca8288e85bc1c36b0e`
+- Counts: history 8/8, extraction/causality 64/64, support 64/64,
+  containment 61/64, error 44/64, both 41/64
+- Maximum condition / error: `1.000000000000045` / `1.701539079`
+- Route:
+  `CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_INSUFFICIENT_NONLINEAR_OBSERVER_REDESIGN`
+- Known incidents: one target-payload schema implementation error and one
+  direct-file module-path launcher error; each stopped before result and ran
+  zero TSC/plant steps. Final output has no runtime or reporting error.
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s12_result_20260802_d2940b3/`
+- Classification: finite affine observer/model design failure; no controller,
+  MPC, expert data, BC, DAgger, or RL authorization
+- Next: prospectively freeze broader same-trajectory causal sequence
+  identification and recurrent/nonlinear set-valued observer holdout

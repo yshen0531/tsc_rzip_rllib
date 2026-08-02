@@ -517,16 +517,21 @@ but all eight unwhitened interaction conditions exceeded 23,000 and only
 36/64 rows passed both response gates even if the condition gate is ignored.
 Its final route is `CAUSAL_CALIBRATION_CONDITIONED_BRAKING_PREFLIGHT_INSUFFICIENT_PERSISTENT_OBSERVER_REDESIGN`.
 
-The active stage is the prospectively frozen zero-new-TSC T13S12 preflight
-in `STAGE4_2R3C3T13S12_CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_DESIGN.md`.
-It replaces the insufficient single pulse with the complete deployable
-baseline R/Z/Ip, causal-velocity, and measured-coil-current history available
-through the braking issue. Fold-local rank-2 history and rank-4 current
-coordinates are whitened before the 12-column interaction fit, while support
-is checked in the original non-vacuous spaces. A pass authorizes only a new
-q3 same-trajectory sequence campaign; a failure requires a broader
-recurrent/nonlinear observer design. No controller, MPC, expert data, BC,
-DAgger, or RL is authorized.
+T13S12 then authenticated all 136 q1/q2 raw files and completed its
+zero-new-TSC natural-history observer preflight. Every history/current
+support, rank, whitening, condition, signal, tube, causality, and forbidden-
+input gate passed; the maximum interaction condition was effectively one.
+Response accuracy nevertheless passed only 44/64 and both frozen response
+gates only 41/64, with maximum scaled error 1.701539079. Its final route is
+`CAUSAL_NATURAL_HISTORY_OBSERVER_PREFLIGHT_INSUFFICIENT_NONLINEAR_OBSERVER_REDESIGN`.
+This is a finite affine observer/model design failure, not a runtime, raw,
+restart, reporting, controller, or real-MPC failure.
+
+The active task is T13S13 prospective design for a broader same-trajectory
+causal history/response campaign and a recurrent or nonlinear set-valued
+observer with a fresh history holdout. Do not fit a higher-capacity model to
+only the eight consumed q1/q2 contexts and claim validation. No controller,
+MPC, expert data, BC, DAgger, or RL is authorized.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
