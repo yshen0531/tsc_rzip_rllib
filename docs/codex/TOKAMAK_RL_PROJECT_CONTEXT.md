@@ -352,12 +352,16 @@ all in one S5 hard/transport context pair, and cross-campaign support was
 zero. The final route is
 `CAMPAIGN_SPECIFIC_CAUSAL_MULTI_HYPOTHESIS_TUBE_INSUFFICIENT_REDESIGN`.
 
-The active T13S8 task is a frozen zero-new-TSC first-effect transition audit.
-It removes the incompatible adjacent cancellation transition from the input
-and evaluates a causal measured-current single-transition hypothesis bank.
-It changes no formal timing. A pass still requires a fresh q3 holdout; a
-failure requires active calibration/persistent-observer or unified
-post-queue excitation redesign before a controller.
+T13S8 removed the adjacent cancellation transition. Support improved to
+64/112, but containment reached only 29/112 and relative error 39/112. All
+S1 pre-queue rows remained unsupported while all S5 post-queue rows became
+supported, proving both an excitation incompatibility and a remaining
+supported cross-history model failure.
+
+The active T13S9 campaign prospectively applies the exact S5 post-queue
+lattice action to all four q1 restart contexts with correct immediate effect
+states. Its only possible positive route creates compatible development raw
+for a separately frozen combined q1/q2 audit. Formal timing is unchanged.
 
 ## 7. Medium-term objectives
 

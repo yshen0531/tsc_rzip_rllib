@@ -1967,3 +1967,43 @@ A pass only authorizes a fresh prospective q3 history holdout. A failure
 routes to active calibration/persistent observer or a new unified post-queue
 excitation design. It authorizes no controller, MPC, expert data, BC,
 DAgger, or RL.
+
+## 31. Final T13S8 result and active T13S9 task
+
+T13S8 completed at implementation `77b3c59` with zero new TSC. Its final
+route is `FIRST_EFFECT_CAUSAL_TRANSITION_INSUFFICIENT_REDESIGN`.
+
+```text
+audit SHA-256
+  c842fe8632bff9bbcd49d44d5a7ee9a8bf89b817c79b33177952ff677bd2ba3b
+log SHA-256
+  566a54347d5bfb759cad39569e1540486c854b5a8521b6757c4559b3f2ce6b88
+raw / trace / extraction / causality       120/120, 112/112, 112/112
+local rank / tube                                      16/16, 16/16
+held input support                                         64/112
+componentwise containment                                  29/112
+relative error <= 0.10                                     39/112
+maximum finite relative error                             1.530032
+```
+
+All 48 S1 rows were unsupported. All 64 S5 rows were supported, but their
+cross-history containment/error gates failed. The first-effect redesign
+therefore removed one cancellation confounder but also separated a genuine
+pre-/post-queue excitation mismatch from a remaining supported S5 model
+failure. There were no runtime, deployment, raw, restart, causality,
+statistics, or reporting errors and no controller/MPC execution.
+
+The active task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S9_UNIFIED_POSTQUEUE_Q1_DESIGN.md
+```
+
+T13S9 is a new 68-trajectory authentic identification campaign. It reuses
+only the four exact q1 snapshots and applies the exact S5 lattice-native
+post-queue action/cancellation semantics. Delay-2 effects are correctly
+declared immediate at states 1/2 and 15/16; delay-0 remains states 3/4 and
+17/18. A complete campaign authorizes only a separately frozen combined
+q1/q2 first-effect audit. It does not authorize a controller, MPC, q3,
+expert data, BC, DAgger, or RL.

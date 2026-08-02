@@ -486,14 +486,20 @@ transport pair; cross-campaign support was 0/112. The final route is
 This is an excitation-coordinate/support design failure, not a runtime,
 restart, raw, real-controller, or plant result.
 
-The active stage is the prospectively frozen zero-new-TSC T13S8 audit in
-`STAGE4_2R3C3T13S8_FIRST_EFFECT_TRANSITION_DESIGN.md`. It removes the
-campaign-specific adjacent cancellation transition and models only the
-first physical effect from measured coil current to causal R/Z/vR/vZ/Ip.
-It retains all strict support, tube, relative-error, causality, and
-forbidden-input gates. A pass only permits a fresh q3 history holdout; a
-failure routes to active calibration/persistent-observer or new unified
-post-queue excitation design before any controller or MPC.
+Stage4.2R3c3T13S8 then removed the adjacent cancellation transition and
+audited only the first physical effect. Local rank/tube remained 16/16 and
+support improved to 64/112, but containment was 29/112 and relative error
+39/112. All 48 S1 pre-queue rows were unsupported; all 64 S5 post-queue rows
+were supported, yet their cross-history accuracy still failed. T13S8 is
+final as `FIRST_EFFECT_CAUSAL_TRANSITION_INSUFFICIENT_REDESIGN`.
+
+The active stage is the prospectively frozen real-TSC T13S9 identification
+campaign in `STAGE4_2R3C3T13S9_UNIFIED_POSTQUEUE_Q1_DESIGN.md`. It applies
+the exact S5-style post-queue Card15 lattice excitation to the four q1
+restart contexts, with the correct immediate physical effect declarations.
+It may only create compatible q1 development raw for a separately frozen
+combined q1/q2 audit. It authorizes no controller, MPC, expert data, q3
+holdout, BC, DAgger, or RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
