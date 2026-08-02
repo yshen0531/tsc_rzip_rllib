@@ -2301,3 +2301,56 @@ source/split/snapshot/safety preflight. Real TSC is allowed only after local,
 empty-package, staging, and installed validations pass. The 250/270 ms
 arrival and 350/370 ms hold contract remains immutable. No controller, MPC,
 expert data, BC, DAgger, or bounded residual RL is authorized.
+
+## 36. Final T13S13 result and active T13S14 task
+
+T13S13 completed its training execution but stopped prospectively before
+calibration and holdout. Its exact final route is:
+
+```text
+RECURRENT_CAUSAL_SEQUENCE_TUBE_INSUFFICIENT_REDESIGN
+```
+
+The server run is
+`stage4_2r3c3t13s13_recurrent_sequence_tube_identification_20260802_c6c81fd`.
+It completed 24/24 new training baselines and 384/384 new signed probes, and
+authenticated all 136 consumed q1/q2 training raw. Independent server
+postprocessing parsed 408/408 new raw with no runtime, restart, causality,
+actuator, corruption, or environment error. Calibration and fresh holdout
+each remain zero raw.
+
+Two analysis-only defects were repaired without rerunning any raw. The first
+rebuilt private R3b coil/wire state from authenticated state-generation raw
+for the inherited restart audit. The second interpreted exactly 32 legacy
+T13S5 q2 delay-2 declarations at their already authenticated post-queue
+physical effect `issue+1`, as frozen in the T13S13 design. The final reporting
+checkpoint is `f220714`; config, controller, action/spec semantics, formal
+timing, and all 408 raw remained unchanged.
+
+All 256 central identification groups, 512 pre-effect/input-box rows, history
+and action support, and provisional componentwise tubes passed. All 54 frozen
+ESN candidates were finite. The selected training-only whole-pair CV maximum
+and mean center errors were `0.991216` and `0.166437`; full-training center
+error passed only 301/512. The 211 failures are genuine causal response-center
+model failures. No model/tube, controller, MPC, or control claim was produced.
+
+Exact final evidence and hashes are recorded in:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S13_FORENSIC_REPORT.md
+```
+
+The active task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S14_ACTIVE_CALIBRATION_SENTINEL_DESIGN.md
+```
+
+T13S14 uses 16 contexts from eight whole factor-selected pairs and 144 new
+real trajectories. Every rollout executes the same four fixed, causal,
+zero-net post-queue calibration pulses before a response probe at task step
+10. It asks whether same-trajectory active excitation makes hidden history
+causally observable enough for whole-pair response prediction. A pass permits
+only a separately frozen full train/calibration/fresh-holdout campaign. No
+controller, MPC, expert data, BC, DAgger, or bounded residual RL is authorized.

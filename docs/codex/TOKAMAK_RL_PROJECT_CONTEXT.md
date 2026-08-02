@@ -390,11 +390,22 @@ an interaction condition effectively equal to one. This is a finite affine
 observer/model design failure, not a runtime, raw, restart, reporting,
 controller, or real-MPC result.
 
-The active task is a prospective broader same-trajectory history/response
-campaign and recurrent or nonlinear set-valued observer design with a fresh
-history holdout. The eight consumed q1/q2 contexts cannot by themselves
-validate a higher-capacity model. Formal timing is unchanged and no
-controller, MPC, expert data, BC, DAgger, or RL is authorized.
+Stage4.2R3c3T13S13 then completed 24/24 new training baselines and 384/384
+new training probes, with exact execution, restart, causality, Card15, current,
+raw, and reporting integrity after two semantics-preserving analysis fixes.
+All support and provisional-tube gates passed, but the frozen recurrent center
+model passed only 301/512 training response rows; calibration and fresh
+holdout were never opened. This is a causal observer/model design failure,
+not a runtime, restart, reporting, controller, MPC, or plant-unreachability
+result.
+
+The active task is Stage4.2R3c3T13S14, a 144-rollout same-trajectory active
+calibration sentinel over 16 factor-selected authenticated contexts. Every
+rollout executes the same fixed zero-net early excitation before a bounded
+response probe. A pass permits only a separately frozen full
+train/calibration/fresh-holdout identification campaign. Formal timing is
+unchanged and no controller, MPC, expert data, BC, DAgger, or RL is
+authorized.
 
 ## 7. Medium-term objectives
 

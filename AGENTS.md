@@ -527,11 +527,23 @@ gates only 41/64, with maximum scaled error 1.701539079. Its final route is
 This is a finite affine observer/model design failure, not a runtime, raw,
 restart, reporting, controller, or real-MPC failure.
 
-The active task is T13S13 prospective design for a broader same-trajectory
-causal history/response campaign and a recurrent or nonlinear set-valued
-observer with a fresh history holdout. Do not fit a higher-capacity model to
-only the eight consumed q1/q2 contexts and claim validation. No controller,
-MPC, expert data, BC, DAgger, or RL is authorized.
+T13S13 completed 24/24 new training baselines and 384/384 new probes with
+exact execution, restart, causality, Card15, current, raw, and reporting
+integrity. Its frozen recurrent center nevertheless passed only 301/512
+training response rows, so it stopped before calibration/holdout as
+`RECURRENT_CAUSAL_SEQUENCE_TUBE_INSUFFICIENT_REDESIGN`. No model, tube,
+controller, or MPC was certified.
+
+The active task is T13S14, a prospectively frozen same-trajectory active-
+calibration sentinel over eight whole factor-selected pairs and 16 authentic
+contexts. Its 16 calibrated baselines and 128 signed probes all execute the
+same four fixed zero-net post-queue calibration pulses before a response
+issue at task step 10. The full gates are in
+`docs/codex/reports/STAGE4_2R3C3T13S14_ACTIVE_CALIBRATION_SENTINEL_DESIGN.md`.
+Calibration consumes real task time and does not change the 250/270 ms
+arrival or 350/370 ms hold contract. A pass authorizes only a separately
+frozen full partitioned identification campaign. No controller, MPC, expert
+data, BC, DAgger, or RL is authorized.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
