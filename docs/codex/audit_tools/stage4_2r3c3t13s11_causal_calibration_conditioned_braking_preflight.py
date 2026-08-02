@@ -69,6 +69,14 @@ def _interaction_row(current_coordinates: np.ndarray, state: np.ndarray) -> np.n
     return np.kron(np.asarray([1.0, state[0], state[1]]), current_coordinates)
 
 
+def _affine_rank(values: np.ndarray) -> int:
+    """Rank of a three-point affine hull without mean-cancellation roundoff."""
+    values = np.asarray(values, dtype=float)
+    if values.shape[0] != 3:
+        raise ValueError("T13S11 affine rank requires three training points")
+    return int(np.linalg.matrix_rank(values[1:] - values[0]))
+
+
 def _raw_groups(
     raw: Sequence[Mapping[str, Any]],
 ) -> dict[tuple[Any, ...], dict[Any, Mapping[str, Any]]]:
@@ -197,7 +205,7 @@ def _fit_fold(
     z_train = np.asarray([row["calibration_signature"] for row in training])
     z_mean = np.mean(z_train, axis=0)
     z_centered = z_train - z_mean
-    z_rank = int(np.linalg.matrix_rank(z_centered))
+    z_rank = _affine_rank(z_train)
     _, _, z_vt = np.linalg.svd(z_centered, full_matrices=False)
     z_basis = z_vt[:2]
     z_scores = {
@@ -548,7 +556,7 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
     return {
         "schema_version": 1,
         "stage": STAGE,
-        "audit_revision": "causal_calibration_conditioned_braking_loco_v1",
+        "audit_revision": "causal_calibration_conditioned_braking_loco_v1h1",
         "preregistered_design": str(args.design),
         "preregistered_design_sha256": DESIGN_SHA256,
         "source_t13s10_audit": str(args.source_t13s10_audit),
@@ -564,6 +572,7 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
         "calibration_uses_no_probe_counterfactual": False,
         "support_on_full_rank_interaction_coordinate_forbidden": True,
         "separate_nonvacuous_state_and_current_support": True,
+        "semantics_preserving_affine_rank_reporting_hotfix": True,
         "source_raw_rewritten": False,
         "formal_timing_unchanged": True,
         "all_source_data_consumed_not_blind": True,

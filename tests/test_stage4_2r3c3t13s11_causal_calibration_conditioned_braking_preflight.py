@@ -37,6 +37,16 @@ class Stage42R3C3T13S11CausalCalibrationPreflightTests(unittest.TestCase):
             ),
         )
 
+    def test_affine_rank_of_three_points_cannot_exceed_two(self) -> None:
+        values = np.asarray(
+            [
+                [1.0e9, 1.0, 4.0, 0.0],
+                [1.0e9 + 1.0e-4, 2.0, 4.0, 0.0],
+                [1.0e9 - 2.0e-4, 1.0, 5.0, 0.0],
+            ]
+        )
+        self.assertEqual(audit._affine_rank(values), 2)
+
     def test_signature_schema_contains_no_hidden_identity_or_future(self) -> None:
         self.assertFalse(audit.s7.FORBIDDEN_FEATURE_NAMES.intersection(audit.SIGNATURE_NAMES))
         self.assertNotIn("counterfactual", " ".join(audit.SIGNATURE_NAMES))
