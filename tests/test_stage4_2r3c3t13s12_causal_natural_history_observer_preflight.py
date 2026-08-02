@@ -54,7 +54,7 @@ class Stage42R3C3T13S12NaturalHistoryObserverTests(unittest.TestCase):
             "trajectory": trajectory,
         }
         payload = {
-            "cfg": {"target": {"R": 0.76, "Z": -0.01, "Ip": 30000.0}},
+            "cfg": {"target": {"R": 0.75, "Z": 0.0, "Ip": 30000.0}},
             "train_cfg": {"target": {"R": 0.75, "Z": 0.0, "Ip": 30000.0}},
             "env_cfg": {
                 "min_current_a_display_order": [-100.0] * 14,
@@ -70,6 +70,37 @@ class Stage42R3C3T13S12NaturalHistoryObserverTests(unittest.TestCase):
         self.assertAlmostEqual(result["values"][35 + 3], 1.0)
         self.assertEqual(result["values"][35 + 5], 1.0)
         self.assertEqual(result["values"][35 + 34], 1.0)
+
+    def test_history_signature_rejects_mismatched_payload_base_targets(self) -> None:
+        trajectory = [
+            {
+                "R": 0.75,
+                "Z": 0.0,
+                "Ip": 30000.0,
+                "currents_a_tsc": [0.0] * 14,
+            }
+            for _ in range(17)
+        ]
+        baseline = {
+            "spec": {
+                "action_delay_steps": 0,
+                "slew_scale": 1.0,
+                "target_R_offset_m": 0.0,
+                "target_Z_offset_m": 0.0,
+                "target_Ip_offset_A": 0.0,
+            },
+            "trajectory": trajectory,
+        }
+        payload = {
+            "cfg": {"target": {"R": 0.75, "Z": 0.0, "Ip": 30000.0}},
+            "train_cfg": {"target": {"R": 0.76, "Z": 0.0, "Ip": 30000.0}},
+            "env_cfg": {
+                "min_current_a_display_order": [-100.0] * 14,
+                "max_current_a_display_order": [100.0] * 14,
+            },
+        }
+        with self.assertRaisesRegex(ValueError, "base target contract mismatch"):
+            audit._history_signature(baseline, payload)
 
     def test_history_schema_has_only_visible_causal_fields(self) -> None:
         self.assertEqual(len(audit.STATE_FIELDS), 35)

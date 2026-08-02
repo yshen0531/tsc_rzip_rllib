@@ -65,15 +65,20 @@ def _history_signature(
     if len(trajectory) <= issue:
         raise ValueError("T13S12 baseline history is shorter than braking issue")
     current_scales = s7._current_scales(payload)
-    target = payload["cfg"]["target"]
-    base_target = payload["train_cfg"]["target"]
-    expected_target = {
-        "R": float(base_target["R"]) + float(spec["target_R_offset_m"]),
-        "Z": float(base_target["Z"]) + float(spec["target_Z_offset_m"]),
-        "Ip": float(base_target["Ip"]) + float(spec["target_Ip_offset_A"]),
+    cfg_target = payload["cfg"]["target"]
+    train_target = payload["train_cfg"]["target"]
+    if any(
+        abs(float(cfg_target[key]) - float(train_target[key])) > 1e-12
+        for key in ("R", "Z", "Ip")
+    ):
+        raise ValueError("T13S12 payload base target contract mismatch")
+    target = {
+        "R": float(cfg_target["R"]) + float(spec["target_R_offset_m"]),
+        "Z": float(cfg_target["Z"]) + float(spec["target_Z_offset_m"]),
+        "Ip": float(cfg_target["Ip"]) + float(spec["target_Ip_offset_A"]),
     }
-    if any(abs(float(target[key]) - expected_target[key]) > 1e-12 for key in expected_target):
-        raise ValueError("T13S12 deployed target does not match source target contract")
+    if not all(math.isfinite(value) for value in target.values()):
+        raise ValueError("T13S12 reconstructed deployed target is nonfinite")
     values = []
     for index in range(issue + 1):
         row = trajectory[index]
