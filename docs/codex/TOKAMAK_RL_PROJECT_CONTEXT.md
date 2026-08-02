@@ -312,13 +312,27 @@ Card15 inverse was not representable. Raw, plant advances, and TSC were all
 zero. T13S4 is final as `LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC`; it is not a
 runtime, restart, plant-control, or real-MPC failure.
 
-The active T13S5 design is a new 68-rollout q2 development/blind holdout. It
-splits physical mode 0 into a non-coil-8 direction and a separately scaled
-coil-8 direction, retains modes 1 and 2, and uses a causal return-first
-hybrid cancellation. Its zero-TSC actuator/input audit passed 8/8
-context-window cases with maximum condition 7.9548. This is still only a
-prospective finite local transition/actuator holdout, not new-history or
-real-MPC certification.
+T13S5 then completed all 68 authentic q2 restart trajectories. Runtime,
+deployment, restart, causality, raw, snapshot, current, and final-report
+integrity passed. The exact final route is `LATTICE_HOLDOUT_FAIL_REDESIGN`:
+development rank/condition passed only 2/4 cells, a non-vacuous tube passed
+3/4, and consumed independent-history validation passed relative error 0/32.
+
+Source and raw timing forensics found a design error: T13S5 replaced the
+final Card15 action after the inherited software delay queue, so every probe
+reached TSC current at `issue_step + 1`, independent of its delay label. The
+preregistered delay-2 response states were therefore late. This cannot
+explain away the delay-zero result, whose already-correct immediate states
+still achieved 0/16 relative-error validation across the independent q2
+history. The single static cross-history map is therefore also genuinely
+insufficient in this finite envelope.
+
+The active T13S6 task is a frozen zero-new-TSC audit of the same 68 immutable
+raw trajectories at `issue_step + 1` and `cancel_step + 1`. It preserves all
+thresholds and the original development/already-consumed-validation roles.
+Its only routes are a candidate requiring a new independent-history holdout,
+or causal state-conditioned/multi-hypothesis redesign. It cannot recover
+blind status or authorize a real controller.
 
 ## 7. Medium-term objectives
 

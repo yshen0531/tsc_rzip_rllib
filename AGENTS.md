@@ -438,23 +438,42 @@ the installed server suite passed 654/654 with one expected skip. T13S3 ran
 zero TSC/plant steps and ends as `INTERFACE_COMPLETE_HOLDOUT_REQUIRED`; it
 does not certify a point plant model, observer, robust controller, or MPC.
 
-The active stage is the prospectively frozen Stage4.2R3c3T13S4
-lattice-aligned transition holdout in
-`STAGE4_2R3C3T13S4_LATTICE_TRANSITION_HOLDOUT_DESIGN.md`. It uses only the
-two q2 pairs withheld from T13S1/T13S2R1 transition development, with
-`plus_first` fixed as development and `minus_first` blind until a hashed
-local model/tube exists. Its 52-rollout maximum is a minimal dynamic-Card15
-lattice transition campaign, not a real MPC or full identification campaign.
-Passing may authorize only an offline robust MPC prototype and a separately
-preregistered real-MPC sentinel.
+Stage4.2R3c3T13S4 then failed its prospective actuator/input gate before any
+real TSC trajectory. Only 11/52 specifications were offline-complete; 40
+violated the frozen incremental-action limit and one exact inverse was not
+representable. It is frozen as `LATTICE_PREFLIGHT_FAIL_NO_REAL_TSC`, an
+identification-design failure rather than a runtime, plant, or MPC result.
+
+Stage4.2R3c3T13S5 subsequently completed 68/68 authentic q2 restart probe
+trajectories with exact restart, causality, package, raw, snapshot, current,
+and final-report integrity. The final route is
+`LATTICE_HOLDOUT_FAIL_REDESIGN`: only 2/4 preregistered development cells had
+rank four, only 3/4 had a non-vacuous tube, and the consumed independent
+history validation passed relative error 0/32. Source and raw forensics found
+that the lattice wrapper replaced the final Card15 action after the inherited
+software delay queue, so the physical effect appeared at `issue_step + 1`
+rather than `issue_step + delay + 1`. This effect-state design error does not
+explain the delay-zero validation failure, which independently rejects the
+single static cross-history map. T13S5 is not a runtime, restart, corruption,
+real-MPC, or global-reachability failure.
+
+The active stage is the prospectively frozen zero-new-TSC
+Stage4.2R3c3T13S6 immediate-effect reinterpretation audit in
+`STAGE4_2R3C3T13S6_IMMEDIATE_EFFECT_REINTERPRETATION_DESIGN.md`. It must
+authenticate and recompute all 68 immutable T13S5 raw trajectories at
+`issue_step + 1` and `cancel_step + 1`, preserve the original development
+and already-consumed validation roles, and change no threshold. It may only
+authorize a new independent-history holdout candidate or require a causal
+state-conditioned/multi-hypothesis redesign; it cannot authorize a
+controller or MPC.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
 the failed T11 response bank, resume R3c4, or enter BC, DAgger, or residual
 RL. Do not launch a full new identification campaign directly from the seven
 T11 condition failures or the T13S1 result. Do not implement or run a new
-real controller until T13S4 passes and a separate real-MPC sentinel is
-prospectively frozen.
+real controller until the active transition model route passes its
+independent holdout and a separate real-MPC sentinel is prospectively frozen.
 
 ## 10. Required validation before server execution
 

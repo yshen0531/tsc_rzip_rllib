@@ -1648,3 +1648,98 @@ and independently analyze development before opening blind holdout raw.
 Formal timing and tolerances remain immutable. T13S5 probes are forbidden
 from expert data. R3c4, real MPC, BC, DAgger, and bounded residual RL remain
 blocked until the T13S5 route authorizes the next offline MPC step.
+
+## 27. Final T13S5 result and active T13S6 task
+
+T13S5 completed exactly 68/68 authentic restart TSC trajectories under the
+execution commit/package `d048686 / r42r3c3t13s5_lattice_native_split_holdout_v1`.
+The two later reporting-only revisions were `8c8d087` and `70e9429`; they did
+not change the controller, actuator, task matrix, thresholds, source
+snapshots, or formal timing.
+
+Exact immutable evidence:
+
+```text
+remote run
+  /home/yangshen0711/tsc_all/tsc_rzip_rllib/
+  stage4_2r3c3t13s5_runs/
+  stage4_2r3c3t13s5_real_20260802_d048686
+
+raw files / bytes                                      68 / 3,610,097
+raw inventory digest
+  09ee846d2fd8c2a516ec01f1b91bcbf8f303885c2377373000ab85dfc45e0f01
+independent audit SHA-256
+  dc4d0147ce4fdd8a00105f8fc8ad45466513bac8b012f6843327b1efc271b033
+final compact SHA-256
+  674b1e58f100c496608fae8fa695d6ed95ea7740a2f092e3d98ca07ae0122375
+route forensic SHA-256
+  97999cd48cb73cb5fd25c14dea3cde1ba2579f7cb496828ac5b8c29deaf300cd
+final route
+  LATTICE_HOLDOUT_FAIL_REDESIGN
+```
+
+Independent recomputation found:
+
+```text
+execution / authentic restart                         68 / 68
+runtime, solver, saturation, corruption failures              0
+forbidden controller/model inputs                             0
+target Card15 central symmetry                         32 / 32
+observed current signal and symmetry                   16 / 32
+correctly timed pre-effect causality                    16 / 32
+development signal                                     16 / 16
+development rank/condition                                2 / 4
+development non-vacuous tube                              3 / 4
+consumed validation containment                        26 / 32
+consumed validation relative error <= 0.10               0 / 32
+maximum validation scaled relative error              18.7134597
+maximum current utilization                              0.3904
+```
+
+The first post-raw finalizer exposed two reporting/workflow defects. Python
+`inf` from a genuinely rank-deficient cell was not strict JSON, and the
+ordinary resume path would have opened holdout raw before rebuilding the
+model. The strict-JSON bug was repaired, and the unsafe resume path was
+intercepted before execution. A dedicated existing-raw finalizer preserved
+the actual order: 34 development files, model SHA
+`bc710049e4eb6075f0d4675c3fd70ea5cb186b40635b0fa2041483c8c798e862`,
+then 34 holdout files. The final report has no remaining statistics or
+reporting error.
+
+Source and raw timing forensics establish a separate experiment-design
+error. The T13S5 wrapper called the inherited R3c1 action first, after R3c1
+had already applied its software delay queue, and then replaced the final
+Card15 action. Probe current therefore first changed at `issue_step + 1`,
+not `issue_step + delay + 1`. All delay-2 response declarations were two
+states late. This explains their rank-zero/rank-one development cells but
+does not explain the delay-zero independent-history failure: those response
+states were already immediate, yet validation still passed relative error
+0/16. T13S5 is therefore both an effect-state design failure and a genuine
+finite cross-history single-static-map failure. It is not a runtime,
+restart, corruption, real-MPC, or global-reachability result.
+
+The active task is the prospectively frozen zero-new-TSC T13S6 audit:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S6_IMMEDIATE_EFFECT_REINTERPRETATION_DESIGN.md
+```
+
+T13S6 must authenticate all 68 immutable T13S5 raw files and recompute each
+response at `issue_step + 1` and `cancel_step + 1`. It must preserve the 34
+original development files, treat the other 34 as already-consumed
+validation, retain every S5 threshold, serialize non-finite values as strict
+JSON, and use no forbidden labels, source results, wire/vessel currents, or
+future values as model inputs.
+
+T13S6 may end only as:
+
+```text
+IMMEDIATE_EFFECT_MODEL_CANDIDATE_NEW_HISTORY_HOLDOUT_REQUIRED
+IMMEDIATE_EFFECT_LOCAL_MAP_INSUFFICIENT_REDESIGN
+```
+
+It runs no controller, Ray, `gotsc`, TSC, plant step, or snapshot creation.
+Neither route authorizes a controller, real MPC, expert data, BC, DAgger, or
+bounded residual RL. T13S5 probes remain forbidden from expert data and the
+formal timing contract remains unchanged.
