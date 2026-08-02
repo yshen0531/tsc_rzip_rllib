@@ -69,9 +69,9 @@ utilization. Any physical infeasibility is a design failure, not permission
 to reduce amplitude after seeing raw.
 
 The fixed 8-by-4 sparse code has one `+1` and adjacent `-1` per direction.
-Together with normalized constant, linear-time, and centered quadratic-time
-columns, its ideal design has rank seven and condition approximately
-`2.45713`. The observed requested-field design must have physical rank four;
+Together with a constant, max-absolute-normalized linear-time column, and
+max-absolute-normalized centered quadratic-time column, its ideal design has
+rank seven and condition approximately `2.52938`. The observed requested-field design must have physical rank four;
 the complete drift-plus-input design must have rank seven and condition no
 greater than 3.0 in every context.
 
