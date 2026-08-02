@@ -1141,3 +1141,33 @@
   failure
 - Next: zero-new-TSC S17 causal multi-drift belief preflight; a pass can only
   authorize a fresh whole-pair identification campaign
+
+## Stage4.2R3c3T13S17 causal multi-drift belief preflight
+
+- Branch: `codex/stage4_2r3c3t13s16-whitened-basis`
+- Design / implementation / verification-hotfix commits: `be9c316`,
+  `65e00c3`, `0f9ef6b`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s17_audits/stage4_2r3c3t13s17_causal_multi_drift_belief_preflight_20260803_0f9ef6b`
+- Source raw count / bytes / digest: `144` / `8,188,964` /
+  `b0bf9c03b94cd353b3ccb68b0de318c46285a4805acfb0c25016704f79057668`
+- New raw / snapshots / TSC / plant steps: `0 / 0 / 0 / 0`
+- Hypothesis rows / maximum condition: `384/384` / `3.1980986512`
+- Containment / cap / joint: `128/128`, `0/128`, `0/128`
+- Maximum belief halfwidth:
+  `(0.0021893899 m, 0.0035035150 m, 0.1402725944 m/s,
+  0.1148451016 m/s, 569.3096777 A)`
+- Route:
+  `CAUSAL_MULTI_DRIFT_BELIEF_PREFLIGHT_FAIL_ROBUST_OBSERVER_REDESIGN`
+- Compact primary hashes: belief
+  `d8c8ee8f0c3f2e80cb1642c7f6400f47d5280e47459361dfa274421c37fdca76`,
+  final `98afee17ff682326853e7caa708264186c87ccf88bec92ddf2cd3275855b9a69`,
+  independent
+  `a59355266f94f2013b07a5b58c0857ee3925e9ebcd6c1147a6e2affd4f728326`
+- Known incident: package verifier incorrectly scanned historical remote
+  `.codex_tmp` JSON-like files; manifest-scoped hotfix changed no scientific
+  semantics and final validation passed 379/379 plus 802 tests (one skip)
+- Classification: robust-observer residual-set design failure; no runtime,
+  restart, raw, final-reporting, controller, real-MPC, or reachability failure
+- Next: zero-new-TSC S18 fixed pooled causal observer preflight; only a pass
+  may authorize a separately frozen fresh whole-pair campaign

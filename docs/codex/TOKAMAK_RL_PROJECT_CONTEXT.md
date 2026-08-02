@@ -421,13 +421,27 @@ S16 therefore ends as
 local model/uncertainty-set failure, not a TSC, restart, real-MPC, or global
 plant-control failure.
 
-The active task is the zero-new-TSC Stage4.2R3c3T13S17 causal multi-drift
-belief preflight.  It uses only same-trajectory states 1--10 available before
-the response issue, retains fixed degree-one through degree-three natural
-drift hypotheses, and propagates calibration residuals through exact
-prediction leverage plus Card15 uncertainty.  A development pass can
-authorize only a separately frozen fresh whole-pair identification campaign.
-No controller, MPC, expert data, BC, DAgger, or RL is authorized.
+Stage4.2R3c3T13S17 then authenticated the complete S16 source and completed
+its zero-new-TSC three-hypothesis causal belief audit.  All 128 responses were
+inside the belief, but the unchanged halfwidth caps passed 0/128.  Degree-one
+residual propagation dominated the hull: vR passed its component cap in
+0/128 rows and vZ in only 16/128.  Independent recomputation was exact and
+there was no runtime, restart, raw, statistics, or reporting failure.
+
+S17 therefore ends as
+`CAUSAL_MULTI_DRIFT_BELIEF_PREFLIGHT_FAIL_ROBUST_OBSERVER_REDESIGN`.  It is a
+robust-observer residual-set failure, not a controller, real-MPC, or global
+plant-control conclusion.  A post-failure architecture screen is explicitly
+development-only; it found a compact pooled causal ridge model but provides
+no independent validation.
+
+The active task is zero-new-TSC Stage4.2R3c3T13S18.  Its fixed nine-feature
+observer uses the same-trajectory degree-three response estimate plus the
+numeric issued-action coordinate, eight outer whole-pair folds, train-only
+inner ridge selection, a fixed 4x OOF residual tube, and causal current-run
+Card15 sensitivity propagation.  A development pass can authorize only a
+separately frozen fresh whole-pair campaign.  No controller, MPC, expert
+data, BC, DAgger, or RL is authorized.
 
 ## 7. Medium-term objectives
 

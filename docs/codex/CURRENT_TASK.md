@@ -2504,3 +2504,65 @@ S17 consumes only S16 development raw and runs zero new TSC.  A pass requires
 new whole-pair training/calibration/fresh-context identification campaign.  A
 failure requires robust-observer redesign.  Neither route authorizes MPC,
 expert data, BC, DAgger, or bounded residual RL.
+
+## 40. Final T13S17 result and active T13S18 task
+
+T13S17 completed its zero-new-TSC server audit at implementation checkpoint
+`65e00c3`, with the package-verification-only hotfix `0f9ef6b`.  It
+authenticated all 144 S16 source raw files, 16 source snapshots, and 12
+required compact source artifacts.  The source raw inventory digest remains:
+
+```text
+b0bf9c03b94cd353b3ccb68b0de318c46285a4805acfb0c25016704f79057668
+```
+
+All 384 fixed degree-one through degree-three hypothesis rows were causal and
+finite, the maximum design condition was `3.1980986512`, and every state-11
+response was inside the belief hull.  The unchanged halfwidth caps passed
+only:
+
+```text
+all components per row                               0 / 128
+component counts R/Z/vR/vZ/Ip             128/124/0/16/128
+maximum halfwidth
+  0.0021893899 m / 0.0035035150 m /
+  0.1402725944 m/s / 0.1148451016 m/s / 569.3096777 A
+```
+
+Independent server recomputation reproduced the 128/128 containment and
+0/128 cap result exactly.  S17 created zero raw, snapshots, TSC calls, or
+plant steps.  Its exact route is:
+
+```text
+CAUSAL_MULTI_DRIFT_BELIEF_PREFLIGHT_FAIL_ROBUST_OBSERVER_REDESIGN
+```
+
+The per-trajectory regression residual, not Card15 uncertainty or
+hypothesis-center disagreement, dominates the failed tube.  This is a
+robust-observer residual-set design failure, not a runtime, restart, raw,
+reporting, real-MPC, or plant-reachability failure.  The full report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S17_FORENSIC_REPORT.md
+```
+
+A post-failure retrospective whole-pair screen, explicitly not validation,
+found that a nine-feature pooled predictor using only the causal degree-three
+point response and numeric issued-action coordinate had a required maximum
+tube expansion of `1.30124665`; a fixed 4x inner-OOF residual tube covered
+128/128 development rows while remaining well inside every unchanged cap.
+
+The active zero-new-TSC task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S18_POOLED_CAUSAL_OBSERVER_PREFLIGHT_DESIGN.md
+```
+
+T13S18 must enforce eight outer whole-pair folds, train-only scaling and
+ridge selection, per-fold model/tube hashing before held outcomes open,
+same-trajectory action-coordinate reconstruction, and exact propagation of
+current-run Card15 feature uncertainty.  A pass can authorize only a new,
+separately preregistered training/calibration/fresh-context campaign.  No
+controller, MPC, expert data, BC, DAgger, or bounded residual RL is
+authorized.
