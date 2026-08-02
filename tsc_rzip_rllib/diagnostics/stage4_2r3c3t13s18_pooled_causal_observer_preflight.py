@@ -390,6 +390,22 @@ def _deserialize_model(model: Mapping[str, Any]) -> dict[str, np.ndarray]:
     return {key: np.asarray(value, dtype=float) for key, value in model.items()}
 
 
+def _batch_predictions_by_id(
+    model: Mapping[str, np.ndarray], experiment_ids: Sequence[str],
+    rows_by_id: Mapping[str, Mapping[str, Any]], scales: np.ndarray,
+) -> dict[str, np.ndarray]:
+    """Reproduce the canonical held-fold batch multiplication used at freeze time."""
+    ids = list(experiment_ids)
+    features = np.asarray(
+        [rows_by_id[experiment_id]["feature"] for experiment_id in ids], dtype=float
+    )
+    predictions = _predict(model, features, scales)
+    return {
+        experiment_id: prediction
+        for experiment_id, prediction in zip(ids, predictions)
+    }
+
+
 def _build_artifact(
     cfg: Mapping[str, Any], source_run: Path, s17_run: Path,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -550,6 +566,12 @@ def _evaluate_artifact(
             raise ValueError("T13S18 fold artifact hash/access audit failed")
         model = _deserialize_model(fold["model"])
         held_saved = {row["experiment_id"]: row for row in fold["held_predictions"]}
+        # Freeze-time prediction used one held-fold batch.  Recompute that
+        # same batch before opening outcomes because a one-row BLAS matmul can
+        # round a few ulps differently from the canonical batch operation.
+        held_recomputed = _batch_predictions_by_id(
+            model, fold["held_experiment_ids"], saved_rows, scales
+        )
         for experiment_id in fold["held_experiment_ids"]:
             causal = saved_rows[experiment_id]
             if causal["fold_key"] != fold["outer_fold"]:
@@ -558,8 +580,7 @@ def _evaluate_artifact(
             held_access_count += 1
             if not np.allclose(actual, prior_actual[experiment_id], rtol=0.0, atol=1e-15):
                 raise ValueError("T13S18 actual response differs from S17 source recomputation")
-            x = np.asarray([causal["feature"]], dtype=float)
-            prediction = _predict(model, x, scales)[0]
+            prediction = held_recomputed[experiment_id]
             reported = held_saved[experiment_id]
             halfwidth = np.asarray(reported["halfwidth"], dtype=float)
             if not np.allclose(prediction, reported["prediction"], rtol=0.0, atol=1e-15):

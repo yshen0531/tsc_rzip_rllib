@@ -128,6 +128,27 @@ class Stage4R3c3T13S18Tests(unittest.TestCase):
             rtol=0.0, atol=0.0,
         )
 
+    def test_held_prediction_recomputation_preserves_frozen_batch_order(self):
+        rng = np.random.default_rng(13)
+        x = rng.normal(size=(16, 9))
+        scales = np.asarray([0.03, 0.03, 0.1, 0.1, 2000.0])
+        y = rng.normal(size=(16, 5)) * scales
+        model = s18._fit_model(x, y, 1e-6, scales, 1e-12)
+        experiment_ids = [f"held-{index:02d}" for index in range(16)]
+        rows = {
+            experiment_id: {"feature": feature.tolist()}
+            for experiment_id, feature in zip(experiment_ids, x)
+        }
+        restored = s18._deserialize_model(s18._serialize_model(model))
+        mapped = s18._batch_predictions_by_id(
+            restored, experiment_ids, rows, scales
+        )
+        canonical = s18._predict(restored, x, scales)
+        np.testing.assert_array_equal(
+            np.asarray([mapped[experiment_id] for experiment_id in experiment_ids]),
+            canonical,
+        )
+
     def test_digest_is_order_stable(self):
         self.assertEqual(s18._digest({"a": 1, "b": 2}), s18._digest({"b": 2, "a": 1}))
 
