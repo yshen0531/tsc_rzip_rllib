@@ -10,6 +10,10 @@ from docs.codex.audit_tools import (
 
 
 class Stage42R3C3T13S7CausalMultiHistoryTubeAuditTests(unittest.TestCase):
+    def test_maximum_present_reports_null_for_zero_supported_predictions(self) -> None:
+        self.assertIsNone(audit.maximum_present([None, None]))
+        self.assertEqual(audit.maximum_present([None, 0.25, 0.5]), 0.5)
+
     def test_effect_response_can_use_new_campaign_specific_physical_states(self) -> None:
         baseline_rows = [
             {"R": 0.0, "Z": 0.0, "Ip": 0.0, "currents_a_tsc": [0.0] * 14}

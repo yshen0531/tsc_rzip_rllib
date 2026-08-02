@@ -587,6 +587,12 @@ def exact_collision_audit(
     }
 
 
+def maximum_present(values: Sequence[float | None]) -> float | None:
+    """Return the finite maximum, or JSON null when no prediction was supported."""
+    present = [float(value) for value in values if value is not None]
+    return max(present) if present else None
+
+
 def run_audit(
     args: argparse.Namespace, *, campaign_specific_effects: bool = False
 ) -> dict[str, Any]:
@@ -686,10 +692,8 @@ def run_audit(
         "supported_hypothesis_pass_count": sum(row["supported_hypothesis_pass"] for row in validation),
         "componentwise_containment_pass_count": sum(row["componentwise_containment_pass"] for row in validation),
         "scaled_relative_error_pass_count": sum(row["scaled_relative_error_pass"] for row in validation),
-        "maximum_finite_scaled_relative_error": max(
-            row["nearest_scaled_relative_error"]
-            for row in validation
-            if row["nearest_scaled_relative_error"] is not None
+        "maximum_finite_scaled_relative_error": maximum_present(
+            [row["nearest_scaled_relative_error"] for row in validation]
         ),
         "forbidden_feature_or_trace_input_count": forbidden_count + feature_forbidden,
         **collisions,
