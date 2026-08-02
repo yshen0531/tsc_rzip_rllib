@@ -1110,3 +1110,34 @@
   MPC, expert data, BC, DAgger, or RL authorization
 - Next: prospectively freeze broader same-trajectory causal sequence
   identification and recurrent/nonlinear set-valued observer holdout
+## Stage4.2R3c3T13S16 orthogonal fixed-basis identification
+
+- Branch: `codex/stage4_2r3c3t13s16-whitened-basis`
+- Design / implementation commits: `8118d9a`, `8487951`
+- Package revision: `r42r3c3t13s16_orthogonal_fixed_basis_identification_v1`
+- Package digest: `9437a6b09945da5ee843def84b614ce8f7f81d1082e02ed18a629add6e70f461`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s16_runs/stage4_2r3c3t13s16_orthogonal_fixed_basis_identification_20260802_165232`
+- Remote baseline / response logs:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s16_orthogonal_fixed_basis_identification_20260802_165521.log`,
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s16_orthogonal_fixed_basis_identification_20260802_170802.log`
+- Fresh execution: 16 baselines followed by 128 probes; expected/actual raw
+  `144/144`
+- Raw bytes / digest: `8,188,964` /
+  `b0bf9c03b94cd353b3ccb68b0de318c46285a4805acfb0c25016704f79057668`
+- Exact restart, causality, Card15, zero-net, current, parse, and independent
+  report recomputation: `144/144`
+- Center / tube containment / tube cap / all model gates:
+  `120/128`, `82/128`, `40/128`, `14/128`
+- Result:
+  `ORTHOGONAL_FIXED_BASIS_IDENTIFICATION_FAIL_BELIEF_MPC_REDESIGN`
+- Known bugs: none in the final execution or report.  One oversized read-only
+  SSH hash command was reset; smaller command packets reconnected and changed
+  no server state.
+- Large raw/snapshots remain server-side; compact evidence hashes are in
+  `docs/codex/reports/STAGE4_2R3C3T13S16_FORENSIC_REPORT.md`
+- Classification: finite local response/tube design failure; no runtime,
+  deployment, restart, raw, reporting, real-MPC, or plant-unreachability
+  failure
+- Next: zero-new-TSC S17 causal multi-drift belief preflight; a pass can only
+  authorize a fresh whole-pair identification campaign

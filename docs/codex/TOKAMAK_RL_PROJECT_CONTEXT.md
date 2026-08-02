@@ -408,13 +408,26 @@ kernel failed. Its certified route is
 simple regularization, raw-history PCA, nearest-history/oracle mappings,
 multi-hypothesis boxes, and uniform tube expansion.
 
-The active task is Stage4.2R3c3T13S15. It freezes four exact physical
-calibration increments at the initial visible state, applies explicit signed
-pairs relative to contemporaneous controller centers, and estimates a local
-response from the same trajectory with a fixed rank-seven drift-plus-input
-design. It preserves the eight-step calibration duration and immutable formal
-timing. S15 is still a development sentinel; no controller, MPC, expert data,
-BC, DAgger, or RL is authorized.
+Stage4.2R3c3T13S15 stopped before every plant advance because its frozen
+native physical basis had condition about 4.14 against the preregistered 3.0
+gate.  S16 replaced only that new-stage excitation geometry with a
+deterministic QR basis and completed 144/144 authentic trajectories with
+exact restart, causality, Card15, zero-net, current, raw, and reporting
+integrity.  Its point response passed 120/128, but its frozen provisional tube
+passed containment 82/128, cap 40/128, and all model gates only 14/128.
+
+S16 therefore ends as
+`ORTHOGONAL_FIXED_BASIS_IDENTIFICATION_FAIL_BELIEF_MPC_REDESIGN`.  This is a
+local model/uncertainty-set failure, not a TSC, restart, real-MPC, or global
+plant-control failure.
+
+The active task is the zero-new-TSC Stage4.2R3c3T13S17 causal multi-drift
+belief preflight.  It uses only same-trajectory states 1--10 available before
+the response issue, retains fixed degree-one through degree-three natural
+drift hypotheses, and propagates calibration residuals through exact
+prediction leverage plus Card15 uncertainty.  A development pass can
+authorize only a separately frozen fresh whole-pair identification campaign.
+No controller, MPC, expert data, BC, DAgger, or RL is authorized.
 
 ## 7. Medium-term objectives
 

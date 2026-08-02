@@ -2450,3 +2450,57 @@ maximum normalized condition was `1.0245903`. This authorizes only independent
 S16 implementation and its baseline-gated 144-trajectory development
 sentinel. No controller, MPC, expert data, BC, DAgger, or bounded residual RL
 is authorized.
+
+## 39. Final T13S16 result and active T13S17 task
+
+T13S16 completed its complete 144-trajectory authentic development campaign
+at implementation checkpoint `8487951`.  Exact restart, causality, Card15,
+zero-net, current, raw parsing, and independent reporting recomputation passed
+144/144.  The raw inventory is 144 JSON.GZ files, 8,188,964 bytes, digest:
+
+```text
+b0bf9c03b94cd353b3ccb68b0de318c46285a4805acfb0c25016704f79057668
+```
+
+The QR basis repaired S15's excitation geometry.  Its maximum normalized
+condition was `1.0245902744`, all 128 response projections passed, and the
+rank-seven point estimate passed center error in 120/128 rows.  The frozen
+provisional tube nevertheless passed containment only 82/128, cap only
+40/128, and all model gates jointly only 14/128.  Velocity tubes exceeded
+their unchanged caps in 48 vR and 88 vZ rows, while other finite response
+components still escaped the box.
+
+The exact final route is:
+
+```text
+ORTHOGONAL_FIXED_BASIS_IDENTIFICATION_FAIL_BELIEF_MPC_REDESIGN
+```
+
+There is no runtime, deployment, restart, causality, raw, statistics, or
+reporting error.  This is a local response/tube design failure and no MPC or
+closed-loop controller was run.  The complete report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S16_FORENSIC_REPORT.md
+```
+
+The active zero-new-TSC task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S17_CAUSAL_MULTI_DRIFT_BELIEF_PREFLIGHT_DESIGN.md
+```
+
+T13S17 uses the current-run visible states 1--10, including both causal
+settling states before response issue, and always retains three fixed
+Legendre drift hypotheses of degrees one through three.  It propagates each
+hypothesis's observed calibration residual through its exact prediction
+leverage, adds the unchanged Card15 input uncertainty, and forms a
+componentwise belief hull.  State 11 response outcomes cannot be opened until
+all causal belief artifacts are hashed.
+
+S17 consumes only S16 development raw and runs zero new TSC.  A pass requires
+128/128 coverage inside the unchanged component caps and authorizes only a
+new whole-pair training/calibration/fresh-context identification campaign.  A
+failure requires robust-observer redesign.  Neither route authorizes MPC,
+expert data, BC, DAgger, or bounded residual RL.
