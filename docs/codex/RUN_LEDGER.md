@@ -1199,3 +1199,38 @@
   long-hold, expert-data, BC, DAgger, or RL validation
 - Next: prospectively frozen 360-rollout S19 with 12/4/4 whole-pair
   training/calibration/fresh holdout and strict phase-boundary artifact hashes
+
+## Stage4.2R3c3T13S20 dynamic-exact Card15 pooled observer campaign
+
+- Branch: `codex/stage4_2r3c3t13s21-cumulative-closure`
+- Implementation / S19-authentication hotfix commits: `1861dbd`, `9113198`
+- Package revision:
+  `r42r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_v2`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s20_runs/stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_20260803_9113198`
+- Fresh execution: expected full matrix 360; actual training baselines 24 raw,
+  23 complete successes and one structured failure; later phases zero raw
+- Raw bytes / digest: `1,342,538` /
+  `d78ba9a01e54611c7489bc13ae70883b2020a5647473976e6ca29c9c2f22de52`
+- Independent successful-baseline audit: runtime/restart/causality/action/
+  exact-net `23/23`; successful-context zero-plant probe replay `184/184`;
+  snapshot inventory `40/40`
+- Failed experiment: `s42r3c3_a40f88ad021de4a85a93`, stopped before
+  eighth plant advance because the planned net retained coil-8 `+0.0004 kAt`
+- Enhanced zero-plant forensic: cumulative inverse representable `14/14`,
+  primary `1.0`, cross `0.025`, cosine `0.9999973274`, action/current PASS
+- Compact audit hashes: final-net
+  `64c018a839492bc80e92ffecd3db41eba4375f2f937e92dee0694362f1cce364`,
+  full forensic v2
+  `8a94fa842ab49a466ef3bbce07e248adb582f5abd461dca56a7bc81a1d39f890`
+- Known bugs: independent nearest-event quantization does not guarantee the
+  frozen global exact-zero net; terminal `phase_status` remains stale. The
+  former changes physical action and forbids S20 resume; the latter is
+  reporting-only.
+- Classification:
+  `DYNAMIC_EXACT_CARD15_CALIBRATION_SEQUENCE_DESIGN_FAIL_NEW_IDENTITY_REQUIRED`;
+  no runtime, restart, raw, observer, MPC, control, or plant failure
+- Large raw/snapshots remain server-side; compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s20_result_20260803_9113198/`
+- Next: implement the separately frozen S21 cumulative-exact step-7 closure
+  under a new identity; all expert/BC/DAgger/RL gates remain closed

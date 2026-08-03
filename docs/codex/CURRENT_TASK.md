@@ -2670,3 +2670,80 @@ This is a package/statistics reference bug only. The action semantics, split,
 gates, controller revision, and campaign identity remain unchanged. The failed
 offline run is preserved and cannot be resumed; package v2 must use a new empty
 run directory.
+
+## 43. Final T13S20 result and active T13S21 task
+
+Package v2 at execution commit `9113198` passed the fresh offline gate and
+started the S20 training-baseline phase at:
+
+```text
+/home/yangshen0711/tsc_all/tsc_rzip_rllib/
+stage4_2r3c3t13s20_runs/
+stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_20260803_9113198
+```
+
+It produced exactly 24 training-baseline JSON.GZ files. Independent
+server-side raw, snapshot, manifest, source, and complete-log forensics found:
+
+```text
+raw parse / expected                                      24 / 24
+complete success / structured partial failure             23 / 1
+successful runtime / restart / causality                  23 / 23
+successful actuator / dynamic design / exact net          23 / 23
+successful-context zero-plant probe replays              184 / 184
+snapshot inventories                                      40 / 40
+maximum dynamic design condition                       3.1980986512
+maximum successful current utilization                  0.392
+formal tracking diagnostic                                10 / 23
+training probe / calibration / holdout raw                 0 / 0 / 0
+```
+
+The raw inventory is 24 files, 1,342,538 bytes, digest
+`d78ba9a01e54611c7489bc13ae70883b2020a5647473976e6ca29c9c2f22de52`.
+The one failed raw is experiment `s42r3c3_a40f88ad021de4a85a93`, with
+trajectory/trace lengths 8/7. It stopped while constructing the eighth action
+with `ValueError('T13S20 dynamic calibration sequence is not exact zero net')`.
+No eighth plant advance occurred.
+
+Source-exact zero-plant replay found that independent nearest quantization
+would leave only coil index 8 at `+0.0004 kA-turn`. The exact negative of the
+seven-event running net is nevertheless Card15-representable on 14/14 coils
+and passes all unchanged gates:
+
+```text
+signed primary / maximum cross coordinate        1.000000 / 0.025000
+desired/actual cosine                              0.9999973274
+relative off-basis residual                            3.74e-16
+incremental / total normalized action             0.214810 / 0.216048
+predicted current utilization                              0.3761
+```
+
+This is an excitation-sequence design failure, not a runtime, TSC, restart,
+raw, observer, MPC, control, or plant failure. The state also contains a
+reporting-only defect: `finished=true` and stop reason are correct, but
+`phase_status` remains `offline_ready`.
+
+S20 is frozen and cannot resume because cumulative closure changes the
+controller source fingerprint and failed-path physical action. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S20_FORENSIC_REPORT.md
+```
+
+The active task is the separately frozen T13S21 design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S21_CUMULATIVE_EXACT_CLOSURE_DESIGN.md
+```
+
+S21 uses fresh stage/campaign/controller/package identities and reruns all
+360 trajectories. Steps 0--6 retain S20's causal nearest dynamic-exact rule;
+step 7 applies the exact negative of the seven-event Decimal running net and
+must satisfy the unchanged primary/cross/cosine/off-basis/action/current and
+exact-zero gates. S20 raw cannot be relabeled or reused as S21 outcomes.
+
+Implement, validate, deploy, and run S21 only through its frozen phased gates.
+A complete holdout pass permits only offline robust-transport MPC feasibility
+and a separately preregistered real-MPC experiment. Expert data, BC, DAgger,
+and bounded residual RL remain prohibited.

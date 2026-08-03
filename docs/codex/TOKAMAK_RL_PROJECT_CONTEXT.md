@@ -441,14 +441,29 @@ containment, cap, and joint gates passed 128/128 with maximum scaled point
 error `0.0010531744`.  Independent server recomputation was exact.  S18 is a
 consumed-development architecture pass only, not independent validation.
 
+T13S19 and T13S20 each reached only the 24 training baselines.  S19 stopped
+before its third plant advance on one path because a fixed field increment
+was not exactly Card15-representable at the causal exponent-boundary center.
+S20 replaced every event with a nearest dynamic-exact increment and produced
+23 complete baseline successes, but one other path stopped before its eighth
+plant advance because the eight independently nearest increments summed to a
+coil-8 residual of `0.0004 kA-turn`.  The other 23 passed independent restart,
+causality, actuator, dynamic-design, and exact-net audits; later phases were
+never opened.
+
+Zero-plant S20 forensics proved that the exact cumulative inverse at the
+failed seventh-event state is 14/14 Card15-representable and passes every
+unchanged action, current, and geometry gate.  Applying it changes the
+controller source and failed-path physical action, so S20 is frozen as an
+excitation-sequence design FAIL and cannot resume.
+
 The active task is the prospectively frozen 360-rollout
-Stage4.2R3c3T13S19 training/calibration/fresh-holdout campaign.  A server-side
-scan found none of its 20 whole-pair identities in 900 prior T13
-identification raw files.  The split is fixed at 12/4/4 pairs, and the exact
-S18 nine-feature architecture, ridge selection, four-times calibrated tube,
-caps, and causal Card15 propagation are frozen before execution.  A pass can
+Stage4.2R3c3T13S21 cumulative-exact Card15 campaign.  It retains S20's
+12/4/4 whole-pair split and pooled observer gates, uses nearest dynamic-exact
+events for steps 0--6, and requires the exact negative of the causal running
+net at step 7 under a fresh controller/campaign identity.  A complete pass can
 authorize only offline finite-horizon robust-transport MPC feasibility.  No
-controller, expert data, BC, DAgger, or RL is authorized.
+controller campaign, expert data, BC, DAgger, or RL is yet authorized.
 
 ## 7. Medium-term objectives
 

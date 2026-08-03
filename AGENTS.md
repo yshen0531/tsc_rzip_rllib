@@ -557,16 +557,30 @@ reporting defect, not a TSC, restart, causality, raw, observer, control, or
 plant failure. S19 is frozen and cannot resume under changed action semantics;
 training probes, calibration, and holdout were not run.
 
-The current stage is the separately preregistered T13S20 dynamic-exact Card15
-campaign. It keeps S19's 12/4/4 whole-pair split but reruns all 360 trajectories
-under a new identity. At every calibration event it preserves the causal S16
-QR direction, selects the nearest exactly representable displacement around
-the current Card15 center, records the actual input coordinate, requires a
-rank-eight causal design with condition at most 4.0, and requires exact
-eight-event calibration net zero. The model must be hashed before calibration
-and the calibrated tube before holdout. Even a complete pass permits only
-robust-transport MPC feasibility and a separately frozen real-MPC campaign;
-it does not authorize expert data, BC, DAgger, or RL.
+T13S20 then passed its offline gate and produced 24/24 training-baseline raw
+files. Twenty-three completed with exact restart, causality, actuator, dynamic
+design, and zero-net checks. One stopped before its eighth plant advance when
+independently nearest dynamic Card15 quantization left a `0.0004 kA-turn`
+coil-8 residual. All 24 raw parse, 40/40 snapshots authenticate, and 184/184
+successful-context probe paths replay without a plant advance. A separate
+zero-plant forensic proved that the exact cumulative inverse is representable
+and passes every unchanged action/geometry gate for the failed path.
+
+S20 is frozen as an excitation-sequence design FAIL, not a runtime, restart,
+raw, plant-control, or observer result. Its terminal `phase_status` is also a
+stale reporting field even though `finished`, stop reason, and verdict are
+correct. Because cumulative closure changes the controller source and failed-
+path physical action, S20 cannot resume.
+
+The current stage is the separately preregistered T13S21 cumulative-exact
+Card15 campaign. It reruns the same 360-rollout 12/4/4 matrix under a new
+identity. Calibration steps 0--6 keep S20's nearest dynamic-exact actions;
+step 7 must apply the exact negative of the causal seven-event running net and
+pass the unchanged coordinate, geometry, action, current, rank, condition,
+timing, phase-blindness, and model/tube gates. S20 raw is development evidence
+only and cannot be relabeled or reused as S21 outcomes. Even a complete S21
+pass permits only robust-transport MPC feasibility and a separately frozen
+real-MPC campaign; it does not authorize expert data, BC, DAgger, or RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build

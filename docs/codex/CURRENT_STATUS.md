@@ -1,5 +1,21 @@
 # Current status
 
+> **Superseding live handoff (2026-08-03 Asia/Shanghai).** S20 is final as an
+> excitation-sequence design FAIL. Its valid package-v2 run produced 24/24
+> training-baseline raw: 23 complete successes and one guard-stopped partial
+> trajectory before the eighth plant advance. Independent server forensics
+> parsed all raw, authenticated 40/40 snapshots, passed restart/causality/
+> actuator/exact-net checks for 23/23 successes, and replayed 184/184 probe
+> paths without a plant advance. The failed nearest-quantized final action
+> leaves coil 8 at `+0.0004 kA-turn`; the causal cumulative inverse is exactly
+> representable 14/14 and passes all unchanged gates, but changes controller
+> source and physical action, so S20 cannot resume. A separate stale terminal
+> `phase_status` is reporting-only. Full forensic SHA-256 is
+> `8a94fa842ab49a466ef3bbce07e248adb582f5abd461dca56a7bc81a1d39f890`.
+> The active task is prospectively frozen S21: fresh 360-rollout identity,
+> S20 steps 0--6, exact cumulative closure at step 7, then unchanged phased
+> observer gates. No MPC, expert data, BC, DAgger, or RL is authorized.
+
 > **Network-pause handoff (2026-08-03 07:45 Asia/Shanghai).**
 > The user requested a controlled pause before disconnecting the network.
 > The final read-only process check found no actual S20 driver, Ray campaign,
