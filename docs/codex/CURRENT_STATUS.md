@@ -782,3 +782,24 @@ identification raw files.  S19 uses 12 training, four calibration, and four
 unopened holdout pairs for 360 real identification rollouts, with model and
 tube hashes at the two phase boundaries.  No real MPC, expert data, BC,
 DAgger, or residual RL is authorized.
+
+## Current handoff: S23 final, schedule redesign active
+
+The installed S23 package at commit `7aab947` passed package verification and
+887 server tests with one expected skip. Its zero-TSC preflight completed
+twice with byte-identical detailed, summary, and manifest hashes. S21 source
+authentication and all 360 raw formal reproductions passed, but the frozen
+dense Hadamard schedule passed only 1,920/3,840 issue gates and 3,720/3,840
+cancellation gates. Rank, condition, novelty, exact target, zero-net,
+current, and finite checks otherwise passed.
+
+The exact final route is
+`SEQUENTIAL_HADAMARD_LATTICE_PREFLIGHT_FAIL_SCHEDULE_REDESIGN`. This is an
+action-schedule-design failure with zero real controller or plant execution.
+The detailed 10.86 MB output remains server-side; compact evidence and the
+complete classification are in
+`docs/codex/reports/STAGE4_2R3C3T13S23_FORENSIC_REPORT.md`.
+
+S24 is vetoed. Active work is a new-identity, zero-TSC adaptive schedule
+search followed by a separately frozen preflight. No new real campaign, MPC,
+expert dataset, BC, DAgger, or residual RL is authorized yet.

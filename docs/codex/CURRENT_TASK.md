@@ -2852,3 +2852,55 @@ campaign. That campaign must freeze its causal transition-model family,
 whole-pair training/calibration/holdout boundaries, recursive-prediction
 gates, and stop-at-boundary policy before any response outcome opens. No S23
 route authorizes a real MPC, expert data, BC, DAgger, or bounded residual RL.
+
+## 46. Final T13S23 result and active schedule-redesign task
+
+T13S23 completed twice from the installed `7aab947` package with byte-exact
+independent outputs. It authenticated all 360 S21 raw files, reproduced all
+40 baselines and 320 measured probes, and executed zero new TSC, Ray,
+controller, plant, or snapshot work.
+
+```text
+finite issue/cancel constructions                         7680 / 7680
+issue action/geometry/current gates                       1920 / 3840
+exact cancellation gates                                  3720 / 3840
+central-sign target symmetry                              1280 / 1280
+global rank/condition contexts                               40 / 40
+slot rank/condition blocks                                  160 / 160
+late novelty contexts                                        40 / 40
+maximum global condition                              1.6539378019
+maximum slot condition                                1.1695106354
+minimum late residual                                 0.9428090416
+maximum current utilization                                  0.3917
+```
+
+Every issue failure was reproduced from the raw event rows. Exactly 960 rows
+failed only the `0.10` off-basis cap and 960 failed both the off-basis cap and
+`0.98` cosine floor. All 3,840 issue actions passed the unchanged `0.25`
+incremental cap; the maximum was `0.0944439202`. The 120 cancellation
+failures were confined to slot 3 in five contexts and failed only the `0.25`
+incremental cap, with maximum `0.3106592894`; exact target return and zero net
+were 3,840/3,840.
+
+The final route is:
+
+```text
+SEQUENTIAL_HADAMARD_LATTICE_PREFLIGHT_FAIL_SCHEDULE_REDESIGN
+```
+
+This is a deterministic action-schedule-design failure, not a runtime,
+deployment, source/raw, restart, reporting, controller, real-MPC, plant, or
+global-reachability failure. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S23_FORENSIC_REPORT.md
+```
+
+S24 is not authorized. The active task is a new-identity, zero-TSC
+development search followed by a separately frozen schedule preflight. It
+may prospectively alter coordinate sparsity, amplitude, sequence matrix, or
+knot locations, but it may not relabel S23, weaken S23 after the result,
+change the immutable formal timing contract, or claim plant response. No real
+identification campaign may begin until the new frozen preflight passes and
+is independently reproduced. MPC, expert data, BC, DAgger, and bounded
+residual RL remain prohibited.
