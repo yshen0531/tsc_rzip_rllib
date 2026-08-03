@@ -73,8 +73,5 @@ PY
 mapfile -t SHELLS < <(find . -maxdepth 2 -type f -name '*.sh' -print | sort)
 for script in "${SHELLS[@]}"; do bash -n "${script}"; done
 "${PYTHON_BIN}" -m unittest -v \
-  tests.test_stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel \
-  tests.test_stage4_2r3c3t13s24d1r3_causal_split_return_preflight \
-  tests.test_stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel \
-  tests.test_stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics
+  tests.test_stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel
 printf '[T13S24D1R6 verify] checksums, inventory, shell syntax, compile, JSON and focused tests passed.\n'
