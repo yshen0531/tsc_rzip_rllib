@@ -69,7 +69,7 @@
     "installed_project_complete_test_suite_required": true,
     "server_virtualenv_python_only": true
   },
-  "declared_file_count": 482,
+  "declared_file_count": 484,
   "file_inventory": [
     "AGENTS.md",
     "PACKAGE_MANIFEST.json",
@@ -127,6 +127,7 @@
     "configs/stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight_v1.json",
     "configs/stage4_2r3c3t13s23d1_bounded_schedule_redesign_search_v1.json",
     "configs/stage4_2r3c3t13s23r1_amplitude_coded_hadamard_preflight_v1.json",
+    "configs/stage4_2r3c3t13s24_semantics_preserving_runtime_hotfix_v1.json",
     "configs/stage4_2r3c3t13s24_sequential_transition_identification_370ms.json",
     "configs/stage4_2r3c3t13s4_lattice_transition_holdout_370ms.json",
     "configs/stage4_2r3c3t13s5_lattice_native_split_holdout_370ms.json",
@@ -154,6 +155,7 @@
     "docs/codex/audit_tools/stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s23d1_bounded_schedule_redesign_search.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s23r1_amplitude_coded_hadamard_preflight.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24_semantics_preserving_runtime_hotfix.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2_quantized_observability_audit.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2r1_readback_residual_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s6_immediate_effect_audit.py",
@@ -553,5 +555,19 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ]
+  ],
+  "runtime_hotfix_checkpoint": "12ead06",
+  "runtime_hotfix": {
+    "revision": "s24_fixed_basis_dict_to_ordered_columns_hotfix_v1",
+    "failure_class": "runtime_code_representation_error_before_first_sequential_action",
+    "failed_raw_count": 576,
+    "failed_raw_reused": false,
+    "successful_baseline_raw_count_eligible_for_reuse": 24,
+    "controller_semantics_changed": false,
+    "experiment_identity_changed": false,
+    "spec_matrix_changed": false,
+    "formal_timing_changed": false,
+    "scientific_task_changed": false,
+    "server_side_failed_raw_preservation_required": true
+  }
 }
