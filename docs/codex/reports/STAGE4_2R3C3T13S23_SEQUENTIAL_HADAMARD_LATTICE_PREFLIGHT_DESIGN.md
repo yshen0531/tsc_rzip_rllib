@@ -160,7 +160,8 @@ absolute applied coefficient                         [0.18, 0.32]
 maximum absolute coefficient error from 0.25                        0.07
 desired/applied physical-current cosine                            0.98
 maximum relative off-basis residual                                0.10
-incremental and total normalized action                              <= 1
+incremental normalized action                                    <= 0.25
+total normalized action                                             <= 1
 predicted current utilization                                      <= 0.55
 ```
 
