@@ -20,8 +20,8 @@ manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8
 expected_manifest = {
     "stage": "Stage4.2R3c3T13S24D1R7",
     "campaign_identity": "temporal_basis_substitution_preflight_v1",
-    "package_revision": "r42r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1",
-    "implementation_checkpoint": "143f9ba",
+    "package_revision": "r42r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1h1",
+    "implementation_checkpoint": "da578de",
 }
 for key, expected in expected_manifest.items():
     if manifest.get(key) != expected:

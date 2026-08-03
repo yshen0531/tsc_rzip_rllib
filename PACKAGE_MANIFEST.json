@@ -4,8 +4,8 @@
   "run_name": "stage4_2r3c3t13s24d1r7_temporal_basis_substitution_preflight",
   "campaign_identity": "temporal_basis_substitution_preflight_v1",
   "controller_revision": "offline_temporal_basis_substitution_auditor_v1",
-  "package_revision": "r42r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1",
-  "implementation_checkpoint": "143f9ba",
+  "package_revision": "r42r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1h1",
+  "implementation_checkpoint": "da578de",
   "config_path": "configs/stage4_2r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1.json",
   "source_stage": "Authenticated S24, D1R1, D1R2 and D1R6 raw/server evidence; no new plant execution.",
   "source_controller_revision": "sequential_transition_card15_probe_v42r3c3t13s24_v1",
@@ -62,6 +62,7 @@
   "s24d1r6_forensic_checkpoint": "ab0408b",
   "s24d1r7_design_checkpoint": "57b9674",
   "s24d1r7_implementation_checkpoint": "143f9ba",
+  "s24d1r7_authentication_hotfix_checkpoint": "da578de",
   "declared_file_count": 718,
   "file_inventory": [
     "AGENTS.md",
