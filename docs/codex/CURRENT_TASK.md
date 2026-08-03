@@ -2965,3 +2965,52 @@ exact fixed amplitude map, and unchanged Card15/cosine/off-basis/action/
 current/rank/condition/novelty/formal gates. A pass authorizes only a
 separately frozen S24 identification campaign; it does not authorize real
 MPC or RL. Expert data, BC, DAgger, and bounded residual RL remain prohibited.
+
+## 48. Final T13S23R1 result and active T13S24 task
+
+T13S23R1 completed its zero-TSC fixed-candidate preflight twice from deployed
+checkpoint `58d212c`; all three output files were byte-identical. Independent
+server-side forensics strictly parsed all 360 immutable S21 raw JSON.GZ and
+recomputed every detailed event and matrix gate.
+
+```text
+source raw authentication / strict parse                  360 / 360
+contexts / event rows                                    40 / 3840
+finite issue/cancel constructions                      7680 / 7680
+issue / cancellation gates                         3840 / 3840 each
+central-sign Decimal checks                            1280 / 1280
+global rank-16 contexts / slot rank-4 blocks             40 / 160
+maximum actual global / slot condition        2.87688005 / 2.03426139
+minimum actual late-column residual                     0.94280904
+new raw / snapshots / TSC / plant / controller      0 / 0 / 0 / 0 / 0
+```
+
+The final route is
+`AMPLITUDE_CODED_HADAMARD_PREFLIGHT_PASS_FREEZE_S24_REQUIRED`.  This is a
+clean action-schedule preflight PASS, not a plant, controller, MPC, or restart
+control result.  The complete forensics are frozen in:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S23R1_FORENSIC_REPORT.md
+```
+
+The active task is the new-identity 1,000-rollout S24 sequential transition
+identification campaign prospectively frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24_SEQUENTIAL_TRANSITION_IDENTIFICATION_DESIGN.md
+```
+
+S24 uses the unchanged twenty whole-pair split and 40 authenticated contexts.
+Each context receives one fresh baseline and all 24 S23R1 sequences, for
+training/calibration/fresh-holdout counts `600/200/200`. Its model must
+recursively predict from authentic causal state-10 history to the unchanged
+state-35/37 formal endpoint, freeze after training, freeze its tube after
+calibration, and pass a fresh whole-pair holdout plus independent raw
+recomputation. Every failed phase boundary stops the campaign before later
+outcomes open.
+
+An S24 pass authorizes only a separately preregistered zero-TSC robust
+finite-horizon feasibility/MPC design. It does not authorize real MPC,
+expert data, BC, DAgger, or bounded residual RL.

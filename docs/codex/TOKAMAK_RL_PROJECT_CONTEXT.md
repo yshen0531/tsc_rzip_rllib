@@ -479,14 +479,29 @@ S22 ran no new TSC, plant, snapshot, controller, or MPC. It vetoes only the
 bounded single-state-10 affine family and does not prove global plant
 unreachability.
 
-The active zero-new-TSC Stage4.2R3c3T13S23 task is the prospectively frozen
-sequential Hadamard lattice preflight. It uses 24 fixed combined-action
+The zero-new-TSC Stage4.2R3c3T13S23 task was the prospectively frozen
+sequential Hadamard lattice preflight. It used 24 fixed combined-action
 sequences spanning four S21 QR directions at issue steps 10, 13, 16, and 19.
-All 40 baseline contexts must pass exact Card15 issue/cancellation, zero-net,
-action/current, global rank-16, per-slot rank-4, condition, and temporal-
-novelty gates before a separately implemented 1,000-rollout sequential
-identification campaign can be authorized. S23 itself runs no plant. No real
-MPC, expert data, BC, DAgger, or RL is yet authorized.
+S23 itself ran no plant and did not authorize a real MPC, expert data, BC,
+DAgger, or RL.
+
+S23 failed its actual-coordinate action schedule, and the bounded D1 search
+proved its fixed ternary architecture could not meet the global condition
+gate. S23R1 then froze an amplitude-coded H16 schedule with issue steps 10,
+13, 15, and 17. Its two zero-TSC executions were byte-identical. Independent
+server-side forensics authenticated and strictly parsed all 360 S21 raw,
+recomputed 3,840 issue and 3,840 cancellation gates, and reconstructed 40
+rank-16 actual matrices. Every frozen gate passed. S23R1 is an action-schedule
+preflight PASS only; it contains no plant response or control evidence.
+
+The active stage is the prospectively frozen 1,000-rollout S24 sequential
+transition identification campaign. It uses the unchanged twenty whole-pair
+split and 40 authenticated contexts, with one fresh baseline plus all 24
+S23R1 sequences per context. A causal state-conditioned model must pass
+leave-pair-out recursive prediction, calibration/tube freeze, fresh holdout,
+formal-verdict reproduction, and independent server raw recomputation. An
+S24 pass remains a finite identification result and authorizes only a
+separately designed zero-TSC robust MPC feasibility stage.
 
 ## 7. Medium-term objectives
 
