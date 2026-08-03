@@ -74,7 +74,7 @@ action from the current visible state. The quantized actuator maps that
 action and the current 14 coil currents to the contemporaneous Card15 center.
 The probe then requests a fixed four-coordinate field displacement relative
 to that center. Each coil target is the deterministically nearest exactly
-representable Card15 displacement, using the existing search radius and
+representable Card15 displacement, using the existing search radius 16 and
 tie-breaking implementation. The applied coordinate is reconstructed in
 physical coil-current space from the same four frozen field columns.
 
