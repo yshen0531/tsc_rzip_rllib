@@ -4,7 +4,7 @@
   "run_name": "stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel",
   "campaign_identity": "causal_split_exact_return_safety_sentinel_v1",
   "controller_revision": "causal_split_exact_return_probe_v42r3c3t13s24d1r4_v1",
-  "package_revision": "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1",
+  "package_revision": "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h1",
   "selection_status": "frozen_after_d1r3_pass_before_d1r4_implementation_or_tsc",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R4_REAL_TSC_SPLIT_RETURN_SENTINEL_DESIGN.md",
   "design_document_sha256": "71ed55c18d30ffc861e0bd2158ffa30ed9e85baa4254cdc015ece8ad9bcf8dfd",

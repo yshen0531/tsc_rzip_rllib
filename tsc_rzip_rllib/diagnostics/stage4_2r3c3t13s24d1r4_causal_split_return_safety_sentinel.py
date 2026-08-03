@@ -32,7 +32,7 @@ STAGE = "Stage4.2R3c3T13S24D1R4"
 RUN_NAME = "stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel"
 CAMPAIGN_IDENTITY = "causal_split_exact_return_safety_sentinel_v1"
 CONTROLLER_REVISION = "causal_split_exact_return_probe_v42r3c3t13s24d1r4_v1"
-PACKAGE_REVISION = "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1"
+PACKAGE_REVISION = "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h1"
 N_COILS = 14
 
 
@@ -312,6 +312,33 @@ def _raw_inventory(raw_dir: Path) -> dict[str, Any]:
     }
 
 
+def _selected_snapshot_audit(
+    contexts: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Re-aggregate the inherited per-snapshot audit for D1R4's subset."""
+    source_audit = d1r2.s24.s21._snapshot_audit(contexts)
+    rows = list(source_audit.get("rows") or [])
+    pass_count = sum(bool(row.get("passed")) for row in rows)
+    expected = 3
+    passed = bool(
+        len(contexts) == expected
+        and len(rows) == expected
+        and pass_count == expected
+        and all(bool(row.get("passed")) for row in rows)
+    )
+    return {
+        "expected": expected,
+        "actual": len(rows),
+        "pass_count": pass_count,
+        "passed": passed,
+        "rows": rows,
+        "source_helper_expected": source_audit.get("expected"),
+        "source_helper_actual": source_audit.get("actual"),
+        "source_helper_pass_count": source_audit.get("pass_count"),
+        "source_helper_passed": source_audit.get("passed"),
+    }
+
+
 def _authenticate_source(
     ctx: Context,
 ) -> tuple[dict[str, Any], list[dict[str, Any]], dict[str, Any]]:
@@ -416,7 +443,7 @@ def _authenticate_source(
             or not bool(row.get("split_start_event", {}).get("passed"))
         ):
             raise ValueError(ctx.cfg["routes"]["source_stop"])
-    snapshots = d1r2._selected_snapshot_audit(d1r2._selected_context_table(specs))
+    snapshots = _selected_snapshot_audit(d1r2._selected_context_table(specs))
     if not (
         snapshots.get("passed")
         and snapshots.get("pass_count")

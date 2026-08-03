@@ -65,6 +65,41 @@ class Stage42R3C3T13S24D1R4Tests(unittest.TestCase):
             with self.subTest(section=section, key=key), self.assertRaises(ValueError):
                 stage._validate_config(changed, CONFIG)
 
+    def test_three_snapshot_subset_reaggregates_inherited_rows(self):
+        contexts = [{"index": index} for index in range(3)]
+        inherited = {
+            "expected": 40,
+            "actual": 3,
+            "pass_count": 3,
+            "passed": False,
+            "rows": [{"passed": True, "index": index} for index in range(3)],
+        }
+        with mock.patch.object(
+            stage.d1r2.s24.s21, "_snapshot_audit", return_value=inherited
+        ):
+            audit = stage._selected_snapshot_audit(contexts)
+        self.assertTrue(audit["passed"])
+        self.assertEqual(audit["expected"], 3)
+        self.assertEqual(audit["pass_count"], 3)
+        self.assertEqual(audit["source_helper_expected"], 40)
+        self.assertFalse(audit["source_helper_passed"])
+
+    def test_three_snapshot_subset_fails_if_one_inventory_fails(self):
+        contexts = [{"index": index} for index in range(3)]
+        inherited = {
+            "expected": 40,
+            "actual": 3,
+            "pass_count": 2,
+            "passed": False,
+            "rows": [{"passed": True}, {"passed": False}, {"passed": True}],
+        }
+        with mock.patch.object(
+            stage.d1r2.s24.s21, "_snapshot_audit", return_value=inherited
+        ):
+            audit = stage._selected_snapshot_audit(contexts)
+        self.assertFalse(audit["passed"])
+        self.assertEqual(audit["pass_count"], 2)
+
     def _finish_controller(self, increment: float = 0.20):
         controller = object.__new__(stage.CausalSplitReturnSafetySentinelController)
         controller.split_cfg = copy.deepcopy(self.cfg["split_contract"])
