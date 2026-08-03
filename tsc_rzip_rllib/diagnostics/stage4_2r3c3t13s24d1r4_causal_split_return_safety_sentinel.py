@@ -32,7 +32,7 @@ STAGE = "Stage4.2R3c3T13S24D1R4"
 RUN_NAME = "stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel"
 CAMPAIGN_IDENTITY = "causal_split_exact_return_safety_sentinel_v1"
 CONTROLLER_REVISION = "causal_split_exact_return_probe_v42r3c3t13s24d1r4_v1"
-PACKAGE_REVISION = "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h1"
+PACKAGE_REVISION = "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h2"
 N_COILS = 14
 
 
@@ -619,6 +619,9 @@ _D1R4_CONTROLLER_FORBIDDEN_SPEC_KEYS = frozenset(
         "d1r4_source_d1r2_experiment_id",
         "d1r4_split_contract",
         "candidate_preflight_sha256",
+        "pair_id",
+        "history_member",
+        "partition",
     }
 )
 
@@ -635,8 +638,12 @@ def _controller_spec(spec: Mapping[str, Any]) -> dict[str, Any]:
         "partition",
         "d1r4_source_d1r2_experiment_id",
     }
-    if forbidden.intersection(output):
-        raise ValueError("D1R4 forbidden selection label reached controller")
+    remaining = forbidden.intersection(output)
+    if remaining:
+        raise ValueError(
+            "D1R4 forbidden selection label reached controller: "
+            + ",".join(sorted(remaining))
+        )
     return output
 
 

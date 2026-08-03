@@ -219,6 +219,9 @@ class Stage42R3C3T13S24D1R4Tests(unittest.TestCase):
             "d1r4_source_d1r2_experiment_id": "forbidden-source",
             "d1r4_split_contract": {"future": "forbidden"},
             "candidate_preflight_sha256": "forbidden-hash",
+            "pair_id": "forbidden-pair",
+            "history_member": "forbidden-history",
+            "partition": "forbidden-partition",
             "kept": 1,
         }
         with mock.patch.object(
@@ -228,6 +231,18 @@ class Stage42R3C3T13S24D1R4Tests(unittest.TestCase):
         ):
             output = stage._controller_spec(source)
         self.assertEqual(output, {"kept": 1})
+
+    def test_controller_spec_real_chain_strips_selection_labels(self):
+        source = {
+            "d1r4_source_d1r2_experiment_id": "forbidden-source",
+            "d1r4_split_contract": {"future": "forbidden"},
+            "candidate_preflight_sha256": "forbidden-hash",
+            "pair_id": "forbidden-pair",
+            "history_member": "forbidden-history",
+            "partition": "forbidden-partition",
+            "kept": 1,
+        }
+        self.assertEqual(stage._controller_spec(source), {"kept": 1})
 
     def test_launchers_use_virtualenv_fixed_capacity_and_exact_pid_stop(self):
         names = (
