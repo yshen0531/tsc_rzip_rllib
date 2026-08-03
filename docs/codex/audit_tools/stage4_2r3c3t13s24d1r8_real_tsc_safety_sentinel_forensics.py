@@ -144,6 +144,139 @@ def _expected_calibration() -> list[str]:
     ]
 
 
+def _restart_and_causal_prefix_audit(
+    result: Mapping[str, Any],
+    spec: Mapping[str, Any],
+    generated_state: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Audit evidence that remains meaningful after a structured safe stop.
+
+    The inherited R3b ``_control_row`` deliberately returns before inspecting
+    any trajectory when ``success`` is false.  A D1R8 action-gate stop is a
+    completed, partial trajectory, so treating those unevaluated fields as
+    restart or causality failures is a reporting error.  This helper directly
+    audits the immutable initial state and every action that actually advanced
+    the plant; it does not infer a full-horizon result.
+    """
+
+    r3b = stage.s24.s21.s16.s9.t11.t1.r3b
+    trajectory = list(result.get("trajectory") or [])
+    trace = list(result.get("controller_trace") or [])
+    initial = trajectory[0] if trajectory else {}
+    try:
+        generated_visible = np.asarray(
+            [
+                generated_state["R"],
+                generated_state["Z"],
+                generated_state["Ip"],
+                *generated_state["coil_currents_a"],
+            ],
+            dtype=float,
+        )
+        restart_visible = np.asarray(
+            [
+                initial["R"],
+                initial["Z"],
+                initial["Ip"],
+                *initial["currents_a_tsc"],
+            ],
+            dtype=float,
+        )
+        generated_wire = np.asarray(
+            generated_state["wire_currents_a"], dtype=float
+        ).reshape(-1)
+        restart_wire = np.asarray(
+            initial.get("wire_currents_a"), dtype=float
+        ).reshape(-1)
+        visible_exact = bool(
+            generated_visible.shape == restart_visible.shape == (17,)
+            and np.array_equal(generated_visible, restart_visible)
+        )
+        wire_exact = bool(
+            generated_wire.shape == restart_wire.shape == (r3b.N_WIRES,)
+            and np.array_equal(generated_wire, restart_wire)
+        )
+    except (KeyError, TypeError, ValueError):
+        visible_exact = False
+        wire_exact = False
+
+    causal, causal_trace_count = r3b._trace_is_causal(result)
+    forbidden_spec_paths = r3b._forbidden_future_paths(spec)
+    forbidden_trace_count = stage._forbidden_trace_count(trace)
+    try:
+        actions = np.asarray(
+            [value["action_norm_tsc"] for value in trace], dtype=float
+        )
+        recorded = np.asarray(
+            [value["action_norm_tsc"] for value in trajectory[1:]], dtype=float
+        )
+        action_prefix_exact = bool(
+            len(trajectory) == len(trace) + 1
+            and actions.shape == recorded.shape == (len(trace), stage.N_COILS)
+            and np.all(np.isfinite(actions))
+            and np.array_equal(actions, recorded)
+        )
+    except (KeyError, TypeError, ValueError):
+        action_prefix_exact = False
+
+    authentic_tsc_rows = 0
+    for value in trajectory:
+        try:
+            wire = np.asarray(value["wire_currents_a"], dtype=float).reshape(-1)
+            gotsc_seconds = float(value["gotsc_subprocess_s"])
+            if (
+                wire.shape == (r3b.N_WIRES,)
+                and np.all(np.isfinite(wire))
+                and math.isfinite(gotsc_seconds)
+                and gotsc_seconds >= 0.0
+            ):
+                authentic_tsc_rows += 1
+        except (KeyError, TypeError, ValueError):
+            pass
+    computed_prefix = bool(
+        trace
+        and all(
+            bool(value.get("computed_online"))
+            and bool(value.get("solver_success"))
+            for value in trace
+        )
+    )
+    no_abnormal_prefix = bool(
+        trajectory and not any(bool(value.get("abnormal")) for value in trajectory)
+    )
+    causal_prefix = bool(
+        causal
+        and causal_trace_count == len(trace)
+        and not forbidden_spec_paths
+        and forbidden_trace_count == 0
+    )
+    return {
+        "initial_restart_visible_exact": visible_exact,
+        "initial_restart_wire_exact": wire_exact,
+        "initial_restart_exact": bool(visible_exact and wire_exact),
+        "causal_trace_prefix_pass": causal_prefix,
+        "causal_trace_prefix_count": causal_trace_count,
+        "forbidden_spec_paths": forbidden_spec_paths,
+        "forbidden_trace_count": forbidden_trace_count,
+        "applied_action_prefix_exact": action_prefix_exact,
+        "computed_online_prefix_pass": computed_prefix,
+        "no_abnormal_plant_prefix": no_abnormal_prefix,
+        "authentic_tsc_state_row_count": authentic_tsc_rows,
+        "authentic_tsc_prefix_evidence_pass": bool(
+            trajectory and authentic_tsc_rows == len(trajectory)
+        ),
+        "physical_prefix_integrity_pass": bool(
+            visible_exact
+            and wire_exact
+            and causal_prefix
+            and action_prefix_exact
+            and computed_prefix
+            and no_abnormal_prefix
+            and authentic_tsc_rows == len(trajectory)
+        ),
+    }
+
+
 def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
     specs = stage._saved_specs(ctx)
     inventory = _inventory(ctx.paths.raw)
@@ -205,6 +338,18 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
                 }
             )
             continue
+        generated_state = state_map[str(spec["state_generation_experiment_id"])]
+        prefix = _restart_and_causal_prefix_audit(result, spec, generated_state)
+        phase = stage.s24.s21.s16.s9.t11.t1.r3c1._phase_trace_valid(result)
+        calibration = stage.s24.s21._dynamic_calibration_trace_audit(
+            result, ctx.base_s24_ctx.base_ctx.cfg
+        )
+        calibration_events = [
+            value.get("r3c3t13s16_lattice_event")
+            for value in trace
+            if value.get("r3c3t13s16_lattice_event") != "none"
+        ]
+        fresh_summary = result.get("hidden_history_control_summary") or {}
         if not result.get("success"):
             event = result.get("action_failure_event") or {}
             criteria = event.get("criteria") or {}
@@ -249,6 +394,19 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
                     "strict_parse_pass": True,
                     "identity_pass": True,
                     "result_success": False,
+                    **prefix,
+                    "causality_pass": bool(prefix["causal_trace_prefix_pass"]),
+                    "phase_prefix_pass": bool(phase["passed"]),
+                    "calibration_pass": bool(
+                        calibration["passed"]
+                        and calibration_events == _expected_calibration()
+                    ),
+                    "fresh_actor_process_summary_emitted": bool(fresh_summary),
+                    "fresh_actor_process_summary_status": (
+                        "reported"
+                        if fresh_summary
+                        else "not_emitted_by_structured_exception_handler"
+                    ),
                     "structured_action_failure": structured,
                     "online_margin_failure": bool(
                         event.get("event") == "sequential_cancel"
@@ -284,7 +442,6 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
                         ),
                         default=0.0,
                     ),
-                    "forbidden_trace_count": stage._forbidden_trace_count(trace),
                     "failed_action_applied": False if structured else None,
                     "plant_advance_after_failed_action": False if structured else None,
                     "attempted_event_prefix_order_pass": bool(
@@ -320,15 +477,6 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
                 result,
                 state_map[str(spec["state_generation_experiment_id"])],
             )
-            phase = stage.s24.s21.s16.s9.t11.t1.r3c1._phase_trace_valid(result)
-            calibration = stage.s24.s21._dynamic_calibration_trace_audit(
-                result, ctx.base_s24_ctx.base_ctx.cfg
-            )
-            calibration_events = [
-                value.get("r3c3t13s16_lattice_event")
-                for value in trace
-                if value.get("r3c3t13s16_lattice_event") != "none"
-            ]
             sequence_events = [
                 value.get("r3c3t13s24d1r8_event")
                 for value in trace
@@ -385,10 +533,14 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
                     "strict_parse_pass": True,
                     "identity_pass": True,
                     "result_success": True,
+                    **prefix,
                     "full_horizon_pass": full,
                     "restart_pass": restart_pass,
                     "causality_pass": bool(phase["passed"]),
+                    "phase_prefix_pass": bool(phase["passed"]),
                     "calibration_pass": bool(calibration["passed"]),
+                    "fresh_actor_process_summary_emitted": bool(fresh_summary),
+                    "fresh_actor_process_summary_status": "reported",
                     "issue_event_count": len(issues),
                     "cancel_event_count": len(cancels),
                     "issue_gate_pass_count": issue_pass,
@@ -403,7 +555,6 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
                         default=0.0,
                     ),
                     "maximum_current_utilization": utilization,
-                    "forbidden_trace_count": forbidden,
                     "formal_contract_pass_diagnostic": bool(
                         restart.get("formal_contract_pass")
                     ),
@@ -477,8 +628,31 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
         "action_schedule_failure_count": len(action_failures),
         "runtime_or_audit_failure_count": len(runtime_failures),
         "restart_pass_count": sum(bool(row.get("restart_pass")) for row in rows),
+        "initial_restart_exact_count": sum(
+            bool(row.get("initial_restart_exact")) for row in rows
+        ),
         "causality_pass_count": sum(bool(row.get("causality_pass")) for row in rows),
+        "causal_trace_prefix_pass_count": sum(
+            bool(row.get("causal_trace_prefix_pass")) for row in rows
+        ),
+        "phase_prefix_pass_count": sum(
+            bool(row.get("phase_prefix_pass")) for row in rows
+        ),
         "calibration_pass_count": sum(bool(row.get("calibration_pass")) for row in rows),
+        "physical_prefix_integrity_pass_count": sum(
+            bool(row.get("physical_prefix_integrity_pass")) for row in rows
+        ),
+        "authentic_tsc_prefix_evidence_pass_count": sum(
+            bool(row.get("authentic_tsc_prefix_evidence_pass")) for row in rows
+        ),
+        "fresh_actor_process_summary_emitted_count": sum(
+            bool(row.get("fresh_actor_process_summary_emitted")) for row in rows
+        ),
+        "fresh_actor_process_summary_not_emitted_count": sum(
+            row.get("fresh_actor_process_summary_status")
+            == "not_emitted_by_structured_exception_handler"
+            for row in rows
+        ),
         "issue_event_count": sum(int(row.get("issue_event_count", 0)) for row in rows),
         "cancel_event_count": sum(int(row.get("cancel_event_count", 0)) for row in rows),
         "applied_issue_event_count": sum(

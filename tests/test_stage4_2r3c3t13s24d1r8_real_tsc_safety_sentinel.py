@@ -245,6 +245,63 @@ class Stage42R3C3T13S24D1R8Tests(unittest.TestCase):
             self.assertTrue(stage._result_covered(path, spec))
             self.assertFalse(stage._result_success(path, spec))
 
+    def test_structured_failure_prefix_restart_and_causality_are_audited(self):
+        generated = {
+            "R": 0.7,
+            "Z": -0.02,
+            "Ip": 30000.0,
+            "coil_currents_a": [float(index) for index in range(14)],
+            "wire_currents_a": [float(index) for index in range(48)],
+        }
+        initial = {
+            "R": generated["R"],
+            "Z": generated["Z"],
+            "Ip": generated["Ip"],
+            "currents_a_tsc": copy.deepcopy(generated["coil_currents_a"]),
+            "wire_currents_a": copy.deepcopy(generated["wire_currents_a"]),
+            "gotsc_subprocess_s": 0.1,
+            "action_norm_tsc": [0.0] * 14,
+            "abnormal": False,
+        }
+        action = [0.01] * 14
+        advanced = {
+            **copy.deepcopy(initial),
+            "action_norm_tsc": action,
+            "gotsc_subprocess_s": 0.2,
+        }
+        result = {
+            "success": False,
+            "trajectory": [initial, advanced],
+            "controller_trace": [
+                {
+                    "step": 0,
+                    "measurement_max_state_index_used": 0,
+                    "future_measurement_used": False,
+                    "future_action_replay_used": False,
+                    "computed_online": True,
+                    "solver_success": True,
+                    "action_norm_tsc": action,
+                }
+            ],
+        }
+        audit = forensics._restart_and_causal_prefix_audit(
+            result, {"future_action_count": 0}, generated
+        )
+        self.assertTrue(audit["initial_restart_visible_exact"])
+        self.assertTrue(audit["initial_restart_wire_exact"])
+        self.assertTrue(audit["causal_trace_prefix_pass"])
+        self.assertTrue(audit["applied_action_prefix_exact"])
+        self.assertTrue(audit["authentic_tsc_prefix_evidence_pass"])
+        self.assertTrue(audit["physical_prefix_integrity_pass"])
+
+        future = copy.deepcopy(result)
+        future["controller_trace"][0]["measurement_max_state_index_used"] = 1
+        failed = forensics._restart_and_causal_prefix_audit(
+            future, {"future_action_count": 0}, generated
+        )
+        self.assertFalse(failed["causal_trace_prefix_pass"])
+        self.assertFalse(failed["physical_prefix_integrity_pass"])
+
     def test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code(self):
         shell = (ROOT / "scripts/stage4_2r3c3t13s24d1r8_shell_common.sh").read_text(
             encoding="utf-8"
