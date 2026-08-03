@@ -1234,3 +1234,34 @@
   `docs/codex/audits/stage4_2r3c3t13s20_result_20260803_9113198/`
 - Next: implement the separately frozen S21 cumulative-exact step-7 closure
   under a new identity; all expert/BC/DAgger/RL gates remain closed
+
+## Stage4.2R3c3T13S24D1R1 geometry-restoring amplitude search
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / package checkpoints: `bd74e6d`, `70be4b2`,
+  `8486837`
+- Package revision:
+  `r42r3c3t13s24d1r1_geometry_restoring_amplitude_search_v1`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r1_audits/stage4_2r3c3t13s24d1r1_geometry_restoring_search_20260803_145327`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r1_offline_20260803_145327.log`
+- Fresh/resume: fresh zero-TSC offline audit
+- Source raw authenticated / new raw: `360 / 0`
+- Selected amplitudes: `++--=0.290`, `+--+=0.360`
+- Issue/cancel/finite/central gates: `3840/3840`, `3840/3840`,
+  `7680/7680`, `1280/1280`
+- Selected unique sentinel specs: `54/54`
+- Detailed / summary / sentinel / manifest hashes:
+  `81168e646f2b40e443fa85f535193474651eb899ac8a74e1c9cd282b4f66ff98`,
+  `0ec97157184ba85c70507adcc9978f9c2f87afbaa462af58152bccc008e145a0`,
+  `61574900383ae91083173065561ea8f2a80a96a4c6935f3a965ef7ce43215c46`,
+  `d6f42befe92b170226ea19f73bebbe8623191debde756b61500d6daa22ea7b9f`
+- Route:
+  `GEOMETRY_RESTORING_AMPLITUDE_SEARCH_PASS_REAL_SENTINEL_REQUIRED`
+- Known defect: metadata-only hard-coded `s24d2/contracted` tokens in several
+  future identity labels; no scientific field changed and no sentinel ran
+- Classification: finite static construction PASS only; no plant, restart
+  control, model, MPC, expert-data, BC, DAgger, or RL evidence
+- Next: freeze D1R2 identity-only normalization and run the exact 54-case
+  fresh real-TSC safety sentinel with the additional 0.24 cancellation margin

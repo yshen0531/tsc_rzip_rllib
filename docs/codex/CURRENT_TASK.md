@@ -3091,3 +3091,49 @@ continuous optimizer, or gate relaxation is allowed. A pass authorizes only a
 fresh-identity real-TSC sentinel over all 54 S24 failure contexts with the
 prospective 0.24 online cancellation margin; the full campaign, MPC, expert
 data, BC, DAgger, and RL remain unauthorized.
+
+## 51. Final T13S24D1R1 result and active T13S24D1R2 task
+
+S24D1R1 completed its frozen zero-TSC search from installed checkpoint
+`8486837`. Independent server-side parsing and byte/hash assertions reproduced
+the saved result:
+
+```text
+selected amplitudes                              ++-- 0.290 / +--+ 0.360
+issue / cancellation gates                         3840 / 3840 each
+finite constructions / central signs                 7680 / 1280
+global rank contexts / slot-rank blocks                  40 / 160
+requested global / maximum slot condition      2.03646753 / 1.44
+selected unique sentinel specifications                    54 / 54
+new raw / snapshots / Ray / TSC / plant / controller      all zero
+route       GEOMETRY_RESTORING_AMPLITUDE_SEARCH_PASS_REAL_SENTINEL_REQUIRED
+```
+
+The immediately preceding grid points, 0.285 and 0.355, each failed all 960
+occurrences only on the unchanged off-basis cap; the selected points passed
+all original gates. This is a finite static construction PASS, not plant,
+restart-control, model, MPC, or robustness evidence. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R1_FORENSIC_REPORT.md
+```
+
+Independent inspection also found a metadata-only generator defect before any
+sentinel execution: the authoritative stage/campaign/controller fields say
+D1R2, but several opaque experiment/path/package label strings retain the
+older hard-coded `s24d2/contracted` token. The 54 identities are unique and
+the selected snapshots, tasks, actions, timing, gates, and forbidden-input
+semantics are unchanged. The completed D1R1 artifacts remain immutable.
+
+The active task is to freeze Stage4.2R3c3T13S24D1R2 before implementation.
+It must deterministically normalize only those stage-derived identity labels,
+prove all scientific fields unchanged, and then execute all 54 selected
+trajectories with a fresh TSC process and causal controller. Every trajectory
+must reach its full 35/37-state horizon, execute all four issue/cancel pairs,
+pass the unchanged 0.25 action safety cap plus the prospective 0.24 online
+cancellation margin, and pass restart, calibration, causality, Card15,
+current, exact-zero, no-label, raw, snapshot, and manifest gates.
+
+A D1R2 pass authorizes only a separately frozen new-identity full replacement
+sequential transition-identification campaign. It does not authorize a
+transition MPC, expert data, BC, DAgger, or RL.

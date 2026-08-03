@@ -537,6 +537,23 @@ required afterward. A pass can authorize only a new-identity real-TSC sentinel
 over all 54 S24 failure contexts, still with the prospective 0.24 cancellation
 margin. All later MPC and RL-roadmap gates remain unchanged.
 
+S24D1R1 then passed its frozen zero-TSC search. The first all-occurrence
+feasible amplitudes were `++--=0.290` and `+--+=0.360`; the complete 7,680
+construction replay passed every issue, cancellation, symmetry, rank,
+condition, and novelty gate. It selected 54 unique real-TSC sentinel specs.
+No raw, TSC, plant, controller, model, or MPC ran.
+
+Independent inspection found a metadata-only hard-coded naming defect in the
+selected table: authoritative stage/campaign/controller fields are D1R2, but
+opaque experiment/path/package labels retain an older `s24d2/contracted`
+token. The selected contexts, snapshots, schedules, amplitudes, timing, gates,
+and controller-visible information are unaffected, and no sentinel has yet
+run. The active D1R2 design must freeze a deterministic identity-only
+normalization and prove scientific-field equality before executing the 54
+fresh TSC/controller trajectories with the added 0.24 online cancellation
+margin. A pass may authorize only a new full identification campaign; MPC and
+all expert/RL work remain blocked.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:
