@@ -59,7 +59,7 @@
     "installed_project_complete_test_suite_required": true,
     "server_virtualenv_python_only": true
   },
-  "declared_file_count": 525,
+  "declared_file_count": 527,
   "file_inventory": [
     "AGENTS.md",
     "PACKAGE_MANIFEST.json",
@@ -154,6 +154,7 @@
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1_contracted_amplitude_preflight.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel_forensics.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r3_causal_split_return_preflight.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2_quantized_observability_audit.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2r1_readback_residual_forensics.py",
@@ -486,6 +487,7 @@
     "tests/test_stage4_2r3c3t13s24d1_contracted_amplitude_preflight.py",
     "tests/test_stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "tests/test_stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
+    "tests/test_stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
     "tests/test_stage4_2r3c3t13s24d1r3_causal_split_return_preflight.py",
     "tests/test_stage4_2r3c3t13s2_quantized_observability_audit.py",
     "tests/test_stage4_2r3c3t13s2r1_readback_residual_forensics.py",
