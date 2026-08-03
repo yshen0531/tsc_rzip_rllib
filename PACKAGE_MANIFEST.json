@@ -1,43 +1,49 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.2R3c3T13S22",
-  "run_name": "stage4_2r3c3t13s22_full_horizon_affine_authority",
-  "campaign_identity": "full_horizon_state10_four_direction_affine_authority_v1",
-  "controller_revision": "none_read_only_affine_authority_discriminator",
-  "package_revision": "r42r3c3t13s22_full_horizon_affine_authority_v1",
-  "source_stage": "Authenticated completed Stage4.2R3c3T13S21 run 20260803_024821_98dc353 with all 360 raw trajectories read in place.",
+  "stage": "Stage4.2R3c3T13S23",
+  "run_name": "stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight",
+  "campaign_identity": "sequential_four_knot_hadamard_card15_lattice_preflight_v1",
+  "controller_revision": "none_read_only_exact_card15_schedule_replay",
+  "package_revision": "r42r3c3t13s23_sequential_hadamard_lattice_preflight_v1",
+  "source_stage": "Authenticated completed Stage4.2R3c3T13S21 run 20260803_024821_98dc353 and final Stage4.2R3c3T13S22 audit 20260803_080437, read in place.",
   "source_controller_revision": "cumulative_exact_card15_calibration_probe_v42r3c3t13s21_v1",
-  "source_package_revision": "r42r3c3t13s21_cumulative_exact_card15_pooled_observer_campaign_v1",
-  "purpose": "Read-only deterministic full-horizon bounded four-direction affine authority discriminator before any combination sentinel, sequential model, real MPC, or learning stage.",
+  "purpose": "Read-only exact-Card15 replay of a frozen four-knot rank-16 Hadamard action schedule before any sequential plant-response campaign or model.",
   "campaigns": {
     "authenticated_s21_raw": 360,
     "contexts": 40,
-    "baselines": 40,
-    "signed_probes": 320,
-    "affine_coefficients_per_context": 4,
+    "sequence_rows_per_context": 24,
+    "issue_constructions": 3840,
+    "cancellation_constructions": 3840,
     "new_real_tsc_rollouts": 0,
     "new_snapshots": 0,
     "real_controller_rollouts": 0,
     "real_mpc_rollouts": 0
   },
   "analysis_contract": {
-    "ordered_directions": [
-      "mode0_coil8_component",
+    "ordered_qr_directions": [
       "mode0_without_coil8",
+      "mode0_coil8_component",
       "mode1",
       "mode2"
     ],
-    "coefficient_bounds": [
-      -1.0,
-      1.0
+    "issue_steps": [
+      10,
+      13,
+      16,
+      19
     ],
-    "per_step_coefficients_allowed": false,
-    "direction_rescaling_allowed": false,
-    "new_basis_allowed": false,
-    "exact_existing_formal_metric_required": true,
-    "reported_raw_formal_reproduction_required": true,
-    "independent_forward_evaluation_required": true,
-    "even_residual_is_diagnostic_not_primary_gate": true
+    "cancel_steps": [
+      11,
+      14,
+      17,
+      20
+    ],
+    "coordinate_amplitude": 0.25,
+    "sequence_matrix": "H16 rows 0..15 plus negatives of rows 0..7",
+    "required_global_rank": 16,
+    "maximum_normalized_condition": 3.0,
+    "exact_stored_center_cancellation_only": true,
+    "plant_response_simulated": false
   },
   "formal_timing_contract": {
     "normal_arrival_deadline_ms": 250,
@@ -47,8 +53,7 @@
     "arrival_deadline_expansion_allowed": false
   },
   "scientific_scope": {
-    "read_only_retrospective_model_class_discriminator": true,
-    "affine_combination_assumed_physically_realizable": false,
+    "read_only_action_space_preflight": true,
     "real_mpc_executed": false,
     "global_plant_reachability_claimed": false,
     "hidden_history_robustness_claimed": false,
@@ -66,7 +71,7 @@
     "compact_audits_only_downloaded": true,
     "installed_project_complete_test_suite_required": true
   },
-  "declared_file_count": 437,
+  "declared_file_count": 447,
   "file_inventory": [
     "AGENTS.md",
     "PACKAGE_MANIFEST.json",
@@ -121,6 +126,7 @@
     "configs/stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign_370ms.json",
     "configs/stage4_2r3c3t13s21_cumulative_exact_card15_pooled_observer_campaign_370ms.json",
     "configs/stage4_2r3c3t13s22_full_horizon_affine_authority_v1.json",
+    "configs/stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight_v1.json",
     "configs/stage4_2r3c3t13s4_lattice_transition_holdout_370ms.json",
     "configs/stage4_2r3c3t13s5_lattice_native_split_holdout_370ms.json",
     "configs/stage4_2r3c3t13s9_unified_postqueue_q1_identification_370ms.json",
@@ -144,6 +150,7 @@
     "docs/codex/audit_tools/stage4_2r3c3t13s12_causal_natural_history_observer_preflight.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s1_transition_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s22_full_horizon_affine_authority.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2_quantized_observability_audit.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2r1_readback_residual_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s6_immediate_effect_audit.py",
@@ -188,7 +195,9 @@
     "docs/codex/reports/STAGE4_2R3C3T13S20_FORENSIC_REPORT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S21_CUMULATIVE_EXACT_CLOSURE_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S21_FORENSIC_REPORT.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S22_FORENSIC_REPORT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S22_FULL_HORIZON_AFFINE_AUTHORITY_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S23_SEQUENTIAL_HADAMARD_LATTICE_PREFLIGHT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S4_LATTICE_TRANSITION_HOLDOUT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S5_LATTICE_NATIVE_SPLIT_HOLDOUT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S6_IMMEDIATE_EFFECT_REINTERPRETATION_DESIGN.md",
@@ -260,6 +269,10 @@
     "run_stage4_2r3c3t13s22_nohup.sh",
     "run_stage4_2r3c3t13s22_offline.sh",
     "run_stage4_2r3c3t13s22_verify_package.sh",
+    "run_stage4_2r3c3t13s23_common.sh",
+    "run_stage4_2r3c3t13s23_nohup.sh",
+    "run_stage4_2r3c3t13s23_offline.sh",
+    "run_stage4_2r3c3t13s23_verify_package.sh",
     "run_stage4_2r3c3t13s9_native.sh",
     "run_stage4_2r3c3t13s9_nohup.sh",
     "run_stage4_2r3c3t13s9_offline.sh",
@@ -328,6 +341,7 @@
     "scripts/stage4_2r3c3t13s21_cumulative_exact_card15_pooled_observer_campaign.py",
     "scripts/stage4_2r3c3t13s21_shell_common.sh",
     "scripts/stage4_2r3c3t13s22_shell_common.sh",
+    "scripts/stage4_2r3c3t13s23_shell_common.sh",
     "scripts/stage4_2r3c3t13s4_lattice_transition_holdout.py",
     "scripts/stage4_2r3c3t13s4_server_postprocess.py",
     "scripts/stage4_2r3c3t13s4_shell_common.sh",
@@ -409,6 +423,7 @@
     "tests/test_stage4_2r3c3t13s20_dynamic_exact_card15_pooled_observer_campaign.py",
     "tests/test_stage4_2r3c3t13s21_cumulative_exact_card15_pooled_observer_campaign.py",
     "tests/test_stage4_2r3c3t13s22_full_horizon_affine_authority.py",
+    "tests/test_stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight.py",
     "tests/test_stage4_2r3c3t13s2_quantized_observability_audit.py",
     "tests/test_stage4_2r3c3t13s2r1_readback_residual_forensics.py",
     "tests/test_stage4_2r3c3t13s3_quantized_causal_tube_interface.py",
