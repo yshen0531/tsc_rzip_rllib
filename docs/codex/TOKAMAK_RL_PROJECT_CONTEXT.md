@@ -521,6 +521,22 @@ fresh-identity real-TSC sentinel. A D1 pass authorizes only that sentinel. The
 full replacement campaign, transition MPC, robustness roadmap, expert data,
 BC, DAgger, and bounded residual RL remain unauthorized.
 
+S24D1 then completed its zero-TSC fixed-candidate replay. Source
+authentication passed, all 3,840 cancellations and all rank/condition gates
+passed, but only 1,920/3,840 issue gates passed. The 1,920 failures were exactly
+the contracted `++--` and `+--+` blocks at 0.225: every one violated the
+unchanged relative off-basis cap and 960 also violated the unchanged cosine
+floor. No raw, TSC, plant, controller, or MPC ran, and no sentinel was
+authorized.
+
+The active stage is the separately frozen zero-TSC S24D1R1 geometry-restoring
+search. It keeps the two already-safe patterns at 0.25 and searches the other
+two independently over the Decimal grid 0.225..0.500 by 0.005, selecting the
+first amplitude that passes every original static gate. A complete replay is
+required afterward. A pass can authorize only a new-identity real-TSC sentinel
+over all 54 S24 failure contexts, still with the prospective 0.24 cancellation
+margin. All later MPC and RL-roadmap gates remain unchanged.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:

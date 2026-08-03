@@ -3054,3 +3054,40 @@ must stop. A pass authorizes only Stage4.2R3c3T13S24D2 real-TSC safety
 sentinel execution with the added prospective 0.24 online cancellation margin.
 It does not authorize a full campaign, transition MPC, expert data, BC,
 DAgger, or RL.
+
+## 50. Final T13S24D1 result and active T13S24D1R1 task
+
+S24D1 authenticated the complete source boundary and replayed all 7,680
+zero-TSC constructions. Its fixed `0.25/0.25/0.225/0.225` map failed:
+
+```text
+source applicability                                      pass
+issue gates                                         1920 / 3840
+cancellation gates                                  3840 / 3840
+central-sign checks                                 1280 / 1280
+rank-16 contexts / rank-4 slot blocks                  40 / 160
+new raw / Ray / gotsc / TSC / plant / controller         all zero
+route        CONTRACTED_AMPLITUDE_PREFLIGHT_FAIL_REDESIGN_REQUIRED
+```
+
+All 1,920 issue failures were `++--` or `+--+` at 0.225. Every one failed
+relative off-basis residual and 960 also failed desired/applied current cosine.
+The active-coordinate, action, current, cancellation, finite, rank, condition,
+and novelty gates passed. This is a real static schedule-design failure, not a
+runtime, raw, restart, control, or reporting result. No sentinel was authorized.
+
+The active stage is the prospectively frozen zero-TSC S24D1R1 design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R1_GEOMETRY_RESTORING_AMPLITUDE_SEARCH_DESIGN.md
+```
+
+It keeps `++++` and `+-+-` at 0.25 and searches `++--` then `+--+`
+independently on the exact Decimal grid 0.225 through 0.500 in 0.005 steps.
+The first amplitude passing all 960 unchanged issue gates is selected for each
+pattern, followed by one complete all-context replay. No grid refinement,
+continuous optimizer, or gate relaxation is allowed. A pass authorizes only a
+fresh-identity real-TSC sentinel over all 54 S24 failure contexts with the
+prospective 0.24 online cancellation margin; the full campaign, MPC, expert
+data, BC, DAgger, and RL remain unauthorized.
