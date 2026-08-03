@@ -3137,3 +3137,17 @@ current, exact-zero, no-label, raw, snapshot, and manifest gates.
 A D1R2 pass authorizes only a separately frozen new-identity full replacement
 sequential transition-identification campaign. It does not authorize a
 transition MPC, expert data, BC, DAgger, or RL.
+
+The D1R2 design is now frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R2_REAL_TSC_SAFETY_SENTINEL_DESIGN.md
+```
+
+It fixes the ordered normalized-spec digest
+`50832fadb244bbd338bd7c5cd5f9ff136eedce498d920f416458516d7655648f`,
+54 fresh one-actor/one-TSC/one-controller rollouts, 20 normal and 34 weak-slew
+formal horizons, all original S24 gates, and the additional fail-closed 0.24
+online cancellation margin. The independent raw forensic implementation must
+also be frozen before any response outcome opens.
