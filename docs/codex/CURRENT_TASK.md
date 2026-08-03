@@ -3240,3 +3240,15 @@ manifest, and complete-log gates.
 A D1R4 pass may authorize only a separately frozen full replacement
 sequential transition-identification campaign. It does not authorize a
 transition MPC, expert data, BC, DAgger, or RL.
+
+The D1R4 design is now frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R4_REAL_TSC_SPLIT_RETURN_SENTINEL_DESIGN.md
+```
+
+It fixes nine fresh 35-step authentic rollouts, nine actors, three restart
+snapshots, the exact D1R3 candidate digest, step-18 split start, one authentic
+plant advance, step-19 causal exact-center finish, full raw/log/manifest gates,
+and an independent raw implementation frozen before response outcomes.
