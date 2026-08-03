@@ -29,7 +29,7 @@ STAGE = "Stage4.2R3c3T13S24D1R2"
 RUN_NAME = "stage4_2r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel"
 CAMPAIGN_IDENTITY = "geometry_restored_amplitude_safety_sentinel_v1"
 CONTROLLER_REVISION = "sequential_amplitude_coded_card15_probe_v42r3c3t13s24d1r2_v1"
-PACKAGE_REVISION = "r42r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel_v1"
+PACKAGE_REVISION = "r42r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel_v2"
 N_COILS = 14
 
 
@@ -541,6 +541,33 @@ def _selected_context_table(specs: Sequence[Mapping[str, Any]]) -> list[dict[str
     return [by_key[key] for key in sorted(by_key)]
 
 
+def _selected_snapshot_audit(
+    contexts: Sequence[Mapping[str, Any]],
+) -> dict[str, Any]:
+    """Re-aggregate the inherited source audit for D1R2's selected subset."""
+    source_audit = s24.s21._snapshot_audit(contexts)
+    rows = list(source_audit.get("rows") or [])
+    pass_count = sum(bool(row.get("passed")) for row in rows)
+    expected = 18
+    passed = bool(
+        len(contexts) == expected
+        and len(rows) == expected
+        and pass_count == expected
+        and all(bool(row.get("passed")) for row in rows)
+    )
+    return {
+        "expected": expected,
+        "actual": len(rows),
+        "pass_count": pass_count,
+        "passed": passed,
+        "rows": rows,
+        "source_helper_expected": source_audit.get("expected"),
+        "source_helper_actual": source_audit.get("actual"),
+        "source_helper_pass_count": source_audit.get("pass_count"),
+        "source_helper_passed": source_audit.get("passed"),
+    }
+
+
 def _prepare_dirs(paths: Paths) -> None:
     for path in (
         paths.run_dir,
@@ -559,7 +586,7 @@ def prepare_offline(ctx: Context) -> dict[str, Any]:
         raise ValueError("D1R2 offline requires a fresh empty run identity")
     auth, specs = _authenticate_d1r1(ctx)
     contexts = _selected_context_table(specs)
-    snapshots = s24.s21._snapshot_audit(contexts)
+    snapshots = _selected_snapshot_audit(contexts)
     if not snapshots.get("passed") or int(snapshots.get("pass_count", -1)) != 18:
         raise ValueError(ctx.cfg["routes"]["offline_fail"])
     package = s24.s21._package_fingerprint()

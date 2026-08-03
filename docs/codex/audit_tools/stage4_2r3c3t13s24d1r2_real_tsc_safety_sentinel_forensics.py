@@ -151,7 +151,7 @@ def run_forensics(ctx: stage.Context, complete_log: Path) -> dict[str, Any]:
     manifest = stage._read_json(ctx.paths.manifest)
     final = stage._read_json(ctx.paths.final)
     context_rows = stage._selected_context_table(specs)
-    snapshots = stage.s24.s21._snapshot_audit(context_rows)
+    snapshots = stage._selected_snapshot_audit(context_rows)
     state_map = stage.s24.s21.s13._source_state_map(
         ctx.base_s24_ctx.base_ctx.base_ctx.base_ctx
     )

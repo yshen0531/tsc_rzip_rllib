@@ -4,7 +4,7 @@
   "run_name": "stage4_2r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel",
   "campaign_identity": "geometry_restored_amplitude_safety_sentinel_v1",
   "controller_revision": "sequential_amplitude_coded_card15_probe_v42r3c3t13s24d1r2_v1",
-  "package_revision": "r42r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel_v1",
+  "package_revision": "r42r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel_v2",
   "selection_status": "frozen_after_d1r1_pass_before_d1r2_implementation_or_tsc",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R2_REAL_TSC_SAFETY_SENTINEL_DESIGN.md",
   "design_document_sha256": "34107fd77ff709de03e91566619951b0b649eb0073fb9bd96551f67033fc50ae",

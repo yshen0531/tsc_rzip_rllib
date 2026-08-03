@@ -105,6 +105,35 @@ class Stage42R3C3T13S24D1R2Tests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     stage._validate_config(value, CONFIG)
 
+    def test_selected_snapshot_audit_reaggregates_inherited_subset(self):
+        contexts = [{"context": index} for index in range(18)]
+        inherited = {
+            "expected": 40,
+            "actual": 18,
+            "pass_count": 18,
+            "passed": False,
+            "rows": [{"passed": True, "index": index} for index in range(18)],
+        }
+        with mock.patch.object(
+            stage.s24.s21, "_snapshot_audit", return_value=inherited
+        ):
+            audit = stage._selected_snapshot_audit(contexts)
+        self.assertTrue(audit["passed"])
+        self.assertEqual(audit["expected"], 18)
+        self.assertEqual(audit["actual"], 18)
+        self.assertEqual(audit["pass_count"], 18)
+        self.assertEqual(audit["source_helper_expected"], 40)
+        self.assertFalse(audit["source_helper_passed"])
+
+        inherited["rows"][7]["passed"] = False
+        inherited["pass_count"] = 17
+        with mock.patch.object(
+            stage.s24.s21, "_snapshot_audit", return_value=inherited
+        ):
+            failed = stage._selected_snapshot_audit(contexts)
+        self.assertFalse(failed["passed"])
+        self.assertEqual(failed["pass_count"], 17)
+
     def _cancel_controller(self, increment: float):
         controller = object.__new__(stage.GeometryRestoredSafetySentinelController)
         controller._last_failed_event = None
