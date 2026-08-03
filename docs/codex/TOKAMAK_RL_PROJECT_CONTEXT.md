@@ -615,6 +615,15 @@ fixed global sequence/schedule redesign that preserves all geometry, action,
 current, and formal-timing gates. MPC, expert data, BC, DAgger, and RL remain
 blocked.
 
+The next design, D1R7, is frozen as a zero-new-TSC fixed temporal-basis
+substitution. Only the `++--=0.290` direction receives the orthogonal timing
+basis `++++, +--+, -+-+, --++`; the other directions retain their standard H4
+bases. The complete 24-row matrix and eight central-sign pairs are fixed
+before implementation. D1R7 must authenticate the S24/D1R1/D1R2/D1R6 chain,
+replay all original static gates in 40 contexts, and produce exactly 108
+prospective specs over six changed/new rows and 18 source contexts. A pass
+permits only a separately frozen real safety-sentinel design.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:

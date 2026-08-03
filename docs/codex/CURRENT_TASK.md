@@ -3438,3 +3438,19 @@ placement offline, but the eventual controller may not select from
 pair/history/outcome labels. A pass may authorize only a separately frozen
 fresh-identity real safety sentinel. It does not authorize the full campaign,
 transition MPC, expert data, BC, DAgger, or RL.
+
+The D1R7 candidate is now frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R7_TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_DESIGN.md
+```
+
+It changes only the direction-2 temporal basis to
+`++++, +--+, -+-+, --++`, retains the other three H4 temporal bases, and fixes
+eight explicit central-sign pairs. Its requested matrix digest is
+`c4430a13b679ad8dcceb72c259051a5eebad03da47d86816d46c4385cd811d77`.
+D1R7 must replay all 7,680 static constructions in 40 contexts and freeze only
+the six changed/new rows across the 18 D1R2 contexts, yielding 108 prospective
+D1R8 specs. It executes zero TSC. Even a double byte-identical pass authorizes
+only a separate D1R8 design.

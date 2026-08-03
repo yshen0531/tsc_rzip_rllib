@@ -902,3 +902,11 @@ and discriminator. It must preserve all geometry, action/current, rank,
 exactness, forbidden-input, and formal-timing gates and may authorize at most
 a fresh real safety sentinel. The full replacement campaign, MPC, expert
 data, BC, DAgger, and RL remain blocked.
+
+The D1R7 design has now been frozen before implementation in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R7_TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_DESIGN.md`.
+It fixes the direction-2 timing basis `++++, +--+, -+-+, --++`, requested
+matrix digest
+`c4430a13b679ad8dcceb72c259051a5eebad03da47d86816d46c4385cd811d77`,
+and 108 prospective specs. D1R7 is offline-only and may authorize only a
+separate D1R8 design after double deterministic primary/independent replay.

@@ -652,8 +652,15 @@ The route is unchanged:
 This is a genuine recursive action-schedule/controller-design failure, not a
 formal-control or global plant-reachability result. Formal tracking was not
 run to completion. The active route is a zero-new-TSC fixed global schedule
-redesign/discriminator before any fresh sentinel. The full replacement
-campaign, MPC, expert data, BC, DAgger, and residual RL remain blocked.
+redesign/discriminator before any fresh sentinel.
+
+The D1R7 design is now prospectively frozen. It replaces only the failed
+direction-2 temporal basis with `++++, +--+, -+-+, --++`, fixes the complete
+24-by-16 matrix and eight central-sign pairs, replays the unchanged D1R1
+static gates in all 40 contexts, and may output only 108 candidate specs for a
+separately designed real sentinel. D1R7 itself must execute zero TSC. The full
+replacement campaign, MPC, expert data, BC, DAgger, and residual RL remain
+blocked.
 
 ## 10. Required validation before server execution
 
