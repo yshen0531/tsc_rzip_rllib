@@ -5,7 +5,7 @@
   "campaign_identity": "geometry_restored_amplitude_safety_sentinel_v1",
   "controller_revision": "sequential_amplitude_coded_card15_probe_v42r3c3t13s24d1r2_v1",
   "package_revision": "r42r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel_v2",
-  "implementation_checkpoint": "6dc7324",
+  "implementation_checkpoint": "9a8ce4d",
   "source_stage": "Immutable successful S24D1R1 output, complete S24 boundary, and authenticated S21/S23R1 sources.",
   "source_controller_revision": "sequential_amplitude_coded_card15_probe_v42r3c3t13s24_v1",
   "purpose": "Execute the prospectively frozen 54-case real-TSC safety sentinel with all original S24 gates and an added 0.24 online cancellation margin.",
