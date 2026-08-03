@@ -3200,3 +3200,43 @@ for development replay, must preserve the 0.290 geometry floor and exact
 Card15 telescoping net zero, and must keep each returned action inside a new
 prospective sub-cap and all unchanged current/safety gates. A pass may
 authorize only a fresh real-TSC sentinel over the nine failed contexts.
+
+## 53. Final T13S24D1R3 result and active T13S24D1R4 task
+
+D1R3 completed two byte-identical zero-new-TSC causal replays from final
+package checkpoint `93afef5`. It authenticated and strictly parsed the exact
+54-file D1R2 raw boundary and independently reproduced the result:
+
+```text
+source action / trace prefixes exactly reproduced          54 / 54 each
+unchanged full-success paths / structured-stop prefixes     45 / 9
+saved direct failure actions reproduced                      9 / 9
+split-start constructions and frozen gates                   9 / 9
+split-start incremental normalized action             0.175 exactly
+maximum split-start total action / current use   0.0349527 / 0.38235
+new raw / snapshots / Ray / gotsc / TSC / plant              all zero
+route       CAUSAL_SPLIT_RETURN_PREFLIGHT_PASS_REAL_SENTINEL_REQUIRED
+```
+
+The split cases remain exactly task step 18, slot 3, sequence rows 6, 10, and
+18 in the same three D1R2 contexts. D1R3 validates only the causal
+intermediate construction at the recorded failure state. It has no state-19
+plant response and makes no split-finish or formal-control claim. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R3_FORENSIC_REPORT.md
+```
+
+The active task is to prospectively freeze and then execute a new-identity
+Stage4.2R3c3T13S24D1R4 nine-case authentic real-TSC safety sentinel. It must
+use one fresh TSC process and fresh causal controller per case, apply the
+frozen split start at step 18, advance the plant once, and finish to the exact
+stored center at step 19 with incremental action at most 0.24, original cap
+at most 0.25, current utilization at most 0.55, no saturation/clipping, exact
+Card15 reproduction, exact Decimal telescope, and all unchanged restart,
+calibration, causality, forbidden-input, full-horizon, raw, snapshot,
+manifest, and complete-log gates.
+
+A D1R4 pass may authorize only a separately frozen full replacement
+sequential transition-identification campaign. It does not authorize a
+transition MPC, expert data, BC, DAgger, or RL.

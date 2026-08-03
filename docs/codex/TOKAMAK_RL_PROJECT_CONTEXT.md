@@ -571,6 +571,21 @@ route is a fresh zero-new-TSC causal two-step exact-return cancellation
 preflight, followed only on pass by a nine-context real-TSC sentinel. MPC and
 the robustness/RL roadmap remain blocked.
 
+D1R3 then completed its zero-new-TSC causal split-return preflight twice with
+byte-identical prospective outputs. All 54 D1R2 source action and controller
+trace prefixes reproduced exactly. The 45 full paths remained direct and
+unchanged; all nine structured-stop prefixes reproduced the saved failed
+direct cancellation and produced an exact Card15 intermediate at precisely
+0.175 incremental normalized action. Independent raw/output recomputation
+passed. D1R3 ran no Ray, `gotsc`, TSC, reset, plant step, or snapshot.
+
+This is a finite split-start construction PASS only. State 19 and the exact
+stored-center finish are unobserved, so D1R3 is not a controller, formal
+control, model, MPC, robustness, or long-hold PASS. The active stage is a
+separately preregistered nine-case D1R4 authentic real-TSC safety sentinel.
+Only D1R4 may test the causal state-19 finish and full horizon. The full
+replacement campaign and every MPC/expert/RL stage remain blocked.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:

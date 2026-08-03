@@ -623,6 +623,19 @@ fresh real-TSC sentinel over the nine failed contexts. The full replacement
 campaign, transition MPC, expert data, BC, DAgger, and residual RL remain
 blocked.
 
+Stage4.2R3c3T13S24D1R3 then authenticated all 54 immutable D1R2 raw files
+and completed two byte-identical causal controller replays with zero new TSC
+or plant advance. All 54 source action and trace prefixes reproduced exactly;
+45 complete paths remained direct and all nine structured-stop prefixes
+produced the frozen exact Card15 split start at exactly 0.175 incremental
+normalized action. Independent server-side raw/output forensics passed.
+
+D1R3 is only a split-start construction PASS. It cannot validate the
+state-19 finish because it advances no plant. The active stage is a separately
+preregistered new-identity D1R4 nine-case authentic real-TSC sentinel. A D1R4
+pass may authorize only a new full replacement transition-identification
+campaign; MPC, expert data, BC, DAgger, and residual RL remain blocked.
+
 ## 10. Required validation before server execution
 
 At minimum, perform and record:
