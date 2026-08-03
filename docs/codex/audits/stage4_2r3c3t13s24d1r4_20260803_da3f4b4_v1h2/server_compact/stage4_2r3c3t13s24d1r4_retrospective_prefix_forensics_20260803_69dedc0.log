@@ -1,0 +1,90 @@
+{
+  "calibration_pass_count": 9,
+  "causality_pass_count": 9,
+  "classification": "retrospective_reporting_only_all_raw_prefix_forensics",
+  "common_prefix_forensic_pass_count": 9,
+  "complete_log_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r4_real_20260803_1804_da3f4b4_v1h2.log",
+  "complete_log_sha256": "ca86693375685e4c6d1d21b37b39c405b79ff3f391a1c888bcca00592d00536d",
+  "d1r3_split_start_exact_count": 9,
+  "direct_cancel_event_count": 27,
+  "execution_package_fingerprint": {
+    "config_sha256": "8b402a48f15b6f5c783719bd7216cda8ae8eea459e5e797c2769e38cd88da683",
+    "file_count": 432,
+    "implementation_sha256": "7e1b29aa3e37d2751946a5c8f04e7f59d19d033b1018ade7bde4dc7719394694",
+    "package_manifest_sha256": "93bde8503a85e6de5138cd60eb92a6a8c2638794350753a2b068a39583064abe",
+    "package_revision": "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h2",
+    "passed": true,
+    "sha256sums_sha256": "a5eb857eb3eba1e921dec5d6cb2da1026af2dc95c4abb07b8945c18a9edc7be0"
+  },
+  "execution_package_fingerprint_passed": true,
+  "execution_package_revision": "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h2",
+  "experiment_passed": false,
+  "experiment_route": "CAUSAL_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED",
+  "failed_split_finish_attempt_count": 9,
+  "failure_action_not_applied_count": 9,
+  "failure_pair_history_counts": [
+    {
+      "count": 3,
+      "history_member": "plus_first",
+      "pair_id": "p5_q2_a0p750_gap4_settle4"
+    },
+    {
+      "count": 3,
+      "history_member": "minus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4"
+    },
+    {
+      "count": 3,
+      "history_member": "plus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4"
+    }
+  ],
+  "failure_sequence_counts": [
+    {
+      "count": 3,
+      "sequence_index": 6
+    },
+    {
+      "count": 3,
+      "sequence_index": 10
+    },
+    {
+      "count": 3,
+      "sequence_index": 18
+    }
+  ],
+  "finish_margin_failure_count": 9,
+  "finish_margin_pass_count": 0,
+  "forbidden_trace_count": 0,
+  "forensic_recomputation_passed": true,
+  "formal_tracking_evaluable_count": 0,
+  "formal_tracking_test_not_run_to_endpoint": true,
+  "full_horizon_success_count": 0,
+  "identity_pass_count": 9,
+  "issue_event_count": 36,
+  "log_authentication_passed": true,
+  "maximum_executed_current_utilization": 0.39045,
+  "maximum_failed_finish_incremental_normalized_action_linf": 0.3540255816777555,
+  "maximum_failed_finish_predicted_current_utilization": 0.38380000000000003,
+  "maximum_unapplied_finish_from_previous_command_linf_diagnostic": 0.11038748045762457,
+  "minimum_failed_finish_incremental_normalized_action_linf": 0.27123165527979626,
+  "original_finish_cap_failure_count": 9,
+  "original_finish_cap_pass_count": 0,
+  "prospective_aggregation_coverage_bug_found": true,
+  "prospective_audit_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r4_runs/stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel_20260803_1802_da3f4b4_v1h2/stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel/analysis/independent_server_forensics.json",
+  "prospective_audit_sha256": "58dc2ac72e59e98a7fc4f496bdc6679b098b9f2a857db9028ce889a32a99688d",
+  "prospective_route_changed": false,
+  "raw_count": 9,
+  "raw_inventory_digest": "9327a301498349eaebdb834d1c0f243bcc1939b5efb5d059ee6d6ec43b036190",
+  "raw_snapshot_or_restart_corruption_found": false,
+  "real_action_schedule_design_failure_found": true,
+  "restart_exact_count": 9,
+  "runtime_or_environment_error_found": false,
+  "schema_version": 1,
+  "source_prefix_action_exact_count": 9,
+  "source_prefix_trace_exact_count": 9,
+  "split_start_event_count": 9,
+  "stage": "Stage4.2R3c3T13S24D1R4",
+  "stage_manifest_sha256": "d008d8f94bf6f5bfebb9ad827d1a801e6e0ffd80a34b6eab03b180225270e6a3",
+  "structured_split_finish_safe_stop_count": 9
+}

@@ -819,3 +819,29 @@ already-good Walsh patterns and `0.50` for the other two, and changes no
 fidelity/action/current/formal gate. S23R1 must pass actual-coordinate replay
 in all 40 contexts before any real sequential identification campaign can be
 designed. S24, MPC, expert data, BC, DAgger, and RL remain unauthorized.
+
+## Current handoff: D1R4 final, D1R5 active
+
+Stage4.2R3c3T13S24D1R4 completed nine authentic real-TSC prefixes from package
+checkpoint `da3f4b4`. All nine exactly restarted, reproduced the D1R2 prefix
+and D1R3 0.175 split start, and advanced the plant once. Every causal state-19
+exact-center finish required intervention 0.2712316553--0.3540255817 and was
+rejected before application by the unchanged 0.24/0.25 gates. There were no
+runtime, raw, snapshot, restart, causality, saturation, or current failures.
+No trajectory reached the formal endpoint, so formal tracking was not run to
+completion rather than failed 0/9.
+
+The prospective audits' success-only aggregate omitted executed structured
+prefix metrics. Reporting-only checkpoint `69dedc0` recomputed restart,
+causality, calibration, source prefix, and split start as 9/9 and left the
+route unchanged:
+
+```text
+CAUSAL_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED
+```
+
+The active stage is the zero-new-TSC D1R5 recursive split-return preflight. It
+is prospectively frozen to use each authenticated state-19 measurement only
+causally, construct another exact 0.175 intermediate, execute no plant step,
+and authorize at most the design of a new real sentinel. Identification, MPC,
+expert data, BC, DAgger, and RL remain unauthorized.

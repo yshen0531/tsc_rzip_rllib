@@ -3252,3 +3252,68 @@ It fixes nine fresh 35-step authentic rollouts, nine actors, three restart
 snapshots, the exact D1R3 candidate digest, step-18 split start, one authentic
 plant advance, step-19 causal exact-center finish, full raw/log/manifest gates,
 and an independent raw implementation frozen before response outcomes.
+
+## 54. Final T13S24D1R4 result and active T13S24D1R5 task
+
+D1R4 package v1h2 completed nine fresh authentic TSC prefixes from checkpoint
+`da3f4b4`. All nine raws strictly parse with exact identity, 20 states, and 19
+executed trace rows. A reporting-only all-raw audit at checkpoint `69dedc0`
+closed the prospective audits' structured-stop aggregation gap without
+changing any raw, controller, gate, route, or experiment identity:
+
+```text
+restart / causality / calibration                         9 / 9 each
+source action / trace prefix exact                        9 / 9 each
+D1R3 step-18 split-start exact                             9 / 9
+issue / direct cancel / split start events             36 / 27 / 9
+step-19 exact-center finish attempts                        9
+finish actions applied / safely rejected                  0 / 9
+0.24 margin pass / fail                                   0 / 9
+original 0.25 cap pass / fail                             0 / 9
+finish intervention range                    0.2712316553--0.3540255817
+maximum executed / predicted current use          0.39045 / 0.3838
+runtime / raw / snapshot / restart errors                     0
+formal endpoint evaluable trajectories                         0
+route          CAUSAL_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED
+```
+
+Every step-18 split start was applied and followed by one finite authentic
+plant advance. At state 19 the exact-center finish candidate passed every gate
+except the frozen intervention increment relative to the new underlying
+baseline. It was rejected before application. Its smaller diagnostic distance
+from the previously executed command is not the preregistered metric and may
+not be substituted after seeing the result.
+
+The prospective audits selected the correct route but reported executed-prefix
+aggregates as zero because their success-only branch excluded structured safe
+stops. The new retrospective audit corrects only those counts. Formal tracking
+is not 0/9 failure; no trajectory reached the endpoint, so the formal test was
+not run to completion. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R4_FORENSIC_REPORT.md
+```
+
+D1R4 is immutable and may not resume. Its raw is development/forensic-only.
+The full replacement campaign, transition MPC, expert data, BC, DAgger, and RL
+remain blocked.
+
+The active task is the prospectively frozen Stage4.2R3c3T13S24D1R5
+zero-new-TSC recursive split-return preflight. It must authenticate all nine
+D1R4 raws and replay their controllers causally through state 19, reproduce the
+rejected direct finish, and replace it only in the new controller identity with
+another exact-Card15 0.175 intermediate. It must preserve every 0.18/0.24/0.25,
+total-action, current, exact Decimal, forbidden-input, and timing gate. It may
+use no state-20 value and may execute no plant step.
+
+The complete frozen design is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R5_RECURSIVE_SPLIT_RETURN_PREFLIGHT_DESIGN.md
+```
+
+A D1R5 pass authorizes only prospective design of a new-identity authentic
+recursive-return sentinel whose exact-center finish boundary is no later than
+task step 22. It does not authorize that run directly or any identification,
+MPC, expert-data, BC, DAgger, or RL work.

@@ -1,0 +1,33 @@
+{
+  "actual": 3,
+  "expected": 3,
+  "pass_count": 3,
+  "passed": true,
+  "rows": [
+    {
+      "failure_reason": "",
+      "history_member": "plus_first",
+      "pair_id": "p5_q2_a0p750_gap4_settle4",
+      "passed": true,
+      "snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_a405911a51d24bfc9d0b/1250ms"
+    },
+    {
+      "failure_reason": "",
+      "history_member": "minus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_66cc71d0d6b03ea3d009/1290ms"
+    },
+    {
+      "failure_reason": "",
+      "history_member": "plus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_eb1dc6434a00c1800afc/1290ms"
+    }
+  ],
+  "source_helper_actual": 3,
+  "source_helper_expected": 40,
+  "source_helper_pass_count": 3,
+  "source_helper_passed": false
+}
