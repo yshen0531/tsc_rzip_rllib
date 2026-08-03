@@ -595,24 +595,33 @@ was not limiting. S22 is final as
 plant steps, snapshots, or controllers, so this is a model-class/authority
 failure, not a real closed-loop or plant-reachability conclusion.
 
-The current zero-new-TSC T13S23 task is prospectively frozen as a sequential
-Hadamard lattice preflight. It replays a fixed 24-sequence, four-direction,
-four-knot exact-Card15 action design over all 40 S21 baselines. It must pass
-3,840 issue and 3,840 exact stored-center cancellation constructions, action
-and current limits, per-slot rank four, global rank 16, normalized condition
-at most 3, and late-slot novelty in every context. S23 runs no plant. A pass
-authorizes only a separately implemented 1,000-rollout sequential
-identification campaign whose transition model and train/calibration/holdout
-boundaries must be frozen before response outcomes open. No S23 route
-authorizes a real MPC, expert data, BC, DAgger, or bounded residual RL.
+S23R1 later passed its static amplitude-coded schedule preflight, but S24's
+real sequential campaign safely stopped 54 trajectories at a 0.50-amplitude
+cancellation. D1's fixed contraction failed static geometry; D1R1 restored
+that geometry with the exact amplitude map:
 
-Do not repair T11 by post-hoc column normalization, threshold relaxation, or
-amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
-the failed T11 response bank, resume R3c4, or enter BC, DAgger, or residual
-RL. Do not launch a full new identification campaign directly from the seven
-T11 condition failures or the T13S1 result. Do not implement or run a new
-real controller until the active transition model route passes its
-independent holdout and a separate real-MPC sentinel is prospectively frozen.
+```text
++++ 0.250 / +-+- 0.250 / ++-- 0.290 / +--+ 0.360
+```
+
+D1R2 then executed the prospectively frozen 54-case real-TSC safety sentinel.
+All 54 raw files strictly parse and all restart, causality, calibration,
+Card15, current, and forbidden-input prefix checks pass. Forty-five reached
+full horizon. Nine stopped safely before applying the task-step-18 slot-3
+`++--=0.290` cancellation: four exceeded only the 0.24 prospective margin and
+five also exceeded the original 0.25 cap. The maximum attempted increment was
+0.2787208138. A reporting-only audit corrected success-only top aggregates to
+216/216 issues, 207 successful cancellations, and nine failed attempts; the
+FAIL route did not change.
+
+D1R2 is frozen as a real sequential cancellation-design failure, not a
+runtime, restart, raw, reporting-route, controller, or plant-unreachability
+result. It may not resume, and its raw is forbidden from model fitting and
+expert data. The active task is a separately frozen zero-new-TSC causal
+two-step exact-return cancellation preflight. A pass may authorize only a
+fresh real-TSC sentinel over the nine failed contexts. The full replacement
+campaign, transition MPC, expert data, BC, DAgger, and residual RL remain
+blocked.
 
 ## 10. Required validation before server execution
 

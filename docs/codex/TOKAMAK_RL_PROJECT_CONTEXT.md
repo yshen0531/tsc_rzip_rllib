@@ -554,6 +554,23 @@ fresh TSC/controller trajectories with the added 0.24 online cancellation
 margin. A pass may authorize only a new full identification campaign; MPC and
 all expert/RL work remain blocked.
 
+D1R2 subsequently completed 54/54 authentic raw trajectories but passed only
+45/54. The other nine stopped safely before the final task-step-18
+`++--=0.290` stored-center cancellation: four violated only the prospective
+0.24 margin and five also exceeded the original 0.25 incremental cap, with a
+maximum attempted increment of 0.2787208138. All 54 prefixes had exact plant
+restart, causal traces, exact calibration, finite TSC execution, and no
+forbidden inputs; the failed actions were not applied. A post-result reporting
+audit corrected prospective top-level event counts from success-only 180 to
+all-prefix 216 issues and 216 cancellation attempts without changing the FAIL
+route. This is a real sequential cancellation-design failure, not runtime,
+restart, corruption, reporting-route, or plant-unreachability evidence.
+
+The full replacement campaign remains unauthorized. The next development
+route is a fresh zero-new-TSC causal two-step exact-return cancellation
+preflight, followed only on pass by a nine-context real-TSC sentinel. MPC and
+the robustness/RL roadmap remain blocked.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:

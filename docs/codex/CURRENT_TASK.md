@@ -3151,3 +3151,52 @@ It fixes the ordered normalized-spec digest
 formal horizons, all original S24 gates, and the additional fail-closed 0.24
 online cancellation margin. The independent raw forensic implementation must
 also be frozen before any response outcome opens.
+
+## 52. Final T13S24D1R2 result and active cancellation-redesign task
+
+D1R2 package v2 repaired only a pre-TSC selected-snapshot aggregation bug.
+The successful zero-plant preflight authenticated all 18 selected snapshots
+and 54 normalized specs, after which the same run identity executed all 54
+fresh real-TSC rollouts. Independent raw and complete-log forensics found:
+
+```text
+raw strict parse / exact identity                    54 / 54
+full-horizon successes / structured safe stops       45 / 9
+restart / causality / calibration                    54 / 54 each
+issue gates                                         216 / 216
+successful applied cancellation gates               207 / 207
+failed, unapplied cancellation attempts                    9
+0.24 cancellation margin pass / fail                 207 / 9
+original 0.25 cancellation cap pass / fail           211 / 5
+maximum successful / attempted increment    0.2162433 / 0.2787208
+maximum current utilization                              0.392
+runtime / raw / snapshot / restart errors                    0
+route     GEOMETRY_RESTORED_SENTINEL_ACTION_MARGIN_FAIL_REDESIGN_REQUIRED
+```
+
+All nine failures were the task-step-18 slot-3 `++--=0.290` exact-center
+cancellation in sequence rows 6, 10, and 18: three in p5 plus-first and three
+in each p9 history member. The failed action was recorded before return and
+was not applied; every partial raw contains 19 states and 18 trace rows.
+
+The prospective audits selected the correct route but their top aggregates
+omitted the executed prefixes of structured failures. A reporting-only audit
+authenticated the frozen v2 package and all raw, corrected the totals above,
+and left state, verdict, route, raw, and experiment semantics unchanged.
+
+This is a genuine sequential action-schedule design failure. D1R1's static
+construction used a frozen S21 baseline and did not represent the evolved
+plant/feedback center at the fourth cancellation. Full report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R2_FORENSIC_REPORT.md
+```
+
+D1R2 is immutable and may not resume. Its raw is development/forensic-only.
+The full replacement identification campaign and every MPC/RL stage remain
+blocked. The active next task is a separately frozen zero-new-TSC causal
+two-step exact-return cancellation preflight. It may use the current raw only
+for development replay, must preserve the 0.290 geometry floor and exact
+Card15 telescoping net zero, and must keep each returned action inside a new
+prospective sub-cap and all unchanged current/safety gates. A pass may
+authorize only a fresh real-TSC sentinel over the nine failed contexts.
