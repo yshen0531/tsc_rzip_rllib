@@ -2904,3 +2904,14 @@ change the immutable formal timing contract, or claim plant response. No real
 identification campaign may begin until the new frozen preflight passes and
 is independently reproduced. MPC, expert data, BC, DAgger, and bounded
 residual RL remain prohibited.
+
+The bounded D1 development search is frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S23D1_SCHEDULE_REDESIGN_SEARCH.md
+```
+
+D1 evaluates only the fixed ternary-template, amplitude, knot, and seeded
+schedule space in that document. A found candidate authorizes only a separate
+S23R1 zero-TSC design and replay; a D1 result never authorizes S24 directly.
