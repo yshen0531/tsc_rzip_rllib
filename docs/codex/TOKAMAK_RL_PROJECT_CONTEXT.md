@@ -457,13 +457,21 @@ unchanged action, current, and geometry gate.  Applying it changes the
 controller source and failed-path physical action, so S20 is frozen as an
 excitation-sequence design FAIL and cannot resume.
 
-The active task is the prospectively frozen 360-rollout
-Stage4.2R3c3T13S21 cumulative-exact Card15 campaign.  It retains S20's
-12/4/4 whole-pair split and pooled observer gates, uses nearest dynamic-exact
-events for steps 0--6, and requires the exact negative of the causal running
-net at step 7 under a fresh controller/campaign identity.  A complete pass can
-authorize only offline finite-horizon robust-transport MPC feasibility.  No
-controller campaign, expert data, BC, DAgger, or RL is yet authorized.
+Stage4.2R3c3T13S21 then completed all 360 authentic trajectories under the
+fresh cumulative-exact controller identity. Raw/restart/causality/Card15,
+whole-pair OOF, model freeze, tube freeze, fresh holdout, and independent
+server recomputation all passed. The fresh holdout local response-set result
+is 64/64 with maximum scaled point error `0.0108949379`. This is a finite
+local model PASS only. Formal diagnostics remained 16/40 for baselines, and
+none of the eight real signed state-10 probes repaired any of the 24 failing
+contexts.
+
+The active task is the zero-new-TSC Stage4.2R3c3T13S22 full-horizon affine
+authority discriminator. It tests the frozen bounded span of the four
+measured state-10 odd responses under the exact unchanged formal metric. A
+pass can authorize only a small real interaction/combination sentinel; a
+failure requires sequential state-conditioned transition identification.
+No real MPC, expert data, BC, DAgger, or RL is yet authorized.
 
 ## 7. Medium-term objectives
 

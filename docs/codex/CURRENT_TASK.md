@@ -2747,3 +2747,52 @@ Implement, validate, deploy, and run S21 only through its frozen phased gates.
 A complete holdout pass permits only offline robust-transport MPC feasibility
 and a separately preregistered real-MPC experiment. Expert data, BC, DAgger,
 and bounded residual RL remain prohibited.
+
+## 44. Final T13S21 result and active T13S22 task
+
+T13S21 completed its prospectively phased campaign at deployed checkpoint
+`98dc353`. It produced exactly 360 successful real-TSC raw files:
+
+```text
+training / calibration / holdout rollouts              216 / 72 / 72
+raw files / bytes                                  360 / 21,083,271
+raw inventory digest
+  8d5a67944e344b06da89c64625d1e94adc60432db230655ec9250c339e3e50f4
+runtime / restart / raw / reporting errors                      0 / 0 / 0 / 0
+fresh holdout point / containment / cap / joint            64 / 64 / 64 / 64
+maximum fresh-holdout scaled point error                    0.0108949379
+```
+
+The training model was hashed before calibration and the calibrated tube
+before holdout. Independent server raw recomputation reproduced both
+artifacts and the final summary exactly. The final route is:
+
+```text
+CUMULATIVE_EXACT_CARD15_POOLED_OBSERVER_HOLDOUT_PASS_LOCAL_SET_MODEL_ONLY
+```
+
+This is a finite local response-set model PASS, not a real MPC or formal
+control PASS. Retrospective raw/spec-matched route forensics found baseline
+formal control 16/40, measured signed-probe formal control 99/320, and zero
+repairs across all 24 failing contexts. Six passing contexts had at least
+one measured-probe regression. The complete classification is in:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S21_FORENSIC_REPORT.md
+```
+
+The active zero-new-TSC task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S22_FULL_HORIZON_AFFINE_AUTHORITY_DESIGN.md
+```
+
+T13S22 must authenticate all 360 S21 raw files, reproduce all 360 raw formal
+diagnostics, construct the four odd signed full-horizon responses per
+context, and optimize one coefficient vector in `[-1,1]^4` under the exact
+unchanged formal metric. A 40/40 optimistic affine pass authorizes only a
+small separately preregistered real combination sentinel. A failure vetoes
+this single-issue affine model and requires a sequential state-conditioned
+transition model. Neither route authorizes real MPC, expert data, BC,
+DAgger, or bounded residual RL.

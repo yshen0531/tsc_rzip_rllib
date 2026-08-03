@@ -572,15 +572,26 @@ stale reporting field even though `finished`, stop reason, and verdict are
 correct. Because cumulative closure changes the controller source and failed-
 path physical action, S20 cannot resume.
 
-The current stage is the separately preregistered T13S21 cumulative-exact
-Card15 campaign. It reruns the same 360-rollout 12/4/4 matrix under a new
-identity. Calibration steps 0--6 keep S20's nearest dynamic-exact actions;
-step 7 must apply the exact negative of the causal seven-event running net and
-pass the unchanged coordinate, geometry, action, current, rank, condition,
-timing, phase-blindness, and model/tube gates. S20 raw is development evidence
-only and cannot be relabeled or reused as S21 outcomes. Even a complete S21
-pass permits only robust-transport MPC feasibility and a separately frozen
-real-MPC campaign; it does not authorize expert data, BC, DAgger, or RL.
+T13S21 completed the separately preregistered 360-rollout cumulative-exact
+Card15 campaign. All raw, restart, causality, actuator, exact-net, training-
+model, calibrated-tube, fresh-holdout, and independent server-recomputation
+gates passed. The final raw inventory is 360 files, 21,083,271 bytes, digest
+`8d5a67944e344b06da89c64625d1e94adc60432db230655ec9250c339e3e50f4`.
+Fresh holdout passed 64/64 with maximum scaled point error `0.0108949379`.
+
+This is a finite local response-set model PASS only. Formal diagnostics were
+16/40 for baselines and 99/320 for signed probes; none of the eight measured
+state-10 directions repaired any of the 24 failing contexts. It is not a real
+MPC or formal control PASS.
+
+The current stage is the zero-new-TSC T13S22 full-horizon affine authority
+discriminator. It must authenticate all S21 evidence, reproduce all 360
+formal diagnostics, construct the four measured odd full-horizon responses
+per context, and optimize exactly one coefficient vector in `[-1,1]^4` under
+the unchanged formal metric. A 40/40 optimistic affine pass authorizes only a
+small separately preregistered real combination sentinel. Failure requires a
+sequential state-conditioned transition model. Neither route authorizes a
+real MPC, expert data, BC, DAgger, or bounded residual RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
