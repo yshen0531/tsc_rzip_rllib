@@ -183,6 +183,33 @@ def _source_paths(ctx: d1r4.Context) -> dict[str, Path]:
     }
 
 
+def _saved_source_specs(
+    ctx: d1r4.Context,
+    state: Mapping[str, Any],
+    manifest: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    """Authenticate frozen D1R4 specs without requiring its package to remain installed.
+
+    D1R4's private resume helper also verifies that the *currently installed*
+    repository package is D1R4.  That is correct while resuming D1R4, but D1R5
+    is a later package whose source contract independently freezes the D1R4
+    execution package and evidence hashes.  Rebuild and compare the historical
+    source/spec fingerprints here while leaving current-package verification to
+    D1R5's package verifier.
+    """
+    source_auth, rebuilt, _ = d1r4._authenticate_source(ctx)
+    saved = _read_json(ctx.paths.specs / "sentinel_specs.json")
+    if (
+        saved != rebuilt
+        or _digest(saved) != state.get("spec_digest")
+        or _digest(saved) != manifest.get("spec_digest")
+        or state.get("source_fingerprint") != source_auth
+        or manifest.get("source_fingerprint") != source_auth
+    ):
+        raise ValueError("D1R5 frozen D1R4 source/spec fingerprint changed")
+    return saved
+
+
 def _authenticate_source(
     ctx: d1r4.Context, cfg: Mapping[str, Any], complete_log: Path
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -211,11 +238,11 @@ def _authenticate_source(
     }
     if any(exact_hashes[key] != source[key] for key in exact_hashes):
         raise ValueError("D1R5 D1R4 evidence hash changed")
-    raw = _inventory(list(ctx.paths.raw.glob("*.json.gz")))
-    specs = d1r4._saved_specs(ctx)
-    expected_names = sorted(f"{spec['experiment_id']}.json.gz" for spec in specs)
     manifest = _read_json(paths["manifest"])
     state = _read_json(paths["state"])
+    raw = _inventory(list(ctx.paths.raw.glob("*.json.gz")))
+    specs = _saved_source_specs(ctx, state, manifest)
+    expected_names = sorted(f"{spec['experiment_id']}.json.gz" for spec in specs)
     final = _read_json(paths["final"])
     prospective = _read_json(paths["prospective_audit"])
     retrospective = _read_json(paths["retrospective_audit"])

@@ -141,6 +141,32 @@ class Stage42R3C3T13S24D1R5Tests(unittest.TestCase):
         self.assertTrue(primary_specs[0]["experiment_id"].startswith("s42r3c3t13s24d1r6_"))
         self.assertFalse(primary_specs[0]["source_result_available_to_controller"])
 
+    def test_saved_specs_do_not_require_historical_package_to_remain_installed(self):
+        specs = [{"experiment_id": "frozen"}]
+        source_auth = {"passed": True, "digest": "frozen-source"}
+        ctx = SimpleNamespace(paths=SimpleNamespace(specs=Path("frozen-specs")))
+        state = {
+            "spec_digest": audit._digest(specs),
+            "source_fingerprint": source_auth,
+        }
+        manifest = dict(state)
+        with (
+            mock.patch.object(
+                audit.d1r4,
+                "_authenticate_source",
+                return_value=(source_auth, specs, {"passed": True}),
+            ),
+            mock.patch.object(audit, "_read_json", return_value=specs),
+            mock.patch.object(
+                audit.d1r4,
+                "_saved_specs",
+                side_effect=AssertionError(
+                    "D1R4 resume-only package check must not run in D1R5"
+                ),
+            ),
+        ):
+            self.assertEqual(audit._saved_source_specs(ctx, state, manifest), specs)
+
     def test_launcher_uses_only_server_virtualenv_and_offline_audits(self):
         text = (ROOT / "run_stage4_2r3c3t13s24d1r5_offline.sh").read_text(
             encoding="utf-8"
