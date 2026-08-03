@@ -141,6 +141,20 @@ class Stage42R3C3T13S24D1R5Tests(unittest.TestCase):
         self.assertTrue(primary_specs[0]["experiment_id"].startswith("s42r3c3t13s24d1r6_"))
         self.assertFalse(primary_specs[0]["source_result_available_to_controller"])
 
+    def test_launcher_uses_only_server_virtualenv_and_offline_audits(self):
+        text = (ROOT / "run_stage4_2r3c3t13s24d1r5_offline.sh").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            "/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python",
+            text,
+        )
+        self.assertIn("stage4_2r3c3t13s24d1r5_recursive_split_return_preflight.py", text)
+        self.assertIn("stage4_2r3c3t13s24d1r5_independent_forensics.py", text)
+        self.assertNotIn("--command rollout", text)
+        self.assertNotIn("--backend ray", text)
+        self.assertNotIn("nohup ", text)
+
 
 if __name__ == "__main__":
     unittest.main()

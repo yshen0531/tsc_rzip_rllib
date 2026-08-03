@@ -682,7 +682,15 @@ def run_audit(args: argparse.Namespace) -> dict[str, Any]:
         and len(candidates)
         == cfg["primary_gate"]["candidate_real_sentinel_spec_count"]
         and all(bool(row["passed"]) for row in rows)
-        and all(float(event["continuation_incremental_normalized_action_linf"]) == 0.175 for event in continuations)
+        and all(
+            math.isclose(
+                float(event["continuation_incremental_normalized_action_linf"]),
+                0.175,
+                rel_tol=0.0,
+                abs_tol=1e-12,
+            )
+            for event in continuations
+        )
     )
     route = cfg["routes"]["pass" if primary else "fail"]
     detailed = {
