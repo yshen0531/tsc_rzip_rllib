@@ -59,8 +59,8 @@ but may not select an amplitude, row, context, slot, or acceptance threshold.
 The four physical field directions retain the exact S21 order:
 
 ```text
-0  mode0_coil8_component
-1  mode0_without_coil8
+0  mode0_without_coil8
+1  mode0_coil8_component
 2  mode1
 3  mode2
 ```
