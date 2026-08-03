@@ -3454,3 +3454,60 @@ D1R7 must replay all 7,680 static constructions in 40 contexts and freeze only
 the six changed/new rows across the 18 D1R2 contexts, yielding 108 prospective
 D1R8 specs. It executes zero TSC. Even a double byte-identical pass authorizes
 only a separate D1R8 design.
+
+## 57. Final T13S24D1R7 result and active T13S24D1R8 task
+
+D1R7 final implementation/package checkpoints are `da578de` / `0c2311a`.
+The first official invocation stopped before output because the primary
+reader incorrectly asserted that all 54 authentic S24 structured failures
+were slot 3/task step 18. Direct parsing of all 600 S24 raw showed the exact
+unchanged failure distribution:
+
+```text
+slot 0 / step 11    12
+slot 1 / step 14    16
+slot 2 / step 16     4
+slot 3 / step 18    22
+```
+
+Every event remained `sequential_cancel`, `passed=false`, and strictly above
+0.25, with the original per-sequence counts and raw digest. The primary and
+independent hotfix repaired only source authentication/reporting. It changed
+no matrix, threshold, spec, gate, source fingerprint, controller/action,
+formal timing, or physical semantics and ran zero TSC/plant steps.
+
+The two accepted official outputs are byte-identical. Primary and independent
+forensics found:
+
+```text
+S24 / D1R2 / D1R6 authenticated raw                  600 / 54 / 9
+finite / issue / cancellation / central gates   7680 / 3840 / 3840 / 1280
+global / slot / late gates                            40 / 160 / 40
+maximum actual global / slot condition          2.0327654765 / 1.3944510812
+minimum actual late residual                       0.9593473942
+candidate specs / IDs / contexts / snapshots       108 / 108 / 18 / 18
+new raw / Ray / gotsc / TSC / controller / plant       0 / 0 / 0 / 0 / 0 / 0
+route  TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED
+```
+
+Exact report and compact evidence:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R7_FORENSIC_REPORT.md
+docs/codex/audits/stage4_2r3c3t13s24d1r7_20260803_0c2311a/
+```
+
+The active D1R8 design is frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R8_REAL_TSC_TEMPORAL_BASIS_SENTINEL_DESIGN.md
+```
+
+D1R8 must execute exactly 108 fresh authentic real-TSC sentinels from the
+frozen D1R7 table: six changed/new rows across 18 authentic contexts, with 48
+35-step and 60 37-step horizons. It must preserve every action/current,
+restart, causality, calibration, blindness, exactness, and immutable timing
+gate. A pass authorizes only design of a full replacement identification
+campaign. It does not authorize the campaign itself, MPC, expert data, BC,
+DAgger, or RL.

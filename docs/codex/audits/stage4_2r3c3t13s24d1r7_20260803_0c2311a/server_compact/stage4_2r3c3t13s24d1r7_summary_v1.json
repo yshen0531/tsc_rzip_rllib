@@ -1,0 +1,50 @@
+{
+  "candidate_spec_count": 108,
+  "candidate_spec_digest": "62869a4a028ff177b9eb83e509e7436a5937882081739cc3e548901989f05619",
+  "identity": "temporal_basis_substitution_preflight_v1",
+  "maximum_actual_global_normalized_condition": 2.032765476489212,
+  "maximum_actual_slot_normalized_condition": 1.3944510812235305,
+  "minimum_actual_late_column_residual": 0.9593473942068252,
+  "mpc_or_learning_authorized": false,
+  "new_raw_or_tsc_count": 0,
+  "passed": true,
+  "real_sentinel_execution_authorized": false,
+  "requested_global_normalized_condition": 2.0364675298172568,
+  "requested_global_rank": 16,
+  "route": "TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_failure_sequence_counts": {
+    "d1r2": {
+      "10": 3,
+      "18": 3,
+      "6": 3
+    },
+    "d1r6": {
+      "10": 3,
+      "18": 3,
+      "6": 3
+    },
+    "s24": {
+      "10": 14,
+      "14": 6,
+      "18": 16,
+      "22": 6,
+      "6": 12
+    }
+  },
+  "source_raw_counts": {
+    "d1r2": 54,
+    "d1r6": 9,
+    "s24": 600
+  },
+  "stage": "Stage4.2R3c3T13S24D1R7",
+  "static_counts": {
+    "cancel": 3840,
+    "central": 1280,
+    "finite": 7680,
+    "global": 40,
+    "issue": 3840,
+    "late": 40,
+    "slot": 160
+  }
+}

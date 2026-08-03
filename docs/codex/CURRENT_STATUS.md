@@ -910,3 +910,28 @@ matrix digest
 `c4430a13b679ad8dcceb72c259051a5eebad03da47d86816d46c4385cd811d77`,
 and 108 prospective specs. D1R7 is offline-only and may authorize only a
 separate D1R8 design after double deterministic primary/independent replay.
+
+## Current handoff: D1R7 final, D1R8 active
+
+D1R7 final implementation/package checkpoints are `da578de` / `0c2311a`.
+One initial accepted-output attempt stopped before output because the primary
+reader incorrectly required all 54 authentic S24 cancellation failures at
+slot 3/task step 18. Direct raw reconstruction found the unchanged valid
+distribution `12,16,4,22` over slots/steps `(0,11),(1,14),(2,16),(3,18)`.
+The primary and independent hotfix changed authentication/reporting only;
+Ray, `gotsc`, TSC, controllers, and plant steps remained zero.
+
+The final official runs are byte-identical across all five outputs. D1R7
+authenticated 600 S24, 54 D1R2, and 9 D1R6 raw; passed 7,680 finite static
+constructions, 3,840 issue, 3,840 cancellation, 1,280 central, 40 global, 160
+slot, and 40 late gates; and froze 108 unique D1R8 specs. The route is
+`TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED`.
+Exact report and compact evidence are in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R7_FORENSIC_REPORT.md` and
+`docs/codex/audits/stage4_2r3c3t13s24d1r7_20260803_0c2311a/`.
+
+The active D1R8 design is frozen before implementation in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R8_REAL_TSC_TEMPORAL_BASIS_SENTINEL_DESIGN.md`.
+It permits exactly 108 fresh real-TSC safety sentinels over six rows and 18
+contexts. A pass may authorize only design of a full replacement
+identification campaign. MPC, expert data, BC, DAgger, and RL remain blocked.

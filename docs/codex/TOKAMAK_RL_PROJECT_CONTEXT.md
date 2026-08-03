@@ -615,14 +615,22 @@ fixed global sequence/schedule redesign that preserves all geometry, action,
 current, and formal-timing gates. MPC, expert data, BC, DAgger, and RL remain
 blocked.
 
-The next design, D1R7, is frozen as a zero-new-TSC fixed temporal-basis
-substitution. Only the `++--=0.290` direction receives the orthogonal timing
-basis `++++, +--+, -+-+, --++`; the other directions retain their standard H4
-bases. The complete 24-row matrix and eight central-sign pairs are fixed
-before implementation. D1R7 must authenticate the S24/D1R1/D1R2/D1R6 chain,
-replay all original static gates in 40 contexts, and produce exactly 108
-prospective specs over six changed/new rows and 18 source contexts. A pass
-permits only a separately frozen real safety-sentinel design.
+D1R7 subsequently completed two byte-identical accepted zero-TSC outputs after
+one authentication-only hotfix. The initial reader incorrectly constrained
+all 54 authentic S24 structured failures to slot 3/task step 18; server raw
+showed the exact valid distribution across all four cancellation steps. The
+hotfix preserved every matrix, threshold, source fingerprint, candidate,
+timing, and physical semantic. Final primary and independent results passed
+all 7,680 static constructions, 40 global gates, 160 slot gates, and 40 late
+novelty gates and froze 108 unique D1R8 specs. D1R7 ran zero controller or
+plant steps.
+
+The active stage is D1R8, prospectively frozen before implementation as a
+108-case authentic real-TSC temporal-basis safety sentinel. It covers six
+changed/new rows on 18 D1R2 contexts with fresh actors/TSC/controllers and all
+unchanged action/current/restart/causality/calibration/blindness gates. A pass
+permits only design of a full replacement identification campaign. MPC,
+expert data, BC, DAgger, and RL remain blocked.
 
 ## 7. Medium-term objectives
 

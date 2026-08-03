@@ -654,13 +654,22 @@ formal-control or global plant-reachability result. Formal tracking was not
 run to completion. The active route is a zero-new-TSC fixed global schedule
 redesign/discriminator before any fresh sentinel.
 
-The D1R7 design is now prospectively frozen. It replaces only the failed
-direction-2 temporal basis with `++++, +--+, -+-+, --++`, fixes the complete
-24-by-16 matrix and eight central-sign pairs, replays the unchanged D1R1
-static gates in all 40 contexts, and may output only 108 candidate specs for a
-separately designed real sentinel. D1R7 itself must execute zero TSC. The full
-replacement campaign, MPC, expert data, BC, DAgger, and residual RL remain
-blocked.
+D1R7 completed two byte-identical accepted offline outputs after a separately
+audited authentication-only hotfix. It authenticated S24/D1R1/D1R2/D1R6,
+passed 7,680/7,680 static constructions, all 40 global, 160 slot, and 40 late
+gates, and froze 108 unique specs over six changed/new rows. It executed zero
+Ray, `gotsc`, TSC, controller, or plant steps. The initial stopped attempt had
+incorrectly required all authentic S24 cancellation failures to occur at slot
+3/task step 18; raw proves their valid fixed slot/step distribution is
+12/16/4/22 over `(0,11),(1,14),(2,16),(3,18)`. The hotfix changed only source
+authentication/reporting and preserved all experiment semantics.
+
+The current stage is the prospectively frozen D1R8 108-case authentic
+real-TSC temporal-basis safety sentinel. It must use the exact D1R7 table,
+fresh actors/TSC/controllers, unchanged 0.18/0.24/0.25, total-action/current,
+restart/causality/calibration/blindness, and formal-timing contracts. A pass
+authorizes only design of a full replacement identification campaign. The
+full campaign, MPC, expert data, BC, DAgger, and residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

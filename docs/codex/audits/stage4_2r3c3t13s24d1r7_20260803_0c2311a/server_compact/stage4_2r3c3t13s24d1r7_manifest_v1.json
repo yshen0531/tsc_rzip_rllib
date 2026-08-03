@@ -1,0 +1,17 @@
+{
+  "identity": "temporal_basis_substitution_preflight_v1",
+  "new_raw_files_created": 0,
+  "output_files": {
+    "stage4_2r3c3t13s24d1r7_candidate_specs_v1.json": "76075e12a411dbd4b0c210cc2e91a8978cb4de908b6f88a2c1ecd9cc44b279f7",
+    "stage4_2r3c3t13s24d1r7_summary_v1.json": "aba8a400572ae3cd76c58e5c3ddbc3b92fa1222218583b0e97ec6df505aec01d",
+    "stage4_2r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1.json": "7adcb1ef83b23eec5ed380b6717578abb665ea189ad5efbdcaafff99f48b26a2"
+  },
+  "pass_authorizes_real_sentinel_design_only": true,
+  "pass_authorizes_real_sentinel_execution": false,
+  "passed": true,
+  "ray_gotsc_tsc_plant_or_controller_executed": false,
+  "route": "TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_raw_files_copied_or_modified": 0,
+  "stage": "Stage4.2R3c3T13S24D1R7"
+}

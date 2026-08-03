@@ -1,0 +1,149 @@
+[T13S24D1R7] zero-new-TSC fixed temporal-basis preflight; output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r7_audits/stage4_2r3c3t13s24d1r7_temporal_basis_substitution_preflight_20260803_212200_0c2311a_v2
+{
+  "candidate_spec_count": 108,
+  "candidate_spec_digest": "62869a4a028ff177b9eb83e509e7436a5937882081739cc3e548901989f05619",
+  "identity": "temporal_basis_substitution_preflight_v1",
+  "maximum_actual_global_normalized_condition": 2.032765476489212,
+  "maximum_actual_slot_normalized_condition": 1.3944510812235305,
+  "minimum_actual_late_column_residual": 0.9593473942068252,
+  "mpc_or_learning_authorized": false,
+  "new_raw_or_tsc_count": 0,
+  "passed": true,
+  "real_sentinel_execution_authorized": false,
+  "requested_global_normalized_condition": 2.0364675298172568,
+  "requested_global_rank": 16,
+  "route": "TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_failure_sequence_counts": {
+    "d1r2": {
+      "10": 3,
+      "18": 3,
+      "6": 3
+    },
+    "d1r6": {
+      "10": 3,
+      "18": 3,
+      "6": 3
+    },
+    "s24": {
+      "10": 14,
+      "14": 6,
+      "18": 16,
+      "22": 6,
+      "6": 12
+    }
+  },
+  "source_raw_counts": {
+    "d1r2": 54,
+    "d1r6": 9,
+    "s24": 600
+  },
+  "stage": "Stage4.2R3c3T13S24D1R7",
+  "static_counts": {
+    "cancel": 3840,
+    "central": 1280,
+    "finite": 7680,
+    "global": 40,
+    "issue": 3840,
+    "late": 40,
+    "slot": 160
+  }
+}
+{
+  "candidate_spec_count": 108,
+  "candidate_spec_digest": "62869a4a028ff177b9eb83e509e7436a5937882081739cc3e548901989f05619",
+  "classification": "independent_raw_static_matrix_and_spec_recomputation",
+  "forensic_recomputation_passed": true,
+  "mpc_or_learning_authorized": false,
+  "new_raw_ray_gotsc_tsc_controller_or_plant_count": 0,
+  "primary_output_hashes": {
+    "stage4_2r3c3t13s24d1r7_candidate_specs_v1.json": "76075e12a411dbd4b0c210cc2e91a8978cb4de908b6f88a2c1ecd9cc44b279f7",
+    "stage4_2r3c3t13s24d1r7_manifest_v1.json": "c5d014ff3384c001833b54c3ae0a1a8139d6af790cf9f3c78fe418ec3ec58a25",
+    "stage4_2r3c3t13s24d1r7_summary_v1.json": "aba8a400572ae3cd76c58e5c3ddbc3b92fa1222218583b0e97ec6df505aec01d",
+    "stage4_2r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1.json": "7adcb1ef83b23eec5ed380b6717578abb665ea189ad5efbdcaafff99f48b26a2"
+  },
+  "real_sentinel_execution_authorized": false,
+  "requested_matrix_digest": "c4430a13b679ad8dcceb72c259051a5eebad03da47d86816d46c4385cd811d77",
+  "requested_matrix_metrics": {
+    "condition": 2.0364675298172568,
+    "minimum_late_residual": 0.9609879512188099,
+    "passed": true,
+    "rank": 16,
+    "slot_rows": [
+      [
+        4,
+        1.4400000000000002
+      ],
+      [
+        4,
+        1.4400000000000002
+      ],
+      [
+        4,
+        1.4400000000000002
+      ],
+      [
+        4,
+        1.4400000000000002
+      ]
+    ]
+  },
+  "route": "TEMPORAL_BASIS_SUBSTITUTION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_authentication": {
+    "d1r2_failure_counts": {
+      "10": 3,
+      "18": 3,
+      "6": 3
+    },
+    "d1r2_inventory": {
+      "count": 54,
+      "digest": "eb4ac8c0e606ce0d8899f0a512b594877f59cc9424c0f6a87e3450bcd036cc83",
+      "total_bytes": 3078383
+    },
+    "d1r6_failure_counts": {
+      "10": 3,
+      "18": 3,
+      "6": 3
+    },
+    "d1r6_inventory": {
+      "count": 9,
+      "digest": "351f7484bd3ec2f68f76cc2f17ea6bc93a6227e2078b8be2f0cdf9e84055fd89",
+      "total_bytes": 422133
+    },
+    "s24_failure_counts": {
+      "10": 14,
+      "14": 6,
+      "18": 16,
+      "22": 6,
+      "6": 12
+    },
+    "s24_failure_slot_task_steps": {
+      "slot_0_step_11": 12,
+      "slot_1_step_14": 16,
+      "slot_2_step_16": 4,
+      "slot_3_step_18": 22
+    },
+    "s24_inventory": {
+      "count": 600,
+      "digest": "fae5f62671296c837e00158fe204a1630fc70aace87be650ad13d75928f20c70",
+      "total_bytes": 34003877
+    }
+  },
+  "stage": "Stage4.2R3c3T13S24D1R7",
+  "static_recomputation": {
+    "counts": {
+      "cancel": 3840,
+      "central": 1280,
+      "finite": 7680,
+      "global": 40,
+      "issue": 3840,
+      "late": 40,
+      "slot": 160
+    },
+    "maximum_global_condition": 2.032765476489212,
+    "maximum_slot_condition": 1.3944510812235305,
+    "minimum_late_residual": 0.9593473942068252
+  }
+}
+[T13S24D1R7] primary and independent recomputation complete; zero plant steps
