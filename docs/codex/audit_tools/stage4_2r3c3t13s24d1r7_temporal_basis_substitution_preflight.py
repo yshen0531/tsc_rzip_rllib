@@ -237,6 +237,23 @@ def _failure_payload(reason: str, marker: str) -> Mapping[str, Any] | None:
     return json.loads(payload[start : stop + 1])
 
 
+def _s24_cancel_failure_key(
+    event: Mapping[str, Any], cancel_task_steps: Sequence[int]
+) -> tuple[int, int]:
+    slot = int(event.get("slot", -1))
+    task_step = int(event.get("task_step", -1))
+    if (
+        event.get("event") != "sequential_cancel"
+        or bool(event.get("passed"))
+        or slot < 0
+        or slot >= len(cancel_task_steps)
+        or task_step != int(cancel_task_steps[slot])
+        or float(event.get("incremental_normalized_action_linf", 0.0)) <= 0.25
+    ):
+        raise ValueError("D1R7 S24 failure class changed")
+    return slot, task_step
+
+
 def _authenticate_s24(project: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
     source = cfg["source_contract"]
     stage = project / source["s24_stage_relpath"]
@@ -268,6 +285,8 @@ def _authenticate_s24(project: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
         raise ValueError("D1R7 S24 inventory changed")
     baseline_success = sequence_success = 0
     failures: Counter[int] = Counter()
+    failure_slot_task_steps: Counter[tuple[int, int]] = Counter()
+    cancel_task_steps = list(map(int, cfg["matrix_contract"]["cancel_task_steps"]))
     strict = 0
     for path in sorted((stage / "raw").glob("*.json.gz")):
         result = _read_raw(path)
@@ -290,15 +309,9 @@ def _authenticate_s24(project: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
             event = _failure_payload(
                 str(result.get("failure_reason", "")), "S24 sequential cancel action failed:"
             )
-            if (
-                event is None
-                or event.get("event") != "sequential_cancel"
-                or int(event.get("slot", -1)) != 3
-                or int(event.get("task_step", -1)) != 18
-                or bool(event.get("passed"))
-                or float(event.get("incremental_normalized_action_linf", 0.0)) <= 0.25
-            ):
+            if event is None:
                 raise ValueError("D1R7 S24 failure class changed")
+            failure_slot_task_steps[_s24_cancel_failure_key(event, cancel_task_steps)] += 1
             failures[int(spec["s24_sequence_index"])] += 1
     expected_failures = Counter(
         {int(key): int(value) for key, value in source["s24_failure_sequence_counts"].items()}
@@ -320,6 +333,10 @@ def _authenticate_s24(project: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
         "sequence_success_count": sequence_success,
         "sequence_failure_count": sum(failures.values()),
         "failure_sequence_counts": {str(k): failures[k] for k in sorted(failures)},
+        "failure_slot_task_step_counts": {
+            f"slot_{slot}_step_{task_step}": count
+            for (slot, task_step), count in sorted(failure_slot_task_steps.items())
+        },
     }
 
 

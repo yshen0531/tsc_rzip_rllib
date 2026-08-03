@@ -47,6 +47,16 @@ def _raw(path: Path) -> Any:
         return json.load(stream)
 
 
+def _failure_payload(reason: str, marker: str) -> Mapping[str, Any] | None:
+    if marker not in reason:
+        return None
+    payload = reason[reason.index(marker) + len(marker) :]
+    start, stop = payload.find("{"), payload.rfind("}")
+    if start < 0 or stop < start:
+        raise ValueError("D1R7 independent source failure lost structured JSON")
+    return json.loads(payload[start : stop + 1])
+
+
 def _write(path: Path, value: Any) -> None:
     path.write_text(
         json.dumps(value, indent=2, sort_keys=True, allow_nan=False) + "\n",
@@ -165,6 +175,8 @@ def _source_counts(project: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
     s24_inventory = _inventory((s24 / "raw").glob("*.json.gz"))
     s24_success = Counter()
     s24_fail = Counter()
+    s24_failure_slot_steps = Counter()
+    cancel_steps = list(map(int, cfg["matrix_contract"]["cancel_task_steps"]))
     for path in sorted((s24 / "raw").glob("*.json.gz")):
         result = _raw(path)
         spec = s24_by_id.get(str(result.get("experiment_id")))
@@ -174,8 +186,21 @@ def _source_counts(project: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
             s24_success[str(spec["s24_role"])] += 1
         else:
             reason = str(result.get("failure_reason", ""))
-            if "S24 sequential cancel action failed:" not in reason:
+            event = _failure_payload(reason, "S24 sequential cancel action failed:")
+            if event is None:
                 raise ValueError("D1R7 independent S24 failure class mismatch")
+            slot = int(event.get("slot", -1))
+            task_step = int(event.get("task_step", -1))
+            if (
+                event.get("event") != "sequential_cancel"
+                or bool(event.get("passed"))
+                or slot < 0
+                or slot >= len(cancel_steps)
+                or task_step != cancel_steps[slot]
+                or float(event.get("incremental_normalized_action_linf", 0.0)) <= 0.25
+            ):
+                raise ValueError("D1R7 independent S24 failure class mismatch")
+            s24_failure_slot_steps[(slot, task_step)] += 1
             s24_fail[int(spec["s24_sequence_index"])] += 1
     expected_s24 = Counter(
         {int(key): int(value) for key, value in source["s24_failure_sequence_counts"].items()}
@@ -256,6 +281,10 @@ def _source_counts(project: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
     return {
         "s24_inventory": s24_inventory,
         "s24_failure_counts": {str(k): s24_fail[k] for k in sorted(s24_fail)},
+        "s24_failure_slot_task_steps": {
+            f"slot_{slot}_step_{task_step}": count
+            for (slot, task_step), count in sorted(s24_failure_slot_steps.items())
+        },
         "d1r2_inventory": d1r2_inventory,
         "d1r2_failure_counts": {str(k): d1r2_fail[k] for k in sorted(d1r2_fail)},
         "d1r6_inventory": d1r6_inventory,

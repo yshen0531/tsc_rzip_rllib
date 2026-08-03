@@ -95,6 +95,39 @@ class TemporalBasisSubstitutionPreflightTest(unittest.TestCase):
             stage._digest([{"name": "b", "size": 1, "sha": "x"}]),
         )
 
+    def test_s24_cancel_failure_accepts_each_frozen_slot_step(self) -> None:
+        cancel_steps = [11, 14, 16, 18]
+        for slot, task_step in enumerate(cancel_steps):
+            event = {
+                "event": "sequential_cancel",
+                "slot": slot,
+                "task_step": task_step,
+                "passed": False,
+                "incremental_normalized_action_linf": 0.2500001,
+            }
+            self.assertEqual(
+                stage._s24_cancel_failure_key(event, cancel_steps),
+                (slot, task_step),
+            )
+
+    def test_s24_cancel_failure_rejects_wrong_slot_step_or_safe_increment(self) -> None:
+        cancel_steps = [11, 14, 16, 18]
+        base = {
+            "event": "sequential_cancel",
+            "slot": 0,
+            "task_step": 11,
+            "passed": False,
+            "incremental_normalized_action_linf": 0.251,
+        }
+        for patch in (
+            {"task_step": 18},
+            {"slot": 4},
+            {"passed": True},
+            {"incremental_normalized_action_linf": 0.25},
+        ):
+            with self.assertRaises(ValueError):
+                stage._s24_cancel_failure_key({**base, **patch}, cancel_steps)
+
 
 if __name__ == "__main__":
     unittest.main()
