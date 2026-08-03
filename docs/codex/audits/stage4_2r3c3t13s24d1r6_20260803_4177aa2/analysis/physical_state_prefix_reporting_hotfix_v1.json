@@ -1,0 +1,272 @@
+{
+  "classification": "semantics_preserving_reporting_hotfix_physical_state_prefix",
+  "complete_log_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r6_real_20260803_195549_4177aa2_v1.log",
+  "complete_log_sha256": "14da67f6caac172ad67095fcce0843d6eb595671bd8c9ee935701acdc10b5a65",
+  "controller_or_experiment_semantics_changed": false,
+  "execution_package_hashes": {
+    "config_sha256": "0ead2d73de119b7c7cef4d16ffb18d0a0ebcc934aa76a6129ad48418f5cacbe4",
+    "implementation_sha256": "74ef096e5a7af92ab9ece03e9ec94a687b0a1a921003ceae35f45db9226827d4",
+    "package_manifest_sha256": "014068b0dd2c046c5985ca11c1e5a5464092c016f0b1f7f92cedc6fc0773d6b1",
+    "sha256sums_sha256": "dad07a6a8fd1116bb4156326d8312c925f70cfe744f3bb3c3b79f24b7c8d30dc"
+  },
+  "experiment_route_changed": false,
+  "failure_action_not_applied_count": 9,
+  "forensic_recomputation_passed": true,
+  "formal_tracking_evaluable_count": 0,
+  "formal_tracking_failure_count": 0,
+  "formal_tracking_not_run_count": 9,
+  "full_replacement_campaign_design_authorized": false,
+  "gotsc_subprocess_difference_count": 171,
+  "mpc_or_learning_authorized": false,
+  "original_source_prefix_state_exact_count": 0,
+  "physical_source_prefix_state_exact_count": 9,
+  "raw_changed": false,
+  "raw_inventory": {
+    "count": 9,
+    "digest": "351f7484bd3ec2f68f76cc2f17ea6bc93a6227e2078b8be2f0cdf9e84055fd89",
+    "files": [
+      {
+        "bytes": 46909,
+        "path": "s42r3c3t13s24d1r6_0034c0cc6baabd89ee9f.json.gz",
+        "sha256": "fcf996764f8f82596f5caf799c6fa3cd060c8fc1e740350478c359290cf8b1a4"
+      },
+      {
+        "bytes": 46992,
+        "path": "s42r3c3t13s24d1r6_0492a0fd270d8e141e78.json.gz",
+        "sha256": "1d7d3f8e4d4402bd62aa2a2d05e481104fcecfd1e239a009fdc12fe8bfef7979"
+      },
+      {
+        "bytes": 46703,
+        "path": "s42r3c3t13s24d1r6_0852323ab8abd563e97e.json.gz",
+        "sha256": "898ff06aa54151cf259c8eeb89c7c849dbf8023ead4cc92b5c9a3a8cf71f5f7f"
+      },
+      {
+        "bytes": 46656,
+        "path": "s42r3c3t13s24d1r6_26ee6697c86b54426956.json.gz",
+        "sha256": "85f644034caf7294ff3619121c0a49e3aa041dbe6c86bcfb312b061bdedbd94d"
+      },
+      {
+        "bytes": 46887,
+        "path": "s42r3c3t13s24d1r6_613f9e16e2cb1d7dab94.json.gz",
+        "sha256": "8416c4eaa251aa7aa3052ffec7c41a183c83b6bc7b5fc83c5cae1a300d447c6c"
+      },
+      {
+        "bytes": 46909,
+        "path": "s42r3c3t13s24d1r6_805d02f72d26c5b27151.json.gz",
+        "sha256": "7dff8ec5355f18eb80817c65c2a009d86b6722b4ad178727936e6345fc4959b4"
+      },
+      {
+        "bytes": 46969,
+        "path": "s42r3c3t13s24d1r6_897d44baee2a16dbd658.json.gz",
+        "sha256": "68b62980bf589f51ce0b7ebc4d5a58a823955b2f07ce87732190840a643e5932"
+      },
+      {
+        "bytes": 47040,
+        "path": "s42r3c3t13s24d1r6_8ae0b6ecd6bb80ff9dd9.json.gz",
+        "sha256": "148682acde7a3fa6b5f0ba44bdc70845b04c6309b0efdea3fcae6cc2ebba0416"
+      },
+      {
+        "bytes": 47068,
+        "path": "s42r3c3t13s24d1r6_e675b7728ae2e423fd80.json.gz",
+        "sha256": "6e322dc100ddeb27f4620424eb148859fd15735fd726555552ecf08e53e78fab"
+      }
+    ],
+    "total_bytes": 422133
+  },
+  "raw_inventory_exact": true,
+  "reporting_bug_confirmed": true,
+  "route": "CAUSAL_RECURSIVE_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED",
+  "rows": [
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_8ae0b6ecd6bb80ff9dd9",
+      "history_member": "plus_first",
+      "pair_id": "p5_q2_a0p750_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 6,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_3632b644a92d662d49ec",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_0492a0fd270d8e141e78",
+      "history_member": "plus_first",
+      "pair_id": "p5_q2_a0p750_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 10,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_cab4b82c98c67918804d",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_0034c0cc6baabd89ee9f",
+      "history_member": "plus_first",
+      "pair_id": "p5_q2_a0p750_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 18,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_e4fa9f026838ed653965",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_e675b7728ae2e423fd80",
+      "history_member": "minus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 6,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_a65d408787d0658da27c",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_805d02f72d26c5b27151",
+      "history_member": "minus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 10,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_04b92e4b42fe7e469853",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_0852323ab8abd563e97e",
+      "history_member": "minus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 18,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_c4e405fec44d3e9ac344",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_897d44baee2a16dbd658",
+      "history_member": "plus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 6,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_35996f4758a5b09be45a",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_613f9e16e2cb1d7dab94",
+      "history_member": "plus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 10,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_21710d52f229b67eaaf2",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    },
+    {
+      "experiment_id": "s42r3c3t13s24d1r6_26ee6697c86b54426956",
+      "history_member": "plus_first",
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "passed": true,
+      "physical_state_prefix_through_state19_exact": true,
+      "runtime_diagnostic_difference_counts": {
+        "gotsc_subprocess_s": 19,
+        "step_total_s": 19
+      },
+      "runtime_diagnostic_values_finite_positive": true,
+      "runtime_metadata_only_difference": true,
+      "sequence_index": 18,
+      "source_action_prefix_through_step18_exact": true,
+      "source_experiment_id": "s42r3c3t13s24d1r4_889171b81b42430f52a7",
+      "source_trace_prefix_through_step17_exact": true,
+      "source_trajectory_count": 20,
+      "trajectory_count": 23,
+      "unexpected_difference_keys": []
+    }
+  ],
+  "runtime_metadata_only_difference_count": 9,
+  "runtime_or_raw_failure_count": 0,
+  "schema_version": 1,
+  "source_action_prefix_exact_count": 9,
+  "source_independent_forensics_sha256": "e54bfe8369ed35865771a918a8d25dd6ff1ad84d2e73175c0ba67694e4149698",
+  "source_trace_prefix_exact_count": 9,
+  "spec_digest": "f3ca434af404bb20c85e7ff2fb6da40bc13c1d873ae9c74396ab8680533b889b",
+  "stage": "Stage4.2R3c3T13S24D1R6",
+  "step_total_difference_count": 171,
+  "structured_deadline_safe_stop_count": 9,
+  "unexpected_physical_state_difference_count": 0
+}

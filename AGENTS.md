@@ -637,12 +637,23 @@ above the unchanged 0.24/0.25 gates. D1R5 subsequently completed two
 byte-identical zero-TSC primary/independent replays and proved a new causal
 exact-Card15 0.175 continuation in all nine state-19 contexts.
 
-D1R5 does not observe state 20 or validate a finish. The active stage is the
-separately preregistered new-identity D1R6 nine-case authentic recursive-return
-sentinel. It must finish to the stored center by task step 22 without changing
-action, current, exactness, or formal-timing gates. A D1R6 pass may authorize
-only a new full replacement transition-identification campaign; MPC, expert
-data, BC, DAgger, and residual RL remain blocked.
+D1R6 then completed all nine authentic recursive-return sentinels. Restart,
+causality, calibration, physical source prefix, split start, and the first
+D1R5 continuation were exact 9/9. Every rollout safely applied three 0.175
+continuations, but none restored the stored center by task step 22. All nine
+stopped before applying the failed finish candidate; there were zero runtime,
+raw, snapshot, solver, saturation, current, or forbidden-input errors.
+
+The state-prefix audits initially counted 0/9 because they compared
+`gotsc_subprocess_s` and `step_total_s`; a reporting-only physical-state audit
+proved 9/9 exact R/Z/Ip, coil/wire-current, action, and abnormal-state prefixes.
+The route is unchanged:
+`CAUSAL_RECURSIVE_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED`.
+This is a genuine recursive action-schedule/controller-design failure, not a
+formal-control or global plant-reachability result. Formal tracking was not
+run to completion. The active route is a zero-new-TSC fixed global schedule
+redesign/discriminator before any fresh sentinel. The full replacement
+campaign, MPC, expert data, BC, DAgger, and residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

@@ -1,0 +1,102 @@
+{
+  "calibration_pass_count": 9,
+  "causality_pass_count": 9,
+  "classification": "independent_server_raw_log_snapshot_recomputation",
+  "complete_log_pass": true,
+  "complete_log_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r6_real_20260803_195549_4177aa2_v1.log",
+  "complete_log_sha256": "14da67f6caac172ad67095fcce0843d6eb595671bd8c9ee935701acdc10b5a65",
+  "continuation_event_count": 27,
+  "direct_cancel_event_count": 27,
+  "evidence_complete_without_runtime_error": true,
+  "expanded_decimal_telescope_pass_count": 0,
+  "expected": 9,
+  "failure_action_not_applied_count": 9,
+  "finish_task_step_counts": [],
+  "first_d1r5_continuation_exact_count": 9,
+  "forbidden_count": 0,
+  "forensic_recomputation_passed": true,
+  "formal_timing_unchanged": true,
+  "formal_tracking_evaluable_count": 0,
+  "formal_tracking_is_diagnostic_only": true,
+  "full_horizon_pass_count": 0,
+  "full_replacement_campaign_design_authorized": false,
+  "full_replacement_campaign_execution_authorized": false,
+  "identity_pass_count": 9,
+  "issue_event_count": 36,
+  "maximum_current_utilization": 0.39045,
+  "mpc_or_learning_authorized": false,
+  "probe_trajectories_allowed_in_expert_dataset": false,
+  "raw_inventory": {
+    "count": 9,
+    "digest": "351f7484bd3ec2f68f76cc2f17ea6bc93a6227e2078b8be2f0cdf9e84055fd89",
+    "files": [
+      {
+        "bytes": 46909,
+        "path": "s42r3c3t13s24d1r6_0034c0cc6baabd89ee9f.json.gz",
+        "sha256": "fcf996764f8f82596f5caf799c6fa3cd060c8fc1e740350478c359290cf8b1a4"
+      },
+      {
+        "bytes": 46992,
+        "path": "s42r3c3t13s24d1r6_0492a0fd270d8e141e78.json.gz",
+        "sha256": "1d7d3f8e4d4402bd62aa2a2d05e481104fcecfd1e239a009fdc12fe8bfef7979"
+      },
+      {
+        "bytes": 46703,
+        "path": "s42r3c3t13s24d1r6_0852323ab8abd563e97e.json.gz",
+        "sha256": "898ff06aa54151cf259c8eeb89c7c849dbf8023ead4cc92b5c9a3a8cf71f5f7f"
+      },
+      {
+        "bytes": 46656,
+        "path": "s42r3c3t13s24d1r6_26ee6697c86b54426956.json.gz",
+        "sha256": "85f644034caf7294ff3619121c0a49e3aa041dbe6c86bcfb312b061bdedbd94d"
+      },
+      {
+        "bytes": 46887,
+        "path": "s42r3c3t13s24d1r6_613f9e16e2cb1d7dab94.json.gz",
+        "sha256": "8416c4eaa251aa7aa3052ffec7c41a183c83b6bc7b5fc83c5cae1a300d447c6c"
+      },
+      {
+        "bytes": 46909,
+        "path": "s42r3c3t13s24d1r6_805d02f72d26c5b27151.json.gz",
+        "sha256": "7dff8ec5355f18eb80817c65c2a009d86b6722b4ad178727936e6345fc4959b4"
+      },
+      {
+        "bytes": 46969,
+        "path": "s42r3c3t13s24d1r6_897d44baee2a16dbd658.json.gz",
+        "sha256": "68b62980bf589f51ce0b7ebc4d5a58a823955b2f07ce87732190840a643e5932"
+      },
+      {
+        "bytes": 47040,
+        "path": "s42r3c3t13s24d1r6_8ae0b6ecd6bb80ff9dd9.json.gz",
+        "sha256": "148682acde7a3fa6b5f0ba44bdc70845b04c6309b0efdea3fcae6cc2ebba0416"
+      },
+      {
+        "bytes": 47068,
+        "path": "s42r3c3t13s24d1r6_e675b7728ae2e423fd80.json.gz",
+        "sha256": "6e322dc100ddeb27f4620424eb148859fd15735fd726555552ecf08e53e78fab"
+      }
+    ],
+    "total_bytes": 422133
+  },
+  "raw_inventory_exact": true,
+  "restart_pass_count": 9,
+  "route": "CAUSAL_RECURSIVE_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED",
+  "runtime_or_raw_failure_count": 0,
+  "schema_version": 1,
+  "scientific_or_action_failure_count": 9,
+  "sentinel_pass_count": 0,
+  "sentinel_passed": false,
+  "snapshot_audit_sha256": "b3298d45d36c166ba68baa9f0aaca3bdc81e5fedb46f9b845ea69647e8a38854",
+  "source_authentication_sha256": "85c4d93593477e5b055f998cb0191727a5e44d193cf440beb93f1f3ce6351992",
+  "source_prefix_action_exact_count": 9,
+  "source_prefix_state_exact_count": 0,
+  "source_prefix_trace_exact_count": 9,
+  "split_finish_event_count": 0,
+  "split_start_event_count": 9,
+  "split_start_exact_count": 9,
+  "stage": "Stage4.2R3c3T13S24D1R6",
+  "state_manifest_final_consistency": true,
+  "strict_parse_count": 9,
+  "structured_deadline_safe_stop_count": 9,
+  "success_count": 0
+}

@@ -874,3 +874,31 @@ known-safe continuation, later continuations are causal and bounded, and an
 exact-center finish is mandatory by task step 22. A pass permits only design
 of a full replacement identification campaign. MPC, expert data, BC, DAgger,
 and RL remain unauthorized.
+
+## Current handoff: D1R6 final, fixed schedule redesign active
+
+D1R6 execution package checkpoint `4177aa2` completed all nine authentic TSC
+sentinels. Raw inventory is 9/9, 422133 bytes, digest
+`351f7484bd3ec2f68f76cc2f17ea6bc93a6227e2078b8be2f0cdf9e84055fd89`.
+Restart, causality, calibration, physical state/action/trace prefix, split
+start, and first D1R5 continuation are exact 9/9. Every row safely executed
+0.175 continuations at steps 19, 20, and 21, then stopped before applying an
+unsafe step-22 finish. No full horizon or formal endpoint was reached.
+
+The final route is
+`CAUSAL_RECURSIVE_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED`. There were no
+real-run runtime, solver, raw, snapshot, saturation, current, or forbidden
+input errors. A reporting-only audit at `c33a368` corrected the physical
+source-prefix count from 0/9 to 9/9 by excluding only two runtime timing
+fields; route and experiment semantics are unchanged.
+
+Large raw remains on the server. Compact hashes were verified after direct
+download to
+`docs/codex/audits/stage4_2r3c3t13s24d1r6_20260803_4177aa2/`. The exact report
+is `docs/codex/reports/STAGE4_2R3C3T13S24D1R6_FORENSIC_REPORT.md`.
+
+The active work is a zero-new-TSC, fixed-global sequential schedule redesign
+and discriminator. It must preserve all geometry, action/current, rank,
+exactness, forbidden-input, and formal-timing gates and may authorize at most
+a fresh real safety sentinel. The full replacement campaign, MPC, expert
+data, BC, DAgger, and RL remain blocked.

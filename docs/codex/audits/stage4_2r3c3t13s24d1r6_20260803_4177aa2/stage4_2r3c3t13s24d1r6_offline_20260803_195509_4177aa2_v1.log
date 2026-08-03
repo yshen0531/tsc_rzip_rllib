@@ -1,0 +1,16 @@
+[T13S24D1R6] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R6] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r6_runs/stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel_20260803_195509_4177aa2_v1 command=offline backend=serial resume=0 workers=9
+[T13S24D1R6] exact nine-case real-TSC recursive split-return safety sentinel.
+[T13S24D1R6] arrival by 250 ms and hold through 350 ms unchanged; formal result diagnostic only.
+{
+  "new_raw_count": 0,
+  "package_verification_passed": true,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "snapshot_pass_count": 3,
+  "source_authentication_passed": true,
+  "spec_count": 9,
+  "stage": "Stage4.2R3c3T13S24D1R6"
+}

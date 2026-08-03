@@ -597,11 +597,23 @@ reached.
 D1R5 completed two byte-identical offline replays and proved in primary and
 independent implementations that all 9/9 state-19 contexts admit another
 exact-Card15 0.175 causal continuation with zero forbidden inputs and zero new
-TSC or plant steps. D1R5 does not observe state 20 and therefore validates no
-finish or formal control. The active D1R6 design is a nine-case authentic
-recursive-return sentinel with a hard task-step-22 finish boundary. Even a
-D1R6 pass can authorize only a full replacement transition-identification
-design; MPC, expert data, BC, DAgger, and RL remain blocked.
+TSC or plant steps.
+
+D1R6 then executed the missing authentic boundary. All nine fresh TSC
+trajectories had exact restart, causal/calibrated traces, physical source
+prefixes, split starts, and first D1R5 continuations. They each applied three
+safe 0.175 continuations at steps 19--21, but their exact-center intervention
+requirements grew from `0.2712--0.3540` at step 19 to `0.5633--0.6879` at
+step 21 and remained `0.3674--0.5150` at step 22. Every failed finish was
+rejected before plant advance. No trajectory reached the formal endpoint.
+
+The original 0/9 state-prefix aggregate was a reporting-only comparison of
+runtime timing metadata; physical R/Z/Ip, coil/wire-current, action, and
+abnormal-state prefixes were exact 9/9. The route remains a genuine recursive
+return schedule/controller-design FAIL. The next route must be a zero-new-TSC
+fixed global sequence/schedule redesign that preserves all geometry, action,
+current, and formal-timing gates. MPC, expert data, BC, DAgger, and RL remain
+blocked.
 
 ## 7. Medium-term objectives
 

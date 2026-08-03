@@ -3376,3 +3376,65 @@ gate. Formal arrival remains step 25 and hold remains step 35.
 A D1R6 pass authorizes only design of a full replacement sequential-transition
 identification campaign. Neither route authorizes transition MPC, expert data,
 BC, DAgger, or bounded residual RL.
+
+## 56. Final T13S24D1R6 result and active schedule-redesign discriminator
+
+D1R6 completed all nine fresh authentic TSC sentinels from final execution
+package checkpoint `4177aa2`. Independent raw/log/snapshot recomputation and a
+separate reporting-only physical-state audit found:
+
+```text
+strict raw / identity / restart / causality / calibration       9 / 9 each
+physical source state / action / trace prefix exact              9 / 9 each
+split start / first D1R5 continuation exact                      9 / 9 each
+continuations at task steps 19 / 20 / 21                      9 / 9 / 9
+continuation increment                                   exactly 0.175
+exact-center finishes / full horizons                           0 / 9
+task-step-22 structured safe stops                              9 / 9
+failed action applied / plant advance afterward                    0 / 0
+runtime / solver / raw / snapshot / current errors                  0
+formal endpoint evaluable                                           0
+route  CAUSAL_RECURSIVE_SPLIT_RETURN_SENTINEL_FAIL_REDESIGN_REQUIRED
+```
+
+The causal exact-center intervention range was
+`0.2712316553--0.3540255817` at step 19,
+`0.3755641011--0.4922624755` at step 20,
+`0.5633025885--0.6879459063` at step 21, and
+`0.3673570430--0.5149905137` at step 22. Repeated straight-line 0.175
+intermediates therefore did not contract the return requirement. This is a
+genuine fixed recursive action-schedule/controller-design failure, not a
+runtime, restart, corruption, current, real-MPC, formal-control, or global
+plant-reachability result.
+
+The original primary/independent state-prefix count was 0/9 only because it
+included `gotsc_subprocess_s` and `step_total_s`. A semantics-preserving audit
+at checkpoint `c33a368` found 171 differences in each timing field and zero
+unexpected physical-state differences, correcting the physical prefix count
+to 9/9 without changing raw, controller, identity, route, or experiment
+semantics. Its first server invocation omitted `PYTHONPATH` and stopped before
+output; the corrected server-virtualenv invocation passed. That was a
+postprocessing invocation error only.
+
+Exact report and compact evidence:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R6_FORENSIC_REPORT.md
+
+docs/codex/audits/
+stage4_2r3c3t13s24d1r6_20260803_4177aa2/
+```
+
+D1R6 is immutable and may not resume. Its nine large raw JSON.GZ files remain
+server-side and are forbidden from model fitting and expert data.
+
+The active task is a prospectively frozen zero-new-TSC fixed-global-schedule
+redesign/discriminator. It must authenticate S24 and D1R2--D1R6, preserve the
+`++--=0.290` geometry floor and all 0.18/0.24/0.25, total-action, current,
+exact-Decimal, rank/condition/novelty, forbidden-input, and immutable timing
+gates. It may examine fixed sequence substitution, reordering, or knot
+placement offline, but the eventual controller may not select from
+pair/history/outcome labels. A pass may authorize only a separately frozen
+fresh-identity real safety sentinel. It does not authorize the full campaign,
+transition MPC, expert data, BC, DAgger, or RL.

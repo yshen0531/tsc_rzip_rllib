@@ -1,0 +1,12 @@
+{
+  "new_raw_count": 0,
+  "package_verification_passed": true,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "snapshot_pass_count": 3,
+  "source_authentication_passed": true,
+  "spec_count": 9,
+  "stage": "Stage4.2R3c3T13S24D1R6"
+}
