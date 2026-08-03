@@ -69,7 +69,7 @@
     "installed_project_complete_test_suite_required": true,
     "server_virtualenv_python_only": true
   },
-  "declared_file_count": 484,
+  "declared_file_count": 486,
   "file_inventory": [
     "AGENTS.md",
     "PACKAGE_MANIFEST.json",
@@ -156,6 +156,7 @@
     "docs/codex/audit_tools/stage4_2r3c3t13s23d1_bounded_schedule_redesign_search.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s23r1_amplitude_coded_hadamard_preflight.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24_semantics_preserving_runtime_hotfix.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24_training_sequence_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2_quantized_observability_audit.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s2r1_readback_residual_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s6_immediate_effect_audit.py",
@@ -457,6 +458,7 @@
     "tests/test_stage4_2r3c3t13s23d1_bounded_schedule_redesign_search.py",
     "tests/test_stage4_2r3c3t13s23r1_amplitude_coded_hadamard_preflight.py",
     "tests/test_stage4_2r3c3t13s24_sequential_transition_identification.py",
+    "tests/test_stage4_2r3c3t13s24_training_sequence_forensics.py",
     "tests/test_stage4_2r3c3t13s2_quantized_observability_audit.py",
     "tests/test_stage4_2r3c3t13s2r1_readback_residual_forensics.py",
     "tests/test_stage4_2r3c3t13s3_quantized_causal_tube_interface.py",
@@ -557,6 +559,7 @@
     "tsc_rzip_rllib/utils/ray_runtime.py"
   ],
   "runtime_hotfix_checkpoint": "12ead06",
+  "training_sequence_forensic_checkpoint": "7a5d9df",
   "runtime_hotfix": {
     "revision": "s24_fixed_basis_dict_to_ordered_columns_hotfix_v1",
     "failure_class": "runtime_code_representation_error_before_first_sequential_action",
