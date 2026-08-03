@@ -1,0 +1,15 @@
+{
+  "candidate_real_sentinel_spec_digest": "f3ca434af404bb20c85e7ff2fb6da40bc13c1d873ae9c74396ab8680533b889b",
+  "config_sha256": "dbe5ae3652a2a7a1b5d41f9469b5bfa7ea3a02614cfaf6e90c8456b2d0074932",
+  "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r5_v1",
+  "design_document_sha256": "2b801e8cc1a0c3c5c374aba72288e5af1adb12967d2e9f2c1a0beb9afb85f211",
+  "identity": "causal_recursive_split_return_preflight_v1",
+  "new_raw_count": 0,
+  "package_revision": "r42r3c3t13s24d1r5_recursive_split_return_preflight_v1",
+  "primary_pass": true,
+  "real_tsc_executed": false,
+  "route": "CAUSAL_RECURSIVE_SPLIT_RETURN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_raw_inventory_digest": "9327a301498349eaebdb834d1c0f243bcc1939b5efb5d059ee6d6ec43b036190",
+  "stage": "Stage4.2R3c3T13S24D1R5"
+}

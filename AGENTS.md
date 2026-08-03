@@ -630,11 +630,19 @@ or plant advance. All 54 source action and trace prefixes reproduced exactly;
 produced the frozen exact Card15 split start at exactly 0.175 incremental
 normalized action. Independent server-side raw/output forensics passed.
 
-D1R3 is only a split-start construction PASS. It cannot validate the
-state-19 finish because it advances no plant. The active stage is a separately
-preregistered new-identity D1R4 nine-case authentic real-TSC sentinel. A D1R4
-pass may authorize only a new full replacement transition-identification
-campaign; MPC, expert data, BC, DAgger, and residual RL remain blocked.
+D1R3 is only a split-start construction PASS. D1R4 then executed nine
+authentic prefixes and safely rejected all nine state-19 exact-center finishes
+because their current-baseline increments were 0.2712316553--0.3540255817,
+above the unchanged 0.24/0.25 gates. D1R5 subsequently completed two
+byte-identical zero-TSC primary/independent replays and proved a new causal
+exact-Card15 0.175 continuation in all nine state-19 contexts.
+
+D1R5 does not observe state 20 or validate a finish. The active stage is the
+separately preregistered new-identity D1R6 nine-case authentic recursive-return
+sentinel. It must finish to the stored center by task step 22 without changing
+action, current, exactness, or formal-timing gates. A D1R6 pass may authorize
+only a new full replacement transition-identification campaign; MPC, expert
+data, BC, DAgger, and residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

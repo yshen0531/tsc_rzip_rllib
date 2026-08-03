@@ -845,3 +845,32 @@ is prospectively frozen to use each authenticated state-19 measurement only
 causally, construct another exact 0.175 intermediate, execute no plant step,
 and authorize at most the design of a new real sentinel. Identification, MPC,
 expert data, BC, DAgger, and RL remain unauthorized.
+
+## Current handoff: D1R5 final, D1R6 active
+
+D1R5 final package checkpoint `7389154` completed two byte-identical
+zero-new-TSC outputs. The primary and independent tools each authenticated and
+replayed 9/9 D1R4 rows, reproduced all nine rejected direct finishes, and
+constructed the current-state-only exact-Card15 0.175 continuation in 9/9.
+There were no forbidden inputs, new raw, snapshots, Ray, `gotsc`, TSC, or
+plant steps. Five output JSON hashes matched exactly across the repeat.
+
+The first two invocations exposed the same resume-only historical-package
+authentication bug in the primary and then independent tool. Both are
+preserved; neither ran TSC or advanced a plant. Fixes `b8626c1` and `55e7720`
+changed only historical source authentication. Local and final server complete
+tests passed 965/965, with one expected server skip.
+
+The exact report is
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R5_FORENSIC_REPORT.md`. Compact
+evidence is under
+`docs/codex/audits/stage4_2r3c3t13s24d1r5_20260803_7389154/`; D1R4 raw stays
+server-side.
+
+The active design is D1R6, frozen before implementation in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R6_REAL_TSC_RECURSIVE_RETURN_SENTINEL_DESIGN.md`.
+It permits exactly nine fresh 35-step authentic sentinels. Step 19 applies the
+known-safe continuation, later continuations are causal and bounded, and an
+exact-center finish is mandatory by task step 22. A pass permits only design
+of a full replacement identification campaign. MPC, expert data, BC, DAgger,
+and RL remain unauthorized.

@@ -586,6 +586,23 @@ separately preregistered nine-case D1R4 authentic real-TSC safety sentinel.
 Only D1R4 may test the causal state-19 finish and full horizon. The full
 replacement campaign and every MPC/expert/RL stage remain blocked.
 
+D1R4 then executed nine authentic prefixes. Restart, causality, source prefix,
+and split start were exact in 9/9, but every state-19 exact-center finish was
+safely rejected before application because its current-baseline intervention
+was `0.2712316553--0.3540255817`, above the unchanged 0.24/0.25 limits. This
+was a genuine action-schedule design failure, not a runtime, restart, raw,
+snapshot, reporting, or formal-control failure; formal endpoints were not
+reached.
+
+D1R5 completed two byte-identical offline replays and proved in primary and
+independent implementations that all 9/9 state-19 contexts admit another
+exact-Card15 0.175 causal continuation with zero forbidden inputs and zero new
+TSC or plant steps. D1R5 does not observe state 20 and therefore validates no
+finish or formal control. The active D1R6 design is a nine-case authentic
+recursive-return sentinel with a hard task-step-22 finish boundary. Even a
+D1R6 pass can authorize only a full replacement transition-identification
+design; MPC, expert data, BC, DAgger, and RL remain blocked.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:

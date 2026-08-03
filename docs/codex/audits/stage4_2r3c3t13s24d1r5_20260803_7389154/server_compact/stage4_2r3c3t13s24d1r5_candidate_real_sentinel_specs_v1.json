@@ -1,0 +1,3620 @@
+[
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_37d59c154aeb6de0ffce",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_3632b644a92d662d49ec",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_8ae0b6ecd6bb80ff9dd9",
+    "experiment_id": "s42r3c3t13s24d1r6_8ae0b6ecd6bb80ff9dd9",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "plus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p5_q2_a0p750_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_a405911a51d24bfc9d0b/1250ms",
+    "restart_snapshot_manifest_digest": "bbee4bb4988ca0f65c955d449b615a4f962559533a24df050e95484eafdd3742",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "11": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "13": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "14": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "15": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "16": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 6,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_a405911a51d24bfc9d0b",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_df49234492138e7badbd",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_cab4b82c98c67918804d",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_0492a0fd270d8e141e78",
+    "experiment_id": "s42r3c3t13s24d1r6_0492a0fd270d8e141e78",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "plus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p5_q2_a0p750_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_a405911a51d24bfc9d0b/1250ms",
+    "restart_snapshot_manifest_digest": "bbee4bb4988ca0f65c955d449b615a4f962559533a24df050e95484eafdd3742",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "11": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "13": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "14": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "15": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "16": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 10,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_a405911a51d24bfc9d0b",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_8eeb1777406352ce33dd",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_e4fa9f026838ed653965",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_0034c0cc6baabd89ee9f",
+    "experiment_id": "s42r3c3t13s24d1r6_0034c0cc6baabd89ee9f",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "plus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p5_q2_a0p750_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_a405911a51d24bfc9d0b/1250ms",
+    "restart_snapshot_manifest_digest": "bbee4bb4988ca0f65c955d449b615a4f962559533a24df050e95484eafdd3742",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "11": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "13": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "14": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "15": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "16": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 18,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_a405911a51d24bfc9d0b",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_86be93770a846fccb600",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_a65d408787d0658da27c",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_e675b7728ae2e423fd80",
+    "experiment_id": "s42r3c3t13s24d1r6_e675b7728ae2e423fd80",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "minus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p9_q1_a0p900_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_66cc71d0d6b03ea3d009/1290ms",
+    "restart_snapshot_manifest_digest": "96a06bcada96415eff9d341c4f15e5383726c0f4c4977e06b09ca2a3bdb63fee",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "11": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "13": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "14": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "15": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "16": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 6,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_66cc71d0d6b03ea3d009",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_bdcb7098747844ee2232",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_04b92e4b42fe7e469853",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_805d02f72d26c5b27151",
+    "experiment_id": "s42r3c3t13s24d1r6_805d02f72d26c5b27151",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "minus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p9_q1_a0p900_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_66cc71d0d6b03ea3d009/1290ms",
+    "restart_snapshot_manifest_digest": "96a06bcada96415eff9d341c4f15e5383726c0f4c4977e06b09ca2a3bdb63fee",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "11": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "13": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "14": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "15": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "16": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 10,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_66cc71d0d6b03ea3d009",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_18a2210acb3070b0efae",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_c4e405fec44d3e9ac344",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_0852323ab8abd563e97e",
+    "experiment_id": "s42r3c3t13s24d1r6_0852323ab8abd563e97e",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "minus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p9_q1_a0p900_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_66cc71d0d6b03ea3d009/1290ms",
+    "restart_snapshot_manifest_digest": "96a06bcada96415eff9d341c4f15e5383726c0f4c4977e06b09ca2a3bdb63fee",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "11": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "13": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "14": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "15": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "16": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 18,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_66cc71d0d6b03ea3d009",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_ccf6aa927f768ebd2aff",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_35996f4758a5b09be45a",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_897d44baee2a16dbd658",
+    "experiment_id": "s42r3c3t13s24d1r6_897d44baee2a16dbd658",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "plus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p9_q1_a0p900_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_eb1dc6434a00c1800afc/1290ms",
+    "restart_snapshot_manifest_digest": "ecd54e3b4e724b48077debf3d81b8695f4f0005cd502f29a35715012bf00b822",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "11": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "13": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "14": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "15": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "16": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 6,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_eb1dc6434a00c1800afc",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_8e8b75dc900952fa69f3",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_21710d52f229b67eaaf2",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_613f9e16e2cb1d7dab94",
+    "experiment_id": "s42r3c3t13s24d1r6_613f9e16e2cb1d7dab94",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "plus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p9_q1_a0p900_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_eb1dc6434a00c1800afc/1290ms",
+    "restart_snapshot_manifest_digest": "ecd54e3b4e724b48077debf3d81b8695f4f0005cd502f29a35715012bf00b822",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "11": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "13": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "14": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "15": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "16": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 10,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_eb1dc6434a00c1800afc",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  },
+  {
+    "action_delay_steps": 0,
+    "actuator_gain_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "adaptive_handover": {
+      "enabled": false
+    },
+    "anti_windup_enabled": false,
+    "anti_windup_mode": "off",
+    "baseline_experiment_id": "",
+    "calibration_profile": "r8_batch_trusted",
+    "calibration_source_experiment_id": "s41r8_323e2cee1e36e56b87b5",
+    "calibration_token": "s41r8_323e2cee1e36e56b87b5",
+    "campaign_identity": "causal_recursive_split_return_safety_sentinel_v1",
+    "candidate_preflight_sha256": "860dffbf5a25f7275a0976bdb0e037b859519c35c8365480c364fbbdfd7bde99",
+    "category": "identification_only_causal_recursive_transition",
+    "conditional_anti_windup_use_actual_actuator_state": false,
+    "controller_action_delay_steps": 0,
+    "controller_gain_estimate_by_mode": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "controller_history_initialization": "current_visible_state_only_at_task_step_zero",
+    "controller_integral_initialization": "zero",
+    "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "controller_scale": 0.5,
+    "controller_slew_scale_estimate": 1.0,
+    "controller_variant": "r11_calibrated_long_hold",
+    "d1r4_source_d1r2_experiment_id": "s42r3c3t13s24d1r2_753dd156c17230943bea",
+    "d1r4_split_contract": {
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_cancel_threshold": 0.24,
+      "failed_sequence_indices": [
+        6,
+        10,
+        18
+      ],
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_split_start_increment": 0.18,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_exact_card15_intermediate": true,
+      "require_exact_decimal_telescoping_net": true,
+      "require_no_saturation_or_clipping": true,
+      "split_construction_target_increment": 0.175,
+      "split_finish_task_step": 19,
+      "split_slot": 3,
+      "split_start_task_step": 18
+    },
+    "d1r6_recursive_contract": {
+      "continuation_target_increment": 0.175,
+      "continuation_task_step": 19,
+      "controller_future_access": false,
+      "controller_label_access": false,
+      "direct_finish_threshold": 0.24,
+      "initial_split_task_step": 18,
+      "latest_future_finish_task_step": 22,
+      "maximum_continuation_increment": 0.18,
+      "maximum_current_utilization": 0.55,
+      "maximum_original_increment": 0.25,
+      "maximum_total_normalized_action_abs": 1.0,
+      "require_direct_failure_reproduction": true,
+      "require_exact_card15_continuation": true,
+      "require_expanded_exact_decimal_telescope": true,
+      "require_no_saturation_or_clipping": true,
+      "split_slot": 3
+    },
+    "d1r6_source_d1r4_experiment_id": "s42r3c3t13s24d1r4_889171b81b42430f52a7",
+    "delay_aware_enabled": true,
+    "development_set_only": true,
+    "environment_variant": "stage4_2r3c3t13s24d1r6_s42r3c3t13s24d1r6_26ee6697c86b54426956",
+    "experiment_id": "s42r3c3t13s24d1r6_26ee6697c86b54426956",
+    "extended_horizon": true,
+    "force_anti_windup_in_clean": false,
+    "formal_horizon_steps": 35,
+    "formal_timing_unchanged": true,
+    "fresh_controller_required": true,
+    "fresh_tsc_process_required": true,
+    "full_wire_current_recorded_after_action_choice": true,
+    "future_action_count": 0,
+    "future_measurement_count": 0,
+    "gain_slew_scheduling_enabled": true,
+    "hidden_wire_current_available_to_controller": false,
+    "history_member": "plus_first",
+    "horizon_steps": 35,
+    "identification_only": true,
+    "kind": "stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel",
+    "known_control_effect_from_measured_current_increment": true,
+    "observer_enabled": true,
+    "observer_variant": "control_aware_residual",
+    "online_action_computation_required": true,
+    "pair_id": "p9_q1_a0p900_gap4_settle4",
+    "pair_or_history_label_available_to_controller": false,
+    "partition": "safety_sentinel",
+    "partition_label_available_to_controller": false,
+    "phase": "prospective_recursive_split_return_safety_sentinel",
+    "phase_alignment": {
+      "Ip_scale_A": 2000.0,
+      "R_scale_m": 0.03,
+      "Z_scale_m": 0.03,
+      "align_braking_transition": true,
+      "align_delay_queue_priming": true,
+      "align_nominal_reference": true,
+      "align_response_model_phase": true,
+      "align_terminal_transition": true,
+      "candidate_max_phase": 20,
+      "candidate_min_phase": 0,
+      "hidden_wire_input_allowed": false,
+      "reference_clock_separate_from_task_clock": true,
+      "reference_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ],
+      "reference_manifold": "authenticated_r17_actual_closed_loop_visible_RZI",
+      "reference_phase_count": 21,
+      "source_actions_allowed": false,
+      "source_coil_currents_allowed": false,
+      "source_wire_currents_allowed": false,
+      "task_clock_starts_at_zero": true,
+      "tie_break": "earliest_phase"
+    },
+    "phase_aware_reference_enabled": true,
+    "precontrol_calibration_is_separate_reset_episode": true,
+    "prime_action_queue_with_nominal": true,
+    "probe_primitive_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r6_v1",
+    "probe_trajectory_allowed_in_expert_dataset": false,
+    "queue_initialized_from_calibrated_model_before_main_control": true,
+    "queue_initialized_from_trusted_model_before_main_control": true,
+    "queue_tail_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "r11_fixed_hold_start_step": 65,
+    "r11_frozen_policy_no_retuning": true,
+    "r11_source_prefix_steps": 75,
+    "r3c3_probe_amplitude": 0.0,
+    "r3c3_probe_cancel_effect_state": -1,
+    "r3c3_probe_cancel_step": -1,
+    "r3c3_probe_delta_by_task_issue_step": {},
+    "r3c3_probe_direction": "",
+    "r3c3_probe_expected_issue_count": 0,
+    "r3c3_probe_first_effect_state": -1,
+    "r3c3_probe_id": "lattice_baseline",
+    "r3c3_probe_issue_step": -1,
+    "r3c3_probe_mode": -1,
+    "r3c3_probe_sign": 0,
+    "r3c3_probe_window": "baseline",
+    "r3c3_requested_probe_net": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "r3c3t11_schedule_contract": "persistent_incremental_current_step_then_effect_states_39_to_44_zero_net_v1",
+    "r3c3t13s9_offline_role": "safety_sentinel",
+    "r3c3t13s9_schedule_contract": "s21_prospective_orthogonal_postqueue_active_calibration_v1",
+    "r3c3t13s9_source_r3c1_experiment_id": "",
+    "r3c3t13s9_stratum": "normal",
+    "r3c3t1_transport_contract": "positive_states_3_to_8_negative_states_15_to_20_zero_net_v1",
+    "regime_id": "A",
+    "restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_eb1dc6434a00c1800afc/1290ms",
+    "restart_snapshot_manifest_digest": "ecd54e3b4e724b48077debf3d81b8695f4f0005cd502f29a35715012bf00b822",
+    "s21_response_role": "baseline",
+    "s24_model_predictor_label_access": false,
+    "s24_requested_action_by_task_step": {
+      "10": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "11": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "13": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "14": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "15": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "16": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ],
+      "17": [
+        -0.29,
+        -0.29,
+        0.29,
+        0.29
+      ],
+      "18": [
+        0.29,
+        0.29,
+        -0.29,
+        -0.29
+      ]
+    },
+    "s24_requested_matrix_row": [
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29,
+      -0.29,
+      -0.29,
+      0.29,
+      0.29
+    ],
+    "s24_role": "sequential_response",
+    "s24_schedule_digest": "023a6c9212bf52f38b1d4268d2be406964b5c1d1c64e43ffad85f0af689a3ce6",
+    "s24_sequence_index": 18,
+    "s24d1r2_online_cancel_margin_gate": 0.24,
+    "scenario": "qp28_c0p50_v1p50_p1p25_position__nominal__d0__s1.0",
+    "slew_scale": 1.0,
+    "source_action_available_to_controller": false,
+    "source_coil_current_available_to_controller": false,
+    "source_result_available_to_controller": false,
+    "source_stage4_2r3c3_bank_provenance_digest": "5ec49166e59df915105d4411df36a9901db56f365594b83ff08bbc6abf3751f6",
+    "source_stage4_2r3c3t1_raw_inventory_digest": "f19a04dcb6b597e97517482d602a6cfdb3c0a1f0b4bfd7a1507b90ae2cc0876f",
+    "source_wire_current_available_to_controller": false,
+    "stage": "Stage4.2R3c3T13S24D1R6",
+    "state_generation_experiment_id": "s42r3b_eb1dc6434a00c1800afc",
+    "tail_action_policy": "none",
+    "tail_feedback_steps": 165,
+    "tail_hold_steps": 0,
+    "tail_policy": "queue_preview_then_streaming_terminal_feedback",
+    "tail_steps": 165,
+    "target_Ip_offset_A": 0.0,
+    "target_R_offset_m": 0.0,
+    "target_Z_offset_m": 0.0,
+    "target_id": "nominal",
+    "task_clock_starts_at_zero": true,
+    "terminal_controller_model_scale": 1.0,
+    "terminal_controller_scale": 0.5,
+    "terminal_initial_previous_correction": "last_main_mode_correction",
+    "terminal_integral_mode": "reset_zero",
+    "terminal_ip_measurement_gain": 1.0,
+    "terminal_nominal_physical_mode": "zero_current_increment",
+    "terminal_policy_id": "qp28_c0p50_v1p50_p1p25_position",
+    "terminal_position_measurement_gain": 1.25,
+    "terminal_template_step": 28,
+    "terminal_velocity_measurement_gain": 1.5,
+    "transition_preview_replaces_only_unapplied_issue_slots": true,
+    "transition_preview_uses_only_original_issue_time_information": true,
+    "trusted_calibration_model": true,
+    "underlying_controller_revision": "authenticated_visible_manifold_phase_mpc_v42r3c1",
+    "visible_reference_manifold": {
+      "contract": "authenticated_r17_actual_closed_loop_visible_RZI_v1",
+      "current_run_future_included": false,
+      "phase_count": 21,
+      "phase_max": 20,
+      "phase_min": 0,
+      "schema_version": 1,
+      "source_actions_included": false,
+      "source_coil_currents_included": false,
+      "source_experiment_id": "s41r11_076c2e2752cc8914bcf9",
+      "source_raw_sha256": "a582f639deecd886e28c18a1a1a95222704f4d6cee14e2b80cfc9adc97a433f4",
+      "source_raw_size_bytes": 238281,
+      "source_wire_currents_included": false,
+      "values": [
+        [
+          0.743600216,
+          0.0162365614,
+          31286.4059
+        ],
+        [
+          0.739457832,
+          0.0209589512,
+          31189.4066
+        ],
+        [
+          0.735157625,
+          0.0258166179,
+          31088.7382
+        ],
+        [
+          0.730893079,
+          0.0302324242,
+          31037.9274
+        ],
+        [
+          0.72710305,
+          0.0332303247,
+          31056.3569
+        ],
+        [
+          0.724402304,
+          0.0344292376,
+          31095.6789
+        ],
+        [
+          0.723215509,
+          0.0340749936,
+          31006.9678
+        ],
+        [
+          0.723119376,
+          0.0326860089,
+          30777.5231
+        ],
+        [
+          0.723620727,
+          0.0308873175,
+          30666.0112
+        ],
+        [
+          0.724121325,
+          0.02921696,
+          30643.2184
+        ],
+        [
+          0.724602877,
+          0.0278506796,
+          30699.3791
+        ],
+        [
+          0.725439285,
+          0.0264527168,
+          30575.2145
+        ],
+        [
+          0.726870149,
+          0.024629331,
+          30213.1832
+        ],
+        [
+          0.72853581,
+          0.0225606584,
+          29990.2545
+        ],
+        [
+          0.729990098,
+          0.020834122,
+          29846.9294
+        ],
+        [
+          0.731195173,
+          0.0196727983,
+          29663.0117
+        ],
+        [
+          0.732149632,
+          0.0189794761,
+          29652.2218
+        ],
+        [
+          0.732786657,
+          0.018617152,
+          29630.7605
+        ],
+        [
+          0.733235327,
+          0.0183744483,
+          29658.9075
+        ],
+        [
+          0.733618232,
+          0.018073522,
+          29681.8569
+        ],
+        [
+          0.73401388,
+          0.017686224,
+          29720.5642
+        ]
+      ],
+      "values_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+      "visible_fields": [
+        "R",
+        "Z",
+        "Ip"
+      ]
+    },
+    "visible_reference_manifold_digest": "ce00c1a3557eb20cc53a5c311fd3bba2acea41c4a5ecc2ddafa117fe9f0b8a5b",
+    "visible_reference_manifold_source": "authenticated_R17_actual_closed_loop_RZI"
+  }
+]

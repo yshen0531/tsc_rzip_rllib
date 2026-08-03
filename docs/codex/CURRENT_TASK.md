@@ -3317,3 +3317,62 @@ A D1R5 pass authorizes only prospective design of a new-identity authentic
 recursive-return sentinel whose exact-center finish boundary is no later than
 task step 22. It does not authorize that run directly or any identification,
 MPC, expert-data, BC, DAgger, or RL work.
+
+## 55. Final T13S24D1R5 result and active T13S24D1R6 task
+
+D1R5 completed two byte-identical zero-new-TSC server replays from final
+package checkpoint `7389154`. Both authenticated the exact nine-file D1R4 raw
+boundary, and the primary and independent implementations each obtained:
+
+```text
+strict source raw / controller replay                         9 / 9
+source action / trace prefix exact                            9 / 9
+saved state-19 direct finish failure reproduced               9 / 9
+causal exact-Card15 0.175 continuation                        9 / 9
+forbidden controller inputs                                       0
+new raw / snapshots / Ray / gotsc / TSC / plant                  all zero
+formal endpoint evaluable                                         0
+route  CAUSAL_RECURSIVE_SPLIT_RETURN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED
+```
+
+The direct finish increment remained `0.2712316553--0.3540255817`.
+The continuation maximum was `0.17500000000000002`, total normalized action
+maximum `0.0756922483`, and predicted current utilization maximum `0.38125`.
+The nine D1R6 candidate specs have digest
+`f3ca434af404bb20c85e7ff2fb6da40bc13c1d873ae9c74396ab8680533b889b`.
+
+Two pre-scientific invocations are preserved. The first stopped before output
+because the primary authenticator incorrectly required D1R4 to remain the
+currently installed package. The second wrote the four successful primary
+files and then the independent tool made the same resume-only check. These
+were source-authentication/reporting code bugs with zero TSC and zero plant
+advance. Fixes `b8626c1` and `55e7720` retained the frozen historical D1R4
+package/source fingerprints and changed no controller or experiment
+semantics. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R5_FORENSIC_REPORT.md
+```
+
+D1R5 is immutable. It is not a state-20, finish, formal-control, model, MPC,
+or robustness result.
+
+The active task is the separately frozen Stage4.2R3c3T13S24D1R6 authentic
+recursive-return safety sentinel. Its exact design is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R6_REAL_TSC_RECURSIVE_RETURN_SENTINEL_DESIGN.md
+```
+
+D1R6 fixes nine fresh 35-step authentic TSC trajectories and nine fresh
+controllers. Step 18 applies the original split start; step 19 must apply the
+D1R5-authenticated 0.175 continuation. At steps 20--21 the current controller
+may causally finish or apply another exact 0.175 continuation. Step 22 may
+only finish or stop structurally before plant advance. The stored center must
+be restored by task step 22 under every unchanged action/current/exactness
+gate. Formal arrival remains step 25 and hold remains step 35.
+
+A D1R6 pass authorizes only design of a full replacement sequential-transition
+identification campaign. Neither route authorizes transition MPC, expert data,
+BC, DAgger, or bounded residual RL.
