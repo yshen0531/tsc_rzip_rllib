@@ -803,3 +803,19 @@ complete classification are in
 S24 is vetoed. Active work is a new-identity, zero-TSC adaptive schedule
 search followed by a separately frozen preflight. No new real campaign, MPC,
 expert dataset, BC, DAgger, or residual RL is authorized yet.
+
+## Current handoff: S23D1 final, S23R1 active
+
+S23D1 completed its full 128,000-event catalog and 100,000-schedule bounded
+search twice with byte-identical artifacts. Every issue step had 103/160
+feasible sign pairs and steps 10--17 had 40/40 cancellation feasibility, but
+none of five knot sets produced a random schedule with global condition at
+most 3. The best requested condition was `7.2966498190`. This is a zero-TSC
+schedule-architecture FAIL, not a plant or MPC result.
+
+The active design is the separately frozen S23R1 amplitude-coded Hadamard
+preflight. It uses fixed knots `10,13,15,17`, amplitudes `0.25` for the two
+already-good Walsh patterns and `0.50` for the other two, and changes no
+fidelity/action/current/formal gate. S23R1 must pass actual-coordinate replay
+in all 40 contexts before any real sequential identification campaign can be
+designed. S24, MPC, expert data, BC, DAgger, and RL remain unauthorized.

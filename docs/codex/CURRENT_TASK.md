@@ -2915,3 +2915,53 @@ STAGE4_2R3C3T13S23D1_SCHEDULE_REDESIGN_SEARCH.md
 D1 evaluates only the fixed ternary-template, amplitude, knot, and seeded
 schedule space in that document. A found candidate authorizes only a separate
 S23R1 zero-TSC design and replay; a D1 result never authorizes S24 directly.
+
+## 47. Final T13S23D1 result and active T13S23R1 task
+
+T13S23D1 completed twice from deployed checkpoint `7f66d4c`; detailed,
+summary, and manifest outputs were byte-identical. It authenticated the full
+S21/S22/S23 chain and evaluated all 128,000 frozen signed-template events.
+
+```text
+feasible sign pairs at every issue step                    103 / 160
+step 10--17 cancellation contexts                      40 / 40 each
+step 18 / 19 cancellation contexts                       39 / 40, 35 / 40
+admissible four-knot sets                                      5
+seeded schedule tests                                     100000
+global-condition passes                                        0
+best requested normalized global condition             7.2966498190
+new raw / snapshots / TSC / plant / controller          0 / 0 / 0 / 0 / 0
+```
+
+The exact route is:
+
+```text
+BOUNDED_TERNARY_SCHEDULE_SEARCH_FAIL_NEW_EXCITATION_ARCHITECTURE_REQUIRED
+```
+
+This is a deterministic random independent-block schedule-architecture
+failure, not a runtime, raw, reporting, controller, plant, or MPC failure.
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S23D1_FORENSIC_REPORT.md
+```
+
+Post-D1 structured algebra found a single amplitude-coded H16 candidate using
+only D1-authenticated feasible templates: `++++` and `+-+-` at `0.25`, and
+`++--` and `+--+` at `0.50`. Its requested matrix has global condition
+`2.8284271247`, slot condition `2.0`, and minimum late residual
+`0.9428090416`.
+
+The active zero-TSC S23R1 design is frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S23R1_AMPLITUDE_CODED_HADAMARD_PREFLIGHT_DESIGN.md
+```
+
+S23R1 must use issue steps `10,13,15,17`, adjacent exact cancellations, the
+exact fixed amplitude map, and unchanged Card15/cosine/off-basis/action/
+current/rank/condition/novelty/formal gates. A pass authorizes only a
+separately frozen S24 identification campaign; it does not authorize real
+MPC or RL. Expert data, BC, DAgger, and bounded residual RL remain prohibited.
