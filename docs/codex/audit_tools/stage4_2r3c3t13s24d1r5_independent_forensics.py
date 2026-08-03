@@ -88,12 +88,33 @@ def _load_context(args: argparse.Namespace) -> d1r4.Context:
     )
 
 
+def _saved_source_specs(
+    ctx: d1r4.Context,
+    state: Mapping[str, Any],
+    manifest: Mapping[str, Any],
+) -> list[dict[str, Any]]:
+    """Independently authenticate D1R4's saved specs under the later D1R5 package."""
+    source_auth, rebuilt, _ = d1r4._authenticate_source(ctx)
+    saved = _read(ctx.paths.specs / "sentinel_specs.json")
+    if (
+        saved != rebuilt
+        or _digest(saved) != state.get("spec_digest")
+        or _digest(saved) != manifest.get("spec_digest")
+        or state.get("source_fingerprint") != source_auth
+        or manifest.get("source_fingerprint") != source_auth
+    ):
+        raise ValueError("independent D1R5 frozen D1R4 source/spec changed")
+    return saved
+
+
 def _source_authentication(
     ctx: d1r4.Context, cfg: Mapping[str, Any], complete_log: Path
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     source = cfg["source_contract"]
     raw = _inventory(ctx.paths.raw)
-    specs = d1r4._saved_specs(ctx)
+    manifest = _read(ctx.paths.manifest)
+    state = _read(ctx.paths.state)
+    specs = _saved_source_specs(ctx, state, manifest)
     expected_names = sorted(f"{spec['experiment_id']}.json.gz" for spec in specs)
     paths = {
         "final_sha256": ctx.paths.final,
@@ -114,10 +135,17 @@ def _source_authentication(
         ),
     }
     hashes = {key: _sha(path) for key, path in paths.items()}
+    root = d1r4._project_root()
+    hashes["execution_module_sha256"] = _sha(
+        root
+        / "tsc_rzip_rllib/diagnostics/"
+        "stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel.py"
+    )
+    hashes["execution_config_sha256"] = _sha(ctx.config_path)
     complete_log = complete_log.expanduser().resolve()
     hashes["complete_log_sha256"] = _sha(complete_log)
-    manifest = _read(ctx.paths.manifest)
     retrospective = _read(paths["retrospective_audit_sha256"])
+    package = manifest.get("package_fingerprint", {})
     passed = bool(
         ctx.paths.run_dir.name == source["run_name"]
         and raw["count"] == source["raw_count"]
@@ -127,14 +155,24 @@ def _source_authentication(
         and all(hashes[key] == source[key] for key in hashes)
         and manifest.get("route") == source["required_route"]
         and manifest.get("raw_inventory") == raw
-        and manifest.get("package_fingerprint", {}).get("package_revision")
-        == source["execution_package_revision"]
+        and package.get("package_revision") == source["execution_package_revision"]
+        and package.get("package_manifest_sha256")
+        == source["package_manifest_sha256"]
+        and package.get("sha256sums_sha256") == source["sha256sums_sha256"]
+        and package.get("implementation_sha256")
+        == source["execution_module_sha256"]
+        and package.get("config_sha256") == source["execution_config_sha256"]
         and retrospective.get("forensic_recomputation_passed")
         and retrospective.get("common_prefix_forensic_pass_count") == 9
     )
     if not passed:
         raise ValueError(cfg["routes"]["source_stop"])
-    return specs, {"passed": True, "raw_inventory": raw, **hashes}
+    return specs, {
+        "passed": True,
+        "raw_inventory": raw,
+        "execution_package_fingerprint": copy.deepcopy(package),
+        **hashes,
+    }
 
 
 def _candidate_specs(

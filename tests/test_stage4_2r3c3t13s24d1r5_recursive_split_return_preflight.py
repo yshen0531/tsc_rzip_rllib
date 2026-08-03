@@ -167,6 +167,34 @@ class Stage42R3C3T13S24D1R5Tests(unittest.TestCase):
         ):
             self.assertEqual(audit._saved_source_specs(ctx, state, manifest), specs)
 
+    def test_independent_saved_specs_also_ignore_current_package_identity(self):
+        specs = [{"experiment_id": "independent-frozen"}]
+        source_auth = {"passed": True, "digest": "independent-source"}
+        ctx = SimpleNamespace(paths=SimpleNamespace(specs=Path("frozen-specs")))
+        state = {
+            "spec_digest": independent._digest(specs),
+            "source_fingerprint": source_auth,
+        }
+        manifest = dict(state)
+        with (
+            mock.patch.object(
+                independent.d1r4,
+                "_authenticate_source",
+                return_value=(source_auth, specs, {"passed": True}),
+            ),
+            mock.patch.object(independent, "_read", return_value=specs),
+            mock.patch.object(
+                independent.d1r4,
+                "_saved_specs",
+                side_effect=AssertionError(
+                    "D1R4 resume-only package check must not run independently"
+                ),
+            ),
+        ):
+            self.assertEqual(
+                independent._saved_source_specs(ctx, state, manifest), specs
+            )
+
     def test_launcher_uses_only_server_virtualenv_and_offline_audits(self):
         text = (ROOT / "run_stage4_2r3c3t13s24d1r5_offline.sh").read_text(
             encoding="utf-8"
