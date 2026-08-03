@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R3",
+  "identity": "causal_split_exact_return_preflight_v1",
+  "package_revision": "r42r3c3t13s24d1r3_causal_split_return_preflight_v1",
+  "selection_status": "frozen_after_d1r2_fail_before_d1r3_implementation_or_candidate_replay",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R3_CAUSAL_SPLIT_RETURN_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "4f658165216abcba1c50b491ad80a88cfdd40c98e969baf412977b7744781fa5",
+  "source_contract": {
+    "run_name": "stage4_2r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel_20260803_160327_9e6bba2_v2",
+    "execution_package_revision": "r42r3c3t13s24d1r2_geometry_restored_amplitude_safety_sentinel_v2",
+    "execution_implementation_checkpoint": "9a8ce4d",
+    "execution_module_sha256": "bed7c39d4354116bb2e3464f4a14f9a8f6b45d378986a0d617b8e9c9c03ec5d1",
+    "execution_config_sha256": "13d8634276fb0215eaf798d4a9ba17db9b15e83eadf4df97eedad17c1146ae34",
+    "required_route": "GEOMETRY_RESTORED_SENTINEL_ACTION_MARGIN_FAIL_REDESIGN_REQUIRED",
+    "raw_count": 54,
+    "raw_total_bytes": 3078383,
+    "raw_inventory_digest": "eb4ac8c0e606ce0d8899f0a512b594877f59cc9424c0f6a87e3450bcd036cc83",
+    "normalized_spec_digest": "50832fadb244bbd338bd7c5cd5f9ff136eedce498d920f416458516d7655648f",
+    "prospective_audit_sha256": "a506dde9cf0f57607cda8af3e12c7e26c2f0e731f32e6b1da74ab8c3016a6dcd",
+    "retrospective_audit_sha256": "d6ea5fed0aa943c16ce850b80c9786556a9cd5e0de26a2e19d7a18d5d88914ec",
+    "complete_log_sha256": "89b23c022580ec70fb4df1d8367759685b610ccd319eb59b6383a3c14e5321ff",
+    "full_success_count": 45,
+    "structured_safe_stop_count": 9,
+    "restart_causality_calibration_pass_count": 54,
+    "issue_gate_pass_count": 216,
+    "successful_cancel_gate_pass_count": 207,
+    "failed_cancel_attempt_count": 9,
+    "original_cancel_cap_failure_count": 5
+  },
+  "split_contract": {
+    "direct_cancel_threshold": 0.24,
+    "split_construction_target_increment": 0.175,
+    "maximum_split_start_increment": 0.18,
+    "maximum_original_increment": 0.25,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "split_start_task_step": 18,
+    "split_finish_task_step": 19,
+    "split_slot": 3,
+    "failed_sequence_indices": [6, 10, 18],
+    "require_exact_card15_intermediate": true,
+    "require_exact_decimal_telescoping_net": true,
+    "require_no_saturation_or_clipping": true,
+    "controller_label_access": false,
+    "controller_future_access": false
+  },
+  "primary_gate": {
+    "replay_count": 54,
+    "unchanged_full_success_count": 45,
+    "unchanged_failure_prefix_count": 9,
+    "split_start_pass_count": 9,
+    "candidate_sentinel_spec_count": 9,
+    "plant_advance_count": 0,
+    "real_tsc_executed": false
+  },
+  "next_stage": {
+    "stage": "Stage4.2R3c3T13S24D1R4",
+    "campaign_identity": "causal_split_exact_return_safety_sentinel_v1",
+    "controller_revision": "causal_split_exact_return_probe_v42r3c3t13s24d1r4_v1",
+    "new_identity_required": true,
+    "real_tsc_rollout_count": 9,
+    "full_replacement_campaign_authorized": false
+  },
+  "routes": {
+    "source_stop": "CAUSAL_SPLIT_RETURN_PREFLIGHT_SOURCE_STOP",
+    "fail": "CAUSAL_SPLIT_RETURN_PREFLIGHT_FAIL_REDESIGN",
+    "pass": "CAUSAL_SPLIT_RETURN_PREFLIGHT_PASS_REAL_SENTINEL_REQUIRED"
+  },
+  "execution_contract": {
+    "new_raw_files": 0,
+    "new_snapshots": 0,
+    "ray_allowed": false,
+    "gotsc_allowed": false,
+    "tsc_allowed": false,
+    "plant_advance_allowed": false,
+    "server_side_raw_processing": true
+  },
+  "scientific_scope": {
+    "formal_timing_unchanged": true,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "full_identification_authorized": false,
+    "mpc_authorized": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
