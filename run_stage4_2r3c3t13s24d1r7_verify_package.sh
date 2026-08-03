@@ -17,6 +17,21 @@ from docs.codex.audit_tools import stage4_2r3c3t13s24d1r7_temporal_basis_substit
 
 root = Path.cwd()
 manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8"))
+expected_manifest = {
+    "stage": "Stage4.2R3c3T13S24D1R7",
+    "campaign_identity": "temporal_basis_substitution_preflight_v1",
+    "package_revision": "r42r3c3t13s24d1r7_temporal_basis_substitution_preflight_v1",
+    "implementation_checkpoint": "143f9ba",
+}
+for key, expected in expected_manifest.items():
+    if manifest.get(key) != expected:
+        raise SystemExit(f"D1R7 manifest {key} mismatch")
+execution = manifest.get("execution_contract", {})
+if execution.get("new_raw_count") != 0 or any(
+    execution.get(key) is not False
+    for key in ("ray_executed", "gotsc_executed", "tsc_executed", "controller_executed")
+):
+    raise SystemExit("D1R7 manifest zero-execution contract mismatch")
 config_path = root / manifest["config_path"]
 config = json.loads(config_path.read_text(encoding="utf-8"))
 stage._validate_config(config, config_path)
