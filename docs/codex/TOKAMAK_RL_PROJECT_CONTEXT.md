@@ -503,6 +503,24 @@ formal-verdict reproduction, and independent server raw recomputation. An
 S24 pass remains a finite identification result and authorizes only a
 separately designed zero-TSC robust MPC feasibility stage.
 
+S24 subsequently completed its real training boundary with 600/600 raw,
+including 24/24 successful baselines and 522/576 complete sequential
+trajectories. The remaining 54 trajectories were all causally rejected at a
+0.50-amplitude online cancellation because the incremental normalized action
+exceeded 0.25 after the sequential plant response moved the feedback center.
+Every one of the 1,152 actually executed 0.25 cancellation events passed; its
+maximum was 0.2360657249. Independent raw forensics found no active runtime,
+TSC, solver, restart, causality, corruption, or reporting failure. S24 is
+therefore frozen as an action-schedule design failure; calibration and holdout
+were never opened, and the partial raw cannot be reused in a new model fit.
+
+The active stage is S24D1, a zero-new-TSC contracted-amplitude preflight using
+the prospectively frozen map `0.25/0.25/0.225/0.225`. It must replay all 7,680
+static Card15 constructions and select all 54 allowed S24 failures for a
+fresh-identity real-TSC sentinel. A D1 pass authorizes only that sentinel. The
+full replacement campaign, transition MPC, robustness roadmap, expert data,
+BC, DAgger, and bounded residual RL remain unauthorized.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:

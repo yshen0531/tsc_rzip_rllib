@@ -3014,3 +3014,43 @@ outcomes open.
 An S24 pass authorizes only a separately preregistered zero-TSC robust
 finite-horizon feasibility/MPC design. It does not authorize real MPC,
 expert data, BC, DAgger, or bounded residual RL.
+
+## 49. Final T13S24 training result and active T13S24D1 task
+
+The authentic S24 training boundary completed 600/600 raw: 24/24 baselines and
+576/576 sequential specs. Independent server-side reconstruction found 522
+complete sequence successes and 54 structured failures. Every failure was a
+0.50-amplitude `sequential_cancel` incremental-action guard; all 1,152 actually
+executed 0.25 cancellation events passed, with maximum increment 0.2360657249.
+
+There were zero active old-hotfix, issue-action, TSC, solver, restart,
+causality, raw-corruption, or other runtime failures and zero reporting errors.
+The state route `SEQUENTIAL_IDENTIFICATION_RUNTIME_FAIL` is coarse: the raw
+scientific classification is an online action-schedule design failure. Model
+fitting, calibration, and holdout were never opened. S24 may not resume, and
+its partial successful sequence raw may not be mixed into a new model.
+
+Full evidence is frozen in:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24_FORENSIC_REPORT.md
+```
+
+The active stage is the already preregistered zero-new-TSC S24D1 contracted
+amplitude preflight. Its only allowed amplitude map is:
+
+```text
+++++  0.25
++-+-  0.25
+++--  0.225
++--+  0.225
+```
+
+S24D1 must independently authenticate the complete S24 boundary and archived
+hotfix failure inventory, replay all 3,840 issue and 3,840 cancellation
+constructions on the 40 immutable S21 contexts, and select all 54 allowed S24
+failures for a fresh-identity sentinel table. Any changed source failure class
+must stop. A pass authorizes only Stage4.2R3c3T13S24D2 real-TSC safety
+sentinel execution with the added prospective 0.24 online cancellation margin.
+It does not authorize a full campaign, transition MPC, expert data, BC,
+DAgger, or RL.
