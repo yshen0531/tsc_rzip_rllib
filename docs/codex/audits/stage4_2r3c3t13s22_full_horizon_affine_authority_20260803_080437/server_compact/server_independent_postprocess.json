@@ -1,0 +1,1236 @@
+{
+  "classification": "independent_server_raw_and_saved_coefficient_forward_postprocess",
+  "failed_context_bottleneck_counts": {
+    "position": 24
+  },
+  "formal_reproduction": {
+    "baseline_formal_pass_count": 16,
+    "baseline_formal_reproduction_count": 40,
+    "measured_probe_formal_pass_count": 99,
+    "measured_probe_formal_reproduction_count": 320
+  },
+  "independent_coefficient_bound_pass_count": 40,
+  "independent_context_count": 40,
+  "independent_exact_forward_match_count": 40,
+  "new_tsc_ray_plant_controller_or_snapshot_count": 0,
+  "output_hash_pass": true,
+  "passed": true,
+  "primary_gate_counts": {
+    "finite_direction_construction": 40,
+    "independent_check": 40,
+    "optimistic_affine_formal_feasibility": 16,
+    "optimizer_completion": 40
+  },
+  "primary_pass": false,
+  "route": "AFFINE_STATE10_AUTHORITY_FAIL_SEQUENTIAL_MODEL_REQUIRED",
+  "rows": [
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.08076875893969168,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.036502122725301955,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.01093511663420954,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p5_q1_a0p750_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08284552291631582,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.46931417292015565,
+        "endpoint_speed": 0.19231241060308324,
+        "final_speed": 0.6349787727469804,
+        "ip_hold_rms": 0.9378750537287547,
+        "ip_safety": 0.9804812100055911,
+        "ip_sustained": 0.9512030250139778,
+        "ip_terminal": 0.9166307000400975,
+        "position": 0.01093511663420954,
+        "post_speed": 0.17154477083684183
+      },
+      "sustained_box_max_error_m": 0.02967194650097371,
+      "sustained_ip_max_error_A": 195.1878999440887
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.08099690601765375,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.03607201644454754,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.011692849946908446,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p5_q1_a0p750_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08275322118064034,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.46900852759047085,
+        "endpoint_speed": 0.19003093982346253,
+        "final_speed": 0.6392798355545246,
+        "ip_hold_rms": 0.9383018529760275,
+        "ip_safety": 0.9806655450175135,
+        "ip_sustained": 0.9516638625437835,
+        "ip_terminal": 0.9176847750741763,
+        "position": 0.011692849946908446,
+        "post_speed": 0.17246778819359665
+      },
+      "sustained_box_max_error_m": 0.029649214501592747,
+      "sustained_ip_max_error_A": 193.34454982486568
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.063173480661535,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.0374421785695744,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.24287320005759638,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.03481814463691873,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.20963421579046126,
+        "endpoint_speed": 0.36826519338465,
+        "final_speed": 0.6255782143042561,
+        "ip_hold_rms": 0.8864035526637131,
+        "ip_safety": 0.97117622500492,
+        "ip_sustained": 0.9279405625123,
+        "ip_terminal": 0.878213649987967,
+        "position": -0.24287320005759638,
+        "post_speed": 0.6518185536308128
+      },
+      "sustained_box_max_error_m": 0.03728619600172789,
+      "sustained_ip_max_error_A": 288.2377499508002
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06384756011110815,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.037178400709229883,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.23870496667977115,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.03470043384595027,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.19710964555518573,
+        "endpoint_speed": 0.3615243988889185,
+        "final_speed": 0.6282159929077011,
+        "ip_hold_rms": 0.887132424538948,
+        "ip_safety": 0.9712364200010285,
+        "ip_sustained": 0.9280910500025712,
+        "ip_terminal": 0.8773974999896728,
+        "position": -0.23870496667977115,
+        "post_speed": 0.6529956615404973
+      },
+      "sustained_box_max_error_m": 0.037161149000393134,
+      "sustained_ip_max_error_A": 287.63579998971545
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.09514778081000709,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.07220495308099928,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.22553935001890424,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.10912688601204525,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.40963072623735575,
+        "endpoint_speed": 0.048522191899929124,
+        "final_speed": 0.2779504691900072,
+        "ip_hold_rms": 0.9262513196498067,
+        "ip_safety": 0.9789590999923086,
+        "ip_sustained": 0.9473977499807715,
+        "ip_terminal": 0.9080356749752245,
+        "position": -0.22553935001890424,
+        "post_speed": -0.09126886012045232
+      },
+      "sustained_box_max_error_m": 0.036766180500567125,
+      "sustained_ip_max_error_A": 210.4090000769138
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.09454280059353252,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.07360530110871412,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.2254586500342206,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.11004177246232201,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.4166359856699786,
+        "endpoint_speed": 0.054571994064674834,
+        "final_speed": 0.26394698891285884,
+        "ip_hold_rms": 0.9258019472164927,
+        "ip_safety": 0.9788865100103765,
+        "ip_sustained": 0.9472162750259413,
+        "ip_terminal": 0.908331599997402,
+        "position": -0.2254586500342206,
+        "post_speed": -0.10041772462322007
+      },
+      "sustained_box_max_error_m": 0.036763759501026616,
+      "sustained_ip_max_error_A": 211.13489989623486
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.07800218574408657,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.03628934487126111,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.013214983375332334,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08118826282359744,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.47941918835544994,
+        "endpoint_speed": 0.21997814255913428,
+        "final_speed": 0.6371065512873889,
+        "ip_hold_rms": 0.9404255316465344,
+        "ip_safety": 0.9814340349980605,
+        "ip_sustained": 0.9535850874951511,
+        "ip_terminal": 0.9171573249999838,
+        "position": -0.013214983375332334,
+        "post_speed": 0.18811737176402565
+      },
+      "sustained_box_max_error_m": 0.03039644950125997,
+      "sustained_ip_max_error_A": 185.65965001939549
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.07744679521384949,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.034608547558528296,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.011233166681657636,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.07992953323648469,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.4858423006740572,
+        "endpoint_speed": 0.22553204786150516,
+        "final_speed": 0.6539145244147171,
+        "ip_hold_rms": 0.9397477973817178,
+        "ip_safety": 0.9811022802762597,
+        "ip_sustained": 0.9527557006906491,
+        "ip_terminal": 0.9181882249299325,
+        "position": -0.011233166681657636,
+        "post_speed": 0.20070466763515316
+      },
+      "sustained_box_max_error_m": 0.03033699500044973,
+      "sustained_ip_max_error_A": 188.97719723740374
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.09501523847046822,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.07299558512682296,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.22441101668891994,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.10955453928668096,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.408665552125668,
+        "endpoint_speed": 0.04984761529531778,
+        "final_speed": 0.2700441487317705,
+        "ip_hold_rms": 0.9262039427987437,
+        "ip_safety": 0.9789631700074038,
+        "ip_sustained": 0.9474079250185096,
+        "ip_terminal": 0.9078598250006981,
+        "position": -0.22441101668891994,
+        "post_speed": -0.09554539286680952
+      },
+      "sustained_box_max_error_m": 0.0367323305006676,
+      "sustained_ip_max_error_A": 210.36829992596176
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.09426663441882858,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.07490074782180155,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.22553535003168124,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q1_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.11078372664783252,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.4184755382445636,
+        "endpoint_speed": 0.057333655811714235,
+        "final_speed": 0.2509925217819846,
+        "ip_hold_rms": 0.9258262701425941,
+        "ip_safety": 0.9788032600335944,
+        "ip_sustained": 0.9470081500839861,
+        "ip_terminal": 0.9086790249967962,
+        "position": -0.22553535003168124,
+        "post_speed": -0.10783726647832514
+      },
+      "sustained_box_max_error_m": 0.03676606050095044,
+      "sustained_ip_max_error_A": 211.96739966405585
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.031588547614106684,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.00225305996437102,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.34384361669993213,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p750_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.029016534407662636,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.6931355848829845,
+        "endpoint_speed": 0.6841145238589332,
+        "final_speed": 0.9774694003562898,
+        "ip_hold_rms": 0.9132086333737113,
+        "ip_safety": 0.9781881850107591,
+        "ip_sustained": 0.9454704625268978,
+        "ip_terminal": 0.8937010250644344,
+        "position": -0.34384361669993213,
+        "post_speed": 0.7098346559233737
+      },
+      "sustained_box_max_error_m": 0.04031530850099796,
+      "sustained_ip_max_error_A": 218.11814989240884
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.033571321467954884,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.0021240324434357734,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.34554320001590844,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p750_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.02938833736758116,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.6707116744906538,
+        "endpoint_speed": 0.6642867853204512,
+        "final_speed": 0.9787596755656423,
+        "ip_hold_rms": 0.9149628429603189,
+        "ip_safety": 0.9783536249999321,
+        "ip_sustained": 0.9458840624998301,
+        "ip_terminal": 0.8962948249999154,
+        "position": -0.34554320001590844,
+        "post_speed": 0.7061166263241885
+      },
+      "sustained_box_max_error_m": 0.04036629600047725,
+      "sustained_ip_max_error_A": 216.46375000067928
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06304746734108667,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.03800646813065046,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.24171696670416498,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.034756191578906956,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.21301906016911176,
+        "endpoint_speed": 0.3695253265891334,
+        "final_speed": 0.6199353186934955,
+        "ip_hold_rms": 0.8865411307403437,
+        "ip_safety": 0.9711358100072168,
+        "ip_sustained": 0.927839525018042,
+        "ip_terminal": 0.877379574992794,
+        "position": -0.24171696670416498,
+        "post_speed": 0.6524380842109305
+      },
+      "sustained_box_max_error_m": 0.03725150900112495,
+      "sustained_ip_max_error_A": 288.6418999278321
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.0636997293129102,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.03802743901076674,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.2386391667359813,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.034702493138003554,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.1953933237326323,
+        "endpoint_speed": 0.3630027068708981,
+        "final_speed": 0.6197256098923327,
+        "ip_hold_rms": 0.8875886053117908,
+        "ip_safety": 0.9713180286379309,
+        "ip_sustained": 0.9282950715948273,
+        "ip_terminal": 0.8794383931940883,
+        "position": -0.2386391667359813,
+        "post_speed": 0.6529750686199645
+      },
+      "sustained_box_max_error_m": 0.037159175002079436,
+      "sustained_ip_max_error_A": 286.8197136206909
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.07738932725526974,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.033177693271079174,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.038197450053690574,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.07990391861203933,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.491821534132596,
+        "endpoint_speed": 0.22610672744730265,
+        "final_speed": 0.6682230672892082,
+        "ip_hold_rms": 0.9406511779703697,
+        "ip_safety": 0.9813461500014131,
+        "ip_sustained": 0.9533653750035328,
+        "ip_terminal": 0.9188944500052694,
+        "position": -0.038197450053690574,
+        "post_speed": 0.20096081387960674
+      },
+      "sustained_box_max_error_m": 0.031145923501610717,
+      "sustained_ip_max_error_A": 186.53849998586884
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.08159160230776911,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.01734333337311502,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.16768940000981924,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.06179561630862002,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.28328712348452756,
+        "endpoint_speed": 0.18408397692230893,
+        "final_speed": 0.8265666662688498,
+        "ip_hold_rms": 0.9249507532027849,
+        "ip_safety": 0.9794347450016506,
+        "ip_sustained": 0.9485868625041267,
+        "ip_terminal": 0.8992830750015764,
+        "position": -0.16768940000981924,
+        "post_speed": 0.38204383691379984
+      },
+      "sustained_box_max_error_m": 0.03503068200029458,
+      "sustained_ip_max_error_A": 205.65254998349337
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06286351619341163,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.03889713339583886,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.24205661673192358,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.034621010658644986,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.21350623582711026,
+        "endpoint_speed": 0.3713648380658837,
+        "final_speed": 0.6110286660416113,
+        "ip_hold_rms": 0.8866013113739958,
+        "ip_safety": 0.971106130018787,
+        "ip_sustained": 0.9277653250469675,
+        "ip_terminal": 0.8774723999993203,
+        "position": -0.24205661673192358,
+        "post_speed": 0.6537898934135502
+      },
+      "sustained_box_max_error_m": 0.03726169850195771,
+      "sustained_ip_max_error_A": 288.9386998121299
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06320393714523174,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.03840860393375009,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.23893730005281144,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.034546967533895155,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.1993981477414064,
+        "endpoint_speed": 0.36796062854768263,
+        "final_speed": 0.615913960662499,
+        "ip_hold_rms": 0.8870558106258335,
+        "ip_safety": 0.970947795012323,
+        "ip_sustained": 0.9273694875308074,
+        "ip_terminal": 0.8796677999900985,
+        "position": -0.23893730005281144,
+        "post_speed": 0.6545303246610485
+      },
+      "sustained_box_max_error_m": 0.03716811900158434,
+      "sustained_ip_max_error_A": 290.5220498767703
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06460449253449917,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.04365955588651552,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.5754924833920456,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.03597636526375847,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.2036322137465687,
+        "endpoint_speed": 0.3539550746550084,
+        "final_speed": 0.5634044411348448,
+        "ip_hold_rms": 0.8987252104264509,
+        "ip_safety": 0.9739734849933434,
+        "ip_sustained": 0.9349337124833582,
+        "ip_terminal": 0.8815997000018597,
+        "position": -0.5754924833920456,
+        "post_speed": 0.6402363473624153
+      },
+      "sustained_box_max_error_m": 0.047264774501761364,
+      "sustained_ip_max_error_A": 260.265150066567
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.08121108502672833,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.028603127981736358,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.5924995333618872,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.04238323205091805,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.0275203356429079,
+        "endpoint_speed": 0.18788914973271675,
+        "final_speed": 0.7139687201826365,
+        "ip_hold_rms": 0.8892454350890198,
+        "ip_safety": 0.9719807599996435,
+        "ip_sustained": 0.9299518999991088,
+        "ip_terminal": 0.8710363499967807,
+        "position": -0.5924995333618872,
+        "post_speed": 0.5761676794908195
+      },
+      "sustained_box_max_error_m": 0.04777498600085661,
+      "sustained_ip_max_error_A": 280.1924000035651
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.024806180420878045,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.05167927836265218,
+      "formal_best_arrival_ms": 220,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.08214704664907257,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08978686299219225,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.4482048111995398,
+        "endpoint_speed": 0.7519381957912196,
+        "final_speed": 0.4832072163734782,
+        "ip_hold_rms": 0.9258183836608956,
+        "ip_safety": 0.9752824600005814,
+        "ip_sustained": 0.9382061500014534,
+        "ip_terminal": 0.9021201750039236,
+        "position": 0.08214704664907257,
+        "post_speed": 0.10213137007807749
+      },
+      "sustained_box_max_error_m": 0.02753558860052782,
+      "sustained_ip_max_error_A": 247.1753999941866
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.024574729275900622,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.042786502517866275,
+      "formal_best_arrival_ms": 230,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.11127918164427253,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08589518248911224,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.6800418732938728,
+        "endpoint_speed": 0.7542527072409938,
+        "final_speed": 0.5721349748213373,
+        "ip_hold_rms": 0.9281812422057042,
+        "ip_safety": 0.9788888050008551,
+        "ip_sustained": 0.9472220125021377,
+        "ip_terminal": 0.9013044750066911,
+        "position": 0.11127918164427253,
+        "post_speed": 0.14104817510887768
+      },
+      "sustained_box_max_error_m": 0.026661624550671822,
+      "sustained_ip_max_error_A": 211.11194999144936
+    },
+    {
+      "bottleneck_components": [
+        "post_speed"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06204451657650271,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.05642680751633569,
+      "formal_best_arrival_ms": 130,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.11899541532428515,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08810045846757149,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.12159236724895262,
+        "endpoint_speed": 0.37955483423497294,
+        "final_speed": 0.43573192483664314,
+        "ip_hold_rms": 0.8928750099784136,
+        "ip_safety": 0.9572880678303758,
+        "ip_sustained": 0.8932201695759395,
+        "ip_terminal": 0.9231431034388407,
+        "position": 0.21933193564869502,
+        "post_speed": 0.11899541532428515
+      },
+      "sustained_box_max_error_m": 0.02342004193053915,
+      "sustained_ip_max_error_A": 427.11932169624197
+    },
+    {
+      "bottleneck_components": [
+        "post_speed"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06694335704277775,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.05762761921171953,
+      "formal_best_arrival_ms": 130,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.11404044008241854,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08859595599175815,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.12261070887073389,
+        "endpoint_speed": 0.3305664295722226,
+        "final_speed": 0.4237238078828047,
+        "ip_hold_rms": 0.8938677778331843,
+        "ip_safety": 0.9578206100024624,
+        "ip_sustained": 0.8945515250061562,
+        "ip_terminal": 0.9245888499912726,
+        "position": 0.22432268333462768,
+        "post_speed": 0.11404044008241854
+      },
+      "sustained_box_max_error_m": 0.023270319499961167,
+      "sustained_ip_max_error_A": 421.7938999753751
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.014272343312731172,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.04406092261798853,
+      "formal_best_arrival_ms": 250,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.0706599000196031,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p9_q1_a0p900_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.023780876215754476,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7080287807937551,
+        "endpoint_speed": 0.8572765668726883,
+        "final_speed": 0.5593907738201147,
+        "ip_hold_rms": 0.9125004080378332,
+        "ip_safety": 0.9768947400008557,
+        "ip_sustained": 0.9422368500021394,
+        "ip_terminal": 0.8940748499917063,
+        "position": -0.0706599000196031,
+        "post_speed": 0.7621912378424552
+      },
+      "sustained_box_max_error_m": 0.03211979700058809,
+      "sustained_ip_max_error_A": 231.05259999144255
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.026262889717401868,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.03930969952790301,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.10384293337171635,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p9_q1_a0p900_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.028667592206902383,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7669190028026178,
+        "endpoint_speed": 0.7373711028259813,
+        "final_speed": 0.6069030047209699,
+        "ip_hold_rms": 0.9102356442634818,
+        "ip_safety": 0.9770708150921739,
+        "ip_sustained": 0.9426770377304347,
+        "ip_terminal": 0.8927056749111253,
+        "position": -0.10384293337171635,
+        "post_speed": 0.7133240779309762
+      },
+      "sustained_box_max_error_m": 0.03311528800115149,
+      "sustained_ip_max_error_A": 229.2918490782613
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.02449955172605148,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.05064338482134902,
+      "formal_best_arrival_ms": 220,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.08610539165289255,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08908868962953971,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.4481093296942078,
+        "endpoint_speed": 0.7550044827394852,
+        "final_speed": 0.49356615178650975,
+        "ip_hold_rms": 0.9248767889741268,
+        "ip_safety": 0.9751087550008236,
+        "ip_sustained": 0.9377718875020591,
+        "ip_terminal": 0.9000742500050309,
+        "position": 0.08610539165289255,
+        "post_speed": 0.10911310370460292
+      },
+      "sustained_box_max_error_m": 0.027416838250413224,
+      "sustained_ip_max_error_A": 248.91244999176342
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.026165496035753973,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.044078077763190386,
+      "formal_best_arrival_ms": 230,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.10306707662884118,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08756567093987906,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.6727886869559834,
+        "endpoint_speed": 0.7383450396424602,
+        "final_speed": 0.5592192223680962,
+        "ip_hold_rms": 0.9290777079304989,
+        "ip_safety": 0.978920745001427,
+        "ip_sustained": 0.9473018625035674,
+        "ip_terminal": 0.9052019500081551,
+        "position": 0.10306707662884118,
+        "post_speed": 0.12434329060120941
+      },
+      "sustained_box_max_error_m": 0.026907987701134763,
+      "sustained_ip_max_error_A": 210.79254998573015
+    },
+    {
+      "bottleneck_components": [
+        "post_speed"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06175056803167969,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.05736980886590712,
+      "formal_best_arrival_ms": 130,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.1168593573027561,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.0883140642697244,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.12068605060270254,
+        "endpoint_speed": 0.38249431968320313,
+        "final_speed": 0.4263019113409289,
+        "ip_hold_rms": 0.8929069705888805,
+        "ip_safety": 0.9575021703120569,
+        "ip_sustained": 0.8937554257801421,
+        "ip_terminal": 0.9216891394445266,
+        "position": 0.21831713585621548,
+        "post_speed": 0.1168593573027561
+      },
+      "sustained_box_max_error_m": 0.023450485924313536,
+      "sustained_ip_max_error_A": 424.9782968794316
+    },
+    {
+      "bottleneck_components": [
+        "post_speed"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.06683579760563463,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.05765672727385722,
+      "formal_best_arrival_ms": 130,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.11589695075940898,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q1_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.0884103049240591,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.12296574949168304,
+        "endpoint_speed": 0.3316420239436537,
+        "final_speed": 0.4234327272614279,
+        "ip_hold_rms": 0.8937665104404816,
+        "ip_safety": 0.9577735800018945,
+        "ip_sustained": 0.8944339500047362,
+        "ip_terminal": 0.9244216499999329,
+        "position": 0.22496576666730572,
+        "post_speed": 0.11589695075940898
+      },
+      "sustained_box_max_error_m": 0.02325102699998083,
+      "sustained_ip_max_error_A": 422.26419998105484
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.02798364667340967,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.04143149624331541,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.11634598334484281,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.027293577834704468,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7441361682570444,
+        "endpoint_speed": 0.7201635332659033,
+        "final_speed": 0.5856850375668459,
+        "ip_hold_rms": 0.9115601232581854,
+        "ip_safety": 0.9776239550021543,
+        "ip_sustained": 0.9440598875053856,
+        "ip_terminal": 0.8903699000106753,
+        "position": -0.11634598334484281,
+        "post_speed": 0.7270642216529553
+      },
+      "sustained_box_max_error_m": 0.03349037950034528,
+      "sustained_ip_max_error_A": 223.76044997845747
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.022240715132376753,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.033765145322302154,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.0849628166798242,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.023206108093784497,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7836729068300123,
+        "endpoint_speed": 0.7775928486762325,
+        "final_speed": 0.6623485467769785,
+        "ip_hold_rms": 0.9091997514513218,
+        "ip_safety": 0.9778397150048745,
+        "ip_sustained": 0.9445992875121865,
+        "ip_terminal": 0.8912527000092123,
+        "position": -0.0849628166798242,
+        "post_speed": 0.7679389190621551
+      },
+      "sustained_box_max_error_m": 0.032548884500394726,
+      "sustained_ip_max_error_A": 221.60284995125403
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.018691605127662974,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.027067443029423634,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.21796854998392212,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q2_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.02660555244348202,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7441461724987268,
+        "endpoint_speed": 0.8130839487233703,
+        "final_speed": 0.7293255697057637,
+        "ip_hold_rms": 0.900774149606532,
+        "ip_safety": 0.9752562849998921,
+        "ip_sustained": 0.9381407124997304,
+        "ip_terminal": 0.8877097999949747,
+        "position": 0.21796854998392212,
+        "post_speed": 0.7339444755651798
+      },
+      "sustained_box_max_error_m": 0.023460943500482334,
+      "sustained_ip_max_error_A": 247.4371500010784
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.017525993511175432,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.023010081295361428,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.22552709995188602,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q2_a0p750_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.024955531458214678,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7345509436941986,
+        "endpoint_speed": 0.8247400648882457,
+        "final_speed": 0.7698991870463857,
+        "ip_hold_rms": 0.8981081597649382,
+        "ip_safety": 0.9749735501095121,
+        "ip_sustained": 0.9374338752737803,
+        "ip_terminal": 0.8853555501212013,
+        "position": 0.22552709995188602,
+        "post_speed": 0.7504446854178533
+      },
+      "sustained_box_max_error_m": 0.023234187001443418,
+      "sustained_ip_max_error_A": 250.26449890487856
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.026310315080669736,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.051391061602881746,
+      "formal_best_arrival_ms": 220,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.08977453330059382,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q2_a0p900_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.09090398666286814,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.4809341299164065,
+        "endpoint_speed": 0.7368968491933027,
+        "final_speed": 0.4860893839711826,
+        "ip_hold_rms": 0.9258120822036254,
+        "ip_safety": 0.9745699750032912,
+        "ip_sustained": 0.9364249375082281,
+        "ip_terminal": 0.9026702250142898,
+        "position": 0.08977453330059382,
+        "post_speed": 0.09096013337131859
+      },
+      "sustained_box_max_error_m": 0.027306764000982184,
+      "sustained_ip_max_error_A": 254.30024996708744
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.025318503218389105,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.04907428109462406,
+      "formal_best_arrival_ms": 220,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.08223028997489323,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q2_a0p900_gap2_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.08879611567432566,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.4626453548198184,
+        "endpoint_speed": 0.7468149678161089,
+        "final_speed": 0.5092571890537594,
+        "ip_hold_rms": 0.9284633597437014,
+        "ip_safety": 0.9759146850006247,
+        "ip_sustained": 0.9397867125015619,
+        "ip_terminal": 0.9064571500045331,
+        "position": 0.08223028997489323,
+        "post_speed": 0.1120388432567434
+      },
+      "sustained_box_max_error_m": 0.027533091300753203,
+      "sustained_ip_max_error_A": 240.8531499937526
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.0284060692106979,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.04289280092539905,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.1175943333602687,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p9_q2_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.02693058394626629,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7339058673012417,
+        "endpoint_speed": 0.715939307893021,
+        "final_speed": 0.5710719907460096,
+        "ip_hold_rms": 0.9118776794908074,
+        "ip_safety": 0.9767644700159446,
+        "ip_sustained": 0.9419111750398615,
+        "ip_terminal": 0.8905559749858676,
+        "position": -0.1175943333602687,
+        "post_speed": 0.7306941605373372
+      },
+      "sustained_box_max_error_m": 0.03352783000080806,
+      "sustained_ip_max_error_A": 232.35529984055393
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.022317695088522622,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.035095231199836145,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": false,
+      "formal_minimum_signed_margin": -0.08118735002247601,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": false,
+      "pair_id": "p9_q2_a0p900_gap3_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.023767962211869442,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7808640403690388,
+        "endpoint_speed": 0.7768230491147738,
+        "final_speed": 0.6490476880016386,
+        "ip_hold_rms": 0.9090136153257198,
+        "ip_safety": 0.9775583399906431,
+        "ip_sustained": 0.9438958499766077,
+        "ip_terminal": 0.8897212750132585,
+        "position": -0.08118735002247601,
+        "post_speed": 0.7623203778813056
+      },
+      "sustained_box_max_error_m": 0.03243562050067428,
+      "sustained_ip_max_error_A": 224.4166000935693
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.020645190654668723,
+      "even_residual_caps_pass": true,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.030159929640659056,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.2133736332881747,
+      "history_member": "minus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.027770038722519434,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7323603585559115,
+        "endpoint_speed": 0.7935480934533128,
+        "final_speed": 0.6984007035934094,
+        "ip_hold_rms": 0.8988892636592896,
+        "ip_safety": 0.9752466650925496,
+        "ip_sustained": 0.9381166627313742,
+        "ip_terminal": 0.8850835504407023,
+        "position": 0.2133736332881747,
+        "post_speed": 0.7222996127748057
+      },
+      "sustained_box_max_error_m": 0.023598791001354757,
+      "sustained_ip_max_error_A": 247.53334907450335
+    },
+    {
+      "bottleneck_components": [
+        "position"
+      ],
+      "coefficient_bound_pass": true,
+      "endpoint_velocity_m_per_s": 0.018118544500814873,
+      "even_residual_caps_pass": false,
+      "exact_forward_match": true,
+      "final_velocity_m_per_s": 0.02322073993516152,
+      "formal_best_arrival_ms": 270,
+      "formal_contract_pass": true,
+      "formal_minimum_signed_margin": 0.2258494333046729,
+      "history_member": "plus_first",
+      "optimistic_affine_formal_feasible": true,
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "post_arrival_velocity_rms_m_per_s": 0.024940674806743092,
+      "selected_component_signed_margins": {
+        "endpoint_late_speed": 0.7327990401145663,
+        "endpoint_speed": 0.8188145549918513,
+        "final_speed": 0.7677926006483848,
+        "ip_hold_rms": 0.8985286233293412,
+        "ip_safety": 0.9751649349992203,
+        "ip_sustained": 0.9379123374980509,
+        "ip_terminal": 0.8850369999902868,
+        "position": 0.2258494333046729,
+        "post_speed": 0.7505932519325691
+      },
+      "sustained_box_max_error_m": 0.023224517000859812,
+      "sustained_ip_max_error_A": 248.3506500077965
+    }
+  ],
+  "saved_context_count": 40,
+  "schema_version": 1,
+  "source_raw_inventory": {
+    "count": 360,
+    "digest": "8d5a67944e344b06da89c64625d1e94adc60432db230655ec9250c339e3e50f4",
+    "total_bytes": 21083271
+  },
+  "stage": "Stage4.2R3c3T13S22"
+}

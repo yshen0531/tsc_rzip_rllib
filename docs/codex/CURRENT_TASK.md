@@ -2796,3 +2796,59 @@ small separately preregistered real combination sentinel. A failure vetoes
 this single-issue affine model and requires a sequential state-conditioned
 transition model. Neither route authorizes real MPC, expert data, BC,
 DAgger, or bounded residual RL.
+
+## 45. Final T13S22 result and active T13S23 task
+
+T13S22 completed its zero-new-TSC full-horizon affine authority audit at
+implementation and deployment checkpoint `dc4b559`. It authenticated all
+360 S21 raw, reproduced 40/40 baselines and 320/320 measured probes, and
+completed all 40 bounded optimizations and independent forward checks.
+
+```text
+baseline formal pass / total                              16 / 40
+optimistic affine formal feasibility                      16 / 40
+failed baselines repaired                                  0 / 24
+passing baselines regressed                                 0 / 16
+all solutions with a coefficient within 1e-6 of a bound   40 / 40
+new raw / snapshots / TSC / plant advances               0 / 0 / 0 / 0
+```
+
+All 24 failed affine contexts were limited by sustained position error; four
+also had a negative post-arrival-speed margin, and Ip was not limiting. The
+independent server postprocessor reconstructed every saved coefficient
+trajectory directly from raw and reproduced the exact classification. The
+final route is:
+
+```text
+AFFINE_STATE10_AUTHORITY_FAIL_SEQUENTIAL_MODEL_REQUIRED
+```
+
+This is a clean finite model-class/authority failure, not a runtime,
+deployment, raw, restart, statistics, reporting, real-controller, real-MPC,
+or global plant-reachability result. The complete report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S22_FORENSIC_REPORT.md
+```
+
+The active zero-new-TSC task is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S23_SEQUENTIAL_HADAMARD_LATTICE_PREFLIGHT_DESIGN.md
+```
+
+T13S23 authenticates the S21/S22 chain and replays a fixed 24-sequence
+Sylvester-Hadamard design over the same 40 baselines. Each sequence combines
+the four fixed S21 QR directions at issue steps 10, 13, 16, and 19 with
+adjacent exact stored-center cancellations. It must pass 3,840 issue and
+3,840 cancellation constructions, exact Card15/zero-net/action/current
+gates, per-slot rank four, global rank 16, normalized condition at most 3,
+and late-slot novelty in every context.
+
+S23 creates zero raw and executes zero TSC or plant step. A pass authorizes
+only a separately implemented 1,000-rollout sequential identification
+campaign. That campaign must freeze its causal transition-model family,
+whole-pair training/calibration/holdout boundaries, recursive-prediction
+gates, and stop-at-boundary policy before any response outcome opens. No S23
+route authorizes a real MPC, expert data, BC, DAgger, or bounded residual RL.

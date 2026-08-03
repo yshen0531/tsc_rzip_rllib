@@ -1,0 +1,44 @@
+[Stage4.2R3c3T13S22] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T13S22] source_s21_run=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s21_runs/stage4_2r3c3t13s21_cumulative_exact_card15_pooled_observer_campaign_20260803_024821_98dc353
+output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s22_audits/stage4_2r3c3t13s22_full_horizon_affine_authority_20260803_080437
+[Stage4.2R3c3T13S22] read-only S21 raw affine audit: zero plant/controller/snapshot execution.
+[Stage4.2R3c3T13S22] Formal 250/270 ms arrival and 350/370 ms hold timing is unchanged.
+{
+  "baseline_formal_pass_count": 16,
+  "baseline_formal_reproduction_count": 40,
+  "detailed_sha256": "ed2a2f4c714670428c8d89026ee0a00420b59d20bfb7f82e048853dc934fd67d",
+  "even_residual_all_caps_pass": false,
+  "even_residual_global_maximum_absolute": [
+    0.0010937444999999935,
+    0.003682652,
+    0.025046699999997646,
+    0.030791699999999957,
+    70.13325000000259
+  ],
+  "finite_direction_construction": 40,
+  "identity": "full_horizon_state10_four_direction_affine_authority_v1",
+  "independent_check": 40,
+  "manifest_sha256": "cf09a6c520886aee46495c7885d1ad6ab8ebf18caac771cf5b401e9803a88f95",
+  "measured_probe_formal_pass_count": 99,
+  "measured_probe_formal_reproduction_count": 320,
+  "optimistic_affine_formal_feasibility": 16,
+  "optimizer_completion": 40,
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s22_audits/stage4_2r3c3t13s22_full_horizon_affine_authority_20260803_080437",
+  "primary_pass": false,
+  "provenance_digest": "a94db7429ab0b123dd4f4bd690d208b373e943b683872716dee94d9f44d3ea66",
+  "route": "AFFINE_STATE10_AUTHORITY_FAIL_SEQUENTIAL_MODEL_REQUIRED",
+  "schema_version": 1,
+  "scientific_classification": {
+    "affine_model_class_authority_result": "finite_optimistic_fail",
+    "global_plant_reachability_conclusion": "not_tested",
+    "raw_or_snapshot_corruption": false,
+    "real_closed_loop_conclusion_from_s22": "not_tested",
+    "real_controller_or_mpc_executed_by_s22": false,
+    "real_tsc_executed_by_s22": false,
+    "runtime_or_environment_error": false,
+    "statistics_or_reporting_error": false
+  },
+  "source_raw_authentication_count": 360,
+  "stage": "Stage4.2R3c3T13S22",
+  "summary_sha256": "3559187879dc5630f2688d0adb64b83391fc286eca14f6a531fae1c90fa4f01e"
+}

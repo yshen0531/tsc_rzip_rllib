@@ -466,12 +466,27 @@ local model PASS only. Formal diagnostics remained 16/40 for baselines, and
 none of the eight real signed state-10 probes repaired any of the 24 failing
 contexts.
 
-The active task is the zero-new-TSC Stage4.2R3c3T13S22 full-horizon affine
-authority discriminator. It tests the frozen bounded span of the four
-measured state-10 odd responses under the exact unchanged formal metric. A
-pass can authorize only a small real interaction/combination sentinel; a
-failure requires sequential state-conditioned transition identification.
-No real MPC, expert data, BC, DAgger, or RL is yet authorized.
+Stage4.2R3c3T13S22 then completed the frozen full-horizon affine authority
+audit. All 360 S21 raw authenticated, all 40 baselines and 320 measured
+probes reproduced, and all 40 optimizations and independent forward checks
+completed. Optimistic affine feasibility was only 16/40, exactly matching
+the unchanged baseline passes. It repaired none of the 24 failed contexts.
+All failures were limited by sustained position error, with four also failing
+post-arrival speed and no Ip limitation. The final route is
+`AFFINE_STATE10_AUTHORITY_FAIL_SEQUENTIAL_MODEL_REQUIRED`.
+
+S22 ran no new TSC, plant, snapshot, controller, or MPC. It vetoes only the
+bounded single-state-10 affine family and does not prove global plant
+unreachability.
+
+The active zero-new-TSC Stage4.2R3c3T13S23 task is the prospectively frozen
+sequential Hadamard lattice preflight. It uses 24 fixed combined-action
+sequences spanning four S21 QR directions at issue steps 10, 13, 16, and 19.
+All 40 baseline contexts must pass exact Card15 issue/cancellation, zero-net,
+action/current, global rank-16, per-slot rank-4, condition, and temporal-
+novelty gates before a separately implemented 1,000-rollout sequential
+identification campaign can be authorized. S23 itself runs no plant. No real
+MPC, expert data, BC, DAgger, or RL is yet authorized.
 
 ## 7. Medium-term objectives
 

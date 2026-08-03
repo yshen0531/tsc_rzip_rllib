@@ -1,0 +1,35 @@
+{
+  "baseline_formal_pass_count": 16,
+  "baseline_formal_reproduction_count": 40,
+  "even_residual_all_caps_pass": false,
+  "even_residual_global_maximum_absolute": [
+    0.0010937444999999935,
+    0.003682652,
+    0.025046699999997646,
+    0.030791699999999957,
+    70.13325000000259
+  ],
+  "finite_direction_construction": 40,
+  "identity": "full_horizon_state10_four_direction_affine_authority_v1",
+  "independent_check": 40,
+  "measured_probe_formal_pass_count": 99,
+  "measured_probe_formal_reproduction_count": 320,
+  "optimistic_affine_formal_feasibility": 16,
+  "optimizer_completion": 40,
+  "primary_pass": false,
+  "provenance_digest": "a94db7429ab0b123dd4f4bd690d208b373e943b683872716dee94d9f44d3ea66",
+  "route": "AFFINE_STATE10_AUTHORITY_FAIL_SEQUENTIAL_MODEL_REQUIRED",
+  "schema_version": 1,
+  "scientific_classification": {
+    "affine_model_class_authority_result": "finite_optimistic_fail",
+    "global_plant_reachability_conclusion": "not_tested",
+    "raw_or_snapshot_corruption": false,
+    "real_closed_loop_conclusion_from_s22": "not_tested",
+    "real_controller_or_mpc_executed_by_s22": false,
+    "real_tsc_executed_by_s22": false,
+    "runtime_or_environment_error": false,
+    "statistics_or_reporting_error": false
+  },
+  "source_raw_authentication_count": 360,
+  "stage": "Stage4.2R3c3T13S22"
+}

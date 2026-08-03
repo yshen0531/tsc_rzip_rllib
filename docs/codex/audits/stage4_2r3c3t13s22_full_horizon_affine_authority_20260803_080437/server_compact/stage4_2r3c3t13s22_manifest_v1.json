@@ -1,0 +1,21 @@
+{
+  "identity": "full_horizon_state10_four_direction_affine_authority_v1",
+  "new_raw_files_created": 0,
+  "output_files": [
+    {
+      "path": "stage4_2r3c3t13s22_affine_authority_v1.json",
+      "sha256": "ed2a2f4c714670428c8d89026ee0a00420b59d20bfb7f82e048853dc934fd67d",
+      "size_bytes": 237549
+    },
+    {
+      "path": "stage4_2r3c3t13s22_summary_v1.json",
+      "sha256": "3559187879dc5630f2688d0adb64b83391fc286eca14f6a531fae1c90fa4f01e",
+      "size_bytes": 1325
+    }
+  ],
+  "provenance_digest": "a94db7429ab0b123dd4f4bd690d208b373e943b683872716dee94d9f44d3ea66",
+  "ray_gotsc_tsc_plant_or_controller_executed": false,
+  "schema_version": 1,
+  "source_raw_files_copied_or_modified": 0,
+  "stage": "Stage4.2R3c3T13S22"
+}

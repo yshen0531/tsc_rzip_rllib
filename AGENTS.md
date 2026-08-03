@@ -584,14 +584,27 @@ This is a finite local response-set model PASS only. Formal diagnostics were
 state-10 directions repaired any of the 24 failing contexts. It is not a real
 MPC or formal control PASS.
 
-The current stage is the zero-new-TSC T13S22 full-horizon affine authority
-discriminator. It must authenticate all S21 evidence, reproduce all 360
-formal diagnostics, construct the four measured odd full-horizon responses
-per context, and optimize exactly one coefficient vector in `[-1,1]^4` under
-the unchanged formal metric. A 40/40 optimistic affine pass authorizes only a
-small separately preregistered real combination sentinel. Failure requires a
-sequential state-conditioned transition model. Neither route authorizes a
-real MPC, expert data, BC, DAgger, or bounded residual RL.
+T13S22 then authenticated all 360 S21 raw, reproduced all 360 formal
+diagnostics, completed 40/40 bounded optimizations and independent forward
+checks, but passed optimistic affine feasibility only 16/40. These were
+exactly the 16 unchanged baseline passes: the frozen state-10 affine family
+repaired 0/24 failures and regressed 0/16 passes. All 24 failures were limited
+by sustained position error; four also failed post-arrival speed, while Ip
+was not limiting. S22 is final as
+`AFFINE_STATE10_AUTHORITY_FAIL_SEQUENTIAL_MODEL_REQUIRED`. It ran zero TSC,
+plant steps, snapshots, or controllers, so this is a model-class/authority
+failure, not a real closed-loop or plant-reachability conclusion.
+
+The current zero-new-TSC T13S23 task is prospectively frozen as a sequential
+Hadamard lattice preflight. It replays a fixed 24-sequence, four-direction,
+four-knot exact-Card15 action design over all 40 S21 baselines. It must pass
+3,840 issue and 3,840 exact stored-center cancellation constructions, action
+and current limits, per-slot rank four, global rank 16, normalized condition
+at most 3, and late-slot novelty in every context. S23 runs no plant. A pass
+authorizes only a separately implemented 1,000-rollout sequential
+identification campaign whose transition model and train/calibration/holdout
+boundaries must be frozen before response outcomes open. No S23 route
+authorizes a real MPC, expert data, BC, DAgger, or bounded residual RL.
 
 Do not repair T11 by post-hoc column normalization, threshold relaxation, or
 amplitude-only rescaling. Preserve the T11 raw on the server. Do not build
