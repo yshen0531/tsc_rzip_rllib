@@ -4,8 +4,8 @@
   "run_name": "stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel",
   "campaign_identity": "causal_split_exact_return_safety_sentinel_v1",
   "controller_revision": "causal_split_exact_return_probe_v42r3c3t13s24d1r4_v1",
-  "package_revision": "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h1",
-  "implementation_checkpoint": "b725ae1",
+  "package_revision": "r42r3c3t13s24d1r4_causal_split_return_safety_sentinel_v1h2",
+  "implementation_checkpoint": "e66d012",
   "config_path": "configs/stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel_350ms.json",
   "source_stage": "Immutable D1R2 v2 real-TSC raw plus byte-reproduced final D1R3 causal split-return preflight.",
   "source_controller_revision": "sequential_amplitude_coded_card15_probe_v42r3c3t13s24d1r2_v1",
@@ -67,16 +67,32 @@
   "s24d1r4_preregistered_design_checkpoint": "6398c0d",
   "s24d1r4_implementation_checkpoint": "ddff71f",
   "s24d1r4_snapshot_aggregation_hotfix_checkpoint": "b725ae1",
-  "pre_tsc_hotfix": {
-    "failure_class": "offline_snapshot_subset_aggregation_bug",
-    "failed_run_raw_count": 0,
-    "plant_advances": 0,
-    "controller_semantics_changed": false,
-    "task_matrix_changed": false,
-    "physical_action_changed": false,
-    "formal_timing_changed": false,
-    "new_empty_run_required": true
-  },
+  "s24d1r4_partition_metadata_hotfix_checkpoint": "e66d012",
+  "pre_tsc_hotfixes": [
+    {
+      "failure_class": "offline_snapshot_subset_aggregation_bug",
+      "failed_run_raw_count": 0,
+      "controller_actions": 0,
+      "plant_advances": 0,
+      "controller_semantics_changed": false,
+      "task_matrix_changed": false,
+      "physical_action_changed": false,
+      "formal_timing_changed": false,
+      "new_empty_run_required": true
+    },
+    {
+      "failure_class": "controller_partition_metadata_guard_bug",
+      "failed_run_raw_count": 9,
+      "successful_raw_count": 0,
+      "controller_actions": 0,
+      "plant_advances": 0,
+      "controller_semantics_changed": false,
+      "task_matrix_changed": false,
+      "physical_action_changed": false,
+      "formal_timing_changed": false,
+      "new_empty_run_required": true
+    }
+  ],
   "declared_file_count": 432,
   "file_inventory": [
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
