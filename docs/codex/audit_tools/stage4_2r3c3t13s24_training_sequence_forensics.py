@@ -171,6 +171,8 @@ def _audit_active_raw(
     static = _static_event_index(s23r1)
     rows = []
     failure_counts: Counter[str] = Counter()
+    cancellation_event_counts: Counter[str] = Counter()
+    maximum_cancel_increment_by_amplitude: dict[str, float] = {}
     cancellation_drift = []
     for experiment_id, spec in sorted(spec_by_id.items()):
         result = parsed.get(experiment_id)
@@ -258,6 +260,17 @@ def _audit_active_raw(
             for row in trace
             if row.get("r3c3t13s24_event") != "none"
         )
+        for row in trace:
+            if row.get("r3c3t13s24_event") != "sequential_cancel":
+                continue
+            detail = row["r3c3t13s24_event_detail"]
+            amplitude = max(abs(float(value)) for value in detail["requested_coordinate"])
+            amplitude_key = format(amplitude, ".12g")
+            cancellation_event_counts[f"passed@{amplitude_key}"] += 1
+            maximum_cancel_increment_by_amplitude[amplitude_key] = max(
+                maximum_cancel_increment_by_amplitude.get(amplitude_key, 0.0),
+                float(detail["incremental_normalized_action_linf"]),
+            )
         success = bool(result.get("success"))
         failure_class = ""
         failed_event = None
@@ -295,6 +308,15 @@ def _audit_active_raw(
             prior = static[static_key]
             actual_increment = float(failed_event["incremental_normalized_action_linf"])
             static_increment = float(prior["cancel_incremental_normalized_action_linf"])
+            amplitude = max(
+                abs(float(value)) for value in failed_event["requested_coordinate"]
+            )
+            amplitude_key = format(amplitude, ".12g")
+            cancellation_event_counts[f"failed@{amplitude_key}"] += 1
+            maximum_cancel_increment_by_amplitude[amplitude_key] = max(
+                maximum_cancel_increment_by_amplitude.get(amplitude_key, 0.0),
+                actual_increment,
+            )
             cancellation_drift.append(
                 {
                     "experiment_id": experiment_id,
@@ -303,9 +325,7 @@ def _audit_active_raw(
                     "sequence_index": int(spec["s24_sequence_index"]),
                     "slot": int(failed_event["slot"]),
                     "task_step": int(failed_event["task_step"]),
-                    "coordinate_amplitude": max(
-                        abs(float(value)) for value in failed_event["requested_coordinate"]
-                    ),
+                    "coordinate_amplitude": amplitude,
                     "static_cancel_increment": static_increment,
                     "actual_cancel_increment": actual_increment,
                     "plant_response_extra_increment": actual_increment - static_increment,
@@ -391,6 +411,12 @@ def _audit_active_raw(
             bool(row.get("passed_forensic_integrity")) for row in rows
         ),
         "cancellation_failure_static_match_count": len(cancellation_drift),
+        "cancellation_event_counts_by_amplitude": dict(
+            sorted(cancellation_event_counts.items())
+        ),
+        "maximum_cancel_increment_by_amplitude": dict(
+            sorted(maximum_cancel_increment_by_amplitude.items())
+        ),
         "minimum_plant_response_extra_increment": min(drifts, default=None),
         "maximum_plant_response_extra_increment": max(drifts, default=None),
         "cancellation_drift_rows": cancellation_drift,
