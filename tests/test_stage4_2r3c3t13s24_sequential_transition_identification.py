@@ -25,10 +25,14 @@ if sys.platform == "win32":
 from tsc_rzip_rllib.diagnostics import (
     stage4_2r3c3t13s24_sequential_transition_identification as s24,
 )
+from docs.codex.audit_tools import (
+    stage4_2r3c3t13s24_semantics_preserving_runtime_hotfix as hotfix,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/stage4_2r3c3t13s24_sequential_transition_identification_370ms.json"
+HOTFIX_CONFIG = ROOT / "configs/stage4_2r3c3t13s24_semantics_preserving_runtime_hotfix_v1.json"
 
 
 class Stage42R3C3T13S24Tests(unittest.TestCase):
@@ -173,7 +177,9 @@ class Stage42R3C3T13S24Tests(unittest.TestCase):
         }
         basis = np.zeros((4, 14))
         basis[:, :4] = np.eye(4)
-        controller._fixed_basis_delta = basis.tolist()
+        controller._fixed_basis_delta = {
+            column: tuple(basis[column].tolist()) for column in range(4)
+        }
         controller.turns_tsc = np.ones(14)
         controller.base = SimpleNamespace(
             max_delta_a=1e6,
@@ -229,6 +235,36 @@ class Stage42R3C3T13S24Tests(unittest.TestCase):
         self.assertTrue(cancel["passed"])
         self.assertTrue(cancel["criteria"]["exact_zero_target_jump_net"])
         self.assertIsNone(controller._active_issue)
+
+    def test_runtime_hotfix_is_exactly_scoped_to_the_pre_action_dict_error(self):
+        cfg = json.loads(HOTFIX_CONFIG.read_text(encoding="utf-8"))
+        hotfix._validate_config(cfg, HOTFIX_CONFIG)
+        spec = {"experiment_id": "failed_sequence"}
+        result = {
+            "stage": s24.STAGE,
+            "campaign_identity": s24.CAMPAIGN_IDENTITY,
+            "controller_revision": s24.CONTROLLER_REVISION,
+            "experiment_id": "failed_sequence",
+            "spec": copy.deepcopy(spec),
+            "completed": True,
+            "success": False,
+            "failure_reason": cfg["exact_failure_reason"],
+            "trajectory": [{"abnormal": False} for _ in range(11)],
+            "controller_trace": [
+                {
+                    "computed_online": True,
+                    "solver_success": True,
+                    "r3c3t13s24_event": "none",
+                }
+                for _ in range(10)
+            ],
+            "traceback": "in _basis_current: not 'dict'",
+        }
+        hotfix._validate_failed_result(result, spec, cfg)
+        changed = copy.deepcopy(result)
+        changed["controller_trace"][-1]["r3c3t13s24_event"] = "sequential_issue"
+        with self.assertRaisesRegex(ValueError, "failed raw contract"):
+            hotfix._validate_failed_result(changed, spec, cfg)
 
     def test_phase_guard_and_incomplete_resume_fail_closed(self):
         ctx = SimpleNamespace(paths=SimpleNamespace(state=Path("unused")))

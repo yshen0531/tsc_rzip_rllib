@@ -496,7 +496,17 @@ class SequentialAmplitudeCodedProbeController(s21.CumulativeExactCard15ProbeCont
         self._active_issue: dict[str, Any] | None = None
 
     def _basis_current(self) -> tuple[np.ndarray, np.ndarray]:
-        fields = np.asarray(self._fixed_basis_delta, dtype=float).T
+        if set(self._fixed_basis_delta) != {0, 1, 2, 3}:
+            raise ValueError("S24 fixed physical basis columns changed")
+        fields = np.column_stack(
+            [
+                np.asarray(
+                    [float(value) for value in self._fixed_basis_delta[column]],
+                    dtype=float,
+                )
+                for column in range(4)
+            ]
+        )
         turns = np.asarray(self.turns_tsc, dtype=float)
         if fields.shape != (N_COILS, 4) or turns.shape != (N_COILS,):
             raise ValueError("S24 fixed physical basis shape changed")
