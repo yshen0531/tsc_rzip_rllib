@@ -5,7 +5,7 @@
   "identity": "causal_recursive_split_return_preflight_v1",
   "controller_revision": "causal_recursive_split_return_probe_v42r3c3t13s24d1r5_v1",
   "package_revision": "r42r3c3t13s24d1r5_recursive_split_return_preflight_v1",
-  "implementation_checkpoint": "b8626c1",
+  "implementation_checkpoint": "55e7720",
   "config_path": "configs/stage4_2r3c3t13s24d1r5_recursive_split_return_preflight_v1.json",
   "source_stage": "Immutable D1R4 v1h2 real-TSC structured split-finish raw and both prospective and retrospective audits.",
   "source_controller_revision": "causal_split_exact_return_probe_v42r3c3t13s24d1r4_v1",
@@ -63,7 +63,7 @@
   "s24d1r4_execution_checkpoint": "da3f4b4",
   "s24d1r4_reporting_audit_checkpoint": "69dedc0",
   "s24d1r4_final_and_d1r5_design_checkpoint": "e1a3703",
-  "s24d1r5_implementation_checkpoint": "b8626c1",
+  "s24d1r5_implementation_checkpoint": "55e7720",
   "declared_file_count": 434,
   "file_inventory": [
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
