@@ -103,6 +103,18 @@ def _geometry_signature(geometry: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
+def _source_geometry_matches(
+    recomputed: Mapping[str, Any],
+    official: Mapping[str, Any],
+    frozen_independent: Mapping[str, Any],
+) -> bool:
+    """Require exact independent reproduction and frozen-metric official agreement."""
+    return bool(
+        recomputed == frozen_independent
+        and _geometry_signature(recomputed) == _geometry_signature(official)
+    )
+
+
 def _inventory(directory: Path) -> dict[str, Any]:
     rows = []
     for path in sorted(directory.glob("*.json.gz")):
@@ -581,9 +593,11 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         zip(source["required_failed_experiment_ids"], source["required_failed_peaks"])
     )
     if (
-        geometry != final["response_geometry"]
-        or _geometry_signature(geometry)
-        != _geometry_signature(source_independent["response_geometry"])
+        not _source_geometry_matches(
+            geometry,
+            final["response_geometry"],
+            source_independent["response_geometry"],
+        )
         or geometry["signal_pass_count"] != int(source["required_signal_pass_count"])
         or geometry["rank_pass_count"] != int(source["required_rank_pass_count"])
         or geometry["condition_pass_count"] != int(source["required_condition_pass_count"])

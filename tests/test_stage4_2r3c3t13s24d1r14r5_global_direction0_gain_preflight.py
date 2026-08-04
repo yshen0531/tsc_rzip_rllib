@@ -179,9 +179,12 @@ class Stage42R3C3T13S24D1R14R5Tests(unittest.TestCase):
         self.assertNotEqual(base, reordered)
         self.assertEqual(primary._geometry_signature(base), primary._geometry_signature(reordered))
         self.assertEqual(independent._geometry_signature(base), independent._geometry_signature(reordered))
+        self.assertTrue(independent._source_geometry_matches(reordered, base, reordered))
         changed = copy.deepcopy(reordered)
         changed["signal_pass_count"] = 255
         self.assertNotEqual(primary._geometry_signature(base), primary._geometry_signature(changed))
+        self.assertFalse(independent._source_geometry_matches(reordered, changed, reordered))
+        self.assertFalse(independent._source_geometry_matches(reordered, base, base))
 
     def test_independent_does_not_import_primary(self):
         source = inspect.getsource(independent)
