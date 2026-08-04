@@ -72,7 +72,7 @@ def _validate_config(cfg: Mapping[str, Any]) -> None:
     invalid = (
         cfg.get("stage") != STAGE
         or cfg.get("identity") != IDENTITY
-        or cfg.get("package_revision") != "r42r3c3t13s24d1r14r7_causal_response_model_v2_full_test_closure"
+        or cfg.get("package_revision") != "r42r3c3t13s24d1r14r7_causal_response_model_v3_independent_route_schema"
         or cfg.get("design_document_sha256") != "567a02c6ce4f8e52c2d517f2eca1ceef52314796b051f5ab43a5b92144337897"
         or tuple(map(int, bank["issue_task_steps"])) != (10, 14, 18, 22)
         or tuple(map(int, bank["descriptor_state_offsets"])) != (0, 1, 2, 4, 8)
@@ -114,6 +114,13 @@ def _source_paths(run: Path, contract: Mapping[str, Any]) -> dict[str, Path]:
     }
 
 
+def _independent_route(value: Mapping[str, Any]) -> str:
+    route = value.get("independent_route")
+    if not isinstance(route, str) or value.get("official_route_reproduced") is not True:
+        raise ValueError("R7 independent source route schema changed")
+    return route
+
+
 def _authenticate_source(run: Path, contract: Mapping[str, Any]) -> dict[str, Any]:
     paths = _source_paths(run, contract)
     inventory = _inventory(paths["raw"])
@@ -127,7 +134,7 @@ def _authenticate_source(run: Path, contract: Mapping[str, Any]) -> dict[str, An
         raise ValueError("R7 source inventory or result hash changed")
     final = _json(paths["final"])
     independent = _json(paths["independent"])
-    if final.get("route") != contract["required_route"] or independent.get("route") != contract["required_route"]:
+    if final.get("route") != contract["required_route"] or _independent_route(independent) != contract["required_route"]:
         raise ValueError("R7 source route changed")
     specs = _json(paths["specs"])
     if len(specs) != int(contract["raw_count"]):

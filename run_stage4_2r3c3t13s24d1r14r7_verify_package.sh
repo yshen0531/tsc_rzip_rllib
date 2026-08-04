@@ -15,7 +15,7 @@ manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8
 expected = {
     "stage": "Stage4.2R3c3T13S24D1R14R7",
     "identity": "causal_deconfounded_response_model_development_v1",
-    "package_revision": "r42r3c3t13s24d1r14r7_causal_response_model_v2_full_test_closure",
+    "package_revision": "r42r3c3t13s24d1r14r7_causal_response_model_v3_independent_route_schema",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:

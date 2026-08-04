@@ -115,6 +115,13 @@ def _inventory(directory: Path) -> dict[str, Any]:
     return {"count": len(rows), "bytes": sum(row["size"] for row in rows), "digest": digest.hexdigest(), "rows": rows}
 
 
+def _source_independent_route(value: Mapping[str, Any]) -> str:
+    route = value.get("independent_route")
+    if not isinstance(route, str) or value.get("official_route_reproduced") is not True:
+        raise ValueError("R7 independent source-route schema changed")
+    return route
+
+
 def _read_source(run: Path, contract: Mapping[str, Any]) -> dict[str, Any]:
     if run.name != contract["run_name"]:
         raise ValueError("R7 independent source run changed")
@@ -134,7 +141,7 @@ def _read_source(run: Path, contract: Mapping[str, Any]) -> dict[str, Any]:
         raise ValueError("R7 independent source hash changed")
     final = _json(final_path)
     frozen = _json(independent_path)
-    if final.get("route") != contract["required_route"] or frozen.get("route") != contract["required_route"]:
+    if final.get("route") != contract["required_route"] or _source_independent_route(frozen) != contract["required_route"]:
         raise ValueError("R7 independent source route changed")
     specs = _json(specs_path)
     if len(specs) != int(contract["raw_count"]):

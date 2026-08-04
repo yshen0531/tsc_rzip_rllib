@@ -93,6 +93,15 @@ class Stage42R3C3T13S24D1R14R7Tests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "duplicate JSON key"):
             independent._loads('{"x": 1, "x": 2}')
 
+    def test_frozen_source_independent_route_schema(self):
+        row = {"independent_route": "ROUTE", "official_route_reproduced": True}
+        self.assertEqual(primary._independent_route(row), "ROUTE")
+        self.assertEqual(independent._source_independent_route(row), "ROUTE")
+        with self.assertRaises(ValueError):
+            primary._independent_route({"route": "ROUTE", "official_route_reproduced": True})
+        with self.assertRaises(ValueError):
+            independent._source_independent_route({"independent_route": "ROUTE", "official_route_reproduced": False})
+
     def test_launchers_pin_server_virtualenv_and_no_tsc(self):
         shell = (ROOT / "scripts/stage4_2r3c3t13s24d1r14r7_shell_common.sh").read_text(encoding="utf-8")
         common = (ROOT / "run_stage4_2r3c3t13s24d1r14r7_common.sh").read_text(encoding="utf-8")
