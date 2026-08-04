@@ -1,0 +1,8 @@
+{
+  "new_raw_count": 0,
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r5_audits/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight_20260804_bb829f3_v3/stage4_2r3c3t13s24d1r14r5_independent_v1.json",
+  "passed": true,
+  "route": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "sha256": "306fd16a65ad44bea1972fb37f4ce316363eeff8a3834ceea8973afe1f42f3cb",
+  "tsc_executed": false
+}

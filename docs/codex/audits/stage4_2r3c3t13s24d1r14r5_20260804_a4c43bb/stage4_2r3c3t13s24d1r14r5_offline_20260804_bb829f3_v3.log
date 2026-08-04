@@ -1,0 +1,35 @@
+[T13S24D1R14R5] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R14R5] source_r4=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r4_runs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1
+source_r2=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1
+output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r5_audits/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight_20260804_bb829f3_v3
+[T13S24D1R14R5] zero controller/plant/Ray/gotsc/TSC; 272 source raw are read in place.
+{
+  "antipodal_pair_count": 24,
+  "antipodal_pair_pass_count": 24,
+  "candidate_matrix_digest": "69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8",
+  "construction_count": 48,
+  "construction_pass_count": 48,
+  "identity": "global_direction0_gain_exact_safety_preflight_v1",
+  "maximum_ideal_return_incremental_linf": 0.17481481481481495,
+  "maximum_issue_incremental_normalized_action_linf": 0.17481481481481495,
+  "maximum_predicted_current_utilization": 0.3799,
+  "maximum_relative_off_basis_residual": 0.05794563546539851,
+  "new_raw_count": 0,
+  "online_cancellation_proved": false,
+  "passed": true,
+  "route": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_r4_authenticated": true,
+  "source_raw_count": 200,
+  "stage": "Stage4.2R3c3T13S24D1R14R5",
+  "tsc_executed": false
+}
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_independent_forensics.py", line 717, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_independent_forensics.py", line 693, in main
+    result = audit(args)
+             ^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_independent_forensics.py", line 593, in audit
+    raise ValueError("D1R14R5 independent R4 geometry mismatch")
+ValueError: D1R14R5 independent R4 geometry mismatch

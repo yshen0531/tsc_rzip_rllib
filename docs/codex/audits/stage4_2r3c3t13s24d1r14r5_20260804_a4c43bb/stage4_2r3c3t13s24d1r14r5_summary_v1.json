@@ -1,0 +1,21 @@
+{
+  "antipodal_pair_count": 24,
+  "antipodal_pair_pass_count": 24,
+  "candidate_matrix_digest": "69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8",
+  "construction_count": 48,
+  "construction_pass_count": 48,
+  "identity": "global_direction0_gain_exact_safety_preflight_v1",
+  "maximum_ideal_return_incremental_linf": 0.17481481481481495,
+  "maximum_issue_incremental_normalized_action_linf": 0.17481481481481495,
+  "maximum_predicted_current_utilization": 0.3799,
+  "maximum_relative_off_basis_residual": 0.05794563546539851,
+  "new_raw_count": 0,
+  "online_cancellation_proved": false,
+  "passed": true,
+  "route": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_r4_authenticated": true,
+  "source_raw_count": 200,
+  "stage": "Stage4.2R3c3T13S24D1R14R5",
+  "tsc_executed": false
+}

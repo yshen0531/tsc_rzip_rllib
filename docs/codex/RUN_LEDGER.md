@@ -1391,3 +1391,31 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r4_20260804_f5b8348/`
 - Next: zero-new-TSC global direction-0 1.5x exact safety preflight; no model,
   MPC, expert-data, BC, DAgger, or RL authorization
+
+## Stage4.2R3c3T13S24D1R14R5 global direction-0 gain preflight
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / final implementation / final-package checkpoints: `0260c6b`,
+  `e7b550a`, `a4c43bb`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r5_audits/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight_20260804_bb829f3_v3`
+- Source raw authenticated / new raw: `272 / 0`
+- Static issue / exact antipodal pairs: `48/48`, `24/24`
+- Maximum issue / ideal return increment: `0.17481481481481495` /
+  `0.17481481481481495`
+- Maximum current / off-basis residual: `0.3799` /
+  `0.05794563546539851`
+- Primary detailed / summary / manifest / independent hashes:
+  `deb57e9c774ef792ed9f8464987e4528b69f3876a09dcd7ff4ca55ea8d9dedc9`,
+  `fc9d1fded5bf63e2658ad0c8da5aca642011006edd04ae1ee8aaaec58051a213`,
+  `be2b358bbe35f5fff1029f4cb94b8a1638fd7e5b2c3bb244fe51fb1de0fd0d35`,
+  `306fd16a65ad44bea1972fb37f4ce316363eeff8a3834ceea8973afe1f42f3cb`
+- Route:
+  `GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED`
+- Classification: finite static exact-action safety PASS; no real response,
+  cancellation, model, MPC, control, expert-data, BC, DAgger, or RL result
+- Large source raw and detailed row outputs remain server-side; compact
+  evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r5_20260804_a4c43bb/`
+- Next: frozen D1R14R6 fresh 48-probe authentic direction-0 replacement
+  sentinel

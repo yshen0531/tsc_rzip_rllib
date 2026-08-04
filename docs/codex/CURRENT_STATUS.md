@@ -1215,3 +1215,28 @@ The preregistered design SHA-256 is
 `8383ef5e0cf7678adcf9f3c776fbe925e7b57b8e6e9398eae13bff35e1f5b400`.
 Only a pass may authorize a separately designed 48-probe authentic sentinel.
 All model/MPC/expert/BC/DAgger/RL routes remain blocked.
+
+## Current handoff: D1R14R5 final, D1R14R6 real sentinel active
+
+D1R14R5 package `a4c43bb` completed its zero-new-TSC server-side static
+preflight and independent recomputation. It authenticated 272 immutable
+source raw files in place, matched candidate digest
+`69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8`,
+and passed 48/48 exact issue constructions and 24/24 coordinate/field
+antipodal pairs. Maximum issue and ideal return increments were both
+`0.17481481481481495`, maximum predicted current utilization was `0.3799`,
+and maximum off-basis residual was `0.05794563546539851`.
+
+The final route is
+`GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED`.
+No new raw, plant, controller, Ray, gotsc, TSC, or formal-control evaluation
+occurred. Earlier launcher/PYTHONPATH failures and report-order comparisons
+are preserved as non-scientific errors; no accepted result or physical
+semantics changed.
+
+Active work is D1R14R6, frozen prospectively at design SHA-256
+`aa59b97868ae74b9a7e5d19e76f5541b3d5ed36dc5c75cc57ddd839d535a9b5b`.
+It is a fresh 48-rollout authentic direction-0 replacement sentinel over all
+eight contexts, task steps 14/18/22, and both signs. A pass can authorize only
+a separate causal transition-model-fit design. MPC execution, expert data,
+BC, DAgger, and RL remain blocked.

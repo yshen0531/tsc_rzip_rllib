@@ -1,0 +1,17 @@
+[T13S24D1R14R5] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R14R5] source_r4=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r4_runs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1
+source_r2=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1
+output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r5_audits/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight_20260804_c0f1bb4_v2
+[T13S24D1R14R5] zero controller/plant/Ray/gotsc/TSC; 272 source raw are read in place.
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight.py", line 771, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight.py", line 767, in main
+    print(json.dumps(run_audit(_parser().parse_args()), indent=2, sort_keys=True))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight.py", line 665, in run_audit
+    source, specs, results, paths, r4_cfg = _authenticate_source(
+                                            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight.py", line 378, in _authenticate_source
+    raise ValueError("D1R14R5 R4 geometry did not reproduce exactly")
+ValueError: D1R14R5 R4 geometry did not reproduce exactly

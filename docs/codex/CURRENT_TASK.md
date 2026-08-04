@@ -4117,3 +4117,49 @@ and tests all 8 contexts, issue times 14/18/22, and both signs using only
 authenticated zero-baseline current centers. A pass may authorize only a
 separately frozen 48-probe real-TSC sentinel. Model fitting, MPC, expert data,
 BC, DAgger, and bounded residual RL remain blocked.
+
+## 70. Final D1R14R5 result and active D1R14R6 design
+
+D1R14R5 final implementation/package checkpoints are `e7b550a / a4c43bb`.
+It created no new raw and executed no controller, plant step, Ray, gotsc, or
+TSC. Both final implementations authenticated all 200 R4 raw and 72 R2 raw,
+reproduced the exact R4 failure geometry, and evaluated the one frozen global
+column-0 `1.5x` candidate.
+
+The exact static result passed:
+
+```text
+candidate matrix digest
+  69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8
+signed issue constructions                                  48/48
+exact coordinate/field antipodal pairs                       24/24
+maximum issue increment                         0.17481481481481495
+maximum ideal return increment                  0.17481481481481495
+maximum predicted current utilization                        0.3799
+maximum relative off-basis residual              0.05794563546539851
+route  GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED
+```
+
+The initial launcher and report-comparison failures are preserved and
+classified as environment/reporting bugs. They changed no action, experiment
+identity, threshold, or raw and ran no plant step. The passing primary output
+was preserved; only the structurally independent audit resumed after the
+comparison hotfix. Exact report and compact evidence:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R5_FORENSIC_REPORT.md
+docs/codex/audits/stage4_2r3c3t13s24d1r14r5_20260804_a4c43bb/
+```
+
+R5 proves only finite static exact issue/ideal-return safety. Real online
+cancellation, plant response, model, MPC, formal control, and robustness are
+unvalidated.
+
+The active task is the prospectively frozen D1R14R6 fresh authentic 48-probe
+direction-0 replacement sentinel. Its design SHA-256 is
+`aa59b97868ae74b9a7e5d19e76f5541b3d5ed36dc5c75cc57ddd839d535a9b5b`.
+It replaces only direction 0 at issue steps 14/18/22 and combines those raw
+with immutable R2 step-10 and R4 directions 1--3. Only a full 256/256 signal,
+64/64 rank/condition, 128/128 issue-antipodality result after 48/48 safety may
+authorize a separately frozen transition-model fit. MPC, expert data, BC,
+DAgger, and bounded residual RL remain blocked.

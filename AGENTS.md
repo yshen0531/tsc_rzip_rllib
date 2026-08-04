@@ -824,10 +824,19 @@ antipodality passed 128/128. Both signs of direction 0 at issue step 18 for
 signal floor. This is a genuine local response-signal design failure, not a
 runtime, restart, corruption, reporting, control, or MPC failure.
 
-The active task is the prospectively frozen zero-new-TSC D1R14R5 global
-direction-0 gain preflight. It fixes one 1.5x candidate for every context,
-time, and sign and may authorize only design of a fresh 48-probe authentic
-sentinel. Model fitting, MPC, expert data, BC, DAgger, and RL remain blocked.
+D1R14R5 final package `a4c43bb` then completed its zero-new-TSC exact static
+preflight. Both final implementations authenticated all 272 R4/R2 source raw,
+and the globally fixed 1.5x direction-0 candidate passed 48/48 issue
+constructions and 24/24 exact coordinate/field antipodal pairs. Maximum issue
+and ideal return increments were `0.1748148148`, current utilization `0.3799`,
+and off-basis residual `0.0579456355`. This is static safety only; no plant or
+online cancellation ran.
+
+The active task is the prospectively frozen D1R14R6 fresh 48-probe authentic
+direction-0 replacement sentinel. It must pass all safety/raw gates and the
+combined 256/256 signal, 64/64 rank/condition, and 128/128 issue-antipodality
+gates before any transition-model fit may be designed. MPC, expert data, BC,
+DAgger, and RL remain blocked.
 
 ## 10. Required validation before server execution
 

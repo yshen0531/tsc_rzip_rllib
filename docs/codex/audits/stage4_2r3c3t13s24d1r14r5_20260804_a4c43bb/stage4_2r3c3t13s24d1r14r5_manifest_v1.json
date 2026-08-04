@@ -1,0 +1,19 @@
+{
+  "config": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight_v1.json",
+  "config_sha256": "28aed5671bf54ca6c53b3c87c26f16784ca995712a3bc8cb3b632e7043e65b2e",
+  "design_document": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/reports/STAGE4_2R3C3T13S24D1R14R5_GLOBAL_DIRECTION0_GAIN_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "8383ef5e0cf7678adcf9f3c776fbe925e7b57b8e6e9398eae13bff35e1f5b400",
+  "identity": "global_direction0_gain_exact_safety_preflight_v1",
+  "new_raw_files_created": 0,
+  "outputs": {
+    "stage4_2r3c3t13s24d1r14r5_detailed_v1.json": "deb57e9c774ef792ed9f8464987e4528b69f3876a09dcd7ff4ca55ea8d9dedc9",
+    "stage4_2r3c3t13s24d1r14r5_summary_v1.json": "fc9d1fded5bf63e2658ad0c8da5aca642011006edd04ae1ee8aaaec58051a213"
+  },
+  "ray_gotsc_tsc_plant_or_controller_executed": false,
+  "route": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_r2_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1",
+  "source_r4_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r4_runs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1",
+  "source_raw_read_in_place": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R5"
+}
