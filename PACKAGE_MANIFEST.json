@@ -5,7 +5,7 @@
   "campaign_identity": "zero_baseline_signed_excitation_safety_geometry_sentinel_v1",
   "controller_revision": "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v1",
   "package_revision": "r42r3c3t13s24d1r14_zero_baseline_signed_excitation_v1",
-  "implementation_checkpoint": "0b1f0c3",
+  "implementation_checkpoint": "ddc58ea",
   "config_path": "configs/stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel_370ms.json",
   "source_stage": "Exact final D1R13 eight-raw boundary plus the exact eight D1R11 baseline prefixes and authentic R3b snapshots.",
   "source_controller_revision": "sequential_replacement_card15_probe_v42r3c3t13s24d1r11_v1 through task step 9 only",
@@ -95,7 +95,7 @@
   "d1r13_implementation_checkpoint": "ac85824",
   "d1r13_package_validation_hotfix_checkpoint": "79aab25",
   "d1r14_design_checkpoint": "c787273",
-  "d1r14_implementation_checkpoint": "0b1f0c3",
+  "d1r14_implementation_checkpoint": "ddc58ea",
   "declared_file_count": 513,
   "file_inventory": [
     "AGENTS.md",
