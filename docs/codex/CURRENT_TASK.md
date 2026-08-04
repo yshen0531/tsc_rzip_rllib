@@ -4332,8 +4332,13 @@ The active R8 design is frozen prospectively in:
 docs/codex/reports/
 STAGE4_2R3C3T13S24D1R14R8_PARTITIONED_BROAD_RESPONSE_IDENTIFICATION_DESIGN.md
 SHA-256
-  4e6da4a07cfa568180596e8d65702ddf15a2b13032ea2d917780847fc6657828
+  c225c6163fbf2146772fdabf100a34b13a3c6d59ee416f605698598acdc2022f
 ```
+
+This final pre-implementation hash includes the explicit Phase-0 boundary:
+offline checks validate static Card15 algorithm/configuration representability,
+while the physically realized issue/cancel margins at later states are hard
+gates only after each fresh baseline creates those causal centers.
 
 It authenticates the fixed D1R11 20-pair table and confirms that D1R11 opened
 only training raw (`600/600`), with calibration `0/200`, holdout `0/200`, and

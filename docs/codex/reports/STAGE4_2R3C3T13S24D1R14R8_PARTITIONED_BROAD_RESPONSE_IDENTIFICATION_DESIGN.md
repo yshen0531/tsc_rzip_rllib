@@ -226,8 +226,12 @@ model must expose explicit zero counts for all forbidden inputs.
 Before a plant step, both implementations must authenticate the package,
 R2/R4/R6 source closure, D1R11 table/spec/state/manifest, exact pair split,
 all 1,248 prospective identities, source snapshots, issue/cancel schedules,
-matrix coordinates, Card15 representability, safety margins, horizons, and
-formal timing. Any failure stops with zero new TSC.
+matrix coordinates, static Card15 algorithm/configuration representability,
+declared safety thresholds, horizons, and formal timing. The physical
+issue-time centers at states 14/18/22 do not exist before each fresh zero
+baseline is run; their actual issue and cancellation margins are therefore
+hard-gated row by row in the corresponding execution phase, not claimed by
+Phase 0. Any Phase-0 failure stops with zero new TSC.
 
 ### Phase 1: training extension and model hash
 
@@ -347,4 +351,3 @@ A pass authorizes only a separately preregistered fresh authentic multipulse
 superposition/interaction sentinel. It does not authorize real MPC, expert
 data, BC, DAgger, bounded residual RL, unseen targets, continuous actuator or
 plant variation, measurement noise, disturbance recovery, or long hold.
-

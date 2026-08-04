@@ -1301,8 +1301,9 @@ docs/codex/audits/
 stage4_2r3c3t13s24d1r14r7r2_20260804_995d81c/
 ```
 
-The new R8 partitioned broader-response design is frozen at SHA-256
-`4e6da4a07cfa568180596e8d65702ddf15a2b13032ea2d917780847fc6657828`.
+The new R8 partitioned broader-response design is frozen at final
+pre-implementation SHA-256
+`c225c6163fbf2146772fdabf100a34b13a3c6d59ee416f605698598acdc2022f`.
 It adds eight fixed training pairs, then permits four calibration pairs only
 after a model hash and four holdout pairs only after a tube hash. Maximum new
 raw is 1,248, with later phases fail-closed. Active work is independent R8
