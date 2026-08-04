@@ -17,7 +17,7 @@ manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8
 expected = {
     "stage": "Stage4.2R3c3T13S24D1R14R5",
     "identity": "global_direction0_gain_exact_safety_preflight_v1",
-    "package_revision": "r42r3c3t13s24d1r14r5_global_direction0_gain_preflight_v1",
+    "package_revision": "r42r3c3t13s24d1r14r5_global_direction0_gain_preflight_v2_launcher_hotfix",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:

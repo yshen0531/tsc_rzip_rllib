@@ -165,11 +165,13 @@ class Stage42R3C3T13S24D1R14R5Tests(unittest.TestCase):
     def test_launchers_force_server_venv_and_forbid_real_execution(self):
         shell = (ROOT / "scripts/stage4_2r3c3t13s24d1r14r5_shell_common.sh").read_text(encoding="utf-8")
         common = (ROOT / "run_stage4_2r3c3t13s24d1r14r5_common.sh").read_text(encoding="utf-8")
+        offline = (ROOT / "run_stage4_2r3c3t13s24d1r14r5_offline.sh").read_text(encoding="utf-8")
         verify = (ROOT / "run_stage4_2r3c3t13s24d1r14r5_verify_package.sh").read_text(encoding="utf-8")
         expected_python = "/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python"
         self.assertIn(expected_python, shell)
         self.assertIn(expected_python, verify)
         self.assertIn("zero controller/plant/Ray/gotsc/TSC", common)
+        self.assertIn('exec bash "${PROJECT_DIR}/run_stage4_2r3c3t13s24d1r14r5_common.sh"', offline)
         self.assertNotIn("ray start", common.lower())
         self.assertNotIn("--backend ray", common.lower())
         self.assertNotIn(" gotsc ", common.lower())
