@@ -7,7 +7,7 @@
   "controller_revision": "inherited_exact_card15_issue_cancel_v42r3c3t13s24d1r14r8_v1",
   "package_revision": "r42r3c3t13s24d1r14r8_partitioned_broad_response_identification_v1",
   "design_checkpoint": "6063d56",
-  "implementation_checkpoint": "48a4556",
+  "implementation_checkpoint": "bcfa1a2",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification_370ms.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8_PARTITIONED_BROAD_RESPONSE_IDENTIFICATION_DESIGN.md",
   "design_document_sha256": "c225c6163fbf2146772fdabf100a34b13a3c6d59ee416f605698598acdc2022f",
