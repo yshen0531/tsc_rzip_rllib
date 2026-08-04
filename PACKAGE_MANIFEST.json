@@ -1,16 +1,44 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.2R3c3T13S24D1R14R7R2",
-  "identity": "action_conditioned_full_history_kernel_development_v1",
-  "run_name": "stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel",
-  "campaign_identity": "action_conditioned_full_history_kernel_development_v1",
-  "package_revision": "r42r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel_v1",
-  "design_checkpoint": "5d35db2",
-  "implementation_checkpoint": "bcde159",
-  "config_path": "configs/stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel_v1.json",
-  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7R2_ACTION_CONDITIONED_FULL_HISTORY_KERNEL_DESIGN.md",
-  "purpose": "Zero-new-TSC nested whole-pair action-conditioned full-history nonlinear response-model development over the authenticated R2/R4/R6 304-response bank.",
+  "stage": "Stage4.2R3c3T13S24D1R14R8",
+  "identity": "partitioned_broad_deconfounded_response_identification_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification",
+  "campaign_identity": "partitioned_broad_deconfounded_response_identification_v1",
+  "controller_revision": "inherited_exact_card15_issue_cancel_v42r3c3t13s24d1r14r8_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8_partitioned_broad_response_identification_v1",
+  "design_checkpoint": "6063d56",
+  "implementation_checkpoint": "48a4556",
+  "config_path": "configs/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification_370ms.json",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8_PARTITIONED_BROAD_RESPONSE_IDENTIFICATION_DESIGN.md",
+  "design_document_sha256": "c225c6163fbf2146772fdabf100a34b13a3c6d59ee416f605698598acdc2022f",
+  "purpose": "Prospective phase-ordered authentic TSC identification over disjoint training-extension, calibration, and holdout pair partitions for a causal broad response model; probe trajectories remain forbidden from expert data.",
   "source_contracts": {
+    "d1r11": {
+      "run_name": "stage4_2r3c3t13s24d1r11_full_replacement_sequential_transition_identification_20260804_571b932_v1",
+      "stage_directory": "stage4_2r3c3t13s24d1r11_full_replacement_sequential_transition_identification",
+      "context_table_path": "source_reference/context_table.json",
+      "context_table_bytes": 31279,
+      "context_table_sha256": "ba793593490e20c95e5618eaad7eebb80e86435c19c77360a21ae36e863461ab",
+      "context_table_digest": "2d66ac595cea4565d059e90bc53f699a0e320982cb597847987921c338d0b2ad",
+      "all_specs_path": "specs/all_specs.json",
+      "all_specs_bytes": 11743103,
+      "all_specs_sha256": "ff5644b667773ea2d79ffe4aa48ab951bbfacb4b34fbc62dfbcc4b4a69e4038a",
+      "ordered_spec_digest": "e370269558ab079fe6d1f2293b2920b7774e3239942c7dd60ae4b638138f8c7a",
+      "stage_state_path": "stage_state.json",
+      "stage_state_bytes": 732,
+      "stage_state_sha256": "24728eccb317d60c20b29886320455c10b474ca9717663c62d7530dd7c8422fd",
+      "stage_manifest_path": "stage_manifest.json",
+      "stage_manifest_bytes": 108582,
+      "stage_manifest_sha256": "d109f0a16098eed45f8a7c837d9f3b00e5dfa3e299eee8a4651f1a6787b75b43",
+      "training_raw_count": 600,
+      "training_raw_bytes": 35511922,
+      "training_raw_digest": "8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7",
+      "calibration_raw_count": 0,
+      "holdout_raw_count": 0,
+      "required_phase_status": "training_model_failed",
+      "required_route": "FULL_REPLACEMENT_TRANSITION_TRAINING_MODEL_FAIL",
+      "required_heldout_outcomes_opened": false
+    },
     "r2": {
       "run_name": "stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1",
       "stage_directory": "stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel",
@@ -43,28 +71,38 @@
     }
   },
   "execution_contract": {
-    "new_raw_count": 0,
-    "plant_steps_executed": 0,
-    "controller_executed": false,
-    "ray_executed": false,
-    "gotsc_executed": false,
-    "tsc_executed": false,
-    "source_raw_read_in_place": true,
+    "maximum_new_rollouts": 1248,
+    "training_rollouts": 624,
+    "calibration_rollouts": 312,
+    "holdout_rollouts": 312,
+    "strict_phase_order": [
+      "offline",
+      "training",
+      "training-independent-audits",
+      "calibration",
+      "calibration-independent-audits",
+      "holdout",
+      "holdout-independent-audits"
+    ],
+    "fresh_tsc_process_per_rollout": true,
     "server_virtualenv_only": true,
-    "source_raw_count_read_in_place": 320
+    "large_results_postprocessed_on_server": true
   },
   "formal_timing_contract": {
     "normal_arrival_deadline_step": 25,
     "normal_hold_through_step": 35,
     "weak_arrival_deadline_step": 27,
     "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
     "arrival_deadline_expansion_allowed": false,
-    "evaluated_in_r7r2": false
+    "formal_tracking_diagnostic_only": true
   },
   "scientific_scope": {
-    "identification_development_only": true,
+    "identification_only": true,
     "probe_trajectories_allowed_in_expert_dataset": false,
-    "transition_response_model_validated_fresh": false,
     "mpc_validated": false,
     "expert_data_allowed": false,
     "bc_dagger_or_rl_allowed": false
@@ -75,9 +113,9 @@
     "server_git_allowed": false,
     "global_python_allowed": false,
     "outbound_network_required": false,
-    "root_shell_scripts_are_complete": true
+    "empty_directory_deployment_required": true
   },
-  "declared_file_count": 898,
+  "declared_file_count": 910,
   "file_inventory": [
     "AGENTS.md",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -151,6 +189,7 @@
     "configs/stage4_2r3c3t13s24d1r14r7_causal_response_model_v1.json",
     "configs/stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model_v1.json",
     "configs/stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel_v1.json",
+    "configs/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification_370ms.json",
     "configs/stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search_v1.json",
     "configs/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel_370ms.json",
     "configs/stage4_2r3c3t13s24d1r3_causal_split_return_preflight_v1.json",
@@ -216,6 +255,7 @@
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7r1_independent_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7r2_independent_forensics.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8_independent_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
@@ -307,6 +347,7 @@
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7R2_ACTION_CONDITIONED_FULL_HISTORY_KERNEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_CAUSAL_RESPONSE_MODEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_STRUCTURAL_FAILURE_REPORT.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8_PARTITIONED_BROAD_RESPONSE_IDENTIFICATION_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_ZERO_BASELINE_SIGNED_EXCITATION_SENTINEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R1_FORENSIC_REPORT.md",
@@ -533,6 +574,11 @@
     "run_stage4_2r3c3t13s24d1r14r7r2_common.sh",
     "run_stage4_2r3c3t13s24d1r14r7r2_offline.sh",
     "run_stage4_2r3c3t13s24d1r14r7r2_verify_package.sh",
+    "run_stage4_2r3c3t13s24d1r14r8_common.sh",
+    "run_stage4_2r3c3t13s24d1r14r8_native.sh",
+    "run_stage4_2r3c3t13s24d1r14r8_nohup.sh",
+    "run_stage4_2r3c3t13s24d1r14r8_self_test.sh",
+    "run_stage4_2r3c3t13s24d1r14r8_verify_package.sh",
     "run_stage4_2r3c3t13s24d1r1_common.sh",
     "run_stage4_2r3c3t13s24d1r1_offline.sh",
     "run_stage4_2r3c3t13s24d1r1_verify_package.sh",
@@ -741,6 +787,8 @@
     "scripts/stage4_2r3c3t13s24d1r14r7_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r14r7r1_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r14r7r2_shell_common.sh",
+    "scripts/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification.py",
+    "scripts/stage4_2r3c3t13s24d1r14r8_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r1_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
     "scripts/stage4_2r3c3t13s24d1r2_shell_common.sh",
@@ -852,6 +900,7 @@
     "tests/test_stage4_2r3c3t13s24d1r14r7_causal_response_model.py",
     "tests/test_stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model.py",
     "tests/test_stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel.py",
+    "tests/test_stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification.py",
     "tests/test_stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "tests/test_stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
     "tests/test_stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
@@ -959,6 +1008,7 @@
     "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel.py",
+    "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel.py",
@@ -977,17 +1027,5 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ],
-  "predecessor_results": {
-    "r7": {
-      "route": "CAUSAL_RESPONSE_MODEL_PIPELINE_STRUCTURAL_FAIL_NO_MODEL_RESULT",
-      "new_raw_or_tsc_created": false
-    },
-    "r7r1": {
-      "route": "CONTINUOUS_LAG_RESPONSE_MODEL_DEVELOPMENT_FAIL_BROADER_DECONFOUNDED_IDENTIFICATION_REQUIRED",
-      "response_pass_count": 150,
-      "response_count": 256,
-      "new_raw_or_tsc_created": false
-    }
-  }
+  ]
 }
