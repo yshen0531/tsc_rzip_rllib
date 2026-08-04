@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R1A",
+  "identity": "fixed_third_column_quantization_margin_preflight_v1",
+  "package_revision": "r42r3c3t13s24d1r14r1a_quantization_margin_preflight_v1",
+  "selection_status": "frozen_after_r1_failure_and_disclosed_development_grid_before_r1a_implementation",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R1A_QUANTIZATION_MARGIN_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "a8b6a87a647b0ee3dc135772c38c4c4530db1e67e9115fe41af77f3afb128e5b",
+  "source_r1_contract": {
+    "output_name": "stage4_2r3c3t13s24d1r14r1_pooled_mixed_basis_preflight_20260804_36f0d41_v1",
+    "package_checkpoint": "36f0d41",
+    "implementation_checkpoint": "7c4002c",
+    "config": "configs/stage4_2r3c3t13s24d1r14r1_pooled_mixed_basis_preflight_v1.json",
+    "config_sha256": "e28de194bebc7b5f94257bb173c950b6799eeb80464f62f9d755d1c1aba24869",
+    "implementation": "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r1_pooled_mixed_basis_preflight.py",
+    "implementation_sha256": "1c6249523b47cb65626aab9aa72874edf4100e4e38da3c0168a3db9848f5320f",
+    "detailed_filename": "stage4_2r3c3t13s24d1r14r1_detailed_v1.json",
+    "detailed_sha256": "2342af0c58980b3da62b1bbf8b51d05d269cad0740049e687285ca0beae9e04c",
+    "summary_filename": "stage4_2r3c3t13s24d1r14r1_summary_v1.json",
+    "summary_sha256": "77403c3a650b37c899bb493e8f3528c8ac14e6ad9b3121a91d1f0c5934811ca3",
+    "manifest_filename": "stage4_2r3c3t13s24d1r14r1_manifest_v1.json",
+    "manifest_sha256": "8d572c09dcd29991c38d7da245511868a2b84e029f44684823de71cf815ea56f",
+    "required_route": "POOLED_MIXED_BASIS_PREFLIGHT_FAIL_REDESIGN_REQUIRED",
+    "required_source_authentication_pass": true,
+    "required_search_pass": true,
+    "required_static_issue_pass_count": 48,
+    "required_static_issue_count": 64,
+    "required_failed_direction_index": 2,
+    "required_failure_criterion": "off_basis"
+  },
+  "repair_contract": {
+    "scaled_column_index": 2,
+    "fixed_scale": 1.275,
+    "selection_grid_start": 1.0,
+    "selection_grid_stop": 2.0,
+    "selection_grid_step": 0.025,
+    "selection_grid_is_disclosed_development_only": true,
+    "grid_reexecution_in_r1a_allowed": false,
+    "alternate_scale_allowed": false,
+    "alternate_column_allowed": false,
+    "adaptive_refinement_allowed": false
+  },
+  "selected_requested_coordinate_matrix_columns": [
+    [0.06036182177162116, 0.06409209376301149, -0.37110098238653283, 0.13657703474397473],
+    [-3.921547352685623, -3.280604324442652, 4.73169603859497, -3.6727205346962286],
+    [0.49109976246409964, 0.13593338869530727, -0.035003869827120934, -0.3079668079336082],
+    [-0.18672754749097395, -0.17590787535526847, -0.08626957714716102, 0.19464202995789268]
+  ],
+  "selected_matrix_float64_le_c_sha256": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+  "response_contract": {
+    "original_requested_coordinate_amplitude": 0.25,
+    "minimum_predicted_odd_peak": 0.006,
+    "maximum_predicted_unit_column_condition": 4.0,
+    "context_count": 8
+  },
+  "static_issue_contract": {
+    "expected_context_count": 8,
+    "expected_signed_construction_count": 64,
+    "dynamic_exact_search_radius": 16,
+    "baseline_action_exact_zero": true,
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_online_cancel_incremental_linf_diagnostic_only": 0.24,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.10,
+    "require_exact_card15_center_and_target": true,
+    "require_target_reproduction": true,
+    "require_no_saturation_or_current_clip": true,
+    "cancellation_proved_by_static_preflight": false
+  },
+  "formal_timing_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "arrival_deadline_expansion_allowed": false,
+    "evaluated_in_r1a": false
+  },
+  "execution_contract": {
+    "server_side_only_for_large_raw": true,
+    "source_raw_read_in_place": true,
+    "new_raw_count": 0,
+    "plant_steps_executed": 0,
+    "controller_executed": false,
+    "ray_executed": false,
+    "gotsc_executed": false,
+    "tsc_executed": false,
+    "snapshot_creation_allowed": false
+  },
+  "routes": {
+    "source_fail": "QUANTIZATION_MARGIN_SOURCE_FAIL_NO_TSC",
+    "preflight_fail": "QUANTIZATION_MARGIN_PREFLIGHT_FAIL_REDESIGN_REQUIRED",
+    "pass": "QUANTIZATION_MARGIN_PREFLIGHT_PASS_R2_SENTINEL_DESIGN_REQUIRED"
+  },
+  "scientific_scope": {
+    "development_data_consumed": true,
+    "fixed_candidate_replay_only": true,
+    "symmetry_validated": false,
+    "online_cancellation_validated": false,
+    "plant_response_validated": false,
+    "transition_model_validated": false,
+    "mpc_validated": false,
+    "pass_authorizes_r2_design_only": true,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
