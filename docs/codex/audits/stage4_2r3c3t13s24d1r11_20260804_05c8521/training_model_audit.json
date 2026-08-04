@@ -1,0 +1,18 @@
+{
+  "forbidden_predictor_input_count": 0,
+  "passed": false,
+  "phase": "training_whole_pair_recursive_oof",
+  "schema_version": 1,
+  "selected": {
+    "feature_candidate": "L",
+    "maximum_absolute_recursive_scaled_error": 0.9580646070975856,
+    "mean_squared_recursive_scaled_error": 0.021769526130100414,
+    "recursive_formal_verdict_mismatch_count": 68,
+    "ridge": 1.0
+  },
+  "stage": "Stage4.2R3c3T13S24D1R11",
+  "teacher_row_count": 15600,
+  "training_pair_count": 12,
+  "training_recursive_formal_reproduction_count": 532,
+  "training_trajectory_count": 600
+}

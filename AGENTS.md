@@ -683,16 +683,30 @@ tracking was diagnostic only and passed 28/126. An independent audit
 entrypoint import bug was hotfixed after the run; pre- and post-hotfix audit
 outputs are byte-identical, so no TSC rerun was required.
 
-The current stage is the prospectively frozen D1R11 full replacement
-identification campaign. It uses the D1R9 24-row matrix over the original S24
-20-whole-pair/40-context split with 600 fresh training, 200 fresh calibration,
-and 200 fresh holdout trajectories. The frozen ordered spec digest is
-`e370269558ab079fe6d1f2293b2920b7774e3239942c7dd60ae4b638138f8c7a`.
-S24/D1R10 probe raw is authentication evidence only and may not enter D1R11
-fitting or expert data. Training model and calibration tube must hash-freeze
-before later outcomes open. A pass authorizes only a separately
-preregistered zero-TSC robust finite-horizon MPC feasibility/controller
-design. Real MPC, expert data, BC, DAgger, and residual RL remain blocked.
+D1R11 completed its authentic training boundary with 600/600 fresh TSC
+trajectories: 24/24 baselines and 576/576 sequential responses. Independent
+raw/snapshot recomputation found exact restart and causal execution in
+600/600, no runtime, solver, corruption, reporting, action, or current error,
+and raw inventory digest
+`8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7`.
+
+All 24 frozen L/SA/Q recursive candidates then failed the preregistered
+training gate. The selected L/ridge-1 candidate reproduced only 532/600
+formal diagnostics and had maximum recursive scaled error `0.9580646071`
+against the unchanged `0.1` limit. Calibration and fresh holdout remained
+unopened at 0/200 each. The final route is
+`FULL_REPLACEMENT_TRANSITION_TRAINING_MODEL_FAIL`: a transition-model/design
+failure, not a runtime, restart, reporting, closed-loop MPC, or plant-
+unreachability result. D1R11 may not resume under changed model semantics.
+
+The active work is a new-identity, zero-new-TSC causal transition-architecture
+study using only the 600 D1R11 training trajectories as consumed development
+data. It must preserve whole-pair outer validation, the `0.1` recursive point
+gate, tube caps, forbidden-input list, action/current gates, and immutable
+formal timing. The unopened D1R11 calibration/holdout outcomes may not be
+used. A candidate must pass independent deterministic leave-pair replay before
+any fresh campaign is designed. Real MPC, expert data, BC, DAgger, and bounded
+residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

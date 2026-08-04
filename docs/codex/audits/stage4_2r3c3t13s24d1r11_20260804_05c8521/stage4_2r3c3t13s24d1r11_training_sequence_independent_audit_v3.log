@@ -1,0 +1,18 @@
+{
+  "maximum_measured_current_utilization": 0.392,
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r11_audits/stage4_2r3c3t13s24d1r11_training_sequence_20260804_05c8521_v1/stage4_2r3c3t13s24d1r11_training_sequence_independent_audit_v3.json",
+  "passed": true,
+  "raw_failure_count": 0,
+  "raw_inventory": {
+    "count": 600,
+    "digest": "8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7",
+    "total_bytes": 35511922
+  },
+  "sequence_event_detail_pass_count": 4608,
+  "snapshot_failure_count": 0,
+  "snapshot_file_rehash_count": 192,
+  "snapshot_total_rehashed_bytes": 2844821932,
+  "source_endpoint_exact_count": 600,
+  "source_failure_count": 0,
+  "unique_snapshots": 24
+}

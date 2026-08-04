@@ -1,0 +1,133 @@
+{
+  "audit_revision": "independent_server_raw_snapshot_audit_v1",
+  "classification": {
+    "causality_or_action_semantics_failure_count": 0,
+    "packaging_import_deployment_error_count": 0,
+    "raw_or_snapshot_corruption_count": 0,
+    "real_formal_control_pass_count_diagnostic_only": 158,
+    "real_formal_control_total_diagnostic_only": 600,
+    "runtime_or_environment_error_count": 0,
+    "sequential_identification_design_gate_failure_count": 0,
+    "summary_statistics_reporting_error_count": 0
+  },
+  "independent_execution_recomputation": {
+    "baseline_count": 24,
+    "calibration_event_count": 4800,
+    "exact_issue_cancel_pair_trajectory_count": 576,
+    "history_counts": {
+      "minus_first": 300,
+      "plus_first": 300
+    },
+    "maxima": {
+      "absolute_action": 0.648149691358026,
+      "absolute_coordinate_error": 0.056732665746188626,
+      "incremental_normalized_action_linf": 0.23606572488943792,
+      "measured_current_utilization": 0.392,
+      "online_cancel_incremental_linf": 0.23606572488943792,
+      "predicted_current_utilization": 0.39189999999999997,
+      "relative_off_basis_residual": 0.09980364478299954,
+      "total_normalized_action_abs": 0.20833194444444794
+    },
+    "minima": {
+      "active_absolute_coordinate": 0.23214576830525238,
+      "desired_applied_current_cosine": 0.992794369458072
+    },
+    "pair_history_context_count": 24,
+    "raw_failure_count": 0,
+    "raw_failures": [],
+    "schedule_exact_trajectory_count": 600,
+    "sequence_count": 576,
+    "sequence_event_count": 4608,
+    "sequence_event_detail_pass_count": 4608
+  },
+  "official_report_crosscheck": {
+    "baseline_formal_tracking_pass_count_diagnostic_only": 10,
+    "baseline_pass_count": 24,
+    "consistent_with_independent_gate_recomputation": true,
+    "formal_tracking_is_not_an_identification_execution_gate": true,
+    "maximum_current_utilization": 0.392,
+    "sequence_formal_tracking_pass_count_diagnostic_only": 148,
+    "sequence_pass_count": 576
+  },
+  "passed": true,
+  "phase": "training_sequence_independent_raw_snapshot_audit",
+  "phase_boundary": {
+    "calibrated_tube_sha256": "",
+    "heldout_outcomes_opened": false,
+    "passed": true,
+    "phase_status": "training_sequence_complete",
+    "training_model_sha256": ""
+  },
+  "raw_identity": {
+    "calibration_raw_count": 0,
+    "holdout_raw_count": 0,
+    "strict_parse_count": 600,
+    "training_id_set_exact": true
+  },
+  "raw_inventory": {
+    "count": 600,
+    "digest": "8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7",
+    "total_bytes": 35511922
+  },
+  "restart_snapshot_authentication": {
+    "snapshot_exact_count": 600,
+    "snapshot_failures": [],
+    "snapshot_file_rehash_count": 192,
+    "snapshot_total_rehashed_bytes": 2844821932,
+    "source_endpoint_exact_count": 600,
+    "source_failures": [],
+    "unique_snapshot_count": 24,
+    "unique_source_raw_count": 24
+  },
+  "route": "TRAINING_EXECUTION_AUTHENTICATED_PROCEED_TO_FROZEN_TRAINING_MODEL_FIT",
+  "schema_version": 1,
+  "scientific_boundary": {
+    "authentic_plant_restart_authenticated": true,
+    "bc_dagger_or_rl_authorized": false,
+    "calibration_not_run": true,
+    "causal_online_action_traces_authenticated": true,
+    "expert_dataset_authorized": false,
+    "formal_timing_contract_changed": false,
+    "holdout_not_opened": true,
+    "real_tsc_training_rollouts_authenticated": true,
+    "training_identification_execution_gate_passed": true,
+    "training_model_fit_not_run_at_this_audit_boundary": true
+  },
+  "source_boundary": {
+    "local_package_commit": "05c8521",
+    "log_error_markers": {
+      "ERROR": 0,
+      "Killed": 0,
+      "Traceback": 0
+    },
+    "log_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r11_training_sequence_20260804_05c8521_v1.log",
+    "log_sha256": "d8b7894e2ceb2373012c6a6f87c2b5fa1813804ab22fee353117433d76d64d1d",
+    "package_hashes": {
+      "PACKAGE_MANIFEST.json": "e493cdf0afc43afb97bb8dfed084380b5785acb01bb8cecc67bc82eddc441f3e",
+      "SHA256SUMS": "9e1d4bfbf6c1bc07c16c16cbf72626e98e0dce24f8b83006d941fab83c97cf93",
+      "config": "f6b88a06dc43e736c072b9670c63b6e83b0c4a8c37b0f0dbcdd5371b9ecac4cd",
+      "implementation": "e56c64db6b29effd50edf8ffc12254e6c25d4fa10d5e56cdf2d76bdd3ae110fd",
+      "transition_model": "bc714b0896b02911e47af60e3026e74f6eb26b3e7594ceda6ce2e0100dcd2bf7"
+    },
+    "stage_manifest_sha256": "d109f0a16098eed45f8a7c837d9f3b00e5dfa3e299eee8a4651f1a6787b75b43",
+    "stage_state_sha256": "317b877e8ff06e4ad9c07f5ce10e995f6bc7948a63b19ca905ac01fac727f950",
+    "training_baseline_gate_sha256": "1c89e77b7b58d0a0aed5e427869e31bfbd10448d94303c24adb321768724554c",
+    "training_sequence_gate_sha256": "325b4681e745fac4d4159bbfea1799121b68d2282038695fa469b10d5bee398e"
+  },
+  "spec_authentication": {
+    "expected_ordered_spec_digest": "e370269558ab079fe6d1f2293b2920b7774e3239942c7dd60ae4b638138f8c7a",
+    "ordered_spec_digest": "e370269558ab079fe6d1f2293b2920b7774e3239942c7dd60ae4b638138f8c7a",
+    "partition_counts": {
+      "calibration": 200,
+      "holdout": 200,
+      "training": 600
+    },
+    "total_count": 1000,
+    "training_role_counts": {
+      "baseline": 24,
+      "sequential_response": 576
+    },
+    "unique_id_count": 1000
+  },
+  "stage": "Stage4.2R3c3T13S24D1R11"
+}

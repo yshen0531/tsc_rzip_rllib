@@ -974,3 +974,29 @@ Windows and produced 27 Unix-module import/collection errors; it is not a code
 test failure. D1R11 remains at its mandatory zero-TSC gate pending hotfix
 package deployment and server validation. MPC, expert data, BC, DAgger, and
 RL remain unauthorized.
+
+## Current handoff: D1R11 final, causal transition redesign active
+
+D1R11 package checkpoint `05c8521` completed all 600 fresh training
+trajectories. Independent server-side raw and snapshot recomputation found
+600/600 exact authentic restarts and causal traces, 600 strictly parsed raw,
+zero runtime/solver/action/current/corruption/report errors, and inventory
+digest `8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7`.
+Large raw and snapshots remain server-side; compact evidence is under
+`docs/codex/audits/stage4_2r3c3t13s24d1r11_20260804_05c8521/`.
+
+The frozen training-model phase evaluated all 24 L/SA/Q and ridge candidates.
+All failed. The selected L/ridge-1 candidate reproduced 532/600 formal
+diagnostics and had maximum recursive scaled error `0.9580646071` versus the
+unchanged `0.1` limit. Calibration and fresh holdout were not run: 0/200 and
+0/200, with no model or tube hash. The route is
+`FULL_REPLACEMENT_TRANSITION_TRAINING_MODEL_FAIL`, a transition-model/design
+failure rather than a runtime, restart, report, real-control, or plant result.
+
+D1R11 is immutable. The active task uses only its 600 training raw as consumed
+development data for a new-identity, zero-TSC causal architecture study. The
+unopened D1R11 calibration/holdout remain forbidden. Whole-pair validation,
+the 0.1 recursive point gate, tube caps, forbidden inputs, safety gates, and
+formal timing remain unchanged. No fresh campaign is authorized until a new
+architecture passes independent deterministic replay. MPC, expert data, BC,
+DAgger, and bounded residual RL remain blocked.

@@ -1,0 +1,22 @@
+[T13S24D1R11] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R11] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r11_runs/stage4_2r3c3t13s24d1r11_full_replacement_sequential_transition_identification_20260804_571b932_v1 command=fit-training backend=serial resume=0 workers=128
+[T13S24D1R11] frozen phased matrix: training 600, calibration 200, holdout 200; total 1000.
+[T13S24D1R11] formal 250/270 ms arrival and 350/370 ms hold timing is unchanged.
+{
+  "forbidden_predictor_input_count": 0,
+  "passed": false,
+  "phase": "training_whole_pair_recursive_oof",
+  "schema_version": 1,
+  "selected": {
+    "feature_candidate": "L",
+    "maximum_absolute_recursive_scaled_error": 0.9580646070975856,
+    "mean_squared_recursive_scaled_error": 0.021769526130100414,
+    "recursive_formal_verdict_mismatch_count": 68,
+    "ridge": 1.0
+  },
+  "stage": "Stage4.2R3c3T13S24D1R11",
+  "teacher_row_count": 15600,
+  "training_pair_count": 12,
+  "training_recursive_formal_reproduction_count": 532,
+  "training_trajectory_count": 600
+}

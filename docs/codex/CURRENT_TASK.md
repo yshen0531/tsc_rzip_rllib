@@ -3611,3 +3611,63 @@ task identity, controller action, phase boundary, model/tube gate, formal
 timing, or scientific route. The failed invocation created zero raw and is a
 pre-execution source-authentication code error, not a runtime TSC failure,
 reporting/statistics error, design failure, or control/plant-restart result.
+
+## 59. Final D1R11 result and active causal architecture redesign
+
+The source-authentication hotfix was packaged at checkpoint `05c8521` without
+changing experiment semantics. The installed package passed 1,023/1,023
+tests with one expected server skip. D1R11 then completed the complete frozen
+training boundary:
+
+```text
+training baselines / sequential responses             24 / 576
+training total                                           600 / 600
+strict raw / exact source restart / causal execution     600 / 600 each
+training raw bytes                                        35,511,922
+training raw inventory digest
+  8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7
+calibration / fresh holdout                                  0 / 0
+runtime / solver / raw / snapshot / report errors                0
+formal tracking diagnostic                                158 / 600
+```
+
+The accepted independent v3 audit strictly parsed all 600 raw files, rehashed
+192 files across 24 restart snapshots, authenticated every source endpoint,
+and reproduced all 4,800 calibration and 4,608 issue/cancel events. Earlier
+v1/v2 audit attempts had postprocessing-only assumptions about checkpoint
+time, cancellation schema, and explicit zero baseline schedules; their fixes
+changed no raw, controller, state, or experiment semantics.
+
+All 24 preregistered L/SA/Q recursive transition candidates failed the frozen
+training gate. The selected L/ridge-1 candidate reproduced 532/600 formal
+diagnostics, had 68 mismatches, and reached maximum recursive scaled error
+`0.9580646071` against the unchanged `0.1` limit. Its R/Z/vR/vZ tube precursor
+also exceeded the frozen caps. No model or tube was frozen, and calibration
+and holdout outcomes were never opened. The final route is:
+
+```text
+FULL_REPLACEMENT_TRANSITION_TRAINING_MODEL_FAIL
+```
+
+This is a genuine frozen transition-model/design failure, not a runtime,
+deployment, restart, causality, corruption, statistics/reporting, real-MPC,
+closed-loop-control, or plant-unreachability result. The 158/600 formal count
+is diagnostic identification-trajectory behavior, not an MPC result. All
+D1R11 probe raw is forbidden from expert datasets. Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R11_FORENSIC_REPORT.md
+```
+
+D1R11 is immutable and may not resume with a changed model. Its unopened
+calibration and holdout phases may not be consumed by a post-result redesign.
+The active task is a new-identity, zero-new-TSC causal transition-architecture
+study using only the 600 authenticated D1R11 training trajectories as
+development data. It must retain whole-pair outer validation, the original
+`0.1` recursive point-error gate, tube caps, forbidden-input semantics,
+action/current gates, and immutable formal timing. A stable kinematically
+consistent innovation/state-space model with causal online context adaptation
+must first pass deterministic independent leave-pair replay before any fresh
+calibration/holdout campaign can be preregistered. Real MPC, expert data, BC,
+DAgger, and bounded residual RL remain blocked.
