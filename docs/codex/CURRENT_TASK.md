@@ -4284,3 +4284,66 @@ nonlinear per-lag kernel plus causal lag-26/27 tail. A pass may authorize only
 fresh authentic multi-pulse validation. A fail requires a new broader
 deconfounded identification campaign. MPC, expert data, BC, DAgger, bounded
 residual RL, and all later robustness claims remain blocked.
+
+## 73. Final D1R14R7R2 result and active D1R14R8 design
+
+D1R14R7R2 design/implementation/package checkpoints are
+`5d35db2 / bcde159 / 995d81c`. The 898-file direct-copy package passed local
+empty-directory, staging, and installed hashes plus the complete 1,136-test
+suite. It used only the project/server virtual environments and ran no
+controller, Ray, `gotsc`, TSC, or plant step.
+
+Both final implementations authenticated all 320 immutable R2/R4/R6 raw,
+reconstructed the exact 304-response bank, and agreed on every nested
+whole-pair prediction and route:
+
+```text
+all response gates                                      236 / 304
+relative-L2 / cosine / peak-ratio               253 / 247 / 267
+finite / point-error                               304 / 304 each
+tube cap                                                    PASS
+worst relative L2                                   1.5695004725
+minimum cosine                                      0.2450755612
+peak-ratio range                         0.2516766914--2.3254004095
+predicted signal                                          304 / 304
+canonical / operational geometry                     64/64 / 64/64
+route
+  ACTION_CONDITIONED_FULL_HISTORY_MODEL_FAIL_NEW_IDENTIFICATION_REQUIRED
+```
+
+The failure is pair-dependent: the four pair pass counts are `68/76`,
+`70/76`, `54/76`, and `44/76`, while signs are exactly balanced at `118/152`
+each. Point error, tube, and predicted authority passed. This is a genuine
+causal response-center whole-pair generalization failure, not runtime,
+deployment, source, raw/snapshot, statistics, reporting, restart, control,
+plant-unreachability, or real-MPC evidence. Full row outputs remain
+server-side; compact evidence and exact report are:
+
+```text
+docs/codex/audits/
+stage4_2r3c3t13s24d1r14r7r2_20260804_995d81c/
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R7R2_FORENSIC_REPORT.md
+```
+
+The active R8 design is frozen prospectively in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8_PARTITIONED_BROAD_RESPONSE_IDENTIFICATION_DESIGN.md
+SHA-256
+  4e6da4a07cfa568180596e8d65702ddf15a2b13032ea2d917780847fc6657828
+```
+
+It authenticates the fixed D1R11 20-pair table and confirms that D1R11 opened
+only training raw (`600/600`), with calibration `0/200`, holdout `0/200`, and
+`heldout_outcomes_opened=false`. R8 retains the four consumed R2/R4/R6 pairs
+as training-only, adds the other eight fixed training pairs, freezes a model
+before four fresh calibration pairs, freezes a tube before four fresh holdout
+pairs, and may execute at most 1,248 new authentic rollouts. Any earlier gate
+failure stops later partitions unopened.
+
+An R8 pass may authorize only a separately frozen fresh multipulse
+superposition/interaction sentinel. MPC, expert data, BC, DAgger, bounded
+residual RL, unseen targets, continuous plant/actuator variation, noise,
+disturbance recovery, and long hold remain blocked.

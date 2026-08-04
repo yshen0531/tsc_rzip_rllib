@@ -1483,3 +1483,30 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r7r1_20260804_3c90f21/`
 - Next: frozen zero-new-TSC R7R2 full-history/action-conditioned nonlinear
   kernel audit over all 304 existing responses; no MPC/expert/RL authorization
+
+## Stage4.2R3c3T13S24D1R14R7R2 action-conditioned full-history model
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design/implementation/package: `5d35db2 / bcde159 / 995d81c`
+- Package files / local-staging-installed full tests:
+  `898 / 1,136 / 1,136 / 1,136`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r7r2_audits/stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel_20260804_995d81c_v1`
+- Source raw authenticated/read in place / new raw: `320 / 0`
+- Response all / relative / cosine / peak / point:
+  `236/304`, `253/304`, `247/304`, `267/304`, `304/304`
+- Tube / signal / canonical geometry / operational geometry:
+  `PASS`, `304/304`, `64/64`, `64/64`
+- Worst relative / minimum cosine / peak range:
+  `1.5695004725`, `0.2450755612`, `0.2516766914--2.3254004095`
+- Detailed / independent SHA-256:
+  `0f7c801ed5138260ab7e836b898df31f2f252c9cc9b89a34353b27bc4209f84d`,
+  `743fd3c06ff97ff1d4a1b32e5494658dbf1f9ec33bba99e9d5d65d9d7a7a9bb1`
+- Route:
+  `ACTION_CONDITIONED_FULL_HISTORY_MODEL_FAIL_NEW_IDENTIFICATION_REQUIRED`
+- Classification: genuine whole-pair response-center/data-coverage failure;
+  no runtime, restart, raw, report, control, plant, or real-MPC failure
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r7r2_20260804_995d81c/`
+- Next: prospectively frozen R8 partitioned 12-training/4-calibration/4-holdout
+  broader deconfounded identification; no MPC/expert/RL authorization

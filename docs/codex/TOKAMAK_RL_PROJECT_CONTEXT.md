@@ -673,3 +673,18 @@ Only after the MPC expert is reliable:
 7. Deployment-oriented safety validation.
 
 Bounded residual RL may correct a reliable MPC expert. It may not directly replace it or own all 14 coils without hard bounds.
+
+## Current D1R14R7R2/R8 boundary
+
+D1R14R7R2 completed the full 304-response audit with exact independent
+agreement but passed only 236/304 center gates. All 304 point-error gates, the
+tube cap, 304/304 predicted signal, and both 64/64 predicted geometry families
+passed. The failure was whole-pair response direction/relative amplitude,
+with pair pass counts ranging from 44/76 to 70/76. It is a clean model/data
+coverage failure and ran zero new TSC.
+
+The active D1R14R8 design expands fixed source coverage from four to 12
+training pairs, then keeps four calibration and four holdout pairs unopened
+until model/tube hashes. It has a fail-closed maximum of 1,248 fresh authentic
+rollouts. Only a complete pass can authorize a separate multipulse sentinel;
+MPC and all expert/RL stages remain blocked.

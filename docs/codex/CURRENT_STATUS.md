@@ -1274,3 +1274,37 @@ It is a fresh 48-rollout authentic direction-0 replacement sentinel over all
 eight contexts, task steps 14/18/22, and both signs. A pass can authorize only
 a separate causal transition-model-fit design. MPC execution, expert data,
 BC, DAgger, and RL remain blocked.
+
+## Current handoff: D1R14R7R2 final, D1R14R8 implementation active
+
+D1R14R7R2 design/implementation/package checkpoints are
+`5d35db2 / bcde159 / 995d81c`. Local empty-package, server staging, and
+installed validation passed 898/898 hashes, focused 5/5 tests, and the full
+1,136-test suite. The zero-TSC server audit read all 320 authenticated source
+raw in place and created no raw, controller, Ray, gotsc, TSC, or plant step.
+
+Primary and independent outputs agree exactly. R7R2 improved the canonical
+R2/R4 subset to 200/256 and passed 36/48 R6 amplitude rows, but the final
+236/304 response result still failed frozen relative-L2/cosine/peak gates.
+Point error was 304/304, the tube passed, signal was 304/304, and canonical
+plus operational rank/condition were each 64/64. The final route is
+`ACTION_CONDITIONED_FULL_HISTORY_MODEL_FAIL_NEW_IDENTIFICATION_REQUIRED`.
+This is a pair-coverage/model-center design failure, not runtime, raw,
+restart, report, control, plant, or real-MPC evidence.
+
+The exact report and compact evidence are:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R7R2_FORENSIC_REPORT.md
+docs/codex/audits/
+stage4_2r3c3t13s24d1r14r7r2_20260804_995d81c/
+```
+
+The new R8 partitioned broader-response design is frozen at SHA-256
+`4e6da4a07cfa568180596e8d65702ddf15a2b13032ea2d917780847fc6657828`.
+It adds eight fixed training pairs, then permits four calibration pairs only
+after a model hash and four holdout pairs only after a tube hash. Maximum new
+raw is 1,248, with later phases fail-closed. Active work is independent R8
+implementation and full validation. MPC, expert data, BC, DAgger, and RL
+remain blocked.

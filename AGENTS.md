@@ -850,14 +850,22 @@ predicted geometry passed; primary and independent numerics agreed. This is a
 causal response-center design failure, not runtime, deployment, raw,
 reporting, restart, control, or MPC evidence. No new TSC ran.
 
-The active task is the prospectively frozen zero-new-TSC D1R14R7R2
-action-conditioned full-history nonlinear kernel audit over all 304 existing
-R2/R4/R6 responses. It may use only complete current-run causal visible
-history, numeric target/clock, and the already revealed fixed request scale.
-All pair/history/prefix/regime labels, source outcomes/actions, coil/wire
-currents, and future values remain forbidden. A pass may authorize only fresh
-multi-pulse validation. Real MPC, expert data, BC, DAgger, bounded residual
-RL, and later robustness stages remain blocked.
+D1R14R7R2 package `995d81c` authenticated all 320 R2/R4/R6 source raw and
+completed 304 nested whole-pair predictions with exact primary/independent
+agreement. Point error, tube, signal, and both predicted geometry families
+passed, but only 236/304 complete response gates passed. The weakest pair
+passed 44/76; failures were response-direction and relative-amplitude errors,
+not a sign, runtime, restart, raw, reporting, control, plant, or real-MPC
+failure. No new TSC ran.
+
+The active task is the prospectively frozen D1R14R8 partitioned broader
+deconfounded response-identification campaign. It retains the four consumed
+R2/R4/R6 pairs as training data, adds the other eight fixed D1R11 training
+pairs, and may open the four calibration and four holdout pairs only after
+model and tube hashes respectively. Its maximum is 1,248 fresh authentic
+rollouts. A pass may authorize only a fresh multipulse interaction sentinel.
+Real MPC, expert data, BC, DAgger, bounded residual RL, and later robustness
+stages remain blocked.
 
 ## 10. Required validation before server execution
 
