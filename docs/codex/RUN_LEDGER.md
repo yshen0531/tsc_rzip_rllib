@@ -1296,3 +1296,32 @@
   plant, controller, MPC, expert-data, BC, DAgger, or RL evidence
 - Next: prospectively freeze and execute a fresh 72-case D1R14R2 authentic
   safety/geometry sentinel
+
+## Stage4.2R3c3T13S24D1R14R2 mixed-basis authentic sentinel
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / package checkpoints: `5f7fb80`, `e7fe6c8`,
+  `ca2815a`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1`
+- Expected / strict raw / safety: `72 / 72 / 72`
+- Raw bytes / digest: `2,254,876` /
+  `c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649`
+- Baseline / issue / causal cancel: `8/8`, `64/64`, `64/64`
+- Runtime / restart / plant / solver / saturation / raw / reporting errors:
+  all zero
+- Signal / symmetry / rank / condition: `32/32`, `28/32`, `8/8`, `8/8`
+- Minimum odd / maximum even-to-odd / maximum condition:
+  `0.005466000000009519`, `0.8528017842241936`, `8.802962394477525`
+- Final / independent hashes:
+  `3df193e52ee0ce8fe72620af9f72597f58af4419c6386c37d62fb051bcefd79a`,
+  `68f21e95694c607084b9cc7d39732bcda05d57a14f6f3cc4f1e78e8941e7e2df`
+- Route:
+  `MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED`
+- Classification: genuine finite context/sign-dependent response-geometry
+  design failure; no runtime, restart, action, plant-abnormality, corruption,
+  reporting, control, or MPC failure
+- Large raw/snapshots remain server-side; compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r2_20260804_ca2815a/`
+- Next: zero-new-TSC sign-split response feasibility audit; no model, MPC,
+  expert-data, BC, DAgger, or RL authorization

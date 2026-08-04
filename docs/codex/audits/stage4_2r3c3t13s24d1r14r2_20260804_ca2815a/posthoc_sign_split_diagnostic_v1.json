@@ -1,0 +1,452 @@
+{
+  "branch_count": 16,
+  "changes_r2_verdict": false,
+  "condition_le_20_branch_count": 16,
+  "diagnostic_revision": "posthoc_sign_split_response_diagnostic_v1",
+  "interpretation": "R2 invalidates a shared odd-only local model in this envelope; it does not invalidate separate positive/negative rank-four local response branches. This is a posthoc architecture diagnostic, not a validation pass or campaign authorization.",
+  "issue_coordinate_and_field_central_symmetry_exact_count": 32,
+  "issue_pair_count": 32,
+  "maximum_branch_condition_number": 9.55784063525667,
+  "minimum_branch_direction_peak_normalized_outputs5": 0.005310999999896815,
+  "posthoc_development_only": true,
+  "r2_route": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+  "r2_symmetry_pass_count": 28,
+  "rank4_branch_count": 16,
+  "rows": [
+    {
+      "condition_number": 5.170407785539941,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.01015487031925951,
+        0.010537486550866462,
+        0.021068345595450753,
+        0.015873781044967908
+      ],
+      "minimum_peak_normalized_outputs5": 0.005310999999896815,
+      "pair_id": "p5_q1_a0p750_gap2_settle4",
+      "peaks_normalized_outputs5": [
+        0.007452000000074399,
+        0.005310999999896815,
+        0.012295430000000884,
+        0.007457000000044012
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.350236798572814,
+        1.1177198451160837,
+        0.9270194971102796,
+        0.26114706123354836
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_7dca3ca415ee7fae3748"
+    },
+    {
+      "condition_number": 5.559936650913498,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.00990844909645527,
+        0.01121329538266761,
+        0.022076962177875515,
+        0.015906071439858425
+      ],
+      "minimum_peak_normalized_outputs5": 0.005773000000042217,
+      "pair_id": "p5_q1_a0p750_gap2_settle4",
+      "peaks_normalized_outputs5": [
+        0.007250999999985908,
+        0.005773000000042217,
+        0.01219334000000094,
+        0.0068380000000090035
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.3526061857484624,
+        1.1077704589914754,
+        0.9402751131810078,
+        0.24327726567284344
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_7dca3ca415ee7fae3748"
+    },
+    {
+      "condition_number": 3.4361518717844293,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.018212514714027968,
+        0.010628817966988703,
+        0.020874160369947554,
+        0.01587399582396833
+      ],
+      "minimum_peak_normalized_outputs5": 0.006840270000000981,
+      "pair_id": "p5_q1_a0p750_gap2_settle4",
+      "peaks_normalized_outputs5": [
+        0.014695000000064518,
+        0.007345999999963659,
+        0.012686509999999318,
+        0.006840270000000981
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.4549235976956778,
+        1.1325026561447364,
+        0.6491174602933949,
+        0.4234165578194077
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_a6b6eeea6d48d7a79585"
+    },
+    {
+      "condition_number": 5.853669196315154,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.010674559245049417,
+        0.010518622648928418,
+        0.021138592353686914,
+        0.015698375434029826
+      ],
+      "minimum_peak_normalized_outputs5": 0.00628999999996438,
+      "pair_id": "p5_q1_a0p750_gap2_settle4",
+      "peaks_normalized_outputs5": [
+        0.006582000000032728,
+        0.007277999999999452,
+        0.013096660000000648,
+        0.00628999999996438
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.4105433921351704,
+        1.1294788330071084,
+        0.8225446014180464,
+        0.24096739067918257
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_a6b6eeea6d48d7a79585"
+    },
+    {
+      "condition_number": 7.453847554945741,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.011011396356345576,
+        0.009335974301533793,
+        0.019378463438275047,
+        0.014803982907391398
+      ],
+      "minimum_peak_normalized_outputs5": 0.005579999999949514,
+      "pair_id": "p5_q1_a0p900_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.008325000000031224,
+        0.005579999999949514,
+        0.012269400000000541,
+        0.006451499999998944
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.3430551238424397,
+        1.1846899536336246,
+        0.8719213305306596,
+        0.18018280008306614
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_4571fd0668fa016c2636"
+    },
+    {
+      "condition_number": 8.235219010742535,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.010185625490156665,
+        0.009291957837194486,
+        0.021647116750138043,
+        0.014495451288386158
+      ],
+      "minimum_peak_normalized_outputs5": 0.0055780000001171,
+      "pair_id": "p5_q1_a0p900_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.007516999999901408,
+        0.0055780000001171,
+        0.013094500000001563,
+        0.006204600000000449
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.3293162309202664,
+        1.230250875991935,
+        0.8326735414165226,
+        0.16141844305369696
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_4571fd0668fa016c2636"
+    },
+    {
+      "condition_number": 6.699286145769762,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.01033740862253214,
+        0.009172937676024473,
+        0.019250815075967712,
+        0.013821876178600954
+      ],
+      "minimum_peak_normalized_outputs5": 0.005728999999954354,
+      "pair_id": "p5_q1_a0p900_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.007631999999979655,
+        0.005728999999954354,
+        0.012293100000001278,
+        0.005934699999998294
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.3311606118743033,
+        1.2025633072567912,
+        0.8616092435787054,
+        0.19870185910999777
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_44878cc615a1d3ea18b9"
+    },
+    {
+      "condition_number": 6.415599013567696,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.009996348611586228,
+        0.009468830304121266,
+        0.01981487626711778,
+        0.014513605999496712
+      ],
+      "minimum_peak_normalized_outputs5": 0.005734000000034989,
+      "pair_id": "p5_q1_a0p900_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.007443999999967588,
+        0.005734000000034989,
+        0.012394299999997527,
+        0.005980299999999605
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.3184207286402878,
+        1.1983607861271754,
+        0.885136706506311,
+        0.20550235852522802
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_44878cc615a1d3ea18b9"
+    },
+    {
+      "condition_number": 9.55784063525667,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.01131396733020023,
+        0.010447779328109915,
+        0.0202786030982799,
+        0.015115870846816573
+      ],
+      "minimum_peak_normalized_outputs5": 0.005705000000078009,
+      "pair_id": "p9_q2_a0p750_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.00816299999994996,
+        0.005705000000078009,
+        0.01126866999999998,
+        0.0067087200000007785
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.3637187034104923,
+        1.1672539519495426,
+        0.8703055486681406,
+        0.142680627921337
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_3a3dc1fe08a9a6984e8c"
+    },
+    {
+      "condition_number": 6.763331242771632,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.011441778306554908,
+        0.010904485352011455,
+        0.02061109557706981,
+        0.0162944949491195
+      ],
+      "minimum_peak_normalized_outputs5": 0.005587999999945303,
+      "pair_id": "p9_q2_a0p750_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.008105000000036,
+        0.005587999999945303,
+        0.011275810000000941,
+        0.0067128299999999475
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.350034806031859,
+        1.1772893657221863,
+        0.8669205560178701,
+        0.1996109250858769
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_3a3dc1fe08a9a6984e8c"
+    },
+    {
+      "condition_number": 7.977057906549386,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.012016012871822544,
+        0.01016503382836073,
+        0.01892969395191685,
+        0.015721410246647128
+      ],
+      "minimum_peak_normalized_outputs5": 0.005743000000002496,
+      "pair_id": "p9_q2_a0p750_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.00875200000005627,
+        0.005743000000002496,
+        0.011346409999999807,
+        0.007330449999999766
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.3791527985803675,
+        1.1847031372222332,
+        0.8151840987932316,
+        0.17288990687256323
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_f96b02b6e296f16b840c"
+    },
+    {
+      "condition_number": 7.910538817171586,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.012708730853823654,
+        0.010022470209592422,
+        0.019011540510466125,
+        0.015171544602266614
+      ],
+      "minimum_peak_normalized_outputs5": 0.005722000000041305,
+      "pair_id": "p9_q2_a0p750_gap4_settle4",
+      "peaks_normalized_outputs5": [
+        0.009389999999998011,
+        0.005722000000041305,
+        0.011221659999999634,
+        0.006719459999999511
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.371308671034045,
+        1.1862637652136245,
+        0.8259781175809917,
+        0.17335211958726682
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_f96b02b6e296f16b840c"
+    },
+    {
+      "condition_number": 5.107028870298166,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.011895835947812038,
+        0.010297459621454194,
+        0.029292274675289456,
+        0.014613538418517319
+      ],
+      "minimum_peak_normalized_outputs5": 0.005545000000051203,
+      "pair_id": "p9_q2_a0p900_gap3_settle4",
+      "peaks_normalized_outputs5": [
+        0.008699999999972619,
+        0.005545000000051203,
+        0.014670999999966128,
+        0.006197396000000022
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.2962067509245616,
+        1.1115097382629033,
+        1.0099383467262555,
+        0.2538083852361079
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_b72b7cdb52af15409a54"
+    },
+    {
+      "condition_number": 5.0676081922455065,
+      "history_member": "plus_first",
+      "l2_norms": [
+        0.01135918119448083,
+        0.010853689964899917,
+        0.020360276343950216,
+        0.025622801245331908
+      ],
+      "minimum_peak_normalized_outputs5": 0.005779999999955265,
+      "pair_id": "p9_q2_a0p900_gap3_settle4",
+      "peaks_normalized_outputs5": [
+        0.008369999999979783,
+        0.005779999999955265,
+        0.012322439999999935,
+        0.013695000000035762
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.277653099584096,
+        1.121158868876727,
+        1.0232497667166427,
+        0.2521215238264021
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_b72b7cdb52af15409a54"
+    },
+    {
+      "condition_number": 3.1596365331943685,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.012284114253627297,
+        0.026816793546940165,
+        0.021042975567648375,
+        0.015435234107073644
+      ],
+      "minimum_peak_normalized_outputs5": 0.006942147999999815,
+      "pair_id": "p9_q2_a0p900_gap3_settle4",
+      "peaks_normalized_outputs5": [
+        0.008972000000051494,
+        0.01798000000008404,
+        0.01314988000000028,
+        0.006942147999999815
+      ],
+      "rank": 4,
+      "sign": 1,
+      "singular_values": [
+        1.2034697886406516,
+        1.1695902047598905,
+        1.0191383783131467,
+        0.3808886800735757
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_39edf644f2fdf0ee6c5a"
+    },
+    {
+      "condition_number": 4.959961238776916,
+      "history_member": "minus_first",
+      "l2_norms": [
+        0.013013522558486035,
+        0.010731906177694558,
+        0.020006888328991942,
+        0.029089094016003916
+      ],
+      "minimum_peak_normalized_outputs5": 0.006270999999946625,
+      "pair_id": "p9_q2_a0p900_gap3_settle4",
+      "peaks_normalized_outputs5": [
+        0.009410000000098506,
+        0.006270999999946625,
+        0.0127493799999997,
+        0.016615000000053115
+      ],
+      "rank": 4,
+      "sign": -1,
+      "singular_values": [
+        1.3260150495956435,
+        1.1144435581738086,
+        0.963445337730613,
+        0.26734383309870935
+      ],
+      "source_d1r13_experiment_id": "s42r3c3_39edf644f2fdf0ee6c5a"
+    }
+  ],
+  "schema_version": 1,
+  "signal_ge_0p005_branch_count": 16,
+  "stage": "Stage4.2R3c3T13S24D1R14R2"
+}

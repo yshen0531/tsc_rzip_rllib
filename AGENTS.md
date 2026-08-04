@@ -792,15 +792,22 @@ Maximum off-basis residual was `0.0990759`, maximum issue/linearized-cancel
 increment was `0.1401852`, and new raw/TSC/controller/plant counts were zero.
 The state-11 online cancellation is explicitly unvalidated.
 
-The D1R14R2 design is frozen prospectively and its independent implementation
-has passed local compile/JSON, 15/15 focused tests, and the complete 1072/1072
-repository suite. It fixes the same eight contexts, eight zero baselines, 64
-signed fixed-mixed-basis probes, exact task-step-10 issue, causal task-step-11
-stored-center cancellation under the unchanged 0.24/0.25 gates, exact zero
-afterward, and the original D1R14 geometry. Package construction, empty-tree
-simulation, server validation, zero-TSC offline gate, and the 72 authentic TSC
-tasks remain to be completed. Transition-model fitting, MPC, expert data, BC,
-DAgger, and bounded residual RL remain blocked.
+D1R14R2 package `ca2815a` completed all 72 authentic trajectories. Primary
+and independent raw/snapshot audits found 72/72 safety, 64/64 exact issue and
+causal cancellation, 8/8 baselines, and zero runtime/restart/solver/action/
+raw/reporting errors. Signal and rank/conditioning passed, but central
+symmetry passed only 28/32; maximum even/odd was `0.8528018`. All four failures
+belong to the two hidden histories of `p9_q2_a0p900_gap3_settle4`. Actual
+issued coordinates and physical fields were exactly centrally symmetric, so
+this is a genuine context/sign-dependent response-geometry design failure,
+not quantization, runtime, plant abnormality, control, or MPC failure.
+
+Post-result development diagnostics found all 16 context-by-sign branches
+individually signal-bearing, rank four, and conditioned at most `9.5578407`.
+That is architecture-selection evidence only. The active task is to freeze a
+zero-new-TSC sign-split feasibility audit that reproduces the D1R14R2 FAIL
+unchanged. Transition-model fitting, MPC, expert data, BC, DAgger, and bounded
+residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

@@ -1148,3 +1148,24 @@ TSC execution has occurred yet. The next safe boundary is package construction
 and empty-tree validation, followed by installed-server validation and the
 mandatory zero-TSC offline gate. MPC, expert data, BC, DAgger, and bounded
 residual RL remain blocked.
+
+## Current handoff: D1R14R2 final, sign-split feasibility redesign active
+
+D1R14R2 implementation/package checkpoints `e7fe6c8 / ca2815a` completed the
+full local-server-download-analysis loop. The 72 raw remain server-side with
+inventory digest
+`c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649`.
+Primary and independent audits agree on 72/72 safety, 64/64 exact issue and
+causal cancellation, 8/8 baselines, and zero runtime/restart/plant/solver/
+raw/reporting errors.
+
+The geometry route is a real design FAIL: symmetry 28/32 and maximum even/odd
+`0.8528017842`, despite 32/32 signal and 8/8 rank/condition. The four failures
+are confined to the matched `p9_q2_a0p900_gap3_settle4` histories. Exact
+antipodal issue coordinates/fields exclude action quantization asymmetry.
+
+Posthoc development analysis found 16/16 separate sign branches signal-bearing,
+rank four, and conditioned below 20, but this does not alter the failed verdict
+or authorize a campaign. The next task is to freeze and independently run a
+zero-TSC sign-split feasibility audit. MPC, expert data, BC, DAgger, and RL
+remain blocked.

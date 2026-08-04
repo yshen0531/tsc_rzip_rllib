@@ -1,0 +1,16 @@
+{
+  "baseline_count": 8,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "selected_context_count": 8,
+  "selected_spec_count": 72,
+  "signed_probe_count": 64,
+  "snapshot_pass_count": 8,
+  "source_d1r11_raw_count": 600,
+  "source_d1r13_raw_count": 8,
+  "source_r1a_authenticated": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R2"
+}

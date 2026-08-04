@@ -1,0 +1,16 @@
+{
+  "finished": true,
+  "new_raw_count": 72,
+  "package_digest": "d1c142aac0469822808f1440f718e6f5389d62ba6476bb5428f5db050187247d",
+  "phase_status": "failed",
+  "primary_pass": false,
+  "real_tsc_executed": true,
+  "schema_version": 1,
+  "spec_digest": "ff5e29f1ebb94dd2c8b9602d85021938ad578be37765a297d6d7df562e39bb35",
+  "stage": "Stage4.2R3c3T13S24D1R14R2",
+  "stop_reason": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+  "verdict": {
+    "passed": false,
+    "route": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED"
+  }
+}

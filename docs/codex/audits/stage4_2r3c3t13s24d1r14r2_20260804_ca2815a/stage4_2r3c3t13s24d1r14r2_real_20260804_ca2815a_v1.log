@@ -1,0 +1,110 @@
+[T13S24D1R14R2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R14R2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1 command=run backend=ray resume=0 workers=72
+[T13S24D1R14R2] 72 fresh TSC fixed mixed-basis signed-excitation sentinels; formal tracking is diagnostic only.
+[T13S24D1R14R2] formal 250/270 ms arrival and 350/370 ms hold timing is unchanged.
+2026-08-04 19:14:19,495	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[D1R14R2] ray_capacity requested=72 cluster_cpus=72 pending=72 actors=72 initialized_now=1
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] waiting 0/72
+[D1R14R2] 1/72
+[D1R14R2] 2/72
+[D1R14R2] 3/72
+[D1R14R2] 4/72
+[D1R14R2] 5/72
+[D1R14R2] 6/72
+[D1R14R2] 7/72
+[D1R14R2] 8/72
+[D1R14R2] 9/72
+[D1R14R2] 10/72
+[D1R14R2] 11/72
+[D1R14R2] 12/72
+[D1R14R2] 13/72
+[D1R14R2] 14/72
+[D1R14R2] 15/72
+[D1R14R2] 16/72
+[D1R14R2] 17/72
+[D1R14R2] 18/72
+[D1R14R2] 19/72
+[D1R14R2] 20/72
+[D1R14R2] 21/72
+[D1R14R2] 22/72
+[D1R14R2] 23/72
+[D1R14R2] 24/72
+[D1R14R2] 25/72
+[D1R14R2] 26/72
+[D1R14R2] 27/72
+[D1R14R2] 28/72
+[D1R14R2] 29/72
+[D1R14R2] 30/72
+[D1R14R2] 31/72
+[D1R14R2] 32/72
+[D1R14R2] 33/72
+[D1R14R2] 34/72
+[D1R14R2] 35/72
+[D1R14R2] 36/72
+[D1R14R2] 37/72
+[D1R14R2] 38/72
+[D1R14R2] 39/72
+[D1R14R2] 40/72
+[D1R14R2] 41/72
+[D1R14R2] 42/72
+[D1R14R2] 43/72
+[D1R14R2] 44/72
+[D1R14R2] 45/72
+[D1R14R2] 46/72
+[D1R14R2] 47/72
+[D1R14R2] 48/72
+[D1R14R2] 49/72
+[D1R14R2] 50/72
+[D1R14R2] 51/72
+[D1R14R2] 52/72
+[D1R14R2] 53/72
+[D1R14R2] 54/72
+[D1R14R2] 55/72
+[D1R14R2] 56/72
+[D1R14R2] 57/72
+[D1R14R2] 58/72
+[D1R14R2] 59/72
+[D1R14R2] 60/72
+[D1R14R2] 61/72
+[D1R14R2] 62/72
+[D1R14R2] 63/72
+[D1R14R2] 64/72
+[D1R14R2] 65/72
+[D1R14R2] 66/72
+[D1R14R2] 67/72
+[D1R14R2] 68/72
+[D1R14R2] 69/72
+[D1R14R2] 70/72
+[D1R14R2] 71/72
+[D1R14R2] 72/72
+{
+  "completed": 72,
+  "expected": 72,
+  "passed": true,
+  "pending_at_start": 72,
+  "successful": 72
+}

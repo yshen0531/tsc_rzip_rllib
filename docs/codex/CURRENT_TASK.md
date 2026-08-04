@@ -3988,3 +3988,56 @@ The next actions are package/manifest construction, empty-directory deployment
 simulation, installed-server validation, a zero-plant 72-spec offline gate,
 then one fresh 72-task authentic TSC campaign. No response result has yet been
 observed. MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
+
+## 67. Final D1R14R2 result and active sign-split redesign
+
+D1R14R2 implementation/package checkpoints are `e7fe6c8 / ca2815a`. The
+installed 543-file package, mandatory zero-TSC source/spec gate, 72 authentic
+TSC tasks, primary postprocessor, and independent raw/snapshot audit all
+completed. Raw inventory is 72 files, 2,254,876 bytes, digest
+`c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649`.
+
+Exact safety/restart/causality results were 72/72, with 8/8 baseline
+reproduction and 64/64 issue/cancellation. Runtime, prefix, plant, solver,
+saturation, clipping, forbidden-input, snapshot, corruption, and reporting
+error counts are zero. Maximum current utilization is `0.3904`. Formal
+tracking 18/72 remains diagnostic.
+
+The frozen geometry failed only central symmetry:
+
+```text
+signal                                            32 / 32
+central symmetry                                  28 / 32
+rank four                                           8 / 8
+condition <= 20                                     8 / 8
+minimum odd peak                       0.005466000000009519
+maximum even/odd                       0.8528017842241936
+maximum condition                     8.802962394477525
+route  MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED
+```
+
+All four failures are in the two hidden histories of
+`p9_q2_a0p900_gap3_settle4`. Raw reconstruction found the actual positive and
+negative issue coordinates and physical field deltas exactly antipodal for
+32/32 pairs. The residual even response is therefore genuine late-time
+context/sign dependence, not asymmetric quantization or an action bug.
+
+A labelled posthoc architecture diagnostic leaves the R2 verdict unchanged.
+When positive and negative response branches are kept separate, all 16
+context/sign branches have four-direction signal at least
+`0.005310999999896815`, rank 4, and condition at most `9.55784063525667`.
+This motivates, but does not pass, a sign-split model architecture.
+
+Exact report and compact evidence are in:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R2_FORENSIC_REPORT.md
+docs/codex/audits/stage4_2r3c3t13s24d1r14r2_20260804_ca2815a/
+```
+
+The active task is a prospectively frozen zero-new-TSC sign-split response
+feasibility audit. It must authenticate every D1R14R2 raw/snapshot/output,
+reproduce the R2 symmetry FAIL without changing it, and test fixed
+positive/negative four-direction authority. Only a pass may authorize design
+of a fresh time-shifted safety/identification campaign. Model fitting, MPC,
+expert data, BC, DAgger, and bounded residual RL remain blocked.

@@ -1,0 +1,20 @@
+[T13S24D1R14R2] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R14R2] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1 command=offline backend=ray resume=0 workers=72
+[T13S24D1R14R2] 72 fresh TSC fixed mixed-basis signed-excitation sentinels; formal tracking is diagnostic only.
+[T13S24D1R14R2] formal 250/270 ms arrival and 350/370 ms hold timing is unchanged.
+{
+  "baseline_count": 8,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "selected_context_count": 8,
+  "selected_spec_count": 72,
+  "signed_probe_count": 64,
+  "snapshot_pass_count": 8,
+  "source_d1r11_raw_count": 600,
+  "source_d1r13_raw_count": 8,
+  "source_r1a_authenticated": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R2"
+}

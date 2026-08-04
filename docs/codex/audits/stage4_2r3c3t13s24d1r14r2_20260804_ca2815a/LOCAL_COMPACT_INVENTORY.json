@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R2",
+  "implementation_checkpoint": "e7fe6c8",
+  "package_checkpoint": "ca2815a",
+  "remote_raw_retained_in_place": true,
+  "remote_raw_count": 72,
+  "remote_raw_bytes": 2254876,
+  "remote_raw_inventory_digest": "c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649",
+  "local_file_count": 13,
+  "local_files": {
+    "compact_evidence_manifest_v1.json": "4b2a7966c7837b49831a037b7f56a5c9e3a1a27662dbb21bbc8c03231fd1dfba",
+    "execution.json": "676832d90b54b5b2895d79a75f3272037fe9d1085367b344d5cecca371da3cff",
+    "final_result.json": "3df193e52ee0ce8fe72620af9f72597f58af4419c6386c37d62fb051bcefd79a",
+    "offline_preflight.json": "234f237a74d76c9bf7b36ca7ca9a153ba22112dc12a4a8a859dcce5ffbf69e87",
+    "posthoc_sign_split_diagnostic_v1.json": "2a843ca4f9d05e1f5fbb7036313652fce2093062bf7a4b1fa969ad599f406f61",
+    "sentinel_specs.json": "227ba64ce5b160f7c8d9e4e15d0044bc0f0e283b3f9b8ba804d988cffef10f29",
+    "server_independent_forensics_v1.json": "68f21e95694c607084b9cc7d39732bcda05d57a14f6f3cc4f1e78e8941e7e2df",
+    "stage4_2r3c3t13s24d1r14r2_ca2815a_installed_verify.log": "f6f81fef4dd80c0961974b2a1fb470b2446c4068c760bb749b9e4aaafcc1bf04",
+    "stage4_2r3c3t13s24d1r14r2_offline_20260804_ca2815a_v1.log": "34c496c54190398fb420c42159c2437ad35a313ecb2d2cf0d6418c81de781534",
+    "stage4_2r3c3t13s24d1r14r2_postprocess_20260804_ca2815a_v1.log": "e161419d21ede0322e4c25570ebd9d6dd1042f4fb722bec176feb462a4151854",
+    "stage4_2r3c3t13s24d1r14r2_real_20260804_ca2815a_v1.log": "7a6f57660f1b149d4be9e84a5a480bfc27346bcb52160796bd5314970c4fe229",
+    "stage_manifest.json": "b7bc3040ac65a96bc110a36d53911234cda832eed93ff09d06e9208dbf729cac",
+    "stage_state.json": "46552980c0cdc8e97968ac18a04cbb5d64f2cdf2885b9df121d9db86c2a37d07"
+  },
+  "verification": {
+    "strict_json_parse": true,
+    "size_and_sha256_match_remote_compact_manifest": true,
+    "raw_or_snapshot_tree_downloaded": false
+  }
+}

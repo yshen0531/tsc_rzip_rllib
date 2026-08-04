@@ -1,0 +1,175 @@
+{
+  "action_safety_failure_count": 0,
+  "actual_raw_count": 72,
+  "baseline_reproduction_count": 8,
+  "cancel_exact_count": 64,
+  "classification": {
+    "action_or_safety_failure": false,
+    "geometry_design_failure": true,
+    "packaging_import_or_deployment_error": false,
+    "plant_execution_failure": false,
+    "plant_restart_failure": false,
+    "raw_or_snapshot_corruption": false,
+    "real_mpc_or_control_success_established": false,
+    "runtime_or_environment_error": false,
+    "sentinel_pass": false,
+    "summary_or_reporting_error": false
+  },
+  "expected_task_count": 72,
+  "failed_geometry_pairs": [
+    {
+      "direction_index": 1,
+      "direction_name": "pooled_mixed_1",
+      "even_peak_normalized_outputs5": 0.00784500000006183,
+      "even_to_odd_peak_ratio": 0.7740503206753467,
+      "odd_peak_normalized_outputs5": 0.01013500000002221,
+      "passed": false,
+      "signal_pass": true,
+      "source_d1r13_experiment_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+      "symmetry_pass": false
+    },
+    {
+      "direction_index": 3,
+      "direction_name": "pooled_mixed_3",
+      "even_peak_normalized_outputs5": 0.0076475000000408855,
+      "even_to_odd_peak_ratio": 0.8528017842241936,
+      "odd_peak_normalized_outputs5": 0.00896750000001223,
+      "passed": false,
+      "signal_pass": true,
+      "source_d1r13_experiment_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+      "symmetry_pass": false
+    },
+    {
+      "direction_index": 2,
+      "direction_name": "pooled_mixed_2",
+      "even_peak_normalized_outputs5": 0.006585500000044764,
+      "even_to_odd_peak_ratio": 0.5262726780566409,
+      "odd_peak_normalized_outputs5": 0.012513474999999885,
+      "passed": false,
+      "signal_pass": true,
+      "source_d1r13_experiment_id": "s42r3c3_b72b7cdb52af15409a54",
+      "symmetry_pass": false
+    },
+    {
+      "direction_index": 3,
+      "direction_name": "pooled_mixed_3",
+      "even_peak_normalized_outputs5": 0.0062465000000289095,
+      "even_to_odd_peak_ratio": 0.8386252265587921,
+      "odd_peak_normalized_outputs5": 0.007448500000006852,
+      "passed": false,
+      "signal_pass": true,
+      "source_d1r13_experiment_id": "s42r3c3_b72b7cdb52af15409a54",
+      "symmetry_pass": false
+    }
+  ],
+  "files": {
+    "execution": {
+      "bytes": 104,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel/analysis/execution.json",
+      "sha256": "676832d90b54b5b2895d79a75f3272037fe9d1085367b344d5cecca371da3cff"
+    },
+    "final": {
+      "bytes": 133212,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel/analysis/final_result.json",
+      "sha256": "3df193e52ee0ce8fe72620af9f72597f58af4419c6386c37d62fb051bcefd79a"
+    },
+    "independent": {
+      "bytes": 230889,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1/server_independent_forensics_v1.json",
+      "sha256": "68f21e95694c607084b9cc7d39732bcda05d57a14f6f3cc4f1e78e8941e7e2df"
+    },
+    "installed_verify_log": {
+      "bytes": 41844,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s24d1r14r2_ca2815a_installed_verify.log",
+      "sha256": "f6f81fef4dd80c0961974b2a1fb470b2446c4068c760bb749b9e4aaafcc1bf04"
+    },
+    "manifest": {
+      "bytes": 79839,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel/stage_manifest.json",
+      "sha256": "b7bc3040ac65a96bc110a36d53911234cda832eed93ff09d06e9208dbf729cac"
+    },
+    "offline_log": {
+      "bytes": 935,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r14r2_offline_20260804_ca2815a_v1.log",
+      "sha256": "34c496c54190398fb420c42159c2437ad35a313ecb2d2cf0d6418c81de781534"
+    },
+    "offline_preflight": {
+      "bytes": 418,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel/analysis/offline_preflight.json",
+      "sha256": "234f237a74d76c9bf7b36ca7ca9a153ba22112dc12a4a8a859dcce5ffbf69e87"
+    },
+    "package_manifest": {
+      "bytes": 44461,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/PACKAGE_MANIFEST.json",
+      "sha256": "79fb42b5066c722066fa99c0b63668b1497ff8edd558650a7a79bb50a8c163f1"
+    },
+    "postprocess_log": {
+      "bytes": 133733,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r14r2_postprocess_20260804_ca2815a_v1.log",
+      "sha256": "e161419d21ede0322e4c25570ebd9d6dd1042f4fb722bec176feb462a4151854"
+    },
+    "real_log": {
+      "bytes": 2835,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r14r2_real_20260804_ca2815a_v1.log",
+      "sha256": "7a6f57660f1b149d4be9e84a5a480bfc27346bcb52160796bd5314970c4fe229"
+    },
+    "sha256sums": {
+      "bytes": 71598,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/SHA256SUMS",
+      "sha256": "9c067fc5b6edf5d0cbb905a27a1d14b942b64741fb46f3f5e05bbb447c82c0c3"
+    },
+    "specs": {
+      "bytes": 915407,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel/specs/sentinel_specs.json",
+      "sha256": "227ba64ce5b160f7c8d9e4e15d0044bc0f0e283b3f9b8ba804d988cffef10f29"
+    },
+    "state": {
+      "bytes": 564,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel/stage_state.json",
+      "sha256": "46552980c0cdc8e97968ac18a04cbb5d64f2cdf2885b9df121d9db86c2a37d07"
+    }
+  },
+  "forbidden_trace_count": 0,
+  "formal_tracking_pass_count_diagnostic_only": 18,
+  "geometry": {
+    "condition_pass_count": 8,
+    "maximum_condition_number": 8.802962394477525,
+    "maximum_even_to_odd_peak_ratio": 0.8528017842241936,
+    "minimum_odd_peak_normalized_outputs5": 0.005466000000009519,
+    "passed": false,
+    "rank_pass_count": 8,
+    "signal_pass_count": 32,
+    "signed_pair_count": 32,
+    "symmetry_pass_count": 28
+  },
+  "implementation_checkpoint": "e7fe6c8",
+  "independent_audit_passed": true,
+  "independent_route": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+  "issue_exact_count": 64,
+  "maximum_current_utilization": 0.39039999999999997,
+  "package_checkpoint": "ca2815a",
+  "plant_failure_count": 0,
+  "prefix_failure_count": 0,
+  "primary_passed": false,
+  "primary_route": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+  "raw_bytes": 2254876,
+  "raw_inventory_digest": "c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649",
+  "remote_project": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+  "remote_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1",
+  "runtime_error_count": 0,
+  "safety_pass_count": 72,
+  "saturation_or_clip_count": 0,
+  "schema_version": 1,
+  "scientific_boundary": {
+    "bc_dagger_or_rl_authorized": false,
+    "expert_dataset_authorized": false,
+    "formal_tracking_is_diagnostic_only": true,
+    "long_hold_validated": false,
+    "mpc_validated": false,
+    "time_distributed_identification_validated": false,
+    "transition_model_validated": false
+  },
+  "snapshot_pass_count": 8,
+  "solver_error_count": 0,
+  "stage": "Stage4.2R3c3T13S24D1R14R2"
+}
