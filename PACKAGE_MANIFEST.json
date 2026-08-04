@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.2R3c3T13S24D1R14R7R1",
-  "identity": "continuous_lag_causal_response_model_development_v1",
-  "run_name": "stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model",
-  "campaign_identity": "continuous_lag_causal_response_model_development_v1",
-  "package_revision": "r42r3c3t13s24d1r14r7r1_continuous_lag_response_model_v1",
-  "design_checkpoint": "81552da",
-  "implementation_checkpoint": "8087a1c",
-  "config_path": "configs/stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model_v1.json",
-  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7R1_CONTINUOUS_LAG_RESPONSE_MODEL_DESIGN.md",
-  "purpose": "Zero-new-TSC nested whole-pair continuous-lag causal response-model development over the authenticated R2/R4/R6 256-response bank.",
+  "stage": "Stage4.2R3c3T13S24D1R14R7R2",
+  "identity": "action_conditioned_full_history_kernel_development_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel",
+  "campaign_identity": "action_conditioned_full_history_kernel_development_v1",
+  "package_revision": "r42r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel_v1",
+  "design_checkpoint": "5d35db2",
+  "implementation_checkpoint": "bcde159",
+  "config_path": "configs/stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel_v1.json",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7R2_ACTION_CONDITIONED_FULL_HISTORY_KERNEL_DESIGN.md",
+  "purpose": "Zero-new-TSC nested whole-pair action-conditioned full-history nonlinear response-model development over the authenticated R2/R4/R6 304-response bank.",
   "source_contracts": {
     "r2": {
       "run_name": "stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1",
@@ -59,7 +59,7 @@
     "weak_arrival_deadline_step": 27,
     "weak_hold_through_step": 37,
     "arrival_deadline_expansion_allowed": false,
-    "evaluated_in_r7r1": false
+    "evaluated_in_r7r2": false
   },
   "scientific_scope": {
     "identification_development_only": true,
@@ -77,7 +77,7 @@
     "outbound_network_required": false,
     "root_shell_scripts_are_complete": true
   },
-  "declared_file_count": 888,
+  "declared_file_count": 898,
   "file_inventory": [
     "AGENTS.md",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -150,6 +150,7 @@
     "configs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_370ms.json",
     "configs/stage4_2r3c3t13s24d1r14r7_causal_response_model_v1.json",
     "configs/stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model_v1.json",
+    "configs/stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel_v1.json",
     "configs/stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search_v1.json",
     "configs/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel_370ms.json",
     "configs/stage4_2r3c3t13s24d1r3_causal_split_return_preflight_v1.json",
@@ -213,6 +214,8 @@
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7_independent_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7r1_independent_forensics.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7r2_independent_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
@@ -301,6 +304,7 @@
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R5_GLOBAL_DIRECTION0_GAIN_PREFLIGHT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R6_REAL_TSC_DIRECTION0_REPLACEMENT_SENTINEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7R1_CONTINUOUS_LAG_RESPONSE_MODEL_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7R2_ACTION_CONDITIONED_FULL_HISTORY_KERNEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_CAUSAL_RESPONSE_MODEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_STRUCTURAL_FAILURE_REPORT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md",
@@ -526,6 +530,9 @@
     "run_stage4_2r3c3t13s24d1r14r7r1_common.sh",
     "run_stage4_2r3c3t13s24d1r14r7r1_offline.sh",
     "run_stage4_2r3c3t13s24d1r14r7r1_verify_package.sh",
+    "run_stage4_2r3c3t13s24d1r14r7r2_common.sh",
+    "run_stage4_2r3c3t13s24d1r14r7r2_offline.sh",
+    "run_stage4_2r3c3t13s24d1r14r7r2_verify_package.sh",
     "run_stage4_2r3c3t13s24d1r1_common.sh",
     "run_stage4_2r3c3t13s24d1r1_offline.sh",
     "run_stage4_2r3c3t13s24d1r1_verify_package.sh",
@@ -733,6 +740,7 @@
     "scripts/stage4_2r3c3t13s24d1r14r6_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r14r7_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r14r7r1_shell_common.sh",
+    "scripts/stage4_2r3c3t13s24d1r14r7r2_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r1_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
     "scripts/stage4_2r3c3t13s24d1r2_shell_common.sh",
@@ -843,6 +851,7 @@
     "tests/test_stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel.py",
     "tests/test_stage4_2r3c3t13s24d1r14r7_causal_response_model.py",
     "tests/test_stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model.py",
+    "tests/test_stage4_2r3c3t13s24d1r14r7r2_action_conditioned_full_history_kernel.py",
     "tests/test_stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "tests/test_stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
     "tests/test_stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
@@ -882,6 +891,7 @@
     "tests/test_stage4_2r3c_visible_state_phase_aligned_mpc.py",
     "tsc_rzip_rllib/__init__.py",
     "tsc_rzip_rllib/control/__init__.py",
+    "tsc_rzip_rllib/control/action_conditioned_history_response_model.py",
     "tsc_rzip_rllib/control/causal_observer.py",
     "tsc_rzip_rllib/control/causal_response_model.py",
     "tsc_rzip_rllib/control/continuous_lag_response_model.py",
@@ -968,10 +978,16 @@
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
   ],
-  "predecessor_structural_failure": {
-    "stage": "Stage4.2R3c3T13S24D1R14R7",
-    "route": "CAUSAL_RESPONSE_MODEL_PIPELINE_STRUCTURAL_FAIL_NO_MODEL_RESULT",
-    "new_raw_or_tsc_created": false,
-    "change_in_r7r1": "replace independent lag heads only with a frozen continuous Legendre lag tensor"
+  "predecessor_results": {
+    "r7": {
+      "route": "CAUSAL_RESPONSE_MODEL_PIPELINE_STRUCTURAL_FAIL_NO_MODEL_RESULT",
+      "new_raw_or_tsc_created": false
+    },
+    "r7r1": {
+      "route": "CONTINUOUS_LAG_RESPONSE_MODEL_DEVELOPMENT_FAIL_BROADER_DECONFOUNDED_IDENTIFICATION_REQUIRED",
+      "response_pass_count": 150,
+      "response_count": 256,
+      "new_raw_or_tsc_created": false
+    }
   }
 }
