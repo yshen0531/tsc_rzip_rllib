@@ -950,3 +950,27 @@ The active D1R8 design is frozen before implementation in
 It permits exactly 108 fresh real-TSC safety sentinels over six rows and 18
 contexts. A pass may authorize only design of a full replacement
 identification campaign. MPC, expert data, BC, DAgger, and RL remain blocked.
+
+## Current handoff: D1R10 final, D1R11 source-auth hotfix validated locally
+
+D1R10 completed 126/126 authentic full-horizon sentinels with exact restart,
+causality, calibration, issue/cancel/margin gates, no runtime/raw/snapshot
+error, and a formal tracking diagnostic of 28/126. It authorized the
+prospectively frozen 1,000-rollout D1R11 replacement identification campaign;
+the probe data remains forbidden from expert datasets.
+
+D1R11 implementation/package checkpoints `79d3c0a / 571b932` passed the
+initial local and server package validations. Its first zero-TSC `offline`
+invocation stopped before output because source authentication read the
+nonexistent D1R9 field `primary_pass` instead of its official top-level
+`passed` field. Every other D1R9 hash, matrix, row classification, route, and
+independent audit check matched. No raw, controller, TSC, or plant step ran.
+
+Source-authentication-only checkpoint `027f555` fixes the field lookup and
+adds an official-schema regression test. Focused tests pass 8/8; the complete
+local suite passes 1023/1023 when run with the repository's Windows `resource`
+compatibility shim. The direct unshimmed discovery attempt is invalid on
+Windows and produced 27 Unix-module import/collection errors; it is not a code
+test failure. D1R11 remains at its mandatory zero-TSC gate pending hotfix
+package deployment and server validation. MPC, expert data, BC, DAgger, and
+RL remain unauthorized.

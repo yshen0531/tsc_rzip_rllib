@@ -84,6 +84,7 @@
   "s24d1r10_forensic_report_checkpoint": "dc5b443",
   "s24d1r11_design_checkpoint": "60f3081",
   "s24d1r11_implementation_checkpoint": "79d3c0a",
+  "s24d1r11_source_auth_hotfix_checkpoint": "027f555",
   "declared_file_count": 766,
   "file_inventory": [
     "AGENTS.md",

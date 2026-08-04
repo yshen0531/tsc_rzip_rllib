@@ -3594,3 +3594,20 @@ outcomes unopened and must be classified separately.
 Even a full D1R11 pass authorizes only a separately preregistered zero-new-TSC
 robust finite-horizon MPC feasibility/controller design. Real MPC execution,
 expert data, BC, DAgger, and bounded residual RL remain unauthorized.
+
+The first official D1R11 `offline` invocation used run directory
+`stage4_2r3c3t13s24d1r11_full_replacement_sequential_transition_identification_20260804_571b932_v1`
+and stopped before any TSC/controller/plant execution. The source
+authentication code incorrectly read the nonexistent D1R9 detailed-output
+field `primary_pass`; the authenticated official schema uses top-level
+`passed=true`. Direct read-only inspection confirmed that both D1R9 output
+directories remain byte-identical across all five files and that route,
+independent pass, source/requested matrix digests, changed/contradicted/unknown
+rows, and the complete requested matrix all match the frozen D1R11 contract.
+
+Checkpoint `027f555` changes only that field lookup and adds a regression test
+using the official schema. It changes no config, source hash, requested matrix,
+task identity, controller action, phase boundary, model/tube gate, formal
+timing, or scientific route. The failed invocation created zero raw and is a
+pre-execution source-authentication code error, not a runtime TSC failure,
+reporting/statistics error, design failure, or control/plant-restart result.
