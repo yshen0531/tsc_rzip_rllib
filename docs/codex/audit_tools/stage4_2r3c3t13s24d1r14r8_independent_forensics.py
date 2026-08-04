@@ -421,6 +421,158 @@ def _phase_cfg(cfg: Mapping[str, Any], phase: str) -> dict[str, Any]:
     return output
 
 
+def _nested(
+    items: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Run the independent kernel and report the actual R8 fold cardinality."""
+    rows, frozen_folds = r7._nested(items, cfg)
+    training_pair_count = len({str(row["pair_id"]) for row in items}) - 1
+    folds = []
+    for frozen in frozen_folds:
+        row = dict(frozen)
+        row["training_pair_count"] = training_pair_count
+        folds.append(row)
+    return rows, folds
+
+
+def _aggregate(rows: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]) -> dict[str, Any]:
+    component = np.max(
+        np.asarray(
+            [row["componentwise_maximum_absolute_scaled_error"] for row in rows],
+            dtype=float,
+        ),
+        axis=0,
+    )
+    scales = np.asarray(cfg["bank_contract"]["response_scales"], dtype=float)
+    gates = cfg["gates"]
+    precursor = (
+        np.asarray(gates["response_floor_physical"], dtype=float) / scales
+        + float(gates["tube_multiplier"]) * component
+    )
+    caps = np.asarray(gates["tube_caps_physical"], dtype=float) / scales
+    required = int(gates["required_response_pass_count"])
+    return {
+        "response_count": len(rows),
+        "response_pass_count": sum(bool(row["passed"]) for row in rows),
+        "maximum_relative_l2_error": max(float(row["relative_l2_error"]) for row in rows),
+        "minimum_response_cosine": min(float(row["response_cosine"]) for row in rows),
+        "minimum_peak_ratio": min(float(row["peak_ratio"]) for row in rows),
+        "maximum_peak_ratio": max(float(row["peak_ratio"]) for row in rows),
+        "maximum_absolute_scaled_point_error": max(
+            float(row["maximum_absolute_scaled_point_error"]) for row in rows
+        ),
+        "componentwise_maximum_absolute_scaled_error": component.tolist(),
+        "tube_precursor_scaled": precursor.tolist(),
+        "tube_precursor_physical": (precursor * scales).tolist(),
+        "tube_cap_pass": bool(np.all(precursor <= caps + 1e-15)),
+        "passed": bool(
+            len(rows) == required
+            and all(bool(row["passed"]) for row in rows)
+            and np.all(precursor <= caps + 1e-15)
+        ),
+    }
+
+
+def _geometry_family(
+    rows: Sequence[Mapping[str, Any]], role: str, cfg: Mapping[str, Any]
+) -> dict[str, Any]:
+    gates = cfg["gates"]
+    grouped: dict[tuple[str, int, int], list[Mapping[str, Any]]] = {}
+    for row in rows:
+        if role in row["geometry_roles"]:
+            key = (
+                str(row["context_id"]),
+                int(row["issue_task_step"]),
+                int(row["sign"]),
+            )
+            grouped.setdefault(key, []).append(row)
+    branches = []
+    for key, members in sorted(grouped.items()):
+        members = sorted(members, key=lambda row: int(row["direction_index"]))
+        if [int(row["direction_index"]) for row in members] != [0, 1, 2, 3]:
+            raise ValueError("R8 independent geometry family coverage changed")
+        columns = []
+        for row in members:
+            value = np.asarray(row["predicted_response"], dtype=float).reshape(-1)
+            norm = float(np.linalg.norm(value))
+            columns.append(value / max(norm, 1e-300))
+        singular = np.linalg.svd(np.column_stack(columns), compute_uv=False)
+        rank = int(
+            np.sum(
+                singular
+                > singular[0] * float(gates["rank_relative_tolerance"])
+            )
+        )
+        condition = (
+            float(singular[0] / singular[-1])
+            if rank == int(gates["required_rank"]) and singular[-1] > 0.0
+            else float("inf")
+        )
+        passed = bool(
+            rank == int(gates["required_rank"])
+            and condition <= float(gates["maximum_condition_number"]) + 1e-12
+        )
+        branches.append(
+            {
+                "context_id": key[0],
+                "issue_task_step": key[1],
+                "sign": key[2],
+                "rank": rank,
+                "condition_number": condition,
+                "passed": passed,
+            }
+        )
+    required = int(
+        gates[
+            "required_canonical_branch_count"
+            if role == "canonical"
+            else "required_operational_branch_count"
+        ]
+    )
+    return {
+        "role": role,
+        "branch_count": len(branches),
+        "rank_pass_count": sum(
+            row["rank"] == int(gates["required_rank"]) for row in branches
+        ),
+        "condition_pass_count": sum(
+            row["condition_number"]
+            <= float(gates["maximum_condition_number"]) + 1e-12
+            for row in branches
+        ),
+        "maximum_condition_number": max(row["condition_number"] for row in branches),
+        "rows": branches,
+        "passed": bool(len(branches) == required and all(row["passed"] for row in branches)),
+    }
+
+
+def _geometry(rows: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]) -> dict[str, Any]:
+    gates = cfg["gates"]
+    peaks = [
+        float(np.max(np.abs(np.asarray(row["predicted_response"], dtype=float))))
+        for row in rows
+    ]
+    required = int(gates["required_signal_pass_count"])
+    signal_pass = sum(
+        peak >= float(gates["minimum_predicted_peak"]) - 1e-15 for peak in peaks
+    )
+    canonical = _geometry_family(rows, "canonical", cfg)
+    operational = _geometry_family(rows, "operational", cfg)
+    return {
+        "response_count": len(rows),
+        "signal_pass_count": signal_pass,
+        "minimum_predicted_peak": min(peaks),
+        "canonical": canonical,
+        "operational": operational,
+        "passed": bool(
+            len(rows) == required
+            and signal_pass == required
+            and canonical["passed"]
+            and operational["passed"]
+        ),
+    }
+
+
 def _new_items(
     cfg: Mapping[str, Any], paths: Mapping[str, Path], phase: str
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
@@ -523,7 +675,7 @@ def _actual_geometry(items: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any])
         }
         for row in items
     ]
-    value = r7._geometry(rows, cfg)
+    value = _geometry(rows, cfg)
     value["interpretation"] = "actual_response_geometry"
     return value
 
@@ -531,9 +683,9 @@ def _actual_geometry(items: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any])
 def training_model_audit(cfg: Mapping[str, Any], paths: Mapping[str, Path], args: argparse.Namespace) -> dict[str, Any]:
     items, existing_bank, extension_bank = _training_items(cfg, paths, args)
     phase_cfg = _phase_cfg(cfg, "training")
-    rows, folds = r7._nested(items, phase_cfg)
-    aggregate = r7_frozen._aggregate(rows, phase_cfg)
-    geometry = r7._geometry(rows, phase_cfg)
+    rows, folds = _nested(items, phase_cfg)
+    aggregate = _aggregate(rows, phase_cfg)
+    geometry = _geometry(rows, phase_cfg)
     actual = _actual_geometry(items, phase_cfg)
     selected, scores = r7._select(items, phase_cfg)
     candidate = {"pca_rank": selected[0], "bandwidth_multiplier": selected[1], "ridge": selected[2]}
@@ -585,8 +737,8 @@ def calibration_model_audit(cfg: Mapping[str, Any], paths: Mapping[str, Path], a
     items, bank = _new_items(cfg, paths, "calibration")
     phase_cfg = _phase_cfg(cfg, "calibration")
     rows = _fixed_rows(model, items, phase_cfg)
-    aggregate = r7_frozen._aggregate(rows, phase_cfg)
-    geometry, actual = r7._geometry(rows, phase_cfg), _actual_geometry(items, phase_cfg)
+    aggregate = _aggregate(rows, phase_cfg)
+    geometry, actual = _geometry(rows, phase_cfg), _actual_geometry(items, phase_cfg)
     training = _json(paths["analysis"] / "training_model_independent.json")
     component = np.maximum(
         np.asarray(training["aggregate"]["componentwise_maximum_absolute_scaled_error"]),
@@ -643,8 +795,8 @@ def holdout_model_audit(cfg: Mapping[str, Any], paths: Mapping[str, Path], args:
         row["tube_maximum_fraction"] = float(np.max(error / np.maximum(halfwidth[None, :], 1e-300)))
         rows.append(row)
     rows.sort(key=lambda row: row["response_id"])
-    aggregate = r7_frozen._aggregate(rows, phase_cfg)
-    geometry, actual = r7._geometry(rows, phase_cfg), _actual_geometry(items, phase_cfg)
+    aggregate = _aggregate(rows, phase_cfg)
+    geometry, actual = _geometry(rows, phase_cfg), _actual_geometry(items, phase_cfg)
     containment = sum(row["tube_containment"] for row in rows)
     passed_science = bool(
         aggregate["passed"] and geometry["passed"] and actual["passed"]

@@ -206,6 +206,56 @@ class Stage42R8Tests(unittest.TestCase):
         self.assertEqual(len(folds), 12)
         self.assertEqual({row["training_pair_count"] for row in folds}, {11})
 
+    def test_independent_summary_uses_r8_counts_and_dual_geometry_families(self):
+        cfg = copy.deepcopy(self.cfg)
+        cfg["gates"].update(
+            {
+                "required_response_pass_count": 1,
+                "required_signal_pass_count": 5,
+                "required_canonical_branch_count": 1,
+                "required_operational_branch_count": 1,
+            }
+        )
+        metric = {
+            "passed": True,
+            "relative_l2_error": 0.0,
+            "response_cosine": 1.0,
+            "peak_ratio": 1.0,
+            "maximum_absolute_scaled_point_error": 0.0,
+            "componentwise_maximum_absolute_scaled_error": [0.0] * 5,
+        }
+        self.assertTrue(independent._aggregate([metric], cfg)["passed"])
+
+        rows = []
+        for direction in range(4):
+            response = np.zeros((1, 5), dtype=float)
+            response[0, direction] = 0.01
+            rows.append(
+                {
+                    "context_id": "context",
+                    "issue_task_step": 10,
+                    "sign": 1,
+                    "direction_index": direction,
+                    "geometry_roles": ["canonical"]
+                    + (["operational"] if direction != 0 else []),
+                    "predicted_response": response.tolist(),
+                }
+            )
+        replacement = copy.deepcopy(rows[0])
+        replacement["geometry_roles"] = ["operational"]
+        rows.append(replacement)
+        geometry = independent._geometry(rows, cfg)
+        self.assertTrue(geometry["passed"])
+        self.assertTrue(geometry["canonical"]["passed"])
+        self.assertTrue(geometry["operational"]["passed"])
+
+    def test_independent_nested_report_corrects_inherited_r7_pair_count(self):
+        items = [{"pair_id": f"pair{index}"} for index in range(12)]
+        frozen = [{"held_pair_id": "pair0", "training_pair_count": 3}]
+        with mock.patch.object(independent.r7, "_nested", return_value=([], frozen)):
+            _, folds = independent._nested(items, self.cfg)
+        self.assertEqual(folds[0]["training_pair_count"], 11)
+
     def test_load_config_authenticates_d1r11_at_source_run_not_new_r8_run(self):
         source_d1r11 = ROOT / "source-d1r11"
         new_r8_run = ROOT / "new-r8-run"
