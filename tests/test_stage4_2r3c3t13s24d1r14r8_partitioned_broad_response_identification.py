@@ -256,6 +256,27 @@ class Stage42R8Tests(unittest.TestCase):
             _, folds = independent._nested(items, self.cfg)
         self.assertEqual(folds[0]["training_pair_count"], 11)
 
+    def test_independent_training_failure_expects_no_model_artifact(self):
+        route = self.cfg["routes"]["training_model_fail"]
+        outcome = independent._training_outcome_contract(
+            self.cfg,
+            {"passed": False, "route": route},
+            {"passed": False, "route": route},
+            scientific_gate_passed=False,
+            model_exists=False,
+        )
+        self.assertEqual(outcome["route"], route)
+        self.assertTrue(outcome["primary_outcome_agreement"])
+        self.assertTrue(outcome["model_artifact_presence_agreement"])
+        changed = independent._training_outcome_contract(
+            self.cfg,
+            {"passed": False, "route": route},
+            {"passed": False, "route": route},
+            scientific_gate_passed=False,
+            model_exists=True,
+        )
+        self.assertFalse(changed["model_artifact_presence_agreement"])
+
     def test_load_config_authenticates_d1r11_at_source_run_not_new_r8_run(self):
         source_d1r11 = ROOT / "source-d1r11"
         new_r8_run = ROOT / "new-r8-run"

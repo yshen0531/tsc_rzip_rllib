@@ -680,6 +680,27 @@ def _actual_geometry(items: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any])
     return value
 
 
+def _training_outcome_contract(
+    cfg: Mapping[str, Any],
+    primary: Mapping[str, Any],
+    summary: Mapping[str, Any],
+    *,
+    scientific_gate_passed: bool,
+    model_exists: bool,
+) -> dict[str, Any]:
+    route = cfg["routes"]["pass" if scientific_gate_passed else "training_model_fail"]
+    return {
+        "route": route,
+        "primary_outcome_agreement": bool(
+            primary.get("passed") is scientific_gate_passed
+            and summary.get("passed") is scientific_gate_passed
+            and primary.get("route") == route
+            and summary.get("route") == route
+        ),
+        "model_artifact_presence_agreement": model_exists is scientific_gate_passed,
+    }
+
+
 def training_model_audit(cfg: Mapping[str, Any], paths: Mapping[str, Path], args: argparse.Namespace) -> dict[str, Any]:
     items, existing_bank, extension_bank = _training_items(cfg, paths, args)
     phase_cfg = _phase_cfg(cfg, "training")
@@ -704,16 +725,29 @@ def training_model_audit(cfg: Mapping[str, Any], paths: Mapping[str, Path], args
     )
     model_path = paths["model"] / "training_response_model.json"
     summary_path = paths["analysis"] / "training_model_primary_summary.json"
+    summary = _json(summary_path)
     passed_science = bool(aggregate["passed"] and geometry["passed"] and actual["passed"])
+    outcome = _training_outcome_contract(
+        cfg,
+        primary,
+        summary,
+        scientific_gate_passed=passed_science,
+        model_exists=model_path.is_file(),
+    )
     return {
         "schema_version": 1, "stage": STAGE, "audit_kind": "training_model",
-        "training_model_sha256": _sha(model_path),
+        "training_model_sha256": _sha(model_path) if model_path.is_file() else "",
         "primary_summary_sha256": _sha(summary_path),
         "selected_candidate": candidate, "candidate_scores": scores,
         "aggregate": aggregate, "predicted_geometry": geometry, "actual_geometry": actual,
         "primary_numerical_agreement": agreement,
         "scientific_gate_passed": passed_science,
-        "passed": bool(agreement and passed_science and primary["passed"]),
+        **outcome,
+        "passed": bool(
+            agreement
+            and outcome["primary_outcome_agreement"]
+            and outcome["model_artifact_presence_agreement"]
+        ),
     }
 
 
