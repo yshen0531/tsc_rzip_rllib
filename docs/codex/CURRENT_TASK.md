@@ -3511,3 +3511,86 @@ restart, causality, calibration, blindness, exactness, and immutable timing
 gate. A pass authorizes only design of a full replacement identification
 campaign. It does not authorize the campaign itself, MPC, expert data, BC,
 DAgger, or RL.
+
+## 58. Final D1R8--D1R10 evidence and active D1R11 campaign
+
+D1R8 completed its 108 authentic sentinels with 105 full-horizon successes
+and three structured safe stops. All three stops were D1R7 row 22's final
+cancellation at task step 18. The candidate action was not applied and the
+plant did not advance afterward. Independent raw forensics found exact
+restart and causal executed prefixes in 108/108, no runtime/solver/raw/current
+error, and a real schedule-design failure rather than plant unreachability.
+The success-only partial-prefix aggregate was a reporting bug and was
+corrected without changing raw, actions, identity, or route.
+
+D1R9 then ran zero TSC and completed two byte-identical primary/independent
+exhaustive preflights. It changed only central row 22 and selected:
+
+```text
+requested matrix digest
+  106dfed384febb16019e4d39ce1da03762ad9dbb5e8e69120a4a9d9acdebc30b
+selected sorted central primaries
+  [0, 1, 3, 4, 5, 7, 8, 9]
+selected ordered central primaries
+  [0, 4, 1, 5, 3, 7, 9, 8]
+exact-safe / contradicted / unknown rows
+  17 / 0 / [3, 7, 11, 15, 20, 21, 22]
+```
+
+D1R10 executed those seven rows on 18 contexts. Complete independent raw
+recomputation found:
+
+```text
+strict raw / successful full horizon                    126 / 126
+restart / causality / calibration                       126 / 126
+issue / cancel / margin events                          504 / 504 each
+runtime / raw / snapshot / forbidden-use errors                   0
+maximum cancellation incremental action          0.20245088117122614
+maximum current utilization                                    0.392
+formal tracking diagnostic                                  28 / 126
+route
+  EXACT_ROW_COMPLETION_SENTINEL_PASS_FULL_REPLACEMENT_IDENTIFICATION_DESIGN_REQUIRED
+```
+
+The first post-run independent-audit invocation omitted the repository root
+and failed with `ModuleNotFoundError` before output. Hotfix `9068bf0` made the
+entrypoint cwd-independent; its audit is byte-identical to the already
+successful audit. A first CRLF checksum package and a partial SFTP staging
+upload were also rejected before installation/TSC. None changed experiment
+semantics or required a TSC rerun. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R10_FORENSIC_REPORT.md
+```
+
+The active task is the prospectively frozen D1R11 full replacement campaign:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R11_FULL_REPLACEMENT_IDENTIFICATION_DESIGN.md
+
+training      12 whole pairs / 24 contexts / 600 fresh rollouts
+calibration    4 whole pairs /  8 contexts / 200 fresh rollouts
+fresh holdout  4 whole pairs /  8 contexts / 200 fresh rollouts
+total         20 whole pairs / 40 contexts / 1000 fresh rollouts
+ordered spec digest
+  e370269558ab079fe6d1f2293b2920b7774e3239942c7dd60ae4b638138f8c7a
+```
+
+D1R11 must authenticate both byte-identical D1R9 outputs, complete D1R10 raw
+and independent audit, and the original S24 source chain before zero-TSC
+offline acceptance. It preserves the original S24 causal model candidates,
+ridge ordering, recursive error gate, tube construction, formal verdict
+reproduction, and immutable timing. It carries the D1R10 0.24 cancellation
+margin as an additional pre-apply safety guard.
+
+All D1R11 baseline and sequence trajectories have a fresh identity and fresh
+TSC/controller. S24/D1R10 raw is authentication/safety evidence only and is
+forbidden from the D1R11 model, tube, holdout, and expert datasets. Training
+must hash-freeze its model before calibration opens; calibration must
+hash-freeze its tube before holdout opens. Any phase failure keeps later
+outcomes unopened and must be classified separately.
+
+Even a full D1R11 pass authorizes only a separately preregistered zero-new-TSC
+robust finite-horizon MPC feasibility/controller design. Real MPC execution,
+expert data, BC, DAgger, and bounded residual RL remain unauthorized.

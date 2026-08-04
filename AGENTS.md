@@ -664,12 +664,35 @@ incorrectly required all authentic S24 cancellation failures to occur at slot
 12/16/4/22 over `(0,11),(1,14),(2,16),(3,18)`. The hotfix changed only source
 authentication/reporting and preserved all experiment semantics.
 
-The current stage is the prospectively frozen D1R8 108-case authentic
-real-TSC temporal-basis safety sentinel. It must use the exact D1R7 table,
-fresh actors/TSC/controllers, unchanged 0.18/0.24/0.25, total-action/current,
-restart/causality/calibration/blindness, and formal-timing contracts. A pass
-authorizes only design of a full replacement identification campaign. The
-full campaign, MPC, expert data, BC, DAgger, and residual RL remain blocked.
+D1R8 completed 108 authentic real-TSC safety sentinels: 105 full-horizon
+successes and three structured safe stops at row 22's final cancellation.
+The rejected actions were not applied and no later plant step occurred. A
+reporting-only raw audit corrected partial-prefix aggregation without changing
+the failing route or experiment semantics. D1R8 is a schedule-design FAIL,
+not a runtime, restart, raw, reporting-route, or plant-reachability result.
+
+D1R9 then completed two byte-identical zero-TSC exhaustive central-row
+replacement preflights. It selected a matrix with only row 22 changed,
+requested digest
+`106dfed384febb16019e4d39ce1da03762ad9dbb5e8e69120a4a9d9acdebc30b`,
+17 exact-safe rows, no contradicted selected row, and seven rows requiring a
+dynamic sentinel. D1R10 completed all 126 such authentic TSC trajectories.
+Restart, causality, calibration, issue/cancel execution, the 0.24 margin,
+current gates, strict raw parsing, and full horizon passed 126/126; formal
+tracking was diagnostic only and passed 28/126. An independent audit
+entrypoint import bug was hotfixed after the run; pre- and post-hotfix audit
+outputs are byte-identical, so no TSC rerun was required.
+
+The current stage is the prospectively frozen D1R11 full replacement
+identification campaign. It uses the D1R9 24-row matrix over the original S24
+20-whole-pair/40-context split with 600 fresh training, 200 fresh calibration,
+and 200 fresh holdout trajectories. The frozen ordered spec digest is
+`e370269558ab079fe6d1f2293b2920b7774e3239942c7dd60ae4b638138f8c7a`.
+S24/D1R10 probe raw is authentication evidence only and may not enter D1R11
+fitting or expert data. Training model and calibration tube must hash-freeze
+before later outcomes open. A pass authorizes only a separately
+preregistered zero-TSC robust finite-horizon MPC feasibility/controller
+design. Real MPC, expert data, BC, DAgger, and residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

@@ -1,5 +1,20 @@
 # Current status
 
+> **Superseding live handoff (2026-08-04 Asia/Shanghai).** D1R10 is final as
+> a finite probe-schedule safety PASS: 126/126 fresh authentic TSC raw and
+> full horizons, 504/504 issue/cancel/margin events, exact restart/causality/
+> calibration, no runtime/raw/snapshot/reporting failure, maximum cancellation
+> increment `0.20245088117122614`, and maximum current utilization `0.392`.
+> Formal tracking was diagnostic only and passed 28/126, so this is not a
+> reliable MPC result. The post-run standalone-audit import hotfix produced a
+> byte-identical audit and changed no experimental semantics. The active task
+> is the separately frozen D1R11 full replacement identification campaign:
+> 600 fresh training, 200 fresh calibration, and 200 fresh whole-pair holdout
+> trajectories, ordered spec digest
+> `e370269558ab079fe6d1f2293b2920b7774e3239942c7dd60ae4b638138f8c7a`.
+> D1R10 raw is forbidden from fitting and expert data. MPC, BC, DAgger, and
+> RL remain blocked.
+
 > **Superseding live handoff (2026-08-03 Asia/Shanghai).** S20 is final as an
 > excitation-sequence design FAIL. Its valid package-v2 run produced 24/24
 > training-baseline raw: 23 complete successes and one guard-stopped partial
