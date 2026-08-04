@@ -251,6 +251,13 @@ def load_config(
     source_d1r13_audit: Path,
     source_d1r11_run: Path,
     run_dir: Path,
+    source_s21_run: Path,
+    source_s23r1_output: Path,
+    source_s24_run: Path,
+    source_d1r9_v1: Path,
+    source_d1r9_v2: Path,
+    source_d1r10_run: Path,
+    source_d1r10_audit: Path,
     **source_kwargs: Path,
 ) -> Context:
     config_path = config_path.expanduser().resolve()
@@ -262,6 +269,13 @@ def load_config(
     source_ctx = d1r13.load_config(
         source_cfg,
         source_d1r11_run=source_d1r11_run,
+        source_s21_run=source_s21_run,
+        source_s23r1_output=source_s23r1_output,
+        source_s24_run=source_s24_run,
+        source_d1r9_v1=source_d1r9_v1,
+        source_d1r9_v2=source_d1r9_v2,
+        source_d1r10_run=source_d1r10_run,
+        source_d1r10_audit=source_d1r10_audit,
         run_dir=source_d1r13_run,
         **source_kwargs,
     )
@@ -1968,6 +1982,13 @@ def main() -> None:
         source_d1r13_audit=args.source_d1r13_audit,
         source_d1r11_run=args.source_d1r11_run,
         run_dir=args.run_dir,
+        source_s21_run=args.source_s21_run,
+        source_s23r1_output=args.source_s23r1_output,
+        source_s24_run=args.source_s24_run,
+        source_d1r9_v1=args.source_d1r9_v1,
+        source_d1r9_v2=args.source_d1r9_v2,
+        source_d1r10_run=args.source_d1r10_run,
+        source_d1r10_audit=args.source_d1r10_audit,
         **_source_kwargs(args),
     )
     result = execute(

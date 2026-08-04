@@ -7,6 +7,7 @@ from pathlib import Path
 import sys
 import types
 import unittest
+from types import SimpleNamespace
 from unittest import mock
 
 import numpy as np
@@ -85,6 +86,36 @@ class Stage42R3C3T13S24D1R14Tests(unittest.TestCase):
             with self.subTest(value=value):
                 with self.assertRaises(ValueError):
                     d1r14._validate_config(value, CONFIG)
+
+    def test_load_config_forwards_complete_d1r13_source_closure(self):
+        names = (
+            "source_s21_run",
+            "source_s23r1_output",
+            "source_s24_run",
+            "source_d1r9_v1",
+            "source_d1r9_v2",
+            "source_d1r10_run",
+            "source_d1r10_audit",
+        )
+        paths = {name: ROOT / f"mock_{name}" for name in names}
+        source_d1r13_run = ROOT / "mock_d1r13_run"
+        source_ctx = SimpleNamespace(
+            paths=SimpleNamespace(run_dir=source_d1r13_run.resolve())
+        )
+        with mock.patch.object(d1r14.d1r13, "load_config", return_value=source_ctx) as load:
+            ctx = d1r14.load_config(
+                CONFIG,
+                source_d1r13_run=source_d1r13_run,
+                source_d1r13_audit=ROOT / "mock_d1r13_audit.json",
+                source_d1r11_run=ROOT / "mock_d1r11_run",
+                run_dir=ROOT / "mock_d1r14_run",
+                **paths,
+            )
+        self.assertIs(ctx.source_ctx, source_ctx)
+        kwargs = load.call_args.kwargs
+        for name, path in paths.items():
+            self.assertEqual(kwargs[name], path)
+        self.assertEqual(kwargs["run_dir"], source_d1r13_run)
 
     def test_zero_action_boundary(self):
         with self.assertRaises(ValueError):
