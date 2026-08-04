@@ -597,9 +597,17 @@ def _controller_source_spec(spec: Mapping[str, Any], schedule: Mapping[str, Any]
         "d1r14_sign",
         "d1r14_requested_coordinate",
     }
+    prefixed_forbidden = {
+        key
+        for key in output
+        if key.startswith(("d1r13_", "d1r14_", "source_d1r13_"))
+    }
+    forbidden.update(prefixed_forbidden)
     for key in forbidden:
         output.pop(key, None)
-    if forbidden.intersection(output):
+    if forbidden.intersection(output) or any(
+        key.startswith(("d1r13_", "d1r14_", "source_d1r13_")) for key in output
+    ):
         raise ValueError("D1R14 forbidden experiment label reached controller")
     output["s24_sequence_index"] = -1
     output["s24_requested_matrix_row"] = [0.0] * 16

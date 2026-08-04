@@ -179,6 +179,11 @@ class Stage42R3C3T13S24D1R14Tests(unittest.TestCase):
             "d1r14_direction_name": "mode0_coil8_component",
             "d1r14_sign": 1,
             "d1r14_requested_coordinate": [0.0, 0.25, 0.0, 0.0],
+            "d1r14_issue_task_step": 10,
+            "d1r14_cancel_task_step": 11,
+            "d1r14_zero_after_task_step": 12,
+            "d1r13_source_prefix_hash": "forbidden",
+            "source_d1r13_audit_sha256": "forbidden",
             "safe": 1,
         }
         schedule = {
@@ -202,6 +207,12 @@ class Stage42R3C3T13S24D1R14Tests(unittest.TestCase):
         )
         self.assertNotIn("pair_id", output)
         self.assertNotIn("d1r14_direction_name", output)
+        self.assertFalse(
+            any(
+                key.startswith(("d1r13_", "d1r14_", "source_d1r13_"))
+                for key in output
+            )
+        )
 
     def test_visible_outputs_construct_backward_velocity_and_state10_origin(self):
         trajectory = _trajectory(35, direction=0, sign=1)
