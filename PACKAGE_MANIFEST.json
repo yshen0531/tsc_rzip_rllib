@@ -1,66 +1,82 @@
 {
   "schema_version": 1,
-  "stage": "Stage4.2R3c3T13S24D1R14R6",
-  "run_name": "stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel",
-  "campaign_identity": "direction0_replacement_safety_identification_sentinel_v1",
-  "controller_revision": "direction0_replacement_v42r3c3t13s24d1r14r6_v1",
-  "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v2_r1a_auth_hotfix",
-  "design_checkpoint": "307fdbb",
-  "implementation_checkpoint": "f0c864a",
-  "config_path": "configs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_370ms.json",
-  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R6_REAL_TSC_DIRECTION0_REPLACEMENT_SENTINEL_DESIGN.md",
-  "purpose": "48 fresh authentic-TSC direction-0 replacement probes at issue steps 14, 18, and 22; combine with frozen R2/R4 columns for the preregistered 256-column response gate.",
-  "source_r4_contract": {
-    "run_name": "stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1",
-    "package_checkpoint": "f5b8348",
-    "raw_count": 200,
-    "raw_total_bytes": 6285765,
-    "raw_inventory_digest": "44a7eb8e677f88f32c57a6be59273501e73f7657527371e1b59578a95c2ae7a9"
-  },
-  "source_r5_contract": {
-    "output_name": "stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight_20260804_bb829f3_v3",
-    "final_package_checkpoint": "a4c43bb",
-    "route": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED",
-    "construction_pass_count": 48,
-    "antipodal_pair_pass_count": 24
+  "stage": "Stage4.2R3c3T13S24D1R14R7",
+  "identity": "causal_deconfounded_response_model_development_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r7_causal_response_model",
+  "campaign_identity": "causal_deconfounded_response_model_development_v1",
+  "package_revision": "r42r3c3t13s24d1r14r7_causal_response_model_v1",
+  "design_checkpoint": "64d31b6",
+  "implementation_checkpoint": "d33c40c",
+  "config_path": "configs/stage4_2r3c3t13s24d1r14r7_causal_response_model_v1.json",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_CAUSAL_RESPONSE_MODEL_DESIGN.md",
+  "purpose": "Zero-new-TSC nested whole-pair causal deconfounded response-model development over the authenticated R2/R4/R6 256-response bank.",
+  "source_contracts": {
+    "r2": {
+      "run_name": "stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1",
+      "stage_directory": "stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel",
+      "raw_count": 72,
+      "raw_bytes": 2254876,
+      "raw_digest": "c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649",
+      "final_sha256": "3df193e52ee0ce8fe72620af9f72597f58af4419c6386c37d62fb051bcefd79a",
+      "independent_sha256": "68f21e95694c607084b9cc7d39732bcda05d57a14f6f3cc4f1e78e8941e7e2df",
+      "required_route": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED"
+    },
+    "r4": {
+      "run_name": "stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1",
+      "stage_directory": "stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel",
+      "raw_count": 200,
+      "raw_bytes": 6285765,
+      "raw_digest": "44a7eb8e677f88f32c57a6be59273501e73f7657527371e1b59578a95c2ae7a9",
+      "final_sha256": "af9acfb9e524e6ad33799b832981ec7fb2e265ff7c1d3e78796413e83382db71",
+      "independent_sha256": "6a4eec4a660beb6a29e11e184906b8b7a737834280091f1997af74e86fbd761c",
+      "required_route": "TIME_SHIFTED_SIGN_SPLIT_SENTINEL_GEOMETRY_FAIL_REDESIGN_REQUIRED"
+    },
+    "r6": {
+      "run_name": "stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2",
+      "stage_directory": "stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel",
+      "raw_count": 48,
+      "raw_bytes": 1509679,
+      "raw_digest": "c743eff98395325e4da35a28d2e646aacffb00e678753ceb0faf4b86a64aeb83",
+      "final_sha256": "5c9669818249e8146b6f63d6e50e54f482cb27e64a809fb857bdf64ed617f016",
+      "independent_sha256": "a705aa669aaafd9b6708d6915655498f3f4f443ab37683eaa5ae5a8902ae9b1f",
+      "required_route": "DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED"
+    }
   },
   "execution_contract": {
+    "new_raw_count": 0,
+    "plant_steps_executed": 0,
+    "controller_executed": false,
+    "ray_executed": false,
+    "gotsc_executed": false,
+    "tsc_executed": false,
+    "source_raw_read_in_place": true,
     "server_virtualenv_only": true,
-    "ray_worker_capacity": 96,
-    "fresh_real_tsc_task_count": 48,
-    "fresh_baseline_count": 0,
-    "resume_requires_exact_package_and_source_reauthentication": true
+    "source_raw_count_read_in_place": 320
   },
   "formal_timing_contract": {
-    "normal": {
-      "arrival_deadline_step": 25,
-      "hold_through_step": 35
-    },
-    "weak": {
-      "arrival_deadline_step": 27,
-      "hold_through_step": 37
-    },
-    "position_tolerance_m": 0.03,
-    "speed_tolerance_m_per_s": 0.1,
-    "ip_tolerance_A": 10000.0,
-    "arrival_streak_steps": 3,
-    "unchanged": true
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "arrival_deadline_expansion_allowed": false,
+    "evaluated_in_r7": false
   },
   "scientific_scope": {
-    "identification_only": true,
-    "formal_tracking_diagnostic_only": true,
+    "identification_development_only": true,
     "probe_trajectories_allowed_in_expert_dataset": false,
-    "transition_model_validated": false,
+    "transition_response_model_validated_fresh": false,
     "mpc_validated": false,
+    "expert_data_allowed": false,
     "bc_dagger_or_rl_allowed": false
   },
   "package_rules": {
-    "no_git_or_network_dependency": true,
-    "empty_directory_deployable": true,
-    "all_imported_repository_sources_declared": true,
-    "archives_required": false
+    "direct_copy_only": true,
+    "archive_operations_allowed": false,
+    "server_git_allowed": false,
+    "global_python_allowed": false,
+    "outbound_network_required": false
   },
-  "declared_file_count": 589,
+  "declared_file_count": 599,
   "file_inventory": [
     "AGENTS.md",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -131,6 +147,7 @@
     "configs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_370ms.json",
     "configs/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight_v1.json",
     "configs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_370ms.json",
+    "configs/stage4_2r3c3t13s24d1r14r7_causal_response_model_v1.json",
     "configs/stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search_v1.json",
     "configs/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel_370ms.json",
     "configs/stage4_2r3c3t13s24d1r3_causal_split_return_preflight_v1.json",
@@ -190,6 +207,8 @@
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r5_independent_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r6_independent_forensics.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7_causal_response_model.py",
+    "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r7_independent_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel_forensics.py",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
@@ -277,6 +296,7 @@
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R4_REAL_TSC_TIME_SHIFTED_SIGN_SPLIT_SENTINEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R5_GLOBAL_DIRECTION0_GAIN_PREFLIGHT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R6_REAL_TSC_DIRECTION0_REPLACEMENT_SENTINEL_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_CAUSAL_RESPONSE_MODEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_ZERO_BASELINE_SIGNED_EXCITATION_SENTINEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R1_FORENSIC_REPORT.md",
@@ -340,6 +360,9 @@
     "run_stage4_2r3c3t13s24d1r14r6_nohup.sh",
     "run_stage4_2r3c3t13s24d1r14r6_self_test.sh",
     "run_stage4_2r3c3t13s24d1r14r6_verify_package.sh",
+    "run_stage4_2r3c3t13s24d1r14r7_common.sh",
+    "run_stage4_2r3c3t13s24d1r14r7_offline.sh",
+    "run_stage4_2r3c3t13s24d1r14r7_verify_package.sh",
     "run_stop_stage4_2r3c3t13s24d1r14_now.sh",
     "run_stop_stage4_2r3c3t13s24d1r14r2_now.sh",
     "run_stop_stage4_2r3c3t13s24d1r14r4_now.sh",
@@ -421,6 +444,7 @@
     "scripts/stage4_2r3c3t13s24d1r14r5_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel.py",
     "scripts/stage4_2r3c3t13s24d1r14r6_shell_common.sh",
+    "scripts/stage4_2r3c3t13s24d1r14r7_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r1_shell_common.sh",
     "scripts/stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
     "scripts/stage4_2r3c3t13s24d1r2_shell_common.sh",
@@ -529,6 +553,7 @@
     "tests/test_stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel.py",
     "tests/test_stage4_2r3c3t13s24d1r14r5_global_direction0_gain_preflight.py",
     "tests/test_stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel.py",
+    "tests/test_stage4_2r3c3t13s24d1r14r7_causal_response_model.py",
     "tests/test_stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py",
     "tests/test_stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py",
     "tests/test_stage4_2r3c3t13s24d1r2_retrospective_prefix_forensics.py",
@@ -569,6 +594,7 @@
     "tsc_rzip_rllib/__init__.py",
     "tsc_rzip_rllib/control/__init__.py",
     "tsc_rzip_rllib/control/causal_observer.py",
+    "tsc_rzip_rllib/control/causal_response_model.py",
     "tsc_rzip_rllib/control/quantized_actuator.py",
     "tsc_rzip_rllib/control/sequential_transition.py",
     "tsc_rzip_rllib/control/transition_tube.py",
@@ -651,11 +677,5 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ],
-  "authentication_hotfix": {
-    "classification": "pre-TSC source-authentication implementation bug",
-    "r1a_frozen_matrix_digest": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
-    "r5_candidate_matrix_digest": "69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8",
-    "controller_or_experiment_semantics_changed": false
-  }
+  ]
 }
