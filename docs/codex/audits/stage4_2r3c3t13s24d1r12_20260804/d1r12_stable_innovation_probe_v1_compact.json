@@ -1,0 +1,110 @@
+{
+  "candidate_count": 54,
+  "forbidden_predictor_input_count": 0,
+  "future_executed_action_input_count": 0,
+  "future_measurement_input_count": 0,
+  "identity": "d1r12_stable_causal_innovation_state_space_development_v1_compact",
+  "log_sha256": "e9ca8deddcee484e130736967e83bb7aa5b4872ea0921cfb79a66bbcdd1a9bac",
+  "maximum_candidate_maximum_error": 1.7826625422719724,
+  "minimum_candidate_maximum_error": 0.83230558404196,
+  "new_raw_count": 0,
+  "point_gate_pass_candidate_count": 0,
+  "route": "STABLE_CAUSAL_INNOVATION_STATE_SPACE_DEVELOPMENT_FAIL_DECONFOUNDED_IDENTIFICATION_REQUIRED",
+  "schema_version": 1,
+  "script_sha256": "bfa98bcc602635dbb3ba32f0e527757dc117efbed83ee41a44bb426f8cb9231d",
+  "selected": {
+    "componentwise_maximum_scaled_residual": [
+      0.153177812179099,
+      0.2831731115699398,
+      0.7820425055863385,
+      0.83230558404196,
+      0.09340004336498528
+    ],
+    "context_action_interaction": false,
+    "context_rank": 12,
+    "folds": [
+      {
+        "maximum_error": 0.6976024996855974,
+        "pair_id": "p5_q1_a0p750_gap2_settle4",
+        "projected_radius": 0.9669952171176489
+      },
+      {
+        "maximum_error": 0.6783072329799003,
+        "pair_id": "p5_q1_a0p750_gap3_settle4",
+        "projected_radius": 0.9526988735502283
+      },
+      {
+        "maximum_error": 0.8177277049011168,
+        "pair_id": "p5_q1_a0p900_gap4_settle4",
+        "projected_radius": 0.9564415140289165
+      },
+      {
+        "maximum_error": 0.4079632791921083,
+        "pair_id": "p5_q2_a0p750_gap2_settle4",
+        "projected_radius": 0.974835870614151
+      },
+      {
+        "maximum_error": 0.7820425055863385,
+        "pair_id": "p5_q2_a0p750_gap4_settle4",
+        "projected_radius": 0.9649974403590318
+      },
+      {
+        "maximum_error": 0.6945225301439161,
+        "pair_id": "p5_q2_a0p900_gap3_settle4",
+        "projected_radius": 0.9525957501266459
+      },
+      {
+        "maximum_error": 0.4454826425217404,
+        "pair_id": "p9_q1_a0p750_gap3_settle4",
+        "projected_radius": 0.9608947613141803
+      },
+      {
+        "maximum_error": 0.637003155320727,
+        "pair_id": "p9_q1_a0p900_gap2_settle4",
+        "projected_radius": 0.95377784345581
+      },
+      {
+        "maximum_error": 0.6720232444334989,
+        "pair_id": "p9_q1_a0p900_gap4_settle4",
+        "projected_radius": 0.9280300605064006
+      },
+      {
+        "maximum_error": 0.83230558404196,
+        "pair_id": "p9_q2_a0p750_gap4_settle4",
+        "projected_radius": 0.9505040506285188
+      },
+      {
+        "maximum_error": 0.4515517370323978,
+        "pair_id": "p9_q2_a0p900_gap2_settle4",
+        "projected_radius": 0.9622582096050887
+      },
+      {
+        "maximum_error": 0.5206021379800915,
+        "pair_id": "p9_q2_a0p900_gap3_settle4",
+        "projected_radius": 0.9512813404922336
+      }
+    ],
+    "maximum_absolute_recursive_scaled_error": 0.83230558404196,
+    "median_trajectory_maximum_error": 0.5060374151403635,
+    "point_gate_pass": false,
+    "ridge": 1.0,
+    "spectral_radius_cap": 0.995,
+    "tube_cap_pass": false,
+    "tube_precursor_halfwidth_scaled": [
+      0.30635565769153134,
+      0.5663462564732129,
+      1.5640860111726769,
+      1.6646121680839199,
+      0.18680013672997056
+    ]
+  },
+  "source_inventory": {
+    "bytes": 35511922,
+    "count": 600,
+    "digest": "8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7"
+  },
+  "trajectory_count": 600,
+  "tsc_or_plant_steps": 0,
+  "tube_cap_pass_candidate_count": 0,
+  "whole_pair_fold_count": 12
+}

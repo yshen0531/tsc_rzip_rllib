@@ -3671,3 +3671,63 @@ consistent innovation/state-space model with causal online context adaptation
 must first pass deterministic independent leave-pair replay before any fresh
 calibration/holdout campaign can be preregistered. Real MPC, expert data, BC,
 DAgger, and bounded residual RL remain blocked.
+
+## 60. Final D1R12 result and active D1R13 safety sentinel
+
+D1R12 consumed only the 600 already-open D1R11 training trajectories and ran
+zero Ray, `gotsc`, TSC, controller, or plant tasks. Its stable causal
+innovation-state-space discriminator excluded phase/manifold, labels,
+coil/wire currents, future measurements, and future executed actions; used
+only the authentic visible prefix, past issued commands, completed causal
+calibration coordinates, numeric targets, clock, and already revealed
+requested coordinates; enforced exact R/Z kinematics; and projected the
+dynamic transition to frozen spectral-radius caps.
+
+All 54 deterministic candidates failed the unchanged gates:
+
+```text
+training raw / whole-pair folds                    600 / 12
+point-gate candidates                                0 / 54
+tube-cap candidates                                  0 / 54
+best maximum recursive scaled error          0.8323055840
+unchanged point limit                                 0.1
+forbidden / future action / future measurement inputs 0 / 0 / 0
+new raw / TSC / plant steps                            0 / 0 / 0
+route
+  STABLE_CAUSAL_INNOVATION_STATE_SPACE_DEVELOPMENT_FAIL_DECONFOUNDED_IDENTIFICATION_REQUIRED
+```
+
+Supporting development diagnostics found that simple baseline extrapolation,
+causal GRU/kNN models, causal response decomposition, and even a deliberately
+forbidden actual-future-action oracle also failed. D1R11's future absolute
+trajectory confounds authentic plant response with evolving R17 feedback and
+online Card15 centers. This is a transition-target/architecture design
+failure, not a runtime, restart, report, real-MPC, control, or plant-
+unreachability conclusion.
+
+Exact report and compact evidence:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R12_CAUSAL_ARCHITECTURE_FORENSIC_REPORT.md
+
+docs/codex/audits/stage4_2r3c3t13s24d1r12_20260804/
+d1r12_stable_innovation_probe_v1_compact.json
+```
+
+The active task is the separately frozen eight-case D1R13 authentic
+zero-increment deconfounding safety sentinel:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R13_ZERO_INCREMENT_DECONFOUNDING_SENTINEL_DESIGN.md
+```
+
+D1R13 must reproduce each selected D1R11 baseline's physical state/action/
+trace prefix through state 10, then apply exactly zero 14-coil current
+increment through the unchanged 35/37-state formal horizon. Its eight cases
+cover prefix 5/9, both hidden histories, zero/shifted targets, and normal/weak
+slew. Formal tracking is diagnostic only. A pass authorizes only prospective
+design of a separate bounded zero-baseline excitation sentinel. Transition
+model fitting, MPC, expert data, BC, DAgger, and bounded residual RL remain
+blocked.

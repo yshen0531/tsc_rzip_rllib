@@ -1000,3 +1000,30 @@ the 0.1 recursive point gate, tube caps, forbidden inputs, safety gates, and
 formal timing remain unchanged. No fresh campaign is authorized until a new
 architecture passes independent deterministic replay. MPC, expert data, BC,
 DAgger, and bounded residual RL remain blocked.
+
+## Current handoff: D1R12 final, D1R13 zero-increment sentinel active
+
+D1R12 read only the immutable 600-file D1R11 training boundary. Its accepted
+stable causal innovation-state-space script hash is
+`bfa98bcc602635dbb3ba32f0e527757dc117efbed83ee41a44bb426f8cb9231d`.
+All 54 exact-kinematic, spectrally bounded candidates failed whole-pair
+validation. The selected rank-12/ridge-1/radius-0.995 candidate reached
+maximum recursive scaled error `0.83230558404196`; no point or tube candidate
+passed. Forbidden, future-action, and future-measurement predictor counts were
+all zero. New raw, Ray, TSC, and plant counts were all zero.
+
+The route is
+`STABLE_CAUSAL_INNOVATION_STATE_SPACE_DEVELOPMENT_FAIL_DECONFOUNDED_IDENTIFICATION_REQUIRED`.
+This isolates a D1R11 absolute closed-loop transition-target design failure,
+not a restart, runtime, report, control, real-MPC, or plant-unreachability
+result. The exact report and compact JSON are under
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R12_CAUSAL_ARCHITECTURE_FORENSIC_REPORT.md`
+and `docs/codex/audits/stage4_2r3c3t13s24d1r12_20260804/`.
+
+The active D1R13 design is frozen before implementation in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R13_ZERO_INCREMENT_DECONFOUNDING_SENTINEL_DESIGN.md`.
+It fixes eight authentic fresh-TSC baselines. Each must reproduce the D1R11
+calibration/state-0--10 prefix, then issue exactly zero 14-coil current
+increments to the unchanged state-35/37 horizon. Formal tracking is
+diagnostic. A pass may authorize only a bounded zero-baseline excitation
+sentinel design. MPC, expert data, BC, DAgger, and RL remain blocked.

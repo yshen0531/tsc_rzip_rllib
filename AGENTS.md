@@ -699,14 +699,24 @@ unopened at 0/200 each. The final route is
 failure, not a runtime, restart, reporting, closed-loop MPC, or plant-
 unreachability result. D1R11 may not resume under changed model semantics.
 
-The active work is a new-identity, zero-new-TSC causal transition-architecture
-study using only the 600 D1R11 training trajectories as consumed development
-data. It must preserve whole-pair outer validation, the `0.1` recursive point
-gate, tube caps, forbidden-input list, action/current gates, and immutable
-formal timing. The unopened D1R11 calibration/holdout outcomes may not be
-used. A candidate must pass independent deterministic leave-pair replay before
-any fresh campaign is designed. Real MPC, expert data, BC, DAgger, and bounded
-residual RL remain blocked.
+D1R12 then used only the 600 D1R11 training trajectories for a zero-new-TSC
+stable causal innovation-state-space study. It excluded phase/manifold,
+labels, coil/wire currents, future measurements, and future executed actions;
+enforced exact R/Z kinematics and bounded spectral radius; and evaluated 54
+candidates over 12 whole-pair folds. All 54 failed. The best maximum recursive
+scaled error was `0.8323055840` against the unchanged `0.1` limit, and no tube
+candidate passed. This is a D1R11 absolute transition-target/architecture
+failure, not a runtime, restart, reporting, real-MPC, control, or plant-
+unreachability result.
+
+The active work is the frozen eight-case Stage4.2R3c3T13S24D1R13 authentic
+zero-increment deconfounding safety sentinel. It must reproduce each selected
+D1R11 state/action/trace prefix through state 10 and then apply exactly zero
+14-coil current increment through state 35/37. Its safety gates, exact restart,
+causality, forbidden-input rules, and immutable timing remain unchanged;
+formal tracking is diagnostic only. A pass may authorize only design of a
+separate bounded zero-baseline excitation sentinel. Real transition-model
+fitting, MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
 
 ## 10. Required validation before server execution
 
