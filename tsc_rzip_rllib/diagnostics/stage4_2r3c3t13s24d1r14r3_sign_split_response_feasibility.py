@@ -82,6 +82,12 @@ def _validate_config(cfg: Mapping[str, Any], project: Path, design: Path) -> Non
         raise ValueError("D1R14R3 audit identity changed")
     if _sha256(design) != cfg.get("design_document_sha256"):
         raise ValueError("D1R14R3 frozen design hash mismatch")
+    erratum = project / str(cfg.get("source_state_hash_erratum", ""))
+    if (
+        not erratum.is_file()
+        or _sha256(erratum) != cfg.get("source_state_hash_erratum_sha256")
+    ):
+        raise ValueError("D1R14R3 source-state hash erratum mismatch")
     source = cfg["source_r2_contract"]
     for path_key, hash_key in (
         ("config", "config_sha256"),

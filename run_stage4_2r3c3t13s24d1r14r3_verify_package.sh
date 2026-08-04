@@ -17,7 +17,7 @@ manifest = json.loads((root / "PACKAGE_MANIFEST.json").read_text(encoding="utf-8
 expected = {
     "stage": "Stage4.2R3c3T13S24D1R14R3",
     "identity": "sign_split_response_feasibility_raw_audit_v1",
-    "package_revision": "r42r3c3t13s24d1r14r3_sign_split_response_feasibility_v1",
+    "package_revision": "r42r3c3t13s24d1r14r3_sign_split_response_feasibility_v2_source_hash_hotfix",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:
@@ -31,6 +31,7 @@ if len(listed) != manifest.get("declared_file_count"):
 required = {
     "configs/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_v1.json",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SIGN_SPLIT_RESPONSE_FEASIBILITY_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SOURCE_STATE_HASH_ERRATUM.md",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r3_independent_forensics.py",
     "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility.py",
     "tests/test_stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility.py",
@@ -59,4 +60,3 @@ mapfile -t SHELLS < <(find . -maxdepth 2 -type f -name '*.sh' -print | sort)
 for script in "${SHELLS[@]}"; do bash -n "${script}"; done
 "${PYTHON_BIN}" -m unittest -v tests.test_stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility
 printf '[T13S24D1R14R3 verify] checksums, shell syntax and focused tests passed.\n'
-

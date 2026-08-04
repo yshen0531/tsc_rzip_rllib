@@ -91,6 +91,15 @@ class Stage42R3C3T13S24D1R14R3Tests(unittest.TestCase):
     def test_frozen_design_and_zero_tsc_contract(self):
         primary._validate_config(self.cfg, ROOT, DESIGN)
         self.assertEqual(primary._sha256(DESIGN), self.cfg["design_document_sha256"])
+        erratum = ROOT / self.cfg["source_state_hash_erratum"]
+        self.assertEqual(
+            primary._sha256(erratum),
+            self.cfg["source_state_hash_erratum_sha256"],
+        )
+        self.assertEqual(
+            self.cfg["source_r2_contract"]["stage_state_sha256"],
+            "46552980c0cdc8e97968ac18a04cbb5d64f2cdf2885b9df121d9db86c2a37d07",
+        )
         execution = self.cfg["execution_contract"]
         self.assertEqual(execution["new_raw_count"], 0)
         self.assertFalse(execution["tsc_executed"])

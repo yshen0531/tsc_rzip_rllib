@@ -324,6 +324,12 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("D1R14R3 config identity mismatch")
     if _hash(args.design_document.resolve()) != cfg["design_document_sha256"]:
         raise ValueError("D1R14R3 design hash mismatch")
+    erratum = project / str(cfg.get("source_state_hash_erratum", ""))
+    if (
+        not erratum.is_file()
+        or _hash(erratum) != cfg.get("source_state_hash_erratum_sha256")
+    ):
+        raise ValueError("D1R14R3 source-state hash erratum mismatch")
     for path_name, hash_name in (
         ("config", "config_sha256"),
         ("implementation", "implementation_sha256"),
