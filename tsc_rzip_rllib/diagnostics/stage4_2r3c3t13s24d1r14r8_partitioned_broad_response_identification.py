@@ -349,7 +349,10 @@ def _phase_for_pair(cfg: Mapping[str, Any], pair: str) -> str:
     if pair in set(map(str, groups["holdout"])):
         return "holdout"
     if pair in set(map(str, groups["consumed_training"])):
-        return "consumed_training"
+        # ``consumed_training`` is only R8 bookkeeping for the four D1R11
+        # pairs whose responses already exist.  Their immutable prospective
+        # D1R11 partition remains ``training``.
+        return "training"
     raise ValueError(f"R8 undeclared pair: {pair}")
 
 

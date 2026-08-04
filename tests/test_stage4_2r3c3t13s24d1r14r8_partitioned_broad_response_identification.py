@@ -70,6 +70,12 @@ class Stage42R8Tests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     r8._validate_config(value, CONFIG)
 
+    def test_consumed_training_is_bookkeeping_not_a_new_source_phase(self):
+        for pair in self.cfg["pair_partitions"]["consumed_training"]:
+            self.assertEqual(r8._phase_for_pair(self.cfg, pair), "training")
+        for pair in self.cfg["pair_partitions"]["training_extension"]:
+            self.assertEqual(r8._phase_for_pair(self.cfg, pair), "training")
+
     def _blueprints(self):
         baselines, s21 = {}, {}
         groups = self.cfg["pair_partitions"]
