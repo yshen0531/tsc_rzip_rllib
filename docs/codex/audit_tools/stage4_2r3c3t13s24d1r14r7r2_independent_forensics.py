@@ -489,7 +489,8 @@ def _nested(
     items: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     rows, folds = [], []
-    for pair in sorted({row["pair_id"] for row in items}):
+    pairs = sorted({row["pair_id"] for row in items})
+    for pair in pairs:
         train = [row for row in items if row["pair_id"] != pair]
         held = [row for row in items if row["pair_id"] == pair]
         selected, scores = _select(train, cfg)
@@ -498,7 +499,7 @@ def _nested(
         folds.append(
             {
                 "held_pair_id": pair,
-                "training_pair_count": 3,
+                "training_pair_count": len(pairs) - 1,
                 "held_response_count": len(held),
                 "selected_candidate": {
                     "pca_rank": selected[0],

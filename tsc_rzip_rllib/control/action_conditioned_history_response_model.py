@@ -242,7 +242,8 @@ def nested_outer_rows(
     items: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     rows, folds = [], []
-    for pair in sorted({str(item["pair_id"]) for item in items}):
+    pairs = sorted({str(item["pair_id"]) for item in items})
+    for pair in pairs:
         train = [item for item in items if str(item["pair_id"]) != pair]
         held = [item for item in items if str(item["pair_id"]) == pair]
         selected, scores = select_candidate(train, cfg)
@@ -251,7 +252,7 @@ def nested_outer_rows(
         folds.append(
             {
                 "held_pair_id": pair,
-                "training_pair_count": 3,
+                "training_pair_count": len(pairs) - 1,
                 "held_response_count": len(held),
                 "selected_candidate": selected.as_dict(),
                 "inner_candidate_scores": scores,
