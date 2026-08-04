@@ -74,6 +74,7 @@
   "s24d1r9_package_checkpoint": "a4547d5",
   "s24d1r10_design_checkpoint": "0f2d08a",
   "s24d1r10_implementation_checkpoint": "8c7628f",
+  "s24d1r10_forensics_hotfix_checkpoint": "9068bf0",
   "declared_file_count": 753,
   "file_inventory": [
     "AGENTS.md",
