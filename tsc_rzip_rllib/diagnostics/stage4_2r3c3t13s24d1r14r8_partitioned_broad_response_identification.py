@@ -1235,6 +1235,17 @@ def _event_detail(trace: Sequence[Mapping[str, Any]], spec: Mapping[str, Any], s
     )
 
 
+def _trace_action_matrix(
+    trace: Sequence[Mapping[str, Any]], start: int, stop: int | None = None
+) -> np.ndarray:
+    """Return an action matrix without collapsing a valid empty interval."""
+
+    rows = [row.get("action_norm_tsc", []) for row in trace[start:stop]]
+    if not rows:
+        return np.empty((0, N_COILS), dtype=float)
+    return np.asarray(rows, dtype=float)
+
+
 def _formal_diagnostics(ctx: Context, specs: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     evaluators, _ = d1r11._formal_callback(ctx.d1r11_ctx, specs)
     passed = 0
@@ -1306,7 +1317,7 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
         preissue_zero = after_zero = issue_exact = cancel_exact = True
         if full:
             if role == "baseline":
-                post_actions = np.asarray([row.get("action_norm_tsc", []) for row in trace[PREFIX_END:]], dtype=float)
+                post_actions = _trace_action_matrix(trace, PREFIX_END)
                 post_delta = np.diff(currents[PREFIX_END:], axis=0)
                 preissue_zero = bool(
                     post_actions.shape == (horizon - PREFIX_END, N_COILS)
@@ -1315,9 +1326,9 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
                     and np.array_equal(post_delta, np.zeros_like(post_delta))
                 )
             else:
-                before_actions = np.asarray([row.get("action_norm_tsc", []) for row in trace[PREFIX_END:issue]], dtype=float)
+                before_actions = _trace_action_matrix(trace, PREFIX_END, issue)
                 before_delta = np.diff(currents[PREFIX_END : issue + 1], axis=0)
-                after_actions = np.asarray([row.get("action_norm_tsc", []) for row in trace[zero_after:]], dtype=float)
+                after_actions = _trace_action_matrix(trace, zero_after)
                 after_delta = np.diff(currents[zero_after:], axis=0)
                 preissue_zero = bool(
                     before_actions.shape == (issue - PREFIX_END, N_COILS)
@@ -1461,6 +1472,124 @@ def run_phase(ctx: Context, phase: str, *, backend: str, resume: bool) -> dict[s
             **{f"{phase}_raw_inventory_digest": primary["raw_inventory"]["digest"]},
         )
     return {"execution": execution, "primary_raw_audit": {key: value for key, value in primary.items() if key != "rows"}}
+
+
+def repair_training_raw_audit(ctx: Context) -> dict[str, Any]:
+    """Repair only the zero-length issue-10 reporting interval.
+
+    This path is intentionally tied to the exact observed primary-audit
+    failure.  It neither evaluates a controller nor starts Ray/TSC, and it
+    refuses to proceed if any calibration/holdout raw or model artifact is
+    present.
+    """
+
+    state = _read_json(ctx.paths.state)
+    manifest = _read_json(ctx.paths.manifest)
+    old_path = ctx.paths.analysis / "training_raw_primary.json"
+    old = _read_json(old_path)
+    old_sha256 = _sha256(old_path)
+    expected_route = ctx.cfg["routes"]["training_execution_fail"]
+    if (
+        state.get("phase_status") != "training_execution_failed"
+        or not bool(state.get("finished"))
+        or not bool(state.get("real_tsc_executed"))
+        or int(state.get("new_raw_count", -1)) != 624
+        or (state.get("verdict") or {}).get("route") != expected_route
+        or bool((state.get("verdict") or {}).get("passed"))
+        or bool(state.get("heldout_outcomes_opened"))
+        or str(state.get("training_model_sha256") or "")
+        or str(state.get("calibrated_tube_sha256") or "")
+        or state.get("spec_digest") != manifest.get("spec_digest")
+        or state.get("package_digest")
+        != (manifest.get("package_fingerprint") or {}).get("digest")
+    ):
+        raise ValueError("R8 reporting repair source state is not the exact frozen failure")
+    inventories = {phase: _inventory(ctx.paths.phase_raw(phase)) for phase in PHASES}
+    if (
+        inventories["training"] != old.get("raw_inventory")
+        or inventories["training"]["count"] != 624
+        or inventories["calibration"]["count"] != 0
+        or inventories["holdout"]["count"] != 0
+    ):
+        raise ValueError("R8 reporting repair raw inventory changed")
+    rows = list(old.get("rows") or [])
+    failed = [row for row in rows if not bool(row.get("passed"))]
+    always_true = (
+        "runtime_success",
+        "full_horizon",
+        "source_prefix_state_exact",
+        "source_prefix_trace_exact",
+        "calibration_exact",
+        "issue_exact",
+        "cancel_exact",
+        "postcancel_zero_exact",
+        "finite",
+    )
+    if (
+        old.get("phase") != "training"
+        or bool(old.get("passed"))
+        or int(old.get("passed_count", -1)) != 496
+        or int(old.get("action_semantics_pass_count", -1)) != 496
+        or len(rows) != 624
+        or len(failed) != 128
+        or any(
+            str(row.get("role")) != "canonical"
+            or str(row.get("execution_kernel")) != "r2"
+            or int(row.get("issue_task_step", -1)) != PREFIX_END
+            or bool(row.get("preissue_or_baseline_zero_exact"))
+            or int(row.get("forbidden_trace_count", -1)) != 0
+            or any(not bool(row.get(key)) for key in always_true)
+            for row in failed
+        )
+    ):
+        raise ValueError("R8 reporting repair failure signature changed")
+    repaired = audit_raw_phase(ctx, "training")
+    if (
+        not repaired.get("passed")
+        or int(repaired.get("passed_count", -1)) != 624
+        or int(repaired.get("action_semantics_pass_count", -1)) != 624
+        or repaired.get("raw_inventory") != inventories["training"]
+    ):
+        raise ValueError("R8 reporting repair did not produce the exact expected pass")
+    repair = {
+        "schema_version": 1,
+        "stage": STAGE,
+        "phase": "training_raw_report_only_repair",
+        "bug": "empty issue-10 preissue action interval collapsed from shape (0,14) to (0,)",
+        "old_primary_sha256": old_sha256,
+        "repaired_primary_sha256": _sha256(old_path),
+        "raw_inventory_before": inventories["training"],
+        "raw_inventory_after": repaired["raw_inventory"],
+        "old_passed_count": 496,
+        "repaired_passed_count": 624,
+        "changed_raw_count": 0,
+        "controller_executed": False,
+        "ray_executed": False,
+        "gotsc_executed": False,
+        "tsc_executed": False,
+        "plant_steps_executed": 0,
+        "experiment_identity_unchanged": True,
+        "controller_semantics_unchanged": True,
+        "formal_gate_unchanged": True,
+        "passed": True,
+    }
+    repair_path = ctx.paths.analysis / "training_raw_reporting_hotfix.json"
+    _write_json(repair_path, repair)
+    _set_state(
+        ctx,
+        phase_status="training_raw_primary_passed",
+        finished=False,
+        primary_pass=True,
+        stop_reason="",
+        verdict={
+            "route": "TRAINING_RAW_PRIMARY_PASSED_AFTER_REPORT_ONLY_REPAIR",
+            "passed": True,
+        },
+        reporting_hotfix_applied=True,
+        reporting_hotfix_audit_sha256=_sha256(repair_path),
+        training_raw_inventory_digest=repaired["raw_inventory"]["digest"],
+    )
+    return repair
 
 
 def _phase_model_cfg(cfg: Mapping[str, Any], phase: str) -> dict[str, Any]:
@@ -2089,6 +2218,10 @@ def execute(ctx: Context, *, command: str, backend: str, resume: bool) -> dict[s
         return prepare_offline(ctx)
     if command in PHASES:
         return run_phase(ctx, command, backend=backend, resume=resume)
+    if command == "repair-training-raw-audit":
+        if not resume:
+            raise ValueError("R8 reporting repair requires explicit resume")
+        return repair_training_raw_audit(ctx)
     if command == "fit-training":
         return run_fit_training(ctx)
     if command == "authorize-calibration":
@@ -2164,7 +2297,7 @@ def main() -> None:
     parser.add_argument(
         "--command",
         choices=(
-            "offline", "training", "fit-training", "authorize-calibration",
+            "offline", "training", "repair-training-raw-audit", "fit-training", "authorize-calibration",
             "calibration", "fit-calibration", "authorize-holdout",
             "holdout", "finalize", "postprocess",
         ),

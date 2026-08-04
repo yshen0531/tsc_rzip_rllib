@@ -41,7 +41,7 @@ stage4_2r3c3t13s24d1r14r8_validate() {
   [[ "${STAGE4_2R3C3T13S24D1R14R8_BACKEND}" == ray || "${STAGE4_2R3C3T13S24D1R14R8_BACKEND}" == serial ]]
   [[ "${STAGE4_2R3C3T13S24D1R14R8_RESUME}" == 0 || "${STAGE4_2R3C3T13S24D1R14R8_RESUME}" == 1 ]]
   case "${STAGE4_2R3C3T13S24D1R14R8_COMMAND}" in
-    offline|training|training-raw-independent|fit-training|training-model-independent|authorize-calibration|calibration|calibration-raw-independent|fit-calibration|calibration-model-independent|authorize-holdout|holdout|holdout-raw-independent|finalize|holdout-model-independent|postprocess) ;;
+    offline|training|repair-training-raw-audit|training-raw-independent|fit-training|training-model-independent|authorize-calibration|calibration|calibration-raw-independent|fit-calibration|calibration-model-independent|authorize-holdout|holdout|holdout-raw-independent|finalize|holdout-model-independent|postprocess) ;;
     *) return 1 ;;
   esac
 }

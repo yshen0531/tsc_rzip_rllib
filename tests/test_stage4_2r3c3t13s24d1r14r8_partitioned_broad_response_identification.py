@@ -76,6 +76,31 @@ class Stage42R8Tests(unittest.TestCase):
         for pair in self.cfg["pair_partitions"]["training_extension"]:
             self.assertEqual(r8._phase_for_pair(self.cfg, pair), "training")
 
+    def test_empty_issue10_preissue_interval_preserves_action_width(self):
+        empty = r8._trace_action_matrix([], r8.PREFIX_END, r8.PREFIX_END)
+        self.assertEqual(empty.shape, (0, r8.N_COILS))
+        trace = [{"action_norm_tsc": [0.0] * r8.N_COILS}]
+        populated = r8._trace_action_matrix(trace, 0, 1)
+        self.assertEqual(populated.shape, (1, r8.N_COILS))
+
+    def test_reporting_repair_requires_explicit_resume(self):
+        with self.assertRaisesRegex(ValueError, "requires explicit resume"):
+            r8.execute(
+                SimpleNamespace(),
+                command="repair-training-raw-audit",
+                backend="serial",
+                resume=False,
+            )
+        with mock.patch.object(r8, "repair_training_raw_audit", return_value={"passed": True}) as repair:
+            result = r8.execute(
+                SimpleNamespace(),
+                command="repair-training-raw-audit",
+                backend="serial",
+                resume=True,
+            )
+        self.assertTrue(result["passed"])
+        repair.assert_called_once()
+
     def _blueprints(self):
         baselines, s21 = {}, {}
         groups = self.cfg["pair_partitions"]
