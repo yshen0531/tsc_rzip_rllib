@@ -2,9 +2,9 @@
   "schema_version": 1,
   "stage": "Stage4.2R3c3T13S24D1R14R3",
   "identity": "sign_split_response_feasibility_raw_audit_v1",
-  "package_revision": "r42r3c3t13s24d1r14r3_sign_split_response_feasibility_v1",
+  "package_revision": "r42r3c3t13s24d1r14r3_sign_split_response_feasibility_v2_source_hash_hotfix",
   "design_checkpoint": "343a516",
-  "implementation_checkpoint": "487d746",
+  "implementation_checkpoint": "aa3325a",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_v1.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SIGN_SPLIT_RESPONSE_FEASIBILITY_DESIGN.md",
   "purpose": "Zero-new-TSC raw audit of prospectively frozen positive/negative local response branches after exact reproduction of the D1R14R2 shared-odd-model failure.",
@@ -15,7 +15,8 @@
     "raw_count": 72,
     "raw_total_bytes": 2254876,
     "raw_inventory_digest": "c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649",
-    "required_route": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED"
+    "required_route": "MIXED_BASIS_SENTINEL_RESPONSE_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+    "stage_state_sha256": "46552980c0cdc8e97968ac18a04cbb5d64f2cdf2885b9df121d9db86c2a37d07"
   },
   "audit_contract": {
     "primary_and_structurally_separate_independent_required": true,
@@ -64,7 +65,7 @@
     "no_undeclared_source_tree_dependency": true,
     "direct_uncompressed_transfer_only": true
   },
-  "declared_file_count": 552,
+  "declared_file_count": 553,
   "file_inventory": [
     "AGENTS.md",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -269,6 +270,7 @@
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R1_POOLED_MIXED_BASIS_PREFLIGHT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R2_REAL_TSC_MIXED_BASIS_SENTINEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SIGN_SPLIT_RESPONSE_FEASIBILITY_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SOURCE_STATE_HASH_ERRATUM.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_ZERO_BASELINE_SIGNED_EXCITATION_SENTINEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R1_FORENSIC_REPORT.md",
@@ -618,5 +620,7 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ]
+  ],
+  "source_state_hash_erratum": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SOURCE_STATE_HASH_ERRATUM.md",
+  "source_state_hash_erratum_sha256": "720a9537f6f468c3131ccbf72f2d0e3cdce53a8ec310a76ad33e84270719a85f"
 }
