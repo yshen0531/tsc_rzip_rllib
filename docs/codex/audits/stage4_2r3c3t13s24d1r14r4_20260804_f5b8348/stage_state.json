@@ -1,0 +1,16 @@
+{
+  "finished": true,
+  "new_raw_count": 200,
+  "package_digest": "c9c6fc870618ecbefe1bf9891a6f918927c2062753e2750596d2e73ec7ecf523",
+  "phase_status": "failed",
+  "primary_pass": false,
+  "real_tsc_executed": true,
+  "schema_version": 1,
+  "spec_digest": "080a2df84c86801d76251853a165839e8db59f6614f6b2b446141b0691841059",
+  "stage": "Stage4.2R3c3T13S24D1R14R4",
+  "stop_reason": "TIME_SHIFTED_SIGN_SPLIT_SENTINEL_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+  "verdict": {
+    "passed": false,
+    "route": "TIME_SHIFTED_SIGN_SPLIT_SENTINEL_GEOMETRY_FAIL_REDESIGN_REQUIRED"
+  }
+}

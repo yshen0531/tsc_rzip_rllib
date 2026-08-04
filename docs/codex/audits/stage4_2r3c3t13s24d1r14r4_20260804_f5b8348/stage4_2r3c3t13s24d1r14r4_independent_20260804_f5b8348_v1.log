@@ -1,0 +1,7 @@
+{
+  "formal_tracking_pass_count_diagnostic_only": 50,
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r4_runs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1/server_independent_forensics_v1.json",
+  "passed": true,
+  "raw_pass_count": 200,
+  "sha256": "6a4eec4a660beb6a29e11e184906b8b7a737834280091f1997af74e86fbd761c"
+}

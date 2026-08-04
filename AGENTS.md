@@ -815,9 +815,19 @@ semantics. The corrected primary and independent outputs reproduced R2's
 sign-split gates: 64/64 direction signal, 16/16 rank four, 16/16 condition at
 most 20, and 32/32 exact issue coordinate/field sign pairs. No new TSC ran.
 
-The active task is Stage4.2R3c3T13S24D1R14R4 prospective fresh authentic
-time-shifted sign-split safety/identification design. D1R14R3 authorizes only
-this design, not model fitting, MPC, expert data, BC, DAgger, or RL.
+D1R14R4 package `f5b8348` completed all 200 authentic time-shifted
+trajectories. Safety, exact restart/source prefixes, causal issue/cancellation,
+finite full horizons, raw integrity, and independent reporting passed. Signal
+passed 254/256, rank and condition passed 64/64, and issue coordinate/field
+antipodality passed 128/128. Both signs of direction 0 at issue step 18 for
+`p9_q2_a0p750_gap4_settle4 / minus_first` measured below the unchanged 0.005
+signal floor. This is a genuine local response-signal design failure, not a
+runtime, restart, corruption, reporting, control, or MPC failure.
+
+The active task is the prospectively frozen zero-new-TSC D1R14R5 global
+direction-0 gain preflight. It fixes one 1.5x candidate for every context,
+time, and sign and may authorize only design of a fresh 48-probe authentic
+sentinel. Model fitting, MPC, expert data, BC, DAgger, and RL remain blocked.
 
 ## 10. Required validation before server execution
 

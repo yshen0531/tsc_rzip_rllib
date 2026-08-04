@@ -1357,3 +1357,37 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r3_20260804_ca49a36/`
 - Next: prospectively freeze D1R14R4 fresh authentic time-shifted sign-split
   safety/identification sentinel
+
+## Stage4.2R3c3T13S24D1R14R4 time-shifted sign-split sentinel
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / final-package checkpoints: `ea49eac`, `d27993b`,
+  `f5b8348`
+- Package fingerprint:
+  `c9c6fc870618ecbefe1bf9891a6f918927c2062753e2750596d2e73ec7ecf523`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r4_runs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1`
+- Expected / actual / strict raw / safety: `200 / 200 / 200 / 200`
+- Raw bytes / digest: `6,285,765` /
+  `44a7eb8e677f88f32c57a6be59273501e73f7657527371e1b59578a95c2ae7a9`
+- Baseline / issue / causal cancel: `8/8`, `192/192`, `192/192`
+- Runtime / restart / plant / solver / saturation / corruption / reporting
+  errors: all zero
+- Signal / rank / condition / issue antipodality: `254/256`, `64/64`,
+  `64/64`, `128/128`
+- Minimum signal / maximum condition / maximum current utilization:
+  `0.00429800000001368`, `11.570074108693706`, `0.3904`
+- Failed columns: direction 0, issue step 18, both signs,
+  `p9_q2_a0p750_gap4_settle4 / minus_first`
+- Primary / independent hashes:
+  `af9acfb9e524e6ad33799b832981ec7fb2e265ff7c1d3e78796413e83382db71`,
+  `6a4eec4a660beb6a29e11e184906b8b7a737834280091f1997af74e86fbd761c`
+- Route:
+  `TIME_SHIFTED_SIGN_SPLIT_SENTINEL_GEOMETRY_FAIL_REDESIGN_REQUIRED`
+- Classification: genuine local time/context response-signal design failure;
+  no runtime, deployment, restart, action, raw, reporting, control, or MPC
+  failure
+- Large raw remains server-side; compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r4_20260804_f5b8348/`
+- Next: zero-new-TSC global direction-0 1.5x exact safety preflight; no model,
+  MPC, expert-data, BC, DAgger, or RL authorization

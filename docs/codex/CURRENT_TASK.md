@@ -4073,3 +4073,47 @@ time-shifted sign-split safety/identification sentinel. It must validate
 independently cancelled responses at fixed earlier/later issue times before
 any model fit or MPC. Expert data, BC, DAgger, and bounded residual RL remain
 blocked.
+
+## 69. Final D1R14R4 result and active D1R14R5 preflight
+
+D1R14R4 design/implementation/final-package checkpoints are
+`ea49eac / d27993b / f5b8348`. Its 200 authentic TSC tasks completed 200/200
+with strict raw parse, safety, finite full-horizon trajectories, exact source
+state/action/trace prefixes, and causal stored-center issue/cancellation.
+Runtime, restart, plant, solver, saturation/clipping, forbidden-input,
+raw/snapshot, and reporting error counts are zero. Maximum current utilization
+is `0.3904`; formal tracking 50/200 is diagnostic only.
+
+The primary and structurally independent audits agree exactly. Signal passed
+254/256, rank four 64/64, condition at most 20 for 64/64, and exact issue
+coordinate/physical-field antipodality 128/128. The only failures are both
+signs of `pooled_mixed_0` at issue step 18 for
+`p9_q2_a0p750_gap4_settle4 / minus_first`, with peaks `0.004465` and
+`0.004298` below the unchanged `0.005` floor. Maximum condition is
+`11.5700741087`. This is a genuine local response-signal design failure, not
+a runtime, restart, corruption, report, control, or MPC failure. Route:
+
+```text
+TIME_SHIFTED_SIGN_SPLIT_SENTINEL_GEOMETRY_FAIL_REDESIGN_REQUIRED
+```
+
+The 200 raw files remain server-side: 6,285,765 bytes, inventory digest
+`44a7eb8e677f88f32c57a6be59273501e73f7657527371e1b59578a95c2ae7a9`.
+Compact evidence and the exact report are:
+
+```text
+docs/codex/audits/stage4_2r3c3t13s24d1r14r4_20260804_f5b8348/
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R4_FORENSIC_REPORT.md
+```
+
+R4 is immutable and may not resume. The active task is the prospectively
+frozen zero-new-TSC D1R14R5 global direction-0 gain preflight in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14R5_GLOBAL_DIRECTION0_GAIN_PREFLIGHT_DESIGN.md`.
+The frozen design-document SHA-256 is
+`8383ef5e0cf7678adcf9f3c776fbe925e7b57b8e6e9398eae13bff35e1f5b400`.
+It fixes one global candidate, column 0 times `1.5`, with matrix digest
+`69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8`,
+and tests all 8 contexts, issue times 14/18/22, and both signs using only
+authenticated zero-baseline current centers. A pass may authorize only a
+separately frozen 48-probe real-TSC sentinel. Model fitting, MPC, expert data,
+BC, DAgger, and bounded residual RL remain blocked.

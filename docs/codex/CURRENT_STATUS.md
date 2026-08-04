@@ -1188,3 +1188,30 @@ controller, plant, Ray, gotsc, or TSC ran.
 Active work is the prospectively frozen D1R14R4 fresh time-shifted
 sign-split safety/identification design. No model, MPC, expert-data, BC,
 DAgger, or RL work is authorized yet.
+
+## Current handoff: D1R14R4 final, D1R14R5 zero-TSC preflight active
+
+D1R14R4 package `f5b8348` completed all 200 authentic TSC tasks. Raw count,
+strict parse, success, safety, finite/full-horizon, and causal trace counts are
+all 200/200; issue/cancellation is 192/192 and baseline reproduction is 8/8.
+There are no runtime, restart, plant, solver, saturation/clipping, forbidden-
+input, raw/snapshot, or reporting errors. All 200 raw files remain server-side
+(6,285,765 bytes; digest
+`44a7eb8e677f88f32c57a6be59273501e73f7657527371e1b59578a95c2ae7a9`).
+
+The authentic response geometry failed only two direction-signal columns:
+both signs of direction 0 at issue step 18 for the minus member of
+`p9_q2_a0p750_gap4_settle4` measured `0.004465` and `0.004298` versus the
+unchanged `0.005` floor. Signal is 254/256; rank and condition pass 64/64,
+maximum condition is `11.5700741087`, and issue coordinate/field antipodality
+is 128/128. Independent forensics exactly reproduce the failure route. This
+is a real local identification-signal design failure, not a real control or
+MPC result.
+
+R4 is frozen. Active work is the new-identity D1R14R5 zero-TSC exact safety
+preflight for a globally fixed 1.5x direction-0 candidate. It cannot use
+context/history labels and cannot prove plant response or online cancellation.
+The preregistered design SHA-256 is
+`8383ef5e0cf7678adcf9f3c776fbe925e7b57b8e6e9398eae13bff35e1f5b400`.
+Only a pass may authorize a separately designed 48-probe authentic sentinel.
+All model/MPC/expert/BC/DAgger/RL routes remain blocked.
