@@ -1408,7 +1408,7 @@ def _authenticate_d1r9(ctx: Context) -> dict[str, Any]:
     matrix = _requested_matrix(ctx.cfg)
     if (
         detailed.get("route") != source["d1r9_route"]
-        or not bool(detailed.get("primary_pass"))
+        or not bool(detailed.get("passed"))
         or not bool(independent.get("passed"))
         or str(selection.get("requested_matrix_digest"))
         != str(source["d1r9_requested_matrix_digest"])

@@ -4,6 +4,7 @@ import copy
 import json
 from pathlib import Path
 import sys
+import tempfile
 from types import SimpleNamespace
 import types
 import unittest
@@ -72,6 +73,50 @@ class Stage42R3C3T13S24D1R11Tests(unittest.TestCase):
         changed["source_contract"]["ordered_spec_digest"] = "0" * 64
         with self.assertRaises(ValueError):
             d1r11._validate_config(changed, CONFIG)
+
+    def test_d1r9_authentication_uses_official_passed_field(self):
+        names = (
+            "stage4_2r3c3t13s24d1r9_central_row_replacement_preflight_v1.json",
+            "stage4_2r3c3t13s24d1r9_d1r10_candidate_specs_v1.json",
+            "stage4_2r3c3t13s24d1r9_independent_forensics_v1.json",
+            "stage4_2r3c3t13s24d1r9_manifest_v1.json",
+            "stage4_2r3c3t13s24d1r9_summary_v1.json",
+        )
+        cfg = copy.deepcopy(self.cfg)
+        selection = {
+            "requested_matrix_digest": cfg["source_contract"]["d1r9_requested_matrix_digest"],
+            "source_matrix_digest": cfg["source_contract"]["s24_source_matrix_digest"],
+            "changed_matrix_row_indices": [22],
+            "contradicted_matrix_row_indices": [],
+            "unknown_matrix_row_indices": [3, 7, 11, 15, 20, 21, 22],
+            "requested_matrix": cfg["schedule_contract"]["requested_matrix"],
+        }
+        documents = {
+            names[0]: {
+                "route": cfg["source_contract"]["d1r9_route"],
+                "passed": True,
+                "selection": selection,
+            },
+            names[2]: {"passed": True},
+        }
+        with tempfile.TemporaryDirectory(prefix=".d1r11-auth-test-", dir=ROOT) as tmp:
+            root = Path(tmp)
+            left, right = root / "v1", root / "v2"
+            left.mkdir()
+            right.mkdir()
+            for name in names:
+                payload = json.dumps(
+                    documents.get(name, {}), sort_keys=True, separators=(",", ":")
+                ).encode("utf-8")
+                (left / name).write_bytes(payload)
+                (right / name).write_bytes(payload)
+            cfg["source_contract"]["d1r9_detailed_sha256"] = d1r11._sha256(left / names[0])
+            cfg["source_contract"]["d1r9_independent_sha256"] = d1r11._sha256(left / names[2])
+            result = d1r11._authenticate_d1r9(
+                SimpleNamespace(cfg=cfg, source_d1r9_v1=left, source_d1r9_v2=right)
+            )
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["byte_identical_file_count"], 5)
 
     def _table_and_source_specs(self):
         table, specs = [], []
