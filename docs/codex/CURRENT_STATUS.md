@@ -1001,6 +1001,28 @@ formal timing remain unchanged. No fresh campaign is authorized until a new
 architecture passes independent deterministic replay. MPC, expert data, BC,
 DAgger, and bounded residual RL remain blocked.
 
+## Current handoff: D1R14 v1 gate bug audited, v2 fresh run active
+
+D1R14 v1 package `2d5304c` produced all 72 strict raw. Eight baselines reached
+the full horizon; all 64 probes stopped before applying their state-10 issue.
+All exact Card15, actuator, action, current, restart, prefix, runtime, plant,
+raw, and snapshot checks passed. The stop was caused by inherited S24 dense-
+row predicates that are structurally incompatible with the frozen D1R14
+one-hot coordinates. Therefore v1 contains no signed plant response and no
+geometry or MPC conclusion.
+
+The immutable raw inventory is 72 files / 1,841,053 bytes / digest
+`bf07f39c4b83666a48f545d89ab4c7cff18f6ef473a89133b7afd99fd34321df`.
+Independent audit SHA is
+`3a6958c2519da4d43e0d910a51d33c0c971352e01a2f68578c1bc4b6b6750e2b`.
+The exact classification and v2 gate boundary are in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md`.
+
+The v1 run is frozen and will not resume. Active work is a fresh 72-task v2
+run under a new source fingerprint and run directory. Physical requested
+coordinates and actions, formal timing, explicit action/current safety gates,
+response geometry, and downstream authorization boundary are unchanged.
+
 ## Current handoff: D1R12 final, D1R13 zero-increment sentinel active
 
 D1R12 read only the immutable 600-file D1R11 training boundary. Its accepted

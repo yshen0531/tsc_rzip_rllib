@@ -3799,3 +3799,53 @@ zero-baseline identification design. It does not authorize that campaign,
 transition-model fitting, MPC, expert data, BC, DAgger, or bounded residual
 RL. All remaining restart/history/target/continuous-parameter/noise/
 disturbance/long-hold gates remain unchanged.
+
+## 62. D1R14 v1 issue-gate result and active v2 hotfix
+
+D1R14 v1 package checkpoint `2d5304c` completed 72/72 strict raw. The eight
+zero baselines reached the full 35/37-state horizon, but all 64 signed probes
+stopped safely before the task-step-10 plant advance. Primary and independent
+server-side recomputation found:
+
+```text
+strict raw / exact restart and source prefix                 72 / 72
+fresh zero baselines reaching the full horizon                 8 / 8
+signed probe issue constructions attempted                    64 / 64
+signed issue actions actually applied                           0 / 64
+runtime / plant / solver / raw / snapshot / report errors            0
+exact Card15 target reproduction / actuator gate              64 / 64
+incremental / total action and current safety gates            64 / 64
+maximum attempted incremental normalized action        0.0518518519
+maximum predicted current utilization                         0.37705
+```
+
+The controller accidentally reused S24 dense-four-active-coordinate geometry
+predicates. The D1R14 one-hot request has three deliberately zero coordinates,
+so `min(abs(all four coordinates)) >= 0.18` and four-coordinate sign equality
+were structurally impossible. They failed 64/64 before TSC could receive the
+otherwise safe action. Dense-row cosine and off-basis predicates also failed
+32/64 and 48/64, respectively, but were never part of the preregistered D1R14
+one-hot action-safety contract.
+
+The v1 raw inventory is 72 files, 1,841,053 bytes, digest
+`bf07f39c4b83666a48f545d89ab4c7cff18f6ef473a89133b7afd99fd34321df`.
+Its primary final SHA is
+`bfd8c88705f8bea138adc36a42d576c472b56b79e44f081a4bbd241e2720a908`;
+the independent audit SHA is
+`3a6958c2519da4d43e0d910a51d33c0c971352e01a2f68578c1bc4b6b6750e2b`.
+
+This is a controller issue-gate integration bug, not a runtime, restart,
+plant, response-geometry, control, or MPC conclusion. The exact audit and
+prospective v2 gate boundary are frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md
+```
+
+The v1 run may not resume because the controller source fingerprint changes.
+The active task is to validate and deploy controller/package revision v2,
+then repeat all 72 trajectories with a fresh run identity. The requested
+coordinates, exact Card15 construction, physical action, timing, task matrix,
+action/current bounds, response geometry, and scientific scope are unchanged.
+MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.

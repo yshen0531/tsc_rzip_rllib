@@ -748,6 +748,21 @@ design of a separate time-distributed zero-baseline identification campaign.
 Transition-model fitting, MPC, expert data, BC, DAgger, and bounded residual
 RL remain blocked.
 
+The first D1R14 v1 package produced 72/72 strict raw, but only the eight zero
+baselines reached the full horizon. All 64 signed probes stopped before the
+task-step-10 plant advance because the controller accidentally retained S24
+dense-four-coordinate sign/minimum/cosine/off-basis predicates for D1R14's
+one-hot requests. Independent raw recomputation found exact restart/prefix,
+zero runtime/plant/corruption errors, 64/64 safe exact Card15 constructions,
+and 0/64 applied issue actions. This is an issue-gate integration bug, not a
+plant, response-geometry, controller-performance, or MPC failure. The v1 run
+is immutable and may not resume. The active work is the new-source v2 hotfix
+defined in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md`.
+It preserves the frozen physical actions and explicit D1R14 safety gates,
+records dense-coordinate quantities as diagnostics, and must repeat all 72
+fresh trajectories under a new controller/package revision and run identity.
+
 ## 10. Required validation before server execution
 
 At minimum, perform and record:

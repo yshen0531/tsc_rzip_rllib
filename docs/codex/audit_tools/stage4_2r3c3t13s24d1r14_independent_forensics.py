@@ -22,7 +22,7 @@ SOURCE_D1R11_NAME = (
     "stage4_2r3c3t13s24d1r11_full_replacement_sequential_transition_identification"
 )
 CAMPAIGN_IDENTITY = "zero_baseline_signed_excitation_safety_geometry_sentinel_v1"
-CONTROLLER_REVISION = "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v1"
+CONTROLLER_REVISION = "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v2"
 N_COILS = 14
 PREFIX_END = 10
 ISSUE_STEP = 10

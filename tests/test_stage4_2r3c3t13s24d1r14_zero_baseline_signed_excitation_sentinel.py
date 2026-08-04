@@ -200,6 +200,72 @@ class Stage42R3C3T13S24D1R14Tests(unittest.TestCase):
         self.assertTrue(np.array_equal(action, np.zeros(14)))
         self.assertTrue(trace["r3c3t13s24d1r14_zero_increment"])
 
+    def test_one_hot_issue_uses_only_preregistered_action_safety_gates(self):
+        controller = object.__new__(d1r14.ZeroBaselineSignedExcitationController)
+        controller.step = 10
+        controller.issue_steps = (10, 13, 15, 17)
+        controller.requested_by_step = {
+            15: np.asarray([0.0, 0.0, 0.25, 0.0]),
+        }
+        controller.schedule_cfg = {"dynamic_exact_search_radius": 6}
+        controller.d1r14_controller_contract = copy.deepcopy(
+            self.cfg["controller_contract"]
+        )
+        controller.turns_tsc = np.full(14, 1000.0)
+        controller.base = SimpleNamespace(
+            max_delta_a=1.0,
+            min_current=np.full(14, -1.0e6),
+            max_current=np.full(14, 1.0e6),
+        )
+        controller.lattice_cfg = {}
+        controller._freeze_fixed_basis = mock.Mock()
+        basis = np.zeros((14, 4), dtype=float)
+        basis[:4, :4] = np.eye(4)
+        controller._basis_current = mock.Mock(return_value=(basis, basis))
+        center_fields = ["0000000000"] * 14
+        target_fields = ["1111111111"] * 14
+        center = SimpleNamespace(
+            card15_fields=center_fields,
+            action_saturated=[False] * 14,
+            current_limit_clipped=[False] * 14,
+        )
+        issued = SimpleNamespace(
+            card15_fields=target_fields,
+            action_saturated=[False] * 14,
+            current_limit_clipped=[False] * 14,
+        )
+        controller.actuator = mock.Mock()
+        controller.actuator.apply.side_effect = [center, issued]
+        actual = [0.01, -0.02, 0.23, 0.015] + [0.0] * 10
+        chosen = {
+            "action_norm_tsc": [0.01] * 14,
+            "incremental_normalized_action_linf": 0.05,
+            "total_normalized_action_abs": 0.05,
+            "predicted_maximum_current_utilization": 0.38,
+            "passed": True,
+        }
+        with mock.patch.object(
+            d1r14.d1r11.s21,
+            "_dynamic_exact_target",
+            return_value=(
+                target_fields,
+                tuple(str(value) for value in actual),
+                [1] * 14,
+            ),
+        ), mock.patch.object(
+            d1r14.d1r11.s21.s16.s9,
+            "exact_stored_center_action",
+            return_value=chosen,
+        ):
+            action, event = controller._issue(2, np.zeros(14), np.zeros(14))
+        self.assertTrue(event["passed"])
+        self.assertEqual(event["gate_revision"], "d1r14_one_hot_action_safety_v2")
+        self.assertTrue(all(event["criteria"].values()))
+        self.assertNotIn("minimum_active", event["criteria"])
+        self.assertNotIn("off_basis", event["criteria"])
+        self.assertGreater(event["inactive_coordinate_linf_diagnostic_only"], 0.0)
+        self.assertTrue(np.array_equal(action, np.asarray(chosen["action_norm_tsc"])))
+
     def test_controller_source_spec_strips_labels_and_has_no_future_sequence(self):
         source = {
             "pair_id": "forbidden",

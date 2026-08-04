@@ -19,8 +19,8 @@ expected = {
     "stage": "Stage4.2R3c3T13S24D1R14",
     "run_name": "stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel",
     "campaign_identity": "zero_baseline_signed_excitation_safety_geometry_sentinel_v1",
-    "controller_revision": "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v1",
-    "package_revision": "r42r3c3t13s24d1r14_zero_baseline_signed_excitation_v1",
+    "controller_revision": "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v2",
+    "package_revision": "r42r3c3t13s24d1r14_zero_baseline_signed_excitation_v2",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:
@@ -51,6 +51,7 @@ required = {
     "AGENTS.md",
     "configs/stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel_370ms.json",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_ZERO_BASELINE_SIGNED_EXCITATION_SENTINEL_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md",
     "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14_independent_forensics.py",
     "run_stage4_2r3c3t13s24d1r14_common.sh",
     "run_stage4_2r3c3t13s24d1r14_native.sh",

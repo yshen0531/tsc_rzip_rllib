@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import copy
 from dataclasses import dataclass
+from decimal import Decimal
 import hashlib
 import json
 import math
@@ -27,7 +28,7 @@ SCHEMA_VERSION = 1
 STAGE = "Stage4.2R3c3T13S24D1R14"
 RUN_NAME = "stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel"
 CAMPAIGN_IDENTITY = "zero_baseline_signed_excitation_safety_geometry_sentinel_v1"
-CONTROLLER_REVISION = "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v1"
+CONTROLLER_REVISION = "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v2"
 N_COILS = 14
 PREFIX_END = 10
 ISSUE_STEP = 10
@@ -126,12 +127,12 @@ def _validate_config(cfg: Mapping[str, Any], path: Path) -> None:
         "run_name": RUN_NAME,
         "campaign_identity": CAMPAIGN_IDENTITY,
         "controller_revision": CONTROLLER_REVISION,
-        "package_revision": "r42r3c3t13s24d1r14_zero_baseline_signed_excitation_v1",
+        "package_revision": "r42r3c3t13s24d1r14_zero_baseline_signed_excitation_v2",
     }
     for key, value in exact.items():
         if cfg.get(key) != value:
             raise ValueError(f"D1R14 frozen {key} changed")
-    for key in ("design_document", "source_d1r13_config"):
+    for key in ("design_document", "hotfix_audit_document", "source_d1r13_config"):
         source = (root / str(cfg[key])).resolve()
         if root not in source.parents or not source.is_file():
             raise ValueError(f"D1R14 {key} is outside package")
@@ -691,6 +692,7 @@ class ZeroBaselineSignedExcitationController(
         calibration_cfg: Mapping[str, Any],
         dynamic_cfg: Mapping[str, Any],
         schedule_cfg: Mapping[str, Any],
+        controller_contract: Mapping[str, Any],
         *,
         role: str,
         direction_index: int,
@@ -722,6 +724,125 @@ class ZeroBaselineSignedExcitationController(
         self.d1r14_direction_index = int(direction_index)
         self.d1r14_sign = int(sign)
         self.d1r14_requested_coordinate = requested
+        self.d1r14_controller_contract = copy.deepcopy(dict(controller_contract))
+
+    def _issue(
+        self, slot: int, currents: np.ndarray, baseline_action: np.ndarray
+    ) -> tuple[np.ndarray, dict[str, Any]]:
+        """Construct the inherited exact action under the frozen D1R14 gates.
+
+        S24's parent method also enforces dense four-active-coordinate geometry.
+        D1R14 deliberately requests a one-hot coordinate, so those dense-row
+        predicates are diagnostics here rather than action-safety gates.
+        """
+        self._freeze_fixed_basis(currents, baseline_action)
+        center = self.actuator.apply(currents, baseline_action)
+        desired_coordinate = self.requested_by_step[self.issue_steps[slot]]
+        field_basis, current_basis = self._basis_current()
+        desired_field = field_basis @ desired_coordinate
+        target_fields, actual_decimal, integer_counts = d1r11.s21._dynamic_exact_target(
+            center.card15_fields,
+            tuple(Decimal(str(value)) for value in desired_field),
+            search_radius=int(self.schedule_cfg["dynamic_exact_search_radius"]),
+        )
+        chosen = d1r11.s21.s16.s9.exact_stored_center_action(
+            stored_fields=target_fields,
+            measured_current_a_tsc=currents,
+            baseline_action_norm_tsc=baseline_action,
+            turns_tsc=self.turns_tsc,
+            max_slew_step_a=float(self.base.max_delta_a),
+            minimum_current_a_tsc=self.base.min_current,
+            maximum_current_a_tsc=self.base.max_current,
+            cfg=self.lattice_cfg,
+        )
+        issued = self.actuator.apply(currents, chosen["action_norm_tsc"])
+        actual_field = np.asarray(
+            [float(value) for value in actual_decimal], dtype=float
+        )
+        actual_current = actual_field * 1000.0 / np.asarray(
+            self.turns_tsc, dtype=float
+        )
+        desired_current = current_basis @ desired_coordinate
+        coordinate = np.linalg.lstsq(current_basis, actual_current, rcond=None)[0]
+        reconstructed = current_basis @ coordinate
+        desired_norm = float(np.linalg.norm(desired_current))
+        actual_norm = float(np.linalg.norm(actual_current))
+        cosine = float(
+            np.dot(desired_current, actual_current)
+            / max(desired_norm * actual_norm, 1e-300)
+        )
+        off_basis = float(
+            np.linalg.norm(actual_current - reconstructed) / max(actual_norm, 1e-300)
+        )
+        coordinate_error = float(np.max(np.abs(coordinate - desired_coordinate)))
+        inactive = np.delete(coordinate, slot)
+        active_coordinate = float(coordinate[slot])
+        nonzero = np.flatnonzero(desired_coordinate)
+        contract = self.d1r14_controller_contract
+        criteria = {
+            "finite": bool(
+                np.all(np.isfinite(coordinate))
+                and np.all(np.isfinite(actual_field))
+                and math.isfinite(cosine)
+                and math.isfinite(off_basis)
+            ),
+            "requested_one_hot": bool(
+                len(nonzero) == 1
+                and int(nonzero[0]) == int(slot)
+                and desired_coordinate[slot] != 0.0
+            ),
+            "active_direction_sign": bool(
+                np.sign(active_coordinate) == np.sign(desired_coordinate[slot])
+            ),
+            "center_exact": all(len(field) == 10 for field in center.card15_fields),
+            "target_exact": all(len(field) == 10 for field in target_fields),
+            "target_reproduction": list(issued.card15_fields) == list(target_fields),
+            "no_saturation": not any(issued.action_saturated),
+            "no_current_clip": not any(issued.current_limit_clipped),
+            "incremental_action": float(chosen["incremental_normalized_action_linf"])
+            <= float(contract["maximum_incremental_normalized_action_linf"]) + 1e-12,
+            "total_action": float(chosen["total_normalized_action_abs"])
+            <= float(contract["maximum_total_normalized_action_abs"]) + 1e-12,
+            "current_utilization": float(chosen["predicted_maximum_current_utilization"])
+            <= float(contract["maximum_current_utilization"]) + 1e-12,
+            "actuator_gate": bool(chosen["passed"]),
+        }
+        event = {
+            "event": "sequential_issue",
+            "gate_revision": "d1r14_one_hot_action_safety_v2",
+            "slot": slot,
+            "task_step": self.step,
+            "requested_coordinate": desired_coordinate.tolist(),
+            "actual_coordinate": coordinate.tolist(),
+            "center_card15_fields": list(center.card15_fields),
+            "target_card15_fields": list(target_fields),
+            "integer_grid_steps_tsc": list(map(int, integer_counts)),
+            "actual_signed_delta_field_kAt_tsc": actual_field.tolist(),
+            "maximum_absolute_coordinate_error_diagnostic_only": coordinate_error,
+            "active_coordinate_magnitude_diagnostic_only": abs(active_coordinate),
+            "inactive_coordinate_linf_diagnostic_only": float(
+                np.max(np.abs(inactive))
+            ),
+            "desired_applied_current_cosine_diagnostic_only": cosine,
+            "relative_off_basis_residual_diagnostic_only": off_basis,
+            "incremental_normalized_action_linf": float(
+                chosen["incremental_normalized_action_linf"]
+            ),
+            "total_normalized_action_abs": float(chosen["total_normalized_action_abs"]),
+            "predicted_current_utilization": float(
+                chosen["predicted_maximum_current_utilization"]
+            ),
+            "criteria": criteria,
+            "passed": bool(all(criteria.values())),
+            "actuator_prediction": copy.deepcopy(chosen),
+        }
+        if not event["passed"]:
+            raise ValueError(
+                "D1R14 one-hot issue action failed: "
+                + json.dumps(event, sort_keys=True)
+            )
+        self._active_issue = copy.deepcopy(event)
+        return np.asarray(chosen["action_norm_tsc"], dtype=float), event
 
     def action(self, current_state: Mapping[str, Any]) -> tuple[np.ndarray, dict[str, Any]]:
         if int(current_state["step_index"]) != self.step:
@@ -814,6 +935,7 @@ class LocalWorker:
         calibration_cfg: dict[str, Any],
         dynamic_cfg: dict[str, Any],
         schedule_cfg: dict[str, Any],
+        controller_contract: dict[str, Any],
         amplitude: float,
     ):
         self.plant = d1r11.s21.s16.s9.t11.t1.r1.LocalPlantReplayWorker(
@@ -825,6 +947,7 @@ class LocalWorker:
         self.calibration_cfg = calibration_cfg
         self.dynamic_cfg = dynamic_cfg
         self.schedule_cfg = schedule_cfg
+        self.controller_contract = controller_contract
         self.amplitude = float(amplitude)
 
     def close(self) -> None:
@@ -874,6 +997,7 @@ class LocalWorker:
                 self.calibration_cfg,
                 self.dynamic_cfg,
                 self.schedule_cfg,
+                self.controller_contract,
                 role=str(spec["d1r14_role"]),
                 direction_index=int(spec["d1r14_direction_index"]),
                 sign=int(spec["d1r14_sign"]),
@@ -883,7 +1007,10 @@ class LocalWorker:
                 try:
                     action, controller_row = controller.action(trajectory[-1])
                 except ValueError as exc:
-                    if "S24 sequential issue action failed" in str(exc) or "S24 sequential cancel action failed" in str(exc):
+                    if (
+                        "D1R14 one-hot issue action failed" in str(exc)
+                        or "S24 sequential cancel action failed" in str(exc)
+                    ):
                         result["execution_failure_class"] = "controller_action_safety_gate_failure"
                     raise
                 _, _, terminated, truncated, info = self.base.env.step(action)
@@ -1041,6 +1168,7 @@ def _ray_actor_class():
                 calibration,
                 dynamic,
                 schedule,
+                controller_contract,
                 amplitude,
             ):
                 self.worker = LocalWorker(
@@ -1053,6 +1181,7 @@ def _ray_actor_class():
                     calibration,
                     dynamic,
                     schedule,
+                    controller_contract,
                     amplitude,
                 )
 
@@ -1125,6 +1254,7 @@ def evaluate_specs(
     calibration = source_d1r11_ctx.base_ctx.base_ctx.cfg["active_calibration"]
     dynamic = source_d1r11_ctx.base_ctx.cfg["causal_model"]
     schedule = source_d1r11_ctx.cfg["schedule_contract"]
+    controller_contract = ctx.cfg["controller_contract"]
     amplitude = float(ctx.cfg["controller_contract"]["requested_coordinate_amplitude"])
     if backend == "serial":
         for index, spec in enumerate(pending):
@@ -1138,6 +1268,7 @@ def evaluate_specs(
                 calibration,
                 dynamic,
                 schedule,
+                controller_contract,
                 amplitude,
             )
             try:
@@ -1175,6 +1306,7 @@ def evaluate_specs(
                     calibration,
                     dynamic,
                     schedule,
+                    controller_contract,
                     amplitude,
                 )
                 actors.append(actor)
