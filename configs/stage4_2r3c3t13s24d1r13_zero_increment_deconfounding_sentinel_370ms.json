@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R13",
+  "run_name": "stage4_2r3c3t13s24d1r13_zero_increment_deconfounding_sentinel",
+  "campaign_identity": "zero_increment_deconfounding_safety_sentinel_v1",
+  "controller_revision": "zero_increment_after_calibration_v42r3c3t13s24d1r13_v1",
+  "package_revision": "r42r3c3t13s24d1r13_zero_increment_deconfounding_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R13_ZERO_INCREMENT_DECONFOUNDING_SENTINEL_DESIGN.md",
+  "design_document_sha256": "d35c22edba36d3b6c19c30937d342f8ac508b6d0b3f4f96ae7d157ec0f47616c",
+  "source_d1r11_config": "configs/stage4_2r3c3t13s24d1r11_full_replacement_sequential_transition_identification_370ms.json",
+  "source_d1r11_config_sha256": "f6b88a06dc43e736c072b9670c63b6e83b0c4a8c37b0f0dbcdd5371b9ecac4cd",
+  "source_contract": {
+    "d1r11_training_raw_count": 600,
+    "d1r11_training_raw_total_bytes": 35511922,
+    "d1r11_training_raw_inventory_digest": "8812d9fb0a5cb5a8b8309e17985bd85d180a82bbb0f08c02105fb1a749c7c0e7",
+    "d1r11_execution_code_checkpoint": "027f555",
+    "d1r11_package_checkpoint": "05c8521",
+    "d1r11_final_route": "FULL_REPLACEMENT_TRANSITION_TRAINING_MODEL_FAIL",
+    "d1r11_calibration_outcome_count": 0,
+    "d1r11_holdout_outcome_count": 0
+  },
+  "selected_source_baseline_experiment_ids": [
+    "s42r3c3_e574ecc025deeddc5117",
+    "s42r3c3_55747cb1e2dcccbf3eb7",
+    "s42r3c3_6d928c4f7114b0f1344c",
+    "s42r3c3_88b51ffa3aede4eabdc1",
+    "s42r3c3_79899b70dcebd962c190",
+    "s42r3c3_b441b17c5dd5fb4f5140",
+    "s42r3c3_7e1a653a8d2ac1c0ba96",
+    "s42r3c3_08f34cdaca588ec030cd"
+  ],
+  "controller_contract": {
+    "delegated_last_task_step": 9,
+    "zero_increment_first_task_step": 10,
+    "zero_action_width": 14,
+    "expected_post_prefix_action_count": 208,
+    "maximum_current_utilization": 0.55,
+    "require_exact_zero_action": true,
+    "require_exact_zero_coil_current_increment": true,
+    "require_exact_source_prefix": true,
+    "forbid_future_r17_controller_execution": true
+  },
+  "formal_timing_contract": {
+    "normal": {
+      "arrival_deadline_step": 25,
+      "hold_through_step": 35
+    },
+    "weak": {
+      "arrival_deadline_step": 27,
+      "hold_through_step": 37
+    },
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "parallel": {
+    "n_workers": 8
+  },
+  "storage": {
+    "ray_tmpdir": "/tmp/stage4_2r3c3t13s24d1r13_ray",
+    "actor_close_timeout_s": 120.0
+  },
+  "routes": {
+    "offline_fail": "ZERO_INCREMENT_DECONFOUNDING_OFFLINE_FAIL_NO_TSC",
+    "runtime_fail": "ZERO_INCREMENT_DECONFOUNDING_RUNTIME_OR_PREFIX_FAIL_STOP",
+    "finite_fail": "ZERO_INCREMENT_DECONFOUNDING_PLANT_FINITE_FAIL_STABILIZING_SCAFFOLD_REQUIRED",
+    "pass": "ZERO_INCREMENT_DECONFOUNDING_SENTINEL_PASS_EXCITATION_SENTINEL_DESIGN_REQUIRED"
+  },
+  "identification_only": true,
+  "formal_tracking_diagnostic_only": true,
+  "probe_trajectories_allowed_in_expert_dataset": false,
+  "bc_dagger_or_rl_allowed": false
+}
