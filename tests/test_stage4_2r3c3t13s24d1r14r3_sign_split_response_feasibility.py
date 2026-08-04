@@ -16,7 +16,6 @@ from tsc_rzip_rllib.diagnostics import (
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_v1.json"
 DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SIGN_SPLIT_RESPONSE_FEASIBILITY_DESIGN.md"
-R2_FINAL = ROOT / "docs/codex/audits/stage4_2r3c3t13s24d1r14r2_20260804_ca2815a/final_result.json"
 
 
 def _trajectory(direction=None, sign=0):
@@ -108,7 +107,20 @@ class Stage42R3C3T13S24D1R14R3Tests(unittest.TestCase):
             primary._validate_config(changed, ROOT, DESIGN)
 
     def test_r2_failed_geometry_is_reproduced_not_relabelled(self):
-        geometry = json.loads(R2_FINAL.read_text(encoding="utf-8"))["response_geometry"]
+        geometry = {
+            "passed": False,
+            "signal_pass_count": 32,
+            "symmetry_pass_count": 28,
+            "rank_pass_count": 8,
+            "condition_pass_count": 8,
+            "minimum_odd_peak_normalized_outputs5": 0.005466000000009519,
+            "maximum_even_to_odd_peak_ratio": 0.8528017842241936,
+            "maximum_condition_number": 8.802962394477525,
+            "pair_rows": [
+                {"direction_index": index, "symmetry_pass": False}
+                for index in range(4)
+            ],
+        }
         result = primary._r2_reproduced(self.cfg, geometry)
         self.assertTrue(result["passed"])
         self.assertFalse(result["original_geometry_passed"])
