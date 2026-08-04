@@ -4,7 +4,7 @@
   "run_name": "stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel",
   "campaign_identity": "direction0_replacement_safety_identification_sentinel_v1",
   "controller_revision": "direction0_replacement_v42r3c3t13s24d1r14r6_v1",
-  "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v1",
+  "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v2_r1a_auth_hotfix",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R6_REAL_TSC_DIRECTION0_REPLACEMENT_SENTINEL_DESIGN.md",
   "design_document_sha256": "aa59b97868ae74b9a7e5d19e76f5541b3d5ed36dc5c75cc57ddd839d535a9b5b",
   "source_r4_contract": {

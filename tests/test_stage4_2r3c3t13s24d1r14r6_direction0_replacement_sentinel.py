@@ -220,6 +220,16 @@ class Stage42R3C3T13S24D1R14R6Tests(unittest.TestCase):
         self.assertIn("_assert_run_identity(ctx)", inspect.getsource(r6.run_real))
         self.assertIn("_assert_run_identity(ctx)", inspect.getsource(r6.postprocess))
 
+    def test_r1a_and_r5_matrix_boundaries_are_not_conflated(self):
+        source = inspect.getsource(r6._authenticate_r1a)
+        self.assertIn("c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c", source)
+        self.assertNotIn(
+            'ctx.cfg["controller_contract"]["requested_matrix_float64_le_c_sha256"]',
+            source,
+        )
+        r5_source = inspect.getsource(r6._authenticate_r4_r5)
+        self.assertIn('ctx.cfg["controller_contract"]["requested_matrix_float64_le_c_sha256"]', r5_source)
+
     def test_independent_forensic_and_launchers_are_fail_closed(self):
         independent = (ROOT / "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r6_independent_forensics.py").read_text(encoding="utf-8")
         self.assertNotIn("from tsc_rzip_rllib.diagnostics", independent)

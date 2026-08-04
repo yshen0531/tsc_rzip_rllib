@@ -19,7 +19,7 @@ expected = {
     "run_name": "stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel",
     "campaign_identity": "direction0_replacement_safety_identification_sentinel_v1",
     "controller_revision": "direction0_replacement_v42r3c3t13s24d1r14r6_v1",
-    "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v1",
+    "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v2_r1a_auth_hotfix",
 }
 for key, value in expected.items():
     if manifest.get(key) != value:

@@ -140,7 +140,7 @@ def _validate_config(cfg: Mapping[str, Any], path: Path) -> None:
         "run_name": RUN_NAME,
         "campaign_identity": CAMPAIGN_IDENTITY,
         "controller_revision": CONTROLLER_REVISION,
-        "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v1",
+        "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v2_r1a_auth_hotfix",
     }
     for key, value in exact.items():
         if cfg.get(key) != value:
@@ -535,7 +535,7 @@ def _authenticate_r1a(ctx: Context) -> dict[str, Any]:
         or manifest.get("route") != contract["required_route"]
         or not fixed.get("exact")
         or fixed.get("matrix_float64_le_c_sha256")
-        != ctx.cfg["controller_contract"]["requested_matrix_float64_le_c_sha256"]
+        != "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c"
         or int(issue.get("construction_pass_count", -1))
         != int(contract["required_static_issue_pass_count"])
         or int(issue.get("construction_count", -1))
