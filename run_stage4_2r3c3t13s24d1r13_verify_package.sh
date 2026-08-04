@@ -4,7 +4,7 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PYTHON_BIN="${STAGE4_2R3C3T13S24D1R13_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
 [[ -x "${PYTHON_BIN}" ]] || { echo "ERROR: server virtualenv Python not executable" >&2; exit 1; }
 cd "${PROJECT_DIR}"
-sha256sum -c SHA256SUMS
+tr -d '\r' < SHA256SUMS | sha256sum -c -
 export PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
 "${PYTHON_BIN}" - <<'PY'
 from __future__ import annotations
