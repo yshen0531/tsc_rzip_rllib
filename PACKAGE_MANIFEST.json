@@ -4,7 +4,7 @@
   "identity": "sign_split_response_feasibility_raw_audit_v1",
   "package_revision": "r42r3c3t13s24d1r14r3_sign_split_response_feasibility_v1",
   "design_checkpoint": "343a516",
-  "implementation_checkpoint": "273a5cf",
+  "implementation_checkpoint": "487d746",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_v1.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R3_SIGN_SPLIT_RESPONSE_FEASIBILITY_DESIGN.md",
   "purpose": "Zero-new-TSC raw audit of prospectively frozen positive/negative local response branches after exact reproduction of the D1R14R2 shared-odd-model failure.",
