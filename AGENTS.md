@@ -832,11 +832,21 @@ and ideal return increments were `0.1748148148`, current utilization `0.3799`,
 and off-basis residual `0.0579456355`. This is static safety only; no plant or
 online cancellation ran.
 
-The active task is the prospectively frozen D1R14R6 fresh 48-probe authentic
-direction-0 replacement sentinel. It must pass all safety/raw gates and the
-combined 256/256 signal, 64/64 rank/condition, and 128/128 issue-antipodality
-gates before any transition-model fit may be designed. MPC, expert data, BC,
-DAgger, and RL remain blocked.
+D1R14R6 final package `1e62c2c` completed all 48 authentic direction-0
+replacement trajectories with exact restart/source prefixes, causal issue
+and stored-center cancellation, finite full horizons, and zero runtime,
+plant, solver, action, raw, snapshot, or reporting errors. The combined
+R2/R4/R6 bank passes signal 256/256, rank/condition 64/64, and issue
+antipodality 128/128; maximum condition is `12.1210121871`. Formal tracking
+12/48 is diagnostic only. This is finite identification safety/geometry, not
+a transition model, MPC, control, robustness, or expert result.
+
+The active task is a prospectively frozen zero-new-TSC causal deconfounded
+response-model fit with whole-history validation. It must not revive the
+D1R11/D1R12 failed absolute future closed-loop trajectory target. A pass may
+authorize only a separately frozen robust finite-horizon MPC feasibility
+design. Real MPC, expert data, BC, DAgger, and bounded residual RL remain
+blocked.
 
 ## 10. Required validation before server execution
 

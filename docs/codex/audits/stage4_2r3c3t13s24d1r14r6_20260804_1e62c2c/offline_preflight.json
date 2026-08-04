@@ -1,0 +1,21 @@
+{
+  "baseline_count": 0,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "selected_context_count": 8,
+  "selected_spec_count": 48,
+  "signed_probe_count": 48,
+  "snapshot_pass_count": 8,
+  "source_d1r11_raw_count": 600,
+  "source_d1r13_raw_count": 8,
+  "source_r1a_authenticated": true,
+  "source_r2_raw_count": 72,
+  "source_r3_r2_authenticated": true,
+  "source_r4_r5_authenticated": true,
+  "source_r4_raw_count": 200,
+  "source_r4_retained_probe_count": 144,
+  "stage": "Stage4.2R3c3T13S24D1R14R6"
+}

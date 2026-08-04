@@ -1419,3 +1419,36 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r5_20260804_a4c43bb/`
 - Next: frozen D1R14R6 fresh 48-probe authentic direction-0 replacement
   sentinel
+
+## Stage4.2R3c3T13S24D1R14R6 direction-0 replacement sentinel
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design/implementation/final-package checkpoints: `307fdbb`, `f0c864a`,
+  `1e62c2c`
+- Package revision:
+  `r42r3c3t13s24d1r14r6_direction0_replacement_v2_r1a_auth_hotfix`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2`
+- Expected / actual / strict raw / safety: `48 / 48 / 48 / 48`
+- Raw bytes / digest: `1,509,679` /
+  `c743eff98395325e4da35a28d2e646aacffb00e678753ceb0faf4b86a64aeb83`
+- Exact prefix/R4 issue state / issue / cancellation: `48/48` each
+- Runtime / plant / solver / action / raw / snapshot / report errors: all
+  zero
+- R6 direction-0 / combined signal: `48/48`, `256/256`
+- Combined rank / condition / issue antipodality: `64/64`, `64/64`,
+  `128/128`
+- Minimum R6 / combined signal: `0.0068060000`, `0.0051890000`
+- Maximum condition / current utilization: `12.1210121871`, `0.3799`
+- Primary / independent hashes:
+  `5c9669818249e8146b6f63d6e50e54f482cb27e64a809fb857bdf64ed617f016`,
+  `a705aa669aaafd9b6708d6915655498f3f4f443ab37683eaa5ae5a8902ae9b1f`
+- Route:
+  `DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED`
+- Classification: finite authentic identification safety/geometry PASS;
+  no transition-model, MPC, formal-control, expert-data, BC, DAgger, or RL
+  result
+- Large raw/full audit remains server-side; compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r6_20260804_1e62c2c/`
+- Next: prospectively freeze a zero-new-TSC deconfounded causal response-model
+  fit with whole-history held validation

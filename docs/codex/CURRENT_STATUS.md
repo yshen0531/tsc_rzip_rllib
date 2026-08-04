@@ -1,5 +1,23 @@
 # Current status
 
+> **Superseding live handoff (2026-08-04 Asia/Shanghai).** D1R14R6 final
+> package `1e62c2c` completed 48/48 fresh authentic direction-0 replacement
+> probes. Primary and independent raw/snapshot recomputation agree: safety,
+> exact source prefix/R4 issue state, causal issue/cancellation, and finite
+> full horizons are 48/48; runtime, plant, solver, action, raw, snapshot, and
+> reporting failures are zero. The combined R2/R4/R6 response bank passes
+> signal 256/256, rank and condition 64/64, and issue antipodality 128/128;
+> maximum condition is `12.1210121871`. Raw inventory is 48 files,
+> 1,509,679 bytes, digest
+> `c743eff98395325e4da35a28d2e646aacffb00e678753ceb0faf4b86a64aeb83`.
+> Formal tracking 12/48 is diagnostic only. The route is
+> `DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED`.
+> Large evidence remains server-side; compact evidence is under
+> `docs/codex/audits/stage4_2r3c3t13s24d1r14r6_20260804_1e62c2c/`.
+> The active task is a new, prospectively frozen zero-new-TSC causal
+> deconfounded response-model fit with whole-history validation. Model, MPC,
+> expert data, BC, DAgger, and bounded residual RL remain unvalidated/blocked.
+
 > **Superseding live handoff (2026-08-04 Asia/Shanghai).** D1R10 is final as
 > a finite probe-schedule safety PASS: 126/126 fresh authentic TSC raw and
 > full horizons, 504/504 issue/cancel/margin events, exact restart/causality/

@@ -1,0 +1,25 @@
+[T13S24D1R14R6] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R14R6] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2 command=offline backend=ray resume=0 workers=96
+[T13S24D1R14R6] 48 fresh TSC direction-0 replacement sentinels; formal tracking is diagnostic only.
+[T13S24D1R14R6] formal 250/270 ms arrival and 350/370 ms hold timing is unchanged.
+{
+  "baseline_count": 0,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "selected_context_count": 8,
+  "selected_spec_count": 48,
+  "signed_probe_count": 48,
+  "snapshot_pass_count": 8,
+  "source_d1r11_raw_count": 600,
+  "source_d1r13_raw_count": 8,
+  "source_r1a_authenticated": true,
+  "source_r2_raw_count": 72,
+  "source_r3_r2_authenticated": true,
+  "source_r4_r5_authenticated": true,
+  "source_r4_raw_count": 200,
+  "source_r4_retained_probe_count": 144,
+  "stage": "Stage4.2R3c3T13S24D1R14R6"
+}

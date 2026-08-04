@@ -1,0 +1,175 @@
+{
+  "action_extrema": {
+    "maximum_cancel_incremental_normalized_action_linf": 0.17481481481481495,
+    "maximum_cancel_predicted_current_utilization": 0.37955,
+    "maximum_issue_incremental_normalized_action_linf": 0.17481481481481495,
+    "maximum_issue_predicted_current_utilization": 0.3799,
+    "maximum_issue_relative_off_basis_residual": 0.05794563546539851,
+    "maximum_issue_total_normalized_action_abs": 0.17481481481481495,
+    "minimum_issue_desired_applied_current_cosine": 0.9982037391026385
+  },
+  "counts": {
+    "action_safety_failure": 0,
+    "cancel_exact": 48,
+    "expected": 48,
+    "finite": 48,
+    "forbidden_trace": 0,
+    "formal_tracking_pass_diagnostic_only": 12,
+    "issue_exact": 48,
+    "plant_failure": 0,
+    "prefix_failure": 0,
+    "r4_baseline_issue_state_exact": 48,
+    "runtime_error": 0,
+    "safety_pass": 48,
+    "strict_raw": 48
+  },
+  "direction0_replacement": {
+    "count": 48,
+    "maximum_peak_normalized_outputs5": 0.03303499999995907,
+    "minimum_peak_normalized_outputs5": 0.006806000000025847,
+    "minimum_rows": [
+      {
+        "condition_number": 4.869632367637259,
+        "history_member": "minus_first",
+        "issue_task_step": 18,
+        "pair_id": "p9_q2_a0p750_gap4_settle4",
+        "peak_normalized_outputs5": 0.006806000000025847,
+        "sign": 1,
+        "signal_pass": true,
+        "source_d1r13_experiment_id": "s42r3c3_f96b02b6e296f16b840c"
+      }
+    ],
+    "pass_count": 48
+  },
+  "geometry": {
+    "bank_composition": {
+      "combined_signed_probe_count": 256,
+      "r2_issue10_all_directions": 64,
+      "r4_baseline_count": 8,
+      "r4_issue14_18_22_directions1_2_3": 144,
+      "r6_issue14_18_22_direction0": 48
+    },
+    "branch_count": 64,
+    "branch_direction_count": 256,
+    "condition_pass_count": 64,
+    "evaluated": true,
+    "maximum_condition_number": 12.121012187090825,
+    "minimum_direction_peak_normalized_outputs5": 0.0051890000000165415,
+    "passed": true,
+    "r6_direction0_antipodal_pair_count": 24,
+    "r6_direction0_antipodal_pair_pass_count": 24,
+    "r6_direction0_antipodal_passed": true,
+    "rank_pass_count": 64,
+    "signal_pass_count": 256
+  },
+  "hashes": {
+    "execution": {
+      "bytes": 104,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel/analysis/execution.json",
+      "sha256": "2808bc7196c2dd3eae5276ddcb0d1ad41ef1d827670125bf29a6e8947a78aa51"
+    },
+    "independent_final": {
+      "bytes": 504487,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2/server_independent_forensics_v1.json",
+      "sha256": "a705aa669aaafd9b6708d6915655498f3f4f443ab37683eaa5ae5a8902ae9b1f"
+    },
+    "installed_validation_log": {
+      "bytes": 43275,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s24d1r14r6_installed_validation_1e62c2c.log",
+      "sha256": "a3f29d8538d7be0123b94ccd0fa9a8977770fec9348f607c1aa2551dc5eb3fc9"
+    },
+    "offline_log": {
+      "bytes": 1092,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s24d1r14r6_offline_20260804_1e62c2c_v2.log",
+      "sha256": "244b224a9abdee31ce87a6719a51f4e47e93abdd3bddfeda59748931f3fde624"
+    },
+    "offline_preflight": {
+      "bytes": 594,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel/analysis/offline_preflight.json",
+      "sha256": "7a05c96bb8514395d676e07a20e54fad47d5c60425d590ea721d861536db1bb1"
+    },
+    "package_manifest": {
+      "bytes": 45755,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/PACKAGE_MANIFEST.json",
+      "sha256": "228fd6028c2484debbcfbb24ed61e45c0590895c0c9aab9c65116ddd308a270f"
+    },
+    "postprocess_log": {
+      "bytes": 530232,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s24d1r14r6_postprocess_20260804_1e62c2c_v2.log",
+      "sha256": "193822cea3aae59cc2809b741ab1806bc631946bf9e738db4137f88298941ee4"
+    },
+    "primary_final": {
+      "bytes": 529730,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel/analysis/final_result.json",
+      "sha256": "5c9669818249e8146b6f63d6e50e54f482cb27e64a809fb857bdf64ed617f016"
+    },
+    "run_log": {
+      "bytes": 2363,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r14r6_run_20260804_162602.log",
+      "sha256": "e33ff02f6d5aba7247ae59fa0d5342110d17e1540176527eba451caf07d987d8"
+    },
+    "sha256sums": {
+      "bytes": 77512,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/SHA256SUMS",
+      "sha256": "efc0b6ca5fa24c6d9f51d3483db19506d54712f6d01b66e6b353ed466a4eecb0"
+    },
+    "specs": {
+      "bytes": 610515,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel/specs/sentinel_specs.json",
+      "sha256": "8ebb5d80b432d305d31e194719326ea1fbbdf736fe828d88667ff79e0d303444"
+    },
+    "stage_manifest": {
+      "bytes": 88613,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel/stage_manifest.json",
+      "sha256": "24ba49efa425aba83af2344df686b17c5ba37af90f21110275ac898514badf5c"
+    },
+    "stage_state": {
+      "bytes": 504,
+      "path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel/stage_state.json",
+      "sha256": "ef3da5335aa7e8ae8328ae89c4552b961438f5daf92a021562a8f4e6b350de81"
+    }
+  },
+  "independent": {
+    "classification": {
+      "controller_or_identification_design_failure": false,
+      "packaging_import_or_deployment_error": false,
+      "raw_or_snapshot_corruption": false,
+      "runtime_or_environment_error": false,
+      "summary_or_reporting_error": false
+    },
+    "official_geometry_exact": true,
+    "official_route_reproduced": true,
+    "passed": true,
+    "route": "DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED",
+    "snapshot_pass_count": 8,
+    "snapshot_unique_count": 8
+  },
+  "package": {
+    "design_and_r5_record_commit": "307fdbb",
+    "implementation_commit": "f0c864a",
+    "local_package_commit": "1e62c2c",
+    "package_fingerprint_digest": "0c6fb0228d5861e19b40f0ceca30bf9dbe32b726790c3f5009a9737c250d0931",
+    "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v2_r1a_auth_hotfix",
+    "staging": "/home/yangshen0711/tsc_software/stage4_2r3c3t13s24d1r14r6_1e62c2c_v2"
+  },
+  "primary": {
+    "passed": true,
+    "route": "DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED"
+  },
+  "raw_inventory": {
+    "bytes": 1509679,
+    "count": 48,
+    "digest": "c743eff98395325e4da35a28d2e646aacffb00e678753ceb0faf4b86a64aeb83"
+  },
+  "run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2",
+  "schema_version": 1,
+  "scientific_boundary": {
+    "bc_dagger_or_rl_allowed": false,
+    "formal_timing_unchanged": true,
+    "mpc_validated": false,
+    "probe_trajectories_allowed_in_expert_dataset": false,
+    "real_tsc_executed": true,
+    "transition_model_validated": false
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R6"
+}

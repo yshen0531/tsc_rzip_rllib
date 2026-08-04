@@ -4163,3 +4163,59 @@ with immutable R2 step-10 and R4 directions 1--3. Only a full 256/256 signal,
 64/64 rank/condition, 128/128 issue-antipodality result after 48/48 safety may
 authorize a separately frozen transition-model fit. MPC, expert data, BC,
 DAgger, and bounded residual RL remain blocked.
+
+## 71. Final D1R14R6 result and active causal response-model design
+
+D1R14R6 final package checkpoint is `1e62c2c`. Its first official offline
+invocation exposed an R1A-versus-R5 expected-matrix authentication bug before
+any stage directory, raw, controller, Ray, gotsc, TSC, or plant execution.
+The corrected fresh run preserved all experiment semantics and completed
+48/48 authentic trajectories.
+
+Primary and independent server-side raw/snapshot recomputation agree:
+
+```text
+strict raw / safety / full horizon                         48 / 48 each
+source prefix / exact R4 issue state                       48 / 48 each
+exact issue / causal stored-center cancellation             48 / 48 each
+runtime / plant / solver / action / raw / report errors              0
+R6 direction-0 signal                                      48 / 48
+combined R2/R4/R6 signal                                  256 / 256
+combined rank four / condition <= 20                        64 / 64
+combined issue coordinate/field antipodality              128 / 128
+minimum R6 / combined signal             0.0068060000 / 0.0051890000
+maximum combined condition                            12.1210121871
+raw count / bytes                                      48 / 1,509,679
+raw digest
+  c743eff98395325e4da35a28d2e646aacffb00e678753ceb0faf4b86a64aeb83
+route  DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED
+```
+
+Formal tracking 12/48 is diagnostic only. R6 proves a finite authentic,
+causal, safe, signal-bearing and conditioned response bank; it does not prove
+a transition model, MPC, formal control, robustness, or reliable expert.
+All R2/R4/R6 probe trajectories remain forbidden from expert datasets.
+Exact report and compact evidence:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R6_FORENSIC_REPORT.md
+docs/codex/audits/
+stage4_2r3c3t13s24d1r14r6_20260804_1e62c2c/
+```
+
+The active task is a separately prospectively frozen, zero-new-TSC causal
+response-model fit and held validation over the authenticated R2/R4/R6 bank.
+It must model deconfounded increments about the matched zero baselines, keep
+issue time and sign explicit, and validate by whole hidden-history groups.
+Predictors may use only causally visible state/action history, numeric target,
+clock, and already revealed fixed request. Pair/history/prefix labels, source
+outcomes, current-run future values, coil/wire hidden-current files, and
+future actions/measurements remain forbidden. D1R11/D1R12's failed absolute
+future closed-loop trajectory target may not be revived under a new name.
+
+This stage must freeze its candidate grid, folds, error/tube gates, and
+independent replay before inspecting results. A pass may authorize only a
+separate robust finite-horizon MPC feasibility design. Real MPC execution,
+expert data, BC, DAgger, bounded residual RL, and every remaining robustness
+gate remain blocked.
