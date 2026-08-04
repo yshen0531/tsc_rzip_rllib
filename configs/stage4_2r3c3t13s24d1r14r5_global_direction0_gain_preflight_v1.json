@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R5",
+  "identity": "global_direction0_gain_exact_safety_preflight_v1",
+  "package_revision": "r42r3c3t13s24d1r14r5_global_direction0_gain_preflight_v1",
+  "selection_status": "frozen_after_final_r4_forensics_before_r5_implementation_or_output",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R5_GLOBAL_DIRECTION0_GAIN_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "8383ef5e0cf7678adcf9f3c776fbe925e7b57b8e6e9398eae13bff35e1f5b400",
+  "source_r4_contract": {
+    "run_name": "stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel",
+    "package_checkpoint": "f5b8348",
+    "package_digest": "c9c6fc870618ecbefe1bf9891a6f918927c2062753e2750596d2e73ec7ecf523",
+    "spec_digest": "080a2df84c86801d76251853a165839e8db59f6614f6b2b446141b0691841059",
+    "config": "configs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_370ms.json",
+    "config_sha256": "d1c155a02afb3fe1168667f8d66cca67e289c133e16ea887cd9967e8d1b091bb",
+    "implementation": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel.py",
+    "implementation_sha256": "ae65f1e41aca0b56b961f119e614c59419da1dcefaf583551aa103a8e1bc79c5",
+    "independent_implementation": "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r4_independent_forensics.py",
+    "independent_implementation_sha256": "bf62cf4f8a32816ce07fa374ddd662e57d2ae3f15715269c3d31c47d27e43bda",
+    "sentinel_specs_sha256": "915a1dd56459c55c12dc857f8723e525f0266035d36e56eda6d94f8d3b4a0a6a",
+    "stage_manifest_sha256": "d07f2e1b33b453ac97962eb9520c09f30b6dceb90b5c26c10033bec8e9312532",
+    "stage_state_sha256": "497a4b3dc8ef6416357ff3493255be679ec8dafafea4b861b15fa8118bad08aa",
+    "final_result_sha256": "af9acfb9e524e6ad33799b832981ec7fb2e265ff7c1d3e78796413e83382db71",
+    "independent_result_sha256": "6a4eec4a660beb6a29e11e184906b8b7a737834280091f1997af74e86fbd761c",
+    "real_log_sha256": "34154d6ee5b88bbc90de0b5c4d4f0e766f9346322e723dd055124646b83fe45f",
+    "postprocess_log_sha256": "581a2b985197ec9bd0aa04094002b1536986ba8f0962173cc2fb9294df849c79",
+    "raw_count": 200,
+    "raw_total_bytes": 6285765,
+    "raw_inventory_digest": "44a7eb8e677f88f32c57a6be59273501e73f7657527371e1b59578a95c2ae7a9",
+    "required_route": "TIME_SHIFTED_SIGN_SPLIT_SENTINEL_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+    "required_safety_pass_count": 200,
+    "required_signal_pass_count": 254,
+    "required_rank_pass_count": 64,
+    "required_condition_pass_count": 64,
+    "required_failed_experiment_ids": [
+      "s42r3c3_16bbc8d57f09df97cac2",
+      "s42r3c3_6538b7d57d5b71e43127"
+    ],
+    "required_failed_peaks": [
+      0.004464999999953534,
+      0.00429800000001368
+    ]
+  },
+  "source_r2_contract": {
+    "run_name": "stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel",
+    "raw_count": 72,
+    "raw_total_bytes": 2254876,
+    "raw_inventory_digest": "c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649"
+  },
+  "candidate_contract": {
+    "scaled_column_index": 0,
+    "fixed_scale": 1.5,
+    "issue_task_steps": [14, 18, 22],
+    "direction_name": "pooled_mixed_0",
+    "source_matrix_float64_le_c_sha256": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+    "candidate_matrix_float64_le_c_sha256": "69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8",
+    "context_dependent_selection_allowed": false,
+    "history_or_pair_label_selection_allowed": false,
+    "sign_dependent_magnitude_allowed": false,
+    "alternate_scale_allowed": false,
+    "alternate_column_allowed": false,
+    "search_allowed": false
+  },
+  "candidate_requested_coordinate_matrix_columns": [
+    [0.09054273265743173, 0.06409209376301149, -0.37110098238653283, 0.13657703474397473],
+    [-5.882321029028434, -3.280604324442652, 4.73169603859497, -3.6727205346962286],
+    [0.7366496436961495, 0.13593338869530727, -0.035003869827120934, -0.3079668079336082],
+    [-0.2800913212364609, -0.17590787535526847, -0.08626957714716102, 0.19464202995789268]
+  ],
+  "static_issue_contract": {
+    "expected_context_count": 8,
+    "expected_issue_time_count": 3,
+    "expected_signed_construction_count": 48,
+    "expected_antipodal_pair_count": 24,
+    "dynamic_exact_search_radius": 16,
+    "readback_bias_grid_units_tsc": [2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0, 1, 0, 0],
+    "readback_radius_grid_units_tsc": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_ideal_return_incremental_linf": 0.24,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.10,
+    "require_exact_card15_center_and_target": true,
+    "require_target_reproduction": true,
+    "require_no_saturation_or_current_clip": true,
+    "require_source_probe_center_reproduction": true,
+    "online_cancellation_proved_by_static_preflight": false
+  },
+  "formal_timing_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "arrival_deadline_expansion_allowed": false,
+    "evaluated_in_r5": false
+  },
+  "execution_contract": {
+    "server_side_only_for_large_raw": true,
+    "source_raw_read_in_place": true,
+    "new_raw_count": 0,
+    "plant_steps_executed": 0,
+    "controller_executed": false,
+    "ray_executed": false,
+    "gotsc_executed": false,
+    "tsc_executed": false,
+    "snapshot_creation_allowed": false
+  },
+  "routes": {
+    "source_fail": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_SOURCE_FAIL_NO_TSC",
+    "preflight_fail": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_SAFETY_FAIL_REDESIGN_REQUIRED",
+    "pass": "GLOBAL_DIRECTION0_GAIN_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED"
+  },
+  "scientific_scope": {
+    "development_data_consumed": true,
+    "fixed_candidate_replay_only": true,
+    "amplitude_linearity_validated": false,
+    "online_cancellation_validated": false,
+    "plant_response_validated": false,
+    "transition_model_validated": false,
+    "mpc_validated": false,
+    "pass_authorizes_real_sentinel_design_only": true,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false
+  }
+}
