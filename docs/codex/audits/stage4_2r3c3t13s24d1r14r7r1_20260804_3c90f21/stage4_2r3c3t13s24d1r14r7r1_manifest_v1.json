@@ -1,0 +1,15 @@
+{
+  "config_sha256": "21fef5a00b584147f371665e3a886b1952cdc4d5d9f64ed70c32bb8261dc9390",
+  "design_document_sha256": "959decfbdebda3e41d793cb85ddbee1a2d0919a8b88a126dad422536054d9e4b",
+  "detailed_sha256": "8e46e13a985ad701c8ddb5bedfa58da723fb392e0ebca40d7dc876b846c8ab03",
+  "model_sha256": null,
+  "package_revision": "r42r3c3t13s24d1r14r7r1_continuous_lag_response_model_v1",
+  "schema_version": 1,
+  "source_runs": {
+    "r2": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1",
+    "r4": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r4_runs/stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel_20260804_f5b8348_v1",
+    "r6": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r6_runs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_20260804_1e62c2c_v2"
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R7R1",
+  "summary_sha256": "78f6e74f9fbc1d30fe08063da7a60453cde53e8d23135281bfef1c0eecbc3b8d"
+}

@@ -841,12 +841,23 @@ antipodality 128/128; maximum condition is `12.1210121871`. Formal tracking
 12/48 is diagnostic only. This is finite identification safety/geometry, not
 a transition model, MPC, control, robustness, or expert result.
 
-The active task is a prospectively frozen zero-new-TSC causal deconfounded
-response-model fit with whole-history validation. It must not revive the
-D1R11/D1R12 failed absolute future closed-loop trajectory target. A pass may
-authorize only a separately frozen robust finite-horizon MPC feasibility
-design. Real MPC, expert data, BC, DAgger, and bounded residual RL remain
-blocked.
+D1R14R7 authenticated the exact R2/R4/R6 bank but produced no model result:
+its frozen independent-lag architecture was undefined at weak-horizon lags
+26/27 in one nested fold. D1R14R7R1 package `3c90f21` repaired that structural
+coverage with a continuous lag tensor and completed all 256 outer
+predictions, but passed only 150/256 unchanged response gates. Tube and
+predicted geometry passed; primary and independent numerics agreed. This is a
+causal response-center design failure, not runtime, deployment, raw,
+reporting, restart, control, or MPC evidence. No new TSC ran.
+
+The active task is the prospectively frozen zero-new-TSC D1R14R7R2
+action-conditioned full-history nonlinear kernel audit over all 304 existing
+R2/R4/R6 responses. It may use only complete current-run causal visible
+history, numeric target/clock, and the already revealed fixed request scale.
+All pair/history/prefix/regime labels, source outcomes/actions, coil/wire
+currents, and future values remain forbidden. A pass may authorize only fresh
+multi-pulse validation. Real MPC, expert data, BC, DAgger, bounded residual
+RL, and later robustness stages remain blocked.
 
 ## 10. Required validation before server execution
 

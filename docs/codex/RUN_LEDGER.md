@@ -1452,3 +1452,34 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r6_20260804_1e62c2c/`
 - Next: prospectively freeze a zero-new-TSC deconfounded causal response-model
   fit with whole-history held validation
+
+## Stage4.2R3c3T13S24D1R14R7/R7R1 causal response-model development
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- R7 final package: `5a17fe0`
+- R7 result: no model/output; frozen independent-lag architecture undefined
+  at held weak-horizon lags 26/27; zero new raw/TSC/plant
+- R7R1 design/implementation/package: `81552da / 8087a1c / 3c90f21`
+- R7R1 package revision:
+  `r42r3c3t13s24d1r14r7r1_continuous_lag_response_model_v1`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r7r1_audits/stage4_2r3c3t13s24d1r14r7r1_continuous_lag_response_model_20260804_3c90f21_v1`
+- Source raw authenticated/read in place / new raw: `320 / 0`
+- Response all-gate / relative / cosine / peak-ratio / point passes:
+  `150/256`, `206/256`, `161/256`, `196/256`, `256/256`
+- Tube / signal / rank / condition: `PASS`, `256/256`, `64/64`, `64/64`
+- Worst relative / minimum cosine / peak-ratio range:
+  `2.8666592379`, `0.1899193709`, `0.1601688053--3.2735052329`
+- Primary / independent SHA-256:
+  `8e46e13a985ad701c8ddb5bedfa58da723fb392e0ebca40d7dc876b846c8ab03`,
+  `53c23fd7f31d13bb48b87f21b1a20918e103f87e514291925acb5144d7bcd03c`
+- Runtime/deployment/raw/report errors: all zero
+- Controller/Ray/gotsc/TSC/plant: all zero
+- Route:
+  `CONTINUOUS_LAG_RESPONSE_MODEL_DEVELOPMENT_FAIL_BROADER_DECONFOUNDED_IDENTIFICATION_REQUIRED`
+- Classification: genuine causal response-center model design failure; no
+  control, restart, plant, or MPC conclusion
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r7r1_20260804_3c90f21/`
+- Next: frozen zero-new-TSC R7R2 full-history/action-conditioned nonlinear
+  kernel audit over all 304 existing responses; no MPC/expert/RL authorization

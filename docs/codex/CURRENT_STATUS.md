@@ -1,5 +1,21 @@
 # Current status
 
+> **Superseding live handoff (2026-08-04 Asia/Shanghai).** D1R14R7 stopped
+> without a model result because its independent-per-lag architecture was
+> undefined at weak-horizon lags 26/27 in one nested fold. The new-identity
+> D1R14R7R1 continuous-lag package `3c90f21` repaired that structural defect
+> and completed all four whole-pair folds with zero new TSC. Primary and
+> independent results agree exactly within tolerance, but the center model
+> passed only 150/256 responses: worst relative L2 `2.8666592379`, minimum
+> cosine `0.1899193709`, peak ratio `0.1601688053--3.2735052329`. Point error,
+> tube cap, signal 256/256, rank 64/64, and condition 64/64 passed. This is a
+> response-model design FAIL, not runtime, deployment, raw, reporting,
+> restart, control, or MPC failure. No controller/Ray/gotsc/TSC/plant ran.
+> The active task is the prospectively frozen zero-new-TSC D1R14R7R2
+> action-conditioned full-history nonlinear kernel audit over all 304 existing
+> responses. A pass may authorize only fresh multi-pulse validation; MPC,
+> expert data, BC, DAgger, and bounded residual RL remain blocked.
+
 > **Superseding live handoff (2026-08-04 Asia/Shanghai).** D1R14R6 final
 > package `1e62c2c` completed 48/48 fresh authentic direction-0 replacement
 > probes. Primary and independent raw/snapshot recomputation agree: safety,

@@ -632,6 +632,21 @@ unchanged action/current/restart/causality/calibration/blindness gates. A pass
 permits only design of a full replacement identification campaign. MPC,
 expert data, BC, DAgger, and RL remain blocked.
 
+D1R14R7 then authenticated the complete R2/R4/R6 response bank but stopped
+without a model result because its per-lag architecture had no trained head
+for weak-horizon lags 26/27 in one nested fold. D1R14R7R1 repaired only that
+structural defect with a continuous-lag tensor. It completed all 256 nested
+whole-pair predictions with exact primary/independent agreement, but only
+150/256 passed the frozen response gates. Tube and predicted geometry passed.
+No runtime, deployment, source, raw, statistics, or reporting error occurred,
+and no new controller/TSC/plant ran. This is a response-center model design
+failure, not a control, restart, MPC, or plant-unreachability result.
+
+The next zero-new-TSC development stage uses all 304 existing amplitude-paired
+responses, the complete causal visible history, and explicit already revealed
+request scale in a nonlinear kernel model. If it fails unchanged gates, new
+broader deconfounded identification data is required before MPC.
+
 ## 7. Medium-term objectives
 
 After hidden-history and different-initial-state robustness:

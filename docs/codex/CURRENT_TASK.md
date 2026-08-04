@@ -4219,3 +4219,68 @@ independent replay before inspecting results. A pass may authorize only a
 separate robust finite-horizon MPC feasibility design. Real MPC execution,
 expert data, BC, DAgger, bounded residual RL, and every remaining robustness
 gate remain blocked.
+
+## 72. D1R14R7 structural stop, final D1R14R7R1 result, and active R7R2
+
+D1R14R7 final installed package `5a17fe0` authenticated all R2/R4/R6
+sources, then stopped before output/model because an inner fold trained only
+through lag 25 while its held weak pair required lags 26/27. No prospective
+tail rule existed. This is a frozen model-architecture coverage failure; no
+raw, controller, Ray, `gotsc`, TSC, plant step, or model result was created.
+
+D1R14R7R1 design/implementation/package checkpoints are
+`81552da / 8087a1c / 3c90f21`. Its continuous Legendre lag tensor repaired the
+undefined tail and completed every nested fold over the exact 256-response
+bank. Primary and independent server-side implementations agreed within the
+frozen tolerance. The result failed unchanged center gates:
+
+```text
+response rows / all-gate passes                         256 / 150
+relative-L2 / cosine / peak-ratio passes          206 / 161 / 196
+finite / point-error passes                        256 / 256 each
+tube cap                                                     PASS
+worst relative L2                                    2.8666592379
+minimum cosine                                       0.1899193709
+peak-ratio range                          0.1601688053--3.2735052329
+predicted signal / rank / condition         256/256 / 64/64 / 64/64
+maximum condition                                    15.4034595026
+new raw / controller / plant / TSC                       all zero
+route
+  CONTINUOUS_LAG_RESPONSE_MODEL_DEVELOPMENT_FAIL_BROADER_DECONFOUNDED_IDENTIFICATION_REQUIRED
+```
+
+There were no runtime, package, source-authentication, corruption,
+statistics, or reporting errors. This is a causal response-center design
+failure and gives no real controller, restart, plant, or MPC conclusion.
+Full detailed/independent outputs remain server-side; compact evidence and
+the exact report are:
+
+```text
+docs/codex/audits/
+stage4_2r3c3t13s24d1r14r7r1_20260804_3c90f21/
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R7R1_FORENSIC_REPORT.md
+```
+
+Retrospective diagnostics are not validation. They found exact 1.0x/1.5x
+direction-zero request pairs with median linear-scaling error `0.1001449319`
+but maximum `0.8482887417`, and the best original-R7 nonlinear-kernel tail
+screen reached only 218/256. Thus request magnitude, nonlinear context, and
+more complete causal history all matter; a global amplitude correction alone
+does not pass.
+
+The active task is prospectively frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R7R2_ACTION_CONDITIONED_FULL_HISTORY_KERNEL_DESIGN.md
+```
+
+R7R2 authenticates all 320 immutable source raw and uses the full 304-response
+R2/R4/R6 amplitude-paired bank. It adds only the complete current-run visible
+history and already revealed request scale, retains whole-pair nested
+validation and all unchanged response/tube/formal gates, and uses a fixed
+nonlinear per-lag kernel plus causal lag-26/27 tail. A pass may authorize only
+fresh authentic multi-pulse validation. A fail requires a new broader
+deconfounded identification campaign. MPC, expert data, BC, DAgger, bounded
+residual RL, and all later robustness claims remain blocked.

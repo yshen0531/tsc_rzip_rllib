@@ -1,0 +1,124 @@
+{
+  "aggregate": {
+    "componentwise_maximum_absolute_scaled_error": [
+      0.0018712722195159542,
+      0.0014447626383375656,
+      0.030052671017778573,
+      0.019075631752495378,
+      0.001423052086015897
+    ],
+    "maximum_absolute_scaled_point_error": 0.030052671017778573,
+    "maximum_peak_ratio": 3.2735052329044154,
+    "maximum_relative_l2_error": 2.8666592379294573,
+    "minimum_peak_ratio": 0.16016880533716754,
+    "minimum_response_cosine": 0.18991937088843133,
+    "passed": false,
+    "response_count": 256,
+    "response_pass_count": 150,
+    "tube_cap_pass": true,
+    "tube_precursor_physical": [
+      0.00011227733317095725,
+      8.668675830025393e-05,
+      0.006010634203555715,
+      0.0038152263504990756,
+      28.46114172031794
+    ],
+    "tube_precursor_scaled": [
+      0.0037425777723652416,
+      0.0028895586100084643,
+      0.06010634203555715,
+      0.038152263504990756,
+      0.002846114172031794
+    ]
+  },
+  "bank": {
+    "bank_digest": "e7c2b1725ecdbeb5618e6ed9ae1345b7a752d8dc68e823bc2451723c5bd71694",
+    "context_count": 8,
+    "histories_by_pair": {
+      "p5_q1_a0p750_gap2_settle4": [
+        "minus_first",
+        "plus_first"
+      ],
+      "p5_q1_a0p900_gap4_settle4": [
+        "minus_first",
+        "plus_first"
+      ],
+      "p9_q2_a0p750_gap4_settle4": [
+        "minus_first",
+        "plus_first"
+      ],
+      "p9_q2_a0p900_gap3_settle4": [
+        "minus_first",
+        "plus_first"
+      ]
+    },
+    "pair_count": 4,
+    "pairs": [
+      "p5_q1_a0p750_gap2_settle4",
+      "p5_q1_a0p900_gap4_settle4",
+      "p9_q2_a0p750_gap4_settle4",
+      "p9_q2_a0p900_gap3_settle4"
+    ],
+    "response_count": 256,
+    "source_counts": {
+      "R2": 64,
+      "R4": 144,
+      "R6": 48
+    }
+  },
+  "final_candidate_development_only": {
+    "pca_rank": 2,
+    "ridge": 0.1,
+    "temporal_degree": 5
+  },
+  "final_model_digest": null,
+  "new_raw_count": 0,
+  "outer_selected_candidates": [
+    {
+      "held_pair_id": "p5_q1_a0p750_gap2_settle4",
+      "selected_candidate": {
+        "pca_rank": 2,
+        "ridge": 0.1,
+        "temporal_degree": 5
+      }
+    },
+    {
+      "held_pair_id": "p5_q1_a0p900_gap4_settle4",
+      "selected_candidate": {
+        "pca_rank": 2,
+        "ridge": 0.001,
+        "temporal_degree": 5
+      }
+    },
+    {
+      "held_pair_id": "p9_q2_a0p750_gap4_settle4",
+      "selected_candidate": {
+        "pca_rank": 2,
+        "ridge": 0.001,
+        "temporal_degree": 5
+      }
+    },
+    {
+      "held_pair_id": "p9_q2_a0p900_gap3_settle4",
+      "selected_candidate": {
+        "pca_rank": 2,
+        "ridge": 0.1,
+        "temporal_degree": 5
+      }
+    }
+  ],
+  "passed": false,
+  "predicted_geometry": {
+    "branch_count": 64,
+    "condition_pass_count": 64,
+    "direction_pass_count": 256,
+    "maximum_condition_number": 15.403459502591051,
+    "minimum_predicted_peak": 0.0035202854567639914,
+    "passed": true,
+    "rank_pass_count": 64
+  },
+  "route": "CONTINUOUS_LAG_RESPONSE_MODEL_DEVELOPMENT_FAIL_BROADER_DECONFOUNDED_IDENTIFICATION_REQUIRED",
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R7R1",
+  "tsc_executed": false
+}

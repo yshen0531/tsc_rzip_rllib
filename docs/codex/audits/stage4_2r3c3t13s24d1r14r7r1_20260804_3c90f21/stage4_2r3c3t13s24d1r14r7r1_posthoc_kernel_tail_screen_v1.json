@@ -1,0 +1,466 @@
+{
+  "bank": {
+    "bank_digest": "e7c2b1725ecdbeb5618e6ed9ae1345b7a752d8dc68e823bc2451723c5bd71694",
+    "context_count": 8,
+    "histories_by_pair": {
+      "p5_q1_a0p750_gap2_settle4": [
+        "minus_first",
+        "plus_first"
+      ],
+      "p5_q1_a0p900_gap4_settle4": [
+        "minus_first",
+        "plus_first"
+      ],
+      "p9_q2_a0p750_gap4_settle4": [
+        "minus_first",
+        "plus_first"
+      ],
+      "p9_q2_a0p900_gap3_settle4": [
+        "minus_first",
+        "plus_first"
+      ]
+    },
+    "pair_count": 4,
+    "pairs": [
+      "p5_q1_a0p750_gap2_settle4",
+      "p5_q1_a0p900_gap4_settle4",
+      "p9_q2_a0p750_gap4_settle4",
+      "p9_q2_a0p900_gap3_settle4"
+    ],
+    "response_count": 256,
+    "source_counts": {
+      "R2": 64,
+      "R4": 144,
+      "R6": 48
+    }
+  },
+  "best": {
+    "all_pass": 218,
+    "candidate": {
+      "bandwidth_multiplier": 0.5,
+      "pca_rank": 6,
+      "ridge": 0.1
+    },
+    "direction0_pass": 53,
+    "direction123_pass": 165,
+    "max_relative": 1.3873253941385444,
+    "min_cosine": 0.25330742104514026,
+    "peak_ratio_max": 1.7658886451272224,
+    "peak_ratio_min": 0.3033772358005217,
+    "point_error_max": 0.026190669616728085
+  },
+  "candidate_count": 27,
+  "candidate_rows": [
+    {
+      "all_pass": 218,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 6,
+        "ridge": 0.1
+      },
+      "direction0_pass": 53,
+      "direction123_pass": 165,
+      "max_relative": 1.3873253941385444,
+      "min_cosine": 0.25330742104514026,
+      "peak_ratio_max": 1.7658886451272224,
+      "peak_ratio_min": 0.3033772358005217,
+      "point_error_max": 0.026190669616728085
+    },
+    {
+      "all_pass": 212,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "direction0_pass": 51,
+      "direction123_pass": 161,
+      "max_relative": 1.469145788132759,
+      "min_cosine": 0.24117234314168137,
+      "peak_ratio_max": 1.725321093716015,
+      "peak_ratio_min": 0.3057986164466335,
+      "point_error_max": 0.026501857909307057
+    },
+    {
+      "all_pass": 213,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 2,
+        "ridge": 0.1
+      },
+      "direction0_pass": 54,
+      "direction123_pass": 159,
+      "max_relative": 1.2675715742012479,
+      "min_cosine": 0.2777630434993092,
+      "peak_ratio_max": 1.7459825405168186,
+      "peak_ratio_min": 0.2884947594991962,
+      "point_error_max": 0.027391020749315414
+    },
+    {
+      "all_pass": 211,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 6,
+        "ridge": 0.1
+      },
+      "direction0_pass": 54,
+      "direction123_pass": 157,
+      "max_relative": 1.1913005456356416,
+      "min_cosine": 0.2822709752415062,
+      "peak_ratio_max": 1.8585487092908495,
+      "peak_ratio_min": 0.29274379865098754,
+      "point_error_max": 0.027921460552434784
+    },
+    {
+      "all_pass": 210,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 6,
+        "ridge": 0.1
+      },
+      "direction0_pass": 53,
+      "direction123_pass": 157,
+      "max_relative": 1.2023178632196763,
+      "min_cosine": 0.28169104590390776,
+      "peak_ratio_max": 1.7461330408654858,
+      "peak_ratio_min": 0.29381856927166483,
+      "point_error_max": 0.026769702608218524
+    },
+    {
+      "all_pass": 207,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "direction0_pass": 52,
+      "direction123_pass": 155,
+      "max_relative": 1.2534959465177016,
+      "min_cosine": 0.26213373600278594,
+      "peak_ratio_max": 1.8308295848705467,
+      "peak_ratio_min": 0.2909153022134246,
+      "point_error_max": 0.028117425760336868
+    },
+    {
+      "all_pass": 205,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 2,
+        "ridge": 0.1
+      },
+      "direction0_pass": 51,
+      "direction123_pass": 154,
+      "max_relative": 1.7132902966195638,
+      "min_cosine": 0.2849111040899173,
+      "peak_ratio_max": 1.7768943283218355,
+      "peak_ratio_min": 0.28674738083146617,
+      "point_error_max": 0.025132502474488047
+    },
+    {
+      "all_pass": 200,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "direction0_pass": 49,
+      "direction123_pass": 151,
+      "max_relative": 1.4227848029319472,
+      "min_cosine": 0.27391415401213737,
+      "peak_ratio_max": 1.7290467933420361,
+      "peak_ratio_min": 0.2929587706149223,
+      "point_error_max": 0.026497460557470598
+    },
+    {
+      "all_pass": 196,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 2,
+        "ridge": 0.1
+      },
+      "direction0_pass": 45,
+      "direction123_pass": 151,
+      "max_relative": 2.3539597053859214,
+      "min_cosine": 0.2665405510346375,
+      "peak_ratio_max": 2.1915226021413634,
+      "peak_ratio_min": 0.28814728869130435,
+      "point_error_max": 0.025654481658837394
+    },
+    {
+      "all_pass": 188,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 2,
+        "ridge": 0.001
+      },
+      "direction0_pass": 44,
+      "direction123_pass": 144,
+      "max_relative": 3.892477653362805,
+      "min_cosine": 0.23589253790059078,
+      "peak_ratio_max": 4.151625413069764,
+      "peak_ratio_min": 0.3041153751097938,
+      "point_error_max": 0.025297508451869104
+    },
+    {
+      "all_pass": 149,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 2,
+        "ridge": 0.001
+      },
+      "direction0_pass": 29,
+      "direction123_pass": 120,
+      "max_relative": 12.726279116509145,
+      "min_cosine": -0.22455447048775723,
+      "peak_ratio_max": 10.381095837440421,
+      "peak_ratio_min": 0.2941545989161998,
+      "point_error_max": 0.0645441620004969
+    },
+    {
+      "all_pass": 126,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 6,
+        "ridge": 0.001
+      },
+      "direction0_pass": 21,
+      "direction123_pass": 105,
+      "max_relative": 5.975203541963254,
+      "min_cosine": 0.06649261540690093,
+      "peak_ratio_max": 4.325838578564897,
+      "peak_ratio_min": 0.34211879971379755,
+      "point_error_max": 0.027670790635369324
+    },
+    {
+      "all_pass": 127,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.001
+      },
+      "direction0_pass": 24,
+      "direction123_pass": 103,
+      "max_relative": 5.514948248050939,
+      "min_cosine": 0.04037098512370264,
+      "peak_ratio_max": 4.599126240308169,
+      "peak_ratio_min": 0.3246114926470832,
+      "point_error_max": 0.039841982946076104
+    },
+    {
+      "all_pass": 79,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 2,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 20,
+      "direction123_pass": 59,
+      "max_relative": 33.043883591096176,
+      "min_cosine": -0.4551581921957181,
+      "peak_ratio_max": 26.521593297052764,
+      "peak_ratio_min": 0.3403485616703638,
+      "point_error_max": 0.17081624574532417
+    },
+    {
+      "all_pass": 70,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 2,
+        "ridge": 0.001
+      },
+      "direction0_pass": 11,
+      "direction123_pass": 59,
+      "max_relative": 13.853203261528483,
+      "min_cosine": -0.6507823845328038,
+      "peak_ratio_max": 12.471878566390481,
+      "peak_ratio_min": 0.36741730770013775,
+      "point_error_max": 0.0901095555607114
+    },
+    {
+      "all_pass": 51,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 6,
+        "ridge": 0.001
+      },
+      "direction0_pass": 9,
+      "direction123_pass": 42,
+      "max_relative": 7.642048654430128,
+      "min_cosine": -0.6308036019442469,
+      "peak_ratio_max": 7.79468176506183,
+      "peak_ratio_min": 0.35276070203970533,
+      "point_error_max": 0.09136231327023012
+    },
+    {
+      "all_pass": 42,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 4,
+        "ridge": 0.001
+      },
+      "direction0_pass": 0,
+      "direction123_pass": 42,
+      "max_relative": 10.520041360036407,
+      "min_cosine": -0.3408323220150733,
+      "peak_ratio_max": 7.536812165044548,
+      "peak_ratio_min": 0.5112615122760056,
+      "point_error_max": 0.054329305019424276
+    },
+    {
+      "all_pass": 41,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 6,
+        "ridge": 0.001
+      },
+      "direction0_pass": 2,
+      "direction123_pass": 39,
+      "max_relative": 11.22791516206616,
+      "min_cosine": -0.24573255850356163,
+      "peak_ratio_max": 8.917980264248861,
+      "peak_ratio_min": 0.4687142716039417,
+      "point_error_max": 0.052217741485279946
+    },
+    {
+      "all_pass": 33,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 4,
+        "ridge": 0.001
+      },
+      "direction0_pass": 6,
+      "direction123_pass": 27,
+      "max_relative": 10.725276334466876,
+      "min_cosine": -0.7845252714685959,
+      "peak_ratio_max": 13.20491698563325,
+      "peak_ratio_min": 0.5077339700785134,
+      "point_error_max": 0.14839280424732662
+    },
+    {
+      "all_pass": 19,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 6,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 0,
+      "direction123_pass": 19,
+      "max_relative": 23.461991499703636,
+      "min_cosine": -0.7604592867866447,
+      "peak_ratio_max": 26.720869467405592,
+      "peak_ratio_min": 0.38495522533449184,
+      "point_error_max": 0.29779907454040255
+    },
+    {
+      "all_pass": 15,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 2,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 2,
+      "direction123_pass": 13,
+      "max_relative": 86.5221465144924,
+      "min_cosine": -0.7683132275354512,
+      "peak_ratio_max": 75.45261046598692,
+      "peak_ratio_min": 0.42986151080728796,
+      "point_error_max": 0.606527407829627
+    },
+    {
+      "all_pass": 7,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 2,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 2,
+      "direction123_pass": 5,
+      "max_relative": 40.90392097283149,
+      "min_cosine": -0.8172538884375424,
+      "peak_ratio_max": 34.498806152461384,
+      "peak_ratio_min": 0.45841432327257475,
+      "point_error_max": 0.3889426477938049
+    },
+    {
+      "all_pass": 4,
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 4,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 0,
+      "direction123_pass": 4,
+      "max_relative": 33.0070918815742,
+      "min_cosine": -0.801906750352722,
+      "peak_ratio_max": 38.345193783765666,
+      "peak_ratio_min": 0.5009187882356099,
+      "point_error_max": 0.40328001410820374
+    },
+    {
+      "all_pass": 0,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 6,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 0,
+      "direction123_pass": 0,
+      "max_relative": 35.32788153201111,
+      "min_cosine": -0.7772511038251649,
+      "peak_ratio_max": 37.52681896253964,
+      "peak_ratio_min": 0.39110446929540504,
+      "point_error_max": 0.41829531129680003
+    },
+    {
+      "all_pass": 0,
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 4,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 0,
+      "direction123_pass": 0,
+      "max_relative": 42.58806762968132,
+      "min_cosine": -0.7953198835131656,
+      "peak_ratio_max": 44.6133635079805,
+      "peak_ratio_min": 1.251185660827662,
+      "point_error_max": 0.4947971036858774
+    },
+    {
+      "all_pass": 0,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 0,
+      "direction123_pass": 0,
+      "max_relative": 61.65679317529058,
+      "min_cosine": -0.7611699937839895,
+      "peak_ratio_max": 49.60665465685785,
+      "peak_ratio_min": 0.8771709860329586,
+      "point_error_max": 0.31309248888663027
+    },
+    {
+      "all_pass": 0,
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 6,
+        "ridge": 1e-06
+      },
+      "direction0_pass": 0,
+      "direction123_pass": 0,
+      "max_relative": 69.21218502757999,
+      "min_cosine": -0.7474394140376195,
+      "peak_ratio_max": 51.46589712570141,
+      "peak_ratio_min": 0.5298892514379858,
+      "point_error_max": 0.41576415307657694
+    }
+  ],
+  "conclusion_boundary": "Architecture diagnostic only; selected after source results and cannot pass R7/R7R1 or authorize MPC/TSC.",
+  "identity": "posthoc_original_r7_kernel_fixed_tail_screen_v1",
+  "schema_version": 1,
+  "scientific_status": "retrospective_architecture_screen_not_validation",
+  "source_authentication_passed": true,
+  "tail_rule": "degree-2 extrapolation from last 8 predicted lag heads only when held horizon exceeds trained horizon"
+}
