@@ -7,9 +7,19 @@ import argparse
 import hashlib
 import json
 import math
+import sys
 from decimal import Decimal
 from pathlib import Path
 from typing import Any, Mapping, Sequence
+
+# This audit tool is intentionally executable by file path on the air-gapped
+# server.  Python otherwise places only docs/codex/audit_tools on sys.path,
+# which makes the deployed tsc_rzip_rllib package unreachable unless callers
+# remember to inject PYTHONPATH.  Resolve the declared package root from this
+# file so the audit entry point is independent of the caller's working dir.
+REPOSITORY_ROOT = Path(__file__).resolve().parents[3]
+if str(REPOSITORY_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPOSITORY_ROOT))
 
 import numpy as np
 

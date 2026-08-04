@@ -3,7 +3,9 @@ from __future__ import annotations
 import copy
 import json
 from pathlib import Path
+import subprocess
 import sys
+import tempfile
 from types import SimpleNamespace
 import types
 import unittest
@@ -61,6 +63,42 @@ class Stage42R3C3T13S24D1R10Tests(unittest.TestCase):
             result["maximum_online_cancel_incremental_normalized_action_linf"],
             0.24,
         )
+
+    def test_independent_forensics_file_entrypoint_is_cwd_independent(self):
+        script = (
+            ROOT
+            / "docs"
+            / "codex"
+            / "audit_tools"
+            / "stage4_2r3c3t13s24d1r10_exact_row_completion_safety_sentinel_forensics.py"
+        )
+        task_tmp = ROOT / ".codex_tmp"
+        task_tmp.mkdir(exist_ok=True)
+        command = [sys.executable, str(script), "--help"]
+        if sys.platform == "win32":
+            bootstrap = (
+                "import runpy,sys,types;"
+                "m=types.ModuleType('resource');"
+                "m.RLIMIT_NOFILE=7;m.RLIMIT_CORE=4;"
+                "m.getrlimit=lambda _which:(65536,65536);"
+                "m.setrlimit=lambda _which,_limits:None;"
+                "sys.modules['resource']=m;"
+                "path=sys.argv[1];sys.argv=[path,'--help'];"
+                "runpy.run_path(path,run_name='__main__')"
+            )
+            command = [sys.executable, "-c", bootstrap, str(script)]
+        with tempfile.TemporaryDirectory(
+            prefix="d1r10_forensics_entrypoint_", dir=task_tmp
+        ) as cwd:
+            completed = subprocess.run(
+                command,
+                cwd=cwd,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertIn("--complete-log", completed.stdout)
 
     def test_exact_d1r9_source_and_candidate_contract_is_frozen(self):
         source = self.cfg["source_contract"]
