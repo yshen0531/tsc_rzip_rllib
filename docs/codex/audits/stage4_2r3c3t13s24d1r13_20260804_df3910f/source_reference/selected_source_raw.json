@@ -1,0 +1,42 @@
+[
+  {
+    "experiment_id": "s42r3c3_e574ecc025deeddc5117",
+    "sha256": "7257310d549ee8422755297ff4494c8ce1b97bdc81108ed4aab2a1d186e5f981",
+    "size": 56618
+  },
+  {
+    "experiment_id": "s42r3c3_55747cb1e2dcccbf3eb7",
+    "sha256": "25e4eef0d9bd6f5ceacd987188cb0b102a3897db0fa3e8b528057b588cbc8053",
+    "size": 56551
+  },
+  {
+    "experiment_id": "s42r3c3_6d928c4f7114b0f1344c",
+    "sha256": "c43179a6583f6d148f720e4c912dd55ff8792c54c2b9fc0c6db33cb064007545",
+    "size": 56631
+  },
+  {
+    "experiment_id": "s42r3c3_88b51ffa3aede4eabdc1",
+    "sha256": "254802aa7e74147fa42c9f7d5cc91fa5d852afceb6b1e8940fe884f59fbc38a6",
+    "size": 56676
+  },
+  {
+    "experiment_id": "s42r3c3_79899b70dcebd962c190",
+    "sha256": "e1c7cb7be09bee00ac1890331889340617ded953743ae2737f15df9d4f57de9f",
+    "size": 59595
+  },
+  {
+    "experiment_id": "s42r3c3_b441b17c5dd5fb4f5140",
+    "sha256": "86a25247a4fc00daaac40329e11b070deffe9ed4cddb42bd0413598223e83b4b",
+    "size": 59700
+  },
+  {
+    "experiment_id": "s42r3c3_7e1a653a8d2ac1c0ba96",
+    "sha256": "83e775e833317f89387c9abec0c9cf7c2afe94d4835fb6aa04bcb441a13bd020",
+    "size": 60262
+  },
+  {
+    "experiment_id": "s42r3c3_08f34cdaca588ec030cd",
+    "sha256": "783728e8b48e7ded658edf0e57407681148fcd04683efe16bb26f6c4a8a49e19",
+    "size": 60144
+  }
+]

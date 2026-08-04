@@ -1,0 +1,1838 @@
+{
+  "cfg": {
+    "confirmation": {
+      "library_repeats_per_mandatory": 2,
+      "mpc_repeats_per_scenario": 2,
+      "mpc_scenarios": [
+        "nominal",
+        "R_p10",
+        "Z_m10",
+        "RZ_p10_m10",
+        "Ip_m1000",
+        "Ip_p1000",
+        "RZ_p7p5_m7p5",
+        "dist_m2_s12_p"
+      ]
+    },
+    "continuation": {
+      "center_ip_weight": 0.15,
+      "center_position_weight": 4.0,
+      "center_velocity_weight": 1.0,
+      "feedforward_scales": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "internal_goal": {
+        "final_box_m": 0.025,
+        "minimum_refinement_rounds_final": 1,
+        "minimum_refinement_rounds_nominal": 2,
+        "minimum_refinement_rounds_support": 0,
+        "nominal_box_m": 0.02,
+        "post_arrival_velocity_rms_m_per_s": 0.07,
+        "support_box_m": 0.028
+      },
+      "source_control_radius_by_mode": [
+        0.3,
+        0.3,
+        0.1
+      ],
+      "source_tracking_states": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "tail_templates": [
+        "hold_last",
+        "zero",
+        "linear_zero",
+        "exp_decay",
+        "slope_decay",
+        "mode1_positive",
+        "mode1_negative",
+        "mode2_positive",
+        "mode2_negative"
+      ],
+      "tasks": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "final": true,
+          "mandatory": true,
+          "parents": [],
+          "source_task_id": "nominal",
+          "task_id": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.005,
+          "Z_offset_m": 0.0,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "nominal"
+          ],
+          "source_task_id": "R_p5mm",
+          "task_id": "R_p5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0075,
+          "Z_offset_m": 0.0,
+          "final": false,
+          "mandatory": false,
+          "parents": [
+            "R_p5mm"
+          ],
+          "task_id": "R_p7p5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": 0.0,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "R_p7p5mm",
+            "R_p5mm"
+          ],
+          "source_task_id": "R_p10mm",
+          "task_id": "R_p10mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": -0.002,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "nominal"
+          ],
+          "source_task_id": "Z_m2mm",
+          "task_id": "Z_m2mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": -0.0035,
+          "final": false,
+          "mandatory": false,
+          "parents": [
+            "Z_m2mm"
+          ],
+          "task_id": "Z_m3p5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": -0.005,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "Z_m3p5mm",
+            "Z_m2mm"
+          ],
+          "source_task_id": "Z_m5mm",
+          "task_id": "Z_m5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": -0.0075,
+          "final": false,
+          "mandatory": false,
+          "parents": [
+            "Z_m5mm"
+          ],
+          "task_id": "Z_m7p5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": -0.01,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "Z_m7p5mm",
+            "Z_m5mm"
+          ],
+          "source_task_id": "Z_m10mm",
+          "task_id": "Z_m10mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.005,
+          "Z_offset_m": -0.002,
+          "final": false,
+          "mandatory": false,
+          "parents": [
+            "R_p5mm",
+            "Z_m2mm"
+          ],
+          "task_id": "RZ_p5_m2mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.005,
+          "Z_offset_m": -0.0035,
+          "final": false,
+          "mandatory": false,
+          "parents": [
+            "RZ_p5_m2mm",
+            "Z_m3p5mm"
+          ],
+          "task_id": "RZ_p5_m3p5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.005,
+          "Z_offset_m": -0.005,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "RZ_p5_m3p5mm",
+            "R_p5mm",
+            "Z_m5mm"
+          ],
+          "source_task_id": "RZ_p5_m5mm",
+          "task_id": "RZ_p5_m5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0075,
+          "Z_offset_m": -0.0075,
+          "final": false,
+          "mandatory": false,
+          "parents": [
+            "RZ_p5_m5mm",
+            "R_p7p5mm",
+            "Z_m7p5mm"
+          ],
+          "task_id": "RZ_p7p5_m7p5mm"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "RZ_p7p5_m7p5mm",
+            "RZ_p5_m5mm"
+          ],
+          "source_task_id": "RZ_p10_m10mm",
+          "task_id": "RZ_p10_m10mm"
+        },
+        {
+          "Ip_offset_A": -1000.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "nominal"
+          ],
+          "source_task_id": "Ip_m1000A",
+          "task_id": "Ip_m1000A"
+        },
+        {
+          "Ip_offset_A": 1000.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "final": true,
+          "mandatory": true,
+          "parents": [
+            "nominal"
+          ],
+          "source_task_id": "Ip_p1000A",
+          "task_id": "Ip_p1000A"
+        }
+      ]
+    },
+    "gate": {
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "hold_through_step": 35,
+      "ip_safety_tolerance_A": 10000.0,
+      "ip_tracking": {
+        "hold_rms_tolerance_A": 2400.0,
+        "revision": "2x_for_tsc_additional_heating",
+        "sustained_max_tolerance_A": 4000.0,
+        "terminal_abs_tolerance_A": 2000.0
+      },
+      "late_velocity_rms_max_m_per_s": 0.1,
+      "late_window_steps": 4,
+      "minimum_post_arrival_hold_steps": 10,
+      "precise_tolerance_m": 0.03,
+      "relaxed_tolerance_m": 0.04,
+      "required_arrival_streak_steps": 3,
+      "terminal_velocity_max_m_per_s": 0.1
+    },
+    "identification": {
+      "maximum_normalized_condition": 1000.0,
+      "minimum_reliable_columns": 90,
+      "output_scales": {
+        "Ip_A": 2000.0,
+        "R_m": 0.03,
+        "Z_m": 0.03,
+        "vR_m_per_s": 0.1,
+        "vZ_m_per_s": 0.1
+      },
+      "probe_delta_by_mode": [
+        0.014,
+        0.014,
+        0.0045
+      ],
+      "ridge_lambda": 0.08,
+      "svd_relative_cutoff": 0.002
+    },
+    "mpc": {
+      "allow_incomplete_library": false,
+      "calibration_scenarios": [
+        {
+          "category": "nominal",
+          "disturbance": null,
+          "scenario": "nominal",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "R_p10",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.01,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "Z_m10",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": -0.01
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "RZ_p5_m5",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.005,
+          "target_Z_offset_m": -0.005
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "RZ_p10_m10",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.01,
+          "target_Z_offset_m": -0.01
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "Ip_m1000",
+          "target_Ip_offset_A": -1000.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "Ip_p1000",
+          "target_Ip_offset_A": 1000.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "disturbance",
+          "disturbance": {
+            "amplitude": 0.08,
+            "mode": 0,
+            "step": 8
+          },
+          "scenario": "dist_m1_s08_p",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "disturbance",
+          "disturbance": {
+            "amplitude": -0.08,
+            "mode": 0,
+            "step": 16
+          },
+          "scenario": "dist_m1_s16_m",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "disturbance",
+          "disturbance": {
+            "amplitude": 0.08,
+            "mode": 1,
+            "step": 20
+          },
+          "scenario": "dist_m2_s20_p",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        }
+      ],
+      "controller_scales": [
+        0.0,
+        0.5,
+        1.0,
+        1.5
+      ],
+      "first_action_rate_weight": 0.2,
+      "future_correction_smoothness": 0.08,
+      "future_discount": 0.988,
+      "hold_weight_multiplier": 2.5,
+      "hold_weight_start_state": 14,
+      "holdout_scenarios": [
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "R_p7p5",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0075,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "Z_m7p5",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": -0.0075
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "RZ_p7p5_m7p5",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0075,
+          "target_Z_offset_m": -0.0075
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "R_p2p5_Z_m2p5",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0025,
+          "target_Z_offset_m": -0.0025
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "Ip_m750",
+          "target_Ip_offset_A": -750.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "target",
+          "disturbance": null,
+          "scenario": "Ip_p750",
+          "target_Ip_offset_A": 750.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "disturbance",
+          "disturbance": {
+            "amplitude": -0.1,
+            "mode": 0,
+            "step": 4
+          },
+          "scenario": "dist_m1_s04_m",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "disturbance",
+          "disturbance": {
+            "amplitude": 0.1,
+            "mode": 1,
+            "step": 12
+          },
+          "scenario": "dist_m2_s12_p",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        },
+        {
+          "category": "disturbance",
+          "disturbance": {
+            "amplitude": -0.035,
+            "mode": 2,
+            "step": 24
+          },
+          "scenario": "dist_m3_s24_m",
+          "target_Ip_offset_A": 0.0,
+          "target_R_offset_m": 0.0,
+          "target_Z_offset_m": 0.0
+        }
+      ],
+      "integral_decay": 0.92,
+      "integral_measurement_gain": [
+        0.45,
+        0.45,
+        0.0,
+        0.0,
+        0.2
+      ],
+      "inverse_distance_power": 2.0,
+      "library_neighbors": 4,
+      "minimum_calibration_tracking_fraction": 0.8,
+      "minimum_holdout_tracking_fraction": 0.75,
+      "minimum_median_margin_gain": -0.005,
+      "output_weights": {
+        "Ip": 0.5,
+        "R": 2.5,
+        "Z": 2.5,
+        "vR": 1.0,
+        "vZ": 1.0
+      },
+      "per_step_correction_rate_limit_by_mode": [
+        0.08,
+        0.08,
+        0.025
+      ],
+      "per_step_feedback_limit_by_mode": [
+        0.2,
+        0.2,
+        0.07
+      ],
+      "require_no_lost_baseline_passes": true,
+      "ridge_lambda": 0.08,
+      "solver_max_iterations": 300,
+      "solver_tolerance": 1e-08,
+      "target_distance_scales": [
+        0.01,
+        0.01,
+        1000.0
+      ]
+    },
+    "output_root": "stage3_4_runs",
+    "parallel": {
+      "n_workers": 96,
+      "ray_tmpdir": "/tmp/stage3_4"
+    },
+    "refinement": {
+      "basis_rank": 18,
+      "hold_weight_multiplier": 2.5,
+      "hold_weight_start": 14,
+      "include_global_mode_directions": true,
+      "initial_trust_radius": 0.3,
+      "max_rounds_per_task": 5,
+      "maximum_trust_radius": 1.2,
+      "minimum_margin_improvement": 0.0015,
+      "minimum_probe_coordinate": 0.0001,
+      "minimum_trust_radius": 0.05,
+      "no_improvement_patience": 2,
+      "probe_bound_margin": 0.95,
+      "probe_fraction_of_trust": 0.65,
+      "profiles": {
+        "balanced": {
+          "Ip": 0.5,
+          "R": 2.4,
+          "Z": 2.4,
+          "vR": 0.9,
+          "vZ": 0.9
+        },
+        "damping": {
+          "Ip": 0.35,
+          "R": 1.8,
+          "Z": 1.8,
+          "vR": 2.8,
+          "vZ": 2.8
+        },
+        "position": {
+          "Ip": 0.4,
+          "R": 4.5,
+          "Z": 4.5,
+          "vR": 0.55,
+          "vZ": 0.55
+        }
+      },
+      "proposal_step_scales": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "ridge_lambda": 0.06,
+      "source_prior_blend": 0.2,
+      "state_weight_start": 8,
+      "temporal_centers": [
+        3,
+        9,
+        15,
+        22,
+        29
+      ],
+      "temporal_widths": [
+        4.0,
+        4.0,
+        4.5,
+        5.0,
+        5.0
+      ],
+      "trust_expand": 1.25,
+      "trust_shrink": 0.6
+    },
+    "run_name": "stage3_4_late_arrival_continuation_mpc_350ms",
+    "runtime": {
+      "description": "Accept arrival through 250 ms, require a further 100 ms hold through 350 ms, build mandatory target trajectories by continuation, and validate a full-horizon receding MPC POC.",
+      "tsc_timeout_s": 180.0
+    },
+    "stage_label": "Stage 3.4",
+    "storage": {
+      "actor_close_timeout_s": 1200.0,
+      "keep_failed_episode_dir": false,
+      "keep_last_n_failed_episode_dirs": 0,
+      "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+      "tsc_workspace_root": "/tmp/tsc_workspace"
+    },
+    "target": {
+      "Ip": 29779.724,
+      "R": 0.75,
+      "Z": 0.0
+    },
+    "trajectory": {
+      "coefficient_lower": [
+        -2.6,
+        -2.6,
+        -0.9
+      ],
+      "coefficient_upper": [
+        2.6,
+        2.6,
+        0.9
+      ],
+      "horizon_ms": 350,
+      "horizon_steps": 35,
+      "n_modes": 3
+    }
+  },
+  "env_cfg": {
+    "cleanup_episode_dir": true,
+    "coil_names_display_order": [
+      "CS1U",
+      "CS1L",
+      "CS2U",
+      "CS2L",
+      "CS3U",
+      "CS3L",
+      "CS4U",
+      "CS4L",
+      "PF2U",
+      "PF2L",
+      "PF3U",
+      "PF3L",
+      "PF4U",
+      "PF4L"
+    ],
+    "coil_names_tsc_order": [
+      "CS1U",
+      "CS2U",
+      "CS3U",
+      "CS1L",
+      "CS2L",
+      "CS3L",
+      "CS4U",
+      "CS4L",
+      "PF2U",
+      "PF2L",
+      "PF3U",
+      "PF3L",
+      "PF4U",
+      "PF4L"
+    ],
+    "current_slew_a_per_ms": 0.3,
+    "description": "Stage-1 runtime-only TSC configuration for 100 ms controllability and reachability experiments. Immediate external termination is not intercepted.",
+    "dt_ms": 10,
+    "isolate_tsc_workdir": true,
+    "keep_episode_restart_files": false,
+    "keep_failed_episode_dir": false,
+    "keep_last_n_failed_episode_dirs": 0,
+    "keep_runtime_tsc_outputs": true,
+    "keep_tsc_workspace": false,
+    "max_current_a_display_order": [
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      400.0,
+      600.0,
+      600.0,
+      750.0,
+      750.0,
+      200.0,
+      200.0
+    ],
+    "min_current_a_display_order": [
+      -400.0,
+      -400.0,
+      -400.0,
+      -400.0,
+      -400.0,
+      -400.0,
+      -400.0,
+      -400.0,
+      -600.0,
+      -600.0,
+      -750.0,
+      -750.0,
+      -200.0,
+      -200.0
+    ],
+    "project_root": "/home/yangshen0711/tsc_all",
+    "run_root": "/tmp/tsc_workspace/episode_runs",
+    "runtime_only_fast_mode": true,
+    "save_artifacts_every_n_steps": 0,
+    "save_artifacts_on_error": true,
+    "save_step_artifacts": false,
+    "simulation_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_514aefa1fa47a05db026",
+    "start_folder": "1250ms",
+    "state_rz_source": "magaxis",
+    "tsc": {
+      "executable": "/home/yangshen0711/tsc_all/tsc_simulation/TSC-PCS/gotsc",
+      "fortran_dir": "/home/yangshen0711/tsc_all/tsc_simulation/TSC-PCS",
+      "library_path": [
+        "/home/yangshen0711/tsc_all/pspline/pspline-2.0.0-rc.5",
+        "/home/yangshen0711/tsc_all/netcdf/netcdf-fortran-4.6.0/fortran/.libs",
+        "/home/yangshen0711/intel/oneapi/compiler/2023.2.1/linux/compiler/lib/intel64_lin",
+        "/home/yangshen0711/tsc_all/netcdf/netcdf-c-4.9.2/liblib/.libs",
+        "/home/yangshen0711/tsc_all/hdf5/hdf5-hdf5-1_12_3/src/.libs",
+        "/home/yangshen0711/tsc_all/hdf5/hdf5-hdf5-1_12_3/hl/src/.libs"
+      ]
+    },
+    "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+    "tsc_timeout_s": 180.0,
+    "tsc_workspace_root": "/tmp/tsc_workspace",
+    "turns_display_order": [
+      480,
+      480,
+      480,
+      480,
+      480,
+      480,
+      480,
+      480,
+      200,
+      200,
+      100,
+      100,
+      100,
+      100
+    ],
+    "vessel_current_aggregation": "signed_sum",
+    "vessel_current_column": "cwire(ka)",
+    "vessel_current_observation_aggregation": "signed_sum",
+    "vessel_current_raw_to_a": 1000.0
+  },
+  "max_current_tsc": [
+    400.0,
+    400.0,
+    400.0,
+    400.0,
+    400.0,
+    400.0,
+    400.0,
+    400.0,
+    600.0,
+    600.0,
+    750.0,
+    750.0,
+    200.0,
+    200.0
+  ],
+  "max_delta_a": 3.0,
+  "min_current_tsc": [
+    -400.0,
+    -400.0,
+    -400.0,
+    -400.0,
+    -400.0,
+    -400.0,
+    -400.0,
+    -400.0,
+    -600.0,
+    -600.0,
+    -750.0,
+    -750.0,
+    -200.0,
+    -200.0
+  ],
+  "modes_tsc": [
+    [
+      0.03541289437637536,
+      -0.4923213745724589,
+      0.45977870163953355
+    ],
+    [
+      -0.27637377317962175,
+      -0.38185459280062506,
+      0.22956995798683622
+    ],
+    [
+      -0.2534896111736007,
+      -0.1713765645987121,
+      0.11356848085579678
+    ],
+    [
+      0.4043981488791566,
+      -0.2264965298478546,
+      0.46543492639543804
+    ],
+    [
+      0.366938847742381,
+      0.01802698126032366,
+      0.2476976990555269
+    ],
+    [
+      0.2032484811793695,
+      0.07110400769713109,
+      0.12147899075067191
+    ],
+    [
+      -0.15707879855698792,
+      -0.06166467844804852,
+      0.06463844563825533
+    ],
+    [
+      0.10023999231457471,
+      0.06030970723852027,
+      0.06703103021255329
+    ],
+    [
+      -0.35002477029387763,
+      -0.04579076006249773,
+      0.15835251921521568
+    ],
+    [
+      0.1818770056872533,
+      0.17373005463969504,
+      0.1475233905359777
+    ],
+    [
+      -0.3886598275325416,
+      0.09772381883999061,
+      0.2396052964883787
+    ],
+    [
+      0.15013490475526536,
+      0.2801639740229184,
+      0.21093962070140324
+    ],
+    [
+      -0.3909541264725931,
+      0.38371350080170885,
+      0.3828184116872511
+    ],
+    [
+      0.043059091194143,
+      0.500758235530305,
+      0.35538190340555514
+    ]
+  ],
+  "nominal_max_delta_a": 3.0,
+  "slew_scale": 1.0,
+  "stage4_1_cfg": {
+    "adaptive_failure_recovery": {
+      "controller_scales": [
+        0.0,
+        "source_selected"
+      ],
+      "minimum_failure_recovery_fraction": 0.5,
+      "minimum_families_with_open_loop_failure": 12,
+      "minimum_preserved_open_loop_pass_fraction": 0.98,
+      "modes": [
+        0,
+        1,
+        2
+      ],
+      "require_no_lost_first_failure_recoveries": true,
+      "severity_ladder": [
+        {
+          "duration_steps": 1,
+          "headroom_fraction": 0.5
+        },
+        {
+          "duration_steps": 1,
+          "headroom_fraction": 1.0
+        },
+        {
+          "duration_steps": 3,
+          "headroom_fraction": 0.5
+        },
+        {
+          "duration_steps": 3,
+          "headroom_fraction": 0.75
+        },
+        {
+          "duration_steps": 3,
+          "headroom_fraction": 1.0
+        },
+        {
+          "duration_steps": 5,
+          "headroom_fraction": 0.75
+        },
+        {
+          "duration_steps": 5,
+          "headroom_fraction": 1.0
+        }
+      ],
+      "signs": [
+        -1,
+        1
+      ],
+      "steps": [
+        4,
+        12,
+        24
+      ],
+      "targets": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "target_id": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "target_id": "RZ_p10_m10"
+        }
+      ],
+      "use_selected_observer_variant": true
+    },
+    "confirmation": {
+      "high_noise_new_seeds_per_target": 8,
+      "maximum_deterministic_scenarios": 12,
+      "noise_seed_offset": 100000,
+      "repeats_per_deterministic_scenario": 2,
+      "use_selected_observer_variant": true
+    },
+    "controller_revision": "control_aware_residual_observer_antiwindup_v3",
+    "controller_upgrade": {
+      "anti_windup": {
+        "apply_in_clean_measurement_bypass": false,
+        "conditional_gain_scale_threshold": 0.98,
+        "conditional_slew_scale_threshold": 0.98,
+        "enabled": true,
+        "freeze_on_first_correction_rate_limit": true,
+        "freeze_on_solver_bound_activity": true,
+        "hold_integral_decay": 0.82,
+        "hold_start_step": 14,
+        "integral_abs_limit": [
+          2.5,
+          2.5,
+          1.5,
+          1.5,
+          2.5
+        ],
+        "normal_integral_decay": 0.92,
+        "saturated_integral_decay": 0.7,
+        "saturation_fraction": 0.98
+      },
+      "delay_aware": {
+        "enabled": true,
+        "maximum_modeled_action_delay_steps": 2,
+        "prime_action_queue_with_nominal": true
+      },
+      "gain_slew_scheduling": {
+        "enabled": true,
+        "maximum_allowed_regression_scheduler_mismatch_rms_A": 0.05,
+        "maximum_effective_scale": 1.3,
+        "minimum_effective_scale": 0.7,
+        "model": "physical_14coil_inverse",
+        "physical_inverse_regularization": 0.0001,
+        "precompensate_nominal": true
+      },
+      "observer": {
+        "alpha_ip": 0.4,
+        "alpha_position": 0.68,
+        "beta_velocity": 0.28,
+        "clean_measurement_bypass": true,
+        "direct_residual_velocity_blend": 0.2,
+        "enabled": true,
+        "exact_nominal_invariance_required": true,
+        "external_test_disturbance_is_unknown": true,
+        "known_control_effect_uses_stage3_4_jacobian": true,
+        "maximum_abs_residual_velocity_m_per_s": 1.0,
+        "maximum_abs_velocity_m_per_s": 2.0,
+        "model": "control_aware_residual_alpha_beta",
+        "r2_diagnostic_alpha_ip": 0.45,
+        "r2_diagnostic_alpha_position": 0.72,
+        "r2_diagnostic_beta_velocity": 0.16
+      },
+      "phase_aware_reference": {
+        "continue_from_absolute_phase": true,
+        "enabled": true,
+        "prelude_commands_are_nominal_deltas": true
+      }
+    },
+    "gate": {
+      "allowed_arrival_steps": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "hold_through_step": 35,
+      "ip_safety_tolerance_A": 10000.0,
+      "ip_tracking": {
+        "hold_rms_tolerance_A": 2400.0,
+        "revision": "2x_for_tsc_additional_heating",
+        "sustained_max_tolerance_A": 4000.0,
+        "terminal_abs_tolerance_A": 2000.0
+      },
+      "late_velocity_rms_max_m_per_s": 0.1,
+      "late_window_steps": 4,
+      "minimum_post_arrival_hold_steps": 10,
+      "precise_tolerance_m": 0.03,
+      "relaxed_tolerance_m": 0.04,
+      "required_arrival_streak_steps": 3,
+      "terminal_velocity_max_m_per_s": 0.1
+    },
+    "noise_statistics": {
+      "confidence_z": 1.96,
+      "controller_scale": "source_selected",
+      "levels": [
+        {
+          "Ip_sigma_A": 50.0,
+          "R_sigma_m": 0.00025,
+          "Z_sigma_m": 0.00025,
+          "minimum_pass_fraction": 0.98,
+          "n_seeds": 12,
+          "name": "low",
+          "seed_start": 41000
+        },
+        {
+          "Ip_sigma_A": 100.0,
+          "R_sigma_m": 0.0005,
+          "Z_sigma_m": 0.0005,
+          "minimum_pass_fraction": 0.95,
+          "n_seeds": 16,
+          "name": "medium",
+          "seed_start": 42000
+        },
+        {
+          "Ip_sigma_A": 200.0,
+          "R_sigma_m": 0.001,
+          "Z_sigma_m": 0.001,
+          "minimum_pass_fraction": 0.9,
+          "n_seeds": 32,
+          "name": "high",
+          "seed_start": 43000
+        }
+      ],
+      "minimum_lower_confidence_bound": 0.75,
+      "targets": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "target_id": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "target_id": "RZ_p10_m10"
+        }
+      ],
+      "use_selected_observer_variant": true
+    },
+    "observer_ablation": {
+      "clean_condition_name": "clean",
+      "conditions": [
+        {
+          "name": "clean"
+        },
+        {
+          "name": "noise_low_s4101",
+          "observation_noise": {
+            "Ip_sigma_A": 50.0,
+            "R_sigma_m": 0.00025,
+            "Z_sigma_m": 0.00025,
+            "seed": 4101
+          }
+        },
+        {
+          "name": "noise_medium_s4201",
+          "observation_noise": {
+            "Ip_sigma_A": 100.0,
+            "R_sigma_m": 0.0005,
+            "Z_sigma_m": 0.0005,
+            "seed": 4201
+          }
+        },
+        {
+          "name": "noise_high_s4301",
+          "observation_noise": {
+            "Ip_sigma_A": 200.0,
+            "R_sigma_m": 0.001,
+            "Z_sigma_m": 0.001,
+            "seed": 4301
+          }
+        },
+        {
+          "name": "observation_delay_1",
+          "observation_delay_steps": 1
+        },
+        {
+          "name": "observation_delay_2",
+          "observation_delay_steps": 2
+        },
+        {
+          "name": "noise_low_delay_1_s4401",
+          "observation_delay_steps": 1,
+          "observation_noise": {
+            "Ip_sigma_A": 50.0,
+            "R_sigma_m": 0.00025,
+            "Z_sigma_m": 0.00025,
+            "seed": 4401
+          }
+        },
+        {
+          "name": "noise_medium_delay_1_s4501",
+          "observation_delay_steps": 1,
+          "observation_noise": {
+            "Ip_sigma_A": 100.0,
+            "R_sigma_m": 0.0005,
+            "Z_sigma_m": 0.0005,
+            "seed": 4501
+          }
+        }
+      ],
+      "minimum_median_margin_delta_vs_legacy": -0.05,
+      "minimum_overall_pass_fraction": 0.75,
+      "minimum_preserved_legacy_pass_fraction": 0.95,
+      "minimum_worst_margin_delta_vs_legacy": -0.2,
+      "require_all_clean_pass": true,
+      "selection_weights": {
+        "anti_windup_preference": 0.01,
+        "median_margin": 10.0,
+        "pass_count": 1000.0,
+        "preserved_count": 200.0,
+        "worst_margin": 2.0
+      },
+      "stop_pipeline_on_failure": true,
+      "targets": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "target_id": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "target_id": "RZ_p10_m10"
+        }
+      ],
+      "variants": [
+        {
+          "anti_windup_enabled": false,
+          "name": "legacy_raw",
+          "observer_variant": "legacy_raw",
+          "selectable": false
+        },
+        {
+          "anti_windup_enabled": false,
+          "name": "r2_error_alpha_beta",
+          "observer_variant": "r2_error_alpha_beta",
+          "selectable": false
+        },
+        {
+          "anti_windup_enabled": false,
+          "name": "control_aware_no_aw",
+          "observer_variant": "control_aware_residual",
+          "selectable": true
+        },
+        {
+          "anti_windup_enabled": true,
+          "name": "control_aware_aw",
+          "observer_variant": "control_aware_residual",
+          "selectable": true
+        }
+      ]
+    },
+    "output_root": "stage4_1r3_runs",
+    "parallel": {
+      "minimum_available_memory_gb": 72.0,
+      "n_workers": 128,
+      "ray_tmpdir": "/tmp/stage4_1r3",
+      "reserve_logical_cpus": 16
+    },
+    "phase_aligned_history": {
+      "controller_scales": [
+        0.0,
+        "source_selected"
+      ],
+      "minimum_mpc_pass_fraction": 0.75,
+      "minimum_preserved_open_loop_pass_fraction": 0.85,
+      "preludes": [
+        {
+          "mode_deltas": [
+            [
+              0.1,
+              0.0,
+              0.0
+            ],
+            [
+              -0.1,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m1_pm"
+        },
+        {
+          "mode_deltas": [
+            [
+              -0.1,
+              0.0,
+              0.0
+            ],
+            [
+              0.1,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m1_mp"
+        },
+        {
+          "mode_deltas": [
+            [
+              0.0,
+              0.1,
+              0.0
+            ],
+            [
+              0.0,
+              -0.1,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m2_pm"
+        },
+        {
+          "mode_deltas": [
+            [
+              0.0,
+              -0.1,
+              0.0
+            ],
+            [
+              0.0,
+              0.1,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m2_mp"
+        },
+        {
+          "mode_deltas": [
+            [
+              0.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m3_pm"
+        },
+        {
+          "mode_deltas": [
+            [
+              0.0,
+              0.0,
+              -0.04
+            ],
+            [
+              0.0,
+              0.0,
+              0.04
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m3_mp"
+        },
+        {
+          "mode_deltas": [
+            [
+              0.07,
+              -0.07,
+              0.0
+            ],
+            [
+              -0.07,
+              0.07,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m1p_m2m_comp"
+        },
+        {
+          "mode_deltas": [
+            [
+              -0.07,
+              0.07,
+              0.0
+            ],
+            [
+              0.07,
+              -0.07,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "name": "m1m_m2p_comp"
+        }
+      ],
+      "targets": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "target_id": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "target_id": "RZ_p10_m10"
+        }
+      ],
+      "use_selected_observer_variant": true,
+      "visible_alignment_limits": {
+        "Ip_A": 1500.0,
+        "RZ_box_m": 0.01
+      }
+    },
+    "regression_targets": {
+      "controller_scales": [
+        0.0,
+        "source_selected"
+      ],
+      "controller_variants": [
+        "open_loop",
+        "legacy_stage3_4",
+        "r3_clean_direct"
+      ],
+      "maximum_action_rms_difference_vs_legacy": 1e-06,
+      "maximum_trajectory_state_abs_difference_vs_legacy": 1e-09,
+      "minimum_median_margin_delta_vs_legacy": -0.005,
+      "minimum_worst_margin_delta_vs_legacy": -0.02,
+      "require_all_mpc_pass": true,
+      "require_no_lost_open_loop_passes": true,
+      "scenarios": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "scenario": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0033,
+          "Z_offset_m": 0.0,
+          "scenario": "R_p3p3"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0088,
+          "Z_offset_m": 0.0,
+          "scenario": "R_p8p8"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": -0.0042,
+          "scenario": "Z_m4p2"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": -0.0086,
+          "scenario": "Z_m8p6"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0062,
+          "Z_offset_m": -0.0086,
+          "scenario": "RZ_p6p2_m8p6"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0088,
+          "Z_offset_m": -0.0033,
+          "scenario": "RZ_p8p8_m3p3"
+        },
+        {
+          "Ip_offset_A": -600.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "scenario": "Ip_m600"
+        },
+        {
+          "Ip_offset_A": 600.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "scenario": "Ip_p600"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "scenario": "hard_RZ_p10_m10"
+        }
+      ],
+      "stop_pipeline_on_failure": true
+    },
+    "restart_sweep": {
+      "auto_discover": true,
+      "candidate_offsets_ms": [
+        -20,
+        -10,
+        10,
+        20
+      ],
+      "controller_scales": [
+        0.0,
+        "source_selected"
+      ],
+      "environment_variable": "STAGE4_1R3_START_FOLDERS",
+      "minimum_alternate_folders_for_validation": 2,
+      "minimum_mpc_pass_fraction": 0.75,
+      "minimum_preserved_open_loop_pass_fraction": 0.8,
+      "targets": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "target_id": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "target_id": "RZ_p10_m10"
+        }
+      ],
+      "use_selected_observer_variant": true
+    },
+    "run_name": "stage4_1r3_control_aware_residual_observer_350ms",
+    "runtime": {
+      "description": "Regression-gated Stage4.1 revision with clean direct-measurement bypass, control-aware residual observation, anti-windup, physical 14-coil scheduling, delay/phase awareness, and robustness validation.",
+      "tsc_timeout_s": 180.0
+    },
+    "source_requirement": {
+      "required_source_stage3_4_verdict": "PASS_LATE_ARRIVAL_TARGET_CONDITIONED_RECEDING_HORIZON_MPC_TEST_ENVELOPE_CONFIRMED",
+      "required_stage": "Stage4.0",
+      "reuse_stage3_4_jacobian": true,
+      "reuse_stage3_4_selected_controller_scale": true,
+      "reuse_stage3_4_target_library": true
+    },
+    "stage_label": "Stage 4.1R3",
+    "storage": {
+      "actor_close_timeout_s": 1800.0,
+      "keep_failed_episode_dir": false,
+      "keep_last_n_failed_episode_dirs": 0,
+      "tsc_run_root": "/tmp/tsc_workspace/episode_runs",
+      "tsc_workspace_root": "/tmp/tsc_workspace"
+    },
+    "structured_uncertainty": {
+      "controller_scales": [
+        0.0,
+        "source_selected"
+      ],
+      "required_categories": {
+        "combined_scheduled": {
+          "minimum_mpc_pass_fraction": 1.0,
+          "minimum_preserved_fraction": 1.0
+        },
+        "controller_model_scale": {
+          "minimum_mpc_pass_fraction": 0.75,
+          "minimum_preserved_fraction": 0.75
+        },
+        "gain_estimation_error": {
+          "minimum_mpc_pass_fraction": 0.75,
+          "minimum_preserved_fraction": 0.75
+        },
+        "matched_action_delay": {
+          "minimum_mpc_pass_fraction": 1.0,
+          "minimum_preserved_fraction": 1.0
+        },
+        "observation_delay": {
+          "minimum_mpc_pass_fraction": 1.0,
+          "minimum_preserved_fraction": 1.0
+        },
+        "scheduled_gain": {
+          "minimum_mpc_pass_fraction": 1.0,
+          "minimum_preserved_fraction": 1.0
+        },
+        "scheduled_slew": {
+          "minimum_mpc_pass_fraction": 1.0,
+          "minimum_preserved_fraction": 1.0
+        }
+      },
+      "scenarios": [
+        {
+          "category": "observation_delay",
+          "name": "observation_delay_1",
+          "observation_delay_steps": 1
+        },
+        {
+          "category": "observation_delay",
+          "name": "observation_delay_2",
+          "observation_delay_steps": 2
+        },
+        {
+          "action_delay_steps": 1,
+          "category": "matched_action_delay",
+          "controller_action_delay_steps": 1,
+          "name": "action_delay_1_matched",
+          "prime_action_queue_with_nominal": true
+        },
+        {
+          "action_delay_steps": 2,
+          "category": "matched_action_delay",
+          "controller_action_delay_steps": 2,
+          "name": "action_delay_2_matched",
+          "prime_action_queue_with_nominal": true
+        },
+        {
+          "action_delay_steps": 1,
+          "category": "diagnostic_unmodeled_delay",
+          "controller_action_delay_steps": 0,
+          "name": "action_delay_1_unmodeled",
+          "prime_action_queue_with_nominal": false
+        },
+        {
+          "actuator_gain_by_mode": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "category": "scheduled_gain",
+          "controller_gain_estimate_by_mode": [
+            0.9,
+            0.9,
+            0.9
+          ],
+          "name": "gain_all_m10_matched"
+        },
+        {
+          "actuator_gain_by_mode": [
+            1.1,
+            1.1,
+            1.1
+          ],
+          "category": "scheduled_gain",
+          "controller_gain_estimate_by_mode": [
+            1.1,
+            1.1,
+            1.1
+          ],
+          "name": "gain_all_p10_matched"
+        },
+        {
+          "actuator_gain_by_mode": [
+            0.9,
+            1.1,
+            1.0
+          ],
+          "category": "scheduled_gain",
+          "controller_gain_estimate_by_mode": [
+            0.9,
+            1.1,
+            1.0
+          ],
+          "name": "gain_m1low_m2high_matched"
+        },
+        {
+          "actuator_gain_by_mode": [
+            1.1,
+            0.9,
+            1.0
+          ],
+          "category": "scheduled_gain",
+          "controller_gain_estimate_by_mode": [
+            1.1,
+            0.9,
+            1.0
+          ],
+          "name": "gain_m1high_m2low_matched"
+        },
+        {
+          "actuator_gain_by_mode": [
+            0.9,
+            1.1,
+            1.0
+          ],
+          "category": "gain_estimation_error",
+          "controller_gain_estimate_by_mode": [
+            0.95,
+            1.05,
+            1.0
+          ],
+          "name": "gain_estimation_error_5pct"
+        },
+        {
+          "category": "controller_model_scale",
+          "controller_model_scale": 0.85,
+          "name": "model_scale_m15"
+        },
+        {
+          "category": "controller_model_scale",
+          "controller_model_scale": 1.15,
+          "name": "model_scale_p15"
+        },
+        {
+          "action_delay_steps": 1,
+          "actuator_gain_by_mode": [
+            0.95,
+            0.95,
+            1.0
+          ],
+          "category": "combined_scheduled",
+          "controller_action_delay_steps": 1,
+          "controller_gain_estimate_by_mode": [
+            0.95,
+            0.95,
+            1.0
+          ],
+          "name": "combined_gain_delay_matched",
+          "prime_action_queue_with_nominal": true
+        }
+      ],
+      "slew_scale_variants": [
+        {
+          "actual": 0.9,
+          "category": "scheduled_slew",
+          "estimate": 0.9,
+          "name": "slew_0p9_matched"
+        },
+        {
+          "actual": 1.1,
+          "category": "scheduled_slew",
+          "estimate": 1.1,
+          "name": "slew_1p1_matched"
+        },
+        {
+          "actual": 0.9,
+          "category": "diagnostic_unmodeled_slew",
+          "estimate": 1.0,
+          "name": "slew_0p9_unmodeled"
+        }
+      ],
+      "targets": [
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.0,
+          "Z_offset_m": 0.0,
+          "target_id": "nominal"
+        },
+        {
+          "Ip_offset_A": 0.0,
+          "R_offset_m": 0.01,
+          "Z_offset_m": -0.01,
+          "target_id": "RZ_p10_m10"
+        }
+      ],
+      "use_selected_observer_variant": true
+    }
+  },
+  "stage4_1r4_horizon_steps": 35,
+  "stage4_2r1_formal_horizon_steps": 35,
+  "stage4_2r1_slew_scale": 1.0,
+  "stage4_2r3c3_restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_514aefa1fa47a05db026/1250ms",
+  "stage4_2r3c3_snapshot_manifest_digest": "6ca3ed40465576f4c2f5c00be43087a385f3e52d8dba62b1d651b8ad00346c25",
+  "stage4_2r3c3t13s13_partition_label_available_to_controller": false,
+  "stage4_2r3c3t13s13_restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_514aefa1fa47a05db026/1250ms",
+  "stage4_2r3c3t13s13_snapshot_manifest_digest": "6ca3ed40465576f4c2f5c00be43087a385f3e52d8dba62b1d651b8ad00346c25",
+  "stage4_2r3c3t13s16_pair_or_history_label_available_to_controller": false,
+  "stage4_2r3c3t13s16_restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_514aefa1fa47a05db026/1250ms",
+  "stage4_2r3c3t13s16_snapshot_manifest_digest": "6ca3ed40465576f4c2f5c00be43087a385f3e52d8dba62b1d651b8ad00346c25",
+  "stage4_2r3c3t13s21_pair_history_partition_label_available_to_controller": false,
+  "stage4_2r3c3t13s21_restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_514aefa1fa47a05db026/1250ms",
+  "stage4_2r3c3t13s21_snapshot_manifest_digest": "6ca3ed40465576f4c2f5c00be43087a385f3e52d8dba62b1d651b8ad00346c25",
+  "stage4_2r3c3t13s24d1r13_restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_514aefa1fa47a05db026/1250ms",
+  "stage4_2r3c3t13s24d1r13_snapshot_manifest_digest": "6ca3ed40465576f4c2f5c00be43087a385f3e52d8dba62b1d651b8ad00346c25",
+  "stage4_2r3c3t13s24d1r13_zero_increment_first_task_step": 10,
+  "stage4_2r3c3t13s9_restart_snapshot_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3b_runs/stage4_2r3b_confirmatory_hidden_history_initial_state_20260730_115526/stage4_2r3b_state_generation/snapshots/s42r3b_514aefa1fa47a05db026/1250ms",
+  "stage4_2r3c3t13s9_snapshot_manifest_digest": "6ca3ed40465576f4c2f5c00be43087a385f3e52d8dba62b1d651b8ad00346c25",
+  "start_folder": "1250ms",
+  "train_cfg": {
+    "description": "Minimal non-RL environment configuration for Stage-1 controllability and reachability experiments. Reward values are not used for identification or Gate-A decisions.",
+    "env_config": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r13_runs/stage4_2r3c3t13s24d1r13_zero_increment_deconfounding_sentinel_20260804_df3910f_v1/stage4_2r3c3t13s24d1r13_zero_increment_deconfounding_sentinel/variants/env_s42r3c3_44878cc615a1d3ea18b9.json",
+    "episode": {
+      "max_episode_steps": 35
+    },
+    "failure": {
+      "failure_penalty": -1000.0,
+      "failure_penalty_per_remaining_step": -10.0,
+      "terminate_on_tsc_failure": true
+    },
+    "normalization": {
+      "current_scale_a": 1000.0,
+      "ip_derivative_scale": 100000.0,
+      "ip_scale": 30000.0,
+      "r_scale": 0.08,
+      "r_velocity_scale": 1.0,
+      "vessel_current_scale_a": 100000.0,
+      "z_scale": 0.08,
+      "z_velocity_scale": 1.0
+    },
+    "observation": {
+      "boundary_source": "gfile_boundary",
+      "history_stack_steps": 0,
+      "include_boundary_extrema": false,
+      "include_deadline_fraction": false,
+      "include_derivatives": true,
+      "include_error_history": false,
+      "include_history_stack": false,
+      "include_hold_weight": false,
+      "include_previous_action": false,
+      "include_time_fraction": false,
+      "include_vessel_current": true
+    },
+    "reward": {
+      "failure_penalty": -1000.0,
+      "failure_penalty_per_remaining_step": -10.0,
+      "hold_ramp_end_step": 15,
+      "hold_ramp_start_step": 8,
+      "hold_start_step": 15,
+      "hold_success_bonus": 0.0,
+      "quality_success_bonus": 0.0,
+      "survival_bonus": 0.0,
+      "w_action": 0.0,
+      "w_action_saturation": 0.0,
+      "w_current": 0.0,
+      "w_current_limit": 0.0,
+      "w_delta_action": 0.0,
+      "w_derivative": 0.0,
+      "w_hold_action": 0.0,
+      "w_hold_current_drift": 0.0,
+      "w_hold_ip": 0.0,
+      "w_hold_r": 0.0,
+      "w_hold_z": 0.0,
+      "w_ip": 0.0,
+      "w_ip_guard": 0.0,
+      "w_near_target_derivative": 0.0,
+      "w_overshoot": 0.0,
+      "w_pre_hold_tracking_boost": 0.0,
+      "w_r": 1.0,
+      "w_r_guard": 0.0,
+      "w_reach_progress": 0.0,
+      "w_z": 1.0,
+      "w_z_guard": 0.0
+    },
+    "target": {
+      "Ip": 29779.724,
+      "R": 0.75,
+      "Z": 0.0
+    }
+  },
+  "variant_id": "stage4_2r3c3t13s24d1r13_s42r3c3_44878cc615a1d3ea18b9"
+}

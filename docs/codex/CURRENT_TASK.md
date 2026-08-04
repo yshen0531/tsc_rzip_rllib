@@ -3731,3 +3731,71 @@ slew. Formal tracking is diagnostic only. A pass authorizes only prospective
 design of a separate bounded zero-baseline excitation sentinel. Transition
 model fitting, MPC, expert data, BC, DAgger, and bounded residual RL remain
 blocked.
+
+## 61. Final D1R13 result and active D1R14 safety/geometry sentinel
+
+D1R13 completed all eight fresh authentic TSC/controller trajectories from
+execution-package checkpoint `df3910f`. The primary result and independent
+server-side raw/snapshot audit agree:
+
+```text
+strict raw / exact identity / fresh controller / fresh TSC       8 / 8 each
+restart snapshot / state-0 / physical source prefix              8 / 8 each
+source action / controller trace / calibration                   8 / 8 each
+full 35/37-state horizon                                         8 / 8
+post-prefix actions                                      208 / 208 exact zero
+post-prefix coil-current increments                              8 / 8 exact zero
+finite R/Z/Ip / coil / wire-current records                      8 / 8 each
+runtime / plant / solver / saturation / clipping errors               0
+forbidden input / raw / snapshot / report errors                      0
+maximum current utilization                                          0.3904
+formal tracking diagnostic                                            2 / 8
+route
+  ZERO_INCREMENT_DECONFOUNDING_SENTINEL_PASS_EXCITATION_SENTINEL_DESIGN_REQUIRED
+```
+
+The remote raw inventory is 8 files and 241,738 bytes with digest
+`f9b4dd9259736ebe2d26f9fcfd06bb0497be69a886de7ecc8d359009992f1c0a`.
+Large raw and snapshots remain server-side. Exact report and compact evidence:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R13_FORENSIC_REPORT.md
+
+docs/codex/audits/
+stage4_2r3c3t13s24d1r13_20260804_df3910f/
+```
+
+The accepted run had no runtime, restart, corruption, statistics/reporting,
+solver, plant-abnormality, action, current, or forbidden-input error. The
+formal 2/8 is a real zero-increment tracking diagnostic, not a sentinel
+failure and not control success. D1R13 proves only finite safe zero-increment
+evolution in this fixed eight-case clean-source envelope.
+
+Read-only server design evidence found that existing D1R11 signed sequences
+cannot be relabelled as zero-baseline response trajectories. Continuing R17
+feedback and evolving Card15 centers produced maximum old-feedback even/odd
+ratio `14.0321503`, matched-history relative odd difference `0.5221102`,
+zero-versus-R17 divergence `2.6781085`, zero natural drift `1.3010891`, and
+selected R17 post-state-10 action `0.3652533`.
+
+The active task is prospectively frozen before implementation in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14_ZERO_BASELINE_SIGNED_EXCITATION_SENTINEL_DESIGN.md
+```
+
+D1R14 fixes 72 fresh authentic trajectories over the same eight contexts:
+one fresh zero baseline plus four fixed physical directions times two signs
+per context. Steps 0--9 reproduce the source prefix; every signed probe issues
+one exact-Card15 coordinate at step 10, restores the stored center at step 11,
+and commands exact zero afterward. Safety/prefix/full-horizon gates are
+mandatory before frozen odd-signal, even/odd, rank-four, and condition-at-most
+20 geometry gates are considered. Formal tracking remains diagnostic.
+
+A D1R14 pass authorizes only a separately frozen time-distributed
+zero-baseline identification design. It does not authorize that campaign,
+transition-model fitting, MPC, expert data, BC, DAgger, or bounded residual
+RL. All remaining restart/history/target/continuous-parameter/noise/
+disturbance/long-hold gates remain unchanged.

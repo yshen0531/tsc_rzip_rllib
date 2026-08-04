@@ -718,6 +718,36 @@ formal tracking is diagnostic only. A pass may authorize only design of a
 separate bounded zero-baseline excitation sentinel. Real transition-model
 fitting, MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
 
+D1R13 subsequently completed all eight authentic TSC trajectories. Primary
+and independent server-side raw/snapshot audits found exact restart,
+state/action/trace prefix, causal calibration, full horizons, 208/208 exact
+zero post-prefix actions, exact zero coil-current increments, finite R/Z/Ip,
+coil and wire currents, and no runtime, plant, solver, saturation, clipping,
+forbidden-input, raw, snapshot, or reporting error. Maximum current
+utilization was `0.3904`. Formal tracking was diagnostic only and passed 2/8.
+The final route is
+`ZERO_INCREMENT_DECONFOUNDING_SENTINEL_PASS_EXCITATION_SENTINEL_DESIGN_REQUIRED`.
+This is a finite safety/deconfounding PASS, not a controller, model, MPC,
+robustness, or RL-roadmap PASS.
+
+Read-only server forensics found that the old D1R11 signed sequences are
+materially confounded by continuing R17 feedback and evolving Card15 centers:
+the maximum even/odd ratio was `14.0322`, matched-history relative odd
+difference `0.5221`, zero-versus-R17 divergence `2.6781`, and selected R17
+post-state-10 action `0.3653`. They may not be relabelled as zero-baseline
+responses.
+
+The active task is the prospectively frozen 72-trajectory D1R14 authentic
+zero-baseline signed-excitation sentinel. It uses the same eight contexts,
+with one fresh zero baseline and four fixed physical directions times two
+signs per context. Steps 0--9 reproduce the exact source prefix; probes issue
+at step 10, restore the exact stored center at step 11, and command exact zero
+thereafter. All safety gates precede the frozen non-vacuity, even/odd,
+rank-four, and condition-at-most-20 geometry gates. A pass may authorize only
+design of a separate time-distributed zero-baseline identification campaign.
+Transition-model fitting, MPC, expert data, BC, DAgger, and bounded residual
+RL remain blocked.
+
 ## 10. Required validation before server execution
 
 At minimum, perform and record:

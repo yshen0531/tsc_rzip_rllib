@@ -1,0 +1,12 @@
+{
+  "expected_post_prefix_action_count": 208,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "selected_spec_count": 8,
+  "snapshot_pass_count": 8,
+  "source_raw_count": 600,
+  "stage": "Stage4.2R3c3T13S24D1R13"
+}

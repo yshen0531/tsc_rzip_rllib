@@ -1,0 +1,16 @@
+{
+  "finished": true,
+  "new_raw_count": 8,
+  "package_digest": "7633d0237a22a80b4d043e963a6704f314c6c0ebb1becb29a1679471ae3fa329",
+  "phase_status": "complete",
+  "primary_pass": true,
+  "real_tsc_executed": true,
+  "schema_version": 1,
+  "spec_digest": "18c3dbe45a7886e502c8e350419a2b6014a8b1c1d2b2354c420c6235aab64af2",
+  "stage": "Stage4.2R3c3T13S24D1R13",
+  "stop_reason": "",
+  "verdict": {
+    "passed": true,
+    "route": "ZERO_INCREMENT_DECONFOUNDING_SENTINEL_PASS_EXCITATION_SENTINEL_DESIGN_REQUIRED"
+  }
+}

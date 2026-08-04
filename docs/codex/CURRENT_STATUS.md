@@ -1027,3 +1027,30 @@ calibration/state-0--10 prefix, then issue exactly zero 14-coil current
 increments to the unchanged state-35/37 horizon. Formal tracking is
 diagnostic. A pass may authorize only a bounded zero-baseline excitation
 sentinel design. MPC, expert data, BC, DAgger, and RL remain blocked.
+
+## Current handoff: D1R13 final, D1R14 zero-baseline excitation active
+
+D1R13 package checkpoint `df3910f` completed all 8/8 authentic trajectories.
+All source restart/state/action/trace prefixes through state 10 were exact;
+all 208 post-prefix actions and all coil-current increments were exactly
+zero; all trajectories reached their 35/37-state horizons with finite R/Z/Ip,
+coil and wire-current records. Runtime, plant-abnormality, solver,
+saturation/clipping, forbidden-input, raw, snapshot, and report error counts
+were zero. Maximum current utilization was `0.3904`. Formal tracking was
+diagnostic only and passed 2/8.
+
+The final route is
+`ZERO_INCREMENT_DECONFOUNDING_SENTINEL_PASS_EXCITATION_SENTINEL_DESIGN_REQUIRED`.
+The server raw inventory remains in place: 8 files, 241,738 bytes, digest
+`f9b4dd9259736ebe2d26f9fcfd06bb0497be69a886de7ecc8d359009992f1c0a`.
+Only compact evidence was downloaded to
+`docs/codex/audits/stage4_2r3c3t13s24d1r13_20260804_df3910f/`.
+
+Read-only design evidence proved the old D1R11 signed paths are confounded by
+continuing R17 feedback and moving Card15 centers; they are not valid
+responses about the D1R13 zero baseline. The active D1R14 design is frozen in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14_ZERO_BASELINE_SIGNED_EXCITATION_SENTINEL_DESIGN.md`.
+It fixes 72 fresh trajectories: one zero baseline and eight signed probes per
+context over eight contexts. A pass authorizes only design of a separate
+time-distributed zero-baseline identification campaign. MPC, expert data, BC,
+DAgger, and bounded residual RL remain blocked.

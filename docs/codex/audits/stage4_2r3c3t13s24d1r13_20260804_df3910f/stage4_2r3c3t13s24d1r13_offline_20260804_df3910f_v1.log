@@ -1,0 +1,16 @@
+[T13S24D1R13] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R13] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r13_runs/stage4_2r3c3t13s24d1r13_zero_increment_deconfounding_sentinel_20260804_df3910f_v1 command=offline backend=ray resume=0 workers=8
+[T13S24D1R13] eight fresh TSC zero-increment sentinels; formal tracking is diagnostic only.
+[T13S24D1R13] formal 250/270 ms arrival and 350/370 ms hold timing is unchanged.
+{
+  "expected_post_prefix_action_count": 208,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "zero_plant_offline_preflight",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "selected_spec_count": 8,
+  "snapshot_pass_count": 8,
+  "source_raw_count": 600,
+  "stage": "Stage4.2R3c3T13S24D1R13"
+}
