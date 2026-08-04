@@ -792,13 +792,15 @@ Maximum off-basis residual was `0.0990759`, maximum issue/linearized-cancel
 increment was `0.1401852`, and new raw/TSC/controller/plant counts were zero.
 The state-11 online cancellation is explicitly unvalidated.
 
-The active task is a fresh Stage4.2R3c3T13S24D1R14R2 authentic 72-case
-safety/geometry sentinel design. It must test the fixed mixed matrix on the
-same eight contexts with eight zero baselines and 64 signed probes, exact
-task-step-10 issue, causal task-step-11 stored-center cancellation under the
-unchanged 0.24/0.25 gates, full horizons, and the original D1R14 response
-geometry. Transition-model fitting, MPC, expert data, BC, DAgger, and bounded
-residual RL remain blocked.
+The D1R14R2 design is frozen prospectively and its independent implementation
+has passed local compile/JSON, 15/15 focused tests, and the complete 1072/1072
+repository suite. It fixes the same eight contexts, eight zero baselines, 64
+signed fixed-mixed-basis probes, exact task-step-10 issue, causal task-step-11
+stored-center cancellation under the unchanged 0.24/0.25 gates, exact zero
+afterward, and the original D1R14 geometry. Package construction, empty-tree
+simulation, server validation, zero-TSC offline gate, and the 72 authentic TSC
+tasks remain to be completed. Transition-model fitting, MPC, expert data, BC,
+DAgger, and bounded residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

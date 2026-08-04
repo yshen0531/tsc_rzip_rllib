@@ -1131,3 +1131,20 @@ It fixes 72 fresh trajectories: one zero baseline and eight signed probes per
 context over eight contexts. A pass authorizes only design of a separate
 time-distributed zero-baseline identification campaign. MPC, expert data, BC,
 DAgger, and bounded residual RL remain blocked.
+
+## Current handoff: D1R14R2 implementation locally validated
+
+D1R14R2 is frozen before outcome inspection at design SHA-256
+`5344a7436277c18d3a85a750d5516c69595c6d84090d47f9cc01af85b888896a`.
+Its local implementation and structurally separate independent forensic now
+cover the fixed mixed-matrix issue, causal stored-center cancellation, exact
+zero continuation, source/R1A authentication, immutable resume identity, raw
+and snapshot reconstruction, and unchanged response geometry. All 503
+repository JSON files parsed, compileall passed, focused tests passed 15/15,
+and the complete repository suite passed 1072/1072.
+
+No D1R14R2 server deployment, offline run, controller, plant step, `gotsc`, or
+TSC execution has occurred yet. The next safe boundary is package construction
+and empty-tree validation, followed by installed-server validation and the
+mandatory zero-TSC offline gate. MPC, expert data, BC, DAgger, and bounded
+residual RL remain blocked.
