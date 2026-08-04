@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R1A",
+  "source_remote_output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r1a_audits/stage4_2r3c3t13s24d1r14r1a_quantization_margin_preflight_20260804_b8040b6_v1",
+  "source_remote_offline_log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r14r1a_offline_20260804_b8040b6_v1.log",
+  "source_remote_installed_verify_log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s24d1r14r1a_b8040b6_installed_verify.log",
+  "source_remote_exploratory_full_test_log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/stage4_2r3c3t13s24d1r14r1a_b8040b6_full_tests.log",
+  "file_count": 6,
+  "total_bytes": 194795,
+  "files": [
+    {
+      "name": "stage4_2r3c3t13s24d1r14r1a_b8040b6_full_tests.log",
+      "size": 32808,
+      "sha256": "ddcdddf70114a6817ff60a8d0a1d7451751888c57b346a5699577d104145c413"
+    },
+    {
+      "name": "stage4_2r3c3t13s24d1r14r1a_b8040b6_installed_verify.log",
+      "size": 38507,
+      "sha256": "78b7eb5453ccc2aa7f58a07fb83e0ec60dfeab6852829b8e9bb633b4b1cee335"
+    },
+    {
+      "name": "stage4_2r3c3t13s24d1r14r1a_detailed_v1.json",
+      "size": 119585,
+      "sha256": "a9ffc98b798d4735d7302b1ca4407dbc60266228007d82d34418a291df2b0e8d"
+    },
+    {
+      "name": "stage4_2r3c3t13s24d1r14r1a_manifest_v1.json",
+      "size": 1411,
+      "sha256": "d6b4c53c46b8948d979d3eaee1861885f61d33ac70097a7576110361f0bafa87"
+    },
+    {
+      "name": "stage4_2r3c3t13s24d1r14r1a_offline_20260804_b8040b6_v1.log",
+      "size": 1601,
+      "sha256": "915d91af05efb2bface9b09c43a291c65df55ac5afc0ee755f57d793d08c134f"
+    },
+    {
+      "name": "stage4_2r3c3t13s24d1r14r1a_summary_v1.json",
+      "size": 883,
+      "sha256": "77194861b0406257d055b5ebe0e087b9f9c8222e76600fa443de9d34e7fc682f"
+    }
+  ],
+  "transfer_verified": true,
+  "json_parse_verified": true,
+  "remote_local_size_and_sha256_match": true,
+  "large_source_raw_downloaded": false,
+  "large_source_raw_remains_server_side": true
+}

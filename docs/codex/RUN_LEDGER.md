@@ -1265,3 +1265,34 @@
   control, model, MPC, expert-data, BC, DAgger, or RL evidence
 - Next: freeze D1R2 identity-only normalization and run the exact 54-case
   fresh real-TSC safety sentinel with the additional 0.24 cancellation margin
+
+## Stage4.2R3c3T13S24D1R14R1A quantization-margin preflight
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / package checkpoints: design frozen before
+  implementation, `58912e7`, `b8040b6`
+- Package revision:
+  `r42r3c3t13s24d1r14r1a_quantization_margin_preflight_v1`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r1a_audits/stage4_2r3c3t13s24d1r14r1a_quantization_margin_preflight_20260804_b8040b6_v1`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r14r1a_offline_20260804_b8040b6_v1.log`
+- Fresh/resume: fresh zero-TSC fixed-candidate replay
+- Source raw authenticated / new raw: `72 / 0`
+- Matrix digest:
+  `c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c`
+- Static issue / predicted geometry gates: `64/64`, `8/8`
+- Maximum off-basis / issue / current: `0.0990759019`, `0.1401851852`,
+  `0.38005`
+- Detailed / summary / manifest hashes:
+  `a9ffc98b798d4735d7302b1ca4407dbc60266228007d82d34418a291df2b0e8d`,
+  `77194861b0406257d055b5ebe0e087b9f9c8222e76600fa443de9d34e7fc682f`,
+  `d6b4c53c46b8948d979d3eaee1861885f61d33ac70097a7576110361f0bafa87`
+- Route:
+  `QUANTIZATION_MARGIN_PREFLIGHT_PASS_R2_SENTINEL_DESIGN_REQUIRED`
+- Known limitation: online cancellation is diagnostic-only and unproved;
+  no controller, plant, Ray, `gotsc`, TSC, or formal tracking ran
+- Classification: finite development-selected static-construction PASS; no
+  plant, controller, MPC, expert-data, BC, DAgger, or RL evidence
+- Next: prospectively freeze and execute a fresh 72-case D1R14R2 authentic
+  safety/geometry sentinel

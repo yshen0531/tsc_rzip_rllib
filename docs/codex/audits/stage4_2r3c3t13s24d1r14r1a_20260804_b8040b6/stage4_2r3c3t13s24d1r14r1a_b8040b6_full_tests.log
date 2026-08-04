@@ -1,0 +1,407 @@
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=120 actors=96 initialized_now=0
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=24 actors=24 initialized_now=0
+[test] ray_capacity requested=96 cluster_cpus=96 pending=150 actors=96 initialized_now=0
+........{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "created_utc": "20260804_103548",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041,
+      "max_terminal_velocity_m_per_s": 0.02,
+      "max_late_velocity_rms_m_per_s": 0.08
+    }
+  ]
+}
+.{
+  "verdict": "NO_CONFIRMED_HOLD",
+  "created_utc": "20260804_103548",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 0,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 99,
+      "mean_terminal_RZ_error_m": null,
+      "max_terminal_velocity_m_per_s": null,
+      "max_late_velocity_rms_m_per_s": null
+    }
+  ]
+}
+.....[Stage2 evaluation] candidate stored as failure because the result was not strict-JSON serializable: non-finite JSON number at $.trajectory[0].R: nan
+......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................F............F....E...............E.......Es...............................E.....................E..........E.........E...........................................................................................E.......E.......E......E................E.........E.................................................E........E.....E........E........E...............E.................E.......E...........................................................................E................F........................................................................
+======================================================================
+ERROR: test_launcher_is_offline_and_has_no_broad_kill (test_stage4_2r3c3t10_interaction_aware_feasibility.Stage42R3C3T10Tests.test_launcher_is_offline_and_has_no_broad_kill)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t10_interaction_aware_feasibility.py", line 144, in test_launcher_is_offline_and_has_no_broad_kill
+    (ROOT / name).read_text(encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t10_common.sh'
+
+======================================================================
+ERROR: test_launcher_uses_the_exact_t9_eight_basis_source (test_stage4_2r3c3t11_persistent_step_response_preflight.Stage42R3C3T11PreflightTests.test_launcher_uses_the_exact_t9_eight_basis_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t11_persistent_step_response_preflight.py", line 125, in test_launcher_uses_the_exact_t9_eight_basis_source
+    text = (ROOT / "run_stage4_2r3c3t11_preflight.sh").read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t11_preflight.sh'
+
+======================================================================
+ERROR: test_launchers_are_offline_and_stage_specific (test_stage4_2r3c3t12_formal_gap_route_discriminator.Stage42R3C3T12Tests.test_launchers_are_offline_and_stage_specific)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t12_formal_gap_route_discriminator.py", line 189, in test_launchers_are_offline_and_stage_specific
+    (ROOT / name).read_text(encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t12_common.sh'
+
+======================================================================
+ERROR: test_launcher_treats_controller_bank_as_file (test_stage4_2r3c3t13s13_recurrent_sequence_tube_identification.Stage42R3C3T13S13Tests.test_launcher_treats_controller_bank_as_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s13_recurrent_sequence_tube_identification.py", line 272, in test_launcher_treats_controller_bank_as_file
+    text = (ROOT / "run_stage4_2r3c3t13s13_common.sh").read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s13_common.sh'
+
+======================================================================
+ERROR: test_stop_launcher_never_broadly_kills_processes (test_stage4_2r3c3t13s14_active_calibration_sentinel.Stage42R3C3T13S14Tests.test_stop_launcher_never_broadly_kills_processes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s14_active_calibration_sentinel.py", line 291, in test_stop_launcher_never_broadly_kills_processes
+    text = (ROOT / "run_stop_stage4_2r3c3t13s14_now.sh").read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stop_stage4_2r3c3t13s14_now.sh'
+
+======================================================================
+ERROR: test_stop_launcher_never_broadly_kills_processes (test_stage4_2r3c3t13s15_fixed_basis_local_identification.Stage42R3C3T13S15Tests.test_stop_launcher_never_broadly_kills_processes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s15_fixed_basis_local_identification.py", line 233, in test_stop_launcher_never_broadly_kills_processes
+    text = (ROOT / "run_stop_stage4_2r3c3t13s15_now.sh").read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stop_stage4_2r3c3t13s15_now.sh'
+
+======================================================================
+ERROR: test_stop_launcher_never_broadly_kills_processes (test_stage4_2r3c3t13s16_orthogonal_fixed_basis_identification.Stage42R3C3T13S16Tests.test_stop_launcher_never_broadly_kills_processes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s16_orthogonal_fixed_basis_identification.py", line 258, in test_stop_launcher_never_broadly_kills_processes
+    text = (ROOT / "run_stop_stage4_2r3c3t13s16_now.sh").read_text(encoding="utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stop_stage4_2r3c3t13s16_now.sh'
+
+======================================================================
+ERROR: test_launchers_are_stage_specific_and_zero_tsc (test_stage4_2r3c3t13s22_full_horizon_affine_authority.Stage42R3C3T13S22Tests.test_launchers_are_stage_specific_and_zero_tsc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s22_full_horizon_affine_authority.py", line 148, in test_launchers_are_stage_specific_and_zero_tsc
+    (ROOT / name).read_text(encoding="utf-8")
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s22_common.sh'
+
+======================================================================
+ERROR: test_launchers_are_stage_specific_and_zero_plant (test_stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight.Stage42R3C3T13S23Tests.test_launchers_are_stage_specific_and_zero_plant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s23_sequential_hadamard_lattice_preflight.py", line 94, in test_launchers_are_stage_specific_and_zero_plant
+    common = (ROOT / "run_stage4_2r3c3t13s23_common.sh").read_text(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s23_common.sh'
+
+======================================================================
+ERROR: test_launchers_are_stage_specific_and_zero_plant (test_stage4_2r3c3t13s23d1_bounded_schedule_redesign_search.Stage42R3C3T13S23D1Tests.test_launchers_are_stage_specific_and_zero_plant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s23d1_bounded_schedule_redesign_search.py", line 76, in test_launchers_are_stage_specific_and_zero_plant
+    common = (ROOT / "run_stage4_2r3c3t13s23d1_common.sh").read_text(encoding="utf-8")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s23d1_common.sh'
+
+======================================================================
+ERROR: test_launchers_are_stage_specific_and_zero_plant (test_stage4_2r3c3t13s23r1_amplitude_coded_hadamard_preflight.Stage42R3C3T13S23R1Tests.test_launchers_are_stage_specific_and_zero_plant)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s23r1_amplitude_coded_hadamard_preflight.py", line 83, in test_launchers_are_stage_specific_and_zero_plant
+    common = (ROOT / "run_stage4_2r3c3t13s23r1_common.sh").read_text(encoding="utf-8")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s23r1_common.sh'
+
+======================================================================
+ERROR: test_launchers_use_server_virtualenv_and_zero_tsc_path (test_stage4_2r3c3t13s24d1_contracted_amplitude_preflight.Stage42R3C3T13S24D1Tests.test_launchers_use_server_virtualenv_and_zero_tsc_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1_contracted_amplitude_preflight.py", line 123, in test_launchers_use_server_virtualenv_and_zero_tsc_path
+    common = (ROOT / "run_stage4_2r3c3t13s24d1_common.sh").read_text(encoding="utf-8")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1_common.sh'
+
+======================================================================
+ERROR: test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code (test_stage4_2r3c3t13s24d1r10_exact_row_completion_safety_sentinel.Stage42R3C3T13S24D1R10Tests.test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r10_exact_row_completion_safety_sentinel.py", line 350, in test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code
+    common = (ROOT / "run_stage4_2r3c3t13s24d1r10_common.sh").read_text(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r10_common.sh'
+
+======================================================================
+ERROR: test_launchers_use_server_virtualenv_and_zero_tsc_path (test_stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.Stage42R3C3T13S24D1R1Tests.test_launchers_use_server_virtualenv_and_zero_tsc_path)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r1_geometry_restoring_amplitude_search.py", line 85, in test_launchers_use_server_virtualenv_and_zero_tsc_path
+    common = (ROOT / "run_stage4_2r3c3t13s24d1r1_common.sh").read_text(encoding="utf-8")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r1_common.sh'
+
+======================================================================
+ERROR: test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code (test_stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.Stage42R3C3T13S24D1R2Tests.test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r2_real_tsc_safety_sentinel.py", line 230, in test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code
+    common = (ROOT / "run_stage4_2r3c3t13s24d1r2_common.sh").read_text(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r2_common.sh'
+
+======================================================================
+ERROR: test_launcher_uses_virtualenv_and_contains_no_tsc_command (test_stage4_2r3c3t13s24d1r3_causal_split_return_preflight.Stage42R3C3T13S24D1R3Tests.test_launcher_uses_virtualenv_and_contains_no_tsc_command)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r3_causal_split_return_preflight.py", line 112, in test_launcher_uses_virtualenv_and_contains_no_tsc_command
+    text = (ROOT / "run_stage4_2r3c3t13s24d1r3_offline.sh").read_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r3_offline.sh'
+
+======================================================================
+ERROR: test_launchers_use_virtualenv_fixed_capacity_and_exact_pid_stop (test_stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel.Stage42R3C3T13S24D1R4Tests.test_launchers_use_virtualenv_fixed_capacity_and_exact_pid_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel.py", line 258, in test_launchers_use_virtualenv_fixed_capacity_and_exact_pid_stop
+    text = "\n".join((ROOT / name).read_text(encoding="utf-8") for name in names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r4_causal_split_return_safety_sentinel.py", line 258, in <genexpr>
+    text = "\n".join((ROOT / name).read_text(encoding="utf-8") for name in names)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r4_common.sh'
+
+======================================================================
+ERROR: test_launcher_uses_only_server_virtualenv_and_offline_audits (test_stage4_2r3c3t13s24d1r5_recursive_split_return_preflight.Stage42R3C3T13S24D1R5Tests.test_launcher_uses_only_server_virtualenv_and_offline_audits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r5_recursive_split_return_preflight.py", line 199, in test_launcher_uses_only_server_virtualenv_and_offline_audits
+    text = (ROOT / "run_stage4_2r3c3t13s24d1r5_offline.sh").read_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r5_offline.sh'
+
+======================================================================
+ERROR: test_launchers_use_virtualenv_fixed_capacity_and_exact_pid_stop (test_stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel.Stage42R3C3T13S24D1R6Tests.test_launchers_use_virtualenv_fixed_capacity_and_exact_pid_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel.py", line 281, in test_launchers_use_virtualenv_fixed_capacity_and_exact_pid_stop
+    text = "\n".join((ROOT / name).read_text(encoding="utf-8") for name in names)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r6_recursive_split_return_safety_sentinel.py", line 281, in <genexpr>
+    text = "\n".join((ROOT / name).read_text(encoding="utf-8") for name in names)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r6_common.sh'
+
+======================================================================
+ERROR: test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code (test_stage4_2r3c3t13s24d1r8_real_tsc_safety_sentinel.Stage42R3C3T13S24D1R8Tests.test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r8_real_tsc_safety_sentinel.py", line 309, in test_launchers_use_server_virtualenv_fixed_capacity_and_independent_raw_code
+    common = (ROOT / "run_stage4_2r3c3t13s24d1r8_common.sh").read_text(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r8_common.sh'
+
+======================================================================
+ERROR: test_launcher_uses_server_venv_and_contains_no_tsc_backend (test_stage4_2r3c3t13s24d1r9_central_row_replacement_preflight.CentralRowReplacementPreflightTest.test_launcher_uses_server_venv_and_contains_no_tsc_backend)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s24d1r9_central_row_replacement_preflight.py", line 130, in test_launcher_uses_server_venv_and_contains_no_tsc_backend
+    launcher = (ROOT / "run_stage4_2r3c3t13s24d1r9.sh").read_text(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s24d1r9.sh'
+
+======================================================================
+ERROR: test_launchers_do_not_require_transferred_executable_bits (test_stage4_2r3c3t13s9_unified_postqueue_q1_identification.Stage42R3C3T13S9Tests.test_launchers_do_not_require_transferred_executable_bits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t13s9_unified_postqueue_q1_identification.py", line 438, in test_launchers_do_not_require_transferred_executable_bits
+    offline = (root / "run_stage4_2r3c3t13s9_offline.sh").read_text(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/yangshen0711/tsc_all/tsc_rzip_rllib/run_stage4_2r3c3t13s9_offline.sh'
+
+======================================================================
+FAIL: test_self_test_and_launchers (test_stage4_2r3c2_restart_target_state_regulation_mpc.Stage42R3C2DesignTests.test_self_test_and_launchers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c2_restart_target_state_regulation_mpc.py", line 546, in test_self_test_and_launchers
+    self.assertTrue(
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_self_test_and_launchers (test_stage4_2r3c3_restart_task_clock_local_response_identification.Stage42R3C3DesignTests.test_self_test_and_launchers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3_restart_task_clock_local_response_identification.py", line 701, in test_self_test_and_launchers
+    self.assertTrue(
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_self_test_and_launchers (test_stage4_2r3c3t1_long_separation_zero_net_transport_identification.Stage42R3C3T1DesignTests.test_self_test_and_launchers)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tests/test_stage4_2r3c3t1_long_separation_zero_net_transport_identification.py", line 365, in test_self_test_and_launchers
+    self.assertTrue(
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1057 tests in 5.736s
+
+FAILED (failures=3, errors=22, skipped=1)

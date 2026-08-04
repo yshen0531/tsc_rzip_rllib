@@ -1051,6 +1051,33 @@ at `1.275`, with 64/64 static passes and maximum issue/idealized cancellation
 `0.1401852`. Active work is a new frozen D1R14R1A zero-TSC replay of this fixed
 candidate before any D1R14R2 real sentinel is authorized.
 
+## Current handoff: D1R14R1A final, D1R14R2 design active
+
+D1R14R1A implementation/package checkpoints are `58912e7 / b8040b6`. The
+formal server replay authenticated the complete D1R14R1/D1R14 source chain,
+matched fixed matrix digest
+`c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c`,
+and passed all 64/64 exact static issue constructions. Predicted minimum odd
+peak was `0.005999999999999252`, maximum condition `3.7020780012`, maximum
+off-basis residual `0.0990759019`, and maximum issue/linearized cancellation
+increment `0.1401851852`. New raw, TSC, controller, and plant-step counts were
+all zero.
+
+The route is
+`QUANTIZATION_MARGIN_PREFLIGHT_PASS_R2_SENTINEL_DESIGN_REQUIRED`. Online
+state-11 cancellation and plant response remain unvalidated. The compact
+evidence and exact classification are under
+`docs/codex/audits/stage4_2r3c3t13s24d1r14r1a_20260804_b8040b6/` and
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14R1A_FORENSIC_REPORT.md`.
+
+The active work is to freeze and implement D1R14R2 as a new 72-case authentic
+safety/geometry sentinel over eight zero baselines and 64 signed fixed-mixed-
+basis probes. It must validate the task-step-11 causal cancellation under both
+the 0.24 prospective margin and original 0.25 cap before evaluating the
+unchanged D1R14 geometry. Even a pass authorizes only a separate time-
+distributed zero-baseline identification design. MPC, expert data, BC,
+DAgger, and bounded residual RL remain blocked.
+
 ## Current handoff: D1R12 final, D1R13 zero-increment sentinel active
 
 D1R12 read only the immutable 600-file D1R11 training boundary. Its accepted

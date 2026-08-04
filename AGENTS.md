@@ -785,10 +785,19 @@ clipping, cosine, and actuator gates passed. This is a zero-TSC basis
 quantization-margin design failure, not a runtime, report, plant, control, or
 MPC result.
 
-The active task is D1R14R1A, a separately frozen zero-TSC replay of a fixed
-third-column multiplier `1.275`, selected from a disclosed development-only
-0.025 grid. Only an R1A pass may authorize a fresh D1R14R2 real safety/geometry
-sentinel. Transition-model fitting, MPC, expert data, BC, DAgger, and bounded
+D1R14R1A package `b8040b6` then completed its separately frozen zero-TSC
+fixed-candidate replay. The exact matrix digest matched, predicted signal and
+condition passed, and all 64/64 exact static Card15 issue constructions passed.
+Maximum off-basis residual was `0.0990759`, maximum issue/linearized-cancel
+increment was `0.1401852`, and new raw/TSC/controller/plant counts were zero.
+The state-11 online cancellation is explicitly unvalidated.
+
+The active task is a fresh Stage4.2R3c3T13S24D1R14R2 authentic 72-case
+safety/geometry sentinel design. It must test the fixed mixed matrix on the
+same eight contexts with eight zero baselines and 64 signed probes, exact
+task-step-10 issue, causal task-step-11 stored-center cancellation under the
+unchanged 0.24/0.25 gates, full horizons, and the original D1R14 response
+geometry. Transition-model fitting, MPC, expert data, BC, DAgger, and bounded
 residual RL remain blocked.
 
 ## 10. Required validation before server execution

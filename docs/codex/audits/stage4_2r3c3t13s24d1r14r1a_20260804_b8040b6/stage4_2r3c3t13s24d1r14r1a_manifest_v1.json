@@ -1,0 +1,19 @@
+{
+  "config": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r1a_quantization_margin_preflight_v1.json",
+  "config_sha256": "e767d8c5f1e5f3434e247492259a3dbb7ea9de0849cc0d189f756e301545664d",
+  "design_document": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/reports/STAGE4_2R3C3T13S24D1R14R1A_QUANTIZATION_MARGIN_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "a8b6a87a647b0ee3dc135772c38c4c4530db1e67e9115fe41af77f3afb128e5b",
+  "identity": "fixed_third_column_quantization_margin_preflight_v1",
+  "new_raw_files_created": 0,
+  "outputs": {
+    "stage4_2r3c3t13s24d1r14r1a_detailed_v1.json": "a9ffc98b798d4735d7302b1ca4407dbc60266228007d82d34418a291df2b0e8d",
+    "stage4_2r3c3t13s24d1r14r1a_summary_v1.json": "77194861b0406257d055b5ebe0e087b9f9c8222e76600fa443de9d34e7fc682f"
+  },
+  "ray_gotsc_tsc_plant_or_controller_executed": false,
+  "route": "QUANTIZATION_MARGIN_PREFLIGHT_PASS_R2_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_d1r14_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14_runs/stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel_20260804_d32761c_v1",
+  "source_r1_output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r1_audits/stage4_2r3c3t13s24d1r14r1_pooled_mixed_basis_preflight_20260804_36f0d41_v1",
+  "source_raw_read_in_place": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R1A"
+}

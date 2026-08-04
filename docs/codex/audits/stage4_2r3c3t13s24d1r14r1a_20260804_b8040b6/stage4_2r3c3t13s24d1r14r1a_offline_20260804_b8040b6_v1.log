@@ -1,0 +1,25 @@
+[Stage4.2R3c3T13S24D1R14R1A] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[Stage4.2R3c3T13S24D1R14R1A] source_r1=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r1_audits/stage4_2r3c3t13s24d1r14r1_pooled_mixed_basis_preflight_20260804_36f0d41_v1
+source_d1r14=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14_runs/stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel_20260804_d32761c_v1
+output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r1a_audits/stage4_2r3c3t13s24d1r14r1a_quantization_margin_preflight_20260804_b8040b6_v1
+[Stage4.2R3c3T13S24D1R14R1A] zero controller/plant/Ray/gotsc/TSC; fixed candidate replay only.
+{
+  "identity": "fixed_third_column_quantization_margin_preflight_v1",
+  "matrix_digest": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+  "maximum_issue_incremental_normalized_action_linf": 0.14018518518518544,
+  "maximum_linearized_cancel_incremental_linf_diagnostic_only": 0.14018518518518544,
+  "maximum_off_basis_residual": 0.09907590194856689,
+  "new_raw_count": 0,
+  "online_cancellation_proved": false,
+  "passed": true,
+  "predicted_maximum_unit_column_condition": 3.702078001189697,
+  "predicted_minimum_odd_peak": 0.005999999999999252,
+  "route": "QUANTIZATION_MARGIN_PREFLIGHT_PASS_R2_SENTINEL_DESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_r1_authenticated": true,
+  "source_raw_count": 72,
+  "stage": "Stage4.2R3c3T13S24D1R14R1A",
+  "static_issue_construction_count": 64,
+  "static_issue_construction_pass_count": 64,
+  "tsc_executed": false
+}

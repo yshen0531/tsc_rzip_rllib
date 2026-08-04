@@ -3910,3 +3910,55 @@ residual becomes `0.0990759` and maximum issue/idealized cancel becomes
 frozen D1R14R1A zero-TSC exact replay of that fixed candidate. Only R1A may
 authorize a fresh D1R14R2 design. MPC, expert data, BC, DAgger, and bounded
 residual RL remain blocked.
+
+## 65. Final D1R14R1A result and active D1R14R2 design
+
+D1R14R1A completed its frozen zero-new-TSC fixed-candidate replay from
+implementation/package checkpoints `58912e7 / b8040b6`. It authenticated the
+exact D1R14R1 failure boundary and all 72 immutable D1R14 v2 raw files in
+place. It regenerated the matrix by scaling only column 2 by `1.275` and
+matched digest:
+
+```text
+c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c
+```
+
+Independent row-level compact recomputation found:
+
+```text
+contexts / signed constructions                              8 / 64
+all exact static issue gates                                64 / 64
+predicted minimum odd peak                      0.005999999999999252
+predicted maximum unit-column condition                3.7020780012
+maximum off-basis residual                            0.0990759019
+maximum issue / linearized cancel increment           0.1401851852
+minimum desired/applied cosine                        0.9945784028
+maximum predicted current utilization                         0.38005
+new raw / TSC / controller / plant steps                 all zero
+route  QUANTIZATION_MARGIN_PREFLIGHT_PASS_R2_SENTINEL_DESIGN_REQUIRED
+```
+
+This is a finite development-selected static construction PASS. It does not
+validate state-11 online cancellation, plant response, symmetry, transition
+model, controller, MPC, robustness, or formal tracking. Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R1A_FORENSIC_REPORT.md
+```
+
+The active task is to prospectively freeze and independently implement
+Stage4.2R3c3T13S24D1R14R2. Its maximum matrix is the same eight contexts with
+one fresh zero baseline and four fixed mixed directions times two signs per
+context, for 72 fresh authentic TSC/controller rollouts. It must reproduce
+the exact source prefix through state 10, apply the fixed issue at task step
+10, causally restore the stored center at task step 11 under both the 0.24
+online margin and original 0.25 cap, and command exact zero to the unchanged
+35/37-state horizon.
+
+All restart, causal trace, Card15, action/current, saturation/clipping,
+forbidden-input, raw, snapshot, and complete-log gates precede the original
+D1R14 signal/symmetry/rank-four/condition-at-most-20 geometry gates. Formal
+tracking remains diagnostic. A D1R14R2 pass may authorize only a separately
+frozen time-distributed zero-baseline identification design. Transition-model
+fitting, MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
