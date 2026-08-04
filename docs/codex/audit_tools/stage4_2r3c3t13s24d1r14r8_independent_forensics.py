@@ -83,6 +83,31 @@ def _inventory(directory: Path) -> dict[str, Any]:
     }
 
 
+def _physical_trajectory_finite(
+    trajectory: Sequence[Mapping[str, Any]],
+    currents: np.ndarray,
+    horizon: int,
+) -> bool:
+    """Check the numeric plant fields without rejecting valid string metadata."""
+    if len(trajectory) != horizon + 1 or currents.shape != (horizon + 1, N_COILS):
+        return False
+    if not np.all(np.isfinite(currents)):
+        return False
+    for row in trajectory:
+        try:
+            wires = np.asarray(row.get("wire_currents_a", []), dtype=float)
+            physical = np.asarray([row["R"], row["Z"], row["Ip"]], dtype=float)
+        except (KeyError, TypeError, ValueError):
+            return False
+        if wires.size == 0 or not np.all(np.isfinite(wires)):
+            return False
+        if physical.shape != (3,) or not np.all(np.isfinite(physical)):
+            return False
+        if bool(row.get("abnormal")):
+            return False
+    return True
+
+
 def _validate(cfg: Mapping[str, Any]) -> None:
     request, bank, model, gates = (
         cfg["request_contract"], cfg["bank_contract"], cfg["model_contract"], cfg["gates"]
@@ -227,13 +252,7 @@ def raw_audit(cfg: Mapping[str, Any], paths: Mapping[str, Path], phase: str) -> 
                 and trace[7].get("r3c3t13s21_exact_calibration_net_zero")
             ) if full else False
             currents = np.asarray([row.get("currents_a_tsc", []) for row in trajectory], dtype=float)
-            finite = bool(
-                full
-                and currents.shape == (horizon + 1, N_COILS)
-                and raw_helpers._all_finite(trajectory)
-                and raw_helpers._all_finite(trace)
-                and not any(bool(row.get("abnormal")) for row in trajectory)
-            )
+            finite = bool(full and _physical_trajectory_finite(trajectory, currents, horizon))
             forbidden = sum(any(bool(row.get(key)) for key in FORBIDDEN) for row in trace)
             solver = sum(not bool(row.get("solver_success")) for row in trace)
             saturation = raw_helpers._nested_true_count(

@@ -83,6 +83,22 @@ class Stage42R8Tests(unittest.TestCase):
         populated = r8._trace_action_matrix(trace, 0, 1)
         self.assertEqual(populated.shape, (1, r8.N_COILS))
 
+    def test_independent_finite_guard_accepts_metadata_and_rejects_nonfinite_plant_fields(self):
+        row = {
+            "R": 1.8,
+            "Z": 0.0,
+            "Ip": 100_000.0,
+            "currents_a_tsc": [0.0] * r8.N_COILS,
+            "wire_currents_a": [0.0, 1.0],
+            "abnormal": False,
+            "status": "valid string metadata",
+        }
+        currents = np.asarray([row["currents_a_tsc"]], dtype=float)
+        self.assertTrue(independent._physical_trajectory_finite([row], currents, 0))
+        changed = copy.deepcopy(row)
+        changed["wire_currents_a"][0] = float("nan")
+        self.assertFalse(independent._physical_trajectory_finite([changed], currents, 0))
+
     def test_reporting_repair_requires_explicit_resume(self):
         with self.assertRaisesRegex(ValueError, "requires explicit resume"):
             r8.execute(
