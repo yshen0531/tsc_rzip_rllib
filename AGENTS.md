@@ -804,10 +804,20 @@ not quantization, runtime, plant abnormality, control, or MPC failure.
 
 Post-result development diagnostics found all 16 context-by-sign branches
 individually signal-bearing, rank four, and conditioned at most `9.5578407`.
-That is architecture-selection evidence only. The active task is to freeze a
-zero-new-TSC sign-split feasibility audit that reproduces the D1R14R2 FAIL
-unchanged. Transition-model fitting, MPC, expert data, BC, DAgger, and bounded
-residual RL remain blocked.
+That was architecture-selection evidence only.
+
+D1R14R3 then completed the prospectively frozen zero-new-TSC sign-split raw
+audit. Its initial output stopped on one transcribed R2 state-file SHA. A
+separately audited erratum used the authentic hash already committed before
+R3 and changed no raw, response formula, threshold, route, or physical
+semantics. The corrected primary and independent outputs reproduced R2's
+28/32 shared-model symmetry FAIL unchanged, then passed the distinct
+sign-split gates: 64/64 direction signal, 16/16 rank four, 16/16 condition at
+most 20, and 32/32 exact issue coordinate/field sign pairs. No new TSC ran.
+
+The active task is Stage4.2R3c3T13S24D1R14R4 prospective fresh authentic
+time-shifted sign-split safety/identification design. D1R14R3 authorizes only
+this design, not model fitting, MPC, expert data, BC, DAgger, or RL.
 
 ## 10. Required validation before server execution
 

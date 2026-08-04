@@ -4041,3 +4041,35 @@ reproduce the R2 symmetry FAIL without changing it, and test fixed
 positive/negative four-direction authority. Only a pass may authorize design
 of a fresh time-shifted safety/identification campaign. Model fitting, MPC,
 expert data, BC, DAgger, and bounded residual RL remain blocked.
+
+## 68. Final D1R14R3 result and active D1R14R4 design
+
+D1R14R3 design/implementation/final-package checkpoints are
+`343a516 / aa3325a / ca49a36`. It created no new raw and executed no
+controller, plant, Ray, gotsc, or TSC. Both server-side implementations
+strictly re-read all 72 immutable R2 raw files and repeated the complete
+source/restart/snapshot/action/safety audit.
+
+The initial package correctly stopped at `SOURCE_FAIL_NO_TSC` because the R2
+state-file expected SHA had been transcribed incorrectly. The authentic hash
+was already committed in the pre-R3 compact inventory. A separately recorded
+source-fingerprint erratum changed only that expected SHA; v1 remains frozen,
+and corrected v2 used a fresh output directory.
+
+R2's shared odd-model failure was reproduced exactly at 28/32 symmetry with
+four unchanged failed pairs. The different fixed sign-split architecture
+passed: signal 64/64, rank four 16/16, condition at most 20 for 16/16, exact
+opposite issued coordinates/physical fields 32/32, minimum direction peak
+`0.005310999999896815`, and maximum condition `9.55784063525667`. Primary and
+independent outputs agree exactly. Route:
+
+```text
+SIGN_SPLIT_RESPONSE_FEASIBILITY_PASS_TIME_SHIFT_SENTINEL_DESIGN_REQUIRED
+```
+
+This is only finite single-time local branch feasibility. The active task is
+to prospectively freeze Stage4.2R3c3T13S24D1R14R4, a fresh authentic
+time-shifted sign-split safety/identification sentinel. It must validate
+independently cancelled responses at fixed earlier/later issue times before
+any model fit or MPC. Expert data, BC, DAgger, and bounded residual RL remain
+blocked.

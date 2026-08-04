@@ -1325,3 +1325,35 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r2_20260804_ca2815a/`
 - Next: zero-new-TSC sign-split response feasibility audit; no model, MPC,
   expert-data, BC, DAgger, or RL authorization
+
+## Stage4.2R3c3T13S24D1R14R3 sign-split feasibility audit
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / source-hash-hotfix / final-package checkpoints: `343a516`,
+  `aa3325a`, `ca49a36`
+- Initial output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r3_audits/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_20260804_85012c1_v1`
+- Corrected output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r3_audits/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_20260804_ca49a36_v2`
+- New raw / controller / plant / Ray / gotsc / TSC: all zero
+- Source raw authenticated: 72 files / 2,254,876 bytes / digest
+  `c210f959e5ce85739dd0b1f70a2513f64f40c6697d01bf7b56db9621759a1649`
+- v1 route: `SIGN_SPLIT_RESPONSE_FEASIBILITY_SOURCE_FAIL_NO_TSC`; one
+  pre-existing expected-state-SHA transcription error, no raw/source change
+- R2 reproduction: shared-model symmetry 28/32 FAIL, four exact failed pairs
+- Sign-split signal / rank / condition: `64/64`, `16/16`, `16/16`
+- Exact issue coordinate / physical-field sign pairs: `32/32`, `32/32`
+- Minimum branch-direction peak / maximum condition:
+  `0.005310999999896815`, `9.55784063525667`
+- Corrected primary / independent hashes:
+  `30755ebccee65a5bcfd08d04632368979ec1c309ac42d4a46df49b3b921cd590`,
+  `f138611d56b77839bb3d87744b49eb08df4c4409947038e25b520f8d43764d90`
+- Route:
+  `SIGN_SPLIT_RESPONSE_FEASIBILITY_PASS_TIME_SHIFT_SENTINEL_DESIGN_REQUIRED`
+- Classification: reporting/source-fingerprint hotfix followed by finite
+  sign-split architecture PASS; no time-shift, model, MPC, control, expert,
+  BC, DAgger, or RL evidence
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r3_20260804_ca49a36/`
+- Next: prospectively freeze D1R14R4 fresh authentic time-shifted sign-split
+  safety/identification sentinel

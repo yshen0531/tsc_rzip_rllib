@@ -1169,3 +1169,22 @@ rank four, and conditioned below 20, but this does not alter the failed verdict
 or authorize a campaign. The next task is to freeze and independently run a
 zero-TSC sign-split feasibility audit. MPC, expert data, BC, DAgger, and RL
 remain blocked.
+
+## Current handoff: D1R14R3 final, D1R14R4 design active
+
+D1R14R3 final package `ca49a36` completed a zero-new-TSC server raw audit.
+The initial `85012c1` output remains frozen as `SOURCE_FAIL_NO_TSC` because of
+one expected state-file SHA transcription error; the correct hash was already
+present in pre-R3 checkpoint `73c5811`. Erratum checkpoint `aa3325a` changed
+only that expected fingerprint and created a fresh v2 output.
+
+Corrected primary/independent outputs passed and agree exactly. They preserve
+R2's 28/32 central-symmetry FAIL, while the separate positive/negative branch
+architecture passed signal 64/64, rank 16/16, condition 16/16, and exact issue
+coordinate/field sign symmetry 32/32. Minimum signal is
+`0.005310999999896815`; maximum condition is `9.55784063525667`. No new raw,
+controller, plant, Ray, gotsc, or TSC ran.
+
+Active work is the prospectively frozen D1R14R4 fresh time-shifted
+sign-split safety/identification design. No model, MPC, expert-data, BC,
+DAgger, or RL work is authorized yet.

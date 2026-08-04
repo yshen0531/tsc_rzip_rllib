@@ -1,0 +1,20 @@
+[T13S24D1R14R3] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R14R3] source_r2=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r2_runs/stage4_2r3c3t13s24d1r14r2_mixed_basis_signed_excitation_sentinel_20260804_ca2815a_v1
+output=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r3_audits/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_20260804_85012c1_v1
+[T13S24D1R14R3] zero controller/plant/Ray/gotsc/TSC; 72 source raw are read in place.
+{
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r3_audits/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_20260804_85012c1_v1/stage4_2r3c3t13s24d1r14r3_primary_v1.json",
+  "passed": false,
+  "route": "SIGN_SPLIT_RESPONSE_FEASIBILITY_SOURCE_FAIL_NO_TSC",
+  "sha256": "945bb981df05940b26cd4087b3b9404583aa0adf2dd6d66036f9bf3bc1c46857",
+  "zero_new_tsc": true
+}
+{
+  "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r3_audits/stage4_2r3c3t13s24d1r14r3_sign_split_response_feasibility_20260804_85012c1_v1/stage4_2r3c3t13s24d1r14r3_independent_v1.json",
+  "passed": false,
+  "primary_exact_agreement": true,
+  "route": "SIGN_SPLIT_RESPONSE_FEASIBILITY_SOURCE_FAIL_NO_TSC",
+  "sha256": "044564fb42c2741080f44fdf2a9f6c6202601adc3fc92aa2276c318171ca945d",
+  "zero_new_tsc": true
+}
+[T13S24D1R14R3] completed; no TSC task was created.
