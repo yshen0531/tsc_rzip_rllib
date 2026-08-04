@@ -737,7 +737,7 @@ difference `0.5221`, zero-versus-R17 divergence `2.6781`, and selected R17
 post-state-10 action `0.3653`. They may not be relabelled as zero-baseline
 responses.
 
-The active task is the prospectively frozen 72-trajectory D1R14 authentic
+The D1R14 design was the prospectively frozen 72-trajectory authentic
 zero-baseline signed-excitation sentinel. It uses the same eight contexts,
 with one fresh zero baseline and four fixed physical directions times two
 signs per context. Steps 0--9 reproduce the exact source prefix; probes issue
@@ -759,9 +759,23 @@ plant, response-geometry, controller-performance, or MPC failure. The v1 run
 is immutable and may not resume. The active work is the new-source v2 hotfix
 defined in
 `docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md`.
-It preserves the frozen physical actions and explicit D1R14 safety gates,
-records dense-coordinate quantities as diagnostics, and must repeat all 72
-fresh trajectories under a new controller/package revision and run identity.
+It preserved the frozen physical actions and explicit D1R14 safety gates and
+recorded dense-coordinate quantities as diagnostics.
+
+D1R14 v2 package `d32761c` then completed 72/72 authentic trajectories with
+exact restart/source prefixes, 64/64 issue and cancellation actions, 8/8 zero
+baselines, no runtime/plant/solver/safety/raw/snapshot/reporting errors, and
+maximum current utilization `0.3904`. The frozen geometry failed: signal
+24/32, symmetry 27/32, rank 8/8, condition 7/8, minimum odd peak
+`0.0005766750`, maximum even/odd `0.7567864`, and maximum condition
+`20.5851685`. This is a real excitation-basis design failure, not a real-MPC
+or formal-control result. Formal tracking 18/72 is diagnostic only.
+
+The active task is D1R14R1, a prospectively frozen zero-new-TSC deterministic
+pooled-whitened amplified mixed-basis recomputation and exact static Card15
+issue preflight. It consumes D1R14 v2 only as development data. A pass may
+authorize only a fresh D1R14R2 real safety/geometry sentinel. Transition-model
+fitting, MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
 
 ## 10. Required validation before server execution
 

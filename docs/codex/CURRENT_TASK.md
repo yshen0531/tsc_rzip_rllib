@@ -3800,7 +3800,7 @@ transition-model fitting, MPC, expert data, BC, DAgger, or bounded residual
 RL. All remaining restart/history/target/continuous-parameter/noise/
 disturbance/long-hold gates remain unchanged.
 
-## 62. D1R14 v1 issue-gate result and active v2 hotfix
+## 62. D1R14 v1 issue-gate result and v2 hotfix
 
 D1R14 v1 package checkpoint `2d5304c` completed 72/72 strict raw. The eight
 zero baselines reached the full 35/37-state horizon, but all 64 signed probes
@@ -3844,8 +3844,40 @@ STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md
 ```
 
 The v1 run may not resume because the controller source fingerprint changes.
-The active task is to validate and deploy controller/package revision v2,
-then repeat all 72 trajectories with a fresh run identity. The requested
-coordinates, exact Card15 construction, physical action, timing, task matrix,
-action/current bounds, response geometry, and scientific scope are unchanged.
-MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
+Controller/package revision v2 repeated all 72 trajectories with a fresh run
+identity while preserving the requested coordinates, exact Card15
+construction, physical actions, timing, task matrix, action/current bounds,
+response geometry, and scientific scope.
+
+## 63. Final D1R14 v2 result and active D1R14R1 preflight
+
+D1R14 v2 package checkpoint `d32761c` completed all 72 authentic TSC tasks.
+Primary and independent server-side audits found 72/72 strict raw, exact
+restart/source prefixes, safety and finite rows; 8/8 zero-baseline
+reproductions; 64/64 exact issue and stored-center cancellation actions; and
+zero runtime, plant, solver, saturation, clipping, action-safety, forbidden-
+input, raw, snapshot, or reporting errors. Maximum current utilization was
+`0.3904`. The raw inventory is 72 files, 2,239,479 bytes, digest
+`0433a64ebaea73186bb193d5102686721497219acfcbecbb721e7fad62e8d7a3`.
+
+The frozen response geometry failed: signal 24/32, symmetry 27/32, rank 8/8,
+condition 7/8, minimum odd peak `0.0005766750`, maximum even/odd ratio
+`0.7567864`, and maximum condition number `20.5851685`. The isolated coil-8
+direction failed the signal floor in every context. The final route is
+`ZERO_BASELINE_EXCITATION_GEOMETRY_FAIL_REDESIGN_REQUIRED`.
+
+This is a genuine excitation/response-geometry design failure, not a runtime,
+restart, plant, corruption, reporting, formal-control, or real-MPC failure.
+Formal tracking 18/72 remains diagnostic only. Full evidence and
+classification are frozen in
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14_FORENSIC_REPORT.md`.
+
+The active task is D1R14R1, a separately preregistered zero-new-TSC
+pooled-whitened amplified mixed-basis recomputation and exact static Card15
+issue preflight. It must authenticate and consume only the immutable D1R14 v2
+development raw, reproduce the deterministic basis and matrix digest, and
+prove every proposed issue action against the unchanged incremental/total/
+current gates. Cancellation safety remains only a linearized diagnostic until
+a new real sentinel. An R1 pass authorizes only design and execution of a
+fresh D1R14R2 safety/geometry sentinel. MPC, expert data, BC, DAgger, and
+bounded residual RL remain blocked.

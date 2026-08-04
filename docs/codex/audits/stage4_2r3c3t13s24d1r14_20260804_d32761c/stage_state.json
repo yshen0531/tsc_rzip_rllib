@@ -1,0 +1,16 @@
+{
+  "finished": true,
+  "new_raw_count": 72,
+  "package_digest": "407946e1ae7faf18cd13f875fd76b82c2b613105ea9e451047a68faa8b3827d1",
+  "phase_status": "failed",
+  "primary_pass": false,
+  "real_tsc_executed": true,
+  "schema_version": 1,
+  "spec_digest": "56f5c085b3846541eb37f2247a6e3e5026ce763ee64566a29811d3f7b1dd59a6",
+  "stage": "Stage4.2R3c3T13S24D1R14",
+  "stop_reason": "ZERO_BASELINE_EXCITATION_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+  "verdict": {
+    "passed": false,
+    "route": "ZERO_BASELINE_EXCITATION_GEOMETRY_FAIL_REDESIGN_REQUIRED"
+  }
+}

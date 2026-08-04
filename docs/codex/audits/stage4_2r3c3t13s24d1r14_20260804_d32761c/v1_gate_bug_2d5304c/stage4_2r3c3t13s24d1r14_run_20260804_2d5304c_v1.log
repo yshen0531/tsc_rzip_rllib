@@ -1,0 +1,104 @@
+[T13S24D1R14] user=yangshen0711 host=master pwd=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+[T13S24D1R14] run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14_runs/stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel_20260804_2d5304c_v1 command=run backend=ray resume=0 workers=72
+[T13S24D1R14] 72 fresh TSC zero-baseline signed-excitation sentinels; formal tracking is diagnostic only.
+[T13S24D1R14] formal 250/270 ms arrival and 350/370 ms hold timing is unchanged.
+2026-08-04 16:30:40,713	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[D1R14] ray_capacity requested=72 cluster_cpus=72 pending=72 actors=72 initialized_now=1
+[D1R14] waiting 0/72
+[D1R14] waiting 0/72
+[D1R14] waiting 0/72
+[D1R14] waiting 0/72
+[D1R14] waiting 0/72
+[D1R14] waiting 0/72
+[D1R14] 1/72
+[D1R14] 2/72
+[D1R14] 3/72
+[D1R14] 4/72
+[D1R14] 5/72
+[D1R14] 6/72
+[D1R14] 7/72
+[D1R14] 8/72
+[D1R14] 9/72
+[D1R14] 10/72
+[D1R14] 11/72
+[D1R14] 12/72
+[D1R14] 13/72
+[D1R14] 14/72
+[D1R14] 15/72
+[D1R14] 16/72
+[D1R14] 17/72
+[D1R14] 18/72
+[D1R14] 19/72
+[D1R14] 20/72
+[D1R14] 21/72
+[D1R14] 22/72
+[D1R14] 23/72
+[D1R14] 24/72
+[D1R14] 25/72
+[D1R14] 26/72
+[D1R14] 27/72
+[D1R14] 28/72
+[D1R14] 29/72
+[D1R14] 30/72
+[D1R14] 31/72
+[D1R14] 32/72
+[D1R14] 33/72
+[D1R14] 34/72
+[D1R14] 35/72
+[D1R14] 36/72
+[D1R14] 37/72
+[D1R14] 38/72
+[D1R14] 39/72
+[D1R14] 40/72
+[D1R14] 41/72
+[D1R14] 42/72
+[D1R14] 43/72
+[D1R14] 44/72
+[D1R14] 45/72
+[D1R14] 46/72
+[D1R14] 47/72
+[D1R14] 48/72
+[D1R14] 49/72
+[D1R14] 50/72
+[D1R14] 51/72
+[D1R14] 52/72
+[D1R14] 53/72
+[D1R14] 54/72
+[D1R14] 55/72
+[D1R14] 56/72
+[D1R14] 57/72
+[D1R14] 58/72
+[D1R14] 59/72
+[D1R14] 60/72
+[D1R14] 61/72
+[D1R14] 62/72
+[D1R14] 63/72
+[D1R14] 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] waiting 64/72
+[D1R14] 65/72
+[D1R14] 66/72
+[D1R14] 67/72
+[D1R14] 68/72
+[D1R14] 69/72
+[D1R14] 70/72
+[D1R14] 71/72
+[D1R14] 72/72
+{
+  "completed": 72,
+  "expected": 72,
+  "passed": false,
+  "pending_at_start": 72,
+  "successful": 8
+}

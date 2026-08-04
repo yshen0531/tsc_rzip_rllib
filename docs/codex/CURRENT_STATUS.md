@@ -1001,7 +1001,7 @@ formal timing remain unchanged. No fresh campaign is authorized until a new
 architecture passes independent deterministic replay. MPC, expert data, BC,
 DAgger, and bounded residual RL remain blocked.
 
-## Current handoff: D1R14 v1 gate bug audited, v2 fresh run active
+## Current handoff: D1R14 final, D1R14R1 zero-TSC redesign preflight active
 
 D1R14 v1 package `2d5304c` produced all 72 strict raw. Eight baselines reached
 the full horizon; all 64 probes stopped before applying their state-10 issue.
@@ -1018,10 +1018,25 @@ Independent audit SHA is
 The exact classification and v2 gate boundary are in
 `docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md`.
 
-The v1 run is frozen and will not resume. Active work is a fresh 72-task v2
-run under a new source fingerprint and run directory. Physical requested
-coordinates and actions, formal timing, explicit action/current safety gates,
-response geometry, and downstream authorization boundary are unchanged.
+The v1 run is frozen and will not resume. The fresh v2 package `d32761c`
+subsequently completed 72/72 authentic TSC tasks. Exact restart/prefix, safety,
+finite rows, issue/cancel, zero-baseline reproduction, raw, snapshot, runtime,
+plant, solver, saturation/clipping, forbidden-input, and report checks all
+passed. Its raw inventory remains on the server: 72 files / 2,239,479 bytes /
+digest `0433a64ebaea73186bb193d5102686721497219acfcbecbb721e7fad62e8d7a3`.
+
+The preregistered response geometry genuinely failed: signal 24/32, symmetry
+27/32, rank 8/8, condition 7/8, minimum odd peak `0.0005766750`, maximum
+even/odd `0.7567864`, and maximum condition `20.5851685`. The primary final
+SHA is `1a65a37c301ba52325f586e0948b0b94b1266c540e2f2a332e5bc02df60a7da2`;
+independent audit SHA is
+`8e7d3d045477502c1060fe621f2c43235e1d530b59c5d22849337dd20aac3eae`.
+Formal tracking 18/72 is diagnostic only.
+
+The active work is a separately frozen D1R14R1 zero-new-TSC deterministic
+mixed-basis recomputation and exact static Card15 issue preflight. A pass may
+authorize only a fresh D1R14R2 real safety/geometry sentinel. MPC, expert data,
+BC, DAgger, and bounded residual RL remain blocked.
 
 ## Current handoff: D1R12 final, D1R13 zero-increment sentinel active
 
