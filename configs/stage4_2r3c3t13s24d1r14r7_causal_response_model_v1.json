@@ -2,7 +2,7 @@
   "schema_version": 1,
   "stage": "Stage4.2R3c3T13S24D1R14R7",
   "identity": "causal_deconfounded_response_model_development_v1",
-  "package_revision": "r42r3c3t13s24d1r14r7_causal_response_model_v1",
+  "package_revision": "r42r3c3t13s24d1r14r7_causal_response_model_v2_full_test_closure",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_CAUSAL_RESPONSE_MODEL_DESIGN.md",
   "design_document_sha256": "567a02c6ce4f8e52c2d517f2eca1ceef52314796b051f5ab43a5b92144337897",
   "source_contracts": {

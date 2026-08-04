@@ -72,7 +72,7 @@ def _validate_config(cfg: Mapping[str, Any]) -> None:
     invalid = (
         cfg.get("stage") != STAGE
         or cfg.get("identity") != IDENTITY
-        or cfg.get("package_revision") != "r42r3c3t13s24d1r14r7_causal_response_model_v1"
+        or cfg.get("package_revision") != "r42r3c3t13s24d1r14r7_causal_response_model_v2_full_test_closure"
         or cfg.get("design_document_sha256") != "567a02c6ce4f8e52c2d517f2eca1ceef52314796b051f5ab43a5b92144337897"
         or tuple(map(int, bank["issue_task_steps"])) != (10, 14, 18, 22)
         or tuple(map(int, bank["descriptor_state_offsets"])) != (0, 1, 2, 4, 8)
