@@ -3,9 +3,9 @@
   "stage": "Stage4.2R3c3T13S24D1R14",
   "run_name": "stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel",
   "campaign_identity": "zero_baseline_signed_excitation_safety_geometry_sentinel_v1",
-  "controller_revision": "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v1",
-  "package_revision": "r42r3c3t13s24d1r14_zero_baseline_signed_excitation_v1",
-  "implementation_checkpoint": "ddc58ea",
+  "controller_revision": "zero_baseline_signed_excitation_v42r3c3t13s24d1r14_v2",
+  "package_revision": "r42r3c3t13s24d1r14_zero_baseline_signed_excitation_v2",
+  "implementation_checkpoint": "c215333",
   "config_path": "configs/stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel_370ms.json",
   "source_stage": "Exact final D1R13 eight-raw boundary plus the exact eight D1R11 baseline prefixes and authentic R3b snapshots.",
   "source_controller_revision": "sequential_replacement_card15_probe_v42r3c3t13s24d1r11_v1 through task step 9 only",
@@ -95,8 +95,8 @@
   "d1r13_implementation_checkpoint": "ac85824",
   "d1r13_package_validation_hotfix_checkpoint": "79aab25",
   "d1r14_design_checkpoint": "c787273",
-  "d1r14_implementation_checkpoint": "ddc58ea",
-  "declared_file_count": 513,
+  "d1r14_implementation_checkpoint": "c215333",
+  "declared_file_count": 514,
   "file_inventory": [
     "AGENTS.md",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -289,6 +289,7 @@
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R10_FORENSIC_REPORT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R11_FULL_REPLACEMENT_IDENTIFICATION_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R13_ZERO_INCREMENT_DECONFOUNDING_SENTINEL_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_V1_ISSUE_GATE_HOTFIX_AUDIT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14_ZERO_BASELINE_SIGNED_EXCITATION_SENTINEL_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R1_FORENSIC_REPORT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R1_GEOMETRY_RESTORING_AMPLITUDE_SEARCH_DESIGN.md",
@@ -611,5 +612,7 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ]
+  ],
+  "d1r14_v1_package_checkpoint": "2d5304c",
+  "d1r14_issue_gate_hotfix_checkpoint": "c215333"
 }
