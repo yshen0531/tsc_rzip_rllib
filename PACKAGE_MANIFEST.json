@@ -4,9 +4,9 @@
   "identity": "causal_deconfounded_response_model_development_v1",
   "run_name": "stage4_2r3c3t13s24d1r14r7_causal_response_model",
   "campaign_identity": "causal_deconfounded_response_model_development_v1",
-  "package_revision": "r42r3c3t13s24d1r14r7_causal_response_model_v2_full_test_closure",
+  "package_revision": "r42r3c3t13s24d1r14r7_causal_response_model_v3_independent_route_schema",
   "design_checkpoint": "64d31b6",
-  "implementation_checkpoint": "bafa32f",
+  "implementation_checkpoint": "a0ed6a7",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r7_causal_response_model_v1.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R7_CAUSAL_RESPONSE_MODEL_DESIGN.md",
   "purpose": "Zero-new-TSC nested whole-pair causal deconfounded response-model development over the authenticated R2/R4/R6 256-response bank.",
@@ -961,5 +961,10 @@
     "initial_staging": "stage4_2r3c3t13s24d1r14r7_84c9e2c_v1",
     "initial_science_execution": false,
     "reason": "complete server test closure for root shell launchers"
+  },
+  "source_authentication_hotfix": {
+    "failed_output": "stage4_2r3c3t13s24d1r14r7_causal_response_model_20260804_ba53161_v2",
+    "raw_or_tsc_created": false,
+    "fix": "read frozen independent_route with official_route_reproduced"
   }
 }
