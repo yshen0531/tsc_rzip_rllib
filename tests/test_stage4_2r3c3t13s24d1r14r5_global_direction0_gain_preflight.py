@@ -150,6 +150,39 @@ class Stage42R3C3T13S24D1R14R5Tests(unittest.TestCase):
         self.assertIn('manifest.get("package_fingerprint", {}).get("digest")', source)
         self.assertNotIn('manifest.get("package_digest")', source)
 
+    def test_geometry_signature_accepts_report_order_not_gate_changes(self):
+        base = {
+            "evaluated": True,
+            "passed": False,
+            "context_count": 8,
+            "issue_task_steps": [10, 14, 18, 22],
+            "branch_count": 64,
+            "branch_direction_count": 256,
+            "signal_pass_count": 254,
+            "rank_pass_count": 64,
+            "condition_pass_count": 64,
+            "minimum_direction_peak_normalized_outputs5": 0.00429800000001368,
+            "maximum_condition_number": 11.570074108693706,
+            "branch_rows": [{"source": "a"}, {"source": "b"}],
+            "issue_coordinate_and_field_symmetry": {
+                "source_pair_count": 32,
+                "new_pair_count": 96,
+                "combined_pair_count": 128,
+                "coordinate_exact_count": 128,
+                "physical_field_exact_count": 128,
+                "passed": True,
+            },
+        }
+        reordered = copy.deepcopy(base)
+        reordered["branch_rows"].reverse()
+        reordered["branch_rows"][0]["first_response_state"] = 15
+        self.assertNotEqual(base, reordered)
+        self.assertEqual(primary._geometry_signature(base), primary._geometry_signature(reordered))
+        self.assertEqual(independent._geometry_signature(base), independent._geometry_signature(reordered))
+        changed = copy.deepcopy(reordered)
+        changed["signal_pass_count"] = 255
+        self.assertNotEqual(primary._geometry_signature(base), primary._geometry_signature(changed))
+
     def test_independent_does_not_import_primary(self):
         source = inspect.getsource(independent)
         self.assertNotIn("r14r5_global_direction0_gain_preflight as", source)

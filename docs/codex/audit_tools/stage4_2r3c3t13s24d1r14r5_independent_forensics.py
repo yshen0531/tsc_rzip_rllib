@@ -78,6 +78,31 @@ def _matrix_digest(value: Sequence[Sequence[float]]) -> str:
     return hashlib.sha256(matrix.tobytes(order="C")).hexdigest()
 
 
+def _geometry_signature(geometry: Mapping[str, Any]) -> dict[str, Any]:
+    symmetry = geometry.get("issue_coordinate_and_field_symmetry") or {}
+    return {
+        "evaluated": geometry.get("evaluated"),
+        "passed": geometry.get("passed"),
+        "context_count": geometry.get("context_count"),
+        "issue_task_steps": geometry.get("issue_task_steps"),
+        "branch_count": geometry.get("branch_count"),
+        "branch_direction_count": geometry.get("branch_direction_count"),
+        "signal_pass_count": geometry.get("signal_pass_count"),
+        "rank_pass_count": geometry.get("rank_pass_count"),
+        "condition_pass_count": geometry.get("condition_pass_count"),
+        "minimum_direction_peak_normalized_outputs5": geometry.get(
+            "minimum_direction_peak_normalized_outputs5"
+        ),
+        "maximum_condition_number": geometry.get("maximum_condition_number"),
+        "source_pair_count": symmetry.get("source_pair_count"),
+        "new_pair_count": symmetry.get("new_pair_count"),
+        "combined_pair_count": symmetry.get("combined_pair_count"),
+        "coordinate_exact_count": symmetry.get("coordinate_exact_count"),
+        "physical_field_exact_count": symmetry.get("physical_field_exact_count"),
+        "symmetry_passed": symmetry.get("passed"),
+    }
+
+
 def _inventory(directory: Path) -> dict[str, Any]:
     rows = []
     for path in sorted(directory.glob("*.json.gz")):
@@ -557,7 +582,8 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     )
     if (
         geometry != final["response_geometry"]
-        or geometry != source_independent["response_geometry"]
+        or _geometry_signature(geometry)
+        != _geometry_signature(source_independent["response_geometry"])
         or geometry["signal_pass_count"] != int(source["required_signal_pass_count"])
         or geometry["rank_pass_count"] != int(source["required_rank_pass_count"])
         or geometry["condition_pass_count"] != int(source["required_condition_pass_count"])

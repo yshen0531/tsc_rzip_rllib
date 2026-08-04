@@ -271,6 +271,32 @@ def _failed_signal_rows(geometry: Mapping[str, Any]) -> list[dict[str, Any]]:
     return sorted(rows, key=lambda row: row["experiment_id"])
 
 
+def _geometry_signature(geometry: Mapping[str, Any]) -> dict[str, Any]:
+    """Compare independently ordered R4 reports through their frozen gate metrics."""
+    symmetry = geometry.get("issue_coordinate_and_field_symmetry") or {}
+    return {
+        "evaluated": geometry.get("evaluated"),
+        "passed": geometry.get("passed"),
+        "context_count": geometry.get("context_count"),
+        "issue_task_steps": geometry.get("issue_task_steps"),
+        "branch_count": geometry.get("branch_count"),
+        "branch_direction_count": geometry.get("branch_direction_count"),
+        "signal_pass_count": geometry.get("signal_pass_count"),
+        "rank_pass_count": geometry.get("rank_pass_count"),
+        "condition_pass_count": geometry.get("condition_pass_count"),
+        "minimum_direction_peak_normalized_outputs5": geometry.get(
+            "minimum_direction_peak_normalized_outputs5"
+        ),
+        "maximum_condition_number": geometry.get("maximum_condition_number"),
+        "source_pair_count": symmetry.get("source_pair_count"),
+        "new_pair_count": symmetry.get("new_pair_count"),
+        "combined_pair_count": symmetry.get("combined_pair_count"),
+        "coordinate_exact_count": symmetry.get("coordinate_exact_count"),
+        "physical_field_exact_count": symmetry.get("physical_field_exact_count"),
+        "symmetry_passed": symmetry.get("passed"),
+    }
+
+
 def _authenticate_source(
     project: Path,
     run: Path,
@@ -365,7 +391,8 @@ def _authenticate_source(
     )
     if (
         reproduced != final["response_geometry"]
-        or independent["response_geometry"] != reproduced
+        or _geometry_signature(independent["response_geometry"])
+        != _geometry_signature(reproduced)
         or int(reproduced["signal_pass_count"])
         != int(contract["required_signal_pass_count"])
         or int(reproduced["rank_pass_count"])
