@@ -861,5 +861,6 @@
     "tsc_rzip_rllib/utils/ray_runtime.py"
   ],
   "d1r13_design_checkpoint": "52051e8",
-  "d1r13_implementation_checkpoint": "ac85824"
+  "d1r13_implementation_checkpoint": "ac85824",
+  "d1r13_package_validation_hotfix_checkpoint": "79aab25"
 }
