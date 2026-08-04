@@ -4,9 +4,9 @@
   "run_name": "stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel",
   "campaign_identity": "direction0_replacement_safety_identification_sentinel_v1",
   "controller_revision": "direction0_replacement_v42r3c3t13s24d1r14r6_v1",
-  "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v1",
+  "package_revision": "r42r3c3t13s24d1r14r6_direction0_replacement_v2_r1a_auth_hotfix",
   "design_checkpoint": "307fdbb",
-  "implementation_checkpoint": "4950158",
+  "implementation_checkpoint": "f0c864a",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel_370ms.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R6_REAL_TSC_DIRECTION0_REPLACEMENT_SENTINEL_DESIGN.md",
   "purpose": "48 fresh authentic-TSC direction-0 replacement probes at issue steps 14, 18, and 22; combine with frozen R2/R4 columns for the preregistered 256-column response gate.",
@@ -651,5 +651,11 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ]
+  ],
+  "authentication_hotfix": {
+    "classification": "pre-TSC source-authentication implementation bug",
+    "r1a_frozen_matrix_digest": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+    "r5_candidate_matrix_digest": "69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8",
+    "controller_or_experiment_semantics_changed": false
+  }
 }
