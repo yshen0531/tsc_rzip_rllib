@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R1",
+  "package_checkpoint": "36f0d41",
+  "source_raw_downloaded": false,
+  "new_raw_count": 0,
+  "files": [
+    {"path": "stage4_2r3c3t13s24d1r14r1_36f0d41_installed_verify.log", "bytes": 38190, "sha256": "c518650ec2cfa5becb407b31d77c3ecc77c23b004fec7cb6f931f07426cd3fb0"},
+    {"path": "stage4_2r3c3t13s24d1r14r1_detailed_v1.json", "bytes": 120522, "sha256": "2342af0c58980b3da62b1bbf8b51d05d269cad0740049e687285ca0beae9e04c"},
+    {"path": "stage4_2r3c3t13s24d1r14r1_manifest_v1.json", "bytes": 1211, "sha256": "8d572c09dcd29991c38d7da245511868a2b84e029f44684823de71cf815ea56f"},
+    {"path": "stage4_2r3c3t13s24d1r14r1_offline_20260804_36f0d41_v1.log", "bytes": 1291, "sha256": "e555ee72d5e2b92a7bfa8ae94f64ddff5da5f12e8d207797986e2e5884c4eb16"},
+    {"path": "stage4_2r3c3t13s24d1r14r1_summary_v1.json", "bytes": 745, "sha256": "77403c3a650b37c899bb493e8f3528c8ac14e6ad9b3121a91d1f0c5934811ca3"}
+  ]
+}

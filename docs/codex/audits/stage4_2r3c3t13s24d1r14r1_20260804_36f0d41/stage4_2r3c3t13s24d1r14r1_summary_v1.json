@@ -1,0 +1,18 @@
+{
+  "identity": "pooled_whitened_amplified_mixed_basis_preflight_v1",
+  "maximum_issue_incremental_normalized_action_linf": 0.11611111111111122,
+  "maximum_linearized_cancel_incremental_linf_diagnostic_only": 0.11611111111111122,
+  "new_raw_count": 0,
+  "online_cancellation_proved": false,
+  "passed": false,
+  "predicted_maximum_unit_column_condition": 3.7020780011896957,
+  "predicted_minimum_odd_peak": 0.005999999999999252,
+  "route": "POOLED_MIXED_BASIS_PREFLIGHT_FAIL_REDESIGN_REQUIRED",
+  "schema_version": 1,
+  "selected_candidate_index_zero_based": 35377,
+  "source_raw_count": 72,
+  "stage": "Stage4.2R3c3T13S24D1R14R1",
+  "static_issue_construction_count": 64,
+  "static_issue_construction_pass_count": 48,
+  "tsc_executed": false
+}

@@ -777,6 +777,20 @@ issue preflight. It consumes D1R14 v2 only as development data. A pass may
 authorize only a fresh D1R14R2 real safety/geometry sentinel. Transition-model
 fitting, MPC, expert data, BC, DAgger, and bounded residual RL remain blocked.
 
+D1R14R1 package `36f0d41` authenticated all 72 source raw and reproduced the
+frozen search, but exact static issue construction passed only 48/64. All 16
+failures were the third mixed direction's off-basis residual in both signs and
+all contexts (`0.1359745 > 0.10`); exact Card15, action, current, saturation,
+clipping, cosine, and actuator gates passed. This is a zero-TSC basis
+quantization-margin design failure, not a runtime, report, plant, control, or
+MPC result.
+
+The active task is D1R14R1A, a separately frozen zero-TSC replay of a fixed
+third-column multiplier `1.275`, selected from a disclosed development-only
+0.025 grid. Only an R1A pass may authorize a fresh D1R14R2 real safety/geometry
+sentinel. Transition-model fitting, MPC, expert data, BC, DAgger, and bounded
+residual RL remain blocked.
+
 ## 10. Required validation before server execution
 
 At minimum, perform and record:

@@ -1,0 +1,18 @@
+{
+  "config": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r1_pooled_mixed_basis_preflight_v1.json",
+  "config_sha256": "e28de194bebc7b5f94257bb173c950b6799eeb80464f62f9d755d1c1aba24869",
+  "design_document": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/reports/STAGE4_2R3C3T13S24D1R14R1_POOLED_MIXED_BASIS_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "9a8201659603774461c5e7c82578bcf778b6bd8985073697157cc60296fdf3a8",
+  "identity": "pooled_whitened_amplified_mixed_basis_preflight_v1",
+  "new_raw_files_created": 0,
+  "outputs": {
+    "stage4_2r3c3t13s24d1r14r1_detailed_v1.json": "2342af0c58980b3da62b1bbf8b51d05d269cad0740049e687285ca0beae9e04c",
+    "stage4_2r3c3t13s24d1r14r1_summary_v1.json": "77403c3a650b37c899bb493e8f3528c8ac14e6ad9b3121a91d1f0c5934811ca3"
+  },
+  "ray_gotsc_tsc_plant_or_controller_executed": false,
+  "route": "POOLED_MIXED_BASIS_PREFLIGHT_FAIL_REDESIGN_REQUIRED",
+  "schema_version": 1,
+  "source_raw_read_in_place": true,
+  "source_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14_runs/stage4_2r3c3t13s24d1r14_zero_baseline_signed_excitation_sentinel_20260804_d32761c_v1",
+  "stage": "Stage4.2R3c3T13S24D1R14R1"
+}

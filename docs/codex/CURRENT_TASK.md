@@ -3881,3 +3881,32 @@ current gates. Cancellation safety remains only a linearized diagnostic until
 a new real sentinel. An R1 pass authorizes only design and execution of a
 fresh D1R14R2 safety/geometry sentinel. MPC, expert data, BC, DAgger, and
 bounded residual RL remain blocked.
+
+## 64. Final D1R14R1 result and active D1R14R1A preflight
+
+D1R14R1 package `36f0d41` executed the frozen zero-new-TSC audit. It
+authenticated 72/72 D1R14 v2 raw and reproduced the official source geometry
+exactly. The seed-140042, 60,000-candidate search selected candidate 35377 and
+passed its predicted gates: minimum odd peak `0.006` and maximum condition
+`3.7020780`.
+
+The exact static Card15 gate passed only 48/64. All 16 failures were mixed
+direction 2, both signs in all eight contexts, and the only failed predicate
+was relative off-basis residual: maximum `0.1359745` versus the unchanged
+`0.10` cap. Exact target reproduction, action/current/saturation/clipping,
+cosine, and actuator gates all passed; maximum issue and linearized cancel
+were `0.1161111`. The final route is
+`POOLED_MIXED_BASIS_PREFLIGHT_FAIL_REDESIGN_REQUIRED`.
+
+This is a prospective basis quantization-margin design failure, not runtime,
+reporting, restart, plant, control, or MPC failure. New raw, controller,
+plant, Ray, gotsc, and TSC counts were zero. The exact report is
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14R1_FORENSIC_REPORT.md`.
+
+A post-freeze development-only scale grid found that multiplying direction 2
+by `1.275` is the first 0.025-grid value with 64/64 static passes; maximum
+residual becomes `0.0990759` and maximum issue/idealized cancel becomes
+`0.1401852`. This is not a validation pass. The active task is a separately
+frozen D1R14R1A zero-TSC exact replay of that fixed candidate. Only R1A may
+authorize a fresh D1R14R2 design. MPC, expert data, BC, DAgger, and bounded
+residual RL remain blocked.

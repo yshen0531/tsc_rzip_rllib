@@ -1038,6 +1038,19 @@ mixed-basis recomputation and exact static Card15 issue preflight. A pass may
 authorize only a fresh D1R14R2 real safety/geometry sentinel. MPC, expert data,
 BC, DAgger, and bounded residual RL remain blocked.
 
+D1R14R1 package `36f0d41` is now final. Source authentication and deterministic
+search passed, with predicted minimum odd peak `0.006` and maximum condition
+`3.7020780`. Static issue construction passed 48/64. The 16 failures were only
+the third mixed direction's off-basis residual (`0.1359745 > 0.10`) in both
+signs and all contexts; all action/current/exactness gates passed. No TSC or
+plant/controller execution occurred. Route:
+`POOLED_MIXED_BASIS_PREFLIGHT_FAIL_REDESIGN_REQUIRED`.
+
+Development diagnosis found the first 0.025-grid feasible third-column scale
+at `1.275`, with 64/64 static passes and maximum issue/idealized cancellation
+`0.1401852`. Active work is a new frozen D1R14R1A zero-TSC replay of this fixed
+candidate before any D1R14R2 real sentinel is authorized.
+
 ## Current handoff: D1R12 final, D1R13 zero-increment sentinel active
 
 D1R12 read only the immutable 600-file D1R11 training boundary. Its accepted
