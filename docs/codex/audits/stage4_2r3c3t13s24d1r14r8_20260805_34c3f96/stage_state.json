@@ -1,0 +1,22 @@
+{
+  "calibrated_tube_sha256": "",
+  "finished": true,
+  "heldout_outcomes_opened": false,
+  "new_raw_count": 624,
+  "package_digest": "7d0a5a5fcbc44291851261b6928420e77a760a81b3d2af18fb67d22dfaf77437",
+  "phase_status": "training_model_failed",
+  "primary_pass": false,
+  "real_tsc_executed": true,
+  "reporting_hotfix_applied": true,
+  "reporting_hotfix_audit_sha256": "968600cd84bd5d4b7b0c0b3d6511779b309614fb5675939045a1b5c3b0d5682b",
+  "schema_version": 1,
+  "spec_digest": "9e85ecaa2f0c8ec010490dab4f001541f18f714980b6cb7070636372edd1d667",
+  "stage": "Stage4.2R3c3T13S24D1R14R8",
+  "stop_reason": "training_whole_pair_response_model_or_geometry_gate_failed",
+  "training_model_sha256": "",
+  "training_raw_inventory_digest": "b5de1cabe0bd47b0d3a3b26aff04714ca0c05653483cd4c92403dc5867eeb762",
+  "verdict": {
+    "passed": false,
+    "route": "PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP"
+  }
+}

@@ -1,5 +1,24 @@
 # Current status
 
+> **Superseding live handoff (2026-08-05 Asia/Shanghai).** D1R14R8 is final
+> at `PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP`. Its 624/624 fresh
+> authentic training-extension trajectories passed runtime, exact restart,
+> causal prefix/action, finite, solver, saturation, raw, snapshot, and
+> independent audits. Combined with 304 immutable R2/R4/R6 responses, the
+> frozen model passed only 719/912 whole-pair response rows: maximum relative
+> L2 `1.5279087086`, minimum cosine `-0.1699449768`, peak ratio
+> `0.1785241117--2.1303641273`. Point error, signal, and all predicted/actual
+> rank-condition geometry passed; the vR tube precursor was
+> `0.0101623700 m/s` against the unchanged `0.01 m/s` cap. The final
+> independent audit is itself PASS but has `scientific_gate_passed=false` and
+> exactly reproduces the primary scientific FAIL. Calibration/holdout remain
+> 0/312 and 0/312, with no model artifact. This is a model/design failure, not
+> runtime, restart, raw, reporting, real-control, or plant-unreachability
+> evidence. The active task is to prospectively freeze a zero-new-TSC fixed-
+> candidate short-horizon whole-pair discriminator; even a pass may authorize
+> only a fresh multipulse sentinel. MPC, expert data, BC, DAgger, and bounded
+> residual RL remain blocked.
+
 > **Superseding live handoff (2026-08-04 Asia/Shanghai).** D1R14R7 stopped
 > without a model result because its independent-per-lag architecture was
 > undefined at weak-horizon lags 26/27 in one nested fold. The new-identity

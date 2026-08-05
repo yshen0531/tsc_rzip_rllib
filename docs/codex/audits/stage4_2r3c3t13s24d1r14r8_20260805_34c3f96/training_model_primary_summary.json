@@ -1,0 +1,201 @@
+{
+  "actual_geometry": {
+    "canonical": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 11.570074108693703,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "canonical"
+    },
+    "minimum_predicted_peak": 0.00429800000001368,
+    "operational": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 12.121012187090836,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "operational"
+    },
+    "passed": true,
+    "response_count": 912,
+    "signal_pass_count": 912
+  },
+  "aggregate": {
+    "componentwise_maximum_absolute_scaled_error": [
+      0.00604737401572921,
+      0.0032358644542450146,
+      0.05081135014313233,
+      0.028800985567494997,
+      0.0005879483685772521
+    ],
+    "maximum_absolute_scaled_point_error": 0.05081135014313233,
+    "maximum_peak_ratio": 2.1303641273377756,
+    "maximum_relative_l2_error": 1.5279087085521352,
+    "minimum_peak_ratio": 0.17852411174023414,
+    "minimum_response_cosine": -0.16994497675301598,
+    "passed": false,
+    "response_count": 912,
+    "response_pass_count": 719,
+    "tube_cap_pass": false,
+    "tube_precursor_physical": [
+      0.0003628434409437526,
+      0.00019415286725470087,
+      0.010162370028626466,
+      0.005760297113498999,
+      11.759067371545042
+    ],
+    "tube_precursor_scaled": [
+      0.012094781364791753,
+      0.006471762241823362,
+      0.10162370028626466,
+      0.057602971134989994,
+      0.001175906737154504
+    ]
+  },
+  "combined_pair_count": 12,
+  "combined_response_count": 912,
+  "detailed_sha256": "797c862666a7bf8f770816bfa83d20f9b2cedea8dfa4be49f061d81680578a50",
+  "outer_selected_candidates": [
+    {
+      "held_pair_id": "p5_q1_a0p750_gap2_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 8,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p5_q1_a0p750_gap3_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p5_q1_a0p900_gap4_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p5_q2_a0p750_gap2_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p5_q2_a0p750_gap4_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p5_q2_a0p900_gap3_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p9_q1_a0p750_gap3_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 8,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p9_q1_a0p900_gap2_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p9_q1_a0p900_gap4_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p9_q2_a0p750_gap4_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p9_q2_a0p900_gap2_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    },
+    {
+      "held_pair_id": "p9_q2_a0p900_gap3_settle4",
+      "selected_candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 8,
+        "ridge": 0.1
+      },
+      "training_pair_count": 11
+    }
+  ],
+  "passed": false,
+  "phase": "training_nested_whole_pair_oof",
+  "predicted_geometry": {
+    "canonical": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 7.8924976998439185,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "canonical"
+    },
+    "minimum_predicted_peak": 0.004888962406172236,
+    "operational": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 8.151210622342354,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "operational"
+    },
+    "passed": true,
+    "response_count": 912,
+    "signal_pass_count": 912
+  },
+  "route": "PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP",
+  "schema_version": 1,
+  "selected_candidate": {
+    "bandwidth_multiplier": 2.0,
+    "pca_rank": 4,
+    "ridge": 0.1
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R8"
+}

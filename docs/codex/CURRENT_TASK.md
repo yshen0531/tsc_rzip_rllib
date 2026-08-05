@@ -4352,3 +4352,58 @@ An R8 pass may authorize only a separately frozen fresh multipulse
 superposition/interaction sentinel. MPC, expert data, BC, DAgger, bounded
 residual RL, unseen targets, continuous plant/actuator variation, noise,
 disturbance recovery, and long hold remain blocked.
+
+## 74. Final D1R14R8 result and active short-horizon route discriminator
+
+D1R14R8 executed 624/624 fresh authentic training-extension rollouts and
+stopped before calibration or holdout. Primary and independent raw audits
+agree on exact restart, source prefix, causal issue/cancel actions, finite
+full horizons, 16/16 restart snapshots, zero runtime/solver/saturation/raw
+errors, and maximum current utilization `0.392`. The raw inventory is
+19,725,920 bytes with digest
+`b5de1cabe0bd47b0d3a3b26aff04714ca0c05653483cd4c92403dc5867eeb762`.
+
+The frozen 912-response, twelve-whole-pair model result is:
+
+```text
+response rows passing all gates                       719 / 912
+relative L2 / cosine / peak ratio              763 / 731 / 829
+finite / point error                                  912 / 912
+maximum relative L2                             1.5279087085521352
+minimum cosine                                -0.16994497675301598
+peak ratio                         0.17852411174023414--2.1303641273377756
+maximum scaled point error                       0.05081135014313233
+vR tube precursor                                  0.010162370028626466 m/s
+predicted canonical / operational geometry              192/192 each
+actual canonical / operational geometry                 192/192 each
+route
+  PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP
+```
+
+The final independent output has `passed=true`,
+`scientific_gate_passed=false`, and exact primary numerical, outcome, and
+model-artifact-presence agreement. Its SHA-256 is
+`cfb4ad0aebc838045468e6dd9e5937007c06a07458a458f253a0dd411861cba0`.
+No model file exists, `heldout_outcomes_opened=false`, and calibration and
+holdout raw counts remain zero. Four repaired offline/reporting/audit-tool
+defects changed no raw, controller action, experiment identity, formal gate,
+or scientific metric. The exact report is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8_FORENSIC_REPORT.md
+```
+
+R8 is immutable and may not resume with a changed model. The active task is
+a new-identity, prospectively frozen, zero-new-TSC short-horizon response
+discriminator using only the 912 already-opened training responses. It must
+fix the R8-selected PCA4/bandwidth-2/ridge-0.1 candidate before evaluation,
+retain whole-pair outer validation and every unchanged response/tube/signal/
+geometry gate, and evaluate common relative-lag horizons 4, 6, 8, 10, and 12.
+Only horizons 8, 10, and 12 are controller-useful route candidates; select
+the largest fully passing horizon, while 4 and 6 are diagnostic only. No R8
+calibration/holdout outcome may be opened. A pass authorizes only a separate
+fresh authentic multipulse superposition/interaction sentinel; a fail routes
+to causal online innovation/adaptation or new identification, not more
+capacity in the failed long-horizon point-center kernel. MPC, expert data,
+BC, DAgger, and bounded residual RL remain blocked.

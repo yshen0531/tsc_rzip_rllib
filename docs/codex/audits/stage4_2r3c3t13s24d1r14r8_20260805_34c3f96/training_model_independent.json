@@ -1,0 +1,6600 @@
+{
+  "actual_geometry": {
+    "canonical": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 11.570074108693703,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "canonical",
+      "rows": [
+        {
+          "condition_number": 7.076177017566212,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 10.521012133869197,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.700119218169681,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.6998890886597646,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.180176636540286,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.6377407348622404,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.694614204719887,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.06861366122211,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.01505781054008,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.1664444464909276,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.385780358328528,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.3751916278632175,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.449245740926219,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.333377834804935,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.945878637470946,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.282813260325873,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.351507899171008,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.67653479793104,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.895545581850861,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.769998224872943,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.3351769397056046,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.764592716289991,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.3749217515123995,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.557977642718506,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.566005295958035,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.148064191914676,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.742504132726548,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.266161132594365,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.371227672898908,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.8622394914386,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.211832634812975,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.560475893440931,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.249746624447644,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.161721644047713,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.585176267559167,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.501038105307586,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.422045176588773,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.72773272237891,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.30927799050077,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.07238129645738,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.732419059939675,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.508143512502709,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 11.292506155467661,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.632586953833577,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.132380085508634,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.632204056742538,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.415047867663057,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.373743230588563,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.242407338626379,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.682597615033421,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.3431863106135107,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.451663928853219,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.766717769180423,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.917546593168727,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.186707729956452,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.458544846952337,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.047734820045186,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.2273276073480535,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.357003337543952,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.983783632047584,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.553466576375461,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.284287676099378,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.601534410081403,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.93722868564471,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.9876695425023145,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.08878551794171,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.024656277338543,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.275478255280495,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.395084761707573,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.799328597377308,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.345744096202581,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.49373428007038,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.226318612026577,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.254938295302214,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.545455357988827,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.993917122253449,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.331165552522985,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.322971855317981,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.732408924902738,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.579004012879244,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.796984256285418,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.044206606033825,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.740662544885201,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.697961694724707,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.5099023822234754,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.37302091138155,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.380717008092988,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.416019643073847,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.470612512563862,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.89742257898876,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.104654190092138,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.391212896600843,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.655070019239661,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.903005863061575,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.4931455346641114,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.458881604801213,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.521469525260261,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.939719045154257,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.959107049957426,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.48405077133481,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.3114274649987046,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.572536462520416,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.545483595113307,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.160275518728243,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.784757017761527,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.7485796218941894,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.45492516230066,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 10.705251866857836,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.256093306753664,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.599530805677608,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.763744815579726,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.416134973697654,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.3080998831109882,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.3513529697264692,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.2352813038511234,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.626525402009239,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.2110320999557205,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.518467695712843,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.4349780112636346,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.1598391534492984,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.0628017355799155,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.133738345712853,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.6448349257729156,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.3038941910163055,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.9233294405824592,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.157667709507759,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.004985364112008,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.3118382973418745,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.959961238776908,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.159636533194369,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.8581912618231526,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.232631459489738,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.7046065143197633,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.147655113941221,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.181464428097756,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.056383874837064,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.763331242771638,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.557840635256673,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.943301338918053,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.3897003362047045,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.309591675607443,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.71506271502763,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.4475631966191553,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.3686891802885386,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.415599013567696,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.699286145769754,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.976704189458239,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.152707520740663,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.844480361080028,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.020707886051055,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.588089882949018,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 11.570074108693703,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.235219010742515,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.45384755494574,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.157882390704689,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.630498397269313,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.234723249763107,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.011306467300734,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.6919739176991015,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.7065702901501405,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.559936650913496,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.170407785539943,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.140428226413064,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 10.008533026125201,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.843049883442129,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.06033970486963,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.144312854045109,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.553021475561873,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.853669196315154,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.4361518717844293,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.765394978348935,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.18663478942678,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.231291986612502,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.647845074142781,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.965733274215784,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.441524979256963,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.0676081922455065,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.1070288702981665,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.327575389758661,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.956746473431284,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.778104025090155,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.103809302974797,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.268191172342836,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.652118997847824,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.91053881717159,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.977057906549389,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.645086162165605,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.590202394915357,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.56701614807384,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.399468116118204,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.847431371740868,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.961844950316559,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        }
+      ]
+    },
+    "interpretation": "actual_response_geometry",
+    "minimum_predicted_peak": 0.00429800000001368,
+    "operational": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 12.121012187090836,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "operational",
+      "rows": [
+        {
+          "condition_number": 7.076177017566212,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 10.521012133869197,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.37799862378834,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.597193995177516,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.9625544785376565,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.8024702529260526,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.3635266337040175,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.7725286024920535,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.01505781054008,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.1664444464909276,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.275404604078277,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.18071209022058,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.04922995542588,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.457954608553317,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.442699467263631,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.396554683965546,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.351507899171008,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.67653479793104,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.9019722457678014,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.593282541568163,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.010456464691585,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.5337577356735945,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.258887099283458,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.7198633969614727,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.566005295958035,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.148064191914676,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.526988669234645,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.78198056295052,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.987078079362616,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 1.9377795332557832,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 10.771427719030847,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 1.9829724994881672,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.249746624447644,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.161721644047713,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.847457618916604,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.599462009479625,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.758328436238903,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.9074135841773465,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.501584318985394,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.451746458970442,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.732419059939675,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.508143512502709,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.793087192549557,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.178226769403389,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.267087641086999,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.190190813526066,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.333713474009658,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.545369250924706,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.242407338626379,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.682597615033421,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.303269434479076,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.558753151218852,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.577172749384131,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.250352493698206,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.948110149596516,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 1.8226543653726939,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.047734820045186,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.2273276073480535,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.872667806675564,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.237548691774014,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.005608441479524,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.742479834727934,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.400056892861806,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.582251167533434,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.9876695425023145,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.08878551794171,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.863451274477351,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.202791347327855,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.556811205038945,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.017731638843711,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.4060618846819235,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.271454345062865,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.226318612026577,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.254938295302214,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.180876987350183,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.6526799464829764,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.385202688021416,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.342501002740997,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.746686178692563,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.621752649452747,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.796984256285418,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.044206606033825,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.349807918896092,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.325557250931626,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.919337428863281,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.4936946273875495,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.654756638823782,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.118233668623281,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.470612512563862,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.89742257898876,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.449269243377243,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.32864995100006,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.454325626071464,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.040004794831049,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.853695729913725,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.5866504000537835,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.521469525260261,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.939719045154257,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.15575513600068,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.658026031560143,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.396690367973523,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.40736612207067,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.244861120481557,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.325291160167345,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.784757017761527,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.7485796218941894,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.625305674593249,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.301376956258133,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.775591289745787,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.751943456013271,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.857665348486111,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.725693983338269,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.3080998831109882,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.3513529697264692,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.4692742260071627,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.4227626480348765,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.20898915774855,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.376662715412002,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.6899245483845338,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 2.196062454466899,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.0628017355799155,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.133738345712853,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.829657372158711,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.507991481426477,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.092905317942296,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.788456073334288,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.3397561427252365,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.448853703574035,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.959961238776908,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.159636533194369,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.7220868130972478,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.466640612192705,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.775260483362135,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.668305179597187,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.064471533192159,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.5002405055835455,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.763331242771638,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.557840635256673,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.415674875727188,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.469671977400701,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.349296419442211,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.53391887149146,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 2.7595014544528933,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.076785512566859,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.415599013567696,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.699286145769754,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.007762982172658,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.465024996822249,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.644466837029142,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.936441347292286,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.6110382043913445,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 12.121012187090836,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.235219010742515,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.45384755494574,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.477777990769535,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.67249569688898,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.576605699800602,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.071274210261986,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.8749968187451245,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.793771288602462,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.559936650913496,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.170407785539943,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.559517653630572,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.79910653533526,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.0124600772519745,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.289625969330086,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.338019882751375,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.1093269987041365,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.853669196315154,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.4361518717844293,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.973293576653058,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 9.486117253136724,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.496547645696683,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.053309272273612,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 9.04957685582643,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.57591069672073,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.0676081922455065,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.1070288702981665,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.943307112128394,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.02988336533118,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.558699530550301,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.708843422534461,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.973180271392559,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.041791498565499,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.91053881717159,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.977057906549389,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.809043247947973,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.652725267660653,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.042613029624539,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.8696323676372595,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.409499069996422,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.328241924136709,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        }
+      ]
+    },
+    "passed": true,
+    "response_count": 912,
+    "signal_pass_count": 912
+  },
+  "aggregate": {
+    "componentwise_maximum_absolute_scaled_error": [
+      0.00604737401572921,
+      0.0032358644542450146,
+      0.05081135014313233,
+      0.028800985567494997,
+      0.0005879483685772521
+    ],
+    "maximum_absolute_scaled_point_error": 0.05081135014313233,
+    "maximum_peak_ratio": 2.1303641273377756,
+    "maximum_relative_l2_error": 1.5279087085521352,
+    "minimum_peak_ratio": 0.17852411174023414,
+    "minimum_response_cosine": -0.16994497675301598,
+    "passed": false,
+    "response_count": 912,
+    "response_pass_count": 719,
+    "tube_cap_pass": false,
+    "tube_precursor_physical": [
+      0.0003628434409437526,
+      0.00019415286725470087,
+      0.010162370028626466,
+      0.005760297113498999,
+      11.759067371545042
+    ],
+    "tube_precursor_scaled": [
+      0.012094781364791753,
+      0.006471762241823362,
+      0.10162370028626466,
+      0.057602971134989994,
+      0.001175906737154504
+    ]
+  },
+  "audit_kind": "training_model",
+  "candidate_scores": [
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 4,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        776,
+        0.8321786257752336,
+        33.91609772701935,
+        0.0004623460499205638
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 4,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        557,
+        0.10325408493304024,
+        4.49399929969269,
+        1.1954375280112414e-05
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        268,
+        0.0510729855198734,
+        1.2343740697966905,
+        2.0474177282858597e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 4,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        734,
+        0.4144346981596899,
+        13.873417718204566,
+        9.345671577511737e-05
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 4,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        388,
+        0.051076330737470026,
+        2.0942144037230386,
+        3.3105072438864014e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        214,
+        0.051019024024324226,
+        0.9754279669987789,
+        1.6780047397625982e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        577,
+        0.13327420665352463,
+        4.948173492630763,
+        1.4582635061889739e-05
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        271,
+        0.05097762657184652,
+        1.1291166494206268,
+        1.8576378405068311e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 4,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        185,
+        0.05081135014313233,
+        0.9224153864096966,
+        1.573572028039046e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 8,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        750,
+        0.6175558022419658,
+        13.648643179541933,
+        0.0001079926887665457
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 8,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        613,
+        0.05738653309121835,
+        3.5017853294973,
+        7.57269022056115e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 8,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        268,
+        0.05094367472050568,
+        1.159097687408161,
+        1.9817663104051767e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 8,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        773,
+        0.19000915818779354,
+        14.902485729806685,
+        8.682147854099695e-05
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 8,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        478,
+        0.05033711761333077,
+        2.1739816616655006,
+        3.368032859947826e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 8,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        216,
+        0.05063416476482737,
+        0.9944711591348505,
+        1.7245842953561556e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 8,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        752,
+        0.0914088841625037,
+        6.484529714317364,
+        2.2065623704603626e-05
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 8,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        317,
+        0.05023750926095668,
+        1.3072197643696695,
+        2.1671302100028427e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 8,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        188,
+        0.05063047019487558,
+        0.9413968001196307,
+        1.590244501731433e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 12,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        718,
+        0.5845856961923754,
+        11.235165296721037,
+        7.446097591043008e-05
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 12,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        581,
+        0.05667620800627512,
+        3.4621766145788784,
+        7.012193438322125e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 0.5,
+        "pca_rank": 12,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        291,
+        0.0512173258427883,
+        1.3659230460857967,
+        2.1651213492851694e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 12,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        767,
+        0.35953639120004105,
+        16.75126689010241,
+        0.00010329405375857188
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 12,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        515,
+        0.052897612295905484,
+        2.883863593623496,
+        4.618350040313645e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 1.0,
+        "pca_rank": 12,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        252,
+        0.05077102382635697,
+        1.0857861469145091,
+        1.915603452124278e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 12,
+        "ridge": 1e-06
+      },
+      "selection_score": [
+        745,
+        0.18700041097318904,
+        11.428284486653416,
+        4.7712470290080445e-05
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 12,
+        "ridge": 0.001
+      },
+      "selection_score": [
+        411,
+        0.05105077415202786,
+        1.8591607378727613,
+        3.125089529935964e-06
+      ]
+    },
+    {
+      "candidate": {
+        "bandwidth_multiplier": 2.0,
+        "pca_rank": 12,
+        "ridge": 0.1
+      },
+      "selection_score": [
+        198,
+        0.050647149810535384,
+        0.9729182860348674,
+        1.6499977574363385e-06
+      ]
+    }
+  ],
+  "model_artifact_presence_agreement": true,
+  "passed": true,
+  "predicted_geometry": {
+    "canonical": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 7.8924976998439185,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "canonical",
+      "rows": [
+        {
+          "condition_number": 6.554842212116548,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.907297791225907,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.451604679526487,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.1370998385756295,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.918442399657041,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.066655308467662,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.219620733823942,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.854969787737441,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.454132579628049,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.867146971018733,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.397068263202005,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.048045931456627,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.923249820128806,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.969612252585559,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.194299130814682,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.777853304695547,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.009948859793893,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.77827820421882,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.7726194437976295,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.318588438069682,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.214492549999858,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.965994151696711,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.6992963512024,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.8924976998439185,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.058261930467031,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.730894865471792,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.820451768106339,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.390078228790425,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.171635597646083,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.027445186118039,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.671825222527498,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.818807595418011,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.302662848461827,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.250696803995389,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.687460881497475,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.880629750849631,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.100724213148091,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.127313338392252,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.421785073272518,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.9620695829096695,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.848144157393868,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.308577366377789,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.597634763093941,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.78966119330385,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.783936809065751,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.878966583756063,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.808870460845871,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.090319580823504,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.338593291817635,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.4139585785407522,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.877603482905111,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.8288713654230975,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.771483414451984,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.678184176334202,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.008809222273912,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.2506604519797944,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.3138491078666235,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.3283550506068313,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.879188381573813,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.701293446676623,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.793457995982709,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.5652212531963823,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.98567135375383,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.1730526756026856,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.990520624198174,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.723142630550708,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.775533343645807,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.13890640059898,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.317544979436164,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.262017255043687,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.197400892808916,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.0374874394320805,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.840468643490385,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.64680938063332,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.641735754603951,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.059020855648232,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.410264701756014,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.291853067825536,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.122246608914726,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.123356356232175,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.325077063370776,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.243226532024675,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.888951229578128,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.484394667583187,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.167272919127554,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.566518070006237,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.953281983764832,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.6298614982540665,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.395522255232831,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.143925073385224,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.871205166651623,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.725675223195185,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.274893965192875,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.899213488705769,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.835472440201195,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.834672317800365,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.94969902108455,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.528635836715943,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.942506698667833,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.649797846793165,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.386456548164864,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.894762930512416,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.107962531868463,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.007074861352463,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.960094258409246,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.5113840240053555,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.9069562799550965,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.7366041030558845,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.237455726333442,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.898478202897518,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.009128940444175,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.977571165830025,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.744816619965776,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.699564887129773,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.896756073301794,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.379466005010591,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.059416933264748,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.427281259781016,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.417006757758795,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.468810694700756,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.7330378203743635,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.705909774425408,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.855516399109725,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.34117776337523,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.96726972413157,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.356914017305307,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.233574626424676,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.398640182056856,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.666907438971169,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.178172615527336,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.498671287960451,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.737766444200429,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.5461171015441,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.454295206800877,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.429168949083116,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.102205023411384,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.371191550092844,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.575730697097905,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.7271667198195235,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.646260495757379,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.506247574789531,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.0984962024623535,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.9281128110880754,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.837325693160401,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.370724066096368,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.212891601158128,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.535057781947853,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.785856337365038,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.8104391356440357,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.676849900158523,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.0543333873671035,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.9383258251470115,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.471168345418516,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.088513500098705,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.653124533617347,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.867331672453254,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.838172823608921,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.859817006196152,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.045456860759279,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.9742358267644917,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.05437333054973,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.978092717083844,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.438602014563533,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.35369444572118,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.1992248798165264,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.92104376576804,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.7251263587086147,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.373967656053348,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.8198994363288628,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.560662425486202,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.162829058647941,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.020793443697695,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.1068335775923486,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.515981554890209,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.577592533403489,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.155130808690272,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.017418196392074,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.729648686388251,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.044975538722616,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.927068788672312,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.9450273898154,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.94327474444012,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.6030547422570995,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.435707202236943,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.4437620304731915,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.657389455795801,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.785587711763696,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.705845332967373,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.579255346142046,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.173259421232669,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.993526099232874,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.948032449087162,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        }
+      ]
+    },
+    "minimum_predicted_peak": 0.004888962406172236,
+    "operational": {
+      "branch_count": 192,
+      "condition_pass_count": 192,
+      "maximum_condition_number": 8.151210622342354,
+      "passed": true,
+      "rank_pass_count": 192,
+      "role": "operational",
+      "rows": [
+        {
+          "condition_number": 6.554842212116548,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.907297791225907,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.568796609091803,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.869760433287725,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.906781357100444,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.880783350913122,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.046172511206746,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.831910001295055,
+          "context_id": "p5_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.454132579628049,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.867146971018733,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.500400492532158,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.788353687425547,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.89540260516366,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.793716981647367,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.01608537823818,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.770113600739052,
+          "context_id": "p5_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.009948859793893,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.77827820421882,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.107944864285697,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.85338913715486,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.415037147327449,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.107046378808031,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.075860290011072,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 8.052286179933635,
+          "context_id": "p5_q2_a0p750_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.058261930467031,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.730894865471792,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 8.151210622342354,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.915257186556563,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.367371664400526,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.145448882335381,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.033740542181556,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.979711784301782,
+          "context_id": "p5_q2_a0p750_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.302662848461827,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.250696803995389,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.95213234581141,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.930331019222912,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.352650898309644,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.095095552420769,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.7324941018698246,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.143637830364991,
+          "context_id": "p5_q2_a0p750_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.848144157393868,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.308577366377789,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.77673154786941,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.681350249056477,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.8509213273552,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.287951138197064,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.82989000017547,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.265164033335774,
+          "context_id": "p5_q2_a0p750_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.338593291817635,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.4139585785407522,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.738363117876837,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.801794149717888,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.654416586103118,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.8648770448103265,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.807602559823796,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.5714964891545113,
+          "context_id": "p5_q2_a0p900_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.3138491078666235,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.3283550506068313,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.727861595060652,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.6914487254305595,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.658887023566922,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.7589140605055222,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.779289316355704,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 3.4886182460632216,
+          "context_id": "p5_q2_a0p900_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.990520624198174,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.723142630550708,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.181205902864423,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.522556732977392,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.267178029371067,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.0166700992637425,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.359071373129731,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.57385661797639,
+          "context_id": "p9_q1_a0p750_gap3_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.840468643490385,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.64680938063332,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.126702211500205,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.469586297736937,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.457805137379698,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.074701252908844,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.370214855198681,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.6805850333823695,
+          "context_id": "p9_q1_a0p750_gap3_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.325077063370776,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.243226532024675,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.025579227934553,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.8974062648170245,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.336963494746793,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.353648023756312,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.170154674502664,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.372146367861366,
+          "context_id": "p9_q1_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.395522255232831,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.143925073385224,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.990739355058896,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.046321477287582,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.4176680826301515,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.60991832823307,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.091688531125793,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.532682885329718,
+          "context_id": "p9_q1_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.94969902108455,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.528635836715943,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.002015964552724,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.16013128267301,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.692843512032038,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.744771047483477,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.517301807750471,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.6646105735254935,
+          "context_id": "p9_q1_a0p900_gap4_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.960094258409246,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.5113840240053555,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.966328584778773,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.233418246549707,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.567880136433951,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.740339458001611,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.4199262634902015,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.624076314991033,
+          "context_id": "p9_q1_a0p900_gap4_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.744816619965776,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.699564887129773,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.557162441326579,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.02509687466178,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.527019901011407,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.307740345106436,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.7908386231305755,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.2601472742931525,
+          "context_id": "p9_q2_a0p900_gap2_settle4|minus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.7330378203743635,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.705909774425408,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.5491226547958865,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.988152686447202,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.521353835258473,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.227610000645287,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.752066306695881,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.168357552208681,
+          "context_id": "p9_q2_a0p900_gap2_settle4|plus_first",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.666907438971169,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.178172615527336,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 6.592993331537855,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.0374915215170555,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.861642902284461,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.973430492028313,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.804595899199516,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.779539291509033,
+          "context_id": "s42r3c3_39edf644f2fdf0ee6c5a",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.371191550092844,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.575730697097905,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.2862460395522195,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.507693444061123,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.06166544632843,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.139657025581806,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.470454865669186,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.1191037781277124,
+          "context_id": "s42r3c3_3a3dc1fe08a9a6984e8c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.370724066096368,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.212891601158128,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.777366810910668,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.975506306146717,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.092227285776661,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.84199638987922,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.455608544605964,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.260222512824021,
+          "context_id": "s42r3c3_44878cc615a1d3ea18b9",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.471168345418516,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.088513500098705,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.891402278968335,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.014580950727269,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.123194625406825,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.973042906117437,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.4452690150784555,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.297177296914109,
+          "context_id": "s42r3c3_4571fd0668fa016c2636",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.05437333054973,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.978092717083844,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.694411942427823,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.603923004735921,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.396843133599841,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.070684497706038,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.052999144849753,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.769059203076392,
+          "context_id": "s42r3c3_7dca3ca415ee7fae3748",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.8198994363288628,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.560662425486202,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.406264836254262,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.271937699471088,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.285591273688561,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.719504814831325,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 3.8900032001047573,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.527508671390932,
+          "context_id": "s42r3c3_a6b6eeea6d48d7a79585",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.017418196392074,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.729648686388251,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 7.066997673592056,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.287863318108781,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.2615913129604515,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 7.518840370843652,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.008094945084758,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.142234978817689,
+          "context_id": "s42r3c3_b72b7cdb52af15409a54",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.4437620304731915,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 4.657389455795801,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 10,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.3428913568835315,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 5.564536148375033,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 14,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 5.135568698533075,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.20875739272962,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 18,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        },
+        {
+          "condition_number": 4.541704818240753,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": -1
+        },
+        {
+          "condition_number": 6.233300771325687,
+          "context_id": "s42r3c3_f96b02b6e296f16b840c",
+          "issue_task_step": 22,
+          "passed": true,
+          "rank": 4,
+          "sign": 1
+        }
+      ]
+    },
+    "passed": true,
+    "response_count": 912,
+    "signal_pass_count": 912
+  },
+  "primary_numerical_agreement": true,
+  "primary_outcome_agreement": true,
+  "primary_summary_sha256": "2538601ff1086357a96a1f9646a0f9368108fe648b0897da2d987624db111968",
+  "route": "PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "selected_candidate": {
+    "bandwidth_multiplier": 2.0,
+    "pca_rank": 4,
+    "ridge": 0.1
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R8",
+  "training_model_sha256": ""
+}

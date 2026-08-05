@@ -1,0 +1,20 @@
+[R8] user=yangshen0711 host=master command=offline run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8_runs/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification_20260804_5e57f60_v2 resume=0 workers=128
+[R8] immutable formal timing 250/270 ms arrival and 350/370 ms hold; probe raw is never expert data.
+{
+  "calibration_spec_count": 312,
+  "holdout_spec_count": 312,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "zero_tsc_source_and_full_spec_gate",
+  "physical_margin_claimed_offline": false,
+  "prospective_spec_count": 1248,
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "source_d1r11_authenticated": true,
+  "source_r2_r4_r6_authenticated": true,
+  "source_s21_baseline_count": 40,
+  "source_snapshot_pass_count": 40,
+  "stage": "Stage4.2R3c3T13S24D1R14R8",
+  "static_card15_algorithm_configuration_passed": true,
+  "training_spec_count": 624
+}
