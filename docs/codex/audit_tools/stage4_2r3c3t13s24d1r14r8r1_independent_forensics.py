@@ -170,8 +170,9 @@ def _authenticate(args: argparse.Namespace, cfg: Mapping[str, Any]) -> tuple[lis
     independent_r8._validate(r8_cfg)
     paths = independent_r8._paths(args.r8_run.resolve())
     source = cfg["source_r8_contract"]
+    source_state_path = paths["stage"] / "stage_state.json"
     files = (
-        (paths["state"], int(source["stage_state_bytes"]), str(source["stage_state_sha256"])),
+        (source_state_path, int(source["stage_state_bytes"]), str(source["stage_state_sha256"])),
         (paths["manifest"], int(source["stage_manifest_bytes"]), str(source["stage_manifest_sha256"])),
         (paths["analysis"] / "training_model_primary_detailed.json", None, str(source["primary_detailed_sha256"])),
         (paths["analysis"] / "training_model_primary_summary.json", None, str(source["primary_summary_sha256"])),
@@ -180,7 +181,7 @@ def _authenticate(args: argparse.Namespace, cfg: Mapping[str, Any]) -> tuple[lis
     for path, size, sha in files:
         if not path.is_file() or (size is not None and path.stat().st_size != size) or _sha(path) != sha:
             raise ValueError("R8R1 independent source artifact changed")
-    state = _json(paths["state"])
+    state = _json(source_state_path)
     source_independent = _json(paths["analysis"] / "training_model_independent.json")
     if (
         state.get("phase_status") != source["required_phase_status"]

@@ -124,6 +124,8 @@ class Stage42R8R1Tests(unittest.TestCase):
         self.assertNotIn("action_conditioned_history_response_model", imported)
         self.assertIn("independent_model._fit", source)
         self.assertIn("independent_model._predict", source)
+        self.assertIn('source_state_path = paths["stage"] / "stage_state.json"', source)
+        self.assertNotIn('paths["state"]', source)
 
     def test_primary_and_independent_are_zero_tsc_postprocessors(self):
         for path in (PRIMARY, INDEPENDENT):
