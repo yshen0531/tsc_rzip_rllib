@@ -7,7 +7,7 @@
   "controller_revision": "none_zero_tsc_fixed_candidate_model_v1",
   "package_revision": "r42r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_v1",
   "design_checkpoint": "bd7acfa",
-  "implementation_checkpoint": "21c3087",
+  "implementation_checkpoint": "ea4b404",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R1_FIXED_CANDIDATE_SHORT_HORIZON_DESIGN.md",
   "design_document_sha256": "0502e26ef7c6388ff107482946a81bfdd1696e5739f866365bb0a49e57927751",
