@@ -766,3 +766,14 @@ online innovation/adaptation discriminator before viewing any such result.
 It may use only observations available at each update and may not rely on a
 future or matched zero-baseline response. MPC, expert data, BC, DAgger,
 bounded residual RL, and Gate A remain blocked.
+
+R8R2 is now frozen prospectively at design SHA-256
+`2613cd42b7b3a2e9c985c7ac1a9fd055fc20aa596e16add5a2e4c54cc8514dfe`.
+It uses the matched no-action trajectory only for outer scoring, constructs
+the online proxy from the same probe trajectory, and tests a fixed bounded
+innovation anchor at 20 and 40 ms with an 80 ms rolling future window. The
+practical aggregate gate is prospective and retains row-level misses plus
+hard finite, point/tube, direction, amplitude, signal, and geometry bounds.
+No R8R2 result has been computed. The active work is zero-TSC implementation
+and independent audit; all controller, MPC, Gate A, and learning stages remain
+blocked.

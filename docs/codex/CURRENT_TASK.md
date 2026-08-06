@@ -4556,3 +4556,42 @@ baseline differencing. It may not tune another cold-start point-center
 candidate after R8R1. A development pass can authorize only a separate
 fresh authentic interaction sentinel; MPC, expert data, BC, DAgger, residual
 RL, and Gate A remain blocked.
+
+## 76. Frozen D1R14R8R2 causal online innovation/adaptation task
+
+R8R2 is prospectively frozen before implementation or any R8R2 result in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R2_CAUSAL_ONLINE_INNOVATION_ADAPTATION_DESIGN.md
+SHA-256
+2613cd42b7b3a2e9c985c7ac1a9fd055fc20aa596e16add5a2e4c54cc8514dfe
+```
+
+It authenticates only the twelve already opened R8 training pairs and runs
+zero new TSC. The matched no-action trajectory is evaluator-only. Every live
+feature must be reconstructed from the same probe trajectory's causal visible
+prefix, known issued action, fixed R8 candidate, and a fixed four-state affine
+no-action forecast. It tests rolling eight-state/80 ms predictions after
+update lags 2 and 4, with no origin shift or later formal deadline.
+
+The fixed adapter is a recency-weighted vR/vZ/Ip innovation anchor with
+`lambda in [0.0, 0.5, 0.8]`, selected only through nested whole-pair inner
+validation. Future R/Z is anchored causally and integrated from the corrected
+response velocity. Forbidden labels, source outcomes, matched future
+baseline, and future probe values may not enter the predictor.
+
+Hard deployability gates retain finite output, unchanged point/tube bounds,
+nonnegative direction, bounded amplitude, signal, and rank/condition for all
+912 rows. The prospectively relaxed practical gate requires at least 867/912
+unchanged response-quality passes, at least 69/76 per pair and 34/38 per
+context, at least 46-row improvement over the rolling cold comparator, and no
+per-pair regression. The frozen no-action forecast must independently pass
+all 96 future windows inside the unchanged physical component bounds.
+
+The active task is to implement primary and structurally independent R8R2
+postprocessors, validate/deploy them under the established package workflow,
+and compute the zero-TSC result without opening R8 calibration or holdout.
+A PASS authorizes only a separately frozen authentic interaction sentinel. A
+FAIL routes to a new observer/identification design. Neither route authorizes
+MPC, expert data, BC, DAgger, residual RL, or Gate A.

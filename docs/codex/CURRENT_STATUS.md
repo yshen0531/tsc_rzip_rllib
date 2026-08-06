@@ -31,11 +31,20 @@
 >   stage4_2r3c3t13s24d1r14r8r1_20260806_892ac7c/
 > ```
 >
-> The active boundary is to prospectively freeze a causal online
-> innovation/adaptation development study before computing any such result.
-> Even a development PASS may authorize only a separately frozen fresh
-> authentic interaction sentinel. MPC, expert data, BC, DAgger, bounded
-> residual RL, and Gate A remain blocked.
+> The next causal online innovation/adaptation study is now prospectively
+> frozen as R8R2 before implementation or result computation. Its exact
+> design is
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R2_CAUSAL_ONLINE_INNOVATION_ADAPTATION_DESIGN.md`,
+> SHA-256
+> `2613cd42b7b3a2e9c985c7ac1a9fd055fc20aa596e16add5a2e4c54cc8514dfe`.
+> It is zero-new-TSC and keeps the matched no-action trajectory evaluator-only;
+> online inputs come solely from the same probe trajectory prefix, known
+> issued action, frozen cold-start prediction, and fixed causal no-action
+> forecast. Whole-pair nested validation tests rolling 80 ms prediction after
+> 20 or 40 ms of observations. No R8R2 metric has been viewed. Even a
+> development PASS may authorize only a separately frozen fresh authentic
+> interaction sentinel. MPC, expert data, BC, DAgger, bounded residual RL,
+> and Gate A remain blocked.
 >
 > The final application policy remains safe, causal, approximate trajectory
 > following rather than zero-error or universal optimality. Exact restart,

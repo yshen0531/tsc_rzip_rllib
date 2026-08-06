@@ -879,13 +879,17 @@ restart, causality, raw, controller, real-MPC, formal-control, or plant-
 reachability result. R8 calibration/holdout remain unopened and no model
 artifact exists.
 
-The active task must prospectively freeze a deployable causal online
-innovation/adaptation study before computing its result. It must not use
-future outcomes, retrospective matched-baseline response, hidden/source
-labels, or another post-result cold-start candidate search. Even a
-development pass authorizes only a separately frozen authentic interaction
-sentinel. Gate A, expert data, BC, DAgger, residual RL, and later robustness
-remain blocked.
+The deployable causal online innovation/adaptation study is prospectively
+frozen as R8R2 at design SHA-256
+`2613cd42b7b3a2e9c985c7ac1a9fd055fc20aa596e16add5a2e4c54cc8514dfe`,
+before implementation or results. It keeps the matched no-action trajectory
+evaluator-only and uses the same probe trajectory's causal prefix, known
+issued action, fixed cold-start prediction, and fixed causal no-action
+forecast online. Whole-pair nested validation tests rolling 80 ms prediction
+after 20 or 40 ms. It must not use future outcomes, hidden/source labels, or
+another post-result cold-start search. Even a development pass authorizes
+only a separately frozen authentic interaction sentinel. Gate A, expert data,
+BC, DAgger, residual RL, and later robustness remain blocked.
 
 ## 10. Required validation before server execution
 
