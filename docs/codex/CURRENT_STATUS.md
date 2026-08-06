@@ -1,5 +1,74 @@
 # Current status
 
+> **Superseding route-policy and live handoff (2026-08-06
+> Asia/Shanghai).** The user clarified that the final application goal is
+> safe, causal, approximate trajectory following for a limiter-configuration
+> plasma; high-precision, zero-error, globally optimal, or universally perfect
+> tracking is not required. `TOKAMAK_RL_PROJECT_CONTEXT.md` and
+> `CURRENT_TASK.md` now define the finite safe-and-useful MPC expert gate,
+> residual-eligible performance gaps, and two explicit pauses: Gate A before
+> expert-data/BC/DAgger and Gate B before bounded residual RL. Exact restart,
+> causality, hard safety, integrity, the deterministic core formal contract,
+> and prospective scientific gates remain unchanged. Future stochastic and
+> continuous robustness qualification may use a preregistered aggregate
+> criterion rather than universal 100% performance, but every individual miss
+> must remain recorded and hard-safety violations remain disallowed.
+>
+> The active code boundary is R8R1 on branch
+> `codex/stage4_2r3c3t13s24-sequential-transition`, current committed package
+> checkpoint `c2ed69f`. Its zero-new-TSC primary output is preserved at:
+>
+> ```text
+> /home/yangshen0711/tsc_all/tsc_rzip_rllib/
+> stage4_2r3c3t13s24d1r14r8r1_runs/
+> stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator_20260805_c2ed69f_v1
+> ```
+>
+> The primary completed normally with `passed=true` for execution/audit but
+> `scientific_gate_passed=false`, no selected horizon, no model, no new raw,
+> and route
+> `FIXED_CANDIDATE_SHORT_HORIZON_FAIL_CAUSAL_INNOVATION_REQUIRED`.
+> Response-gate passes for horizons 4/6/8/10/12 were respectively
+> `832/804/788/770/763` of 912. Shortening the horizon therefore does not
+> repair the fixed cold-start response center. Primary summary SHA-256 is
+> `5d6c2eb4282dba1ba29e25624b147af8b760c8cfbe5fd085374cf54110de6204`;
+> state SHA-256 is
+> `d53972ac81d3b4522bb2a4454ed63a4bb8fc844212dd876904195887774b13c4`.
+>
+> The first independent invocation stopped before fitting or output with
+> `KeyError: 'state'`: it inherited R8's `_paths()` but incorrectly requested
+> `paths["state"]` instead of
+> `paths["stage"] / "stage_state.json"`. Its complete log is
+> `logs/nohup/stage4_2r3c3t13s24d1r14r8r1_independent_20260805_c2ed69f_v1.log`,
+> SHA-256
+> `9cd7d740a38063bbe992ce0e0751b319a70a29f2bea57823f26b4860b2bbc1ea`.
+> This is an independent-audit path/runtime bug, not an R8R1 scientific,
+> raw, restart, controller, or plant result. No R8R1 TSC trajectory exists or
+> needs rerunning.
+>
+> The exact two-file fix is present locally but intentionally remains
+> uncommitted at this handoff:
+>
+> ```text
+> docs/codex/audit_tools/
+>   stage4_2r3c3t13s24d1r14r8r1_independent_forensics.py
+> tests/
+>   test_stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator.py
+> ```
+>
+> `py_compile` passed and the focused project-venv `unittest` suite passed
+> 7/7. A direct unshimmed Windows full discovery reached 790 runnable tests
+> but produced 27 collection/import errors because legacy Linux-only modules
+> import `resource`; this is an invalid Windows validation entrypoint, not a
+> code regression. Resume by running the complete suite with the repository's
+> established Windows `resource` shim (and later in the server virtualenv),
+> commit the focused fix, refresh only its package hashes/checkpoint, deploy
+> only the changed files after exact server preflight, and rerun only the
+> independent zero-TSC audit in the same output directory under a new log
+> identity. Do not rerun R8 or any R8R1 TSC work. If independent recomputation
+> agrees, finalize R8R1 as a clean short-horizon model-design FAIL and freeze
+> the next causal online innovation/adaptation study prospectively.
+
 > **Superseding live handoff (2026-08-05 Asia/Shanghai).** D1R14R8 is final
 > at `PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP`. Its 624/624 fresh
 > authentic training-extension trajectories passed runtime, exact restart,

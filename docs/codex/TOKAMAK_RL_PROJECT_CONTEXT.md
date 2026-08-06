@@ -22,6 +22,49 @@ current-stage root .sh files
 
 Historical code and output may be read only when required as scientific source evidence.
 
+### 1.1 User-authorized operational objective and precision scope
+
+The user clarified the final application objective on 2026-08-06:
+
+```text
+For a limiter-configuration plasma, make the plasma follow the commanded
+trajectory approximately and safely.  High-precision or globally optimal
+tracking is not required.
+```
+
+This changes the interpretation of the roadmap, not the integrity of any
+completed experiment or frozen gate.  In particular:
+
+- the controller is required to be useful over a stated, finite operating
+  envelope; it is not required to be universally perfect over every possible
+  hidden history, target, continuous parameter, noise realization, or
+  disturbance combination;
+- exact restart, controller causality, hard action/current constraints,
+  fail-safe behavior, package/raw integrity, and the immutable formal timing
+  contract remain hard requirements;
+- the existing 30 mm R/Z, 0.1 m/s speed, frozen Ip, arrival-streak, and
+  250/270 ms arrival plus 350/370 ms hold contract remain the deterministic
+  core acceptance standard unless the user explicitly changes them;
+- passing that standard is sufficient precision for the core task.  Do not
+  prolong MPC development merely to drive error toward zero, optimize cost,
+  or obtain universal 100% success outside a prospectively stated envelope;
+- future continuous-parameter, noise, disturbance, and long-hold tests must
+  use prospectively frozen finite distributions/envelopes and aggregate
+  qualification criteria.  An individual formal miss remains a miss, but the
+  qualification need not demand 100% success for every stochastic sample;
+- independent long hold requires bounded, safe, non-divergent behavior after
+  the formal arrival/hold gate.  It does not require zero steady-state error
+  for an unlimited horizon.
+
+The intended learning boundary is a **safe and useful MPC expert**, not a
+perfect MPC.  Remaining errors may be delegated to bounded residual learning
+only when they are local, finite, measurable, and prospectively shown to be
+repairable within the restricted residual action authority.  A residual may
+improve tracking margin, continuous-parameter compensation, disturbance
+recovery, smoothness, or efficiency.  It may not be needed to reverse a
+wrong-direction MPC action, stabilize an otherwise unstable loop, bypass the
+observer, or regain unconstrained ownership of all 14 coils.
+
 ## 2. Server environment
 
 ```text
@@ -662,7 +705,7 @@ After hidden-history and different-initial-state robustness:
 
 ## 8. Long-term objectives
 
-Only after the MPC expert is reliable:
+Only after the MPC expert reaches the finite **safe-and-useful expert gate**:
 
 1. Define expert dataset schema with full causal context and safety metadata.
 2. Collect MPC expert trajectories across the validated envelope.
@@ -673,6 +716,28 @@ Only after the MPC expert is reliable:
 7. Deployment-oriented safety validation.
 
 Bounded residual RL may correct a reliable MPC expert. It may not directly replace it or own all 14 coils without hard bounds.
+
+The safe-and-useful expert gate requires exact restart/causality and hard
+safety, deterministic core formal acceptance, bounded non-divergent behavior
+over prospectively frozen hidden-history/continuous-parameter/noise/
+disturbance/long-hold qualifications, and an explicit analysis showing that
+any remaining performance gap is within a restricted residual envelope.  It
+does **not** require perfect tracking or 100% success over an unbounded or
+stochastic universe.
+
+Use two explicit learning decision gates:
+
+```text
+Gate A: safe-and-useful MPC expert qualified
+        -> pause for user confirmation before expert-data / BC / DAgger work
+
+Gate B: BC/DAgger baseline and residual safety interface independently ready
+        -> pause for user confirmation before bounded residual RL
+```
+
+If the qualified MPC already meets the practical trajectory-following goal
+and there is no measurable benefit large enough to justify RL complexity and
+risk, stopping without residual RL is a valid final outcome.
 
 ## Current D1R14R7R2/R8 boundary
 

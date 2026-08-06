@@ -1,5 +1,101 @@
 # CURRENT_TASK.md — finite-horizon restart MPC architecture evidence stage
 
+## 0. User-authorized final objective and learning-transition policy
+
+The user clarified and authorized this interpretation on 2026-08-06.  The
+practical final objective is:
+
+```text
+For a limiter-configuration plasma, obtain safe, causal feedback that makes
+the plasma follow a user-commanded trajectory approximately.  High-precision,
+zero-error, globally optimal, or universally perfect tracking is not required.
+```
+
+This policy supersedes any earlier wording that could be read as requiring
+MPC to solve every robustness case perfectly before learning.  It does not
+change any completed result, reopen any consumed holdout, weaken any
+preregistered gate after seeing its result, or alter the immutable formal
+timing contract.
+
+### 0.1 Hard MPC qualifications before learning
+
+Before expert-data, BC, DAgger, or bounded residual learning, the MPC base
+must demonstrate within a prospectively stated finite envelope:
+
+1. exact authentic plant restart and causal controller-state restart;
+2. no future, hidden-label, source-outcome, or forbidden-state leakage;
+3. enforced hard action/current/Card15/saturation constraints, reliable
+   solver fallback, and safe behavior when the residual is identically zero;
+4. deterministic core acceptance under the unchanged 30 mm R/Z, 0.1 m/s,
+   frozen Ip/arrival-streak, 250/270 ms arrival, and 350/370 ms hold contract;
+5. a deployable observer/controller mechanism that does not fail
+   catastrophically on the frozen hidden-history and different-initial-state
+   qualification;
+6. bounded, non-divergent, hard-safe behavior on prospectively frozen
+   continuous delay/gain/slew, plant/model mismatch, measurement-noise,
+   disturbance-recovery, and independent long-hold qualifications; and
+7. an explicit residual-authority audit showing that remaining performance
+   errors are local and potentially repairable by the restricted residual
+   interface without giving RL unconstrained control of all 14 coils.
+
+Exact safety, causality, restart, integrity, and deterministic core formal
+gates are not relaxable.  The future stochastic/continuous robustness
+qualifications need not demand universal 100% performance success: their
+finite envelope, sample matrix, aggregate success/confidence criterion, and
+zero-hard-safety-violation rule must be frozen before outcomes are seen.  An
+individual formal miss must still be recorded as a miss; it may not be
+relabeled as a pass.
+
+Independent long hold means the formal arrival/hold gate is satisfied first,
+followed by bounded, safe, non-divergent behavior over a separately chosen
+horizon.  It does not require zero steady-state error or perfect tracking for
+an unlimited duration.
+
+### 0.2 Performance gaps that may remain for bounded residual learning
+
+After the hard qualifications pass, MPC may retain modest systematic model
+error, continuous-parameter tracking loss, noise-related estimation error,
+disturbance-recovery delay, overshoot, energy/smoothness cost, or occasional
+held-envelope performance misses.  Such a gap is eligible for residual
+learning only if all of the following are shown prospectively:
+
+```text
+the base MPC moves in the correct direction and remains in a safe basin
+the residual-zero closed loop remains stable and safe
+the error is finite, local, measurable, and not an unresolved causal alias
+a fixed bounded residual action/subspace has plausible repair authority
+the residual cannot bypass hard constraints or become the 14-coil controller
+```
+
+A fundamentally wrong-direction action, unstable base loop, failed restart,
+unobservable state with no deployable causal estimator, or need for large
+full-authority correction is still an MPC/observer blocker rather than an RL
+task.
+
+### 0.3 Two explicit pause gates
+
+```text
+Gate A — safe-and-useful MPC expert qualified
+  Pause for user confirmation before creating the expert dataset or entering
+  BC/DAgger.  "Qualified" means every required robustness axis has been
+  implemented and independently tested to the finite criteria above, not that
+  MPC is universally perfect.
+
+Gate B — imitation baseline and residual interface ready
+  After a confirmed expert-data -> BC -> DAgger phase, independently verify
+  baseline fidelity, safety projection, residual bounds, fallback, and useful
+  residual headroom; then pause again before bounded residual RL.
+```
+
+If the qualified MPC already satisfies the user's coarse trajectory-following
+goal and RL has no measurable benefit commensurate with its added risk and
+complexity, it is valid to finish without residual RL.
+
+This policy does not authorize learning now.  The current R8/R8R1 response-
+model boundary must still be completed honestly under its already frozen
+gates, followed by a genuine receding-horizon controller and the finite
+qualification sequence above.
+
 ## 1. Terminology and certified checkpoint
 
 ```text
