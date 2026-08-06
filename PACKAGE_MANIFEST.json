@@ -70,7 +70,7 @@
       "required_route": "DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED"
     },
     "r8r1": {
-      "run_name": "stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator_20260806_892ac7c_v1",
+      "run_name": "stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator_20260805_c2ed69f_v1",
       "stage_directory": "stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator",
       "primary_detailed_bytes": 1035205,
       "primary_detailed_sha256": "bd0041c3e16b56fce28abb80526bb5f1628ee74f6f5b52a70aaa07019e86a1ee",
