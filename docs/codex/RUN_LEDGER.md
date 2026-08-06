@@ -1510,3 +1510,43 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r7r2_20260804_995d81c/`
 - Next: prospectively frozen R8 partitioned 12-training/4-calibration/4-holdout
   broader deconfounded identification; no MPC/expert/RL authorization
+
+## Stage4.2R3c3T13S24D1R14R8 partitioned response identification
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Final route: `PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP`
+- Fresh training raw: `624/624`, 19,725,920 bytes, digest
+  `b5de1cabe0bd47b0d3a3b26aff04714ca0c05653483cd4c92403dc5867eeb762`
+- Combined whole-pair responses / passes: `912 / 719`
+- Calibration / holdout raw: `0 / 0`; model artifact absent
+- Runtime/restart/causality/raw/snapshot errors: zero
+- Classification: authentic finite identification completed; frozen
+  response-center model/design FAIL, no controller or MPC result
+- Report:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8_FORENSIC_REPORT.md`
+
+## Stage4.2R3c3T13S24D1R14R8R1 short-horizon discriminator
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation repair / accepted package:
+  `bd7acfa / ea4b404 / 892ac7c`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r1_runs/stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator_20260805_c2ed69f_v1`
+- Source raw authenticated / new raw / plant advances: `624 / 0 / 0`
+- Response passes at 4/6/8/10/12 states:
+  `832/804/788/770/763` of 912
+- Primary detailed / summary / accepted independent / final state hashes:
+  `bd0041c3e16b56fce28abb80526bb5f1628ee74f6f5b52a70aaa07019e86a1ee`,
+  `5d6c2eb4282dba1ba29e25624b147af8b760c8cfbe5fd085374cf54110de6204`,
+  `3f378dba6eb1304422397b44a347e34d35827624ca6ea61791e85f16e7a5341c`,
+  `3f25e7070fd56243b1581b7da17cb433e0876821437bc9e7e098cdf4626d869f`
+- Local/server full tests: `1157/1157` with one expected isolated-data skip
+- Route:
+  `FIXED_CANDIDATE_SHORT_HORIZON_FAIL_CAUSAL_INNOVATION_REQUIRED`
+- Classification: fixed cold-start short-horizon response-center design
+  FAIL; no runtime, restart, causality, raw, controller, formal-control,
+  real-MPC, or plant conclusion
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r1_20260806_892ac7c/`
+- Next: prospectively freeze a deployable causal online innovation/adaptation
+  study; Gate A and all expert/learning stages remain blocked

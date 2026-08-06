@@ -4503,3 +4503,56 @@ fresh authentic multipulse superposition/interaction sentinel; a fail routes
 to causal online innovation/adaptation or new identification, not more
 capacity in the failed long-horizon point-center kernel. MPC, expert data,
 BC, DAgger, and bounded residual RL remain blocked.
+
+## 75. Final D1R14R8R1 result and active causal-innovation design boundary
+
+R8R1 authenticated the complete R2/R4/R6/R8 training bank and reconstructed
+912 responses in twelve whole-pair outer folds. The primary completed
+normally. After a focused independent state-path repair, the structurally
+independent recomputation agreed exactly with every primary numerical result,
+route, and model-artifact outcome. The accepted result is:
+
+```text
+relative-lag states / elapsed ms       4/40    6/60    8/80   10/100  12/120
+all response gates                  832/912 804/912 788/912 770/912 763/912
+controller-useful route candidate       no      no      yes      yes      yes
+scientific gate                          FAIL    FAIL    FAIL     FAIL     FAIL
+selected horizon                         none
+route
+  FIXED_CANDIDATE_SHORT_HORIZON_FAIL_CAUSAL_INNOVATION_REQUIRED
+```
+
+The 40 ms diagnostic alone passed the componentwise tube cap but failed
+response and actual-condition gates. The 60--120 ms horizons retained
+direction/relative-amplitude and vR-tube failures. Predicted signal and
+geometry were intact. Shortening therefore does not make the fixed
+cold-start point-center kernel controller-useful.
+
+The accepted audit package is `892ac7c`; independent and final-state hashes
+are respectively
+`3f378dba6eb1304422397b44a347e34d35827624ca6ea61791e85f16e7a5341c`
+and `3f25e7070fd56243b1581b7da17cb433e0876821437bc9e7e098cdf4626d869f`.
+The postcheck strictly parsed all 624 R8 training raw. Calibration and
+holdout remain unopened with zero raw. R8R1 ran zero Ray, `gotsc`, TSC,
+controller, or plant advances and emitted no model.
+
+The first independent `KeyError: 'state'` was an audit-tool path/runtime
+defect, repaired without changing any raw, candidate, fold, horizon, gate, or
+scientific result. R8R1 is final as a response-model/design FAIL, not a
+restart, causality, raw, reporting, real-control, formal-control, real-MPC,
+or plant-reachability failure. Its exact report is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R1_FORENSIC_REPORT.md
+```
+
+R8R1 is immutable. Before any further result is computed, the next task
+must prospectively freeze a new-identity causal online innovation/adaptation
+study. It must use only causal observations available by each prediction
+time, keep whole-pair separation, forbid source labels/future outcomes, and
+distinguish deployable same-trajectory adaptation from retrospective paired-
+baseline differencing. It may not tune another cold-start point-center
+candidate after R8R1. A development pass can authorize only a separate
+fresh authentic interaction sentinel; MPC, expert data, BC, DAgger, residual
+RL, and Gate A remain blocked.

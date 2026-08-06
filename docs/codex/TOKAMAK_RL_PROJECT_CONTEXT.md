@@ -739,7 +739,7 @@ If the qualified MPC already meets the practical trajectory-following goal
 and there is no measurable benefit large enough to justify RL complexity and
 risk, stopping without residual RL is a valid final outcome.
 
-## Current D1R14R7R2/R8 boundary
+## Current D1R14R8/R8R1 boundary
 
 D1R14R7R2 completed the full 304-response audit with exact independent
 agreement but passed only 236/304 center gates. All 304 point-error gates, the
@@ -748,8 +748,21 @@ passed. The failure was whole-pair response direction/relative amplitude,
 with pair pass counts ranging from 44/76 to 70/76. It is a clean model/data
 coverage failure and ran zero new TSC.
 
-The active D1R14R8 design expands fixed source coverage from four to 12
-training pairs, then keeps four calibration and four holdout pairs unopened
-until model/tube hashes. It has a fail-closed maximum of 1,248 fresh authentic
-rollouts. Only a complete pass can authorize a separate multipulse sentinel;
-MPC and all expert/RL stages remain blocked.
+D1R14R8 expanded fixed source coverage from four to twelve training pairs and
+completed all 624 training-extension rollouts, but the frozen model passed
+only 719/912 response rows. Calibration and holdout remained unopened.
+
+R8R1 then fixed the R8-selected PCA4/bandwidth-2/ridge-0.1 candidate and
+recomputed whole-pair results at 40, 60, 80, 100, and 120 ms with zero new
+TSC. Primary and independent results agree exactly. All-response pass counts
+were `832/804/788/770/763` of 912; no controller-useful horizon passed, and
+no model artifact exists. The route is
+`FIXED_CANDIDATE_SHORT_HORIZON_FAIL_CAUSAL_INNOVATION_REQUIRED`.
+
+R8R1 is a clean fixed cold-start response-center design failure, not a
+runtime, restart, causality, raw, controller, real-MPC, formal-control, or
+plant-reachability result. The active task is to freeze a deployable causal
+online innovation/adaptation discriminator before viewing any such result.
+It may use only observations available at each update and may not rely on a
+future or matched zero-baseline response. MPC, expert data, BC, DAgger,
+bounded residual RL, and Gate A remain blocked.

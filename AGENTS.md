@@ -867,6 +867,26 @@ rollouts. A pass may authorize only a fresh multipulse interaction sentinel.
 Real MPC, expert data, BC, DAgger, bounded residual RL, and later robustness
 stages remain blocked.
 
+D1R14R8 completed 624/624 authentic training-extension trajectories and
+stopped before calibration/holdout after its frozen response model passed
+only 719/912 whole-pair rows. R8R1 then evaluated the fixed selected
+candidate at 40--120 ms with zero new TSC. Accepted primary and independent
+results agree exactly; response passes were 832/804/788/770/763 of 912 and no
+controller-useful horizon passed. R8R1 is final as
+`FIXED_CANDIDATE_SHORT_HORIZON_FAIL_CAUSAL_INNOVATION_REQUIRED`, a clean
+fixed cold-start response-center design failure. It is not a runtime,
+restart, causality, raw, controller, real-MPC, formal-control, or plant-
+reachability result. R8 calibration/holdout remain unopened and no model
+artifact exists.
+
+The active task must prospectively freeze a deployable causal online
+innovation/adaptation study before computing its result. It must not use
+future outcomes, retrospective matched-baseline response, hidden/source
+labels, or another post-result cold-start candidate search. Even a
+development pass authorizes only a separately frozen authentic interaction
+sentinel. Gate A, expert data, BC, DAgger, residual RL, and later robustness
+remain blocked.
+
 ## 10. Required validation before server execution
 
 At minimum, perform and record:

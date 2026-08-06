@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r1_independent_forensics.py", line 302, in <module>
+    audit(_parser().parse_args())
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r1_independent_forensics.py", line 228, in audit
+    items, r8_cfg = _authenticate(args, cfg)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r1_independent_forensics.py", line 174, in _authenticate
+    (paths["state"], int(source["stage_state_bytes"]), str(source["stage_state_sha256"])),
+     ~~~~~^^^^^^^^^
+KeyError: 'state'

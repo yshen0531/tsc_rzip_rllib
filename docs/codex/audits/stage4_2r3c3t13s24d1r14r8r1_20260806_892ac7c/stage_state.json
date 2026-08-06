@@ -1,0 +1,15 @@
+{
+  "finished": true,
+  "heldout_outcomes_opened": false,
+  "independent_completed": true,
+  "independent_passed": true,
+  "independent_sha256": "3f378dba6eb1304422397b44a347e34d35827624ca6ea61791e85f16e7a5341c",
+  "model_sha256": "",
+  "new_raw_count": 0,
+  "primary_completed": true,
+  "route": "FIXED_CANDIDATE_SHORT_HORIZON_FAIL_CAUSAL_INNOVATION_REQUIRED",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "selected_relative_lag_horizon": null,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R1"
+}
