@@ -1132,5 +1132,7 @@
     "tsc_rzip_rllib/utils/__init__.py",
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
-  ]
+  ],
+  "audit_hotfix_checkpoint": "c95790a",
+  "audit_hotfix_scope": "Independent raw inventory field names only: path/bytes/files normalized to the existing name/size/rows canonical schema; no raw, spec, controller, model, gate, or route semantics changed."
 }
