@@ -1,5 +1,34 @@
 # Current status
 
+> **Superseding R8R3 prospective-design checkpoint (2026-08-07
+> Asia/Shanghai).**  After R8R2 final independent agreement, and before any
+> R8R3 feature matrix, fit, cross-validated prediction, observer metric,
+> route, or artifact was computed, the next causal history no-action observer
+> was frozen as R8R3.  The exact design is
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R3_CAUSAL_HISTORY_NO_ACTION_OBSERVER_DESIGN.md`,
+> SHA-256
+> `c55130a41f6522259d6fe9073686f0c86226c7dc11be7e93607b63f0abd0dfcb`.
+> A structure-only server read in the existing virtual environment, with no
+> fit or R8R3 performance metric, reconstructed 12 physical pairs, 24 history
+> contexts, 96 prescribed windows, baseline lengths 36/38, and exactly 360
+> eligible causal 10-history/12-future origin rows.
+>
+> R8R3 uses only already opened training baseline raw and runs zero new TSC.
+> Its 353-dimensional deployable feature is restricted to own-trajectory
+> visible history, already issued normalized actions, measured applied coil
+> currents through the origin, numeric target offsets, and task clock.  It
+> forbids labels, wire current, matched future, future measurement/current/
+> action, and heldout outcome.  Twelve outer whole-pair folds and inner
+> whole-pair selection cover a prospectively fixed 48-candidate linear/RBF
+> kernel family.  All 360 outer rows must pass the unchanged component caps
+> and fold-local finite tube containment; the 96 prescribed issue rows are an
+> explicit subset gate.  R8 calibration/holdout remain unopened.
+>
+> A pass can authorize only a separately frozen zero-TSC combination with
+> the already specified R8R2 innovation architecture.  A failure routes to a
+> fresh causal observer-identification design.  Controller execution, MPC,
+> Gate A, expert data, BC, DAgger, and bounded residual RL remain blocked.
+
 > **Superseding R8R2 final and observer-route handoff (2026-08-07
 > Asia/Shanghai).** R8R2 is final at
 > `CAUSAL_ONLINE_INNOVATION_BASELINE_FORECAST_FAIL_OBSERVER_IDENTIFICATION_REQUIRED`.

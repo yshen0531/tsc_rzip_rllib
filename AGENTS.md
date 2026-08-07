@@ -900,6 +900,18 @@ design failure, not a result about the unrun update, controller, MPC, formal
 control, plant restart, or reachability. It created zero raw and ran zero
 Ray, `gotsc`, TSC, controller, or plant advances.
 
+R8R3 was then frozen prospectively, before implementation or any R8R3 metric,
+as the causal history no-action observer at design SHA-256
+`c55130a41f6522259d6fe9073686f0c86226c7dc11be7e93607b63f0abd0dfcb`.
+It uses only already opened training baselines, with 353 causal visible/
+already-issued-action/measured-applied-current/target/time features, a fixed
+48-candidate linear/RBF family, nested whole-pair validation, and unchanged
+component caps plus finite fold-local tube containment over all 360 origins.
+It runs zero new TSC and keeps R8 calibration/holdout unopened. A pass may
+authorize only a separately frozen combined online-adaptation audit; a fail
+requires fresh observer identification. Controller, MPC, Gate A, expert data,
+BC, DAgger, and residual RL remain blocked.
+
 The active route is a separately frozen causal observer/identification design
 using only visible histories and already issued actions/currents. It must
 retain whole-pair separation and forbid future closed-loop actions, matched

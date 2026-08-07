@@ -4667,3 +4667,49 @@ as predictor input.  A development observer pass may authorize only a
 separately frozen combination with the R8R2 innovation architecture; it does
 not authorize a controller, real MPC, expert data, BC, DAgger, residual RL,
 or Gate A.
+
+## 78. Frozen D1R14R8R3 causal history no-action observer task
+
+R8R3 is prospectively frozen after final R8R2 evidence, but before any R8R3
+feature matrix, fit, cross-validated prediction, observer metric, route, or
+artifact, in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R3_CAUSAL_HISTORY_NO_ACTION_OBSERVER_DESIGN.md
+SHA-256
+c55130a41f6522259d6fe9073686f0c86226c7dc11be7e93607b63f0abd0dfcb
+```
+
+It authenticates only already opened R8 training evidence and creates zero
+new raw.  A structure-only server read made before freezing the design and
+without fitting or scoring an observer established the exact source shape:
+12 physical pairs, 24 history contexts, 96 prescribed issue windows,
+baseline visible lengths 36/38, and 360 eligible origins with ten causal
+history steps and twelve future target steps.
+
+The deployable 353-dimensional input at each origin is fixed to eleven
+visible states, ten already issued 14-coil normalized actions, eleven measured
+14-coil applied-current states through the origin, three numeric user target
+offsets, and one relative task clock.  Pair/history/source/regime labels,
+wire currents, matched future, future measurements, future current/action,
+and outcomes are forbidden.  Every one of the 912 probe issue features must
+be reconstructed from its own prefix, with matched-baseline equality used
+only as an audit assertion.
+
+The model predicts twelve direct future changes in vR/vZ/Ip and reconstructs
+R/Z kinematically.  Its fixed 48 candidates combine PCA ranks 8/16/24/32
+with prospectively declared linear or RBF kernels and fixed ridge/bandwidth
+grids.  Twelve outer whole-pair folds use only inner whole-pair validation for
+candidate selection and fold-local tubes.  All 360 outer rows, including all
+96 prescribed issue rows, must satisfy every unchanged component cap; every
+row must also be contained by a finite fold-local tube whose half-widths stay
+inside those caps.  No aggregate exception can turn a miss into a pass.
+
+The active task is to implement primary and structurally independent R8R3
+audits, validate and directly deploy them under the repository package
+workflow, and compute the zero-TSC result without opening R8 calibration or
+holdout.  A PASS authorizes only a separately frozen combination with the
+R8R2 innovation architecture.  A FAIL requires a new-identity fresh causal
+observer-identification design.  Neither route authorizes a controller, MPC,
+expert data, BC, DAgger, residual RL, or Gate A.

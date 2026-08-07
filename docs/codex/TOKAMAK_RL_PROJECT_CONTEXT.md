@@ -739,7 +739,7 @@ If the qualified MPC already meets the practical trajectory-following goal
 and there is no measurable benefit large enough to justify RL complexity and
 risk, stopping without residual RL is a valid final outcome.
 
-## Current D1R14R8/R8R1/R8R2 boundary
+## Current D1R14R8/R8R1/R8R2/R8R3 boundary
 
 D1R14R7R2 completed the full 304-response audit with exact independent
 agreement but passed only 236/304 center gates. All 304 point-error gates, the
@@ -793,3 +793,15 @@ action, matched future, source label, hidden state, or unopened outcome.
 Even a development pass authorizes only a separately frozen combination with
 online adaptation.  All controller, MPC, Gate A, and learning stages remain
 blocked.
+
+R8R3 is now prospectively frozen before implementation or metrics at design
+SHA-256
+`c55130a41f6522259d6fe9073686f0c86226c7dc11be7e93607b63f0abd0dfcb`.
+It uses a 353-dimensional causal visible/action/applied-current history and a
+fixed 48-candidate linear/RBF family under nested whole-pair validation.  The
+already opened baseline bank provides exactly 360 causal origins and 96
+prescribed issue rows; every outer row must meet the unchanged component caps
+and fold-local finite-tube containment.  R8R3 is zero-new-TSC and keeps R8
+calibration/holdout unopened.  A pass authorizes only a separately frozen
+combined online-adaptation audit, while a failure requires fresh observer
+identification.  Controller, MPC, Gate A, and learning remain blocked.
