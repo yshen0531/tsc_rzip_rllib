@@ -119,33 +119,48 @@ def repair(args: argparse.Namespace) -> dict[str, Any]:
     if _sha(project / PRIMARY_MODULE) != ORIGINAL_PRIMARY_MODULE_SHA256:
         raise ValueError("R8R11 primary/controller module changed before reporting hotfix")
     stage = args.run_dir.expanduser().resolve() / RUN_NAME
+    phase = str(args.phase)
+    expected = {"safety": 24, "qualification": 72}[phase]
+    prior_phase_status = {
+        "safety": "safety_execution_failed",
+        "qualification": "qualification_execution_failed",
+    }[phase]
     analysis = stage / "analysis"
-    raw = stage / "raw" / "safety"
+    raw = stage / "raw" / phase
     source_stage = (
         args.r8r7_run.expanduser().resolve()
         / str(cfg["source_r8r7"]["stage_directory"])
     )
     r8r9._authenticate_r8r7(source_stage, cfg)
-    original_primary_path = analysis / "safety_raw_primary.json"
+    original_primary_path = analysis / f"{phase}_raw_primary.json"
     original_state_path = stage / "stage_state.json"
-    preserved_primary = analysis / "safety_raw_primary_pre_source_prefix_reporting_hotfix.json"
-    preserved_state = stage / "stage_state_pre_source_prefix_reporting_hotfix.json"
-    hotfix_path = analysis / "safety_source_prefix_reporting_hotfix.json"
+    preserved_primary = (
+        analysis / f"{phase}_raw_primary_pre_source_prefix_reporting_hotfix.json"
+    )
+    preserved_state = stage / f"stage_state_pre_{phase}_source_prefix_reporting_hotfix.json"
+    hotfix_path = analysis / f"{phase}_source_prefix_reporting_hotfix.json"
     if any(path.exists() for path in (preserved_primary, preserved_state, hotfix_path)):
         raise ValueError("R8R11 source-prefix reporting hotfix already attempted")
     primary = _read(original_primary_path)
     state = _read(original_state_path)
     before_inventory = _inventory(raw)
     if (
-        state.get("phase_status") != "safety_execution_failed"
+        state.get("phase_status") != prior_phase_status
         or state.get("finished") is not True
-        or int(state.get("new_raw_count", -1)) != 24
+        or int(state.get("new_raw_count", -1)) != (24 if phase == "safety" else 96)
         or state.get("verdict", {}).get("route") != cfg["routes"]["execution_fail"]
         or primary.get("passed") is not False
         or int(primary.get("passed_count", -1)) != 0
         or before_inventory != primary.get("raw_inventory")
-        or before_inventory["count"] != 24
-        or any((stage / "raw" / "qualification").glob("*.json.gz"))
+        or before_inventory["count"] != expected
+        or (
+            phase == "safety"
+            and any((stage / "raw" / "qualification").glob("*.json.gz"))
+        )
+        or (
+            phase == "qualification"
+            and _inventory(stage / "raw" / "safety")["count"] != 24
+        )
     ):
         raise ValueError("R8R11 reporting hotfix precondition changed")
 
@@ -189,12 +204,15 @@ def repair(args: argparse.Namespace) -> dict[str, Any]:
         row["source_prefix_trace_exact"] = True
         row["passed"] = True
         corrected_rows.append(row)
-    if nonwrapper_difference_count != 0 or wrapper_difference_count != 24 * 10 * 13:
+    if (
+        nonwrapper_difference_count != 0
+        or wrapper_difference_count != expected * 10 * 13
+    ):
         raise ValueError("R8R11 reporting hotfix mismatch classification changed")
     corrected.update(
         {
-            "source_prefix_trace_exact_count": 24,
-            "passed_count": 24,
+            "source_prefix_trace_exact_count": expected,
+            "passed_count": expected,
             "rows": corrected_rows,
             "passed": True,
             "route": cfg["routes"]["pass"],
@@ -214,20 +232,22 @@ def repair(args: argparse.Namespace) -> dict[str, Any]:
     hotfix = {
         "schema_version": 1,
         "stage": STAGE,
+        "phase": phase,
         "hotfix_kind": "source_wrapper_metadata_reporting_only",
         "primary_controller_module_path": PRIMARY_MODULE,
         "primary_controller_module_sha256": _sha(project / PRIMARY_MODULE),
         "primary_controller_module_unchanged": True,
         "source_authenticated": True,
-        "safety_raw_inventory_before": before_inventory,
-        "safety_raw_inventory_after": after_inventory,
-        "safety_raw_unchanged": True,
-        "qualification_raw_count": 0,
+        f"{phase}_raw_inventory_before": before_inventory,
+        f"{phase}_raw_inventory_after": after_inventory,
+        f"{phase}_raw_unchanged": True,
+        "safety_raw_count": _inventory(stage / "raw" / "safety")["count"],
+        "qualification_raw_count": _inventory(stage / "raw" / "qualification")["count"],
         "wrapper_difference_count": wrapper_difference_count,
         "nonwrapper_difference_count": nonwrapper_difference_count,
         "wrapper_mismatch_key_counts": mismatch_key_counts,
-        "corrected_prefix_count": 24,
-        "corrected_passed_count": 24,
+        "corrected_prefix_count": expected,
+        "corrected_passed_count": expected,
         "preserved_primary_sha256": _sha(preserved_primary),
         "corrected_primary_sha256": _sha(original_primary_path),
         "preserved_state_sha256": _sha(preserved_state),
@@ -240,14 +260,14 @@ def repair(args: argparse.Namespace) -> dict[str, Any]:
     _write(hotfix_path, hotfix)
     state.update(
         {
-            "phase_status": "safety_primary_ready",
+            "phase_status": f"{phase}_primary_ready",
             "finished": False,
             "stop_reason": "",
             "verdict": {},
             "formal_outcomes_opened": False,
-            "qualification_outcomes_opened": False,
-            "source_prefix_reporting_hotfix_sha256": _sha(hotfix_path),
-            "source_prefix_reporting_hotfix_applied": True,
+            "qualification_outcomes_opened": phase == "qualification",
+            f"{phase}_source_prefix_reporting_hotfix_sha256": _sha(hotfix_path),
+            f"{phase}_source_prefix_reporting_hotfix_applied": True,
         }
     )
     _write(original_state_path, state)
@@ -259,6 +279,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--r8r7-run", type=Path, required=True)
+    parser.add_argument("--phase", choices=("safety", "qualification"), required=True)
     return parser
 
 
