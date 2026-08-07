@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R10",
+  "identity": "replacement_scale_formal_authority_audit_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r10_replacement_scale_formal_authority_audit",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R10_REPLACEMENT_SCALE_FORMAL_AUTHORITY_AUDIT_DESIGN.md",
+  "design_document_sha256": "d10bcbf73c64222df2eac5ee81acfcade7d069f6d4d89ae500d2e760ba2e8a06",
+  "source_r8_config": "configs/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification_370ms.json",
+  "source_r4": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r4_time_shifted_sign_split_sentinel",
+    "required_route": "TIME_SHIFTED_SIGN_SPLIT_SENTINEL_GEOMETRY_FAIL_REDESIGN_REQUIRED",
+    "raw_count": 200,
+    "raw_bytes": 6285765,
+    "raw_digest": "44a7eb8e677f88f32c57a6be59273501e73f7657527371e1b59578a95c2ae7a9",
+    "spec_count": 200,
+    "spec_digest": "080a2df84c86801d76251853a165839e8db59f6614f6b2b446141b0691841059",
+    "formal_pass_count": 50,
+    "final_result_sha256": "af9acfb9e524e6ad33799b832981ec7fb2e265ff7c1d3e78796413e83382db71",
+    "independent_sha256": "6a4eec4a660beb6a29e11e184906b8b7a737834280091f1997af74e86fbd761c",
+    "stage_manifest_sha256": "d07f2e1b33b453ac97962eb9520c09f30b6dceb90b5c26c10033bec8e9312532",
+    "stage_state_sha256": "497a4b3dc8ef6416357ff3493255be679ec8dafafea4b861b15fa8118bad08aa"
+  },
+  "source_r6": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel",
+    "required_route": "DIRECTION0_REPLACEMENT_SENTINEL_PASS_MODEL_FIT_DESIGN_REQUIRED",
+    "raw_count": 48,
+    "raw_bytes": 1509679,
+    "raw_digest": "c743eff98395325e4da35a28d2e646aacffb00e678753ceb0faf4b86a64aeb83",
+    "spec_count": 48,
+    "spec_digest": "2390d89f7b83f6177e0403252fa246aa2b677fab39ce2dedda50c578de5d1883",
+    "formal_pass_count": 12,
+    "final_result_sha256": "5c9669818249e8146b6f63d6e50e54f482cb27e64a809fb857bdf64ed617f016",
+    "independent_sha256": "a705aa669aaafd9b6708d6915655498f3f4f443ab37683eaa5ae5a8902ae9b1f",
+    "stage_manifest_sha256": "24ba49efa425aba83af2344df686b17c5ba37af90f21110275ac898514badf5c",
+    "stage_state_sha256": "ef3da5335aa7e8ae8328ae89c4552b961438f5daf92a021562a8f4e6b350de81"
+  },
+  "source_r8": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification",
+    "required_route": "PARTITIONED_BROAD_RESPONSE_TRAINING_MODEL_FAIL_STOP",
+    "training_raw_count": 624,
+    "training_raw_bytes": 19725920,
+    "training_raw_digest": "b5de1cabe0bd47b0d3a3b26aff04714ca0c05653483cd4c92403dc5867eeb762",
+    "all_spec_count": 1248,
+    "training_spec_count": 624,
+    "spec_digest": "9e85ecaa2f0c8ec010490dab4f001541f18f714980b6cb7070636372edd1d667",
+    "training_formal_pass_count": 234,
+    "raw_primary_sha256": "8d6e3afc0a631b144538efcfb2542596933e94c1fb8e504b2cffb04733c45ce2",
+    "raw_independent_sha256": "4f84c476faab515ef0a0f82c14f5547c5de957b7df31fbf3d6c228842edb0262",
+    "stage_manifest_sha256": "67d1dc0604aa241161850578fb75c6f04bb140a1f791a5246b9f24c8d8df9f90",
+    "stage_state_sha256": "9fff80668023f17d3be273f9cd9694e21b401a5f668c60c1e03508a164c6d5d3",
+    "calibration_raw_count": 0,
+    "holdout_raw_count": 0
+  },
+  "row_contract": {
+    "pair_count": 12,
+    "context_count": 24,
+    "rows_per_context": 13,
+    "selected_row_count": 312,
+    "issue_task_steps": [14, 18, 22],
+    "signs": [-1, 1],
+    "direction_index": 0,
+    "canonical_scale": 1.0,
+    "replacement_scale": 1.5,
+    "canonical_matrix_digest": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+    "replacement_matrix_digest": "69528f0e204b51847c1d2a7df428555a557454e9fa6bc76768d39e7cc5a90da8"
+  },
+  "formal_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "metric_equivalence_absolute_tolerance": 1e-12,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "scientific_gate": {
+    "minimum_failed_baseline_count": 1,
+    "minimum_replacement_repair_count": 1,
+    "minimum_replacement_only_repair_count": 1,
+    "require_replacement_oracle_improves_baseline": true,
+    "require_combined_oracle_improves_canonical": true
+  },
+  "routes": {
+    "audit_fail": "REPLACEMENT_SCALE_AUTHORITY_SOURCE_OR_AUDIT_FAIL_NO_TSC",
+    "authority_fail": "REPLACEMENT_SCALE_FORMAL_AUTHORITY_INSUFFICIENT_SUSTAINED_ACTION_REDESIGN_REQUIRED",
+    "pass": "REPLACEMENT_SCALE_FORMAL_AUTHORITY_PRESENT_FRESH_SENTINEL_DESIGN_REQUIRED"
+  },
+  "execution_contract": {
+    "new_raw_count": 0,
+    "ray_executed": false,
+    "gotsc_executed": false,
+    "tsc_executed": false,
+    "controller_executed": false,
+    "plant_steps_executed": 0,
+    "read_raw_in_place": true,
+    "server_virtualenv_only": true,
+    "direct_copy_only": true,
+    "local_archive_operations_allowed": false
+  },
+  "scientific_scope": {
+    "retrospective_oracle_is_causal_selector": false,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "source_trajectories_allowed_in_expert_dataset": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "global_plant_reachability_claimed": false
+  }
+}
