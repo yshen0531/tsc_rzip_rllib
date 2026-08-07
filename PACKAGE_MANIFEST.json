@@ -8,7 +8,7 @@
   "package_revision": "r42r3c3t13s24d1r14r8r11_sustained_exact_target_refresh_authority_v1",
   "design_checkpoint": "d53d38d",
   "initial_implementation_checkpoint": "3eefac8",
-  "implementation_checkpoint": "41001a7",
+  "implementation_checkpoint": "41b184f",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r8r11_sustained_exact_target_refresh_authority_sentinel_370ms.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R11_SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_SENTINEL_DESIGN.md",
   "design_document_sha256": "43a2ad925c78c4656a68e27a7243daf952edab1170c811c85c3d679ca1ab1707",
