@@ -1,5 +1,31 @@
 # Current status
 
+> **Prospective R8R8 causal discrete-pulse MPC-core checkpoint (2026-08-07
+> Asia/Shanghai).** Before any R8R8 implementation, offline candidate result,
+> controller decision, formal outcome, raw trajectory, or TSC plant advance,
+> the first genuine receding-horizon MPC core was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R8_CAUSAL_DISCRETE_PULSE_RECEDING_HORIZON_MPC_CORE_DESIGN.md`.
+> Its SHA-256 is
+> `0906ca9e58126cc2f414f167a685e766d95790ec4f3d28052debb4b5e6db0244`.
+>
+> R8R8 conditionally runs exactly 16 fresh authentic controlled trajectories
+> over the accepted R8R7 baseline contexts. At task steps `[10,14,18,22]`, it
+> exhaustively scores zero plus the eight fixed direction/sign canonical-scale
+> pulses with the byte-authenticated static observer, four-step response
+> model, and frozen tubes. It executes only the first exact Card15 pulse and
+> next-step stored-center cancellation, then replans from actual causal state.
+> Continuous mixtures/amplitudes, response-tail extrapolation, online
+> adaptation, labels, matched futures, source future actions, and post-result
+> tuning are forbidden.
+>
+> Primary and structurally independent zero-TSC preflights must first agree on
+> all 576 forecasts/scores, 64 selections, and 512 pure issue/cancellation
+> constructions. Only a dual offline PASS authorizes TSC. The deterministic
+> core then requires exact execution/integrity/safety and unchanged formal
+> control `16/16`; a PASS still authorizes only separately frozen robustness
+> qualification and is not Gate A. All R8R8 trajectories are forbidden from
+> learning, and expert data, BC, DAgger, and residual RL remain blocked.
+
 > **R8R7 final fresh-interaction qualification (2026-08-07
 > Asia/Shanghai).** R8R7 is final as
 > `FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED`.

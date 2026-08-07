@@ -5125,3 +5125,40 @@ be implemented and tested through the deterministic core and every finite
 qualification axis in Section 0.1. Do not claim Gate A until all those axes
 pass, and do not create expert data or enter BC/DAgger without the user's
 confirmation at Gate A.
+
+## 89. Frozen D1R14R8R8 causal discrete-pulse MPC-core task
+
+Before any R8R8 implementation, offline candidate result, controller
+decision, formal outcome, raw trajectory, or TSC plant advance, the complete
+prospective design was frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R8_CAUSAL_DISCRETE_PULSE_RECEDING_HORIZON_MPC_CORE_DESIGN.md
+SHA-256
+0906ca9e58126cc2f414f167a685e766d95790ec4f3d28052debb4b5e6db0244
+```
+
+R8R8 uses the 16 accepted R8R7 baseline contexts but runs fresh controlled
+TSC trajectories under a new identity. At task steps `[10,14,18,22]`, it
+causally exhausts zero plus four canonical directions times two signs at
+scale 1.0. Its fixed robust quadratic score uses only the authenticated
+static observer, four-step response model, and frozen static/combined tubes.
+It executes only the first exact Card15 pulse and its next-step exact stored-
+center cancellation, then replans from the newly observed prefix.
+
+Primary and structurally independent zero-TSC preflights must agree on 576
+candidate predictions/scores, 64 decisions, and 512 pure issue/cancellation
+constructions before real TSC is authorized. The authentic deterministic core
+requires exact runtime/restart/causality/integrity/safety gates and unchanged
+formal tracking `16/16`. A lesser formal result is a finite controller-design
+FAIL when execution gates pass; it is not a runtime or global-reachability
+conclusion.
+
+The active boundary is to implement the frozen primary and independent paths,
+validate/package/deploy them, pass the dual offline gate, and only then run the
+single 16-trajectory core campaign. A PASS is not Gate A: continuous
+delay/gain/slew, mismatch, noise, disturbance recovery, independent long hold,
+and residual-authority qualifications remain required under separately frozen
+designs. All R8R8 trajectories are forbidden from learning; expert data, BC,
+DAgger, and residual RL remain blocked.

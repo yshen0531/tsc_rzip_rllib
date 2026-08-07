@@ -1,5 +1,29 @@
 # Run ledger
 
+## Stage4.2R3c3T13S24D1R14R8R8 prospective causal discrete-pulse MPC core
+
+- Date: 2026-08-07 Asia/Shanghai.
+- Frozen before any implementation, offline candidate result, controller
+  decision, formal outcome, raw trajectory, or TSC plant advance.
+- Matrix: conditional 16 fresh authentic trajectories over the accepted R8R7
+  baseline contexts; four causal online decisions per trajectory.
+- Optimizer: exhaustive zero plus four canonical directions by two signs at
+  scale 1.0; four-step static-observer plus response forecast; fixed robust
+  quadratic score and 0.5% improvement threshold.
+- Execution: first exact Card15 pulse only, exact stored-center cancellation
+  at the next task step, then replan from actual causal history.
+- Offline gate: dual-audited 576 forecasts/scores, 64 selections, and 512 pure
+  issue/cancellation constructions before TSC.
+- Core acceptance: every hard execution/integrity/safety gate and unchanged
+  formal tracking `16/16`.
+- Boundary: even PASS authorizes only separately frozen finite robustness
+  qualification; no Gate A or learning claim. All R8R8 trajectories are
+  forbidden from expert and learning datasets.
+- Design:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R8_CAUSAL_DISCRETE_PULSE_RECEDING_HORIZON_MPC_CORE_DESIGN.md`.
+- Design SHA-256:
+  `0906ca9e58126cc2f414f167a685e766d95790ec4f3d28052debb4b5e6db0244`.
+
 ## Stage4.2R3c3T13S24D1R14R8R7 final fresh multipulse interaction result
 
 - Design / implementation / execution package: `6287ff6 / a1a60a9 /
