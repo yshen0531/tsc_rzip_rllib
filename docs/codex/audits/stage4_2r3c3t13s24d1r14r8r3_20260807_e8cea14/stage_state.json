@@ -1,0 +1,14 @@
+{
+  "development_artifact_sha256": "",
+  "finished": true,
+  "heldout_outcomes_opened": false,
+  "independent_completed": true,
+  "independent_passed": true,
+  "independent_sha256": "4cb71b25ad69848349a2034fff335b9d869a56f709465be9baed6b209637f8ba",
+  "new_raw_count": 0,
+  "primary_completed": true,
+  "route": "CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R3"
+}

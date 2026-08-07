@@ -1,5 +1,46 @@
 # Current status
 
+> **Superseding R8R3 final and fresh-identification handoff (2026-08-07
+> Asia/Shanghai).** R8R3 is final at
+> `CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED`.
+> Primary and structurally independent zero-new-TSC recomputations agree
+> exactly. The causal observer passed 346/360 complete outer origins and
+> 89/96 prescribed issue origins inside its frozen component caps. All 30
+> component-by-future-state violations were velocity only: vR 22 and vZ 8;
+> maxima were 1.024 mm R, 0.828 mm Z, 0.0138785 m/s vR, 0.0107686 m/s vZ,
+> and 36.83 A Ip. Every violation occurred at future lag 9--12.
+>
+> All 12 fold-local tubes contained their held rows, but all 12 exceeded the
+> frozen vR and vZ caps; their worst ratios were 4.3145 and 2.1904. R also
+> exceeded its tube cap in 2/12 folds. All twelve selected candidates used the
+> maximum frozen PCA rank 32. No model artifact was emitted. This is a finite
+> causal observer/model/data-coverage design FAIL, not a runtime, deployment,
+> restart, causality, raw, reporting-route, controller, formal-control,
+> real-MPC, plant, or reachability failure.
+>
+> Design/implementation/package checkpoints are
+> `a0fa6bf / a3148a3 / e8cea14`. Local full tests and both staging/installed
+> server suites passed 1176/1176; server runs had one expected isolated-data
+> skip. Accepted primary detailed, summary, independent, and final-state
+> SHA-256 values are respectively
+> `a0db5c6db2687747ffd5de8a4a773635bfce15973e8e817eebe74a3356470a00`,
+> `b8992e53a07e339015dc714377fcca57860dac3cb7b4b169d67e3623b520e364`,
+> `4cb71b25ad69848349a2034fff335b9d869a56f709465be9baed6b209637f8ba`,
+> and `e016c0ab9ee2c7a2f4701e553733c4392f48026f648450408cca4e19df9a9bcb`.
+> Exact report SHA-256 is
+> `e7d1efef0aaf227c828fe0653a8229a0444088453c0499244f26b0761aae9ad3`;
+> compact evidence is under
+> `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r3_20260807_e8cea14/`.
+>
+> R8/R8R1/R8R2 authentication remained exact; R8 calibration/holdout remain
+> unopened. R8R3 created zero raw and executed zero Ray, `gotsc`, TSC,
+> controller, or plant advances. R8R3 is immutable. The active task is to
+> prospectively freeze a new-identity fresh causal observer-identification
+> campaign before any new fit, metric, or TSC. The practical finite-policy
+> change may be used only prospectively on genuinely fresh development/
+> holdout data; it cannot relabel R8R3. MPC, Gate A, expert data, BC, DAgger,
+> and bounded residual RL remain blocked.
+
 > **Superseding R8R3 prospective-design checkpoint (2026-08-07
 > Asia/Shanghai).**  After R8R2 final independent agreement, and before any
 > R8R3 feature matrix, fit, cross-validated prediction, observer metric,

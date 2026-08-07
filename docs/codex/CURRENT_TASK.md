@@ -4713,3 +4713,67 @@ holdout.  A PASS authorizes only a separately frozen combination with the
 R8R2 innovation architecture.  A FAIL requires a new-identity fresh causal
 observer-identification design.  Neither route authorizes a controller, MPC,
 expert data, BC, DAgger, residual RL, or Gate A.
+
+## 79. Final D1R14R8R3 result and active fresh-identification boundary
+
+R8R3 was implemented and evaluated under its prospective design with no new
+raw and without opening R8 calibration or holdout. Primary and structurally
+independent implementations separately rebuilt all source authentication,
+360 causal origin rows, 912 own-prefix probe features, 48-candidate nested
+whole-pair selection, fold-local tubes, metrics, and route. They agree within
+the frozen tolerance.
+
+```text
+outer folds                                             12
+origin rows / component-cap passes                 360 / 346
+prescribed issue rows / passes                       96 / 89
+tube-cap folds                                         0 / 12
+held rows contained by fold-local tubes             360 / 360
+R / Z / vR / vZ / Ip violations                 0 / 0 / 22 / 8 / 0
+maximum physical error
+  R / Z                          0.00102411 / 0.00082837 m
+  vR / vZ                        0.01387848 / 0.01076855 m/s
+  Ip                                           36.83328 A
+route
+  CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED
+```
+
+All point violations occurred at future lags 9--12. Prescribed origins
+10/14/18/22 passed `18/24, 24/24, 23/24, 24/24`. All twelve fold-local tubes
+exceeded both velocity caps; worst vR/vZ cap ratios were 4.3145/2.1904. Every
+selected candidate used the maximum frozen PCA rank 32. No observer artifact
+was emitted.
+
+Accepted detailed, summary, independent, and state SHA-256 values are:
+
+```text
+a0db5c6db2687747ffd5de8a4a773635bfce15973e8e817eebe74a3356470a00
+b8992e53a07e339015dc714377fcca57860dac3cb7b4b169d67e3623b520e364
+4cb71b25ad69848349a2034fff335b9d869a56f709465be9baed6b209637f8ba
+e016c0ab9ee2c7a2f4701e553733c4392f48026f648450408cca4e19df9a9bcb
+```
+
+Local, staging, and installed full suites passed 1176/1176; server suites had
+one expected skip. Direct-copy package closure was 939 declared files plus
+manifest/sums. Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R3_FORENSIC_REPORT.md
+SHA-256
+e7d1efef0aaf227c828fe0653a8229a0444088453c0499244f26b0761aae9ad3
+```
+
+R8R3 is a finite observer/model/data-coverage design failure, not a runtime,
+deployment, restart, causality, raw, controller, formal-control, real-MPC,
+plant, or reachability result. It created zero raw and ran zero Ray, `gotsc`,
+TSC, controller, or plant advances.
+
+R8R3 is immutable. Before any new fit, metric, or TSC, freeze a new-identity
+fresh causal observer-identification campaign. It may preregister a practical
+finite qualification consistent with the 2026-08-06 application policy, but
+only on genuinely fresh development/holdout evidence and without relabeling
+R8R3 or weakening hard safety, causality, restart, integrity, or formal
+timing. A future observer pass can authorize only a separately frozen combined
+adaptation validation. Controller, MPC, Gate A, expert data, BC, DAgger,
+residual RL remain blocked.

@@ -1579,3 +1579,30 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r2_20260807_c90e299/`
 - Next: prospectively freeze a new-identity causal dynamics observer/
   identification design; Gate A and all expert/learning stages remain blocked
+
+## Stage4.2R3c3T13S24D1R14R8R3 causal history no-action observer
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / package: `a0fa6bf / a3148a3 / e8cea14`
+- Package manifest files / clean closure: `939 / 941`
+- Local / staging / installed full tests: `1176 / 1176 / 1176`, with one
+  expected server isolated-data skip
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r3_audits/stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer_20260807_e8cea14_v1`
+- Origin cap passes / prescribed issue passes: `346/360 / 89/96`
+- R/Z/vR/vZ/Ip violations: `0/0/22/8/0`
+- Tube cap folds / contained rows: `0/12 / 360/360`
+- Primary detailed / summary / independent / state SHA-256:
+  `a0db5c6db2687747ffd5de8a4a773635bfce15973e8e817eebe74a3356470a00`,
+  `b8992e53a07e339015dc714377fcca57860dac3cb7b4b169d67e3623b520e364`,
+  `4cb71b25ad69848349a2034fff335b9d869a56f709465be9baed6b209637f8ba`,
+  `e016c0ab9ee2c7a2f4701e553733c4392f48026f648450408cca4e19df9a9bcb`
+- New raw / Ray / gotsc / TSC / controller / plant: all zero
+- Route:
+  `CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED`
+- Classification: finite causal observer/model/data-coverage design FAIL; no
+  runtime, deployment, control, MPC, formal-control, or plant conclusion
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r3_20260807_e8cea14/`
+- Next: prospectively freeze a fresh-identity observer-identification campaign;
+  Gate A and all expert/learning stages remain blocked

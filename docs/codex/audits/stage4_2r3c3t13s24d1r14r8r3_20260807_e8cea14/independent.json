@@ -1,0 +1,295 @@
+{
+  "audit_kind": "independent",
+  "controller_executed": false,
+  "development_artifact_hash_agreement": true,
+  "development_artifact_presence_agreement": true,
+  "gotsc_executed": false,
+  "heldout_outcomes_opened": false,
+  "new_raw_count": 0,
+  "outer_evaluation": {
+    "component_violation_counts": [
+      0,
+      0,
+      22,
+      8,
+      0
+    ],
+    "history_pass_counts": {
+      "minus_first": {
+        "passed": 170,
+        "total": 180
+      },
+      "plus_first": {
+        "passed": 176,
+        "total": 180
+      }
+    },
+    "maximum_absolute_physical_error": [
+      0.0010241107905258672,
+      0.0008283664003235269,
+      0.013878481025991063,
+      0.010768553214549836,
+      36.83327557352456
+    ],
+    "maximum_absolute_scaled_point_error": 0.13878481025991063,
+    "origin_pass_count": 346,
+    "origin_row_count": 360,
+    "outer_fold_count": 12,
+    "pair_pass_counts": {
+      "p5_q1_a0p750_gap2_settle4": {
+        "passed": 26,
+        "total": 28
+      },
+      "p5_q1_a0p750_gap3_settle4": {
+        "passed": 32,
+        "total": 32
+      },
+      "p5_q1_a0p900_gap4_settle4": {
+        "passed": 26,
+        "total": 28
+      },
+      "p5_q2_a0p750_gap2_settle4": {
+        "passed": 30,
+        "total": 32
+      },
+      "p5_q2_a0p750_gap4_settle4": {
+        "passed": 27,
+        "total": 28
+      },
+      "p5_q2_a0p900_gap3_settle4": {
+        "passed": 32,
+        "total": 32
+      },
+      "p9_q1_a0p750_gap3_settle4": {
+        "passed": 28,
+        "total": 28
+      },
+      "p9_q1_a0p900_gap2_settle4": {
+        "passed": 32,
+        "total": 32
+      },
+      "p9_q1_a0p900_gap4_settle4": {
+        "passed": 21,
+        "total": 28
+      },
+      "p9_q2_a0p750_gap4_settle4": {
+        "passed": 32,
+        "total": 32
+      },
+      "p9_q2_a0p900_gap2_settle4": {
+        "passed": 28,
+        "total": 28
+      },
+      "p9_q2_a0p900_gap3_settle4": {
+        "passed": 32,
+        "total": 32
+      }
+    },
+    "passed": false,
+    "prescribed_issue_pass_count": 89,
+    "prescribed_issue_row_count": 96,
+    "tube_cap_fold_count": 0,
+    "tube_contained_origin_count": 360
+  },
+  "outer_fold_selections": [
+    {
+      "held_origin_row_count": 28,
+      "held_pair_id": "p5_q1_a0p750_gap2_settle4",
+      "held_tube_contained_count": 28,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.001
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 32,
+      "held_pair_id": "p5_q1_a0p750_gap3_settle4",
+      "held_tube_contained_count": 32,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.1
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 28,
+      "held_pair_id": "p5_q1_a0p900_gap4_settle4",
+      "held_tube_contained_count": 28,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 1e-06
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 32,
+      "held_pair_id": "p5_q2_a0p750_gap2_settle4",
+      "held_tube_contained_count": 32,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.1
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 28,
+      "held_pair_id": "p5_q2_a0p750_gap4_settle4",
+      "held_tube_contained_count": 28,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.001
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 32,
+      "held_pair_id": "p5_q2_a0p900_gap3_settle4",
+      "held_tube_contained_count": 32,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.1
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 28,
+      "held_pair_id": "p9_q1_a0p750_gap3_settle4",
+      "held_tube_contained_count": 28,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 1e-06
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 32,
+      "held_pair_id": "p9_q1_a0p900_gap2_settle4",
+      "held_tube_contained_count": 32,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.001
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 28,
+      "held_pair_id": "p9_q1_a0p900_gap4_settle4",
+      "held_tube_contained_count": 28,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 1.0,
+        "family": "rbf",
+        "pca_rank": 32,
+        "ridge": 0.1
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 32,
+      "held_pair_id": "p9_q2_a0p750_gap4_settle4",
+      "held_tube_contained_count": 32,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.1
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 28,
+      "held_pair_id": "p9_q2_a0p900_gap2_settle4",
+      "held_tube_contained_count": 28,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 1e-06
+      },
+      "tube_cap_passed": false
+    },
+    {
+      "held_origin_row_count": 32,
+      "held_pair_id": "p9_q2_a0p900_gap3_settle4",
+      "held_tube_contained_count": 32,
+      "passed": false,
+      "selected_candidate": {
+        "bandwidth_multiplier": 0.0,
+        "family": "linear",
+        "pca_rank": 32,
+        "ridge": 0.1
+      },
+      "tube_cap_passed": false
+    }
+  ],
+  "passed": true,
+  "plant_advance_count": 0,
+  "primary_numerical_agreement": true,
+  "primary_outcome_agreement": true,
+  "ray_executed": false,
+  "record_signature": {
+    "constant_future_current_baseline_count": 32,
+    "context_count": 24,
+    "feature_dimension": 353,
+    "forbidden_predictor_input_count": 0,
+    "future_probe_state_predictor_input_count": 0,
+    "matched_baseline_future_predictor_input_count": 0,
+    "origin_row_count": 360,
+    "pair_count": 12,
+    "prescribed_baseline_exact_count": 96,
+    "prescribed_issue_row_count": 96,
+    "probe_feature_count": 912,
+    "probe_feature_equal_count": 912,
+    "r8r2_record_signature": {
+      "baseline_window_count": 96,
+      "context_count": 24,
+      "future_probe_state_used_as_predictor_input_count": 0,
+      "matched_baseline_used_as_predictor_input_count": 0,
+      "pair_count": 12,
+      "probe_descriptor_equal_to_prior_baseline_descriptor_count": 912,
+      "probe_descriptor_reconstructed_from_probe_count": 912,
+      "raw_matched_response_exact_count": 912,
+      "response_count": 912
+    },
+    "selected_baseline_raw_count": 32,
+    "zero_future_action_baseline_count": 32
+  },
+  "route": "CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_r8r2_authentication": {
+    "independent_sha256": "2ca90fab851c4131f7242bd9a5331286bde15ccaf47d251348b7d80a4597066c",
+    "primary_detailed_sha256": "ad04374987ce4de599d71f4673ac110fe763928831e4c9610cdb117efd7977cf",
+    "primary_summary_sha256": "05d761ef64c9e7c2373a6754184ecf42cf0a250d26ee235293e768c0416c0bb2",
+    "stage_state_sha256": "ee06726c8a5170ffd03a9465432ceed6f42053e2db8f710442c80c7809f07670"
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R8R3",
+  "tsc_executed": false
+}

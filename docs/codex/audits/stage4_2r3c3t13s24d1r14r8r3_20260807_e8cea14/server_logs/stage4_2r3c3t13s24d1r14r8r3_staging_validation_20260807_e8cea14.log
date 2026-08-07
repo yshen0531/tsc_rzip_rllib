@@ -1,0 +1,81 @@
+HOME=/home/yangshen0711
+PWD=/home/yangshen0711
+STAGING=/home/yangshen0711/tsc_software/r8r3_package_e8cea14
+MANIFEST_SHA256=3201db6b1f1db3380d1a7d40ce873ddd49dd27f8e2a7d9a1273b95c4f56bef0f  PACKAGE_MANIFEST.json
+SUMS_SHA256=694502bb2c6b0b0c3d4a84b22f181e7d01c95e33ed9a75ad68c49e631186dada  SHA256SUMS
+FILE_COUNT=941
+STAGING_CLOSURE_941_OK
+SHA256SUMS_939_OK
+JSON_OK
+BASH_N_OK
+COMPILEALL_OK
+RECOVERY=direct_contract_self_test_after_expected_canonical_path_guard
+{'stage': 'Stage4.2R3c3T13S24D1R14R8R3', 'feature_shape': [353], 'delta_shape': [12, 3], 'forecast_shape': [12, 5], 'candidate_count': 48, 'passed': True}
+test_candidate_family_is_exact (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_candidate_family_is_exact) ... ok
+test_contract_and_self_test (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_contract_and_self_test) ... ok
+test_contract_rejects_candidate_mutation (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_contract_rejects_candidate_mutation) ... ok
+test_feature_excludes_action_at_origin (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_feature_excludes_action_at_origin) ... ok
+test_feature_uses_only_origin_prefix (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_feature_uses_only_origin_prefix) ... ok
+test_independent_does_not_import_primary_observer_algorithms (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_independent_does_not_import_primary_observer_algorithms) ... ok
+test_launcher_uses_server_virtual_environment (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_launcher_uses_server_virtual_environment) ... ok
+test_linear_fit_and_prediction_are_finite (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_linear_fit_and_prediction_are_finite) ... ok
+test_prediction_row_and_tube (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_prediction_row_and_tube) ... ok
+test_routes_are_frozen (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_routes_are_frozen) ... ok
+test_target_and_kinematic_reconstruction (tests.test_stage4_2r3c3t13s24d1r14r8r3_causal_history_no_action_observer.CausalHistoryNoActionObserverTests.test_target_and_kinematic_reconstruction) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.024s
+
+OK
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=120 actors=96 initialized_now=0
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=24 actors=24 initialized_now=0
+[test] ray_capacity requested=96 cluster_cpus=96 pending=150 actors=96 initialized_now=0
+........{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "created_utc": "20260807_041329",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041,
+      "max_terminal_velocity_m_per_s": 0.02,
+      "max_late_velocity_rms_m_per_s": 0.08
+    }
+  ]
+}
+.{
+  "verdict": "NO_CONFIRMED_HOLD",
+  "created_utc": "20260807_041329",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 0,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 99,
+      "mean_terminal_RZ_error_m": null,
+      "max_terminal_velocity_m_per_s": null,
+      "max_late_velocity_rms_m_per_s": null
+    }
+  ]
+}
+.....[Stage2 evaluation] candidate stored as failure because the result was not strict-JSON serializable: non-finite JSON number at $.trajectory[0].R: nan
+.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 1176 tests in 7.382s
+
+OK (skipped=1)
+STAGING_VALIDATION_COMPLETE
+LOG=/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/stage4_2r3c3t13s24d1r14r8r3_staging_validation_20260807_e8cea14.log

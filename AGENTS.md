@@ -912,7 +912,21 @@ authorize only a separately frozen combined online-adaptation audit; a fail
 requires fresh observer identification. Controller, MPC, Gate A, expert data,
 BC, DAgger, and residual RL remain blocked.
 
-The active route is a separately frozen causal observer/identification design
+R8R3 primary and structurally independent zero-new-TSC audits then agreed
+exactly on
+`CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED`.
+Point caps passed 346/360 outer origins and 89/96 prescribed origins; all
+violations were vR/vZ at future lags 9--12. All 12 fold-local velocity tubes
+exceeded their caps, with worst vR/vZ ratios 4.3145/2.1904, and every selected
+candidate used the maximum frozen PCA rank 32. No artifact was emitted. This
+is a finite observer/model/data-coverage failure, not a runtime, deployment,
+controller, formal-control, real-MPC, plant, or reachability result. R8R3 ran
+zero TSC/plant steps and R8 calibration/holdout remain unopened. The next
+fresh-identity causal observer-identification campaign must be frozen before
+new metrics or TSC. Controller, MPC, Gate A, expert data, BC, DAgger, and
+residual RL remain blocked.
+
+The active route is a fresh-identity causal observer/identification design
 using only visible histories and already issued actions/currents. It must
 retain whole-pair separation and forbid future closed-loop actions, matched
 future, source labels, hidden state, and unopened outcomes. Even a

@@ -805,3 +805,16 @@ and fold-local finite-tube containment.  R8R3 is zero-new-TSC and keeps R8
 calibration/holdout unopened.  A pass authorizes only a separately frozen
 combined online-adaptation audit, while a failure requires fresh observer
 identification.  Controller, MPC, Gate A, and learning remain blocked.
+
+R8R3 subsequently completed primary and structurally independent zero-new-TSC
+audits with exact agreement. It passed 346/360 outer origins and 89/96
+prescribed origins inside the frozen point caps. All failures were vR/vZ only
+at future lags 9--12, but all twelve fold-local velocity tubes exceeded their
+caps; worst vR/vZ ratios were 4.3145/2.1904. Every selected candidate used
+maximum rank 32, and no artifact was emitted. R8R3 is final as
+`CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED`, a
+finite observer/model/data-coverage failure rather than a runtime, controller,
+MPC, formal-control, or plant result. It ran zero TSC/plant steps and kept R8
+calibration/holdout unopened. The active task is to freeze a fresh-identity
+observer-identification campaign before new metrics or TSC. Gate A and all
+learning stages remain blocked.
