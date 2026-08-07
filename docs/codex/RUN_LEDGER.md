@@ -23,6 +23,10 @@
   `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R8_CAUSAL_DISCRETE_PULSE_RECEDING_HORIZON_MPC_CORE_DESIGN.md`.
 - Design SHA-256:
   `0906ca9e58126cc2f414f167a685e766d95790ec4f3d28052debb4b5e6db0244`.
+- Design / implementation checkpoints: `e61ee72 / 7e1dc89`.
+- Local validation: project-venv compile and focused `10/10`; complete unittest
+  with the existing Windows `resource` shim `1229/1229`, zero failures/errors/
+  skips. No offline result, controller decision, raw, or TSC plant advance yet.
 
 ## Stage4.2R3c3T13S24D1R14R8R7 final fresh multipulse interaction result
 

@@ -18,6 +18,14 @@
 > adaptation, labels, matched futures, source future actions, and post-result
 > tuning are forbidden.
 >
+> The frozen implementation checkpoint is `7e1dc89`. Local project-venv
+> compilation and focused tests passed `10/10`; the complete unittest suite,
+> after explicitly loading the existing Windows `resource` shim from
+> `tests/conftest.py`, passed `1229/1229` with zero failures, errors, or skips.
+> No R8R8 offline result, controller decision, raw trajectory, or TSC plant
+> advance existed at that checkpoint. Packaging, empty-directory direct-copy
+> validation, installed-server validation, and the dual offline gate are next.
+>
 > Primary and structurally independent zero-TSC preflights must first agree on
 > all 576 forecasts/scores, 64 selections, and 512 pure issue/cancellation
 > constructions. Only a dual offline PASS authorizes TSC. The deterministic

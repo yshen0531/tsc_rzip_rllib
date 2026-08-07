@@ -5155,8 +5155,14 @@ formal tracking `16/16`. A lesser formal result is a finite controller-design
 FAIL when execution gates pass; it is not a runtime or global-reachability
 conclusion.
 
-The active boundary is to implement the frozen primary and independent paths,
-validate/package/deploy them, pass the dual offline gate, and only then run the
+The frozen primary and structurally independent implementations were completed
+at checkpoint `7e1dc89`. Local project-venv compilation and focused tests passed
+`10/10`; after explicitly loading the existing Windows `resource` shim, the
+complete unittest suite passed `1229/1229` with zero failures, errors, or skips.
+No R8R8 offline result or TSC plant advance existed at that checkpoint.
+
+The active boundary is to package/direct-copy/deploy the implementation, pass
+installed-server validation and the dual offline gate, and only then run the
 single 16-trajectory core campaign. A PASS is not Gate A: continuous
 delay/gain/slew, mismatch, noise, disturbance recovery, independent long hold,
 and residual-authority qualifications remain required under separately frozen
