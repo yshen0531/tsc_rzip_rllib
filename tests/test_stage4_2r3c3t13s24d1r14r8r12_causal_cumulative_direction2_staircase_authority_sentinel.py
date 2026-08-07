@@ -131,6 +131,8 @@ class CausalCumulativeDirection2StaircaseAuthoritySentinelTests(unittest.TestCas
         source = (ROOT / "run_stage4_2r3c3t13s24d1r14r8r12_common.sh").read_text(encoding="utf-8")
         self.assertIn("/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python", source)
         self.assertIn("--r8r11-run", source)
+        self.assertIn("stage4_2r3c3t13s24d1r11_find_source_s21", source)
+        self.assertNotIn("stage4_2r3c3t13s21_find_source_s21", source)
         self.assertIn("authorize-safety", source)
         self.assertIn("authorize-qualification", source)
         self.assertIn("final-independent", source)
