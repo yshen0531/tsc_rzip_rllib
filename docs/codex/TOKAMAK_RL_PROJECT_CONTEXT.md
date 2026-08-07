@@ -739,7 +739,7 @@ If the qualified MPC already meets the practical trajectory-following goal
 and there is no measurable benefit large enough to justify RL complexity and
 risk, stopping without residual RL is a valid final outcome.
 
-## Current D1R14R8/R8R1/R8R2/R8R3 boundary
+## Current D1R14R8/R8R1/R8R2/R8R3/R8R4/R8R5 boundary
 
 D1R14R7R2 completed the full 304-response audit with exact independent
 agreement but passed only 236/304 center gates. All 304 point-error gates, the
@@ -831,3 +831,27 @@ causality, Card15, current, raw/snapshot integrity, and formal timing remain
 unchanged all-or-nothing gates. All stage data are forbidden from expert
 datasets. Even a pass authorizes only separately frozen combined adaptation;
 controller, MPC, Gate A, and learning remain blocked.
+
+R8R4 subsequently completed its eight authentic development baselines with
+no runtime, restart, causality, Card15, current, raw, or snapshot failure.
+The causal point observer passed all 480 origins and all 128 prescribed issue
+origins under the practical caps. Its tube contained 457/480 origins and
+stayed well inside every cap, but five of 32 history contexts missed the
+prospectively fixed 90% containment floor. Primary and independent results
+agree exactly. R8R4 therefore stopped before blind holdout as
+`FRESH_CAUSAL_OBSERVER_DEVELOPMENT_FAIL_STOP_NO_HOLDOUT`; holdout raw and
+model/tube artifacts remain zero. This is a finite uncertainty-calibration
+failure, not a controller, formal-control, real-MPC, plant, or reachability
+result.
+
+R8R5 is now prospectively frozen before any new computation at design
+SHA-256
+`c7b5d570a6d74b39368e4ee4ef677f84a7a81b469a000515ea843e2797622daa`.
+It fixes the consumed-development linear/PCA32/ridge-1e-6 point model and
+replaces only tube calibration with one context-robust global scalar: 1.25
+times the maximum of aggregate higher-q95 and every evaluator-only context's
+higher-q90 row ratio. It uses no new development TSC. Only a dual-audited
+development PASS may freeze artifacts and open the eight still-blind
+new-identity baseline histories. Even a holdout PASS authorizes only a
+separately frozen combined adaptation validation; MPC, Gate A, and learning
+remain blocked.

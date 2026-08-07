@@ -1,5 +1,49 @@
 # Run ledger
 
+## Stage4.2R3c3T13S24D1R14R8R5 prospective context-robust holdout
+
+- Frozen before any R8R5 fit, tube value, metric, artifact, route, TSC, or
+  holdout outcome on 2026-08-07.
+- Design:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R5_CONTEXT_ROBUST_OBSERVER_HOLDOUT_DESIGN.md`
+- Design SHA-256:
+  `c7b5d570a6d74b39368e4ee4ef677f84a7a81b469a000515ea843e2797622daa`
+- Consumed development: twelve R8 training pairs plus four R8R4 development
+  pairs; zero new development TSC.
+- Fixed point model: linear, PCA rank 32, ridge 1e-6.
+- Tube: one global 1.25-reserved scalar enforcing aggregate q95 and every
+  context q90 calibration; unchanged finite caps.
+- Blind boundary: eight unopened histories may run only after primary/
+  independent development and model/tube hash freeze.
+- Learning boundary: all data forbidden; even PASS authorizes only separately
+  frozen combined adaptation.
+
+## Stage4.2R3c3T13S24D1R14R8R4 final fresh observer result
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / execution package / accepted audit package:
+  `5083686 / 3c12aa3 / a1fdee3 / 7810525`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r4_runs/stage4_2r3c3t13s24d1r14r8r4_fresh_causal_observer_identification_20260807_a1fdee3_v1`
+- Development raw: `8/8`, 245279 bytes, digest
+  `8d0d6c2c8f7e4e8436f9ef958fb30e4276823a8004fbab97b8c50d71b1ed3f66`.
+- Point gate: `480/480` origins and `128/128` issue origins; zero exclusion
+  violations; maximum scaled error `0.12737875204525517`.
+- Tube: `457/480` aggregate against 456 required, caps PASS, but only `27/32`
+  contexts passed their 90% floor.
+- Holdout raw / model files: `0 / 0`.
+- Primary detailed / summary / independent / final state SHA-256:
+  `af8cb6d75a435ecd96948b4c15a2e1929c98527edd5483c8f29c0c6394125dac`,
+  `bde614d6ac34535d5f22f187925723969921e8333b41d429a32e0719cb8b3bfd`,
+  `12ee920fb0d49d46285bba31a443a24e09a5b6b9b3b1d0b5ddc61560a20fa86b`,
+  `617c6ea2e2ae81d5d1ad9f0de2f331a1b0d19caa3031dc76e4714ecc4c417015`.
+- Route: `FRESH_CAUSAL_OBSERVER_DEVELOPMENT_FAIL_STOP_NO_HOLDOUT`.
+- Classification: finite uncertainty-calibration/design FAIL; no runtime,
+  restart, raw, controller, formal-control, MPC, plant, or reachability
+  conclusion.
+- Report:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R4_FORENSIC_REPORT.md`.
+
 ## Stage4.2R3c3T13S24D1R14R8R4 prospective fresh observer design
 
 - Frozen before implementation, fitting, metrics, or TSC on 2026-08-07.

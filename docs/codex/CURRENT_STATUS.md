@@ -1,5 +1,64 @@
 # Current status
 
+> **Superseding R8R5 prospective-design checkpoint (2026-08-07
+> Asia/Shanghai).** After final R8R4 primary/independent agreement, but before
+> any R8R5 fit, residual recomputation, tube value, metric, artifact, route,
+> new TSC, or blind-holdout outcome, R8R5 is frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R5_CONTEXT_ROBUST_OBSERVER_HOLDOUT_DESIGN.md`,
+> SHA-256
+> `c7b5d570a6d74b39368e4ee4ef677f84a7a81b469a000515ea843e2797622daa`.
+> It treats all R8R4 development evidence as consumed, fixes the R8R4-selected
+> linear/PCA32/ridge-1e-6 point model, and recalibrates only one shared global
+> tube from whole-pair OOF residuals. The scalar is prospectively fixed to
+> `1.25 * max(global higher-q95 row ratio, every-context higher-q90 row
+> ratio)`, with a floor at one. Context labels affect only development
+> calibration of that global scalar and are never predictor inputs or
+> deployment-time selectors.
+>
+> R8R5 runs zero development TSC. Only after point, tube-cap, construction,
+> source, and structurally independent gates pass may it freeze model/tube
+> hashes and run the eight still-unopened baseline histories under a new
+> identity. All hard restart, causality, zero-future-action, Card15, current,
+> raw/snapshot, and formal-timing contracts remain unchanged. Every stage
+> trajectory is forbidden from expert/BC/DAgger/RL data. Even a blind-holdout
+> PASS authorizes only a separately frozen combined adaptation validation;
+> controller, MPC, Gate A, and learning remain blocked.
+
+> **Superseding R8R4 final and context-robust-holdout handoff (2026-08-07
+> Asia/Shanghai).** R8R4 is final at
+> `FRESH_CAUSAL_OBSERVER_DEVELOPMENT_FAIL_STOP_NO_HOLDOUT`. Eight/eight fresh
+> development baselines completed with exact restart, source prefix,
+> causality, zero future action, constant future current, Card15, finite raw,
+> and snapshot integrity; the raw inventory is eight files, 245279 bytes,
+> digest
+> `8d0d6c2c8f7e4e8436f9ef958fb30e4276823a8004fbab97b8c50d71b1ed3f66`.
+> Maximum normalized action and current utilization were
+> `0.648149691358026 / 0.392`.
+>
+> The nested outer point gate passed 480/480 origins and 128/128 prescribed
+> issue origins, with zero finite-exclusion violations and maximum scaled
+> error `0.12737875204525517`. The selected candidate was
+> linear/PCA32/ridge-1e-6. Its all-development OOF tube stayed below every
+> cap and contained 457/480 origins against a 456 requirement, but only 27/32
+> history contexts met their 90% floor. The five retained context counts were
+> `12/14, 11/16, 12/16, 10/14, 12/14` against requirements
+> `13,15,15,13,13`. Primary and structurally independent model audits agree
+> exactly; no model or tube artifact was emitted.
+>
+> Final server inspection found development/holdout/model counts `8/0/0`,
+> `holdout_outcomes_opened=false`, phase `development_model_failed`, and state
+> SHA-256
+> `617c6ea2e2ae81d5d1ad9f0de2f331a1b0d19caa3031dc76e4714ecc4c417015`.
+> Primary detailed/summary/independent hashes are
+> `af8cb6d75a435ecd96948b4c15a2e1929c98527edd5483c8f29c0c6394125dac`,
+> `bde614d6ac34535d5f22f187925723969921e8333b41d429a32e0719cb8b3bfd`,
+> and
+> `12ee920fb0d49d46285bba31a443a24e09a5b6b9b3b1d0b5ddc61560a20fa86b`.
+> This is a finite uncertainty-calibration/design FAIL, not runtime, restart,
+> raw, controller, formal-control, real-MPC, plant, reachability, or global-
+> observability evidence. The exact report SHA-256 is
+> `57b43c220de0fe2e37ac1dde17b4054bcd7f679255de58e2d782ee1bea2b53a3`.
+
 > **Superseding R8R4 prospective-design checkpoint (2026-08-07
 > Asia/Shanghai).** Before any R8R4 implementation, fit, observer metric, new
 > TSC trajectory, model/tube artifact, or route, the fresh causal observer

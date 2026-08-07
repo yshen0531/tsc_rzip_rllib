@@ -4824,3 +4824,73 @@ frozen order. A development failure stops before holdout. A blind-holdout PASS
 authorizes only a separately frozen combined observer/innovation validation.
 Controller, MPC, Gate A, expert data, BC, DAgger, and residual RL remain
 blocked.
+
+## 81. Final D1R14R8R4 result and active context-robust holdout boundary
+
+R8R4 completed its strict development-only boundary. All eight authentic
+baselines passed runtime, restart, causal prefix, exact zero-future-action,
+constant-future-current, Card15, current, raw, and snapshot gates. Primary
+and independent raw inventories agree at eight files, 245279 bytes, digest
+`8d0d6c2c8f7e4e8436f9ef958fb30e4276823a8004fbab97b8c50d71b1ed3f66`.
+
+The 16-fold outer point evaluation passed 480/480 origins and 128/128 issue
+origins under the prospective practical caps. There were zero finite-
+exclusion violations and the maximum scaled point error was
+`0.12737875204525517`. The all-development selection was the
+linear/PCA32/ridge-1e-6 candidate.
+
+The fixed higher-quantile-scaled tube remained far inside its caps and met
+aggregate containment at 457/480 against a 456 requirement. It failed the
+90% per-history floor in five of 32 contexts, however, with contained counts
+`12/14, 11/16, 12/16, 10/14, 12/14` against integer requirements
+`13,15,15,13,13`. The structurally independent implementation reproduced
+every primary number and the route exactly. No model or tube artifact was
+emitted, and fail-closed authorization kept blind holdout at zero raw.
+
+Final state SHA-256 is
+`617c6ea2e2ae81d5d1ad9f0de2f331a1b0d19caa3031dc76e4714ecc4c417015`.
+The exact report is
+`docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R4_FORENSIC_REPORT.md`,
+SHA-256
+`57b43c220de0fe2e37ac1dde17b4054bcd7f679255de58e2d782ee1bea2b53a3`.
+
+R8R4 is final as
+`FRESH_CAUSAL_OBSERVER_DEVELOPMENT_FAIL_STOP_NO_HOLDOUT`. It is a finite
+uncertainty-calibration/design failure, not a runtime, restart, raw,
+controller, formal-control, real-MPC, plant-reachability, or global-
+observability conclusion. Its eight trajectories remain forbidden from
+expert and learning data. R8R4 may not resume under changed tube semantics.
+
+## 82. Frozen D1R14R8R5 context-robust observer holdout task
+
+Before any R8R5 fit, residual recomputation, tube metric, artifact, route,
+new TSC, or blind-holdout outcome, R8R5 is prospectively frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R5_CONTEXT_ROBUST_OBSERVER_HOLDOUT_DESIGN.md
+SHA-256
+c7b5d570a6d74b39368e4ee4ef677f84a7a81b469a000515ea843e2797622daa
+```
+
+R8R5 treats all R8R4 development evidence as consumed and runs zero new
+development TSC. It fixes the R8R4-selected linear/PCA32/ridge-1e-6 point
+candidate, recomputes complete whole-pair OOF predictions, and derives one
+shared global tube. Its fixed scalar is 1.25 times the maximum of the global
+higher-q95 row ratio and every history context's higher-q90 row ratio, with
+a floor at one. Context IDs are evaluator-only and never model inputs or
+deployment-time selectors.
+
+If and only if unchanged point/exclusion gates, tube caps, calibration
+coverage, source authentication, and a structurally independent
+recomputation all pass, R8R5 may freeze model/tube hashes and run the eight
+still-unopened baseline histories from four whole physical pairs under a new
+identity. The blind result cannot refit or expand the model or tube. Every
+hard restart, causality, zero-action, Card15, current, raw/snapshot, and formal
+timing contract remains unchanged.
+
+A blind-holdout PASS authorizes only a separately frozen combined
+observer/innovation-adaptation validation. A FAIL requires another observer
+or finite-envelope redesign. No R8/R8R4/R8R5 trajectory may enter expert,
+BC, DAgger, or RL data. Controller execution, MPC, Gate A, and all learning
+remain blocked.
