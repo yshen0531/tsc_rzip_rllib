@@ -64,14 +64,18 @@ def _stage(run_dir: Path) -> Path:
 
 def _inventory(path: Path) -> dict[str, Any]:
     files = sorted(path.glob("*.json.gz"), key=lambda value: value.name)
-    rows = [{"path": value.name, "bytes": value.stat().st_size, "sha256": _sha(value)} for value in files]
+    digest = hashlib.sha256()
+    rows = []
+    for value in files:
+        size = value.stat().st_size
+        sha = _sha(value)
+        digest.update(f"{value.name}\0{size}\0{sha}\n".encode())
+        rows.append({"name": value.name, "size": size, "sha256": sha})
     return {
         "count": len(rows),
-        "bytes": sum(int(row["bytes"]) for row in rows),
-        "digest": hashlib.sha256(
-            json.dumps(rows, sort_keys=True, separators=(",", ":")).encode("utf-8")
-        ).hexdigest(),
-        "files": rows,
+        "bytes": sum(int(row["size"]) for row in rows),
+        "digest": digest.hexdigest(),
+        "rows": rows,
     }
 
 

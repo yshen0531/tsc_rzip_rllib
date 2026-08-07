@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import copy
+import gzip
+import hashlib
 import json
+import shutil
 import unittest
 from pathlib import Path
 
@@ -9,6 +12,7 @@ import numpy as np
 
 from docs.codex.audit_tools import (
     stage4_2r3c3t13s24d1r14r8r7_independent_forensics as independent,
+    stage4_2r3c3t13s24d1r14r8r7_raw_inventory_reporting_hotfix as inventory_hotfix,
 )
 from tsc_rzip_rllib.diagnostics import (
     stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign as campaign,
@@ -194,6 +198,30 @@ class FreshMultipulseStaticObserverInteractionSentinelTests(unittest.TestCase):
         self.assertNotIn("interaction_campaign as campaign", source)
         self.assertNotIn("campaign._prediction_rows", source)
         self.assertNotIn("campaign._evaluate_prediction_rows", source)
+
+    def test_independent_inventory_matches_frozen_primary_digest_contract(self) -> None:
+        directory = ROOT / ".codex_tmp" / "r8r7_unit_inventory_contract"
+        if directory.exists():
+            self.fail(f"test scratch path already exists: {directory}")
+        directory.mkdir(parents=True)
+        try:
+            for name, value in (("b.json.gz", {"value": 2}), ("a.json.gz", {"value": 1})):
+                with gzip.open(directory / name, "wt", encoding="utf-8") as stream:
+                    json.dump(value, stream, sort_keys=True, separators=(",", ":"))
+            actual = independent._inventory(directory)
+            digest = hashlib.sha256()
+            expected_rows = []
+            for path in sorted(directory.glob("*.json.gz")):
+                size = path.stat().st_size
+                sha = hashlib.sha256(path.read_bytes()).hexdigest()
+                digest.update(f"{path.name}\0{size}\0{sha}\n".encode())
+                expected_rows.append({"name": path.name, "size": size, "sha256": sha})
+            self.assertEqual(actual["rows"], expected_rows)
+            self.assertEqual(actual["digest"], digest.hexdigest())
+            self.assertEqual(actual["bytes"], sum(row["size"] for row in expected_rows))
+            self.assertEqual(inventory_hotfix.primary_compatible_inventory(directory), actual)
+        finally:
+            shutil.rmtree(directory)
 
     def test_launcher_pins_existing_server_virtual_environment(self) -> None:
         source = (
