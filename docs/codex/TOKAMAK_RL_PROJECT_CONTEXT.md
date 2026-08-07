@@ -855,3 +855,27 @@ development PASS may freeze artifacts and open the eight still-blind
 new-identity baseline histories. Even a holdout PASS authorizes only a
 separately frozen combined adaptation validation; MPC, Gate A, and learning
 remain blocked.
+
+R8R5 subsequently passed its zero-new-TSC development freeze and opened
+exactly eight authentic blind baseline histories. Execution, restart,
+causality, zero-future-action, Card15/current, raw integrity, and independent
+agreement all passed. The fixed point center passed 120/120 blind origins and
+32/32 prescribed issues; aggregate tube containment passed 117/120. One of
+eight contexts nevertheless missed the preregistered per-context tube floor:
+`p5_q2_a0p900_gap4_settle4|plus_first` contained 14/16 against 15/16.
+Read-only forensics localized every violation to Ip at future lags 11--12.
+R8R5 is therefore final as
+`CONTEXT_ROBUST_CAUSAL_OBSERVER_HOLDOUT_FAIL_REDESIGN_REQUIRED`, a finite
+uncertainty-qualification design failure rather than a runtime, controller,
+MPC, formal-control, plant, or observability conclusion.
+
+Before computing any next-stage adapted prediction or metric, R8R6 was
+prospectively frozen at checkpoint `0352207`, design SHA-256
+`6f8886f42321a2e99a97332ecf03c1827b5385ebfc50f6ee07fefefcafa182f1`.
+It is a zero-new-TSC 20-fold whole-pair audit. The sole adapter uses the
+previously committed one-step vR/vZ/Ip forecast error, fixed clipping, and
+fixed `rho=0.8`; it must show measurable MSE benefit or the route selects the
+static robust observer. A prospective factor-2 context-robust tube remains
+subject to unchanged practical caps. Any R8R6 observer result can authorize
+only a separately frozen fresh interaction sentinel. MPC, Gate A, expert
+data, and all learning remain blocked.

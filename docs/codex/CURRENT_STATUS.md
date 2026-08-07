@@ -1,5 +1,66 @@
 # Current status
 
+> **Superseding R8R6 prospective-design checkpoint (2026-08-07
+> Asia/Shanghai).** After final R8R5 primary/independent agreement, but before
+> any R8R6 implementation, adapted prediction, residual, tube, metric, route,
+> or artifact was computed, R8R6 was frozen at checkpoint `0352207` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R6_CAUSAL_ONE_STEP_INNOVATION_OBSERVER_DESIGN.md`,
+> SHA-256
+> `6f8886f42321a2e99a97332ecf03c1827b5385ebfc50f6ee07fefefcafa182f1`.
+> It is a zero-new-TSC 20-fold whole-pair development audit over the now-
+> consumed 20 baseline pairs/40 histories/600 origins.
+>
+> The cold model remains fixed at linear/PCA32/ridge-1e-6. At origin 10 it is
+> the startup/fallback observer. At each later origin the sole adapter uses
+> the already observed one-step vR/vZ/Ip prediction innovation, fixed physical
+> clipping `[0.02,0.02,1000]`, and fixed persistence `rho=0.8`; R/Z are
+> reconstructed by exact causal integration. A new global adapted-residual
+> tube uses the frozen higher-q95/every-context-higher-q90 construction with a
+> prospective reserve multiplier 2.0 and unchanged caps. Adaptation must
+> reduce aggregate MSE by at least 5%, avoid more than 5% context regression,
+> and improve at least 24/40 contexts. If uncertainty gates pass without that
+> measurable gain, the route explicitly selects the static robust observer
+> rather than unnecessary adaptation. Even a pass authorizes only a separately
+> frozen fresh interaction sentinel; MPC, Gate A, and learning remain blocked.
+
+> **Superseding R8R5 final and causal-innovation handoff (2026-08-07
+> Asia/Shanghai).** R8R5 is final at
+> `CONTEXT_ROBUST_CAUSAL_OBSERVER_HOLDOUT_FAIL_REDESIGN_REQUIRED`. Its zero-new-
+> TSC development phase passed 480/480 point rows, 128/128 prescribed issue
+> rows, 480/480 tube rows, every context gate, and the tube cap. Primary and
+> structurally independent development recomputations agreed exactly, then
+> froze model/tube hashes
+> `d3d7ecebbe51ca20e83cdb126682d2bebad749b8fd5cb67dd57b3baf416e77e4 /
+> 3a436307a507b9aacda85321dd4d55e6bbcc996efe2e25c2b5026571c7108786`
+> before authorizing holdout.
+>
+> All eight authentic blind baselines completed full horizon with exact
+> runtime, restart-snapshot authentication, physical/action prefix, causality,
+> zero future action, constant future current, Card15/current, finite raw, and
+> reporting integrity. Raw inventory is eight files, 245493 bytes, digest
+> `55cae64bf5b907b4cd6013615388dbb637dd2f1f14e49bda7fb49d11cf5b3d14`;
+> maximum action/current utilization was `0.648149691358026 / 0.3924`.
+>
+> The frozen observer passed blind point rows 120/120 and prescribed issue
+> rows 32/32 with zero finite-exclusion violation. Aggregate tube containment
+> passed 117/120 against 114, but one context,
+> `p5_q2_a0p900_gap4_settle4|plus_first`, contained 14/16 against the frozen
+> 15/16 requirement. Read-only row forensics found three uncontained rows and
+> only four violating cells, all Ip at future lags 11--12; every row still
+> passed its point cap. Independent raw/model audits reproduced the primary
+> result exactly.
+>
+> Final stage manifest/state hashes are
+> `d737bb77a9547fac8c1378dab3fdbd63aeca60cc30fefc38ecf5dab181d441cc /
+> dc564ddfb9edae9b044dfa358ddb98306b56f328a8fc06c60b8c43ade772e48c`.
+> R8R5 is a finite uncertainty-qualification design FAIL, not a runtime,
+> deployment, restart, raw, controller, formal-control, real-MPC, plant, or
+> global-observability result. Exact report SHA-256 is
+> `cd9f7f0c70e3c858193f7511abd1e0ece4fa612f6cfa1bf16b1bdebb038cc91c`;
+> compact v2 row audit SHA-256 is
+> `87e1ebc466ac8375ea76226787b22fe013f9de0c95b27a19d9d68499c77896ab`.
+> All R8R5 trajectories remain forbidden from expert/learning data.
+
 > **Superseding R8R5 prospective-design checkpoint (2026-08-07
 > Asia/Shanghai).** After final R8R4 primary/independent agreement, but before
 > any R8R5 fit, residual recomputation, tube value, metric, artifact, route,

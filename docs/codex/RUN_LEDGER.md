@@ -1665,3 +1665,70 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r3_20260807_e8cea14/`
 - Next: prospectively freeze a fresh-identity observer-identification campaign;
   Gate A and all expert/learning stages remain blocked
+
+## Stage4.2R3c3T13S24D1R14R8R4 fresh causal observer development
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Final route: `FRESH_CAUSAL_OBSERVER_DEVELOPMENT_FAIL_STOP_NO_HOLDOUT`
+- Fresh development raw: `8/8`, 245279 bytes, digest
+  `8d0d6c2c8f7e4e8436f9ef958fb30e4276823a8004fbab97b8c50d71b1ed3f66`
+- Point / issue / aggregate tube: `480/480 / 128/128 / 457/480`
+- Context tube passes: `27/32`; holdout/model counts `0/0`
+- Model candidate selected: `linear / PCA32 / ridge 1e-6`
+- Primary detailed / summary / independent / final state SHA-256:
+  `af8cb6d75a435ecd96948b4c15a2e1929c98527edd5483c8f29c0c6394125dac`,
+  `bde614d6ac34535d5f22f187925723969921e8333b41d429a32e0719cb8b3bfd`,
+  `12ee920fb0d49d46285bba31a443a24e09a5b6b9b3b1d0b5ddc61560a20fa86b`,
+  `617c6ea2e2ae81d5d1ad9f0de2f331a1b0d19caa3031dc76e4714ecc4c417015`
+- Classification: clean finite uncertainty-calibration/design FAIL; no
+  runtime, restart, raw, controller, formal-control, real-MPC, plant, or
+  reachability conclusion
+- Report:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R4_FORENSIC_REPORT.md`
+
+## Stage4.2R3c3T13S24D1R14R8R5 context-robust observer holdout
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / package: `546c6f7 / 4f0bf06 / 26b96e8`
+- Package declared / direct-copy total: `966 / 968`
+- Local / installed full tests: `1198 / 1198`, one expected server skip
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r5_runs/stage4_2r3c3t13s24d1r14r8r5_context_robust_observer_holdout_20260807_26b96e8_v1`
+- Development new raw / point / issue / tube:
+  `0 / 480/480 / 128/128 / 480/480`
+- Blind holdout execution / restart / prefix / raw: `8/8 / 8/8 / 8/8 / 8/8`
+- Blind point / issue / aggregate tube: `120/120 / 32/32 / 117/120`
+- Context passes: `7/8`; failed context
+  `p5_q2_a0p900_gap4_settle4|plus_first = 14/16`, required `15/16`
+- Raw count / bytes / digest: `8 / 245493 /
+  55cae64bf5b907b4cd6013615388dbb637dd2f1f14e49bda7fb49d11cf5b3d14`
+- Model / tube SHA-256:
+  `d3d7ecebbe51ca20e83cdb126682d2bebad749b8fd5cb67dd57b3baf416e77e4`,
+  `3a436307a507b9aacda85321dd4d55e6bbcc996efe2e25c2b5026571c7108786`
+- Stage manifest / final state SHA-256:
+  `d737bb77a9547fac8c1378dab3fdbd63aeca60cc30fefc38ecf5dab181d441cc`,
+  `dc564ddfb9edae9b044dfa358ddb98306b56f328a8fc06c60b8c43ade772e48c`
+- Final route:
+  `CONTEXT_ROBUST_CAUSAL_OBSERVER_HOLDOUT_FAIL_REDESIGN_REQUIRED`
+- Classification: clean finite uncertainty-qualification design FAIL; no
+  runtime, deployment, restart, causality, raw, controller, formal-control,
+  real-MPC, plant, reachability, or global-observability conclusion
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r5_20260807_26b96e8/`
+- Report:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R5_FORENSIC_REPORT.md`
+
+## Stage4.2R3c3T13S24D1R14R8R6 prospective causal innovation observer
+
+- Frozen before implementation or metrics: design checkpoint `0352207`
+- Design SHA-256:
+  `6f8886f42321a2e99a97332ecf03c1827b5385ebfc50f6ee07fefefcafa182f1`
+- Data boundary: 20 consumed physical pairs, 40 history contexts, 600 causal
+  origin rows; zero new TSC
+- Fixed adapter: causal prior one-step vR/vZ/Ip innovation, fixed physical
+  clipping, `rho=0.8`, exact R/Z reintegration
+- Fixed uncertainty reserve: context-robust global tube multiplier `2.0`
+- Adaptation requires measurable MSE benefit; otherwise choose the static
+  robust observer route
+- Next: implement, independently audit, package/deploy, and execute R8R6;
+  controller, MPC, Gate A, expert data, and learning remain blocked

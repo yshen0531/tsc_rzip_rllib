@@ -4894,3 +4894,91 @@ observer/innovation-adaptation validation. A FAIL requires another observer
 or finite-envelope redesign. No R8/R8R4/R8R5 trajectory may enter expert,
 BC, DAgger, or RL data. Controller execution, MPC, Gate A, and all learning
 remain blocked.
+
+## 83. Final D1R14R8R5 result and observer-redesign boundary
+
+R8R5 completed its frozen development, authorization, authentic blind
+holdout, independent raw/model audit, and postprocess sequence. The package
+checkpoint is `26b96e8`; the direct-copy closure contained 966 declared files
+plus manifest/sums. Local and installed full suites passed 1198/1198, with
+one expected Linux skip on the server.
+
+The development bank passed all gates and froze the exact
+linear/PCA32/ridge-1e-6 model and context-robust global tube before holdout:
+
+```text
+development point / issue / tube rows        480/480 / 128/128 / 480/480
+observer model SHA-256
+  d3d7ecebbe51ca20e83cdb126682d2bebad749b8fd5cb67dd57b3baf416e77e4
+observer tube SHA-256
+  3a436307a507b9aacda85321dd4d55e6bbcc996efe2e25c2b5026571c7108786
+```
+
+All eight blind baseline rollouts completed with exact runtime, restart,
+source prefix, zero-future-action, constant-current, Card15/current, finite
+raw, and independent inventory gates. The raw inventory is eight files,
+245493 bytes, digest
+`55cae64bf5b907b4cd6013615388dbb637dd2f1f14e49bda7fb49d11cf5b3d14`.
+
+The blind point model passed 120/120 origins and 32/32 prescribed issues.
+Aggregate tube containment passed 117/120 against 114, but the prospectively
+frozen per-context gate failed in exactly one history:
+
+```text
+p5_q2_a0p900_gap4_settle4 | plus_first       14/16; required 15/16
+```
+
+Three rows were outside the tube; all four violating cells were Ip at future
+lags 11--12 and every row remained within its point cap. Primary and
+independent raw and model audits agree exactly. Final state SHA-256 is
+`dc564ddfb9edae9b044dfa358ddb98306b56f328a8fc06c60b8c43ade772e48c`.
+The exact report is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R5_FORENSIC_REPORT.md
+SHA-256
+cd9f7f0c70e3c858193f7511abd1e0ece4fa612f6cfa1bf16b1bdebb038cc91c
+```
+
+R8R5 is immutable as
+`CONTEXT_ROBUST_CAUSAL_OBSERVER_HOLDOUT_FAIL_REDESIGN_REQUIRED`. This is a
+finite uncertainty-qualification design failure, not a runtime, restart,
+raw, controller, formal-control, real-MPC, plant, reachability, or global-
+observability conclusion. Its baseline trajectories remain forbidden from
+expert and learning data.
+
+## 84. Frozen D1R14R8R6 causal one-step innovation observer task
+
+Before any R8R6 implementation, adapted prediction, residual, tube, metric,
+route, or artifact, R8R6 was prospectively frozen at checkpoint `0352207`:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R6_CAUSAL_ONE_STEP_INNOVATION_OBSERVER_DESIGN.md
+SHA-256
+6f8886f42321a2e99a97332ecf03c1827b5385ebfc50f6ee07fefefcafa182f1
+```
+
+R8R6 executes zero new TSC. It combines the now-consumed 20 physical
+baseline pairs into 20 whole-pair outer folds with 600 causal origins. The
+cold model remains fixed at linear/PCA32/ridge-1e-6. Origin 10 is unchanged
+startup/fallback; each later origin uses only the one-step vR/vZ/Ip prediction
+error that has already become observable on the same trajectory, with fixed
+physical clipping `[0.02,0.02,1000]` and fixed persistence `rho=0.8`. R/Z are
+reintegrated causally from the observed origin.
+
+The 560 adapted rows use one frozen global tube derived with higher-q95 and
+every-context-higher-q90 ratios, a prospective reserve multiplier 2.0, and
+the unchanged 10 mm/0.05 m/s/3000 A caps. Point, finite, prescribed-issue,
+aggregate tube, and every-context gates remain explicit. Adaptation must also
+reduce aggregate MSE by at least 5%, regress no context by more than 5%, and
+strictly improve at least 24/40 contexts.
+
+If observer/tube gates pass without measurable adaptation gain, the frozen
+route selects the static robust observer rather than preserving unnecessary
+adaptation. Any observer route still authorizes only a separately frozen
+fresh authentic interaction sentinel. The active task is to implement
+primary and structurally independent R8R6 audits, validate/package/deploy
+them, and execute the zero-new-TSC stage. Controller execution, MPC, Gate A,
+expert data, BC, DAgger, and residual RL remain blocked.
