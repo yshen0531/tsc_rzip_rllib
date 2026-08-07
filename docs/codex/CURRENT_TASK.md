@@ -5232,3 +5232,56 @@ formal-metric paths. At least one of the ten failed baselines must be repaired
 and measured-oracle coverage must reach at least 7/16 to authorize a later
 causal selector design. A failure routes to a new action architecture, not to
 post-result relaxation of R8R8. No new TSC or learning is authorized.
+
+## 91. Final R8R9 result and action-architecture redesign boundary
+
+R8R9 completed its frozen zero-new-TSC primary and structurally independent
+audits. It authenticated the R8R7/R8R8 sources, strictly parsed all 48 R8R7
+raw files, reproduced baseline/multipulse formal counts `6/16 / 12/32`, and
+obtained exact `48/48` agreement between the two formal metric paths.
+
+```text
+failed baselines                                           10
+strict best-schedule minimum-margin improvements          9/10
+gain min / median / max
+  -0.000105833333334 / 0.000125349647658 / 0.000926800000001
+failed baselines repaired                                  0/10
+measured-oracle formal pass                                6/16
+route
+  MEASURED_MULTIPULSE_FORMAL_AUTHORITY_INSUFFICIENT_ACTION_REDESIGN_REQUIRED
+```
+
+Primary and independent numerical, scientific-gate, and route results agree
+exactly. R8R9 created no raw directory and ran zero Ray, `gotsc`, TSC,
+controller, or plant advances. Accepted detailed/summary/independent/manifest/
+state SHA-256 values are:
+
+```text
+4bda8b9dafef7d75dc73aa28b8aebdbfd9df34f98d14c369182c833bd912f4ef
+ffb67e2a882605d01af609f57b181657d334297d93e5eee893789873439b23fd
+768a0a408880a19c6d723eccfef98a45018d01fcb63d48ab98e65d61784ce9f0
+96655d1ccc84796b687f05644150909ba6aa64a3da549542eeac92d913cd2e0d
+e03c09dfd0afffe20bdd641b401dc6e2f3e13b3075c2d3033578b7f5c67355bb
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R9_FORENSIC_REPORT.md
+SHA-256
+66993c4d638dec5e9bc883e45ce6586a12b367b9a97bc214c36cc41c80454f98
+```
+
+R8R9 is a finite measured-action-authority design failure, not a runtime,
+restart, causality, raw, reporting, real-MPC, formal-control, plant, safety, or
+global-reachability conclusion. The canonical-scale four-pulse route may not
+be tuned or rerun under the same identity.
+
+The active boundary is to freeze, before outcome inspection, a genuinely
+different action architecture or a zero-new-TSC authority discriminator over
+already authenticated and already consumed development evidence. A read-only
+PASS may authorize only a separately frozen controller or fresh safety
+sentinel; a FAIL must route to a genuinely new sustained/asymmetric action
+identification. No existing probe trajectory may enter expert data. Gate A,
+expert data, BC, DAgger, and residual RL remain blocked.

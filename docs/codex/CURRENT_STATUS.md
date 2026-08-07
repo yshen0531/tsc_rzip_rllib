@@ -1,5 +1,40 @@
 # Current status
 
+> **R8R9 final measured-authority checkpoint (2026-08-07
+> Asia/Shanghai).** R8R9 is final as
+> `MEASURED_MULTIPULSE_FORMAL_AUTHORITY_INSUFFICIENT_ACTION_REDESIGN_REQUIRED`.
+> The zero-new-TSC primary and structurally independent audit authenticated
+> the immutable R8R7 and R8R8 sources, strictly parsed all 48 R8R7 raw files,
+> reproduced the published baseline/multipulse formal counts `6/16 / 12/32`,
+> and agreed on both formal evaluators for `48/48` rows with zero maximum
+> signed-margin difference.
+>
+> Of ten failing baselines, nine received a strict but small best-schedule
+> minimum-margin improvement. The min/median/max gains were
+> `-0.000105833333334 / 0.000125349647658 / 0.000926800000001`.
+> Nevertheless, the two measured canonical-scale four-pulse schedules repaired
+> `0/10`, so measured-oracle formal coverage remained `6/16` against the frozen
+> `>=7/16` gate. The canonical-scale action alphabet therefore lacks measured
+> formal-control authority for this route.
+>
+> R8R9 created no raw directory and ran zero Ray, `gotsc`, TSC, controller, or
+> plant steps. Primary detailed/summary, independent, manifest, and state hashes
+> are `4bda8b9d... / ffb67e2a... / 768a0a40... / 96655d1c... /
+> e03c09df...`, rechecked at the original server path. Local, empty direct-copy,
+> staging, and installed validation passed compile, focused `6/6`, full
+> `1237/1237`, and `1017/1017` declared hashes, with one expected isolated-
+> evidence skip where applicable.
+>
+> This is a finite measured-action-authority design FAIL, not a runtime,
+> restart, raw, reporting, formal-evaluator, real-MPC, safety, plant, or global-
+> reachability result. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R9_FORENSIC_REPORT.md`.
+> Report SHA-256 is
+> `66993c4d638dec5e9bc883e45ce6586a12b367b9a97bc214c36cc41c80454f98`.
+> The next action architecture/discriminator must be frozen before its outcome
+> is computed. Gate A and all learning remain blocked; all R8-family evidence
+> remains forbidden from expert data.
+
 > **R8R8 final and prospective R8R9 authority-audit checkpoint (2026-08-07
 > Asia/Shanghai).** R8R8 is final as
 > `CAUSAL_DISCRETE_PULSE_MPC_SOURCE_OR_OFFLINE_FAIL_NO_TSC`. The accepted v2
