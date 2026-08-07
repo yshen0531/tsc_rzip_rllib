@@ -684,14 +684,15 @@ class FixedCanonicalMultipulseController(r4.MixedBasisSignedExcitationController
             and len(directions) == len(signs) == len(coordinates) == 4
             and tuple(map(int, source_spec["r8r7_issue_task_steps"])) == contract.ISSUE_STEPS
         ):
+            inherited_issue_step = int(r4.ISSUE_STEPS[0])
             init = {
                 "role": "signed_probe",
                 "direction_index": directions[0],
                 "sign": signs[0],
                 "requested_coordinate": coordinates[0],
-                "issue_step": contract.ISSUE_STEPS[0],
-                "cancel_step": contract.ISSUE_STEPS[0] + 1,
-                "zero_after_step": contract.ISSUE_STEPS[0] + 2,
+                "issue_step": inherited_issue_step,
+                "cancel_step": inherited_issue_step + 1,
+                "zero_after_step": inherited_issue_step + 2,
             }
         else:
             raise ValueError("R8R7 controller schedule changed")
@@ -726,6 +727,12 @@ class FixedCanonicalMultipulseController(r4.MixedBasisSignedExcitationController
         self.r8r7_directions = directions
         self.r8r7_signs = signs
         self.r8r7_coordinates = coordinates
+        if role == "multipulse":
+            # The inherited constructor accepts only its historical R4 slots.
+            # This subclass owns the frozen R8R7 four-slot clock in action().
+            self.d1r14r4_issue_step = contract.ISSUE_STEPS[0]
+            self.d1r14r4_cancel_step = contract.ISSUE_STEPS[0] + 1
+            self.d1r14r4_zero_after_step = contract.ISSUE_STEPS[0] + 2
 
     def action(self, current_state: Mapping[str, Any]) -> tuple[np.ndarray, dict[str, Any]]:
         if int(current_state["step_index"]) != self.step:
@@ -1240,12 +1247,16 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
         payload = _read(ctx.paths.variants / f"payload_{experiment_id}.json")
         minimum, maximum = r8.d1r11.s21.s13._current_limits_tsc(payload)
         center, half = 0.5 * (minimum + maximum), 0.5 * (maximum - minimum)
-        utilization = (
+        utilization: float | None = (
             float(np.max(np.abs((currents - center) / half)))
             if currents.shape == (horizon + 1, N_COILS)
-            else math.inf
+            else None
         )
-        action_abs = float(np.max(np.abs(actions))) if actions.shape == (horizon, N_COILS) else math.inf
+        action_abs: float | None = (
+            float(np.max(np.abs(actions)))
+            if actions.shape == (horizon, N_COILS)
+            else None
+        )
         zero_steps = [step for step in range(PREFIX_END, horizon) if step not in event_steps]
         zero_exact = bool(
             full
@@ -1290,8 +1301,16 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
                 cancel_exact = cancel_exact and current_cancel
                 issue_count += int(current_issue)
                 cancel_count += int(current_cancel)
-                max_increment = max(max_increment, float(issue.get("incremental_normalized_action_linf", math.inf)))
-                max_cancel = max(max_cancel, float(cancel.get("incremental_normalized_action_linf", math.inf)))
+                issue_increment = issue.get("incremental_normalized_action_linf")
+                cancel_increment = cancel.get("incremental_normalized_action_linf")
+                if issue_increment is None or not math.isfinite(float(issue_increment)):
+                    max_increment = None
+                elif max_increment is not None:
+                    max_increment = max(max_increment, float(issue_increment))
+                if cancel_increment is None or not math.isfinite(float(cancel_increment)):
+                    max_cancel = None
+                elif max_cancel is not None:
+                    max_cancel = max(max_cancel, float(cancel_increment))
         elif phase == "baseline":
             issue_exact = cancel_exact = bool(
                 all(row.get("r3c3t13s24d1r14r8r7_event") == "none" for row in trace[PREFIX_END:])
@@ -1314,9 +1333,13 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
             and cancel_exact
             and source_snapshot
             and forbidden == 0
+            and action_abs is not None
             and action_abs <= float(ctx.cfg["controller_contract"]["maximum_total_normalized_action_abs"]) + 1e-12
+            and max_increment is not None
             and max_increment <= float(ctx.cfg["controller_contract"]["maximum_incremental_normalized_action_linf"]) + 1e-12
+            and max_cancel is not None
             and max_cancel <= float(ctx.cfg["controller_contract"]["maximum_online_cancel_incremental_linf"]) + 1e-12
+            and utilization is not None
             and utilization <= float(ctx.cfg["controller_contract"]["maximum_current_utilization"]) + 1e-12
         )
         rows.append(
@@ -1352,6 +1375,12 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
         if len(rows) == expected and all(bool(row.get("runtime_success")) for row in rows)
         else {"evaluated": 0, "formal_contract_pass_count_diagnostic_only": 0}
     )
+    def complete_maximum(name: str) -> float | None:
+        values = [row.get(name) for row in rows]
+        if not values or any(value is None or not math.isfinite(float(value)) for value in values):
+            return None
+        return max(float(value) for value in values)
+
     report = {
         "schema_version": 1,
         "stage": contract.STAGE,
@@ -1369,10 +1398,10 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
         "source_restart_snapshot_authenticated_count": sum(bool(row.get("source_restart_snapshot_authenticated")) for row in rows),
         "finite_count": sum(bool(row.get("finite")) for row in rows),
         "forbidden_trace_count": sum(int(row.get("forbidden_trace_count", 0)) for row in rows),
-        "maximum_incremental_issue_action": max((float(row.get("maximum_incremental_issue_action", math.inf)) for row in rows), default=math.inf),
-        "maximum_incremental_cancel_action": max((float(row.get("maximum_incremental_cancel_action", math.inf)) for row in rows), default=math.inf),
-        "maximum_total_normalized_action_abs": max((float(row.get("maximum_total_normalized_action_abs", math.inf)) for row in rows), default=math.inf),
-        "maximum_current_utilization": max((float(row.get("maximum_current_utilization", math.inf)) for row in rows), default=math.inf),
+        "maximum_incremental_issue_action": complete_maximum("maximum_incremental_issue_action"),
+        "maximum_incremental_cancel_action": complete_maximum("maximum_incremental_cancel_action"),
+        "maximum_total_normalized_action_abs": complete_maximum("maximum_total_normalized_action_abs"),
+        "maximum_current_utilization": complete_maximum("maximum_current_utilization"),
         "passed_count": sum(bool(row.get("passed")) for row in rows),
         "formal_tracking_diagnostic_only": formal,
         "rows": rows,

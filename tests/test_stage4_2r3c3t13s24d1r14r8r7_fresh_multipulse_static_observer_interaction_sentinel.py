@@ -7,6 +7,7 @@ import json
 import shutil
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import numpy as np
 
@@ -154,6 +155,51 @@ class FreshMultipulseStaticObserverInteractionSentinelTests(unittest.TestCase):
                 campaign._response_descriptor(present_changed, spec, 22, self.cfg),
             )
         )
+
+    def test_multipulse_constructor_uses_valid_inherited_placeholder_slot(self) -> None:
+        matrix = self.cfg["schedule_contract"]["canonical_matrix_columns"]
+        directions = [0, 1, 2, 3]
+        signs = [1, -1, 1, -1]
+        coordinates = [
+            (np.asarray(matrix, dtype=float)[:, direction] * sign).tolist()
+            for direction, sign in zip(directions, signs)
+        ]
+        spec = {
+            "d1r14r8_role": "baseline",
+            "d1r14r8_execution_kernel": "r4",
+            "d1r14r8_direction_index": -1,
+            "d1r14r8_sign": 0,
+            "d1r14r8_issue_task_step": -1,
+            "d1r14r8_cancel_task_step": -1,
+            "d1r14r8_zero_after_task_step": 10,
+            "d1r14r8_requested_coordinate": [0.0] * 4,
+            "d1r14r8_requested_matrix_digest": self.cfg["schedule_contract"][
+                "canonical_matrix_digest"
+            ],
+            "source_s21_baseline_experiment_id": "source-s21",
+            "source_d1r11_baseline_experiment_id": "source-d1r11",
+            "r8r7_role": "multipulse",
+            "r8r7_direction_indices": directions,
+            "r8r7_signs": signs,
+            "r8r7_requested_coordinates": coordinates,
+            "r8r7_issue_task_steps": [10, 14, 18, 22],
+        }
+        controller_cfg = {
+            **self.cfg["controller_contract"],
+            "requested_coordinate_matrix_columns": matrix,
+            "requested_matrix_float64_le_c_sha256": self.cfg["schedule_contract"][
+                "canonical_matrix_digest"
+            ],
+        }
+        parent = campaign.r4.MixedBasisSignedExcitationController
+        with mock.patch.object(parent, "__init__", return_value=None) as inherited:
+            controller = campaign.FixedCanonicalMultipulseController(
+                object(), {}, spec, {}, {}, {}, {}, {}, controller_cfg
+            )
+        self.assertEqual(inherited.call_args.kwargs["issue_step"], campaign.r4.ISSUE_STEPS[0])
+        self.assertNotEqual(inherited.call_args.kwargs["issue_step"], contract.ISSUE_STEPS[0])
+        self.assertEqual(controller.d1r14r4_issue_step, contract.ISSUE_STEPS[0])
+        self.assertEqual(controller.r8r7_directions, tuple(directions))
 
     def test_parsers_are_fail_closed(self) -> None:
         primary_choices = next(
