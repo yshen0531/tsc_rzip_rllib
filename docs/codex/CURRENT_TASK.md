@@ -5178,3 +5178,57 @@ delay/gain/slew, mismatch, noise, disturbance recovery, independent long hold,
 and residual-authority qualifications remain required under separately frozen
 designs. All R8R8 trajectories are forbidden from learning; expert data, BC,
 DAgger, and residual RL remain blocked.
+
+## 90. Final R8R8 result and frozen R8R9 measured-authority task
+
+R8R8 v2 completed its dual zero-TSC computation but failed the primary frozen
+scientific gate. Source authentication, 576 forecasts, 64 decisions, 512 issue
+constructions, 512 cancellations, fault injection, and forbidden-input checks
+all passed. Every decision selected zero, against the prospectively required
+minimum of one nonzero selection. The final route is:
+
+```text
+CAUSAL_DISCRETE_PULSE_MPC_SOURCE_OR_OFFLINE_FAIL_NO_TSC
+```
+
+The independent computation reproduced all predictions, scores, selections,
+actions, outcomes, and model hashes exactly. Reporting-only fix `98bcb9c`
+corrected its route field without changing the computation: audit agreement is
+true while primary/scientific gate pass is false. Corrected independent,
+primary-summary, manifest, and state hashes are:
+
+```text
+625a1bb289db927d037a448b6dba88d930246d5360c4c78155b79e2e272b53c1
+eb7cf6eb2a8abbea020d76f63a59f6f0b4c128255583998c321d6aa979086840
+5b0ad4b85c390e33a38bfb99c03f5163d1ea72c5efb1dd100f0a80477c8d68bf
+c7914e8f7842ee22892b008e861fba9ead7496fb5f48ae663c0d7fd2da116228
+```
+
+No real-TSC authorization, raw, controller action, or plant advance occurred.
+Retrospective attribution showed every point forecast favored a nonzero pulse
+slightly, but none reached the frozen 0.5% improvement; candidate-specific
+response uncertainty made every robust nonzero score worse than zero. R8R8 is
+therefore a clean offline objective/model/action-design FAIL. Full report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R8_FORENSIC_REPORT.md
+```
+
+Before inspecting whether the two real R8R7 schedules repaired specific
+baseline failures, the zero-new-TSC R8R9 design is frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R9_MEASURED_MULTIPULSE_AUTHORITY_AUDIT_DESIGN.md
+SHA-256
+3cb4ca9768671aaf575f2cb71c8c33d8643156110dc68c0b1e7b4d714d3d4510
+```
+
+R8R9 must authenticate all 48 immutable R8R7 raw files and the R8R8 zero-TSC
+boundary, reproduce the known 6/16 and 12/32 formal aggregates, and compare
+the two measured schedules with their matching baseline using two equivalent
+formal-metric paths. At least one of the ten failed baselines must be repaired
+and measured-oracle coverage must reach at least 7/16 to authorize a later
+causal selector design. A failure routes to a new action architecture, not to
+post-result relaxation of R8R8. No new TSC or learning is authorized.

@@ -1,5 +1,47 @@
 # Current status
 
+> **R8R8 final and prospective R8R9 authority-audit checkpoint (2026-08-07
+> Asia/Shanghai).** R8R8 is final as
+> `CAUSAL_DISCRETE_PULSE_MPC_SOURCE_OR_OFFLINE_FAIL_NO_TSC`. The accepted v2
+> primary authenticated R8R7, completed 576 forecasts, 64 decisions, and
+> 512/512 exact Card15 issue/cancel constructions with no forbidden input or
+> enumeration side effect, but selected a nonzero pulse 0/64 times. It failed
+> the frozen minimum-one nonzero-selection gate before authorization. No raw
+> directory, Ray, `gotsc`, TSC, controller action, or plant advance exists.
+>
+> The structurally independent recomputation agreed exactly: maximum prediction
+> and score differences were both zero, selected candidates and exact actions
+> agreed, and all five model hashes matched. Its first report incorrectly
+> mapped audit agreement to the scientific PASS route. Reporting-only fix
+> `98bcb9c`, packaged at `9b12970`, now separates audit PASS from scientific
+> FAIL and preserves the primary route. The original independent JSON is
+> preserved at SHA-256 `2144ddad...`; the corrected independent SHA-256 is
+> `625a1bb289db927d037a448b6dba88d930246d5360c4c78155b79e2e272b53c1`.
+> Primary summary / state hashes remain `eb7cf6eb... / c7914e8f...`.
+>
+> Local, empty direct-copy, staging, and installed validation passed compile,
+> focused `12/12`, full `1231/1231`, and 1010/1010 declared hashes, with one
+> expected isolated-evidence skip where applicable. A first corrected-launch
+> command stopped before Python with `Permission denied` because the Windows
+> direct copy did not retain an executable bit; its log is preserved. Explicit
+> `bash` then completed the corrected zero-TSC audit under a new log.
+>
+> Retrospective score attribution found best-nonzero/zero ratios of
+> `1.010167968 / 1.017218600 / 1.030202082` (min/median/max) for the frozen
+> candidate-specific robust score. Point-only ratios were
+> `0.995171374 / 0.997048163 / 0.999609468`: all 64 moved slightly in the
+> favorable direction, but none met the frozen `<=0.995` gate. R8R8 is an
+> objective/model/action-design FAIL, not a runtime, restart, causality, raw,
+> formal-control, real-MPC, safety, or plant-reachability result. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R8_FORENSIC_REPORT.md`.
+>
+> Before inspecting the context-level R8R7 formal mapping, R8R9 is frozen as a
+> zero-new-TSC measured multipulse authority audit in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R9_MEASURED_MULTIPULSE_AUTHORITY_AUDIT_DESIGN.md`,
+> SHA-256 `3cb4ca9768671aaf575f2cb71c8c33d8643156110dc68c0b1e7b4d714d3d4510`.
+> It will determine whether either immutable real R8R7 schedule repaired any
+> of the ten failing baselines. Gate A and all learning remain blocked.
+
 > **Prospective R8R8 causal discrete-pulse MPC-core checkpoint (2026-08-07
 > Asia/Shanghai).** Before any R8R8 implementation, offline candidate result,
 > controller decision, formal outcome, raw trajectory, or TSC plant advance,

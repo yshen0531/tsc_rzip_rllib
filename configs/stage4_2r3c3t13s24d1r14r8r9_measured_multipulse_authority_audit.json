@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R9",
+  "identity": "measured_multipulse_authority_audit_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r9_measured_multipulse_authority_audit",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R9_MEASURED_MULTIPULSE_AUTHORITY_AUDIT_DESIGN.md",
+  "design_document_sha256": "3cb4ca9768671aaf575f2cb71c8c33d8643156110dc68c0b1e7b4d714d3d4510",
+  "source_r8r7": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel",
+    "required_route": "FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED",
+    "all_specs_sha256": "60e956f7297686988a6e52a236e597c3440963058ccdc3a2e22f84bc4ffa08fa",
+    "baseline_specs_sha256": "0a1d9dc14ecfd575594895e8c6444db27179ee1b5c9a700b2f853e62f9155f53",
+    "multipulse_specs_sha256": "62dc317e67bf21c65fe6d9d227f072507a0932c86439ca1c2233300ac743f4e3",
+    "baseline_raw_primary_sha256": "0a0e1bc0689a95d88aff856dee9f12e56e2aa89aabcce3f49403b0020aff87d1",
+    "baseline_raw_independent_sha256": "832599bc07ac802cb0809c81c701ddfc292fb0963387c0a0c6be1e48a1ab2fc4",
+    "multipulse_raw_primary_sha256": "37204019206752038244c2b5c8300905a112709d05c3048525e3793f42826972",
+    "multipulse_raw_independent_sha256": "707679950bf1c493d6ab5bc78635aa749ef44e1c0abbad68b3625e7097c0b659",
+    "final_report_sha256": "9ca6afce52442c1b7470cb8ff13a2eac4aab32de1e05a898d206f5fe76e01005",
+    "stage_manifest_sha256": "ae89fb2df01cd6758676baa895880e2005a1f8967c62ea4ae671ab61ea771e24",
+    "stage_state_sha256": "04f643e09f414c5d5a305f1a3584450e12e5a39e8d062d454480df3c8d95fe7e",
+    "baseline_raw_count": 16,
+    "baseline_raw_bytes": 487298,
+    "baseline_raw_digest": "46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5",
+    "multipulse_raw_count": 32,
+    "multipulse_raw_bytes": 1068664,
+    "multipulse_raw_digest": "d8435c8cd61fd082e143d79a3628ad2274780faefc6b676367df917355f49e31"
+  },
+  "source_r8r8": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r8_causal_discrete_pulse_receding_horizon_mpc_core_20260807_dface45_v2",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r8_causal_discrete_pulse_receding_horizon_mpc_core",
+    "config_path": "configs/stage4_2r3c3t13s24d1r14r8r8_causal_discrete_pulse_receding_horizon_mpc_core_370ms.json",
+    "config_sha256": "9d4843474618971ed7c22d3d286b7309993fc1e2dfdd865010906c48a382461a",
+    "required_route": "CAUSAL_DISCRETE_PULSE_MPC_SOURCE_OR_OFFLINE_FAIL_NO_TSC",
+    "offline_primary_detailed_sha256": "aad3ee37b1c43672b9718b23b27e5640172dad03158cbaf247578975de05ee11",
+    "offline_primary_summary_sha256": "eb7cf6eb2a8abbea020d76f63a59f6f0b4c128255583998c321d6aa979086840",
+    "offline_independent_sha256": "625a1bb289db927d037a448b6dba88d930246d5360c4c78155b79e2e272b53c1",
+    "stage_manifest_sha256": "5b0ad4b85c390e33a38bfb99c03f5163d1ea72c5efb1dd100f0a80477c8d68bf",
+    "stage_state_sha256": "c7914e8f7842ee22892b008e861fba9ead7496fb5f48ae663c0d7fd2da116228",
+    "required_nonzero_selection_count": 0,
+    "required_new_raw_count": 0,
+    "required_real_tsc_executed": false
+  },
+  "formal_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "metric_equivalence_absolute_tolerance": 1e-12,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "known_aggregate_contract": {
+    "context_count": 16,
+    "baseline_trajectory_count": 16,
+    "multipulse_trajectory_count": 32,
+    "schedules_per_context": 2,
+    "baseline_formal_pass_count": 6,
+    "multipulse_formal_pass_count": 12,
+    "r8r8_forecast_count": 576,
+    "r8r8_decision_count": 64,
+    "r8r8_nonzero_selection_count": 0
+  },
+  "scientific_gate": {
+    "failed_baseline_count": 10,
+    "minimum_repaired_failed_baseline_count": 1,
+    "minimum_measured_oracle_formal_pass_count": 7
+  },
+  "routes": {
+    "audit_fail": "MEASURED_MULTIPULSE_AUTHORITY_SOURCE_OR_AUDIT_FAIL_NO_TSC",
+    "authority_fail": "MEASURED_MULTIPULSE_FORMAL_AUTHORITY_INSUFFICIENT_ACTION_REDESIGN_REQUIRED",
+    "pass": "MEASURED_MULTIPULSE_AUTHORITY_PRESENT_CAUSAL_SELECTOR_DESIGN_REQUIRED"
+  },
+  "execution_contract": {
+    "new_raw_count": 0,
+    "ray_executed": false,
+    "gotsc_executed": false,
+    "tsc_executed": false,
+    "controller_executed": false,
+    "plant_steps_executed": 0,
+    "read_raw_in_place": true,
+    "server_virtualenv_only": true,
+    "direct_copy_only": true,
+    "local_archive_operations_allowed": false
+  },
+  "scientific_scope": {
+    "measured_oracle_is_causal_selector": false,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "all_source_trajectories_allowed_in_expert_dataset": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "global_plant_reachability_claimed": false
+  }
+}
