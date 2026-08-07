@@ -1,5 +1,47 @@
 # Current status
 
+> **R8R11 final sustained exact-target-refresh checkpoint (2026-08-07
+> Asia/Shanghai).** R8R11 is final as
+> `SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_INSUFFICIENT_ASYMMETRIC_SEQUENCE_REDESIGN_REQUIRED`.
+> It executed exactly 96 fresh authentic TSC trajectories in the frozen
+> safety/qualification order. All 24 safety and 72 qualification rows passed
+> runtime, full-horizon, restart, causal physical prefix, calibration, exact
+> Card15 issue/refresh/cancel, current, finite-state, forbidden-input, and raw
+> integrity gates. Safety raw is `24 files / 759481 bytes / 137fc402...`;
+> qualification raw is `72 files / 2288228 bytes / 82958eb8...`. Maximum
+> issue/cancel increment was `0.1742592593`, maximum refresh increment was
+> `3.7037037e-6`, and maximum current utilization was `0.3924`.
+>
+> The first audits falsely rejected source-trace prefixes because R8R11 does
+> not copy 13 source-only R4/R8R7 wrapper metadata keys. The separately
+> audited reporting repair found `3120 / 9360` wrapper-only differences for
+> safety/qualification, zero non-wrapper differences, preserved both raw
+> inventories byte-for-byte, opened no formal outcome, created no raw, and
+> left the primary controller hash `dd4ed571...` unchanged. Corrected primary
+> and structurally independent audits then agreed exactly `24/24` and `72/72`.
+> This was a reporting defect and did not warrant a TSC rerun.
+>
+> Under the unchanged formal contract, baseline coverage was `6/16`, candidate
+> trajectory formal passes were `36/96`, and all ten failed baselines obtained
+> a strict best-margin improvement of `0.0002495221--0.0017954458`. None was
+> repaired, so held-oracle coverage remained `6/16` against the frozen
+> `>=7/16` gate. Independent final recomputation agreed on all outcomes,
+> numerics, scientific gate, and route with maximum difference zero. Primary
+> detailed/summary, independent, final-report, manifest, and state hashes are
+> `aecd3a9e... / 8214b9c0... / 13f4436f... / 903cdb4f... /
+> aaa80624... / d805d7de...`.
+>
+> This is a finite sustained direction-zero action-authority design FAIL, not
+> a runtime, deployment, restart, causality, raw, reporting, formal-evaluator,
+> safety, real-MPC, plant, or global-reachability result. R8R11 is immutable
+> and may not resume. The next route must prospectively freeze a genuinely
+> asymmetric or multi-direction causal sequence under a new identity. Gate A
+> and all learning remain blocked; every R8-family trajectory is forbidden
+> from expert data. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R11_SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_SENTINEL_FORENSIC_REPORT.md`.
+> Report SHA-256 is
+> `8d1dbaf0c0055e00088a7d63e033d51104bdfa07fe46188581261327b09673f8`.
+
 > **Prospective R8R11 sustained exact-target-refresh checkpoint (2026-08-07
 > Asia/Shanghai).** Before R8R11 implementation, specs, offline construction,
 > formal outcome, raw, or TSC, and without opening R8R10 context-level detailed

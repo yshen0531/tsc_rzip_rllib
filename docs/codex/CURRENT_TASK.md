@@ -5389,3 +5389,74 @@ The active task is to implement, locally validate, directly package/deploy,
 execute, and independently audit R8R11 in that frozen order. No archive,
 global Python, source raw modification, R8R10 detailed outcome use, or
 learning is authorized. Gate A remains blocked.
+
+## 94. Final R8R11 result and asymmetric causal-sequence boundary
+
+R8R11 completed all 96 prospectively frozen authentic trajectories in order:
+24 safety rows followed by 72 qualification rows. All rows passed runtime,
+full-horizon, restart, causal physical prefix, calibration, exact Card15
+issue/refresh/cancel, current, finite-state, forbidden-input, and raw-integrity
+gates. Safety and qualification raw inventories are:
+
+```text
+safety          24 files /  759481 bytes / 137fc4024b720b3b...
+qualification   72 files / 2288228 bytes / 82958eb8c4e49ff2...
+```
+
+The initial phase audits compared 13 source-only R4/R8R7 wrapper metadata
+fields that do not exist in the new R8R11 wrapper. The reporting-only repair
+found `3120 / 9360` safety/qualification wrapper differences, zero executable
+or non-wrapper differences, preserved all raw bytes, opened no formal result,
+and left the primary controller hash unchanged. Corrected primary and
+structurally independent raw audits agreed exactly `24/24 / 72/72`. No TSC
+trajectory was rerun.
+
+After dual raw authorization, the unchanged formal computation produced:
+
+```text
+baseline formal pass                                      6/16
+candidate formal-pass trajectories                       36/96
+failed baseline strict best-margin improvement            10/10
+gain min / median / max
+  0.000249522056861 / 0.000485133333335 / 0.001795445790614
+failed baselines repaired                                  0/10
+held-oracle formal pass                                    6/16
+maximum primary/independent numerical difference              0
+route
+  SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_INSUFFICIENT_ASYMMETRIC_SEQUENCE_REDESIGN_REQUIRED
+```
+
+Primary and independent result, gate, and route agree exactly. Accepted
+detailed/summary/independent/final-report/manifest/state SHA-256 values are:
+
+```text
+aecd3a9e19bc8349398d885b78f6ef6cdbb20974878571036f4062f7f8b71ce1
+8214b9c0340f5562a181a42cb2d4e30ca2f1dd79900f1089fae3422ef3531e9b
+13f4436fff270a5eba1e91790522e3a490df59a879d9bab7636a6c3dc32b7391
+903cdb4f01ff0e124081230f92be2d473e38bde8d0cc0cdb082d71f900e8f3b5
+aaa8062421b9e1a5fa92641bffdf27684229a1db31f8a1a6d98bcde997aa8107
+d805d7de4822678f17b6a814b3cb095ad59b96001db4ae81fd8e047cf8659e24
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R11_SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_SENTINEL_FORENSIC_REPORT.md
+SHA-256
+8d1dbaf0c0055e00088a7d63e033d51104bdfa07fe46188581261327b09673f8
+```
+
+R8R11 is a finite sustained direction-zero action-authority design failure,
+not a runtime, deployment, restart, causality, raw, reporting, formal-control,
+safety, real-MPC, plant, or global-reachability conclusion. Its identity is
+immutable and may not be tuned, resumed, or enlarged.
+
+The active boundary is to freeze, under a new identity and before any new
+outcome or TSC, a genuinely asymmetric or multi-direction causal sequence.
+It must retain exact restart, causal visible-state/controller-state rules,
+Card15/current/saturation/safe-stop gates, the immutable formal timing
+contract, a finite two-phase matrix, and structurally independent raw and
+final auditing. A measured-authority PASS may authorize only a separately
+frozen causal controller/MPC design. Gate A, expert data, BC, DAgger, and
+residual RL remain blocked, and no R8-family trajectory may enter learning.
