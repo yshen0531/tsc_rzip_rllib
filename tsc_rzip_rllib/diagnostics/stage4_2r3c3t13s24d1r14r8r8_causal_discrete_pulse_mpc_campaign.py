@@ -162,7 +162,7 @@ def _authenticate_source(ctx: Context) -> dict[str, Any]:
         final.get("route") != expected["required_route"]
         or final.get("scientific_gate_passed") is not True
         or final.get("passed") is not True
-        or state.get("phase_status") != "finished"
+        or state.get("phase_status") != "complete"
         or state.get("verdict", {}).get("route") != expected["required_route"]
     ):
         raise ValueError("R8R8 source R8R7 final route changed")

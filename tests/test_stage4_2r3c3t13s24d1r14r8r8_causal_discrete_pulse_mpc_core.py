@@ -253,6 +253,20 @@ class CausalDiscretePulseMPCCoreTests(unittest.TestCase):
         self.assertNotIn("causal_discrete_pulse_mpc as mpc", source)
         self.assertNotIn("causal_discrete_pulse_mpc_campaign as", source)
 
+    def test_source_authentication_uses_frozen_r8r7_complete_state(self) -> None:
+        primary = (
+            ROOT
+            / "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r8_causal_discrete_pulse_mpc_campaign.py"
+        ).read_text(encoding="utf-8")
+        independent_source = (
+            ROOT
+            / "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r8_independent_forensics.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn('state.get("phase_status") != "complete"', primary)
+        self.assertIn('state.get("phase_status") != "complete"', independent_source)
+        self.assertNotIn('state.get("phase_status") != "finished"', primary)
+        self.assertNotIn('state.get("phase_status") != "finished"', independent_source)
+
     def test_launcher_uses_only_existing_server_venv_and_direct_files(self) -> None:
         shell = (
             ROOT / "scripts/stage4_2r3c3t13s24d1r14r8r8_shell_common.sh"

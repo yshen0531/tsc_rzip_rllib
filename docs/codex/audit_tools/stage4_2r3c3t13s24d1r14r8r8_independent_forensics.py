@@ -95,6 +95,50 @@ def _source_stage(args: argparse.Namespace, cfg: Mapping[str, Any]) -> Path:
     return args.r8r7_run.expanduser().resolve() / str(source_cfg["run_name"])
 
 
+def _authenticate_source(stage: Path, cfg: Mapping[str, Any]) -> dict[str, Any]:
+    expected = cfg["source_r8r7_contract"]
+    paths = {
+        "all_specs": stage / "specs/all_specs.json",
+        "baseline_specs": stage / "specs/baseline_specs.json",
+        "response_model": stage / "model/response_model.json",
+        "response_tube": stage / "model/response_tube.json",
+        "combined_tube": stage / "model/combined_tube.json",
+        "final_report": stage / "analysis/final_report.json",
+        "stage_manifest": stage / "stage_manifest.json",
+        "stage_state": stage / "stage_state.json",
+    }
+    for name, path in paths.items():
+        if not path.is_file() or _sha(path) != str(expected[f"{name}_sha256"]):
+            raise ValueError(f"R8R8 independent source R8R7 {name} changed")
+    final = _read(paths["final_report"])
+    state = _read(paths["stage_state"])
+    if (
+        final.get("route") != expected["required_route"]
+        or final.get("scientific_gate_passed") is not True
+        or final.get("passed") is not True
+        or state.get("phase_status") != "complete"
+        or state.get("verdict", {}).get("route") != expected["required_route"]
+        or state.get("verdict", {}).get("passed") is not True
+    ):
+        raise ValueError("R8R8 independent source R8R7 final route changed")
+    inventories = {}
+    for phase in ("baseline", "multipulse"):
+        inventory = _inventory(stage / "raw" / phase)
+        if (
+            inventory["count"] != int(expected[f"{phase}_raw_count"])
+            or inventory["bytes"] != int(expected[f"{phase}_raw_bytes"])
+            or inventory["digest"] != str(expected[f"{phase}_raw_digest"])
+        ):
+            raise ValueError(f"R8R8 independent source R8R7 {phase} raw changed")
+        inventories[phase] = inventory
+    return {
+        "hashes": {name: _sha(path) for name, path in paths.items()},
+        "inventories": inventories,
+        "required_route": expected["required_route"],
+        "passed": True,
+    }
+
+
 def _observer_model(value: Mapping[str, Any]) -> dict[str, Any]:
     source = value["model"]
     candidate = observer.Candidate(**source["candidate"])
@@ -426,6 +470,7 @@ def offline_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str,
     stage = _stage(args.run_dir)
     source_stage = _source_stage(args, cfg)
     source_ctx = _source_context(args, cfg)
+    source_authentication = _authenticate_source(source_stage, cfg)
     specs = _read(stage / "specs/core_specs.json")
     primary_path = stage / "analysis/offline_primary_summary.json"
     detailed = _read(stage / "analysis/offline_primary_detailed.json")
@@ -531,6 +576,7 @@ def offline_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str,
         "schema_version": 1,
         "stage": contract.STAGE,
         "phase": "zero_tsc_structurally_independent_offline_acceptance",
+        "source_authenticated": bool(source_authentication["passed"]),
         "forecast_count": forecast_count,
         "selection_count": selection_count,
         "issue_construction_pass_count": issue_count,
@@ -569,6 +615,7 @@ def final_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str, A
     stage = _stage(args.run_dir)
     source_stage = _source_stage(args, cfg)
     source_ctx = _source_context(args, cfg)
+    source_authentication = _authenticate_source(source_stage, cfg)
     specs = _read(stage / "specs/core_specs.json")
     primary_path = stage / "analysis/primary_summary.json"
     primary = _read(primary_path)
@@ -768,6 +815,7 @@ def final_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str, A
         "schema_version": 1,
         "stage": contract.STAGE,
         "phase": "structurally_independent_authentic_raw_mpc_forensics",
+        "source_authenticated": bool(source_authentication["passed"]),
         "raw_inventory": inventory,
         "execution_pass_count": execution_count,
         "decision_record_count": decision_count,
