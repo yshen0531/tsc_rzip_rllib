@@ -1,5 +1,56 @@
 # Current status
 
+> **Superseding R8R2 final and observer-route handoff (2026-08-07
+> Asia/Shanghai).** R8R2 is final at
+> `CAUSAL_ONLINE_INNOVATION_BASELINE_FORECAST_FAIL_OBSERVER_IDENTIFICATION_REQUIRED`.
+> Primary and structurally independent zero-new-TSC audits agree numerically
+> and on the route.  The fixed causal four-state affine no-action forecast
+> passed only 17/96 future windows, so the prospective all-window baseline
+> gate stopped the study before any update fold, selected update lag, or
+> development artifact.  Per issue state the pass counts were
+> `0/24, 0/24, 11/24, 6/24` at task steps `10,14,18,22`; the maximum scaled
+> error was `25.23346999999822`.  R/Z/vR/vZ/Ip violated their fixed caps in
+> `20/31/61/72/0` rows.  This is a causal baseline-forecast/observer-design
+> FAIL, not a runtime, restart, causality, raw, controller, TSC, real-MPC,
+> formal-control, or plant-reachability result.
+>
+> The accepted implementation/package boundary is
+> `a636583 / 3ce1e04 / c90e299`; the last checkpoint corrected only the
+> descriptive R8R1 server-run identity.  Local full tests passed 1165/1165.
+> Two pre-result deployment defects were preserved and rejected fail-closed:
+> undeclared generated `.pyc` files in the first staging copy, then an
+> absolute-path `cp --parents` installer that left nine R8R2 files missing
+> and four old documentation hashes at the repository-relative paths.  The
+> fresh v3 recovery used relative paths, passed 930/930 installed hashes,
+> bash/compile/self-test, focused 8/8, and full 1165/1165 with one expected
+> isolated-data skip.  Its unintended 930-file mirror was authenticated
+> exactly before removal.  Neither defect computed an R8R2 metric or changed
+> source raw, controller action, plant state, or scientific gates.
+>
+> R8/R8R1 authentication remained exact; R8 calibration and holdout remain
+> unopened at 0/0.  R8R2 created zero raw and executed zero Ray, `gotsc`,
+> TSC, controller, or plant advances.  Primary detailed, primary summary,
+> independent, and final-state SHA-256 values are respectively
+> `ad04374987ce4de599d71f4673ac110fe763928831e4c9610cdb117efd7977cf`,
+> `05d761ef64c9e7c2373a6754184ecf42cf0a250d26ee235293e768c0416c0bb2`,
+> `2ca90fab851c4131f7242bd9a5331286bde15ccaf47d251348b7d80a4597066c`,
+> and `ee06726c8a5170ffd03a9465432ceed6f42053e2db8f710442c80c7809f07670`.
+> Exact report and compact evidence are:
+>
+> ```text
+> docs/codex/reports/
+>   STAGE4_2R3C3T13S24D1R14R8R2_FORENSIC_REPORT.md
+> docs/codex/audits/
+>   stage4_2r3c3t13s24d1r14r8r2_20260807_c90e299/
+> ```
+>
+> R8R2 is immutable; its failed affine no-action forecaster may not be tuned
+> post-result.  The active task is to prospectively freeze a new-identity
+> causal observer/identification design before computing any next-stage
+> metric.  A development observer pass can authorize only a separately frozen
+> combined online-adaptation validation.  MPC, expert data, BC, DAgger,
+> bounded residual RL, and Gate A remain blocked.
+
 > **Superseding R8R1 final and route-policy handoff (2026-08-06
 > Asia/Shanghai).** R8R1 is final at
 > `FIXED_CANDIDATE_SHORT_HORIZON_FAIL_CAUSAL_INNOVATION_REQUIRED`. The

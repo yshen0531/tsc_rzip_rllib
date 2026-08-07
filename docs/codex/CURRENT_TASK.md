@@ -4595,3 +4595,75 @@ and compute the zero-TSC result without opening R8 calibration or holdout.
 A PASS authorizes only a separately frozen authentic interaction sentinel. A
 FAIL routes to a new observer/identification design. Neither route authorizes
 MPC, expert data, BC, DAgger, residual RL, or Gate A.
+
+## 77. Final D1R14R8R2 result and active observer-identification boundary
+
+R8R2 was implemented and evaluated under its prospective design without
+opening any R8 calibration or holdout outcome.  Primary and structurally
+independent recomputations authenticated all 912 existing training responses,
+reconstructed every probe descriptor from its own causal prefix, used zero
+forbidden or matched-future predictor inputs, and agreed within the frozen
+tolerance.
+
+The fixed four-state affine no-action forecast failed before any adaptive
+update was fitted:
+
+```text
+baseline future windows                                  96
+passing windows                                          17
+issue-step pass counts
+  task step 10                                         0/24
+  task step 14                                         0/24
+  task step 18                                        11/24
+  task step 22                                         6/24
+maximum scaled point error                   25.23346999999822
+R / Z / vR / vZ / Ip cap violations       20 / 31 / 61 / 72 / 0
+outer update folds                                        0
+selected update lag                                    none
+development artifact                                 absent
+route
+  CAUSAL_ONLINE_INNOVATION_BASELINE_FORECAST_FAIL_OBSERVER_IDENTIFICATION_REQUIRED
+```
+
+Both history signs and all twelve physical pairs failed broadly.  Ip was not
+limiting; visible velocity extrapolation dominated the failure, with maximum
+vR/vZ errors `0.2523346999999822 / 0.1729267443999999 m/s`.  This rejects the
+fixed four-point affine trend as a deployable no-action dynamics observer. It
+does not evaluate or reject the frozen online innovation update itself,
+because that stage was never reached.
+
+Accepted detailed, summary, independent, and final-state SHA-256 values are:
+
+```text
+ad04374987ce4de599d71f4673ac110fe763928831e4c9610cdb117efd7977cf
+05d761ef64c9e7c2373a6754184ecf42cf0a250d26ee235293e768c0416c0bb2
+2ca90fab851c4131f7242bd9a5331286bde15ccaf47d251348b7d80a4597066c
+ee06726c8a5170ffd03a9465432ceed6f42053e2db8f710442c80c7809f07670
+```
+
+Local full tests and the accepted v3 installed server suite passed 1165/1165
+with one expected server-side isolated-data skip.  Two preserved pre-result
+deployment defects changed no scientific result: generated `.pyc` files in
+the first staging copy, then an absolute-path `cp --parents` invocation.  The
+fresh v3 package passed all 930 hashes and authenticated the task-created
+930-file wrong-path mirror before removing it.  The exact report is:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R2_FORENSIC_REPORT.md
+```
+
+R8R2 created zero raw and ran zero Ray, `gotsc`, TSC, controller, or plant
+advances.  It is a causal baseline-forecast/observer-design FAIL, not a
+runtime, deployment, restart, causality, raw, reporting, controller,
+formal-control, real-MPC, or plant-reachability failure.
+
+R8R2 is immutable.  The next task must be frozen under a new identity before
+any new metric is computed.  It must identify and validate a deployable
+causal dynamics observer from allowed visible histories and already issued
+actions/currents, with whole-pair separation and no future closed-loop action,
+matched-baseline future, source label, hidden state, or heldout outcome used
+as predictor input.  A development observer pass may authorize only a
+separately frozen combination with the R8R2 innovation architecture; it does
+not authorize a controller, real MPC, expert data, BC, DAgger, residual RL,
+or Gate A.

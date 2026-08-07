@@ -1,0 +1,50 @@
+{
+  "audit_kind": "independent",
+  "baseline_forecast": {
+    "componentwise_maximum_absolute_error_physical": [
+      0.016458723999998204,
+      0.010935295654000003,
+      0.2523346999999819,
+      0.1729267444000001,
+      549.1404599999239
+    ],
+    "maximum_scaled_point_error": 25.233469999998192,
+    "pass_count": 17,
+    "passed": false,
+    "window_count": 96
+  },
+  "controller_executed": false,
+  "development_artifact_presence_agreement": true,
+  "gotsc_executed": false,
+  "new_raw_count": 0,
+  "outer_fold_count": 0,
+  "passed": true,
+  "plant_advance_count": 0,
+  "primary_numerical_agreement": true,
+  "primary_outcome_agreement": true,
+  "ray_executed": false,
+  "record_signature": {
+    "baseline_window_count": 96,
+    "context_count": 24,
+    "future_probe_state_used_as_predictor_input_count": 0,
+    "matched_baseline_used_as_predictor_input_count": 0,
+    "pair_count": 12,
+    "probe_descriptor_equal_to_prior_baseline_descriptor_count": 912,
+    "probe_descriptor_reconstructed_from_probe_count": 912,
+    "raw_matched_response_exact_count": 912,
+    "response_count": 912
+  },
+  "route": "CAUSAL_ONLINE_INNOVATION_BASELINE_FORECAST_FAIL_OBSERVER_IDENTIFICATION_REQUIRED",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "selected_update_relative_lag": null,
+  "source_r8r1_authentication": {
+    "independent_sha256": "3f378dba6eb1304422397b44a347e34d35827624ca6ea61791e85f16e7a5341c",
+    "primary_detailed_sha256": "bd0041c3e16b56fce28abb80526bb5f1628ee74f6f5b52a70aaa07019e86a1ee",
+    "primary_summary_sha256": "5d6c2eb4282dba1ba29e25624b147af8b760c8cfbe5fd085374cf54110de6204",
+    "state_sha256": "3f25e7070fd56243b1581b7da17cb433e0876821437bc9e7e098cdf4626d869f"
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R8R2",
+  "tsc_executed": false,
+  "updates": {}
+}

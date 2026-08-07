@@ -879,17 +879,34 @@ restart, causality, raw, controller, real-MPC, formal-control, or plant-
 reachability result. R8 calibration/holdout remain unopened and no model
 artifact exists.
 
-The deployable causal online innovation/adaptation study is prospectively
+The deployable causal online innovation/adaptation study was prospectively
 frozen as R8R2 at design SHA-256
 `2613cd42b7b3a2e9c985c7ac1a9fd055fc20aa596e16add5a2e4c54cc8514dfe`,
-before implementation or results. It keeps the matched no-action trajectory
+before implementation or results. It kept the matched no-action trajectory
 evaluator-only and uses the same probe trajectory's causal prefix, known
 issued action, fixed cold-start prediction, and fixed causal no-action
 forecast online. Whole-pair nested validation tests rolling 80 ms prediction
 after 20 or 40 ms. It must not use future outcomes, hidden/source labels, or
-another post-result cold-start search. Even a development pass authorizes
-only a separately frozen authentic interaction sentinel. Gate A, expert data,
-BC, DAgger, residual RL, and later robustness remain blocked.
+another post-result cold-start search.
+
+R8R2 primary and structurally independent zero-TSC audits then agreed
+exactly on the final route
+`CAUSAL_ONLINE_INNOVATION_BASELINE_FORECAST_FAIL_OBSERVER_IDENTIFICATION_REQUIRED`.
+The fixed four-state affine no-action forecast passed only 17/96 windows;
+issue-step passes were `0/24,0/24,11/24,6/24`, and R/Z/vR/vZ/Ip cap
+violations were `20/31/61/72/0`. The gate stopped before any update fold,
+selected lag, or model artifact. R8R2 is a causal baseline-forecast/observer
+design failure, not a result about the unrun update, controller, MPC, formal
+control, plant restart, or reachability. It created zero raw and ran zero
+Ray, `gotsc`, TSC, controller, or plant advances.
+
+The active route is a separately frozen causal observer/identification design
+using only visible histories and already issued actions/currents. It must
+retain whole-pair separation and forbid future closed-loop actions, matched
+future, source labels, hidden state, and unopened outcomes. Even a
+development pass authorizes only a separately frozen combination with online
+adaptation. Gate A, expert data, BC, DAgger, residual RL, and later robustness
+remain blocked.
 
 ## 10. Required validation before server execution
 

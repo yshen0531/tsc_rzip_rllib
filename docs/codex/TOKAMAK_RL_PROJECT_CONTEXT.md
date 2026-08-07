@@ -739,7 +739,7 @@ If the qualified MPC already meets the practical trajectory-following goal
 and there is no measurable benefit large enough to justify RL complexity and
 risk, stopping without residual RL is a valid final outcome.
 
-## Current D1R14R8/R8R1 boundary
+## Current D1R14R8/R8R1/R8R2 boundary
 
 D1R14R7R2 completed the full 304-response audit with exact independent
 agreement but passed only 236/304 center gates. All 304 point-error gates, the
@@ -767,13 +767,29 @@ It may use only observations available at each update and may not rely on a
 future or matched zero-baseline response. MPC, expert data, BC, DAgger,
 bounded residual RL, and Gate A remain blocked.
 
-R8R2 is now frozen prospectively at design SHA-256
+R8R2 was frozen prospectively at design SHA-256
 `2613cd42b7b3a2e9c985c7ac1a9fd055fc20aa596e16add5a2e4c54cc8514dfe`.
 It uses the matched no-action trajectory only for outer scoring, constructs
 the online proxy from the same probe trajectory, and tests a fixed bounded
 innovation anchor at 20 and 40 ms with an 80 ms rolling future window. The
 practical aggregate gate is prospective and retains row-level misses plus
 hard finite, point/tube, direction, amplitude, signal, and geometry bounds.
-No R8R2 result has been computed. The active work is zero-TSC implementation
-and independent audit; all controller, MPC, Gate A, and learning stages remain
+
+The accepted zero-TSC primary and independent audits agree.  The fixed
+four-state causal affine no-action forecast passed only 17/96 windows and
+failed the prerequisite baseline gate before any online update fold was
+fitted.  Issue-step pass counts were `0/24, 0/24, 11/24, 6/24`; R/Z/vR/vZ/Ip
+cap violations were `20/31/61/72/0`.  R8R2 is therefore final as
+`CAUSAL_ONLINE_INNOVATION_BASELINE_FORECAST_FAIL_OBSERVER_IDENTIFICATION_REQUIRED`.
+It is a baseline-forecast/observer-design failure, not a result about the
+unrun innovation update, controller, MPC, formal control, plant restart, or
+reachability.  It created zero raw and ran zero Ray, `gotsc`, TSC, controller,
+or plant advances.
+
+The active task is to prospectively freeze a new-identity causal dynamics
+observer/identification design using only visible histories and already
+issued actions/currents, with whole-pair separation and no future closed-loop
+action, matched future, source label, hidden state, or unopened outcome.
+Even a development pass authorizes only a separately frozen combination with
+online adaptation.  All controller, MPC, Gate A, and learning stages remain
 blocked.

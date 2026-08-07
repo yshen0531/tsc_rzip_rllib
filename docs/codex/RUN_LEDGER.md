@@ -1550,3 +1550,32 @@
   `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r1_20260806_892ac7c/`
 - Next: prospectively freeze a deployable causal online innovation/adaptation
   study; Gate A and all expert/learning stages remain blocked
+
+## Stage4.2R3c3T13S24D1R14R8R2 causal online innovation audit
+
+- Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
+- Design / implementation / package / metadata correction:
+  `431f7e3 / a636583 / 3ce1e04 / c90e299`
+- Installed package files / local full tests / server full tests:
+  `930 / 1165 / 1165`, with one expected server isolated-data skip
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r2_audits/stage4_2r3c3t13s24d1r14r8r2_causal_online_innovation_adaptation_20260807_c90e299_v1`
+- Baseline forecast windows / passes: `96 / 17`
+- Issue-step passes at `10/14/18/22`: `0/24, 0/24, 11/24, 6/24`
+- R/Z/vR/vZ/Ip cap violations: `20/31/61/72/0`
+- Maximum scaled point error: `25.23346999999822`
+- Update folds / selected lag / development artifact: `0 / none / absent`
+- Primary detailed / summary / independent / final state hashes:
+  `ad04374987ce4de599d71f4673ac110fe763928831e4c9610cdb117efd7977cf`,
+  `05d761ef64c9e7c2373a6754184ecf42cf0a250d26ee235293e768c0416c0bb2`,
+  `2ca90fab851c4131f7242bd9a5331286bde15ccaf47d251348b7d80a4597066c`,
+  `ee06726c8a5170ffd03a9465432ceed6f42053e2db8f710442c80c7809f07670`
+- New raw / Ray / gotsc / TSC / controller / plant: all zero
+- Route:
+  `CAUSAL_ONLINE_INNOVATION_BASELINE_FORECAST_FAIL_OBSERVER_IDENTIFICATION_REQUIRED`
+- Classification: causal affine baseline-forecast/observer-design FAIL; no
+  runtime, deployment, restart, raw, control, MPC, or plant conclusion
+- Compact evidence:
+  `docs/codex/audits/stage4_2r3c3t13s24d1r14r8r2_20260807_c90e299/`
+- Next: prospectively freeze a new-identity causal dynamics observer/
+  identification design; Gate A and all expert/learning stages remain blocked
