@@ -8,7 +8,7 @@
   "package_revision": "r42r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_v1",
   "design_checkpoint": "1d09508",
   "initial_implementation_checkpoint": "9d3f4ca",
-  "implementation_checkpoint": "ea78b65",
+  "implementation_checkpoint": "1fe8e67",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel_370ms.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R12_CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_AUTHORITY_SENTINEL_DESIGN.md",
   "design_document_sha256": "46d959813a0810970e7ea6ab5a5a097c9afa5949e7642f22fc4b17a19ccd2f16",
