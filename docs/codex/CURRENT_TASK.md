@@ -5073,3 +5073,26 @@ The active boundary is to implement, test, package, deploy, and execute R8R7
 under the frozen phase boundary. A PASS authorizes only a separately frozen
 receding-horizon MPC design. R8R7 is not MPC or Gate A. All R8R7 trajectories
 are forbidden from expert data and all learning remains blocked.
+
+## 87. R8R7 pre-action multipulse runtime hotfix boundary
+
+Phase one is complete and independently accepted: 16/16 authentic baseline
+raw passed all execution gates, and the static observer passed 64/64 point
+and tube rows with every context at 4/4. The independent raw audit initially
+used an incompatible JSON inventory digest; `a39c5a9` restores the frozen
+primary `name/NUL/size/NUL/SHA` digest and changes no scientific result.
+
+The first phase-two invocation wrote 32 failure files. All have one reset
+state, zero trace rows, zero actions, zero events, and zero plant advances;
+all stopped in the inherited R4 constructor because R8R7 issue step 10 was
+incorrectly passed through the historical R4 `(14,18,22)` validator. The
+inventory is 32 files, 145407 bytes, digest
+`7cadf53a6870980802009eef71e3d7c8e5c2707eb446d85f125851e239af160d`.
+
+The active task is the narrowly audited `4a8b558` runtime hotfix described in
+`STAGE4_2R3C3T13S24D1R14R8R7_MULTIPULSE_RUNTIME_HOTFIX_AUDIT.md`. Preserve
+and authenticate the failure files, leave the accepted run fingerprint and
+all frozen experiment semantics unchanged, validate in the server virtualenv,
+then execute the same 32 specs once. Do not count the failed attempts as
+scientific multipulse trajectories and do not create a new identity unless a
+plant advance/action is discovered or an experiment semantic must change.

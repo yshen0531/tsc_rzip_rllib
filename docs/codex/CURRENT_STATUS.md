@@ -1,5 +1,32 @@
 # Current status
 
+> **R8R7 pre-action runtime hotfix checkpoint (2026-08-07
+> Asia/Shanghai).** R8R7 phase-one baseline completed 16/16 authentic raw
+> with exact restart/source prefix/causality and passed the frozen static
+> observer gate 64/64 point and 64/64 tube; all 16 contexts passed 4/4.
+> Primary and independent model results agree exactly. A reporting-only raw
+> inventory schema mismatch was fixed at `a39c5a9` without changing raw,
+> models, metrics, gates, or outcomes.
+>
+> The first authorized 32-task multipulse invocation produced 32 strict raw
+> files but every controller constructor stopped at the same inherited R4
+> issue-slot validation before returning an action. Every file has exactly
+> one post-reset state, zero trace rows, zero action events, and zero plant
+> advances. Inventory is 32 files / 145407 bytes / digest
+> `7cadf53a6870980802009eef71e3d7c8e5c2707eb446d85f125851e239af160d`.
+> The primary report then separately failed to serialize an unavailable
+> maximum represented as `inf`.
+>
+> This is a pre-action controller-construction implementation error plus a
+> reporting error, not a TSC, restart, safety, controller-design, plant,
+> response-model, MPC, or reachability result. The semantics-preserving fix
+> `4a8b558` uses an accepted historical R4 slot only as the inherited
+> constructor placeholder; the overridden controller retains the frozen
+> R8R7 issue clock `(10,14,18,22)`. Unavailable failure maxima serialize as
+> `null`. The existing failed raw must be preserved and authenticated before
+> the same 32 frozen specs may be retried once. Full audit:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_MULTIPULSE_RUNTIME_HOTFIX_AUDIT.md`.
+
 > **Superseding R8R7 prospective-design checkpoint (2026-08-07
 > Asia/Shanghai).** Before any R8R7 implementation, derived metric,
 > model/tube artifact, raw result, or TSC trajectory, the fresh multipulse

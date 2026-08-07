@@ -1,5 +1,23 @@
 # Run ledger
 
+## Stage4.2R3c3T13S24D1R14R8R7 pre-action runtime hotfix
+
+- Phase-one baseline: authentic raw `16/16`; static observer point/tube
+  `64/64 / 64/64`; all 16 contexts `4/4`; primary/independent agreement.
+- Independent inventory reporting fix: `a39c5a9`; no raw/model/gate change.
+- First multipulse attempt: 32 raw files, 145407 bytes, digest
+  `7cadf53a6870980802009eef71e3d7c8e5c2707eb446d85f125851e239af160d`.
+- All 32: one reset state, zero trace/action/event/plant advance; common
+  inherited-constructor exception before controller creation.
+- Runtime hotfix: `4a8b558`; inherited compatibility placeholder only, live
+  R8R7 clock and every frozen scientific/safety semantic unchanged.
+- Classification: implementation plus reporting error; no multipulse model,
+  controller, plant, MPC, or reachability result yet.
+- Continuation: authenticate/preserve failed raw, server-validate the hotfix,
+  and rerun exactly the same 32 frozen specs once under the existing identity.
+- Audit:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_MULTIPULSE_RUNTIME_HOTFIX_AUDIT.md`.
+
 ## Stage4.2R3c3T13S24D1R14R8R7 prospective fresh multipulse interaction sentinel
 
 - Date: 2026-08-07 Asia/Shanghai.
