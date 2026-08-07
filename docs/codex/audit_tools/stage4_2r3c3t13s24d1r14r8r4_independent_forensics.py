@@ -59,13 +59,16 @@ def _sha(path: Path) -> str:
 
 
 def _inventory(directory: Path) -> dict[str, Any]:
+    digest = hashlib.sha256()
     rows = []
     total = 0
     for path in sorted(directory.glob("*.json.gz"), key=lambda value: value.name):
         size = path.stat().st_size
+        sha = _sha(path)
         total += size
-        rows.append({"name": path.name, "size": size, "sha256": _sha(path)})
-    return {"count": len(rows), "bytes": total, "digest": r8._digest(rows), "rows": rows}
+        digest.update(f"{path.name}\0{size}\0{sha}\n".encode())
+        rows.append({"name": path.name, "size": size, "sha256": sha})
+    return {"count": len(rows), "bytes": total, "digest": digest.hexdigest(), "rows": rows}
 
 
 def _stage(run_dir: Path) -> Path:
