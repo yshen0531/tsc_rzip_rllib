@@ -1,5 +1,34 @@
 # Current status
 
+> **Superseding R8R4 prospective-design checkpoint (2026-08-07
+> Asia/Shanghai).** Before any R8R4 implementation, fit, observer metric, new
+> TSC trajectory, model/tube artifact, or route, the fresh causal observer
+> identification campaign is frozen at
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R4_FRESH_CAUSAL_OBSERVER_IDENTIFICATION_DESIGN.md`,
+> SHA-256
+> `942b7698e9d19ee905d75dc7ee9fda370e642e9e986298af32d8f17ed22f8119`.
+> It uses a new stage identity and exactly sixteen fresh, no-probe baseline
+> trajectories: four whole development pairs/eight histories first, followed
+> only after a dual-audited frozen model/tube by four blind holdout pairs/eight
+> histories. R8's original calibration/holdout directories remain empty; the
+> corresponding pair blueprints are consumed only in distinct R8R4 raw paths.
+>
+> R8R4 retains the exact R8R3 353-dimensional causal feature and kinematic
+> output but prospectively expands the fixed candidate ranks to
+> `32/48/64/96`. The new finite application gate requires 95% aggregate point
+> coverage, 90% per-history coverage, no finite-exclusion-cap miss, and a
+> frozen empirical tube with the same aggregate/per-history coverage. Point
+> caps are 3 mm R/Z, 0.02 m/s vR/vZ, and 1000 A Ip; finite tube/exclusion caps
+> are 10 mm, 0.05 m/s, and 3000 A. These are observer-development gates and
+> do not alter formal 250/270 ms arrival, 350/370 ms hold, 30 mm, 0.1 m/s, or
+> 10 kA acceptance.
+>
+> Every restart, source prefix, causality, zero-future-action, Card15, current,
+> solver, raw, snapshot, and independent-integrity gate remains all-or-nothing.
+> All R8R4 trajectories are forbidden from expert/BC/DAgger/RL data. Even a
+> blind holdout PASS authorizes only a separately frozen combined adaptation
+> validation; controller, MPC, Gate A, and learning remain blocked.
+
 > **Superseding R8R3 final and fresh-identification handoff (2026-08-07
 > Asia/Shanghai).** R8R3 is final at
 > `CAUSAL_HISTORY_NO_ACTION_OBSERVER_FAIL_FRESH_IDENTIFICATION_REQUIRED`.

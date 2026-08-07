@@ -1,5 +1,20 @@
 # Run ledger
 
+## Stage4.2R3c3T13S24D1R14R8R4 prospective fresh observer design
+
+- Frozen before implementation, fitting, metrics, or TSC on 2026-08-07.
+- Design:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R4_FRESH_CAUSAL_OBSERVER_IDENTIFICATION_DESIGN.md`
+- Design SHA-256:
+  `942b7698e9d19ee905d75dc7ee9fda370e642e9e986298af32d8f17ed22f8119`
+- Scope: eight fresh baseline-only development trajectories, then a frozen
+  dual-audited observer/tube, then eight whole-pair blind holdout trajectories.
+- Safety/formal boundary: unchanged restart, causality, Card15, current,
+  integrity, 250/270 ms arrival, and 350/370 ms hold contracts.
+- Learning boundary: every trajectory forbidden from expert data; a PASS can
+  authorize only a separately frozen combined adaptation validation.
+- Status: design frozen; zero R8R4 TSC/plant advances; implementation pending.
+
 ## Stage4.2R1 authentic plant restart action replay
 
 - Local baseline branch/commit:

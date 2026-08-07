@@ -818,3 +818,16 @@ MPC, formal-control, or plant result. It ran zero TSC/plant steps and kept R8
 calibration/holdout unopened. The active task is to freeze a fresh-identity
 observer-identification campaign before new metrics or TSC. Gate A and all
 learning stages remain blocked.
+
+R8R4 is now prospectively frozen before implementation, metrics, or TSC at
+design SHA-256
+`942b7698e9d19ee905d75dc7ee9fda370e642e9e986298af32d8f17ed22f8119`.
+It will acquire only eight fresh no-probe development baselines and, after a
+dual-audited model/tube hash freeze, eight whole-pair blind holdout baselines.
+It retains the R8R3 causal feature and expands the fixed rank family through
+96. Its prospective finite qualification uses 95% aggregate and 90%
+per-history point/tube coverage with fixed exclusion caps, while restart,
+causality, Card15, current, raw/snapshot integrity, and formal timing remain
+unchanged all-or-nothing gates. All stage data are forbidden from expert
+datasets. Even a pass authorizes only separately frozen combined adaptation;
+controller, MPC, Gate A, and learning remain blocked.

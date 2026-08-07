@@ -4777,3 +4777,50 @@ R8R3 or weakening hard safety, causality, restart, integrity, or formal
 timing. A future observer pass can authorize only a separately frozen combined
 adaptation validation. Controller, MPC, Gate A, expert data, BC, DAgger,
 residual RL remain blocked.
+
+## 80. Frozen D1R14R8R4 fresh causal observer-identification task
+
+Before any R8R4 implementation, feature matrix, fit, prediction metric, new
+TSC trajectory, model/tube artifact, or route, R8R4 is prospectively frozen
+in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R4_FRESH_CAUSAL_OBSERVER_IDENTIFICATION_DESIGN.md
+SHA-256
+942b7698e9d19ee905d75dc7ee9fda370e642e9e986298af32d8f17ed22f8119
+```
+
+R8R4 is a new stage identity and uses exactly sixteen fresh baseline-only
+trajectories. The fixed development set contains both histories of the four
+former R8 calibration pairs; only after development execution/raw audit,
+nested whole-pair qualification, model/tube serialization, hash freeze, and
+structurally independent agreement may the two histories of the four former
+R8 holdout pairs be opened as blind holdout. R8's own calibration/holdout raw
+directories remain empty. No R8R4 trajectory contains a probe, and all are
+still forbidden from expert, BC, DAgger, or RL datasets.
+
+The observer retains the exact R8R3 353-dimensional causal history feature,
+direct 12-state vR/vZ/Ip change target, and kinematic R/Z reconstruction. Its
+fixed 48-candidate family expands PCA ranks to 32/48/64/96. Development uses
+twelve already opened training pairs plus four fresh pairs under nested
+whole-pair validation. A successful all-development model and empirical tube
+are frozen before blind holdout and may not be refit, recalibrated, expanded,
+or reselected afterward.
+
+The prospective practical point caps are 3 mm R/Z, 0.02 m/s vR/vZ, and
+1000 A Ip. At least 95% of all and prescribed-issue rows and 90% per history
+must pass; each history must pass at least 3/4 issue rows. Every future point
+must also remain inside 10 mm, 0.05 m/s, and 3000 A finite exclusion caps.
+The frozen tube has the same 95% aggregate and 90% per-history containment
+requirements and cannot exceed those exclusion caps. Every miss is retained.
+These finite observer gates do not relax deterministic formal tracking.
+
+Restart, physical prefix, causality, exact zero future action, constant
+commanded current target, Card15, current, solver, raw, snapshot, and
+independent-integrity gates remain all-or-nothing. The active task is to
+implement, locally validate, directly package/deploy, and execute R8R4 in its
+frozen order. A development failure stops before holdout. A blind-holdout PASS
+authorizes only a separately frozen combined observer/innovation validation.
+Controller, MPC, Gate A, expert data, BC, DAgger, and residual RL remain
+blocked.
