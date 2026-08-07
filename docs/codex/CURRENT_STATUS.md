@@ -26,6 +26,22 @@
 > advance existed at that checkpoint. Packaging, empty-directory direct-copy
 > validation, installed-server validation, and the dual offline gate are next.
 >
+> Package checkpoint `9179c9a` passed local empty-directory, server staging,
+> and installed validation. The first server offline invocation then stopped
+> before creating the R8R8 stage because source authentication incorrectly
+> required R8R7 `phase_status == "finished"`; the immutable R8R7 state is
+> actually `"complete"`. Its final/state/manifest hashes remained exactly
+> `9ca6afce... / 04f643e0... / ae89fb2d...`, and its route, scientific gate,
+> and verdict remained unchanged. The stopped v1 run root is preserved and
+> contains no R8R8 stage, raw, decision, or TSC advance.
+>
+> The authentication-only hotfix is checkpoint `2b287cb`. It changes no model,
+> objective, candidate, controller, action, gate, experiment identity, or
+> physical semantics, and also adds structurally independent authentication of
+> the same R8R7 files and raw inventories. Local focused tests passed `11/11`
+> and the shimmed complete suite passed `1230/1230`. A separately named v2
+> offline attempt is required after repackaging and deployment.
+>
 > Primary and structurally independent zero-TSC preflights must first agree on
 > all 576 forecasts/scores, 64 selections, and 512 pure issue/cancellation
 > constructions. Only a dual offline PASS authorizes TSC. The deterministic

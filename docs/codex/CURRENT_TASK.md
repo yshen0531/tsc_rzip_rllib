@@ -5161,9 +5161,19 @@ at checkpoint `7e1dc89`. Local project-venv compilation and focused tests passed
 complete unittest suite passed `1229/1229` with zero failures, errors, or skips.
 No R8R8 offline result or TSC plant advance existed at that checkpoint.
 
-The active boundary is to package/direct-copy/deploy the implementation, pass
-installed-server validation and the dual offline gate, and only then run the
-single 16-trajectory core campaign. A PASS is not Gate A: continuous
+Package checkpoint `9179c9a` passed empty-directory, staging, and installed
+validation. Its first offline invocation stopped before creating the stage
+because the source authenticator expected R8R7 state `"finished"` instead of
+the immutable value `"complete"`. R8R7 hashes/route/verdict were unchanged;
+the preserved v1 run root has no stage, raw, controller decision, or TSC
+advance. Authentication-only hotfix `2b287cb` corrects that field and adds the
+same independent source authentication without changing any scientific or
+physical semantics. Local focused/full validation passed `11/11 / 1230/1230`.
+
+The active boundary is to repackage/direct-copy/deploy the hotfix under the
+same frozen experiment semantics, use a separately named v2 offline attempt,
+pass the dual offline gate, and only then run the single 16-trajectory core
+campaign. A PASS is not Gate A: continuous
 delay/gain/slew, mismatch, noise, disturbance recovery, independent long hold,
 and residual-authority qualifications remain required under separately frozen
 designs. All R8R8 trajectories are forbidden from learning; expert data, BC,

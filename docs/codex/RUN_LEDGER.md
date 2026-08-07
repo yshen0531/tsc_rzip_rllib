@@ -27,6 +27,15 @@
 - Local validation: project-venv compile and focused `10/10`; complete unittest
   with the existing Windows `resource` shim `1229/1229`, zero failures/errors/
   skips. No offline result, controller decision, raw, or TSC plant advance yet.
+- Package `9179c9a` passed empty-copy, staging, and installed checks. Its first
+  offline invocation stopped before stage creation because the authenticator
+  expected R8R7 state `"finished"`; immutable raw evidence says `"complete"`.
+  No R8R8 raw, decision, or TSC advance occurred, and the empty v1 run root is
+  preserved.
+- Authentication-only hotfix `2b287cb` corrects that field and adds independent
+  source/hash/raw-inventory authentication. Local focused/full validation is
+  `11/11 / 1230/1230`; repackaging and a separately named v2 offline attempt
+  are required.
 
 ## Stage4.2R3c3T13S24D1R14R8R7 final fresh multipulse interaction result
 
