@@ -5285,3 +5285,63 @@ PASS may authorize only a separately frozen controller or fresh safety
 sentinel; a FAIL must route to a genuinely new sustained/asymmetric action
 identification. No existing probe trajectory may enter expert data. Gate A,
 expert data, BC, DAgger, and residual RL remain blocked.
+
+## 92. Final R8R10 result and sustained/asymmetric action-design boundary
+
+Before its matched formal outcomes were computed, R8R10 froze a read-only
+comparison of canonical direction-zero 1.0x and replacement direction-zero
+1.5x authority over 24 consumed development contexts. It then authenticated
+all 872 immutable R4/R6/R8 training raw files, reproduced the complete source
+formal aggregates, and obtained exact `312/312` agreement between the compact
+and complete formal-metric paths.
+
+```text
+baseline formal pass                                      8/24
+failed baselines                                             16
+canonical / replacement formal-pass trajectories       48/144 / 48/144
+canonical strict minimum-margin improvements               15/16
+replacement strict minimum-margin improvements             16/16
+replacement gain min / median / max
+  0.000050072836658 / 0.000210307502231 / 0.015329058949230
+canonical / replacement / combined oracle pass          8/24 / 8/24 / 8/24
+canonical / replacement / replacement-only repairs      0/16 / 0/16 / 0/16
+route
+  REPLACEMENT_SCALE_FORMAL_AUTHORITY_INSUFFICIENT_SUSTAINED_ACTION_REDESIGN_REQUIRED
+```
+
+Primary and structurally independent numerical, scientific-gate, and route
+results agree exactly. R8R10 created no raw directory and ran zero Ray,
+`gotsc`, TSC, controller, or plant advances. Accepted detailed/summary/
+independent/manifest/state SHA-256 values are:
+
+```text
+dea560af0e491fc2ee6022b50174bdc3902fc5a615800edb335d050e17850821
+e359a5ae19d59de7e8cb60e00e13932706ccadd1ea643bf8955f34b86a6aef33
+161180d549878874c28cf24d83f0aae86bb174fe1e02cd328dff0b71f214962f
+60dfa552ec580e57f3b5284b56509d00feb273fc1c92e78ccf4765cff853c56c
+8ab651f135a9b460ee54a89172bcc3f42b6bc60e535d39702ae7a7606414989e
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R10_FORENSIC_REPORT.md
+SHA-256
+1698e024fcbc9c00f65536915de37926b2cf927a7a5402a8655169cbeaccf1df
+```
+
+R8R10 is a finite fixed-amplitude action-authority design failure, not a
+runtime, deployment, restart, causality, raw, reporting, formal-evaluator,
+real-MPC, safety, plant, or global-reachability conclusion. The isolated
+direction-zero 1.0x/1.5x pulse route may not be tuned or rerun under the same
+identity.
+
+Before any additional context-level outcome is opened or any new TSC is run,
+the active task is to freeze a genuinely sustained or asymmetric causal
+action architecture with unchanged Card15/current/saturation, safe fallback,
+restart, causality, integrity, and formal timing contracts. A read-only design
+may use only already consumed development evidence. A real-TSC stage requires
+a new identity, a prospective finite matrix, an explicit safe-stop envelope,
+and independent raw authentication. No R8-family trajectory may enter expert
+data. Gate A, expert data, BC, DAgger, and residual RL remain blocked.

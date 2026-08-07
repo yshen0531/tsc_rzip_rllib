@@ -1,5 +1,45 @@
 # Current status
 
+> **R8R10 final replacement-scale authority checkpoint (2026-08-07
+> Asia/Shanghai).** R8R10 is final as
+> `REPLACEMENT_SCALE_FORMAL_AUTHORITY_INSUFFICIENT_SUSTAINED_ACTION_REDESIGN_REQUIRED`.
+> Its zero-new-TSC primary and structurally independent audit authenticated
+> and strictly parsed the immutable R4/R6/R8 development banks: `200 / 48 /
+> 624` raw files with exact published digests. They reproduced the complete
+> formal aggregates `50/200 / 12/48 / 234/624` and agreed on all selected
+> pass, arrival, and signed-margin results for `312/312` rows with maximum
+> numerical difference zero. R8 calibration and holdout remained unopened.
+>
+> Across 24 consumed development contexts, the zero baseline passed `8/24`.
+> Canonical direction-zero 1.0x and replacement direction-zero 1.5x each had
+> 48 formal-pass pulse trajectories, but their separate and combined
+> do-nothing-safe oracles all remained `8/24`. Of 16 failed baselines,
+> canonical improved the minimum margin in 15 and replacement improved it in
+> all 16. Replacement min/median/max gains were
+> `0.000050072836658 / 0.000210307502231 / 0.015329058949230`, yet canonical,
+> replacement, and replacement-only repairs were all `0/16`.
+>
+> R8R10 ran zero Ray, `gotsc`, TSC, controller, or plant steps, created no raw
+> directory, and modified no source evidence. Primary detailed/summary,
+> independent, manifest, and state hashes are `dea560af... / e359a5ae... /
+> 161180d5... / 60dfa552... / 8ab651f1...`. Local, empty direct-copy, staging,
+> and installed validation passed compile, focused `6/6`, full `1243/1243`,
+> and `1024/1024` declared hashes, with one expected isolated-evidence skip.
+> The first native Linux checksum invocation stopped before compilation because
+> CRLF was parsed as part of each path; the unchanged files then passed through
+> a read-only CR-stripped verification stream.
+>
+> This is a finite fixed-amplitude action-authority design FAIL, not a runtime,
+> deployment, restart, causality, raw, reporting, formal-evaluator, real-MPC,
+> safety, plant, or global-reachability result. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R10_FORENSIC_REPORT.md`.
+> Report SHA-256 is
+> `1698e024fcbc9c00f65536915de37926b2cf927a7a5402a8655169cbeaccf1df`.
+> Before computing another outcome, freeze a genuinely sustained or asymmetric
+> causal action architecture under unchanged hard contracts. Gate A and all
+> learning remain blocked; all R8-family evidence remains forbidden from
+> expert data.
+
 > **R8R9 final measured-authority checkpoint (2026-08-07
 > Asia/Shanghai).** R8R9 is final as
 > `MEASURED_MULTIPULSE_FORMAL_AUTHORITY_INSUFFICIENT_ACTION_REDESIGN_REQUIRED`.
