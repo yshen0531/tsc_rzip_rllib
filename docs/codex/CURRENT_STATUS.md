@@ -1,5 +1,30 @@
 # Current status
 
+> **Prospective R8R11 sustained exact-target-refresh checkpoint (2026-08-07
+> Asia/Shanghai).** Before R8R11 implementation, specs, offline construction,
+> formal outcome, raw, or TSC, and without opening R8R10 context-level detailed
+> outcomes, the next genuine sustained-action sentinel was frozen at checkpoint
+> `d53d38d` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R11_SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_SENTINEL_DESIGN.md`.
+> Design SHA-256 is
+> `43a2ad925c78c4656a68e27a7243daf952edab1170c811c85c3d679ca1ab1707`.
+>
+> R8R11 prospectively uses all 16 accepted R8R7 contexts, direction-zero 1.5x,
+> issue steps `[14,18,22]`, and both signs. Unlike every R8/R8R10 isolated
+> pulse, it issues an exact Card15 target, reconstructs the same stored target
+> from causal current readback one step later, and returns to the stored center
+> at `issue+2`. Phase 1 contains 24 safety rollouts over four contexts; only
+> exact primary/independent safety agreement authorizes the remaining 72, for
+> at most 96 fresh authentic trajectories.
+>
+> Every issue/refresh/cancel is fail-closed before plant advance under the
+> unchanged 0.25/0.24 incremental-action, Card15, current, saturation, and
+> forbidden-input gates. Formal timing is unchanged. A PASS requires at least
+> one of the ten R8R7 baseline failures repaired and held-oracle coverage at
+> least `7/16`, and authorizes only a separately frozen causal selector design.
+> R8R11 is not MPC or Gate A, and all of its trajectories remain forbidden
+> from learning datasets.
+
 > **R8R10 final replacement-scale authority checkpoint (2026-08-07
 > Asia/Shanghai).** R8R10 is final as
 > `REPLACEMENT_SCALE_FORMAL_AUTHORITY_INSUFFICIENT_SUSTAINED_ACTION_REDESIGN_REQUIRED`.

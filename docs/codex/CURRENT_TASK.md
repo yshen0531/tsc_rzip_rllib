@@ -5345,3 +5345,47 @@ may use only already consumed development evidence. A real-TSC stage requires
 a new identity, a prospective finite matrix, an explicit safe-stop envelope,
 and independent raw authentication. No R8-family trajectory may enter expert
 data. Gate A, expert data, BC, DAgger, and residual RL remain blocked.
+
+## 93. Frozen R8R11 sustained exact-target-refresh authority task
+
+Before implementation, specifications, offline construction, formal metrics,
+raw, or TSC, and before opening R8R10 context-level detailed outcomes, R8R11
+was frozen at checkpoint `d53d38d` in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R11_SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_SENTINEL_DESIGN.md
+SHA-256
+43a2ad925c78c4656a68e27a7243daf952edab1170c811c85c3d679ca1ab1707
+```
+
+R8R11 uses the 16 accepted R8R7 restart contexts and the exact direction-zero
+1.5x Card15 coordinate at task steps `[14,18,22]`, both signs. At `issue+1`
+it causally reconstructs an action to the same stored exact target; at
+`issue+2` it returns to the stored issue center. Every issue, refresh, and
+cancellation is independently checked before plant advance under the
+unchanged 0.25/0.24 action, current, Card15, saturation, finite-state, and
+forbidden-input gates.
+
+The fixed two-phase campaign is:
+
+```text
+phase 1 safety          4 contexts * 3 times * 2 signs       24
+phase 2 qualification 12 contexts * 3 times * 2 signs       72
+maximum new authentic TSC trajectories                       96
+```
+
+Phase 1 formal outcomes remain unopened during authorization. All 24 phase-1
+members must complete with exact primary/independent execution and safety
+agreement before phase 2. After all 96 authenticate, both formal evaluators
+must agree for every baseline/candidate row. A PASS requires at least one of
+the ten R8R7 baseline failures repaired and held-oracle coverage `>=7/16`.
+It authorizes only a separately frozen causal-selector/controller design.
+Any source/preflight mismatch stops with zero TSC; any unsafe online
+construction is rejected before advance and stops the phase; an authority
+FAIL routes to a genuinely asymmetric or multi-direction sustained sequence.
+
+The active task is to implement, locally validate, directly package/deploy,
+execute, and independently audit R8R11 in that frozen order. No archive,
+global Python, source raw modification, R8R10 detailed outcome use, or
+learning is authorized. Gate A remains blocked.
