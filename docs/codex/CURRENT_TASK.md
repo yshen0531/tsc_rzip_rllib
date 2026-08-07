@@ -5460,3 +5460,49 @@ contract, a finite two-phase matrix, and structurally independent raw and
 final auditing. A measured-authority PASS may authorize only a separately
 frozen causal controller/MPC design. Gate A, expert data, BC, DAgger, and
 residual RL remain blocked, and no R8-family trajectory may enter learning.
+
+## 95. Frozen R8R12 causal cumulative direction-2 staircase task
+
+Before implementation, configuration, specification generation, candidate
+formal outcomes, raw, or TSC, the next one-sided asymmetric sequence was
+frozen at checkpoint `1d09508` in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R12_CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_AUTHORITY_SENTINEL_DESIGN.md
+SHA-256
+46d959813a0810970e7ea6ab5a5a097c9afa5949e7642f22fc4b17a19ccd2f16
+```
+
+R8R12 uses the canonical direction-2 sign-plus coordinate at scale 1.0. At
+task steps `[10,14,18,22]`, it constructs a new exact Card15 target from the
+current measured center, then causally refreshes that stored target through
+the next decision. The fourth level persists through the unchanged state-35/
+37 formal endpoint. There is no accumulated return-to-origin cancellation.
+
+The fixed two-phase campaign is one trajectory per R8R7 context:
+
+```text
+safety          4 contexts / 4 new authentic trajectories
+qualification  12 contexts / 12 new authentic trajectories
+maximum total  16 new authentic trajectories
+```
+
+Safety formal outcomes remain closed. Qualification requires exact primary
+and structurally independent agreement on all four safety raw files. Every
+issue/refresh is fail-closed before advance under the unchanged 0.25 action,
+0.55 current, Card15, saturation, finite-state, restart, causality, and
+forbidden-input gates. Candidate formal results open only after all sixteen
+raw authenticate.
+
+A scientific PASS requires at least one of ten failed baselines repaired and
+retrospective held-oracle coverage at least `7/16`, with exact dual formal-
+metric and independent agreement. A PASS authorizes only a separately frozen
+causal selector/controller design. A failure cannot be tuned under R8R12.
+
+The active boundary is to implement primary and structurally independent
+offline/raw/final paths, validate with the project and server virtual
+environments, directly package/deploy without archives, then execute R8R12 in
+its frozen order. R8R12 is not MPC or Gate A. Expert data, BC, DAgger, and
+residual RL remain blocked, and every R8-family trajectory remains forbidden
+from learning datasets.

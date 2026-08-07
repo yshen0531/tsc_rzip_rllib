@@ -1,5 +1,31 @@
 # Current status
 
+> **Prospective R8R12 causal cumulative staircase checkpoint (2026-08-07
+> Asia/Shanghai).** Before R8R12 implementation, configuration, specification,
+> offline construction, candidate formal outcome, raw, or TSC, the new
+> one-sided cumulative direction-2-plus authority sentinel was frozen at
+> checkpoint `1d09508` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R12_CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_AUTHORITY_SENTINEL_DESIGN.md`.
+> Design SHA-256 is
+> `46d959813a0810970e7ea6ab5a5a097c9afa5949e7642f22fc4b17a19ccd2f16`.
+>
+> R8R12 uses exactly one new trajectory for each of the 16 accepted R8R7
+> contexts. At task steps `[10,14,18,22]` it constructs a new canonical
+> direction-2 sign-plus exact Card15 target from current causal readback and
+> refreshes that stored target through the next decision; level four is held
+> through the unchanged 35/37-state endpoint. It deliberately has no final
+> accumulated cancellation. Four safety rows must pass primary/independent
+> execution and current gates before the remaining twelve qualification rows.
+> Candidate formal outcomes stay closed until all 16 authenticate.
+>
+> The direction/sign was fixed from consumed R8R8 point-score diagnostics:
+> direction-2 plus was best at 56/64 origins and at all `40/40` origins whose
+> matching baseline failed. Those labels are not controller inputs. A PASS
+> still requires at least one of ten failed baselines repaired and held-oracle
+> coverage `>=7/16`; it authorizes only a separately frozen causal selector.
+> R8R12 is not MPC or Gate A, and all of its trajectories are forbidden from
+> learning datasets.
+
 > **R8R11 final sustained exact-target-refresh checkpoint (2026-08-07
 > Asia/Shanghai).** R8R11 is final as
 > `SUSTAINED_EXACT_TARGET_REFRESH_AUTHORITY_INSUFFICIENT_ASYMMETRIC_SEQUENCE_REDESIGN_REQUIRED`.
