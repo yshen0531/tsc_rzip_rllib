@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import hashlib
+import inspect
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -106,6 +107,13 @@ class CausalCumulativeDirection2StaircaseAuthoritySentinelTests(unittest.TestCas
         self.assertIn("AUTHORITY_INSUFFICIENT", routes["authority_fail"])
         self.assertIn("AUTHORITY_PRESENT", routes["pass"])
 
+    def test_reporting_repair_never_evaluates_or_advances_a_controller(self) -> None:
+        source = inspect.getsource(sentinel.repair_safety_report)
+        self.assertNotIn("evaluate_specs", source)
+        self.assertNotIn("LocalWorker", source)
+        self.assertIn("plant_advance_count", source)
+        self.assertIn("audit_raw_phase", source)
+
     def test_source_wrapper_metadata_is_not_executable_prefix_semantics(self) -> None:
         source = {
             "action_norm_tsc": [0.0] * 14,
@@ -125,7 +133,8 @@ class CausalCumulativeDirection2StaircaseAuthoritySentinelTests(unittest.TestCas
             "stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel as",
             source,
         )
-        self.assertIn("default=math.inf", source)
+        self.assertIn("default=None", source)
+        self.assertNotIn("default=math.inf", source)
 
     def test_launcher_uses_existing_server_venv_and_direct_file_workflow(self) -> None:
         source = (ROOT / "run_stage4_2r3c3t13s24d1r14r8r12_common.sh").read_text(encoding="utf-8")
@@ -136,6 +145,7 @@ class CausalCumulativeDirection2StaircaseAuthoritySentinelTests(unittest.TestCas
         self.assertIn("stage4_2r3c3t13s24d1r11_find_source_s24", source)
         self.assertNotIn("stage4_2r3c3t13s21_find_source_s2", source)
         self.assertIn("authorize-safety", source)
+        self.assertIn("repair-safety-report", source)
         self.assertIn("authorize-qualification", source)
         self.assertIn("final-independent", source)
         self.assertNotIn("python3", source)

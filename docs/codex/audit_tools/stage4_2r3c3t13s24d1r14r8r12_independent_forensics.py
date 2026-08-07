@@ -585,17 +585,17 @@ def raw_audit(
         utilization = (
             float(np.max(np.abs((currents - center) / half)))
             if currents.shape == (horizon + 1, N_COILS)
-            else math.inf
+            else None
         )
         issues = [event for name, event in zip(names, events) if name == "staircase_issue"]
         refreshes = [event for name, event in zip(names, events) if name == "staircase_refresh"]
         issue_increment = max(
             (float(row["incremental_normalized_action_linf"]) for row in issues),
-            default=math.inf,
+            default=None,
         )
         refresh_increment = max(
             (float(row["incremental_normalized_action_linf"]) for row in refreshes),
-            default=math.inf,
+            default=None,
         )
         passed = bool(
             result.get("success")
@@ -608,12 +608,15 @@ def raw_audit(
             and len(refreshes) == horizon - PREFIX_END - 4
             and finite
             and forbidden == 0
+            and issue_increment is not None
             and issue_increment
             <= float(cfg["controller_contract"]["maximum_incremental_normalized_action_linf"])
             + 1e-12
+            and refresh_increment is not None
             and refresh_increment
             <= float(cfg["controller_contract"]["maximum_incremental_normalized_action_linf"])
             + 1e-12
+            and utilization is not None
             and utilization
             <= float(cfg["controller_contract"]["maximum_current_utilization"]) + 1e-12
         )
@@ -658,9 +661,18 @@ def raw_audit(
         "refresh_count": sum(int(row["refresh_count"]) for row in rows),
         "finite_count": sum(bool(row["finite"]) for row in rows),
         "forbidden_trace_count": sum(int(row["forbidden_trace_count"]) for row in rows),
-        "maximum_issue_increment": max(float(row["maximum_issue_increment"]) for row in rows),
-        "maximum_refresh_increment": max(float(row["maximum_refresh_increment"]) for row in rows),
-        "maximum_current_utilization": max(float(row["maximum_current_utilization"]) for row in rows),
+        "maximum_issue_increment": max(
+            (float(row["maximum_issue_increment"]) for row in rows if row["maximum_issue_increment"] is not None),
+            default=None,
+        ),
+        "maximum_refresh_increment": max(
+            (float(row["maximum_refresh_increment"]) for row in rows if row["maximum_refresh_increment"] is not None),
+            default=None,
+        ),
+        "maximum_current_utilization": max(
+            (float(row["maximum_current_utilization"]) for row in rows if row["maximum_current_utilization"] is not None),
+            default=None,
+        ),
         "passed_count": sum(bool(row["passed"]) for row in rows),
         "rows": rows,
     }

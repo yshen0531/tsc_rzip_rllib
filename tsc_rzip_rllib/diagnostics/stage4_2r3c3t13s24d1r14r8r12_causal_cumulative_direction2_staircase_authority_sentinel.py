@@ -1334,7 +1334,7 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
         utilization = (
             float(np.max(np.abs((currents - center) / half)))
             if currents.shape == (horizon + 1, N_COILS)
-            else math.inf
+            else None
         )
         issue_events = [
             event for name, event in zip(event_names, events) if name == "staircase_issue"
@@ -1346,14 +1346,14 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
         ]
         issue_increment = max(
             (float(event["incremental_normalized_action_linf"]) for event in issue_events),
-            default=math.inf,
+            default=None,
         )
         refresh_increment = max(
             (
                 float(event["incremental_normalized_action_linf"])
                 for event in refresh_events
             ),
-            default=math.inf,
+            default=None,
         )
         passed = bool(
             result.get("success")
@@ -1367,10 +1367,13 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
             and len(refresh_events) == horizon - PREFIX_END - 4
             and finite
             and forbidden == 0
+            and issue_increment is not None
             and issue_increment
             <= float(contract["maximum_incremental_normalized_action_linf"]) + 1e-12
+            and refresh_increment is not None
             and refresh_increment
             <= float(contract["maximum_incremental_normalized_action_linf"]) + 1e-12
+            and utilization is not None
             and utilization <= float(contract["maximum_current_utilization"]) + 1e-12
         )
         rows.append(
@@ -1420,13 +1423,28 @@ def audit_raw_phase(ctx: Context, phase: str) -> dict[str, Any]:
         "finite_count": sum(bool(row["finite"]) for row in rows),
         "forbidden_trace_count": sum(int(row["forbidden_trace_count"]) for row in rows),
         "maximum_issue_increment": max(
-            float(row["maximum_issue_increment"]) for row in rows
+            (
+                float(row["maximum_issue_increment"])
+                for row in rows
+                if row["maximum_issue_increment"] is not None
+            ),
+            default=None,
         ),
         "maximum_refresh_increment": max(
-            float(row["maximum_refresh_increment"]) for row in rows
+            (
+                float(row["maximum_refresh_increment"])
+                for row in rows
+                if row["maximum_refresh_increment"] is not None
+            ),
+            default=None,
         ),
         "maximum_current_utilization": max(
-            float(row["maximum_current_utilization"]) for row in rows
+            (
+                float(row["maximum_current_utilization"])
+                for row in rows
+                if row["maximum_current_utilization"] is not None
+            ),
+            default=None,
         ),
         "passed_count": sum(bool(row["passed"]) for row in rows),
         "rows": rows,
@@ -1501,6 +1519,68 @@ def run_phase(
         "execution": execution,
         "primary_raw_audit_passed": primary["passed"],
         "route": primary["route"],
+    }
+
+
+def repair_safety_report(ctx: Context) -> dict[str, Any]:
+    """Audit immutable structured failures without evaluating a controller."""
+
+    state = _read(ctx.paths.state)
+    specs = _phase_specs(ctx, "safety")
+    inventory = r8r7.r8._inventory(ctx.paths.phase_raw("safety"))
+    if (
+        state.get("phase_status") != "safety_authorized"
+        or inventory["count"] != len(specs)
+        or any(ctx.paths.phase_raw("qualification").glob("*.json.gz"))
+        or not all(
+            _result_complete(
+                ctx.paths.phase_raw("safety") / f"{spec['experiment_id']}.json.gz",
+                spec,
+                require_success=False,
+            )
+            for spec in specs
+        )
+    ):
+        raise ValueError("R8R12 immutable safety reporting repair precondition failed")
+    raw = [
+        r8r7.r8._read_gz(
+            ctx.paths.phase_raw("safety") / f"{spec['experiment_id']}.json.gz"
+        )
+        for spec in specs
+    ]
+    if any(result.get("success") for result in raw):
+        raise ValueError("R8R12 safety reporting repair is only for structured failures")
+    plant_advance_count = sum(
+        max(0, len(result.get("trajectory") or []) - 1) for result in raw
+    )
+    controller_trace_count = sum(len(result.get("controller_trace") or []) for result in raw)
+    primary = audit_raw_phase(ctx, "safety")
+    _set_state(
+        ctx,
+        phase_status="safety_execution_failed",
+        finished=True,
+        real_tsc_executed=True,
+        new_raw_count=len(raw),
+        qualification_outcomes_opened=False,
+        formal_outcomes_opened=False,
+        plant_advance_count=plant_advance_count,
+        physical_action_count=controller_trace_count,
+        controller_initialization_failure_count=sum(
+            "per-spec issue schedule changed" in str(result.get("failure_reason") or "")
+            for result in raw
+        ),
+        stop_reason="controller_initialization_failed_before_plant_advance",
+        verdict={"route": ctx.cfg["routes"]["execution_fail"], "passed": False},
+    )
+    return {
+        "stage": STAGE,
+        "phase": "safety_reporting_repaired",
+        "raw_count": len(raw),
+        "plant_advance_count": plant_advance_count,
+        "physical_action_count": controller_trace_count,
+        "primary_raw_audit_passed": primary["passed"],
+        "route": primary["route"],
+        "passed": True,
     }
 
 
@@ -1772,6 +1852,8 @@ def execute(
         return authorize_safety(ctx)
     if command in PHASES:
         return run_phase(ctx, command, backend=backend, resume=resume)
+    if command == "repair-safety-report":
+        return repair_safety_report(ctx)
     if command == "authorize-qualification":
         return authorize_qualification(ctx)
     if command == "finalize-primary":
@@ -1824,6 +1906,7 @@ def _parser() -> argparse.ArgumentParser:
             "offline",
             "authorize-safety",
             "safety",
+            "repair-safety-report",
             "authorize-qualification",
             "qualification",
             "finalize-primary",

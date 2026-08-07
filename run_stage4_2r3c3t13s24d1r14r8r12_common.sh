@@ -24,7 +24,7 @@ source "${PROJECT_DIR}/scripts/stage4_2r3c3t13s24d1r14r8r7_shell_common.sh"
 [[ "${BACKEND}" == ray || "${BACKEND}" == serial ]]
 [[ "${RESUME}" == 0 || "${RESUME}" == 1 ]]
 case "${COMMAND}" in
-  offline|offline-independent|authorize-safety|safety|safety-raw-independent|authorize-qualification|qualification|qualification-raw-independent|finalize-primary|final-independent|postprocess) ;;
+  offline|offline-independent|authorize-safety|safety|repair-safety-report|safety-raw-independent|authorize-qualification|qualification|qualification-raw-independent|finalize-primary|final-independent|postprocess) ;;
   *) echo "ERROR: unsupported R8R12 command ${COMMAND}" >&2; exit 1 ;;
 esac
 
