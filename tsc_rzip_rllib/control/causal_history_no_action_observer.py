@@ -309,7 +309,7 @@ def prediction_row(item: Mapping[str, Any], prediction: Sequence[Sequence[float]
     residual_physical = residual_scaled * scales
     absolute_physical = np.abs(residual_physical)
     violations = absolute_physical > caps[None, :] + 1e-15
-    return {
+    output = {
         "row_id": str(item["row_id"]),
         "pair_id": str(item["pair_id"]),
         "history_member": str(item["history_member"]),
@@ -324,6 +324,21 @@ def prediction_row(item: Mapping[str, Any], prediction: Sequence[Sequence[float]
         "mean_squared_scaled_error": float(np.mean(residual_scaled * residual_scaled)),
         "passed": bool(not np.any(violations) and np.all(np.isfinite(predicted))),
     }
+    exclusion_caps = cfg["gates"].get("finite_exclusion_caps_physical")
+    if exclusion_caps is not None:
+        exclusion = absolute_physical > np.asarray(exclusion_caps, dtype=float)[None, :] + 1e-15
+        output.update(
+            {
+                "finite_exclusion_violation_count": int(np.sum(exclusion)),
+                "finite_exclusion_component_counts": np.sum(exclusion, axis=0)
+                .astype(int)
+                .tolist(),
+                "finite_exclusion_passed": bool(
+                    not np.any(exclusion) and np.all(np.isfinite(predicted))
+                ),
+            }
+        )
+    return output
 
 
 def _family_order(candidate: Candidate) -> int:
@@ -332,17 +347,37 @@ def _family_order(candidate: Candidate) -> int:
 
 def _score(rows: Sequence[Mapping[str, Any]], candidate: Candidate) -> tuple[Any, ...]:
     maxima = np.asarray([row["maximum_absolute_scaled_point_error"] for row in rows], dtype=float)
-    return (
+    scientific = [
         sum(not bool(row["passed"]) for row in rows),
         sum(int(row["component_future_violation_count"]) for row in rows),
-        float(np.max(maxima)),
-        float(np.quantile(maxima, 0.95, method="linear")),
-        float(np.mean([row["mean_squared_scaled_error"] for row in rows])),
+    ]
+    if "finite_exclusion_caps_physical" in cfg_gates_from_rows(rows):
+        scientific.append(
+            sum(not bool(row["finite_exclusion_passed"]) for row in rows)
+        )
+    scientific.extend(
+        [
+            float(np.max(maxima)),
+            float(np.quantile(maxima, 0.95, method="linear")),
+            float(np.mean([row["mean_squared_scaled_error"] for row in rows])),
+        ]
+    )
+    return tuple(scientific) + (
         _family_order(candidate),
         candidate.pca_rank,
         candidate.bandwidth_multiplier,
         candidate.ridge,
     )
+
+
+def cfg_gates_from_rows(rows: Sequence[Mapping[str, Any]]) -> dict[str, bool]:
+    """Return optional row capabilities without coupling scoring to a config."""
+
+    return {
+        "finite_exclusion_caps_physical": bool(
+            rows and "finite_exclusion_passed" in rows[0]
+        )
+    }
 
 
 def select_candidate(
@@ -367,7 +402,7 @@ def select_candidate(
         scored.append((candidate, _score(rows, candidate), rows))
     selected, _, selected_rows = min(scored, key=lambda item: item[1])
     report = [
-        {"candidate": candidate.as_dict(), "selection_score": list(score[:5])}
+        {"candidate": candidate.as_dict(), "selection_score": list(score[:-4])}
         for candidate, score, _ in scored
     ]
     return selected, report, selected_rows
@@ -376,10 +411,31 @@ def select_candidate(
 def tube_from_rows(rows: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]) -> Array:
     residual = np.asarray([row["absolute_residual_physical"] for row in rows], dtype=float)
     floor = np.asarray(cfg["tube_contract"]["component_floor_physical"], dtype=float)
-    multiplier = float(cfg["tube_contract"]["inner_residual_multiplier"])
     if residual.ndim != 3 or residual.shape[1:] != (12, 5):
         raise ValueError("R8R3 tube residual shape changed")
-    tube = multiplier * np.max(residual, axis=0) + floor[None, :]
+    contract = cfg["tube_contract"]
+    if contract.get("method") == "higher_quantile_scaled":
+        base = np.quantile(
+            residual,
+            float(contract["base_absolute_residual_quantile"]),
+            axis=0,
+            method="higher",
+        ) + floor[None, :]
+        ratio = np.max(residual / base[None, :, :], axis=(1, 2))
+        scalar = max(
+            1.0,
+            float(
+                np.quantile(
+                    ratio,
+                    float(contract["row_ratio_quantile"]),
+                    method="higher",
+                )
+            ),
+        )
+        tube = scalar * base
+    else:
+        multiplier = float(contract["inner_residual_multiplier"])
+        tube = multiplier * np.max(residual, axis=0) + floor[None, :]
     if not np.all(np.isfinite(tube)):
         raise ValueError("R8R3 tube is non-finite")
     return tube
@@ -390,7 +446,12 @@ def nested_outer_predictions(
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     rows: list[dict[str, Any]] = []
     folds: list[dict[str, Any]] = []
-    caps = np.asarray(cfg["gates"]["component_caps_physical"], dtype=float)
+    cap_source = (
+        cfg["tube_contract"].get("component_caps_physical")
+        if cfg["tube_contract"].get("method") == "higher_quantile_scaled"
+        else cfg["gates"]["component_caps_physical"]
+    )
+    caps = np.asarray(cap_source, dtype=float)
     pairs = sorted({str(item["pair_id"]) for item in items})
     for pair in pairs:
         training = [item for item in items if str(item["pair_id"]) != pair]
@@ -478,6 +539,129 @@ def evaluate_outer(rows: Sequence[Mapping[str, Any]], folds: Sequence[Mapping[st
         and result["tube_contained_origin_count"]
         == int(gates["required_tube_contained_origin_count"])
         and all(fold["passed"] for fold in folds)
+    )
+    return result
+
+
+def apply_tube(
+    rows: Sequence[Mapping[str, Any]], tube: Sequence[Sequence[float]]
+) -> list[dict[str, Any]]:
+    """Copy prediction rows and attach complete-row tube containment."""
+
+    widths = np.asarray(tube, dtype=float)
+    if widths.shape != (12, 5) or not np.all(np.isfinite(widths)):
+        raise ValueError("observer tube shape changed")
+    output: list[dict[str, Any]] = []
+    for source in rows:
+        row = dict(source)
+        residual = np.asarray(row["absolute_residual_physical"], dtype=float)
+        if residual.shape != (12, 5):
+            raise ValueError("observer residual shape changed")
+        row["tube_contained"] = bool(np.all(residual <= widths + 1e-15))
+        output.append(row)
+    return output
+
+
+def practical_evaluation(
+    rows: Sequence[Mapping[str, Any]],
+    tube: Sequence[Sequence[float]],
+    cfg: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Evaluate the prospective aggregate/per-context R8R4 finite gate."""
+
+    import math
+
+    values = apply_tube(rows, tube)
+    gates = cfg["gates"]
+    widths = np.asarray(tube, dtype=float)
+    tube_caps = np.asarray(cfg["tube_contract"]["component_caps_physical"], dtype=float)
+    contexts = sorted(
+        {(str(row["pair_id"]), str(row["history_member"])) for row in values}
+    )
+    issue_rows = [row for row in values if bool(row["prescribed_issue"])]
+
+    def required(rate: float, total: int) -> int:
+        return int(math.ceil(rate * total - 1e-15))
+
+    context_counts: dict[str, dict[str, Any]] = {}
+    contexts_passed = True
+    for pair, history in contexts:
+        current = [
+            row
+            for row in values
+            if str(row["pair_id"]) == pair and str(row["history_member"]) == history
+        ]
+        issues = [row for row in current if bool(row["prescribed_issue"])]
+        point_required = required(float(gates["per_context_point_pass_rate"]), len(current))
+        tube_required = required(
+            float(gates["per_context_tube_containment_rate"]), len(current)
+        )
+        point_count = sum(bool(row["passed"]) for row in current)
+        tube_count = sum(bool(row["tube_contained"]) for row in current)
+        issue_count = sum(bool(row["passed"]) for row in issues)
+        passed = bool(
+            point_count >= point_required
+            and tube_count >= tube_required
+            and issue_count
+            >= int(gates["per_context_prescribed_issue_pass_count"])
+        )
+        contexts_passed = contexts_passed and passed
+        context_counts[f"{pair}|{history}"] = {
+            "origin_point_pass_count": point_count,
+            "origin_total": len(current),
+            "origin_point_required": point_required,
+            "prescribed_issue_point_pass_count": issue_count,
+            "prescribed_issue_total": len(issues),
+            "prescribed_issue_required": int(
+                gates["per_context_prescribed_issue_pass_count"]
+            ),
+            "tube_contained_count": tube_count,
+            "tube_required": tube_required,
+            "passed": passed,
+        }
+
+    point_required = required(float(gates["aggregate_point_pass_rate"]), len(values))
+    issue_required = required(
+        float(gates["prescribed_issue_point_pass_rate"]), len(issue_rows)
+    )
+    tube_required = required(
+        float(gates["aggregate_tube_containment_rate"]), len(values)
+    )
+    point_count = sum(bool(row["passed"]) for row in values)
+    issue_count = sum(bool(row["passed"]) for row in issue_rows)
+    tube_count = sum(bool(row["tube_contained"]) for row in values)
+    exclusion_count = sum(
+        int(row.get("finite_exclusion_violation_count", 0)) for row in values
+    )
+    result = {
+        "origin_row_count": len(values),
+        "origin_point_pass_count": point_count,
+        "origin_point_required": point_required,
+        "prescribed_issue_row_count": len(issue_rows),
+        "prescribed_issue_point_pass_count": issue_count,
+        "prescribed_issue_point_required": issue_required,
+        "tube_contained_origin_count": tube_count,
+        "tube_contained_origin_required": tube_required,
+        "finite_exclusion_violation_count": exclusion_count,
+        "tube_cap_passed": bool(np.all(widths <= tube_caps[None, :] + 1e-15)),
+        "maximum_tube_physical": np.max(widths, axis=0).tolist(),
+        "maximum_absolute_physical_error": np.max(
+            np.asarray([row["absolute_residual_physical"] for row in values]),
+            axis=(0, 1),
+        ).tolist(),
+        "maximum_absolute_scaled_point_error": max(
+            float(row["maximum_absolute_scaled_point_error"]) for row in values
+        ),
+        "context_counts": context_counts,
+        "rows": values,
+    }
+    result["passed"] = bool(
+        point_count >= point_required
+        and issue_count >= issue_required
+        and tube_count >= tube_required
+        and exclusion_count == 0
+        and result["tube_cap_passed"]
+        and contexts_passed
     )
     return result
 
