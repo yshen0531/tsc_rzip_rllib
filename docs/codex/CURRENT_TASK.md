@@ -5041,3 +5041,35 @@ and action bounds, a frozen finite context/action matrix, and prospective
 acceptance criteria. A pass may authorize only a separately frozen genuine
 receding-horizon controller design. MPC, Gate A, expert data, BC, DAgger,
 residual RL, and all R8-family trajectories as learning data remain blocked.
+
+## 86. Frozen D1R14R8R7 fresh multipulse interaction-sentinel task
+
+Before any R8R7 implementation, derived metric, model/tube artifact, raw
+result, or TSC trajectory, the prospective design was frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R7_FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_SENTINEL_DESIGN.md
+SHA-256
+a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f
+```
+
+R8R7 uses 16 contexts from the eight former R8 calibration/holdout pairs,
+whose action-response outcomes remain unopened. Phase 1 runs 16 fresh
+zero-future-action baselines and must independently pass the frozen static
+observer gate before phase 2. Phase 2 runs 32 authentic four-pulse trajectories
+using two fixed direction/sign schedules and unchanged fail-closed Card15,
+increment, cancellation, current, restart, causality, raw, and snapshot gates.
+
+The four-step predictor is the byte-authenticated R8R6 static observer plus
+one fixed R8R1 PCA4/RBF-median-times-two/ridge-0.1 response deployment fit
+trained only on the immutable 912-row R8 bank. Innovation, R8R7 refit,
+candidate selection, pair/history labels, matched-baseline future, and future
+measurements are forbidden. Primary and structurally independent audits must
+agree on all source hashes, artifacts, raw inventories, predictions, gates,
+and routes.
+
+The active boundary is to implement, test, package, deploy, and execute R8R7
+under the frozen phase boundary. A PASS authorizes only a separately frozen
+receding-horizon MPC design. R8R7 is not MPC or Gate A. All R8R7 trajectories
+are forbidden from expert data and all learning remains blocked.

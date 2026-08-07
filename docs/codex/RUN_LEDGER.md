@@ -1,5 +1,22 @@
 # Run ledger
 
+## Stage4.2R3c3T13S24D1R14R8R7 prospective fresh multipulse interaction sentinel
+
+- Date: 2026-08-07 Asia/Shanghai.
+- Identity: frozen before any R8R7 implementation, derived metric, artifact,
+  raw result, or TSC trajectory.
+- Matrix: conditional maximum 48 authentic trajectories: 16 fresh baselines,
+  then 32 fixed four-pulse interactions over 16 response-unopened contexts.
+- Predictor: byte-authenticated R8R6 static observer plus fixed R8R1
+  PCA4/RBF2/ridge0.1 40 ms response deployment fit; adaptation disabled.
+- Boundary: a PASS may authorize only a separately frozen MPC design; no Gate
+  A or learning claim, and all R8R7 trajectories are forbidden from
+  expert/BC/DAgger/RL data.
+- Design:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_SENTINEL_DESIGN.md`.
+- Design SHA-256:
+  `a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f`.
+
 ## Stage4.2R3c3T13S24D1R14R8R6 final causal innovation observer
 
 - Design / implementation / package: `0352207 / df2e8c4 / 6b00e24`.

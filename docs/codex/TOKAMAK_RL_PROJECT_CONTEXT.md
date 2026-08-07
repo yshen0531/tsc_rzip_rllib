@@ -894,3 +894,16 @@ controller, MPC, formal-control, plant, or Gate A result. The next stage must
 prospectively freeze a fresh authentic interaction sentinel before code,
 metrics, or TSC; every source and sentinel trajectory remains forbidden from
 expert/learning data.
+
+Before any next-stage implementation, derived metric, artifact, raw, or TSC,
+R8R7 froze a two-phase fresh multipulse interaction sentinel at design SHA-256
+`a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f`.
+It first requires 16 fresh zero-action baselines to revalidate the selected
+static observer, then conditionally authorizes 32 authentic four-pulse
+trajectories over the 16 response-unopened contexts. The fixed combined
+predictor is the R8R6 static
+observer plus the R8R1 PCA4/RBF2/ridge0.1 40 ms response deployment fit; online
+innovation, candidate selection, and refit on sentinel raw are forbidden. A
+PASS authorizes only a separately frozen receding-horizon MPC design. It cannot
+qualify Gate A or authorize learning, and all R8R7 trajectories are forbidden
+from expert data.

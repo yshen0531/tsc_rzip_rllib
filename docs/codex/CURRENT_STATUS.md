@@ -1,5 +1,25 @@
 # Current status
 
+> **Superseding R8R7 prospective-design checkpoint (2026-08-07
+> Asia/Shanghai).** Before any R8R7 implementation, derived metric,
+> model/tube artifact, raw result, or TSC trajectory, the fresh multipulse
+> static-observer interaction sentinel was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_SENTINEL_DESIGN.md`.
+> Its SHA-256 is
+> `a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f`.
+> It uses 16 contexts from the eight response-unopened former R8
+> calibration/holdout pairs. Phase 1 is 16 fresh zero-future-action baselines;
+> only a dual-audited static-observer PASS authorizes phase 2. Phase 2 is 32
+> authentic four-pulse trajectories under two fixed schedules and unchanged
+> Card15/current/safety gates, yielding 128 issue windows.
+>
+> The predictor is the byte-authenticated R8R6 static observer plus one fixed
+> R8R1 PCA4/RBF2/ridge0.1 40 ms response deployment fit. Innovation, model
+> selection, refit on R8R7 raw, and future/label inputs are forbidden. A PASS
+> authorizes only a separately frozen MPC design. R8R7 is not MPC, Gate A,
+> expert data, BC, DAgger, or RL, and all 48 possible trajectories are
+> forbidden from learning datasets.
+>
 > **Superseding R8R6 final and static-observer handoff (2026-08-07
 > Asia/Shanghai).** R8R6 is final as
 > `CAUSAL_ONE_STEP_INNOVATION_NO_MEASURABLE_GAIN_STATIC_ROBUST_OBSERVER_SENTINEL_REQUIRED`.
