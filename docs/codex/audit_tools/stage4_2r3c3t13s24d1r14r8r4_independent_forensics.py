@@ -64,8 +64,8 @@ def _inventory(directory: Path) -> dict[str, Any]:
     for path in sorted(directory.glob("*.json.gz"), key=lambda value: value.name):
         size = path.stat().st_size
         total += size
-        rows.append({"path": path.name, "bytes": size, "sha256": _sha(path)})
-    return {"count": len(rows), "bytes": total, "digest": r8._digest(rows), "files": rows}
+        rows.append({"name": path.name, "size": size, "sha256": _sha(path)})
+    return {"count": len(rows), "bytes": total, "digest": r8._digest(rows), "rows": rows}
 
 
 def _stage(run_dir: Path) -> Path:
