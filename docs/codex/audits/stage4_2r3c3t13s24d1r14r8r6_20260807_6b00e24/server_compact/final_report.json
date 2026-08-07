@@ -1,0 +1,23 @@
+{
+  "adaptation_usefulness_passed": false,
+  "all_stage_trajectories_allowed_in_expert_dataset": false,
+  "bc_dagger_or_rl_allowed": false,
+  "expert_data_allowed": false,
+  "gate_a_qualified": false,
+  "independent_sha256": "8e2c846f752af773a5decf7545a60d306b8ea83545be40c49f8c785a63598cd2",
+  "innovation_contract_sha256": "272c5979f0b806f228e335bbbb8db1f57df623822d8a8ffe3c797ca96b4203f5",
+  "mpc_validated": false,
+  "new_raw_count": 0,
+  "observer_model_sha256": "3ba16449086097a42513987df97c95ec6d6d0d35d572e73992fa5eafdfc15519",
+  "observer_qualification_passed": true,
+  "observer_tube_sha256": "747a6c24f9abed8a4ec6784e4699c7ebe557a049bb11e10ea9a1d5ca0254b8ea",
+  "passed": true,
+  "phase": "final_dual_audit",
+  "primary_summary_sha256": "cef09d19c8604f3b1b1f737613099db6d174120c7d3b04dbca42582d429694d0",
+  "real_tsc_executed": false,
+  "route": "CAUSAL_ONE_STEP_INNOVATION_NO_MEASURABLE_GAIN_STATIC_ROBUST_OBSERVER_SENTINEL_REQUIRED",
+  "schema_version": 1,
+  "scientific_gate_passed": true,
+  "source_trajectories_modified": false,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R6"
+}

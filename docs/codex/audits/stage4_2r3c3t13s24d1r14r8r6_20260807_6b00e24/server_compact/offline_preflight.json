@@ -1,0 +1,9 @@
+{
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "source_authentication",
+  "schema_version": 1,
+  "source_r8r5_authenticated": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R6",
+  "zero_new_tsc": true
+}

@@ -879,3 +879,18 @@ static robust observer. A prospective factor-2 context-robust tube remains
 subject to unchanged practical caps. Any R8R6 observer result can authorize
 only a separately frozen fresh interaction sentinel. MPC, Gate A, expert
 data, and all learning remain blocked.
+
+R8R6 subsequently completed with exact primary/independent agreement and no
+new raw or plant advance. The static observer qualification passed startup
+40/40, adapted point 560/560, adapted prescribed issues 120/120, tube
+containment 560/560, and all 40 context gates. The fixed innovation did not
+earn deployment: adapted/cold aggregate MSE was 1.0781, only 8/40 contexts
+improved, and only 12/40 stayed within the 1.05 regression limit. R8R6 is
+therefore final as
+`CAUSAL_ONE_STEP_INNOVATION_NO_MEASURABLE_GAIN_STATIC_ROBUST_OBSERVER_SENTINEL_REQUIRED`.
+The project selects the static linear/PCA32/ridge-1e-6 causal observer plus
+its frozen global tube and disables the unhelpful adapter. This is not a
+controller, MPC, formal-control, plant, or Gate A result. The next stage must
+prospectively freeze a fresh authentic interaction sentinel before code,
+metrics, or TSC; every source and sentinel trajectory remains forbidden from
+expert/learning data.

@@ -1,5 +1,36 @@
 # Current status
 
+> **Superseding R8R6 final and static-observer handoff (2026-08-07
+> Asia/Shanghai).** R8R6 is final as
+> `CAUSAL_ONE_STEP_INNOVATION_NO_MEASURABLE_GAIN_STATIC_ROBUST_OBSERVER_SENTINEL_REQUIRED`.
+> Its 20 whole-pair outer folds authenticated 20 physical pairs, 40 history
+> contexts, 600 origins, and zero forbidden/future predictor inputs. Startup
+> passed 40/40; adapted point, prescribed-issue, and tube gates passed
+> 560/560, 120/120, and 560/560, with all 40 contexts passing, zero finite
+> exclusions, zero clipping, and a tube below every frozen cap.
+>
+> The prospective innovation usefulness gate failed independently of observer
+> qualification: adapted/cold aggregate MSE was `1.0781373396231766` against
+> the required `<=0.95`, only 8/40 contexts strictly improved, only 12/40
+> remained within the 1.05 context-regression limit, and the worst ratio was
+> `1.287598795027994`. The fixed adapter is therefore disabled and the static
+> linear/PCA32/ridge-1e-6 observer plus reserved global tube is selected.
+>
+> Primary and structurally independent numerical, route, and artifact hashes
+> agree exactly. R8R6 ran zero Ray, `gotsc`, TSC, controller, or plant steps,
+> created no raw directory, and modified no source trajectory. Final report,
+> model, tube, final-stage report, manifest, and state SHA-256 values are
+> `cf948786db23de51a5f30a8407cee30d06e8ddf1cafe4476f0c45a78c6a7eeea`,
+> `3ba16449086097a42513987df97c95ec6d6d0d35d572e73992fa5eafdfc15519`,
+> `747a6c24f9abed8a4ec6784e4699c7ebe557a049bb11e10ea9a1d5ca0254b8ea`,
+> `d9e70003a3267ee01394472f4c2e4efdb03af65656a7dc1f2980a521b74528e3`,
+> `2001bece45759d4d8ce8c17cf85e8c063c499ed313493a4e46b53246e52c4beb`,
+> and `0cb80974ac25d2f5cdfeb6f69e825a5e71ab4caf388b94cd3ac890b35cb140be`.
+> R8R6 is an observer-qualification PASS and adaptation-usefulness FAIL, not a
+> controller, real-MPC, formal-control, plant, or Gate A result. The next step
+> must be frozen as a fresh authentic static-observer interaction sentinel
+> before implementation, metrics, or TSC; learning remains blocked.
+
 > **Superseding R8R6 prospective-design checkpoint (2026-08-07
 > Asia/Shanghai).** After final R8R5 primary/independent agreement, but before
 > any R8R6 implementation, adapted prediction, residual, tube, metric, route,

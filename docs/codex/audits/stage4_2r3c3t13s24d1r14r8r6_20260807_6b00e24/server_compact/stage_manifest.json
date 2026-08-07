@@ -1,0 +1,94 @@
+{
+  "all_stage_trajectories_allowed_in_expert_dataset": false,
+  "campaign_identity": "causal_one_step_innovation_observer_v1",
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer.json",
+  "config_sha256": "2ff5bcfa5f9d3f05b9f1ee5a672ed776cafa02d3f22317bf6d7932db493d0add",
+  "design_document_sha256": "6f8886f42321a2e99a97332ecf03c1827b5385ebfc50f6ee07fefefcafa182f1",
+  "formal_timing_unchanged": true,
+  "package_fingerprint": {
+    "digest": "ad49e939d5a3d4950a22d73ccda7ff25c5815b6e37081e0b287fdcdf352a00d4",
+    "files": [
+      {
+        "bytes": 6718,
+        "path": "configs/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer.json",
+        "sha256": "2ff5bcfa5f9d3f05b9f1ee5a672ed776cafa02d3f22317bf6d7932db493d0add"
+      },
+      {
+        "bytes": 24453,
+        "path": "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r6_independent_forensics.py",
+        "sha256": "1b13eac2e2fc18e2b5c0f9432d8deaa680d9ac5ccd484acbe55fd68329f851c1"
+      },
+      {
+        "bytes": 11579,
+        "path": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R6_CAUSAL_ONE_STEP_INNOVATION_OBSERVER_DESIGN.md",
+        "sha256": "6f8886f42321a2e99a97332ecf03c1827b5385ebfc50f6ee07fefefcafa182f1"
+      },
+      {
+        "bytes": 4577,
+        "path": "run_stage4_2r3c3t13s24d1r14r8r6_common.sh",
+        "sha256": "0a9096e0700a13166f8c627b9e11e9d81518f562f37367dd232eb67356a5765a"
+      },
+      {
+        "bytes": 167,
+        "path": "run_stage4_2r3c3t13s24d1r14r8r6_native.sh",
+        "sha256": "cd30ee3c3d08824d56ac4e78dff3609ad805fea89d3eef499eb83aa10172d4de"
+      },
+      {
+        "bytes": 1688,
+        "path": "run_stage4_2r3c3t13s24d1r14r8r6_nohup.sh",
+        "sha256": "ece7fb1750e38eda6bf1e27c9989057ce3e39c811e6947a8bf497d829ca822bc"
+      },
+      {
+        "bytes": 220,
+        "path": "run_stage4_2r3c3t13s24d1r14r8r6_self_test.sh",
+        "sha256": "0adac09c703b93a4161f830b8364d2056264142e8249b82ea2f8cb95d6c85f89"
+      },
+      {
+        "bytes": 1181,
+        "path": "run_stage4_2r3c3t13s24d1r14r8r6_verify_package.sh",
+        "sha256": "39c79407f76d8cf310bf88ffc8cc642bcf156c43d05b88db2c9efd13ce711abb"
+      },
+      {
+        "bytes": 250,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer.py",
+        "sha256": "1291ac413510816de46cb36406044b410dc5355e07db3b656cb537681019274e"
+      },
+      {
+        "bytes": 2353,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r6_shell_common.sh",
+        "sha256": "330e396691422bd8b8e3a24b72461c597cc3a1a590a9b9529cf29fe61eb301d8"
+      },
+      {
+        "bytes": 7149,
+        "path": "tests/test_stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer.py",
+        "sha256": "c44d1c922c88a3d156b2366778096e20d739f50972b6bd75409b0d3e17156e8f"
+      },
+      {
+        "bytes": 28712,
+        "path": "tsc_rzip_rllib/control/causal_history_no_action_observer.py",
+        "sha256": "b0314884e891a768d358698f2ea0bb1a4ea07311d82c175d77f9737f0f3665ad"
+      },
+      {
+        "bytes": 8118,
+        "path": "tsc_rzip_rllib/control/causal_one_step_innovation_observer.py",
+        "sha256": "f65bde5be9a6de51f4767e3e6e3c54d27440387d7c895607e156359c8d895751"
+      },
+      {
+        "bytes": 6728,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer.py",
+        "sha256": "c4476e8d26503375ec653fa914a0c581aa4fba75bd04849a019caded48a03628"
+      },
+      {
+        "bytes": 27715,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer_audit.py",
+        "sha256": "b597b6955b4de2bdf7bb1489b8fee4c4949ecadd94c958ac2ade6bf64f22517b"
+      }
+    ]
+  },
+  "package_revision": "r42r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer_v1",
+  "schema_version": 1,
+  "source_r8r5_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r5_runs/stage4_2r3c3t13s24d1r14r8r5_context_robust_observer_holdout_20260807_26b96e8_v1",
+  "source_r8r5_stage_state_sha256": "dc564ddfb9edae9b044dfa358ddb98306b56f328a8fc06c60b8c43ade772e48c",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R6",
+  "zero_new_tsc": true
+}

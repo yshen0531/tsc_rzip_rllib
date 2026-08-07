@@ -1,0 +1,11 @@
+[R8R6] user=yangshen0711 host=master command=offline run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r6_audits/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer_20260807_6b00e24_v1
+[R8R6] zero new TSC; immutable formal timing retained; all stage trajectories remain forbidden from expert data.
+{
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "source_authentication",
+  "schema_version": 1,
+  "source_r8r5_authenticated": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R6",
+  "zero_new_tsc": true
+}

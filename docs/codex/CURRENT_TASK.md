@@ -4982,3 +4982,62 @@ fresh authentic interaction sentinel. The active task is to implement
 primary and structurally independent R8R6 audits, validate/package/deploy
 them, and execute the zero-new-TSC stage. Controller execution, MPC, Gate A,
 expert data, BC, DAgger, and residual RL remain blocked.
+
+## 85. Final D1R14R8R6 result and active interaction-sentinel boundary
+
+R8R6 completed its frozen zero-new-TSC primary, structurally independent,
+and postprocess sequence at implementation/package checkpoints
+`df2e8c4 / 6b00e24`. Local and installed full suites passed 1208/1208; the
+installed server suite had one expected skip. The empty direct-copy package
+contained 980 declared files plus manifest/sums.
+
+The source bank authenticated 20 physical pairs, 40 histories, 600 origins,
+160 prescribed issue rows, and zero forbidden or future predictor inputs.
+The fixed linear/PCA32/ridge-1e-6 causal observer and prospective factor-two
+context-robust tube passed:
+
+```text
+startup fallback point rows                              40 / 40
+adapted point rows                                     560 / 560
+adapted prescribed issue rows                          120 / 120
+adapted tube rows                                      560 / 560
+contexts satisfying every point/tube gate                40 / 40
+finite-exclusion / innovation-clipping rows                 0 / 0
+tube cap                                                     PASS
+```
+
+The separately frozen adaptation usefulness gate failed:
+
+```text
+adapted / cold aggregate MSE                         1.0781373396
+required                                                 <= 0.95
+strictly improved contexts                               8 / 40
+required improved contexts                             >= 24 / 40
+contexts within 1.05 regression limit                   12 / 40
+worst context ratio                                    1.287598795
+```
+
+Primary and independent numerical, outcome, and artifact comparisons agree
+exactly. The route is
+`CAUSAL_ONE_STEP_INNOVATION_NO_MEASURABLE_GAIN_STATIC_ROBUST_OBSERVER_SENTINEL_REQUIRED`:
+the static causal observer and robust tube qualify, while the innovation
+adapter is disabled for lack of measured benefit.
+
+R8R6 created no raw directory and ran zero Ray, `gotsc`, TSC, controller, or
+plant steps. It is not a closed-loop, formal-control, real-MPC, Gate A, or
+learning result. Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R6_FORENSIC_REPORT.md
+SHA-256
+cf948786db23de51a5f30a8407cee30d06e8ddf1cafe4476f0c45a78c6a7eeea
+```
+
+The active task is to freeze a new-identity fresh authentic interaction
+sentinel before any implementation, metric, or TSC. It must use the selected
+static observer, causal startup/fallback, exact Card15 actions, hard current
+and action bounds, a frozen finite context/action matrix, and prospective
+acceptance criteria. A pass may authorize only a separately frozen genuine
+receding-horizon controller design. MPC, Gate A, expert data, BC, DAgger,
+residual RL, and all R8-family trajectories as learning data remain blocked.

@@ -1,5 +1,29 @@
 # Run ledger
 
+## Stage4.2R3c3T13S24D1R14R8R6 final causal innovation observer
+
+- Design / implementation / package: `0352207 / df2e8c4 / 6b00e24`.
+- Package declared / direct-copy total: `980 / 982`.
+- Local / installed full tests: `1208 / 1208`; one expected server skip.
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r6_audits/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer_20260807_6b00e24_v1`.
+- New TSC / raw / source modification: `0 / 0 / false`.
+- Startup / adapted point / adapted issue / tube:
+  `40/40 / 560/560 / 120/120 / 560/560`; context gates `40/40`.
+- Tube maximum `[R,Z,vR,vZ,Ip]`:
+  `[0.0032254596,0.0033520607,0.0386971126,0.0443856721,117.0384656]`.
+- Adapted/cold MSE ratio: `1.0781373396` versus required `<=0.95`;
+  improved contexts `8/40`, context-regression-limit passes `12/40`.
+- Independent numerical/outcome/artifact agreement: all true.
+- Final route:
+  `CAUSAL_ONE_STEP_INNOVATION_NO_MEASURABLE_GAIN_STATIC_ROBUST_OBSERVER_SENTINEL_REQUIRED`.
+- Classification: observer qualification PASS, adaptation usefulness FAIL;
+  select static observer. No controller, MPC, formal-control, plant, Gate A,
+  or learning conclusion.
+- Report:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R6_FORENSIC_REPORT.md`,
+  SHA-256 `cf948786db23de51a5f30a8407cee30d06e8ddf1cafe4476f0c45a78c6a7eeea`.
+
 ## Stage4.2R3c3T13S24D1R14R8R5 prospective context-robust holdout
 
 - Frozen before any R8R5 fit, tube value, metric, artifact, route, TSC, or
