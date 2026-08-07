@@ -30,6 +30,10 @@ RUN_NAME = "stage4_2r3c3t13s24d1r14r8r11_sustained_exact_target_refresh_authorit
 CONTROLLER_REVISION = "sustained_exact_target_refresh_v42r3c3t13s24d1r14r8r11_v1"
 PREFIX_END = 10
 N_COILS = 14
+SOURCE_WRAPPER_METADATA_PREFIXES = (
+    "r3c3t13s24d1r14r4_",
+    "r3c3t13s24d1r14r8r7_",
+)
 
 
 def _root() -> Path:
@@ -89,6 +93,17 @@ def _inventory(path: Path) -> dict[str, Any]:
         "digest": digest.hexdigest(),
         "rows": rows,
     }
+
+
+def _source_trace_semantic_projection(
+    source: Mapping[str, Any], current: Mapping[str, Any]
+) -> bool:
+    """Compare executable prefix semantics, excluding source-only wrapper labels."""
+    return all(
+        current.get(key) == value
+        for key, value in source.items()
+        if not key.startswith(SOURCE_WRAPPER_METADATA_PREFIXES)
+    )
 
 
 def _stage(args: argparse.Namespace) -> Path:
@@ -391,7 +406,7 @@ def _raw_rows(
         prefix_trace = bool(
             full
             and all(
-                r8r7.r8.r4._source_trace_projection(reference, current)
+                _source_trace_semantic_projection(reference, current)
                 for current, reference in zip(
                     trace[:PREFIX_END], source["controller_trace"][:PREFIX_END]
                 )

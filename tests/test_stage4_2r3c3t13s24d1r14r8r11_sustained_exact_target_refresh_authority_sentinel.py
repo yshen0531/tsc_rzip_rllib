@@ -9,6 +9,10 @@ from unittest import mock
 
 import numpy as np
 
+from docs.codex.audit_tools import (
+    stage4_2r3c3t13s24d1r14r8r11_independent_forensics as independent,
+    stage4_2r3c3t13s24d1r14r8r11_source_prefix_reporting_hotfix as reporting_hotfix,
+)
 from tsc_rzip_rllib.diagnostics import (
     stage4_2r3c3t13s24d1r14r6_direction0_replacement_sentinel as r6,
     stage4_2r3c3t13s24d1r14r8r11_sustained_exact_target_refresh_authority_sentinel as sentinel,
@@ -88,6 +92,26 @@ class SustainedExactTargetRefreshAuthoritySentinelTests(unittest.TestCase):
         self.assertNotIn(
             "stage4_2r3c3t13s24d1r14r8r11_sustained_exact_target_refresh_authority_sentinel as",
             source,
+        )
+
+    def test_source_wrapper_metadata_is_not_executable_prefix_semantics(self) -> None:
+        source = {
+            "action_norm_tsc": [0.0] * 14,
+            "r3c3t13s24d1r14r4_controller_revision": "old-wrapper",
+            "r3c3t13s24d1r14r8r7_event": "none",
+        }
+        current = {"action_norm_tsc": [0.0] * 14}
+        self.assertTrue(independent._source_trace_semantic_projection(source, current))
+        self.assertTrue(reporting_hotfix._semantic_projection(source, current))
+        current["action_norm_tsc"][0] = 1.0
+        self.assertFalse(independent._source_trace_semantic_projection(source, current))
+        self.assertFalse(reporting_hotfix._semantic_projection(source, current))
+
+    def test_reporting_hotfix_freezes_primary_controller_module_hash(self) -> None:
+        path = ROOT / reporting_hotfix.PRIMARY_MODULE
+        self.assertEqual(
+            hashlib.sha256(path.read_bytes()).hexdigest(),
+            reporting_hotfix.ORIGINAL_PRIMARY_MODULE_SHA256,
         )
 
     def test_launcher_uses_server_venv_direct_files_and_phase_commands(self) -> None:
