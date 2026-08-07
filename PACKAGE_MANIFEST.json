@@ -1133,6 +1133,6 @@
     "tsc_rzip_rllib/utils/config.py",
     "tsc_rzip_rllib/utils/ray_runtime.py"
   ],
-  "audit_hotfix_checkpoint": "c95790a",
-  "audit_hotfix_scope": "Independent raw inventory field names only: path/bytes/files normalized to the existing name/size/rows canonical schema; no raw, spec, controller, model, gate, or route semantics changed."
+  "audit_hotfix_checkpoint": "375b7eb",
+  "audit_hotfix_scope": "Independent raw inventory canonicalization only: field names and the exact name-NUL-size-NUL-sha-newline digest accumulator now match the primary inventory; no raw, spec, controller, model, gate, or route semantics changed."
 }
