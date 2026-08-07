@@ -4,6 +4,14 @@
 
 - Design / implementation / execution package: `6287ff6 / a1a60a9 /
   d8d231e`; inventory-reporting fix / runtime hotfix: `a39c5a9 / 4a8b558`.
+- Final forensic / audited-package checkpoints: `dbfe40f / 1463342`.
+- Final package declared / direct-copy total: `996 / 998`; manifest / sums
+  SHA-256: `0c4b289d45fe851d90209a7de122cf010ee8fadcc95f5bb5d76799fbcbe32cdb /
+  efe7be132c64e6fb01155d26ed9b8e41e454e77d08a5d85a2c3f55d70f9bb40e`.
+- Final local / staging / installed full tests: `1219/1219 / 1219/1219 /
+  1219/1219`; one expected server skip. Staging and installed validation log
+  SHA-256: `82da01c3158c127f7860cfae2abae3ca870b573e53ee29a4c0cabb8035cf89b6 /
+  6105122cf8862526366d0182931a05f9121ee0373997f27d08e07ffd9c36e720`.
 - Remote output:
   `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1`.
 - Valid authentic raw: baseline `16/16`, multipulse `32/32`; exact issues /
