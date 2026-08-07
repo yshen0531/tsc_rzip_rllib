@@ -1,0 +1,17 @@
+[R8R7] user=yangshen0711 host=master command=offline-independent run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1
+[R8R7] conditional maximum 48 fresh sentinel trajectories; all are forbidden from expert and learning data.
+{
+  "artifact_hash_agreement": true,
+  "audit_kind": "offline_independent",
+  "combined_tube_sha256": "f5afa50a149ce858187833aade6e5ef91433c42016fc7d70986543deecd74759",
+  "new_raw_count": 0,
+  "passed": true,
+  "plant_advance_count": 0,
+  "primary_numerical_agreement": true,
+  "primary_outcome_agreement": true,
+  "primary_sha256": "4cdbfdc3ce93faf56f7e24cbeb1a60ccaba8fc1f69a07277b8511b9874ec18c2",
+  "response_model_sha256": "d2bcca31e135c4faf99a93d64391fdc96bb5de44b8705d177e2219c6c000e84e",
+  "response_tube_sha256": "c31b4d3b84bdc7ab9f399bd3563798989c94e5f373536b42ccb19f8ef06be128",
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R7"
+}

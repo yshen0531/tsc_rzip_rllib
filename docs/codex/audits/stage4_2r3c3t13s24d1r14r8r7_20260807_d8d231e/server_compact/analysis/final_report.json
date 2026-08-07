@@ -1,0 +1,621 @@
+{
+  "all_stage_trajectories_allowed_in_expert_dataset": false,
+  "artifact_hash_agreement": true,
+  "baseline_evaluation": {
+    "context_counts": {
+      "p5_q1_a0p750_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p5_q1_a0p750_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p5_q1_a0p900_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p5_q1_a0p900_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p5_q2_a0p750_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p5_q2_a0p750_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p5_q2_a0p900_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p5_q2_a0p900_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q1_a0p750_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q1_a0p750_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q1_a0p900_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q1_a0p900_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q2_a0p750_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q2_a0p750_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q2_a0p900_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      },
+      "p9_q2_a0p900_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 4,
+        "point_required": 3,
+        "total": 4,
+        "tube_pass_count": 4,
+        "tube_required": 3
+      }
+    },
+    "direction_counts": {},
+    "finite_exclusion_violation_count": 0,
+    "maximum_absolute_physical_error": [
+      0.0001621501009566728,
+      0.0002140064995483959,
+      0.005186725800019923,
+      0.007923352132279215,
+      7.328628901270839
+    ],
+    "maximum_absolute_scaled_point_error": 0.07923352132279216,
+    "passed": true,
+    "phase": "baseline",
+    "point_pass_count": 64,
+    "point_required": 61,
+    "row_count": 64,
+    "sign_counts": {},
+    "tube_containment_count": 64,
+    "tube_required": 61
+  },
+  "baseline_execution_pass_count": 16,
+  "baseline_raw_inventory": {
+    "bytes": 487298,
+    "count": 16,
+    "digest": "46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5",
+    "rows": [
+      {
+        "name": "r8r7_baseline_00.json.gz",
+        "sha256": "9708ba1f22b28a85167916d4720c893540c8b9f2776ac7d6239ec54fdacf3888",
+        "size": 29963
+      },
+      {
+        "name": "r8r7_baseline_01.json.gz",
+        "sha256": "340c5ff7e4669a223012e7f47b815903087ae597c154a71a1c69012dda9f70e5",
+        "size": 29979
+      },
+      {
+        "name": "r8r7_baseline_02.json.gz",
+        "sha256": "a89a2acb301d71527c521d428d42ed64822bc0f167de0964e66880bc35fc7982",
+        "size": 29934
+      },
+      {
+        "name": "r8r7_baseline_03.json.gz",
+        "sha256": "8491cf47d2aa436f7662889abdf2e727fbce0fb96c117d90a92fea33cced751d",
+        "size": 29940
+      },
+      {
+        "name": "r8r7_baseline_04.json.gz",
+        "sha256": "f617f36468c5c380ffaaed829f17e0f6e00da3225fce03cf783a0401ba519656",
+        "size": 30807
+      },
+      {
+        "name": "r8r7_baseline_05.json.gz",
+        "sha256": "77abe7b702265ddbf3923eb708de41eebb49cedded5e56442bc346c644a270d4",
+        "size": 30858
+      },
+      {
+        "name": "r8r7_baseline_06.json.gz",
+        "sha256": "990ffa0f47d9c6278862c7e262ca58897995baf31026819b2bba7826fe582afc",
+        "size": 31714
+      },
+      {
+        "name": "r8r7_baseline_07.json.gz",
+        "sha256": "716635ba32af06dc6e0e54e1bdecac7d87149fe07e9e9619b7bb27a088e40a06",
+        "size": 31603
+      },
+      {
+        "name": "r8r7_baseline_08.json.gz",
+        "sha256": "137f64de7602fecea60d8f4800015b8da389e1f6dc7815b9144b285fbb00e96a",
+        "size": 29757
+      },
+      {
+        "name": "r8r7_baseline_09.json.gz",
+        "sha256": "958d99484bf336e8c16116b74b0b9ff1f582075e973037b6d1ed78126ad26949",
+        "size": 29742
+      },
+      {
+        "name": "r8r7_baseline_10.json.gz",
+        "sha256": "ae3087fbd731ecb346f408d8d8a144b3b9292ba4149cc42b5637f82cfae18ad5",
+        "size": 29475
+      },
+      {
+        "name": "r8r7_baseline_11.json.gz",
+        "sha256": "be076e10988fb427d6c7641f20b0dd6b38e343884d8eec922c0e15a0a0b0c1b2",
+        "size": 29774
+      },
+      {
+        "name": "r8r7_baseline_12.json.gz",
+        "sha256": "6cda4769638dd3d692ae16fe2fac7c05ef8ecb007002ec256f2c93121b317dcc",
+        "size": 31446
+      },
+      {
+        "name": "r8r7_baseline_13.json.gz",
+        "sha256": "6a4dcaff7cb8cad621d13ff88618bf4a8372a6b993f9108b669add6eb01439c7",
+        "size": 31349
+      },
+      {
+        "name": "r8r7_baseline_14.json.gz",
+        "sha256": "fde140538a928d122cd8e2f91f2872af621607780b8b7073d3703b614d383ff3",
+        "size": 30422
+      },
+      {
+        "name": "r8r7_baseline_15.json.gz",
+        "sha256": "b3f10ce96817631294bb3d6b643b3eb26d483fe0a955a52268e966627839ab15",
+        "size": 30535
+      }
+    ]
+  },
+  "campaign_identity": "fresh_multipulse_static_observer_interaction_sentinel_v1",
+  "combined_tube_sha256": "f5afa50a149ce858187833aade6e5ef91433c42016fc7d70986543deecd74759",
+  "formal_tracking_diagnostic_only": {
+    "evaluated": 32,
+    "formal_contract_pass_count_diagnostic_only": 12
+  },
+  "gate_a_qualified": false,
+  "independent_sha256": "6334c08a1acbc2b6c72cf6207c5210bf9d72fe52f79d271d5ac35c875058a9ae",
+  "mpc_validated": false,
+  "multipulse_evaluation": {
+    "context_counts": {
+      "p5_q1_a0p750_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p5_q1_a0p750_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p5_q1_a0p900_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p5_q1_a0p900_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p5_q2_a0p750_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p5_q2_a0p750_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p5_q2_a0p900_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p5_q2_a0p900_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q1_a0p750_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q1_a0p750_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q1_a0p900_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q1_a0p900_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q2_a0p750_gap3_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q2_a0p750_gap3_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q2_a0p900_gap4_settle4|minus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      },
+      "p9_q2_a0p900_gap4_settle4|plus_first": {
+        "passed": true,
+        "point_pass_count": 8,
+        "point_required": 7,
+        "total": 8,
+        "tube_pass_count": 8,
+        "tube_required": 7
+      }
+    },
+    "direction_counts": {
+      "0": {
+        "passed": true,
+        "point_pass_count": 32,
+        "total": 32,
+        "tube_pass_count": 32
+      },
+      "1": {
+        "passed": true,
+        "point_pass_count": 32,
+        "total": 32,
+        "tube_pass_count": 32
+      },
+      "2": {
+        "passed": true,
+        "point_pass_count": 32,
+        "total": 32,
+        "tube_pass_count": 32
+      },
+      "3": {
+        "passed": true,
+        "point_pass_count": 32,
+        "total": 32,
+        "tube_pass_count": 32
+      }
+    },
+    "finite_exclusion_violation_count": 0,
+    "maximum_absolute_physical_error": [
+      0.0001802685943390969,
+      0.00023409302209650984,
+      0.005965536808307548,
+      0.008839417180960952,
+      7.920352921475526
+    ],
+    "maximum_absolute_scaled_point_error": 0.08839417180960951,
+    "passed": true,
+    "phase": "multipulse",
+    "point_pass_count": 128,
+    "point_required": 116,
+    "row_count": 128,
+    "sign_counts": {
+      "-1": {
+        "passed": true,
+        "point_pass_count": 64,
+        "total": 64,
+        "tube_pass_count": 64
+      },
+      "1": {
+        "passed": true,
+        "point_pass_count": 64,
+        "total": 64,
+        "tube_pass_count": 64
+      }
+    },
+    "tube_containment_count": 128,
+    "tube_required": 116
+  },
+  "multipulse_execution_pass_count": 32,
+  "multipulse_raw_inventory": {
+    "bytes": 1068664,
+    "count": 32,
+    "digest": "d8435c8cd61fd082e143d79a3628ad2274780faefc6b676367df917355f49e31",
+    "rows": [
+      {
+        "name": "r8r7_multipulse_00_0.json.gz",
+        "sha256": "bd130d2b69535cfe37c45b78671a730f4182626c96f44696effbf6fce3859d67",
+        "size": 32912
+      },
+      {
+        "name": "r8r7_multipulse_00_1.json.gz",
+        "sha256": "b5a676f3fb947c2a052c278de40c17b2a3e5f0e4ff26570b483be3278be63325",
+        "size": 32820
+      },
+      {
+        "name": "r8r7_multipulse_01_0.json.gz",
+        "sha256": "ec535d3f0138962962a8cbfa415b6da896599f0b7602699f1fdeb6c41a721025",
+        "size": 32886
+      },
+      {
+        "name": "r8r7_multipulse_01_1.json.gz",
+        "sha256": "2a6ec04117d34f9ce5ea0b32b2c612920ae65025176273d10eb4ebef8392470c",
+        "size": 32819
+      },
+      {
+        "name": "r8r7_multipulse_02_0.json.gz",
+        "sha256": "aa7707da2e3bf5c5523809b28985b2561e29faf926c1c8ec0c50b570b7b068db",
+        "size": 32803
+      },
+      {
+        "name": "r8r7_multipulse_02_1.json.gz",
+        "sha256": "8876a33ff8046b47caab354e17e125be2ded46dd33f713cc503317ed666b8886",
+        "size": 32821
+      },
+      {
+        "name": "r8r7_multipulse_03_0.json.gz",
+        "sha256": "9bca78f5bf9c2d00b6d360d7198cd13318bb58c204b22567a1ad77f8e617d97f",
+        "size": 32889
+      },
+      {
+        "name": "r8r7_multipulse_03_1.json.gz",
+        "sha256": "7be1eb0ca0cdf72cf73b8c5f533034b81e2247426d8d5c4f9c0a1b5c6de42d84",
+        "size": 32896
+      },
+      {
+        "name": "r8r7_multipulse_04_0.json.gz",
+        "sha256": "b4912e065c41c81d8c9f779ef10ed5a6584beb7ade5ce9f71c21ce22dcb75fd7",
+        "size": 33780
+      },
+      {
+        "name": "r8r7_multipulse_04_1.json.gz",
+        "sha256": "cbc3754a0890b52cc530253972111bf9d4de99deeff1f5cac00eb46e48720218",
+        "size": 33620
+      },
+      {
+        "name": "r8r7_multipulse_05_0.json.gz",
+        "sha256": "6b4dbd445385ffd53a9c3074f791fb646c45465bb4ba8cd5ee51a2f5924b998d",
+        "size": 33775
+      },
+      {
+        "name": "r8r7_multipulse_05_1.json.gz",
+        "sha256": "90434f98071e6f1e368c8cccb240fda05847e7d84bdb9c6cd151eb46e7cfe811",
+        "size": 33724
+      },
+      {
+        "name": "r8r7_multipulse_06_0.json.gz",
+        "sha256": "0ccabcea3b34b5861f4da852c1d40bff4e81822c6d1befcc85bd3c79ecf050d4",
+        "size": 34684
+      },
+      {
+        "name": "r8r7_multipulse_06_1.json.gz",
+        "sha256": "a5b75111f576fe162ec16f7e4b13407c2187aaea04dc7d47a0bdab799183905e",
+        "size": 34630
+      },
+      {
+        "name": "r8r7_multipulse_07_0.json.gz",
+        "sha256": "0cca70871af298c7eb306857941f5360f82b2667a1f5e926816e3e8878092080",
+        "size": 34576
+      },
+      {
+        "name": "r8r7_multipulse_07_1.json.gz",
+        "sha256": "7aec4b7e5907403209e5c84b27b7701db15f7c991d68846da48ce57667025455",
+        "size": 34503
+      },
+      {
+        "name": "r8r7_multipulse_08_0.json.gz",
+        "sha256": "b3b9598fa86114df95bf09a789a3a1fbbe9b804a0ab20a5a1cd631f53b9cd147",
+        "size": 32769
+      },
+      {
+        "name": "r8r7_multipulse_08_1.json.gz",
+        "sha256": "c23a9bddb59fd586806e6c9006d98f5e4d508ba137961fdeedb7e2cb9183b428",
+        "size": 32677
+      },
+      {
+        "name": "r8r7_multipulse_09_0.json.gz",
+        "sha256": "9b2faaf337b43034d8ad06f27e4103800a0774811b30f8616c230708de849f82",
+        "size": 32750
+      },
+      {
+        "name": "r8r7_multipulse_09_1.json.gz",
+        "sha256": "3c77d4a8f5b1aa43bfb00865fe25f99faf4207bccf0a5906061c9101f70ec0f6",
+        "size": 32653
+      },
+      {
+        "name": "r8r7_multipulse_10_0.json.gz",
+        "sha256": "fceac924390de8ce509579f43ff1bf277bc2b66347fed8164b3615d522cc3103",
+        "size": 32379
+      },
+      {
+        "name": "r8r7_multipulse_10_1.json.gz",
+        "sha256": "aaacc1e572521c99363e57d5d623671ae83ad060859e5a6842f72c2c596bee5a",
+        "size": 32344
+      },
+      {
+        "name": "r8r7_multipulse_11_0.json.gz",
+        "sha256": "58a1a9286f72432f67436a0e7c6254c7077dcbbe7d504a03c0a1488b9e313ca4",
+        "size": 32679
+      },
+      {
+        "name": "r8r7_multipulse_11_1.json.gz",
+        "sha256": "70982894d9a8ce3760a58db83c285f8e9e3e48527f3a07fe9b234aa7ee3281f4",
+        "size": 32633
+      },
+      {
+        "name": "r8r7_multipulse_12_0.json.gz",
+        "sha256": "3badcaa5db170116a11898793cc51818fb392a6bc30a69432d6e444192a7c777",
+        "size": 34489
+      },
+      {
+        "name": "r8r7_multipulse_12_1.json.gz",
+        "sha256": "f1cb9ad8132690526f0f569ae6fad1f01a0fdd15df216ad5324a7040d44076f1",
+        "size": 34511
+      },
+      {
+        "name": "r8r7_multipulse_13_0.json.gz",
+        "sha256": "2c452d765033ce24c8e32c1e2a5e3e4c8ec73a2f929b200dc3ca1967c0032062",
+        "size": 34460
+      },
+      {
+        "name": "r8r7_multipulse_13_1.json.gz",
+        "sha256": "445f1a0242777a6e6043d4678e599f41dd840196a5e5df4d971c2ae57270791d",
+        "size": 34382
+      },
+      {
+        "name": "r8r7_multipulse_14_0.json.gz",
+        "sha256": "544d0d39b12da69a9522a5928f82ad26a814c7f041d2d84cc24026b396c5e23c",
+        "size": 33379
+      },
+      {
+        "name": "r8r7_multipulse_14_1.json.gz",
+        "sha256": "5e55a47f2deb6e66e90a4156c5597db2249be61126fb23b082b7044c1551cdec",
+        "size": 33406
+      },
+      {
+        "name": "r8r7_multipulse_15_0.json.gz",
+        "sha256": "3cf00801d8274cb8490c8628d2d5d633df5f85ce1fc416e2614f67c3896425fb",
+        "size": 33535
+      },
+      {
+        "name": "r8r7_multipulse_15_1.json.gz",
+        "sha256": "65119c20f22d3a560bd5d644ffded54f0f5a53c0df74929f5eabfe76133375f4",
+        "size": 33480
+      }
+    ]
+  },
+  "new_raw_count": 48,
+  "passed": true,
+  "primary_numerical_agreement": true,
+  "primary_outcome_agreement": true,
+  "primary_summary_sha256": "c67314a48829d5c6d528ac61cfb06b813fb6a21be8b1122bb55bde0aa516d6aa",
+  "real_tsc_executed": true,
+  "response_model_sha256": "d2bcca31e135c4faf99a93d64391fdc96bb5de44b8705d177e2219c6c000e84e",
+  "response_tube_sha256": "c31b4d3b84bdc7ab9f399bd3563798989c94e5f373536b42ccb19f8ef06be128",
+  "route": "FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED",
+  "safe_exact_cancel_count": 128,
+  "safe_exact_issue_count": 128,
+  "schema_version": 1,
+  "scientific_gate_passed": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R7"
+}

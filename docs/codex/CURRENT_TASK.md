@@ -5034,13 +5034,14 @@ SHA-256
 cf948786db23de51a5f30a8407cee30d06e8ddf1cafe4476f0c45a78c6a7eeea
 ```
 
-The active task is to freeze a new-identity fresh authentic interaction
-sentinel before any implementation, metric, or TSC. It must use the selected
-static observer, causal startup/fallback, exact Card15 actions, hard current
-and action bounds, a frozen finite context/action matrix, and prospective
-acceptance criteria. A pass may authorize only a separately frozen genuine
-receding-horizon controller design. MPC, Gate A, expert data, BC, DAgger,
-residual RL, and all R8-family trajectories as learning data remain blocked.
+R8R7 has now passed its fresh authentic interaction gate. The active task is
+to freeze a new-identity genuine receding-horizon controller design before
+any implementation, optimizer result, controller trajectory, or outcome is
+seen. It must use the qualified static observer and response/tube artifacts,
+causal startup/fallback, exact Card15 actions, hard current and action bounds,
+a frozen finite controller matrix, and prospective acceptance criteria. Gate
+A, expert data, BC, DAgger, residual RL, and all R8-family trajectories as
+learning data remain blocked.
 
 ## 86. Frozen D1R14R8R7 fresh multipulse interaction-sentinel task
 
@@ -5096,3 +5097,31 @@ all frozen experiment semantics unchanged, validate in the server virtualenv,
 then execute the same 32 specs once. Do not count the failed attempts as
 scientific multipulse trajectories and do not create a new identity unless a
 plant advance/action is discovered or an experiment semantic must change.
+
+## 88. Final R8R7 result and MPC-design handoff
+
+The audited hotfix preserved all 32 pre-action failure files and then executed
+the same frozen specifications once. Baseline and multipulse execution passed
+`16/16` and `32/32`; raw inventories independently matched. Exact issue and
+cancellation gates passed `128/128 / 128/128`, with zero forbidden trace.
+
+The frozen model passed baseline point/tube `64/64 / 64/64` and multipulse
+point/tube `128/128 / 128/128`. Every context, direction, sign, tube cap, and
+finite-exclusion gate passed. Primary and independent numerical, outcome,
+route, inventory, and artifact hashes agree exactly. The final route is:
+
+```text
+FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED
+```
+
+Formal tracking remained diagnostic only (`6/16` baseline and `12/32`
+multipulse). R8R7 is a finite interaction-model qualification PASS, not a
+controller, MPC, formal-control, Gate A, or learning result. Every R8R7
+trajectory remains forbidden from expert/BC/DAgger/RL data.
+
+The active boundary is to freeze a separately identified genuine receding-
+horizon MPC design before implementation or outcome inspection. It must then
+be implemented and tested through the deterministic core and every finite
+qualification axis in Section 0.1. Do not claim Gate A until all those axes
+pass, and do not create expert data or enter BC/DAgger without the user's
+confirmation at Gate A.

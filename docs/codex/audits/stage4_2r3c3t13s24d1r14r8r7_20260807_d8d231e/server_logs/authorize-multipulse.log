@@ -1,0 +1,7 @@
+[R8R7] user=yangshen0711 host=master command=authorize-multipulse run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1
+[R8R7] conditional maximum 48 fresh sentinel trajectories; all are forbidden from expert and learning data.
+{
+  "passed": true,
+  "phase": "multipulse_authorized",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R7"
+}

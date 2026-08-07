@@ -1,0 +1,68 @@
+[R8R7] user=yangshen0711 host=master command=multipulse run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1
+[R8R7] conditional maximum 48 fresh sentinel trajectories; all are forbidden from expert and learning data.
+2026-08-07 17:10:56,434	INFO worker.py:2012 -- Started a local Ray instance.
+/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/lib/python3.12/site-packages/ray/_private/worker.py:2051: FutureWarning: Tip: In future versions of Ray, Ray will no longer override accelerator visible devices env var if num_gpus=0 or num_gpus=None (default). To enable this behavior and turn off this error message, set RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
+  warnings.warn(
+[R8R7 multipulse] ray_capacity requested=32 cluster_cpus=32 pending=32 actors=32 initialized_now=1
+[R8R7 multipulse] 1/32
+[R8R7 multipulse] 2/32
+[R8R7 multipulse] 3/32
+[R8R7 multipulse] 4/32
+[R8R7 multipulse] 5/32
+[R8R7 multipulse] 6/32
+[R8R7 multipulse] 7/32
+[R8R7 multipulse] 8/32
+[R8R7 multipulse] 9/32
+[R8R7 multipulse] 10/32
+[R8R7 multipulse] 11/32
+[R8R7 multipulse] 12/32
+[R8R7 multipulse] 13/32
+[R8R7 multipulse] 14/32
+[R8R7 multipulse] 15/32
+[R8R7 multipulse] 16/32
+[R8R7 multipulse] 17/32
+[R8R7 multipulse] 18/32
+[R8R7 multipulse] 19/32
+[R8R7 multipulse] 20/32
+[R8R7 multipulse] 21/32
+[R8R7 multipulse] 22/32
+[R8R7 multipulse] 23/32
+[R8R7 multipulse] 24/32
+[R8R7 multipulse] 25/32
+[R8R7 multipulse] 26/32
+[R8R7 multipulse] 27/32
+[R8R7 multipulse] 28/32
+[R8R7 multipulse] 29/32
+[R8R7 multipulse] 30/32
+[R8R7 multipulse] 31/32
+[R8R7 multipulse] 32/32
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py", line 10, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py", line 1972, in main
+    result = execute(ctx, command=args.command, backend=args.backend, resume=args.resume)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py", line 1904, in execute
+    return run_phase(ctx, command, backend=backend, resume=resume)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py", line 1400, in run_phase
+    primary = audit_raw_phase(ctx, phase)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py", line 1389, in audit_raw_phase
+    _write(ctx.paths.analysis / f"{phase}_raw_primary.json", report)
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py", line 58, in _write
+    json.dumps(value, indent=2, sort_keys=True, ensure_ascii=False, allow_nan=False)
+  File "/usr/local/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 202, in encode
+    chunks = list(chunks)
+             ^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 432, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/local/lib/python3.12/json/encoder.py", line 398, in _iterencode_dict
+    yield _floatstr(value)
+          ^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/json/encoder.py", line 240, in floatstr
+    raise ValueError(
+ValueError: Out of range float values are not JSON compliant: inf

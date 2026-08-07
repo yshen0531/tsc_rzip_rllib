@@ -1,5 +1,36 @@
 # Current status
 
+> **R8R7 final fresh-interaction qualification (2026-08-07
+> Asia/Shanghai).** R8R7 is final as
+> `FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED`.
+> Its 16 fresh zero-action baselines and 32 fresh four-pulse trajectories all
+> completed with exact restart/source-prefix/calibration/causality, finite
+> raw, zero forbidden trace, and unchanged hard action/current/Card15 gates.
+> Baseline raw is 16 files / 487298 bytes / digest
+> `46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5`;
+> multipulse raw is 32 files / 1068664 bytes / digest
+> `d8435c8cd61fd082e143d79a3628ad2274780faefc6b676367df917355f49e31`.
+>
+> The frozen static observer plus fixed R8R1 response model passed baseline
+> point/tube `64/64 / 64/64` and multipulse point/tube `128/128 / 128/128`.
+> Every baseline context passed 4/4, every multipulse context passed 8/8,
+> every direction passed 32/32, both signs passed 64/64, and there were zero
+> finite exclusions. Primary and structurally independent raw/model audits
+> agree exactly. Final report / manifest / state SHA-256 values are
+> `9ca6afce52442c1b7470cb8ff13a2eac4aab32de1e05a898d206f5fe76e01005`,
+> `ae89fb2df01cd6758676baa895880e2005a1f8967c62ea4ae671ab61ea771e24`,
+> and `04f643e09f414c5d5a305f1a3584450e12e5a39e8d062d454480df3c8d95fe7e`.
+>
+> The preserved first phase-two failure remains classified as a pre-action
+> implementation/reporting error: all 32 files contain zero action and zero
+> plant advance and are not counted in the scientific result. Formal tracking
+> was diagnostic only (`6/16` baseline, `12/32` multipulse). R8R7 is therefore
+> a finite interaction-model PASS, not MPC, formal-control, Gate A, or a
+> learning result. All R8R7 trajectories are forbidden from expert data. The
+> next authorized boundary is a separately frozen genuine receding-horizon
+> MPC design. Full audit:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_FORENSIC_REPORT.md`.
+
 > **R8R7 pre-action runtime hotfix checkpoint (2026-08-07
 > Asia/Shanghai).** R8R7 phase-one baseline completed 16/16 authentic raw
 > with exact restart/source prefix/causality and passed the frozen static

@@ -1,5 +1,31 @@
 # Run ledger
 
+## Stage4.2R3c3T13S24D1R14R8R7 final fresh multipulse interaction result
+
+- Design / implementation / execution package: `6287ff6 / a1a60a9 /
+  d8d231e`; inventory-reporting fix / runtime hotfix: `a39c5a9 / 4a8b558`.
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1`.
+- Valid authentic raw: baseline `16/16`, multipulse `32/32`; exact issues /
+  cancellations `128/128 / 128/128`; zero forbidden traces.
+- Raw inventories: baseline `16 / 487298 /
+  46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5`;
+  multipulse `32 / 1068664 /
+  d8435c8cd61fd082e143d79a3628ad2274780faefc6b676367df917355f49e31`.
+- Frozen point/tube gates: baseline `64/64 / 64/64`; multipulse
+  `128/128 / 128/128`; all context, direction, sign, and exclusion gates
+  passed.
+- Independent raw inventory, numerical, outcome, route, and artifact hashes
+  agree exactly with primary.
+- Formal tracking diagnostic only: baseline `6/16`, multipulse `12/32`.
+- Final route:
+  `FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED`.
+- Classification: finite fresh-interaction model PASS; no MPC, Gate A,
+  expert-data, or learning conclusion. All R8R7 trajectories are forbidden
+  from expert and learning datasets.
+- Report:
+  `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_FORENSIC_REPORT.md`.
+
 ## Stage4.2R3c3T13S24D1R14R8R7 pre-action runtime hotfix
 
 - Phase-one baseline: authentic raw `16/16`; static observer point/tube

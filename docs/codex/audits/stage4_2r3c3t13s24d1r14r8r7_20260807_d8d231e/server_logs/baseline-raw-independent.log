@@ -1,0 +1,11 @@
+[R8R7] user=yangshen0711 host=master command=baseline-raw-independent run_dir=/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1
+[R8R7] conditional maximum 48 fresh sentinel trajectories; all are forbidden from expert and learning data.
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_independent_forensics.py", line 640, in <module>
+    main()
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_independent_forensics.py", line 633, in main
+    result = raw_audit(args, cfg, args.audit_kind.removesuffix("_raw"))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_independent_forensics.py", line 306, in raw_audit
+    raise ValueError(f"R8R7 independent {phase} raw audit disagrees")
+ValueError: R8R7 independent baseline raw audit disagrees

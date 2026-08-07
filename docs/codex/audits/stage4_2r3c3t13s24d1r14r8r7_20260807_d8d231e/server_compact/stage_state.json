@@ -1,0 +1,28 @@
+{
+  "baseline_model_independent_sha256": "d7f56d63074bdc10a9b6de233fa6a8de2658c6900d4fa6a827e28d44034796ed",
+  "baseline_model_primary_summary_sha256": "0c407bc120403024c81d1e7347edddb2f0d41f1baa227ec6d9337ddd0068663e",
+  "baseline_raw_inventory_digest": "46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5",
+  "combined_tube_sha256": "f5afa50a149ce858187833aade6e5ef91433c42016fc7d70986543deecd74759",
+  "final_report_sha256": "9ca6afce52442c1b7470cb8ff13a2eac4aab32de1e05a898d206f5fe76e01005",
+  "finished": true,
+  "multipulse_model_independent_sha256": "6334c08a1acbc2b6c72cf6207c5210bf9d72fe52f79d271d5ac35c875058a9ae",
+  "multipulse_model_primary_summary_sha256": "c67314a48829d5c6d528ac61cfb06b813fb6a21be8b1122bb55bde0aa516d6aa",
+  "multipulse_outcomes_opened": true,
+  "multipulse_raw_inventory_digest": "d8435c8cd61fd082e143d79a3628ad2274780faefc6b676367df917355f49e31",
+  "new_raw_count": 48,
+  "offline_independent_sha256": "e30f5ff86817a05a40f0fd5f809964a08379a4af26fc8a043003cad58855b3a8",
+  "package_digest": "cb816e6473e17c6b8f8bdaf2e67564af381cde756ef0b4eb3526ed1a46ada34c",
+  "phase_status": "complete",
+  "proposed_route": "FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED",
+  "real_tsc_executed": true,
+  "response_model_sha256": "d2bcca31e135c4faf99a93d64391fdc96bb5de44b8705d177e2219c6c000e84e",
+  "response_tube_sha256": "c31b4d3b84bdc7ab9f399bd3563798989c94e5f373536b42ccb19f8ef06be128",
+  "schema_version": 1,
+  "spec_digest": "0cdf86de7a6fca44be8e0bf3200f3c96b94cf264fba38f8b4eb0253cacbe576d",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R7",
+  "stop_reason": "",
+  "verdict": {
+    "passed": true,
+    "route": "FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED"
+  }
+}

@@ -1,0 +1,71 @@
+ea8f4b5c8711a101869c2edfdb20c204d63a90a50f0a192b20d574586326284f  docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_independent_forensics.py
+6d3df7378fe11ca87faf80d861522a148b302feaf2424f73a8a2550148540ebd  docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_raw_inventory_reporting_hotfix.py
+460865750079df07a99e80a326d19f4d2f9bb40743e5ae41c13c145c4a73792b  tests/test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.py
+eb8c9437bf85c44c4c7b6843fafb8e7026d1cf5010e11d0a65ab7a87ad8aaf02  tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py
+test_baseline_gate_is_context_stratified (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_baseline_gate_is_context_stratified) ... ok
+test_contract_and_self_test (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_contract_and_self_test) ... ok
+test_contract_rejects_schedule_gate_and_adaptation_mutation (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_contract_rejects_schedule_gate_and_adaptation_mutation) ... ok
+test_frozen_scope_schedule_and_model (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_frozen_scope_schedule_and_model) ... ok
+test_independent_does_not_import_primary_campaign (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_independent_does_not_import_primary_campaign) ... ok
+test_independent_inventory_matches_frozen_primary_digest_contract (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_independent_inventory_matches_frozen_primary_digest_contract) ... ok
+test_launcher_pins_existing_server_virtual_environment (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_launcher_pins_existing_server_virtual_environment) ... ok
+test_multipulse_constructor_uses_valid_inherited_placeholder_slot (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_multipulse_constructor_uses_valid_inherited_placeholder_slot) ... ok
+test_multipulse_gate_is_context_direction_and_sign_stratified (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_multipulse_gate_is_context_direction_and_sign_stratified) ... ok
+test_parsers_are_fail_closed (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_parsers_are_fail_closed) ... ok
+test_response_descriptor_is_causal (tests.test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.FreshMultipulseStaticObserverInteractionSentinelTests.test_response_descriptor_is_causal) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.010s
+
+OK
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=84 actors=84 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=120 actors=96 initialized_now=0
+..[test] ray_capacity requested=96 cluster_cpus=96 pending=12 actors=12 initialized_now=1
+[test] ray_capacity requested=96 cluster_cpus=96 pending=24 actors=24 initialized_now=0
+[test] ray_capacity requested=96 cluster_cpus=96 pending=150 actors=96 initialized_now=0
+........{
+  "verdict": "PASS_DAMPED_HOLD_40MM_CONFIRMED_ONLY",
+  "created_utc": "20260807_092145",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 1,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": true,
+      "worst_gate_tier": 1,
+      "mean_terminal_RZ_error_m": 0.041,
+      "max_terminal_velocity_m_per_s": 0.02,
+      "max_late_velocity_rms_m_per_s": 0.08
+    }
+  ]
+}
+.{
+  "verdict": "NO_CONFIRMED_HOLD",
+  "created_utc": "20260807_092145",
+  "hard_gate_changed_from_stage2": false,
+  "candidate_summaries": [
+    {
+      "candidate_id": "candidate",
+      "hall_of_fame_rank": 1,
+      "repeats": 1,
+      "successful_repeats": 0,
+      "all_repeats_strict_gate": false,
+      "all_repeats_relaxed_gate": false,
+      "worst_gate_tier": 99,
+      "mean_terminal_RZ_error_m": null,
+      "max_terminal_velocity_m_per_s": null,
+      "max_late_velocity_rms_m_per_s": null
+    }
+  ]
+}
+.....[Stage2 evaluation] candidate stored as failure because the result was not strict-JSON serializable: non-finite JSON number at $.trajectory[0].R: nan
+.................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................s.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 1219 tests in 7.490s
+
+OK (skipped=1)
+R8R7_HOTFIX_STAGING_VALIDATION_OK

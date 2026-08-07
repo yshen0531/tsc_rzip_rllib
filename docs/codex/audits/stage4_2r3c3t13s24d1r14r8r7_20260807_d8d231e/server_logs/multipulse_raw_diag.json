@@ -1,0 +1,620 @@
+{
+  "eight_event_count": 0,
+  "full_horizon_count": 0,
+  "raw_bytes": 145407,
+  "raw_count": 32,
+  "raw_digest": "7cadf53a6870980802009eef71e3d7c8e5c2707eb446d85f125851e239af160d",
+  "raw_inventory": [
+    {
+      "name": "r8r7_multipulse_00_0.json.gz",
+      "sha256": "1b5d37a92838f4d17f24770f5e92c08024db013ca96908abd743e25628bda2cb",
+      "size": 4446
+    },
+    {
+      "name": "r8r7_multipulse_00_1.json.gz",
+      "sha256": "5da58d93aa8deba404ae821f0c30291aa1b645ab61fd5448f8de65f9ad4d4dcd",
+      "size": 4444
+    },
+    {
+      "name": "r8r7_multipulse_01_0.json.gz",
+      "sha256": "b676f79cc2c6ebdb7aebcc00f3388828eea513887160ddb77a8ba4b7cbfc4ecd",
+      "size": 4437
+    },
+    {
+      "name": "r8r7_multipulse_01_1.json.gz",
+      "sha256": "b1229ff218c0d1df20127f275d2d8f3dafdc7540d512e18769872fa950ce7760",
+      "size": 4437
+    },
+    {
+      "name": "r8r7_multipulse_02_0.json.gz",
+      "sha256": "691c6cb5e82a48df61048e517539c72288944f4be94dc505e5d4e9ee93a4a9ce",
+      "size": 4435
+    },
+    {
+      "name": "r8r7_multipulse_02_1.json.gz",
+      "sha256": "0fea464798bfb1d8a9c9e585c19f26a073fd615528c8d72639b293f47af6d2cd",
+      "size": 4435
+    },
+    {
+      "name": "r8r7_multipulse_03_0.json.gz",
+      "sha256": "8746300a3aeb0816dda0f45afa1d67580c1b6e45c5eccde659b9af9c33f7cde9",
+      "size": 4425
+    },
+    {
+      "name": "r8r7_multipulse_03_1.json.gz",
+      "sha256": "68815986b0335b2ccf0dfdb0a0a9e6c8d8c136ea594309bc21ea2b080969f7b9",
+      "size": 4428
+    },
+    {
+      "name": "r8r7_multipulse_04_0.json.gz",
+      "sha256": "d3e50f55dd000266a675bdcd72af065afbfb253598826f169fc6f8edf11e5ee4",
+      "size": 4652
+    },
+    {
+      "name": "r8r7_multipulse_04_1.json.gz",
+      "sha256": "db36e096e9af752f4d28f8ea6e27d98e06a7c52e8c9bf8a2a2977e971da7eb93",
+      "size": 4651
+    },
+    {
+      "name": "r8r7_multipulse_05_0.json.gz",
+      "sha256": "d91f8d1906ae8c23963e0098e726be6e8d1bf0586bc6fd83df5dbee2286adfe0",
+      "size": 4665
+    },
+    {
+      "name": "r8r7_multipulse_05_1.json.gz",
+      "sha256": "0af0bf7b2ed3de62d3726642b7a56124a24d66de794dae480b096f72470eee4b",
+      "size": 4668
+    },
+    {
+      "name": "r8r7_multipulse_06_0.json.gz",
+      "sha256": "d7d4c57f60e01f69a4f88db5e547d26d604586b4944c11ed6853c8b7ab39aa09",
+      "size": 4683
+    },
+    {
+      "name": "r8r7_multipulse_06_1.json.gz",
+      "sha256": "8ee5e0de9445b2e49d789cb8ba807592803fff03c8f8c4e610a8b863be75fcfa",
+      "size": 4689
+    },
+    {
+      "name": "r8r7_multipulse_07_0.json.gz",
+      "sha256": "d815f005b018a2c0188413a636de52c29cdf2aabfec2f1be48ed397c6f020354",
+      "size": 4675
+    },
+    {
+      "name": "r8r7_multipulse_07_1.json.gz",
+      "sha256": "6a5a8115d2a937538e90d5f5d824a65616b5cd1b12281e36eb9949370df3f409",
+      "size": 4678
+    },
+    {
+      "name": "r8r7_multipulse_08_0.json.gz",
+      "sha256": "c54541320debb67590b8a75b34e0458d78bef961180c67e7a77b2ded8b03461b",
+      "size": 4417
+    },
+    {
+      "name": "r8r7_multipulse_08_1.json.gz",
+      "sha256": "7730e2293b38cda59b211a5dc3cc28848c440c3e0e0f73f791bc0dbba660d2a9",
+      "size": 4417
+    },
+    {
+      "name": "r8r7_multipulse_09_0.json.gz",
+      "sha256": "4b26d4ac474e22b164a7202a7dc083f63fc375a1eddee94cf5d7c9eb5c554ffb",
+      "size": 4419
+    },
+    {
+      "name": "r8r7_multipulse_09_1.json.gz",
+      "sha256": "cd43c6692fa0a71e193243fe3c5008cb3021c524cd3d4f3ed10a60d1ca2b3dc9",
+      "size": 4422
+    },
+    {
+      "name": "r8r7_multipulse_10_0.json.gz",
+      "sha256": "8fd16010b20d6be927c20fa4361301cb516cda3071aacf5c6528038f419d9635",
+      "size": 4403
+    },
+    {
+      "name": "r8r7_multipulse_10_1.json.gz",
+      "sha256": "77c6cd03438df80157c202a240bd2709c70ae06abefc8d8beb2d222f76b11ff8",
+      "size": 4401
+    },
+    {
+      "name": "r8r7_multipulse_11_0.json.gz",
+      "sha256": "3d64637576a1bdeae5d0320e5c2f6800df6f11c873e90a2de16b1bba994ae48e",
+      "size": 4416
+    },
+    {
+      "name": "r8r7_multipulse_11_1.json.gz",
+      "sha256": "73d26d5527d492417f84a017f1b63e38c488ea00536f03bf2d90121fc0699d9f",
+      "size": 4417
+    },
+    {
+      "name": "r8r7_multipulse_12_0.json.gz",
+      "sha256": "3605c3375a64ff837db2381fc9fabf5a834b13df9e83394bb45a7cf4c58633d5",
+      "size": 4664
+    },
+    {
+      "name": "r8r7_multipulse_12_1.json.gz",
+      "sha256": "0b4f926d397d3c623e33e84f02cc3f9e05a6324567c97882e11327e8e6837c12",
+      "size": 4668
+    },
+    {
+      "name": "r8r7_multipulse_13_0.json.gz",
+      "sha256": "24b1cc6628080319d35425f51b06658707965bbb59b944faf06152c336372320",
+      "size": 4651
+    },
+    {
+      "name": "r8r7_multipulse_13_1.json.gz",
+      "sha256": "2f563f7f6518c4e2042a60566b2b584e632a43322035fbc53a8aa5a6667c522e",
+      "size": 4654
+    },
+    {
+      "name": "r8r7_multipulse_14_0.json.gz",
+      "sha256": "067578543c2d04fce651f9b435215ce74a568c6dadc4303016732c4794718fd0",
+      "size": 4648
+    },
+    {
+      "name": "r8r7_multipulse_14_1.json.gz",
+      "sha256": "bafb49f1882d1220a1dd959c5cea6f5df188f688583c54cc3c714d27eeeb1dca",
+      "size": 4652
+    },
+    {
+      "name": "r8r7_multipulse_15_0.json.gz",
+      "sha256": "b6cdeba1cb9049844dcd2831c9e6c6127eb3c5fb3ace78e831d0c5b228c62f5c",
+      "size": 4654
+    },
+    {
+      "name": "r8r7_multipulse_15_1.json.gz",
+      "sha256": "19929d719a210f785aa5057e15914f94f8c8f0cc8eaac58cef4d334b635a590d",
+      "size": 4656
+    }
+  ],
+  "rows": [
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_00_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_00_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_01_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_01_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_02_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_02_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_03_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_03_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_04_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_04_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_05_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_05_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_06_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_06_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_07_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_07_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_08_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_08_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_09_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_09_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_10_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_10_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_11_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 35,
+      "experiment_id": "r8r7_multipulse_11_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_12_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_12_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_13_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_13_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_14_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_14_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_15_0",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    },
+    {
+      "completed": true,
+      "event_count": 0,
+      "events": [],
+      "expected_horizon": 37,
+      "experiment_id": "r8r7_multipulse_15_1",
+      "failure_class": "runtime_or_controller_error",
+      "failure_reason": "ValueError('D1R14R4 per-spec issue schedule changed')",
+      "maximum_action_abs": null,
+      "maximum_current_utilization_available": true,
+      "success": false,
+      "trace_length": 0,
+      "trajectory_length": 1
+    }
+  ],
+  "runtime_success_count": 0
+}

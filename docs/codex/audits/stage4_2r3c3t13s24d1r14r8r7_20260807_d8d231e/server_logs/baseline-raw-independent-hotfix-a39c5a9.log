@@ -1,0 +1,98 @@
+{
+  "audit_kind": "baseline_raw_independent",
+  "passed": true,
+  "passed_count": 16,
+  "primary_outcome_agreement": true,
+  "primary_sha256": "0a0e1bc0689a95d88aff856dee9f12e56e2aa89aabcce3f49403b0020aff87d1",
+  "raw_inventory": {
+    "bytes": 487298,
+    "count": 16,
+    "digest": "46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5",
+    "rows": [
+      {
+        "name": "r8r7_baseline_00.json.gz",
+        "sha256": "9708ba1f22b28a85167916d4720c893540c8b9f2776ac7d6239ec54fdacf3888",
+        "size": 29963
+      },
+      {
+        "name": "r8r7_baseline_01.json.gz",
+        "sha256": "340c5ff7e4669a223012e7f47b815903087ae597c154a71a1c69012dda9f70e5",
+        "size": 29979
+      },
+      {
+        "name": "r8r7_baseline_02.json.gz",
+        "sha256": "a89a2acb301d71527c521d428d42ed64822bc0f167de0964e66880bc35fc7982",
+        "size": 29934
+      },
+      {
+        "name": "r8r7_baseline_03.json.gz",
+        "sha256": "8491cf47d2aa436f7662889abdf2e727fbce0fb96c117d90a92fea33cced751d",
+        "size": 29940
+      },
+      {
+        "name": "r8r7_baseline_04.json.gz",
+        "sha256": "f617f36468c5c380ffaaed829f17e0f6e00da3225fce03cf783a0401ba519656",
+        "size": 30807
+      },
+      {
+        "name": "r8r7_baseline_05.json.gz",
+        "sha256": "77abe7b702265ddbf3923eb708de41eebb49cedded5e56442bc346c644a270d4",
+        "size": 30858
+      },
+      {
+        "name": "r8r7_baseline_06.json.gz",
+        "sha256": "990ffa0f47d9c6278862c7e262ca58897995baf31026819b2bba7826fe582afc",
+        "size": 31714
+      },
+      {
+        "name": "r8r7_baseline_07.json.gz",
+        "sha256": "716635ba32af06dc6e0e54e1bdecac7d87149fe07e9e9619b7bb27a088e40a06",
+        "size": 31603
+      },
+      {
+        "name": "r8r7_baseline_08.json.gz",
+        "sha256": "137f64de7602fecea60d8f4800015b8da389e1f6dc7815b9144b285fbb00e96a",
+        "size": 29757
+      },
+      {
+        "name": "r8r7_baseline_09.json.gz",
+        "sha256": "958d99484bf336e8c16116b74b0b9ff1f582075e973037b6d1ed78126ad26949",
+        "size": 29742
+      },
+      {
+        "name": "r8r7_baseline_10.json.gz",
+        "sha256": "ae3087fbd731ecb346f408d8d8a144b3b9292ba4149cc42b5637f82cfae18ad5",
+        "size": 29475
+      },
+      {
+        "name": "r8r7_baseline_11.json.gz",
+        "sha256": "be076e10988fb427d6c7641f20b0dd6b38e343884d8eec922c0e15a0a0b0c1b2",
+        "size": 29774
+      },
+      {
+        "name": "r8r7_baseline_12.json.gz",
+        "sha256": "6cda4769638dd3d692ae16fe2fac7c05ef8ecb007002ec256f2c93121b317dcc",
+        "size": 31446
+      },
+      {
+        "name": "r8r7_baseline_13.json.gz",
+        "sha256": "6a4dcaff7cb8cad621d13ff88618bf4a8372a6b993f9108b669add6eb01439c7",
+        "size": 31349
+      },
+      {
+        "name": "r8r7_baseline_14.json.gz",
+        "sha256": "fde140538a928d122cd8e2f91f2872af621607780b8b7073d3703b614d383ff3",
+        "size": 30422
+      },
+      {
+        "name": "r8r7_baseline_15.json.gz",
+        "sha256": "b3f10ce96817631294bb3d6b643b3eb26d483fe0a955a52268e966627839ab15",
+        "size": 30535
+      }
+    ]
+  },
+  "raw_inventory_digest": "46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5",
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R7",
+  "strict_parse_count": 16
+}

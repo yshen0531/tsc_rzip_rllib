@@ -1,0 +1,67 @@
+{
+  "all_stage_trajectories_allowed_in_expert_dataset": false,
+  "campaign_identity": "fresh_multipulse_static_observer_interaction_sentinel_v1",
+  "combined_tube_sha256": "f5afa50a149ce858187833aade6e5ef91433c42016fc7d70986543deecd74759",
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_370ms.json",
+  "config_sha256": "5378445f47fd9fff668166f28c00bf0c8ccfba6a8774f2bdb47371a962044be5",
+  "controller_revision": "exact_card15_fixed_canonical_multipulse_v42r3c3t13s24d1r14r8r7_v1",
+  "design_document_sha256": "a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f",
+  "formal_timing_unchanged": true,
+  "package_fingerprint": {
+    "digest": "cb816e6473e17c6b8f8bdaf2e67564af381cde756ef0b4eb3526ed1a46ada34c",
+    "files": [
+      {
+        "bytes": 10152,
+        "path": "configs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_370ms.json",
+        "sha256": "5378445f47fd9fff668166f28c00bf0c8ccfba6a8774f2bdb47371a962044be5"
+      },
+      {
+        "bytes": 28655,
+        "path": "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_independent_forensics.py",
+        "sha256": "98af5026fa5e9e8b5f991b62e93b929d484725acb4be63f905ed42ce3ca6b16c"
+      },
+      {
+        "bytes": 12485,
+        "path": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_SENTINEL_DESIGN.md",
+        "sha256": "a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f"
+      },
+      {
+        "bytes": 276,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py",
+        "sha256": "bd8a01f1d1d665981f958ebf6fe24d72901f88b0ce83bd2b17fd89c555f03cea"
+      },
+      {
+        "bytes": 3531,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r7_shell_common.sh",
+        "sha256": "64ea5fa25088aa1f4bc183263d9660cbe373dfd4380b15c7a959077492f45e67"
+      },
+      {
+        "bytes": 8528,
+        "path": "tests/test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.py",
+        "sha256": "379c9b82129f4ba932adde5c81b06a0d42409af7afc42c3f0f181ef4bb6d4fbd"
+      },
+      {
+        "bytes": 9647,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.py",
+        "sha256": "d53491830bcfef5d6c7a972f270bb63dac8e4647de6aa0418ec1952aadf1a83f"
+      },
+      {
+        "bytes": 87126,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py",
+        "sha256": "e45e5b6392e4ad19e13d0c47112cb3e9bf1eaa03c6c857fd3ab9ab8bdc34d3a3"
+      }
+    ]
+  },
+  "package_revision": "r42r3c3t13s24d1r14r8r7_fresh_multipulse_interaction_v1",
+  "response_model_sha256": "d2bcca31e135c4faf99a93d64391fdc96bb5de44b8705d177e2219c6c000e84e",
+  "response_tube_sha256": "c31b4d3b84bdc7ab9f399bd3563798989c94e5f373536b42ccb19f8ef06be128",
+  "schema_version": 1,
+  "source_r8_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8_runs/stage4_2r3c3t13s24d1r14r8_partitioned_broad_response_identification_20260804_5e57f60_v2",
+  "source_r8r1_output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r1_runs/stage4_2r3c3t13s24d1r14r8r1_fixed_candidate_short_horizon_discriminator_20260805_c2ed69f_v1",
+  "source_r8r6_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r6_audits/stage4_2r3c3t13s24d1r14r8r6_causal_one_step_innovation_observer_20260807_6b00e24_v1",
+  "spec_count": 48,
+  "spec_digest": "0cdf86de7a6fca44be8e0bf3200f3c96b94cf264fba38f8b4eb0253cacbe576d",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R7",
+  "static_observer_model_sha256": "3ba16449086097a42513987df97c95ec6d6d0d35d572e73992fa5eafdfc15519",
+  "static_observer_tube_sha256": "747a6c24f9abed8a4ec6784e4699c7ebe557a049bb11e10ea9a1d5ca0254b8ea"
+}
