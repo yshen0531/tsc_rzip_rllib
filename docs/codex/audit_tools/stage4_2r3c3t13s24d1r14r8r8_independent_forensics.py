@@ -466,6 +466,30 @@ def _source_baselines(source_stage: Path) -> dict[str, dict[str, Any]]:
     return output
 
 
+def _offline_audit_verdict(
+    primary: Mapping[str, Any], cfg: Mapping[str, Any], audit_agreement: bool
+) -> dict[str, Any]:
+    """Keep recomputation integrity distinct from the frozen scientific gate."""
+    primary_route = str(primary.get("route", ""))
+    primary_scientific_gate = bool(primary.get("passed") is True)
+    expected_primary_route = str(
+        cfg["routes"]["pass" if primary_scientific_gate else "offline_fail"]
+    )
+    primary_route_valid = primary_route == expected_primary_route
+    route_agreement = bool(audit_agreement and primary_route_valid)
+    return {
+        "audit_agreement_passed": bool(audit_agreement),
+        "primary_scientific_gate_passed": primary_scientific_gate,
+        "scientific_gate_passed": bool(audit_agreement and primary_scientific_gate),
+        "primary_route_valid": primary_route_valid,
+        "primary_route_agreement": route_agreement,
+        "route": primary_route if route_agreement else str(cfg["routes"]["offline_fail"]),
+        # ``passed`` denotes the independent recomputation/audit itself, not
+        # authorization or the primary scientific gate.
+        "passed": bool(audit_agreement and primary_route_valid),
+    }
+
+
 def offline_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str, Any]:
     stage = _stage(args.run_dir)
     source_stage = _source_stage(args, cfg)
@@ -473,6 +497,7 @@ def offline_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str,
     source_authentication = _authenticate_source(source_stage, cfg)
     specs = _read(stage / "specs/core_specs.json")
     primary_path = stage / "analysis/offline_primary_summary.json"
+    primary_summary = _read(primary_path)
     detailed = _read(stage / "analysis/offline_primary_detailed.json")
     source = _source_baselines(source_stage)
     models = _models(stage, source_ctx)
@@ -572,8 +597,9 @@ def offline_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str,
             "combined_tube": expected["combined_tube_sha256"],
         }
     )
+    audit_agreement = bool(numerical and outcome and artifacts)
     output = {
-        "schema_version": 1,
+        "schema_version": 2,
         "stage": contract.STAGE,
         "phase": "zero_tsc_structurally_independent_offline_acceptance",
         "source_authenticated": bool(source_authentication["passed"]),
@@ -593,9 +619,8 @@ def offline_audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str,
         "primary_sha256": _sha(primary_path),
         "real_tsc_executed": False,
         "new_raw_count": 0,
-        "route": cfg["routes"]["pass" if numerical and outcome and artifacts else "offline_fail"],
-        "passed": bool(numerical and outcome and artifacts),
     }
+    output.update(_offline_audit_verdict(primary_summary, cfg, audit_agreement))
     _write(stage / "analysis/offline_independent.json", output)
     return output
 

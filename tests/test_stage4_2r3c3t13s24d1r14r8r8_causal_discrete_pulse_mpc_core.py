@@ -267,6 +267,32 @@ class CausalDiscretePulseMPCCoreTests(unittest.TestCase):
         self.assertNotIn('state.get("phase_status") != "finished"', primary)
         self.assertNotIn('state.get("phase_status") != "finished"', independent_source)
 
+    def test_independent_offline_route_preserves_primary_scientific_failure(self) -> None:
+        primary = {
+            "passed": False,
+            "route": self.cfg["routes"]["offline_fail"],
+        }
+        verdict = independent._offline_audit_verdict(primary, self.cfg, True)
+        self.assertTrue(verdict["audit_agreement_passed"])
+        self.assertTrue(verdict["passed"])
+        self.assertFalse(verdict["primary_scientific_gate_passed"])
+        self.assertFalse(verdict["scientific_gate_passed"])
+        self.assertTrue(verdict["primary_route_agreement"])
+        self.assertEqual(verdict["route"], self.cfg["routes"]["offline_fail"])
+
+        rejected = independent._offline_audit_verdict(primary, self.cfg, False)
+        self.assertFalse(rejected["audit_agreement_passed"])
+        self.assertFalse(rejected["passed"])
+        self.assertFalse(rejected["primary_route_agreement"])
+        self.assertEqual(rejected["route"], self.cfg["routes"]["offline_fail"])
+
+        inconsistent = independent._offline_audit_verdict(
+            {"passed": False, "route": self.cfg["routes"]["pass"]}, self.cfg, True
+        )
+        self.assertFalse(inconsistent["primary_route_valid"])
+        self.assertFalse(inconsistent["passed"])
+        self.assertEqual(inconsistent["route"], self.cfg["routes"]["offline_fail"])
+
     def test_launcher_uses_only_existing_server_venv_and_direct_files(self) -> None:
         shell = (
             ROOT / "scripts/stage4_2r3c3t13s24d1r14r8r8_shell_common.sh"
