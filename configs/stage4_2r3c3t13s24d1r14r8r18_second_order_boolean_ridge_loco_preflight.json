@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R18",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r18_second_order_boolean_ridge_loco_preflight",
+  "identity": "second_order_boolean_ridge_loco_preflight_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r18_boolean_ridge_loco_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R18_SECOND_ORDER_BOOLEAN_RIDGE_LOCO_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "f7de518d1bc65588883d245eb7fd1de5f63b84c679713b38102db6047d28ab9d",
+  "source_r8r15_config": "configs/stage4_2r3c3t13s24d1r14r8r15_binary_temporal_switching_staircase_authority_sentinel_370ms.json",
+  "source_r8r15_config_sha256": "9d7e821bc45b2ed1c3052f7077bd95bfacc261eac681020090227b35d54c19df",
+  "source_r8r15": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r15_binary_temporal_switching_staircase_authority_sentinel",
+    "required_route": "BINARY_TEMPORAL_SWITCHING_STAIRCASE_AUTHORITY_INSUFFICIENT_MODEL_BASED_SEQUENCE_REDESIGN_REQUIRED",
+    "primary_detailed_sha256": "d840d54ab1be6e3aef318d7b7859dd58a450b5b478c2bb736d8900be2bd9f024",
+    "primary_summary_sha256": "2c5b7e10c74295f82cc54769fee51a87bea69682d7b5992963b99ff33845cde6",
+    "final_independent_sha256": "cf896933a7b8d911027389018d1668adda1d04de1e17822b9bb83ee4d493ea34",
+    "final_report_sha256": "cd1c37589955137c0b5d38c4f6e410b77a83ddb0d7c55dc803153bd8c0549664",
+    "stage_manifest_sha256": "3d704e4167738575d4ee9417ae48f2ee732a1645feee6b357cc3f45f80665ffb",
+    "stage_state_sha256": "71d4a0d3472e073ee423a8e0ae305999525264cf217b91dd5e2fbae17e2fce18",
+    "safety_raw_count": 32,
+    "safety_raw_bytes": 1059431,
+    "safety_raw_digest": "7d7a2b4f4ba946fb365db282fc7b3967e0e9b512cd241a6ea7c25071b47c21ad",
+    "qualification_raw_count": 96,
+    "qualification_raw_bytes": 3201665,
+    "qualification_raw_digest": "a909e034711b3539630a2d63db9786df0272c7358406476bae3463cd75f3f118"
+  },
+  "code_contract": {
+    "symbols": {
+      "U": 1,
+      "V": -1
+    },
+    "decision_task_steps": [
+      10,
+      14,
+      18,
+      22
+    ],
+    "development_codes": [
+      "UUUU",
+      "VVVV",
+      "UVVV",
+      "UUVV",
+      "UUUV",
+      "VUUU"
+    ],
+    "calibration_codes": [
+      "VVUU",
+      "VVVU",
+      "UVUV",
+      "VUVU"
+    ],
+    "missing_codes": [
+      "UVUU",
+      "UUVU",
+      "UVVU",
+      "VUUV",
+      "VVUV",
+      "VUVV"
+    ],
+    "measured_code_count": 10,
+    "missing_code_count": 6,
+    "context_count": 16,
+    "calibration_trajectory_count": 64,
+    "missing_prediction_count": 96,
+    "measured_codes": [
+      "UUUU",
+      "VVVV",
+      "UVVV",
+      "UUVV",
+      "UUUV",
+      "VUUU",
+      "VVUU",
+      "VVVU",
+      "UVUV",
+      "VUVU"
+    ],
+    "loco_fold_count": 10,
+    "loco_trajectory_count": 160
+  },
+  "model_contract": {
+    "family": "per_context_second_order_boolean_hierarchical_ridge",
+    "feature_order": [
+      "intercept",
+      "q10",
+      "q14",
+      "q18",
+      "q22",
+      "q10_q14",
+      "q10_q18",
+      "q10_q22",
+      "q14_q18",
+      "q14_q22",
+      "q18_q22"
+    ],
+    "pair_ridge_lambda": 10,
+    "penalty_diagonal": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      10,
+      10,
+      10,
+      10,
+      10,
+      10
+    ],
+    "primary_solver": "augmented_svd",
+    "independent_solver": "normal_equation_direct_solve",
+    "svd_rcond": 1e-12,
+    "first_state_index": 10,
+    "response_components": [
+      "R",
+      "Z",
+      "Ip"
+    ],
+    "response_relative_to_matched_baseline": true,
+    "measured_rank": 9,
+    "cube_rank": 11,
+    "maximum_cube_condition": 1.01,
+    "minimum_loco_affine_rank": 5,
+    "minimum_loco_augmented_rank": 11,
+    "maximum_loco_normal_condition": 32,
+    "maximum_loco_weight_l2": 1.3,
+    "maximum_loco_weight_absolute": 1.01,
+    "maximum_full_normal_condition": 11.1,
+    "maximum_missing_weight_l2": 1.3,
+    "maximum_missing_weight_absolute": 0.67,
+    "per_context_hyperparameters_allowed": false,
+    "outcome_selected_lambda_allowed": false
+  },
+  "calibration_gates": {
+    "response_scales": [
+      0.03,
+      0.03,
+      10000
+    ],
+    "component_error_caps": [
+      0.003,
+      0.003,
+      1000
+    ],
+    "maximum_scaled_point_error": 0.1,
+    "required_trajectory_pass_count": 160,
+    "required_formal_classification_count": 160,
+    "maximum_minimum_margin_absolute_error": 0.05,
+    "tube_multiplier": 2,
+    "tube_caps": [
+      0.01,
+      0.01,
+      3000
+    ],
+    "independent_absolute_tolerance": 1e-12,
+    "independent_relative_tolerance": 1e-10
+  },
+  "authority_gate": {
+    "required_baseline_formal_pass_count": 6,
+    "required_failed_baseline_count": 10,
+    "minimum_robust_predicted_repair_count": 1,
+    "minimum_robust_predicted_oracle_pass_count": 7,
+    "require_oracle_strictly_improves_baseline": true,
+    "robust_margin_strictly_positive": true
+  },
+  "formal_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000,
+    "arrival_streak_steps": 3,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "routes": {
+    "source_fail": "SECOND_ORDER_BOOLEAN_RIDGE_SOURCE_OR_INTEGRITY_FAIL_NO_TSC",
+    "model_fail": "SECOND_ORDER_BOOLEAN_RIDGE_MODEL_INADEQUATE_NONPARAMETRIC_SEQUENCE_REDESIGN_REQUIRED",
+    "authority_fail": "SECOND_ORDER_BOOLEAN_RIDGE_AUTHORITY_INSUFFICIENT_CONTINUOUS_MULTIDIRECTION_REDESIGN_REQUIRED",
+    "pass": "SECOND_ORDER_BOOLEAN_RIDGE_COMPLETION_PASS_FRESH_MISSING_SEQUENCE_SENTINEL_REQUIRED"
+  },
+  "scientific_scope": {
+    "real_tsc_executed": false,
+    "new_raw_count": 0,
+    "controller_executed": false,
+    "physical_authority_validated": false,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "all_source_trajectories_allowed_in_expert_dataset": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "global_plant_reachability_claimed": false,
+    "r8r16_or_r8r17_predictions_used_as_model_input": false
+  },
+  "storage": {
+    "large_source_raw_stays_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "source_r8r16": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r16_temporal_affine_binary_cube_completion_preflight",
+    "required_route": "TEMPORAL_AFFINE_SEQUENCE_MODEL_INADEQUATE_NONLINEAR_SEQUENCE_REDESIGN_REQUIRED",
+    "primary_detailed_sha256": "5f8605e45982ace397b364361cb71a2249520f0686c4e39c8879f06a37ebf429",
+    "primary_summary_sha256": "be9a7b968a79d2cf95b3f6dd9103e9797d375448215769e53745dea46fb0cff6",
+    "independent_sha256": "8f73d31dd5370a295ed4096ea77a4f8585d2d89c54b1625ecf0ae26f5a29ef7a",
+    "final_report_sha256": "f17c4338579fda179739630a35fcf97f07a71d261bb96eafb47f4c69680ef58e",
+    "source_authentication_sha256": "88ed50a9fbe6d303151c264309b919dd0e906be5818513626868791084e9f362",
+    "stage_manifest_sha256": "605b98ceea86edcb1b1680c87bbcd012f5a727a747c0f6a6d91988922460ef4d",
+    "stage_state_sha256": "7b6679436e3a8551f451356e8f817f49a36e097e71b7237ec2f61de680641af3",
+    "calibration_trajectory_count": 64,
+    "calibration_pass_count": 63,
+    "real_tsc_executed": false,
+    "new_raw_count": 0
+  },
+  "source_r8r17": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r17_adjacent_switch_interaction_binary_cube_preflight",
+    "required_route": "ADJACENT_SWITCH_INTERACTION_MODEL_INADEQUATE_HIGHER_ORDER_REDESIGN_REQUIRED",
+    "primary_detailed_sha256": "b57f2afc2009e4f28ea6b90cf8034422356f6c1275c0f6a916269a0a94c49020",
+    "primary_summary_sha256": "da1c108b7b800c0c8ab4bc9be5325ad3445ac62f799f28ecf5e59dfec30719b8",
+    "independent_sha256": "2a5e8d30db3707ccd764f4d281b32faff2b111bc4c836fc6f269e06b4264745a",
+    "final_report_sha256": "f87fba9b71bfebc95a8d1115c74f5aae6190b7af1e0fcc48558a04ab83356dce",
+    "r8r15_authentication_sha256": "88ed50a9fbe6d303151c264309b919dd0e906be5818513626868791084e9f362",
+    "r8r16_authentication_sha256": "1938c1e6772e704b37e20f26861bddd8b15c706450de42700e11496270162812",
+    "stage_manifest_sha256": "e0e850c3d19f945c7f53cfcf9c491a5367186d2d46b01cf45213cc4febaf4440",
+    "stage_state_sha256": "6b16d1ada9315276284303c52edd60a1ea5f32d0ce33fb73623d45dec4e56b47",
+    "calibration_trajectory_count": 64,
+    "calibration_pass_count": 61,
+    "real_tsc_executed": false,
+    "new_raw_count": 0
+  }
+}
