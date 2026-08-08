@@ -26,9 +26,9 @@ from docs.codex.audit_tools import (
 
 
 STAGE = "Stage4.2R3c3T13S24D1R14R8R12"
-IDENTITY = "causal_cumulative_direction2_staircase_authority_sentinel_v1"
+IDENTITY = "causal_cumulative_direction2_staircase_authority_sentinel_v2"
 RUN_NAME = "stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel"
-CONTROLLER_REVISION = "causal_cumulative_direction2_staircase_v42r3c3t13s24d1r14r8r12_v1"
+CONTROLLER_REVISION = "causal_cumulative_direction2_staircase_v42r3c3t13s24d1r14r8r12_v2"
 PREFIX_END = 10
 N_COILS = 14
 PHASES = ("safety", "qualification")

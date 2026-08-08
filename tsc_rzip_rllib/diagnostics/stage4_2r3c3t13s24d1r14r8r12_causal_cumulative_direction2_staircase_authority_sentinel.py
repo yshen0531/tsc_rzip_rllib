@@ -29,9 +29,9 @@ from tsc_rzip_rllib.diagnostics import (
 
 SCHEMA_VERSION = 1
 STAGE = "Stage4.2R3c3T13S24D1R14R8R12"
-IDENTITY = "causal_cumulative_direction2_staircase_authority_sentinel_v1"
+IDENTITY = "causal_cumulative_direction2_staircase_authority_sentinel_v2"
 RUN_NAME = "stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel"
-CONTROLLER_REVISION = "causal_cumulative_direction2_staircase_v42r3c3t13s24d1r14r8r12_v1"
+CONTROLLER_REVISION = "causal_cumulative_direction2_staircase_v42r3c3t13s24d1r14r8r12_v2"
 N_COILS = 14
 PREFIX_END = 10
 PHASES = ("safety", "qualification")
@@ -754,9 +754,9 @@ class CausalCumulativeDirection2StaircaseController(
             direction_index=2,
             sign=1,
             requested_coordinate=requested,
-            issue_step=10,
-            cancel_step=11,
-            zero_after_step=12,
+            issue_step=14,
+            cancel_step=15,
+            zero_after_step=16,
         )
         self.r8r12_decisions = tuple(map(int, spec["r8r12_decision_task_steps"]))
         self.r8r12_contract = copy.deepcopy(dict(controller_cfg))

@@ -92,9 +92,11 @@ class CausalCumulativeDirection2StaircaseAuthoritySentinelTests(unittest.TestCas
                 object(), {}, {}, {}, {}, {}, {}, {}, self.cfg["controller_contract"], spec=spec
             )
         self.assertEqual(controller.r8r12_decisions, (10, 14, 18, 22))
-        self.assertEqual(parent.call_args.kwargs["issue_step"], 10)
-        self.assertEqual(parent.call_args.kwargs["cancel_step"], 11)
-        self.assertEqual(parent.call_args.kwargs["zero_after_step"], 12)
+        # The inherited R6 schedule is an inert, valid constructor placeholder.
+        # R8R12 delegates only steps 0--9 and owns the unchanged real decisions.
+        self.assertEqual(parent.call_args.kwargs["issue_step"], 14)
+        self.assertEqual(parent.call_args.kwargs["cancel_step"], 15)
+        self.assertEqual(parent.call_args.kwargs["zero_after_step"], 16)
         source = Path(sentinel.__file__).read_text(encoding="utf-8")
         self.assertNotIn("staircase_cancel", source)
         self.assertIn("staircase_refresh", source)

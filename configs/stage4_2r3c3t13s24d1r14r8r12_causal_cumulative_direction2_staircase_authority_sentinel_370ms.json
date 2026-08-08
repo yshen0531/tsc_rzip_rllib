@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "stage": "Stage4.2R3c3T13S24D1R14R8R12",
-  "identity": "causal_cumulative_direction2_staircase_authority_sentinel_v1",
+  "identity": "causal_cumulative_direction2_staircase_authority_sentinel_v2",
   "run_name": "stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel",
-  "controller_revision": "causal_cumulative_direction2_staircase_v42r3c3t13s24d1r14r8r12_v1",
-  "package_revision": "r42r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_v1",
+  "controller_revision": "causal_cumulative_direction2_staircase_v42r3c3t13s24d1r14r8r12_v2",
+  "package_revision": "r42r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_v2",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R12_CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_AUTHORITY_SENTINEL_DESIGN.md",
   "design_document_sha256": "46d959813a0810970e7ea6ab5a5a097c9afa5949e7642f22fc4b17a19ccd2f16",
   "source_r8r7_config": "configs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_370ms.json",
