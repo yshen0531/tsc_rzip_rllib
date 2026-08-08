@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R23",
+  "run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r23_runs/stage4_2r3c3t13s24d1r14r8r23_causal_online_innovation_receding_horizon_preflight_20260809_7b2739c_v1",
+  "stage_directory": "stage4_2r3c3t13s24d1r14r8r23_causal_online_innovation_receding_horizon_preflight",
+  "server_official_file_count_before_compact_audit": 7,
+  "server_official_total_bytes_before_compact_audit": 7613619,
+  "downloaded_file_count": 5,
+  "downloaded_total_bytes": 20173,
+  "raw_trajectory_downloaded": false,
+  "large_model_downloaded": false,
+  "files": [
+    {
+      "path": "compact_audit.json",
+      "bytes": 14552,
+      "sha256": "70d8c861677178ffc153c34358d57fa9ae052c27f69ac39e5b0a91973039d59e"
+    },
+    {
+      "path": "final_report.json",
+      "bytes": 2028,
+      "sha256": "3d1c88aca308baf67b30010b25df03398dd20e1d4458dfa2413a7c65ceb174cc"
+    },
+    {
+      "path": "primary_summary.json",
+      "bytes": 1683,
+      "sha256": "4d900b3c5b477ff89dc1d62466b3d8e9ce132480f9c85ae26db91d55b1da285a"
+    },
+    {
+      "path": "stage_manifest.json",
+      "bytes": 1162,
+      "sha256": "2f3aef0b48cb5d35846da3e769110fb8e514374ea7cf57c18b364d9879c5e403"
+    },
+    {
+      "path": "stage_state.json",
+      "bytes": 748,
+      "sha256": "bd55964f69af3a17ce46f503ec629821c05dd54e9cbaf7ee71a9be644a227910"
+    }
+  ]
+}

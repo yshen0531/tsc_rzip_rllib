@@ -1,0 +1,416 @@
+{
+  "adaptation_enabled": false,
+  "adaptation_usefulness": {
+    "adapted_squared_error": 5.213926114674505,
+    "adapted_to_cold_ratio": 1.2263836369504335,
+    "cold_squared_error": 4.251464189166473,
+    "innovation_clipping_row_count": 94,
+    "passed": false,
+    "rows": [
+      {
+        "adapted_squared_error": 0.7093800247573926,
+        "adapted_to_cold_ratio": 1.4088067444518606,
+        "cold_squared_error": 0.5035325303140841,
+        "pair_id": "p5_q1_a0p750_gap4_settle4",
+        "strictly_improved": false
+      },
+      {
+        "adapted_squared_error": 0.8427961040977597,
+        "adapted_to_cold_ratio": 1.1183012292956291,
+        "cold_squared_error": 0.7536396115996417,
+        "pair_id": "p5_q1_a0p900_gap3_settle4",
+        "strictly_improved": false
+      },
+      {
+        "adapted_squared_error": 0.6273206334981135,
+        "adapted_to_cold_ratio": 1.149199769691304,
+        "cold_squared_error": 0.5458760522259966,
+        "pair_id": "p5_q2_a0p750_gap3_settle4",
+        "strictly_improved": false
+      },
+      {
+        "adapted_squared_error": 1.0273643161801136,
+        "adapted_to_cold_ratio": 1.4381487143525746,
+        "cold_squared_error": 0.7143658412562793,
+        "pair_id": "p5_q2_a0p900_gap4_settle4",
+        "strictly_improved": false
+      },
+      {
+        "adapted_squared_error": 0.48784068946311837,
+        "adapted_to_cold_ratio": 1.7095969437976848,
+        "cold_squared_error": 0.2853542124259026,
+        "pair_id": "p9_q1_a0p750_gap4_settle4",
+        "strictly_improved": false
+      },
+      {
+        "adapted_squared_error": 0.1667532990921889,
+        "adapted_to_cold_ratio": 1.3267048687813527,
+        "cold_squared_error": 0.12568982221747663,
+        "pair_id": "p9_q1_a0p900_gap3_settle4",
+        "strictly_improved": false
+      },
+      {
+        "adapted_squared_error": 0.9214124527922557,
+        "adapted_to_cold_ratio": 1.0842114938536642,
+        "cold_squared_error": 0.849845678648209,
+        "pair_id": "p9_q2_a0p750_gap3_settle4",
+        "strictly_improved": false
+      },
+      {
+        "adapted_squared_error": 0.43105859479356257,
+        "adapted_to_cold_ratio": 0.9110199372485368,
+        "cold_squared_error": 0.4731604404788836,
+        "pair_id": "p9_q2_a0p900_gap4_settle4",
+        "strictly_improved": true
+      }
+    ],
+    "strictly_improved_outer_pair_count": 1
+  },
+  "bank_evidence": {
+    "allowed_in_expert_dataset": false,
+    "expanded_feature_dimension": 133,
+    "feature_digest": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+    "feature_dimension": 42,
+    "forbidden_input_count": 0,
+    "forecast_point_count": 11232,
+    "origin_row_count": 1728,
+    "target_digest": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc",
+    "trajectory_count": 432
+  },
+  "digests": {
+    "feature": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+    "model_evidence": "9bc1e2a0e15597812defbf7724d673ae791ae50d7f70eb2aeda005d61f8ddc5f",
+    "target": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc"
+  },
+  "gate_a_qualified": false,
+  "identity": "causal_online_innovation_receding_horizon_preflight_v1",
+  "model_evaluation": {
+    "finite_exclusion_count": 0,
+    "folds": [
+      {
+        "maximum_absolute_physical_error": [
+          0.00032820536344582593,
+          0.001153747483317149,
+          28.521571824421596,
+          0.009278862249820996,
+          0.01621932845506799
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.001449713989201054,
+          0.0040648905291341755,
+          94.02751634955145,
+          0.030656478386613187,
+          0.06114988675860357
+        ],
+        "pair_id": "p5_q1_a0p750_gap4_settle4",
+        "reserved_tube_containment_rate": 0.9998518518518519,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      },
+      {
+        "maximum_absolute_physical_error": [
+          0.0005359423747669156,
+          0.001352172332640727,
+          61.65303363648653,
+          0.011647318764492806,
+          0.043103717751318854
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.001449713989201054,
+          0.0040648905291341755,
+          94.02751634955145,
+          0.017968257211615872,
+          0.06811134569841504
+        ],
+        "pair_id": "p5_q1_a0p900_gap3_settle4",
+        "reserved_tube_containment_rate": 0.8407407407407408,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      },
+      {
+        "maximum_absolute_physical_error": [
+          0.0007580277682778002,
+          0.0021537090779905265,
+          75.22201307964116,
+          0.008402868896467741,
+          0.021524570229251444
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.01087392799334419,
+          0.014790513632966861,
+          494.63829407390676,
+          0.09448556878861437,
+          0.18185451998544266
+        ],
+        "pair_id": "p5_q2_a0p750_gap3_settle4",
+        "reserved_tube_containment_rate": 0.9998628257887517,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      },
+      {
+        "maximum_absolute_physical_error": [
+          0.0010293995140300382,
+          0.002605779244626345,
+          71.90511308257253,
+          0.009355303502228546,
+          0.02476780751371116
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.011083987623203484,
+          0.01649903861168632,
+          141.76448225783778,
+          0.10529928030242526,
+          0.16856259017111228
+        ],
+        "pair_id": "p5_q2_a0p900_gap4_settle4",
+        "reserved_tube_containment_rate": 0.9665294924554184,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      },
+      {
+        "maximum_absolute_physical_error": [
+          0.0007675274940431542,
+          0.0005959649989326019,
+          42.707076185064324,
+          0.017788187070438194,
+          0.0210425461544982
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.001449713989201054,
+          0.0040648905291341755,
+          96.88265088914294,
+          0.018634224706530478,
+          0.11635426953121333
+        ],
+        "pair_id": "p9_q1_a0p750_gap4_settle4",
+        "reserved_tube_containment_rate": 0.9811851851851852,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      },
+      {
+        "maximum_absolute_physical_error": [
+          0.00034541751857133815,
+          0.0007389930672836042,
+          42.25445501646788,
+          0.00976239690894437,
+          0.00843882887024102
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.001449713989201054,
+          0.0040648905291341755,
+          94.02751634955145,
+          0.03888951579248595,
+          0.05918509020420137
+        ],
+        "pair_id": "p9_q1_a0p900_gap3_settle4",
+        "reserved_tube_containment_rate": 0.9693333333333334,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      },
+      {
+        "maximum_absolute_physical_error": [
+          0.0011597711913608432,
+          0.00325191242330734,
+          51.519809888785176,
+          0.009617389236933754,
+          0.03259298608525532
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.008693299817552305,
+          0.01316351066179087,
+          738.9231733192121,
+          0.08616704200097258,
+          0.08517241478976156
+        ],
+        "pair_id": "p9_q2_a0p750_gap3_settle4",
+        "reserved_tube_containment_rate": 0.999039780521262,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      },
+      {
+        "maximum_absolute_physical_error": [
+          0.0008247666385171981,
+          0.0020153299004369214,
+          71.87378539371288,
+          0.008728496503011357,
+          0.021242953475757553
+        ],
+        "maximum_reserved_physical_tube_half_width": [
+          0.012643406443903544,
+          0.02034482429297216,
+          706.1822142543831,
+          0.10677134022479683,
+          0.18385970896528295
+        ],
+        "pair_id": "p9_q2_a0p900_gap4_settle4",
+        "reserved_tube_containment_rate": 0.9998628257887517,
+        "support_pass_count": 216,
+        "support_passed": true,
+        "support_row_count": 216
+      }
+    ],
+    "forbidden_input_count": 0,
+    "maximum_absolute_physical_error": [
+      0.0011597711913608432,
+      0.00325191242330734,
+      75.22201307964116,
+      0.017788187070438194,
+      0.043103717751318854
+    ],
+    "maximum_reserved_physical_tube_half_width": [
+      0.012643406443903544,
+      0.02034482429297216,
+      738.9231733192121,
+      0.10677134022479683,
+      0.18385970896528295
+    ],
+    "passed": false,
+    "point_error_gate_passed": true,
+    "reserved_tube_component_count": 56160,
+    "reserved_tube_contained_component_count": 54497,
+    "reserved_tube_containment_rate": 0.9703881766381767,
+    "selected_predictor": "cold",
+    "support_pass_count": 1728,
+    "support_rate": 1.0,
+    "support_row_count": 1728,
+    "tube_cap_gate_passed": false
+  },
+  "new_raw_count": 0,
+  "official_file_count_before_compact_audit": 7,
+  "official_files_before_compact_audit": [
+    {
+      "bytes": 2028,
+      "path": "analysis/final_report.json",
+      "sha256": "3d1c88aca308baf67b30010b25df03398dd20e1d4458dfa2413a7c65ceb174cc"
+    },
+    {
+      "bytes": 135187,
+      "path": "analysis/independent.json",
+      "sha256": "af1b419bec6854ec901755c32f1c91131da1a09a0a0d4a1e1cc033ca6f0dd99a"
+    },
+    {
+      "bytes": 255038,
+      "path": "analysis/primary_detailed.json",
+      "sha256": "a40a9b895bcfb69069fa5fe6dd7441b7159189d56f7aa50cc893db34a3bcd1a5"
+    },
+    {
+      "bytes": 1683,
+      "path": "analysis/primary_summary.json",
+      "sha256": "4d900b3c5b477ff89dc1d62466b3d8e9ce132480f9c85ae26db91d55b1da285a"
+    },
+    {
+      "bytes": 7217773,
+      "path": "model/outer_fold_models.json",
+      "sha256": "9bc1e2a0e15597812defbf7724d673ae791ae50d7f70eb2aeda005d61f8ddc5f"
+    },
+    {
+      "bytes": 1162,
+      "path": "stage_manifest.json",
+      "sha256": "2f3aef0b48cb5d35846da3e769110fb8e514374ea7cf57c18b364d9879c5e403"
+    },
+    {
+      "bytes": 748,
+      "path": "stage_state.json",
+      "sha256": "bd55964f69af3a17ce46f503ec629821c05dd54e9cbaf7ee71a9be644a227910"
+    }
+  ],
+  "official_total_bytes_before_compact_audit": 7613619,
+  "planning_evaluation": {
+    "passed": false,
+    "plans": [],
+    "predicted_baseline_plus_policy_oracle_count": 6,
+    "predicted_regressed_baseline_pass_count": 0,
+    "predicted_repaired_failed_baseline_count": 0,
+    "safe_complete_plan_count": 0,
+    "skipped_reason": "frozen_model_tube_or_support_gate_failed"
+  },
+  "plant_step_count": 0,
+  "primary_independent_agreement": {
+    "feature": true,
+    "fit": true,
+    "maximum_fit_absolute_difference": 0.0,
+    "maximum_tube_absolute_difference": 0.0,
+    "outcome": true,
+    "plan": true,
+    "route": true,
+    "tube": true
+  },
+  "primary_summary": {
+    "adaptation_enabled": false,
+    "adaptation_status": "innovation_disabled_no_measurable_gain",
+    "adapted_to_cold_squared_error_ratio": 1.2263836369504335,
+    "feature_digest": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+    "forecast_point_count": 11232,
+    "gate_a_qualified": false,
+    "identity": "causal_online_innovation_receding_horizon_preflight_v1",
+    "maximum_absolute_physical_error": [
+      0.0011597711913608432,
+      0.00325191242330734,
+      75.22201307964116,
+      0.017788187070438194,
+      0.043103717751318854
+    ],
+    "maximum_reserved_physical_tube_half_width": [
+      0.012643406443903544,
+      0.02034482429297216,
+      738.9231733192121,
+      0.10677134022479683,
+      0.18385970896528295
+    ],
+    "model_evidence_sha256": "9bc1e2a0e15597812defbf7724d673ae791ae50d7f70eb2aeda005d61f8ddc5f",
+    "model_gate_passed": false,
+    "new_raw_count": 0,
+    "origin_row_count": 1728,
+    "plant_step_count": 0,
+    "predicted_baseline_plus_policy_oracle_count": 6,
+    "predicted_feasibility_gate_passed": false,
+    "predicted_regressed_baseline_pass_count": 0,
+    "predicted_repaired_failed_baseline_count": 0,
+    "real_tsc_executed": false,
+    "reserved_tube_containment_rate": 0.9703881766381767,
+    "route": "CAUSAL_ONLINE_FEEDBACK_MODEL_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED",
+    "safe_complete_plan_count": 0,
+    "schema_version": 1,
+    "scientific_gate_passed": false,
+    "source_route": "BOUNDED_CONTINUOUS_MULTIDIRECTION_AUTHORITY_INSUFFICIENT_ONLINE_FEEDBACK_MODEL_REDESIGN_REQUIRED",
+    "stage": "Stage4.2R3c3T13S24D1R14R8R23",
+    "support_rate": 1.0,
+    "target_digest": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc",
+    "trajectory_count": 432
+  },
+  "real_tsc_executed": false,
+  "route": "CAUSAL_ONLINE_FEEDBACK_MODEL_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED",
+  "run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r23_runs/stage4_2r3c3t13s24d1r14r8r23_causal_online_innovation_receding_horizon_preflight_20260809_7b2739c_v1",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_authentication_passed": true,
+  "source_r8r22_stage_state_sha256": "8b0566d32f908c084e78a98eec0b39e9705dde2df8b6c4a1a8d6b4e60f606386",
+  "source_route": "BOUNDED_CONTINUOUS_MULTIDIRECTION_AUTHORITY_INSUFFICIENT_ONLINE_FEEDBACK_MODEL_REDESIGN_REQUIRED",
+  "source_trajectories_allowed_in_expert_dataset": false,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R23",
+  "state": {
+    "final_report_sha256": "3d1c88aca308baf67b30010b25df03398dd20e1d4458dfa2413a7c65ceb174cc",
+    "finished": true,
+    "independent_sha256": "af1b419bec6854ec901755c32f1c91131da1a09a0a0d4a1e1cc033ca6f0dd99a",
+    "new_raw_count": 0,
+    "phase_status": "complete",
+    "plant_step_count": 0,
+    "primary_detailed_sha256": "a40a9b895bcfb69069fa5fe6dd7441b7159189d56f7aa50cc893db34a3bcd1a5",
+    "primary_summary_sha256": "4d900b3c5b477ff89dc1d62466b3d8e9ce132480f9c85ae26db91d55b1da285a",
+    "real_tsc_executed": false,
+    "schema_version": 1,
+    "stage": "Stage4.2R3c3T13S24D1R14R8R23",
+    "stop_reason": "model_preflight_gate_failed",
+    "verdict": {
+      "passed": false,
+      "route": "CAUSAL_ONLINE_FEEDBACK_MODEL_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED"
+    }
+  }
+}

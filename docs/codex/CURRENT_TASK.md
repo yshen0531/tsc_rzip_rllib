@@ -6120,7 +6120,7 @@ fdeef92777373090e4a170d7b971a132cee36019aff99b237396f3b21efdbe67
 This is a finite fixed-action-family authority failure, not runtime, raw,
 reporting, controller, real-MPC, Gate A, or global reachability evidence.
 
-## 117. Active R8R23 causal online-feedback preflight task
+## 117. Final R8R23 causal online-feedback preflight result
 
 Before the R8R22 qualification raw audit, formal outcome, repair count,
 oracle, verdict, or route was opened, R8R23 was frozen at checkpoint
@@ -6150,6 +6150,68 @@ redesign before any controller run.
 
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
 R8-family trajectory remains forbidden from expert or policy-learning data.
+
+R8R23 completed at design/implementation/package checkpoints
+`0f61d94 / c4af11d / 7b2739c`. The 1,106-file package passed exact hashes,
+JSON, Python compilation, focused `6/6`, and full `1356/1356` locally, in a
+fresh empty direct-copy tree, in server staging, and after installation.
+Server validation additionally passed `bash -n` for all 436 shell files; one
+isolated-evidence skip was expected. No archive or global Python was used.
+
+Primary and structurally independent zero-new-TSC paths authenticated all 432
+immutable trajectories, constructed the same 1,728 causal origin rows and
+11,232 forecast points, and agreed exactly on features, fits, nested tubes,
+support, innovation, fail-closed planning, outcome, and route. Maximum fit and
+tube differences were both `0.0`.
+
+All point-error and support gates passed. Support was `1728/1728`; maximum
+R/Z/Ip/vR/vZ errors were `0.0011597712 m / 0.0032519124 m / 75.2220 A /
+0.0177881871 m/s / 0.0431037178 m/s`. The reserved tube nevertheless
+contained only `54,497/56,160`, or `0.9703881766381767`, and maximum vR/vZ
+half-widths `0.1067713402 / 0.1838597090 m/s` exceeded the frozen `0.08`
+caps. The optional innovation update worsened aggregate error to a
+`1.2263836369504335` adapted/cold ratio, improved only `1/8` pairs, and
+clipped 94 rows. It was correctly disabled.
+
+The failed model gate kept planning closed. Its zero plan/repair fields and
+oracle `6/16` are sentinel values, not controller evidence. R8R23 ran zero
+Ray, `gotsc`, TSC, controller, plant step, raw, or snapshot. The final route
+is:
+
+```text
+CAUSAL_ONLINE_FEEDBACK_MODEL_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R23_FORENSIC_REPORT.md
+SHA-256
+20168a98ec3117dd0b8cf0c7979dfd97bfe13db3f8da4bbeb0dff8f231b89b07
+```
+
+This is a finite causal model and uncertainty-design failure, not runtime,
+deployment, source, raw, restart, causality, reporting, authority,
+controller, real-MPC, Gate A, or plant reachability. The 7.22 MB model stays
+on the server; only five compact JSON files were downloaded. Every R8-family
+trajectory remains forbidden from learning data.
+
+## 118. Active post-R8R23 model-redesign boundary
+
+Before computing any new fit, tube, plan, or controller output, freeze a
+new-identity causal model and local uncertainty design. It may use the
+consumed R8R23 bank only as explicit development evidence, never as a fresh
+controller holdout. It must retain whole-physical-pair separation, causal
+visible inputs, the exact action/Card15/current/saturation boundary, the
+immutable formal timing contract, structurally independent recomputation,
+and fail-closed routing. It may not relax the observed R8R23 containment or
+velocity-tube gates post-result.
+
+A zero-new-TSC redesign PASS can authorize only a separately frozen fresh
+finite real-controller sentinel. It cannot itself establish MPC, formal
+control, or Gate A. Gate A, expert data, BC, DAgger, and residual RL remain
+blocked; pause for the user only if the full Gate A policy in Section 0 is
+actually satisfied.
 
 ## 113. Final R8R20 direct Boolean-cube completion result
 

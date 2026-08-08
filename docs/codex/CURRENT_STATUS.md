@@ -1,5 +1,59 @@
 # Current status
 
+> **R8R23 final causal online-feedback preflight checkpoint
+> (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `0f61d94 / c4af11d / 7b2739c`. The 1,106-file package passed all hashes,
+> 122 JSON parses, compilation of 431 Python files, focused `6/6`, and full
+> Windows-shimmed `1356/1356` locally and in an empty direct-copy tree.
+> Server staging and installed validation passed the same gates plus `bash -n`
+> for all 436 shell files, with one expected isolated-evidence skip. Only the
+> project and existing server virtual environments were used; no archive was
+> created or extracted.
+>
+> Dual zero-new-TSC implementations authenticated 432 immutable source
+> trajectories and independently rebuilt 1,728 causal decision origins and
+> 11,232 forecast points under eight leave-whole-physical-pair-out folds.
+> Feature and target digests are `14e1a15c...e849 / 037be84f...dcc`; support
+> passed `1728/1728`, and there were zero forbidden inputs or finite
+> exclusions. All point-error caps passed, with R/Z/Ip/vR/vZ maxima
+> `0.00115977 m / 0.00325191 m / 75.222 A / 0.0177882 m/s /
+> 0.0431037 m/s`.
+>
+> The frozen conservative model gate failed. The reserved tube contained
+> `54,497/56,160 = 0.9703881766381767`, below the required `1.0`; maximum vR
+> and vZ half-widths were `0.106771340225 / 0.183859708965 m/s`, above the
+> unchanged `0.08` caps. The optional already-observed innovation update also
+> failed: adapted/cold squared-error ratio `1.2263836369504335`, only `1/8`
+> physical pairs improved, and 94 rows clipped. Innovation was therefore
+> disabled and the cold predictor selected.
+>
+> The model failure kept the 11-level action tree closed. Zero safe plans,
+> zero predicted repairs, and oracle `6/16` are fail-closed sentinel values,
+> not controller or authority outcomes. Primary and structurally independent
+> feature/fit/tube/plan/outcome/route results agreed exactly; maximum fit and
+> tube differences were both `0.0`. R8R23 executed zero Ray, `gotsc`, TSC,
+> controller, plant advance, raw, or snapshot. Final route:
+> `CAUSAL_ONLINE_FEEDBACK_MODEL_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED`.
+>
+> This is a finite causal model/uncertainty-design FAIL, not runtime,
+> deployment, source, restart, causality, reporting, real-MPC, Gate A,
+> action-authority, or global reachability evidence. Final detailed/summary/
+> independent/report/manifest/state/model hashes are `a40a9b89... /
+> 4d900b3c... / af1b419b... / 3d1c88ac... / 2f3aef0b... /
+> bd55964f... / 9bc1e2a0...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R23_FORENSIC_REPORT.md`,
+> SHA-256
+> `20168a98ec3117dd0b8cf0c7979dfd97bfe13db3f8da4bbeb0dff8f231b89b07`.
+> The local compact audit SHA is `70d8c861...d59e`; the 7.22 MB model remains
+> on the server and no raw was downloaded.
+>
+> R8R23 is immutable. Before any further output or controller execution,
+> freeze a new-identity causal model/local uncertainty redesign. Any use of
+> the consumed R8R23 bank is development only, never a fresh holdout or
+> learning data. A model-design PASS may authorize only a separately frozen
+> fresh finite real-controller sentinel. Gate A and all learning remain
+> blocked.
+
 > **R8R22 final bounded continuous-multidirection authority checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/initial implementation/initial package
 > checkpoints are `d2627e3 / f08f498 / f9d19c1`. A reporting-only source-

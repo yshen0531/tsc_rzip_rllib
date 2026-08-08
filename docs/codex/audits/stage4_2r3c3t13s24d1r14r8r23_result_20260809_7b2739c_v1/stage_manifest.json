@@ -1,0 +1,15 @@
+{
+  "all_source_trajectories_allowed_in_expert_dataset": false,
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r23_causal_online_innovation_receding_horizon_preflight.json",
+  "config_sha256": "bf474adf8b023e2cbbf88e77b6f05d36ba47d69feb8a8fa8d2582501af45bb06",
+  "design_document_sha256": "fc06e9cfe22a4d4a6740e8822259ff1fdfdadbd2c08d72ceb0685a9d11fd6b6d",
+  "identity": "causal_online_innovation_receding_horizon_preflight_v1",
+  "model_evidence_sha256": "9bc1e2a0e15597812defbf7724d673ae791ae50d7f70eb2aeda005d61f8ddc5f",
+  "primary_detailed_sha256": "a40a9b895bcfb69069fa5fe6dd7441b7159189d56f7aa50cc893db34a3bcd1a5",
+  "primary_summary_sha256": "4d900b3c5b477ff89dc1d62466b3d8e9ce132480f9c85ae26db91d55b1da285a",
+  "schema_version": 1,
+  "source_r8r22_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r22_runs/stage4_2r3c3t13s24d1r14r8r22_bounded_continuous_multidirection_authority_sentinel_20260808_f9d19c1_v1",
+  "source_r8r22_stage_state_sha256": "8b0566d32f908c084e78a98eec0b39e9705dde2df8b6c4a1a8d6b4e60f606386",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R23",
+  "zero_new_tsc": true
+}
