@@ -1,5 +1,53 @@
 # Current status
 
+> **R8R14 final cumulative multidirection authority-atlas checkpoint
+> (2026-08-08 Asia/Shanghai).** Implementation/package checkpoints are
+> `d737000 / 9874068`. The 1,053-file direct-copy package passed project,
+> empty-copy, server-staging, and installed hashes/compile/focused/full
+> validation at `10/10 / 1279/1279`, with one expected isolated-evidence skip
+> where applicable. No archive or global Python was used.
+>
+> Dual offline construction agreed exactly on `112/112` specs, `448/448`
+> cumulative exact-Card15 issues, and `2464/2464` stored-target refreshes.
+> Maximum predicted issue/refresh increment was `0.1407407407 /
+> 3.7037037e-6`, and maximum predicted current utilization was `0.3927`.
+> Twenty-eight safety trajectories passed exact primary/independent raw
+> agreement before 84 qualification trajectories were authorized.
+>
+> All `112/112` authentic trajectories passed runtime, full-horizon,
+> source-prefix/restart, calibration, event, Card15 target-chain, current,
+> finite-state, forbidden-input, and raw-integrity gates. Safety raw is `28
+> files / 913832 bytes / 8fd9e0e5...`; qualification raw is `84 files /
+> 2757127 bytes / 5bd7e233...`. There were 448 issues, zero forbidden trace
+> rows, and maximum measured current utilization `0.3927`. R8/R8R1 were not
+> rerun, and R8R14 created no snapshot.
+>
+> Formal evaluation reproduced baseline and reused R8R12 direction-2-positive
+> counts at `6/16 / 6/16` with maximum metric difference zero. The seven new
+> families passed 39 trajectories in total; each of all eight fixed
+> direction/sign families passed only `5/16` or `6/16`, repaired `0/10`
+> failed baselines, and at most regressed one baseline pass. The best measured
+> candidate was direction-2 positive in six failed contexts and direction-1
+> negative in four, but the held oracle remained `6/16`. Failed-context best
+> gain min/median/max was `0.0255417333 / 0.0889587816 / 0.1364830984`.
+> Primary and independent results agree exactly.
+>
+> The final route is
+> `CUMULATIVE_MULTIDIRECTION_ATLAS_AUTHORITY_INSUFFICIENT_SEQUENCE_BASIS_REDESIGN_REQUIRED`.
+> Summary/independent/final/manifest/state/compact hashes are `a9a9ee3e... /
+> 5ab92427... / da8420de... / ce980faf... / 27a2d600... / 99af9763...`.
+> Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R14_FORENSIC_REPORT.md`,
+> SHA-256
+> `306a51e6a83584a21a94928a3c6aa220292f628faa82831c0160f84fa2106be1`.
+>
+> R8R14 is a finite constant-direction cumulative sequence-authority design
+> FAIL, not a runtime, deployment, restart, causality, Card15, current, raw,
+> reporting, formal-evaluator, safety, plant, real-MPC, Gate A, or global-
+> reachability result. It is immutable. The active boundary is a new frozen
+> time-varying sequence basis; all R8-family trajectories remain forbidden
+> from learning, and Gate A remains blocked.
+
 > **Prospective R8R14 cumulative multidirection staircase authority
 > identification (2026-08-08 Asia/Shanghai).** Before R8R14 implementation,
 > configuration, offline construction, result, formal metric, raw, snapshot,

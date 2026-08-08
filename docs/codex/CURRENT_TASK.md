@@ -5774,3 +5774,65 @@ can authorize only a new frozen visible-state causal selector/controller
 design; a FAIL requires sequence-basis redesign. R8R14 is not MPC or Gate A.
 All source/new trajectories are forbidden from expert, BC, DAgger, and RL
 data, and all learning remains blocked.
+
+## 101. Final R8R14 result and temporal sequence-basis boundary
+
+R8R14 was implemented and packaged at checkpoints `d737000 / 9874068`.
+Local, empty direct-copy, server-staging, and installed validation passed all
+1,053 declared hashes, compilation, focused `10/10`, and full `1279/1279`
+tests, with one expected isolated-evidence skip where applicable. The accepted
+server run is:
+
+```text
+stage4_2r3c3t13s24d1r14r8r14_runs/
+stage4_2r3c3t13s24d1r14r8r14_cumulative_multidirection_staircase_authority_identification_20260808_9874068_v1/
+stage4_2r3c3t13s24d1r14r8r14_cumulative_multidirection_staircase_authority_identification
+```
+
+Primary and independent offline construction agreed exactly on all 112 specs,
+448 cumulative issues, and 2,464 stored-target refreshes. All 28 safety raw
+then authenticated before the 84 qualification rows were authorized. Every
+one of the 112 authentic trajectories passed the frozen runtime, horizon,
+restart/source-prefix, causality, calibration, Card15, current, finite-state,
+forbidden-input, raw, and report gates:
+
+```text
+safety raw          28 files /  913832 bytes / 8fd9e0e5...
+qualification raw   84 files / 2757127 bytes / 5bd7e233...
+issues                                                  448
+forbidden trace rows                                      0
+maximum measured current utilization                 0.3927
+```
+
+Formal evaluation reproduced every existing metric with maximum difference
+zero. Baseline and reused R8R12 direction-2-positive both passed `6/16`. The
+eight constant-direction/sign cumulative candidates passed between `5/16`
+and `6/16`; none repaired any of the ten failed baselines, and the held oracle
+remained `6/16`. Best failed-context margin gain was
+`0.0255417333 / 0.0889587816 / 0.1364830984` min/median/max. Direction-2
+positive was the best measured candidate in six failed contexts and
+direction-1 negative in four. Primary and independent candidate summaries,
+numerics, gate, and route agree exactly.
+
+The final route is:
+
+```text
+CUMULATIVE_MULTIDIRECTION_ATLAS_AUTHORITY_INSUFFICIENT_SEQUENCE_BASIS_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R14_FORENSIC_REPORT.md
+SHA-256
+306a51e6a83584a21a94928a3c6aa220292f628faa82831c0160f84fa2106be1
+```
+
+R8R14 is immutable. It rules out the frozen constant-direction cumulative
+atlas only. It is not an MPC, Gate A, plant-unreachability, or learning result.
+Before further TSC, the active task is to freeze a new-identity genuinely
+time-varying sequence basis under unchanged restart, visible-state causality,
+Card15/action/current/saturation, safe-stop, formal timing, two-phase,
+independent-audit, and learning-data-prohibition contracts. Gate A, expert
+data, BC, DAgger, and residual RL remain blocked.
