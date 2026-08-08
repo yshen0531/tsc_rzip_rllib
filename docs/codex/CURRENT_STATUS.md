@@ -1,5 +1,26 @@
 # Current status
 
+> **Final R8R29 static-design checkpoint (2026-08-09 Asia/Shanghai).** R8R29
+> stopped before config, implementation, fit, tube, support, plan, package,
+> deployment, raw, snapshot, Ray, `gotsc`, TSC, controller action, or plant
+> advance. Its frozen 42D/133D R8R23 feature admits only previous/current 2D
+> U/V coordinates, while the same design requires six additional signed axes.
+> Those actions cannot be represented without changing the frozen feature and
+> transition-support identity. Final route:
+> `FULL_BASIS_MEASUREMENT_RECENTERED_FEEDBACK_PREFLIGHT_FAIL_NO_TSC`.
+>
+> This is a prospective architecture/feature-contract design FAIL, not a
+> runtime, package, source, raw, restart, causality, Card15, safety, model-fit,
+> controller, real-MPC, formal-control, plant, Gate A, or reachability result.
+> Exact audit:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R29_STATIC_DESIGN_AUDIT.md`,
+> SHA-256
+> `b0b8ddfc2f7c7374c593609a3a2794db8cc825e3b7585995925330cab603854b`.
+> R8R29 is immutable. Before any model fit, freeze a new identity with an
+> explicit 4D signed-axis coordinate, 44D causal feature, 238D expansion,
+> task-step support, and independent reconstruction. Gate A and learning
+> remain blocked.
+
 > **Prospective R8R29 full-basis measurement-recentered receding-horizon
 > feedback checkpoint (2026-08-09 Asia/Shanghai).** After final R8R28 was
 > sealed at `3b7bd68`, and before any R8R29 config, implementation, model fit,

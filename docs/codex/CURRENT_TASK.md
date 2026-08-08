@@ -6611,6 +6611,36 @@ Gate A and cannot authorize expert data, BC, DAgger, or RL. Even after a PASS,
 continue only through the remaining prospectively frozen Section 0.1 Gate A
 qualifications and pause only when every Gate A axis is actually satisfied.
 
+## 129. Final R8R29 static-design result and active explicit-4D boundary
+
+R8R29 is final before implementation or computation. Its frozen 42D causal
+and 133D action-expanded features contain only two previous/current U/V
+coordinates, so they cannot exactly represent the six added signed axes.
+No config, model fit, package, server stage, TSC, raw, snapshot, controller,
+or plant step exists. Final route:
+
+```text
+FULL_BASIS_MEASUREMENT_RECENTERED_FEEDBACK_PREFLIGHT_FAIL_NO_TSC
+```
+
+Exact static audit:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R29_STATIC_DESIGN_AUDIT.md
+SHA-256  b0b8ddfc2f7c7374c593609a3a2794db8cc825e3b7585995925330cab603854b
+```
+
+This is an architecture/feature-contract design failure only. R8R29 is
+immutable. Before any fit, freeze a new identity which explicitly defines a
+4D signed-axis coordinate and support geometry. The eligible exact expansion
+is 44 causal values (`12 visible + 14 current + 14 current delta + 4 previous
+q`), 18 action terms (`4 q + 10 symmetric quadratic + 4 delta q`), and 176
+base-by-current-q interactions, for 238 expanded values. Preserve every
+R8R29 safety, causality, fallback, real two-phase, formal, independent-audit,
+and learning-prohibition boundary unless prospectively strengthened.
+
+Gate A, expert data, BC, DAgger, and residual RL remain blocked.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
