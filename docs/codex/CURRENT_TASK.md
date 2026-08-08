@@ -6045,6 +6045,112 @@ fresh physical sentinel.
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
 R8-family trajectory remains forbidden from learning data.
 
+## 115. Frozen R8R22 bounded continuous-multidirection authority task
+
+After final R8R20 evidence, route, and forensic report were sealed, but
+before any R8R22 implementation, construction, raw, TSC, formal metric, or
+route, freeze the design at:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R22_BOUNDED_CONTINUOUS_MULTIDIRECTION_AUTHORITY_SENTINEL_DESIGN.md
+SHA-256
+ae20525ecf55db472e61b0067c6b292b2fc861573723e5977aa72b386ffc8988
+```
+
+The exact ten candidates are the Cartesian product of amplitudes
+`[1.25,1.50]` and U/V convex weights `[0,.25,.5,.75,1]`, applied as one
+constant cumulative coordinate at task steps `[10,14,18,22]`. Primary and
+independent offline paths must agree on 160 specs, 640 issue constructions,
+and 3,520 exact stored-target refreshes before TSC. Execute 40 safety rows
+first; only complete dual raw agreement may authorize the other 120 rows.
+
+Formal evaluation opens only after all 160 raw pass. Preserve the immutable
+250/270 ms arrival and 350/370 ms hold contract, exact source reproduction,
+baseline `6/16`, and ten failed baselines. A finite authority PASS requires
+at least one repair and baseline-plus-new oracle `>=7/16`. A PASS routes to a
+separately frozen causal receding-horizon controller design; a FAIL routes to
+a separately frozen causal online-feedback model redesign. R8R22 is not MPC
+or Gate A, and every trajectory is forbidden from learning data.
+
+## 116. Final R8R22 result and reporting hotfix
+
+R8R22 completed at design/initial-implementation/initial-package checkpoints
+`d2627e3 / f08f498 / f9d19c1`. All 1,100 declared hashes, compilation,
+focused `12/12`, full `1349/1349`, empty direct-copy, server staging,
+installed, and 435-shell `bash -n` gates passed, with one expected isolated-
+evidence skip where applicable.
+
+The real campaign completed 160/160 authentic full-horizon trajectories:
+40/40 safety and 120/120 qualification. Dual raw audits passed every runtime,
+restart/source-prefix, causality, calibration, candidate, exact Card15
+target-chain, event, current, finite, forbidden-input, and inventory gate.
+There were 640 exact issues and 3,520 refreshes. Maximum issue, refresh, and
+current-utilization values were `0.2111111111111112`,
+`3.7037037048793097e-06`, and `0.3924`.
+
+The first formal report stopped before metric computation because the
+primary R8R20 source loader required 160 rows instead of the authenticated
+96. The independent loader and source contract were correct. Reporting-only
+checkpoint `cd5c092` changed that constant to 96 and added a dual loader
+test; package `fbfe431` passed local/empty/server validation and focused
+`13/13`, full `1350/1350`. No physical row was rerun and no controller or
+action semantics changed.
+
+Corrected formal evaluation reproduced all 432 rows and old metrics exactly.
+The ten new candidates produced 59/160 formal-pass rows, repaired 0/10 failed
+baselines, and left the oracle at `6/16`; one largest pure-U candidate
+regressed one baseline pass. Every failed context had positive best margin
+gain `0.03576556666666786--0.1759552514673881`, median
+`0.1249930059791512`, but none crossed the formal gate. Primary and
+independent results agreed exactly. Final route:
+
+```text
+BOUNDED_CONTINUOUS_MULTIDIRECTION_AUTHORITY_INSUFFICIENT_ONLINE_FEEDBACK_MODEL_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R22_FORENSIC_REPORT.md
+SHA-256
+fdeef92777373090e4a170d7b971a132cee36019aff99b237396f3b21efdbe67
+```
+
+This is a finite fixed-action-family authority failure, not runtime, raw,
+reporting, controller, real-MPC, Gate A, or global reachability evidence.
+
+## 117. Active R8R23 causal online-feedback preflight task
+
+Before the R8R22 qualification raw audit, formal outcome, repair count,
+oracle, verdict, or route was opened, R8R23 was frozen at checkpoint
+`0f61d94`:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R23_CAUSAL_ONLINE_INNOVATION_RECEDING_HORIZON_PREFLIGHT_DESIGN.md
+SHA-256
+fc06e9cfe22a4d4a6740e8822259ff1fdfdadbd2c08d72ceb0685a9d11fd6b6d
+```
+
+The exact R8R22 authority-FAIL route activates this design. Implement a
+zero-new-TSC primary and structurally independent nested whole-pair preflight
+over the authenticated baseline, R8R20 Boolean-tree, and R8R22 continuous-
+level development evidence. Preserve the fixed causal feature, ridge
+penalty, nested maximum-residual tube, support rule, optional already-
+observed innovation update and usefulness gate, closed 11-level safe action
+tree, formal timing contract, and predicted-feasibility gates exactly as
+frozen.
+
+R8R23 must not stitch measured counterfactual states or claim an offline
+predicted plan as real control. It runs zero Ray, `gotsc`, TSC, controller,
+plant step, raw, or snapshot. A complete PASS may authorize only a separately
+frozen fresh-identity real-TSC controller sentinel; a failure requires model
+redesign before any controller run.
+
+Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
+R8-family trajectory remains forbidden from expert or policy-learning data.
+
 ## 113. Final R8R20 direct Boolean-cube completion result
 
 R8R20 completed at design/implementation/package checkpoints

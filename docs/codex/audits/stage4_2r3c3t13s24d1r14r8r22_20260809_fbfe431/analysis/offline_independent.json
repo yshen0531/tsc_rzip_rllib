@@ -1,0 +1,21 @@
+{
+  "audit_kind": "offline_independent",
+  "construction_exact": true,
+  "level_construction_count": 640,
+  "new_raw_count": 0,
+  "passed": true,
+  "primary_outcome_agreement": true,
+  "primary_sha256": "53cc738b4b787f1d4ffa8d96c4017c081f085da0814ca8fc78e3154439881c2f",
+  "real_tsc_executed": false,
+  "refresh_construction_count": 3520,
+  "schema_version": 1,
+  "source_r8r12_authenticated": true,
+  "source_r8r14_authenticated": true,
+  "source_r8r15_authenticated": true,
+  "source_r8r19_authenticated": true,
+  "source_r8r20_authenticated": true,
+  "source_r8r7_authenticated": true,
+  "spec_count": 160,
+  "specs_exact": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R22"
+}

@@ -1,0 +1,75 @@
+{
+    "schema_version":  1,
+    "stage":  "Stage4.2R3c3T13S24D1R14R8R22",
+    "source_run":  "stage4_2r3c3t13s24d1r14r8r22_bounded_continuous_multidirection_authority_sentinel_20260808_f9d19c1_v1",
+    "raw_included":  false,
+    "source_file_count":  13,
+    "source_total_bytes":  8428639,
+    "files":  [
+                  {
+                      "path":  "analysis/final_independent.json",
+                      "bytes":  6671,
+                      "sha256":  "c8663896ee37c1c73ba6470ecdda4f057bd401bedfb63afd3d564fbb0dbd0a97"
+                  },
+                  {
+                      "path":  "analysis/final_report.json",
+                      "bytes":  6994,
+                      "sha256":  "933263c6eb0ccd5fe7a533a796e9ec89761e07399b65a65ba28ba9b4715fb97b"
+                  },
+                  {
+                      "path":  "analysis/offline_continuous_multidirection_preflight.json",
+                      "bytes":  7502760,
+                      "sha256":  "4cbb97d6b90bee259815b3328a42f4374f199ca102d6d98cd246288f7bb26fd6"
+                  },
+                  {
+                      "path":  "analysis/offline_independent.json",
+                      "bytes":  677,
+                      "sha256":  "9e6b716b3435f7f80711f5ca53e6aa0d8e785ffb1384166e2ab82c9b802667ab"
+                  },
+                  {
+                      "path":  "analysis/offline_primary.json",
+                      "bytes":  824,
+                      "sha256":  "53cc738b4b787f1d4ffa8d96c4017c081f085da0814ca8fc78e3154439881c2f"
+                  },
+                  {
+                      "path":  "analysis/primary_detailed.json",
+                      "bytes":  595322,
+                      "sha256":  "bc71fcd498fe3af5211e47300470802de646f508466e5739f25d843511b1480c"
+                  },
+                  {
+                      "path":  "analysis/primary_summary.json",
+                      "bytes":  6594,
+                      "sha256":  "3db48da61cdf64fd5644ac84a6c1ed933df1256f1f9ec20b1c17ced2b8723167"
+                  },
+                  {
+                      "path":  "analysis/qualification_raw_independent.json",
+                      "bytes":  113588,
+                      "sha256":  "6cae10afd4c53030d532791cdb0b77c08f701791420a79e92a839d63adc25ee2"
+                  },
+                  {
+                      "path":  "analysis/qualification_raw_primary.json",
+                      "bytes":  113526,
+                      "sha256":  "d0a4f5a40534285d0fe439203286ad44019bd45b306563c14dae77789618e547"
+                  },
+                  {
+                      "path":  "analysis/safety_raw_independent.json",
+                      "bytes":  38015,
+                      "sha256":  "5ffe806d17c1cc7106814e83c25330b4c702408f39d97f14a8688f3f26146fc6"
+                  },
+                  {
+                      "path":  "analysis/safety_raw_primary.json",
+                      "bytes":  37960,
+                      "sha256":  "c50d5691f9675d1cfd3fe344be726fccad2a8406b7b8c3bdaf458b19755527f0"
+                  },
+                  {
+                      "path":  "stage_manifest.json",
+                      "bytes":  4481,
+                      "sha256":  "c8bbe57dfd84b2a4c7ede51dadb52986de99333677de81fdd6eef005803cff74"
+                  },
+                  {
+                      "path":  "stage_state.json",
+                      "bytes":  1227,
+                      "sha256":  "8b0566d32f908c084e78a98eec0b39e9705dde2df8b6c4a1a8d6b4e60f606386"
+                  }
+              ]
+}

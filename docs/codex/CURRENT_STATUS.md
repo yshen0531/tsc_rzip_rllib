@@ -1,5 +1,56 @@
 # Current status
 
+> **R8R22 final bounded continuous-multidirection authority checkpoint
+> (2026-08-09 Asia/Shanghai).** Design/initial implementation/initial package
+> checkpoints are `d2627e3 / f08f498 / f9d19c1`. A reporting-only source-
+> count hotfix and its package are `cd5c092 / fbfe431`. The 1,100-file
+> package passed exact hashes, compilation, focused `12/12` then hotfix
+> `13/13`, and full `1349/1349` then hotfix `1350/1350` locally, in empty
+> direct-copy trees, in server staging, and after installation; all 435 shell
+> files passed `bash -n`, with one expected isolated-evidence skip where
+> applicable. No archive or global Python was used.
+>
+> R8R22 completed 160/160 authentic trajectories. Dual raw audits passed all
+> runtime, full-horizon, restart/source-prefix state/trace, causality,
+> calibration, candidate, exact target-chain, event, Card15, action, current,
+> finite, forbidden-input, and inventory gates. Safety was `40/40` and
+> qualification `120/120`; there were 640 exact issues and 3,520 refreshes.
+> Maximum issue/refresh/current values were `0.2111111111111112 /
+> 3.7037037048793097e-06 / 0.3924`. Safety raw is
+> `40 / 1312632 bytes / 50a3ee18...885`; qualification raw is
+> `120 / 3959765 bytes / ee2d1595...dab`.
+>
+> The first formal-primary attempt stopped before computing any metric because
+> its R8R20 loader incorrectly required 160 source rows rather than the exact
+> `6 codes * 16 contexts = 96`. Independent code and source evidence already
+> used 96. Hotfix `cd5c092` changed only that reporting constant and added a
+> dual 96-row regression test. All 160 raw were preserved; zero Ray, `gotsc`,
+> TSC, controller, or plant steps were rerun. This was a reporting error, not
+> a scientific or control failure.
+>
+> Corrected formal evaluation reproduced 432 rows exactly with maximum old-
+> evaluator margin difference `0.0`. Baseline remained `6/16`. Nine new
+> candidates passed `6/16`; `a1p50_w1p00` passed `5/16` and regressed one
+> prior pass. New rows totaled `59/160`, but repaired `0/10` failed baselines,
+> so the baseline-plus-new oracle remained `6/16`. Failed-context best margin
+> gains were all positive: `0.03576556666666786--0.1759552514673881`, median
+> `0.1249930059791512`. Primary/independent route, outcome, and numbers agreed
+> exactly. Final route:
+> `BOUNDED_CONTINUOUS_MULTIDIRECTION_AUTHORITY_INSUFFICIENT_ONLINE_FEEDBACK_MODEL_REDESIGN_REQUIRED`.
+>
+> This is a finite fixed-action-family authority FAIL, not runtime, restart,
+> causality, raw, reporting, real-MPC, Gate A, or global reachability evidence.
+> Before qualification/formal outcomes were opened, R8R23 causal online-
+> innovation receding-horizon preflight was frozen at `0f61d94`, design SHA
+> `fc06e9cf...d6b6d`; the exact FAIL route now activates that zero-new-TSC
+> preflight. Final detailed/summary/independent/report/manifest/state hashes
+> are `bc71fcd4... / 3db48da6... / c8663896... / 933263c6... /
+> c8bbe57d... / 8b0566d3...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R22_FORENSIC_REPORT.md`,
+> SHA-256
+> `fdeef92777373090e4a170d7b971a132cee36019aff99b237396f3b21efdbe67`.
+> All R8-family data remain forbidden from learning; Gate A remains blocked.
+
 > **R8R20 final direct Boolean-cube completion checkpoint
 > (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `f13e88a / ad64f09 / 98c67c5`. The 1,094-file package passed exact hashes,

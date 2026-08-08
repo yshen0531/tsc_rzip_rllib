@@ -1,0 +1,73 @@
+{
+  "all_stage_trajectories_allowed_in_expert_dataset": false,
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r22_bounded_continuous_multidirection_authority_sentinel_370ms.json",
+  "config_sha256": "f5b33e2ff343547069ccbe87d34d38e3ccc47563b29e8a6127caea1984a30475",
+  "controller_revision": "bounded_continuous_multidirection_v42r3c3t13s24d1r14r8r22_v1",
+  "design_document_sha256": "ae20525ecf55db472e61b0067c6b292b2fc861573723e5977aa72b386ffc8988",
+  "formal_timing_unchanged": true,
+  "identity": "bounded_continuous_multidirection_authority_sentinel_v1",
+  "lineage_authenticated": true,
+  "offline_preflight_digest": "b1a126ff35fe2b067accedaffc66f2d946e39ab1831f09e44d170cc76167b190",
+  "package_fingerprint": {
+    "digest": "d1d8aa2acde5b7013b2e87a0cdee1a05bde209e3f6435d2970aba377170b46ae",
+    "files": [
+      {
+        "bytes": 10152,
+        "path": "configs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_370ms.json",
+        "sha256": "5378445f47fd9fff668166f28c00bf0c8ccfba6a8774f2bdb47371a962044be5"
+      },
+      {
+        "bytes": 28709,
+        "path": "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_independent_forensics.py",
+        "sha256": "ea8f4b5c8711a101869c2edfdb20c204d63a90a50f0a192b20d574586326284f"
+      },
+      {
+        "bytes": 12485,
+        "path": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_SENTINEL_DESIGN.md",
+        "sha256": "a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f"
+      },
+      {
+        "bytes": 276,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py",
+        "sha256": "bd8a01f1d1d665981f958ebf6fe24d72901f88b0ce83bd2b17fd89c555f03cea"
+      },
+      {
+        "bytes": 3531,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r7_shell_common.sh",
+        "sha256": "64ea5fa25088aa1f4bc183263d9660cbe373dfd4380b15c7a959077492f45e67"
+      },
+      {
+        "bytes": 12278,
+        "path": "tests/test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.py",
+        "sha256": "460865750079df07a99e80a326d19f4d2f9bb40743e5ae41c13c145c4a73792b"
+      },
+      {
+        "bytes": 9647,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.py",
+        "sha256": "d53491830bcfef5d6c7a972f270bb63dac8e4647de6aa0418ec1952aadf1a83f"
+      },
+      {
+        "bytes": 88318,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py",
+        "sha256": "eb8c9437bf85c44c4c7b6843fafb8e7026d1cf5010e11d0a65ab7a87ad8aaf02"
+      }
+    ]
+  },
+  "package_revision": "r42r3c3t13s24d1r14r8r22_bounded_continuous_multidirection_v1",
+  "schema_version": 1,
+  "source_r8r12_authenticated": true,
+  "source_r8r12_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r12_runs/stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel_20260808_523c706_v2",
+  "source_r8r14_authenticated": true,
+  "source_r8r14_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r14_runs/stage4_2r3c3t13s24d1r14r8r14_cumulative_multidirection_staircase_authority_identification_20260808_9874068_v1",
+  "source_r8r15_authenticated": true,
+  "source_r8r15_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r15_runs/stage4_2r3c3t13s24d1r14r8r15_binary_temporal_switching_staircase_authority_sentinel_20260808_f23c96e_v1",
+  "source_r8r19_authenticated": true,
+  "source_r8r19_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r19_runs/stage4_2r3c3t13s24d1r14r8r19_saturated_boolean_kernel_loco_preflight_20260808_51b429a_v1",
+  "source_r8r20_authenticated": true,
+  "source_r8r20_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r20_runs/stage4_2r3c3t13s24d1r14r8r20_direct_boolean_cube_completion_authority_sentinel_20260808_98c67c5_v2",
+  "source_r8r7_authenticated": true,
+  "source_r8r7_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1",
+  "spec_count": 160,
+  "spec_digest": "ef120b695ad15d7aef9e1c227fde2b079149139a15908135f5b52f12280ef286",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R22"
+}

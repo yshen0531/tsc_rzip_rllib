@@ -1,0 +1,23 @@
+{
+  "final_independent_sha256": "c8663896ee37c1c73ba6470ecdda4f057bd401bedfb63afd3d564fbb0dbd0a97",
+  "final_report_sha256": "933263c6eb0ccd5fe7a533a796e9ec89761e07399b65a65ba28ba9b4715fb97b",
+  "finished": true,
+  "formal_outcomes_opened": true,
+  "new_raw_count": 160,
+  "offline_independent_sha256": "9e6b716b3435f7f80711f5ca53e6aa0d8e785ffb1384166e2ab82c9b802667ab",
+  "package_digest": "d1d8aa2acde5b7013b2e87a0cdee1a05bde209e3f6435d2970aba377170b46ae",
+  "phase_status": "complete",
+  "primary_route": "BOUNDED_CONTINUOUS_MULTIDIRECTION_AUTHORITY_INSUFFICIENT_ONLINE_FEEDBACK_MODEL_REDESIGN_REQUIRED",
+  "primary_summary_sha256": "3db48da61cdf64fd5644ac84a6c1ed933df1256f1f9ec20b1c17ced2b8723167",
+  "qualification_outcomes_opened": true,
+  "real_tsc_executed": true,
+  "safety_independent_sha256": "5ffe806d17c1cc7106814e83c25330b4c702408f39d97f14a8688f3f26146fc6",
+  "schema_version": 1,
+  "spec_digest": "ef120b695ad15d7aef9e1c227fde2b079149139a15908135f5b52f12280ef286",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R22",
+  "stop_reason": "formal_authority_gate_failed",
+  "verdict": {
+    "passed": false,
+    "route": "BOUNDED_CONTINUOUS_MULTIDIRECTION_AUTHORITY_INSUFFICIENT_ONLINE_FEEDBACK_MODEL_REDESIGN_REQUIRED"
+  }
+}
