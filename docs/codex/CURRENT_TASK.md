@@ -6090,6 +6090,46 @@ Direct completion may answer only finite authority and sequence-selection
 questions. It is not MPC or Gate A. Gate A, expert data, BC, DAgger, and
 residual RL remain blocked.
 
+## 112. Frozen R8R20 direct Boolean-cube completion task
+
+After final R8R19 evidence, route, and forensic report were sealed, but
+before any R8R20 implementation, configuration, construction, raw, TSC,
+formal output, or route, freeze the design at:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R20_DIRECT_BOOLEAN_CUBE_COMPLETION_AUTHORITY_SENTINEL_DESIGN.md
+SHA-256
+8b49ef5f49d15b994cc4fc8b1a94313fa2782c297f98a31863e35e6886f1c07c
+```
+
+Authenticate complete final R8R15 and R8R19 evidence. Execute only the six
+previously unmeasured codes `UVUU,UUVU,UVVU,VUUV,VVUV,VUVV` over the same
+sixteen R8R15 contexts using byte-identical U/V symbols, task steps
+`[10,14,18,22]`, causal target refresh, exact Card15, and source prefix
+through task step 9. Existing ten codes must not be rerun.
+
+Before any plant advance, primary and structurally independent offline paths
+must agree on all 96 specs, 384 exact issues, and 2,112 exact target refreshes
+and pass every unchanged action/current/cosine/off-basis/saturation gate.
+Execute the prospectively frozen `24`-trajectory safety phase first. Only
+complete primary/independent raw and execution agreement may authorize the
+remaining `72` qualification trajectories.
+
+Formal evaluation opens only after all 96 raw files pass. Preserve the
+250/270 ms arrival and 350/370 ms hold contract, formal metric equivalence
+`1e-12`, baseline `6/16`, and ten failed baselines. A finite authority PASS
+requires at least one R8R20 repair and complete-cube held oracle `>=7/16`.
+A PASS authorizes only a separately frozen causal selector/receding-horizon
+controller design; a FAIL routes to separately frozen bounded continuous-
+multidirection redesign.
+
+Implement, validate, package by empty direct copy, deploy without archives,
+and execute fail-closed safety then qualification with dual raw and formal
+audits. R8R20 is not MPC or Gate A. Gate A, expert data, BC, DAgger, and
+residual RL remain blocked, and every R8-family trajectory is forbidden from
+learning data.
+
 ## 110. Frozen R8R19 saturated Boolean kernel LOCO task
 
 After sealing final R8R18 evidence, report, and route, but before any R8R19

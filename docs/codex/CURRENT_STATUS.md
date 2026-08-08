@@ -1,5 +1,26 @@
 # Current status
 
+> **Prospective R8R20 direct Boolean-cube completion sentinel
+> (2026-08-08 Asia/Shanghai).** After final R8R19 evidence, route, and report
+> were sealed, but before any R8R20 implementation, construction, raw, TSC,
+> or formal output, the design was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R20_DIRECT_BOOLEAN_CUBE_COMPLETION_AUTHORITY_SENTINEL_DESIGN.md`,
+> SHA-256
+> `8b49ef5f49d15b994cc4fc8b1a94313fa2782c297f98a31863e35e6886f1c07c`.
+>
+> The closed matrix is exactly the six unmeasured codes
+> `UVUU,UUVU,UVVU,VUUV,VVUV,VUVV` over the same sixteen authentic contexts.
+> Dual offline construction covers 96 specs, 384 exact issues, and 2,112
+> stored-target refreshes under unchanged R8R15 Card15/action/current gates.
+> Safety is prospectively fixed at four contexts times six codes (`24`);
+> only complete dual raw agreement may authorize the remaining `72`.
+>
+> Formal evaluation stays closed until all 96 physical rows pass integrity.
+> A scientific PASS requires at least one of ten baseline-failure repairs and
+> complete-cube held oracle `>=7/16` under the unchanged 250/270 ms arrival
+> and 350/370 ms hold contract. R8R20 is finite authority identification, not
+> MPC or Gate A. All R8-family trajectories remain forbidden from learning.
+
 > **R8R19 final saturated Boolean-kernel LOCO checkpoint
 > (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `f4c842b / e62c563 / 51b429a`. The 1,087-file package passed hashes, JSON,
