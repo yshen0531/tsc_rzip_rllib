@@ -795,7 +795,7 @@ def _source_r8r20_candidates(
         for code in codes
     }
     if (
-        len(specs) != 160
+        len(specs) != 96
         or _digest(specs) != str(ctx.cfg["source_r8r20"]["spec_digest"])
         or {
             (str(row["pair_id"]), str(row["history_member"]), str(row["r8r20_sequence_code"]))

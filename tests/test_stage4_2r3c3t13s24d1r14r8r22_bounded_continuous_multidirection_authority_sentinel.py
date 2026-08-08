@@ -198,6 +198,46 @@ class BoundedContinuousMultidirectionAuthoritySentinelTests(unittest.TestCase):
         self.assertIn("final_formal_row_count", inspect.getsource(sentinel.finalize_primary))
         self.assertIn("final_formal_row_count", audited)
 
+    def test_primary_and_independent_load_all_96_r8r20_source_candidates(self) -> None:
+        cfg = copy.deepcopy(self.cfg)
+        rows = []
+        safety = set(cfg["context_contract"]["safety_pairs"])
+        for pair in cfg["context_contract"]["ordered_pairs"]:
+            for history in cfg["context_contract"]["histories"]:
+                for code in cfg["schedule_contract"]["source_r8r20_sequences"]:
+                    rows.append(
+                        {
+                            "experiment_id": f"r8r20_{len(rows):02d}",
+                            "pair_id": pair,
+                            "history_member": history,
+                            "partition": "safety" if pair in safety else "qualification",
+                            "r8r20_sequence_code": code,
+                            "r8r20_sequence": [{"symbol": symbol} for symbol in code],
+                            "r8r20_decision_task_steps": [10, 14, 18, 22],
+                        }
+                    )
+        self.assertEqual(len(rows), 96)
+        cfg["source_r8r20"]["spec_digest"] = sentinel._digest(rows)
+        context = SimpleNamespace(cfg=cfg)
+        with (
+            mock.patch.object(sentinel, "_r8r20_stage", return_value=Path("source")),
+            mock.patch.object(sentinel, "_read", return_value=copy.deepcopy(rows)),
+            mock.patch.object(sentinel.r8r7.r8, "_read_gz", return_value={}),
+        ):
+            primary_specs, primary_results = sentinel._source_r8r20_candidates(context)
+        with (
+            mock.patch.object(independent, "_r8r20_stage", return_value=Path("source")),
+            mock.patch.object(independent, "_read", return_value=copy.deepcopy(rows)),
+            mock.patch.object(independent, "_gzip", return_value={}),
+        ):
+            audited_specs, audited_results = independent._source_r8r20_candidates(
+                SimpleNamespace(), cfg
+            )
+        self.assertEqual(primary_specs, audited_specs)
+        self.assertEqual(len(primary_specs), 96)
+        self.assertEqual(len(primary_results), 96)
+        self.assertEqual(primary_results, audited_results)
+
     def test_independent_implementation_does_not_import_primary(self) -> None:
         source = Path(independent.__file__).read_text(encoding="utf-8")
         self.assertNotIn(
