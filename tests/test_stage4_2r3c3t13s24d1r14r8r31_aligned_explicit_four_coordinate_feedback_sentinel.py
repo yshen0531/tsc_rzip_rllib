@@ -193,6 +193,36 @@ class R8R31AlignedExplicitFourCoordinateFeedbackTests(unittest.TestCase):
             )
         )
 
+    def test_independent_outer_accepts_empty_normal_horizon_tail_groups(self):
+        bank = []
+        for pair_index in range(8):
+            intervals = []
+            for interval, maximum in enumerate(r8r31.MAX_COUNTS):
+                count = maximum if interval != 5 or pair_index < 2 else 13
+                feature = np.full(44, pair_index + interval / 10.0)
+                intervals.append(
+                    {
+                        "interval": interval,
+                        "feature": feature,
+                        "expanded": np.r_[feature, np.zeros(194)],
+                        "targets": np.zeros((count, 5)),
+                    }
+                )
+            bank.append(
+                {
+                    "trajectory_id": f"synthetic_{pair_index}",
+                    "pair_id": f"p{pair_index}",
+                    "history_member": "q1",
+                    "schedule_id": "q0",
+                    "intervals": intervals,
+                }
+            )
+
+        folds, result = independent._outer(bank, self.cfg)
+        self.assertEqual(len(folds), 8)
+        self.assertEqual(len(result["fold_rows"]), 8)
+        self.assertTrue(np.isfinite(result["reserved_containment_rate"]))
+
 
 if __name__ == "__main__":
     unittest.main()

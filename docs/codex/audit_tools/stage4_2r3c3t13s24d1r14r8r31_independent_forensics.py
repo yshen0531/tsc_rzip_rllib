@@ -604,7 +604,8 @@ def _outer(
                 residual = np.asarray(values, dtype=float).reshape((-1, 5))
                 fold_contained += int(np.count_nonzero(residual <= tube[interval][offset] + 1e-15))
                 fold_count += residual.size
-                fold_error = np.maximum(fold_error, np.max(residual, axis=0))
+                if len(residual):
+                    fold_error = np.maximum(fold_error, np.max(residual, axis=0))
         maximum_error = np.maximum(maximum_error, fold_error * FACTORS)
         maximum_tube = np.maximum(maximum_tube, np.max(np.concatenate(tube), axis=0) * FACTORS)
         contained += fold_contained
