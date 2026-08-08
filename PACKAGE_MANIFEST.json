@@ -568,7 +568,7 @@
     "outbound_network_required": false,
     "empty_directory_deployment_required": true
   },
-  "declared_file_count": 1130,
+  "declared_file_count": 1137,
   "file_inventory": [
     "AGENTS.md",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -807,6 +807,13 @@
     "docs/codex/audits/stage4_2r3c3t10_interaction_aware_feasibility_20260731_125505/server_compact/stage4_2r3c3t10_manifest_v1.json",
     "docs/codex/audits/stage4_2r3c3t11_persistent_step_preflight_v3_20260731_a9807b9/server_compact/stage4_2r3c3t11_persistent_step_response_preflight_v1.json",
     "docs/codex/audits/stage4_2r3c3t13s24d1r14r5_20260804_a4c43bb/compact_evidence_manifest_v1.json",
+    "docs/codex/audits/stage4_2r3c3t13s24d1r14r8r26_result_20260809_a1f4535_v1/COMPACT_MANIFEST.json",
+    "docs/codex/audits/stage4_2r3c3t13s24d1r14r8r26_result_20260809_a1f4535_v1/SHA256SUMS",
+    "docs/codex/audits/stage4_2r3c3t13s24d1r14r8r26_result_20260809_a1f4535_v1/compact_audit.json",
+    "docs/codex/audits/stage4_2r3c3t13s24d1r14r8r26_result_20260809_a1f4535_v1/final_report.json",
+    "docs/codex/audits/stage4_2r3c3t13s24d1r14r8r26_result_20260809_a1f4535_v1/primary_summary.json",
+    "docs/codex/audits/stage4_2r3c3t13s24d1r14r8r26_result_20260809_a1f4535_v1/stage_manifest.json",
+    "docs/codex/audits/stage4_2r3c3t13s24d1r14r8r26_result_20260809_a1f4535_v1/stage_state.json",
     "docs/codex/audits/stage4_2r3c3t6_new_direction_preflight_20260731_428a0bd/stage4_2r3c3t6_new_direction_preflight_v1.json",
     "docs/codex/audits/stage4_2r3c3t9_pc3_mixed_interaction_preflight_20260731_cbb970b/stage4_2r3c3t9_pc3_mixed_interaction_preflight_v1.json",
     "docs/codex/reports/STAGE4_2R3C3T10_INTERACTION_AWARE_FEASIBILITY_DESIGN.md",
