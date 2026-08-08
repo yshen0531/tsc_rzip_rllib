@@ -1,5 +1,38 @@
 # Current status
 
+> **R8R19 final saturated Boolean-kernel LOCO checkpoint
+> (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `f4c842b / e62c563 / 51b429a`. The 1,087-file package passed hashes, JSON,
+> compilation, focused `9/9`, and full `1326/1326` locally and in the empty
+> direct-copy tree. Server staging and installed validation additionally
+> passed every hash and shell `bash -n`, with one expected isolated-evidence
+> skip where applicable. No archive or global Python was used.
+>
+> Dual zero-new-TSC audits authenticated final R8R15--R8R18 evidence. All
+> code-only rank, condition, weight, point-error, classification, and tube
+> gates passed. Formal classification was `160/160`, but the fixed model
+> passed only `156/160` LOCO rows because maximum minimum-margin error was
+> `0.06413974895404673 > 0.05`. Maximum scaled point error was only
+> `0.006226528571431423`. Primary augmented SVD and independent normal-
+> equation solves agreed with maximum difference `7.105427357601002e-14`.
+>
+> R8R19 ran zero TSC, controller, plant step, raw, or snapshot. The authority
+> phase was not opened. The final route is
+> `SATURATED_BOOLEAN_KERNEL_MODEL_INADEQUATE_DIRECT_CUBE_COMPLETION_REDESIGN_REQUIRED`.
+> Detailed/summary/independent/final/manifest/state/evidence hashes are
+> `0f4980f4... / eca8813d... / b527acd0... / 73249b2c... /
+> c9ef5908... / ad726417... / 1be9e2a6...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R19_FORENSIC_REPORT.md`,
+> SHA-256
+> `7cecea2eefc36991bde612452bcf3cc0cac5f9f34b2a1c778825f08ffdf5c939`.
+>
+> This is a finite model-design FAIL, not runtime, deployment, source, raw,
+> restart, causality, reporting, controller, plant, real-MPC, Gate A, or
+> global reachability. The active boundary is a separately frozen direct
+> physical completion of the six missing Boolean sequences over the same
+> finite contexts. Learning remains blocked and every R8-family trajectory
+> remains forbidden from learning data.
+
 > **Prospective R8R19 saturated Boolean kernel LOCO preflight
 > (2026-08-08 Asia/Shanghai).** After final R8R18 evidence and route were
 > sealed, but before any R8R19 response fit or output, the new zero-TSC design

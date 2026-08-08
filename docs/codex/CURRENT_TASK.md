@@ -6045,6 +6045,51 @@ fresh physical sentinel.
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
 R8-family trajectory remains forbidden from learning data.
 
+## 111. Final R8R19 result and active direct-cube-completion boundary
+
+R8R19 completed at design/implementation/package checkpoints
+`f4c842b / e62c563 / 51b429a`. Local, empty-direct-copy, server-staging, and
+installed validation passed all 1,087 hashes, compilation, focused `9/9`, and
+full `1326/1326`, with one expected isolated-evidence skip where applicable.
+Real server `bash -n` passed every declared shell file. No archive, global
+Python, server Git, or new TSC execution was used.
+
+The primary augmented-SVD and structurally independent normal-equation audits
+authenticated final R8R15--R8R18 evidence and agreed to
+`7.105427357601002e-14`. All frozen Boolean-code geometry, stability, point-
+error, exact formal-classification `160/160`, and tube gates passed, but only
+`156/160` LOCO rows passed the complete model gate. Maximum minimum-formal-
+margin error was `0.06413974895404673 > 0.05`; maximum scaled point error was
+`0.006226528571431423`.
+
+The missing-code authority phase was not opened. R8R19 created zero TSC,
+controller step, plant step, raw, or snapshot. The final route is:
+
+```text
+SATURATED_BOOLEAN_KERNEL_MODEL_INADEQUATE_DIRECT_CUBE_COMPLETION_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R19_FORENSIC_REPORT.md
+SHA-256
+7cecea2eefc36991bde612452bcf3cc0cac5f9f34b2a1c778825f08ffdf5c939
+```
+
+R8R19 is immutable. Its phase-closed zero counts are not physical outcomes.
+The fixed predictor is vetoed, not the six missing physical sequences or the
+plant. Before any new response is produced, freeze a new-identity direct
+finite-cube-completion design for exactly
+`UVUU,UUVU,UVVU,VUUV,VVUV,VUVV` over the same sixteen contexts. Use a
+prospective fail-closed safety/qualification split, retain every existing
+Card15, restart, causality, current, formal-timing, raw-integrity, and
+independent-audit gate, and forbid all resulting trajectories from learning.
+
+Direct completion may answer only finite authority and sequence-selection
+questions. It is not MPC or Gate A. Gate A, expert data, BC, DAgger, and
+residual RL remain blocked.
+
 ## 110. Frozen R8R19 saturated Boolean kernel LOCO task
 
 After sealing final R8R18 evidence, report, and route, but before any R8R19
