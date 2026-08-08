@@ -1,5 +1,23 @@
 # Current status
 
+> **Final R8R30 static-timing checkpoint (2026-08-09 Asia/Shanghai).** R8R30
+> stopped before config, implementation, feature, fit, support, plan, package,
+> deployment, action, raw, or TSC. Its six-decision model samples
+> `[10,12,14,16,18,22]`, but the included R8R28 g3 rows contain unencoded
+> major issues at 13 and 19 inside two predicted intervals. Treating those
+> origins as zero new coordinate would train against targets caused by future
+> actions absent from the causal feature. Final route:
+> `EXPLICIT_FOUR_COORDINATE_FEEDBACK_PREFLIGHT_FAIL_NO_TSC`.
+>
+> This is a prospective source/action-timing design FAIL, not a model-fit,
+> runtime, raw, controller, TSC, plant, or Gate A result. Exact audit:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R30_STATIC_TIMING_AUDIT.md`,
+> SHA-256
+> `5822af88f966207035ac45571a64b0a82fca7845666386d112aa691adf3bbde5`.
+> R8R30 is immutable. The eligible new identity retains the 4D/44D/238D
+> model but excludes g3, producing 560 aligned trajectories, 35 schedules,
+> and 3,360 interval rows. Gate A and learning remain blocked.
+
 > **Prospective R8R30 explicit-four-coordinate measurement-recentered
 > feedback checkpoint (2026-08-09 Asia/Shanghai).** After R8R29 was closed at
 > `7724088`, and before any R8R30 feature value, fit, tube, support, plan,

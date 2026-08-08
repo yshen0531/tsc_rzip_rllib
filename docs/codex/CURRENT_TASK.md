@@ -6673,6 +6673,34 @@ R8R30 remains only a finite deterministic controller-core sentinel. Gate A,
 expert data, BC, DAgger, and residual RL remain blocked; a PASS must continue
 through every remaining prospectively frozen Section 0.1 qualification.
 
+## 131. Final R8R30 static-timing result and active aligned-bank boundary
+
+R8R30 is final before config, implementation, feature construction, model
+fit, package, server work, TSC, raw, controller, or plant step. Its g3 source
+rows contain real issues at 13 and 19 inside the frozen
+`[10,12,14,16,18,22]` prediction intervals, but its feature has no future
+within-interval action field. Final route:
+
+```text
+EXPLICIT_FOUR_COORDINATE_FEEDBACK_PREFLIGHT_FAIL_NO_TSC
+```
+
+Exact audit:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R30_STATIC_TIMING_AUDIT.md
+SHA-256  5822af88f966207035ac45571a64b0a82fca7845666386d112aa691adf3bbde5
+```
+
+R8R30 is immutable. Before any feature value or fit, freeze a new identity
+which preserves its 4D/44D/238D representation and all safety/formal gates,
+but excludes 32 g3 rows. The exact aligned bank must be R8R23 `432` plus six
+non-U/V R8R14 schedules `96` plus R8R28 g2 `32`, totaling 560 trajectories,
+35 schedule identities, and 3,360 six-interval records. Do not add decisions
+13/19 under the old identity.
+
+Gate A and all learning remain blocked.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
