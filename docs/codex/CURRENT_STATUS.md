@@ -1,5 +1,30 @@
 # Current status
 
+> **Prospective R8R30 explicit-four-coordinate measurement-recentered
+> feedback checkpoint (2026-08-09 Asia/Shanghai).** After R8R29 was closed at
+> `7724088`, and before any R8R30 feature value, fit, tube, support, plan,
+> implementation, action, package, raw, or TSC, the corrected identity was
+> frozen. Exact design:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R30_EXPLICIT_FOUR_COORDINATE_MEASUREMENT_RECENTERED_FEEDBACK_SENTINEL_DESIGN.md`,
+> SHA-256
+> `6a65a7ed7e84cbd89f420e2461928ce0cafcf30a96768b8836d67ccc9508d1f4`.
+>
+> R8R30 retains R8R29's 592 exact source trajectories, 17 candidates, six
+> decisions, safety/formal/fallback/two-phase gates, and learning prohibition,
+> but explicitly defines `q=[d0,d1,d2,d3]`. The exact feature is 44D (`12
+> visible + 14 current + 14 current delta + 4 previous q`); its 18 ordered
+> action terms plus four 44D interaction blocks produce a 238D expansion.
+> The 592 trajectories yield 3,552 six-interval records. A non-issue source
+> step uses `q=0` as no new canonical increment/current-target hold; measured
+> refresh actions remain in causal histories.
+>
+> Whole-pair and 37-schedule jackknife model/tube gates, 8D task-step action
+> support, 16 safe searches, a predicted repair, zero fallback regressions,
+> oracle `>=7/16`, a nonzero first action, six fallback fault injections, and
+> exact independent agreement are required before TSC. Conditional execution
+> remains safety `4` then qualification `12`; a real PASS still requires a
+> real repair, `>=7/16`, and zero regressions. Even PASS is not Gate A.
+
 > **Final R8R29 static-design checkpoint (2026-08-09 Asia/Shanghai).** R8R29
 > stopped before config, implementation, fit, tube, support, plan, package,
 > deployment, raw, snapshot, Ray, `gotsc`, TSC, controller action, or plant

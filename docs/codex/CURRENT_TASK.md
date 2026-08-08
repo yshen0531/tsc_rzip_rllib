@@ -6641,6 +6641,38 @@ and learning-prohibition boundary unless prospectively strengthened.
 
 Gate A, expert data, BC, DAgger, and residual RL remain blocked.
 
+## 130. Frozen R8R30 explicit-four-coordinate feedback sentinel
+
+After R8R29 was sealed at `7724088`, but before any feature construction,
+fit, support result, implementation, plan, package, action, raw, or TSC,
+freeze:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R30_EXPLICIT_FOUR_COORDINATE_MEASUREMENT_RECENTERED_FEEDBACK_SENTINEL_DESIGN.md
+SHA-256  6a65a7ed7e84cbd89f420e2461928ce0cafcf30a96768b8836d67ccc9508d1f4
+```
+
+Use exactly 592 deduplicated source trajectories and six interval origins at
+`[10,12,14,16,18,22]`, yielding 3,552 records. Define
+`q=[d0,d1,d2,d3]`, the exact 44D causal feature, the ordered 18 action terms,
+and four 44D `base*q` blocks for 238 expanded values. Fit fixed ridge models
+and whole-pair/37-schedule tubes, and construct exact task-step 8D
+`[previous_q,current_q]` support. No dimension or coordinate may change after
+fit begins.
+
+Preserve the 17 frozen candidates, exact Card15 target-chain, hard action/
+current/saturation gates, robust-formal first-action-only selection,
+measurement re-centering, exact-target-hold fallback, six fault injections,
+offline predicted repair/oracle gate, safety `4`, qualification `12`, dual
+causal replay, and unchanged formal contract. Any offline failure ends with
+zero TSC. A real PASS requires repair `>=1/10`, controller formal `>=7/16`,
+and regression `0/6`.
+
+R8R30 remains only a finite deterministic controller-core sentinel. Gate A,
+expert data, BC, DAgger, and residual RL remain blocked; a PASS must continue
+through every remaining prospectively frozen Section 0.1 qualification.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
