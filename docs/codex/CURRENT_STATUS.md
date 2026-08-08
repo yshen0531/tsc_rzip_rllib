@@ -1,5 +1,47 @@
 # Current status
 
+> **R8R12 v2 final cumulative direction-2 staircase checkpoint (2026-08-08
+> Asia/Shanghai).** Corrected implementation/package checkpoints are
+> `3203a02 / 523c706`. The 1,040-file direct-copy package passed local,
+> empty-copy, server-staging, and installed focused/full validation at
+> `10/10 / 1262/1262`, with one expected isolated-evidence skip where
+> applicable. No archive or global Python was used.
+>
+> Dual zero-TSC construction passed exactly `64/64` staircase levels and
+> `352/352` exact-target refreshes, with maximum predicted issue increment
+> `0.1409259259`, refresh increment `3.7037037e-6`, and current utilization
+> `0.3905`. Four safety trajectories then completed and passed exact
+> primary/independent raw agreement before the remaining twelve were
+> authorized. All `16/16` authentic v2 trajectories passed runtime,
+> full-horizon, restart/physical-prefix, calibration, Card15 issue/refresh,
+> current, finite-state, forbidden-input, and raw-integrity gates. Safety raw
+> is `4 files / 130839 bytes / 8eb94b44...`; qualification raw is `12 files /
+> 395289 bytes / b51d78d0...`. There were 64 issues, 352 refreshes, zero
+> forbidden traces, and maximum current utilization `0.3924`.
+>
+> After dual raw authorization, formal evaluation reproduced the R8R7
+> baseline at `6/16`; the fixed staircase also passed `6/16`. It improved the
+> minimum signed margin in six of ten failed contexts and regressed four, but
+> repaired `0/10`, so the held oracle remained `6/16`. Primary and independent
+> formal outcomes, numerics, scientific gate, and route agree exactly with
+> maximum difference zero. The final route is
+> `CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_AUTHORITY_INSUFFICIENT_SEQUENCE_REDESIGN_REQUIRED`.
+> Detailed/summary/independent/final/manifest/state hashes are
+> `123991e8... / 93df1e3e... / 848867b2... / 2a018bd0... /
+> 48a09927... / e5410b24...`.
+>
+> R8R12 v2 is a finite fixed-policy action-authority design failure, not a
+> runtime, deployment, construction, restart, causality, Card15, current,
+> raw, reporting, formal-evaluator, safety, plant, real-MPC, or global-
+> reachability result. Its identity is immutable and may not be tuned,
+> resumed, or enlarged. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R12_FORENSIC_REPORT.md`,
+> SHA-256 `431db78078df7e27def9cee633f91d69e89d48b1833feb82765c10add933ecbd`.
+> The active boundary is a newly frozen genuinely multi-direction or
+> otherwise genuinely different asymmetric causal sequence. Gate A and all
+> learning remain blocked; all R8-family trajectories are forbidden from
+> learning data.
+
 > **R8R12 v1 construction failure and prospectively frozen v2 correction
 > (2026-08-07 Asia/Shanghai).** R8R12 v1 is final as
 > `CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_EXECUTION_OR_SAFETY_FAIL_STOP`.

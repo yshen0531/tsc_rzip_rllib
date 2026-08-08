@@ -5547,3 +5547,79 @@ exact primary/independent v2 safety agreement. Formal outcomes remain closed
 until all 16 v2 trajectories authenticate. A v2 authority PASS still only
 authorizes a separately frozen causal selector/controller design; it is not
 MPC or Gate A. Expert data, BC, DAgger, and residual RL remain blocked.
+
+## 97. Final R8R12 result and multi-direction sequence boundary
+
+R8R12 v2 completed the corrected campaign from implementation/package
+checkpoints `3203a02 / 523c706`. Local, empty direct-copy, server staging,
+and installed validation passed the 1,040-file package, focused `10/10`, and
+full `1262/1262` suites. Dual offline construction agreed exactly on all
+`64/64` levels and `352/352` refreshes with zero TSC or raw.
+
+The prospectively ordered authentic campaign then completed:
+
+```text
+safety raw          4 files / 130839 bytes / 8eb94b448e302721...
+qualification raw  12 files / 395289 bytes / b51d78d0fa511255...
+runtime / full horizon / causal physical prefix                 16/16
+calibration / exact Card15 target chain                          16/16
+issues / refreshes                                             64 / 352
+maximum issue / refresh increment          0.1409259259 / 0.0000037037
+maximum current utilization                                    0.3924
+forbidden trace rows                                                 0
+```
+
+Primary and structurally independent safety audits agreed before
+qualification authorization; qualification audits agreed before formal
+outcomes opened. The unchanged formal computation produced:
+
+```text
+matching baseline formal pass                                  6/16
+fixed staircase formal pass                                    6/16
+failed-baseline strict margin improvement                       6/10
+gain minimum / median / maximum
+  -0.011194833333335 / 0.088958781607079 / 0.136483098392177
+failed baselines repaired                                      0/10
+baseline-pass contexts preserved                                6/6
+held-oracle formal pass                                        6/16
+maximum primary/independent numerical difference                  0
+route
+  CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_AUTHORITY_INSUFFICIENT_SEQUENCE_REDESIGN_REQUIRED
+```
+
+Accepted detailed/summary/independent/final-report/manifest/state SHA-256
+values are:
+
+```text
+123991e8e31d159361785666b483183a3fb31b7db540b3677e12537bc03fd88f
+93df1e3ea60b6655cc0a325aacb5d7d089e349cf42df82968b16f755a545572f
+848867b23b8fc0c9ba5723bf77e03baaf7de532119de1dd2c3d6b53cd1f1f1a4
+2a018bd023ffd4ef1d82611283ead5ac79d00479691d00929c1c95b471e0dea3
+48a0992757f4ee51dcbdf04f6cac0e32116e875d1b1c3626cb93bb9d342bc095
+e5410b24f5b60e682b93c1c411ddae88caec50d17dd23a8be67604b0e4107daf
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R12_FORENSIC_REPORT.md
+SHA-256
+431db78078df7e27def9cee633f91d69e89d48b1833feb82765c10add933ecbd
+```
+
+R8R12 v2 is a finite fixed-policy cumulative direction-2-positive sequence
+authority design failure, not a runtime, deployment, controller-construction,
+restart, causality, raw, reporting, formal-control, safety, plant, real-MPC,
+or global-reachability conclusion. v1 remains separately frozen as a
+pre-advance implementation failure. Neither identity may be resumed, tuned,
+or enlarged.
+
+Before another outcome or TSC execution, the active task is to freeze a new
+genuinely multi-direction or otherwise genuinely different asymmetric causal
+sequence under the unchanged source authentication, exact restart,
+visible-state causality, Card15/current/saturation/safe-stop, immutable formal
+timing, finite two-phase, independent-audit, and learning-data-prohibition
+contracts. A measured-authority PASS may authorize only a separately frozen
+causal selector/controller or MPC design. Gate A, expert data, BC, DAgger,
+and residual RL remain blocked.
