@@ -6311,7 +6311,45 @@ A development PASS may authorize only a separately frozen fresh finite real-
 controller sentinel. It cannot itself establish MPC or Gate A. Gate A and all
 learning remain blocked.
 
-## 121. Frozen and implemented R8R25 outer-jackknife tube preflight
+## 122. Frozen R8R26 action-transition-supported multiresolution preflight
+
+After final R8R25 was sealed at `ad6df5c`, and before any R8R26
+schedule-held-out error, tube, hull, search, plan, formal metric, or route was
+computed, the next zero-new-TSC redesign was frozen:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R26_ACTION_TRANSITION_SUPPORTED_MULTIRESOLUTION_MPC_PREFLIGHT_DESIGN.md
+
+SHA-256  d79f64712b00c923711b5bac16f6001388edeb3e348c2b71b7c98c942289f853
+```
+
+R8R26 keeps the exact passed R8R25 all-eight point model and pair tube. It
+adds a 27-way leave-one-complete-schedule-out point/tube gate and uses the
+componentwise maximum of the pair and schedule tubes with no clipping.
+Candidate cumulative U/V actions lie on the finite sixteenth-unit triangle
+`u,v>=0, u+v<=24` and must remain inside the affine/convex hull of observed
+`(previous_q,q)` transitions at every interval, as well as the unchanged
+causal state-support and hard Card15/action/current boundary.
+
+The search is fixed to a 33-level coarse candidate union, beam width 256, 32
+terminal seeds, and deterministic coordinate refinement at `2/16` then
+`1/16`. Robust-formal pass has strict selection priority. A nonpassing plan
+is never deployed: the causal rule falls back to the frozen baseline
+continuation without consulting a pair/history/outcome label. Gates remain
+safe search `16/16`, at least one repair among ten failures, zero hybrid
+regressions, and baseline-fallback-plus-plan oracle `>=7/16`.
+
+The active task is to implement separate primary and independent paths,
+compile and run focused plus full Windows-shimmed local tests, package and
+validate a fresh direct-copy tree, deploy without archives, repeat server
+staging/installed validation in the existing virtual environment, and run
+primary/independent/postprocess with zero Ray, `gotsc`, TSC, controller,
+plant advance, raw, or snapshot. Even a PASS authorizes only prospective
+design of a fresh safety-first real-controller sentinel. It is not Gate A;
+all learning remains blocked.
+
+## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
 training-cardinality-matched design was frozen and then made algorithmically

@@ -1,5 +1,32 @@
 # Current status
 
+> **Prospective R8R26 action-transition-supported multiresolution MPC
+> preflight checkpoint (2026-08-09 Asia/Shanghai).** After final R8R25 was
+> sealed at `ad6df5c`, and before any R8R26 schedule-held-out error, tube,
+> hull, search, plan, formal metric, or route was computed, a zero-new-TSC
+> redesign was frozen. Exact design:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R26_ACTION_TRANSITION_SUPPORTED_MULTIRESOLUTION_MPC_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `d79f64712b00c923711b5bac16f6001388edeb3e348c2b71b7c98c942289f853`.
+>
+> R8R26 retains the exact R8R25 all-eight point model and pair-jackknife tube,
+> adds 27 leave-one-whole-schedule-out fits and a no-clipping schedule tube,
+> and takes their componentwise maximum. A finite 325-level sixteenth-unit
+> triangular U/V lattice is allowed only inside the interval-specific affine
+> and convex hull of observed `(previous_q,q)` transitions and the unchanged
+> causal state-support boundary. Every candidate still passes exact Card15,
+> action, current, saturation, finite, and stop-before-advance checks.
+>
+> Search is prospectively fixed to a 33-level coarse set, beam width 256, 32
+> terminal seeds, and deterministic `2/16` then `1/16` coordinate refinement.
+> Robust-formal plans have strict priority. If none exists, the causal policy
+> falls back to the frozen baseline continuation; it may never deploy the
+> best failing plan or use a source outcome label. A PASS still requires at
+> least one predicted repair, zero hybrid regressions, and oracle `>=7/16`,
+> and authorizes only design of a fresh safety-first controller sentinel.
+> R8R26 is not Gate A and all learning remains blocked. The active task is
+> independent implementation and validation of this frozen zero-TSC design.
+
 > **R8R25 final training-cardinality-matched outer-jackknife checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/clarification/initial implementation
 > checkpoints are `cc0dee5 / e37f84f / 9089006`. The initial package
