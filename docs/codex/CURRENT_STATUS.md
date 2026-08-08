@@ -1,5 +1,41 @@
 # Current status
 
+> **R8R18 final second-order Boolean ridge LOCO checkpoint
+> (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `1366017 / 7dae75a / e5003f5`. The 1,080-file package passed hashes, JSON,
+> compilation, focused `9/9`, and full `1317/1317` locally and in the empty
+> direct-copy tree. Server staging and installed validation additionally
+> passed every hash and shell `bash -n`, with one expected isolated-evidence
+> skip where applicable. The first install copy loop had a checksum-line
+> parsing error after its restricted deletion; the exact validated staging
+> tree restored the installation immediately, after which 1,080/1,080 hashes
+> and the complete suite passed. No output, raw, or virtual environment was
+> touched. This was a recovered deployment-script error, not a regression.
+>
+> Dual zero-new-TSC audits authenticated final R8R15/R8R16/R8R17 evidence.
+> All code-only rank, condition, weight, point-error, classification, and tube
+> gates passed. Formal classification was `160/160`, but the fixed model passed
+> only `157/160` LOCO rows because maximum minimum-margin error was
+> `0.05685241823211573 > 0.05`. Maximum scaled point error was only
+> `0.0061002004751214535`. Primary augmented SVD and independent normal-
+> equation solves agreed with maximum difference `8.881784197001252e-15`.
+>
+> R8R18 ran zero TSC, controller, plant step, raw, or snapshot. The authority
+> phase was not opened. The final route is
+> `SECOND_ORDER_BOOLEAN_RIDGE_MODEL_INADEQUATE_NONPARAMETRIC_SEQUENCE_REDESIGN_REQUIRED`.
+> Detailed/summary/independent/final/manifest/state hashes are
+> `d3b71fcf... / d67f2080... / b53cb993... / cfc5c381... /
+> 50b9842d... / 660efeae...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R18_FORENSIC_REPORT.md`,
+> SHA-256
+> `22560269b6716e695c6a6c110536de5bc4765dd6d476755721e501625ca9ec1d`.
+>
+> This is a finite model-design FAIL, not runtime, source, raw, restart,
+> causality, reporting, formal-evaluator, controller, plant, real-MPC, Gate A,
+> or global reachability. A new-identity nonparametric sequence model must be
+> frozen before computing its outputs. Learning remains blocked and every
+> R8-family trajectory remains forbidden from learning data.
+
 > **Prospective R8R18 second-order Boolean ridge LOCO preflight
 > (2026-08-08 Asia/Shanghai).** After sealing aggregate R8R17 but before
 > inspecting any failed-row identity or detailed residual, the zero-new-TSC

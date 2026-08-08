@@ -6175,3 +6175,46 @@ without authority routes to continuous multidirection redesign.
 Implement, validate, package by empty direct copy, deploy without archives,
 and execute dual zero-TSC audits. R8R18 is not MPC or Gate A. Learning stays
 blocked and all R8-family evidence remains forbidden from learning data.
+
+## 109. Final R8R18 result and active nonparametric boundary
+
+R8R18 completed at design/implementation/package checkpoints
+`1366017 / 7dae75a / e5003f5`. Local, empty-direct-copy, server-staging, and
+installed validation passed all 1,080 hashes, compilation, focused `9/9`, and
+full `1317/1317`, with one expected isolated-evidence skip where applicable.
+Real server `bash -n` passed every shell file. A checksum-line parsing error in
+the first restricted install copy loop was fully recovered from the already-
+validated staging tree before any run; installed hashes and the complete test
+suite then passed. No run output, raw, or virtual-environment file changed.
+
+The primary augmented-SVD and structurally independent normal-equation audits
+authenticated R8R15, R8R16, and R8R17 and agreed to
+`8.881784197001252e-15`. All code geometry, stability, point-error, exact
+formal-classification `160/160`, and tube gates passed, but only `157/160`
+LOCO rows passed the complete model gate. Maximum minimum-formal-margin error
+was `0.05685241823211573 > 0.05`; maximum scaled point error was
+`0.0061002004751214535`.
+
+The missing-code authority phase was not opened. R8R18 created zero TSC,
+controller step, plant step, raw, or snapshot. The final route is:
+
+```text
+SECOND_ORDER_BOOLEAN_RIDGE_MODEL_INADEQUATE_NONPARAMETRIC_SEQUENCE_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R18_FORENSIC_REPORT.md
+SHA-256
+22560269b6716e695c6a6c110536de5bc4765dd6d476755721e501625ca9ec1d
+```
+
+R8R18 is immutable. Its phase-closed zero counts are not physical outcomes.
+Freeze a new-identity code-only nonparametric sequence prior and every
+hyperparameter before computing response predictions. Retain all 160 LOCO
+rows, unchanged physical/formal gates, the same six closed physical outcomes,
+dual implementations, and fail-closed authority routing.
+
+Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
+R8-family trajectory remains forbidden from learning data.
