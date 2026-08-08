@@ -6089,3 +6089,52 @@ continuous multidirection redesign.
 Implement, validate, package by empty direct copy, deploy without archives,
 and execute dual zero-TSC audits. R8R17 is not MPC or Gate A. No R8-family
 trajectory may enter expert, BC, DAgger, or RL data.
+
+## 107. Final R8R17 result and active higher-order model boundary
+
+R8R17 completed at design/implementation/package checkpoints
+`614487a / 6b62ca6 / d7d291a`. The 1,073-file package passed exact hashes,
+JSON, compilation, focused `9/9`, and full `1308/1308` tests locally and in
+the empty direct-copy tree. Server staging and installed validation also
+passed every hash, JSON, declared-shell `bash -n`, compilation, focused
+`9/9`, and full `1308/1308`, with one expected isolated-evidence skip where
+applicable.
+
+The dual zero-new-TSC audits reauthenticated R8R15 and final R8R16. All
+frozen development/measured/cube rank-condition gates passed at
+`6/6.6990427629`, `6/2.6131259298`, and `6/1.7320508076`. All `64/64`
+formal classifications and the fixed tube passed, but only `61/64` held
+trajectories passed every gate. Maximum minimum-formal-margin error was
+`0.09336026574612744 > 0.05`; maximum scaled point error was only
+`0.008405966666665465`. Primary and independent results agreed with maximum
+numerical difference `2.1316282072803006e-14`.
+
+The missing-code authority phase was not opened. R8R17 created zero TSC,
+controller step, plant step, raw, or snapshot. The final route is:
+
+```text
+ADJACENT_SWITCH_INTERACTION_MODEL_INADEQUATE_HIGHER_ORDER_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R17_FORENSIC_REPORT.md
+SHA-256
+0162fa79e7fea0cb5ba8ef309eabed6be387341436b02c09e490b3426157852a
+```
+
+R8R17 is immutable. It rejects only the one prospectively fixed adjacent-
+switch interaction. Its phase-closed zero counts are not baseline or
+physical results.
+
+Before inspecting the identities of the three failed held rows, freeze a
+new-identity higher-order sequence model. Because more than six parameters
+cannot be identified from the old six-row development set without a prior,
+use all ten measured codes only through a prospectively specified leave-one-
+code-out calibration, fixed Boolean interaction features and fixed
+regularization. Keep missing physical outcomes closed and retain the
+unchanged gates and fail-closed routes.
+
+Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every R8-
+family trajectory remains forbidden from learning data.

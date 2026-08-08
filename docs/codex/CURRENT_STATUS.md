@@ -1,5 +1,38 @@
 # Current status
 
+> **R8R17 final adjacent-switch interaction checkpoint
+> (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `614487a / 6b62ca6 / d7d291a`. The 1,073-file package passed hashes, JSON,
+> compilation, focused `9/9`, and full `1308/1308` locally and in the empty
+> direct-copy tree. Server staging and installed validation additionally
+> passed real `bash -n` for every declared shell file, with one expected
+> isolated-evidence skip where applicable. No archive or global Python was
+> used.
+>
+> Dual zero-new-TSC audits authenticated final R8R15 and R8R16 evidence. All
+> frozen rank/condition and tube gates passed; formal classification was
+> `64/64`, but held calibration passed only `61/64`. Maximum minimum-margin
+> error was `0.09336026574612744 > 0.05`, while maximum scaled point error was
+> `0.008405966666665465`. Primary SVD and independent `lstsq` agreed on route
+> and outcome with maximum difference `2.1316282072803006e-14`.
+>
+> R8R17 ran zero TSC, controller, plant step, raw, or snapshot. The final
+> route is
+> `ADJACENT_SWITCH_INTERACTION_MODEL_INADEQUATE_HIGHER_ORDER_REDESIGN_REQUIRED`.
+> Detailed/summary/independent/final/manifest/state hashes are
+> `b57f2afc... / da1c108b... / 2a5e8d30... / f87fba9b... /
+> e0e850c3... / 6b16d1ad...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R17_FORENSIC_REPORT.md`,
+> SHA-256
+> `0162fa79e7fea0cb5ba8ef309eabed6be387341436b02c09e490b3426157852a`.
+>
+> This is a finite nonlinear model-design FAIL, not runtime, deployment,
+> source, raw, restart, causality, reporting, formal-evaluator, controller,
+> plant, physical-authority, real-MPC, Gate A, or global reachability. The
+> active boundary is a separately frozen higher-order model with ten-code
+> leave-one-code-out validation chosen without failed-row identity. Learning
+> remains blocked and all R8-family evidence remains forbidden from learning.
+
 > **Prospective R8R17 adjacent-switch interaction preflight
 > (2026-08-08 Asia/Shanghai).** After sealing R8R16 but before inspecting its
 > failed-row identity or any new fit/output, the zero-new-TSC R8R17 design was
