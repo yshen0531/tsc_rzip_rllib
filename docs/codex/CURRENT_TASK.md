@@ -5890,3 +5890,53 @@ validate with the existing server environment, and execute only in the frozen
 two-phase order. Do not rerun R8, R8R1, R8R12, or R8R14. R8R15 is not MPC or
 Gate A. All R8-family trajectories remain forbidden from expert, BC, DAgger,
 and RL data, and all learning remains blocked.
+
+## 103. Final R8R15 result and active model-based boundary
+
+R8R15 completed its exact frozen campaign at design/implementation/package
+checkpoints `e3d5302 / 222f5d5 / f23c96e`. Dual offline construction passed
+`128/128` specs, `512/512` exact Card15 issues, and `2816/2816` refreshes.
+All 32 safety raw passed exact primary/independent agreement before 96
+qualification trajectories were authorized. All `128/128` authentic raw
+passed runtime, full-horizon, restart/physical-prefix, calibration, target-
+chain, action, current, causality, finite-state, forbidden-input, strict-JSON,
+and inventory gates.
+
+The unchanged formal evaluator reproduced baseline, source `UUUU`, and source
+`VVVV` at `6/16`. Each of the eight new mixed sequences also passed exactly
+`6/16`, repaired `0/10` failed baselines, and regressed `0/6` baseline passes.
+Failed-context best minimum-margin gain was positive in every context, with
+min/median/max `0.0255417333 / 0.0889587816 / 0.1364830984`, but no candidate
+crossed the formal boundary and the held oracle remained `6/16`. Primary and
+the structurally independent implementation agreed exactly. The final route
+is:
+
+```text
+BINARY_TEMPORAL_SWITCHING_STAIRCASE_AUTHORITY_INSUFFICIENT_MODEL_BASED_SEQUENCE_REDESIGN_REQUIRED
+```
+
+The exact report is:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R15_FORENSIC_REPORT.md
+SHA-256
+ca51f7f7b9791199796e923704da84355b1ac5eb9c2669900165962d5a7fc04c
+```
+
+R8R15 is immutable and may not be resumed, enlarged, or tuned. It rules out
+only the frozen binary U/V four-decision open-loop basis. It is not a plant-
+unreachability, real-controller, MPC, or Gate A conclusion.
+
+The active task is to freeze a new-identity model-based sequence redesign
+before implementation, fitting, optimization output, candidate choice, or
+any new TSC. It must explicitly separate model-development/calibration from
+held scientific evaluation, use only allowed visible causal state, preserve
+the unchanged authentic-restart, Card15/action/current/saturation, safe-stop,
+formal timing, primary/independent, and finite-envelope contracts, and define
+fail-closed routes before opening outcomes. Reusing immutable probe evidence
+for model development does not make it expert data. No R8-family trajectory
+may enter expert, BC, DAgger, or RL data.
+
+Do not start expert data, BC, DAgger, or residual RL. Gate A remains blocked;
+continue autonomously only along the model-based MPC qualification route and
+pause for user confirmation if and only if Gate A is actually reached.

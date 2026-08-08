@@ -1,5 +1,52 @@
 # Current status
 
+> **R8R15 final binary temporal-switching staircase checkpoint
+> (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `e3d5302 / 222f5d5 / f23c96e`. The 1,059-file empty direct-copy package
+> passed exact hashes, compilation, focused `11/11`, and full `1290/1290`
+> tests locally, in the empty copy, in server staging, and after installation,
+> with one expected isolated-evidence skip where applicable. `bash -n` and
+> compilation of 410 installed Python files also passed. No archive or global
+> Python was used.
+>
+> Dual offline construction agreed exactly on `128/128` specs, `512/512`
+> exact Card15 issues, and `2816/2816` stored-target refreshes. The 32 safety
+> trajectories completed and passed exact primary/independent raw agreement
+> before the 96 qualification trajectories were authorized. All `128/128`
+> authentic trajectories passed runtime, full-horizon, physical-prefix,
+> calibration, event, target-chain, action, current, finite-state, forbidden-
+> input, and raw-integrity gates. Safety raw is `32 files / 1059431 bytes /
+> 7d7a2b4f...`; qualification raw is `96 files / 3201665 bytes /
+> a909e034...`. Maximum measured current use was `0.3924`, there were zero
+> forbidden trace rows, no snapshot, and R8/R8R1/R8R12/R8R14 were not rerun.
+>
+> Formal evaluation reproduced baseline, immutable R8R12 `UUUU`, and
+> immutable R8R14 `VVVV` at `6/16`. Every one of the eight new sequences
+> (`UVVV,UUVV,UUUV,VUUU,VVUU,VVVU,UVUV,VUVU`) also passed exactly `6/16`,
+> repaired `0/10` failed baselines, and regressed `0/6` baseline passes. The
+> failed-context best minimum-margin gain was positive at
+> `0.0255417333 / 0.0889587816 / 0.1364830984` min/median/max, but every best
+> margin remained negative and the held oracle stayed `6/16`. Primary and
+> the structurally independent formal implementation agree exactly, with
+> maximum metric difference zero.
+>
+> The final route is
+> `BINARY_TEMPORAL_SWITCHING_STAIRCASE_AUTHORITY_INSUFFICIENT_MODEL_BASED_SEQUENCE_REDESIGN_REQUIRED`.
+> Summary/independent/final/manifest/state/compact hashes are `2c5b7e10... /
+> cf896933... / cd1c3758... / 3d704e41... / 71d4a0d3... / cdba408f...`.
+> Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R15_FORENSIC_REPORT.md`,
+> SHA-256
+> `ca51f7f7b9791199796e923704da84355b1ac5eb9c2669900165962d5a7fc04c`.
+>
+> R8R15 is a finite binary open-loop temporal-basis design FAIL, not a
+> runtime, deployment, restart, causality, Card15, current, raw, reporting,
+> formal-evaluator, safety, plant, real-MPC, Gate A, or global-reachability
+> result. It is immutable. The active boundary is a separately frozen model-
+> based sequence redesign with explicit evidence separation and unchanged
+> hard contracts. All R8-family trajectories remain forbidden from learning,
+> and Gate A remains blocked.
+
 > **Prospective R8R15 binary temporal-switching staircase authority sentinel
 > (2026-08-08 Asia/Shanghai).** Before R8R15 implementation, config, offline
 > construction, raw, TSC, formal outcome, or route, the new temporal sequence
