@@ -5991,3 +5991,56 @@ repair requires continuous multidirection redesign.
 R8R16 is not a controller, MPC, physical-authority result, or Gate A. No
 expert data, BC, DAgger, or RL is authorized, and every R8-family trajectory
 remains forbidden from learning data.
+
+## 105. Final R8R16 result and active nonlinear sequence-model boundary
+
+R8R16 completed at design/implementation/package checkpoints
+`d68aae4 / d7364e8 / e2325b0`. The 1,066-file empty direct-copy package
+passed exact hashes, JSON, shell syntax, compilation, focused `9/9`, and full
+`1299/1299` tests locally, in the empty copy, in server staging, and after
+installation, with one expected isolated-evidence skip where applicable. No
+archive or global Python was used.
+
+The zero-new-TSC primary and structurally independent audits authenticated
+the exact R8R15 source hashes and `32 + 96` raw inventories. The frozen design
+and full matrices passed rank/condition at `5 / 3.1861406616` and
+`5 / 2.6131259298`, and the fixed residual tube passed. Held calibration
+reproduced formal classification `64/64`, but passed all numerical gates only
+`63/64`: maximum minimum-formal-margin absolute error was
+`0.05171944884413282`, above the frozen `0.05` cap. Maximum scaled point error
+was only `0.004582066666663117`, and maximum component errors were
+`0.137462 mm R / 0.108346 mm Z / 12.6991 A Ip`.
+
+Primary explicit-SVD and independent `lstsq` computations agreed on the
+outcome and route with maximum numerical difference `5.329070518200751e-15`.
+The six never-executed sequence predictions, repairs, and oracle were not
+opened. R8R16 executed zero TSC, controller, plant step, raw, or snapshot.
+The final route is:
+
+```text
+TEMPORAL_AFFINE_SEQUENCE_MODEL_INADEQUATE_NONLINEAR_SEQUENCE_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R16_FORENSIC_REPORT.md
+SHA-256
+55da4885d8d886f9a28b525685b8a9d6665dd841f1186007b7fb054cd786df47
+```
+
+R8R16 is immutable. Its downstream zero counts are phase-closed sentinel
+values, not a new baseline result. It rules out only the frozen temporal-
+affine model, not nonlinear sequence models, the missing sequences, real
+MPC, or plant reachability.
+
+Before implementation, fitting, calibration output, missing-sequence
+prediction, candidate ranking, or new TSC, freeze a new-identity nonlinear
+sequence-model design over already consumed evidence. Preserve an explicit
+development/calibration separation, the unchanged numerical and formal caps,
+and fail-closed model/authority routes. Do not relax R8R16 after its observed
+`0.0517194488` miss. A model PASS may authorize only a separately frozen
+fresh physical sentinel.
+
+Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
+R8-family trajectory remains forbidden from learning data.

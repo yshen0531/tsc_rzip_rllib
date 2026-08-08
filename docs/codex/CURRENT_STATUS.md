@@ -1,5 +1,47 @@
 # Current status
 
+> **R8R16 final temporal-affine completion preflight checkpoint
+> (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `d68aae4 / d7364e8 / e2325b0`. The 1,066-file empty direct-copy package
+> passed exact hashes, JSON, shell syntax, compilation, focused `9/9`, and
+> full `1299/1299` tests locally, in the empty copy, in server staging, and
+> after installation, with one expected isolated-evidence skip where
+> applicable. No archive or global Python was used.
+>
+> The zero-new-TSC primary and structurally independent audits authenticated
+> the exact R8R15 source hashes and safety/qualification inventories. Both
+> frozen matrices passed rank/condition (`5 / 3.1861406616` and
+> `5 / 2.6131259298`), and the fixed tube passed. Held calibration reproduced
+> formal classification `64/64` but passed every numerical gate only `63/64`:
+> maximum minimum-formal-margin error was `0.05171944884413282`, above the
+> frozen `0.05` cap. Maximum scaled point error was
+> `0.004582066666663117`; component maxima were `0.137462 mm R / 0.108346 mm
+> Z / 12.6991 A Ip`.
+>
+> Primary explicit-SVD and independent `lstsq` results agree in route and
+> outcome with maximum numerical difference `5.329070518200751e-15`. The
+> missing-six authority phase remained closed: its zero baseline/repair/
+> oracle fields are sentinel values, not measured outcomes. R8R16 created
+> zero TSC, controller step, plant step, raw, or snapshot. All seven compact
+> JSON files (70,474 bytes) strictly parse and reproduce server hashes.
+>
+> The final route is
+> `TEMPORAL_AFFINE_SEQUENCE_MODEL_INADEQUATE_NONLINEAR_SEQUENCE_REDESIGN_REQUIRED`.
+> Detailed/summary/independent/final/manifest/state hashes are
+> `5f8605e4... / be9a7b96... / 8f73d31d... / f17c4338... /
+> 605b98ce... / 7b667943...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R16_FORENSIC_REPORT.md`,
+> SHA-256
+> `55da4885d8d886f9a28b525685b8a9d6665dd841f1186007b7fb054cd786df47`.
+>
+> R8R16 is a finite affine sequence-model design FAIL, not a runtime,
+> deployment, source, raw, restart, causality, reporting, formal-evaluator,
+> controller, plant, physical-authority, real-MPC, Gate A, or global-
+> reachability result. It is immutable. The active boundary is a separately
+> frozen nonlinear sequence-model redesign with unchanged held calibration
+> and no relaxation of the observed `0.0517194488` miss. All R8-family
+> trajectories remain forbidden from learning, and Gate A remains blocked.
+
 > **Prospective R8R16 temporal-affine binary-cube completion preflight
 > (2026-08-08 Asia/Shanghai).** Before R8R16 implementation, fitting,
 > calibration output, missing-code prediction, ranking, formal result, or
