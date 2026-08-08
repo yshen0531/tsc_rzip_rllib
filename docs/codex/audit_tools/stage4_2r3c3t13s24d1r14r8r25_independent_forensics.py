@@ -203,8 +203,11 @@ def _outer(bank: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]) -> list[di
                 for offset, value in enumerate(residual):
                     collected[interval][offset].append(value)
             serial.append({"trajectory_id": identifier, "absolute_residuals": interval_rows})
-        groups = [[np.asarray(values, dtype=float) for values in offsets] for offsets in collected]
-        if any(value.ndim != 2 or value.shape[1] != 5 for offsets in groups for value in offsets):
+        groups = [
+            [np.asarray(values, dtype=float).reshape((-1, 5)) for values in offsets]
+            for offsets in collected
+        ]
+        if any(not np.all(np.isfinite(value)) for offsets in groups for value in offsets):
             raise ValueError("independent R8R25 outer residual group invalid")
         support = ind23._support(bank, training, held_pair, float(cfg["model_contract"]["support_threshold_multiplier"]))
         folds.append({
@@ -236,7 +239,12 @@ def _tube_template(
         rows = []
         for offset in range(count):
             residuals = np.concatenate([np.asarray(fold["residual_groups"][interval][offset]) for fold in selected])
-            if residuals.ndim != 2 or residuals.shape[1] != 5 or not np.all(np.isfinite(residuals)):
+            if (
+                residuals.ndim != 2
+                or residuals.shape[1] != 5
+                or len(residuals) == 0
+                or not np.all(np.isfinite(residuals))
+            ):
                 raise ValueError("independent R8R25 tube calibration invalid")
             rows.append(np.maximum(reserve * np.max(residuals, axis=0), floor))
             counts.append(len(residuals))

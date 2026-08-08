@@ -33,7 +33,8 @@ def _synthetic_bank() -> list[dict]:
         for trajectory_index in range(3):
             intervals = []
             previous_q = np.zeros(2)
-            for interval, count in enumerate((4, 4, 4, 15)):
+            final_count = 15 if pair_index >= 6 else 13
+            for interval, count in enumerate((4, 4, 4, final_count)):
                 feature = rng.normal(size=42) + pair_index * 0.01
                 q = np.asarray(
                     [0.25 * (trajectory_index % 2), 0.25 * ((trajectory_index + interval) % 2)]
@@ -127,6 +128,17 @@ class R8R25ContractTests(unittest.TestCase):
         physical = tube[0][0] * primary.FACTORS
         self.assertGreater(physical[0], _cfg()["model_gates"]["maximum_reserved_R_tube_half_width_m"])
         self.assertGreater(physical[3], _cfg()["model_gates"]["maximum_reserved_vR_tube_half_width_m_per_s"])
+
+    def test_masked_final_horizon_empty_pair_groups_are_supported(self) -> None:
+        bank = _synthetic_bank()
+        left = primary._outer_folds(bank, _cfg())
+        right = independent._outer(bank, _cfg())
+        self.assertEqual(left[0]["residual_groups"][3][14].shape, (0, 5))
+        self.assertEqual(right[0]["residual_groups"][3][14].shape, (0, 5))
+        primary._attach_outer_tubes(left, _cfg())
+        independent._attach(right, _cfg())
+        for left_fold, right_fold in zip(left, right):
+            self.assertEqual(left_fold["local_tube_evidence"], right_fold["local_tube_evidence"])
 
     def test_primary_and_independent_outer_folds_are_exact(self) -> None:
         bank = _synthetic_bank()

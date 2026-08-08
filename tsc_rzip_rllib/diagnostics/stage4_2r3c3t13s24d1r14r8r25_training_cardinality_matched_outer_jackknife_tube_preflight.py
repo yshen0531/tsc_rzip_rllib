@@ -330,8 +330,8 @@ def _outer_folds(
             serial.append({"trajectory_id": identifier, "absolute_residuals": interval_rows})
         for interval, offsets in enumerate(collected):
             for offset, values in enumerate(offsets):
-                groups[interval][offset] = np.asarray(values, dtype=float)
-                if groups[interval][offset].ndim != 2 or groups[interval][offset].shape[1] != 5:
+                groups[interval][offset] = np.asarray(values, dtype=float).reshape((-1, 5))
+                if not np.all(np.isfinite(groups[interval][offset])):
                     raise ValueError("R8R25 outer residual group invalid")
         support = r8r23._support_for_fold(
             trajectories,
@@ -373,7 +373,12 @@ def _tube_template(
             residuals = np.concatenate(
                 [np.asarray(fold["residual_groups"][interval][offset]) for fold in selected], axis=0
             )
-            if residuals.ndim != 2 or residuals.shape[1] != 5 or not np.all(np.isfinite(residuals)):
+            if (
+                residuals.ndim != 2
+                or residuals.shape[1] != 5
+                or len(residuals) == 0
+                or not np.all(np.isfinite(residuals))
+            ):
                 raise ValueError("R8R25 cross-outer residual calibration invalid")
             values.append(np.maximum(reserve * np.max(residuals, axis=0), floor))
             counts.append(len(residuals))
