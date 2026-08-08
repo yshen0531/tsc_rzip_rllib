@@ -6045,6 +6045,46 @@ fresh physical sentinel.
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
 R8-family trajectory remains forbidden from learning data.
 
+## 110. Frozen R8R19 saturated Boolean kernel LOCO task
+
+After sealing final R8R18 evidence, report, and route, but before any R8R19
+response fit or output, freeze the new design at:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R19_SATURATED_BOOLEAN_KERNEL_LOCO_PREFLIGHT_DESIGN.md
+SHA-256
+e0d8529512da14e144c3dfa7502ccc905a59b4f7cdef8ff9e73fc7cf927bdb25
+```
+
+R8R19 uses the complete 16-column Walsh basis on the fixed four-slot Boolean
+cube: intercept, four signs, six pairs, four triples, and the quadruple term.
+The affine five-dimensional subspace is unpenalized; all eleven nonlinear
+terms use the single frozen penalty `lambda=10`. This was selected only from
+the closed code-geometry grid `[0.1,0.3,1,3,10]` as the first value satisfying
+LOCO normal condition `<=64` and prediction-weight L2 `<=1.25`. R8R18 failed-
+row identities and response values do not select any R8R19 feature or
+hyperparameter.
+
+Authenticate complete final R8R15--R8R18 evidence. Validate all ten measured
+codes with ten leave-one-code-out folds over all 16 contexts, exactly 160
+predictions. All `160/160` must pass the unchanged 3 mm/3 mm/1000 A, scaled
+`0.10`, exact formal classification, minimum-margin `0.05`, and twice-residual
+tube gates. Primary augmented SVD and independent normal-equation paths must
+agree.
+
+Only a complete model PASS may fit all ten codes and predict the same six
+never-executed sequences. Robust authority remains at least one of ten failed-
+baseline repairs and oracle `>=7/16` after the frozen two-times LOCO margin
+buffer. A PASS authorizes only a separately frozen fresh physical sentinel;
+a model failure routes to separately frozen direct finite-cube completion,
+while an adequate model without authority routes to continuous
+multidirection redesign.
+
+Implement, validate, package by empty direct copy, deploy without archives,
+and execute dual zero-TSC audits. R8R19 is not MPC or Gate A. Learning stays
+blocked and all R8-family evidence remains forbidden from learning data.
+
 ## 106. Frozen R8R17 adjacent-switch interaction preflight task
 
 After R8R16 was finalized but before inspecting its failed-row identity or

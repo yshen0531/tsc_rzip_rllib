@@ -1,5 +1,26 @@
 # Current status
 
+> **Prospective R8R19 saturated Boolean kernel LOCO preflight
+> (2026-08-08 Asia/Shanghai).** After final R8R18 evidence and route were
+> sealed, but before any R8R19 response fit or output, the new zero-TSC design
+> was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R19_SATURATED_BOOLEAN_KERNEL_LOCO_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `e0d8529512da14e144c3dfa7502ccc905a59b4f7cdef8ff9e73fc7cf927bdb25`.
+>
+> The finite nonparametric prior is the complete 16-feature Walsh map of the
+> four-slot Boolean cube. Affine terms are unpenalized and all 11 degree-2--4
+> terms use one code-only penalty `lambda=10`, fixed as the first closed-grid
+> value meeting LOCO condition `<=64` and weight L2 `<=1.25`. No R8R18 row
+> identity, residual, response state, or formal metric selected the model.
+>
+> All ten measured codes remain in a 160-row LOCO gate under the unchanged
+> physical, formal-margin `0.05`, classification, and tube caps. Only a dual
+> `160/160` PASS opens the same six closed missing-code predictions and the
+> unchanged robust-authority gate. R8R19 runs zero TSC and can authorize only
+> a separately frozen physical sentinel. It is not MPC or Gate A; learning
+> remains blocked and all R8-family evidence remains forbidden from learning.
+
 > **R8R18 final second-order Boolean ridge LOCO checkpoint
 > (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `1366017 / 7dae75a / e5003f5`. The 1,080-file package passed hashes, JSON,
