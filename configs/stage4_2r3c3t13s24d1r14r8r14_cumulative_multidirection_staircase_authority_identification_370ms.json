@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R14",
+  "identity": "cumulative_multidirection_staircase_authority_identification_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r14_cumulative_multidirection_staircase_authority_identification",
+  "controller_revision": "cumulative_multidirection_staircase_v42r3c3t13s24d1r14r8r14_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r14_cumulative_multidirection_staircase_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R14_CUMULATIVE_MULTIDIRECTION_STAIRCASE_AUTHORITY_IDENTIFICATION_DESIGN.md",
+  "design_document_sha256": "06360433fd33fd8706453e145eeadca7e37fa80f4e99193cf779e62ab3af4f0f",
+  "source_r8r7_config": "configs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_370ms.json",
+  "source_r8r7": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel",
+    "required_route": "FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_PASS_MPC_DESIGN_REQUIRED",
+    "all_specs_sha256": "60e956f7297686988a6e52a236e597c3440963058ccdc3a2e22f84bc4ffa08fa",
+    "baseline_specs_sha256": "0a1d9dc14ecfd575594895e8c6444db27179ee1b5c9a700b2f853e62f9155f53",
+    "multipulse_specs_sha256": "62dc317e67bf21c65fe6d9d227f072507a0932c86439ca1c2233300ac743f4e3",
+    "baseline_raw_primary_sha256": "0a0e1bc0689a95d88aff856dee9f12e56e2aa89aabcce3f49403b0020aff87d1",
+    "baseline_raw_independent_sha256": "832599bc07ac802cb0809c81c701ddfc292fb0963387c0a0c6be1e48a1ab2fc4",
+    "multipulse_raw_primary_sha256": "37204019206752038244c2b5c8300905a112709d05c3048525e3793f42826972",
+    "multipulse_raw_independent_sha256": "707679950bf1c493d6ab5bc78635aa749ef44e1c0abbad68b3625e7097c0b659",
+    "final_report_sha256": "9ca6afce52442c1b7470cb8ff13a2eac4aab32de1e05a898d206f5fe76e01005",
+    "stage_manifest_sha256": "ae89fb2df01cd6758676baa895880e2005a1f8967c62ea4ae671ab61ea771e24",
+    "stage_state_sha256": "04f643e09f414c5d5a305f1a3584450e12e5a39e8d062d454480df3c8d95fe7e",
+    "baseline_raw_count": 16,
+    "baseline_raw_bytes": 487298,
+    "baseline_raw_digest": "46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5",
+    "multipulse_raw_count": 32,
+    "multipulse_raw_bytes": 1068664,
+    "multipulse_raw_digest": "d8435c8cd61fd082e143d79a3628ad2274780faefc6b676367df917355f49e31",
+    "baseline_formal_pass_count": 6,
+    "failed_baseline_count": 10
+  },
+  "source_r8r12": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel_20260808_523c706_v2",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel",
+    "required_route": "CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_AUTHORITY_INSUFFICIENT_SEQUENCE_REDESIGN_REQUIRED",
+    "primary_detailed_sha256": "123991e8e31d159361785666b483183a3fb31b7db540b3677e12537bc03fd88f",
+    "primary_summary_sha256": "93df1e3ea60b6655cc0a325aacb5d7d089e349cf42df82968b16f755a545572f",
+    "final_independent_sha256": "848867b23b8fc0c9ba5723bf77e03baaf7de532119de1dd2c3d6b53cd1f1f1a4",
+    "final_report_sha256": "2a018bd023ffd4ef1d82611283ead5ac79d00479691d00929c1c95b471e0dea3",
+    "stage_manifest_sha256": "48a0992757f4ee51dcbdf04f6cac0e32116e875d1b1c3626cb93bb9d342bc095",
+    "stage_state_sha256": "e5410b24f5b60e682b93c1c411ddae88caec50d17dd23a8be67604b0e4107daf",
+    "safety_raw_count": 4,
+    "safety_raw_bytes": 130839,
+    "safety_raw_digest": "8eb94b448e30272191ebbf6440fdc5a104025d2d407ee914404cf5452fca4beb",
+    "qualification_raw_count": 12,
+    "qualification_raw_bytes": 395289,
+    "qualification_raw_digest": "b51d78d0fa511255d09a941861e54b8b2667dbac499ce354ee94d6bb76c16bb6",
+    "candidate_formal_pass_count": 6
+  },
+  "source_r8r13": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r13_measured_additive_direction0_on_direction2_composition_20260808_da1585d_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r13_measured_additive_direction0_on_direction2_composition",
+    "required_route": "MEASURED_ADDITIVE_DIRECTION0_ON_DIRECTION2_AUTHORITY_INSUFFICIENT_NEW_SEQUENCE_IDENTIFICATION_REQUIRED",
+    "primary_detailed_sha256": "3d0368cde8e0980a1e78d1a355b106ae8479da5781058858ad5f4f7199dcec06",
+    "primary_summary_sha256": "579e21f11dcb544440971f84abd7f0b360e43d3a7f2a09d7f1bd725785e2fc83",
+    "final_independent_sha256": "6cdae996637c73ef28d7696dfbb8e71723c3607baf36ea6c5f73e549f7b96c27",
+    "final_report_sha256": "9d874cca8b63b7bad11b255dcfe2b32a14b402534f58ab6f91f12b6d6d564485",
+    "stage_manifest_sha256": "0ade6f4f901ca372640b960f1e45580964bdbffed99bc3008c2d26567c538d21",
+    "stage_state_sha256": "b5adb16665416146826402469c619dcc420173c5ee167c45328ad93aa6702e53"
+  },
+  "context_contract": {
+    "ordered_pairs": [
+      "p5_q1_a0p900_gap3_settle4",
+      "p5_q2_a0p750_gap3_settle4",
+      "p9_q1_a0p900_gap3_settle4",
+      "p9_q2_a0p750_gap3_settle4",
+      "p5_q1_a0p750_gap4_settle4",
+      "p5_q2_a0p900_gap4_settle4",
+      "p9_q1_a0p750_gap4_settle4",
+      "p9_q2_a0p900_gap4_settle4"
+    ],
+    "safety_pairs": [
+      "p5_q1_a0p900_gap3_settle4",
+      "p5_q2_a0p750_gap3_settle4"
+    ],
+    "histories": ["minus_first", "plus_first"],
+    "context_count": 16,
+    "safety_context_count": 4,
+    "qualification_context_count": 12
+  },
+  "schedule_contract": {
+    "decision_task_steps": [10, 14, 18, 22],
+    "directions": [0, 1, 2, 3],
+    "signs": [-1, 1],
+    "reused_candidate": {"direction_index": 2, "sign": 1},
+    "new_candidates": [[0, -1], [0, 1], [1, -1], [1, 1], [2, -1], [3, -1], [3, 1]],
+    "canonical_scale": 1.0,
+    "canonical_matrix_columns": [
+      [0.06036182177162116, 0.06409209376301149, -0.37110098238653283, 0.13657703474397473],
+      [-3.921547352685623, -3.280604324442652, 4.73169603859497, -3.6727205346962286],
+      [0.49109976246409964, 0.13593338869530727, -0.035003869827120934, -0.3079668079336082],
+      [-0.18672754749097395, -0.17590787535526847, -0.08626957714716102, 0.19464202995789268]
+    ],
+    "canonical_matrix_float64_le_c_sha256": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+    "dynamic_exact_search_radius": 16,
+    "safety_spec_count": 28,
+    "qualification_spec_count": 84,
+    "total_spec_count": 112,
+    "final_atlas_spec_count": 128,
+    "level_count_per_spec": 4
+  },
+  "controller_contract": {
+    "delegated_last_task_step": 9,
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.1,
+    "require_exact_card15_issue": true,
+    "require_exact_card15_refresh": true,
+    "require_exact_source_prefix": true,
+    "forbid_future_r17_controller_execution": true,
+    "safe_stop_before_failed_advance": true
+  },
+  "offline_gates": {
+    "spec_count": 112,
+    "level_construction_count": 448,
+    "primary_independent_action_tolerance": 0.0,
+    "primary_independent_numeric_absolute_tolerance": 1e-12
+  },
+  "formal_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "metric_equivalence_absolute_tolerance": 1e-12,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "scientific_gate": {
+    "required_baseline_formal_pass_count": 6,
+    "required_failed_baseline_count": 10,
+    "minimum_repaired_failed_baseline_count": 1,
+    "minimum_held_oracle_formal_pass_count": 7,
+    "require_held_oracle_strictly_improves_baseline": true
+  },
+  "routes": {
+    "source_fail": "CUMULATIVE_MULTIDIRECTION_ATLAS_PREFLIGHT_FAIL_NO_TSC",
+    "execution_fail": "CUMULATIVE_MULTIDIRECTION_ATLAS_EXECUTION_OR_SAFETY_FAIL_STOP",
+    "authority_fail": "CUMULATIVE_MULTIDIRECTION_ATLAS_AUTHORITY_INSUFFICIENT_SEQUENCE_BASIS_REDESIGN_REQUIRED",
+    "pass": "CUMULATIVE_MULTIDIRECTION_ATLAS_PASS_CAUSAL_SELECTOR_DESIGN_REQUIRED"
+  },
+  "parallel": {"n_workers": 96},
+  "storage": {
+    "ray_tmpdir": "/tmp/stage4_2r3c3t13s24d1r14r8r14_ray",
+    "actor_close_timeout_s": 120.0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "scientific_scope": {
+    "held_oracle_is_causal_selector": false,
+    "real_sequence_identification_only": true,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "global_plant_reachability_claimed": false
+  }
+}
