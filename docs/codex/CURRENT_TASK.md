@@ -6701,6 +6701,30 @@ non-U/V R8R14 schedules `96` plus R8R28 g2 `32`, totaling 560 trajectories,
 
 Gate A and all learning remain blocked.
 
+## 132. Frozen R8R31 aligned explicit-four-coordinate feedback sentinel
+
+After R8R30 was sealed at `b73a8c1`, but before any bank row, feature, model,
+support, implementation, plan, package, controller action, raw, or TSC,
+freeze:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R31_ALIGNED_EXPLICIT_FOUR_COORDINATE_FEEDBACK_SENTINEL_DESIGN.md
+SHA-256  eee31b04fe57fcf2d4da4a397657ff8d26b76c83db9f42bb13b3275b2ea4ed8e
+```
+
+Use exactly 560 aligned trajectories: R8R23 `432`, six non-U/V R8R14
+schedules `96`, and R8R28 g2 only `32`. Exclude all g3 rows by grid identity,
+never outcome. Build 35 schedules and 3,360 rows over
+`[10,12,14,16,18,22]`. Preserve R8R30's exact q4, 44D/238D feature, fixed
+ridge, whole-pair and 35-schedule tube, 8D support, 17 candidates,
+first-action-only receding search, fallback, hard gates, and dual audits.
+
+Offline failure ends with zero TSC. Conditional real execution is safety `4`
+then qualification `12`. A real PASS requires repair `>=1/10`, formal
+`>=7/16`, regression `0/6`, and exact independent agreement. R8R31 is only a
+finite controller-core sentinel; Gate A and all learning remain blocked.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

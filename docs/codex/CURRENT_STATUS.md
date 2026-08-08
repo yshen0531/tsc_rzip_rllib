@@ -1,5 +1,27 @@
 # Current status
 
+> **Prospective R8R31 aligned explicit-four-coordinate feedback checkpoint
+> (2026-08-09 Asia/Shanghai).** After R8R30 was sealed at `b73a8c1`, and
+> before any R8R31 bank row, feature, fit, support, implementation, plan,
+> package, action, raw, or TSC, the aligned identity was frozen. Exact design:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R31_ALIGNED_EXPLICIT_FOUR_COORDINATE_FEEDBACK_SENTINEL_DESIGN.md`,
+> SHA-256
+> `eee31b04fe57fcf2d4da4a397657ff8d26b76c83db9f42bb13b3275b2ea4ed8e`.
+>
+> R8R31 inherits R8R30's 4D q, 44D causal/238D expanded feature, 17
+> candidates, six decisions, model/tube/support/search, fault fallback,
+> hard-safety, two-phase, formal, independent, and learning-prohibition
+> contracts. It excludes all g3 rows and uses exactly R8R23 `432` + six
+> non-U/V R8R14 schedules `96` + R8R28 g2 `32` = 560 aligned trajectories,
+> 35 schedules, and 3,360 interval records. Every included major issue falls
+> on `[10,12,14,16,18,22]`; interval interiors contain refresh only.
+>
+> Offline model/support, predicted repair/oracle/regression, nonzero action,
+> fault injection, and exact independent gates must pass before TSC.
+> Conditional real execution remains safety `4` then qualification `12`; a
+> real PASS requires repair `>=1/10`, formal `>=7/16`, and regression `0/6`.
+> Even PASS is not Gate A and learning remains blocked.
+
 > **Final R8R30 static-timing checkpoint (2026-08-09 Asia/Shanghai).** R8R30
 > stopped before config, implementation, feature, fit, support, plan, package,
 > deployment, action, raw, or TSC. Its six-decision model samples
