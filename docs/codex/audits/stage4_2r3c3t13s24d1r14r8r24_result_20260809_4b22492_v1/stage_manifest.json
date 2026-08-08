@@ -1,0 +1,15 @@
+{
+  "all_source_trajectories_allowed_in_expert_dataset": false,
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r24_causal_local_residual_tube_receding_horizon_preflight.json",
+  "config_sha256": "9a0dab99bc40fe379b5c5e9f32ebb94b7dea3abc1336319adf204f886359d404",
+  "design_document_sha256": "213bfaba33bba2559907e68eb53ec186b8a64f33f5eb7164072526fef5631dff",
+  "identity": "causal_local_residual_tube_receding_horizon_preflight_v1",
+  "model_evidence_sha256": "061897735bb01e4da75b388181ff97e83b1b7e51bc34f4f02551ef4f2333a30a",
+  "primary_detailed_sha256": "0a795a08a98859ba84b567f1de299d489adf55a00c892cd17b78bfaebc16fd8b",
+  "primary_summary_sha256": "af587377782fec1bd78a10987578b64f3345cb8e67365a6210c6ab76d0d45596",
+  "schema_version": 1,
+  "source_r8r23_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r23_runs/stage4_2r3c3t13s24d1r14r8r23_causal_online_innovation_receding_horizon_preflight_20260809_7b2739c_v1",
+  "source_r8r23_stage_state_sha256": "bd55964f69af3a17ce46f503ec629821c05dd54e9cbaf7ee71a9be644a227910",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R24",
+  "zero_new_tsc": true
+}

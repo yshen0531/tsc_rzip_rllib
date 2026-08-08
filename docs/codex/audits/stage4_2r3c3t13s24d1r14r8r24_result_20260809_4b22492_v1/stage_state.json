@@ -1,0 +1,18 @@
+{
+  "final_report_sha256": "581d6e7c8df11e6f50ff12c33ac71b1831f743f804b370f3445a87a95e1d73f8",
+  "finished": true,
+  "independent_sha256": "a48e45fba647229f7144f199e12fe342d758913786e47cdca70447bb01b62dd0",
+  "new_raw_count": 0,
+  "phase_status": "complete",
+  "plant_step_count": 0,
+  "primary_detailed_sha256": "0a795a08a98859ba84b567f1de299d489adf55a00c892cd17b78bfaebc16fd8b",
+  "primary_summary_sha256": "af587377782fec1bd78a10987578b64f3345cb8e67365a6210c6ab76d0d45596",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R24",
+  "stop_reason": "local_tube_preflight_gate_failed",
+  "verdict": {
+    "passed": false,
+    "route": "CAUSAL_LOCAL_RESIDUAL_TUBE_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED"
+  }
+}

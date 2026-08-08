@@ -6248,20 +6248,68 @@ least one predicted repair, zero predicted regressions, and oracle `>=7/16`
 under the unchanged 250/270 ms arrival and 350/370 ms hold contract. These
 remain development predictions, never measured controller outcomes.
 
-Local validation using only the project virtual environment has passed
-Python compilation, focused `8/8`, and Windows-resource-shimmed full
-`1364/1364`. The active task is to update `PACKAGE_MANIFEST.json` and
-`SHA256SUMS`, verify a fresh empty directory by direct copy, transfer the tree
-directly through the authorized `tsc-airgap` workflow without local archive
-operations, validate staging and installed sources with the existing server
-virtual environment, then execute primary, structurally independent, and
-postprocess paths with zero Ray, `gotsc`, TSC, controller, plant advance, raw,
-or snapshot.
+R8R24 completed at design/implementation/package checkpoints
+`218e176 / 484f2a9 / 4b22492`. Local, empty-direct-copy, server-staging, and
+installed validation passed all 1,112 hashes, 123 JSON parses, compilation of
+434 Python files, focused `8/8`, full `1364/1364`, and server `bash -n` for
+437 shell files. One server isolated-evidence skip was expected. No archive or
+global Python was used.
 
-A complete R8R24 PASS authorizes only prospectively freezing a new-identity
-fresh finite real-controller sentinel. It is not real MPC or Gate A. All
-R8-family trajectories remain forbidden from expert, BC, DAgger, residual-RL,
-or any other policy-learning data. Gate A remains blocked.
+Primary and structurally independent zero-new-TSC paths authenticated all 432
+trajectories and exactly reproduced the R8R23 cold outer models, point
+metrics, and support. All source-reproduction maximum differences were `0.0`.
+The new local tube used 32--44 neighbors after kth-distance ties and repaired
+containment to `56,160/56,160 = 1.0`. Its maximum vR/vZ half-widths were still
+`0.105299280302 / 0.181854519985 m/s`, exceeding the unchanged `0.08` caps.
+The point, containment, and `1728/1728` support gates passed; the tube-cap gate
+failed.
+
+The model failure kept planning closed. Zero safe plans, zero repairs, and
+oracle `6/16` remain fail-closed sentinel values. R8R24 ran zero Ray, `gotsc`,
+TSC, controller, plant advance, raw, or snapshot. Primary/independent fit,
+tube, plan, source reproduction, outcome, and route agreed exactly. Final
+route:
+
+```text
+CAUSAL_LOCAL_RESIDUAL_TUBE_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R24_FORENSIC_REPORT.md
+SHA-256
+23e23051fc0fef84d57d3a5f37b9031e9c1dfab7f07b972e05a6fb12359318ca
+```
+
+R8R24 is a finite uncertainty-design failure, not runtime, controller,
+real-MPC, Gate A, or plant-reachability evidence. It is immutable. Before any
+new model/tube output or controller execution, freeze a new-identity causal
+uncertainty redesign. All R8-family trajectories remain forbidden from
+expert, BC, DAgger, residual-RL, or any other learning data. Gate A remains
+blocked.
+
+## 120. Active post-R8R24 uncertainty-redesign boundary
+
+The exact R8R24 evidence separates point prediction from conservative
+uncertainty: held point errors and support pass, and the local tube contains
+all held components, but nested velocity residual maxima make the tube too
+wide for the frozen planning caps. Do not relax the caps, reduce reserve,
+discard residuals, or reinterpret the closed planning sentinel fields under
+the R8R24 identity.
+
+Before computing another tube or opening planning, prospectively freeze a
+new-identity causal uncertainty mechanism. It must preserve whole-physical-
+pair separation, same causal visible/action inputs, exact R8R23 point-model
+reproduction unless a new model is explicitly preregistered, immutable formal
+timing, hard Card15/action/current/saturation constraints, no clipping,
+structurally independent recomputation, and fail-closed routes. Any use of the
+R8R23/R8R24 bank is development only and cannot become a fresh controller
+holdout.
+
+A development PASS may authorize only a separately frozen fresh finite real-
+controller sentinel. It cannot itself establish MPC or Gate A. Gate A and all
+learning remain blocked.
 
 ## 113. Final R8R20 direct Boolean-cube completion result
 

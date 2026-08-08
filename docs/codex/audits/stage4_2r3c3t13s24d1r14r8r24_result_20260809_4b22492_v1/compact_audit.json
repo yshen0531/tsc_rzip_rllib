@@ -1,0 +1,182 @@
+{
+  "allowed_in_expert_dataset": false,
+  "bank_evidence": {
+    "allowed_in_expert_dataset": false,
+    "expanded_feature_dimension": 133,
+    "feature_digest": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+    "feature_dimension": 42,
+    "forbidden_input_count": 0,
+    "forecast_point_count": 11232,
+    "origin_row_count": 1728,
+    "target_digest": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc",
+    "trajectory_count": 432
+  },
+  "fold_local_tube_evidence": [
+    {
+      "maximum_neighbor_count_after_ties": 44,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "query_count": 1350,
+      "tube_digest": "9b8a82222d311eabcc7aae9edf29e9506520821930d566600953b5cca707ca3b"
+    },
+    {
+      "maximum_neighbor_count_after_ties": 40,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "query_count": 1350,
+      "tube_digest": "26ee22e75230107fd760874be5319b54ad6989cd7dfc8e436961c6980e818230"
+    },
+    {
+      "maximum_neighbor_count_after_ties": 40,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "query_count": 1458,
+      "tube_digest": "335933c170cc774ef73edb5daacf1501f0536c041c5cfa151a04f2447b9acf50"
+    },
+    {
+      "maximum_neighbor_count_after_ties": 44,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "query_count": 1458,
+      "tube_digest": "5b738696a954ad4229ad4525e72b4f95f4d627b923fcb7c16f16c1341e1b2328"
+    },
+    {
+      "maximum_neighbor_count_after_ties": 40,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "query_count": 1350,
+      "tube_digest": "65f6731d75ed107caf4cc5436d5a12d4bd215e59e86a64e2e653deb084a8382d"
+    },
+    {
+      "maximum_neighbor_count_after_ties": 42,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "query_count": 1350,
+      "tube_digest": "4edc2268edd027a3beb87f1a9ac7a263eba7d1ce65668c196d381ebedc559a93"
+    },
+    {
+      "maximum_neighbor_count_after_ties": 42,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "query_count": 1458,
+      "tube_digest": "22f110f5dcf48f8e750e1aa405fdea140a7c1fd3d62730dfb638126d777911cd"
+    },
+    {
+      "maximum_neighbor_count_after_ties": 40,
+      "minimum_neighbor_count_after_ties": 32,
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "query_count": 1458,
+      "tube_digest": "3f009987d899f9ab772f5a23e6171b3c462502cef37b0f31cc08fa5eac86e3d8"
+    }
+  ],
+  "gate_a_qualified": false,
+  "independent_agreement": {
+    "maximum_fit_absolute_difference": 0.0,
+    "maximum_plan_absolute_difference": 0.0,
+    "maximum_source_reproduction_absolute_difference": 0.0,
+    "maximum_tube_absolute_difference": 0.0,
+    "passed": true,
+    "primary_feature_agreement": true,
+    "primary_fit_agreement": true,
+    "primary_outcome_agreement": true,
+    "primary_plan_agreement": true,
+    "primary_route_agreement": true,
+    "primary_source_reproduction_agreement": true,
+    "primary_tube_agreement": true
+  },
+  "model_evaluation": {
+    "finite_exclusion_count": 0,
+    "forbidden_input_count": 0,
+    "maximum_absolute_physical_error": [
+      0.0011597711913608432,
+      0.00325191242330734,
+      75.22201307964116,
+      0.017788187070438194,
+      0.043103717751318854
+    ],
+    "maximum_reserved_physical_tube_half_width": [
+      0.015,
+      0.02034482429297216,
+      3000.0,
+      0.10529928030242526,
+      0.18185451998544266
+    ],
+    "passed": false,
+    "point_error_gate_passed": true,
+    "reserved_tube_component_count": 56160,
+    "reserved_tube_contained_component_count": 56160,
+    "reserved_tube_containment_gate_passed": true,
+    "reserved_tube_containment_rate": 1.0,
+    "support_gate_passed": true,
+    "support_pass_count": 1728,
+    "support_rate": 1.0,
+    "support_row_count": 1728,
+    "tube_cap_gate_passed": false
+  },
+  "new_raw_count": 0,
+  "official_bytes_before_compact": 7543077,
+  "official_file_count_before_compact": 7,
+  "official_files_before_compact": [
+    {
+      "bytes": 1834,
+      "path": "analysis/final_report.json",
+      "sha256": "581d6e7c8df11e6f50ff12c33ac71b1831f743f804b370f3445a87a95e1d73f8"
+    },
+    {
+      "bytes": 141154,
+      "path": "analysis/independent.json",
+      "sha256": "a48e45fba647229f7144f199e12fe342d758913786e47cdca70447bb01b62dd0"
+    },
+    {
+      "bytes": 176855,
+      "path": "analysis/primary_detailed.json",
+      "sha256": "0a795a08a98859ba84b567f1de299d489adf55a00c892cd17b78bfaebc16fd8b"
+    },
+    {
+      "bytes": 1489,
+      "path": "analysis/primary_summary.json",
+      "sha256": "af587377782fec1bd78a10987578b64f3345cb8e67365a6210c6ab76d0d45596"
+    },
+    {
+      "bytes": 7219829,
+      "path": "model/outer_fold_models.json",
+      "sha256": "061897735bb01e4da75b388181ff97e83b1b7e51bc34f4f02551ef4f2333a30a"
+    },
+    {
+      "bytes": 1165,
+      "path": "stage_manifest.json",
+      "sha256": "6bcb93d365835becfa41b73b45f95960f2f7fd6d890b8d1e4fa8d6cdff6533a6"
+    },
+    {
+      "bytes": 751,
+      "path": "stage_state.json",
+      "sha256": "a9129cb09551fc4c99bc06e4559464666163578560de5e15baa4fe43e17882f2"
+    }
+  ],
+  "passed": true,
+  "planning_evaluation": {
+    "passed": false,
+    "plans": [],
+    "predicted_baseline_plus_policy_oracle_count": 6,
+    "predicted_regressed_baseline_pass_count": 0,
+    "predicted_repaired_failed_baseline_count": 0,
+    "safe_complete_plan_count": 0,
+    "skipped_reason": "frozen_point_support_or_local_tube_gate_failed"
+  },
+  "plant_step_count": 0,
+  "real_tsc_executed": false,
+  "route": "CAUSAL_LOCAL_RESIDUAL_TUBE_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED",
+  "run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r24_runs/stage4_2r3c3t13s24d1r14r8r24_causal_local_residual_tube_receding_horizon_preflight_20260809_4b22492_v1",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_authentication_passed": true,
+  "source_point_reproduction": {
+    "maximum_outer_model_absolute_difference": 0.0,
+    "maximum_point_metric_absolute_difference": 0.0,
+    "maximum_support_absolute_difference": 0.0,
+    "passed": true,
+    "source_innovation_enabled": false,
+    "source_selected_predictor": "cold"
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R8R24"
+}

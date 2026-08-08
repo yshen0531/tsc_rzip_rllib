@@ -1,31 +1,50 @@
 # Current status
 
-> **Prospective R8R24 causal local-residual-tube preflight checkpoint
-> (2026-08-09 Asia/Shanghai).** After the complete R8R23 result and forensic
-> report were sealed, and before any R8R24 fit, local tube, plan, or outcome
-> was produced, the new zero-new-TSC design was frozen at `218e176`, design
-> SHA-256 `213bfaba33bba2559907e68eb53ec186b8a64f33f5eb7164072526fef5631dff`.
-> Implementation checkpoint is `484f2a9`.
+> **R8R24 final causal local-residual-tube preflight checkpoint
+> (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `218e176 / 484f2a9 / 4b22492`. The 1,112-file package passed all hashes, 123
+> JSON parses, compilation of 434 Python files, focused `8/8`, and full
+> Windows-shimmed `1364/1364` locally and in a fresh empty direct-copy tree.
+> Server staging and installed validation passed the same gates plus `bash -n`
+> for all 437 shell files, with one expected isolated-evidence skip. Only the
+> project and existing server virtual environments were used; no archive was
+> created or extracted.
 >
-> R8R24 retains the exact R8R23 cold 133-feature ridge point predictor and
-> removes the failed innovation update. For each outer held physical pair,
-> its tube uses only inner whole-pair OOF residuals at the same decision
-> interval and lead sample: ordinary Euclidean 133D distance, `k=32`, all
-> kth-distance ties, componentwise maximum times `1.25`, and fixed physical
-> floors `15 mm / 15 mm / 3000 A / 0.05 m/s / 0.05 m/s`. Tubes cannot be
-> clipped to pass the unchanged `25 mm / 25 mm / 5000 A / 0.08 / 0.08` caps;
-> containment and R8R23 support both remain `100%` requirements.
+> R8R24 authenticated 432 immutable trajectories, 1,728 causal decision
+> origins, and 11,232 forecast points. It exactly reproduced the R8R23 cold
+> outer models, point metrics, and support with maximum differences `0.0`.
+> Point errors remained below all caps, support passed `1728/1728`, and there
+> were zero finite exclusions or forbidden inputs.
 >
-> Primary and structurally independent implementations now fail closed on
-> the complete frozen config and explicitly compare outer cold-model
-> coefficients, held point metrics, and support results with the authenticated
-> R8R23 originals. Focused local tests passed `8/8`; the Windows-shimmed full
-> suite passed `1364/1364` using only the project virtual environment. The
-> active boundary is package-manifest/checksum construction, empty direct-copy
-> verification, direct server transfer, installed validation, and dual
-> zero-new-TSC execution. No R8 or R8R1-family TSC trajectory may be rerun.
-> R8R24 cannot itself qualify MPC or Gate A, and all R8-family evidence remains
-> forbidden from expert, BC, DAgger, residual-RL, or other learning data.
+> The prospectively frozen same-interval/same-lead local residual rule used
+> Euclidean 133D distance, `k=32` with all kth-distance ties, component maxima
+> times `1.25`, fixed physical floors, and no clipping. It repaired containment
+> from R8R23's `0.970388...` to `56,160/56,160 = 1.0`, but maximum vR/vZ
+> half-widths remained `0.105299280302 / 0.181854519985 m/s`, above the
+> unchanged `0.08` caps. The tube-cap gate therefore failed.
+>
+> Planning stayed closed. Zero plans/repairs and oracle `6/16` are fail-closed
+> sentinel values, not controller evidence. Structurally independent fit,
+> tube, plan, source-reproduction, outcome, and route agreed exactly with all
+> maximum differences `0.0`. R8R24 executed zero Ray, `gotsc`, TSC,
+> controller, plant advance, raw, or snapshot. Final route:
+> `CAUSAL_LOCAL_RESIDUAL_TUBE_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED`.
+>
+> This is a finite causal uncertainty-design FAIL, not runtime, deployment,
+> source, restart, causality, reporting, real-MPC, Gate A, authority, or global
+> reachability evidence. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R24_FORENSIC_REPORT.md`,
+> SHA-256
+> `23e23051fc0fef84d57d3a5f37b9031e9c1dfab7f07b972e05a6fb12359318ca`.
+> Final detailed/summary/independent/report/model/manifest/state hashes are
+> `0a795a08... / af587377... / a48e45fb... / 581d6e7c... /
+> 06189773... / 6bcb93d3... / a9129cb0...`. The compact audit SHA is
+> `90f0b6e3...48edc`; the 7.22 MB model remains on the server.
+>
+> R8R24 is immutable. Before any new uncertainty calculation or controller
+> execution, freeze a separate new-identity causal model/uncertainty redesign.
+> No R8-family TSC trajectory may be rerun or enter expert, BC, DAgger,
+> residual-RL, or other learning data. Gate A remains blocked.
 
 > **R8R23 final causal online-feedback preflight checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
