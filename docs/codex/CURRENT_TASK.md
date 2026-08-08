@@ -5662,3 +5662,66 @@ Card15/current/saturation preflight; it cannot directly authorize real TSC.
 A FAIL requires genuinely new sequence identification rather than post-result
 family expansion. Gate A, expert data, BC, DAgger, and residual RL remain
 blocked, and all source trajectories remain forbidden from learning data.
+
+## 99. Final R8R13 result and new sequence-identification boundary
+
+R8R13 was implemented and packaged at checkpoints `a4f999e / da1585d`.
+Local, empty direct-copy, server-staging, and installed validation passed all
+1,047 hashes, JSON, compilation, focused `7/7`, and full `1269/1269` tests,
+with one expected isolated-evidence skip where applicable.
+
+The accepted zero-new-TSC run is:
+
+```text
+stage4_2r3c3t13s24d1r14r8r13_runs/
+stage4_2r3c3t13s24d1r14r8r13_measured_additive_direction0_on_direction2_composition_20260808_da1585d_v1/
+stage4_2r3c3t13s24d1r14r8r13_measured_additive_direction0_on_direction2_composition
+```
+
+Primary and the structurally independent implementation authenticated and
+strictly parsed all `16 + 96 + 16 = 128` source raw files and reproduced the
+R8R7/R8R11/R8R12 formal aggregates exactly:
+
+```text
+source formal pass                     6/16 / 36/96 / 6/16
+source formal-path maximum difference                       0
+zero-correction exact                                  16/16
+additive-path maximum absolute difference  1.0842021724855044e-19
+composed formal-path maximum difference                       0
+new raw / TSC / plant advances                          0/0/0
+```
+
+Every global candidate produced the same decisive outcome:
+
+```text
+formal pass                                      6/16
+failed baselines repaired                         0/10
+baseline-pass regressions                           0/6
+```
+
+The fixed rank `[5,3,1,0,2,4]` selected candidate 5 (issue step 22,
+direction-0 positive), with failed-baseline minimum-margin gain
+min/median/max `-0.0108065667 / 0.0886613584 / 0.1366534651`. It did not meet
+the frozen `>=7/16` and `>=1/10` gates. Primary and independent outputs agree
+exactly. The final route is:
+
+```text
+MEASURED_ADDITIVE_DIRECTION0_ON_DIRECTION2_AUTHORITY_INSUFFICIENT_NEW_SEQUENCE_IDENTIFICATION_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R13_FORENSIC_REPORT.md
+SHA-256
+ecf78b5d36d7769c326f671b68b8c977e6830f2c75c0aca8b92cde57e2d0617a
+```
+
+R8R13 is immutable. It is a finite optimistic additive-authority design
+failure, not a physical combined-action, controller, MPC, safety, plant, or
+reachability result. Before any new outcome or TSC, the active task is to
+freeze a new-identity genuinely different sequence-identification design
+under unchanged restart, causality, Card15/action/current/saturation,
+safe-stop, formal timing, independent-audit, and learning-data-prohibition
+contracts. Gate A, expert data, BC, DAgger, and residual RL remain blocked.

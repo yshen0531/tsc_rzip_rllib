@@ -1,5 +1,46 @@
 # Current status
 
+> **R8R13 final measured-additive discriminator checkpoint (2026-08-08
+> Asia/Shanghai).** Implementation/package checkpoints are `a4f999e /
+> da1585d`. The 1,047-file direct-copy package passed local, empty-copy,
+> server-staging, and installed hashes/JSON/compile/focused/full validation at
+> `7/7 / 1269/1269`, with one expected isolated-evidence skip where
+> applicable. No archive, global Python, Ray, `gotsc`, TSC, controller, plant
+> advance, new raw, or snapshot was used.
+>
+> Primary and the structurally independent implementation authenticated and
+> strictly parsed all 128 immutable source raw files: 16 R8R7 baselines, 96
+> R8R11 direction-0 transients, and 16 R8R12 direction-2 staircases. They
+> reproduced source formal counts `6/16 / 36/96 / 6/16`; both formal paths
+> agreed with maximum difference zero. All 16 zero-correction controls were
+> exact, and the maximum two-path additive difference was
+> `1.0842021724855044e-19` against `1e-12`.
+>
+> Every one of the six globally fixed additive candidates stayed at `6/16`,
+> repaired `0/10` failed baselines, and regressed `0/6` baseline passes. The
+> frozen rank `[5,3,1,0,2,4]` selected issue step 22/sign positive only by the
+> fourth tie-breaker; its failed-baseline gain min/median/max was
+> `-0.0108065667 / 0.0886613584 / 0.1366534651`. Primary and independent
+> candidate summaries, ranking, selection, numerics, gate, and route agree
+> exactly.
+>
+> The final route is
+> `MEASURED_ADDITIVE_DIRECTION0_ON_DIRECTION2_AUTHORITY_INSUFFICIENT_NEW_SEQUENCE_IDENTIFICATION_REQUIRED`.
+> Detailed/summary/independent/final/manifest/state hashes are
+> `3d0368cd... / 579e21f1... / 6cdae996... / 9d874cca... /
+> 0ade6f4f... / b5adb166...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R13_FORENSIC_REPORT.md`,
+> SHA-256
+> `ecf78b5d36d7769c326f671b68b8c977e6830f2c75c0aca8b92cde57e2d0617a`.
+>
+> R8R13 is a finite optimistic measured-additive authority-design FAIL, not a
+> runtime, deployment, source, raw, restart, causality, reporting,
+> formal-evaluator, safety, combined-action, controller, plant, real-MPC,
+> Gate A, or global-reachability result. It is immutable and may not be
+> enlarged or tuned. The active route is a new prospectively frozen genuine
+> sequence-identification stage. All R8-family trajectories remain forbidden
+> from learning, and Gate A is blocked.
+
 > **Prospective R8R13 measured additive multi-direction discriminator
 > (2026-08-08 Asia/Shanghai).** Before R8R13 implementation, composition,
 > formal metric, output, route, or any further TSC, a zero-new-TSC design was
