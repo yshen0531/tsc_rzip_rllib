@@ -6397,6 +6397,37 @@ cannot authorize a controller, MPC qualification, Gate A, expert data, BC,
 DAgger, or residual RL. Every R8-family trajectory remains forbidden from
 learning data.
 
+## 124. Frozen R8R27 point-versus-reserve authority discriminator
+
+After final R8R26 was sealed at `71bea5c`, and before any new point-only
+search, plan, formal metric, classification, or route was computed, freeze:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R27_POINT_VERSUS_RESERVE_AUTHORITY_DISCRIMINATOR_DESIGN.md
+SHA-256  3446d1bd81879f52c4f7b943282a2db5c67e6e2d74a43598c597af7c85a7b9f3
+```
+
+R8R27 is zero-new-TSC. It authenticates the complete final R8R26 output and
+reruns the exact same deterministic 16-context search under point-only zero
+reserve, the immutable R8R25 pair tube, and the final R8R26 combined tube.
+Before opening point-only outcomes, pair and combined tubes must be
+elementwise identical and the combined layer must exactly reproduce all
+R8R26 plans, counters, token digests, predictions, formal metrics, and route.
+
+No point model, support, action, timing, lattice, beam, refinement, ranking,
+formal, fallback, or safety rule changes. The independent path must use the
+R8R26 independent audit chain and agree exactly on discrete results and to
+`1e-12` on floats.
+
+At complete integrity, at least one point-only repair with point-only oracle
+`>=7/16` routes to uncertainty/excitation redesign. Otherwise route to a
+broader causal action/timing/controller family. Neither result authorizes a
+real controller sentinel, MPC qualification, Gate A, expert data, BC,
+DAgger, or residual RL. The active task is implementation, local validation,
+direct-copy packaging/deployment, server validation, and primary/independent/
+postprocess execution without any Ray, `gotsc`, TSC, plant, raw, or snapshot.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

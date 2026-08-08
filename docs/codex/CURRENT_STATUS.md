@@ -1,5 +1,29 @@
 # Current status
 
+> **Prospective R8R27 point-versus-reserve authority discriminator
+> checkpoint (2026-08-09 Asia/Shanghai).** After final R8R26 was sealed at
+> `71bea5c`, and before any point-only search, plan, formal metric,
+> classification, or route was computed, a zero-new-TSC discriminator was
+> frozen. Exact design:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R27_POINT_VERSUS_RESERVE_AUTHORITY_DISCRIMINATOR_DESIGN.md`,
+> SHA-256
+> `3446d1bd81879f52c4f7b943282a2db5c67e6e2d74a43598c597af7c85a7b9f3`.
+>
+> R8R27 authenticates final R8R26 and reruns the identical 16-context finite
+> search under three fixed layers: zero reserve, the immutable R8R25 pair
+> tube, and the final R8R26 combined tube. Model, causal state and transition
+> support, action boundary, decision timing, lattice, beam, refinement,
+> ranking, formal contract, fallback, and independent tolerance do not
+> change. The pair and combined layers must be elementwise equal and exactly
+> reproduce R8R26 before point-only results are accepted.
+>
+> A point-only repair routes to uncertainty/excitation redesign; no point-only
+> repair routes to a broader causal action/timing/controller family. A
+> point-only pass is optimistic and never deployable. R8R27 executes zero
+> TSC and cannot authorize a controller, Gate A, expert data, BC, DAgger, or
+> RL. The active task is independent implementation and validation of this
+> frozen discriminator.
+
 > **Final R8R26 action-transition-supported multiresolution MPC preflight
 > checkpoint (2026-08-09 Asia/Shanghai).** Design/implementation/package
 > checkpoints are `42c1ff3 / 06ebbf7 / a1f4535`. The 1,124-file package plus
