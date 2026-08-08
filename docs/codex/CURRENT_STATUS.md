@@ -1,5 +1,52 @@
 # Current status
 
+> **R8R20 final direct Boolean-cube completion checkpoint
+> (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `f13e88a / ad64f09 / 98c67c5`. The 1,094-file package passed exact hashes,
+> JSON, compilation, focused `11/11`, and full `1337/1337` locally, in the
+> empty direct-copy tree, in server staging, and after installation; server
+> shell syntax passed and one isolated-evidence skip was expected. No archive
+> or global Python was used.
+>
+> The first `_v1` safety launch suffered an SSH-session/result-persistence
+> interruption after 24 TSC tasks had started. They completed without any
+> persisted Python raw; the run and its workspaces are preserved and forbidden
+> from scientific or learning use. Before outcomes were inspected, checkpoint
+> `9921657` froze the incident and authorized one byte-identical clean `_v2`.
+> This was an infrastructure failure, not a control result.
+>
+> Valid v2 completed 96/96 authentic trajectories. Dual raw audits passed all
+> runtime, full-horizon, source-prefix state/trace, calibration, sequence,
+> exact target-chain, event, Card15, action, current, finite, forbidden-input,
+> and inventory gates. Safety was `24/24`, qualification `72/72`; there were
+> 384 exact issues and 2,112 refreshes. Maximum issue/refresh/current values
+> were `0.1409259259259258 / 3.7037037048793097e-06 / 0.3924`.
+> Safety raw is `24 / 795803 bytes / a540618b...9cd`; qualification raw is
+> `72 / 2405436 bytes / 546a4275...f989`.
+>
+> Formal evaluation then found every one of the sixteen U/V codes passed the
+> same `6/16` baseline contexts and repaired `0/10` failures. The complete-
+> cube oracle remained `6/16`, below the frozen `>=7/16` gate. Every failed
+> context nevertheless had positive best margin gain
+> `0.025541733333334093--0.1364830983921772` (median
+> `0.08895878160707882`). Independent recomputation agreed exactly, with
+> maximum margin difference `0.0`. Final route:
+> `DIRECT_BOOLEAN_CUBE_AUTHORITY_INSUFFICIENT_CONTINUOUS_MULTIDIRECTION_REDESIGN_REQUIRED`.
+>
+> This is a finite binary-action-family authority FAIL, not runtime,
+> deployment, restart, causality, raw, reporting, real-MPC, Gate A, global
+> reachability, or wrong-direction evidence. The conditionally frozen R8R21
+> action-tree selector (`fdf196c`, design SHA `781df71a...d734`) is vetoed
+> without implementation/output because it required an R8R20 PASS. The active
+> route is a separately frozen bounded continuous-multidirection redesign.
+> Primary/detailed/independent/manifest/compact hashes are
+> `ccff5a7e... / 0d30684c... / 6abbbaec... / 0bbaedd0... /
+> b5663a12...`. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R20_FORENSIC_REPORT.md`,
+> SHA-256
+> `d7a86439b31d5d71f94ff96e05f8260e7503f20981660f4aae4e9866516be7ea`.
+> All R8-family data remain forbidden from learning; Gate A remains blocked.
+
 > **Prospective R8R20 direct Boolean-cube completion sentinel
 > (2026-08-08 Asia/Shanghai).** After final R8R19 evidence, route, and report
 > were sealed, but before any R8R20 implementation, construction, raw, TSC,

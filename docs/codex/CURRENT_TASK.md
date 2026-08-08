@@ -6045,6 +6045,81 @@ fresh physical sentinel.
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
 R8-family trajectory remains forbidden from learning data.
 
+## 113. Final R8R20 direct Boolean-cube completion result
+
+R8R20 completed at design/implementation/package checkpoints
+`f13e88a / ad64f09 / 98c67c5`. Local, empty-direct-copy, server-staging, and
+installed validation passed all 1,094 declared hashes, compilation, focused
+`11/11`, and full `1337/1337`, plus real server `bash -n`; one server
+isolated-evidence skip was expected.
+
+The first `_v1` safety launch lost its controlling SSH session after all 24
+TSC tasks had started. No task raw was persisted, no formal outcome was
+opened, and checkpoint `9921657` prospectively froze that run as a preserved
+infrastructure/result-persistence failure. It may not be resumed or used as
+scientific or learning evidence. A clean byte-identical `_v2` replacement
+was authorized before any outcome inspection.
+
+Valid v2 completed all `24 + 72 = 96` authentic trajectories. Primary and
+independent audits passed every runtime, horizon, source-prefix, causality,
+calibration, sequence, target-chain, Card15, action, current, finite,
+forbidden-input, raw, and inventory gate. Formal evaluation reproduced all
+immutable source metrics exactly, but all sixteen complete-cube codes passed
+only the same `6/16` baseline contexts. Repairs were `0/10`, regressions
+`0/6`, and the held complete-cube oracle was `6/16`, below the frozen
+`>=7/16` requirement. Primary/independent maximum margin difference was
+exactly `0.0`.
+
+The final route is:
+
+```text
+DIRECT_BOOLEAN_CUBE_AUTHORITY_INSUFFICIENT_CONTINUOUS_MULTIDIRECTION_REDESIGN_REQUIRED
+```
+
+Every failed context nevertheless had a positive best-candidate margin gain
+of `0.025541733333334093--0.1364830983921772`. This supports a bounded
+continuous-amplitude/multidirection redesign but is not a formal repair. It
+does not show runtime failure, wrong-direction action, real MPC failure, or
+global plant unreachability.
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R20_FORENSIC_REPORT.md
+SHA-256
+d7a86439b31d5d71f94ff96e05f8260e7503f20981660f4aae4e9866516be7ea
+```
+
+## 114. Vetoed conditional R8R21 selector and active boundary
+
+Before R8R20 formal outcomes were opened, a conditional zero-TSC causal
+Boolean action-tree selector was frozen at checkpoint `fdf196c`:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R21_CAUSAL_BOOLEAN_ACTION_TREE_SELECTOR_PREFLIGHT_DESIGN.md
+SHA-256
+781df71aa196ceae8f9441f1bc1f16540db97ccb26fbe44d87b716ff9e72d734
+```
+
+Its activation condition required the R8R20 finite-authority PASS route.
+R8R20 took the authority-FAIL route, so R8R21 is vetoed without
+implementation, fitting, output, Ray, TSC, controller, plant step, raw, or
+snapshot. Its thresholds may not be repurposed post-result.
+
+Before any new implementation, fit, optimization, candidate selection, or
+TSC, freeze a new-identity bounded continuous-multidirection authority
+design. It must use a prospective development/calibration/holdout separation,
+allowed visible causal state only, exact Card15 targets, unchanged hard
+action/current/saturation/safe-stop gates, the immutable 250/270 ms arrival
+and 350/370 ms hold contract, and structurally independent auditing. The
+observed R8R20 margin gains may motivate the bounded family but may not be
+used to tune on rows later claimed as fresh holdout.
+
+R8R20 and all R8-family trajectories remain forbidden from expert, BC,
+DAgger, and RL data. Gate A remains blocked; continue autonomously only on
+the model-based controller qualification route.
+
 ## 111. Final R8R19 result and active direct-cube-completion boundary
 
 R8R19 completed at design/implementation/package checkpoints
