@@ -1,5 +1,38 @@
 # Current status
 
+> **Prospective R8R29 full-basis measurement-recentered receding-horizon
+> feedback checkpoint (2026-08-09 Asia/Shanghai).** After final R8R28 was
+> sealed at `3b7bd68`, and before any R8R29 config, implementation, model fit,
+> tube, support result, plan, controller action, metric, raw, or TSC, the next
+> controller identity was frozen. Exact design:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R29_FULL_BASIS_MEASUREMENT_RECENTERED_RECEDING_HORIZON_FEEDBACK_SENTINEL_DESIGN.md`,
+> SHA-256
+> `6de6c55bd9b45962a57a93e44f1b285ac6e80e5a1a1e967116f69630a57fcf5c`.
+>
+> R8R29 deduplicates exactly 592 consumed development trajectories: R8R23's
+> 432-row U/V/model bank, 96 R8R14 rows for the six signed axes not already
+> represented by U/V, and all 64 changed-timing R8R28 rows. It preserves the
+> R8R23 42D causal/133D action-expanded ridge family, R8R25 whole-pair tube,
+> unchanged hard action/current/Card15 and formal contracts, and forbids all
+> source data from learning. Whole-pair model/tube/support and an offline
+> predicted-repair gate must pass independently before any TSC.
+>
+> The frozen controller has 17 ordered candidates: zero, six non-U/V signed
+> axes at scale 1, and U/V scales `0.50/0.75/1.00/1.25/1.50`. It replans at
+> `[10,12,14,16,18,22]`, executes only the first robust-formal safe/supported
+> exact-Card15 action, then discards the suffix and re-centers on the next
+> measured state. Best failing plans are forbidden; every model/support/
+> solver/construction fault falls back to the current exact-target hold.
+> Offline failure ends with zero TSC. If offline passes, run safety `4` then
+> qualification `12` with formal outcomes closed until all raw passes dual
+> causal replay.
+>
+> A real scientific PASS requires at least one real repair among ten failed
+> baselines, at least `7/16` formal controller passes, and zero regressions of
+> six baseline passes. Even a PASS is only a finite deterministic feedback
+> core and still requires all remaining Gate A robustness axes. Gate A and all
+> learning remain blocked.
+
 > **Final R8R28 front-loaded cumulative endpoint timing-authority checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `e4264d1 / 7d8c40d / a31262d`. The exact package contains 1,143 declared

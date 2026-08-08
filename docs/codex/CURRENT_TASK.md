@@ -6570,6 +6570,47 @@ prospective Gate A qualifications in Section 0.1. Gate A, expert data, BC,
 DAgger, and residual RL remain blocked; pause for the user only if every Gate
 A axis is actually passed.
 
+## 128. Frozen R8R29 full-basis measurement-recentered feedback sentinel
+
+After final R8R28 was sealed at `3b7bd68`, but before any next model fit,
+support result, plan, implementation, controller action, formal metric, raw,
+or TSC, freeze:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R29_FULL_BASIS_MEASUREMENT_RECENTERED_RECEDING_HORIZON_FEEDBACK_SENTINEL_DESIGN.md
+SHA-256  6de6c55bd9b45962a57a93e44f1b285ac6e80e5a1a1e967116f69630a57fcf5c
+```
+
+Authenticate and deduplicate exactly 592 consumed development trajectories:
+R8R23's 432-row model bank, the 96 R8R14 rows for six non-U/V signed axes,
+and all 64 R8R28 changed-timing rows. Rebuild the unchanged 42D causal/133D
+action-expanded ridge family, R8R25 whole-pair tube, and exact task-step
+action-transition support. No source row is a fresh holdout or learning data.
+
+Freeze 17 ordered candidates: zero; direction 0 -/+, direction 1 +,
+direction 2 -, and direction 3 -/+ at scale 1; and U/V each at scales
+`0.50/0.75/1.00/1.25/1.50`. The deterministic controller replans at
+`[10,12,14,16,18,22]`, executes only the first safe, supported,
+robust-formal exact-Card15 action, discards the suffix, and rebuilds its
+causal origin from the next measurement. A best failing plan is forbidden.
+Every model, support, finite, solver, timeout, construction, or empty-set
+fault selects the exact-target-hold fallback.
+
+Before TSC, whole-pair point/tube/support gates, all 16 offline searches, a
+predicted repair `>=1/10`, oracle `>=7/16`, zero predicted regression under
+fallback, nonzero selection, six fault injections, and exact independent
+agreement must pass. Otherwise stop with zero TSC. Conditional execution is
+safety `4` then qualification `12`; formal outcomes remain closed until all
+raw passes independent causal decision replay.
+
+A real PASS requires at least one failed-baseline repair, at least `7/16`
+formal controller passes, zero baseline-pass regressions, and exact dual
+agreement. This is only a finite deterministic feedback-core gate. It is not
+Gate A and cannot authorize expert data, BC, DAgger, or RL. Even after a PASS,
+continue only through the remaining prospectively frozen Section 0.1 Gate A
+qualifications and pause only when every Gate A axis is actually satisfied.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
