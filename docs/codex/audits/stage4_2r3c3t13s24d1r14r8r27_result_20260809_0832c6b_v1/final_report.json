@@ -1,0 +1,55 @@
+{
+  "classification_completed": true,
+  "evidence_sha256": "783e1da566694c5ec21ad4d76303dc2c69b31a15d637709599afb51c24ce08c3",
+  "feature_digest": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+  "forecast_point_count": 11232,
+  "fresh_controller_sentinel_authorized": false,
+  "gate_a_qualified": false,
+  "identity": "point_versus_reserve_authority_discriminator_v1",
+  "independent_sha256": "a2c594c1087a6b549909e061cc844cfd8c7a66ea05d2e4e55877682f371aead6",
+  "layer_results": {
+    "combined_tube": {
+      "passed": false,
+      "predicted_baseline_fallback_plus_plan_oracle_count": 6,
+      "predicted_regressed_baseline_pass_count": 0,
+      "predicted_repaired_failed_baseline_count": 0,
+      "robust_formal_plan_context_count": 0,
+      "safe_search_context_count": 16
+    },
+    "pair_tube": {
+      "passed": false,
+      "predicted_baseline_fallback_plus_plan_oracle_count": 6,
+      "predicted_regressed_baseline_pass_count": 0,
+      "predicted_repaired_failed_baseline_count": 0,
+      "robust_formal_plan_context_count": 0,
+      "safe_search_context_count": 16
+    },
+    "point_only": {
+      "passed": false,
+      "predicted_baseline_fallback_plus_plan_oracle_count": 6,
+      "predicted_regressed_baseline_pass_count": 0,
+      "predicted_repaired_failed_baseline_count": 0,
+      "robust_formal_plan_context_count": 6,
+      "safe_search_context_count": 16
+    }
+  },
+  "maximum_combined_source_plan_absolute_difference": 0.0,
+  "maximum_pair_combined_plan_absolute_difference": 0.0,
+  "new_raw_count": 0,
+  "origin_row_count": 1728,
+  "passed": true,
+  "plant_step_count": 0,
+  "point_authority_present": false,
+  "primary_detailed_sha256": "f7090ef795a1a20ece8de4de0be266514c8efc1c9f0ddf7849c33a4b71ac40f7",
+  "primary_independent_agreement": true,
+  "primary_summary_sha256": "e5c2d23889102ded8662204ea222292e2ea3a2c2eecf194afc33c228d9e6d288",
+  "real_tsc_executed": false,
+  "route": "POINT_ACTION_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CONTROLLER_REDESIGN_REQUIRED",
+  "schedule_count": 27,
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_route": "ACTION_TRANSITION_SUPPORTED_MULTIRESOLUTION_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R27",
+  "target_digest": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc",
+  "trajectory_count": 432
+}

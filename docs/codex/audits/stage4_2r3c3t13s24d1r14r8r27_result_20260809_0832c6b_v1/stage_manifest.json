@@ -1,0 +1,15 @@
+{
+  "all_source_trajectories_allowed_in_expert_dataset": false,
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r27_point_versus_reserve_authority_discriminator.json",
+  "config_sha256": "0ba81e321a96ac6c80098dde1d52ecb94a7894ed756a443cecf94b0c33032eee",
+  "design_document_sha256": "3446d1bd81879f52c4f7b943282a2db5c67e6e2d74a43598c597af7c85a7b9f3",
+  "evidence_sha256": "783e1da566694c5ec21ad4d76303dc2c69b31a15d637709599afb51c24ce08c3",
+  "identity": "point_versus_reserve_authority_discriminator_v1",
+  "primary_detailed_sha256": "f7090ef795a1a20ece8de4de0be266514c8efc1c9f0ddf7849c33a4b71ac40f7",
+  "primary_summary_sha256": "e5c2d23889102ded8662204ea222292e2ea3a2c2eecf194afc33c228d9e6d288",
+  "schema_version": 1,
+  "source_r8r26_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r26_runs/stage4_2r3c3t13s24d1r14r8r26_action_transition_supported_multiresolution_mpc_preflight_20260809_a1f4535_v1",
+  "source_r8r26_stage_state_sha256": "a89ab66e075d3e985f4cf0c8e067e1820fefbf301c38cf89afd42e85d61ecce6",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R27",
+  "zero_new_tsc": true
+}

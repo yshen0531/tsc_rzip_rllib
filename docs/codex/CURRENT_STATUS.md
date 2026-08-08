@@ -1,5 +1,58 @@
 # Current status
 
+> **Final R8R27 point-versus-reserve authority checkpoint
+> (2026-08-09 Asia/Shanghai).** Design/implementation/initial-package/final-
+> package checkpoints are `61ad6a2 / b214b53 / 682a3a8 / 0832c6b`. The
+> dependency-complete package has 1,137 declared files plus manifest/sums;
+> package manifest and sums SHA-256 are `879f2c12...009c7 / e0960836...c8aa`.
+> Local source and a fresh empty direct-copy tree passed 132 strict JSON,
+> 443 Python compilations, focused `8/8`, and full Windows-shimmed
+> `1390/1390`. Server staging and installed validation additionally passed
+> all 440 `bash -n` checks and full `1390/1390` with one expected skip, using
+> only the existing server virtual environment and direct unarchived copy.
+>
+> Three fail-closed validation issues were separated from code/science. One
+> local focused command omitted the Windows `resource` shim; the prescribed
+> shimmed run passed. The first empty-copy tree exposed a missing packaged
+> R8R26 compact dependency; `0832c6b` added the already committed seven-file
+> compact source without changing computation. The first server staging tree
+> was copied after local tests and contained generated `__pycache__`; exact
+> physical-count validation rejected it before install. A new manifest-only
+> v2 tree contained exactly 1,139 files and passed all staging/installed
+> gates. These are invocation/packaging/transfer errors, not regressions or
+> scientific outcomes.
+>
+> The accepted server run is
+> `stage4_2r3c3t13s24d1r14r8r27_point_versus_reserve_authority_discriminator_20260809_0832c6b_v1`.
+> It authenticated 432 trajectories, 27 schedules, 1,728 origins, and 11,232
+> forecast points. Pair and combined tubes were elementwise identical; pair-
+> versus-combined plans and combined-versus-R8R26 plans differed by exactly
+> `0.0`.
+>
+> Every layer completed safe search `16/16`. Pair and combined reserve found
+> robust plans `0/16`, repairs `0/10`, and fallback-plus-plan oracle `6/16`.
+> Point-only found robust plans `6/16`, but all six were already-passing
+> baseline contexts; it likewise repaired `0/10`, regressed `0/6`, and left
+> oracle `6/16`. Point selected-violation range was `0--0.9226725021`; pair/
+> combined remained `0.2315070911--1.4226725021`. Primary/independent model,
+> tube, hull, three-layer plan, R8R26 reproduction, route, and outcome
+> differences were all exactly `0.0`.
+>
+> Final route:
+> `POINT_ACTION_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CONTROLLER_REDESIGN_REQUIRED`.
+> R8R27 ran zero Ray, `gotsc`, TSC, controller, plant step, raw, or snapshot.
+> It is a finite action/timing/controller-family authority FAIL, not runtime,
+> restart, reporting, real-MPC, plant-unreachability, or Gate A evidence. No
+> controller sentinel or learning is authorized. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R27_FORENSIC_REPORT.md`,
+> SHA-256
+> `e1eb8cdf3c6585f8d5ac4f950dc32bf59a0c506cb1be727e2be0810474049e2f`.
+> Compact evidence/manifest/sums SHA-256 are `1fca0ad5...0473 /
+> e335fb77...046b / aa9675a3...9f62`; large detailed plans remain on the
+> server. The active boundary is a separately frozen front-loaded causal
+> action-timing sentinel. Gate A and all learning remain blocked, and every
+> R8-family trajectory remains forbidden from learning data.
+
 > **Prospective R8R27 point-versus-reserve authority discriminator
 > checkpoint (2026-08-09 Asia/Shanghai).** After final R8R26 was sealed at
 > `71bea5c`, and before any point-only search, plan, formal metric,

@@ -1,0 +1,18 @@
+{
+  "final_report_sha256": "3bb40d06c1b4791ff57fed3034444147eec49a47e00533a6061bdf3d9db3910d",
+  "finished": true,
+  "independent_sha256": "a2c594c1087a6b549909e061cc844cfd8c7a66ea05d2e4e55877682f371aead6",
+  "new_raw_count": 0,
+  "phase_status": "complete",
+  "plant_step_count": 0,
+  "primary_detailed_sha256": "f7090ef795a1a20ece8de4de0be266514c8efc1c9f0ddf7849c33a4b71ac40f7",
+  "primary_summary_sha256": "e5c2d23889102ded8662204ea222292e2ea3a2c2eecf194afc33c228d9e6d288",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R27",
+  "stop_reason": "point_versus_reserve_classification_complete",
+  "verdict": {
+    "passed": true,
+    "route": "POINT_ACTION_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CONTROLLER_REDESIGN_REQUIRED"
+  }
+}

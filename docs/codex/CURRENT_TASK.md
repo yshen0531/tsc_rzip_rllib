@@ -6428,6 +6428,48 @@ DAgger, or residual RL. The active task is implementation, local validation,
 direct-copy packaging/deployment, server validation, and primary/independent/
 postprocess execution without any Ray, `gotsc`, TSC, plant, raw, or snapshot.
 
+## 125. Final R8R27 result and active action-timing boundary
+
+R8R27 completed at design/implementation/initial-package/final-package
+checkpoints `61ad6a2 / b214b53 / 682a3a8 / 0832c6b`. Local source, corrected
+empty-direct-copy, server staging, and installed validation passed all 1,137
+declared hashes, 132 JSON parses, 443 Python compilations, 440 server shell
+syntax checks, focused `8/8`, and full `1390/1390`, with one expected
+isolated-evidence skip where applicable.
+
+All three uncertainty layers completed safe search `16/16`. Pair and combined
+reserve were elementwise and planwise identical and reproduced final R8R26
+exactly. They found robust plans `0/16`. Point-only found robust plans `6/16`,
+but every one was an already-passing baseline context; failed-baseline repairs
+remained `0/10`, fallback regressions `0/6`, and oracle `6/16`. Primary and
+structurally independent model/tube, hull, plan, reproduction, route, and
+outcome differences were all exactly `0.0`. The final route is:
+
+```text
+POINT_ACTION_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CONTROLLER_REDESIGN_REQUIRED
+```
+
+R8R27 ran zero Ray, `gotsc`, TSC, controller, plant step, raw, or snapshot.
+It rejects reserve rescaling as the explanation for absent repairs within the
+frozen four-slot U/V family. It is not real-MPC, plant-unreachability, or Gate
+A evidence. Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R27_FORENSIC_REPORT.md
+SHA-256  e1eb8cdf3c6585f8d5ac4f950dc32bf59a0c506cb1be727e2be0810474049e2f
+```
+
+Before implementation, offline construction, formal output, or new TSC,
+freeze a new-identity causal action-timing design. It may reuse only the
+authenticated R8R7 baselines and fixed cumulative U/V endpoint definitions,
+must change timing prospectively rather than tune uncertainty, and must retain
+exact restart, visible-state causality, Card15/action/current/saturation,
+stop-before-advance, immutable formal timing, two-phase execution, independent
+raw/formal audit, and learning prohibition. A finite timing-authority PASS may
+authorize only a separately frozen causal controller design; it is not Gate A.
+Every R8-family trajectory remains forbidden from learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
