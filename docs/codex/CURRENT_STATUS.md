@@ -1,5 +1,32 @@
 # Current status
 
+> **Prospective R8R24 causal local-residual-tube preflight checkpoint
+> (2026-08-09 Asia/Shanghai).** After the complete R8R23 result and forensic
+> report were sealed, and before any R8R24 fit, local tube, plan, or outcome
+> was produced, the new zero-new-TSC design was frozen at `218e176`, design
+> SHA-256 `213bfaba33bba2559907e68eb53ec186b8a64f33f5eb7164072526fef5631dff`.
+> Implementation checkpoint is `484f2a9`.
+>
+> R8R24 retains the exact R8R23 cold 133-feature ridge point predictor and
+> removes the failed innovation update. For each outer held physical pair,
+> its tube uses only inner whole-pair OOF residuals at the same decision
+> interval and lead sample: ordinary Euclidean 133D distance, `k=32`, all
+> kth-distance ties, componentwise maximum times `1.25`, and fixed physical
+> floors `15 mm / 15 mm / 3000 A / 0.05 m/s / 0.05 m/s`. Tubes cannot be
+> clipped to pass the unchanged `25 mm / 25 mm / 5000 A / 0.08 / 0.08` caps;
+> containment and R8R23 support both remain `100%` requirements.
+>
+> Primary and structurally independent implementations now fail closed on
+> the complete frozen config and explicitly compare outer cold-model
+> coefficients, held point metrics, and support results with the authenticated
+> R8R23 originals. Focused local tests passed `8/8`; the Windows-shimmed full
+> suite passed `1364/1364` using only the project virtual environment. The
+> active boundary is package-manifest/checksum construction, empty direct-copy
+> verification, direct server transfer, installed validation, and dual
+> zero-new-TSC execution. No R8 or R8R1-family TSC trajectory may be rerun.
+> R8R24 cannot itself qualify MPC or Gate A, and all R8-family evidence remains
+> forbidden from expert, BC, DAgger, residual-RL, or other learning data.
+
 > **R8R23 final causal online-feedback preflight checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `0f61d94 / c4af11d / 7b2739c`. The 1,106-file package passed all hashes,

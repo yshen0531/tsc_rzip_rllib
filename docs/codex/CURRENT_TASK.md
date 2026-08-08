@@ -6213,6 +6213,56 @@ control, or Gate A. Gate A, expert data, BC, DAgger, and residual RL remain
 blocked; pause for the user only if the full Gate A policy in Section 0 is
 actually satisfied.
 
+## 119. Frozen and implemented R8R24 local-residual-tube preflight
+
+The required new identity was frozen prospectively before any R8R24 fit,
+local-residual query, tube, plan, or result:
+
+```text
+design checkpoint  218e176
+implementation     484f2a9
+design SHA-256      213bfaba33bba2559907e68eb53ec186b8a64f33f5eb7164072526fef5631dff
+```
+
+Exact design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R24_CAUSAL_LOCAL_RESIDUAL_TUBE_RECEDING_HORIZON_PREFLIGHT_DESIGN.md
+```
+
+R8R24 must retain the unchanged R8R23 cold 133-feature ridge point model and
+authenticate exact reproduction of its outer coefficients, point metrics,
+support outcome, feature digest, and target digest. The failed R8R23
+innovation update is disabled rather than retuned. Local tubes are calibrated
+only from nested whole-pair OOF residuals, at the same interval and lead
+sample, with ordinary Euclidean distance, `k=32`, all kth-distance ties,
+componentwise maximum times `1.25`, and fixed physical floors. Tubes may not
+be clipped to the frozen caps. Point, 100% containment, tube-cap, 100%
+support, finite, forbidden-input, and primary/independent agreement gates are
+all fail closed.
+
+Only a complete model PASS opens the unchanged 11-level, four-decision exact
+Card15 action tree. A complete planning PASS requires safe plans `16/16`, at
+least one predicted repair, zero predicted regressions, and oracle `>=7/16`
+under the unchanged 250/270 ms arrival and 350/370 ms hold contract. These
+remain development predictions, never measured controller outcomes.
+
+Local validation using only the project virtual environment has passed
+Python compilation, focused `8/8`, and Windows-resource-shimmed full
+`1364/1364`. The active task is to update `PACKAGE_MANIFEST.json` and
+`SHA256SUMS`, verify a fresh empty directory by direct copy, transfer the tree
+directly through the authorized `tsc-airgap` workflow without local archive
+operations, validate staging and installed sources with the existing server
+virtual environment, then execute primary, structurally independent, and
+postprocess paths with zero Ray, `gotsc`, TSC, controller, plant advance, raw,
+or snapshot.
+
+A complete R8R24 PASS authorizes only prospectively freezing a new-identity
+fresh finite real-controller sentinel. It is not real MPC or Gate A. All
+R8-family trajectories remain forbidden from expert, BC, DAgger, residual-RL,
+or any other policy-learning data. Gate A remains blocked.
+
 ## 113. Final R8R20 direct Boolean-cube completion result
 
 R8R20 completed at design/implementation/package checkpoints
