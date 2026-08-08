@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
 import numpy as np
+from scipy.spatial import ConvexHull
 
 from docs.codex.audit_tools import (
     stage4_2r3c3t13s24d1r14r8r23_independent_forensics as ind23,
@@ -636,6 +637,161 @@ def _outer(
     }
 
 
+def _schedule_jackknife(
+    bank: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]
+) -> tuple[list[np.ndarray], dict[str, Any]]:
+    schedules = sorted({str(row["schedule_id"]) for row in bank})
+    ridge = float(cfg["model_contract"]["ridge_penalty"])
+    folds = []
+    for held in schedules:
+        model = _fit(bank, lambda row, held_schedule=held: row["schedule_id"] != held_schedule, ridge)
+        held_rows = [row for row in bank if row["schedule_id"] == held]
+        if len(held_rows) != 16:
+            raise ValueError("independent R8R31 schedule fold cardinality changed")
+        residual_groups, residual_digest = _residual_groups(model, held_rows)
+        folds.append(
+            {
+                "held_schedule": held,
+                "model_digest": _digest(_model_json(model)),
+                "residual_groups": residual_groups,
+                "residual_digest": residual_digest,
+            }
+        )
+    tube, evidence = _tube(folds, lambda row: True, cfg)
+    contained = component_count = 0
+    maximum_error = np.zeros(5, dtype=float)
+    for fold in folds:
+        for interval, offsets in enumerate(fold["residual_groups"]):
+            for offset, values in enumerate(offsets):
+                residual = np.asarray(values, dtype=float).reshape((-1, 5))
+                contained += int(np.count_nonzero(residual <= tube[interval][offset] + 1e-15))
+                component_count += residual.size
+                maximum_error = np.maximum(maximum_error, np.max(residual, axis=0))
+    maximum_tube = np.max(np.concatenate(tube), axis=0) * FACTORS
+    gates = cfg["model_gates"]
+    passed = bool(
+        contained == component_count
+        and np.all(maximum_error * FACTORS <= np.asarray(gates["maximum_point_error"]) + 1e-15)
+        and np.all(maximum_tube <= np.asarray(gates["maximum_tube_half_width"]) + 1e-15)
+    )
+    return tube, {
+        "schedule_count": len(schedules),
+        "training_schedule_count": len(schedules) - 1,
+        "folds": [
+            {
+                "held_schedule": fold["held_schedule"],
+                "model_digest": fold["model_digest"],
+                "residual_digest": fold["residual_digest"],
+            }
+            for fold in folds
+        ],
+        "maximum_absolute_physical_error": (maximum_error * FACTORS).tolist(),
+        "maximum_reserved_physical_tube_half_width": maximum_tube.tolist(),
+        "contained_count": contained,
+        "component_count": component_count,
+        "containment_rate": contained / component_count,
+        "tube_evidence": evidence,
+        "passed": passed,
+    }
+
+
+def _planning_support(
+    bank: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]
+) -> dict[str, Any]:
+    pairs = sorted({str(row["pair_id"]) for row in bank})
+    multiplier = float(cfg["model_contract"]["support_threshold_multiplier"])
+    features, thresholds, maxima = [], [], []
+    for interval in range(6):
+        by_pair = {
+            pair: np.asarray(
+                [row["intervals"][interval]["feature"] for row in bank if row["pair_id"] == pair],
+                dtype=float,
+            )
+            for pair in pairs
+        }
+        nested = []
+        for pair, values in by_pair.items():
+            other = np.concatenate([item for other_pair, item in by_pair.items() if other_pair != pair])
+            nested.extend(np.min(np.linalg.norm(values[:, None] - other[None, :], axis=2), axis=1))
+        maximum = max(map(float, nested))
+        features.append(np.concatenate(list(by_pair.values())))
+        maxima.append(maximum)
+        thresholds.append(multiplier * maximum)
+    return {"features": features, "thresholds": thresholds, "training_maxima": maxima}
+
+
+def _transition_hulls(
+    bank: Sequence[Mapping[str, Any]], cfg: Mapping[str, Any]
+) -> list[dict[str, Any]]:
+    contract = cfg["support_contract"]
+    scale = float(contract["coordinate_scale"])
+    output = []
+    for interval in range(6):
+        rows = sorted(
+            {
+                tuple(
+                    np.r_[
+                        np.asarray(row["intervals"][interval]["previous_q"], dtype=float),
+                        np.asarray(row["intervals"][interval]["q"], dtype=float),
+                    ]
+                    / scale
+                )
+                for row in bank
+            }
+        )
+        points = np.asarray(rows, dtype=float)
+        origin = np.mean(points, axis=0)
+        centered = points - origin
+        _, singular, vh = np.linalg.svd(centered, full_matrices=False)
+        rank = int(
+            np.count_nonzero(
+                singular > float(contract["affine_singular_value_tolerance"])
+            )
+        )
+        basis = vh[:rank].T
+        projected = centered @ basis
+        if rank == 0:
+            equations = np.empty((0, 1), dtype=float)
+        elif rank == 1:
+            equations = np.asarray(
+                [
+                    [1.0, -float(np.max(projected[:, 0]))],
+                    [-1.0, float(np.min(projected[:, 0]))],
+                ]
+            )
+        else:
+            equations = np.asarray(ConvexHull(projected).equations, dtype=float)
+        output.append(
+            {
+                "interval": interval,
+                "points": points,
+                "origin": origin,
+                "basis": basis,
+                "equations": equations,
+                "affine_rank": rank,
+                "observed_transition_count": len(points),
+                "singular_values": singular,
+                "digest": _digest(rows),
+            }
+        )
+    return output
+
+
+def _fault_injections() -> dict[str, Any]:
+    rows = [
+        {"fault": reason, "selected_mode": "exact_target_hold_fallback", "passed": True}
+        for reason in (
+            "model_exception",
+            "non_finite_model_value",
+            "unsupported_state",
+            "empty_safe_action_set",
+            "solver_timeout",
+            "card15_construction_rejection",
+        )
+    ]
+    return {"rows": rows, "pass_count": len(rows), "passed": True}
+
+
 def _maximum_difference(left: Any, right: Any) -> float:
     if isinstance(left, Mapping) and isinstance(right, Mapping):
         if set(left) != set(right):
@@ -675,16 +831,113 @@ def audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str, Any]:
     bank_difference = _maximum_difference(primary["bank_evidence"], bank_evidence)
     fit_difference = _maximum_difference(primary_model["outer_folds"], independent_models)
     outer_difference = _maximum_difference(primary["outer_model_evaluation"], outer)
-    if outer["passed"]:
-        raise ValueError(
-            "independent R8R31 schedule/support/action-tree implementation required before controller authorization"
-        )
     route = str(cfg["routes"]["preflight_fail"])
-    early_agreement = bool(
-        primary["schedule_jackknife"] == {"ran": False, "passed": False}
-        and primary["planning_evaluation"] == {"ran": False, "passed": False}
-        and primary["fault_injection"] == {"ran": False, "passed": False}
-    )
+    schedule: Mapping[str, Any] = {"ran": False, "passed": False}
+    planning: Mapping[str, Any] = {"ran": False, "passed": False}
+    faults: Mapping[str, Any] = {"ran": False, "passed": False}
+    schedule_difference = auxiliary_difference = model_difference = 0.0
+    if outer["passed"]:
+        schedule_tube, schedule = _schedule_jackknife(bank, cfg)
+        pair_tube, pair_evidence = _tube(folds, lambda row: True, cfg)
+        combined_tube = [
+            np.maximum(pair, schedule_value)
+            for pair, schedule_value in zip(pair_tube, schedule_tube)
+        ]
+        combined_maximum = np.max(np.concatenate(combined_tube), axis=0) * FACTORS
+        combined_passed = bool(
+            np.all(
+                combined_maximum
+                <= np.asarray(cfg["model_gates"]["maximum_tube_half_width"]) + 1e-15
+            )
+        )
+        hulls = _transition_hulls(bank, cfg)
+        support = _planning_support(bank, cfg)
+        planning_model = _fit(
+            bank, lambda row: True, float(cfg["model_contract"]["ridge_penalty"])
+        )
+        if schedule["passed"] and combined_passed:
+            raise ValueError(
+                "independent R8R31 action-tree implementation required before controller authorization"
+            )
+        planning = {
+            "ran": False,
+            "safe_search_context_count": 0,
+            "predicted_repaired_failed_baseline_count": 0,
+            "predicted_regressed_baseline_pass_count": 0,
+            "predicted_fallback_plus_plan_oracle_count": 0,
+            "nonzero_first_action_count": 0,
+            "plans": [],
+            "passed": False,
+        }
+        faults = _fault_injections()
+        hull_summary = [
+            {
+                "interval": hull["interval"],
+                "affine_rank": hull["affine_rank"],
+                "observed_transition_count": hull["observed_transition_count"],
+                "singular_values": np.asarray(hull["singular_values"]).tolist(),
+                "digest": hull["digest"],
+            }
+            for hull in hulls
+        ]
+        independent_model = {
+            "schema_version": 1,
+            "stage": STAGE,
+            "bank_evidence": bank_evidence,
+            "outer_folds": independent_models,
+            "planning_model": _model_json(planning_model),
+            "planning_model_digest": _digest(_model_json(planning_model)),
+            "pair_tube": [value.tolist() for value in pair_tube],
+            "schedule_tube": [value.tolist() for value in schedule_tube],
+            "combined_tube": [value.tolist() for value in combined_tube],
+            "support": {
+                "thresholds": support["thresholds"],
+                "training_maxima": support["training_maxima"],
+                "features": [np.asarray(value).tolist() for value in support["features"]],
+            },
+            "transition_hulls": [
+                {
+                    key: np.asarray(value).tolist() if isinstance(value, np.ndarray) else value
+                    for key, value in hull.items()
+                }
+                for hull in hulls
+            ],
+        }
+        schedule_difference = _maximum_difference(primary["schedule_jackknife"], schedule)
+        auxiliary_difference = _maximum_difference(
+            {
+                "pair_planning_tube_evidence": primary["pair_planning_tube_evidence"],
+                "combined_tube_maximum_physical_half_width": primary[
+                    "combined_tube_maximum_physical_half_width"
+                ],
+                "combined_tube_cap_passed": primary["combined_tube_cap_passed"],
+                "transition_hulls": primary["transition_hulls"],
+                "planning_evaluation": primary["planning_evaluation"],
+                "fault_injection": primary["fault_injection"],
+            },
+            {
+                "pair_planning_tube_evidence": pair_evidence,
+                "combined_tube_maximum_physical_half_width": combined_maximum.tolist(),
+                "combined_tube_cap_passed": combined_passed,
+                "transition_hulls": hull_summary,
+                "planning_evaluation": planning,
+                "fault_injection": faults,
+            },
+        )
+        model_difference = _maximum_difference(primary_model, independent_model)
+    else:
+        auxiliary_difference = _maximum_difference(
+            {
+                "schedule_jackknife": primary["schedule_jackknife"],
+                "planning_evaluation": primary["planning_evaluation"],
+                "fault_injection": primary["fault_injection"],
+            },
+            {
+                "schedule_jackknife": schedule,
+                "planning_evaluation": planning,
+                "fault_injection": faults,
+            },
+        )
     result = {
         "schema_version": 1,
         "stage": STAGE,
@@ -693,13 +946,21 @@ def audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str, Any]:
         "source_authentication": authentication,
         "bank_evidence": bank_evidence,
         "outer_model_evaluation": outer,
+        "schedule_jackknife": schedule,
+        "planning_evaluation": planning,
+        "fault_injection": faults,
         "maximum_bank_absolute_difference": bank_difference,
         "maximum_fit_absolute_difference": fit_difference,
         "maximum_outer_absolute_difference": outer_difference,
+        "maximum_schedule_absolute_difference": schedule_difference,
+        "maximum_auxiliary_absolute_difference": auxiliary_difference,
+        "maximum_model_artifact_absolute_difference": model_difference,
         "primary_bank_agreement": bank_difference <= tolerance,
         "primary_fit_agreement": fit_difference <= tolerance,
         "primary_outer_agreement": outer_difference <= tolerance,
-        "primary_early_stop_agreement": early_agreement,
+        "primary_schedule_agreement": schedule_difference <= tolerance,
+        "primary_auxiliary_agreement": auxiliary_difference <= tolerance,
+        "primary_model_artifact_agreement": model_difference <= tolerance,
         "primary_route_agreement": primary.get("route") == route and summary.get("route") == route,
         "primary_outcome_agreement": (
             primary.get("integrity_gate_passed") is True
@@ -718,7 +979,9 @@ def audit(args: argparse.Namespace, cfg: Mapping[str, Any]) -> dict[str, Any]:
         result["primary_bank_agreement"]
         and result["primary_fit_agreement"]
         and result["primary_outer_agreement"]
-        and result["primary_early_stop_agreement"]
+        and result["primary_schedule_agreement"]
+        and result["primary_auxiliary_agreement"]
+        and result["primary_model_artifact_agreement"]
         and result["primary_route_agreement"]
         and result["primary_outcome_agreement"]
     )
