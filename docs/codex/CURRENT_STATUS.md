@@ -1,5 +1,27 @@
 # Current status
 
+> **Prospective R8R17 adjacent-switch interaction preflight
+> (2026-08-08 Asia/Shanghai).** After sealing R8R16 but before inspecting its
+> failed-row identity or any new fit/output, the zero-new-TSC R8R17 design was
+> frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R17_ADJACENT_SWITCH_INTERACTION_BINARY_CUBE_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `5432fe3f292800910dc8f70e979fc4db89ffee3fa6053ad22383b9029ebc73d0`.
+>
+> R8R17 retains the exact R8R16 split and caps, adding only
+> `a=(q10*q14+q14*q18+q18*q22)/3` to the fixed feature row. Code-only
+> development/measured/full-cube geometry is frozen at rank-condition
+> `6/6.6990427629`, `6/2.6131259298`, and `6/1.7320508076`. No R8R16
+> per-code/context/state residual was used to select the feature.
+>
+> All `64/64` held calibration trajectories must meet the unchanged R8R16
+> point, component, formal classification, minimum-margin `0.05`, and tube
+> gates before the same six missing codes may be predicted. Robust authority
+> remains `>=1/10` repairs and oracle `>=7/16` after the frozen two-times
+> margin buffer. R8R17 runs zero TSC and can authorize only a separately
+> frozen physical sentinel. It is not MPC or Gate A; learning remains blocked
+> and all R8-family evidence remains forbidden from learning data.
+
 > **R8R16 final temporal-affine completion preflight checkpoint
 > (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `d68aae4 / d7364e8 / e2325b0`. The 1,066-file empty direct-copy package

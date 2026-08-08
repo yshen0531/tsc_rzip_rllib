@@ -6044,3 +6044,48 @@ fresh physical sentinel.
 
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
 R8-family trajectory remains forbidden from learning data.
+
+## 106. Frozen R8R17 adjacent-switch interaction preflight task
+
+After R8R16 was finalized but before inspecting its failed-row identity or
+any R8R17 fit/output, the new nonlinear design was frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R17_ADJACENT_SWITCH_INTERACTION_BINARY_CUBE_PREFLIGHT_DESIGN.md
+SHA-256
+5432fe3f292800910dc8f70e979fc4db89ffee3fa6053ad22383b9029ebc73d0
+```
+
+R8R17 keeps the exact R8R16 development/calibration/missing split and all
+numerical, formal, tube, and authority caps. It adds exactly one fixed
+normalized sequential interaction:
+
+```text
+a(q) = (q10*q14 + q14*q18 + q18*q22) / 3
+x(q) = [1,q10,q14,q18,q22,a(q)]
+```
+
+This feature was chosen from action-sequence structure and code-only matrix
+geometry, not R8R16 per-row residuals. Frozen development/measured/cube
+rank-condition values are `6/6.6990427629`, `6/2.6131259298`, and
+`6/1.7320508076`.
+
+R8R17 must authenticate the complete final R8R16 output and original R8R15
+evidence, fit only the six development codes, and predict the same four held
+calibration codes. All `64/64` trajectories must pass the unchanged 3 mm,
+3 mm, 1000 A, scaled `0.10`, exact formal classification, minimum-margin
+`0.05`, and fixed tube gates. Primary SVD and structurally independent
+`lstsq` paths must agree.
+
+Only a complete model PASS may refit all ten measured codes and predict the
+same six never-executed codes. Robust authority still requires at least one
+of ten failed-baseline repairs and oracle `>=7/16` after subtracting twice
+the maximum held margin error. R8R17 is zero-new-TSC; a PASS authorizes only
+a separately frozen fresh physical sentinel. A model failure routes to a
+higher-order redesign; an adequate model with no authority routes to
+continuous multidirection redesign.
+
+Implement, validate, package by empty direct copy, deploy without archives,
+and execute dual zero-TSC audits. R8R17 is not MPC or Gate A. No R8-family
+trajectory may enter expert, BC, DAgger, or RL data.
