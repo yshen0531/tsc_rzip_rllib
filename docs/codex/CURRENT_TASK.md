@@ -6470,6 +6470,44 @@ raw/formal audit, and learning prohibition. A finite timing-authority PASS may
 authorize only a separately frozen causal controller design; it is not Gate A.
 Every R8-family trajectory remains forbidden from learning data.
 
+## 126. Frozen R8R28 front-loaded cumulative endpoint timing sentinel
+
+After final R8R27 was sealed at `95e17f1`, but before any R8R28
+implementation, config, offline action, formal output, raw, or TSC, freeze:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R28_FRONT_LOADED_CUMULATIVE_ENDPOINT_TIMING_AUTHORITY_SENTINEL_DESIGN.md
+SHA-256  03c714797389872a9388b4ae8acd4711f6d2ad6db074ef25c22075ecbc8af099
+```
+
+Authenticate final R8R7, R8R14, and R8R27 evidence. Preserve R8R7's exact
+causal prefix through task step 9 and R8R14's canonical U/V endpoint actions,
+scale 1.0, four cumulative major issues, dynamic exact Card15 construction,
+stored-target refresh, hard action/current/saturation boundaries, and formal
+evaluator. Change only major-issue timing under the fixed closed family:
+
+```text
+g3  [10,13,16,19] * {UUUU,VVVV}
+g2  [10,12,14,16] * {UUUU,VVVV}
+16 contexts * 4 candidates = 64 real trajectories
+```
+
+Primary and independent offline paths must first agree exactly on 64 specs,
+256 issues, 1,408 refreshes, source identity, action/current target chains,
+and all hard gates. Any failure stops with zero TSC. If offline passes,
+execute safety `16` before qualification `48`; qualification requires dual
+safety raw agreement. Formal outcomes remain closed until all 64 raw files
+pass independent audit.
+
+The immutable formal contract remains 250/270 ms arrival and 350/370 ms
+hold. A PASS requires at least one measured repair among ten failed baselines,
+baseline-plus-four-candidate oracle `>=7/16`, baseline fallback retaining all
+six passes, and exact dual formal agreement. It may authorize only a new
+prospectively frozen causal feedback-controller design. R8R28 is not MPC or
+Gate A. Every source and new trajectory is forbidden from expert, BC,
+DAgger, residual-RL, or any learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

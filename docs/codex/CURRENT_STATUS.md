@@ -1,5 +1,31 @@
 # Current status
 
+> **Prospective R8R28 front-loaded cumulative endpoint timing sentinel
+> checkpoint (2026-08-09 Asia/Shanghai).** After final R8R27 was sealed at
+> `95e17f1`, and before R8R28 implementation, configuration, offline action,
+> metric, raw, or TSC, a new real-TSC timing-authority identity was frozen.
+> Exact design:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R28_FRONT_LOADED_CUMULATIVE_ENDPOINT_TIMING_AUTHORITY_SENTINEL_DESIGN.md`,
+> SHA-256
+> `03c714797389872a9388b4ae8acd4711f6d2ad6db074ef25c22075ecbc8af099`.
+>
+> R8R28 preserves the exact R8R7 0--9 causal source prefix, R8R14 U/V
+> endpoint definitions, four cumulative scale-1.0 issues, final cumulative
+> coordinate, Card15/action/current/saturation gates, and formal timing. It
+> changes only the second-through-fourth major issue times. The complete
+> family is `g3=[10,13,16,19]` and `g2=[10,12,14,16]`, each with UUUU and
+> VVVV, over all 16 contexts: 64 specs, 256 exact issues, and 1,408 refreshes.
+>
+> Dual offline construction must pass before any TSC. The frozen execution is
+> safety `16` then qualification `48`, with formal outcomes closed until all
+> raw passes dual audit. A scientific PASS requires a real repair of at least
+> one of ten failed baselines and held baseline-plus-four-candidate oracle
+> `>=7/16`; baseline fallback preserves all six passes. Even a PASS authorizes
+> only a separately frozen causal feedback-controller design. R8R28 is not
+> MPC or Gate A; learning remains blocked and all R8-family trajectories are
+> forbidden from learning data. The active task is implementation and dual
+> offline preflight under this exact identity.
+
 > **Final R8R27 point-versus-reserve authority checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/implementation/initial-package/final-
 > package checkpoints are `61ad6a2 / b214b53 / 682a3a8 / 0832c6b`. The
