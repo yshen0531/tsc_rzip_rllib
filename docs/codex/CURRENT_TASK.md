@@ -6311,6 +6311,55 @@ A development PASS may authorize only a separately frozen fresh finite real-
 controller sentinel. It cannot itself establish MPC or Gate A. Gate A and all
 learning remain blocked.
 
+## 121. Frozen and implemented R8R25 outer-jackknife tube preflight
+
+Before any R8R25 tube, containment, cap, plan, or route was computed, the
+training-cardinality-matched design was frozen and then made algorithmically
+complete without outcome inspection:
+
+```text
+initial design checkpoint       cc0dee5
+support clarification           e37f84f
+implementation checkpoint       9089006
+final design SHA-256             bb051a7318e4032c742d98fd91b273e4a00350d918d8f1412369672be1306e0a
+```
+
+Exact design:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R25_TRAINING_CARDINALITY_MATCHED_OUTER_JACKKNIFE_TUBE_PREFLIGHT_DESIGN.md
+```
+
+R8R25 keeps the exact cold R8R23/R8R24 point model. For evaluation of held
+pair `p`, its tube uses only outer OOF residual groups from the other seven
+pairs; `p`'s own residual is excluded. Every residual-producing outer model
+was trained on seven complete pairs, matching the evaluated model's training
+cardinality. Tubes remain fixed by interval/lead, componentwise maximum times
+`1.25`, fixed physical floors, no distance model, no quantile, no outlier
+deletion, and no clipping. All point, containment, cap, support, finite,
+forbidden-input, source-reproduction, and dual-agreement gates remain
+all-or-nothing.
+
+Only a complete model PASS opens the unchanged 11-level action tree. Its
+all-eight point model uses all eight outer residual groups and an all-pair
+support threshold fixed as `1.5` times the maximum leave-one-whole-pair
+nearest-neighbor distance. Planning still requires safe plans `16/16`, at
+least one predicted repair, zero regressions, and oracle `>=7/16` under the
+unchanged formal timing and hard action boundary.
+
+Local project-venv compilation, focused `9/9`, and Windows-resource-shimmed
+full `1373/1373` passed. The active task is to update package manifest and
+sums, validate a fresh direct-copy tree, transfer without archives, validate
+server staging and installed files with the existing server virtual
+environment, then run primary, structurally independent, and postprocess
+paths with zero Ray, `gotsc`, TSC, controller, plant advance, raw, or snapshot.
+
+Even a complete R8R25 PASS authorizes only freezing a separate fresh finite
+real-controller sentinel. R8R25 is not MPC or Gate A. All R8-family evidence
+remains forbidden from expert, BC, DAgger, residual-RL, or other learning
+data; Gate A remains blocked.
+
 ## 113. Final R8R20 direct Boolean-cube completion result
 
 R8R20 completed at design/implementation/package checkpoints

@@ -1,5 +1,29 @@
 # Current status
 
+> **Prospective R8R25 training-cardinality-matched outer-jackknife tube
+> checkpoint (2026-08-09 Asia/Shanghai).** After final R8R24 evidence and
+> report were sealed at `f5e6e8d`, and before any R8R25 tube, containment,
+> cap, plan, or route was computed, the design was frozen at `cc0dee5` and
+> clarified without outcome inspection at `e37f84f`. Final design SHA-256 is
+> `bb051a7318e4032c742d98fd91b273e4a00350d918d8f1412369672be1306e0a`;
+> implementation checkpoint is `9089006`.
+>
+> R8R25 retains the exact R8R23/R8R24 cold point model. Each outer held pair
+> is bounded only by residual groups from the other seven outer OOF pairs,
+> so its own outcome never calibrates its tube; all residual-producing models
+> have the same seven-pair training cardinality as the evaluated point model.
+> The rule remains same interval/lead, componentwise maximum times `1.25`,
+> fixed floors, unchanged caps, 100% containment/support, and zero clipping.
+>
+> If and only if the model gate passes, planning uses the all-eight-pair point
+> model, all eight outer residual groups, and the explicitly frozen all-pair
+> leave-one-pair nearest-neighbor support threshold. The exact 11-level tree,
+> hard action/Card15/current gates, and immutable formal timing remain
+> unchanged. Local compilation and focused `9/9` plus Windows-shimmed full
+> `1373/1373` passed using only the project virtual environment. The active
+> task is direct package construction, empty-copy/server validation, and dual
+> zero-new-TSC execution. R8R25 is not MPC or Gate A; learning remains blocked.
+
 > **R8R24 final causal local-residual-tube preflight checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `218e176 / 484f2a9 / 4b22492`. The 1,112-file package passed all hashes, 123
