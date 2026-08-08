@@ -5506,3 +5506,44 @@ environments, directly package/deploy without archives, then execute R8R12 in
 its frozen order. R8R12 is not MPC or Gate A. Expert data, BC, DAgger, and
 residual RL remain blocked, and every R8-family trajectory remains forbidden
 from learning datasets.
+
+## 96. R8R12 v1 construction failure and frozen v2 implementation task
+
+R8R12 v1 passed dual offline construction but its four authorized safety tasks
+all stopped during controller construction with
+`D1R14R6 per-spec issue schedule changed`. The four immutable raw files contain
+only their initial state: zero controller trace, physical action, plant
+advance, or snapshot. Canonical inventory is:
+
+```text
+4 files / 17687 bytes /
+f59d7aa22205d995519742b049c516e0403a18840d593b5d0db9e058150d549d
+```
+
+Qualification and formal outcomes were never opened. The strict-JSON reporting
+repair created no raw or worker call, and independent recomputation exactly
+matched the primary failure audit. v1 is final and may not resume.
+
+Before any corrected implementation or outcome, v2 is frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R12_V1_CONSTRUCTION_FAILURE_AND_V2_CORRECTION.md
+```
+
+The only permitted construction correction is to pass the inherited R6
+constructor a valid inert placeholder `issue/cancel/zero_after = 14/15/16`.
+The R8R12 subclass still delegates only task steps 0--9 and exclusively owns
+the actual unchanged `[10,14,18,22]` staircase. v2 must change campaign
+identity, controller revision, package revision, and run directory. Every
+other frozen source, spec, Card15/action/current/saturation, safe-stop, formal
+timing, two-phase authorization, authority, and data-prohibition gate remains
+unchanged.
+
+The active task is to implement and test that one correction, directly package
+and deploy it, rerun dual offline construction under v2, and only then execute
+at most four new safety trajectories. Qualification is authorized only by
+exact primary/independent v2 safety agreement. Formal outcomes remain closed
+until all 16 v2 trajectories authenticate. A v2 authority PASS still only
+authorizes a separately frozen causal selector/controller design; it is not
+MPC or Gate A. Expert data, BC, DAgger, and residual RL remain blocked.

@@ -1,5 +1,38 @@
 # Current status
 
+> **R8R12 v1 construction failure and prospectively frozen v2 correction
+> (2026-08-07 Asia/Shanghai).** R8R12 v1 is final as
+> `CAUSAL_CUMULATIVE_DIRECTION2_STAIRCASE_EXECUTION_OR_SAFETY_FAIL_STOP`.
+> Offline primary/independent construction passed exactly (`64/64` levels,
+> `352/352` refreshes, maximum issue increment `0.1409259259`, maximum
+> predicted current utilization `0.3905`) with zero raw/TSC. Four authorized
+> safety tasks then all raised
+> `D1R14R6 per-spec issue schedule changed` during controller construction.
+> Each immutable raw contains one initial state, zero trace, zero action, zero
+> plant advance, and no snapshot. Canonical safety inventory is `4 files /
+> 17687 bytes / f59d7aa2...`; qualification raw and formal outcomes remain
+> unopened.
+>
+> A reporting-only strict-JSON repair at `c9111cc`/package `4f14aa3` replaced
+> absent maxima `inf` with `null` and authenticated the existing raw without a
+> worker call. Independent raw recomputation exactly agreed with primary;
+> primary/independent/manifest/state hashes are `d2772100... / 65f392cc... /
+> 01b650ca... / 57217b2c...`. This is a controller-construction implementation
+> failure before plant advance, not a control, safety-envelope, plant, formal,
+> raw, or global-reachability result. v1 is immutable and may not resume.
+>
+> Before any v2 implementation or outcome, v2 is frozen with a new campaign
+> identity/controller revision. The only correction is an inherited R6
+> constructor placeholder schedule `14/15/16`; the subclass still exclusively
+> owns the unchanged actual staircase `[10,14,18,22]` after the delegated
+> 0--9 prefix. All context, action, current, Card15, timing, two-phase,
+> scientific, and learning-prohibition gates remain unchanged. Exact report
+> and v2 freeze:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R12_V1_CONSTRUCTION_FAILURE_AND_V2_CORRECTION.md`.
+> Report SHA-256 is
+> `2b3580dd049227f408bec6cded91acc742479224a6afe2a55087efef60b9fa47`.
+> Gate A and all learning remain blocked.
+
 > **Prospective R8R12 causal cumulative staircase checkpoint (2026-08-07
 > Asia/Shanghai).** Before R8R12 implementation, configuration, specification,
 > offline construction, candidate formal outcome, raw, or TSC, the new
