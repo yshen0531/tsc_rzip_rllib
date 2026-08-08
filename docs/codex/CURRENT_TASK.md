@@ -5725,3 +5725,52 @@ freeze a new-identity genuinely different sequence-identification design
 under unchanged restart, causality, Card15/action/current/saturation,
 safe-stop, formal timing, independent-audit, and learning-data-prohibition
 contracts. Gate A, expert data, BC, DAgger, and residual RL remain blocked.
+
+## 100. Frozen R8R14 cumulative multidirection staircase identification
+
+Before R8R14 implementation, config, offline construction, metric, result,
+raw, snapshot, or TSC, the next genuine sequence-identification stage was
+frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R14_CUMULATIVE_MULTIDIRECTION_STAIRCASE_AUTHORITY_IDENTIFICATION_DESIGN.md
+SHA-256
+06360433fd33fd8706453e145eeadca7e37fa80f4e99193cf779e62ab3af4f0f
+```
+
+R8R14 authenticates the exact 16 R8R7 baselines, final R8R12 v2, and final
+R8R13 provenance. It reuses without rerunning R8R12's direction-2-positive
+scale-1.0 staircase. The seven new cumulative candidates are:
+
+```text
+(0,-1) (0,+1) (1,-1) (1,+1) (2,-1) (3,-1) (3,+1)
+decision task steps [10,14,18,22]
+```
+
+Each new row uses the same causal measured-current exact-Card15 issue and
+stored-target refresh construction as R8R12. Primary and structurally
+independent offline implementations must pass all 112 rows, 448 issues,
+refresh chains, action/current/saturation gates, and exact spec agreement
+before TSC. Any preflight failure ends with zero new TSC.
+
+Prospective physical phases are:
+
+```text
+safety          4 contexts * 7 candidates = 28
+qualification  12 contexts * 7 candidates = 84
+maximum new authentic trajectories        = 112
+```
+
+Formal outcomes remain closed through safety and qualification raw audits.
+Qualification requires byte-frozen primary/independent safety agreement;
+formal computation requires exact primary/independent qualification
+agreement. The final measured atlas is 16 existing R8R12 plus 112 new rows.
+
+A PASS requires `>=1/10` failed-baseline repairs and an evaluator-only
+do-nothing-safe held oracle of `>=7/16`, with unchanged formal timing and
+exact independent agreement. This oracle is not a causal selector. A PASS
+can authorize only a new frozen visible-state causal selector/controller
+design; a FAIL requires sequence-basis redesign. R8R14 is not MPC or Gate A.
+All source/new trajectories are forbidden from expert, BC, DAgger, and RL
+data, and all learning remains blocked.

@@ -1,5 +1,27 @@
 # Current status
 
+> **Prospective R8R14 cumulative multidirection staircase authority
+> identification (2026-08-08 Asia/Shanghai).** Before R8R14 implementation,
+> configuration, offline construction, result, formal metric, raw, snapshot,
+> or TSC, the new genuine sequence-identification design was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R14_CUMULATIVE_MULTIDIRECTION_STAIRCASE_AUTHORITY_IDENTIFICATION_DESIGN.md`,
+> SHA-256
+> `06360433fd33fd8706453e145eeadca7e37fa80f4e99193cf779e62ab3af4f0f`.
+>
+> R8R14 reuses but does not rerun the 16 exact R8R12 direction-2-positive
+> staircases. It prospectively measures the seven missing `(direction,sign)`
+> cumulative scale-1.0 families at `[10,14,18,22]` in all 16 R8R7 contexts:
+> 28 safety rows followed, only after exact dual raw agreement, by 84
+> qualification rows. Dual offline exact-Card15/action/current construction
+> of all 112 rows is required before any worker or plant advance.
+>
+> Formal outcomes remain closed until all 112 new raw authenticate. A PASS
+> requires at least one of ten failed baselines repaired and a do-nothing-safe
+> evaluator-only oracle over baseline plus eight measured cumulative
+> candidates of at least `7/16`. Even a PASS authorizes only a separately
+> frozen causal selector/controller design, not direct TSC MPC. Every source
+> and R8R14 trajectory is forbidden from learning; Gate A remains blocked.
+
 > **R8R13 final measured-additive discriminator checkpoint (2026-08-08
 > Asia/Shanghai).** Implementation/package checkpoints are `a4f999e /
 > da1585d`. The 1,047-file direct-copy package passed local, empty-copy,
