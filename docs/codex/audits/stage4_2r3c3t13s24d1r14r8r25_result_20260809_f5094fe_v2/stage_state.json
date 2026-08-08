@@ -1,0 +1,18 @@
+{
+  "final_report_sha256": "d651bd7aaa1a6de2794263215e4c5928a23fcb7334bd59c85b6219182498af50",
+  "finished": true,
+  "independent_sha256": "2729ae940c7727becaded17a8a8f0826803f2120cf09d909d54a57bcff7e4b25",
+  "new_raw_count": 0,
+  "phase_status": "complete",
+  "plant_step_count": 0,
+  "primary_detailed_sha256": "8ab38c412b94984de5eac7f9ef5009eb5ac93886cae2324258cbe650bc33d1d5",
+  "primary_summary_sha256": "acc666b16489cfcd815b5b5375e8c3967d32704ae58fa1cb100ac0b3ceac8eea",
+  "real_tsc_executed": false,
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R25",
+  "stop_reason": "planning_gate_failed",
+  "verdict": {
+    "passed": false,
+    "route": "TRAINING_CARDINALITY_MATCHED_TUBE_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED"
+  }
+}

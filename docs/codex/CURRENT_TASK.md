@@ -6361,15 +6361,32 @@ Hotfix `6c5990c` changes only that representation in the separate primary and
 independent implementations. It still requires every selected cross-pair
 interval/lead aggregate to be nonempty and finite and changes no scientific
 rule or gate. Local project-venv compilation, masked-horizon focused `10/10`,
-and Windows-resource-shimmed full `1374/1374` pass. The active task is to
-create a new package checkpoint, validate a new empty direct-copy tree,
-transfer without archives, repeat server staging/installed validation with
-the existing server virtual environment, then run new-log primary,
-structurally independent, and postprocess paths with zero Ray, `gotsc`, TSC,
-controller, plant advance, raw, or snapshot.
+and Windows-resource-shimmed full `1374/1374` pass. Package `f5094fe` passed
+fresh empty-copy, server staging, installed hashes/compile/`bash -n`, focused,
+and full validation.
 
-Even a complete R8R25 PASS authorizes only freezing a separate fresh finite
-real-controller sentinel. R8R25 is not MPC or Gate A. All R8-family evidence
+The valid dual zero-TSC run authenticated 432 trajectories and reproduced
+the source point evidence exactly. Point error, `56,160/56,160` tube
+containment, tube caps, `1728/1728` support, finite, and forbidden-input gates
+all passed. The maximum physical tube was
+`[0.015,0.015,3000,0.05,0.05387964718914857]`.
+
+The full eleven-level tree then safely completed all `14,641` sequences in
+all 16 contexts with zero unsupported nodes, but it contained no predicted
+robust-formal sequence. Repairs were `0/10`, forced-plan regressions `6/6`,
+and the baseline-plus-policy oracle remained `6/16`. Primary and independent
+fit/tube/plan/source/route differences were all `0.0`. Final route:
+
+```text
+TRAINING_CARDINALITY_MATCHED_TUBE_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED
+```
+
+R8R25 is a finite model/uncertainty PASS and action-family/planning-authority
+FAIL, not a real-controller, real-MPC, plant-unreachability, or Gate A result.
+It authorizes no real sentinel. Before any new calculation or plant work,
+freeze a new-identity causal action-family/controller redesign that preserves
+the R8R25 model/tube gate, formal timing, hard action boundary, independent
+recomputation, and a fail-closed baseline fallback. All R8-family evidence
 remains forbidden from expert, BC, DAgger, residual-RL, or other learning
 data; Gate A remains blocked.
 

@@ -1,0 +1,772 @@
+{
+  "allowed_in_expert_dataset": false,
+  "bank_evidence": {
+    "allowed_in_expert_dataset": false,
+    "expanded_feature_dimension": 133,
+    "feature_digest": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+    "feature_dimension": 42,
+    "forbidden_input_count": 0,
+    "forecast_point_count": 11232,
+    "origin_row_count": 1728,
+    "target_digest": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc",
+    "trajectory_count": 432
+  },
+  "fold_outer_jackknife_tube_evidence": [
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p750_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 216,
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    },
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p750_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 216,
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "tube_digest": "3fa8af9b54aee5bd05172b617ada92e8b869919f1e73a6c43b7f7908e9ed5335"
+    },
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p750_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 162,
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    },
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p750_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 162,
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    },
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p750_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 216,
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    },
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q2_a0p750_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 216,
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    },
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 162,
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    },
+    {
+      "calibration_pair_count": 7,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p750_gap3_settle4"
+      ],
+      "maximum_residual_record_count": 378,
+      "minimum_residual_record_count": 162,
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    }
+  ],
+  "fresh_controller_sentinel_authorized": false,
+  "gate_a_qualified": false,
+  "independent_agreement": {
+    "maximum_fit_absolute_difference": 0.0,
+    "maximum_plan_absolute_difference": 0.0,
+    "maximum_source_reproduction_absolute_difference": 0.0,
+    "maximum_tube_absolute_difference": 0.0,
+    "passed": true,
+    "primary_feature_agreement": true,
+    "primary_fit_agreement": true,
+    "primary_outcome_agreement": true,
+    "primary_plan_agreement": true,
+    "primary_route_agreement": true,
+    "primary_source_reproduction_agreement": true,
+    "primary_tube_agreement": true
+  },
+  "initial_failed_attempt": {
+    "classification": "masked_final_horizon_empty_group_shape_implementation_error",
+    "log_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r25_runs/stage4_2r3c3t13s24d1r14r8r25_primary_20260809_d5c784e_v1.log",
+    "new_raw_count": 0,
+    "plant_step_count": 0,
+    "real_tsc_executed": false,
+    "run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r25_runs/stage4_2r3c3t13s24d1r14r8r25_training_cardinality_matched_outer_jackknife_tube_preflight_20260809_d5c784e_v1",
+    "scientific_output_file_count": 0
+  },
+  "model_evaluation": {
+    "finite_exclusion_count": 0,
+    "forbidden_input_count": 0,
+    "maximum_absolute_physical_error": [
+      0.0011597711913608432,
+      0.00325191242330734,
+      75.22201307964116,
+      0.017788187070438194,
+      0.043103717751318854
+    ],
+    "maximum_reserved_physical_tube_half_width": [
+      0.015,
+      0.015,
+      3000.0,
+      0.05,
+      0.05387964718914857
+    ],
+    "passed": true,
+    "point_error_gate_passed": true,
+    "reserved_tube_component_count": 56160,
+    "reserved_tube_contained_component_count": 56160,
+    "reserved_tube_containment_gate_passed": true,
+    "reserved_tube_containment_rate": 1.0,
+    "support_gate_passed": true,
+    "support_pass_count": 1728,
+    "support_rate": 1.0,
+    "support_row_count": 1728,
+    "tube_cap_gate_passed": true
+  },
+  "model_gate_passed": true,
+  "new_raw_count": 0,
+  "official_bytes_before_compact": 8398465,
+  "official_file_count_before_compact": 7,
+  "official_files_before_compact": [
+    {
+      "bytes": 1833,
+      "path": "analysis/final_report.json",
+      "sha256": "d651bd7aaa1a6de2794263215e4c5928a23fcb7334bd59c85b6219182498af50"
+    },
+    {
+      "bytes": 165626,
+      "path": "analysis/independent.json",
+      "sha256": "2729ae940c7727becaded17a8a8f0826803f2120cf09d909d54a57bcff7e4b25"
+    },
+    {
+      "bytes": 179008,
+      "path": "analysis/primary_detailed.json",
+      "sha256": "8ab38c412b94984de5eac7f9ef5009eb5ac93886cae2324258cbe650bc33d1d5"
+    },
+    {
+      "bytes": 1488,
+      "path": "analysis/primary_summary.json",
+      "sha256": "acc666b16489cfcd815b5b5375e8c3967d32704ae58fa1cb100ac0b3ceac8eea"
+    },
+    {
+      "bytes": 8048568,
+      "path": "model/outer_fold_models.json",
+      "sha256": "b1487f5efc17d3fe1cd83d60faedd758c9e2ba2c83c92bd160f0a1f4d259aefc"
+    },
+    {
+      "bytes": 1179,
+      "path": "stage_manifest.json",
+      "sha256": "d9ac7247a8cccc2581c1378784119cd8bc99608c078d8c32616b012d1c8f3406"
+    },
+    {
+      "bytes": 763,
+      "path": "stage_state.json",
+      "sha256": "e8e61e6628f0c9c2de3a4b43f5429d5c380d39876eb28081dc8af79fabfe83ce"
+    }
+  ],
+  "package": {
+    "implementation_checkpoint": "6c5990c",
+    "manifest_sha256": "d8953b1d7522401589351bdb9f8ee65c3b4ad4de2f7f299f11e80633377302e6",
+    "package_checkpoint": "f5094fe",
+    "sha256sums_sha256": "8a68954c9bed5468b772af24f138c03071e27ae42bc9f99604f7bc2954f3f0bc"
+  },
+  "passed": true,
+  "plan_summaries": [
+    {
+      "history_member": "minus_first",
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          10
+        ],
+        "cumulative_normalized_action_movement": 4.5,
+        "integrated_normalized_error": 44.58169694460557,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "a1p50_w1p00"
+        ],
+        "maximum_predicted_current_utilization": 0.3753,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.7561141208165467
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          10
+        ],
+        "cumulative_normalized_action_movement": 4.5,
+        "integrated_normalized_error": 44.58725856077365,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "a1p50_w1p00"
+        ],
+        "maximum_predicted_current_utilization": 0.3753,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.7520159903426837
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "minus_first",
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          1,
+          7
+        ],
+        "cumulative_normalized_action_movement": 4.75,
+        "integrated_normalized_error": 38.07339056187693,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "a1p25_w0p00",
+          "a1p50_w0p25"
+        ],
+        "maximum_predicted_current_utilization": 0.3775,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.5762670143578794
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          1,
+          7
+        ],
+        "cumulative_normalized_action_movement": 4.75,
+        "integrated_normalized_error": 38.13574724672409,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "a1p25_w0p00",
+          "a1p50_w0p25"
+        ],
+        "maximum_predicted_current_utilization": 0.3775,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.5686122522372437
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "minus_first",
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "cumulative_normalized_action_movement": 3.0,
+        "integrated_normalized_error": 63.31471185311236,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "q0"
+        ],
+        "maximum_predicted_current_utilization": 0.38994999999999996,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.9343446678423732
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "cumulative_normalized_action_movement": 3.0,
+        "integrated_normalized_error": 63.66687261988766,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "q0"
+        ],
+        "maximum_predicted_current_utilization": 0.38994999999999996,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.9313973931558821
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "minus_first",
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          6,
+          10
+        ],
+        "cumulative_normalized_action_movement": 7.5,
+        "integrated_normalized_error": 80.02285349800634,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "a1p50_w0p00",
+          "a1p50_w1p00"
+        ],
+        "maximum_predicted_current_utilization": 0.3845,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 1.1678073988176156
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "cumulative_normalized_action_movement": 3.0,
+        "integrated_normalized_error": 86.27772900158688,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "q0"
+        ],
+        "maximum_predicted_current_utilization": 0.38634999999999997,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 1.226773686196859
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "minus_first",
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          1,
+          0,
+          0,
+          7
+        ],
+        "cumulative_normalized_action_movement": 4.0,
+        "integrated_normalized_error": 12.541230898106232,
+        "level_ids": [
+          "a1p25_w0p00",
+          "q0",
+          "q0",
+          "a1p50_w0p25"
+        ],
+        "maximum_predicted_current_utilization": 0.37145000000000006,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.1775154761090969
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          1,
+          0,
+          0,
+          7
+        ],
+        "cumulative_normalized_action_movement": 4.0,
+        "integrated_normalized_error": 12.557210132250164,
+        "level_ids": [
+          "a1p25_w0p00",
+          "q0",
+          "q0",
+          "a1p50_w0p25"
+        ],
+        "maximum_predicted_current_utilization": 0.37155,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.1790489077603128
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "minus_first",
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          1,
+          0,
+          1
+        ],
+        "cumulative_normalized_action_movement": 4.25,
+        "integrated_normalized_error": 32.14715474724078,
+        "level_ids": [
+          "a1p50_w0p00",
+          "a1p25_w0p00",
+          "q0",
+          "a1p25_w0p00"
+        ],
+        "maximum_predicted_current_utilization": 0.36515000000000003,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.4047553882978008
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          6,
+          0,
+          2
+        ],
+        "cumulative_normalized_action_movement": 4.25,
+        "integrated_normalized_error": 31.02800137140087,
+        "level_ids": [
+          "a1p50_w0p00",
+          "a1p50_w0p00",
+          "q0",
+          "a1p25_w0p25"
+        ],
+        "maximum_predicted_current_utilization": 0.36469999999999997,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.38769273053250286
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "minus_first",
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "cumulative_normalized_action_movement": 3.0,
+        "integrated_normalized_error": 42.56314625383233,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "q0"
+        ],
+        "maximum_predicted_current_utilization": 0.37555,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.6543633125420081
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "cumulative_normalized_action_movement": 3.0,
+        "integrated_normalized_error": 41.73539145278395,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "q0"
+        ],
+        "maximum_predicted_current_utilization": 0.3749,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.6341277100338296
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "minus_first",
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "cumulative_normalized_action_movement": 3.0,
+        "integrated_normalized_error": 21.53040900809477,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "q0"
+        ],
+        "maximum_predicted_current_utilization": 0.37884999999999996,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.3479734898941593
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    },
+    {
+      "history_member": "plus_first",
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "predicted_formal_pass": false,
+      "safe_complete_plan": true,
+      "safe_complete_sequence_count": 14641,
+      "safe_issue_node_count": 16104,
+      "selected_plan": {
+        "alphabet_indices": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "cumulative_normalized_action_movement": 3.0,
+        "integrated_normalized_error": 20.414761427886592,
+        "level_ids": [
+          "a1p50_w0p00",
+          "q0",
+          "q0",
+          "q0"
+        ],
+        "maximum_predicted_current_utilization": 0.3784,
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.33579691727484207
+      },
+      "unfiltered_sequence_count": 14641,
+      "unsupported_node_count": 0
+    }
+  ],
+  "planning_evaluation": {
+    "passed": false,
+    "planning_model_digest": "12e09a746f9356658a9c468c62d3915c6b98f138c149f66916763611728d43e0",
+    "planning_support": {
+      "thresholds": [
+        0.39609769944357387,
+        0.688397938114284,
+        1.0005931171352644,
+        1.3153367553029758
+      ],
+      "training_nearest_neighbor_maxima": [
+        0.2640651329623826,
+        0.45893195874285597,
+        0.6670620780901764,
+        0.8768911702019838
+      ],
+      "training_origin_count_by_interval": [
+        432,
+        432,
+        432,
+        432
+      ]
+    },
+    "planning_tube_evidence": {
+      "calibration_pair_count": 8,
+      "calibration_pair_ids": [
+        "p5_q1_a0p750_gap4_settle4",
+        "p5_q1_a0p900_gap3_settle4",
+        "p5_q2_a0p750_gap3_settle4",
+        "p5_q2_a0p900_gap4_settle4",
+        "p9_q1_a0p750_gap4_settle4",
+        "p9_q1_a0p900_gap3_settle4",
+        "p9_q2_a0p750_gap3_settle4",
+        "p9_q2_a0p900_gap4_settle4"
+      ],
+      "maximum_residual_record_count": 432,
+      "minimum_residual_record_count": 216,
+      "tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8"
+    },
+    "predicted_baseline_plus_policy_oracle_count": 6,
+    "predicted_regressed_baseline_pass_count": 6,
+    "predicted_repaired_failed_baseline_count": 0,
+    "safe_complete_plan_count": 16
+  },
+  "plant_step_count": 0,
+  "real_tsc_executed": false,
+  "route": "TRAINING_CARDINALITY_MATCHED_TUBE_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED",
+  "run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r25_runs/stage4_2r3c3t13s24d1r14r8r25_training_cardinality_matched_outer_jackknife_tube_preflight_20260809_f5094fe_v2",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_authentication_passed": true,
+  "source_point_reproduction": {
+    "maximum_outer_model_absolute_difference": 0.0,
+    "maximum_point_metric_absolute_difference": 0.0,
+    "maximum_support_absolute_difference": 0.0,
+    "passed": true,
+    "source_innovation_enabled": false,
+    "source_selected_predictor": "cold"
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R8R25"
+}

@@ -1,0 +1,15 @@
+{
+  "all_source_trajectories_allowed_in_expert_dataset": false,
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r25_training_cardinality_matched_outer_jackknife_tube_preflight.json",
+  "config_sha256": "7b97a9d450d1106fb46ecc776416de51f332af2cccc9f467c7e1790e5243d0a8",
+  "design_document_sha256": "bb051a7318e4032c742d98fd91b273e4a00350d918d8f1412369672be1306e0a",
+  "identity": "training_cardinality_matched_outer_jackknife_tube_preflight_v1",
+  "model_evidence_sha256": "b1487f5efc17d3fe1cd83d60faedd758c9e2ba2c83c92bd160f0a1f4d259aefc",
+  "primary_detailed_sha256": "8ab38c412b94984de5eac7f9ef5009eb5ac93886cae2324258cbe650bc33d1d5",
+  "primary_summary_sha256": "acc666b16489cfcd815b5b5375e8c3967d32704ae58fa1cb100ac0b3ceac8eea",
+  "schema_version": 1,
+  "source_r8r24_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r24_runs/stage4_2r3c3t13s24d1r14r8r24_causal_local_residual_tube_receding_horizon_preflight_20260809_4b22492_v1",
+  "source_r8r24_stage_state_sha256": "a9129cb09551fc4c99bc06e4559464666163578560de5e15baa4fe43e17882f2",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R25",
+  "zero_new_tsc": true
+}

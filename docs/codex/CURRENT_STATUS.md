@@ -1,45 +1,48 @@
 # Current status
 
-> **Prospective R8R25 training-cardinality-matched outer-jackknife tube
-> checkpoint (2026-08-09 Asia/Shanghai).** After final R8R24 evidence and
-> report were sealed at `f5e6e8d`, and before any R8R25 tube, containment,
-> cap, plan, or route was computed, the design was frozen at `cc0dee5` and
-> clarified without outcome inspection at `e37f84f`. Final design SHA-256 is
-> `bb051a7318e4032c742d98fd91b273e4a00350d918d8f1412369672be1306e0a`;
-> initial implementation/package checkpoints are `9089006 / d5c784e`.
+> **R8R25 final training-cardinality-matched outer-jackknife checkpoint
+> (2026-08-09 Asia/Shanghai).** Design/clarification/initial implementation
+> checkpoints are `cc0dee5 / e37f84f / 9089006`. The initial package
+> `d5c784e` passed all deployment validation, but its first primary attempt
+> stopped before producing scientific output because a legitimate empty
+> single-pair group in the frozen 13/15-sample final-horizon mask had NumPy
+> shape `(0,)`. The failed stage contains zero files and its traceback is
+> preserved. This was an implementation/data-shape error, not a model,
+> control, TSC, or plant result.
 >
-> R8R25 retains the exact R8R23/R8R24 cold point model. Each outer held pair
-> is bounded only by residual groups from the other seven outer OOF pairs,
-> so its own outcome never calibrates its tube; all residual-producing models
-> have the same seven-pair training cardinality as the evaluated point model.
-> The rule remains same interval/lead, componentwise maximum times `1.25`,
-> fixed floors, unchanged caps, 100% containment/support, and zero clipping.
+> Hotfix/package checkpoints `6c5990c / f5094fe` normalize only an empty
+> per-pair group to `(0,5)` while retaining nonempty finite cross-pair
+> calibration. No scientific rule changed. The 1,118-file package passed
+> local source and empty-direct-copy plus server staging/installed hashes,
+> 124 JSON parses, 437 Python compilations, 438 `bash -n` checks, focused
+> `10/10`, and full `1374/1374` with one expected skip. Only project/server
+> virtual environments and direct unarchived transfer were used.
 >
-> If and only if the model gate passes, planning uses the all-eight-pair point
-> model, all eight outer residual groups, and the explicitly frozen all-pair
-> leave-one-pair nearest-neighbor support threshold. The exact 11-level tree,
-> hard action/Card15/current gates, and immutable formal timing remain
-> unchanged. The initial 1,118-file package passed local empty-copy, server
-> staging, and installed hashes, JSON, compile, `bash -n`, focused `9/9`, and
-> full `1373/1373` validation. Its first primary attempt then stopped before
-> producing any R8R25 scientific output: the frozen 13/15-sample masked final
-> horizon legitimately leaves some single-pair lead groups empty, but the
-> implementation represented an empty group as shape `(0,)` and rejected it
-> before cross-pair aggregation. The stopped directory and log are preserved;
-> it executed zero Ray, `gotsc`, TSC, controller, plant advance, raw, or
-> snapshot and is an implementation/data-shape error, not a model, control, or
-> plant result.
+> The valid run authenticated 432 trajectories, 1,728 causal origins, and
+> 11,232 forecast points. Source point-model and support reproduction
+> differences were all `0.0`. Maximum R/Z/Ip/vR/vZ point errors were
+> `0.00115977 m / 0.00325191 m / 75.222 A / 0.0177882 m/s /
+> 0.0431037 m/s`; support passed `1728/1728`. The cross-outer tube contained
+> `56,160/56,160` components and its maximum physical half-widths were
+> `[0.015 m, 0.015 m, 3000 A, 0.05 m/s, 0.0538796472 m/s]`. Every point,
+> containment, cap, support, finite, and forbidden-input gate passed.
 >
-> Hotfix `6c5990c` normalizes only a legitimate empty per-pair group to
-> `(0,5)` and retains fail-closed enforcement that the cross-pair calibration
-> aggregate is nonempty and finite. It changes no residual value, pair
-> exclusion, reserve, floor, cap, support, planning, action, timing, or route
-> semantics. Primary and structurally independent code were repaired
-> separately; masked-horizon regression coverage now passes focused `10/10`
-> and Windows-shimmed full `1374/1374` in the project virtual environment.
-> The active task is a new package/direct-copy/server-validation checkpoint
-> followed by dual zero-new-TSC execution. R8R25 is not MPC or Gate A;
-> learning remains blocked.
+> The model PASS opened the full eleven-level four-decision tree. All 16
+> contexts had all `14,641` sequences safely complete and zero unsupported
+> nodes, but no context had any robust-formal sequence. Predicted repairs were
+> `0/10`, forced-plan regressions `6/6`, and baseline-plus-policy oracle stayed
+> `6/16`. Primary and structurally independent model/tube/plan/source/route
+> differences were exactly `0.0`. Final route:
+> `TRAINING_CARDINALITY_MATCHED_TUBE_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED`.
+>
+> R8R25 is a finite consumed-development-bank model/uncertainty PASS followed
+> by an action-family/planning-authority FAIL. It executed zero Ray, `gotsc`,
+> TSC, controller, plant advance, raw, or snapshot and is not real-MPC,
+> plant-unreachability, or Gate A evidence. Exact report SHA-256 is
+> `3b2fbcfa6435a5d8039ede9a4f305589d4299cb9a5117524d990aba9b18bec2a`;
+> final compact SHA is `ecfbbe93...78bb8`. A fresh controller sentinel and
+> all learning remain blocked. Before further computation or plant work,
+> freeze a new-identity causal action-family/controller redesign.
 
 > **R8R24 final causal local-residual-tube preflight checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are

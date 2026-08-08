@@ -1,0 +1,41 @@
+{
+  "feature_digest": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+  "forecast_point_count": 11232,
+  "gate_a_qualified": false,
+  "identity": "training_cardinality_matched_outer_jackknife_tube_preflight_v1",
+  "innovation_enabled": false,
+  "maximum_absolute_physical_error": [
+    0.0011597711913608432,
+    0.00325191242330734,
+    75.22201307964116,
+    0.017788187070438194,
+    0.043103717751318854
+  ],
+  "maximum_reserved_physical_tube_half_width": [
+    0.015,
+    0.015,
+    3000.0,
+    0.05,
+    0.05387964718914857
+  ],
+  "model_evidence_sha256": "b1487f5efc17d3fe1cd83d60faedd758c9e2ba2c83c92bd160f0a1f4d259aefc",
+  "model_gate_passed": true,
+  "new_raw_count": 0,
+  "origin_row_count": 1728,
+  "plant_step_count": 0,
+  "predicted_baseline_plus_policy_oracle_count": 6,
+  "predicted_feasibility_gate_passed": false,
+  "predicted_regressed_baseline_pass_count": 6,
+  "predicted_repaired_failed_baseline_count": 0,
+  "real_tsc_executed": false,
+  "reserved_tube_containment_rate": 1.0,
+  "route": "TRAINING_CARDINALITY_MATCHED_TUBE_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED",
+  "safe_complete_plan_count": 16,
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_route": "CAUSAL_LOCAL_RESIDUAL_TUBE_PREFLIGHT_INSUFFICIENT_REDESIGN_REQUIRED",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R25",
+  "support_rate": 1.0,
+  "target_digest": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc",
+  "trajectory_count": 432
+}
