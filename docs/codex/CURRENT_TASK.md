@@ -5940,3 +5940,54 @@ may enter expert, BC, DAgger, or RL data.
 Do not start expert data, BC, DAgger, or residual RL. Gate A remains blocked;
 continue autonomously only along the model-based MPC qualification route and
 pause for user confirmation if and only if Gate A is actually reached.
+
+## 104. Frozen R8R16 temporal-affine completion preflight task
+
+Before implementation, fitting, calibration output, missing-code prediction,
+ranking, formal outcome, or route, R8R16 was frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R16_TEMPORAL_AFFINE_BINARY_CUBE_COMPLETION_PREFLIGHT_DESIGN.md
+SHA-256
+2b48e9d6e74222977db1af687009f031aac3da90e9e6b008a856412cc119367b
+```
+
+R8R16 is zero-new-TSC. It must authenticate and strictly parse the exact R8R7
+baseline, R8R12 `UUUU`, R8R14 `VVVV`, and all final R8R15 evidence. For each
+context and state, it models measured `[R,Z,Ip]` response relative to the
+matched baseline with fixed code features `[1,q10,q14,q18,q22]`.
+
+The evidence split is immutable:
+
+```text
+development       UUUU VVVV UVVV UUVV UUUV VUUU
+calibration       VVUU VVVU UVUV VUVU
+never executed    UVUU UUVU UVVU VUUV VVUV VUVV
+```
+
+The six-code development fit must predict all 64 calibration trajectories
+without refitting. Every calibration row must stay within 3 mm R, 3 mm Z,
+1000 A Ip, scaled point error 0.10, exact formal pass classification, and
+minimum-margin error 0.05. The fixed uncertainty tube is twice the maximum
+component/state calibration residual and must stay within 10 mm/10 mm/3000 A.
+Primary and structurally independent fits, predictions, formal metrics, and
+routes must agree exactly.
+
+Only after calibration passes may the identical model refit all ten measured
+codes and predict the exact six missing codes. A missing row is robustly
+eligible only when its predicted formal margin remains positive after
+subtracting twice the maximum calibration formal-margin error. A PASS needs
+at least one robust predicted repair among the ten failed baselines and a
+robust predicted oracle at least `7/16`.
+
+Implement, test, package by empty direct copy, transfer without archives,
+validate with the existing server environment, and execute the dual zero-TSC
+primary/independent preflight. Do not run any new TSC under R8R16. A PASS may
+only authorize a separately frozen fresh missing-sequence sentinel; a model
+failure requires nonlinear redesign, while an adequate model with no robust
+repair requires continuous multidirection redesign.
+
+R8R16 is not a controller, MPC, physical-authority result, or Gate A. No
+expert data, BC, DAgger, or RL is authorized, and every R8-family trajectory
+remains forbidden from learning data.

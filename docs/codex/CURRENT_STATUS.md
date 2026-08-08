@@ -1,5 +1,30 @@
 # Current status
 
+> **Prospective R8R16 temporal-affine binary-cube completion preflight
+> (2026-08-08 Asia/Shanghai).** Before R8R16 implementation, fitting,
+> calibration output, missing-code prediction, ranking, formal result, or
+> route, the zero-new-TSC model design was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R16_TEMPORAL_AFFINE_BINARY_CUBE_COMPLETION_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `2b48e9d6e74222977db1af687009f031aac3da90e9e6b008a856412cc119367b`.
+>
+> The five-parameter model uses fixed code features
+> `[1,q10,q14,q18,q22]`. Development is frozen to
+> `UUUU,VVVV,UVVV,UUVV,UUUV,VUUU`; already measured
+> `VVUU,VVVU,UVUV,VUVU` are fixed retrospective calibration only. The exact
+> six never-executed codes are `UVUU,UUVU,UVVU,VUUV,VVUV,VUVV`. Calibration
+> must pass all `64/64` trajectory point/formal gates under fixed physical
+> caps; missing-code authority is discounted by twice the maximum calibration
+> formal-margin error.
+>
+> R8R16 runs zero Ray, `gotsc`, TSC, controller, plant step, or snapshot. A
+> PASS requires at least one robust predicted repair and robust oracle
+> coverage `>=7/16`, and authorizes only a separately frozen fresh physical
+> sentinel. A calibration failure routes to nonlinear sequence redesign; an
+> adequate model with no robust repair routes to continuous multidirection
+> redesign. R8R16 is not MPC or Gate A, all R8-family trajectories remain
+> forbidden from learning, and Gate A remains blocked.
+
 > **R8R15 final binary temporal-switching staircase checkpoint
 > (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `e3d5302 / 222f5d5 / f23c96e`. The 1,059-file empty direct-copy package
