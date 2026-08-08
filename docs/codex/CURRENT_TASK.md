@@ -6508,6 +6508,68 @@ prospectively frozen causal feedback-controller design. R8R28 is not MPC or
 Gate A. Every source and new trajectory is forbidden from expert, BC,
 DAgger, residual-RL, or any learning data.
 
+## 127. Final R8R28 result and active causal feedback-controller boundary
+
+R8R28 is final at design/implementation/package checkpoints
+`e4264d1 / 7d8c40d / a31262d`. Local project-venv and fresh empty-copy
+validation passed focused `10/10` and full Windows-shimmed `1400/1400`.
+Direct unarchived server staging and installed validation passed all package
+hashes, JSON, compilation, 441 `bash -n`, focused `10/10`, and full
+`1400/1400` with one expected skip in the existing server virtual
+environment.
+
+The accepted server run is:
+
+```text
+stage4_2r3c3t13s24d1r14r8r28_front_loaded_cumulative_endpoint_timing_authority_sentinel_20260809_a31262d_v1
+```
+
+Dual offline construction authenticated R8R7/R8R14/R8R27 and agreed exactly
+on 64 specs, 256 issues, and 1,408 refreshes before any TSC. Prospective
+safety `16/16` and qualification `48/48` then completed with exact runtime,
+restart/source prefix, causality, calibration, Card15 target chain, current,
+finite-state, raw, and primary/independent integrity. Maximum current use was
+`0.3924`; safety/qualification raw digests are `6c0bee54...df13 /
+f95e7cfb...88b`, and the combined digest is `6ee50ed3...7b7f`.
+
+The unchanged formal path reproduced every baseline and saved metric exactly.
+The four fixed global candidates passed `5/16, 6/16, 6/16, 6/16`; g2 UUUU
+regressed one baseline pass, while the others regressed none. Every candidate
+repaired `0/10` failed baselines, so fail-closed baseline fallback and the
+post-result held oracle both remained `6/16`. Primary and independent formal
+outcomes, numerics, gate, and route agreed exactly with maximum difference
+`0.0`. Final route:
+
+```text
+FRONT_LOADED_ENDPOINT_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CAUSAL_CONTROLLER_REDESIGN_REQUIRED
+```
+
+R8R28 is a finite action-timing/controller-family design FAIL, not a runtime,
+restart, causality, raw, reporting, real-MPC, plant-unreachability, or Gate A
+result. It is immutable and may not resume or be tuned under the same
+identity. Exact forensic report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R28_FORENSIC_REPORT.md
+SHA-256  5b92791b750f4905313e45985eb2f1eca2a2d931cc7a6c734dc5799a59de5f2c
+```
+
+Before any next model calculation, controller implementation, candidate
+execution, or TSC, freeze a new-identity genuinely causal visible-state
+feedback architecture. It must not reduce to another outcome-selected fixed
+U/V schedule; it must specify allowed causal inputs, deterministic action or
+finite family, exact Card15/current/saturation gates, fail-closed fallback,
+immutable timing, independent replay/raw/formal audit, prospective finite
+safety and qualification partitions, and explicit pass/fail routes. Any use
+of R8-family evidence is controller development only, never learning or a
+fresh holdout. No R8-family trajectory may enter expert, BC, DAgger,
+residual-RL, or other learning data.
+
+Even a causal feedback-controller PASS would authorize only the remaining
+prospective Gate A qualifications in Section 0.1. Gate A, expert data, BC,
+DAgger, and residual RL remain blocked; pause for the user only if every Gate
+A axis is actually passed.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

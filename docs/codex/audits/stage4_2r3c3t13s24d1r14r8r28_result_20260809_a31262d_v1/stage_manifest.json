@@ -1,0 +1,67 @@
+{
+  "all_stage_trajectories_allowed_in_expert_dataset": false,
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r28_front_loaded_cumulative_endpoint_timing_authority_sentinel_370ms.json",
+  "config_sha256": "cdcfaaf3514119841f8f7cfd9f29617e717103a46c2dbff65ff5ca286d9385a5",
+  "controller_revision": "front_loaded_cumulative_endpoint_timing_v42r3c3t13s24d1r14r8r28_v1",
+  "design_document_sha256": "03c714797389872a9388b4ae8acd4711f6d2ad6db074ef25c22075ecbc8af099",
+  "formal_timing_unchanged": true,
+  "identity": "front_loaded_cumulative_endpoint_timing_authority_sentinel_v1",
+  "lineage_authenticated": true,
+  "offline_preflight_digest": "3cf7e93bd6e45264c20e01eecfc83b6b549b3fb276458f88764315953d0d5380",
+  "package_fingerprint": {
+    "digest": "d1d8aa2acde5b7013b2e87a0cdee1a05bde209e3f6435d2970aba377170b46ae",
+    "files": [
+      {
+        "bytes": 10152,
+        "path": "configs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_370ms.json",
+        "sha256": "5378445f47fd9fff668166f28c00bf0c8ccfba6a8774f2bdb47371a962044be5"
+      },
+      {
+        "bytes": 28709,
+        "path": "docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r7_independent_forensics.py",
+        "sha256": "ea8f4b5c8711a101869c2edfdb20c204d63a90a50f0a192b20d574586326284f"
+      },
+      {
+        "bytes": 12485,
+        "path": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R7_FRESH_MULTIPULSE_STATIC_OBSERVER_INTERACTION_SENTINEL_DESIGN.md",
+        "sha256": "a2d2abda8189ff475455ae945391948ede937ba49ab559d79f1c48c74e80067f"
+      },
+      {
+        "bytes": 276,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py",
+        "sha256": "bd8a01f1d1d665981f958ebf6fe24d72901f88b0ce83bd2b17fd89c555f03cea"
+      },
+      {
+        "bytes": 3531,
+        "path": "scripts/stage4_2r3c3t13s24d1r14r8r7_shell_common.sh",
+        "sha256": "64ea5fa25088aa1f4bc183263d9660cbe373dfd4380b15c7a959077492f45e67"
+      },
+      {
+        "bytes": 12278,
+        "path": "tests/test_stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.py",
+        "sha256": "460865750079df07a99e80a326d19f4d2f9bb40743e5ae41c13c145c4a73792b"
+      },
+      {
+        "bytes": 9647,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel.py",
+        "sha256": "d53491830bcfef5d6c7a972f270bb63dac8e4647de6aa0418ec1952aadf1a83f"
+      },
+      {
+        "bytes": 88318,
+        "path": "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_campaign.py",
+        "sha256": "eb8c9437bf85c44c4c7b6843fafb8e7026d1cf5010e11d0a65ab7a87ad8aaf02"
+      }
+    ]
+  },
+  "package_revision": "r42r3c3t13s24d1r14r8r28_front_loaded_timing_v1",
+  "schema_version": 1,
+  "source_r8r14_authenticated": true,
+  "source_r8r14_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r14_runs/stage4_2r3c3t13s24d1r14r8r14_cumulative_multidirection_staircase_authority_identification_20260808_9874068_v1",
+  "source_r8r27_authenticated": true,
+  "source_r8r27_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r27_runs/stage4_2r3c3t13s24d1r14r8r27_point_versus_reserve_authority_discriminator_20260809_0832c6b_v1",
+  "source_r8r7_authenticated": true,
+  "source_r8r7_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1",
+  "spec_count": 64,
+  "spec_digest": "7bbb0d1fa75c1e122a2cc97fe2380c79673839eed60ad4ea2aeda2ebce9fd9f4",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R28"
+}

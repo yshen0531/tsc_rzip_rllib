@@ -1,0 +1,23 @@
+{
+  "final_independent_sha256": "ed4c8b1d997cd670aa28447ba4c012e585c92f5bd2c9420acb57e424e35405d1",
+  "final_report_sha256": "b32aaa273c17952b0f6ffc32ba907f5f78cff93e7bfa67038e042d95d3d45bc4",
+  "finished": true,
+  "formal_outcomes_opened": true,
+  "new_raw_count": 64,
+  "offline_independent_sha256": "524ad995448eccdac4d51ccdfaa887b0f60736dba3354af66c39cc0451ab958d",
+  "package_digest": "d1d8aa2acde5b7013b2e87a0cdee1a05bde209e3f6435d2970aba377170b46ae",
+  "phase_status": "complete",
+  "primary_route": "FRONT_LOADED_ENDPOINT_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CAUSAL_CONTROLLER_REDESIGN_REQUIRED",
+  "primary_summary_sha256": "ebadba93595bc77257262f223cc27740ebd3c80434ab56df6d088dfaf57b2c18",
+  "qualification_outcomes_opened": true,
+  "real_tsc_executed": true,
+  "safety_independent_sha256": "6f48b264936e85dba7d66ac421cd281060038859114514cb14982d0231f649c2",
+  "schema_version": 1,
+  "spec_digest": "7bbb0d1fa75c1e122a2cc97fe2380c79673839eed60ad4ea2aeda2ebce9fd9f4",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R28",
+  "stop_reason": "formal_authority_gate_failed",
+  "verdict": {
+    "passed": false,
+    "route": "FRONT_LOADED_ENDPOINT_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CAUSAL_CONTROLLER_REDESIGN_REQUIRED"
+  }
+}

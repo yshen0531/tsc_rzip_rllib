@@ -1,0 +1,12 @@
+{
+  "hashes": {
+    "final_report": "3bb40d06c1b4791ff57fed3034444147eec49a47e00533a6061bdf3d9db3910d",
+    "independent": "a2c594c1087a6b549909e061cc844cfd8c7a66ea05d2e4e55877682f371aead6",
+    "manifest": "91b36bda1068a3b715497db28df383b97ddc9fde60c1b4ace6c9f9afe17334d4",
+    "primary_detailed": "f7090ef795a1a20ece8de4de0be266514c8efc1c9f0ddf7849c33a4b71ac40f7",
+    "primary_summary": "e5c2d23889102ded8662204ea222292e2ea3a2c2eecf194afc33c228d9e6d288",
+    "state": "974bb330771fce56f043ef06488558d59b375da50af5b0d6d0a4c8950b42b099"
+  },
+  "passed": true,
+  "stage": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r27_runs/stage4_2r3c3t13s24d1r14r8r27_point_versus_reserve_authority_discriminator_20260809_0832c6b_v1/stage4_2r3c3t13s24d1r14r8r27_point_versus_reserve_authority_discriminator"
+}

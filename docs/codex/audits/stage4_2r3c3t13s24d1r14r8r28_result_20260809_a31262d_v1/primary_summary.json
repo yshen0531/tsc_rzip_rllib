@@ -1,0 +1,59 @@
+{
+  "baseline_formal_pass_count": 6,
+  "candidate_summaries": [
+    {
+      "baseline_pass_regression_count": 1,
+      "context_count": 16,
+      "formal_pass_count": 5,
+      "grid_id": "g2",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "UUUU"
+    },
+    {
+      "baseline_pass_regression_count": 0,
+      "context_count": 16,
+      "formal_pass_count": 6,
+      "grid_id": "g2",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "VVVV"
+    },
+    {
+      "baseline_pass_regression_count": 0,
+      "context_count": 16,
+      "formal_pass_count": 6,
+      "grid_id": "g3",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "UUUU"
+    },
+    {
+      "baseline_pass_regression_count": 0,
+      "context_count": 16,
+      "formal_pass_count": 6,
+      "grid_id": "g3",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "VVVV"
+    }
+  ],
+  "context_count": 16,
+  "failed_baseline_best_candidate_margin_gain": {
+    "maximum": 0.136557298392177,
+    "median": 0.09123908539038728,
+    "minimum": 0.02813746666666672
+  },
+  "failed_baseline_count": 10,
+  "formal_metric_equivalence_passed": true,
+  "held_oracle_formal_pass_count": 6,
+  "identity": "front_loaded_cumulative_endpoint_timing_authority_sentinel_v1",
+  "integrity_gate_passed": true,
+  "maximum_margin_abs_difference": 0.0,
+  "new_candidate_formal_pass_count": 23,
+  "new_raw_count": 64,
+  "passed": false,
+  "real_tsc_executed": true,
+  "repaired_failed_baseline_count": 0,
+  "route": "FRONT_LOADED_ENDPOINT_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CAUSAL_CONTROLLER_REDESIGN_REQUIRED",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_authenticated": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R28"
+}

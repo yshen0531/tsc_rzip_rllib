@@ -1,5 +1,55 @@
 # Current status
 
+> **Final R8R28 front-loaded cumulative endpoint timing-authority checkpoint
+> (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
+> `e4264d1 / 7d8c40d / a31262d`. The exact package contains 1,143 declared
+> files plus manifest/sums; manifest and sums SHA-256 are
+> `ee7b8774...4597 / c40e78e3...dd9`. Project-venv local source and fresh
+> empty direct-copy validation passed 133 JSON parses, 446 Python
+> compilations, focused `10/10`, and full Windows-shimmed `1400/1400`.
+> Manifest-only direct transfer contained exactly 1,145 physical files and no
+> caches. Server staging and installed validation additionally passed 441
+> `bash -n` checks and full `1400/1400` with one expected skip, using only the
+> existing server virtual environment and no archive.
+>
+> The accepted server run is
+> `stage4_2r3c3t13s24d1r14r8r28_front_loaded_cumulative_endpoint_timing_authority_sentinel_20260809_a31262d_v1`.
+> Dual offline paths authenticated R8R7/R8R14/R8R27 and agreed exactly on 64
+> specs, 256 major exact-Card15 issues, 1,408 refreshes, maximum issue
+> increment `0.1409259259259261`, and maximum predicted current use `0.3905`
+> before any TSC. Safety then completed `16/16`, followed only after dual raw
+> audit by qualification `48/48`. All 64 trajectories passed full horizon,
+> calibration, event, target-chain, source-state/trace prefix, finite,
+> current, and forbidden-input gates. The maximum measured current use was
+> `0.3924`; there were 256 issues, 1,408 refreshes, and zero forbidden trace
+> fields. Safety/qualification raw digests are `6c0bee54...df13 / f95e7cfb...88b`;
+> the combined 64-file raw digest is `6ee50ed3...7b7f`. Large raw remains on
+> the server and every trajectory is forbidden from learning.
+>
+> The unchanged evaluator reproduced all 16 R8R7 baselines and 80 saved
+> metric rows exactly. Candidate results were g2 UUUU `5/16` with one
+> baseline-pass regression, and g2 VVVV, g3 UUUU, g3 VVVV each `6/16` with
+> zero regressions. All four repaired `0/10` failed baselines; the held
+> baseline-or-candidate oracle remained `6/16`. Failed-context best margin
+> gains were `0.0281374667--0.1365572984` (median `0.0912390854`) but none
+> crossed the formal boundary. Primary/independent formal outcome, numeric,
+> gate, and route agreement was exact with maximum difference `0.0`.
+>
+> Final route:
+> `FRONT_LOADED_ENDPOINT_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CAUSAL_CONTROLLER_REDESIGN_REQUIRED`.
+> This is a finite action-timing/controller-family design FAIL, not runtime,
+> deployment, source, restart, causality, Card15, current, raw, reporting,
+> real-MPC, plant-unreachability, or Gate A evidence. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R28_FORENSIC_REPORT.md`,
+> SHA-256
+> `5b92791b750f4905313e45985eb2f1eca2a2d931cc7a6c734dc5799a59de5f2c`.
+> Compact audit/manifest/sums SHA-256 are `af770eb4...09e / dfe3ba39...aa2e /
+> 8595f333...4af8`. R8R28 is immutable and does not authorize another fixed
+> schedule scan, a controller, MPC qualification, learning, or Gate A. Before
+> any next calculation, implementation, or TSC, freeze a new-identity causal
+> visible-state feedback-controller design with hard fallback and independent
+> gates.
+
 > **Prospective R8R28 front-loaded cumulative endpoint timing sentinel
 > checkpoint (2026-08-09 Asia/Shanghai).** After final R8R27 was sealed at
 > `95e17f1`, and before R8R28 implementation, configuration, offline action,

@@ -1,0 +1,27 @@
+{
+  "hashes": {
+    "all_specs": "60e956f7297686988a6e52a236e597c3440963058ccdc3a2e22f84bc4ffa08fa",
+    "baseline_raw_independent": "832599bc07ac802cb0809c81c701ddfc292fb0963387c0a0c6be1e48a1ab2fc4",
+    "baseline_raw_primary": "0a0e1bc0689a95d88aff856dee9f12e56e2aa89aabcce3f49403b0020aff87d1",
+    "baseline_specs": "0a1d9dc14ecfd575594895e8c6444db27179ee1b5c9a700b2f853e62f9155f53",
+    "final_report": "9ca6afce52442c1b7470cb8ff13a2eac4aab32de1e05a898d206f5fe76e01005",
+    "multipulse_raw_independent": "707679950bf1c493d6ab5bc78635aa749ef44e1c0abbad68b3625e7097c0b659",
+    "multipulse_raw_primary": "37204019206752038244c2b5c8300905a112709d05c3048525e3793f42826972",
+    "multipulse_specs": "62dc317e67bf21c65fe6d9d227f072507a0932c86439ca1c2233300ac743f4e3",
+    "stage_manifest": "ae89fb2df01cd6758676baa895880e2005a1f8967c62ea4ae671ab61ea771e24",
+    "stage_state": "04f643e09f414c5d5a305f1a3584450e12e5a39e8d062d454480df3c8d95fe7e"
+  },
+  "passed": true,
+  "raw_inventories": {
+    "baseline": {
+      "bytes": 487298,
+      "count": 16,
+      "digest": "46df626a462dfdbfe7cdf9138a50b6b19c03f0ae5e8bb18cf18c6fcbe05c01a5"
+    },
+    "multipulse": {
+      "bytes": 1068664,
+      "count": 32,
+      "digest": "d8435c8cd61fd082e143d79a3628ad2274780faefc6b676367df917355f49e31"
+    }
+  }
+}

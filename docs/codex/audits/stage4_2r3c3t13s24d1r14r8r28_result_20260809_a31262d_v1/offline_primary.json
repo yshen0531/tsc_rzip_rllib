@@ -1,0 +1,22 @@
+{
+  "level_construction_count": 256,
+  "level_construction_pass_count": 256,
+  "lineage_authenticated": true,
+  "maximum_issue_increment": 0.1409259259259261,
+  "maximum_predicted_current_utilization": 0.39049999999999996,
+  "maximum_refresh_increment": 3.7037037048793097e-06,
+  "new_raw_count": 0,
+  "passed": true,
+  "phase": "offline_primary",
+  "qualification_spec_count": 48,
+  "real_tsc_executed": false,
+  "refresh_construction_count": 1408,
+  "refresh_construction_pass_count": 1408,
+  "safety_spec_count": 16,
+  "schema_version": 1,
+  "source_r8r14_authenticated": true,
+  "source_r8r27_authenticated": true,
+  "source_r8r7_authenticated": true,
+  "spec_count": 64,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R28"
+}

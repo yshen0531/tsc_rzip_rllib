@@ -1,0 +1,64 @@
+{
+  "baseline_formal_pass_count": 6,
+  "candidate_summaries": [
+    {
+      "baseline_pass_regression_count": 1,
+      "context_count": 16,
+      "formal_pass_count": 5,
+      "grid_id": "g2",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "UUUU"
+    },
+    {
+      "baseline_pass_regression_count": 0,
+      "context_count": 16,
+      "formal_pass_count": 6,
+      "grid_id": "g2",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "VVVV"
+    },
+    {
+      "baseline_pass_regression_count": 0,
+      "context_count": 16,
+      "formal_pass_count": 6,
+      "grid_id": "g3",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "UUUU"
+    },
+    {
+      "baseline_pass_regression_count": 0,
+      "context_count": 16,
+      "formal_pass_count": 6,
+      "grid_id": "g3",
+      "repaired_failed_baseline_count": 0,
+      "sequence_id": "VVVV"
+    }
+  ],
+  "context_count": 16,
+  "failed_baseline_best_candidate_margin_gain": {
+    "maximum": 0.136557298392177,
+    "median": 0.09123908539038728,
+    "minimum": 0.02813746666666672
+  },
+  "failed_baseline_count": 10,
+  "formal_metric_equivalence_passed": true,
+  "held_oracle_formal_pass_count": 6,
+  "identity": "front_loaded_cumulative_endpoint_timing_authority_sentinel_v1",
+  "independent_sha256": "ed4c8b1d997cd670aa28447ba4c012e585c92f5bd2c9420acb57e424e35405d1",
+  "integrity_gate_passed": true,
+  "maximum_margin_abs_difference": 0.0,
+  "new_candidate_formal_pass_count": 23,
+  "new_raw_count": 64,
+  "passed": false,
+  "phase": "final",
+  "primary_detailed_sha256": "0c33fc51fc46730b85d760022a77d70d91272a9ed22c09b0900e42e693d6253a",
+  "primary_summary_sha256": "ebadba93595bc77257262f223cc27740ebd3c80434ab56df6d088dfaf57b2c18",
+  "real_tsc_executed": true,
+  "repaired_failed_baseline_count": 0,
+  "route": "FRONT_LOADED_ENDPOINT_TIMING_AUTHORITY_INSUFFICIENT_BROADER_CAUSAL_CONTROLLER_REDESIGN_REQUIRED",
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_authenticated": true,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R28",
+  "stage_manifest_sha256": "b687a127185a21127f4923303b93ec734b0b3381aaf3cad282bc2b1cb6dfbc04"
+}
