@@ -6320,7 +6320,8 @@ complete without outcome inspection:
 ```text
 initial design checkpoint       cc0dee5
 support clarification           e37f84f
-implementation checkpoint       9089006
+initial implementation          9089006
+masked-horizon shape hotfix      6c5990c
 final design SHA-256             bb051a7318e4032c742d98fd91b273e4a00350d918d8f1412369672be1306e0a
 ```
 
@@ -6348,12 +6349,24 @@ nearest-neighbor distance. Planning still requires safe plans `16/16`, at
 least one predicted repair, zero regressions, and oracle `>=7/16` under the
 unchanged formal timing and hard action boundary.
 
-Local project-venv compilation, focused `9/9`, and Windows-resource-shimmed
-full `1373/1373` passed. The active task is to update package manifest and
-sums, validate a fresh direct-copy tree, transfer without archives, validate
-server staging and installed files with the existing server virtual
-environment, then run primary, structurally independent, and postprocess
-paths with zero Ray, `gotsc`, TSC, controller, plant advance, raw, or snapshot.
+The initial package checkpoint `d5c784e` passed local empty-copy, server
+staging, and installed validation. Its first primary attempt failed before
+writing any R8R25 scientific output because an absent record for the masked
+13/15-sample final horizon became an array of shape `(0,)` instead of the
+semantic empty five-output group `(0,5)`. This is an implementation/data-shape
+error. The stopped run and log remain immutable and executed zero Ray,
+`gotsc`, TSC, controller, plant advance, raw, or snapshot.
+
+Hotfix `6c5990c` changes only that representation in the separate primary and
+independent implementations. It still requires every selected cross-pair
+interval/lead aggregate to be nonempty and finite and changes no scientific
+rule or gate. Local project-venv compilation, masked-horizon focused `10/10`,
+and Windows-resource-shimmed full `1374/1374` pass. The active task is to
+create a new package checkpoint, validate a new empty direct-copy tree,
+transfer without archives, repeat server staging/installed validation with
+the existing server virtual environment, then run new-log primary,
+structurally independent, and postprocess paths with zero Ray, `gotsc`, TSC,
+controller, plant advance, raw, or snapshot.
 
 Even a complete R8R25 PASS authorizes only freezing a separate fresh finite
 real-controller sentinel. R8R25 is not MPC or Gate A. All R8-family evidence

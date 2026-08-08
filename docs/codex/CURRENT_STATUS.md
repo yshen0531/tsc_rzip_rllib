@@ -6,7 +6,7 @@
 > cap, plan, or route was computed, the design was frozen at `cc0dee5` and
 > clarified without outcome inspection at `e37f84f`. Final design SHA-256 is
 > `bb051a7318e4032c742d98fd91b273e4a00350d918d8f1412369672be1306e0a`;
-> implementation checkpoint is `9089006`.
+> initial implementation/package checkpoints are `9089006 / d5c784e`.
 >
 > R8R25 retains the exact R8R23/R8R24 cold point model. Each outer held pair
 > is bounded only by residual groups from the other seven outer OOF pairs,
@@ -19,10 +19,27 @@
 > model, all eight outer residual groups, and the explicitly frozen all-pair
 > leave-one-pair nearest-neighbor support threshold. The exact 11-level tree,
 > hard action/Card15/current gates, and immutable formal timing remain
-> unchanged. Local compilation and focused `9/9` plus Windows-shimmed full
-> `1373/1373` passed using only the project virtual environment. The active
-> task is direct package construction, empty-copy/server validation, and dual
-> zero-new-TSC execution. R8R25 is not MPC or Gate A; learning remains blocked.
+> unchanged. The initial 1,118-file package passed local empty-copy, server
+> staging, and installed hashes, JSON, compile, `bash -n`, focused `9/9`, and
+> full `1373/1373` validation. Its first primary attempt then stopped before
+> producing any R8R25 scientific output: the frozen 13/15-sample masked final
+> horizon legitimately leaves some single-pair lead groups empty, but the
+> implementation represented an empty group as shape `(0,)` and rejected it
+> before cross-pair aggregation. The stopped directory and log are preserved;
+> it executed zero Ray, `gotsc`, TSC, controller, plant advance, raw, or
+> snapshot and is an implementation/data-shape error, not a model, control, or
+> plant result.
+>
+> Hotfix `6c5990c` normalizes only a legitimate empty per-pair group to
+> `(0,5)` and retains fail-closed enforcement that the cross-pair calibration
+> aggregate is nonempty and finite. It changes no residual value, pair
+> exclusion, reserve, floor, cap, support, planning, action, timing, or route
+> semantics. Primary and structurally independent code were repaired
+> separately; masked-horizon regression coverage now passes focused `10/10`
+> and Windows-shimmed full `1374/1374` in the project virtual environment.
+> The active task is a new package/direct-copy/server-validation checkpoint
+> followed by dual zero-new-TSC execution. R8R25 is not MPC or Gate A;
+> learning remains blocked.
 
 > **R8R24 final causal local-residual-tube preflight checkpoint
 > (2026-08-09 Asia/Shanghai).** Design/implementation/package checkpoints are
