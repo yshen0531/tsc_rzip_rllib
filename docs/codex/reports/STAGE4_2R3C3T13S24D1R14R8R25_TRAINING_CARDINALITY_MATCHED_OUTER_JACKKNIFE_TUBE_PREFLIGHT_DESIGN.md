@@ -183,6 +183,15 @@ decisions                                        4
 maximum unfiltered sequences                14,641
 ```
 
+For the all-eight-pair planning model, define the unchanged support rule
+without implementation discretion. At each interval, compute every training
+origin's nearest-neighbor distance to the other seven whole physical pairs;
+the fixed planning threshold is `1.5` times the maximum of those eight
+leave-one-pair-out distance sets. A planned query must have distance to its
+closest origin among all eight development pairs no larger than that
+threshold. This is the all-data form of the R8R23 rule; no planned state,
+residual, action outcome, or formal score selects the threshold.
+
 At each decision, recursively rebuild the exact causal feature from predicted
 visible history and deterministic exact applied current. Use the all-eight-
 outer-OOF interval/lead tube and require unchanged support. Every action must
