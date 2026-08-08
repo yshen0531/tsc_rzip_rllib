@@ -5836,3 +5836,57 @@ time-varying sequence basis under unchanged restart, visible-state causality,
 Card15/action/current/saturation, safe-stop, formal timing, two-phase,
 independent-audit, and learning-data-prohibition contracts. Gate A, expert
 data, BC, DAgger, and residual RL remain blocked.
+
+## 102. Frozen R8R15 binary temporal-switching staircase task
+
+Before R8R15 implementation, configuration, offline construction, raw,
+snapshot, TSC, formal outcome, or route, the temporal basis was frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R15_BINARY_TEMPORAL_SWITCHING_STAIRCASE_AUTHORITY_SENTINEL_DESIGN.md
+SHA-256
+bc0651d9c07f25c961bb5251ab508bda45ddc611d2b32f052ea0592cfe938bfe
+```
+
+R8R15 uses only the two coordinates that were best in the R8R14 failed
+contexts:
+
+```text
+U = direction 2, sign +1, scale 1.0
+V = direction 1, sign -1, scale 1.0
+decision task steps = [10,14,18,22]
+```
+
+It reuses immutable R8R12 `UUUU` and R8R14 `VVVV` without rerunning either.
+Exactly eight new globally fixed sequences are allowed:
+
+```text
+UVVV  UUVV  UUUV  VUUU  VVUU  VVVU  UVUV  VUVU
+```
+
+They cover every single switch point in both temporal orders and the two
+alternating controls. No other code, direction, sign, scale, timing, or
+post-result family expansion is allowed under this identity.
+
+Primary and independent offline implementations must agree exactly and pass
+all 128 specs, 512 exact-Card15 issues, 2,816 stored-target refreshes, and
+unchanged action/current/cosine/off-basis/saturation gates before any plant
+advance. Physical execution is partitioned as 32 safety and 96 qualification
+trajectories. Qualification requires exact dual safety raw agreement; formal
+outcomes remain closed until all 128 new raw pass both audits.
+
+The final evaluator-only atlas contains the R8R7 baseline, source `UUUU`,
+source `VVVV`, and eight new measured sequences per context. A PASS requires
+at least one of ten failed baselines repaired by a new sequence and a do-
+nothing-safe measured oracle of at least `7/16`, with exact primary/
+independent metric and route agreement. The held oracle is not a causal
+selector. A PASS authorizes only a new frozen causal selector/controller; a
+FAIL requires model-based sequence redesign under a new identity.
+
+Implement, test locally with the project environment and Windows resource
+shim, package through an empty direct-copy tree, deploy without archives,
+validate with the existing server environment, and execute only in the frozen
+two-phase order. Do not rerun R8, R8R1, R8R12, or R8R14. R8R15 is not MPC or
+Gate A. All R8-family trajectories remain forbidden from expert, BC, DAgger,
+and RL data, and all learning remains blocked.

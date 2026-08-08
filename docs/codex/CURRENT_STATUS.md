@@ -1,5 +1,29 @@
 # Current status
 
+> **Prospective R8R15 binary temporal-switching staircase authority sentinel
+> (2026-08-08 Asia/Shanghai).** Before R8R15 implementation, config, offline
+> construction, raw, TSC, formal outcome, or route, the new temporal sequence
+> basis was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R15_BINARY_TEMPORAL_SWITCHING_STAIRCASE_AUTHORITY_SENTINEL_DESIGN.md`,
+> SHA-256
+> `bc0651d9c07f25c961bb5251ab508bda45ddc611d2b32f052ea0592cfe938bfe`.
+>
+> The frozen symbols are `U=(direction 2,+1)` and `V=(direction 1,-1)` at
+> scale 1.0 and decision steps `[10,14,18,22]`. Immutable R8R12 `UUUU` and
+> R8R14 `VVVV` are reused without rerun. The eight new globally fixed codes
+> are `UVVV, UUVV, UUUV, VUUU, VVUU, VVVU, UVUV, VUVU`, covering every
+> single switch point in both orders and the two alternating controls.
+>
+> Dual offline exact construction must pass `128/128` specs, `512/512`
+> issues, and `2816/2816` refreshes before any TSC. The physical partition is
+> 32 safety followed only after exact dual raw agreement by 96 qualification
+> trajectories. Formal outcomes remain closed until all 128 raw authenticate.
+> A PASS requires at least one R8R15 repair among the ten failed baselines and
+> a do-nothing-safe measured oracle of at least `7/16`; it authorizes only a
+> separately frozen causal selector/controller design. R8R15 is not MPC or
+> Gate A, all trajectories are forbidden from learning, and Gate A remains
+> blocked.
+
 > **R8R14 final cumulative multidirection authority-atlas checkpoint
 > (2026-08-08 Asia/Shanghai).** Implementation/package checkpoints are
 > `d737000 / 9874068`. The 1,053-file direct-copy package passed project,
