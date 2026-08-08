@@ -1,5 +1,27 @@
 # Current status
 
+> **Prospective R8R13 measured additive multi-direction discriminator
+> (2026-08-08 Asia/Shanghai).** Before R8R13 implementation, composition,
+> formal metric, output, route, or any further TSC, a zero-new-TSC design was
+> frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R13_MEASURED_ADDITIVE_DIRECTION0_ON_DIRECTION2_COMPOSITION_DESIGN.md`,
+> SHA-256
+> `f643d4ded6131db8264847f8ce4aff121c4165c49666eb7b7e34211c0c72bc1f`.
+>
+> R8R13 authenticates the exact 16 R8R7 baselines, 96 R8R11 direction-0
+> transients, and 16 R8R12 direction-2 staircases. For each of six globally
+> fixed R8R11 choices (`issue=[14,18,22]`, sign `[-,+]`), it prospectively
+> composes only R/Z/Ip as `R8R12 + (R8R11 - baseline)` in all sixteen
+> contexts. A single global choice must reach at least `7/16`, repair at least
+> one failed baseline, and regress none of the six baseline passes. Primary
+> and independent construction/formal paths must agree exactly.
+>
+> This is explicitly an optimistic separable measured-trajectory diagnostic.
+> It composes no action/current/hidden state and runs zero Ray, `gotsc`, TSC,
+> controller, or plant advances. A PASS can authorize only a separately
+> frozen exact combined-action Card15/current preflight, never real TSC
+> directly. Gate A and all learning remain blocked.
+
 > **R8R12 v2 final cumulative direction-2 staircase checkpoint (2026-08-08
 > Asia/Shanghai).** Corrected implementation/package checkpoints are
 > `3203a02 / 523c706`. The 1,040-file direct-copy package passed local,

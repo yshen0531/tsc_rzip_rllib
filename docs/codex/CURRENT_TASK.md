@@ -5623,3 +5623,42 @@ timing, finite two-phase, independent-audit, and learning-data-prohibition
 contracts. A measured-authority PASS may authorize only a separately frozen
 causal selector/controller or MPC design. Gate A, expert data, BC, DAgger,
 and residual RL remain blocked.
+
+## 98. Frozen R8R13 measured additive multi-direction discriminator
+
+Before R8R13 implementation, additive composition, formal metric, output,
+route, or further TSC execution, the next zero-new-TSC discriminator was
+frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R13_MEASURED_ADDITIVE_DIRECTION0_ON_DIRECTION2_COMPOSITION_DESIGN.md
+SHA-256
+f643d4ded6131db8264847f8ce4aff121c4165c49666eb7b7e34211c0c72bc1f
+```
+
+R8R13 authenticates and strictly parses the exact 16 R8R7 baselines, 96
+R8R11 direction-0 transient candidates, and 16 R8R12 direction-2 cumulative
+staircases. It evaluates the six globally fixed R8R11 choices formed by issue
+step `[14,18,22]` and sign `[-1,+1]`. For every context and R/Z/Ip state it
+constructs:
+
+```text
+R8R12 + (R8R11 candidate - matching R8R7 baseline)
+```
+
+through two algebraically equivalent paths. The zero-correction control must
+reproduce R8R12 exactly, both unchanged formal metric paths must agree, and
+the primary/independent implementations must select the same global candidate
+with exact numerical agreement. A PASS requires that one same candidate over
+all sixteen contexts reaches at least `7/16`, repairs at least one of ten
+failed baselines, and regresses none of the six baseline passes.
+
+R8R13 composes no action, current, hidden state, or safety telemetry. It runs
+zero Ray, `gotsc`, TSC, controller, plant advance, raw, or snapshot. Its
+additive assumption is optimistic and does not validate cross-direction plant
+interaction. A PASS authorizes only a separately frozen exact combined-action
+Card15/current/saturation preflight; it cannot directly authorize real TSC.
+A FAIL requires genuinely new sequence identification rather than post-result
+family expansion. Gate A, expert data, BC, DAgger, and residual RL remain
+blocked, and all source trajectories remain forbidden from learning data.
