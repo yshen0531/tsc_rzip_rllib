@@ -1,5 +1,51 @@
 # Current status
 
+> **Final R8R26 action-transition-supported multiresolution MPC preflight
+> checkpoint (2026-08-09 Asia/Shanghai).** Design/implementation/package
+> checkpoints are `42c1ff3 / 06ebbf7 / a1f4535`. The 1,124-file package plus
+> manifest/sums passed local source and empty-direct-copy checks and server
+> staging/installed checks: 125 strict JSON, 440 Python compilations, 439
+> `bash -n`, focused `8/8`, and full `1382/1382` with one expected server
+> skip. Only project/server virtual environments and unarchived direct copy
+> were used. A first staging validation command had a quote-transport
+> `SyntaxError` before tests; a standalone validation script then passed all
+> gates. This was a validation-command error, not a package or code failure.
+>
+> The final server run is
+> `stage4_2r3c3t13s24d1r14r8r26_action_transition_supported_multiresolution_mpc_preflight_20260809_a1f4535_v1`.
+> It authenticated 432 trajectories, 27 schedules, 1,728 origins, and 11,232
+> forecast points. All 27 leave-one-schedule-out folds passed: maximum
+> R/Z/Ip/vR/vZ errors were `0.000939737 m / 0.001635735 m / 86.3158 A /
+> 0.0145526 m/s / 0.0178840 m/s`, and containment was
+> `56,160/56,160`. The schedule tube did not enlarge the immutable pair tube;
+> final half-widths stayed `[0.015 m, 0.015 m, 3000 A, 0.05 m/s,
+> 0.0538796472 m/s]`.
+>
+> Transition hull ranks/counts were `[2,3,3,3] / [13,15,15,15]`. All 16
+> deterministic searches completed with zero state-unsupported nodes, but
+> robust-formal plans were `0/16`; repairs were `0/10`, hybrid regressions
+> `0/6`, and fallback-plus-plan oracle `6/16`. Best robust violation ranged
+> `0.2315070911--1.4226725021`. Primary/independent source, schedule, hull,
+> plan, route, and outcome differences were all exactly `0.0`. Final route:
+> `ACTION_TRANSITION_SUPPORTED_MULTIRESOLUTION_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED`.
+>
+> R8R26 executed zero Ray, `gotsc`, TSC, controller, plant, raw, or snapshot.
+> It is a finite supported action-family/planning-authority FAIL, not a
+> runtime, deployment, restart, reporting, real-MPC, global-unreachability,
+> or Gate A result. No fresh controller sentinel or learning is authorized;
+> all R8-family evidence remains forbidden from learning. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R26_FORENSIC_REPORT.md`,
+> SHA-256
+> `aeca922d442e2576c51dd1fb77423477c73692d483dece738e7ff51d8114d63e`.
+> Compact audit SHA-256 is
+> `1a5ab3e05f841ff55af75314ec89d2e4a033a574381d1b0047f1b4b3322b0cb4`.
+>
+> Before any new calculation or plant work, freeze a new-identity zero-TSC
+> point-versus-reserve authority discriminator using the unchanged finite
+> search under point-only, pair-tube, and combined-tube layers. Its result
+> may route uncertainty/excitation versus action/timing redesign only; it
+> cannot authorize a controller, MPC, Gate A, expert data, BC, DAgger, or RL.
+
 > **Prospective R8R26 action-transition-supported multiresolution MPC
 > preflight checkpoint (2026-08-09 Asia/Shanghai).** After final R8R25 was
 > sealed at `ad6df5c`, and before any R8R26 schedule-held-out error, tube,

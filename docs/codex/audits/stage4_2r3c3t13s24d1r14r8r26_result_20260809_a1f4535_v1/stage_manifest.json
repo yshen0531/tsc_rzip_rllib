@@ -1,0 +1,15 @@
+{
+  "all_source_trajectories_allowed_in_expert_dataset": false,
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/stage4_2r3c3t13s24d1r14r8r26_action_transition_supported_multiresolution_mpc_preflight.json",
+  "config_sha256": "b6bc84b9b8701fa66e86e80d32d6614b77da8d49b6f7f6d858d5597262e74135",
+  "design_document_sha256": "d79f64712b00c923711b5bac16f6001388edeb3e348c2b71b7c98c942289f853",
+  "identity": "action_transition_supported_multiresolution_mpc_preflight_v1",
+  "model_evidence_sha256": "532f4257871e3dd97832416e4a9be8fc447a0a90bc2949b11e1a2bfef1660307",
+  "primary_detailed_sha256": "a5f93c0475fd62a9f9f5cfdb542724cfd174c56e2db4e237a8c04858eab111a0",
+  "primary_summary_sha256": "6b4670380f72fb14e48ea47165faab02311ec363c00aff221d06c0a90e12c871",
+  "schema_version": 1,
+  "source_r8r25_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r25_runs/stage4_2r3c3t13s24d1r14r8r25_training_cardinality_matched_outer_jackknife_tube_preflight_20260809_f5094fe_v2",
+  "source_r8r25_stage_state_sha256": "e8e61e6628f0c9c2de3a4b43f5429d5c380d39876eb28081dc8af79fabfe83ce",
+  "stage": "Stage4.2R3c3T13S24D1R14R8R26",
+  "zero_new_tsc": true
+}

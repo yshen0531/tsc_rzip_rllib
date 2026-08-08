@@ -1,0 +1,1701 @@
+{
+  "allowed_in_expert_dataset": false,
+  "bank_evidence": {
+    "allowed_in_expert_dataset": false,
+    "expanded_feature_dimension": 133,
+    "feature_digest": "14e1a15c6eb3ba305932b25918ec7127e46cd2a6f7c13ad50701545413fae849",
+    "feature_dimension": 42,
+    "forbidden_input_count": 0,
+    "forecast_point_count": 11232,
+    "origin_row_count": 1728,
+    "schedule_count": 27,
+    "schedule_ids": [
+      "UUUU",
+      "UUUV",
+      "UUVU",
+      "UUVV",
+      "UVUU",
+      "UVUV",
+      "UVVU",
+      "UVVV",
+      "VUUU",
+      "VUUV",
+      "VUVU",
+      "VUVV",
+      "VVUU",
+      "VVUV",
+      "VVVU",
+      "VVVV",
+      "a1p25_w0p00",
+      "a1p25_w0p25",
+      "a1p25_w0p50",
+      "a1p25_w0p75",
+      "a1p25_w1p00",
+      "a1p50_w0p00",
+      "a1p50_w0p25",
+      "a1p50_w0p50",
+      "a1p50_w0p75",
+      "a1p50_w1p00",
+      "q0"
+    ],
+    "target_digest": "037be84fcce81dc97c8350d88416fc0ac42534083d1fb5688ab000dee2e81dcc",
+    "trajectory_count": 432
+  },
+  "coarse_level_units": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      0,
+      8
+    ],
+    [
+      0,
+      12
+    ],
+    [
+      0,
+      16
+    ],
+    [
+      0,
+      20
+    ],
+    [
+      0,
+      24
+    ],
+    [
+      4,
+      0
+    ],
+    [
+      4,
+      4
+    ],
+    [
+      4,
+      8
+    ],
+    [
+      4,
+      12
+    ],
+    [
+      4,
+      16
+    ],
+    [
+      4,
+      20
+    ],
+    [
+      5,
+      15
+    ],
+    [
+      6,
+      18
+    ],
+    [
+      8,
+      0
+    ],
+    [
+      8,
+      4
+    ],
+    [
+      8,
+      8
+    ],
+    [
+      8,
+      12
+    ],
+    [
+      8,
+      16
+    ],
+    [
+      10,
+      10
+    ],
+    [
+      12,
+      0
+    ],
+    [
+      12,
+      4
+    ],
+    [
+      12,
+      8
+    ],
+    [
+      12,
+      12
+    ],
+    [
+      15,
+      5
+    ],
+    [
+      16,
+      0
+    ],
+    [
+      16,
+      4
+    ],
+    [
+      16,
+      8
+    ],
+    [
+      18,
+      6
+    ],
+    [
+      20,
+      0
+    ],
+    [
+      20,
+      4
+    ],
+    [
+      24,
+      0
+    ]
+  ],
+  "combined_tube_cap_gate_passed": true,
+  "combined_tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8",
+  "fresh_controller_sentinel_authorized": false,
+  "gate_a_qualified": false,
+  "independent_agreement": {
+    "maximum_hull_absolute_difference": 0.0,
+    "maximum_plan_absolute_difference": 0.0,
+    "maximum_schedule_absolute_difference": 0.0,
+    "maximum_source_reproduction_absolute_difference": 0.0,
+    "passed": true,
+    "primary_bank_agreement": true,
+    "primary_hull_agreement": true,
+    "primary_outcome_agreement": true,
+    "primary_plan_agreement": true,
+    "primary_route_agreement": true,
+    "primary_schedule_agreement": true,
+    "primary_source_reproduction_agreement": true
+  },
+  "maximum_combined_physical_tube_half_width": [
+    0.015,
+    0.015,
+    3000.0,
+    0.05,
+    0.05387964718914857
+  ],
+  "model_gate_passed": true,
+  "new_raw_count": 0,
+  "official_bytes_before_compact": 1153799,
+  "official_file_count_before_compact": 7,
+  "official_files_before_compact": [
+    {
+      "bytes": 2066,
+      "path": "analysis/final_report.json",
+      "sha256": "78e1bf33e13b56c032356e7fbc57e12737b7620db158b896e82c9979ff4730d2"
+    },
+    {
+      "bytes": 560642,
+      "path": "analysis/independent.json",
+      "sha256": "2e1144940d9f3463c5d7e732e6b85ad0554d0ca24b30521c512460cfe11295ae"
+    },
+    {
+      "bytes": 560507,
+      "path": "analysis/primary_detailed.json",
+      "sha256": "a5f93c0475fd62a9f9f5cfdb542724cfd174c56e2db4e237a8c04858eab111a0"
+    },
+    {
+      "bytes": 1721,
+      "path": "analysis/primary_summary.json",
+      "sha256": "6b4670380f72fb14e48ea47165faab02311ec363c00aff221d06c0a90e12c871"
+    },
+    {
+      "bytes": 26909,
+      "path": "model/preflight_evidence.json",
+      "sha256": "532f4257871e3dd97832416e4a9be8fc447a0a90bc2949b11e1a2bfef1660307"
+    },
+    {
+      "bytes": 1181,
+      "path": "stage_manifest.json",
+      "sha256": "0d61042e9e97c1868231a1eb7b405e7b5928d146d8a69e82b66cdbd9abfae3df"
+    },
+    {
+      "bytes": 773,
+      "path": "stage_state.json",
+      "sha256": "a89ab66e075d3e985f4cf0c8e067e1820fefbf301c38cf89afd42e85d61ecce6"
+    }
+  ],
+  "package": {
+    "design_checkpoint": "42c1ff3",
+    "implementation_checkpoint": "06ebbf7",
+    "manifest_sha256": "3070ee3167b7550f3be3e582ef8d710a6c8c9ff3662a95064c1daeff08b7ea13",
+    "package_checkpoint": "a1f4535",
+    "sha256sums_sha256": "2ef57f70f1ffcf673b20a67635de9d3e93b7cd1e75215509bd5ee688ee93a777"
+  },
+  "pair_tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8",
+  "passed": true,
+  "plan_summaries": [
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "b06ee3c343f6467fe621ac72a7584a30a23fdb9dc1381f35e7e65ca63062cde4",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22221,
+        "hard_action_rejections": 39,
+        "safe_expansions": 9790,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12392
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 54.56166051780354,
+        "maximum_predicted_current_utilization": 0.3753,
+        "predicted_states_digest": "26a682c1a6f1e9217e6de46f30eb1172456c42e04598a78d77f9521c157eb6f0",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.8695824681526321
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "f1ccc9c1bb1aca1d005a85ebb1e72006eb38f8fd55e8324a2468d1b4a51222ff",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q1_a0p750_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22221,
+        "hard_action_rejections": 39,
+        "safe_expansions": 9790,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12392
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 54.73400135781845,
+        "maximum_predicted_current_utilization": 0.3753,
+        "predicted_states_digest": "0f9e282be866e5c1653d089370eff3d6d34e1b7c689bfc176318a12fc2a2a691",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.8667906053224042
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "4bbccc74b68d57428038872a1207d00bd7fbf336951867d88dd76f86dade534c",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22088,
+        "hard_action_rejections": 121,
+        "safe_expansions": 9541,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12426
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 49.16530977640863,
+        "maximum_predicted_current_utilization": 0.37795,
+        "predicted_states_digest": "629b4169c6eb80dd745d93f0fc3b7e9d3fdff93a26cb87a094a507b6f0b9fd70",
+        "q_units": [
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ]
+        ],
+        "q_values": [
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.7818361287774671
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "c7bcff260b430af29d634999d3784d3a7f96abe884d838f93ed25663597c846a",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q1_a0p900_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22177,
+        "hard_action_rejections": 70,
+        "safe_expansions": 9695,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12412
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 49.298583299384894,
+        "maximum_predicted_current_utilization": 0.37795,
+        "predicted_states_digest": "a6304df8123295c2aee7b7b0a20b7badcdbb7b1c5b70c8bc1edc0853b043f1cc",
+        "q_units": [
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ]
+        ],
+        "q_values": [
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.7982137013940349
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "5a49f60055e1512c2152d89103adcb5d4d235fc73a687abcec483e6b5c0a9d3e",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22637,
+        "hard_action_rejections": 197,
+        "safe_expansions": 9789,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12651
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 80.8279993954995,
+        "maximum_predicted_current_utilization": 0.39039999999999997,
+        "predicted_states_digest": "45490ec0704313effa6bc5f194381135643b6a8bac1348795f0f88060c0260b2",
+        "q_units": [
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ]
+        ],
+        "q_values": [
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 1.4226725021004203
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "6311336c77f9b1f3c5d2bcc89646b7db14118ac71af7f7484f3766e18cc4e3e2",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q2_a0p750_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22399,
+        "hard_action_rejections": 186,
+        "safe_expansions": 9616,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12597
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 81.05574855191897,
+        "maximum_predicted_current_utilization": 0.39039999999999997,
+        "predicted_states_digest": "c2da3cc1d5af1ebf615ebb36c6ce529f2f7944c4e99e78a477c02d1eb750c4f4",
+        "q_units": [
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ],
+          [
+            24,
+            0
+          ]
+        ],
+        "q_values": [
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ],
+          [
+            1.5,
+            0.0
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 1.4007185518184437
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "e5cf61b23adb9e99506c8f6020310cb5f813c6578a1eb5dc3bd382fcc5af75eb",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 19795,
+        "hard_action_rejections": 67,
+        "safe_expansions": 7901,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 11827
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 96.40738095571996,
+        "maximum_predicted_current_utilization": 0.38484999999999997,
+        "predicted_states_digest": "5e26b62ea45e5ab969645538a203b9a05819daadde323ed0d2bc9a66c90681fb",
+        "q_units": [
+          [
+            18,
+            6
+          ],
+          [
+            18,
+            6
+          ],
+          [
+            18,
+            6
+          ],
+          [
+            18,
+            6
+          ]
+        ],
+        "q_values": [
+          [
+            1.125,
+            0.375
+          ],
+          [
+            1.125,
+            0.375
+          ],
+          [
+            1.125,
+            0.375
+          ],
+          [
+            1.125,
+            0.375
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 1.2943027252363755
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "3d5998a83fc767d8da6b65affea52f3c6262ea2b2cd0bdab71db71eb6130b2f4",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p5_q2_a0p900_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 18699,
+        "hard_action_rejections": 41,
+        "safe_expansions": 7083,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 11575
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 103.00407551930334,
+        "maximum_predicted_current_utilization": 0.38665,
+        "predicted_states_digest": "6ee6d45c6056a6ca38433f8f8f1a47a9c8bdc907fb720255758e44ebd66ada51",
+        "q_units": [
+          [
+            16,
+            8
+          ],
+          [
+            16,
+            8
+          ],
+          [
+            16,
+            8
+          ],
+          [
+            16,
+            8
+          ]
+        ],
+        "q_values": [
+          [
+            1.0,
+            0.5
+          ],
+          [
+            1.0,
+            0.5
+          ],
+          [
+            1.0,
+            0.5
+          ],
+          [
+            1.0,
+            0.5
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 1.354262196704096
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": true,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "a0133ab8c04dfd1feedd475611f05a593ebc47ba273baae8a6203c3c5e043d7b",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": true,
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 24568,
+        "hard_action_rejections": 51,
+        "safe_expansions": 11546,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12971
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 15.810600248044068,
+        "maximum_predicted_current_utilization": 0.3713,
+        "predicted_states_digest": "f9eaab8224b3ed38fcecb2db9e79458d5a554e0483c0f4ea35e8a9400d47bd69",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.23150709110967926
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": true,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "77a2d5c4213f21b69ee1749b1bf88c4d9c776c8290943d15bc73fcbaa07f7519",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": true,
+      "pair_id": "p9_q1_a0p750_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 23502,
+        "hard_action_rejections": 49,
+        "safe_expansions": 10759,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12694
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 15.981611720004938,
+        "maximum_predicted_current_utilization": 0.3714,
+        "predicted_states_digest": "6fe8c07dceeaa64c37a6da96ca13170291cd71852e59bfd8835e214737f1b7fa",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.23399511059325384
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": true,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "6d92d00edf093229bf097aa9470a17ab6e57ebc4b2a94e14fc7321d3ea2db9f9",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": true,
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 24515,
+        "hard_action_rejections": 99,
+        "safe_expansions": 11432,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12984
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 32.00185172965338,
+        "maximum_predicted_current_utilization": 0.36515000000000003,
+        "predicted_states_digest": "33677b5a24c0eaea406e20ef07d1ee1393a54af520dadf9ab4a5ae9c0f1ec41d",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.42279866004289923
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": true,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "a71d3deae216ce2947b3869265d9671ecb3bbeb0d4489718aede34b9b634265b",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": true,
+      "pair_id": "p9_q1_a0p900_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 24800,
+        "hard_action_rejections": 104,
+        "safe_expansions": 11626,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 13070
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 31.61856318594448,
+        "maximum_predicted_current_utilization": 0.36469999999999997,
+        "predicted_states_digest": "64945c459277b392ed89547623a31c8a56a73260a9db1cbc61d82f8a00b8c5d8",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "d387a27ff66c7726e74ed34161142eaee41de0bb12f3bd46a86654214ca52f4c",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.40169931281964
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "4412c514c883b58bc8fae121f41cab8daff6612b4058e373509a34b540aa40f4",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22576,
+        "hard_action_rejections": 94,
+        "safe_expansions": 9897,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12585
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 42.571381746796014,
+        "maximum_predicted_current_utilization": 0.37555,
+        "predicted_states_digest": "5337253146f3674c44b910b462354f745521396d78167d9fb8d3f9f670f78f31",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.7443295159462124
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": false,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "9a7d05e249cd34c50e4df9df46fea4c9e13cde0b3ee64ca233bf247fdf9a19df",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": false,
+      "pair_id": "p9_q2_a0p750_gap3_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 23087,
+        "hard_action_rejections": 107,
+        "safe_expansions": 10252,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12728
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 41.337427062547945,
+        "maximum_predicted_current_utilization": 0.3749,
+        "predicted_states_digest": "eeeab62a52d35c37fd8f8a8df84a127e2bbe26047ec4202568357c0cc0c8a224",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.7148626346873121
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": true,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "c3462988b8a8f715ca6803ed871b2aa2dcc21cc1e3b167695d1334ff231056b8",
+      "history_member": "minus_first",
+      "hybrid_predicted_formal_pass": true,
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22615,
+        "hard_action_rejections": 99,
+        "safe_expansions": 9909,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12607
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 22.95601904357795,
+        "maximum_predicted_current_utilization": 0.37884999999999996,
+        "predicted_states_digest": "07f8e84ac51bf5ee5cbdd7d2c2a4ac270966dc88ed61cf720127595f523b8ca7",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.44637412039244984
+      },
+      "terminal_seed_count": 32
+    },
+    {
+      "baseline_formal_pass_for_postselection_scoring": true,
+      "beam_counts": [
+        26,
+        90,
+        256,
+        32
+      ],
+      "causal_selected_mode": "baseline_fallback",
+      "coarse_level_count": 33,
+      "evaluated_sequence_digest": "f0bc6c2f86da280c1e54daeda5725afc44f7794c778defc107150b889153235c",
+      "history_member": "plus_first",
+      "hybrid_predicted_formal_pass": true,
+      "pair_id": "p9_q2_a0p900_gap4_settle4",
+      "robust_formal_plan_found": false,
+      "safe_search_complete": true,
+      "search_counts": {
+        "evaluated_sequences": 22396,
+        "hard_action_rejections": 77,
+        "safe_expansions": 9794,
+        "state_unsupported_nodes": 0,
+        "transition_unsupported_expansions": 12525
+      },
+      "selected_plan": {
+        "cumulative_normalized_action_movement": 1.5,
+        "integrated_normalized_error": 22.382084466697137,
+        "maximum_predicted_current_utilization": 0.3784,
+        "predicted_states_digest": "f999ea983d31dcf58765917147aa2bc1d89948f0cfde892cf4a3f9adcb70f086",
+        "q_units": [
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ],
+          [
+            0,
+            24
+          ]
+        ],
+        "q_values": [
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ],
+          [
+            0.0,
+            1.5
+          ]
+        ],
+        "reserved_tubes_digest": "86d4924bdb0ee66531a8d0caba48b968fa5ceed547b4239535e3db9ff1fd1b48",
+        "robust_formal_pass": false,
+        "worst_formal_margin_violation": 0.4272616847222861
+      },
+      "terminal_seed_count": 32
+    }
+  ],
+  "planning_evaluation": {
+    "passed": false,
+    "predicted_baseline_fallback_plus_plan_oracle_count": 6,
+    "predicted_regressed_baseline_pass_count": 0,
+    "predicted_repaired_failed_baseline_count": 0,
+    "robust_formal_plan_context_count": 0,
+    "safe_search_context_count": 16
+  },
+  "plant_step_count": 0,
+  "real_tsc_executed": false,
+  "route": "ACTION_TRANSITION_SUPPORTED_MULTIRESOLUTION_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED",
+  "run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r26_runs/stage4_2r3c3t13s24d1r14r8r26_action_transition_supported_multiresolution_mpc_preflight_20260809_a1f4535_v1",
+  "schedule_jackknife_evaluation": {
+    "finite_exclusion_count": 0,
+    "folds": [
+      {
+        "held_schedule": "UUUU",
+        "held_trajectory_count": 16,
+        "model_digest": "172af1ac479d01b770472489619d2c60253d440bab7cc600f1c49de038fb91dd",
+        "residual_digest": "55b635960777b0f76b87c2b955dda968d07736f26c7bda7b54a4f5bed24849f0",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "UUUV",
+        "held_trajectory_count": 16,
+        "model_digest": "fba697e12a2d967a6367e18c34e70d596f9bb6877a8dacfd69a1507d44ea4d8a",
+        "residual_digest": "fcf46c4e91cfaefa9647854c890e0b5719d33da52f11fc92556d724e6d43cdf2",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "UUVU",
+        "held_trajectory_count": 16,
+        "model_digest": "c90db14121f7c89dc25398cabd2aebe38800e68e8f58ff91d3d95134fc5f4061",
+        "residual_digest": "455f4f8d4bff6c508c3fe3ac5fa60813a51679599b7e07753badb5999fe47d63",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "UUVV",
+        "held_trajectory_count": 16,
+        "model_digest": "43fe3d7b04697d4c71f06a5da7bb79a8d9832637433e1de58c0b9cf4a7eb89f1",
+        "residual_digest": "235c6739201b4f2f5541930e7b706f48796fe6bf8bb72c530309a26c20d5c251",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "UVUU",
+        "held_trajectory_count": 16,
+        "model_digest": "fdc92cc08f530369b9a6722d5d87b1ee551ce7581da595ec013ed2a62cd93d42",
+        "residual_digest": "aeea49280b561d4c2434e32e058346538f25fb5545409a0c99413d57ef88fbf6",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "UVUV",
+        "held_trajectory_count": 16,
+        "model_digest": "38d8b3f1934e72b135daec83e90f60af186fd60388b1ca646a9a0a17ceccda81",
+        "residual_digest": "a19447fac4f7abc3498203d3debf18f248e3e8b50b50799d55972c5776b2efa2",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "UVVU",
+        "held_trajectory_count": 16,
+        "model_digest": "13e86a2fb31ffd8b641ae762473fc19c12855de69e2f8b7c63a120b45d34a751",
+        "residual_digest": "45ba26b75d24213cccafa12a824bb18feca8008704fca8a9dbdab31cd0fb7be7",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "UVVV",
+        "held_trajectory_count": 16,
+        "model_digest": "e9b9fb54e7dab6900260d6380a6e28161842a1a3cafea0bf41a41321df401fea",
+        "residual_digest": "0d988975e6418ff1c339477e28d6c882edd584d24d0e8bca0ed4a5b357675b6e",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VUUU",
+        "held_trajectory_count": 16,
+        "model_digest": "c0d46ce9e2d8204e026407b6f27f9fd58a8742004a34d8a4a4784b66dc59adcc",
+        "residual_digest": "ca3dd87e9025c8498d457cde87211266d29e8f8ff39d42dc71b067831e77f40a",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VUUV",
+        "held_trajectory_count": 16,
+        "model_digest": "91b8b31b7631808ab325080d993d3a51ed14ecfe22d826daba4595f70d394796",
+        "residual_digest": "1a722da60d7ed40435d6d5caef6f70c6eab41add2329e86bea6d241baf489027",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VUVU",
+        "held_trajectory_count": 16,
+        "model_digest": "3f7557f7d08d0b67bdff0f152a48461f91a7106cdd2dc03aba73fd9944402e7f",
+        "residual_digest": "a72a86afc3833914bc8af16f4592ab1d61750dc73f79f9cb28dccf1d6401d541",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VUVV",
+        "held_trajectory_count": 16,
+        "model_digest": "840d0a3aa5681a99cbe2103851f4fc0f8af0a3768a39cd0ef48867a4786e72b0",
+        "residual_digest": "a1255fa419791d58444e4e3d0fe03f89547b0b3aff27de8d12019c204162ac4e",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VVUU",
+        "held_trajectory_count": 16,
+        "model_digest": "6f15d925d010cff7f39758b730861a0356170435ba06d509450c3f19b4875209",
+        "residual_digest": "93fac8dfb4e2ac18e3996869c1c737c1772bb00fcb90043591954cbd5931d021",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VVUV",
+        "held_trajectory_count": 16,
+        "model_digest": "383723f205bde9bc0ce41200c56eae59b2391587fe245996b4b07b4d98186b3b",
+        "residual_digest": "d15679b6f16a23195cf61e17d9a70f104db474e338194db965cf5373fa93efc7",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VVVU",
+        "held_trajectory_count": 16,
+        "model_digest": "cda0d303b5a347afde78a006d5ccb4260434fc88587ab43931b4b126bb2cda0d",
+        "residual_digest": "3b2ad45897db9b05fe3b5f7d4a1e30886a4a1aa1367fb1575d28939b0ef211f5",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "VVVV",
+        "held_trajectory_count": 16,
+        "model_digest": "f5a74627ae45fd48b45b746e56c31dcb7c963492a5b3ac3dcedb20d155d56486",
+        "residual_digest": "abcf3a09f3d523e54e91034c370de196a51d7fb32c4a6362718175b4c7768192",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p25_w0p00",
+        "held_trajectory_count": 16,
+        "model_digest": "47a3b3c7e3d41722673422295088c1b4206ad623c8658ad0524ccd3c32986cf6",
+        "residual_digest": "714cc8c18a71e49f492a698056e0af667b964e6e5bb211b7689b59d6be4b9b88",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p25_w0p25",
+        "held_trajectory_count": 16,
+        "model_digest": "72b16e3992e5012c7e8f8870b96156cbd05124bcefe61d9b0da7a8b38c428f00",
+        "residual_digest": "cc1bc9a7cbbf6f6c25f85058dbdba03946b1236436a333f0e5a016eda82863cd",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p25_w0p50",
+        "held_trajectory_count": 16,
+        "model_digest": "0bff7ac1aacd47080f4659b2ee8752ea49a6da22170f2f4664c2b55c7caab66c",
+        "residual_digest": "8b308f96930b73b20f5aebe3de30684daec449ce42babf58d62e69d52a8d4911",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p25_w0p75",
+        "held_trajectory_count": 16,
+        "model_digest": "850bc82a8f3452a79a6667d1242fb1f45856c372c5917046e12d5e5d72a38725",
+        "residual_digest": "7593549470bab9119144adeb1bb29a83160a62a1de3b854b768013d1c1a119d8",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p25_w1p00",
+        "held_trajectory_count": 16,
+        "model_digest": "48b0dccefcb8cdcd4287ffd36310be0df2d89db08da604623e92a6749b250dda",
+        "residual_digest": "7fc63bfaaeca0292db80a09e1a011bbd737d95a2a18a3d3251968ec7dccf73be",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p50_w0p00",
+        "held_trajectory_count": 16,
+        "model_digest": "a62822db08dbbc140a1872316f7d0dcd8ac4aef2e428135506299be4e545c90d",
+        "residual_digest": "173f2d9986158d9e7f15e148461f97b3ab17f64444d826945a3157bf1c875725",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p50_w0p25",
+        "held_trajectory_count": 16,
+        "model_digest": "77a5dab5073d384a0fb9200d82d4ccd17a094e98ded41bd248d16fe12dd5d92c",
+        "residual_digest": "2612901b5e2a04926051582335fbc31375dc865337e0d43c61056ae4ad75ac9b",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p50_w0p50",
+        "held_trajectory_count": 16,
+        "model_digest": "96210a13b1867a1467a2c0424672c6da9796089fa8886c6579c73002fa140814",
+        "residual_digest": "f8b52e80988d25265430c7d5be5a45385e53ccfcb8f3d6ab8dd12502481d98b1",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p50_w0p75",
+        "held_trajectory_count": 16,
+        "model_digest": "fce563d9c37107d6b8644cb19d2d0c5c055bf1b4ef9fee6b1bf1979172c8b2f0",
+        "residual_digest": "06d23a8a58fc07befcdb570dce5741c2043a7e4616ed4d8c7f4d15cdaae4db5e",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "a1p50_w1p00",
+        "held_trajectory_count": 16,
+        "model_digest": "da297976abda24b7c6be49f2d2c9b24086c088c8c44ceb05c7d2bae7956d3c75",
+        "residual_digest": "cb00288f61e607eae4531693e5098309820c620488196716f6f393976d3ae24d",
+        "training_schedule_count": 26
+      },
+      {
+        "held_schedule": "q0",
+        "held_trajectory_count": 16,
+        "model_digest": "ef69ca7e7365d7253e5ac6264123549cb7e93e21f18cff66cafa6661ad396ade",
+        "residual_digest": "6767b22951c42dbf3fbc48cbdd8c60b3fb04a41fb7530477b5194690b215487e",
+        "training_schedule_count": 26
+      }
+    ],
+    "forbidden_input_count": 0,
+    "maximum_absolute_physical_error": [
+      0.0009397374730232721,
+      0.0016357345376455553,
+      86.31575357630761,
+      0.014552584125181067,
+      0.0178839983484977
+    ],
+    "maximum_reserved_physical_tube_half_width": [
+      0.015,
+      0.015,
+      3000.0,
+      0.05,
+      0.05
+    ],
+    "maximum_residual_record_count": 432,
+    "minimum_residual_record_count": 216,
+    "passed": true,
+    "point_error_gate_passed": true,
+    "reserved_tube_component_count": 56160,
+    "reserved_tube_contained_component_count": 56160,
+    "reserved_tube_containment_gate_passed": true,
+    "reserved_tube_containment_rate": 1.0,
+    "schedule_count": 27,
+    "schedule_ids": [
+      "UUUU",
+      "UUUV",
+      "UUVU",
+      "UUVV",
+      "UVUU",
+      "UVUV",
+      "UVVU",
+      "UVVV",
+      "VUUU",
+      "VUUV",
+      "VUVU",
+      "VUVV",
+      "VVUU",
+      "VVUV",
+      "VVVU",
+      "VVVV",
+      "a1p25_w0p00",
+      "a1p25_w0p25",
+      "a1p25_w0p50",
+      "a1p25_w0p75",
+      "a1p25_w1p00",
+      "a1p50_w0p00",
+      "a1p50_w0p25",
+      "a1p50_w0p50",
+      "a1p50_w0p75",
+      "a1p50_w1p00",
+      "q0"
+    ],
+    "tube_cap_gate_passed": true,
+    "tube_digest": "3fa8af9b54aee5bd05172b617ada92e8b869919f1e73a6c43b7f7908e9ed5335"
+  },
+  "schema_version": 1,
+  "scientific_gate_passed": false,
+  "source_authentication_passed": true,
+  "source_reproduction": {
+    "maximum_original_plan_absolute_difference": 0.0,
+    "original_plan_count": 16,
+    "pair_tube_digest": "281c6da6637e22e8baf848e98e33d2c9466e15e9b700f74633a859d3f2af06b8",
+    "passed": true,
+    "planning_model_digest": "12e09a746f9356658a9c468c62d3915c6b98f138c149f66916763611728d43e0"
+  },
+  "stage": "Stage4.2R3c3T13S24D1R14R8R26",
+  "transition_hull_evidence": [
+    {
+      "affine_rank": 2,
+      "hull_equation_digest": "7f708411d424f9e7197fac8861bcc1c336668d507de184af4eec5d2d02a56d17",
+      "interval": 0,
+      "observed_transition_count": 13,
+      "singular_values": [
+        1.6007810593582121,
+        0.6634537965608005,
+        2.246290288720174e-16,
+        0.0
+      ],
+      "transition_digest": "2be15e193060b59116f48e5c08e940ea4542d6f2ab300edbe610af5f54d87d5b"
+    },
+    {
+      "affine_rank": 3,
+      "hull_equation_digest": "f7477fb3883222c09b0e899bcb8edc26c420ae59895137845a31c0b9f80a58e3",
+      "interval": 1,
+      "observed_transition_count": 15,
+      "singular_values": [
+        2.2638462845343543,
+        0.9564595207403264,
+        0.9428090415820635,
+        2.8830483128866275e-16
+      ],
+      "transition_digest": "23c41b468b39a90fd2ab8df537ec16193577c53ec979a7c9d7f3523f8ce7a7f0"
+    },
+    {
+      "affine_rank": 3,
+      "hull_equation_digest": "f7477fb3883222c09b0e899bcb8edc26c420ae59895137845a31c0b9f80a58e3",
+      "interval": 2,
+      "observed_transition_count": 15,
+      "singular_values": [
+        2.2638462845343543,
+        0.9564595207403264,
+        0.9428090415820635,
+        2.8830483128866275e-16
+      ],
+      "transition_digest": "23c41b468b39a90fd2ab8df537ec16193577c53ec979a7c9d7f3523f8ce7a7f0"
+    },
+    {
+      "affine_rank": 3,
+      "hull_equation_digest": "f7477fb3883222c09b0e899bcb8edc26c420ae59895137845a31c0b9f80a58e3",
+      "interval": 3,
+      "observed_transition_count": 15,
+      "singular_values": [
+        2.2638462845343543,
+        0.9564595207403264,
+        0.9428090415820635,
+        2.8830483128866275e-16
+      ],
+      "transition_digest": "23c41b468b39a90fd2ab8df537ec16193577c53ec979a7c9d7f3523f8ce7a7f0"
+    }
+  ]
+}

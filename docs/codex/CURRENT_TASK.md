@@ -6349,6 +6349,54 @@ plant advance, raw, or snapshot. Even a PASS authorizes only prospective
 design of a fresh safety-first real-controller sentinel. It is not Gate A;
 all learning remains blocked.
 
+## 123. Final R8R26 result and active point-versus-reserve boundary
+
+R8R26 completed at design/implementation/package checkpoints
+`42c1ff3 / 06ebbf7 / a1f4535`. Local source and empty-direct-copy validation,
+server staging, and installed validation passed all 1,124 package hashes,
+125 strict JSON files, 440 Python compilations, 439 shell syntax checks,
+focused `8/8`, and full `1382/1382`, with one expected server skip.
+
+All 27 whole-schedule heldout folds, every point/cap/containment gate, the
+unchanged pair tube, and the final combined tube passed. The schedule tube
+did not enlarge the immutable R8R25 pair tube. All 16 finite searches
+completed with no state-support loss, but found zero robust-formal plan.
+Repairs remained `0/10` and fallback-plus-plan oracle `6/16`; the best robust
+violation was `0.2315070911--1.4226725021`. Primary and structurally
+independent source, schedule, hull, plan, route, and outcome results agreed
+exactly. The final route is:
+
+```text
+ACTION_TRANSITION_SUPPORTED_MULTIRESOLUTION_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED
+```
+
+R8R26 is a finite supported action-family/planning-authority failure, not a
+runtime, source, reporting, controller, real-MPC, plant-reachability, or Gate
+A result. It executed zero Ray, `gotsc`, TSC, controller, plant step, raw, or
+snapshot. Exact report:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R26_FORENSIC_REPORT.md
+SHA-256  aeca922d442e2576c51dd1fb77423477c73692d483dece738e7ff51d8114d63e
+```
+
+Before inspecting any new point-only optimum or uncertainty-layer outcome,
+freeze a new-identity zero-new-TSC discriminator. It must authenticate final
+R8R26 and rerun the same deterministic finite search under prospectively
+fixed point-only, immutable R8R25 pair-tube, and final combined-tube layers.
+Model coefficients, causal state and action-transition support, Card15/action/
+current gates, decision times, search grid/beam/refinement, formal timing,
+ranking, and independent agreement remain unchanged. It must never treat a
+best failing plan as deployable.
+
+If point-only robust repairs exist but pair/combined robust repairs do not,
+route to a new uncertainty/excitation design. If point-only also repairs none,
+route to a broader causal action/timing/controller family. The discriminator
+cannot authorize a controller, MPC qualification, Gate A, expert data, BC,
+DAgger, or residual RL. Every R8-family trajectory remains forbidden from
+learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
