@@ -1,5 +1,27 @@
 # Current status
 
+> **Prospective R8R18 second-order Boolean ridge LOCO preflight
+> (2026-08-08 Asia/Shanghai).** After sealing aggregate R8R17 but before
+> inspecting any failed-row identity or detailed residual, the zero-new-TSC
+> design was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R18_SECOND_ORDER_BOOLEAN_RIDGE_LOCO_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `f7de518d1bc65588883d245eb7fd1de5f63b84c679713b38102db6047d28ab9d`.
+>
+> The fixed model has intercept, four slot signs, and all six pair
+> interactions. Affine terms are unpenalized; pair terms use `lambda=10`,
+> selected only from a closed code-geometry grid. All ten measured codes are
+> validated by ten leave-one-code-out folds, exactly 160 held trajectories.
+> Every `160/160` must pass unchanged R8R16/R8R17 physical, formal margin
+> `0.05`, classification, and tube gates. Code-only stability caps include
+> LOCO normal condition `<=32` and prediction-weight L2 `<=1.30`.
+>
+> Only a dual LOCO PASS opens predictions for the same six never-executed
+> codes; robust authority remains `>=1/10` repairs and oracle `>=7/16` after
+> the frozen uncertainty buffer. R8R18 runs zero TSC and may authorize only a
+> separately frozen physical sentinel. It is not MPC or Gate A; learning
+> remains blocked and all R8-family evidence remains forbidden from learning.
+
 > **R8R17 final adjacent-switch interaction checkpoint
 > (2026-08-08 Asia/Shanghai).** Design/implementation/package checkpoints are
 > `614487a / 6b62ca6 / d7d291a`. The 1,073-file package passed hashes, JSON,

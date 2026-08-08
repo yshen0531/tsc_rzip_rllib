@@ -6138,3 +6138,40 @@ unchanged gates and fail-closed routes.
 
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every R8-
 family trajectory remains forbidden from learning data.
+
+## 108. Frozen R8R18 second-order Boolean ridge LOCO task
+
+After sealing aggregate R8R17 but before inspecting any of its failed-row
+identities or detailed residuals, the next zero-new-TSC design was frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R18_SECOND_ORDER_BOOLEAN_RIDGE_LOCO_PREFLIGHT_DESIGN.md
+SHA-256
+f7de518d1bc65588883d245eb7fd1de5f63b84c679713b38102db6047d28ab9d
+```
+
+R8R18 uses the fixed 11-feature Boolean family containing intercept, four
+slot signs, and all six pair interactions. Affine terms are unpenalized; all
+pair terms use one frozen ridge penalty `lambda=10`. That value was chosen
+only from a closed code-geometry grid as the first entry satisfying maximum
+LOCO normal condition `<=32` and prediction-weight L2 `<=1.30`; response
+outcomes do not select it.
+
+The exact ten measured codes are validated by ten leave-one-code-out folds,
+giving `160` held trajectory predictions. All `160/160` must pass the
+unchanged 3 mm/3 mm/1000 A, scaled `0.10`, exact formal classification,
+minimum-margin `0.05`, and fixed two-times tube gates. Every fold retains
+affine rank five and the regularized augmented system must have rank 11.
+Primary augmented-SVD and independent normal-equation solves must agree.
+
+Only a complete LOCO model PASS may fit all ten measured codes and predict
+the same six never-executed sequences. Robust authority remains at least one
+of ten repairs and oracle `>=7/16` after the frozen two-times LOCO margin
+buffer. A PASS authorizes only a separately frozen fresh physical sentinel;
+a model failure routes to nonparametric redesign, while an adequate model
+without authority routes to continuous multidirection redesign.
+
+Implement, validate, package by empty direct copy, deploy without archives,
+and execute dual zero-TSC audits. R8R18 is not MPC or Gate A. Learning stays
+blocked and all R8-family evidence remains forbidden from learning data.
