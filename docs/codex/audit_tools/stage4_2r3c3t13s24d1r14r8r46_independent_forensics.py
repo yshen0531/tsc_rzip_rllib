@@ -176,6 +176,10 @@ def _scaled_tube_difference(
     return maximum
 
 
+def _serializable_model_artifact(value: Mapping[str, Any]) -> dict[str, Any]:
+    return r8r46._jsonable(value)
+
+
 def audit(args: argparse.Namespace) -> dict[str, Any]:
     ctx = r8r46.load_context(args)
     if ctx.cfg.get("stage") != STAGE or ctx.cfg.get("identity") != IDENTITY:
@@ -267,7 +271,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
     independent_detailed = r8r46.assemble_result(
         ctx, authentication, bank, binding, model_evaluation, planning, faults
     )
-    independent_model = {
+    independent_model = _serializable_model_artifact({
         "schema_version": r8r46.SCHEMA_VERSION,
         "stage": STAGE,
         "identity": IDENTITY,
@@ -284,7 +288,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         "transition_hulls": hulls,
         "planning_evaluation": planning,
         "cold_source_evaluation_digest": _digest(independent_cold_detailed),
-    }
+    })
 
     tolerance = float(
         ctx.cfg["model_contract"]["primary_independent_scaled_tolerance"]

@@ -309,6 +309,13 @@ class R8R46Q0CalibrationInnovationPreflightTests(unittest.TestCase):
         right[0]["selected_first_transport_action_index"] = 0
         self.assertNotEqual(left, right)
 
+    def test_independent_model_artifact_converts_numpy_before_json_digest(self):
+        artifact = independent46._serializable_model_artifact(
+            {"combined_execution_tube": [np.zeros((2, 5), dtype=float)]}
+        )
+        self.assertIsInstance(artifact["combined_execution_tube"][0], list)
+        json.dumps(artifact, sort_keys=True, allow_nan=False)
+
     def test_finalizer_requires_all_dual_agreements_and_seals_zero_tsc(self):
         with tempfile.TemporaryDirectory() as directory:
             stage = Path(directory) / r8r46.RUN_NAME
