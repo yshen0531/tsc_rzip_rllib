@@ -6775,6 +6775,40 @@ separately frozen real controller sentinel; it is not Gate A. All learning
 remains blocked and every R8-family trajectory remains forbidden from
 learning data.
 
+## 134. Frozen R8R32 rank-regularized schedule-generalization preflight
+
+Before any R8R32 transform, PCA, fit, prediction, residual, tube, support
+result, plan, implementation, package, action, raw, or TSC, freeze:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R32_RANK_REGULARIZED_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md
+SHA-256  d5e1e5e51b75267420282379386b24653180493e5f3fc3f19b6d6624c7ca838f
+```
+
+R8R32 is zero-new-TSC. It must authenticate and exactly reproduce R8R31's
+560 trajectories, 35 schedules, 3,360 records, and bank/feature/target
+digests. It preserves q4, the causal 44D base, 18 action terms, all source
+exclusions, whole-pair and whole-schedule outer folds, tube floors/multiplier,
+unchanged point/tube caps, state and 8D action-transition support, 17
+candidates, six decision times, hard Card15/action/current gates, immutable
+formal timing, fail-closed fallback, planning criteria, and learning ban.
+
+The only model change is prospectively fixed: fold-local base standardization,
+sign-canonical PCA rank 32, the exact 178D
+`[score32,action18,score32*q0..q3]` representation with fold-local column
+standardization, and ridge `0.01`. No rank/ridge/feature search, tube clipping,
+outlier deletion, or post-result cap change is allowed. Separate primary
+normal-equation and independent augmented-least-squares paths must agree on
+load-bearing numerics to `1e-12`.
+
+Any pair/schedule model failure stops before planning as
+`RANK_REGULARIZED_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC`. A model
+PASS without repair/oracle authority cannot authorize a sentinel. Only a
+complete model and planning PASS may authorize prospective design of a fresh
+finite real-controller sentinel. It is not MPC qualification or Gate A;
+Gate A and all learning remain blocked.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

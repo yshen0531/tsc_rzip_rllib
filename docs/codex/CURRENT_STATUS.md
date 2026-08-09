@@ -1,5 +1,27 @@
 # Current status
 
+> **Prospective R8R32 rank-regularized schedule-generalization checkpoint
+> (2026-08-09 Asia/Shanghai).** Before any R8R32 feature transform, PCA, fit,
+> prediction, residual, tube, support result, plan, implementation, package,
+> controller action, raw, or TSC, the next zero-new-TSC identity was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R32_RANK_REGULARIZED_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md`.
+> Its SHA-256 is
+> `d5e1e5e51b75267420282379386b24653180493e5f3fc3f19b6d6624c7ca838f`.
+>
+> R8R32 must reproduce R8R31's exact 560 trajectories, 35 schedules, 3,360
+> records and all three bank digests. It retains the causal q4 input, whole-
+> pair/schedule exclusions, unchanged point/tube caps, tube construction,
+> state/action support, candidates, Card15/action/current gates, planning,
+> formal timing, fallback, independent audit, and learning prohibition. The
+> sole model change is fixed fold-local standardization plus sign-canonical
+> PCA32, exact 178D score/action/score-by-q representation, and ridge `0.01`.
+> No hyperparameter search or cap/tube relaxation is allowed.
+>
+> A model failure stops before planning with zero TSC. A complete zero-TSC
+> model/planning PASS may authorize only design of a fresh finite real-
+> controller sentinel. It is not Gate A. Gate A, expert data, BC, DAgger,
+> residual RL, and all other learning remain blocked.
+
 > **Final R8R31 aligned explicit-four-coordinate feedback checkpoint
 > (2026-08-09 Asia/Shanghai).** R8R31 is final at checkpoints
 > `728c235 / 53858ea / 96c232e / 3bc46b8 / 0768826`. The final package has
