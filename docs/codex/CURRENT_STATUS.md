@@ -1,5 +1,42 @@
 # Current status
 
+> **Final R8R49 offline-stop boundary (2026-08-09 Asia/Shanghai).** R8R49
+> was frozen at design checkpoint `8427bfe` and implemented at `6fd0610`.
+> Pre-TSC source-locator and 63-character source-hash defects were repaired
+> without changing controller/action/gate semantics at `06c7020` and
+> `e76a797`; final package checkpoint is `3966426`. Local project-venv source
+> and fresh empty direct-copy validation, then server staging/installed
+> validation, passed 1,239 hashes, 146 JSON, 485 Python compilations, 454
+> server `bash -n`, focused `10/10`, and full `1543/1543`, with one expected
+> isolated-package skip. Transfer was direct `scp -r` without archives.
+>
+> Final primary authenticated all sources and constructed 256/256 frozen
+> cells, but only 208/256 passed. Independent recomputation agreed exactly:
+> construction digest
+> `d9ac2bb9e5ad372f37a78a6245ab8908ce4b9d6f30718975d13c215d27e70968`.
+> The 48 failures are exactly `u0p50`, `u0p75`, and `v0p50` in all 16
+> contexts. Read-only inner-gate recomputation found that the only failure is
+> off-basis residual above the frozen 0.10 cap at both issue and return:
+> `0.137722--0.138006`, `0.132895--0.133428`, and
+> `0.104011--0.104611`, respectively. Every cosine and other exact
+> Card15/action/current/refresh criterion passed.
+>
+> Final route is
+> `Q0_TO_TRANSPORT_BRIDGE_SENTINEL_OFFLINE_FAIL_NO_REAL_TSC`. The stage has
+> zero raw, Ray, `gotsc`, TSC, controller, or plant step; response outcomes
+> were never opened. This is an exact-action experimental-design failure,
+> not runtime, deployment, source, raw, restart, reporting, controller,
+> formal-control, real-MPC, plant-reachability, safety, or Gate A evidence.
+> Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R49_FORENSIC_REPORT.md`.
+>
+> The frozen gate will not be weakened and R8R49 cannot resume. Conditional
+> R8R50 requires R8R49 PASS and is blocked. The active boundary is to freeze
+> a new-identity reduced-candidate bridge sentinel using the 13 uniformly
+> admissible candidates, which retain all four canonical directions. Even a
+> future sentinel PASS is identification only. Gate A and all learning remain
+> blocked; every R8-family trajectory remains forbidden from learning.
+
 > **Final R8R48 and authorized conditional R8R49 bridge-identification
 > boundary (2026-08-09 Asia/Shanghai).** R8R48 completed at design/
 > implementation/package checkpoints `8427bfe / b80a50a / b2870d7`.

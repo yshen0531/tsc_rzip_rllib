@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R49",
+  "audit_kind": "post_result_read_only_offline_failure_classification",
+  "prospectively_frozen_gate": false,
+  "run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/stage4_2r3c3t13s24d1r14r8r49_runs/stage4_2r3c3t13s24d1r14r8r49_q0_to_transport_causal_bridge_identification_sentinel_20260809_3966426_v2",
+  "route": "Q0_TO_TRANSPORT_BRIDGE_SENTINEL_OFFLINE_FAIL_NO_REAL_TSC",
+  "source_authenticated": true,
+  "design_authenticated": true,
+  "primary_independent_agreement": true,
+  "spec_count": 256,
+  "construction_pass_count": 208,
+  "construction_failure_count": 48,
+  "construction_digest": "d9ac2bb9e5ad372f37a78a6245ab8908ce4b9d6f30718975d13c215d27e70968",
+  "spec_digest": "3f277ac282c2d7d05888e602299ab291981517885645ec5013581a097b91a4e5",
+  "failed_candidates": {
+    "u0p50": 16,
+    "u0p75": 16,
+    "v0p50": 16
+  },
+  "inner_failure_counts": {
+    "issue_off_basis": 48,
+    "return_off_basis": 48,
+    "all_other_issue_criteria": 0,
+    "all_other_return_criteria": 0
+  },
+  "thresholds": {
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.1
+  },
+  "metric_ranges": {
+    "u0p50": {
+      "issue_cosine": [0.9883384421772913, 0.9883601693648559],
+      "issue_off_basis": [0.13772230344192993, 0.13800634283025817],
+      "return_cosine": [0.9999999999999999, 1.0000000000000002],
+      "return_off_basis": [0.13772230344190697, 0.13800634283026986]
+    },
+    "u0p75": {
+      "issue_cosine": [0.9898477991118111, 0.9898572137621852],
+      "issue_off_basis": [0.13289503329992547, 0.133427685371188],
+      "return_cosine": [0.9999999999999999, 1.0000000000000002],
+      "return_off_basis": [0.1328950332999368, 0.13342768537120236]
+    },
+    "v0p50": {
+      "issue_cosine": [0.9927835100642082, 0.9928970261296456],
+      "issue_off_basis": [0.10401058481303177, 0.10461138571370153],
+      "return_cosine": [0.9999999999999999, 1.0000000000000002],
+      "return_off_basis": [0.10401058481299663, 0.1046113857137142]
+    }
+  },
+  "maximum_issue_increment": 0.2111111111111112,
+  "maximum_return_increment": 0.2111111111111112,
+  "maximum_predicted_current_utilization": 0.3912,
+  "raw_file_count": 0,
+  "new_raw_count": 0,
+  "plant_step_count": 0,
+  "real_tsc_executed": false,
+  "response_outcomes_opened": false,
+  "server_hashes": {
+    "offline_primary": "8258e0369de1b79814efec2e3ec85bd843e37bc387b0d21fa4996e32de68d655",
+    "offline_independent": "d1dec48db8e915d673d2db7a4b5ea95ed316ba838cdc404cbbb2a1ad91c302f9",
+    "offline_construction": "fd112e5fdb1527059003cccf5bd2219e6f0fd175306aafe8edf71a4073a41002",
+    "all_specs": "fb4164bbe109a0994f5fd7c163d19e788be093d8b69e0adc37bbc5389f6f4afc",
+    "source_authentication": "75aeb74cbc70e4bc392dd9b1250c41d2768274bf7845252f7b020c8bcbf6aa9b",
+    "stage_state": "8afbfec8f9ba33cf7763cef8fe7bd06425f5a06890309892f9de251b97790962",
+    "stage_manifest": "a71349895dc20e17fb529bb1842f07d45bf6d1737a072e40420cc1bf90484044"
+  }
+}

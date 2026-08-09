@@ -8093,3 +8093,40 @@ R8R49 is identification only. A PASS may authorize only a new prospectively
 frozen zero-TSC bridge model/tube preflight, not a real controller. All R8R49
 trajectories are probes and forbidden from learning. Gate A, expert data, BC,
 DAgger, residual RL, and Gate B remain blocked.
+
+## 146. Final R8R49 offline failure and active reduced-bridge redesign
+
+R8R49 completed its source-authenticated dual offline gate and stopped before
+real execution. Final design/implementation/package checkpoints are
+`8427bfe / 6fd0610 / 3966426`, with pre-TSC source-locator and authentication
+hotfixes `06c7020 / e76a797`. Local source, empty direct-copy, server staging,
+and installed validation passed 1,239 hashes, 146 JSON, 485 compilations, 454
+server `bash -n`, focused `10/10`, and full `1543/1543`, with one expected
+isolated-package skip.
+
+Primary and independent agreed exactly on 256 constructions and 208 passes.
+The 48 failures are the three candidates `u0p50`, `u0p75`, and `v0p50` in all
+16 contexts. The only failed inner gate is exact issue/return off-basis
+residual above the unchanged 0.10 cap; every other Card15, direction, action,
+current, clipping, saturation, observation, return, and refresh gate passed.
+Final route:
+
+```text
+Q0_TO_TRANSPORT_BRIDGE_SENTINEL_OFFLINE_FAIL_NO_REAL_TSC
+```
+
+R8R49 created zero raw and executed zero Ray, `gotsc`, TSC, controller, or
+plant step. Do not weaken the frozen off-basis gate, resume R8R49, or run its
+real phase. Conditional R8R50 requires exact R8R49 PASS and is blocked.
+
+The active task is to freeze a new-identity reduced-candidate q0-to-transport
+bridge sentinel before any new TSC. It may use the R8R49 offline result only
+as disclosed development evidence. Fix exactly the 13 candidates that passed
+in every context; they must retain all four independent canonical directions.
+Keep the same q0/observe/issue/effect/return schedule, immutable formal timing,
+exact Card15/action/current/saturation/safe-stop rules, and independent
+offline/raw recomputation. A dual offline PASS may authorize only that fresh
+sentinel. Before viewing any real response outcome, freeze its conditional
+whole-pair causal transition-model/tube preflight. All resulting trajectories
+are probes and forbidden from learning. Gate A, expert data, BC, DAgger,
+residual RL, and Gate B remain blocked.
