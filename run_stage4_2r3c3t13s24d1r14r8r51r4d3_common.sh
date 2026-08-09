@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+RUN_NAME="stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight"
+PYTHON="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_PYTHON:-/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python}"
+CONFIG="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_CONFIG:-${PROJECT_DIR}/configs/stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight.json}"
+COMMAND="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_COMMAND:-offline}"
+OUTPUT_ROOT="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_OUTPUT_ROOT:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r4d3_runs}"
+R8R51_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R51_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51_runs/stage4_2r3c3t13s24d1r14r8r51_reduced_q0_transport_bridge_identification_sentinel_20260809_04d3250_v1}"
+R51R1_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R51R1_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r1_runs/stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel_20260809_1baf670_v1}"
+R51R3_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R51R3_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r3_runs/stage4_2r3c3t13s24d1r14r8r51r3_single_transport_return_hold_formal_authority_audit_20260810_06e4728_v1}"
+R51R4_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R51R4_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r4_runs/stage4_2r3c3t13s24d1r14r8r51r4_failed_context_sustained_transport_dwell_sentinel_20260810_7b394cb_v2}"
+R51R4D1_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R51R4D1_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r4d1_runs/stage4_2r3c3t13s24d1r14r8r51r4d1_two_transport_exact_return_schedule_preflight_20260810_b98f9c8_v2_refresh_fix}"
+R8R49_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R49_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r49_runs/stage4_2r3c3t13s24d1r14r8r49_q0_to_transport_causal_bridge_identification_sentinel_20260809_3966426_v2}"
+R8R48_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R48_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r48_runs/stage4_2r3c3t13s24d1r14r8r48_q0_to_transport_causal_bridge_support_audit_20260809_b2870d7_v1}"
+R8R46_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R46_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r46_runs/stage4_2r3c3t13s24d1r14r8r46_q0_calibration_causal_innovation_controller_preflight_20260809_7d53cc1_v1}"
+R8R44_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R44_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r44_runs/stage4_2r3c3t13s24d1r14r8r44_fixed_affine_dominant_global_local_affine_cold_ensemble_receding_controller_preflight_20260809_509b7b4_v1}"
+R8R43_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R43_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r43_runs/stage4_2r3c3t13s24d1r14r8r43_fixed_affine_dominant_global_ridge_local_affine_cold_ensemble_preflight_20260809_64a035c_v1}"
+R8R41_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R41_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r41_runs/stage4_2r3c3t13s24d1r14r8r41_fixed_equal_global_ridge_local_affine_cold_ensemble_preflight_20260809_2fb0766_v2}"
+R8R39_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R39_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r39_runs/stage4_2r3c3t13s24d1r14r8r39_fixed_equal_global_ridge_local_constant_cold_ensemble_preflight_20260809_40e2c22_v1}"
+R8R37_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R37_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r37_runs/stage4_2r3c3t13s24d1r14r8r37_training_only_diagonal_innovation_gain_schedule_generalizing_preflight_20260809_44a94ed_v1}"
+R8R35_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R35_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r35_runs/stage4_2r3c3t13s24d1r14r8r35_causal_last_innovation_local_constant_schedule_generalizing_preflight_20260809_70236b3_v1}"
+R8R34_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R34_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r34_runs/stage4_2r3c3t13s24d1r14r8r34_causal_local_neighborhood_schedule_generalizing_feedback_preflight_20260809_8531fad_v2}"
+R8R33_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R33_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r33_runs/stage4_2r3c3t13s24d1r14r8r33_uniformly_supported_rank12_schedule_generalizing_feedback_preflight_20260809_9c777c7_v1}"
+R8R32_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R32_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r32_runs/stage4_2r3c3t13s24d1r14r8r32_rank_regularized_schedule_generalizing_feedback_preflight_20260809_3328499_v2}"
+R8R31_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R31_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r31_runs/stage4_2r3c3t13s24d1r14r8r31_aligned_explicit_four_coordinate_feedback_sentinel_20260809_96c232e_v1}"
+R8R23_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R23_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r23_runs/stage4_2r3c3t13s24d1r14r8r23_causal_online_innovation_receding_horizon_preflight_20260809_7b2739c_v1}"
+R8R28_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R28_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r28_runs/stage4_2r3c3t13s24d1r14r8r28_front_loaded_cumulative_endpoint_timing_authority_sentinel_20260809_a31262d_v1}"
+R8R7_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R7_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r7_runs/stage4_2r3c3t13s24d1r14r8r7_fresh_multipulse_static_observer_interaction_sentinel_20260807_d8d231e_v1}"
+R8R12_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R12_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r12_runs/stage4_2r3c3t13s24d1r14r8r12_causal_cumulative_direction2_staircase_authority_sentinel_20260808_523c706_v2}"
+R8R14_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R14_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r14_runs/stage4_2r3c3t13s24d1r14r8r14_cumulative_multidirection_staircase_authority_identification_20260808_9874068_v1}"
+R8R15_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R15_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r15_runs/stage4_2r3c3t13s24d1r14r8r15_binary_temporal_switching_staircase_authority_sentinel_20260808_f23c96e_v1}"
+R8R19_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R19_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r19_runs/stage4_2r3c3t13s24d1r14r8r19_saturated_boolean_kernel_loco_preflight_20260808_51b429a_v1}"
+R8R20_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R20_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r20_runs/stage4_2r3c3t13s24d1r14r8r20_direct_boolean_cube_completion_authority_sentinel_20260808_98c67c5_v2}"
+R8R22_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R22_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r22_runs/stage4_2r3c3t13s24d1r14r8r22_bounded_continuous_multidirection_authority_sentinel_20260808_f9d19c1_v1}"
+R8R27_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_R8R27_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r27_runs/stage4_2r3c3t13s24d1r14r8r27_point_versus_reserve_authority_discriminator_20260809_0832c6b_v1}"
+
+STAGE4_2R3C3T13S24D1R14R8R7_PROJECT_DIR="${PROJECT_DIR}"
+STAGE4_2R3C3T13S24D1R14R8R7_PYTHON="${PYTHON}"
+source "${PROJECT_DIR}/scripts/stage4_2r3c3t13s24d1r14r8r7_shell_common.sh"
+
+[[ "${PROJECT_DIR}" == "/home/yangshen0711/tsc_all/tsc_rzip_rllib" ]]
+[[ -x "${PYTHON}" ]]
+[[ -f "${CONFIG}" ]]
+for source_run in "${R51R4D1_RUN}" "${R51R4_RUN}" "${R51R1_RUN}" "${R51R3_RUN}" "${R8R51_RUN}" "${R8R49_RUN}" "${R8R48_RUN}" "${R8R46_RUN}" "${R8R44_RUN}" "${R8R43_RUN}" "${R8R41_RUN}" "${R8R39_RUN}" "${R8R37_RUN}" "${R8R35_RUN}" "${R8R34_RUN}" "${R8R33_RUN}" "${R8R32_RUN}" "${R8R31_RUN}" "${R8R23_RUN}" "${R8R28_RUN}" "${R8R7_RUN}" "${R8R12_RUN}" "${R8R14_RUN}" "${R8R15_RUN}" "${R8R19_RUN}" "${R8R20_RUN}" "${R8R22_RUN}" "${R8R27_RUN}"; do
+  [[ -d "${source_run}" ]]
+done
+case "${COMMAND}" in
+  offline|independent) ;;
+  *) echo "ERROR: unsupported R8R51R4D3 command ${COMMAND}" >&2; exit 1 ;;
+esac
+
+SOURCE_D1R11="$(stage4_2r3c3t13s24d1r14r8_source_d1r11)"
+SOURCE_R2="$(stage4_2r3c3t13s24d1r14r7r2_source r2)"
+SOURCE_R4="$(stage4_2r3c3t13s24d1r14r7r2_source r4)"
+SOURCE_R6="$(stage4_2r3c3t13s24d1r14r7r2_source r6)"
+SOURCE_S21_RUN="$(stage4_2r3c3t13s24d1r11_find_source_s21)"
+SOURCE_S23R1_OUTPUT="$(stage4_2r3c3t13s24d1r11_find_source_s23r1)"
+SOURCE_S24_RUN="$(stage4_2r3c3t13s24d1r11_find_source_s24)"
+SOURCE_D1R9_V1="$(stage4_2r3c3t13s24d1r11_find_source_d1r9_v1)"
+SOURCE_D1R9_V2="$(stage4_2r3c3t13s24d1r11_find_source_d1r9_v2)"
+SOURCE_D1R10_RUN="$(stage4_2r3c3t13s24d1r11_find_source_d1r10)"
+SOURCE_D1R10_AUDIT="$(stage4_2r3c3t13s24d1r11_find_source_d1r10_audit)"
+SOURCE_R3B="$(stage4_2r3c3t13s21_find_source_r3b)"
+SOURCE_R3C3="$(stage4_2r3c3t13s21_find_source_r3c3)"
+SOURCE_BANK="$(stage4_2r3c3t13s21_find_source_bank)"
+SOURCE_T1="$(stage4_2r3c3t13s21_find_source_t1)"
+SOURCE_T1_AUDIT="$(stage4_2r3c3t13s21_find_source_t1_audit)"
+SOURCE_T3_BANK="$(stage4_2r3c3t13s21_find_t3_controller_bank)"
+Q1_RUN="$(stage4_2r3c3t13s21_q1_run)"
+Q2_RUN="$(stage4_2r3c3t13s21_q2_run)"
+Q1_AUDIT="$(stage4_2r3c3t13s21_q1_audit)"
+Q2_AUDIT="$(stage4_2r3c3t13s21_q2_audit)"
+R3B_AUDIT="$(stage4_2r3c3t13s21_r3b_audit)"
+R3B_SNAPSHOTS="$(stage4_2r3c3t13s21_r3b_snapshot_checks)"
+
+if [[ -n "${STAGE4_2R3C3T13S24D1R14R8R51R4D3_RUN_DIR:-}" ]]; then
+  RUN_DIR="${STAGE4_2R3C3T13S24D1R14R8R51R4D3_RUN_DIR}"
+else
+  mkdir -p "${OUTPUT_ROOT}"
+  RUN_DIR="${OUTPUT_ROOT}/${RUN_NAME}_$(date -u +%Y%m%d_%H%M%S)"
+fi
+STAGE_DIR="${RUN_DIR}/${RUN_NAME}"
+if [[ "${COMMAND}" == "offline" ]]; then
+  [[ ! -e "${RUN_DIR}" || -z "$(find "${RUN_DIR}" -mindepth 1 -maxdepth 1 -print -quit 2>/dev/null)" ]]
+else
+  [[ -f "${STAGE_DIR}/stage_state.json" ]] || { echo "ERROR: R8R51R4D3 state missing" >&2; exit 1; }
+fi
+mkdir -p "${RUN_DIR}"
+
+export PROJECT_DIR PYTHONPATH="${PROJECT_DIR}${PYTHONPATH:+:${PYTHONPATH}}"
+stage4_2r3c3t13s24d1r14r8r7_export
+cd "${PROJECT_DIR}"
+printf '[R8R51R4D3] user=%s host=%s command=%s run_dir=%s\n' "$(id -un)" "$(hostname)" "${COMMAND}" "${RUN_DIR}"
+printf '[R8R51R4D3] zero-TSC 250-spec center-bridged two-pulse schedule preflight; no response/model/controller/Gate A.\n'
+
+args=(
+  --config "${CONFIG}" --run-dir "${RUN_DIR}" --r51r4d1-run "${R51R4D1_RUN}" --r51r4-run "${R51R4_RUN}" --r51r1-run "${R51R1_RUN}" --r51r3-run "${R51R3_RUN}" --r8r51-run "${R8R51_RUN}" --r8r49-run "${R8R49_RUN}" --r8r48-run "${R8R48_RUN}" --r8r46-run "${R8R46_RUN}" --r8r44-run "${R8R44_RUN}" --r8r43-run "${R8R43_RUN}" --r8r41-run "${R8R41_RUN}" --r8r39-run "${R8R39_RUN}" --r8r37-run "${R8R37_RUN}" --r8r35-run "${R8R35_RUN}" --r8r34-run "${R8R34_RUN}" --r8r33-run "${R8R33_RUN}" --r8r32-run "${R8R32_RUN}" --r8r31-run "${R8R31_RUN}" --r8r23-run "${R8R23_RUN}" --r8r28-run "${R8R28_RUN}"
+  --r8r22-run "${R8R22_RUN}" --r8r7-run "${R8R7_RUN}" --r8r12-run "${R8R12_RUN}" --r8r14-run "${R8R14_RUN}" --r8r15-run "${R8R15_RUN}" --r8r19-run "${R8R19_RUN}" --r8r20-run "${R8R20_RUN}" --r8r27-run "${R8R27_RUN}"
+  --r8-run "${STAGE4_2R3C3T13S24D1R14R8R7_R8_RUN}" --r8r1-output "${STAGE4_2R3C3T13S24D1R14R8R7_R8R1_OUTPUT}" --r8r6-run "${STAGE4_2R3C3T13S24D1R14R8R7_R8R6_RUN}"
+  --source-d1r11-run "${SOURCE_D1R11}" --source-r2-run "${SOURCE_R2}" --source-r4-run "${SOURCE_R4}" --source-r6-run "${SOURCE_R6}"
+  --source-s21-run "${SOURCE_S21_RUN}" --source-s23r1-output "${SOURCE_S23R1_OUTPUT}" --source-s24-run "${SOURCE_S24_RUN}" --source-d1r9-v1 "${SOURCE_D1R9_V1}" --source-d1r9-v2 "${SOURCE_D1R9_V2}" --source-d1r10-run "${SOURCE_D1R10_RUN}" --source-d1r10-audit "${SOURCE_D1R10_AUDIT}"
+  --source-stage42r3b-run "${SOURCE_R3B}" --source-stage42r3c3-run "${SOURCE_R3C3}" --source-stage42r3c3-bank-dir "${SOURCE_BANK}" --source-stage42r3c3t1-run "${SOURCE_T1}" --source-stage42r3c3t1-audit-dir "${SOURCE_T1_AUDIT}" --source-stage42r3c3t3-controller-bank "${SOURCE_T3_BANK}"
+  --q1-run "${Q1_RUN}" --q2-run "${Q2_RUN}" --q1-audit "${Q1_AUDIT}" --q2-audit "${Q2_AUDIT}" --r3b-server-audit "${R3B_AUDIT}" --r3b-snapshot-checks "${R3B_SNAPSHOTS}"
+)
+
+case "${COMMAND}" in
+  independent) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4d3_independent_forensics.py "${args[@]}" --command offline ;;
+  offline) exec "${PYTHON}" -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight "${args[@]}" --command offline ;;
+esac

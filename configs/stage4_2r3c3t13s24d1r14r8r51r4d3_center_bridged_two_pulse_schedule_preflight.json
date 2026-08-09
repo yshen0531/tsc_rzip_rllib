@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R51R4D3",
+  "identity": "center_bridged_two_pulse_schedule_preflight_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight",
+  "model_revision": "no_model_center_bridged_two_pulse_schedule_preflight_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_preflight_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D3_CENTER_BRIDGED_TWO_PULSE_SCHEDULE_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "7e0a76f36f889f3dbd31e43c30be85b989120e584ac9e8d145c63109c66f84c0",
+  "source_r51r4d1_config": "configs/stage4_2r3c3t13s24d1r14r8r51r4d1_two_transport_exact_return_schedule_preflight.json",
+  "source_r51r4d1_config_sha256": "65f51e20d57637202a5c2b3eb155842af502c6e2ec4497367a188063d487eb6c",
+  "source_r51r4d1_implementation_sha256": "cce71f07cd856d5af3968b28be16be7cc83c5028b0f3e24abc68152509bb35f2",
+  "source_r51r4d1_independent_sha256": "59d75d8257b54040bf39e7616e311a4f9ccae0c9d336f923dcc22f6567666a8e",
+  "source_r51r4d1": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r51r4d1_two_transport_exact_return_schedule_preflight_20260810_b98f9c8_v2_refresh_fix",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r51r4d1_two_transport_exact_return_schedule_preflight",
+    "required_route": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D1_TWO_TRANSPORT_SCHEDULE_GEOMETRY_INSUFFICIENT_NO_REAL_TSC",
+    "action_stream_digest": "d1607012ca5e39cca3b3113c269c569c754603c49704cef419b239d810ea7ccb",
+    "eligible_specification_count": 68,
+    "context_pass_count": 0,
+    "specs_sha256": "548922d11ec27d56dd7fd259be1339acc1210b6b17adfa00c405e182d3a824af",
+    "source_authentication_sha256": "f7521af965e160691aae7c5e3b8ba84e56658a65459e9b00c20229c7d131ef09",
+    "offline_primary_sha256": "0dfb4757ce2eb783885fe0a9912ce859bb7be8ae4f103079058782501d43611b",
+    "offline_construction_sha256": "43ddef18075266b2f8c3287e468fa31656f71acd16ca9900cabf776061f74982",
+    "offline_independent_sha256": "0d58a9bbb8f0ce2742dc12ee21eef8bbc5c53754bd52b323b6674e544ddd5bc0",
+    "final_report_sha256": "af9501585d67da77973a7d14a642a8ae15a69f04ac70e1c454ba1fe45db6a0f5",
+    "stage_state_sha256": "6dd09da7faea09580cc9b50835572c3f625971a8dd3d403543c3ea82b46c1bec",
+    "stage_manifest_sha256": "ce9a9d3da885fbdd787b05d64c1687343fa3eac2d2e1ab32c6dda9f1f5c88ce7",
+    "compact_forensics_sha256": "07ffddc23b1428d53c1496f66309ad0b9cc122ef87e45df3427a6e8f64695338",
+    "server_evidence_sha256": "2b9fbf5353a6ddd0f2d17b051a944430a9999510b84d5f13072139d950f975a9"
+  },
+  "matrix_contract": {
+    "context_count": 10,
+    "candidate_count": 5,
+    "ordered_pair_count_per_context": 25,
+    "specification_count": 250,
+    "candidate_ids": ["d0m", "d1p", "d2m", "d3p", "u1p50"]
+  },
+  "schedule_contract": {
+    "q0_issue_task_step": 10,
+    "q0_observe_task_step": 11,
+    "first_issue_task_step": 12,
+    "first_hold_task_steps": [13, 14, 15],
+    "first_return_task_step": 16,
+    "center_bridge_hold_task_step": 17,
+    "second_issue_task_step": 18,
+    "second_hold_task_steps": [19, 20, 21],
+    "second_return_task_step": 22,
+    "dynamic_exact_search_radius": 16
+  },
+  "action_contract": {
+    "maximum_q0_integration_action_linf": 0.00001,
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.10,
+    "numerical_tolerance": 1e-12
+  },
+  "coverage_gate": {
+    "required_eligible_specification_count": 250,
+    "required_eligible_ordered_pairs_per_context": 25,
+    "required_first_candidate_count_per_context": 5,
+    "required_second_candidate_count_per_context": 5,
+    "required_history_pair_count": 5,
+    "require_equal_eligible_pair_set_within_history_pair": true
+  },
+  "routes": {
+    "source_blocked": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D3_BLOCKED_BY_SOURCE_OR_INTEGRITY",
+    "geometry_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D3_CENTER_BRIDGED_TWO_PULSE_GEOMETRY_INSUFFICIENT_NO_REAL_TSC",
+    "pass": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D3_CENTER_BRIDGED_TWO_PULSE_SCHEDULE_PREFLIGHT_COMPLETE_R51R4D4_DESIGN_REQUIRED"
+  },
+  "scientific_scope": {
+    "zero_new_tsc": true,
+    "response_values_used": false,
+    "model_fit_allowed": false,
+    "controller_executed": false,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_source_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}
