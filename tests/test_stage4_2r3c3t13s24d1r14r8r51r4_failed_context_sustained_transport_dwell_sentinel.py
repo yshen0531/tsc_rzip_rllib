@@ -183,6 +183,32 @@ class R8R51R4SustainedDwellTests(unittest.TestCase):
         self.assertFalse(self.cfg["scientific_scope"]["gate_a_qualified"])
         self.assertFalse(self.cfg["scientific_scope"]["bc_dagger_or_rl_allowed"])
 
+    def test_source_auth_accepts_integrity_pass_scientific_fail_evidence(self) -> None:
+        route = self.cfg["source_r51r3"]["required_route"]
+        evidence = {
+            "integrity_gate_passed": True,
+            "independent_audit_passed": True,
+            "scientific_gate_passed": False,
+            "passed": False,
+            "route": route,
+            "new_tsc_count": 0,
+            "new_raw_count": 0,
+            "plant_step_count": 0,
+            "source_or_row_exclusion_count": 0,
+        }
+        self.assertTrue(r4._r51r3_server_evidence_authenticated(evidence, route))
+        for key, value in (
+            ("integrity_gate_passed", False),
+            ("independent_audit_passed", False),
+            ("scientific_gate_passed", True),
+            ("passed", True),
+            ("new_tsc_count", 1),
+            ("source_or_row_exclusion_count", 1),
+        ):
+            changed = copy.deepcopy(evidence)
+            changed[key] = value
+            self.assertFalse(r4._r51r3_server_evidence_authenticated(changed, route))
+
     def test_runner_carries_both_new_source_runs_and_all_phases(self) -> None:
         runner = (ROOT / "run_stage4_2r3c3t13s24d1r14r8r51r4_common.sh").read_text(
             encoding="utf-8"

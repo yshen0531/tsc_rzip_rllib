@@ -280,6 +280,24 @@ def _artifact_hashes(stage: Path, names: Mapping[str, str], contract: Mapping[st
     return hashes
 
 
+def _r51r3_server_evidence_authenticated(
+    evidence: Mapping[str, Any], required_route: str
+) -> bool:
+    """Authenticate an integrity PASS whose preregistered science gate is FAIL."""
+
+    return bool(
+        evidence.get("integrity_gate_passed") is True
+        and evidence.get("independent_audit_passed") is True
+        and evidence.get("scientific_gate_passed") is False
+        and evidence.get("passed") is False
+        and evidence.get("route") == required_route
+        and int(evidence.get("new_tsc_count", -1)) == 0
+        and int(evidence.get("new_raw_count", -1)) == 0
+        and int(evidence.get("plant_step_count", -1)) == 0
+        and int(evidence.get("source_or_row_exclusion_count", -1)) == 0
+    )
+
+
 def authenticate_sources(ctx: Context) -> dict[str, Any]:
     inherited = r51.authenticate_sources(ctx.base_ctx)
     c1 = ctx.cfg["source_r51r1"]
@@ -337,7 +355,7 @@ def authenticate_sources(ctx: Context) -> dict[str, Any]:
         or independent3.get("primary_numerical_agreement") is not True
         or final3.get("route") != c3["required_route"]
         or state3.get("finished") is not True or state3.get("route") != c3["required_route"]
-        or evidence3.get("passed") is not True or evidence3.get("route") != c3["required_route"]
+        or not _r51r3_server_evidence_authenticated(evidence3, c3["required_route"])
     ):
         raise SourceBlockedError("R8R51R4 R51R1/R51R3 source result changed")
     return {
