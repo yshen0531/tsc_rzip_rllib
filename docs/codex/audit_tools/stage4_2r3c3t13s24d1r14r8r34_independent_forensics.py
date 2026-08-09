@@ -148,15 +148,22 @@ def _predict_group(
         : int(cfg["model_contract"]["neighbor_count"])
     ]
     delta = training[indices] - query
-    design = np.hstack((np.ones((len(indices), 1)), delta))
+    response = response[indices]
+    delta_mean = np.sum(delta, axis=0) / len(delta)
+    response_mean = np.sum(response, axis=0) / len(response)
+    centered_delta = delta - delta_mean
+    centered_response = response - response_mean
     ridge = float(cfg["model_contract"]["slope_ridge_penalty"])
-    regularizer = np.zeros((63, 63), dtype=np.float64)
-    regularizer[1:, 1:] = ridge * np.eye(62)
-    coefficients = np.linalg.solve(
-        design.T.dot(design) + regularizer,
-        design.T.dot(response[indices]),
-    )
-    result = coefficients[0, :]
+    active = np.logical_not(np.all(centered_delta == 0.0, axis=0))
+    slopes = np.zeros((62, response.shape[1]), dtype=np.float64)
+    if np.any(active):
+        active_delta = centered_delta[:, active]
+        active_count = int(np.count_nonzero(active))
+        slopes[active] = np.linalg.solve(
+            active_delta.T.dot(active_delta) + ridge * np.eye(active_count),
+            active_delta.T.dot(centered_response),
+        )
+    result = response_mean - delta_mean.dot(slopes)
     if result.shape != (response.shape[1],) or not np.isfinite(result).all():
         raise ValueError("independent R8R34 prediction invalid")
     return result

@@ -133,6 +133,36 @@ class R8R34CausalLocalNeighborhoodTests(unittest.TestCase):
         )
         self.assertLessEqual(float(np.max(physical / scales)), 1e-9)
 
+    def test_centered_intercept_handles_constant_far_query_coordinate(self):
+        random = np.random.RandomState(3417)
+        training = random.normal(size=(64, 62))
+        training[:, 17] = 0.0
+        scale = np.ones(62)
+        scale[17] = 1e-12
+        query = np.zeros(62)
+        query[17] = 1.0
+        group = {
+            "coordinate_mean": np.zeros(62),
+            "coordinate_scale": scale,
+            "standardized_coordinates": training,
+            "targets": random.normal(size=(64, 5)),
+        }
+
+        primary = r8r34.predict_group(
+            group, query, self.cfg, solver="augmented_lstsq"
+        )
+        independent = independent34._predict_group(
+            group, query, self.cfg, solver="normal"
+        )
+
+        self.assertTrue(np.all(np.isfinite(primary)))
+        self.assertTrue(np.all(np.isfinite(independent)))
+        physical = np.abs(primary - independent) * r8r34.FACTORS
+        scales = np.asarray(
+            self.cfg["model_contract"]["primary_independent_component_scales"]
+        )
+        self.assertLessEqual(float(np.max(physical / scales)), 1e-9)
+
     def test_neighbor_ties_are_deterministic(self):
         trajectories = self._trajectories(64)
         for trajectory in trajectories:

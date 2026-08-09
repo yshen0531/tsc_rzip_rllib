@@ -353,22 +353,43 @@ def predict_group(
     count = int(cfg["model_contract"]["neighbor_count"])
     chosen = order[:count]
     difference = training[chosen] - query
-    design = np.column_stack((np.ones(count), difference))
     response = target[chosen]
+    difference_mean = np.mean(difference, axis=0)
+    response_mean = np.mean(response, axis=0)
+    centered_difference = difference - difference_mean
+    centered_response = response - response_mean
     ridge = float(cfg["model_contract"]["slope_ridge_penalty"])
+    active = np.any(centered_difference != 0.0, axis=0)
+    slopes = np.zeros((62, response.shape[1]), dtype=float)
     if solver == "augmented_lstsq":
-        penalty = np.column_stack((np.zeros(62), math.sqrt(ridge) * np.eye(62)))
-        coefficients = np.linalg.lstsq(
-            np.vstack((design, penalty)),
-            np.vstack((response, np.zeros((62, response.shape[1])))),
-            rcond=None,
-        )[0]
+        if np.any(active):
+            active_count = int(np.sum(active))
+            slopes[active] = np.linalg.lstsq(
+                np.vstack(
+                    (
+                        centered_difference[:, active],
+                        math.sqrt(ridge) * np.eye(active_count),
+                    )
+                ),
+                np.vstack(
+                    (centered_response, np.zeros((active_count, response.shape[1])))
+                ),
+                rcond=None,
+            )[0]
     elif solver == "normal":
-        normal = design.T @ design + np.diag([0.0] + [ridge] * 62)
-        coefficients = np.linalg.solve(normal, design.T @ response)
+        if np.any(active):
+            active_difference = centered_difference[:, active]
+            active_count = int(np.sum(active))
+            normal = (
+                active_difference.T @ active_difference
+                + ridge * np.eye(active_count)
+            )
+            slopes[active] = np.linalg.solve(
+                normal, active_difference.T @ centered_response
+            )
     else:
         raise ValueError(f"unknown R8R34 solver {solver}")
-    output = coefficients[0]
+    output = response_mean - difference_mean @ slopes
     if output.shape != (response.shape[1],) or not np.all(np.isfinite(output)):
         raise ValueError("R8R34 local prediction invalid")
     return output
