@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R46",
+  "identity": "q0_calibration_causal_innovation_controller_preflight_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r46_q0_calibration_causal_innovation_controller_preflight",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R46_Q0_CALIBRATION_CAUSAL_INNOVATION_CONTROLLER_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "f12206844c181d9610d96588c8f44e3a47cc6661120b208b2ab9c04b57f66e1e",
+  "source_r8r44_config": "configs/stage4_2r3c3t13s24d1r14r8r44_fixed_affine_dominant_global_local_affine_cold_ensemble_receding_controller_preflight.json",
+  "source_r8r44_config_sha256": "b186a5395a604a4957240153264465276966407a5baaef343d798a013e01aabb",
+  "source_r8r44": {
+    "required_route": "FIXED_AFFINE_DOMINANT_COLD_ENSEMBLE_CONTROLLER_PREFLIGHT_AUTHORITY_INSUFFICIENT_NO_TSC",
+    "primary_summary_sha256": "539691abbd779d6c56711cbbd489ed7f47bc9297472d1bbd9b358ef881bb409b",
+    "primary_detailed_sha256": "dabff158160e77d82207c95d0d38093c91aca3a97b06287216b3d83164877aa2",
+    "model_sha256": "7a7b35b6189765653a1c4d16b4a80fc6096ea35fe135542cd5049f65b6ad16a5",
+    "independent_sha256": "d757515ba0e6e3d1de895f2cc5c08f9423d48d56f4a9b8c916239d5cdf7a1a01",
+    "compact_audit_sha256": "b0496ed69c8ba3a45ff611b086df955fc53fe8ed34b9def30706cae3361ea764",
+    "final_report_sha256": "7bd1b8e31c81e82e4559f78acf0b2b37bd6705e178e64d4a53d03575aaf2b713",
+    "stage_state_sha256": "7bbd2a69faaa9de560979120ff6651d65d85141cb7a79e47c8c869ffc346a794",
+    "stage_manifest_sha256": "2a576650f3e540959ffc5f13ef5e10a035a49447d25959291ccb137476e0059a"
+  },
+  "bank_contract": {
+    "trajectory_count": 560,
+    "physical_pair_count": 8,
+    "history_context_count": 16,
+    "schedule_count": 35,
+    "interval_record_count": 3360,
+    "bank_digest": "a84995970a5c1f0f2d2e964c6b97cbaf213ac8f86d70a3666279ae144ba2de2e",
+    "feature_digest": "80ed0b20b99f6f277ac1e09f85ad33c6fb8a1e611824901509eaf6a3c7b830db",
+    "target_digest": "0f445fca5bb2dbb1da7fb1fc5e1951161322caccc4219371653ffdb55eaa8539"
+  },
+  "model_contract": {
+    "global_weight": 0.25,
+    "local_weight": 0.75,
+    "reserve_multiplier": 1.25,
+    "innovation_update_previous_weight": 0.5,
+    "innovation_update_residual_weight": 0.5,
+    "innovation_forecast_decay": 0.5,
+    "innovation_initial_value": 0.0,
+    "innovation_cap_source": "training_only_cold_tube_before_reserve",
+    "adapted_validation_intervals": [1, 2, 3, 4, 5],
+    "physical_point_error_floors": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "primary_independent_component_scales": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "primary_independent_scaled_tolerance": 1e-9,
+    "gain_search_allowed": false,
+    "weight_search_allowed": false,
+    "feature_search_allowed": false,
+    "tube_clipping_allowed": false,
+    "outcome_selection_allowed": false
+  },
+  "model_gates": {
+    "maximum_point_error": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "maximum_tube_half_width": [0.025, 0.025, 5000.0, 0.08, 0.08],
+    "required_reserved_tube_containment_rate": 1.0,
+    "required_whole_pair_support_rate": 1.0,
+    "required_whole_schedule_support_rate": 1.0,
+    "required_finite_prediction_rate": 1.0,
+    "required_forbidden_input_count": 0,
+    "required_innovation_clipping_component_count": 0
+  },
+  "adaptation_usefulness_gate": {
+    "maximum_adapted_to_cold_aggregate_normalized_squared_error_ratio": 0.95,
+    "minimum_strictly_improved_whole_pair_fold_count": 6,
+    "required_whole_pair_fold_count": 8,
+    "maximum_whole_pair_fold_ratio": 1.05,
+    "maximum_whole_schedule_aggregate_ratio": 0.95,
+    "required_whole_schedule_fold_count": 35
+  },
+  "calibration_contract": {
+    "issue_task_step": 10,
+    "measurement_task_step": 12,
+    "candidate_index": 0,
+    "candidate_id": "q0",
+    "required_context_count": 16,
+    "require_exact_target_hold": true,
+    "require_cold_tube_containment": true,
+    "require_zero_clipping_components": true
+  },
+  "planner_contract": {
+    "candidate_count": 17,
+    "transport_decision_task_steps": [12, 14, 16, 18, 22],
+    "beam_width": 512,
+    "measurement_recentered": true,
+    "execute_first_action_only": true,
+    "failed_plan_deployment_allowed": false,
+    "fallback": "exact_current_target_hold",
+    "canonical_matrix_float64_le_c_sha256": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+    "dynamic_exact_search_radius": 16,
+    "immediate_safety_tube": "componentwise_max_cold_and_adapted"
+  },
+  "action_contract": {
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.1,
+    "require_exact_card15_issue": true,
+    "require_exact_card15_refresh": true,
+    "safe_stop_before_failed_advance": true
+  },
+  "formal_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "offline_gate": {
+    "required_calibration_context_count": 16,
+    "required_safe_search_context_count": 16,
+    "minimum_predicted_repaired_failed_baseline_count": 1,
+    "maximum_predicted_regressed_baseline_pass_count": 0,
+    "minimum_predicted_oracle_count": 7,
+    "minimum_nonzero_first_transport_action_count": 1,
+    "required_fault_injection_count": 6
+  },
+  "routes": {
+    "source_blocked": "Q0_CALIBRATION_CAUSAL_INNOVATION_PREFLIGHT_BLOCKED_BY_SOURCE",
+    "execution_fail": "Q0_CALIBRATION_CAUSAL_INNOVATION_PREFLIGHT_EXECUTION_FAIL_STOP",
+    "model_fail": "Q0_CALIBRATION_CAUSAL_INNOVATION_MODEL_INSUFFICIENT_NO_TSC",
+    "safety_fail": "Q0_CALIBRATION_CAUSAL_INNOVATION_SAFETY_FAIL_NO_TSC",
+    "authority_fail": "Q0_CALIBRATION_CAUSAL_INNOVATION_AUTHORITY_INSUFFICIENT_NO_TSC",
+    "pass": "Q0_CALIBRATION_CAUSAL_INNOVATION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED"
+  },
+  "scientific_scope": {
+    "zero_new_tsc": true,
+    "controller_execution_authorized": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}
