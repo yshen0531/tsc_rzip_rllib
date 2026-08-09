@@ -515,7 +515,11 @@ def fit_model(
             for offset in range(max(len(row["targets"]) for row in rows))
         ]
         intervals.append({"interval": interval, "offsets": offsets})
-    return {"model_kind": "rank_regularized_pca32_ridge_0p01", "intervals": intervals}
+    rank = int(cfg["model_contract"]["pca_rank"])
+    return {
+        "model_kind": f"rank_regularized_pca{rank}_ridge_0p01",
+        "intervals": intervals,
+    }
 
 
 def predict(model: Mapping[str, Any], row: Mapping[str, Any]) -> np.ndarray:
