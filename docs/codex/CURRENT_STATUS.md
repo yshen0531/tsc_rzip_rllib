@@ -34,7 +34,7 @@
 > control, MPC, or Gate A result. Exact report:
 > `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R33_FORENSIC_REPORT.md`,
 > SHA-256
-> `eb95348c5fc72c0b83028455a6ddb434238cf479cb0b7fd3b7433fd22fd65737`.
+> `9cea9a4412f1375ffb4aa9924d02d05e063801c0965f3214f2dd9db5d3286ff2`.
 >
 > Before any failed-row inspection or next-stage calculation, R8R34 was
 > frozen at `1380fe1` in
