@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R51R4",
+  "identity": "failed_context_sustained_transport_dwell_sentinel_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r51r4_failed_context_sustained_transport_dwell_sentinel",
+  "controller_revision": "failed_context_sustained_transport_dwell_v42r3c3t13s24d1r14r8r51r4_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r51r4_sustained_dwell_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4_FAILED_CONTEXT_SUSTAINED_TRANSPORT_DWELL_SENTINEL_DESIGN.md",
+  "design_document_sha256": "15f3f8405920bb6ed06f0f257db9bb2566ffaadfdee0df81040a49d1c523f6ad",
+  "source_r51r1_config": "configs/stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel_370ms.json",
+  "source_r51r1_config_sha256": "a40569191b5d4fc3f8b2663e52f188ed0cf3f211280574d1889750ae6d516c4f",
+  "source_r51r1_implementation_sha256": "cfb026f5547ea98d3af0edb9b459e50c1b2826f51ab88b048e8f57af3ce2ccb0",
+  "source_r51r1": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel_20260809_1baf670_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel",
+    "required_route": "REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_COMPLETE_R51R2_MODEL_PREFLIGHT_REQUIRED",
+    "raw_count": 208,
+    "raw_bytes": 6692740,
+    "raw_inventory_digest": "0ce9ac9211c00b403f0ef7235cfde81a1e42751fa230d245cd2dc396fc3e3d33",
+    "all_specs_sha256": "570000c557ff4d11c968ba15f066f18f7d64137918d4139b6855b61a0f2eec20",
+    "raw_primary_sha256": "925dbed532e4dcda721592fe409158c7defd89636d94affef9157646df5981a1",
+    "final_report_sha256": "38b87b3e4ffd082b018944f12e36c4b2bcd70c900e09007e816a357c2c9e7efd",
+    "stage_state_sha256": "3ba2068fdeae0e4a508e648381a080d49c35c933c9f37c76f1b1fb8e4ac34b54",
+    "stage_manifest_sha256": "c58148f603913c70d5e35626f72dc3541892ad4ec2a919db139a45b51feaa076"
+  },
+  "source_r51r3": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r51r3_single_transport_return_hold_formal_authority_audit_20260810_06e4728_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r51r3_single_transport_return_hold_formal_authority_audit",
+    "required_route": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R3_SINGLE_TRANSPORT_RETURN_HOLD_AUTHORITY_INSUFFICIENT_SEQUENTIAL_MODEL_REQUIRED",
+    "primary_detailed_sha256": "8c1f8e1d1ac900401f7ef22293e0f63726b2752c483f66b16893ba29280293ce",
+    "primary_summary_sha256": "f0323cb8fc2d5fb1ab0579e0c6da2e4f392eac5faf1f33113adb29a04c1a2cea",
+    "independent_sha256": "87eaa727e5e9396214ae006e62a6c487937317f6e65ba307dfb55fad44a6b0ff",
+    "compact_audit_sha256": "fc83d57516fa324dc53c8402bb38b826ae8023d80d73b3355fdc9b1f47189abe",
+    "final_report_sha256": "e1070b8eadb6e3d4959225b7ed617b49df02941eebfd39000104254ed547bc7f",
+    "stage_state_sha256": "f0152febd2f69be70af89cc787ac8765a4153175a119fed58ce6523ca7bb0d69",
+    "stage_manifest_sha256": "7c3e7cef1916f589cd5c4ca81d00dc70ff1efdf298b25f6a8c2768e9e6c63621",
+    "server_final_evidence_sha256": "15023c597e042d43bb96a648800eb2b5bc88bd2295a109a8635554b1ff065664",
+    "formal_metric_digest": "b9f9ae61c6e1093fbaa10d22239da3bb82ce56bf4c38023c8cea0924c129b0d0",
+    "context_outcome_digest": "fb7359cfa38f7750edeaa9f522ec903cbf22dc81b821a63a9205b803901af2d8"
+  },
+  "matrix_contract": {
+    "context_count": 10,
+    "candidate_count": 5,
+    "return_step_count": 2,
+    "trajectory_count": 100,
+    "candidate_ids": ["d0m", "d1p", "d2m", "d3p", "u1p50"],
+    "return_task_steps": [16, 18],
+    "failed_source_baseline_ids": [
+      "r8r7_baseline_00", "r8r7_baseline_01", "r8r7_baseline_02", "r8r7_baseline_03",
+      "r8r7_baseline_04", "r8r7_baseline_05", "r8r7_baseline_06", "r8r7_baseline_07",
+      "r8r7_baseline_12", "r8r7_baseline_13"
+    ]
+  },
+  "schedule_contract": {
+    "prefix_end_task_step": 10,
+    "q0_issue_task_step": 10,
+    "candidate_issue_task_step": 12,
+    "candidate_first_effect_state_step": 13,
+    "stored_center_return_task_steps": [16, 18],
+    "first_restored_center_state_steps": [17, 19],
+    "dynamic_exact_search_radius": 16,
+    "require_exact_q0_prefix_through_state_step": 12,
+    "require_exact_candidate_current_hold": true,
+    "require_exact_center_refresh_after_return": true
+  },
+  "controller_contract": {
+    "maximum_q0_integration_action_linf": 0.00001,
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.10,
+    "require_exact_card15_issue": true,
+    "require_exact_card15_refresh": true,
+    "require_shared_q0_constructor_parity": true,
+    "forbid_q0_zero_target_predicate": true,
+    "require_exact_stored_center_return": true,
+    "require_first_effect_at_issue_plus_one": true,
+    "safe_stop_before_failed_advance": true
+  },
+  "formal_contract": {
+    "base_target_physical": [0.75, 0.0, 29779.724],
+    "dt_s": 0.01,
+    "normal_arrival_first_step": 12,
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_first_step": 12,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "endpoint_speed_tolerance_m_per_s": 0.1,
+    "rms_speed_tolerance_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_terminal_abs_tolerance_A": 2000.0,
+    "ip_hold_rms_tolerance_A": 2400.0,
+    "ip_sustained_max_tolerance_A": 4000.0,
+    "arrival_streak_steps": 3,
+    "formal_pass_tolerance": 1e-12,
+    "metric_equivalence_absolute_tolerance": 1e-12,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "known_aggregate_contract": {
+    "baseline_formal_pass_count": 6,
+    "failed_baseline_count": 10,
+    "trajectory_count": 100,
+    "candidate_count_per_failed_context": 10
+  },
+  "scientific_gate": {
+    "minimum_repaired_failed_baseline_count": 1,
+    "minimum_measured_oracle_formal_pass_count": 7
+  },
+  "routes": {
+    "source_blocked": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4_SUSTAINED_DWELL_BLOCKED_BY_SOURCE",
+    "offline_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4_SUSTAINED_DWELL_OFFLINE_FAIL_NO_REAL_TSC",
+    "execution_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4_SUSTAINED_DWELL_EXECUTION_FAIL_STOP",
+    "authority_insufficient": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4_SUSTAINED_DWELL_AUTHORITY_INSUFFICIENT_LONGER_SEQUENTIAL_REDESIGN_REQUIRED",
+    "pass": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4_SUSTAINED_DWELL_AUTHORITY_PRESENT_R51R5_MODEL_PREFLIGHT_REQUIRED"
+  },
+  "parallel": {"n_workers": 16},
+  "storage": {
+    "ray_tmpdir": "/tmp/stage4_2r3c3t13s24d1r14r8r51r4_ray",
+    "actor_close_timeout_s": 120.0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "scientific_scope": {
+    "identification_only": true,
+    "model_fit_allowed": false,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}
