@@ -8218,3 +8218,68 @@ BC, DAgger, residual-RL, or other learning data. Neither stage is Gate A.
 Continue autonomously only through these frozen boundaries and later
 prospectively frozen Gate A qualification work; pause for the user only if
 every Gate A axis in Section 0 is actually satisfied.
+
+## 148. Final R8R51R1 reporting correction and active R8R51R2 preflight
+
+R8R51R1 completed at implementation/package checkpoints `bbb83b3 / 1baf670`.
+Its one authorized real campaign produced 208/208 strict, successful,
+full-horizon authentic TSC trajectories with exact restart, source prefix,
+causality, calibration, Card15, q0/candidate event, issue-plus-one action,
+finite response, return, current, abnormal, and forbidden-input gates. Raw
+inventory is 208 files, 6,692,740 bytes, digest
+`0ce9ac9211c00b403f0ef7235cfde81a1e42751fa230d245cd2dc396fc3e3d33`.
+
+The original primary and original independent both reported only `39/208`
+q0 first effects because they used binary array equality between physical
+state-11 current and a reconstructed nominal readback. Read-only raw
+forensics proved:
+
+```text
+state-11 action equals task-step-10 trace action          208/208
+state-10 action equals task-step-9 trace action           208/208
+state-11 current equals state-10 current exactly          208/208
+binary-exact reconstructed current                         39/208
+maximum reconstructed-current difference  2.842170943040401e-14 A
+```
+
+The reporting-only contract/implementation/package checkpoints are
+`1dc42f8 / c5a1311`. The hotfix preserved original raw, primary, independent,
+state, manifest, controller, and action semantics; it used the pre-frozen
+`rtol=0, atol=1e-12 A` numerical-equivalence rule. Primary NumPy and
+structurally independent scalar recomputations agreed exactly and passed
+`208/208`. Hotfix primary/independent/compact/final hashes are:
+
+```text
+fe7edca96abbbb204216c61a92a40e2ffbded762c9c153804deef7e53bc9d151
+b5c2f4d0acf23ef9d3874c2404bbb0495541e75f1903ef51bf5f407b2fc7a02b
+4f3d922d1f855e5ebe12b96bb844e8d4538296e41ad535d96adfeb997f12641d
+38b87b3e4ffd082b018944f12e36c4b2bcd70c900e09007e816a357c2c9e7efd
+```
+
+Final corrected route:
+
+```text
+REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_COMPLETE_R51R2_MODEL_PREFLIGHT_REQUIRED
+```
+
+The original route remains preserved evidence of a summary/statistics bug.
+The hotfix executed zero TSC, raw, controller, or plant step. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R1_FORENSIC_REPORT.md
+```
+
+Do not rerun R8R51 or R8R51R1. The only active task is to implement and
+execute the already frozen R8R51R2 zero-new-TSC whole-pair causal model/tube
+preflight (`ce66bb7`, design SHA
+`8955235246fb79bc7e855abde79b32e0269f24774e1452bf380e77966eeab095`).
+Keep its exact 44D causal feature, fixed 180D representation, eight
+physical-pair outer folds, inner training-only ridge/tube selection, physical
+floors, response caps, source authentication, and no-planning-before-model-
+PASS boundary. Do not add or weaken any gate after opening R51R1 response.
+
+All R8R51/R8R51R1 trajectories are probes and forbidden from all learning
+data. R51R1 is identification integrity only, not MPC or Gate A. Gate A,
+expert data, BC, DAgger, residual RL, and Gate B remain blocked. Continue
+autonomously through the frozen MPC qualification route and pause only if all
+Gate A axes in Section 0 are actually satisfied.

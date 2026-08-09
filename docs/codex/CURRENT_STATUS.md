@@ -1,5 +1,63 @@
 # Current status
 
+> **Final R8R51R1 q0-integration result and active zero-TSC R8R51R2
+> boundary (2026-08-10 Asia/Shanghai).** R8R51R1 completed at design/
+> implementation/executed-package checkpoints `ce66bb7 / bbb83b3 / 1baf670`.
+> Primary and independent offline construction passed all `208/208` cells.
+> The one authorized real campaign then produced 208/208 strict, successful,
+> full-horizon authentic TSC trajectories and 7,488 plant steps. Raw inventory
+> is 208 files, 6,692,740 bytes, digest
+> `0ce9ac9211c00b403f0ef7235cfde81a1e42751fa230d245cd2dc396fc3e3d33`.
+> Restart, source state/trace prefix, causality, calibration, exact q0/candidate
+> Card15 events, within-context q0 prefix, issue-plus-one candidate effect,
+> finite response, exact return, current, abnormal, and forbidden-input gates
+> all passed `208/208`; maximum current utilization was `0.3924`, with zero
+> runtime failures, safety stops, or forbidden traces.
+>
+> The original primary and independent both selected the execution-failure
+> route only because `q0_first_effect_at_issue_plus_one` used binary array
+> equality between state-11 current and a binary64-reconstructed nominal
+> readback. State-11 action matched task-step-10 trace action `208/208`,
+> state-10 action matched task-step-9 trace action `208/208`, and state-11
+> physical current equaled state-10 current exactly `208/208`. Only three
+> contexts reconstructed byte-identically, hence `39/208`; maximum current
+> discrepancy was only `2.842170943040401e-14 A`.
+>
+> A reporting-only contract/implementation/package at `1dc42f8 / c5a1311`
+> retained exact action comparisons and applied the already frozen
+> `rtol=0, atol=1e-12 A` numerical-equivalence rule. Primary NumPy and
+> structurally independent scalar raw recomputations agreed exactly and
+> passed `208/208`. The hotfix executed zero TSC, raw, controller, or plant
+> step and did not overwrite the old reports or state. Original
+> primary/independent/state hashes remain
+> `925dbed532e4dcda721592fe409158c7defd89636d94affef9157646df5981a1 /`
+> `bd7f4a35fbb011abfe282e386080967449f6695486954f2614f4957a12908a4b /`
+> `3ba2068fdeae0e4a508e648381a080d49c35c933c9f37c76f1b1fb8e4ac34b54`.
+> Accepted hotfix primary/independent/compact/final hashes are
+> `fe7edca96abbbb204216c61a92a40e2ffbded762c9c153804deef7e53bc9d151 /`
+> `b5c2f4d0acf23ef9d3874c2404bbb0495541e75f1903ef51bf5f407b2fc7a02b /`
+> `4f3d922d1f855e5ebe12b96bb844e8d4538296e41ad535d96adfeb997f12641d /`
+> `38b87b3e4ffd082b018944f12e36c4b2bcd70c900e09007e816a357c2c9e7efd`.
+>
+> Final corrected route is
+> `REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_COMPLETE_R51R2_MODEL_PREFLIGHT_REQUIRED`.
+> The old route is preserved evidence of a summary/statistics reporting bug,
+> not runtime, deployment, raw, restart, causality, action, controller,
+> safety, plant, MPC, reachability, or Gate A failure. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R1_FORENSIC_REPORT.md`,
+> SHA-256
+> `746a907449f5e43c01f3b34ab3a30b0e5e694e5dee614ffcf903be794981e744`.
+>
+> Do not rerun R8R51 or R8R51R1. The active task is the already frozen R51R2
+> zero-new-TSC whole-pair causal model/tube preflight (`ce66bb7`, design SHA
+> `8955235246fb79bc7e855abde79b32e0269f24774e1452bf380e77966eeab095`).
+> It must retain its exact 44D causal feature, fixed 180D representation,
+> eight physical-pair outer folds, nested training-only ridge/tube selection,
+> physical floors, caps, and no-planning-before-model-PASS boundary. Every
+> R51/R51R1 trajectory remains a probe forbidden from learning. R51R1 is
+> identification integrity only; Gate A, expert data, BC, DAgger, residual
+> RL, and Gate B remain blocked.
+
 > **Final R8R51 implementation-gate failure and frozen R8R51R1/R51R2
 > boundary (2026-08-09 Asia/Shanghai).** R8R51 completed at design,
 > implementation, and package checkpoints `a82effc / 274e970 / 04d3250`.
