@@ -5,9 +5,9 @@
   "run_name": "stage4_2r3c3t13s24d1r14r8r33_uniformly_supported_rank12_schedule_generalizing_feedback_preflight",
   "campaign_identity": "uniformly_supported_rank12_schedule_generalizing_feedback_preflight_v1",
   "controller_revision": "uniformly_supported_rank12_schedule_generalizing_feedback_v42r3c3t13s24d1r14r8r33_v1",
-  "package_revision": "r42r3c3t13s24d1r14r8r33_uniform_rank12_schedule_preflight_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r33_uniform_rank12_schedule_preflight_v2",
   "design_checkpoint": "82d1307",
-  "implementation_checkpoint": "cd66c4a",
+  "implementation_checkpoint": "c5cf429",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r8r33_uniformly_supported_rank12_schedule_generalizing_feedback_preflight.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R33_UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md",
   "design_document_sha256": "51063dc6f2ecede5d42a0cbf5cde6aa4736628ed38f27d3a5edaeba95a368189",
@@ -655,7 +655,7 @@
     "outbound_network_required": false,
     "empty_directory_deployment_required": true
   },
-  "declared_file_count": 1167,
+  "declared_file_count": 1168,
   "file_inventory": [
     "AGENTS.md",
     "configs/stage2_1_svd3_dual_archive_tail_cem_100ms.json",
@@ -994,6 +994,7 @@
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R32_RANK_REGULARIZED_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R32_FORENSIC_REPORT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R33_UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md",
+    "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R34_CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R3_CAUSAL_HISTORY_NO_ACTION_OBSERVER_DESIGN.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R4_FORENSIC_REPORT.md",
     "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R4_FRESH_CAUSAL_OBSERVER_IDENTIFICATION_DESIGN.md",
