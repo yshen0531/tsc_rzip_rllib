@@ -1,5 +1,58 @@
 # Current status
 
+> **Final R8R51R2 whole-pair model result and frozen R8R51R3 authority
+> audit (2026-08-10 Asia/Shanghai).** R8R51R2 completed at design/
+> implementation/accepted-package checkpoints `ce66bb7 / eedf15e / 2e96b75`.
+> A first package at `b0aeca1` passed local empty-copy and server staging/
+> installed validation, but its invocation stopped before model construction
+> because the primary and independent source locators omitted R51R1's actual
+> `_370ms` config suffix. Server source bytes matched the expected hash and the
+> stopped v1 stage contained zero files. The path-only repair/package at
+> `4863644 / 2e96b75` added a regression test without changing any model,
+> response, fold, tube, or scientific gate.
+>
+> Accepted local source and empty direct-copy plus server staging/installed
+> validation passed 1,265 declared hashes, 1,267 physical files, 494 Python
+> compilations, 457/479 applicable shell parses, focused `9/9`, and full
+> `1580/1580`, with one expected isolated-package skip. Transfer was direct
+> `scp -r` without archives and both hosts used only existing virtual
+> environments. Package manifest/SHA256SUMS hashes are
+> `2c6d8d3dd269bfd6d3d02432e1644de901322beb496f97f81e77eeb750d86b02 /`
+> `84393457e63c3d32006b1749e0053382cf01dafd2a7ddc491df34a2ceb58c098`.
+>
+> Primary and structurally independent server recomputation authenticated all
+> 208 immutable R51R1 rows and passed prediction, point-error, nested-tube, and
+> cap gates `208/208 / 208/208 / 208/208 / 8/8`. There were zero forbidden
+> inputs or excluded rows and exactly zero numerical disagreement. Maximum
+> state-13/state-14 physical errors were
+> `[1.780870698162285e-05, 3.736242752193625e-06, 5.993494138041089,
+> 3.862420243622e-05, 7.156778008633018e-06, 10.103048139910582]` in
+> `[m,m,A,m,m,A]`; all maximum tube half-widths were the frozen floors
+> `[.015,.015,3000,.015,.015,3000]`. It ran zero new TSC, raw, snapshot,
+> controller, plant step, model selection, or optimization.
+>
+> Final route is
+> `REDUCED_Q0_TRANSPORT_BRIDGE_R51R2_WHOLE_PAIR_CAUSAL_MODEL_COMPLETE_CONTROLLER_PREFLIGHT_REQUIRED`.
+> This is only a finite state-12-to-state-13/14 causal response-model PASS,
+> not a full-suffix model, controller, MPC, formal-control PASS, or Gate A.
+> Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R2_FORENSIC_REPORT.md`,
+> SHA-256
+> `bf7a56dd3b1c2c166a4fd10a4e6ddb3cbb3387b18af9d5834266d6767816058a`.
+>
+> Before any R51R1 candidate formal metric, repair mapping, or oracle was
+> computed, the zero-new-TSC R51R3 full-horizon authority audit was frozen at
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R3_SINGLE_TRANSPORT_RETURN_HOLD_FORMAL_AUTHORITY_AUDIT_DESIGN.md`,
+> SHA-256
+> `7f65a14032131ef24a8fb3bb337ec33b3485c8a416fc401d034b96ad1cf93e40`.
+> It must evaluate all 16 matching R8R7 baselines and all 208 actual R51R1
+> single-transport/exact-return/hold trajectories under the immutable formal
+> contract, with independent raw algebra and no exclusions. PASS requires at
+> least one of ten failed baselines repaired and a baseline-plus-candidate
+> oracle of at least `7/16`. Either outcome remains pre-controller and not
+> Gate A. All R8-family trajectories remain probes forbidden from learning;
+> Gate A, expert data, BC, DAgger, residual RL, and Gate B remain blocked.
+
 > **Final R8R51R1 q0-integration result and active zero-TSC R8R51R2
 > boundary (2026-08-10 Asia/Shanghai).** R8R51R1 completed at design/
 > implementation/executed-package checkpoints `ce66bb7 / bbb83b3 / 1baf670`.

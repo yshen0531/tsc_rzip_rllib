@@ -8283,3 +8283,62 @@ data. R51R1 is identification integrity only, not MPC or Gate A. Gate A,
 expert data, BC, DAgger, residual RL, and Gate B remain blocked. Continue
 autonomously through the frozen MPC qualification route and pause only if all
 Gate A axes in Section 0 are actually satisfied.
+
+## 149. Final R8R51R2 model PASS and active R8R51R3 authority audit
+
+R8R51R2 completed at design/implementation/package checkpoints
+`ce66bb7 / eedf15e / 2e96b75`. A separately classified first invocation at
+`b0aeca1` stopped before any model/output because both source locators omitted
+R51R1's actual `_370ms` config suffix. Server source bytes matched; the v1
+stage file count was zero. The path-only correction at `4863644` preserved
+all model, fold, tube, and scientific semantics.
+
+Accepted local project-venv source and fresh empty direct-copy validation,
+then server staging and installed validation, passed 1,265 declared hashes,
+1,267 physical files, focused `9/9`, and full `1580/1580`, with one expected
+isolated-package skip. Direct `scp -r` was used without archives.
+
+Primary and independent server recomputation retained all 208 source rows.
+Prediction, point-floor, nested-tube containment, and tube-cap gates passed
+`208/208 / 208/208 / 208/208 / 8/8`; forbidden inputs and exclusions were
+zero and the maximum primary-independent difference was exactly zero. The
+maximum physical errors were at most `0.0386243 mm`, `0.00715678 mm`, and
+`10.1031 A`; all maximum tube widths remained at the frozen floors. R51R2
+created zero new TSC, raw, snapshots, controller, plant steps, model selection,
+or optimization. Final route:
+
+```text
+REDUCED_Q0_TRANSPORT_BRIDGE_R51R2_WHOLE_PAIR_CAUSAL_MODEL_COMPLETE_CONTROLLER_PREFLIGHT_REQUIRED
+```
+
+R51R2 certifies only the finite state-12-to-state-13/14 response model and
+training-only tube. Exact report and SHA-256:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R2_FORENSIC_REPORT.md
+bf7a56dd3b1c2c166a4fd10a4e6ddb3cbb3387b18af9d5834266d6767816058a
+```
+
+Before computing or viewing any candidate formal metric or context repair,
+freeze and execute R8R51R3 exactly as specified in:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R3_SINGLE_TRANSPORT_RETURN_HOLD_FORMAL_AUTHORITY_AUDIT_DESIGN.md
+7f65a14032131ef24a8fb3bb337ec33b3485c8a416fc401d034b96ad1cf93e40
+```
+
+R51R3 is zero-new-TSC and must authenticate/evaluate every one of the 16
+matching R8R7 baselines and 208 full-horizon R51R1 trajectories with the
+unchanged formal evaluator and a structurally independent raw-algebra path.
+No candidate, context, outcome, or failed row may be excluded. Scientific PASS
+requires at least one of the ten failed baselines repaired and a measured
+baseline-plus-candidate oracle of at least `7/16`. PASS authorizes only a
+separately frozen model-selected controller preflight. FAIL rejects only this
+single-transport/exact-return/hold family and requires a sequential action/
+model redesign; it is not global plant unreachability.
+
+Do not rerun R8R51, R8R51R1, R8R7, or any other old TSC campaign. All source
+trajectories remain probes forbidden from expert data or learning. R51R3 is
+not controller/MPC/Gate A evidence. Continue autonomously through the frozen
+MPC qualification route and pause only when every Gate A axis in Section 0 is
+actually satisfied.
