@@ -7069,6 +7069,86 @@ separately frozen measurement-recentered controller preflight. It is not Gate
 A. Expert data, BC, DAgger, residual RL, and every other learning route remain
 blocked; every R8-family trajectory remains forbidden from learning data.
 
+## 138. Final R8R35 result, blocked R8R36, and frozen R8R37 task
+
+R8R35 completed at design/implementation/package checkpoints
+`7c83240 / ff2340e / 70236b3`. Local, empty-direct-copy, server-staging, and
+installed validation passed 1,181/1,181 hashes, 139 JSON including manifest,
+461 Python compilations, 446 server `bash -n`, focused `11/11`, and full
+`1452/1452` with one expected isolated/server skip where applicable.
+
+Primary and independent zero-new-TSC paths authenticated the exact 560-row,
+35-schedule, 3,360-record bank and all three digests. Cardinality passed
+`1161/1161` heads with minimum training count 210; held-pair state support
+passed `8/8`. Independent neighbor identities and discrete results were
+exact. Maximum scaled prediction, tube, and metric differences were
+`7.21645e-15`, `2.77556e-15`, and `2.77556e-15`, below `1e-9`.
+
+The scientific model gates failed:
+
+```text
+whole-pair maximum point
+  [0.0107254697,0.0181541107,149.299444,0.0578928250,0.0830865845]
+whole-pair maximum tube
+  [0.015,0.0226926383,3000,0.0723660313,0.103858231]
+whole-pair containment                         72786/72800
+
+whole-schedule maximum point
+  [0.0112621299,0.0250644243,168.329283,0.0692899234,0.107082218]
+whole-schedule maximum tube
+  [0.015,0.0313305304,3000,0.0866124043,0.133852773]
+whole-schedule containment                     72800/72800
+```
+
+The causal update was useful in aggregate: adapted/cold normalized L1 was
+`0.375757883` for whole-pair and `0.739325944` for whole-schedule. All eight
+pair folds improved, but three schedule folds regressed:
+`R8R14_d0_p=1.03581116`, `R8R28_g2_UUUU=1.12480206`, and
+`R8R28_g2_VVVV=1.13977925`. The every-fold usefulness gate therefore failed
+in addition to the absolute model gates.
+
+Final route:
+
+```text
+CAUSAL_LAST_INNOVATION_LOCAL_CONSTANT_MODEL_FAIL_NO_TSC
+```
+
+The stage contains eight files and zero raw, JSON.GZ, snapshot, Ray,
+`gotsc`, TSC, controller, or plant step. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R35_FORENSIC_REPORT.md
+SHA-256  150e5a22dc804a7ce3cdde6305bbd96478f9bc40bdb813e24d2fa636991b8655
+```
+
+Before any R8R35 result was opened, the conditional R8R36 controller design
+was frozen at `f0eb69f`, SHA-256
+`0c2f3e6b048d05b087a9ce9c746df057f2f70eab5dfdfafefe7e10ac10aa4ac9`.
+Its source gate requires a final R8R35 PASS, so it is blocked and must not be
+implemented or executed.
+
+Before any next gain fit or result, freeze R8R37 at:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R37_TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_SCHEDULE_GENERALIZING_PREFLIGHT_DESIGN.md
+SHA-256  6433312711b9b107a218bb5701ef6070a0dfbc482fd492d983437c32637fb843
+```
+
+Implement exactly the same response-blind local-constant cold predictor and
+unchanged whole-pair/schedule gates. Inside each training fold only, fit one
+no-intercept `[0,1]`-projected scalar innovation gain for every one of five
+interval transitions and five output components. Held rows may not enter
+gain fitting. Retain the 5% aggregate usefulness and every-fold no-regression
+gate, exact support/tube/cap gates, independent scaled `1e-9` agreement, and
+zero-TSC boundary.
+
+R8R35 is a finite causal model/adapter-design FAIL, not runtime, reporting,
+controller, MPC, formal-control, plant-reachability, or Gate A evidence.
+R8R37 PASS may authorize only a separately frozen controller preflight.
+Gate A and all learning remain blocked; all R8-family evidence remains
+forbidden from learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

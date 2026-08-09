@@ -1,5 +1,65 @@
 # Current status
 
+> **Final R8R35 and blocked prospective R8R36 checkpoint (2026-08-09
+> Asia/Shanghai).** R8R35 completed at design/implementation/package
+> checkpoints `7c83240 / ff2340e / 70236b3`. Local source and empty direct-
+> copy plus server staging and installed validation passed 1,181/1,181
+> hashes, 139 JSON including the manifest, 461 Python compilations, 446
+> server `bash -n`, focused `11/11`, and full `1452/1452`, with one expected
+> isolated/server skip where applicable. Transfer was direct `scp -r`; both
+> hosts used only their existing virtual environments.
+>
+> Primary and independent zero-new-TSC paths rebuilt the exact 560-
+> trajectory, 35-schedule, 3,360-record bank and all three frozen digests.
+> Cardinality passed 1,161/1,161 heads with minimum training count 210; all
+> 8/8 held-pair state-support folds passed. Independent neighbor identities,
+> bank, route, and outcome were exact. Maximum scaled prediction, tube, and
+> metric differences were `7.21645e-15`, `2.77556e-15`, and `2.77556e-15`,
+> below the frozen `1e-9` gate.
+>
+> The fixed local-constant/unit-gain last-innovation model nevertheless
+> failed. Whole-pair maximum point error was
+> `[0.0107255,0.0181541,149.299,0.0578928,0.0830866]`, tube was
+> `[0.015,0.0226926,3000,0.0723660,0.103858]`, and containment was
+> `72786/72800`. Whole-schedule maximum point error was
+> `[0.0112621,0.0250644,168.329,0.0692899,0.107082]`, tube was
+> `[0.015,0.0313305,3000,0.0866124,0.133853]`, and containment was
+> `72800/72800`. Z/vR/vZ point and schedule tube caps failed; combined tube
+> also failed.
+>
+> Causal adaptation was measurably useful in aggregate: adapted/cold
+> normalized L1 ratios were `0.375758` for whole-pair and `0.739326` for
+> whole-schedule, both below the frozen `0.95`. All 8 pair folds improved,
+> but three schedule folds regressed: `R8R14_d0_p=1.03581`,
+> `R8R28_g2_UUUU=1.12480`, and `R8R28_g2_VVVV=1.13978`. Thus the separately
+> frozen every-fold no-regression usefulness gate also failed.
+>
+> Final route is
+> `CAUSAL_LAST_INNOVATION_LOCAL_CONSTANT_MODEL_FAIL_NO_TSC`. The stage has
+> eight files, zero raw/JSON.GZ/snapshot, zero Ray, `gotsc`, TSC, controller,
+> or plant steps. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R35_FORENSIC_REPORT.md`,
+> SHA-256
+> `150e5a22dc804a7ce3cdde6305bbd96478f9bc40bdb813e24d2fa636991b8655`.
+>
+> Before any R8R35 result was opened, the conditional R8R36 controller-
+> preflight design was frozen at `f0eb69f`, SHA-256
+> `0c2f3e6b048d05b087a9ce9c746df057f2f70eab5dfdfafefe7e10ac10aa4ac9`.
+> Its prospective source gate requires an exact R8R35 PASS, so it is blocked
+> and was not implemented or executed. R8R35 is a finite causal
+> model/adapter-design FAIL, not a runtime, numerical, controller, MPC,
+> formal-control, plant-reachability, or Gate A result.
+>
+> Before any R8R37 gain fit or prediction, the next eligible training-only
+> diagonal innovation-gain design was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R37_TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_SCHEDULE_GENERALIZING_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `6433312711b9b107a218bb5701ef6070a0dfbc482fd492d983437c32637fb843`.
+> It retains the exact R8R35 cold predictor and all unchanged gates, but fits
+> 25 `[0,1]`-projected diagonal gains solely inside each training fold. Gate A
+> and all learning remain blocked; all R8-family evidence remains forbidden
+> from learning.
+
 > **Final R8R34 and prospective R8R35 checkpoint (2026-08-09
 > Asia/Shanghai).** R8R34 completed at design/implementation/package
 > checkpoints `1380fe1 / 366dd55 / 335373f`. Its first independent attempt
