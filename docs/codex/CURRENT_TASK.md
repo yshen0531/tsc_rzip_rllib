@@ -7891,3 +7891,72 @@ snapshot. A PASS authorizes only a separately frozen fresh real-TSC sentinel
 design, not that run. Gate A, expert data, BC, DAgger, residual RL, and all
 learning remain blocked. Every R8-family trajectory remains forbidden from
 learning data.
+
+## 143. Final R8R44 result, blocked R8R45, and active R8R46 task
+
+R8R44 completed at `5af9163 / f95e428 / 509b7b4`, with audit-only
+metric-view hotfix/package `0e0685c / 6f0df5d`. Local source, fresh empty
+direct-copy, server staging, and installed validation passed all 1,216
+hashes, 144 JSON, 476 Python compilations, 451 server `bash -n`, focused
+`13/13`, and full `1511/1511`, with one expected isolated-package skip.
+Transfer was direct without archives and both hosts used only their existing
+virtual environments.
+
+Primary completed normally. The first independent attempt stopped on a
+missing comparison-view field after rebuild; preserve its log. The separately
+committed hotfix exposed three already generated gate fields to the inherited
+metric comparator and changed no scientific semantics. The accepted
+independent rerun and finalizer used the same unchanged zero-TSC run and did
+not rerun primary. All ten agreement fields are true and all six numerical
+differences are exactly zero.
+
+The frozen planner completed safe searches `16/16` and fault holds `6/6`, but
+the full carried tube admitted no robust-formal suffix. The deployable policy
+therefore selected exact hold in all contexts: repairs `0/10`, regressions
+`0/6`, oracle `6/16`, and nonzero deployable first actions `0/16`. Final
+route:
+
+```text
+FIXED_AFFINE_DOMINANT_COLD_ENSEMBLE_CONTROLLER_PREFLIGHT_AUTHORITY_INSUFFICIENT_NO_TSC
+```
+
+R8R44 has exactly eight stage files and zero raw, snapshot, Ray, `gotsc`, TSC,
+controller, or plant step. It is an uncertainty/controller-authority design
+failure, not a real-control, formal-plant, or reachability result. Exact
+report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R44_FORENSIC_REPORT.md
+SHA-256
+0242dd40f3128e23673239bddbabe8068b2c19a9182f1f0da94679286a6c7556
+```
+
+Conditional R8R45 was frozen before R8R44 results at `c5cd07f`. Its source
+requires exact R8R44 PASS, so it is blocked and must not be implemented or
+executed.
+
+Before any next model, innovation, tube, or plan computation, R8R46 was
+frozen at `9cb7580`:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R46_Q0_CALIBRATION_CAUSAL_INNOVATION_CONTROLLER_PREFLIGHT_DESIGN.md
+SHA-256
+f12206844c181d9610d96588c8f44e3a47cc6661120b208b2ab9c04b57f66e1e
+```
+
+Implement exactly the authenticated R8R43 `0.25/0.75` cold ensemble and the
+fixed bounded innovation rule. Force candidate-zero exact hold at task step
+10, observe through task step 12, and only then allow transport planning at
+`[12,14,16,18,22]`. Interval zero remains cold-model/tube/support/safety
+bound. Evaluate adapted intervals 1--5 in all leave-one-whole-pair and
+leave-one-whole-schedule folds with unchanged point/tube/containment/support
+caps plus the frozen usefulness gate. Do not shrink the immediate executed-
+interval safety reserve below the R8R43 cold tube.
+
+R8R46 is zero-new-TSC. It must pass dual model, causal innovation, support,
+safety, fault, robust-formal repair `>=1/10`, oracle `>=7/16`, regression
+`0/6`, nonzero first transport action, and scaled `1e-9` agreement gates. A
+PASS authorizes only a separately frozen fresh real-controller sentinel
+design. Gate A, expert data, BC, DAgger, residual RL, and all other learning
+remain blocked; every R8-family trajectory remains forbidden from learning.

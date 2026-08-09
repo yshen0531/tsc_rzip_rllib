@@ -1,5 +1,61 @@
 # Current status
 
+> **Final R8R44, blocked R8R45, and frozen R8R46 checkpoint (2026-08-09
+> Asia/Shanghai).** R8R44 completed at design/implementation/original-package
+> checkpoints `5af9163 / f95e428 / 509b7b4`, with independent metric-view
+> hotfix/package checkpoints `0e0685c / 6f0df5d`. The hotfix only supplied
+> the three already generated gate fields required by the inherited R8R43
+> metric comparator; it changed no bank, model, tube, support, planner,
+> action, safety, authority, or primary result.
+>
+> Local source and fresh empty direct-copy validation passed 1,216/1,216
+> hashes, 144 JSON, 476 Python compilations, focused `13/13`, and full
+> Windows-shimmed `1511/1511`. Server staging and installed validation
+> repeated those gates plus 451 `bash -n`, with one expected isolated-package
+> skip. Transfer was direct `scp -r`, no archive was created/extracted, and
+> both hosts used only their existing virtual environments. A first local
+> focused invocation omitted the Windows resource shim and stopped at import;
+> the required shim-first focused/full runs passed. This was a validation-
+> command error, not a code regression.
+>
+> Primary completed normally. The first independent attempt stopped after
+> rebuild with `KeyError: combined_tube_cap_passed`; its failure log is
+> preserved. After the audit-only hotfix, independent and finalizer completed
+> in the same zero-TSC run without rerunning primary. All ten source/bank/
+> model/prediction/tube/metric/planning/discrete/route/outcome agreements are
+> true and all six maximum numerical differences are exactly `0.0`.
+>
+> All `16/16` contexts completed safe searches and all six fault injections
+> selected hold. No full-tube robust-formal suffix existed, so the deployable
+> policy selected exact hold `16/16`: predicted repairs `0/10`, regressions
+> `0/6`, fallback-plus-plan oracle `6/16`, and nonzero deployable first
+> actions `0/16`. Best failing suffixes did contain nonzero first candidates
+> with predicted current utilization about `0.36495--0.3904`, but their worst
+> formal-margin violations were `0.2373889664--1.4074872271`; they were
+> correctly forbidden from deployment.
+>
+> Final route is
+> `FIXED_AFFINE_DOMINANT_COLD_ENSEMBLE_CONTROLLER_PREFLIGHT_AUTHORITY_INSUFFICIENT_NO_TSC`.
+> The stage has eight files, zero raw/snapshot/spec, zero Ray, `gotsc`, TSC,
+> controller, or plant step. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R44_FORENSIC_REPORT.md`,
+> checkpoint `96ef252`, SHA-256
+> `0242dd40f3128e23673239bddbabe8068b2c19a9182f1f0da94679286a6c7556`.
+>
+> Conditional R8R45 was prospectively frozen at `c5cd07f`, SHA-256
+> `edb03567dabc9332a9a0a0c18534c3c4dddec5e05c26c586f2e88aab7c5d15cc`,
+> before any R8R44 result. Its exact source gate requires R8R44 PASS, so it is
+> blocked without implementation or TSC. Before any new R8R46 computation,
+> the q0-calibration causal-innovation design was frozen at `9cb7580` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R46_Q0_CALIBRATION_CAUSAL_INNOVATION_CONTROLLER_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `f12206844c181d9610d96588c8f44e3a47cc6661120b208b2ab9c04b57f66e1e`.
+> R8R46 is active and zero-TSC. It forces q0 hold through the first measured
+> interval, enables bounded same-rollout innovation only afterward, and
+> requires new held-pair/held-schedule post-calibration model/tube/usefulness
+> plus controller-authority gates. Gate A and all learning remain blocked;
+> every R8-family trajectory remains forbidden from learning.
+
 > **Final R8R43 and frozen R8R44 checkpoint (2026-08-09 Asia/Shanghai).**
 > R8R43 completed at design/implementation/package checkpoints
 > `849d2fa / b87a5c6 / 64a035c`. Local source and fresh empty direct-copy
