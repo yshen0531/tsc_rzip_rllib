@@ -129,6 +129,12 @@ class Context:
 def validate_config(cfg: Mapping[str, Any], *, project_root: Path) -> None:
     design = project_root / str(cfg.get("design_document", ""))
     source = project_root / str(cfg.get("source_r8r48_config", ""))
+    source_contract = cfg.get("source_r8r48", {})
+    source_hash_keys = (
+        "primary_summary_sha256", "primary_detailed_sha256", "independent_sha256",
+        "compact_audit_sha256", "final_report_sha256", "stage_state_sha256",
+        "stage_manifest_sha256",
+    )
     matrix = cfg.get("matrix_contract", {})
     schedule = cfg.get("schedule_contract", {})
     controller = cfg.get("controller_contract", {})
@@ -156,8 +162,14 @@ def validate_config(cfg: Mapping[str, Any], *, project_root: Path) -> None:
         or _sha(design) != cfg.get("design_document_sha256")
         or not source.is_file()
         or _sha(source) != cfg.get("source_r8r48_config_sha256")
-        or cfg.get("source_r8r48", {}).get("required_route")
+        or source_contract.get("required_route")
         != "Q0_CALIBRATION_TO_TRANSPORT_CAUSAL_BRIDGE_SUPPORT_ABSENT_FRESH_SENTINEL_REQUIRED"
+        or any(
+            not isinstance(source_contract.get(key), str)
+            or len(source_contract[key]) != 64
+            or any(character not in "0123456789abcdef" for character in source_contract[key])
+            for key in source_hash_keys
+        )
         or tuple(int(matrix.get(key, -1)) for key in (
             "context_count", "candidate_count", "nonzero_candidate_count", "trajectory_count"
         )) != (16, 17, 16, 256)

@@ -63,6 +63,11 @@ class R8R49Q0TransportBridgeTests(unittest.TestCase):
         self.assertEqual(self.cfg["matrix_contract"]["trajectory_count"], 256)
         self.assertTrue(self.cfg["formal_contract"]["formal_tracking_diagnostic_only"])
         self.assertFalse(self.cfg["scientific_scope"]["expert_data_allowed"])
+        self.assertTrue(all(
+            len(value) == 64
+            for key, value in self.cfg["source_r8r48"].items()
+            if key.endswith("_sha256")
+        ))
 
     def test_mutations_fail_closed(self) -> None:
         for section, key, value in (
@@ -75,6 +80,11 @@ class R8R49Q0TransportBridgeTests(unittest.TestCase):
             changed[section][key] = value
             with self.assertRaisesRegex(ValueError, "frozen design changed"):
                 r49.validate_config(changed, project_root=ROOT)
+
+        changed = copy.deepcopy(self.cfg)
+        changed["source_r8r48"]["primary_detailed_sha256"] = "0" * 63
+        with self.assertRaisesRegex(ValueError, "frozen design changed"):
+            r49.validate_config(changed, project_root=ROOT)
 
     def test_build_specs_is_exact_16_by_16_nonzero_matrix(self) -> None:
         baselines = [
