@@ -47,7 +47,7 @@ for source_run in "${R51R1_RUN}" "${R51R3_RUN}" "${R8R51_RUN}" "${R8R49_RUN}" "$
   [[ -d "${source_run}" ]]
 done
 case "${COMMAND}" in
-  offline|independent-offline|authorize-real|run|independent-raw|finalize-primary|independent-formal|postprocess) ;;
+  offline|independent-offline|authorize-real|run|independent-raw|finalize-primary|independent-formal|postprocess|reporting-hotfix-primary|reporting-hotfix-independent|reporting-hotfix-formal-primary|reporting-hotfix-formal-independent|reporting-hotfix-postprocess) ;;
   *) echo "ERROR: unsupported R8R51R4 command ${COMMAND}" >&2; exit 1 ;;
 esac
 
@@ -109,8 +109,12 @@ case "${COMMAND}" in
   independent-offline) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_independent_forensics.py "${args[@]}" --command offline ;;
   independent-raw) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_independent_forensics.py "${args[@]}" --command run ;;
   independent-formal) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_independent_forensics.py "${args[@]}" --command finalize-primary ;;
+  reporting-hotfix-primary) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_current_equivalence_reporting_hotfix.py "${args[@]}" --command run ;;
+  reporting-hotfix-independent) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_current_equivalence_reporting_hotfix_independent.py "${args[@]}" --command run ;;
+  reporting-hotfix-formal-primary) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_current_equivalence_reporting_hotfix.py "${args[@]}" --command finalize-primary ;;
+  reporting-hotfix-formal-independent) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_current_equivalence_reporting_hotfix_independent.py "${args[@]}" --command finalize-primary ;;
+  reporting-hotfix-postprocess) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4_current_equivalence_reporting_hotfix.py "${args[@]}" --command postprocess ;;
   run) exec "${PYTHON}" -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s24d1r14r8r51r4_failed_context_sustained_transport_dwell_sentinel "${args[@]}" --command run --backend "${BACKEND}" --resume ;;
   *) exec "${PYTHON}" -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s24d1r14r8r51r4_failed_context_sustained_transport_dwell_sentinel "${args[@]}" --command "${COMMAND}" ;;
 esac
-
 
