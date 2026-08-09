@@ -7960,3 +7960,79 @@ safety, fault, robust-formal repair `>=1/10`, oracle `>=7/16`, regression
 PASS authorizes only a separately frozen fresh real-controller sentinel
 design. Gate A, expert data, BC, DAgger, residual RL, and all other learning
 remain blocked; every R8-family trajectory remains forbidden from learning.
+
+## 144. Final R8R46 result, blocked R8R47, and active causal-bridge audit
+
+R8R46 completed at `9cb7580 / 75b0ba1 / 7d53cc1`, with independent-only
+serialization hotfix/package `c6b04ea / 561dcb4`. Local source and fresh
+empty direct-copy validation, plus server staging and installed validation,
+passed all 1,224 declared hashes, 479 Python compilations, focused `13/13`,
+and full `1524/1524`; server also passed 452 `bash -n` checks, with one
+expected isolated-package skip. Direct `scp -r` was used without archives and
+both hosts used only their existing virtual environments.
+
+Primary completed normally. The first independent path stopped before its
+comparison/write phase because its reconstructed model artifact still
+contained a NumPy array during JSON serialization. The separately committed
+hotfix only reused the primary module's existing JSON-safe conversion and
+added a regression test. It changed no scientific computation or primary
+result, and primary was not rerun. The independent rerun and finalizer used
+new logs in the same zero-TSC directory. All ten agreement fields are true
+and every maximum numerical difference is `0.0`.
+
+The fixed innovation passed the entire whole-pair gate: adapted/cold
+normalized squared-error ratio `0.42640699597516946`, all `8/8` folds
+improved, and maximum fold ratio `0.8117445903495492`. It passed all absolute
+whole-schedule point, tube, containment, support, finite, forbidden-input,
+and clipping gates, but failed the prospectively frozen usefulness gate:
+
+```text
+whole-schedule adapted/cold NSSE ratio       1.2383400549755048
+required ratio                                          <= 0.95
+strictly improved schedules                              26/35
+maximum schedule ratio                      2.1935323358398033
+```
+
+Planning was correctly skipped, so its zero calibration/search/repair/oracle/
+nonzero-action counts mean not run after model rejection rather than failed
+controller trajectories. Final route:
+
+```text
+Q0_CALIBRATION_CAUSAL_INNOVATION_MODEL_INSUFFICIENT_NO_TSC
+```
+
+R8R46 has exactly eight stage files and zero raw/JSON.GZ/snapshot/spec, Ray,
+`gotsc`, TSC, controller, or plant step. It is a finite fixed-adapter and
+validation-architecture failure, not real-control, formal-control, Gate A, or
+plant-reachability evidence. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R46_FORENSIC_REPORT.md
+SHA-256
+996a1304e11a8bd8225aa6c1d4d76649442c2c5d398baf60fdf3d49a21db65ae
+```
+
+Conditional R8R47 was frozen before R8R46 computation at `51637b5`, design
+SHA-256
+`544eb5a9054693e2e0696853bd803ba4a9f72f221b4f60315420c3095683a2d8`.
+It requires exact R8R46 PASS and is therefore permanently blocked without
+implementation or execution.
+
+The active task is to freeze and execute a new-identity zero-new-TSC causal-
+bridge support audit before fitting any other online adapter. Authenticate
+the final R8R46 eight-file identity and reconstruct the exact 560 trajectories
+and 3,360 intervals. For every context, distinguish geometric feature/hull
+support from authentic physical trajectories whose first decision is exact
+q0 hold and whose later decision is a nonzero member of the fixed 17-candidate
+library. Audit exact state/current prefix identity through the q0 measurement
+state, later-action coverage, context coverage, and any unsupported bridge.
+Do not fit a model, inspect outcomes to tune a gain, run a controller, create
+raw/snapshots, or execute TSC.
+
+Before opening that audit's numerical result, prospectively freeze any
+conditional fresh bridge-identification sentinel it could authorize. A
+support-absent result may authorize only that separately frozen safety-first
+identification design; a support-present result may authorize only a new
+zero-TSC analysis under a prospectively frozen validation boundary. Neither
+route is Gate A. Expert data, BC, DAgger, residual RL, and all other learning
+remain blocked; every R8-family trajectory remains forbidden from learning.

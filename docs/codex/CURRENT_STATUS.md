@@ -1,5 +1,52 @@
 # Current status
 
+> **Final R8R46, blocked R8R47, and active causal-bridge audit boundary
+> (2026-08-09 Asia/Shanghai).** R8R46 completed at design/implementation/
+> original-package checkpoints `9cb7580 / 75b0ba1 / 7d53cc1`, with the
+> independent serialization hotfix/package at `c6b04ea / 561dcb4`. Local
+> source and fresh empty direct-copy validation, then server staging and
+> installed validation, passed all 1,224 declared hashes, 479 Python
+> compilations, focused `13/13`, and full `1524/1524`; server also passed 452
+> `bash -n` checks, with one expected isolated-package skip. Both hosts used
+> only their existing virtual environments and transfer was direct `scp -r`
+> without archive creation or extraction.
+>
+> Primary completed normally. The first independent attempt completed model
+> reconstruction but stopped before comparison/write because a NumPy array in
+> the independent artifact was not JSON serializable. The audit-only hotfix
+> applied the existing JSON-safe conversion and added a regression test; it
+> changed no bank, model, innovation, tube, metric, planner, action, gate,
+> route, or primary result. Primary was not rerun. The accepted independent
+> rerun and finalizer used new logs in the same zero-TSC directory. All ten
+> comparison fields are true and all six maximum numerical differences are
+> exactly `0.0`.
+>
+> Whole-pair validation passed with adapted/cold normalized squared-error
+> ratio `0.42640699597516946`, all `8/8` folds improved, and maximum fold ratio
+> `0.8117445903495492`. Whole-schedule validation passed every absolute
+> point/tube/containment/support/finite/forbidden-input/clipping gate, but the
+> frozen usefulness ratio was `1.2383400549755048 > 0.95`; 26/35 schedules
+> improved and the maximum held-schedule ratio was `2.1935323358398033`.
+> Planning was therefore correctly not run. Final route is
+> `Q0_CALIBRATION_CAUSAL_INNOVATION_MODEL_INSUFFICIENT_NO_TSC`.
+>
+> R8R46 has exactly eight server files totaling 123,559,216 bytes and zero
+> raw/JSON.GZ/snapshot/spec, Ray, `gotsc`, TSC, controller, or plant step.
+> Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R46_FORENSIC_REPORT.md`,
+> checkpoint `04bb224`, SHA-256
+> `996a1304e11a8bd8225aa6c1d4d76649442c2c5d398baf60fdf3d49a21db65ae`.
+>
+> Conditional R8R47 was frozen prospectively at `51637b5`, design SHA-256
+> `544eb5a9054693e2e0696853bd803ba4a9f72f221b4f60315420c3095683a2d8`.
+> Its exact source gate requires R8R46 PASS, so it is permanently blocked and
+> must not be implemented or run. The active boundary is a separately frozen,
+> zero-new-TSC audit of whether the authenticated 560-trajectory bank contains
+> authentic causal support from the exact q0 calibration prefix to later
+> nonzero transport actions. This is a support/experiment-design question,
+> not another gain fit. Gate A and all learning remain blocked; every R8-family
+> trajectory remains forbidden from learning.
+
 > **Final R8R44, blocked R8R45, and frozen R8R46 checkpoint (2026-08-09
 > Asia/Shanghai).** R8R44 completed at design/implementation/original-package
 > checkpoints `5af9163 / f95e428 / 509b7b4`, with independent metric-view
