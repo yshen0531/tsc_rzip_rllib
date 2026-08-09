@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R51R4D4",
+  "identity": "center_bridged_two_pulse_response_sentinel_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_sentinel",
+  "controller_revision": "center_bridged_two_pulse_response_v42r3c3t13s24d1r14r8r51r4d4_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D4_CENTER_BRIDGED_TWO_PULSE_RESPONSE_SENTINEL_DESIGN.md",
+  "design_document_sha256": "3e80d240e99f0befe48c6e96df77d1a75ac638e7272278a8fcb95d4ab78be9d7",
+  "conditional_d5_design": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D5_CAUSAL_TWO_DECISION_MODEL_CONTROLLER_PREFLIGHT_DESIGN.md",
+  "conditional_d5_design_sha256": "5bbc44a88207669eb04a490b41d8a7e08019638e9f728f4f53835d33b6354ae7",
+  "conditional_d5_design_checkpoint": "dd764cb",
+  "source_r51r4d3_config": "configs/stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight.json",
+  "source_r51r4d3_config_sha256": "0d586222e2b12e849114b0872dfa6af84c5aa8c27a5a564d19817c2ae95a5972",
+  "source_r51r4d3_implementation_sha256": "eca3a8303cac487b33228b77b7db164e8c4fbf612294ace93ed4565207af1f33",
+  "source_r51r4d3_independent_sha256": "caedac27a45cb9a24b3f030ce6156cae371f20f86e03d4baa47d520aa52dfa39",
+  "source_r51r4_config": "configs/stage4_2r3c3t13s24d1r14r8r51r4_failed_context_sustained_transport_dwell_sentinel_370ms.json",
+  "source_r51r4_config_sha256": "6fb1c69b473a79d3889fe1dc725a564aeb256e45331f98b1834ccc4debeb4802",
+  "source_r51r4_implementation_sha256": "32a433addb3890e17dec2888cfc2840c634490f105c1b56ad179f8ece404cdaf",
+  "source_r51r4d3": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight_20260810_602c8a4_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight",
+    "required_route": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D3_CENTER_BRIDGED_TWO_PULSE_SCHEDULE_PREFLIGHT_COMPLETE_R51R4D4_DESIGN_REQUIRED",
+    "action_stream_digest": "fa186ce6d9363ef6513f0bdd6d529d645570b0c05caeb335a49d75381c6e9339",
+    "specs_sha256": "151c36f8f8f704eced670ce43cc33c6d60efe1ebcfe1df7a4a0e343ec58a8864",
+    "source_authentication_sha256": "832f3b0cc89ce506569b403ca19e74018ece835fdff789c99d879befa7b37e79",
+    "offline_primary_sha256": "4b27a34b9463103347851c2536e7d005fbd289ba09a2208eac96eb0adb8de845",
+    "offline_construction_sha256": "8ed721f7d2d2dc4f83a150c92fc6388f8f4f3279466080f7814f81b9787e86e3",
+    "offline_independent_sha256": "ee5df277fcd673513a1fe90bd483394d4f5bfba9b45258a2c30b2bcdea7e2abe",
+    "final_report_sha256": "38ab60f8978f60797fdc128c7d9d2de6da00f240a292413255a781ec6f24ee5c",
+    "stage_state_sha256": "ea5762971f69b8e44157fd21cdc438352e3a7774ae038d552c22cfe00b71ea8e",
+    "stage_manifest_sha256": "60b9fb04af84f05cbb81e981f9225996a1f016fbffe6562d0ce5230cadb82a20",
+    "final_server_evidence_sha256": "012ba4817b38a59060faec299eba9494fe9ec282562b0d7b29d04e9b61ba8d51"
+  },
+  "matrix_contract": {
+    "context_count": 10,
+    "candidate_count": 5,
+    "ordered_pair_count_per_context": 25,
+    "trajectory_count": 250,
+    "candidate_ids": ["d0m", "d1p", "d2m", "d3p", "u1p50"],
+    "failed_source_baseline_ids": [
+      "r8r7_baseline_00", "r8r7_baseline_01", "r8r7_baseline_02", "r8r7_baseline_03",
+      "r8r7_baseline_04", "r8r7_baseline_05", "r8r7_baseline_06", "r8r7_baseline_07",
+      "r8r7_baseline_12", "r8r7_baseline_13"
+    ]
+  },
+  "schedule_contract": {
+    "prefix_end_task_step": 10,
+    "q0_issue_task_step": 10,
+    "q0_observe_task_step": 11,
+    "first_issue_task_step": 12,
+    "first_hold_task_steps": [13, 14, 15],
+    "first_return_task_step": 16,
+    "center_bridge_hold_task_step": 17,
+    "second_issue_task_step": 18,
+    "second_hold_task_steps": [19, 20, 21],
+    "second_return_task_step": 22,
+    "first_effect_state_step": 13,
+    "second_effect_state_step": 19,
+    "dynamic_exact_search_radius": 16
+  },
+  "controller_contract": {
+    "maximum_q0_integration_action_linf": 0.00001,
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.10,
+    "require_exact_card15_issue": true,
+    "require_exact_card15_refresh": true,
+    "require_exact_stored_center_return": true,
+    "safe_stop_before_failed_advance": true
+  },
+  "formal_contract": {
+    "base_target_physical": [0.75, 0.0, 29779.724],
+    "dt_s": 0.01,
+    "normal_arrival_first_step": 12,
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_first_step": 12,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "endpoint_speed_tolerance_m_per_s": 0.1,
+    "rms_speed_tolerance_m_per_s": 0.1,
+    "late_window_steps": 4,
+    "ip_safety_tolerance_A": 10000.0,
+    "ip_terminal_abs_tolerance_A": 2000.0,
+    "ip_hold_rms_tolerance_A": 2400.0,
+    "ip_sustained_max_tolerance_A": 4000.0,
+    "arrival_streak_steps": 3,
+    "formal_pass_tolerance": 1e-12,
+    "metric_equivalence_absolute_tolerance": 1e-12,
+    "arrival_deadline_expansion_allowed": false
+  },
+  "known_aggregate_contract": {
+    "baseline_formal_pass_count": 6,
+    "failed_baseline_count": 10,
+    "trajectory_count": 250,
+    "candidate_count_per_failed_context": 25,
+    "maximum_successful_plant_steps": 9050
+  },
+  "scientific_gate": {
+    "minimum_repaired_failed_baseline_count": 1,
+    "minimum_measured_oracle_formal_pass_count": 7
+  },
+  "routes": {
+    "source_blocked": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D4_BLOCKED_BY_SOURCE_OR_DESIGN",
+    "offline_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D4_CENTER_BRIDGED_TWO_PULSE_OFFLINE_FAIL_NO_REAL_TSC",
+    "execution_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D4_CENTER_BRIDGED_TWO_PULSE_EXECUTION_FAIL_STOP",
+    "authority_insufficient": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D4_CENTER_BRIDGED_TWO_PULSE_AUTHORITY_INSUFFICIENT_CAUSAL_FEEDBACK_REDESIGN_REQUIRED",
+    "pass": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D4_CENTER_BRIDGED_TWO_PULSE_AUTHORITY_PRESENT_R51R4D5_MODEL_CONTROLLER_PREFLIGHT_REQUIRED"
+  },
+  "parallel": {"n_workers": 24},
+  "storage": {
+    "ray_tmpdir": "/tmp/stage4_2r3c3t13s24d1r14r8r51r4d4_ray",
+    "actor_close_timeout_s": 120.0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "scientific_scope": {
+    "identification_only": true,
+    "model_fit_allowed": false,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}
