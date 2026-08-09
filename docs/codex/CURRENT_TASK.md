@@ -8130,3 +8130,91 @@ sentinel. Before viewing any real response outcome, freeze its conditional
 whole-pair causal transition-model/tube preflight. All resulting trajectories
 are probes and forbidden from learning. Gate A, expert data, BC, DAgger,
 residual RL, and Gate B remain blocked.
+
+## 147. Final R8R51 integration failure and active R8R51R1 q0-gate correction
+
+R8R51 completed at `a82effc / 274e970 / 04d3250`. Local source, fresh empty
+direct-copy, server staging, and installed validation passed 1,248 hashes,
+149 JSON, 488 Python compilations, 455 server `bash -n`, focused `10/10`, and
+full `1553/1553`, with one expected isolated-package skip. Transfer was
+direct without archives and both hosts used only existing virtual
+environments.
+
+Primary and independent offline construction passed all 208 cells and agreed
+exactly. The one authorized real campaign produced 208 strict raw files,
+5,155,700 bytes, digest
+`ea6ba731534adc810adac98172971aed031a42355ac8c443a3aceab6831751dd`.
+All 208 workers stopped before the task-step-10 q0 action was returned to the
+plant loop. Source-aware independent forensics passed exact spec/restart/
+states 0--10/semantic trace 0--9/calibration/forbidden-prefix gates
+`208/208`. Every exception has exactly one false criterion:
+`q0_zero_target`. The other nine frozen Card15/action/current/saturation
+criteria and actuator prediction pass `208/208`.
+
+The intended exact Card15 q0 refresh is tiny but nonzero on the readback grid:
+
+```text
+incremental normalized Linf  3.3333333296544274e-06 .. 3.7037037048793097e-06
+predicted current utilization                         0.36545 .. 0.3907
+q0 actions physically applied                                      0/208
+candidate actions constructed/applied                                0/0
+response states opened                                                 0
+```
+
+Final route:
+
+```text
+REDUCED_Q0_TRANSPORT_BRIDGE_SENTINEL_IMPLEMENTATION_GATE_FAIL_NEW_IDENTITY_REQUIRED
+```
+
+The original raw primary route is preserved, but the final classification is
+an implementation/integration and offline/real gate mismatch before physical
+q0 application. It is not a runtime, restart, causality, raw, physical-
+safety, authority, control, MPC, plant-reachability, or Gate A result. The
+generic `response_outcomes_opened=true` state field is a reporting bug; raw
+lengths prove no response state opened. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51_FORENSIC_REPORT.md
+SHA-256
+82f665bc00cb948dea09adf591860d889b424bef030d763518fca705c929b843
+```
+
+Do not resume or rerun R8R51. Conditional R8R52 requires R8R51 PASS and is
+blocked. Before implementation or response inspection, the replacement
+R8R51R1 and conditional R8R51R2 designs were frozen:
+
+```text
+R8R51R1 q0-gate integration sentinel design
+  9f8b68063c69e7ff973e0a8aae4e5cdfc0274340b3d7303fc109b5ed01ec4e76
+R8R51R2 whole-pair causal model preflight design
+  8955235246fb79bc7e855abde79b32e0269f24774e1452bf380e77966eeab095
+```
+
+Implement R8R51R1 as a completely new stage/campaign/controller/spec/run/raw
+identity. Retain the exact same 16 contexts, 13 candidates, q/requested-
+coordinate matrices, task-step 10/11/12/14 schedule, issue-plus-one effect,
+35/37 horizons, Card15/action/current/saturation/return gates, immutable
+formal timing, and learning prohibition. The only authorized integration
+correction is:
+
+1. remove and forbid the undeclared `q0_zero_target` predicate;
+2. use one shared pure q0-event constructor in offline and real paths;
+3. prove exact event/criterion/action parity for all 208 offline cells;
+4. add the fail-closed `q0 Linf <= 1e-5` assertion inside the unchanged
+   `0.25` limit;
+5. require structurally independent offline and raw recomputation.
+
+Only an exact dual-offline PASS may authorize one fresh 208-trajectory
+R8R51R1 campaign. A complete trajectory may not rerun. If and only if final
+primary/independent R8R51R1 route is
+`REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_COMPLETE_R51R2_MODEL_PREFLIGHT_REQUIRED`,
+implement and execute the already frozen R8R51R2 zero-new-TSC whole-pair
+model/tube preflight without changing its 44D feature, 180D fixed ridge,
+eight outer folds, nested training-only tubes, physical floors, or caps.
+
+All R8R51 and R8R51R1 trajectories are probes and forbidden from expert,
+BC, DAgger, residual-RL, or other learning data. Neither stage is Gate A.
+Continue autonomously only through these frozen boundaries and later
+prospectively frozen Gate A qualification work; pause for the user only if
+every Gate A axis in Section 0 is actually satisfied.

@@ -1,5 +1,55 @@
 # Current status
 
+> **Final R8R51 implementation-gate failure and frozen R8R51R1/R51R2
+> boundary (2026-08-09 Asia/Shanghai).** R8R51 completed at design,
+> implementation, and package checkpoints `a82effc / 274e970 / 04d3250`.
+> Local project-venv source and fresh empty direct-copy validation plus server
+> staging/installed validation passed 1,248 hashes, 149 JSON, 488 Python
+> compilations, 455 server `bash -n`, focused `10/10`, and full `1553/1553`,
+> with one expected isolated-package skip. Transfer was direct `scp -r`
+> without archive creation/extraction, and both hosts used only their
+> existing virtual environments.
+>
+> Primary/independent offline construction passed and agreed on all `208/208`
+> fixed cells. The one authorized real campaign then produced 208 structured
+> stops before task-step-10 q0 application. Raw inventory is 208 files,
+> 5,155,700 bytes, digest
+> `ea6ba731534adc810adac98172971aed031a42355ac8c443a3aceab6831751dd`.
+> Original primary and independent raw routes agree exactly, but source-aware
+> prefix forensics refined the classification: spec, restart, semantic states
+> 0--10, semantic trace 0--9, calibration, and forbidden-input gates are all
+> `208/208`. Every exception has only the undeclared
+> `q0_zero_target=false`; all nine frozen Card15/action/current/saturation
+> criteria are true. The exact q0 refresh was only
+> `3.3333333296544274e-06--3.7037037048793097e-06`, with predicted current
+> utilization `0.36545--0.3907`.
+>
+> No task-step-10 trace, state 11, q0 action, candidate construction,
+> candidate action, or physical response exists. The generic state field
+> `response_outcomes_opened=true` is therefore a reporting bug and was
+> preserved rather than rewritten. Final route is
+> `REDUCED_Q0_TRANSPORT_BRIDGE_SENTINEL_IMPLEMENTATION_GATE_FAIL_NEW_IDENTITY_REQUIRED`.
+> This is an implementation/integration and offline/real gate-parity failure
+> before physical action, not runtime, restart, causality, raw, plant safety,
+> authority, tracking, MPC, reachability, or Gate A evidence. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51_FORENSIC_REPORT.md`,
+> SHA-256
+> `82f665bc00cb948dea09adf591860d889b424bef030d763518fca705c929b843`.
+>
+> R8R51 is immutable and may not resume/rerun. Its conditional R8R52 source
+> gate requires PASS and is blocked. Before any successor implementation or
+> response inspection, R8R51R1 and conditional R8R51R2 were frozen at
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R1_Q0_GATE_INTEGRATION_SENTINEL_DESIGN.md`
+> (`9f8b68063c69e7ff973e0a8aae4e5cdfc0274340b3d7303fc109b5ed01ec4e76`)
+> and
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R2_REDUCED_Q0_TRANSPORT_BRIDGE_WHOLE_PAIR_CAUSAL_MODEL_PREFLIGHT_DESIGN.md`
+> (`8955235246fb79bc7e855abde79b32e0269f24774e1452bf380e77966eeab095`).
+> Active R8R51R1 uses a new identity and the unchanged 16x13 schedule; its
+> only integration correction removes the undeclared exact-zero predicate
+> and forces offline/real use of one shared q0-event constructor. Even PASS
+> is identification only. Every R8-family trajectory remains forbidden from
+> learning; Gate A, all learning, and Gate B remain blocked.
+
 > **Final R8R49 offline-stop boundary (2026-08-09 Asia/Shanghai).** R8R49
 > was frozen at design checkpoint `8427bfe` and implemented at `6fd0610`.
 > Pre-TSC source-locator and 63-character source-hash defects were repaired
