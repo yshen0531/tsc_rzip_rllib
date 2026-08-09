@@ -1,5 +1,42 @@
 # Current status
 
+> **Prospective R8R33 uniformly supported rank-12 checkpoint (2026-08-09
+> Asia/Shanghai).** After final R8R32 and before any R8R33 transform, fit,
+> prediction, residual, tube, support result, plan, implementation, package,
+> action, raw, or TSC, the new zero-TSC identity was frozen in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R33_UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `51063dc6f2ecede5d42a0cbf5cde6aa4736628ed38f27d3a5edaeba95a368189`.
+>
+> R8R33 fixes PCA rank 12 and transformed dimension 78 with no search. The
+> value is exactly one below R8R32's independently reproduced all-fold
+> minimum rank 13. This is a new consumed-development identity, not a change
+> to R8R32. All source, causal q4, whole-pair/schedule, point/tube/support,
+> Card15/action/current, formal, planning, independent, zero-TSC, and
+> learning-prohibition gates remain unchanged. Even PASS only permits design
+> of a fresh finite controller sentinel; Gate A and learning remain blocked.
+
+> **Final R8R32 rank-regularized checkpoint (2026-08-09 Asia/Shanghai).**
+> The first `be82504_v1` attempt safely stopped at the first genuine rank
+> shortfall but its broad exception handler mislabeled that model-design gate
+> as execution failure. Its failure JSON is preserved at SHA-256
+> `433d8de7e8f32ed7992ec0f8b719542d6969df2664c5534db2fc648a5a1b54cd`.
+> Hotfix `2d95371` changed only fail-closed rank reporting/control flow; package
+> `3328499` passed local, empty-copy, server staging, and installed validation.
+>
+> Accepted v2 primary and independent audits authenticated the exact 560-row,
+> 35-schedule, 3,360-record bank. Rank 32 passed 152/216 whole-pair heads and
+> 665/945 whole-schedule heads: 817/1,161 overall, with 344 failures and
+> minimum rank 13. All five independent maximum differences were `0.0`.
+> Regression, prediction, tube, support, planning, and formal-plan phases did
+> not run; their zero fields are explicitly phase-closed. Final route:
+> `RANK_REGULARIZED_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC`.
+>
+> R8R32 executed zero Ray, `gotsc`, TSC, controller, plant step, raw, or
+> snapshot. It is a PCA32 representation-design FAIL, not a runtime,
+> deployment, source, reporting, real-MPC, plant-reachability, or Gate A
+> result. All R8-family evidence remains forbidden from learning.
+
 > **Prospective R8R32 rank-regularized schedule-generalization checkpoint
 > (2026-08-09 Asia/Shanghai).** Before any R8R32 feature transform, PCA, fit,
 > prediction, residual, tube, support result, plan, implementation, package,

@@ -6809,6 +6809,68 @@ complete model and planning PASS may authorize prospective design of a fresh
 finite real-controller sentinel. It is not MPC qualification or Gate A;
 Gate A and all learning remain blocked.
 
+## 135. Final R8R32 result and frozen R8R33 uniformly supported rank-12 task
+
+R8R32 completed its final zero-new-TSC result after a reporting/control-flow
+hotfix that did not change the bank, rank 32, fold definitions, tolerance,
+model, or any scientific gate. The first package `be82504` stopped at the
+first valid rank failure but misclassified it as an execution exception. That
+attempt is preserved as
+`...rank_regularized_schedule_generalizing_feedback_preflight_20260809_be82504_v1`;
+its `primary_failure.json` SHA-256 is
+`433d8de7e8f32ed7992ec0f8b719542d6969df2664c5534db2fc648a5a1b54cd`.
+
+The classification hotfix `2d95371` audits every frozen pair/schedule head
+before regression and routes a rank shortfall to the preregistered model-fail
+route with later metrics explicitly phase-closed. Package checkpoint
+`3328499` passed local, empty-direct-copy, server-staging, and installed
+validation. The accepted v2 primary and independent audits reproduced the
+same 560 trajectories, 35 schedules, 3,360 rows, and three source digests.
+
+```text
+requested retained rank                         32
+whole-pair rank heads                      152 / 216
+whole-pair failed heads                          64
+whole-pair minimum numerical rank                13
+whole-schedule rank heads                   665 / 945
+whole-schedule failed heads                     280
+whole-schedule minimum numerical rank            15
+all rank heads                              817 / 1161
+all failed heads                                 344
+all-fold minimum numerical rank                   13
+primary-independent maximum differences          0.0
+new TSC / controller / plant / raw             0 / 0 / 0 / 0
+```
+
+Regression, prediction, residual, tube, support, planning, formal-plan, and
+fault-injection phases did not run. Their numeric zeros are phase-closed
+sentinels, not successful measurements. Final route:
+
+```text
+RANK_REGULARIZED_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC
+```
+
+This is a finite PCA32 representation-design failure, not a runtime,
+deployment, source, raw, reporting, controller, real-MPC, plant-reachability,
+or Gate A result.
+
+Before any R8R33 transform or outcome, the next identity is frozen in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R33_UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md
+SHA-256  51063dc6f2ecede5d42a0cbf5cde6aa4736628ed38f27d3a5edaeba95a368189
+```
+
+R8R33 fixes rank 12, exactly one dimension below R8R32's independently
+reproduced all-fold minimum rank 13. This is a new consumed-development model
+identity, not a weakened R8R32 gate. It permits no rank/ridge/feature search
+and keeps the same bank, q4/action features, whole-pair/schedule exclusions,
+point/tube/support, Card15/action/current, formal, fallback, planning,
+independent, zero-TSC, and learning-prohibition contracts. A PASS may authorize
+only design of a separately frozen real controller sentinel. Gate A and all
+learning remain blocked.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
