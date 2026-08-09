@@ -6854,6 +6854,13 @@ This is a finite PCA32 representation-design failure, not a runtime,
 deployment, source, raw, reporting, controller, real-MPC, plant-reachability,
 or Gate A result.
 
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R32_FORENSIC_REPORT.md
+SHA-256  d05df9e88d8f9aeb2c9326a55ad27afc63c72a3eb24ab4c5a72ce6ede0557eb6
+```
+
 Before any R8R33 transform or outcome, the next identity is frozen in:
 
 ```text

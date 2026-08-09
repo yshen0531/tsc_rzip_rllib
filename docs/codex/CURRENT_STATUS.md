@@ -35,7 +35,11 @@
 > R8R32 executed zero Ray, `gotsc`, TSC, controller, plant step, raw, or
 > snapshot. It is a PCA32 representation-design FAIL, not a runtime,
 > deployment, source, reporting, real-MPC, plant-reachability, or Gate A
-> result. All R8-family evidence remains forbidden from learning.
+> result. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R32_FORENSIC_REPORT.md`,
+> SHA-256
+> `d05df9e88d8f9aeb2c9326a55ad27afc63c72a3eb24ab4c5a72ce6ede0557eb6`.
+> All R8-family evidence remains forbidden from learning.
 
 > **Prospective R8R32 rank-regularized schedule-generalization checkpoint
 > (2026-08-09 Asia/Shanghai).** Before any R8R32 feature transform, PCA, fit,
