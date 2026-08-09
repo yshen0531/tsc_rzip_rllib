@@ -8550,3 +8550,55 @@ evidence.
 Do not rerun any R8/R51/R51R4 trajectory. All probes remain forbidden from
 expert or learning data. Continue autonomously through the MPC qualification
 route; Gate A and Gate B remain blocked.
+
+## 154. Final R8R51R4D3 geometry PASS and active R8R51R4D4 design freeze
+
+R51R4D3 completed at design/implementation/package checkpoints
+`bdfeeae / 80e7059 / 602c8a4`. Local project-venv source and fresh empty
+direct-copy validation, then server staging and installed validation in the
+existing server virtualenv, passed 1,299 hashes, 154 manifest JSON, 512 Python
+compilations, 461 `bash -n`, focused `8/8`, and full `1626/1626`, with one
+expected isolated-package/server skip. Transfer used direct `scp -r` without
+archives.
+
+Primary NumPy and structurally independent scalar paths authenticated final
+corrected R51R4D1 and constructed all 250 center-bridged schedules. Every
+frozen criterion passed `250/250`; coverage passed `10/10` contexts and `5/5`
+history pairs. Discrete, coverage, and action-stream agreement were exact and
+maximum numerical difference was `2.220446049250313e-16`.
+
+```text
+maximum incremental action                  0.2111111111111112
+maximum current utilization                 0.3912
+minimum second-transition cosine            0.9999999999999999
+maximum second-transition off-basis         0.09907590194856301
+action-stream digest                        fa186ce6d9363ef6513f0bdd6d529d645570b0c05caeb335a49d75381c6e9339
+new TSC/raw/plant/controller/model/opt       0/0/0/0/0/0
+```
+
+Final route:
+
+```text
+REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D3_CENTER_BRIDGED_TWO_PULSE_SCHEDULE_PREFLIGHT_COMPLETE_R51R4D4_DESIGN_REQUIRED
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D3_FORENSIC_REPORT.md
+```
+
+The active task is to prospectively freeze R51R4D4 before any new TSC. D4 may
+ask only whether the already frozen center-bridged two-pulse action family has
+a finite, causal measured sequential response in the ten contexts. Its exact
+matrix, task clock, safety stop, restart/causality/Card15/current/raw gates,
+response comparison, independent audit, routes, and no-learning boundary must
+be fixed before implementation or response. No action path may depend on a
+future response, D1/R51R4 formal outcome, or hidden label.
+
+A D4 PASS may authorize only a separately frozen zero-new-TSC sequential
+response model/controller preflight. It is not itself MPC or Gate A. Do not
+rerun R8R51, R8R51R1, R51R4, or any other old TSC campaign. Every D4
+trajectory is a probe forbidden from expert data, BC, DAgger, residual RL, or
+other learning. Continue autonomously; pause only after all Gate A axes in
+Section 0 are genuinely qualified.

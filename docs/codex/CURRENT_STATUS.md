@@ -1,5 +1,43 @@
 # Current status
 
+> **Final R8R51R4D3 center-bridged two-pulse geometry PASS; R51R4D4 design
+> freeze active (2026-08-10 Asia/Shanghai).** R51R4D3 completed at prospective
+> design/implementation/package checkpoints `bdfeeae / 80e7059 / 602c8a4`.
+> Project-venv local source and fresh empty direct-copy validation, followed by
+> server staging and installed validation in the existing server virtualenv,
+> passed 1,299/1,299 hashes, 154 manifest JSON (155 including the manifest),
+> 512 Python compilations, 461/461 `bash -n`, focused `8/8`, and full
+> `1626/1626`, with one expected isolated-package/server skip. Direct
+> `scp -r` used no archive. One initial staging wrapper returned a local
+> PowerShell `NativeCommandError` only because successful unittest progress on
+> remote stderr was misclassified; the remote log already said PASS and an
+> immediate stderr-merged repeat exited zero.
+>
+> The accepted zero-TSC primary and structurally independent scalar paths
+> authenticated corrected final R51R4D1 and constructed all 250 frozen ordered
+> schedules as two independent q0-to-target pulses separated by exact return at
+> task step 16 and an exact zero-increment q0-center bridge at step 17. Every
+> frozen criterion passed `250/250`; context and history-pair coverage passed
+> `10/10 / 5/5`. Discrete, action-stream, and coverage agreement were exact;
+> maximum numerical difference was `2.220446049250313e-16`. Maximum incremental
+> action/current utilization were `0.2111111111111112 / 0.3912`; minimum second-
+> transition cosine was `0.9999999999999999`, and maximum off-basis residual
+> was `0.09907590194856301` under the unchanged 0.10 cap. Action-stream digest:
+> `fa186ce6d9363ef6513f0bdd6d529d645570b0c05caeb335a49d75381c6e9339`.
+>
+> The inherited post-return componentwise-zero command diagnostic remained
+> `0/250`, but it was prospectively frozen as diagnostic-only; exact physical
+> center/Card15/current and all formal schedule gates passed `250/250`. D3 ran
+> zero TSC, raw, snapshot, plant step, response, controller, model, or
+> optimization. Final route is
+> `REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D3_CENTER_BRIDGED_TWO_PULSE_SCHEDULE_PREFLIGHT_COMPLETE_R51R4D4_DESIGN_REQUIRED`.
+> This is action geometry only, not response, authority, controller, MPC,
+> formal-control, plant-reachability, or Gate A evidence. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D3_FORENSIC_REPORT.md`.
+> Before any new TSC, freeze R51R4D4's real-response matrix, safety/raw/
+> independent gates, routes, and no-learning boundary. All probes remain
+> forbidden from learning; Gate A and Gate B remain blocked.
+
 > **Final R8R51R4D1 direct two-transport geometry failure; next redesign must
 > be frozen before construction (2026-08-10 Asia/Shanghai).** R51R4D1 was a
 > zero-new-TSC 250-spec action-geometry preflight over ten failed contexts and
