@@ -8342,3 +8342,57 @@ trajectories remain probes forbidden from expert data or learning. R51R3 is
 not controller/MPC/Gate A evidence. Continue autonomously through the frozen
 MPC qualification route and pause only when every Gate A axis in Section 0 is
 actually satisfied.
+
+## 150. Final R8R51R3 short-action authority failure and active R8R51R4
+
+R8R51R3 completed at design/implementation/package checkpoints
+`1a2cb6d / 9bdcddb / 06e4728`. Source/fresh empty-copy and server staging/
+installed validation passed 1,272 hashes, 151 JSON, 500 Python compilations,
+458 server `bash -n`, focused `9/9`, and full `1589/1589`, with one expected
+isolated-package skip. Direct `scp -r` was used without archives.
+
+The accepted zero-new-TSC audit authenticated final R51R2, 208 R51R1
+candidates, and 16 R8R7 baselines. All 224 rows were strict full horizon with
+zero exclusion. Baseline formal PASS reproduced `6/16`; candidate PASS was
+`78/208` across exactly the same six passing contexts. All ten failed contexts
+improved their best minimum margin, but none crossed zero. Repair was `0/10`,
+the baseline-plus-candidate oracle remained `6/16`, and independent scalar
+algebra agreed with primary to `4.440892098500626e-16`.
+
+Final route:
+
+```text
+REDUCED_Q0_TRANSPORT_BRIDGE_R51R3_SINGLE_TRANSPORT_RETURN_HOLD_AUTHORITY_INSUFFICIENT_SEQUENTIAL_MODEL_REQUIRED
+```
+
+R51R3 ran zero TSC, raw, snapshot, controller, plant step, fit, selection, or
+optimization. It rejects only selection among the already measured short
+single-transport/exact-return/hold trajectories. It does not reject sustained
+or sequential control and is not global plant unreachability. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R3_FORENSIC_REPORT.md
+5cfdd4282f9f859b07f899638dd12c306227f1ff358aec1e86c04ee9ca5cb31e
+```
+
+The active task is R8R51R4, frozen before any new construction or response:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4_FAILED_CONTEXT_SUSTAINED_TRANSPORT_DWELL_SENTINEL_DESIGN.md
+15f3f8405920bb6ed06f0f257db9bb2566ffaadfdee0df81040a49d1c523f6ad
+```
+
+Implement exactly ten failed contexts x the development-selected fixed set
+`d0m/d1p/d2m/d3p/u1p50` x return task steps `{16,18}` = 100 new identities.
+First require exact primary/independent offline construction under every
+unchanged q0/Card15/action/current/cosine/off-basis/clipping/saturation gate.
+Only dual offline PASS may authorize one fresh real campaign; a complete raw
+may not rerun. Before opening any real R51R4 response, freeze conditional
+R51R5 causal sequential response-model/tube design.
+
+R51R4 scientific PASS requires at least one repaired failed baseline and a
+baseline-plus-measured-dwell oracle of at least `7/16`. Even PASS is measured
+development authority only and may authorize only R51R5. Do not rerun any old
+R8/R51 campaign. Every new trajectory is a probe forbidden from learning.
+Gate A and Gate B remain blocked; continue autonomously and pause only if all
+Gate A axes in Section 0 are actually qualified.

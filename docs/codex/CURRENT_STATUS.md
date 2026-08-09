@@ -1,5 +1,53 @@
 # Current status
 
+> **Final R8R51R3 authority failure and frozen R8R51R4 sustained-dwell
+> sentinel (2026-08-10 Asia/Shanghai).** R8R51R3 completed at prospective
+> design/implementation/package checkpoints `1a2cb6d / 9bdcddb / 06e4728`.
+> Local project-venv source and fresh empty direct-copy validation passed
+> 1,272 declared hashes, 1,274 physical files, 151 strict JSON, 500 Python
+> compilations, focused `9/9`, and Windows-shimmed full `1589/1589`. Server
+> staging/installed validation reproduced 1,272 hashes, 458 `bash -n`, 151
+> JSON, 500 Python compilations, focused `9/9`, and full `1589/1589`, with
+> one expected isolated-package skip. Transfer was direct `scp -r` without
+> archives; both hosts used only existing virtual environments.
+>
+> A first shell invocation failed while redirecting its log below a parent
+> directory that did not yet exist. The common launcher and Python never
+> started, the intended run path remained absent, and no scientific result
+> was opened. The accepted retry used the identical frozen run identity after
+> creating only the allowed stage root.
+>
+> Primary and structurally independent scalar raw algebra authenticated final
+> R51R2, all 208 R51R1 candidates, and all 16 matching R8R7 baselines. All
+> 224 full-horizon rows were retained; baseline formal PASS reproduced
+> `6/16`. Candidate passes were `78/208`, but they occurred only in the same
+> six contexts whose baseline already passed. All ten failed contexts had a
+> strict best-margin improvement, yet gains were only
+> `0.0001220817--0.0034286285`; repairs were `0/10` and the measured oracle
+> remained `6/16`. Primary/independent discrete results were exact and the
+> maximum numerical difference was `4.440892098500626e-16`.
+>
+> Final route is
+> `REDUCED_Q0_TRANSPORT_BRIDGE_R51R3_SINGLE_TRANSPORT_RETURN_HOLD_AUTHORITY_INSUFFICIENT_SEQUENTIAL_MODEL_REQUIRED`.
+> R51R3 created zero TSC, raw, snapshots, controller, plant steps, model fits,
+> model selection, or optimization. This is a genuine measured short-action-
+> family authority failure, not runtime, deployment, raw, restart, reporting,
+> real-MPC, global-reachability, or Gate A evidence. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R3_FORENSIC_REPORT.md`,
+> SHA-256
+> `5cfdd4282f9f859b07f899638dd12c306227f1ff358aec1e86c04ee9ca5cb31e`.
+>
+> Before any successor offline construction or response, R51R4 was frozen at
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4_FAILED_CONTEXT_SUSTAINED_TRANSPORT_DWELL_SENTINEL_DESIGN.md`,
+> SHA-256
+> `15f3f8405920bb6ed06f0f257db9bb2566ffaadfdee0df81040a49d1c523f6ad`.
+> It fixes the ten failed contexts, the development-selected candidates
+> `d0m/d1p/d2m/d3p/u1p50`, return task steps `16/18`, and 100 trajectories.
+> A dual exact offline Card15/action/current gate is mandatory before real TSC;
+> no threshold may weaken. Before opening any real response, freeze conditional
+> R51R5. All trajectories remain probes forbidden from learning. R51R4 is not
+> Gate A; expert data, BC, DAgger, residual RL, and Gate B remain blocked.
+
 > **Final R8R51R2 whole-pair model result and frozen R8R51R3 authority
 > audit (2026-08-10 Asia/Shanghai).** R8R51R2 completed at design/
 > implementation/accepted-package checkpoints `ce66bb7 / eedf15e / 2e96b75`.
