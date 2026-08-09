@@ -143,6 +143,31 @@ class R8R32RankRegularizedPreflightTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "bank reproduction changed"):
             r8r32._verify_bank(changed, self.cfg)
 
+    def test_rank_audit_runs_both_fold_families_and_fails_closed(self):
+        trajectories = []
+        for pair in ("p0", "p1"):
+            for schedule in ("s0", "s1"):
+                row = {
+                    "feature": np.ones(44),
+                    "q": np.zeros(4),
+                    "expanded": np.zeros(238),
+                    "targets": np.zeros((1, 5)),
+                }
+                trajectories.append(
+                    {
+                        "pair_id": pair,
+                        "schedule_id": schedule,
+                        "intervals": [dict(row) for _ in range(6)],
+                    }
+                )
+        audit = r8r32.representation_rank_audit(trajectories, self.cfg)
+
+        self.assertFalse(audit["passed"])
+        self.assertEqual(audit["family_count"], 2)
+        self.assertEqual(audit["head_count"], 24)
+        self.assertEqual(audit["failed_head_count"], 24)
+        self.assertEqual(audit["minimum_numerical_rank"], 0)
+
     def test_independent_projection_ignores_only_non_load_bearing_digests(self):
         left = {"solver": "normal", "model_digest": "a", "value": [1.0, True]}
         right = {
@@ -173,6 +198,12 @@ class R8R32RankRegularizedPreflightTests(unittest.TestCase):
                 "bank_digest": "bank",
                 "feature_digest": "feature",
                 "target_digest": "target",
+            },
+            "representation_rank_audit": {
+                "passed": False,
+                "head_count": 989,
+                "failed_head_count": 1,
+                "minimum_numerical_rank": 31,
             },
             "outer_model_evaluation": {
                 "passed": True,

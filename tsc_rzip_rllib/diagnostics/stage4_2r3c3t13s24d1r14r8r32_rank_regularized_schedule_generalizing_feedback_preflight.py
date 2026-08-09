@@ -297,6 +297,109 @@ def _canonical_loadings(z: np.ndarray, cfg: Mapping[str, Any]) -> tuple[np.ndarr
     return loadings, singular
 
 
+def _rank_head(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    offset: int,
+    cfg: Mapping[str, Any],
+) -> dict[str, Any]:
+    current = [row for row in rows if len(row["targets"]) > offset]
+    base = np.asarray([row["feature"] for row in current], dtype=float).reshape((-1, 44))
+    base_mean = np.mean(base, axis=0)
+    base_scale = np.maximum(
+        np.sqrt(np.mean((base - base_mean) ** 2, axis=0)),
+        float(cfg["model_contract"]["base_scale_floor"]),
+    )
+    standardized = (base - base_mean) / base_scale
+    singular = np.linalg.svd(standardized, compute_uv=False)
+    tolerance = float(cfg["model_contract"]["rank_relative_tolerance"])
+    numerical_rank = (
+        int(np.count_nonzero(singular > tolerance * singular[0]))
+        if singular[0] > 0.0
+        else 0
+    )
+    requested = int(cfg["model_contract"]["pca_rank"])
+    retained = float(singular[requested - 1]) if len(singular) >= requested else 0.0
+    leading = float(singular[0]) if len(singular) else 0.0
+    return {
+        "sample_offset": offset,
+        "training_row_count": len(current),
+        "numerical_rank": numerical_rank,
+        "leading_singular_value": leading,
+        "retained_rank_singular_value": retained,
+        "retained_rank_relative_singular_value": retained / leading if leading else 0.0,
+        "passed": numerical_rank >= requested,
+    }
+
+
+def representation_rank_audit(
+    trajectories: Sequence[Mapping[str, Any]],
+    cfg: Mapping[str, Any],
+    *,
+    rank_head_fn: Callable[..., dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    head_fn = _rank_head if rank_head_fn is None else rank_head_fn
+    families = []
+    definitions = (
+        (
+            "whole_physical_pair",
+            sorted({str(row["pair_id"]) for row in trajectories}),
+            lambda row, held: row["pair_id"] != held,
+        ),
+        (
+            "whole_schedule",
+            sorted({str(row["schedule_id"]) for row in trajectories}),
+            lambda row, held: row["schedule_id"] != held,
+        ),
+    )
+    for family, held_values, selected in definitions:
+        rows = []
+        for held in held_values:
+            selected_trajectories = [
+                row for row in trajectories if selected(row, held)
+            ]
+            for interval in range(6):
+                interval_rows = [
+                    row["intervals"][interval] for row in selected_trajectories
+                ]
+                if not interval_rows:
+                    raise ValueError("R8R32 rank audit selection empty")
+                for offset in range(max(len(row["targets"]) for row in interval_rows)):
+                    result = head_fn(interval_rows, offset=offset, cfg=cfg)
+                    rows.append(
+                        {
+                            "held_out": held,
+                            "interval": interval,
+                            **result,
+                        }
+                    )
+        families.append(
+            {
+                "family": family,
+                "fold_count": len(held_values),
+                "head_count": len(rows),
+                "pass_count": sum(bool(row["passed"]) for row in rows),
+                "failed_head_count": sum(not bool(row["passed"]) for row in rows),
+                "minimum_numerical_rank": min(int(row["numerical_rank"]) for row in rows),
+                "rows": rows,
+                "passed": all(bool(row["passed"]) for row in rows),
+            }
+        )
+    failed = sum(int(row["failed_head_count"]) for row in families)
+    return {
+        "requested_rank": int(cfg["model_contract"]["pca_rank"]),
+        "family_count": len(families),
+        "head_count": sum(int(row["head_count"]) for row in families),
+        "pass_count": sum(int(row["pass_count"]) for row in families),
+        "failed_head_count": failed,
+        "minimum_numerical_rank": min(
+            int(row["minimum_numerical_rank"]) for row in families
+        ),
+        "families": families,
+        "passed": failed == 0,
+    }
+
+
 def _expanded_to_transformed_map(
     base_mean: np.ndarray, base_scale: np.ndarray, loadings: np.ndarray
 ) -> tuple[np.ndarray, np.ndarray]:
@@ -617,8 +720,103 @@ def compute_from_bank(
     *,
     solver: str = "normal",
     fit_head_fn: Callable[..., dict[str, Any]] | None = None,
+    rank_head_fn: Callable[..., dict[str, Any]] | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any]]:
     _verify_bank(bank, ctx.cfg)
+    rank_audit = representation_rank_audit(
+        trajectories, ctx.cfg, rank_head_fn=rank_head_fn
+    )
+    if not rank_audit["passed"]:
+        closed_reason = "representation_rank_gate_failed_before_regression"
+        outer = {
+            "metrics_ran": False,
+            "phase_closed_reason": closed_reason,
+            "rank_gate_passed": False,
+            "maximum_absolute_physical_error": [0.0] * 5,
+            "maximum_reserved_physical_tube_half_width": [0.0] * 5,
+            "reserved_contained_count": 0,
+            "reserved_component_count": 0,
+            "reserved_containment_rate": 0.0,
+            "state_support_pass_count": 0,
+            "fold_rows": [],
+            "passed": False,
+        }
+        schedule = {
+            "metrics_ran": False,
+            "phase_closed_reason": closed_reason,
+            "rank_gate_passed": False,
+            "schedule_count": int(ctx.cfg["bank_contract"]["schedule_count"]),
+            "training_schedule_count": int(ctx.cfg["bank_contract"]["schedule_count"]) - 1,
+            "folds": [],
+            "maximum_absolute_physical_error": [0.0] * 5,
+            "maximum_reserved_physical_tube_half_width": [0.0] * 5,
+            "contained_count": 0,
+            "component_count": 0,
+            "containment_rate": 0.0,
+            "tube_evidence": {"ran": False, "phase_closed_reason": closed_reason},
+            "passed": False,
+        }
+        planning = {
+            "ran": False,
+            "phase_closed_reason": closed_reason,
+            "safe_search_context_count": 0,
+            "predicted_repaired_failed_baseline_count": 0,
+            "predicted_regressed_baseline_pass_count": 0,
+            "predicted_fallback_plus_plan_oracle_count": 0,
+            "nonzero_first_action_count": 0,
+            "plans": [],
+            "passed": False,
+        }
+        faults: Mapping[str, Any] = {
+            "ran": False,
+            "phase_closed_reason": closed_reason,
+            "passed": False,
+        }
+        detailed = {
+            "schema_version": SCHEMA_VERSION,
+            "stage": STAGE,
+            "identity": IDENTITY,
+            "solver": solver,
+            "source_authentication": authentication,
+            "bank_evidence": bank,
+            "representation_rank_audit": rank_audit,
+            "outer_model_evaluation": outer,
+            "schedule_jackknife": schedule,
+            "pair_planning_tube_evidence": {
+                "ran": False,
+                "phase_closed_reason": closed_reason,
+            },
+            "combined_tube_maximum_physical_half_width": [0.0] * 5,
+            "combined_tube_cap_passed": False,
+            "model_gate_passed": False,
+            "transition_hulls": [],
+            "planning_evaluation": planning,
+            "fault_injection": faults,
+            "integrity_gate_passed": True,
+            "scientific_gate_passed": False,
+            "passed": True,
+            "route": ctx.cfg["routes"]["model_fail"],
+            "real_tsc_executed": False,
+            "plant_step_count": 0,
+            "new_raw_count": 0,
+        }
+        artifact = {
+            "schema_version": SCHEMA_VERSION,
+            "stage": STAGE,
+            "identity": IDENTITY,
+            "solver": solver,
+            "bank_evidence": bank,
+            "representation_rank_audit": rank_audit,
+            "representation_rank_gate_passed": False,
+            "outer_models": [],
+            "planning_model": {"intervals": []},
+            "pair_tube": [],
+            "schedule_tube": [],
+            "combined_tube": [],
+            "support": {},
+            "transition_hulls": [],
+        }
+        return _jsonable(detailed), _jsonable(artifact)
     folds, outer = outer_model_evaluation(
         trajectories,
         ctx.cfg,
@@ -750,6 +948,7 @@ def compute_from_bank(
         "solver": solver,
         "source_authentication": authentication,
         "bank_evidence": bank,
+        "representation_rank_audit": rank_audit,
         "outer_model_evaluation": outer,
         "schedule_jackknife": schedule,
         "pair_planning_tube_evidence": pair_evidence,
@@ -773,6 +972,8 @@ def compute_from_bank(
         "identity": IDENTITY,
         "solver": solver,
         "bank_evidence": bank,
+        "representation_rank_audit": rank_audit,
+        "representation_rank_gate_passed": True,
         "outer_models": [
             {"held_pair": fold["held_pair"], "model": fold["model"]}
             for fold in folds
@@ -808,6 +1009,18 @@ def _summary(detailed: Mapping[str, Any], model_sha: str) -> dict[str, Any]:
         "bank_digest": detailed["bank_evidence"]["bank_digest"],
         "feature_digest": detailed["bank_evidence"]["feature_digest"],
         "target_digest": detailed["bank_evidence"]["target_digest"],
+        "representation_rank_gate_passed": bool(
+            detailed["representation_rank_audit"]["passed"]
+        ),
+        "representation_head_count": int(
+            detailed["representation_rank_audit"]["head_count"]
+        ),
+        "representation_failed_head_count": int(
+            detailed["representation_rank_audit"]["failed_head_count"]
+        ),
+        "representation_minimum_numerical_rank": int(
+            detailed["representation_rank_audit"]["minimum_numerical_rank"]
+        ),
         "outer_model_gate_passed": bool(outer["passed"]),
         "outer_maximum_absolute_physical_error": outer["maximum_absolute_physical_error"],
         "outer_maximum_reserved_physical_tube_half_width": outer[
@@ -980,6 +1193,7 @@ def run_finalize(ctx: Context) -> dict[str, Any]:
         "route": summary["route"],
         "source_file_sha256": hashes,
         "summary": summary,
+        "representation_rank_audit": detailed["representation_rank_audit"],
         "outer_model_evaluation": detailed["outer_model_evaluation"],
         "schedule_jackknife": detailed["schedule_jackknife"],
         "combined_tube_maximum_physical_half_width": detailed[

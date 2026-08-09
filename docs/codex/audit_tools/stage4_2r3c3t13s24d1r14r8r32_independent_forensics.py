@@ -121,6 +121,40 @@ def _canonical_loadings(z: np.ndarray, cfg: Mapping[str, Any]) -> tuple[np.ndarr
     return loadings, singular
 
 
+def _rank_head(
+    rows: Sequence[Mapping[str, Any]],
+    *,
+    offset: int,
+    cfg: Mapping[str, Any],
+) -> dict[str, Any]:
+    current = [row for row in rows if len(row["targets"]) > offset]
+    base = np.asarray([row["feature"] for row in current], dtype=float).reshape((-1, 44))
+    center = np.mean(base, axis=0)
+    scale = np.maximum(
+        np.sqrt(np.mean(np.square(base - center), axis=0)),
+        float(cfg["model_contract"]["base_scale_floor"]),
+    )
+    singular = np.linalg.svd((base - center) / scale, compute_uv=False)
+    relative = float(cfg["model_contract"]["rank_relative_tolerance"])
+    numerical_rank = (
+        int(np.count_nonzero(singular > relative * singular[0]))
+        if singular[0] > 0.0
+        else 0
+    )
+    requested = int(cfg["model_contract"]["pca_rank"])
+    leading = float(singular[0]) if len(singular) else 0.0
+    retained = float(singular[requested - 1]) if len(singular) >= requested else 0.0
+    return {
+        "sample_offset": offset,
+        "training_row_count": len(current),
+        "numerical_rank": numerical_rank,
+        "leading_singular_value": leading,
+        "retained_rank_singular_value": retained,
+        "retained_rank_relative_singular_value": retained / leading if leading else 0.0,
+        "passed": numerical_rank >= requested,
+    }
+
+
 def _fit_head(
     rows: Sequence[Mapping[str, Any]],
     *,
@@ -216,6 +250,10 @@ def _prediction_difference(
     independent: Mapping[str, Any],
     bank: Sequence[Mapping[str, Any]],
 ) -> float:
+    primary_rank = bool(primary.get("representation_rank_gate_passed", True))
+    independent_rank = bool(independent.get("representation_rank_gate_passed", True))
+    if not primary_rank or not independent_rank:
+        return 0.0 if primary_rank is independent_rank else math.inf
     difference = 0.0
     primary_outer = {row["held_pair"]: row["model"] for row in primary["outer_models"]}
     independent_outer = {
@@ -271,6 +309,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         bank_evidence,
         solver="augmented_lstsq",
         fit_head_fn=_fit_head,
+        rank_head_fn=_rank_head,
     )
     tolerance = float(ctx.cfg["offline_gate"]["primary_independent_absolute_tolerance"])
     bank_difference = _maximum_difference(
@@ -287,6 +326,12 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 "combined_tube": primary_model["combined_tube"],
                 "support": primary_model["support"],
                 "transition_hulls": primary_model["transition_hulls"],
+                "representation_rank_audit": primary_model[
+                    "representation_rank_audit"
+                ],
+                "representation_rank_gate_passed": primary_model[
+                    "representation_rank_gate_passed"
+                ],
             }
         ),
         _without_digests(
@@ -296,6 +341,12 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
                 "combined_tube": independent_model["combined_tube"],
                 "support": independent_model["support"],
                 "transition_hulls": independent_model["transition_hulls"],
+                "representation_rank_audit": independent_model[
+                    "representation_rank_audit"
+                ],
+                "representation_rank_gate_passed": independent_model[
+                    "representation_rank_gate_passed"
+                ],
             }
         ),
     )
@@ -309,6 +360,7 @@ def audit(args: argparse.Namespace) -> dict[str, Any]:
         _without_digests(independent_detailed["schedule_jackknife"]),
     )
     planning_fields = (
+        "representation_rank_audit",
         "pair_planning_tube_evidence",
         "combined_tube_maximum_physical_half_width",
         "combined_tube_cap_passed",
