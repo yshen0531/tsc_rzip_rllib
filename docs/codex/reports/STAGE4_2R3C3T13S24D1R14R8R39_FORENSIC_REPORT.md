@@ -1,6 +1,7 @@
 # Stage4.2R3c3T13S24D1R14R8R39 forensic report
 
-Date: 2026-08-09 Asia/Shanghai  
+Date: 2026-08-09 Asia/Shanghai
+
 Branch: `codex/stage4_2r3c3t13s24-sequential-transition`
 
 ## 1. Final classification

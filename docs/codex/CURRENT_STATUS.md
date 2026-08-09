@@ -32,7 +32,7 @@
 > controller, or plant step. Exact report:
 > `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R39_FORENSIC_REPORT.md`.
 > SHA-256
-> `a43d3239afd934df3b311e594bbe5a29192b1e3c5b2f3aca93377e986aae39cd`.
+> `cf553030cc807ce3b694bbc8cbf8dd71d6d726afe2d896ed2b73c324945266da`.
 > Six compact files totaling 740,658 bytes are downloaded; the 94.18 MB
 > model and detailed evidence remain at the exact run root recorded there.
 >

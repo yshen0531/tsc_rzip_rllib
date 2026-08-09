@@ -7266,7 +7266,7 @@ TSC, controller, or plant step. Exact report:
 
 ```text
 docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R39_FORENSIC_REPORT.md
-SHA-256  a43d3239afd934df3b311e594bbe5a29192b1e3c5b2f3aca93377e986aae39cd
+SHA-256  cf553030cc807ce3b694bbc8cbf8dd71d6d726afe2d896ed2b73c324945266da
 ```
 
 Conditional R8R40 was frozen before R8R39 execution at `61c4185`, design
