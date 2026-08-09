@@ -1,5 +1,6 @@
 import copy
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -176,6 +177,84 @@ class R8R33UniformRank12PreflightTests(unittest.TestCase):
                 )
             )
         )
+
+    def test_finalizer_seals_independent_numeric_failure_without_weakening_gate(self):
+        with tempfile.TemporaryDirectory() as directory:
+            stage = Path(directory) / "stage"
+            paths = r8r33.Paths(
+                stage=stage,
+                analysis=stage / "analysis",
+                model=stage / "model",
+                state=stage / "stage_state.json",
+                manifest=stage / "stage_manifest.json",
+            )
+            summary = {
+                "route": self.cfg["routes"]["model_fail"],
+                "scientific_gate_passed": False,
+            }
+            detailed = {
+                "route": self.cfg["routes"]["model_fail"],
+                "model_gate_passed": False,
+                "representation_rank_audit": {"passed": True},
+                "outer_model_evaluation": {"passed": False},
+                "schedule_jackknife": {"passed": False},
+                "combined_tube_maximum_physical_half_width": [0.0] * 5,
+                "combined_tube_cap_passed": False,
+                "planning_evaluation": {"ran": False},
+            }
+            r8r33._write(paths.analysis / "primary_summary.json", summary)
+            r8r33._write(paths.analysis / "primary_detailed.json", detailed)
+            r8r33._write(paths.model / "preflight_model.json", {"model": "primary"})
+            r8r33._write(paths.manifest, {"stage": r8r33.STAGE})
+            r8r33._write(paths.state, {"primary_completed": True})
+            failure = {
+                "passed": False,
+                "source_authentication": {"passed": True},
+                "primary_bank_agreement": True,
+                "primary_model_agreement": False,
+                "primary_outer_agreement": False,
+                "primary_schedule_agreement": False,
+                "primary_planning_agreement": False,
+                "primary_route_agreement": True,
+                "primary_outcome_agreement": True,
+                "maximum_bank_absolute_difference": 0.0,
+                "maximum_model_absolute_difference": 1e-11,
+                "maximum_outer_absolute_difference": 1e-8,
+                "maximum_schedule_absolute_difference": 2e-6,
+                "maximum_planning_absolute_difference": 2e-6,
+                "primary_summary_sha256": r8r33._sha(
+                    paths.analysis / "primary_summary.json"
+                ),
+                "primary_detailed_sha256": r8r33._sha(
+                    paths.analysis / "primary_detailed.json"
+                ),
+                "primary_model_sha256": r8r33._sha(
+                    paths.model / "preflight_model.json"
+                ),
+                "route": self.cfg["routes"]["model_fail"],
+                "real_tsc_executed": False,
+                "plant_step_count": 0,
+                "new_raw_count": 0,
+            }
+            r8r33._write(paths.analysis / "independent_failure.json", failure)
+            ctx = r8r33.Context(
+                cfg=self.cfg,
+                config_path=self.config_path,
+                paths=paths,
+                r8r32_ctx=None,
+                r8r32_stage=stage,
+            )
+            final = r8r33.run_finalize(ctx)
+            self.assertFalse(final["passed"])
+            self.assertFalse(final["integrity_gate_passed"])
+            self.assertEqual(final["primary_route"], self.cfg["routes"]["model_fail"])
+            self.assertEqual(final["route"], self.cfg["routes"]["execution_fail"])
+            state = r8r33._read(paths.state)
+            self.assertFalse(state["independent_validation_passed"])
+            self.assertEqual(
+                state["phase_status"],
+                "offline_preflight_independent_validation_failed",
+            )
 
 
 if __name__ == "__main__":
