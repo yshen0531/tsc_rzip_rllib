@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R51R1",
+  "identity": "reduced_q0_transport_bridge_q0_gate_integration_sentinel_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel",
+  "controller_revision": "reduced_q0_transport_bridge_q0_gate_integration_v42r3c3t13s24d1r14r8r51r1_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r51r1_q0_gate_integration_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R1_Q0_GATE_INTEGRATION_SENTINEL_DESIGN.md",
+  "design_document_sha256": "9f8b68063c69e7ff973e0a8aae4e5cdfc0274340b3d7303fc109b5ed01ec4e76",
+  "source_r8r51_config": "configs/stage4_2r3c3t13s24d1r14r8r51_reduced_q0_transport_bridge_identification_sentinel_370ms.json",
+  "source_r8r51_config_sha256": "4dd3bbee2bc83560f2319807b91939373014690141ab977bc7d82ff0f0962b30",
+  "source_r8r51": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r51_reduced_q0_transport_bridge_identification_sentinel",
+    "required_route": "REDUCED_Q0_TRANSPORT_BRIDGE_SENTINEL_IMPLEMENTATION_GATE_FAIL_NEW_IDENTITY_REQUIRED",
+    "raw_count": 208,
+    "raw_bytes": 5155700,
+    "raw_inventory_digest": "ea6ba731534adc810adac98172971aed031a42355ac8c443a3aceab6831751dd",
+    "raw_primary_sha256": "330c572182048cc3360b9061a153ab995b508263d45de666ffcf3bb76d9f0b55",
+    "raw_independent_sha256": "0468f446ed8cfb3a21e985c0006e2293bfbb218892458107f37513d49e8b6472",
+    "partial_prefix_forensics_sha256": "daf7018de334fe0f7ee5bae561d4f26df02de569033ffe953526244d43ead414",
+    "failure_compact_audit_sha256": "e376c5b4c1f1e8654d8dd5fd985d55a3efad0de64139e65c48c5c97a11f0a086",
+    "failure_final_report_sha256": "41b2c79591c3a4dafe522dad994a14ddcc3b0cb5395bbe01afab747044dc8d2c",
+    "all_specs_sha256": "dc73c68c1181fd162dcf819712f124145b9fb005a9fa6d2ea55d36cb14b1a108",
+    "source_authentication_sha256": "8d1b819e89cb5459b967a18d585175eb17cdc310c91a5018fc072071cb414c0b",
+    "stage_state_sha256": "1307d2f8cda12ae43c1beffa4f088640bf21025ef24720b7356ba43097d7dcae",
+    "stage_manifest_sha256": "80eeec45e7816d97d635dec070f0e3eef4199443be84a95885a2e1c49a2dd994",
+    "implementation_sha256": "4a936b7577585d5dc5ee66f9a4a35f93bd043c6198ba66b016983c1eac62be0a"
+  },
+  "source_r8r49_config": "configs/stage4_2r3c3t13s24d1r14r8r49_q0_to_transport_causal_bridge_identification_sentinel_370ms.json",
+  "source_r8r49_config_sha256": "d3684a92db7028acb1a52e8d967b4ca2dc2d54dd81a01bcf480ed0f44c332c56",
+  "source_r8r49": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r49_q0_to_transport_causal_bridge_identification_sentinel",
+    "required_route": "Q0_TO_TRANSPORT_BRIDGE_SENTINEL_OFFLINE_FAIL_NO_REAL_TSC",
+    "offline_primary_sha256": "8258e0369de1b79814efec2e3ec85bd843e37bc387b0d21fa4996e32de68d655",
+    "offline_independent_sha256": "d1dec48db8e915d673d2db7a4b5ea95ed316ba838cdc404cbbb2a1ad91c302f9",
+    "offline_construction_sha256": "fd112e5fdb1527059003cccf5bd2219e6f0fd175306aafe8edf71a4073a41002",
+    "all_specs_sha256": "fb4164bbe109a0994f5fd7c163d19e788be093d8b69e0adc37bbc5389f6f4afc",
+    "source_authentication_sha256": "75aeb74cbc70e4bc392dd9b1250c41d2768274bf7845252f7b020c8bcbf6aa9b",
+    "stage_state_sha256": "8afbfec8f9ba33cf7763cef8fe7bd06425f5a06890309892f9de251b97790962",
+    "stage_manifest_sha256": "a71349895dc20e17fb529bb1842f07d45bf6d1737a072e40420cc1bf90484044"
+  },
+  "source_r8r48_config": "configs/stage4_2r3c3t13s24d1r14r8r48_q0_to_transport_causal_bridge_support_audit.json",
+  "source_r8r48_config_sha256": "87163cbe3c72e0ba8572cd24cf9614ef6d25459e65e528b6e236faf985598f11",
+  "source_r8r48": {
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r48_q0_to_transport_causal_bridge_support_audit",
+    "required_route": "Q0_CALIBRATION_TO_TRANSPORT_CAUSAL_BRIDGE_SUPPORT_ABSENT_FRESH_SENTINEL_REQUIRED",
+    "primary_summary_sha256": "b8a9109cf8bed6871fa9887915b9f662b423c9e243505367fda473c5c1f4e42d",
+    "primary_detailed_sha256": "ded77dab02c856c22199afbd58dffacdd0225958e8ec8546eec0c9a5567db5ca",
+    "independent_sha256": "9501976b7dc4e4fee1b256611741006310b1cdbfa3913b3c4e3869eae66bb263",
+    "compact_audit_sha256": "25af6f5057ca6fc4fb1d18d7f220779a1d4408275f60cb22cc400c2d93acaf58",
+    "final_report_sha256": "a80a00e660cf188bb00ce9f68734cd4c4f87d086bbab672187f4e3e82eca0e47",
+    "stage_state_sha256": "7e6fa3b9d3a4714e21afba1155f131c847d4918a90d339ec3b1a236602824e14",
+    "stage_manifest_sha256": "781403f9d2ff5f48be56ea04f0f46a6cd89302efea0984fc05fe7b7112d0010c"
+  },
+  "matrix_contract": {
+    "context_count": 16,
+    "candidate_count": 14,
+    "nonzero_candidate_count": 13,
+    "trajectory_count": 208,
+    "canonical_matrix_float64_le_c_sha256": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+    "selected_q_float64_le_c_sha256": "5d6b6c20a704eceda43db7cbaece445d1655a4d62da16d185b308bc27ed4b674",
+    "selected_requested_float64_le_c_sha256": "82e26d01b53fc8bb986ab5a127f8400bc10dcd823a879450ab54275fc2e50543",
+    "selected_q_rank": 4,
+    "selected_q_condition": 1.7853571071357124,
+    "candidate_ids": [
+      "q0", "d0m", "d0p", "d1p", "d2m", "d3m", "d3p",
+      "u1p00", "u1p25", "u1p50", "v0p75", "v1p00", "v1p25", "v1p50"
+    ]
+  },
+  "schedule_contract": {
+    "prefix_end_task_step": 10,
+    "q0_issue_task_step": 10,
+    "candidate_issue_task_step": 12,
+    "candidate_first_effect_state_step": 13,
+    "candidate_second_effect_state_step": 14,
+    "stored_center_return_task_step": 14,
+    "dynamic_exact_search_radius": 16,
+    "require_exact_q0_prefix_through_state_step": 12,
+    "require_exact_center_refresh_after_return": true
+  },
+  "controller_contract": {
+    "maximum_q0_integration_action_linf": 0.00001,
+    "maximum_incremental_normalized_action_linf": 0.25,
+    "maximum_total_normalized_action_abs": 1.0,
+    "maximum_current_utilization": 0.55,
+    "minimum_desired_applied_current_cosine": 0.98,
+    "maximum_relative_off_basis_residual": 0.10,
+    "require_exact_card15_issue": true,
+    "require_exact_card15_refresh": true,
+    "require_shared_q0_constructor_parity": true,
+    "forbid_q0_zero_target_predicate": true,
+    "require_exact_stored_center_return": true,
+    "require_first_effect_at_issue_plus_one": true,
+    "safe_stop_before_failed_advance": true
+  },
+  "formal_contract": {
+    "normal_arrival_deadline_step": 25,
+    "normal_hold_through_step": 35,
+    "weak_arrival_deadline_step": 27,
+    "weak_hold_through_step": 37,
+    "position_tolerance_m": 0.03,
+    "speed_tolerance_m_per_s": 0.1,
+    "ip_tolerance_A": 10000.0,
+    "arrival_streak_steps": 3,
+    "arrival_deadline_expansion_allowed": false,
+    "formal_tracking_diagnostic_only": true
+  },
+  "routes": {
+    "source_blocked": "REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_BLOCKED_BY_SOURCE",
+    "offline_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_OFFLINE_FAIL_NO_REAL_TSC",
+    "execution_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_EXECUTION_FAIL_STOP",
+    "safety_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_SAFETY_FAIL_REDESIGN",
+    "pass": "REDUCED_Q0_TRANSPORT_BRIDGE_Q0_GATE_INTEGRATION_COMPLETE_R51R2_MODEL_PREFLIGHT_REQUIRED"
+  },
+  "parallel": {"n_workers": 16},
+  "storage": {
+    "ray_tmpdir": "/tmp/stage4_2r3c3t13s24d1r14r8r51r1_ray",
+    "actor_close_timeout_s": 120.0,
+    "large_result_postprocess_on_server": true,
+    "download_compact_audits_only": true
+  },
+  "scientific_scope": {
+    "identification_only": true,
+    "model_fit_allowed": false,
+    "real_mpc_executed": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}
