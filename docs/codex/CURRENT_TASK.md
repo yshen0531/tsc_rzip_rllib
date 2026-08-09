@@ -8036,3 +8036,60 @@ identification design; a support-present result may authorize only a new
 zero-TSC analysis under a prospectively frozen validation boundary. Neither
 route is Gate A. Expert data, BC, DAgger, residual RL, and all other learning
 remain blocked; every R8-family trajectory remains forbidden from learning.
+
+## 145. Final R8R48 result and active R8R49 bridge-identification sentinel
+
+R8R48 completed at `8427bfe / b80a50a / b2870d7`. Local source, fresh empty
+direct-copy, server staging, and installed validation passed all 1,232
+declared hashes, 146 JSON including manifest, 482 Python compilations, 453
+server `bash -n`, focused `9/9`, and full `1533/1533`, with one expected
+isolated-package skip. Transfer was direct without archives and both hosts
+used only existing virtual environments.
+
+Primary and independent authenticated exact final R8R46 and independently
+reconstructed all 560 trajectories, 16 contexts, 35 schedules, and 3,360
+intervals. Every source/bank/prefix/bridge/geometric/route/outcome agreement
+is true and maximum geometric distance difference is `0.0`.
+
+The frozen physical bridge matrix is entirely absent:
+
+```text
+q0 reference contexts                                     16/16
+exact-prefix trajectories per context                         1
+required q0-prefix x nonzero-candidate cells                 256
+authentic physical bridge cells                            0/256
+metadata-only / later-interval substitutes                   0 / 0
+44D feature-supported cells                              256/256
+global 8D hull-supported cells                            32/256
+```
+
+Final route:
+
+```text
+Q0_CALIBRATION_TO_TRANSPORT_CAUSAL_BRIDGE_SUPPORT_ABSENT_FRESH_SENTINEL_REQUIRED
+```
+
+R8R48 has seven files, 440,250 bytes, and zero raw, snapshot, spec, model fit,
+Ray, `gotsc`, TSC, controller, or plant step. This is a finite support and
+experiment-coordinate result, not a model, controller, formal-control,
+plant-reachability, or Gate A result. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R48_FORENSIC_REPORT.md
+```
+
+The support-absent route exactly satisfies the conditional R8R49 source gate.
+Implement the already frozen design at checkpoint `8427bfe`, SHA-256
+`16f321003e7801ac36a5bc97bdb66928a37f469ffb01b31aa09136c2e4a46173`.
+Bind its config to all seven final R8R48 hashes before execution. The matrix
+is exactly 16 authenticated contexts by all 16 nonzero canonical candidates.
+Each trajectory performs q0 at step 10, observes through step 12, issues one
+causal fixed candidate, observes states 13--14, returns through the existing
+exact-stored-center mechanism at step 14, and then holds to its unchanged
+35/37 horizon. Enforce every unchanged Card15/action/current/saturation/
+restart/causality gate and stop before a failed plant advance.
+
+R8R49 is identification only. A PASS may authorize only a new prospectively
+frozen zero-TSC bridge model/tube preflight, not a real controller. All R8R49
+trajectories are probes and forbidden from learning. Gate A, expert data, BC,
+DAgger, residual RL, and Gate B remain blocked.

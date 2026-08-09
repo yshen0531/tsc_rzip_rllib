@@ -1,5 +1,43 @@
 # Current status
 
+> **Final R8R48 and authorized conditional R8R49 bridge-identification
+> boundary (2026-08-09 Asia/Shanghai).** R8R48 completed at design/
+> implementation/package checkpoints `8427bfe / b80a50a / b2870d7`.
+> Local source and fresh empty direct-copy plus server staging/installed
+> validation passed all 1,232 hashes, 146 strict JSON including manifest, 482
+> Python compilations, 453 server `bash -n`, focused `9/9`, and full
+> `1533/1533`, with one expected isolated-package skip. Direct `scp -r` was
+> used without archives; both hosts used only their existing virtual
+> environments.
+>
+> Primary and structurally independent paths authenticated final R8R46 and
+> rebuilt exactly 560 trajectories, 16 contexts, 35 schedules, and 3,360
+> intervals. Source, bank, q0 prefix, bridge matrix, geometry, route, and
+> outcome agreements are all true; maximum geometric distance difference is
+> exactly `0.0`.
+>
+> Every context had exactly one physical trajectory matching its q0 prefix
+> through task step 12: the q0 baseline itself. Authentic step-12 nonzero
+> transport bridges were `0/256`, with 256 missing cells, zero metadata-only
+> substitutions, and zero later-interval substitutions. The 44D feature gate
+> nevertheless supported `256/256`, while the global 8D transition hull
+> supported `32/256`. Geometric support therefore cannot be treated as an
+> executed physical bridge.
+>
+> Final route is
+> `Q0_CALIBRATION_TO_TRANSPORT_CAUSAL_BRIDGE_SUPPORT_ABSENT_FRESH_SENTINEL_REQUIRED`.
+> R8R48 has seven files totaling 440,250 bytes and zero raw/snapshot/spec,
+> fit, Ray, `gotsc`, TSC, controller, or plant step. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R48_FORENSIC_REPORT.md`.
+>
+> Conditional R8R49 was frozen before R8R48 result generation at `8427bfe`,
+> SHA-256
+> `16f321003e7801ac36a5bc97bdb66928a37f469ffb01b31aa09136c2e4a46173`.
+> Its exact source condition is now satisfied. R8R49 is the active finite
+> 16-context by 16-candidate q0-to-first-transport identification sentinel;
+> it is not a controller or Gate A qualification. Gate A and all learning
+> remain blocked, and every R8-family trajectory is forbidden from learning.
+
 > **Final R8R46, blocked R8R47, and active causal-bridge audit boundary
 > (2026-08-09 Asia/Shanghai).** R8R46 completed at design/implementation/
 > original-package checkpoints `9cb7580 / 75b0ba1 / 7d53cc1`, with the
