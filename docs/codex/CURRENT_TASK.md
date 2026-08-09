@@ -8431,3 +8431,63 @@ formal evaluation and finalize. R51R4 PASS requires repair `>=1/10` and
 baseline-plus-measured oracle `>=7/16`. R51R5 runs only on that exact PASS
 route; otherwise it remains unrun and a separately frozen longer-sequential
 redesign is required. All R51R4 raw is probe data forbidden from learning.
+
+## 152. Final R8R51R4 result and active R8R51R4D1 schedule preflight
+
+The immutable R51R4 v2 campaign completed 100/100 authentic full-horizon
+trajectories and 3,620 plant steps. The first primary and independent raw
+reports failed only because binary equality was applied to nominal currents
+reconstructed through binary64 arithmetic. A reporting-only contract was
+frozen at `4059e98`; implementation/package checkpoints are
+`0a1d062 / 7be4a30`.
+
+Corrected primary NumPy and structurally independent scalar audits retained
+exact Card15/action/physical-current/state/event gates and changed only
+nominal-current comparison to the pre-existing `rtol=0, atol=1e-12 A`
+contract. They passed 100/100 and agreed exactly. All 2,620 event actions and
+next-state effects, 400 dwell zero increments and physical currents, 100
+stored-center returns, and 1,820 post-return centers were exact; maximum
+nominal-current error was `2.842170943040401e-14 A`. The hotfix ran zero TSC,
+raw, controller, plant step, fit, or optimization and preserved the original
+state hash.
+
+The unchanged formal evaluator found candidate passes `0/100`, repairs
+`0/10`, and measured oracle `6/16`. All ten failed baselines improved their
+best minimum margin, but gains of `0.0004796984--0.0085314272` were
+insufficient. Independent formal algebra agreed exactly on discrete outcomes
+and within `4.440892098500626e-16` numerically. Final route:
+
+```text
+REDUCED_Q0_TRANSPORT_BRIDGE_R51R4_SUSTAINED_DWELL_AUTHORITY_INSUFFICIENT_LONGER_SEQUENTIAL_REDESIGN_REQUIRED
+```
+
+R51R5 required the opposite scientific route, so it remains blocked and must
+not run. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4_FORENSIC_REPORT.md
+```
+
+Before per-row results were inspected, the active zero-new-TSC R51R4D1 task
+was frozen at `e1ddc9e`:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D1_TWO_TRANSPORT_EXACT_RETURN_SCHEDULE_PREFLIGHT_DESIGN.md
+ccc279be94ac230b86ebea80b07572fe057aab2110657989a261d37cd6988645
+```
+
+Implement dual primary/scalar construction for exactly ten contexts x the
+ordered Cartesian product of `d0m,d1p,d2m,d3p,u1p50` = 250 specifications.
+The task clock is fixed at q0 step 10, first transport step 12, second
+transport step 16, and exact q0 return step 20. Report every cell; eligibility
+uses only unchanged Card15/action/current/cosine/off-basis/saturation gates,
+never R51R4 response. Require at least ten eligible ordered pairs per context,
+all five candidates supported in both positions, one distinct successor for
+each first candidate, pair-history equality, and exact independent agreement.
+
+R51R4D1 runs zero Ray, `gotsc`, TSC, controller, plant step, raw, snapshot,
+model fit, or optimization. PASS may authorize only prospective R51R4D2 real
+two-transport response-sentinel design; FAIL stops before real TSC and
+requires action-geometry redesign. Do not rerun R51R4 or any old campaign.
+All evidence remains forbidden from learning. Gate A remains blocked; pause
+only when every Gate A axis in Section 0 is actually qualified.

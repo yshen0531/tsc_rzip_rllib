@@ -1,5 +1,53 @@
 # Current status
 
+> **Final R8R51R4 sustained-dwell authority failure; R8R51R4D1 active
+> (2026-08-10 Asia/Shanghai).** The immutable R51R4 v2 campaign completed
+> 100/100 authentic full-horizon trajectories and 3,620 plant steps with zero
+> runtime, safety, restart, causality, Card15, saturation, forbidden-input, or
+> raw-integrity failure. Its original primary and independent raw audits
+> falsely selected the execution-failure route because they compared real TSC
+> current with a binary64-reconstructed nominal current using binary equality.
+> Exact physical actions and currents were already correct.
+>
+> The separately frozen zero-new-TSC repair at contract/implementation/package
+> checkpoints `4059e98 / 0a1d062 / 7be4a30` retained exact action, physical-
+> current, state, event-order, and forbidden-input gates and changed only the
+> nominal-current comparison to the pre-existing `rtol=0, atol=1e-12 A`
+> contract. Primary NumPy and independent scalar replay passed 100/100 and
+> agreed exactly: q0 `100/100`, all event currents/actions `2,620/2,620`,
+> dwell zero increments and unchanged physical currents `400/400`, return
+> `100/100`, post-return center `1,820/1,820`; maximum nominal-current
+> difference was `2.842170943040401e-14 A`. The repair produced zero new TSC,
+> raw, controller execution, plant step, snapshot, model, or optimization, and
+> the original state hash remained
+> `59c914a6e772c5b8333a62060ca2fec862736949c15077ee925fe200b90617d9`.
+>
+> Only after both raw audits passed, the unchanged formal evaluator opened 110
+> rows. Candidate passes were 0/100, repairs 0/10, and the measured oracle
+> remained 6/16. All ten failed baselines had a positive best minimum-margin
+> gain (`0.0004796984--0.0085314272`), but none crossed zero. Independent
+> formal algebra agreed on every outcome and route with maximum numerical
+> difference `4.440892098500626e-16`. Final route is
+> `REDUCED_Q0_TRANSPORT_BRIDGE_R51R4_SUSTAINED_DWELL_AUTHORITY_INSUFFICIENT_LONGER_SEQUENTIAL_REDESIGN_REQUIRED`.
+> This is a genuine single-transport/dwell action-family design failure, not a
+> runtime, deployment, restart, raw, reporting, safety, solver, formal-
+> evaluator, real-MPC, or global plant-reachability conclusion.
+>
+> Local source/fresh empty-copy and server staging/installed validation passed
+> 1,284 hashes, 153 strict JSON, 506 Python compilations, 459 server `bash -n`,
+> focused `19/19`, and full `1608/1608` with one expected isolated-package
+> skip. Direct `scp -r` used no archive. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4_FORENSIC_REPORT.md`.
+>
+> Conditional R51R5 is blocked and unrun. Before per-row results were read,
+> the zero-new-TSC R51R4D1 two-transport exact-return schedule preflight was
+> frozen at `e1ddc9e`, design SHA-256
+> `ccc279be94ac230b86ebea80b07572fe057aab2110657989a261d37cd6988645`.
+> It fixes 250 ordered-pair constructions at steps 12/16/20 and dual exact
+> action/safety/coverage gates. R51R4D1 is active. All R51R4 data are probes
+> forbidden from learning; Gate A, expert data, BC, DAgger, residual RL, and
+> Gate B remain blocked.
+
 > **R8R51R4 dual-offline PASS and conditional R8R51R5 design frozen before
 > real response (2026-08-10 Asia/Shanghai).** R51R4 implementation and its
 > separately audited scientific-FAIL source-authentication hotfix are at
