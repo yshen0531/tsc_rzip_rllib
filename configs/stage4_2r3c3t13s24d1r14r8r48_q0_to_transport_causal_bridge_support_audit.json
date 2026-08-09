@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R48",
+  "identity": "q0_to_transport_causal_bridge_support_audit_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r48_q0_to_transport_causal_bridge_support_audit",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R48_Q0_TO_TRANSPORT_CAUSAL_BRIDGE_SUPPORT_AUDIT_DESIGN.md",
+  "design_document_sha256": "23fa8ac8f0c6ea73e34b40aa5680bfe79061451099ba2e0d89c2354fa291f7de",
+  "source_r8r46_config": "configs/stage4_2r3c3t13s24d1r14r8r46_q0_calibration_causal_innovation_controller_preflight.json",
+  "source_r8r46_config_sha256": "f3e4ec692e6cd68abe481b613c6bb4694bab63298926cec9f40ea49785e62c2f",
+  "source_r8r46": {
+    "required_route": "Q0_CALIBRATION_CAUSAL_INNOVATION_MODEL_INSUFFICIENT_NO_TSC",
+    "primary_summary_sha256": "05f4d646012501ddae9a2c4f7792ece5828d1feab29f2fb4d630bdbdd4eb25fd",
+    "primary_detailed_sha256": "efff1666f3b58b9b4f9923342da42f970486f050474677c695758254e79d11c6",
+    "model_sha256": "3e0ad214d98faec1c41ec97521a30fc5643c4793690c03d86377cd9b6bcebdc7",
+    "independent_sha256": "f94c973e6e2fc19bfee83ae1d70a2c67d101df832a75cbbcbe7bb4e96819091f",
+    "compact_audit_sha256": "bdc3e835c1c95ebb88a8894045e683195d66cdfb36714c802a3180440e455cce",
+    "final_report_sha256": "ee6adc45ee9ccda171a4d0d0ab3e80fb6509fa3582a2ac64cf45f8dfc9acb139",
+    "stage_state_sha256": "3c5ec8f7fcb8a71ee2fe5ea1d1df98a431fb3fa8725b95c584fa5a38138099ea",
+    "stage_manifest_sha256": "c0558aaa707a21a366167e1cc37a5bb34ebe9e9a1c6f248bcc13503aabb7c984"
+  },
+  "bank_contract": {
+    "trajectory_count": 560,
+    "context_count": 16,
+    "schedule_count": 35,
+    "interval_record_count": 3360,
+    "bank_digest": "a84995970a5c1f0f2d2e964c6b97cbaf213ac8f86d70a3666279ae144ba2de2e",
+    "feature_digest": "80ed0b20b99f6f277ac1e09f85ad33c6fb8a1e611824901509eaf6a3c7b830db",
+    "target_digest": "0f445fca5bb2dbb1da7fb1fc5e1951161322caccc4219371653ffdb55eaa8539"
+  },
+  "bridge_contract": {
+    "decision_task_steps": [10, 12, 14, 16, 18, 22],
+    "prefix_through_task_step": 12,
+    "primary_transport_interval": 1,
+    "primary_transport_task_step": 12,
+    "required_q0_reference_context_count": 16,
+    "candidate_count": 17,
+    "nonzero_candidate_count": 16,
+    "required_bridge_cell_count": 256,
+    "require_exact_binary64_q": true,
+    "require_exact_physical_prefix": true,
+    "metadata_only_support_allowed": false,
+    "later_interval_substitution_allowed": false,
+    "candidate_or_context_selection_allowed": false
+  },
+  "geometric_diagnostic_contract": {
+    "canonical_matrix_float64_le_c_sha256": "c8cd62c00c1f60b46312927789659657dc8cc35717533193433b0e398c1ec94c",
+    "transition_dimension": 8,
+    "feature_dimension": 44,
+    "primary_independent_distance_tolerance": 1e-12,
+    "geometric_support_substitutes_for_physical_bridge": false
+  },
+  "routes": {
+    "source_blocked": "Q0_TO_TRANSPORT_CAUSAL_BRIDGE_AUDIT_BLOCKED_BY_SOURCE",
+    "execution_fail": "Q0_TO_TRANSPORT_CAUSAL_BRIDGE_AUDIT_EXECUTION_FAIL_STOP",
+    "support_absent": "Q0_CALIBRATION_TO_TRANSPORT_CAUSAL_BRIDGE_SUPPORT_ABSENT_FRESH_SENTINEL_REQUIRED",
+    "support_present": "Q0_CALIBRATION_TO_TRANSPORT_CAUSAL_BRIDGE_SUPPORT_PRESENT_REANALYSIS_REQUIRED"
+  },
+  "scientific_scope": {
+    "zero_new_tsc": true,
+    "model_fit_allowed": false,
+    "controller_execution_authorized": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}
