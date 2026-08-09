@@ -1,5 +1,60 @@
 # Current status
 
+> **Final R8R37, blocked R8R38, and frozen R8R39 checkpoint (2026-08-09
+> Asia/Shanghai).** R8R37 completed at design/implementation/package
+> checkpoints `7bc61c0 / 46fa888 / 44a94ed`. Local source and empty direct-
+> copy plus server staging and installed validation passed 1,189/1,189
+> hashes, 140 JSON including manifest, 464 Python compilations, 447 server
+> `bash -n`, focused `11/11`, and full `1463/1463`, with one expected server
+> isolated-evidence skip. Transfer was direct `scp -r`; both hosts used only
+> their existing project/server virtual environments.
+>
+> Primary, independent, and finalizer wrapper exit codes were `0/0/0`.
+> Both zero-new-TSC paths authenticated the exact 560-trajectory,
+> 35-schedule, 3,360-record bank, all three digests, 1,161/1,161 cardinality
+> heads with minimum 210 training rows, and 8/8 held-pair support folds. The
+> 43 folds produced 1,075 gains: minimum/mean/maximum
+> `0.305063 / 0.778346 / 1.0`, with 517 interior and 558 upper projections.
+>
+> The fixed architecture failed. Whole-pair maximum point error was
+> `[0.0107255,0.0181541,149.299,0.0578928,0.0830866]`, tube was
+> `[0.015,0.0226926,3000,0.0723660,0.103858]`, and containment was
+> `72785/72800`. Whole-schedule maximum point error was
+> `[0.0112621,0.0250644,168.329,0.0692899,0.107082]`, tube was
+> `[0.015,0.0313305,3000,0.0866124,0.133853]`, and containment was
+> `72800/72800`. Combined tube and absolute model gates failed.
+>
+> Aggregate adapted/cold L1 ratios were `0.419017` whole-pair and `0.688370`
+> whole-schedule. All pair folds improved, but `R8R28_g2_UUUU=1.30997` and
+> `R8R28_g2_VVVV=1.33170` regressed, so the all-fold usefulness gate also
+> failed. Independent bank and neighbors were exact; maximum scaled gain,
+> prediction, tube, and metric differences were `7.88760e-15`,
+> `6.10623e-15`, `2.77556e-15`, and `2.77556e-15`, all below `1e-9`.
+>
+> Final route is
+> `TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_MODEL_FAIL_NO_TSC`. The stage has
+> eight files, zero raw/JSON.GZ/snapshot, and zero Ray, `gotsc`, TSC,
+> controller, or plant step. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R37_FORENSIC_REPORT.md`,
+> SHA-256
+> `e5a6780ce81f7afe7be83c18586e8b3388a6656edc31dc396505e794fa9ceb64`.
+>
+> Before any R8R37 result was opened, R8R38 was frozen at `7aa9383`, SHA-256
+> `d2c86894db9f48969a96e1b8e8ebec265a598a12aaef058f74aefbf757b88caa`.
+> Its source requires final R8R37 PASS, so it is blocked and was not
+> implemented. Post-result interval forensics found the whole-pair maximum
+> vR/vZ tubes at interval 0, where causal innovation is necessarily zero;
+> pure gain tuning cannot repair the full gate.
+>
+> Before any ensemble computation, active R8R39 was frozen at `3fa8397` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R39_FIXED_EQUAL_GLOBAL_RIDGE_LOCAL_CONSTANT_COLD_ENSEMBLE_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `f6005ee27d87c0a72043fc8bdc75d16bd074baa9d405a1d72e545e72f0003bbb`.
+> It fixes a response-blind `0.5/0.5` global-ridge/local-constant cold
+> ensemble in every held fold, with no weight or outcome search. Gate A and
+> all learning remain blocked; every R8-family trajectory remains forbidden
+> from learning.
+
 > **Final R8R35 and blocked prospective R8R36 checkpoint (2026-08-09
 > Asia/Shanghai).** R8R35 completed at design/implementation/package
 > checkpoints `7c83240 / ff2340e / 70236b3`. Local source and empty direct-
