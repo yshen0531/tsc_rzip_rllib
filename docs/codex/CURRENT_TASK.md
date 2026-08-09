@@ -7749,3 +7749,80 @@ dual implementations, and fail-closed authority routing.
 
 Gate A, expert data, BC, DAgger, and residual RL remain blocked. Every
 R8-family trajectory remains forbidden from learning data.
+
+## 141. Final R8R41 result, blocked R8R42, and active R8R43 task
+
+R8R41 completed at design/implementation/final-package checkpoints
+`e132925 / 8e551b1 / 2fb0766`, with source-authentication-only hotfix
+`aa5ae10`. Local source, fresh empty direct-copy, server staging, and
+installed validation passed 1,203/1,203 hashes, 142 JSON, 470 Python
+compilations, 449 server `bash -n`, focused `12/12`, and full `1486/1486`,
+with one expected isolated-evidence skip. Both hosts used only their existing
+virtual environments and the tree was transferred directly without an
+archive.
+
+The first v1 primary stopped before any model fit because eight configured
+R8R39 source hashes were transcription errors. The separately committed v2
+authentication hotfix changed no model, weight, fold, tube, gate, or route.
+The final primary/independent/finalizer executions returned `0/0/0`, rebuilt
+the exact 560-trajectory/35-schedule/3,360-record bank, and passed all
+cardinality and support gates. All independent numerical differences were
+exactly `0.0`.
+
+Whole-pair point, tube, containment, and support all passed. Whole-schedule
+containment and tubes also passed, but maximum `vZ` point error was
+`0.053570131890090245 m/s > 0.05 m/s`. Final route is:
+
+```text
+FIXED_EQUAL_GLOBAL_LOCAL_AFFINE_COLD_ENSEMBLE_MODEL_FAIL_NO_TSC
+```
+
+R8R41 produced zero TSC, plant step, raw, snapshot, controller, or real-MPC
+evidence. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R41_FORENSIC_REPORT.md
+SHA-256
+668f94efe561d76616b354fda9de91591d9a1d2297d3025c13ce679ee6f3d0aa
+```
+
+The prospectively frozen conditional R8R42 source gate requires an exact
+R8R41 PASS, so R8R42 is blocked and must not be implemented.
+
+Before any next fit or prediction, R8R43 was frozen at `849d2fa` in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R43_FIXED_AFFINE_DOMINANT_GLOBAL_RIDGE_LOCAL_AFFINE_COLD_ENSEMBLE_PREFLIGHT_DESIGN.md
+SHA-256
+7586aa8315d7f099c631e852d4178a859850cbc25d0646feae5f5296b227cb61
+```
+
+Implement exactly one fixed response-blind ensemble:
+
+```text
+prediction = 0.25 * R31 global expanded-ridge expert
+           + 0.75 * stable k64 centered local-affine expert
+```
+
+The weights are exact binary64 and are the frozen midpoint between R8R41's
+equal blend and the pure local-affine endpoint. Do not scan, fit, gate, or
+adjust weights. Rebuild all eight whole-pair and 35 whole-schedule folds;
+retain the exact bank, cardinality, support, point, tube, containment,
+forbidden-input, and scaled `1e-9` independent gates.
+
+Use the project virtual environment for local compilation and focused/full
+Windows-shimmed tests. Build a fresh empty direct-copy package, update exact
+manifest/hashes, validate the package, deploy directly through the existing
+air-gap SSH workflow without archives, then use only the existing server
+virtual environment for preflight, hashes, `bash -n`, compilation,
+focused/full tests, and dual zero-new-TSC audits. Keep large model/detailed
+evidence on the server and retrieve only compact audits.
+
+A complete model PASS authorizes only a separately frozen measurement-
+recentered controller-preflight design. A FAIL ends further post-result
+scalar cold-ensemble interpolation on this reused development bank and
+requires a separately frozen causal online innovation/adaptation architecture
+with a meaningful new validation boundary. Do not waive any gate. Gate A,
+expert data, BC, DAgger, residual RL, and all other learning remain blocked.
+Every R8-family trajectory remains forbidden from learning data.

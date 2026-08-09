@@ -1,5 +1,70 @@
 # Current status
 
+> **Final R8R41, blocked R8R42, and frozen R8R43 checkpoint (2026-08-09
+> Asia/Shanghai).** R8R41 completed at design/implementation/final-package
+> checkpoints `e132925 / 8e551b1 / 2fb0766`, with authentication-only hotfix
+> `aa5ae10`. Local source and fresh empty direct-copy plus server staging and
+> installed validation passed 1,203/1,203 hashes, 142 strict JSON including
+> manifest, 470 Python compilations, 449 server `bash -n`, focused `12/12`,
+> and full `1486/1486`, with one expected server isolated-evidence skip.
+> Transfer was direct `scp -r`; both hosts used only their existing
+> project/server virtual environments.
+>
+> The first `f26cea3_v1` primary invocation stopped before model fit because
+> eight expected R8R39 hashes had correct visible prefixes/suffixes but
+> incorrect transcribed middle bytes. Direct server hashing established the
+> complete values. The `aa5ae10` hotfix changed only source authentication;
+> the stopped directory and logs remain preserved. A separate install-
+> wrapper quoting error occurred after a successful copy and was resolved by
+> a reporting-only validation retry. Neither event is a scientific result,
+> runtime/plant failure, or model-semantic change.
+>
+> Final primary, independent, and finalizer wrapper exit codes were `0/0/0`.
+> Both zero-new-TSC paths authenticated the exact 560-trajectory,
+> 35-schedule, 3,360-record bank and all three digests. Local cardinality
+> passed `1161/1161` with minimum 210 training rows; pair support passed
+> `8/8`. Independent bank, model, predictions, neighbors, tubes, metrics,
+> route, and outcome were exact; every maximum numerical difference was
+> `0.0`.
+>
+> The fixed `0.5 global-ridge + 0.5 local-affine` cold ensemble passed the
+> entire whole-pair gate: point maximum
+> `[0.00504759,0.00994719,113.723,0.0256763,0.0333021]`, tube
+> `[0.015,0.015,3000,0.05,0.05]`, containment `72800/72800`, support `8/8`.
+> Whole-schedule point maximum was
+> `[0.00148865,0.00190061,84.7788,0.0236891,0.0535701]`, tube
+> `[0.015,0.015,3000,0.05,0.0669627]`, and containment `72800/72800`.
+> Every tube cap and all but the schedule `vZ` point cap passed; `vZ`
+> exceeded `0.05` by `0.003570131890090245 m/s`.
+>
+> Final route is
+> `FIXED_EQUAL_GLOBAL_LOCAL_AFFINE_COLD_ENSEMBLE_MODEL_FAIL_NO_TSC`. The
+> final stage has eight files and zero raw/JSON.GZ/snapshot, Ray, `gotsc`,
+> TSC, controller, or plant step. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R41_FORENSIC_REPORT.md`,
+> SHA-256
+> `668f94efe561d76616b354fda9de91591d9a1d2297d3025c13ce679ee6f3d0aa`.
+> Six compact files totaling 741,502 bytes are downloaded; the 94.27 MB
+> model and detailed evidence remain at the exact server path recorded
+> there.
+>
+> Conditional R8R42 was frozen before R8R41 results at `6921179`, design
+> SHA-256
+> `7902135995b137f8b9ffc0b110c187c7ee86c60e631ead3c56fc6672a22efbea`.
+> Its exact source gate requires final R8R41 PASS, so it is blocked without
+> implementation or execution.
+>
+> Before any new computation, active R8R43 was frozen at `849d2fa` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R43_FIXED_AFFINE_DOMINANT_GLOBAL_RIDGE_LOCAL_AFFINE_COLD_ENSEMBLE_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `7586aa8315d7f099c631e852d4178a859850cbc25d0646feae5f5296b227cb61`.
+> It fixes the exact binary midpoint `0.25 global + 0.75 local-affine`, with
+> no weight scan or gate change. This is disclosed development-bank model
+> selection. A FAIL ends scalar cold-ensemble interpolation on this bank and
+> requires a separately frozen causal online innovation/adaptation route
+> with a meaningful new validation boundary. Gate A and all learning remain
+> blocked; every R8-family trajectory remains forbidden from learning.
+
 > **Final R8R39, blocked R8R40, and frozen R8R41 checkpoint (2026-08-09
 > Asia/Shanghai).** R8R39 completed at design/implementation/package
 > checkpoints `3fa8397 / 56712ae / 40e2c22`. Local source and empty direct-
