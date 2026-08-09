@@ -6970,6 +6970,105 @@ finite real-controller sentinel. It is not Gate A. Expert data, BC, DAgger,
 residual RL, and all other learning remain blocked, and every R8-family
 trajectory remains forbidden from learning data.
 
+## 137. Final R8R34 result and frozen R8R35 causal last-innovation task
+
+R8R34 completed its initial implementation/package at `366dd55 / 335373f`.
+The first independent attempt stopped on a singular direct unpenalized-
+intercept system. The centered-intercept hotfix/package
+`b3d2ab9 / 8531fad` preserves the frozen objective and ran under a fresh v2
+output. Failure-only finalizer/package `24a7851 / fbf2848` validates and
+seals the preserved independent numerical failure without changing a model,
+prediction, residual, tube, support, tolerance, route definition, or primary
+result.
+
+Final local, empty direct-copy, server-staging, and installed validation
+passed all 1,174 declared hashes, 138 JSON files, 458 Python compilations,
+445 server shell `bash -n` checks, focused `11/11`, and full `1441/1441`
+tests with one expected isolated-evidence skip.
+
+The exact 560 trajectories, 35 schedules, 3,360 interval records, and frozen
+bank/feature/target digests reproduced. Local cardinality passed `1161/1161`
+heads with minimum training count 210. The whole-schedule model passed every
+point, tube, and containment gate:
+
+```text
+whole-schedule maximum point error
+  [0.0018031180,0.0029403129,55.7966057,0.0143597728,0.0178805288]
+whole-schedule maximum reserved tube
+  [0.015,0.015,3000,0.05,0.05]
+whole-schedule containment                     72800/72800
+```
+
+The whole-pair model failed Z/vZ point caps and complete containment, although
+all tube caps and all eight support folds passed:
+
+```text
+whole-pair maximum point error
+  [0.0100858176,0.0197562473,151.184850,0.0465097729,0.0627917229]
+whole-pair maximum reserved tube
+  [0.015,0.0246953091,3000,0.0581372162,0.0784896536]
+whole-pair containment                         72217/72800
+```
+
+Planning remained phase-closed. The primary scientific route is:
+
+```text
+CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC
+```
+
+The independent path agreed exactly on bank, discrete route, and scientific
+outcome; tube and planning differences also met the frozen scaled `1e-9`
+gate. Prediction and metric agreement failed:
+
+```text
+maximum bank absolute difference                         0.0
+maximum scaled prediction difference          6.9176668560e-7
+maximum scaled tube difference                4.8294701571e-14
+maximum scaled metric difference              1.7420631368e-7
+maximum scaled planning difference                       0.0
+```
+
+The tolerance was not changed. The final overall route fails closed as:
+
+```text
+CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_PREFLIGHT_EXECUTION_FAIL_STOP
+```
+
+This is an independent numerical-reproducibility integrity failure layered
+on the unchanged primary whole-pair model failure. It is not runtime,
+deployment, source, raw, restart, real-controller, real-MPC, plant-
+reachability, formal-control, or Gate A evidence. R8R34 created zero Ray,
+`gotsc`, TSC, controller, plant step, raw, or snapshot.
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R34_FORENSIC_REPORT.md
+SHA-256  7e77f3d09b9dd012b4a1c4a960f2df5370ab45c919d6dda601000ac317de6290
+```
+
+Before detailed R8R34 metrics or failed rows were opened, freeze R8R35 at
+checkpoint `7c83240`:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R35_CAUSAL_LAST_INNOVATION_LOCAL_CONSTANT_SCHEDULE_GENERALIZING_PREFLIGHT_DESIGN.md
+SHA-256  ad451b7b14ea1e3dcd84c029042b58068a4879f891e0cbcedd69f546f623fbbf
+```
+
+Implement exactly the frozen slope-free response-blind 64-neighbor local
+constant. Evaluate every held trajectory in time order and add only the
+unit-gain innovation from the preceding completed same-trajectory interval.
+No gain, lag, memory, clipping, neighbor, feature, distance, tube, cap, or
+tolerance search is allowed. Run the frozen whole-pair/schedule gates plus
+the five-percent measurable-benefit and no-fold-regression gates, then a
+separately reconstructed scaled dual audit.
+
+R8R35 is zero-new-TSC. A complete PASS may authorize only design of a
+separately frozen measurement-recentered controller preflight. It is not Gate
+A. Expert data, BC, DAgger, residual RL, and every other learning route remain
+blocked; every R8-family trajectory remains forbidden from learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

@@ -1,5 +1,59 @@
 # Current status
 
+> **Final R8R34 and prospective R8R35 checkpoint (2026-08-09
+> Asia/Shanghai).** R8R34 completed at design/implementation/package
+> checkpoints `1380fe1 / 366dd55 / 335373f`. Its first independent attempt
+> stopped on a singular direct intercept system; the mathematically equivalent
+> centered-intercept hotfix/package `b3d2ab9 / 8531fad` ran in a new v2
+> directory. Failure-only finalizer/package `24a7851 / fbf2848` changed no
+> model, prediction, tube, tolerance, or primary result.
+>
+> Final local, empty direct-copy, server-staging, and installed validation
+> passed 1,174/1,174 hashes, 138 JSON, 458 Python compilations, 445 server
+> `bash -n`, focused `11/11`, and full `1441/1441` with one expected isolated-
+> evidence skip. Transfer was direct `scp -r`; both hosts used only their
+> existing project/server virtual environments.
+>
+> The exact 560-trajectory, 35-schedule, 3,360-record bank and all three
+> digests reproduced. Fixed local cardinality passed all 1,161 heads with
+> minimum training count 210. The whole-schedule model passed: maximum point
+> error `[0.00180312,0.00294031,55.7966,0.0143598,0.0178805]`, tube
+> `[0.015,0.015,3000,0.05,0.05]`, containment `72800/72800`. The whole-pair
+> model failed: maximum point error
+> `[0.0100858,0.0197562,151.185,0.0465098,0.0627917]`, tube
+> `[0.015,0.0246953,3000,0.0581372,0.0784897]`, containment
+> `72217/72800`. All tube caps and 8/8 state-support folds passed, but Z/vZ
+> point caps and 100% containment did not. Planning remained closed. Primary
+> route is
+> `CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC`.
+>
+> Independent bank, tube, planning, route, and scientific-outcome agreements
+> passed, but the frozen scaled `1e-9` gate failed: maximum prediction, tube,
+> metric, and planning differences were `6.91767e-7`, `4.82947e-14`,
+> `1.74206e-7`, and `0.0`. The tolerance was not changed. Accepted overall
+> route is
+> `CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_PREFLIGHT_EXECUTION_FAIL_STOP`,
+> classified as `independent_numerical_reproducibility_gate_failure` layered
+> on the unchanged primary whole-pair model failure.
+>
+> R8R34 executed zero Ray, `gotsc`, TSC, controller, plant step, raw, or
+> snapshot. It is not a restart, real-control, plant-reachability, formal-
+> control, MPC, or Gate A result. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R34_FORENSIC_REPORT.md`,
+> SHA-256
+> `7e77f3d09b9dd012b4a1c4a960f2df5370ab45c919d6dda601000ac317de6290`.
+>
+> Before opening detailed R8R34 metrics or failed-row identities, R8R35 was
+> frozen at `7c83240` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R35_CAUSAL_LAST_INNOVATION_LOCAL_CONSTANT_SCHEDULE_GENERALIZING_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `ad451b7b14ea1e3dcd84c029042b58068a4879f891e0cbcedd69f546f623fbbf`.
+> It fixes a slope-free response-blind 64-neighbor local constant plus a
+> unit-gain, one-completed-interval causal innovation update, with unchanged
+> outer model gates, a prospective five-percent measurable-benefit gate, no
+> fold regression, and no search. Gate A and all learning remain blocked;
+> all R8-family evidence remains forbidden from learning.
+
 > **Final R8R33 and prospective R8R34 checkpoint (2026-08-09
 > Asia/Shanghai).** R8R33 completed its fixed rank-12 primary at checkpoints
 > `82d1307 / cd66c4a / 9c777c7`; a failure-only finalizer at
