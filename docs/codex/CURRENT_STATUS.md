@@ -1,5 +1,44 @@
 # Current status
 
+> **Final R8R51R4D1 direct two-transport geometry failure; next redesign must
+> be frozen before construction (2026-08-10 Asia/Shanghai).** R51R4D1 was a
+> zero-new-TSC 250-spec action-geometry preflight over ten failed contexts and
+> the complete ordered product of five frozen transport targets. The original
+> `ba89426` dual attempt falsely reported `0/250` eligible because both paths
+> added an undeclared requirement that every post-return refresh command
+> representation be componentwise binary64 zero. Exact stored-center current,
+> exact post-return q0 Card15/current, return, clock, and q0 gates were already
+> 250/250; no TSC, raw, controller, response, or plant result was affected.
+>
+> The one-predicate fix was frozen/implemented/packaged at
+> `ebf96e9 / 238e9e2 / b98f9c8`. It retained the rejected predicate as a
+> diagnostic and hard-required the original aggregate action-stream digest
+> `d1607012ca5e39cca3b3113c269c569c754603c49704cef419b239d810ea7ccb`.
+> Accepted local and empty-copy plus server staging/installed validation passed
+> 1,292 hashes, 154 JSON, 509 Python compilations, 460 `bash -n`, focused
+> `10/10`, and full `1618/1618`, with one expected isolated-package skip.
+> Direct `scp -r` used no archive.
+>
+> Under fresh corrected identity, primary and independent agreed on every
+> event digest, criterion, eligibility, and coverage set, with maximum
+> numerical difference `3.3306690738754696e-16`. Corrected eligibility was
+> `68/250`, but frozen context coverage passed `0/10`: contexts 0--3 had eight
+> eligible pairs each and contexts 4--9 had six each, below the required ten;
+> the latter six contexts also lacked complete `d2m` successor support.
+> Incremental/off-basis gates passed only `178/250 / 190/250`; maximum
+> incremental action was `0.3518518518518519` and maximum off-basis residual
+> `0.2885170771363397`. Final route is
+> `REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D1_TWO_TRANSPORT_SCHEDULE_GEOMETRY_INSUFFICIENT_NO_REAL_TSC`.
+>
+> This is a direct target-to-target action-geometry/support design FAIL, not a
+> runtime, source, current-equivalence, controller, plant, formal-control,
+> real-MPC, or global-reachability result. R51R4D2 is blocked and unrun. Exact
+> report: `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D1_FORENSIC_REPORT.md`.
+> The active action is to freeze a new zero-TSC center-bridged/split sequential
+> schedule redesign before generating it. All evidence is forbidden from
+> learning; Gate A, expert data, BC, DAgger, residual RL, and Gate B remain
+> blocked.
+
 > **Final R8R51R4 sustained-dwell authority failure; R8R51R4D1 active
 > (2026-08-10 Asia/Shanghai).** The immutable R51R4 v2 campaign completed
 > 100/100 authentic full-horizon trajectories and 3,620 plant steps with zero

@@ -8491,3 +8491,62 @@ two-transport response-sentinel design; FAIL stops before real TSC and
 requires action-geometry redesign. Do not rerun R51R4 or any old campaign.
 All evidence remains forbidden from learning. Gate A remains blocked; pause
 only when every Gate A axis in Section 0 is actually qualified.
+
+## 153. Final R8R51R4D1 geometry failure and active redesign freeze
+
+R51R4D1 completed its corrected zero-TSC dual preflight at original design,
+reporting-fix contract, corrected implementation, and accepted package
+checkpoints `e1ddc9e / ebf96e9 / 238e9e2 / b98f9c8`.
+
+The original `ba89426` attempt is preserved. Its `0/250` eligibility result
+was invalid because both implementations added the undeclared
+`post_return_refresh_zero_increment` predicate. The frozen design required
+exact q0 reconstruction and unchanged safety gates, not a componentwise-zero
+internal command representation. The correction removed only that predicate
+from eligibility, retained it as a diagnostic, and hard-authenticated the
+unchanged action-stream digest:
+
+```text
+d1607012ca5e39cca3b3113c269c569c754603c49704cef419b239d810ea7ccb
+```
+
+Corrected primary and independent retained all 250 specifications and agreed
+exactly on discrete results; maximum numerical difference was
+`3.3306690738754696e-16`. The scientific gate still failed:
+
+```text
+eligible schedules                                     68/250
+context coverage                                        0/10
+contexts 0--3 eligible pairs                           8 each
+contexts 4--9 eligible pairs                           6 each
+incremental limit PASS                                178/250
+off-basis limit PASS                                  190/250
+maximum incremental action                 0.3518518518518519
+maximum off-basis residual                  0.2885170771363397
+new TSC/raw/plant/controller/model/optimization             0
+```
+
+Final route:
+
+```text
+REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D1_TWO_TRANSPORT_SCHEDULE_GEOMETRY_INSUFFICIENT_NO_REAL_TSC
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D1_FORENSIC_REPORT.md
+```
+
+R51R4D2 required a D1 PASS, so it is blocked and must not run. The active
+task is to freeze, before any construction, a separately identified zero-TSC
+schedule redesign that routes sequential targets through the exact q0 center
+or prospectively bounded split Card15 steps while preserving every existing
+action/current/cosine/off-basis gate. It must not use R51R4 response or formal
+outcome to select an action path. A preflight PASS may authorize only a later
+prospectively frozen real response sentinel; it is not controller/MPC/Gate A
+evidence.
+
+Do not rerun any R8/R51/R51R4 trajectory. All probes remain forbidden from
+expert or learning data. Continue autonomously through the MPC qualification
+route; Gate A and Gate B remain blocked.
