@@ -7224,6 +7224,79 @@ scaled `1e-9` gates with zero new TSC. A complete PASS may authorize only a
 separately frozen controller preflight. Gate A, expert data, BC, DAgger, and
 RL remain blocked; all R8-family evidence remains forbidden from learning.
 
+## 140. Final R8R39 result, blocked R8R40, and active R8R41 task
+
+R8R39 completed at design/implementation/package checkpoints
+`3fa8397 / 56712ae / 40e2c22`. Local source, empty direct-copy, server
+staging, and installed validation passed `1197/1197` hashes, 141 JSON
+including manifest, 467 Python compilations, 448 server `bash -n`, focused
+`11/11`, and full `1474/1474` with one expected server isolated-evidence
+skip.
+
+Primary, independent, and finalizer wrapper exit codes were `0/0/0`. The
+exact 560-trajectory, 35-schedule, 3,360-record bank and all three digests
+reproduced. Cardinality passed `1161/1161` with minimum 210 rows and held-
+pair support `8/8`. All independent bank/model/prediction/tube/metric
+differences were exactly zero; neighbors, counts, gates, route, and outcome
+were exact.
+
+```text
+whole-pair maximum point
+  [0.0070887590,0.0171723491,80.0548413,0.0277353930,0.0515295995]
+whole-pair maximum tube
+  [0.015,0.0214654363,3000,0.05,0.0644119994]
+whole-pair containment                         72758/72800
+
+whole-schedule maximum point
+  [0.0068229050,0.0119713949,121.256060,0.0527403880,0.0985732689]
+whole-schedule maximum tube
+  [0.015,0.015,3000,0.0659254850,0.123216586]
+whole-schedule containment                     72800/72800
+```
+
+Whole-pair Z/vZ/containment, whole-schedule vR/vZ, and the combined tube
+gate failed. Final route:
+
+```text
+FIXED_EQUAL_GLOBAL_LOCAL_COLD_ENSEMBLE_MODEL_FAIL_NO_TSC
+```
+
+The stage has eight files and zero raw, JSON.GZ, snapshot, Ray, `gotsc`,
+TSC, controller, or plant step. Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R39_FORENSIC_REPORT.md
+SHA-256  a43d3239afd934df3b311e594bbe5a29192b1e3c5b2f3aca93377e986aae39cd
+```
+
+Conditional R8R40 was frozen before R8R39 execution at `61c4185`, design
+SHA-256
+`48802fa45048caab7219a593b5bdbbb776d71bcf7a5895c0dfb6a42287c3ef90`.
+It requires final R8R39 PASS and is blocked without implementation or
+execution.
+
+Before any next computation, freeze R8R41 at:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R41_FIXED_EQUAL_GLOBAL_RIDGE_LOCAL_AFFINE_COLD_ENSEMBLE_PREFLIGHT_DESIGN.md
+SHA-256  445e3522839a36eb3ee403ceccfbe7909f50b9b031f5d5f2951361627f4a3362
+```
+
+Implement exactly the R8R31 expanded-238 ridge global expert and the R8R34
+62D/k64 centered local-affine ridge expert inside every held pair and held
+schedule fold, then use the fixed response-blind equal prediction. Retain
+the unchanged point/tube/containment/support gates, stable augmented local
+ridge construction, independent scaled `1e-9` agreement, and zero-TSC
+boundary. R8R34 remains an immutable historical numerical-independent FAIL;
+R8R41 must pass its own dual implementation and may not relabel R8R34.
+
+R8R39 is a finite model-architecture FAIL, not runtime, reporting,
+controller, real-MPC, formal-control, plant-reachability, or Gate A evidence.
+R8R41 PASS may authorize only a separately frozen controller preflight.
+Gate A and all learning remain blocked; all R8-family evidence remains
+forbidden from learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

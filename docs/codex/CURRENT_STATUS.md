@@ -1,5 +1,57 @@
 # Current status
 
+> **Final R8R39, blocked R8R40, and frozen R8R41 checkpoint (2026-08-09
+> Asia/Shanghai).** R8R39 completed at design/implementation/package
+> checkpoints `3fa8397 / 56712ae / 40e2c22`. Local source and empty direct-
+> copy plus server staging and installed validation passed 1,197/1,197
+> hashes, 141 JSON including manifest, 467 Python compilations, 448 server
+> `bash -n`, focused `11/11`, and full `1474/1474`, with one expected server
+> isolated-evidence skip. Transfer was direct `scp -r`; both hosts used only
+> their existing project/server virtual environments.
+>
+> Primary, independent, and finalizer wrapper exit codes were `0/0/0`.
+> Both zero-new-TSC paths authenticated the exact 560-trajectory,
+> 35-schedule, 3,360-record bank and all three digests. Cardinality passed
+> `1161/1161` with minimum 210 training rows; held-pair support passed `8/8`.
+> Independent bank, model, predictions, neighbors, tubes, metrics, route, and
+> outcome were exact; all maximum numerical differences were `0.0`.
+>
+> The fixed equal global-ridge/local-constant cold ensemble failed. Whole-
+> pair maximum point error was
+> `[0.00708876,0.0171723,80.0548,0.0277354,0.0515296]`, tube was
+> `[0.015,0.0214654,3000,0.05,0.0644120]`, and containment was
+> `72758/72800`. Whole-schedule maximum point error was
+> `[0.00682291,0.0119714,121.256,0.0527404,0.0985733]`, tube was
+> `[0.015,0.015,3000,0.0659255,0.123217]`, and containment was
+> `72800/72800`. Whole-pair Z/vZ/containment, whole-schedule vR/vZ, and the
+> combined tube gate failed.
+>
+> Final route is
+> `FIXED_EQUAL_GLOBAL_LOCAL_COLD_ENSEMBLE_MODEL_FAIL_NO_TSC`. The stage has
+> eight files, zero raw/JSON.GZ/snapshot, and zero Ray, `gotsc`, TSC,
+> controller, or plant step. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R39_FORENSIC_REPORT.md`.
+> SHA-256
+> `a43d3239afd934df3b311e594bbe5a29192b1e3c5b2f3aca93377e986aae39cd`.
+> Six compact files totaling 740,658 bytes are downloaded; the 94.18 MB
+> model and detailed evidence remain at the exact run root recorded there.
+>
+> Conditional R8R40 was frozen before R8R39 execution at `61c4185`, design
+> SHA-256
+> `48802fa45048caab7219a593b5bdbbb776d71bcf7a5895c0dfb6a42287c3ef90`.
+> It requires final R8R39 PASS and is therefore blocked without
+> implementation or execution.
+>
+> Before any next computation, active R8R41 was frozen at `e132925` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R41_FIXED_EQUAL_GLOBAL_RIDGE_LOCAL_AFFINE_COLD_ENSEMBLE_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `445e3522839a36eb3ee403ceccfbe7909f50b9b031f5d5f2951361627f4a3362`.
+> It keeps the exact R31 global expert and fixed equal weights but replaces
+> the rejected local constant with the already specified R34 k64 centered
+> local-affine ridge expert under a new stable dual-implementation gate.
+> Gate A and all learning remain blocked; every R8-family trajectory remains
+> forbidden from learning.
+
 > **Final R8R37, blocked R8R38, and frozen R8R39 checkpoint (2026-08-09
 > Asia/Shanghai).** R8R37 completed at design/implementation/package
 > checkpoints `7bc61c0 / 46fa888 / 44a94ed`. Local source and empty direct-
