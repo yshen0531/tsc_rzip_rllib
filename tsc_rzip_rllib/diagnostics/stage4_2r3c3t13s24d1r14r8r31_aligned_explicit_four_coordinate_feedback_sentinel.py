@@ -1663,6 +1663,239 @@ def run_primary(ctx: Context) -> dict[str, Any]:
         raise
 
 
+_INDEPENDENT_AGREEMENT_FIELDS = (
+    "primary_bank_agreement",
+    "primary_fit_agreement",
+    "primary_outer_agreement",
+    "primary_schedule_agreement",
+    "primary_auxiliary_agreement",
+    "primary_model_artifact_agreement",
+    "primary_route_agreement",
+    "primary_outcome_agreement",
+)
+_INDEPENDENT_DIFFERENCE_FIELDS = (
+    "maximum_bank_absolute_difference",
+    "maximum_fit_absolute_difference",
+    "maximum_outer_absolute_difference",
+    "maximum_schedule_absolute_difference",
+    "maximum_auxiliary_absolute_difference",
+    "maximum_model_artifact_absolute_difference",
+)
+
+
+def validate_finalization_evidence(
+    summary: Mapping[str, Any],
+    detailed: Mapping[str, Any],
+    independent: Mapping[str, Any],
+    manifest: Mapping[str, Any],
+    file_hashes: Mapping[str, str],
+    *,
+    tolerance: float,
+) -> None:
+    """Fail closed unless the accepted independent audit matches primary exactly."""
+    expected_route = "ALIGNED_EXPLICIT_FOUR_COORDINATE_FEEDBACK_PREFLIGHT_FAIL_NO_TSC"
+    if any(
+        row.get("stage") != STAGE or row.get("identity") != IDENTITY
+        for row in (summary, independent, manifest)
+    ) or detailed.get("stage") != STAGE:
+        raise ValueError("R8R31 finalization identity mismatch")
+    if (
+        summary.get("route") != expected_route
+        or detailed.get("route") != expected_route
+        or independent.get("route") != expected_route
+        or summary.get("integrity_gate_passed") is not True
+        or detailed.get("integrity_gate_passed") is not True
+        or summary.get("scientific_gate_passed") is not False
+        or detailed.get("scientific_gate_passed") is not False
+        or summary.get("outer_model_gate_passed") is not True
+        or summary.get("schedule_jackknife_passed") is not False
+        or summary.get("planning_ran") is not False
+        or independent.get("passed") is not True
+    ):
+        raise ValueError("R8R31 finalization outcome mismatch")
+    if any(independent.get(field) is not True for field in _INDEPENDENT_AGREEMENT_FIELDS):
+        raise ValueError("R8R31 independent agreement incomplete")
+    differences = [float(independent.get(field, math.inf)) for field in _INDEPENDENT_DIFFERENCE_FIELDS]
+    if not all(math.isfinite(value) and value <= tolerance for value in differences):
+        raise ValueError("R8R31 independent numerical difference exceeds tolerance")
+    if (
+        independent.get("primary_summary_sha256") != file_hashes["primary_summary"]
+        or independent.get("primary_detailed_sha256") != file_hashes["primary_detailed"]
+        or independent.get("primary_model_sha256") != file_hashes["model"]
+        or manifest.get("primary_summary_sha256") != file_hashes["primary_summary"]
+        or manifest.get("primary_detailed_sha256") != file_hashes["primary_detailed"]
+        or manifest.get("model_sha256") != file_hashes["model"]
+    ):
+        raise ValueError("R8R31 finalization source hash mismatch")
+    zero_tsc_rows = (summary, detailed, independent)
+    if any(
+        row.get("real_tsc_executed") is not False
+        or int(row.get("new_raw_count", -1)) != 0
+        for row in zero_tsc_rows
+    ) or int(independent.get("plant_step_count", -1)) != 0:
+        raise ValueError("R8R31 finalization zero-TSC boundary violated")
+
+
+def run_finalize(ctx: Context) -> dict[str, Any]:
+    """Seal compact reporting evidence without recomputing any scientific result."""
+    primary_summary_path = ctx.paths.analysis / "primary_summary.json"
+    primary_detailed_path = ctx.paths.analysis / "primary_detailed.json"
+    independent_path = ctx.paths.analysis / "independent.json"
+    model_path = ctx.paths.model / "preflight_model.json"
+    required = (
+        primary_summary_path,
+        primary_detailed_path,
+        independent_path,
+        model_path,
+        ctx.paths.manifest,
+        ctx.paths.state,
+    )
+    if any(not path.is_file() for path in required):
+        raise ValueError("R8R31 finalization evidence is incomplete")
+    summary = _read(primary_summary_path)
+    detailed = _read(primary_detailed_path)
+    independent = _read(independent_path)
+    manifest = _read(ctx.paths.manifest)
+    file_hashes = {
+        "primary_summary": _sha(primary_summary_path),
+        "primary_detailed": _sha(primary_detailed_path),
+        "independent": _sha(independent_path),
+        "model": _sha(model_path),
+    }
+    tolerance = float(ctx.cfg["offline_gate"]["primary_independent_absolute_tolerance"])
+    validate_finalization_evidence(
+        summary,
+        detailed,
+        independent,
+        manifest,
+        file_hashes,
+        tolerance=tolerance,
+    )
+    outer = detailed["outer_model_evaluation"]
+    schedule = detailed["schedule_jackknife"]
+    planning = detailed["planning_evaluation"]
+    compact = {
+        "schema_version": SCHEMA_VERSION,
+        "stage": STAGE,
+        "identity": IDENTITY,
+        "audit_kind": "r8r31_compact_primary_independent_finalization",
+        "passed": True,
+        "integrity_gate_passed": True,
+        "scientific_gate_passed": False,
+        "route": summary["route"],
+        "design_sha256": str(ctx.cfg["design_document_sha256"]),
+        "config_sha256": _sha(ctx.config_path),
+        "source_file_sha256": file_hashes,
+        "trajectory_count": int(summary["trajectory_count"]),
+        "schedule_count": int(summary["schedule_count"]),
+        "interval_record_count": int(summary["interval_record_count"]),
+        "bank_digest": str(summary["bank_digest"]),
+        "feature_digest": str(summary["feature_digest"]),
+        "target_digest": str(summary["target_digest"]),
+        "outer_model": {
+            "passed": bool(outer["passed"]),
+            "maximum_absolute_physical_error": outer["maximum_absolute_physical_error"],
+            "maximum_reserved_physical_tube_half_width": outer[
+                "maximum_reserved_physical_tube_half_width"
+            ],
+            "reserved_contained_count": int(outer["reserved_contained_count"]),
+            "reserved_component_count": int(outer["reserved_component_count"]),
+            "reserved_containment_rate": float(outer["reserved_containment_rate"]),
+        },
+        "schedule_jackknife": {
+            "passed": bool(schedule["passed"]),
+            "maximum_absolute_physical_error": schedule["maximum_absolute_physical_error"],
+            "maximum_reserved_physical_tube_half_width": schedule[
+                "maximum_reserved_physical_tube_half_width"
+            ],
+            "contained_count": int(schedule["contained_count"]),
+            "component_count": int(schedule["component_count"]),
+            "containment_rate": float(schedule["containment_rate"]),
+        },
+        "combined_tube_maximum_physical_half_width": detailed[
+            "combined_tube_maximum_physical_half_width"
+        ],
+        "combined_tube_cap_passed": bool(detailed["combined_tube_cap_passed"]),
+        "planning": {
+            "ran": bool(planning["ran"]),
+            "safe_search_context_count": int(planning["safe_search_context_count"]),
+            "predicted_repaired_failed_baseline_count": int(
+                planning["predicted_repaired_failed_baseline_count"]
+            ),
+            "predicted_regressed_baseline_pass_count": int(
+                planning["predicted_regressed_baseline_pass_count"]
+            ),
+            "predicted_fallback_plus_plan_oracle_count": int(
+                planning["predicted_fallback_plus_plan_oracle_count"]
+            ),
+            "nonzero_first_action_count": int(planning["nonzero_first_action_count"]),
+            "passed": bool(planning["passed"]),
+        },
+        "fault_injection": detailed["fault_injection"],
+        "independent_agreement": {
+            field: bool(independent[field]) for field in _INDEPENDENT_AGREEMENT_FIELDS
+        },
+        "independent_maximum_absolute_difference": {
+            field: float(independent[field]) for field in _INDEPENDENT_DIFFERENCE_FIELDS
+        },
+        "real_tsc_executed": False,
+        "plant_step_count": 0,
+        "new_raw_count": 0,
+        "controller_implementation_complete": False,
+        "controller_execution_authorized": False,
+        "gate_a_qualified": False,
+        "expert_data_allowed": False,
+        "classification": "finite_schedule_jackknife_model_design_failure",
+    }
+    compact_path = ctx.paths.analysis / "compact_audit.json"
+    _write(compact_path, compact)
+    final = copy.deepcopy(compact)
+    final.update(
+        {
+            "audit_kind": "r8r31_final_report",
+            "compact_audit_sha256": _sha(compact_path),
+            "conclusion": (
+                "whole-pair prediction passed, but whole-schedule velocity point/tube "
+                "qualification failed before planning; no controller or plant step ran"
+            ),
+            "next_boundary": (
+                "freeze a new causal schedule-generalizing model/controller identity "
+                "before any new metric, controller action, or TSC"
+            ),
+        }
+    )
+    final_path = ctx.paths.analysis / "final_report.json"
+    _write(final_path, final)
+    manifest.update(
+        {
+            "independent_sha256": file_hashes["independent"],
+            "compact_audit_sha256": _sha(compact_path),
+            "final_report_sha256": _sha(final_path),
+            "final_route": str(summary["route"]),
+            "independent_completed": True,
+        }
+    )
+    _write(ctx.paths.manifest, manifest)
+    state = _read(ctx.paths.state)
+    state.update(
+        {
+            "phase_status": "offline_preflight_failed_final",
+            "finished": True,
+            "primary_completed": True,
+            "independent_completed": True,
+            "scientific_gate_passed": False,
+            "route": str(summary["route"]),
+            "real_tsc_executed": False,
+            "plant_step_count": 0,
+            "new_raw_count": 0,
+            "controller_implementation_complete": False,
+            "controller_execution_authorized": False,
+        }
+    )
+    _write(ctx.paths.state, state)
+    return final
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     for name in (
@@ -1706,13 +1939,14 @@ def _parser() -> argparse.ArgumentParser:
         "r3b-snapshot-checks",
     ):
         parser.add_argument(f"--{name}", dest=name.replace("-", "_"), type=Path, required=True)
-    parser.add_argument("--command", choices=("primary",), default="primary")
+    parser.add_argument("--command", choices=("primary", "finalize"), default="primary")
     return parser
 
 
 def main() -> None:
     args = _parser().parse_args()
-    result = run_primary(load_context(args))
+    ctx = load_context(args)
+    result = run_primary(ctx) if args.command == "primary" else run_finalize(ctx)
     print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
 
 

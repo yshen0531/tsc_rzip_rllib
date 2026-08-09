@@ -223,6 +223,79 @@ class R8R31AlignedExplicitFourCoordinateFeedbackTests(unittest.TestCase):
         self.assertEqual(len(result["fold_rows"]), 8)
         self.assertTrue(np.isfinite(result["reserved_containment_rate"]))
 
+    def test_finalization_requires_exact_independent_agreement(self):
+        route = "ALIGNED_EXPLICIT_FOUR_COORDINATE_FEEDBACK_PREFLIGHT_FAIL_NO_TSC"
+        summary = {
+            "stage": r8r31.STAGE,
+            "identity": r8r31.IDENTITY,
+            "route": route,
+            "integrity_gate_passed": True,
+            "scientific_gate_passed": False,
+            "outer_model_gate_passed": True,
+            "schedule_jackknife_passed": False,
+            "planning_ran": False,
+            "real_tsc_executed": False,
+            "new_raw_count": 0,
+        }
+        detailed = {
+            "stage": r8r31.STAGE,
+            "route": route,
+            "integrity_gate_passed": True,
+            "scientific_gate_passed": False,
+            "real_tsc_executed": False,
+            "new_raw_count": 0,
+        }
+        hashes = {
+            "primary_summary": "summary",
+            "primary_detailed": "detailed",
+            "model": "model",
+            "independent": "independent",
+        }
+        independent_result = {
+            "stage": r8r31.STAGE,
+            "identity": r8r31.IDENTITY,
+            "route": route,
+            "passed": True,
+            "primary_summary_sha256": "summary",
+            "primary_detailed_sha256": "detailed",
+            "primary_model_sha256": "model",
+            "real_tsc_executed": False,
+            "plant_step_count": 0,
+            "new_raw_count": 0,
+            **{field: True for field in r8r31._INDEPENDENT_AGREEMENT_FIELDS},
+            **{field: 0.0 for field in r8r31._INDEPENDENT_DIFFERENCE_FIELDS},
+        }
+        manifest = {
+            "stage": r8r31.STAGE,
+            "identity": r8r31.IDENTITY,
+            "primary_summary_sha256": "summary",
+            "primary_detailed_sha256": "detailed",
+            "model_sha256": "model",
+        }
+
+        r8r31.validate_finalization_evidence(
+            summary,
+            detailed,
+            independent_result,
+            manifest,
+            hashes,
+            tolerance=1e-12,
+        )
+
+        changed = copy.deepcopy(independent_result)
+        changed["primary_schedule_agreement"] = False
+        with self.assertRaisesRegex(ValueError, "agreement incomplete"):
+            r8r31.validate_finalization_evidence(
+                summary, detailed, changed, manifest, hashes, tolerance=1e-12
+            )
+
+        changed = copy.deepcopy(independent_result)
+        changed["maximum_schedule_absolute_difference"] = 2e-12
+        with self.assertRaisesRegex(ValueError, "exceeds tolerance"):
+            r8r31.validate_finalization_evidence(
+                summary, detailed, changed, manifest, hashes, tolerance=1e-12
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

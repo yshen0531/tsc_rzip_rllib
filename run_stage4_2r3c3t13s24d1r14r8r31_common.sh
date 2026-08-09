@@ -28,7 +28,7 @@ for source_run in "${R8R23_RUN}" "${R8R28_RUN}" "${R8R7_RUN}" "${R8R12_RUN}" "${
   [[ -d "${source_run}" ]]
 done
 case "${COMMAND}" in
-  primary|independent) ;;
+  primary|independent|finalize) ;;
   *) echo "ERROR: unsupported R8R31 command ${COMMAND}" >&2; exit 1 ;;
 esac
 
@@ -92,4 +92,4 @@ args=(
 if [[ "${COMMAND}" == independent ]]; then
   exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r31_independent_forensics.py "${args[@]}"
 fi
-exec "${PYTHON}" -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s24d1r14r8r31_aligned_explicit_four_coordinate_feedback_sentinel "${args[@]}" --command primary
+exec "${PYTHON}" -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s24d1r14r8r31_aligned_explicit_four_coordinate_feedback_sentinel "${args[@]}" --command "${COMMAND}"
