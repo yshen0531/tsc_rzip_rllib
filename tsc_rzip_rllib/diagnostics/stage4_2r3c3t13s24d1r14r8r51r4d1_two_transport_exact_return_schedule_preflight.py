@@ -125,6 +125,7 @@ def validate_config(cfg: Mapping[str, Any], *, project_root: Path) -> None:
     scope = cfg.get("scientific_scope", {})
     source = cfg.get("source_r51r4", {})
     design = project_root / str(cfg.get("design_document", ""))
+    reporting_fix = project_root / str(cfg.get("reporting_fix_contract", ""))
     source_config = project_root / str(cfg.get("source_r51r4_config", ""))
     source_implementation = project_root / (
         "tsc_rzip_rllib/diagnostics/"
@@ -149,9 +150,13 @@ def validate_config(cfg: Mapping[str, Any], *, project_root: Path) -> None:
         or cfg.get("model_revision")
         != "no_model_two_transport_exact_return_schedule_preflight_v1"
         or cfg.get("package_revision")
-        != "r42r3c3t13s24d1r14r8r51r4d1_two_transport_schedule_preflight_v1"
+        != "r42r3c3t13s24d1r14r8r51r4d1_two_transport_schedule_preflight_v2_refresh_reporting_fix"
         or not design.is_file()
         or _sha(design) != cfg.get("design_document_sha256")
+        or not reporting_fix.is_file()
+        or _sha(reporting_fix) != cfg.get("reporting_fix_contract_sha256")
+        or cfg.get("reporting_fix_required_action_stream_digest")
+        != "d1607012ca5e39cca3b3113c269c569c754603c49704cef419b239d810ea7ccb"
         or not source_config.is_file()
         or _sha(source_config) != cfg.get("source_r51r4_config_sha256")
         or not source_implementation.is_file()
@@ -546,10 +551,6 @@ def construct_schedule(
         "stored_center_current_exact": bool(np.array_equal(
             np.asarray(returned["nominal_readback_current_a_tsc"], dtype=float), center_current
         )),
-        "post_return_refresh_zero_increment": all(
-            np.array_equal(np.asarray(event["action_norm_tsc"], dtype=float), np.zeros(N_COILS))
-            for event in post_return
-        ),
         "post_return_center_exact": all(
             list(event["stored_target_card15_fields"]) == list(first_events[0]["q0_center_card15_fields"])
             and np.array_equal(np.asarray(event["nominal_readback_current_a_tsc"], dtype=float), center_current)
@@ -592,6 +593,10 @@ def construct_schedule(
         "second_transition_relative_off_basis_residual": off_basis,
         "second_transition_incremental_action_linf": float(second["incremental_normalized_action_linf"]),
         "return_incremental_action_linf": float(returned["incremental_normalized_action_linf"]),
+        "post_return_refresh_zero_increment_diagnostic": all(
+            np.array_equal(np.asarray(event["action_norm_tsc"], dtype=float), np.zeros(N_COILS))
+            for event in post_return
+        ),
         "criteria": criteria,
         "eligible": bool(all(criteria.values())),
     }
@@ -672,6 +677,9 @@ def run_primary(ctx: Context) -> dict[str, Any]:
         cache: dict[str, dict[str, Any]] = {}
         rows = [construct_schedule(ctx, spec, source_by_experiment, cache) for spec in specs]
         coverage = evaluate_coverage(rows, ctx.cfg)
+        action_stream_digest = _digest([(row["experiment_id"], row["action_stream_digest"]) for row in rows])
+        if action_stream_digest != ctx.cfg["reporting_fix_required_action_stream_digest"]:
+            raise SourceBlockedError("R8R51R4D1 reporting fix changed the frozen action streams")
         construction = {
             "schema_version": 1,
             "stage": STAGE,
@@ -682,7 +690,7 @@ def run_primary(ctx: Context) -> dict[str, Any]:
             "maximum_predicted_current_utilization": max(float(row["maximum_predicted_current_utilization"]) for row in rows),
             "minimum_second_transition_cosine": min(float(row["second_transition_cosine"]) for row in rows),
             "maximum_second_transition_relative_off_basis_residual": max(float(row["second_transition_relative_off_basis_residual"]) for row in rows),
-            "action_stream_digest": _digest([(row["experiment_id"], row["action_stream_digest"]) for row in rows]),
+            "action_stream_digest": action_stream_digest,
             "coverage": coverage,
             "rows": rows,
             "passed": bool(coverage["passed"]),

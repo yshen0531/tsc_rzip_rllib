@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import inspect
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -85,10 +86,16 @@ class TestR51R4D1TwoTransportSchedulePreflight(unittest.TestCase):
         cfg = _config()
         d1.validate_config(cfg, project_root=ROOT)
         self.assertEqual(d1._sha(DESIGN), cfg["design_document_sha256"])
+        reporting_fix = ROOT / cfg["reporting_fix_contract"]
+        self.assertEqual(d1._sha(reporting_fix), cfg["reporting_fix_contract_sha256"])
         self.assertEqual(cfg["matrix_contract"]["specification_count"], 250)
         self.assertTrue(cfg["scientific_scope"]["zero_new_tsc"])
         self.assertFalse(cfg["scientific_scope"]["response_values_used"])
         self.assertFalse(cfg["scientific_scope"]["gate_a_qualified"])
+        self.assertEqual(
+            cfg["reporting_fix_required_action_stream_digest"],
+            "d1607012ca5e39cca3b3113c269c569c754603c49704cef419b239d810ea7ccb",
+        )
 
     def test_complete_ordered_specification_matrix_is_frozen(self) -> None:
         with mock.patch.object(d1, "_source_specs", return_value=_source_specs()):
@@ -164,8 +171,15 @@ class TestR51R4D1TwoTransportSchedulePreflight(unittest.TestCase):
             self.assertIn('"fixed_task_clock"', source)
             self.assertIn('"q0_integration_action"', source)
             self.assertIn('"stored_center_current_exact"', source)
-            self.assertIn('"post_return_refresh_zero_increment"', source)
             self.assertIn('"current_utilization_limits"', source)
+
+    def test_undeclared_refresh_zero_predicate_is_diagnostic_only(self) -> None:
+        for function in (d1.construct_schedule, independent._construct_row):
+            source = inspect.getsource(function)
+            criteria_source = source.split("criteria = {", 1)[1].split("return {", 1)[0]
+            return_source = source.split("return {", 1)[1]
+            self.assertNotIn("post_return_refresh_zero_increment", criteria_source)
+            self.assertIn('"post_return_refresh_zero_increment_diagnostic"', return_source)
 
     def test_launcher_is_zero_tsc_dual_offline_only(self) -> None:
         source = LAUNCHER.read_text(encoding="utf-8")

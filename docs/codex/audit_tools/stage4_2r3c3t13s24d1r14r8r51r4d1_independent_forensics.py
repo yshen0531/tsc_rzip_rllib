@@ -334,10 +334,6 @@ def _construct_row(
         "stored_center_current_exact": [
             float(value) for value in returned["nominal_readback_current_a_tsc"]
         ] == center_current,
-        "post_return_refresh_zero_increment": all(
-            all(float(value) == 0.0 for value in event["action_norm_tsc"])
-            for event in post_return
-        ),
         "post_return_center_exact": all(
             list(event["stored_target_card15_fields"]) == list(first_events[0]["q0_center_card15_fields"])
             and [float(value) for value in event["nominal_readback_current_a_tsc"]] == center_current
@@ -379,6 +375,10 @@ def _construct_row(
         "second_transition_relative_off_basis_residual": off_basis,
         "second_transition_incremental_action_linf": float(second["incremental_normalized_action_linf"]),
         "return_incremental_action_linf": float(returned["incremental_normalized_action_linf"]),
+        "post_return_refresh_zero_increment_diagnostic": all(
+            all(float(value) == 0.0 for value in event["action_norm_tsc"])
+            for event in post_return
+        ),
         "criteria": criteria,
         "eligible": all(bool(value) for value in criteria.values()),
     }
@@ -469,6 +469,8 @@ def run_independent(ctx: d1.Context) -> dict[str, Any]:
         and bool(primary_by_id[str(row["experiment_id"])]["eligible"]) == bool(row["eligible"])
         and primary_by_id[str(row["experiment_id"])]["criteria"] == row["criteria"]
         and primary_by_id[str(row["experiment_id"])]["action_stream_digest"] == row["action_stream_digest"]
+        and bool(primary_by_id[str(row["experiment_id"])]["post_return_refresh_zero_increment_diagnostic"])
+        == bool(row["post_return_refresh_zero_increment_diagnostic"])
         for row in rows
     )
     numerical_keys = (
@@ -491,7 +493,15 @@ def run_independent(ctx: d1.Context) -> dict[str, Any]:
         and coverage["gates"] == primary_coverage["gates"]
     )
     numerical_agreement = maximum_difference <= 1e-10
-    audit_passed = bool(authentication["passed"] and discrete_agreement and coverage_agreement and numerical_agreement)
+    action_stream_digest = _digest([(row["experiment_id"], row["action_stream_digest"]) for row in rows])
+    action_stream_preserved = bool(
+        action_stream_digest == ctx.cfg["reporting_fix_required_action_stream_digest"]
+        and primary.get("action_stream_digest") == action_stream_digest
+    )
+    audit_passed = bool(
+        authentication["passed"] and discrete_agreement and coverage_agreement
+        and numerical_agreement and action_stream_preserved
+    )
     scientific_passed = bool(audit_passed and coverage["passed"] and primary.get("passed") is True)
     route = ctx.cfg["routes"]["pass" if scientific_passed else "geometry_fail"]
     report = {
@@ -503,8 +513,9 @@ def run_independent(ctx: d1.Context) -> dict[str, Any]:
         "eligible_specification_count": coverage["eligible_specification_count"],
         "context_pass_count": coverage["context_pass_count"],
         "history_pair_pass_count": coverage["history_pair_pass_count"],
-        "action_stream_digest": _digest([(row["experiment_id"], row["action_stream_digest"]) for row in rows]),
+        "action_stream_digest": action_stream_digest,
         "primary_action_stream_digest": primary.get("action_stream_digest"),
+        "frozen_action_stream_preserved": action_stream_preserved,
         "primary_discrete_agreement": discrete_agreement,
         "primary_coverage_agreement": coverage_agreement,
         "primary_numerical_agreement": numerical_agreement,
