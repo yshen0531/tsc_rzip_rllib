@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R34",
+  "identity": "causal_local_neighborhood_schedule_generalizing_feedback_preflight_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r34_causal_local_neighborhood_schedule_generalizing_feedback_preflight",
+  "controller_revision": "causal_local_neighborhood_schedule_generalizing_feedback_v42r3c3t13s24d1r14r8r34_v1",
+  "package_revision": "r42r3c3t13s24d1r14r8r34_local_neighborhood_schedule_preflight_v1",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R34_CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "21d86f169cd92ede5263e2a9c6a4fc189e070f5cbfa1bd4dbd7d493fabf8f0c2",
+  "source_r8r33_config": "configs/stage4_2r3c3t13s24d1r14r8r33_uniformly_supported_rank12_schedule_generalizing_feedback_preflight.json",
+  "source_r8r33_config_sha256": "cb6672acfd16583f96b6b9aa711b0b04a855df65e454de5c5e7cbac6c859d838",
+  "source_r8r33": {
+    "run_name": "stage4_2r3c3t13s24d1r14r8r33_uniformly_supported_rank12_schedule_generalizing_feedback_preflight_20260809_9c777c7_v1",
+    "stage_directory": "stage4_2r3c3t13s24d1r14r8r33_uniformly_supported_rank12_schedule_generalizing_feedback_preflight",
+    "required_final_route": "UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZATION_PREFLIGHT_EXECUTION_FAIL_STOP",
+    "required_primary_route": "UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC",
+    "primary_summary_sha256": "2e7be2c391ee479c88ae61eaf12b43a38ac24bece8cdd2259cab98494acab729",
+    "primary_detailed_sha256": "b56f9501a3d636852a39e6d468ee4ef34fec13d9bef0e8d98332c530e641b60a",
+    "model_sha256": "a98252f0da26181a01316d46fe314189a88b4a71006a1dcd4820dab5fbc9f2fd",
+    "independent_failure_sha256": "34a460988d4874c77687f0825d16bcd2f3b090210f9fe13c70c5e9ea64209dba",
+    "compact_audit_sha256": "19da7f0a282ae982b5c3f9ce8685562a6449703507fff70453f2693a595101ba",
+    "final_report_sha256": "2fbb46d1efc8fa709158d76dab8ff7b1264b17e0076236bb940c4f1a11d1523c",
+    "stage_state_sha256": "0ae69ae938f5f6b2020af3a73488f12b6468e579f99d22f31eb06e60626828a8",
+    "stage_manifest_sha256": "e4a151398f35154ea4c28aa7046302fb1c0d0838976cb0bbe23b825629ceebd6"
+  },
+  "bank_contract": {
+    "trajectory_count": 560,
+    "physical_pair_count": 8,
+    "history_context_count": 16,
+    "schedule_count": 35,
+    "interval_record_count": 3360,
+    "decision_task_steps": [10, 12, 14, 16, 18, 22],
+    "bank_digest": "a84995970a5c1f0f2d2e964c6b97cbaf213ac8f86d70a3666279ae144ba2de2e",
+    "feature_digest": "80ed0b20b99f6f277ac1e09f85ad33c6fb8a1e611824901509eaf6a3c7b830db",
+    "target_digest": "0f445fca5bb2dbb1da7fb1fc5e1951161322caccc4219371653ffdb55eaa8539"
+  },
+  "model_contract": {
+    "causal_base_dimension": 44,
+    "action_dimension": 18,
+    "coordinate_dimension": 62,
+    "coordinate_scale_floor": 1e-12,
+    "neighbor_count": 64,
+    "neighbor_rows_per_history_context": 4,
+    "history_context_count": 16,
+    "slope_ridge_penalty": 1.0,
+    "intercept_penalty": 0.0,
+    "uniform_neighbor_weight": 1.0,
+    "reserve_multiplier": 1.25,
+    "physical_point_error_floors": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "primary_independent_component_scales": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "primary_independent_scaled_tolerance": 1e-9,
+    "neighbor_search_allowed": false,
+    "feature_search_allowed": false,
+    "hyperparameter_search_allowed": false,
+    "response_weighting_allowed": false,
+    "outlier_deletion_allowed": false,
+    "tube_clipping_allowed": false
+  },
+  "model_gates": {
+    "maximum_point_error": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "maximum_tube_half_width": [0.025, 0.025, 5000.0, 0.08, 0.08],
+    "required_reserved_tube_containment_rate": 1.0,
+    "required_whole_pair_state_support_rate": 1.0,
+    "required_finite_prediction_rate": 1.0,
+    "required_forbidden_input_count": 0
+  },
+  "offline_gate": {
+    "required_safe_search_context_count": 16,
+    "minimum_predicted_repaired_failed_baseline_count": 1,
+    "maximum_predicted_regressed_baseline_pass_count": 0,
+    "minimum_predicted_oracle_count": 7,
+    "minimum_nonzero_first_action_count": 1,
+    "required_fault_injection_count": 6
+  },
+  "routes": {
+    "execution_fail": "CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_PREFLIGHT_EXECUTION_FAIL_STOP",
+    "model_fail": "CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC",
+    "authority_fail": "CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_AUTHORITY_INSUFFICIENT_CONTROLLER_SENTINEL_NOT_AUTHORIZED",
+    "pass": "CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZATION_PREFLIGHT_PASS_REAL_SENTINEL_DESIGN_REQUIRED"
+  },
+  "scientific_scope": {
+    "zero_new_tsc": true,
+    "controller_execution_authorized": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}

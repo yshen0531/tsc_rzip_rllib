@@ -1270,6 +1270,8 @@ def plan_context(
     tube: Sequence[np.ndarray],
     support: Mapping[str, Any],
     hulls: Sequence[Mapping[str, Any]],
+    *,
+    predict_fn: Callable[[Mapping[str, Any], Mapping[str, Any]], np.ndarray] = predict,
 ) -> dict[str, Any]:
     candidates = _candidate_rows(ctx.cfg)
     baseline = meta["baseline_result"]
@@ -1324,7 +1326,7 @@ def plan_context(
                     "targets": np.zeros((count, 5)),
                 }
                 row["expanded"] = expanded_feature238(feature, q, node["previous_q"])
-                forecast = predict(model, row)
+                forecast = predict_fn(model, row)
                 next_current = np.asarray(issue["nominal_issue_readback_current_a_tsc"])
                 expanded_nodes.append(
                     {
