@@ -7826,3 +7826,68 @@ requires a separately frozen causal online innovation/adaptation architecture
 with a meaningful new validation boundary. Do not waive any gate. Gate A,
 expert data, BC, DAgger, residual RL, and all other learning remain blocked.
 Every R8-family trajectory remains forbidden from learning data.
+
+## 142. Final R8R43 model PASS and active R8R44 controller preflight
+
+R8R43 completed at `849d2fa / b87a5c6 / 64a035c`. Local source, fresh
+empty direct-copy, server staging, and installed validation passed all 1,209
+hashes, 143 JSON, 473 Python compilations, 450 `bash -n`, focused `12/12`,
+and full `1498/1498` with one expected skip. Transfer was direct without an
+archive and both hosts used only their existing virtual environments.
+
+Primary, independent, and finalizer returned `0/0/0`. Both implementations
+rebuilt the exact 560-trajectory, 35-schedule, 3,360-record bank, passed all
+1,161 cardinality heads and 8/8 support folds, and agreed with every maximum
+numerical difference exactly `0.0`.
+
+Whole-pair point maximum was
+`[0.0075667034,0.0148517210,132.147183,0.0354888583,0.0473959764]`, tube
+was `[0.015,0.0185646512,3000,0.05,0.0592449705]`, and containment was
+`72800/72800`. Whole-schedule point maximum was
+`[0.0012253368,0.0020013832,50.3765587,0.0151852998,0.0303342706]`, tube
+was `[0.015,0.015,3000,0.05,0.05]`, and containment was `72800/72800`.
+Final route is:
+
+```text
+FIXED_AFFINE_DOMINANT_COLD_ENSEMBLE_PASS_CONTROLLER_PREFLIGHT_DESIGN_REQUIRED
+```
+
+This is a reused-development-bank finite model PASS only. It produced zero
+TSC, plant step, raw, snapshot, controller, or real-MPC evidence. Exact
+report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R43_FORENSIC_REPORT.md
+SHA-256
+4aa54a2ff560ba525bb33eef48b082f75cb1142be127fd1ebc13c9b43d3efe55
+```
+
+Before any R8R43 result, R8R44 was frozen at `5af9163` in:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R44_FIXED_AFFINE_DOMINANT_GLOBAL_LOCAL_AFFINE_COLD_ENSEMBLE_RECENDING_CONTROLLER_PREFLIGHT_DESIGN.md
+SHA-256
+8151ee6f9cf086b134f83f4b4ab8cb84d065a204cd5bef928843ae5d41befad6
+```
+
+Implement R8R44 only after authenticating the exact R8R43 PASS. Freeze the
+same `0.25/0.75` fold-refit ensemble and carry the final combined tube
+without shrinkage. Recreate the frozen 17-action, beam-512, measurement-
+recentered first-action planner. Enforce exact Card15, dynamic radius 16,
+increment `<=0.25`, total `<=1`, current `<=0.55`, direction cosine
+`>=0.98`, off-basis residual `<=0.10`, 100% observed support, fail-closed
+hold fallback, and all six fault-injection holds.
+
+The frozen finite authority gate requires safe searches `16/16`, at least
+one full-tube predicted repair among ten failed baselines, zero full-tube
+regressions among six passes, fallback-plus-plan optimistic oracle `>=7/16`,
+at least one nonzero safe first action, six of six injected faults selecting
+hold, exact discrete dual agreement, and maximum scaled numeric difference
+`<=1e-9`.
+
+R8R44 executes zero Ray, `gotsc`, TSC, controller, plant step, raw, or
+snapshot. A PASS authorizes only a separately frozen fresh real-TSC sentinel
+design, not that run. Gate A, expert data, BC, DAgger, residual RL, and all
+learning remain blocked. Every R8-family trajectory remains forbidden from
+learning data.

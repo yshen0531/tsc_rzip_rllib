@@ -1,5 +1,62 @@
 # Current status
 
+> **Final R8R43 and frozen R8R44 checkpoint (2026-08-09 Asia/Shanghai).**
+> R8R43 completed at design/implementation/package checkpoints
+> `849d2fa / b87a5c6 / 64a035c`. Local source and fresh empty direct-copy
+> plus server staging and installed validation passed 1,209/1,209 hashes,
+> 143 strict JSON including manifest, 473 Python compilations, 450 server
+> `bash -n`, focused `12/12`, and full `1498/1498`, with one expected server
+> isolated-evidence skip. Transfer was direct `scp -r`; both hosts used only
+> their existing project/server virtual environments.
+>
+> The first staging wrapper completed every check but returned 127 after a
+> Windows-pipe CR produced a final `$'\\r'` command. A CR-stripping retry
+> reproduced all validation with exit zero. A preceding retry stopped before
+> tests because first-pass `py_compile` caches invalidated the one-time total
+> physical-file count. These were validation-wrapper/newline and cache-
+> counting errors, not package, compilation, test, runtime, or scientific
+> failures. No source semantics changed.
+>
+> Primary, independent, and finalizer wrapper exit codes were `0/0/0`.
+> Both zero-new-TSC paths authenticated the exact 560-trajectory,
+> 35-schedule, 3,360-record bank and all three digests. Cardinality passed
+> `1161/1161` with minimum 210 training rows; pair support passed `8/8`.
+> Independent bank, model, predictions, neighbors, tubes, metrics, route,
+> and outcome were exact; every maximum numerical difference was `0.0`.
+>
+> The fixed `0.25 global-ridge + 0.75 local-affine` cold ensemble passed.
+> Whole-pair point maximum was
+> `[0.00756670,0.0148517,132.147,0.0354889,0.0473960]`, tube was
+> `[0.015,0.0185647,3000,0.05,0.0592450]`, containment was `72800/72800`,
+> and support was `8/8`. Whole-schedule point maximum was
+> `[0.00122534,0.00200138,50.3766,0.0151853,0.0303343]`, tube was
+> `[0.015,0.015,3000,0.05,0.05]`, and containment was `72800/72800`.
+> Every frozen point, tube, finite, containment, support, and forbidden-input
+> gate passed without clipping.
+>
+> Final route is
+> `FIXED_AFFINE_DOMINANT_COLD_ENSEMBLE_PASS_CONTROLLER_PREFLIGHT_DESIGN_REQUIRED`.
+> R8R43 has eight files and zero raw/JSON.GZ/snapshot, Ray, `gotsc`, TSC,
+> controller, or plant step. This is a repeatedly used development-bank
+> finite model PASS, not independent holdout, controller, MPC, formal-
+> control, plant-reachability, or Gate A evidence. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R43_FORENSIC_REPORT.md`,
+> SHA-256
+> `4aa54a2ff560ba525bb33eef48b082f75cb1142be127fd1ebc13c9b43d3efe55`.
+> Six compact files totaling 742,655 bytes are downloaded; the 94.26 MB
+> model and detailed evidence remain at the exact server path recorded
+> there.
+>
+> Before any R8R43 result was opened, conditional R8R44 was frozen at
+> `5af9163`, design SHA-256
+> `8151ee6f9cf086b134f83f4b4ab8cb84d065a204cd5bef928843ae5d41befad6`.
+> The R8R43 PASS satisfies its source gate. Active R8R44 is a zero-TSC,
+> measurement-recentered finite controller preflight with frozen actuator,
+> safety, support, fault-injection, and authority gates. Even a PASS may
+> authorize only a separately frozen real-sentinel design. Gate A and all
+> learning remain blocked; every R8-family trajectory remains forbidden from
+> learning.
+
 > **Final R8R41, blocked R8R42, and frozen R8R43 checkpoint (2026-08-09
 > Asia/Shanghai).** R8R41 completed at design/implementation/final-package
 > checkpoints `e132925 / 8e551b1 / 2fb0766`, with authentication-only hotfix
