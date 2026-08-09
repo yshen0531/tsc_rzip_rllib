@@ -7044,7 +7044,7 @@ Exact report:
 
 ```text
 docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R34_FORENSIC_REPORT.md
-SHA-256  7e77f3d09b9dd012b4a1c4a960f2df5370ab45c919d6dda601000ac317de6290
+SHA-256  66a999d89932c38bc392035777d50ba1679cbbf0238aca12bce2f595fa800c43
 ```
 
 Before detailed R8R34 metrics or failed rows were opened, freeze R8R35 at
