@@ -183,6 +183,18 @@ class R8R49Q0TransportBridgeTests(unittest.TestCase):
         self.assertIn("response_digest", source)
         self.assertIn("primary_agreement", source)
 
+    def test_runner_uses_exported_source_locator_names(self) -> None:
+        runner = (ROOT / "run_stage4_2r3c3t13s24d1r14r8r49_common.sh").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("stage4_2r3c3t13s21_find_source_s21", runner)
+        for suffix in (
+            "find_source_s21", "find_source_s23r1", "find_source_s24",
+            "find_source_d1r9_v1", "find_source_d1r9_v2",
+            "find_source_d1r10", "find_source_d1r10_audit",
+        ):
+            self.assertIn(f"stage4_2r3c3t13s24d1r11_{suffix}", runner)
+
 
 if __name__ == "__main__":
     unittest.main()
