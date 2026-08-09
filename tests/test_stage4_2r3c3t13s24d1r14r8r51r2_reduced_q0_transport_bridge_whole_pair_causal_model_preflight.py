@@ -159,6 +159,14 @@ class R8R51R2WholePairCausalModelTests(unittest.TestCase):
         self.assertNotIn("import stage4_2r3c3t13s24d1r14r8r51r2", source)
         self.assertNotIn("from tsc_rzip_rllib.diagnostics", source)
 
+    def test_both_auditors_authenticate_the_deployed_r51r1_370ms_config(self) -> None:
+        frozen_name = (
+            "stage4_2r3c3t13s24d1r14r8r51r1_"
+            "reduced_q0_transport_bridge_q0_gate_integration_sentinel_370ms.json"
+        )
+        self.assertIn(frozen_name, inspect.getsource(r51r2.authenticate_sources))
+        self.assertIn(frozen_name, inspect.getsource(independent.authenticate))
+
 
 if __name__ == "__main__":
     unittest.main()

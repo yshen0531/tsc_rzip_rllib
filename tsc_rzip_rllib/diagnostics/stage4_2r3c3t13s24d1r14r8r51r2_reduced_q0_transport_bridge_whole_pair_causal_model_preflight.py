@@ -208,7 +208,7 @@ def authenticate_sources(
     project = Path(__file__).resolve().parents[2]
     r51_source_paths = {
         "config": project
-        / "configs/stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel.json",
+        / "configs/stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel_370ms.json",
         "implementation": project
         / "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r51r1_reduced_q0_transport_bridge_q0_gate_integration_sentinel.py",
     }
