@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "stage": "Stage4.2R3c3T13S24D1R14R8R37",
+  "identity": "training_only_diagonal_innovation_gain_schedule_generalizing_preflight_v1",
+  "run_name": "stage4_2r3c3t13s24d1r14r8r37_training_only_diagonal_innovation_gain_schedule_generalizing_preflight",
+  "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R37_TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_SCHEDULE_GENERALIZING_PREFLIGHT_DESIGN.md",
+  "design_document_sha256": "6433312711b9b107a218bb5701ef6070a0dfbc482fd492d983437c32637fb843",
+  "source_r8r35_config": "configs/stage4_2r3c3t13s24d1r14r8r35_causal_last_innovation_local_constant_schedule_generalizing_preflight.json",
+  "source_r8r35_config_sha256": "5927a63c7d6b5c4968dc487e68c4d7cd82ba2bac840250cacdb5e70b9f12e6b0",
+  "source_r8r35": {
+    "required_route": "CAUSAL_LAST_INNOVATION_LOCAL_CONSTANT_MODEL_FAIL_NO_TSC",
+    "primary_summary_sha256": "267c3017f7116ce5d29dabd51130632f851780ace600c01b79c8147c1ad56b17",
+    "primary_detailed_sha256": "4e73579a96f7c889348738cade4ccafc91e6afec55b0f83e7e5fb7a316743ab4",
+    "model_sha256": "6f9b48e6b68a79861e1d16dfb896ea5f922effb79fb3085ab1d4ea2a9eb00d4e",
+    "independent_sha256": "e5d69358316447ec971e2dc5bd200441e431250e05f63cdc43bd500c38403aed",
+    "compact_audit_sha256": "3c564fb062df957409d9da1d7079fc46be9b3ceba4c40526e4946cea0066e8cb",
+    "final_report_sha256": "26f58434d666b9762846833e14b1b8bdb91b5ac6ef122361a23c0c4880d880fa",
+    "stage_state_sha256": "2f3c8fd9087260b1bc2f789e3061ed9199250b30d22db91f728a6da1e6cd4946",
+    "stage_manifest_sha256": "2b51b3cd853aab81bce955d0b73eb13b6b0bf5ab42fd92d9fc4e667820c92a95"
+  },
+  "bank_contract": {
+    "trajectory_count": 560,
+    "physical_pair_count": 8,
+    "history_context_count": 16,
+    "schedule_count": 35,
+    "interval_record_count": 3360,
+    "five_component_time_row_count": 14560,
+    "post_initial_time_row_count": 13440,
+    "decision_task_steps": [10, 12, 14, 16, 18, 22],
+    "bank_digest": "a84995970a5c1f0f2d2e964c6b97cbaf213ac8f86d70a3666279ae144ba2de2e",
+    "feature_digest": "80ed0b20b99f6f277ac1e09f85ad33c6fb8a1e611824901509eaf6a3c7b830db",
+    "target_digest": "0f445fca5bb2dbb1da7fb1fc5e1951161322caccc4219371653ffdb55eaa8539"
+  },
+  "model_contract": {
+    "causal_base_dimension": 44,
+    "action_dimension": 18,
+    "coordinate_dimension": 62,
+    "coordinate_scale_floor": 1e-12,
+    "neighbor_count": 64,
+    "uniform_neighbor_weight": 1.0,
+    "slope_dimension": 0,
+    "gain_transition_count": 5,
+    "gain_component_count": 5,
+    "gain_parameter_count": 25,
+    "gain_fit_intercept": false,
+    "gain_ridge_penalty": 0.0,
+    "gain_denominator_floor_normalized": 1e-12,
+    "minimum_gain": 0.0,
+    "maximum_gain": 1.0,
+    "innovation_memory_intervals": 1,
+    "reserve_multiplier": 1.25,
+    "physical_point_error_floors": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "primary_independent_component_scales": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "primary_independent_scaled_tolerance": 1e-9,
+    "neighbor_search_allowed": false,
+    "gain_search_allowed": false,
+    "lag_search_allowed": false,
+    "memory_search_allowed": false,
+    "feature_search_allowed": false,
+    "response_weighting_allowed": false,
+    "outlier_deletion_allowed": false,
+    "innovation_clipping_allowed": false
+  },
+  "model_gates": {
+    "maximum_point_error": [0.015, 0.015, 3000.0, 0.05, 0.05],
+    "maximum_tube_half_width": [0.025, 0.025, 5000.0, 0.08, 0.08],
+    "required_reserved_tube_containment_rate": 1.0,
+    "required_whole_pair_state_support_rate": 1.0,
+    "required_finite_prediction_rate": 1.0,
+    "required_forbidden_input_count": 0
+  },
+  "adaptation_usefulness_gate": {
+    "maximum_adapted_to_cold_total_l1_ratio": 0.95,
+    "maximum_fold_adapted_to_cold_l1_ratio": 1.0,
+    "required_post_initial_time_row_count": 13440,
+    "required_family_count": 2
+  },
+  "routes": {
+    "execution_fail": "TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_PREFLIGHT_EXECUTION_FAIL_STOP",
+    "model_fail": "TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_MODEL_FAIL_NO_TSC",
+    "not_useful": "TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_NOT_USEFUL_NO_TSC",
+    "pass": "TRAINING_ONLY_DIAGONAL_INNOVATION_GAIN_PASS_CONTROLLER_PREFLIGHT_DESIGN_REQUIRED"
+  },
+  "scientific_scope": {
+    "zero_new_tsc": true,
+    "controller_execution_authorized": false,
+    "gate_a_qualified": false,
+    "expert_data_allowed": false,
+    "bc_dagger_or_rl_allowed": false,
+    "all_stage_trajectories_allowed_in_expert_dataset": false,
+    "global_plant_reachability_claimed": false
+  }
+}
