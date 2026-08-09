@@ -210,6 +210,28 @@ class R8R44AffineDominantControllerPreflightTests(unittest.TestCase):
         right[0]["selected_first_action_index"] = 0
         self.assertNotEqual(left, right)
 
+    def test_independent_metric_view_retains_r43_gate_fields(self):
+        detailed = {
+            "source_model_evaluation": {
+                "outer_model_evaluation": {"passed": True},
+                "schedule_jackknife": {"passed": True},
+                "combined_tube_maximum_physical_half_width": [
+                    0.015,
+                    0.018,
+                    3000.0,
+                    0.05,
+                    0.059,
+                ],
+                "combined_tube_cap_passed": True,
+            },
+            "model_gate_passed": True,
+            "scientific_gate_passed": False,
+        }
+        view = independent44._metric_view(detailed)
+        self.assertTrue(view["combined_tube_cap_passed"])
+        self.assertTrue(view["model_gate_passed"])
+        self.assertFalse(view["scientific_gate_passed"])
+
     def test_independent_owns_model_path_and_uses_separate_ensemble_implementation(self):
         self.assertIsNot(independent44.ind43._fit_model, source_r8r43.fit_model)
         self.assertIsNot(independent44.ind43._predict, source_r8r43.predict)

@@ -73,6 +73,9 @@ def _metric_view(detailed: Mapping[str, Any]) -> dict[str, Any]:
         "combined_tube_maximum_physical_half_width": model[
             "combined_tube_maximum_physical_half_width"
         ],
+        "combined_tube_cap_passed": model["combined_tube_cap_passed"],
+        "model_gate_passed": detailed["model_gate_passed"],
+        "scientific_gate_passed": detailed["scientific_gate_passed"],
     }
 
 
