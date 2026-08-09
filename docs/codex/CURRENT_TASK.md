@@ -6725,6 +6725,56 @@ then qualification `12`. A real PASS requires repair `>=1/10`, formal
 `>=7/16`, regression `0/6`, and exact independent agreement. R8R31 is only a
 finite controller-core sentinel; Gate A and all learning remain blocked.
 
+## 133. Final R8R31 result and active schedule-generalization boundary
+
+R8R31 is final at design/implementation/primary-package/accepted-independent-
+package/finalizer-package checkpoints
+`728c235 / 53858ea / 96c232e / 3bc46b8 / 0768826`. Local project-venv and
+fresh empty-direct-copy validation passed focused `11/11` and full
+Windows-shimmed `1411/1411`; server staging and installed validation passed
+all 1,153 declared hashes, 135 JSON files including the manifest, 449 Python
+compilations, 442 shell `bash -n` checks, focused `11/11`, and full
+`1411/1411` with one expected skip.
+
+Primary and structurally independent zero-new-TSC paths authenticated exactly
+560 aligned trajectories, 35 schedules, and 3,360 six-interval records. The
+whole-pair model passed with maximum physical point error
+`[0.0009875911,0.0028532654,85.2103003,0.0176964736,0.0304243255]`, tube
+`[0.015,0.015,3000,0.05,0.05]`, and containment `72,800/72,800`.
+
+The frozen whole-schedule jackknife failed. Its maximum physical point error
+was `[0.0031825394,0.0038637885,157.5748424,0.0547769867,0.1072493982]`,
+exceeding the unchanged vR/vZ `0.05` caps. Its maximum tube was
+`[0.015,0.015,3000,0.0684712333,0.1340617477]`; vZ exceeded the unchanged
+`0.08` cap despite exact `72,800/72,800` containment. Planning remained
+closed, and its zero plan/repair/oracle fields are not controller outcomes.
+
+Independent bank, fit, outer, schedule, auxiliary, model-artifact, route, and
+outcome differences were all exactly `0.0`. R8R31 ran zero Ray, `gotsc`, TSC,
+controller, plant step, raw, or snapshot. Final route:
+
+```text
+ALIGNED_EXPLICIT_FOUR_COORDINATE_FEEDBACK_PREFLIGHT_FAIL_NO_TSC
+```
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R31_FORENSIC_REPORT.md
+```
+
+This is a finite schedule-generalization model/uncertainty failure, not a
+runtime, controller, real-MPC, formal-control, plant-reachability, or Gate A
+result. Before any next model value, fit, tube, plan, implementation, action,
+raw, or TSC, freeze a new-identity schedule-generalizing causal model and
+uncertainty design. It must preserve whole-pair and whole-schedule separation,
+causal visible inputs, exact q4/Card15/action/current support, immutable formal
+timing, unchanged point/tube caps, no clipping, fail-closed planning, and
+structurally independent recomputation. A zero-TSC PASS may authorize only a
+separately frozen real controller sentinel; it is not Gate A. All learning
+remains blocked and every R8-family trajectory remains forbidden from
+learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the

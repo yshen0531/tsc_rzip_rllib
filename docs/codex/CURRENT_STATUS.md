@@ -1,5 +1,35 @@
 # Current status
 
+> **Final R8R31 aligned explicit-four-coordinate feedback checkpoint
+> (2026-08-09 Asia/Shanghai).** R8R31 is final at checkpoints
+> `728c235 / 53858ea / 96c232e / 3bc46b8 / 0768826`. The final package has
+> 1,153 declared files; local source and empty direct-copy plus server staging
+> and installed validation passed 135 JSON files including manifest, 449
+> Python compilations, focused `11/11`, and full `1411/1411` (server expected
+> skip 1), plus server `bash -n` for 442 shell files. Direct transfer used no
+> archive and both systems used only their existing project virtualenvs.
+>
+> Primary and structurally independent zero-new-TSC paths authenticated 560
+> aligned trajectories, 35 schedules, and 3,360 records. Whole-pair point,
+> support, tube, and `72,800/72,800` containment passed. The whole-schedule
+> gate failed: maximum point error was
+> `[0.0031825394,0.0038637885,157.5748424,0.0547769867,0.1072493982]`, so vR
+> and vZ exceeded `0.05`; maximum tube was
+> `[0.015,0.015,3000,0.0684712333,0.1340617477]`, so vZ exceeded `0.08`.
+> Planning remained closed. All independent numerical differences were `0.0`.
+>
+> Final route:
+> `ALIGNED_EXPLICIT_FOUR_COORDINATE_FEEDBACK_PREFLIGHT_FAIL_NO_TSC`.
+> R8R31 ran zero Ray, `gotsc`, TSC, controller, plant step, raw, or snapshot.
+> This is a finite schedule-generalization model/uncertainty design FAIL, not
+> a runtime, controller, real-MPC, plant-reachability, or Gate A result. Exact
+> report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R31_FORENSIC_REPORT.md`.
+> Before any new fit or result, freeze a new-identity schedule-generalizing
+> causal model with unchanged whole-pair/schedule, safety, formal, point/tube,
+> independent, fail-closed, and learning-prohibition gates. Gate A and all
+> learning remain blocked.
+
 > **Prospective R8R31 aligned explicit-four-coordinate feedback checkpoint
 > (2026-08-09 Asia/Shanghai).** After R8R30 was sealed at `b73a8c1`, and
 > before any R8R31 bank row, feature, fit, support, implementation, plan,
