@@ -1060,12 +1060,17 @@ def run_primary(ctx: Context) -> dict[str, Any]:
 
 
 def run_finalize(ctx: Context) -> dict[str, Any]:
-    paths = {
+    paths: dict[str, Path] = {
         "primary_summary": ctx.paths.analysis / "primary_summary.json",
         "primary_detailed": ctx.paths.analysis / "primary_detailed.json",
         "model": ctx.paths.model / "preflight_model.json",
-        "independent": ctx.paths.analysis / "independent.json",
     }
+    independent_path = ctx.paths.analysis / "independent.json"
+    independent_failure_path = ctx.paths.analysis / "independent_failure.json"
+    independent_failed = not independent_path.is_file()
+    paths["independent_failure" if independent_failed else "independent"] = (
+        independent_failure_path if independent_failed else independent_path
+    )
     if any(
         not path.is_file()
         for path in (*paths.values(), ctx.paths.manifest, ctx.paths.state)
@@ -1073,7 +1078,9 @@ def run_finalize(ctx: Context) -> dict[str, Any]:
         raise ValueError("R8R34 finalization evidence incomplete")
     summary = _read(paths["primary_summary"])
     detailed = _read(paths["primary_detailed"])
-    independent = _read(paths["independent"])
+    independent = _read(
+        paths["independent_failure" if independent_failed else "independent"]
+    )
     manifest = _read(ctx.paths.manifest)
     hashes = {name: _sha(path) for name, path in paths.items()}
     agreement_fields = (
@@ -1094,6 +1101,137 @@ def run_finalize(ctx: Context) -> dict[str, Any]:
     tolerance = float(
         ctx.cfg["model_contract"]["primary_independent_scaled_tolerance"]
     )
+    if independent_failed:
+        failed_numeric_agreements = tuple(
+            field
+            for field in (
+                "primary_prediction_agreement",
+                "primary_metric_agreement",
+            )
+            if independent.get(field) is False
+        )
+        source_authentication = independent.get("source_authentication", {})
+        if (
+            independent.get("passed") is not False
+            or source_authentication.get("r8r33_final", {}).get("passed") is not True
+            or source_authentication.get("independent_transitive", {}).get("passed")
+            is not True
+            or independent.get("primary_bank_agreement") is not True
+            or independent.get("primary_tube_agreement") is not True
+            or independent.get("primary_planning_agreement") is not True
+            or independent.get("primary_route_agreement") is not True
+            or independent.get("primary_outcome_agreement") is not True
+            or not failed_numeric_agreements
+            or not any(
+                float(independent.get(field, 0.0)) > tolerance
+                for field in (
+                    "maximum_scaled_prediction_difference",
+                    "maximum_scaled_metric_difference",
+                )
+            )
+            or float(independent.get("maximum_bank_absolute_difference", math.inf))
+            != 0.0
+            or independent.get("primary_summary_sha256")
+            != hashes["primary_summary"]
+            or independent.get("primary_detailed_sha256")
+            != hashes["primary_detailed"]
+            or independent.get("primary_model_sha256") != hashes["model"]
+            or independent.get("route") != summary.get("route")
+            or summary.get("route") != ctx.cfg["routes"]["model_fail"]
+            or detailed.get("model_gate_passed") is not False
+            or detailed.get("planning_evaluation", {}).get("ran") is not False
+            or bool(independent.get("real_tsc_executed"))
+            or int(independent.get("plant_step_count", -1)) != 0
+            or int(independent.get("new_raw_count", -1)) != 0
+        ):
+            raise ValueError("R8R34 independent-failure evidence invalid")
+        compact = {
+            "schema_version": SCHEMA_VERSION,
+            "stage": STAGE,
+            "identity": IDENTITY,
+            "audit_kind": "r8r34_compact_independent_numeric_failure_finalization",
+            "passed": False,
+            "integrity_gate_passed": False,
+            "primary_integrity_gate_passed": True,
+            "scientific_gate_passed": False,
+            "primary_scientific_gate_passed": bool(
+                summary["scientific_gate_passed"]
+            ),
+            "route": ctx.cfg["routes"]["execution_fail"],
+            "primary_route": summary["route"],
+            "failure_classification": (
+                "independent_numerical_reproducibility_gate_failure"
+            ),
+            "failed_numeric_agreements": list(failed_numeric_agreements),
+            "primary_independent_scaled_tolerance": tolerance,
+            "source_file_sha256": hashes,
+            "summary": summary,
+            "local_cardinality_audit": detailed["local_cardinality_audit"],
+            "outer_model_evaluation": detailed["outer_model_evaluation"],
+            "schedule_jackknife": detailed["schedule_jackknife"],
+            "combined_tube_maximum_physical_half_width": detailed[
+                "combined_tube_maximum_physical_half_width"
+            ],
+            "combined_tube_cap_passed": detailed["combined_tube_cap_passed"],
+            "planning_evaluation": detailed["planning_evaluation"],
+            "fault_injection": detailed["fault_injection"],
+            "independent_agreement": {
+                field: independent[field] for field in agreement_fields
+            },
+            "independent_maximum_scaled_difference": {
+                field: independent[field] for field in difference_fields
+            },
+            "maximum_bank_absolute_difference": independent[
+                "maximum_bank_absolute_difference"
+            ],
+            "real_tsc_executed": False,
+            "plant_step_count": 0,
+            "new_raw_count": 0,
+            "controller_execution_authorized": False,
+            "gate_a_qualified": False,
+            "expert_data_allowed": False,
+        }
+        compact_path = ctx.paths.analysis / "compact_audit.json"
+        _write(compact_path, compact)
+        final = copy.deepcopy(compact)
+        final["audit_kind"] = "r8r34_final_independent_numeric_failure_report"
+        final["compact_audit_sha256"] = _sha(compact_path)
+        final_path = ctx.paths.analysis / "final_report.json"
+        _write(final_path, final)
+        manifest.update(
+            {
+                "independent_failure_sha256": hashes["independent_failure"],
+                "compact_audit_sha256": _sha(compact_path),
+                "final_report_sha256": _sha(final_path),
+                "primary_route": summary["route"],
+                "final_route": ctx.cfg["routes"]["execution_fail"],
+                "independent_completed": True,
+                "independent_validation_passed": False,
+            }
+        )
+        _write(ctx.paths.manifest, manifest)
+        state = _read(ctx.paths.state)
+        state.update(
+            {
+                "phase_status": "offline_preflight_independent_validation_failed",
+                "finished": True,
+                "primary_completed": True,
+                "independent_completed": True,
+                "independent_validation_passed": False,
+                "scientific_gate_passed": False,
+                "primary_scientific_gate_passed": bool(
+                    summary["scientific_gate_passed"]
+                ),
+                "primary_route": summary["route"],
+                "route": ctx.cfg["routes"]["execution_fail"],
+                "real_tsc_executed": False,
+                "plant_step_count": 0,
+                "new_raw_count": 0,
+                "controller_execution_authorized": False,
+            }
+        )
+        _write(ctx.paths.state, state)
+        return final
     if (
         independent.get("passed") is not True
         or any(independent.get(field) is not True for field in agreement_fields)
