@@ -1,5 +1,51 @@
 # Current status
 
+> **Final R8R33 and prospective R8R34 checkpoint (2026-08-09
+> Asia/Shanghai).** R8R33 completed its fixed rank-12 primary at checkpoints
+> `82d1307 / cd66c4a / 9c777c7`; a failure-only finalizer at
+> `c5cf429 / d1d266d` changed no scientific calculation or gate. Final local,
+> empty-copy, server-staging, and installed validation passed 1,168/1,168
+> hashes, 137 JSON, 455 Python compilations, 444 server `bash -n`, focused
+> `9/9`, and full `1430/1430` with one expected server/isolated skip.
+>
+> The exact 560-trajectory, 35-schedule, 3,360-record bank and all three
+> digests reproduced. Fixed rank 12 passed all 1,161 representation heads;
+> minimum numerical rank was 13. The primary model still failed. Whole-pair
+> maximum point error was
+> `[0.00526394,0.00387221,322.794,0.0768160,0.178383]`, tube was
+> `[0.015,0.015,3000,0.0960200,0.222979]`, and containment was
+> `72793/72800`. Whole-schedule maximum point error was
+> `[0.0356034,0.222100,3879.07,0.500309,1.27386]` and tube was
+> `[0.0445043,0.277625,4848.84,0.625387,1.59233]`. Planning did not run.
+> Primary scientific route:
+> `UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC`.
+>
+> Independent bank, route, and outcome agreement passed, but R8R33's frozen
+> unscaled absolute `1e-12` dual-solver gate failed. Maximum prediction,
+> model, outer, and schedule/planning differences were respectively
+> `1.03597e-11`, `4.74453e-9`, `1.11200e-8`, and `2.58265e-6`. No tolerance
+> was changed. Accepted overall route is
+> `UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZATION_PREFLIGHT_EXECUTION_FAIL_STOP`,
+> classified as `independent_numerical_reproducibility_gate_failure` while
+> preserving the separate primary model failure.
+>
+> R8R33 executed zero Ray, `gotsc`, TSC, controller, plant step, raw, or
+> snapshot. It is not a restart, real-control, plant-reachability, formal-
+> control, MPC, or Gate A result. Exact report:
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R33_FORENSIC_REPORT.md`,
+> SHA-256
+> `eb95348c5fc72c0b83028455a6ddb434238cf479cb0b7fd3b7433fd22fd65737`.
+>
+> Before any failed-row inspection or next-stage calculation, R8R34 was
+> frozen at `1380fe1` in
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R34_CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `21d86f169cd92ede5263e2a9c6a4fc189e070f5cbfa1bd4dbd7d493fabf8f0c2`.
+> It is a fixed response-blind causal 64-neighbor local-affine zero-TSC
+> preflight with a prospectively scaled dual-implementation gate. Gate A and
+> all learning remain blocked; all R8-family evidence remains forbidden from
+> learning.
+
 > **Prospective R8R33 uniformly supported rank-12 checkpoint (2026-08-09
 > Asia/Shanghai).** After final R8R32 and before any R8R33 transform, fit,
 > prediction, residual, tube, support result, plan, implementation, package,

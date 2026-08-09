@@ -6878,6 +6878,98 @@ independent, zero-TSC, and learning-prohibition contracts. A PASS may authorize
 only design of a separately frozen real controller sentinel. Gate A and all
 learning remain blocked.
 
+## 136. Final R8R33 result and frozen R8R34 causal local-neighborhood task
+
+R8R33 completed its primary implementation/package at
+`cd66c4a / 9c777c7`. Its final failure-only control-flow/package checkpoints
+are `c5cf429 / d1d266d`; they validate and seal the already-written
+independent failure without changing the bank, representation, solver,
+prediction, residual, tube, support, tolerance, or primary route.
+
+Final local, empty direct-copy, server-staging, and installed validation
+passed all 1,168 declared hashes, 137 JSON files, 455 Python compilations,
+444 server shell `bash -n` checks, focused `9/9`, and full `1430/1430` tests
+with one expected isolated-evidence skip.
+
+The exact 560 trajectories, 35 schedules, 3,360 interval records, and frozen
+bank/feature/target digests reproduced. Fixed PCA rank 12 passed all 1,161
+representation heads with minimum numerical rank 13. Primary model gates did
+not pass:
+
+```text
+whole-pair maximum point error
+  [0.0052639383,0.0038722137,322.794103,0.0768159912,0.178382915]
+whole-pair maximum reserved tube
+  [0.015,0.015,3000,0.0960199890,0.222978643]
+whole-pair containment                         72793/72800
+
+whole-schedule maximum point error
+  [0.0356034203,0.222100359,3879.07206,0.500309357,1.27386076]
+whole-schedule maximum reserved tube
+  [0.0445042754,0.277625449,4848.84007,0.625386696,1.59232595]
+whole-schedule containment                     72800/72800
+```
+
+Planning remained phase-closed. The primary scientific route is:
+
+```text
+UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZATION_PREFLIGHT_FAIL_NO_TSC
+```
+
+The independent path rebuilt the bank and agreed exactly on bank, discrete
+route, and scientific outcome. It failed the frozen unscaled absolute
+`1e-12` load-bearing numerical gate:
+
+```text
+maximum bank difference                              0.0
+maximum direct prediction difference       1.0359713087e-11
+maximum model difference                    4.7445336548e-09
+maximum outer difference                    1.1119993815e-08
+maximum schedule/planning difference         2.5826511774e-06
+```
+
+The tolerance was not changed after result inspection. The final overall
+route therefore fails closed as:
+
+```text
+UNIFORMLY_SUPPORTED_RANK12_SCHEDULE_GENERALIZATION_PREFLIGHT_EXECUTION_FAIL_STOP
+```
+
+This is an independent numerical-reproducibility integrity failure layered on
+an unchanged primary model failure. It is not a runtime, deployment, source,
+raw, restart, real-controller, real-MPC, plant-reachability, formal-control,
+or Gate A result. R8R33 created zero Ray, `gotsc`, TSC, controller, plant
+step, raw, or snapshot.
+
+Exact report:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R33_FORENSIC_REPORT.md
+SHA-256  eb95348c5fc72c0b83028455a6ddb434238cf479cb0b7fd3b7433fd22fd65737
+```
+
+Before inspecting any failed-row identity or computing a next-stage model,
+freeze R8R34 at checkpoint `1380fe1`:
+
+```text
+docs/codex/reports/
+STAGE4_2R3C3T13S24D1R14R8R34_CAUSAL_LOCAL_NEIGHBORHOOD_SCHEDULE_GENERALIZING_FEEDBACK_PREFLIGHT_DESIGN.md
+SHA-256  21d86f169cd92ede5263e2a9c6a4fc189e070f5cbfa1bd4dbd7d493fabf8f0c2
+```
+
+Implement the single fixed response-blind 64-neighbor causal local-affine
+ridge model exactly as frozen. Reauthenticate R8R33 and rebuild the same bank
+independently. Run unchanged whole-pair/schedule point, tube, containment,
+support, safety, planning, and formal gates. The new numerical gate is
+dimensionless and frozen prospectively at scaled `1e-9`; all discrete
+results must agree exactly. No feature, neighbor, ridge, distance, response,
+cap, tube, or tolerance search is allowed.
+
+R8R34 is zero-new-TSC. A complete pass may authorize only design of a fresh
+finite real-controller sentinel. It is not Gate A. Expert data, BC, DAgger,
+residual RL, and all other learning remain blocked, and every R8-family
+trajectory remains forbidden from learning data.
+
 ## 121. Final R8R25 outer-jackknife tube preflight
 
 Before any R8R25 tube, containment, cap, plan, or route was computed, the
