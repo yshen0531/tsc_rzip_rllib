@@ -8396,3 +8396,38 @@ development authority only and may authorize only R51R5. Do not rerun any old
 R8/R51 campaign. Every new trajectory is a probe forbidden from learning.
 Gate A and Gate B remain blocked; continue autonomously and pause only if all
 Gate A axes in Section 0 are actually qualified.
+
+## 151. R8R51R4 dual-offline PASS; run the one frozen real campaign
+
+R51R4 is implemented at `938dbad`; authentication-only hotfix `aba76c1`
+corrects one source predicate from requiring scientific `passed=true` to the
+authentic R51R3 combination of integrity/independent PASS and scientific
+FAIL. The stopped v1 output contains zero construction, raw, TSC, or plant
+steps and may not resume.
+
+Accepted package checkpoint `7b394cb` passed local/server direct-copy,
+checksum, JSON, compile, `bash -n`, focused `12/12`, and full `1601/1601`
+validation. Under fresh v2 output identity, primary and independent offline
+construction passed `100/100`, agreeing exactly on event-stream digest:
+
+```text
+485f5d9a8498bd86f6d08a936000aab1fb6cc31c403e2f29c62a2d6488f5916e
+```
+
+Maximum incremental action is `0.2111111111111112` and maximum predicted
+current utilization is `0.3912`; no real response has yet been generated.
+
+Before real authorization, freeze was completed for conditional R51R5:
+
+```text
+docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R5_WHOLE_PAIR_CAUSAL_SEQUENTIAL_RESPONSE_MODEL_TUBE_PREFLIGHT_DESIGN.md
+8fea65fb325effcf70431284c6831b6493dc9d99b9d27bbeccc7ce81aad45da9
+```
+
+Now authorize and execute exactly the one R51R4 100-trajectory v2 campaign.
+Do not rerun a complete trajectory. Require primary and independent raw
+integrity before opening formal results; only then run primary and independent
+formal evaluation and finalize. R51R4 PASS requires repair `>=1/10` and
+baseline-plus-measured oracle `>=7/16`. R51R5 runs only on that exact PASS
+route; otherwise it remains unrun and a separately frozen longer-sequential
+redesign is required. All R51R4 raw is probe data forbidden from learning.

@@ -1,5 +1,39 @@
 # Current status
 
+> **R8R51R4 dual-offline PASS and conditional R8R51R5 design frozen before
+> real response (2026-08-10 Asia/Shanghai).** R51R4 implementation and its
+> separately audited scientific-FAIL source-authentication hotfix are at
+> `938dbad / aba76c1`; accepted installed package checkpoint is `7b394cb`.
+> Local and server existing-venv validation passed 1,279 declared hashes,
+> 1,281 empty-copy physical files, 153 package JSON, 503 Python compilations,
+> 459 server `bash -n`, focused `12/12`, and full `1601/1601`, with one
+> expected isolated-package/server skip. Transfer used direct `scp -r` and no
+> local archive operation.
+>
+> The first v1 offline output stopped before construction because R51R4
+> incorrectly required final R51R3 server evidence `passed=true`; authentic
+> R51R3 is an integrity PASS and preregistered scientific FAIL, so its evidence
+> correctly has `passed=false`. The frozen v1 output has zero raw/TSC/plant
+> steps and remains `...BLOCKED_BY_SOURCE`. The authentication-only fix now
+> requires exact route, integrity/independent PASS, scientific FAIL, zero new
+> execution, and zero exclusion; it changes no R51R4 action, schedule, matrix,
+> threshold, controller, or TSC semantics.
+>
+> Under fresh accepted v2 identity, primary and structurally independent
+> offline construction passed all `100/100` event streams with exact digest
+> `485f5d9a8498bd86f6d08a936000aab1fb6cc31c403e2f29c62a2d6488f5916e`.
+> Maximum incremental normalized action is `0.2111111111111112`; maximum
+> predicted current utilization is `0.3912`. This remains zero TSC, zero raw,
+> zero plant step, and no response has been generated or viewed.
+>
+> Before real authorization, conditional R51R5 was prospectively frozen at
+> `docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R5_WHOLE_PAIR_CAUSAL_SEQUENTIAL_RESPONSE_MODEL_TUBE_PREFLIGHT_DESIGN.md`,
+> SHA-256
+> `8fea65fb325effcf70431284c6831b6493dc9d99b9d27bbeccc7ce81aad45da9`.
+> It can run only if final R51R4 repairs at least one failed context and reaches
+> the exact R51R4 PASS route. The active next action is R51R4 real authorization
+> and its single fresh 100-trajectory campaign. Gate A remains blocked.
+
 > **Final R8R51R3 authority failure and frozen R8R51R4 sustained-dwell
 > sentinel (2026-08-10 Asia/Shanghai).** R8R51R3 completed at prospective
 > design/implementation/package checkpoints `1a2cb6d / 9bdcddb / 06e4728`.
