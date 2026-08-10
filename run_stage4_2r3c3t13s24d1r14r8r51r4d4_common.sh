@@ -14,6 +14,7 @@ R51R3_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_R51R3_RUN:-${PROJECT_DIR}/stage4_2
 R51R4_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_R51R4_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r4_runs/stage4_2r3c3t13s24d1r14r8r51r4_failed_context_sustained_transport_dwell_sentinel_20260810_7b394cb_v2}"
 R51R4D1_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_R51R4D1_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r4d1_runs/stage4_2r3c3t13s24d1r14r8r51r4d1_two_transport_exact_return_schedule_preflight_20260810_b98f9c8_v2_refresh_fix}"
 R51R4D3_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_R51R4D3_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r4d3_runs/stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight_20260810_602c8a4_v1}"
+FAILED_R51R4D4_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_FAILED_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r51r4d4_runs/stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_sentinel_20260810_f553b67_v1}"
 R8R49_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_R8R49_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r49_runs/stage4_2r3c3t13s24d1r14r8r49_q0_to_transport_causal_bridge_identification_sentinel_20260809_3966426_v2}"
 R8R48_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_R8R48_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r48_runs/stage4_2r3c3t13s24d1r14r8r48_q0_to_transport_causal_bridge_support_audit_20260809_b2870d7_v1}"
 R8R46_RUN="${STAGE4_2R3C3T13S24D1R14R8R51R4D4_R8R46_RUN:-${PROJECT_DIR}/stage4_2r3c3t13s24d1r14r8r46_runs/stage4_2r3c3t13s24d1r14r8r46_q0_calibration_causal_innovation_controller_preflight_20260809_7d53cc1_v1}"
@@ -45,7 +46,7 @@ source "${PROJECT_DIR}/scripts/stage4_2r3c3t13s24d1r14r8r7_shell_common.sh"
 [[ "${PROJECT_DIR}" == "/home/yangshen0711/tsc_all/tsc_rzip_rllib" ]]
 [[ -x "${PYTHON}" ]]
 [[ -f "${CONFIG}" ]]
-for source_run in "${R51R4D3_RUN}" "${R51R4D1_RUN}" "${R51R4_RUN}" "${R51R1_RUN}" "${R51R3_RUN}" "${R8R51_RUN}" "${R8R49_RUN}" "${R8R48_RUN}" "${R8R46_RUN}" "${R8R44_RUN}" "${R8R43_RUN}" "${R8R41_RUN}" "${R8R39_RUN}" "${R8R37_RUN}" "${R8R35_RUN}" "${R8R34_RUN}" "${R8R33_RUN}" "${R8R32_RUN}" "${R8R31_RUN}" "${R8R23_RUN}" "${R8R28_RUN}" "${R8R7_RUN}" "${R8R12_RUN}" "${R8R14_RUN}" "${R8R15_RUN}" "${R8R19_RUN}" "${R8R20_RUN}" "${R8R22_RUN}" "${R8R27_RUN}"; do
+for source_run in "${FAILED_R51R4D4_RUN}" "${R51R4D3_RUN}" "${R51R4D1_RUN}" "${R51R4_RUN}" "${R51R1_RUN}" "${R51R3_RUN}" "${R8R51_RUN}" "${R8R49_RUN}" "${R8R48_RUN}" "${R8R46_RUN}" "${R8R44_RUN}" "${R8R43_RUN}" "${R8R41_RUN}" "${R8R39_RUN}" "${R8R37_RUN}" "${R8R35_RUN}" "${R8R34_RUN}" "${R8R33_RUN}" "${R8R32_RUN}" "${R8R31_RUN}" "${R8R23_RUN}" "${R8R28_RUN}" "${R8R7_RUN}" "${R8R12_RUN}" "${R8R14_RUN}" "${R8R15_RUN}" "${R8R19_RUN}" "${R8R20_RUN}" "${R8R22_RUN}" "${R8R27_RUN}"; do
   [[ -d "${source_run}" ]]
 done
 case "${COMMAND}" in
@@ -97,7 +98,7 @@ printf '[R8R51R4D4] user=%s host=%s command=%s run_dir=%s\n' "$(id -un)" "$(host
 printf '[R8R51R4D4] one frozen 250-trajectory response sentinel; probes forbidden from learning; not MPC/Gate A.\n'
 
 args=(
-  --config "${CONFIG}" --run-dir "${RUN_DIR}" --r51r4d3-run "${R51R4D3_RUN}" --r51r4d1-run "${R51R4D1_RUN}" --r51r4-run "${R51R4_RUN}" --r51r1-run "${R51R1_RUN}" --r51r3-run "${R51R3_RUN}" --r8r51-run "${R8R51_RUN}" --r8r49-run "${R8R49_RUN}" --r8r48-run "${R8R48_RUN}" --r8r46-run "${R8R46_RUN}" --r8r44-run "${R8R44_RUN}" --r8r43-run "${R8R43_RUN}" --r8r41-run "${R8R41_RUN}" --r8r39-run "${R8R39_RUN}" --r8r37-run "${R8R37_RUN}" --r8r35-run "${R8R35_RUN}" --r8r34-run "${R8R34_RUN}" --r8r33-run "${R8R33_RUN}" --r8r32-run "${R8R32_RUN}" --r8r31-run "${R8R31_RUN}" --r8r23-run "${R8R23_RUN}" --r8r28-run "${R8R28_RUN}"
+  --config "${CONFIG}" --run-dir "${RUN_DIR}" --failed-r51r4d4-run "${FAILED_R51R4D4_RUN}" --r51r4d3-run "${R51R4D3_RUN}" --r51r4d1-run "${R51R4D1_RUN}" --r51r4-run "${R51R4_RUN}" --r51r1-run "${R51R1_RUN}" --r51r3-run "${R51R3_RUN}" --r8r51-run "${R8R51_RUN}" --r8r49-run "${R8R49_RUN}" --r8r48-run "${R8R48_RUN}" --r8r46-run "${R8R46_RUN}" --r8r44-run "${R8R44_RUN}" --r8r43-run "${R8R43_RUN}" --r8r41-run "${R8R41_RUN}" --r8r39-run "${R8R39_RUN}" --r8r37-run "${R8R37_RUN}" --r8r35-run "${R8R35_RUN}" --r8r34-run "${R8R34_RUN}" --r8r33-run "${R8R33_RUN}" --r8r32-run "${R8R32_RUN}" --r8r31-run "${R8R31_RUN}" --r8r23-run "${R8R23_RUN}" --r8r28-run "${R8R28_RUN}"
   --r8r22-run "${R8R22_RUN}" --r8r7-run "${R8R7_RUN}" --r8r12-run "${R8R12_RUN}" --r8r14-run "${R8R14_RUN}" --r8r15-run "${R8R15_RUN}" --r8r19-run "${R8R19_RUN}" --r8r20-run "${R8R20_RUN}" --r8r27-run "${R8R27_RUN}"
   --r8-run "${STAGE4_2R3C3T13S24D1R14R8R7_R8_RUN}" --r8r1-output "${STAGE4_2R3C3T13S24D1R14R8R7_R8R1_OUTPUT}" --r8r6-run "${STAGE4_2R3C3T13S24D1R14R8R7_R8R6_RUN}"
   --source-d1r11-run "${SOURCE_D1R11}" --source-r2-run "${SOURCE_R2}" --source-r4-run "${SOURCE_R4}" --source-r6-run "${SOURCE_R6}"

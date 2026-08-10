@@ -18,7 +18,8 @@ from tsc_rzip_rllib.diagnostics import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_sentinel_370ms.json"
-DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D4_CENTER_BRIDGED_TWO_PULSE_RESPONSE_SENTINEL_DESIGN.md"
+ORIGINAL_DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D4_CENTER_BRIDGED_TWO_PULSE_RESPONSE_SENTINEL_DESIGN.md"
+DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D4_RUNTIME_HOTFIX_FRESH_RUN_DESIGN.md"
 D5_DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D5_CAUSAL_TWO_DECISION_MODEL_CONTROLLER_PREFLIGHT_DESIGN.md"
 LAUNCHER = ROOT / "run_stage4_2r3c3t13s24d1r14r8r51r4d4_common.sh"
 
@@ -60,6 +61,11 @@ class TestR51R4D4CenterBridgedTwoPulseResponseSentinel(unittest.TestCase):
         cfg = _config()
         d4.validate_config(cfg, ROOT)
         self.assertEqual(d4._sha(DESIGN), cfg["design_document_sha256"])
+        self.assertEqual(
+            d4._sha(ORIGINAL_DESIGN), cfg["original_design_document_sha256"]
+        )
+        self.assertEqual(cfg["design_checkpoint"], "bcb4c5f")
+        self.assertTrue(cfg["identity"].endswith("runtime_hotfix1"))
         self.assertEqual(d4._sha(D5_DESIGN), cfg["conditional_d5_design_sha256"])
         self.assertEqual(cfg["conditional_d5_design_checkpoint"], "dd764cb")
         self.assertEqual(cfg["matrix_contract"]["trajectory_count"], 250)
@@ -69,6 +75,10 @@ class TestR51R4D4CenterBridgedTwoPulseResponseSentinel(unittest.TestCase):
         cfg = _config()
         mutated = copy.deepcopy(cfg)
         mutated["scientific_gate"]["minimum_repaired_failed_baseline_count"] = 0
+        with self.assertRaisesRegex(ValueError, "frozen design changed"):
+            d4.validate_config(mutated, ROOT)
+        mutated = copy.deepcopy(cfg)
+        mutated["failed_attempt_contract"]["plant_step_count"] = 0
         with self.assertRaisesRegex(ValueError, "frozen design changed"):
             d4.validate_config(mutated, ROOT)
         mutated = copy.deepcopy(cfg)
@@ -124,6 +134,85 @@ class TestR51R4D4CenterBridgedTwoPulseResponseSentinel(unittest.TestCase):
         self.assertIn("controller_action_safety_gate_failure", source)
         self.assertIn("runner.cleanup_episode_workspace", source)
 
+    def test_live_controller_uses_inherited_r51r1_state_namespace(self) -> None:
+        spec = {
+            "first_candidate_id": "d0m",
+            "first_requested_coordinate": [-0.5, 0.0, 0.0, 0.0],
+            "second_candidate_id": "d1p",
+            "second_requested_coordinate": [0.0, 0.5, 0.0, 0.0],
+        }
+        with mock.patch.object(d4.r4.SustainedDwellController, "__init__", return_value=None):
+            controller = d4.TwoPulseController(spec=spec)
+        self.assertEqual(controller.r8r51r1_candidate_id, "d0m")
+        self.assertEqual(controller.r8r51r1_requested_coordinate.tolist(), spec["first_requested_coordinate"])
+        source = Path(d4.__file__).read_text(encoding="utf-8")
+        for stale in (
+            "self.r8r51_center_fields", "self.r8r51_contract",
+            "self.r8r51_candidate_id", "self.r8r51_requested_coordinate",
+            "self.r8r51_issue_event",
+        ):
+            self.assertNotIn(stale, source)
+
+        controller.r8r51r1_center_fields = ["1.000E+00"] * d4.N_COILS
+        controller.r8r51r1_contract = {}
+        controller.r8r51r1_issue_event = None
+        controller.actuator = object()
+        observed = []
+        captures = []
+
+        def observe(**kwargs):
+            observed.append(kwargs)
+            return {"passed": True, "criteria": {"test": True}, "action_norm_tsc": [0.0] * d4.N_COILS}
+
+        def q0(this, currents):
+            this.r8r51r1_center_fields = ["1.000E+00"] * d4.N_COILS
+            return d4.np.zeros(d4.N_COILS), {"passed": True, "criteria": {"test": True}}
+
+        def issue(this, currents):
+            captures.append((this.r8r51r1_candidate_id, this.r8r51r1_requested_coordinate.tolist()))
+            this.r8r51r1_issue_event = {"target_card15_fields": ["2.000E+00"] * d4.N_COILS}
+            return d4.np.zeros(d4.N_COILS), {"passed": True, "criteria": {"test": True}}
+
+        def returned(this, currents):
+            return d4.np.zeros(d4.N_COILS), {"passed": True, "criteria": {"test": True}}
+
+        def refresh(this, currents):
+            return d4.np.zeros(d4.N_COILS), {"passed": True, "criteria": {"test": True}}
+
+        with (
+            mock.patch.object(d4.TwoPulseController, "_q0", new=q0),
+            mock.patch.object(d4.TwoPulseController, "_issue_candidate", new=issue),
+            mock.patch.object(d4.TwoPulseController, "_return", new=returned),
+            mock.patch.object(d4.TwoPulseController, "_center_refresh", new=refresh),
+            mock.patch.object(d4.r4.r51, "_observe_event", side_effect=observe),
+            mock.patch.object(
+                d4.r4.r51.r6,
+                "_trace_template",
+                return_value={"action_norm_tsc": [0.0] * d4.N_COILS},
+            ),
+        ):
+            event_names = []
+            for step in range(d4.Q0_STEP, d4.SECOND_RETURN + 2):
+                controller.step = step
+                action, trace = controller.action(
+                    {"step_index": step, "currents_a_tsc": [0.0] * d4.N_COILS}
+                )
+                self.assertEqual(action.tolist(), [0.0] * d4.N_COILS)
+                event_names.append(trace["r3c3t13s24d1r14r8r51r4d4_event"])
+        self.assertEqual(event_names, [
+            "q0_exact_issue", "q0_observe_hold", "first_candidate_issue",
+            "first_candidate_hold", "first_candidate_hold", "first_candidate_hold",
+            "first_stored_center_return", "center_bridge_hold", "second_candidate_issue",
+            "second_candidate_hold", "second_candidate_hold", "second_candidate_hold",
+            "second_stored_center_return", "center_refresh",
+        ])
+        self.assertEqual(observed[0]["target_fields"], controller.r8r51r1_center_fields)
+        self.assertEqual(observed[0]["contract"], controller.r8r51r1_contract)
+        self.assertEqual(captures, [
+            ("d0m", spec["first_requested_coordinate"]),
+            ("d1p", spec["second_requested_coordinate"]),
+        ])
+
     def test_raw_audit_uses_numerical_current_equivalence_without_weakening_actions(self) -> None:
         source = Path(d4.__file__).read_text(encoding="utf-8")
         self.assertEqual(d4.CURRENT_ATOL_A, 1e-12)
@@ -176,6 +265,7 @@ class TestR51R4D4CenterBridgedTwoPulseResponseSentinel(unittest.TestCase):
         source = LAUNCHER.read_text(encoding="utf-8")
         self.assertIn("/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python", source)
         self.assertIn('--r51r4d3-run "${R51R4D3_RUN}"', source)
+        self.assertIn('--failed-r51r4d4-run "${FAILED_R51R4D4_RUN}"', source)
         self.assertIn("offline|independent-offline|authorize-real|run|independent-raw|finalize-primary|independent-formal|postprocess", source)
         self.assertIn("--backend \"${BACKEND}\" --resume", source)
         self.assertNotIn("gotsc", source)

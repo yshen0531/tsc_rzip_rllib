@@ -28,9 +28,9 @@ from tsc_rzip_rllib.diagnostics import (
 
 SCHEMA_VERSION = 1
 STAGE = "Stage4.2R3c3T13S24D1R14R8R51R4D4"
-IDENTITY = "center_bridged_two_pulse_response_sentinel_v1"
+IDENTITY = "center_bridged_two_pulse_response_sentinel_v1_runtime_hotfix1"
 RUN_NAME = "stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_sentinel"
-CONTROLLER_REVISION = "center_bridged_two_pulse_response_v42r3c3t13s24d1r14r8r51r4d4_v1"
+CONTROLLER_REVISION = "center_bridged_two_pulse_response_v42r3c3t13s24d1r14r8r51r4d4_v1_runtime_hotfix1"
 N_COILS = 14
 PREFIX_END = 10
 Q0_STEP = 10
@@ -117,10 +117,12 @@ class Context:
     d3_ctx: d3.Context
     d3_stage: Path
     r4_ctx: r4.Context
+    failed_attempt_stage: Path
 
 
 def validate_config(cfg: Mapping[str, Any], project_root: Path) -> None:
     design = project_root / str(cfg.get("design_document", ""))
+    original_design = project_root / str(cfg.get("original_design_document", ""))
     d5_design = project_root / str(cfg.get("conditional_d5_design", ""))
     d3_config = project_root / str(cfg.get("source_r51r4d3_config", ""))
     d3_impl = project_root / "tsc_rzip_rllib/diagnostics/stage4_2r3c3t13s24d1r14r8r51r4d3_center_bridged_two_pulse_schedule_preflight.py"
@@ -134,6 +136,8 @@ def validate_config(cfg: Mapping[str, Any], project_root: Path) -> None:
     known = cfg.get("known_aggregate_contract", {})
     gate = cfg.get("scientific_gate", {})
     scope = cfg.get("scientific_scope", {})
+    failed = cfg.get("failed_attempt_contract", {})
+    frozen_offline = cfg.get("frozen_offline_contract", {})
     expected_routes = {
         "source_blocked": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D4_BLOCKED_BY_SOURCE_OR_DESIGN",
         "offline_fail": "REDUCED_Q0_TRANSPORT_BRIDGE_R51R4D4_CENTER_BRIDGED_TWO_PULSE_OFFLINE_FAIL_NO_REAL_TSC",
@@ -147,9 +151,13 @@ def validate_config(cfg: Mapping[str, Any], project_root: Path) -> None:
         or cfg.get("identity") != IDENTITY
         or cfg.get("run_name") != RUN_NAME
         or cfg.get("controller_revision") != CONTROLLER_REVISION
-        or cfg.get("package_revision") != "r42r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_v1"
+        or cfg.get("package_revision") != "r42r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_v1_runtime_hotfix1"
         or not design.is_file()
         or _sha(design) != cfg.get("design_document_sha256")
+        or cfg.get("design_checkpoint") != "bcb4c5f"
+        or not original_design.is_file()
+        or _sha(original_design) != cfg.get("original_design_document_sha256")
+        or cfg.get("original_design_checkpoint") != "d6356ca"
         or not d5_design.is_file()
         or _sha(d5_design) != cfg.get("conditional_d5_design_sha256")
         or cfg.get("conditional_d5_design_checkpoint") != "dd764cb"
@@ -167,6 +175,20 @@ def validate_config(cfg: Mapping[str, Any], project_root: Path) -> None:
         or tuple(int(matrix.get(key, -1)) for key in (
             "context_count", "candidate_count", "ordered_pair_count_per_context", "trajectory_count"
         )) != (10, 5, 25, 250)
+        or tuple(int(failed.get(key, -1)) for key in (
+            "raw_count", "raw_bytes", "plant_step_count",
+        )) != (250, 6318347, 2750)
+        or failed.get("route") != expected_routes["execution_fail"]
+        or failed.get("raw_inventory_digest") != "5f4e56dda413898f2ccd40e03fbf36d9a2f1a4e0bb7c829fcd3b8342fa1d826c"
+        or failed.get("raw_byte_authentication_digest") != "4936faea52386b3422a93ce708b7163b3a876c5e49740acca8695b8d09bd92c6"
+        or failed.get("response_outcomes_opened") is not False
+        or failed.get("formal_metrics_computed") is not False
+        or failed.get("same_output_rerun_forbidden") is not True
+        or int(frozen_offline.get("specification_count", -1)) != 250
+        or frozen_offline.get("action_stream_digest") != "26823bfc79fd3ca9e40a73d471010f55fad166f4d1fede9990632101f3bc36a5"
+        or frozen_offline.get("event_stream_digest") != "52a2185df769259ac15449a73b9d53751e7025c936505a7a71eca8ed89c29521"
+        or float(frozen_offline.get("maximum_incremental_action_linf", -1)) != 0.2111111111111112
+        or float(frozen_offline.get("maximum_current_utilization", -1)) != 0.3912
         or tuple(matrix.get("failed_source_baseline_ids", ()))
         != tuple(f"r8r7_baseline_{index:02d}" for index in (*range(8), 12, 13))
         or tuple(int(schedule.get(key, -1)) for key in (
@@ -230,6 +252,13 @@ def load_context(args: argparse.Namespace) -> Context:
         or d3_ctx.paths.stage.name != expected["stage_directory"]
     ):
         raise ValueError("R8R51R4D4 source D3 identity changed")
+    failed_attempt_stage = args.failed_r51r4d4_run.expanduser().resolve() / RUN_NAME
+    failed_expected = cfg["failed_attempt_contract"]
+    if (
+        failed_attempt_stage.parent.name != failed_expected["run_name"]
+        or failed_attempt_stage.name != failed_expected["stage_directory"]
+    ):
+        raise ValueError("R8R51R4D4 failed-attempt identity changed")
     return Context(
         cfg=cfg,
         config_path=config_path,
@@ -237,6 +266,7 @@ def load_context(args: argparse.Namespace) -> Context:
         d3_ctx=d3_ctx,
         d3_stage=d3_ctx.paths.stage,
         r4_ctx=d3_ctx.d1_ctx.r4_ctx,
+        failed_attempt_stage=failed_attempt_stage,
     )
 
 
@@ -252,9 +282,92 @@ D3_ARTIFACTS = {
     "final_server_evidence": "analysis/final_server_evidence.json",
 }
 
+FAILED_ATTEMPT_ARTIFACTS = {
+    "stage_manifest": "stage_manifest.json",
+    "stage_state": "stage_state.json",
+    "failed_attempt_server_evidence": "analysis/failed_attempt_server_evidence.json",
+    "failed_attempt_final_server_evidence": "analysis/failed_attempt_final_server_evidence.json",
+    "raw_integrity_primary": "analysis/raw_integrity_primary.json",
+    "raw_integrity_independent": "analysis/raw_integrity_independent.json",
+}
+
+
+def _failed_attempt_byte_authentication(raw: Path) -> dict[str, Any]:
+    digest = hashlib.sha256()
+    total = 0
+    paths = sorted(raw.glob("*.json.gz"))
+    for path in paths:
+        data = path.read_bytes()
+        total += len(data)
+        digest.update(path.name.encode())
+        digest.update(b"\0")
+        digest.update(hashlib.sha256(data).digest())
+    return {"count": len(paths), "bytes": total, "digest": digest.hexdigest()}
+
+
+def authenticate_failed_attempt(ctx: Context) -> dict[str, Any]:
+    expected = ctx.cfg["failed_attempt_contract"]
+    hashes: dict[str, str] = {}
+    for key, relative in FAILED_ATTEMPT_ARTIFACTS.items():
+        path = ctx.failed_attempt_stage / relative
+        if not path.is_file() or _sha(path) != expected[f"{key}_sha256"]:
+            raise SourceBlockedError(f"R8R51R4D4 failed-attempt source changed: {relative}")
+        hashes[key] = _sha(path)
+    state = _read(ctx.failed_attempt_stage / FAILED_ATTEMPT_ARTIFACTS["stage_state"])
+    primary = _read(ctx.failed_attempt_stage / FAILED_ATTEMPT_ARTIFACTS["raw_integrity_primary"])
+    independent = _read(ctx.failed_attempt_stage / FAILED_ATTEMPT_ARTIFACTS["raw_integrity_independent"])
+    evidence = _read(
+        ctx.failed_attempt_stage / FAILED_ATTEMPT_ARTIFACTS["failed_attempt_final_server_evidence"]
+    )
+    inventory = r4.r51.r8r7.r8._inventory(ctx.failed_attempt_stage / "raw")
+    byte_authentication = _failed_attempt_byte_authentication(ctx.failed_attempt_stage / "raw")
+    valid = bool(
+        state.get("finished") is True
+        and state.get("phase_status") == "real_execution_failed"
+        and state.get("route") == expected["route"]
+        and int(state.get("plant_step_count", -1)) == int(expected["plant_step_count"])
+        and state.get("response_outcomes_opened") is False
+        and primary.get("passed") is False
+        and primary.get("runtime_failure_count") == 250
+        and primary.get("runtime_success_count") == 0
+        and primary.get("full_horizon_count") == 0
+        and independent.get("passed") is False
+        and independent.get("primary_agreement") is True
+        and evidence.get("classification")
+        == "CONTROLLER_IMPLEMENTATION_RUNTIME_ERROR_NO_SCIENTIFIC_RESPONSE_RESULT"
+        and evidence.get("response_outcomes_opened") is False
+        and evidence.get("formal_metrics_computed") is False
+        and evidence.get("same_output_rerun_forbidden") is True
+        and evidence.get("first_candidate_event_count") == 0
+        and evidence.get("second_candidate_event_count") == 0
+        and evidence.get("partial_integrity_pass_count") == 250
+        and inventory.get("count") == int(expected["raw_count"])
+        and inventory.get("bytes") == int(expected["raw_bytes"])
+        and inventory.get("digest") == expected["raw_inventory_digest"]
+        and byte_authentication["digest"] == expected["raw_byte_authentication_digest"]
+    )
+    if not valid:
+        raise SourceBlockedError("R8R51R4D4 immutable failed-attempt provenance changed")
+    return {
+        "stage": str(ctx.failed_attempt_stage),
+        "hashes": hashes,
+        "raw_inventory": {
+            "count": inventory["count"],
+            "bytes": inventory["bytes"],
+            "digest": inventory["digest"],
+        },
+        "raw_byte_authentication": byte_authentication,
+        "route": state["route"],
+        "response_outcomes_opened": False,
+        "formal_metrics_computed": False,
+        "same_output_rerun_forbidden": True,
+        "passed": True,
+    }
+
 
 def authenticate_sources(ctx: Context) -> dict[str, Any]:
     inherited = d3.authenticate_source(ctx.d3_ctx)
+    failed_attempt = authenticate_failed_attempt(ctx)
     expected = ctx.cfg["source_r51r4d3"]
     hashes: dict[str, str] = {}
     for key, relative in D3_ARTIFACTS.items():
@@ -295,6 +408,7 @@ def authenticate_sources(ctx: Context) -> dict[str, Any]:
         "inherited_digest": _digest(inherited),
         "action_stream_digest": expected["action_stream_digest"],
         "conditional_d5_design_sha256": ctx.cfg["conditional_d5_design_sha256"],
+        "failed_attempt": failed_attempt,
         "response_values_available_to_construction": False,
         "passed": True,
     }
@@ -513,6 +627,16 @@ def prepare_offline(ctx: Context) -> dict[str, Any]:
         for spec in specs:
             _payload(ctx, spec)
         construction = _offline_construction(ctx, specs)
+        frozen = ctx.cfg["frozen_offline_contract"]
+        frozen_offline_identity = bool(
+            construction["construction_count"] == int(frozen["specification_count"])
+            and construction["action_stream_digest"] == frozen["action_stream_digest"]
+            and construction["event_stream_digest"] == frozen["event_stream_digest"]
+            and float(construction["maximum_incremental_action_linf"])
+            == float(frozen["maximum_incremental_action_linf"])
+            and float(construction["maximum_current_utilization"])
+            == float(frozen["maximum_current_utilization"])
+        )
         _write(ctx.paths.specs / "all_specs.json", specs)
         _write(ctx.paths.source_reference / "source_authentication.json", source)
         _write(ctx.paths.analysis / "offline_construction.json", construction)
@@ -523,8 +647,11 @@ def prepare_offline(ctx: Context) -> dict[str, Any]:
             "package_revision": ctx.cfg["package_revision"],
             "config_sha256": _sha(ctx.config_path),
             "design_document_sha256": ctx.cfg["design_document_sha256"],
+            "design_checkpoint": ctx.cfg["design_checkpoint"],
+            "original_design_document_sha256": ctx.cfg["original_design_document_sha256"],
             "conditional_d5_design_sha256": ctx.cfg["conditional_d5_design_sha256"],
             "source_d3_run": str(ctx.d3_stage.parent),
+            "failed_attempt_run": str(ctx.failed_attempt_stage.parent),
             "source_authentication_digest": _digest(source),
             "spec_count": len(specs), "spec_digest": _digest(specs),
             "offline_construction_digest": _digest(construction),
@@ -532,7 +659,7 @@ def prepare_offline(ctx: Context) -> dict[str, Any]:
             "all_stage_trajectories_allowed_in_expert_dataset": False,
         }
         _write(ctx.paths.manifest, manifest)
-        passed = bool(construction["passed"])
+        passed = bool(construction["passed"] and frozen_offline_identity)
         route = ctx.cfg["routes"]["pass" if passed else "offline_fail"]
         _write(
             ctx.paths.state,
@@ -557,6 +684,7 @@ def prepare_offline(ctx: Context) -> dict[str, Any]:
             "action_stream_digest": construction["action_stream_digest"],
             "maximum_incremental_action_linf": construction["maximum_incremental_action_linf"],
             "maximum_current_utilization": construction["maximum_current_utilization"],
+            "frozen_offline_identity_passed": frozen_offline_identity,
             "new_raw_count": 0, "plant_step_count": 0,
             "real_tsc_executed": False, "route": route, "passed": passed,
         }
@@ -620,8 +748,8 @@ class TwoPulseController(r4.SustainedDwellController):
         self._first_coordinate = np.asarray(spec["first_requested_coordinate"], dtype=float)
         self._second_candidate_id = str(spec["second_candidate_id"])
         self._second_coordinate = np.asarray(spec["second_requested_coordinate"], dtype=float)
-        self.r8r51_candidate_id = self._first_candidate_id
-        self.r8r51_requested_coordinate = self._first_coordinate.copy()
+        self.r8r51r1_candidate_id = self._first_candidate_id
+        self.r8r51r1_requested_coordinate = self._first_coordinate.copy()
 
     def action(self, current_state: Mapping[str, Any]) -> tuple[np.ndarray, dict[str, Any]]:
         if int(current_state["step_index"]) != self.step:
@@ -638,23 +766,23 @@ class TwoPulseController(r4.SustainedDwellController):
             elif self.step == 11:
                 event = r4.r51._observe_event(
                     task_step=self.step, currents=currents,
-                    target_fields=self.r8r51_center_fields or [],
-                    actuator=self.actuator, contract=self.r8r51_contract,
+                    target_fields=self.r8r51r1_center_fields or [],
+                    actuator=self.actuator, contract=self.r8r51r1_contract,
                     event="q0_observe_hold",
                 )
                 action, event_name = np.zeros(N_COILS), "q0_observe_hold"
             elif self.step == FIRST_ISSUE:
-                self.r8r51_candidate_id = self._first_candidate_id
-                self.r8r51_requested_coordinate = self._first_coordinate.copy()
+                self.r8r51r1_candidate_id = self._first_candidate_id
+                self.r8r51r1_requested_coordinate = self._first_coordinate.copy()
                 action, event = self._issue_candidate(currents)
                 event_name = "first_candidate_issue"
             elif FIRST_ISSUE < self.step < FIRST_RETURN:
-                if self.r8r51_issue_event is None:
+                if self.r8r51r1_issue_event is None:
                     raise ValueError("R8R51R4D4 first hold has no issue")
                 event = r4.r51._observe_event(
                     task_step=self.step, currents=currents,
-                    target_fields=self.r8r51_issue_event["target_card15_fields"],
-                    actuator=self.actuator, contract=self.r8r51_contract,
+                    target_fields=self.r8r51r1_issue_event["target_card15_fields"],
+                    actuator=self.actuator, contract=self.r8r51r1_contract,
                     event="candidate_current_dwell_hold",
                 )
                 action, event_name = np.zeros(N_COILS), "first_candidate_hold"
@@ -664,24 +792,24 @@ class TwoPulseController(r4.SustainedDwellController):
             elif self.step == BRIDGE_STEP:
                 event = r4.r51._observe_event(
                     task_step=self.step, currents=currents,
-                    target_fields=self.r8r51_center_fields or [],
-                    actuator=self.actuator, contract=self.r8r51_contract,
+                    target_fields=self.r8r51r1_center_fields or [],
+                    actuator=self.actuator, contract=self.r8r51r1_contract,
                     event="exact_q0_center_bridge_hold",
                 )
                 action, event_name = np.zeros(N_COILS), "center_bridge_hold"
             elif self.step == SECOND_ISSUE:
-                self.r8r51_candidate_id = self._second_candidate_id
-                self.r8r51_requested_coordinate = self._second_coordinate.copy()
+                self.r8r51r1_candidate_id = self._second_candidate_id
+                self.r8r51r1_requested_coordinate = self._second_coordinate.copy()
                 action, event = self._issue_candidate(currents)
                 event["event"] = "second_center_bridged_candidate_issue"
                 event_name = "second_candidate_issue"
             elif SECOND_ISSUE < self.step < SECOND_RETURN:
-                if self.r8r51_issue_event is None:
+                if self.r8r51r1_issue_event is None:
                     raise ValueError("R8R51R4D4 second hold has no issue")
                 event = r4.r51._observe_event(
                     task_step=self.step, currents=currents,
-                    target_fields=self.r8r51_issue_event["target_card15_fields"],
-                    actuator=self.actuator, contract=self.r8r51_contract,
+                    target_fields=self.r8r51r1_issue_event["target_card15_fields"],
+                    actuator=self.actuator, contract=self.r8r51r1_contract,
                     event="second_candidate_exact_hold",
                 )
                 action, event_name = np.zeros(N_COILS), "second_candidate_hold"
@@ -1586,6 +1714,7 @@ def _parser() -> argparse.ArgumentParser:
     parser = d3._parser()
     parser.description = __doc__
     parser.add_argument("--r51r4d3-run", type=Path, required=True)
+    parser.add_argument("--failed-r51r4d4-run", type=Path, required=True)
     return parser
 
 
