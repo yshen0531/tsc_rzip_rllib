@@ -1189,7 +1189,9 @@ def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
                 "offline_event_semantics_exact": semantic_offline,
                 "event_action_detail_trace_effect_exact": action_exact,
                 "event_nominal_currents_numerically_equivalent": current_equivalent,
-                "maximum_event_nominal_current_difference_a": max(current_differences, default=math.inf),
+                "maximum_event_nominal_current_difference_a": (
+                    max(current_differences) if current_differences else None
+                ),
                 "first_effect_at_issue_plus_one": first_effect,
                 "second_effect_at_issue_plus_one": second_effect,
                 "finite": finite, "forbidden_trace_count": forbidden,
@@ -1251,7 +1253,14 @@ def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
         "passed_count": passed_count, "safety_stop_count": safety_stops,
         "runtime_failure_count": runtime_failures,
         "forbidden_trace_count": sum(int(row["forbidden_trace_count"]) for row in rows),
-        "maximum_event_nominal_current_difference_a": max(float(row["maximum_event_nominal_current_difference_a"]) for row in rows),
+        "maximum_event_nominal_current_difference_a": max(
+            (
+                float(row["maximum_event_nominal_current_difference_a"])
+                for row in rows
+                if row["maximum_event_nominal_current_difference_a"] is not None
+            ),
+            default=None,
+        ),
         "maximum_current_utilization": max(
             (float(row["maximum_current_utilization"]) for row in rows if row["maximum_current_utilization"] is not None),
             default=None,

@@ -180,7 +180,7 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
                 for step, detail in zip(range(d4.PREFIX_END, horizon), details)
             )
         )
-        maximum_current_difference = 0.0
+        maximum_current_difference = 0.0 if sequence else None
         currents = sequence
         if sequence:
             for step, detail in zip(range(d4.PREFIX_END, horizon), details):
@@ -190,7 +190,9 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
                     currents = False
                     continue
                 difference = max(abs(a - b) for a, b in zip(nominal, physical))
-                maximum_current_difference = max(maximum_current_difference, difference)
+                maximum_current_difference = max(
+                    float(maximum_current_difference or 0.0), difference
+                )
                 currents = bool(currents and difference <= d4.CURRENT_ATOL_A)
         finite = bool(
             full
@@ -325,7 +327,14 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
         "calibration_exact_count": sum(bool(row["calibration_exact"]) for row in rows),
         "offline_event_semantics_exact_count": sum(bool(row["offline_event_semantics_exact"]) for row in rows),
         "independent_event_stream_digest": d4._digest([(row["experiment_id"], row["event_stream_digest"]) for row in rows]),
-        "maximum_event_nominal_current_difference_a": max(float(row["maximum_event_nominal_current_difference_a"]) for row in rows),
+        "maximum_event_nominal_current_difference_a": max(
+            (
+                float(row["maximum_event_nominal_current_difference_a"])
+                for row in rows
+                if row["maximum_event_nominal_current_difference_a"] is not None
+            ),
+            default=None,
+        ),
         "primary_agreement": agreement, "response_outcomes_opened": False,
         "passed": bool(
             inventory.get("count") == 250 and len(rows) == 250

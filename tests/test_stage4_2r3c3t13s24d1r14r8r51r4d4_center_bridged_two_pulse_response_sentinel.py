@@ -132,6 +132,17 @@ class TestR51R4D4CenterBridgedTwoPulseResponseSentinel(unittest.TestCase):
         independent_source = Path(independent.__file__).read_text(encoding="utf-8")
         self.assertIn("difference <= d4.CURRENT_ATOL_A", independent_source)
 
+    def test_failure_reporting_uses_json_null_for_unavailable_current_difference(self) -> None:
+        primary_source = Path(d4.__file__).read_text(encoding="utf-8")
+        independent_source = Path(independent.__file__).read_text(encoding="utf-8")
+        self.assertIn("max(current_differences) if current_differences else None", primary_source)
+        self.assertNotIn("max(current_differences, default=math.inf)", primary_source)
+        self.assertIn("0.0 if sequence else None", independent_source)
+        self.assertNotIn(
+            'max(float(row["maximum_event_nominal_current_difference_a"]) for row in rows)',
+            primary_source,
+        )
+
     def test_independent_path_does_not_delegate_primary_construction_or_formal_metric(self) -> None:
         source = Path(independent.__file__).read_text(encoding="utf-8")
         self.assertNotIn("import numpy", source)
