@@ -21,6 +21,7 @@ CONFIG = ROOT / "configs/stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pul
 ORIGINAL_DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D4_CENTER_BRIDGED_TWO_PULSE_RESPONSE_SENTINEL_DESIGN.md"
 DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D4_RUNTIME_HOTFIX_FRESH_RUN_DESIGN.md"
 D5_DESIGN = ROOT / "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D5_CAUSAL_TWO_DECISION_MODEL_CONTROLLER_PREFLIGHT_DESIGN.md"
+ACTION_EQUIVALENCE_CONTRACT = ROOT / d4.ACTION_EQUIVALENCE_CONTRACT
 LAUNCHER = ROOT / "run_stage4_2r3c3t13s24d1r14r8r51r4d4_common.sh"
 
 
@@ -221,6 +222,108 @@ class TestR51R4D4CenterBridgedTwoPulseResponseSentinel(unittest.TestCase):
         independent_source = Path(independent.__file__).read_text(encoding="utf-8")
         self.assertIn("difference <= d4.CURRENT_ATOL_A", independent_source)
 
+    def test_action_reporting_repair_accepts_only_frozen_numeric_equivalence(self) -> None:
+        exact = {
+            "task_step": 12,
+            "event": "first_candidate_issue",
+            "candidate_id": "d0m",
+            "requested_coordinate": [-0.5, 0.0, 0.0, 0.0],
+            "action_norm_tsc": [0.1] * d4.N_COILS,
+            "target_card15_fields": ["1.000E+00"] * d4.N_COILS,
+            "passed": True,
+            "criteria": {"exact_card15": True},
+        }
+        rounded = copy.deepcopy(exact)
+        rounded["action_norm_tsc"][0] += 1e-14
+        self.assertFalse(d4._semantic_event_equal(rounded, exact))
+        self.assertFalse(independent._event_equal(rounded, exact))
+        self.assertTrue(
+            d4._semantic_event_equal(
+                rounded, exact, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+            )
+        )
+        self.assertTrue(
+            independent._event_equal(
+                rounded, exact, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+            )
+        )
+
+        outside = copy.deepcopy(exact)
+        outside["action_norm_tsc"][0] += 1.1e-12
+        self.assertFalse(
+            d4._semantic_event_equal(
+                outside, exact, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+            )
+        )
+        self.assertFalse(
+            independent._event_equal(
+                outside, exact, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+            )
+        )
+
+    def test_action_reporting_repair_fails_closed_on_shape_nonfinite_or_discrete_change(self) -> None:
+        expected = {
+            "event": "center_refresh",
+            "action_norm_tsc": [0.0] * d4.N_COILS,
+            "passed": True,
+            "criteria": {"refresh": True},
+        }
+        for action in (
+            [0.0] * (d4.N_COILS - 1),
+            [float("nan")] + [0.0] * (d4.N_COILS - 1),
+            [float("inf")] + [0.0] * (d4.N_COILS - 1),
+        ):
+            actual = copy.deepcopy(expected)
+            actual["action_norm_tsc"] = action
+            self.assertFalse(
+                d4._semantic_event_equal(
+                    actual, expected, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+                )
+            )
+            self.assertFalse(
+                independent._event_equal(
+                    actual, expected, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+                )
+            )
+        changed = copy.deepcopy(expected)
+        changed["event"] = "second_candidate_issue"
+        self.assertFalse(
+            d4._semantic_event_equal(
+                changed, expected, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+            )
+        )
+        self.assertFalse(
+            independent._event_equal(
+                changed, expected, action_atol=d4.ACTION_EQUIVALENCE_ATOL
+            )
+        )
+
+    def test_action_reporting_contract_and_artifact_names_are_frozen(self) -> None:
+        self.assertEqual(d4.ACTION_EQUIVALENCE_ATOL, 1e-12)
+        self.assertEqual(d4.ACTION_EQUIVALENCE_EXPECTED_EVENT_COUNT, 6550)
+        self.assertEqual(d4.ACTION_EQUIVALENCE_EXPECTED_BINARY_EXACT_COUNT, 3070)
+        self.assertEqual(
+            d4._sha(ACTION_EQUIVALENCE_CONTRACT),
+            d4.ACTION_EQUIVALENCE_CONTRACT_SHA256,
+        )
+        self.assertNotEqual(
+            d4.ACTION_EQUIVALENCE_PRIMARY_NAME, "raw_integrity_primary.json"
+        )
+        self.assertNotEqual(
+            d4.ACTION_EQUIVALENCE_INDEPENDENT_NAME,
+            "raw_integrity_independent.json",
+        )
+        state = {"action_equivalence_reporting_hotfix_authorized": True}
+        ctx = SimpleNamespace(paths=SimpleNamespace(analysis=ROOT / ".codex_tmp"))
+        self.assertEqual(
+            d4._primary_integrity_path(ctx, state).name,
+            d4.ACTION_EQUIVALENCE_PRIMARY_NAME,
+        )
+        self.assertEqual(
+            d4._independent_integrity_path(ctx, state).name,
+            d4.ACTION_EQUIVALENCE_INDEPENDENT_NAME,
+        )
+
     def test_failure_reporting_uses_json_null_for_unavailable_current_difference(self) -> None:
         primary_source = Path(d4.__file__).read_text(encoding="utf-8")
         independent_source = Path(independent.__file__).read_text(encoding="utf-8")
@@ -266,10 +369,20 @@ class TestR51R4D4CenterBridgedTwoPulseResponseSentinel(unittest.TestCase):
         self.assertIn("/home/yangshen0711/tsc_all/tsc_simulation/venv_simu/bin/python", source)
         self.assertIn('--r51r4d3-run "${R51R4D3_RUN}"', source)
         self.assertIn('--failed-r51r4d4-run "${FAILED_R51R4D4_RUN}"', source)
-        self.assertIn("offline|independent-offline|authorize-real|run|independent-raw|finalize-primary|independent-formal|postprocess", source)
+        self.assertIn("independent-raw|repair-raw-primary|repair-raw-independent|authorize-raw-repair|finalize-primary", source)
         self.assertIn("--backend \"${BACKEND}\" --resume", source)
         self.assertNotIn("gotsc", source)
         self.assertNotIn("expert", source.lower().split("probes forbidden from learning")[0])
+        command_action = next(
+            action for action in d4._parser()._actions if action.dest == "command"
+        )
+        self.assertTrue(
+            {
+                "repair-raw-primary",
+                "repair-raw-independent",
+                "authorize-raw-repair",
+            }.issubset(set(command_action.choices))
+        )
 
     def test_routes_and_scope_do_not_claim_mpc_or_gate_a(self) -> None:
         cfg = _config()

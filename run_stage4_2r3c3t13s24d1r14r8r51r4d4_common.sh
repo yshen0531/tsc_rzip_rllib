@@ -50,7 +50,7 @@ for source_run in "${FAILED_R51R4D4_RUN}" "${R51R4D3_RUN}" "${R51R4D1_RUN}" "${R
   [[ -d "${source_run}" ]]
 done
 case "${COMMAND}" in
-  offline|independent-offline|authorize-real|run|independent-raw|finalize-primary|independent-formal|postprocess) ;;
+  offline|independent-offline|authorize-real|run|independent-raw|repair-raw-primary|repair-raw-independent|authorize-raw-repair|finalize-primary|independent-formal|postprocess) ;;
   *) echo "ERROR: unsupported R8R51R4D4 command ${COMMAND}" >&2; exit 1 ;;
 esac
 SOURCE_D1R11="$(stage4_2r3c3t13s24d1r14r8_source_d1r11)"
@@ -110,6 +110,7 @@ args=(
 case "${COMMAND}" in
   independent-offline) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4d4_independent_forensics.py "${args[@]}" --command offline ;;
   independent-raw) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4d4_independent_forensics.py "${args[@]}" --command run ;;
+  repair-raw-independent) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4d4_independent_forensics.py "${args[@]}" --command repair-raw-independent ;;
   independent-formal) exec "${PYTHON}" docs/codex/audit_tools/stage4_2r3c3t13s24d1r14r8r51r4d4_independent_forensics.py "${args[@]}" --command finalize-primary ;;
   run) exec "${PYTHON}" -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_sentinel "${args[@]}" --command run --backend "${BACKEND}" --resume ;;
   *) exec "${PYTHON}" -m tsc_rzip_rllib.diagnostics.stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_sentinel "${args[@]}" --command "${COMMAND}" ;;

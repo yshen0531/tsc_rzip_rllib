@@ -17,14 +17,52 @@ from tsc_rzip_rllib.diagnostics import (
 )
 
 
-def _event_equal(actual: Mapping[str, Any], expected: Mapping[str, Any]) -> bool:
+def _action_comparison(
+    actual: Any,
+    expected: Any,
+    *,
+    atol: float,
+) -> tuple[bool, bool, float | None]:
+    if not isinstance(actual, list) or not isinstance(expected, list):
+        return False, False, None
+    if len(actual) != len(expected) or len(actual) != d4.N_COILS:
+        return False, False, None
+    try:
+        pairs = [(float(left), float(right)) for left, right in zip(actual, expected)]
+    except (TypeError, ValueError):
+        return False, False, None
+    if not all(math.isfinite(left) and math.isfinite(right) for left, right in pairs):
+        return False, False, None
+    differences = [abs(left - right) for left, right in pairs]
+    return (
+        all(difference <= float(atol) for difference in differences),
+        all(left == right for left, right in pairs),
+        max(differences),
+    )
+
+
+def _event_equal(
+    actual: Mapping[str, Any],
+    expected: Mapping[str, Any],
+    *,
+    action_atol: float | None = None,
+) -> bool:
     keys = (
         "task_step", "event", "candidate_id", "requested_coordinate",
-        "action_norm_tsc", "target_card15_fields", "stored_target_card15_fields",
+        "target_card15_fields", "stored_target_card15_fields",
         "q0_center_card15_fields", "stored_center_card15_fields",
         "issue_target_card15_fields", "center_card15_fields", "passed", "criteria",
     )
-    return all(actual.get(key) == expected.get(key) for key in keys)
+    if not all(actual.get(key) == expected.get(key) for key in keys):
+        return False
+    if action_atol is None:
+        return actual.get("action_norm_tsc") == expected.get("action_norm_tsc")
+    equivalent, _, _ = _action_comparison(
+        actual.get("action_norm_tsc"),
+        expected.get("action_norm_tsc"),
+        atol=action_atol,
+    )
+    return equivalent
 
 
 def offline(ctx: d4.Context) -> dict[str, Any]:
@@ -91,8 +129,15 @@ def offline(ctx: d4.Context) -> dict[str, Any]:
     return report
 
 
-def raw(ctx: d4.Context) -> dict[str, Any]:
-    primary = d4._read(ctx.paths.analysis / "raw_integrity_primary.json")
+def raw(
+    ctx: d4.Context,
+    *,
+    write: bool = True,
+    action_atol: float | None = None,
+    primary_name: str = "raw_integrity_primary.json",
+    output_name: str = "raw_integrity_independent.json",
+) -> dict[str, Any]:
+    primary = d4._read(ctx.paths.analysis / primary_name)
     primary_rows = {str(row["experiment_id"]): row for row in primary["rows"]}
     specs = d4._saved_specs(ctx)
     offline_rows = {
@@ -167,10 +212,25 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
             )
         )
         expected_events = offline_rows[experiment_id]["events"]
+        action_comparisons = [
+            _action_comparison(
+                actual.get("action_norm_tsc"),
+                expected.get("action_norm_tsc"),
+                atol=(
+                    d4.ACTION_EQUIVALENCE_ATOL
+                    if action_atol is None
+                    else action_atol
+                ),
+            )
+            for actual, expected in zip(details, expected_events)
+        ] if sequence and len(details) == len(expected_events) else []
         offline_semantics = bool(
             sequence
             and len(details) == len(expected_events)
-            and all(_event_equal(actual, expected) for actual, expected in zip(details, expected_events))
+            and all(
+                _event_equal(actual, expected, action_atol=action_atol)
+                for actual, expected in zip(details, expected_events)
+            )
         )
         action_exact = bool(
             sequence
@@ -274,6 +334,18 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
                 "source_prefix_trace_exact": source_prefix_trace,
                 "calibration_exact": calibration,
                 "offline_event_semantics_exact": offline_semantics,
+                "offline_event_action_count": len(action_comparisons),
+                "offline_event_action_binary_exact_count": sum(
+                    bool(comparison[1]) for comparison in action_comparisons
+                ),
+                "maximum_offline_event_action_difference": max(
+                    (
+                        float(comparison[2])
+                        for comparison in action_comparisons
+                        if comparison[2] is not None
+                    ),
+                    default=None,
+                ),
                 "forbidden_trace_count": forbidden,
                 "maximum_event_nominal_current_difference_a": maximum_current_difference,
                 "maximum_current_utilization": maximum_utilization if current_shape else None,
@@ -309,6 +381,9 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
             and row["source_prefix_trace_exact"] == primary_rows[row["experiment_id"]]["source_prefix_trace_exact"]
             and row["calibration_exact"] == primary_rows[row["experiment_id"]]["calibration_exact"]
             and row["offline_event_semantics_exact"] == primary_rows[row["experiment_id"]]["offline_event_semantics_exact"]
+            and row["offline_event_action_count"] == primary_rows[row["experiment_id"]]["offline_event_action_count"]
+            and row["offline_event_action_binary_exact_count"] == primary_rows[row["experiment_id"]]["offline_event_action_binary_exact_count"]
+            and row["maximum_offline_event_action_difference"] == primary_rows[row["experiment_id"]]["maximum_offline_event_action_difference"]
             and row["forbidden_trace_count"] == primary_rows[row["experiment_id"]]["forbidden_trace_count"]
             and row["within_context_q0_prefix_exact"] == primary_rows[row["experiment_id"]]["within_context_q0_prefix_exact"]
             and row["within_first_candidate_prefix_exact"] == primary_rows[row["experiment_id"]]["within_first_candidate_prefix_exact"]
@@ -318,7 +393,12 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
     inventory = d4.r4.r51.r8r7.r8._inventory(ctx.paths.raw)
     report = {
         "schema_version": 1, "stage": d4.STAGE,
-        "phase": "raw_integrity_independent", "raw_inventory": inventory,
+        "phase": (
+            "raw_integrity_independent"
+            if action_atol is None
+            else "raw_integrity_action_equivalence_independent"
+        ),
+        "raw_inventory": inventory,
         "strict_parse_count": len(rows),
         "passed_count": sum(bool(row["passed"]) for row in rows),
         "authentic_restart_count": sum(bool(row["authentic_restart"]) for row in rows),
@@ -326,6 +406,19 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
         "source_prefix_trace_exact_count": sum(bool(row["source_prefix_trace_exact"]) for row in rows),
         "calibration_exact_count": sum(bool(row["calibration_exact"]) for row in rows),
         "offline_event_semantics_exact_count": sum(bool(row["offline_event_semantics_exact"]) for row in rows),
+        "offline_event_action_count": sum(int(row["offline_event_action_count"]) for row in rows),
+        "offline_event_action_binary_exact_count": sum(
+            int(row["offline_event_action_binary_exact_count"]) for row in rows
+        ),
+        "maximum_offline_event_action_difference": max(
+            (
+                float(row["maximum_offline_event_action_difference"])
+                for row in rows
+                if row["maximum_offline_event_action_difference"] is not None
+            ),
+            default=None,
+        ),
+        "offline_event_action_equivalence_absolute_tolerance": action_atol,
         "independent_event_stream_digest": d4._digest([(row["experiment_id"], row["event_stream_digest"]) for row in rows]),
         "maximum_event_nominal_current_difference_a": max(
             (
@@ -341,7 +434,42 @@ def raw(ctx: d4.Context) -> dict[str, Any]:
             and all(bool(row["passed"]) for row in rows) and agreement
         ),
     }
-    d4._write(ctx.paths.analysis / "raw_integrity_independent.json", report)
+    if write:
+        d4._write(ctx.paths.analysis / output_name, report)
+    return report
+
+
+def repair_action_equivalence_raw(ctx: d4.Context) -> dict[str, Any]:
+    source = d4._authenticate_action_equivalence_historical_evidence(ctx)
+    report = raw(
+        ctx,
+        write=False,
+        action_atol=d4.ACTION_EQUIVALENCE_ATOL,
+        primary_name=d4.ACTION_EQUIVALENCE_PRIMARY_NAME,
+        output_name=d4.ACTION_EQUIVALENCE_INDEPENDENT_NAME,
+    )
+    if (
+        report.get("phase") != "raw_integrity_action_equivalence_independent"
+        or report.get("passed") is not True
+        or int(report.get("passed_count", -1)) != d4.ACTION_EQUIVALENCE_RAW_COUNT
+        or int(report.get("offline_event_semantics_exact_count", -1))
+        != d4.ACTION_EQUIVALENCE_RAW_COUNT
+        or int(report.get("offline_event_action_count", -1))
+        != d4.ACTION_EQUIVALENCE_EXPECTED_EVENT_COUNT
+        or int(report.get("offline_event_action_binary_exact_count", -1))
+        != d4.ACTION_EQUIVALENCE_EXPECTED_BINARY_EXACT_COUNT
+        or report.get("maximum_offline_event_action_difference")
+        != d4.ACTION_EQUIVALENCE_EXPECTED_MAXIMUM_DIFFERENCE
+        or report.get("offline_event_action_equivalence_absolute_tolerance")
+        != d4.ACTION_EQUIVALENCE_ATOL
+        or report.get("independent_event_stream_digest")
+        != d4.ACTION_EQUIVALENCE_EVENT_DIGEST
+        or report.get("primary_agreement") is not True
+        or report.get("raw_inventory") != source["inventory"]
+        or report.get("response_outcomes_opened") is not False
+    ):
+        raise ValueError("R8R51R4D4 independent corrected raw gate failed")
+    d4._write(ctx.paths.analysis / d4.ACTION_EQUIVALENCE_INDEPENDENT_NAME, report)
     return report
 
 
@@ -391,7 +519,8 @@ def _authority(rows: Sequence[Mapping[str, Any]], baseline_pass: int) -> dict[st
 
 def formal(ctx: d4.Context) -> dict[str, Any]:
     primary = d4._read(ctx.paths.analysis / "primary_detailed.json")
-    integrity = d4._read(ctx.paths.analysis / "raw_integrity_independent.json")
+    state = d4._read(ctx.paths.state)
+    integrity = d4._read(d4._independent_integrity_path(ctx, state))
     specs = d4._saved_specs(ctx)
     _, sources = d4.r4.r51._source_baselines(ctx.r4_ctx.base_ctx)
     rows = []
@@ -492,6 +621,8 @@ def main() -> None:
         report = offline(ctx)
     elif args.command == "run":
         report = raw(ctx)
+    elif args.command == "repair-raw-independent":
+        report = repair_action_equivalence_raw(ctx)
     elif args.command == "finalize-primary":
         report = formal(ctx)
     else:

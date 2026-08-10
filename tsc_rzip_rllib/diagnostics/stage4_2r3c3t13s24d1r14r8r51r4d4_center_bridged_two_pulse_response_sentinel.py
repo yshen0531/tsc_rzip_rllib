@@ -41,6 +41,46 @@ SECOND_ISSUE = 18
 SECOND_RETURN = 22
 CANDIDATE_IDS = d3.CANDIDATE_IDS
 CURRENT_ATOL_A = 1e-12
+ACTION_EQUIVALENCE_ATOL = 1e-12
+ACTION_EQUIVALENCE_CONTRACT = (
+    "docs/codex/reports/"
+    "STAGE4_2R3C3T13S24D1R14R8R51R4D4_ACTION_EQUIVALENCE_"
+    "REPORTING_HOTFIX_CONTRACT.md"
+)
+ACTION_EQUIVALENCE_CONTRACT_SHA256 = (
+    "d615ef4c6ba671643455d4270e95465137b8e65a3a741a4a8e45fa0c2c50a241"
+)
+ACTION_EQUIVALENCE_PRIMARY_NAME = (
+    "raw_integrity_action_equivalence_primary.json"
+)
+ACTION_EQUIVALENCE_INDEPENDENT_NAME = (
+    "raw_integrity_action_equivalence_independent.json"
+)
+ACTION_EQUIVALENCE_EXPECTED_EVENT_COUNT = 6_550
+ACTION_EQUIVALENCE_EXPECTED_BINARY_EXACT_COUNT = 3_070
+ACTION_EQUIVALENCE_EXPECTED_MAXIMUM_DIFFERENCE = 9.47505962578532e-15
+
+ACTION_EQUIVALENCE_HISTORICAL_HASHES = {
+    "config": "3d1d1f93dc82fd4bde8339b37d97938532f1954347a9208100e0e106004f2d57",
+    "manifest": "09ed7f369e2cf4429d9622a86bc59223dd1f23643900e3e3544e55c3966487c8",
+    "state": "0eeee7fb3281e72056157570969498527106d3471829c8a7023e4e37d10e6362",
+    "offline_construction": "284405dd2b4f59c94f8bd2df0cf409ce704513cab6f0f48652ab852cc8022765",
+    "offline_primary": "61b505caaa6306a8d22a2de133b20a947445854d3a576365d609fb3c80c8238a",
+    "offline_independent": "b1707984dd76646fb87bff33404f60a68ea392ebb50569255a8ae706d53feb09",
+    "raw_primary": "e58a2827b65fd63d7619ee3650a93fbd85c4cb5e25ef82928098bcb1ee10d3e4",
+    "raw_independent": "45e4026fa87f5b59afcb87e1de3318a79ab72da446d074bb90e576ae043f66f0",
+}
+ACTION_EQUIVALENCE_RAW_COUNT = 250
+ACTION_EQUIVALENCE_RAW_BYTES = 8_328_505
+ACTION_EQUIVALENCE_RAW_DIGEST = (
+    "b64203a08abd0db6735d120b43e2f2ee2529726283703708ab5dd4ca293cb609"
+)
+ACTION_EQUIVALENCE_EVENT_DIGEST = (
+    "49f15d2f7b1e25212beb91ae13da73e06ff48928e17f731e6e29f5fad5b89a79"
+)
+ACTION_EQUIVALENCE_PACKAGE_DIGEST = (
+    "d1d8aa2acde5b7013b2e87a0cdee1a05bde209e3f6435d2970aba377170b46ae"
+)
 
 
 class SourceBlockedError(RuntimeError):
@@ -1109,14 +1149,60 @@ FORBIDDEN_KEYS = (
 )
 
 
-def _semantic_event_equal(actual: Mapping[str, Any], expected: Mapping[str, Any]) -> bool:
+def _normalized_action_comparison(
+    actual: Any,
+    expected: Any,
+    *,
+    atol: float,
+) -> tuple[bool, bool, float | None]:
+    try:
+        actual_vector = np.asarray(actual, dtype=float)
+        expected_vector = np.asarray(expected, dtype=float)
+    except (TypeError, ValueError):
+        return False, False, None
+    valid = bool(
+        actual_vector.shape == expected_vector.shape == (N_COILS,)
+        and np.all(np.isfinite(actual_vector))
+        and np.all(np.isfinite(expected_vector))
+    )
+    if not valid:
+        return False, False, None
+    difference = float(np.max(np.abs(actual_vector - expected_vector)))
+    binary_exact = bool(np.array_equal(actual_vector, expected_vector))
+    equivalent = bool(
+        np.allclose(
+            actual_vector,
+            expected_vector,
+            rtol=0.0,
+            atol=float(atol),
+            equal_nan=False,
+        )
+    )
+    return equivalent, binary_exact, difference
+
+
+def _semantic_event_equal(
+    actual: Mapping[str, Any],
+    expected: Mapping[str, Any],
+    *,
+    action_atol: float | None = None,
+) -> bool:
     exact_keys = (
         "task_step", "event", "candidate_id", "requested_coordinate",
-        "action_norm_tsc", "target_card15_fields", "stored_target_card15_fields",
+        "target_card15_fields", "stored_target_card15_fields",
         "q0_center_card15_fields", "stored_center_card15_fields",
         "issue_target_card15_fields", "center_card15_fields", "passed", "criteria",
     )
-    return all(actual.get(key) == expected.get(key) for key in exact_keys)
+    if not all(actual.get(key) == expected.get(key) for key in exact_keys):
+        return False
+    if action_atol is None:
+        return actual.get("action_norm_tsc") == expected.get("action_norm_tsc")
+    equivalent, _, _ = _normalized_action_comparison(
+        actual.get("action_norm_tsc"),
+        expected.get("action_norm_tsc"),
+        atol=action_atol,
+    )
+    return equivalent
 
 
 def _nominal_current(event: Mapping[str, Any]) -> np.ndarray:
@@ -1138,7 +1224,13 @@ def _prefix_payload(result: Mapping[str, Any], state_count: int, trace_count: in
     }
 
 
-def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
+def audit_raw_integrity(
+    ctx: Context,
+    *,
+    write: bool = True,
+    action_atol: float | None = None,
+    output_name: str = "raw_integrity_primary.json",
+) -> dict[str, Any]:
     specs = _saved_specs(ctx)
     offline = {
         str(row["experiment_id"]): row
@@ -1217,9 +1309,24 @@ def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
                 for detail in details
             )
         )
+        action_comparisons = [
+            _normalized_action_comparison(
+                detail.get("action_norm_tsc"),
+                expected.get("action_norm_tsc"),
+                atol=ACTION_EQUIVALENCE_ATOL if action_atol is None else action_atol,
+            )
+            for detail, expected in zip(details, expected_events)
+        ] if sequence and len(details) == len(expected_events) else []
         semantic_offline = bool(
             sequence
-            and all(_semantic_event_equal(detail, expected) for detail, expected in zip(details, expected_events))
+            and all(
+                _semantic_event_equal(
+                    detail,
+                    expected,
+                    action_atol=action_atol,
+                )
+                for detail, expected in zip(details, expected_events)
+            )
         )
         action_exact = bool(
             sequence
@@ -1315,6 +1422,18 @@ def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
                 "calibration_exact": bool(full and r4.r51.r8r7.r8.r4._calibration_exact(trace)),
                 "event_sequence_exact": sequence, "event_gates_passed": event_gate,
                 "offline_event_semantics_exact": semantic_offline,
+                "offline_event_action_count": len(action_comparisons),
+                "offline_event_action_binary_exact_count": sum(
+                    bool(comparison[1]) for comparison in action_comparisons
+                ),
+                "maximum_offline_event_action_difference": max(
+                    (
+                        float(comparison[2])
+                        for comparison in action_comparisons
+                        if comparison[2] is not None
+                    ),
+                    default=None,
+                ),
                 "event_action_detail_trace_effect_exact": action_exact,
                 "event_nominal_currents_numerically_equivalent": current_equivalent,
                 "maximum_event_nominal_current_difference_a": (
@@ -1358,7 +1477,12 @@ def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
         for row in rows
     )
     report = {
-        "schema_version": 1, "stage": STAGE, "phase": "raw_integrity_primary",
+        "schema_version": 1, "stage": STAGE,
+        "phase": (
+            "raw_integrity_primary"
+            if action_atol is None
+            else "raw_integrity_action_equivalence_primary"
+        ),
         "raw_inventory": inventory, "expected_raw_count": 250,
         "strict_parse_count": len(rows),
         "runtime_success_count": sum(bool(row["runtime_success"]) for row in rows),
@@ -1370,6 +1494,19 @@ def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
         "event_sequence_exact_count": sum(bool(row["event_sequence_exact"]) for row in rows),
         "event_gates_passed_count": sum(bool(row["event_gates_passed"]) for row in rows),
         "offline_event_semantics_exact_count": sum(bool(row["offline_event_semantics_exact"]) for row in rows),
+        "offline_event_action_count": sum(int(row["offline_event_action_count"]) for row in rows),
+        "offline_event_action_binary_exact_count": sum(
+            int(row["offline_event_action_binary_exact_count"]) for row in rows
+        ),
+        "maximum_offline_event_action_difference": max(
+            (
+                float(row["maximum_offline_event_action_difference"])
+                for row in rows
+                if row["maximum_offline_event_action_difference"] is not None
+            ),
+            default=None,
+        ),
+        "offline_event_action_equivalence_absolute_tolerance": action_atol,
         "event_action_detail_trace_effect_exact_count": sum(bool(row["event_action_detail_trace_effect_exact"]) for row in rows),
         "event_nominal_currents_numerically_equivalent_count": sum(bool(row["event_nominal_currents_numerically_equivalent"]) for row in rows),
         "first_effect_at_issue_plus_one_count": sum(bool(row["first_effect_at_issue_plus_one"]) for row in rows),
@@ -1398,16 +1535,255 @@ def audit_raw_integrity(ctx: Context, *, write: bool = True) -> dict[str, Any]:
         "event_stream_digest": _digest([(row["experiment_id"], row["event_stream_digest"]) for row in rows]),
         "rows": rows,
         "route": ctx.cfg["routes"]["pass" if passed_count == 250 and inventory["count"] == 250 else "execution_fail"],
+        "response_outcomes_opened": False,
         "passed": passed_count == 250 and inventory["count"] == 250,
     }
     if write:
-        _write(ctx.paths.analysis / "raw_integrity_primary.json", report)
+        _write(ctx.paths.analysis / output_name, report)
     return report
+
+
+def _authenticate_action_equivalence_historical_evidence(
+    ctx: Context,
+) -> dict[str, Any]:
+    root = _root()
+    analysis = ctx.paths.analysis
+    paths = {
+        ctx.config_path: ACTION_EQUIVALENCE_HISTORICAL_HASHES["config"],
+        root / ACTION_EQUIVALENCE_CONTRACT: ACTION_EQUIVALENCE_CONTRACT_SHA256,
+        ctx.paths.manifest: ACTION_EQUIVALENCE_HISTORICAL_HASHES["manifest"],
+        ctx.paths.state: ACTION_EQUIVALENCE_HISTORICAL_HASHES["state"],
+        analysis / "offline_construction.json": ACTION_EQUIVALENCE_HISTORICAL_HASHES[
+            "offline_construction"
+        ],
+        analysis / "offline_primary.json": ACTION_EQUIVALENCE_HISTORICAL_HASHES[
+            "offline_primary"
+        ],
+        analysis / "offline_independent.json": ACTION_EQUIVALENCE_HISTORICAL_HASHES[
+            "offline_independent"
+        ],
+        analysis / "raw_integrity_primary.json": ACTION_EQUIVALENCE_HISTORICAL_HASHES[
+            "raw_primary"
+        ],
+        analysis / "raw_integrity_independent.json": ACTION_EQUIVALENCE_HISTORICAL_HASHES[
+            "raw_independent"
+        ],
+    }
+    for path, expected in paths.items():
+        if not path.is_file() or _sha(path) != expected:
+            raise ValueError(
+                f"R8R51R4D4 action-equivalence historical source changed: {path}"
+            )
+    state = _read(ctx.paths.state)
+    manifest = _read(ctx.paths.manifest)
+    original = _read(analysis / "raw_integrity_primary.json")
+    independent = _read(analysis / "raw_integrity_independent.json")
+    inventory = r4.r51.r8r7.r8._inventory(ctx.paths.raw)
+    expected_true_counts = (
+        "strict_parse_count",
+        "runtime_success_count",
+        "full_horizon_count",
+        "authentic_restart_count",
+        "source_prefix_state_exact_count",
+        "source_prefix_trace_exact_count",
+        "calibration_exact_count",
+        "event_sequence_exact_count",
+        "event_gates_passed_count",
+        "event_action_detail_trace_effect_exact_count",
+        "event_nominal_currents_numerically_equivalent_count",
+        "first_effect_at_issue_plus_one_count",
+        "second_effect_at_issue_plus_one_count",
+        "within_context_q0_prefix_exact_count",
+        "within_first_candidate_prefix_exact_count",
+        "finite_count",
+        "causal_forbidden_pass_count",
+    )
+    formal_names = (
+        "primary_detailed.json",
+        "primary_summary.json",
+        "formal_independent.json",
+        "compact_audit.json",
+        "final_report.json",
+    )
+    invalid = bool(
+        manifest.get("stage") != STAGE
+        or manifest.get("config_sha256")
+        != ACTION_EQUIVALENCE_HISTORICAL_HASHES["config"]
+        or int(manifest.get("spec_count", -1)) != ACTION_EQUIVALENCE_RAW_COUNT
+        or manifest.get("package_fingerprint", {}).get("digest")
+        != ACTION_EQUIVALENCE_PACKAGE_DIGEST
+        or state.get("stage") != STAGE
+        or state.get("phase_status") != "real_execution_failed"
+        or state.get("finished") is not True
+        or state.get("real_tsc_executed") is not True
+        or state.get("response_outcomes_opened") is not False
+        or int(state.get("new_raw_count", -1)) != ACTION_EQUIVALENCE_RAW_COUNT
+        or int(state.get("plant_step_count", -1)) != 9_050
+        or state.get("route") != ctx.cfg["routes"]["execution_fail"]
+        or original.get("passed") is not False
+        or int(original.get("passed_count", -1)) != 0
+        or int(original.get("offline_event_semantics_exact_count", -1)) != 0
+        or original.get("event_stream_digest") != ACTION_EQUIVALENCE_EVENT_DIGEST
+        or any(
+            int(original.get(key, -1)) != ACTION_EQUIVALENCE_RAW_COUNT
+            for key in expected_true_counts
+        )
+        or int(original.get("runtime_failure_count", -1)) != 0
+        or int(original.get("safety_stop_count", -1)) != 0
+        or int(original.get("forbidden_trace_count", -1)) != 0
+        or len(original.get("rows") or []) != ACTION_EQUIVALENCE_RAW_COUNT
+        or independent.get("passed") is not False
+        or int(independent.get("passed_count", -1)) != 0
+        or int(independent.get("offline_event_semantics_exact_count", -1)) != 0
+        or independent.get("independent_event_stream_digest")
+        != ACTION_EQUIVALENCE_EVENT_DIGEST
+        or independent.get("primary_agreement") is not True
+        or independent.get("response_outcomes_opened") is not False
+        or inventory.get("count") != ACTION_EQUIVALENCE_RAW_COUNT
+        or inventory.get("bytes") != ACTION_EQUIVALENCE_RAW_BYTES
+        or inventory.get("digest") != ACTION_EQUIVALENCE_RAW_DIGEST
+        or inventory != original.get("raw_inventory")
+        or inventory != independent.get("raw_inventory")
+        or any((analysis / name).exists() for name in formal_names)
+    )
+    if invalid:
+        raise ValueError(
+            "R8R51R4D4 action-equivalence historical precondition changed"
+        )
+    return {
+        "state": state,
+        "manifest": manifest,
+        "original": original,
+        "original_independent": independent,
+        "inventory": inventory,
+    }
+
+
+def _validate_action_equivalence_primary(
+    report: Mapping[str, Any],
+    inventory: Mapping[str, Any],
+) -> None:
+    maximum = report.get("maximum_offline_event_action_difference")
+    if (
+        report.get("phase") != "raw_integrity_action_equivalence_primary"
+        or report.get("passed") is not True
+        or int(report.get("passed_count", -1)) != ACTION_EQUIVALENCE_RAW_COUNT
+        or int(report.get("offline_event_semantics_exact_count", -1))
+        != ACTION_EQUIVALENCE_RAW_COUNT
+        or int(report.get("offline_event_action_count", -1))
+        != ACTION_EQUIVALENCE_EXPECTED_EVENT_COUNT
+        or int(report.get("offline_event_action_binary_exact_count", -1))
+        != ACTION_EQUIVALENCE_EXPECTED_BINARY_EXACT_COUNT
+        or maximum != ACTION_EQUIVALENCE_EXPECTED_MAXIMUM_DIFFERENCE
+        or report.get("offline_event_action_equivalence_absolute_tolerance")
+        != ACTION_EQUIVALENCE_ATOL
+        or report.get("event_stream_digest") != ACTION_EQUIVALENCE_EVENT_DIGEST
+        or report.get("raw_inventory") != inventory
+        or report.get("response_outcomes_opened") is not False
+    ):
+        raise ValueError("R8R51R4D4 corrected primary raw gate failed")
+
+
+def repair_action_equivalence_primary(ctx: Context) -> dict[str, Any]:
+    source = _authenticate_action_equivalence_historical_evidence(ctx)
+    report = audit_raw_integrity(
+        ctx,
+        write=False,
+        action_atol=ACTION_EQUIVALENCE_ATOL,
+        output_name=ACTION_EQUIVALENCE_PRIMARY_NAME,
+    )
+    _validate_action_equivalence_primary(report, source["inventory"])
+    _write(ctx.paths.analysis / ACTION_EQUIVALENCE_PRIMARY_NAME, report)
+    return report
+
+
+def authorize_action_equivalence_raw(ctx: Context) -> dict[str, Any]:
+    source = _authenticate_action_equivalence_historical_evidence(ctx)
+    primary_path = ctx.paths.analysis / ACTION_EQUIVALENCE_PRIMARY_NAME
+    independent_path = ctx.paths.analysis / ACTION_EQUIVALENCE_INDEPENDENT_NAME
+    if not primary_path.is_file() or not independent_path.is_file():
+        raise ValueError("R8R51R4D4 corrected dual raw reports are incomplete")
+    primary = _read(primary_path)
+    independent = _read(independent_path)
+    _validate_action_equivalence_primary(primary, source["inventory"])
+    if (
+        independent.get("phase")
+        != "raw_integrity_action_equivalence_independent"
+        or independent.get("passed") is not True
+        or int(independent.get("passed_count", -1))
+        != ACTION_EQUIVALENCE_RAW_COUNT
+        or int(independent.get("offline_event_semantics_exact_count", -1))
+        != ACTION_EQUIVALENCE_RAW_COUNT
+        or int(independent.get("offline_event_action_count", -1))
+        != ACTION_EQUIVALENCE_EXPECTED_EVENT_COUNT
+        or int(independent.get("offline_event_action_binary_exact_count", -1))
+        != ACTION_EQUIVALENCE_EXPECTED_BINARY_EXACT_COUNT
+        or independent.get("maximum_offline_event_action_difference")
+        != ACTION_EQUIVALENCE_EXPECTED_MAXIMUM_DIFFERENCE
+        or independent.get("offline_event_action_equivalence_absolute_tolerance")
+        != ACTION_EQUIVALENCE_ATOL
+        or independent.get("independent_event_stream_digest")
+        != ACTION_EQUIVALENCE_EVENT_DIGEST
+        or independent.get("primary_agreement") is not True
+        or independent.get("raw_inventory") != source["inventory"]
+        or independent.get("response_outcomes_opened") is not False
+    ):
+        raise ValueError("R8R51R4D4 corrected independent raw gate failed")
+    state = _set_state(
+        ctx,
+        phase_status="raw_integrity_primary_ready",
+        finished=False,
+        real_tsc_executed=True,
+        plant_step_count=9_050,
+        new_raw_count=ACTION_EQUIVALENCE_RAW_COUNT,
+        response_outcomes_opened=False,
+        action_equivalence_reporting_hotfix_authorized=True,
+        action_equivalence_contract_sha256=ACTION_EQUIVALENCE_CONTRACT_SHA256,
+        original_stage_state_sha256=ACTION_EQUIVALENCE_HISTORICAL_HASHES["state"],
+        original_raw_integrity_primary_sha256=ACTION_EQUIVALENCE_HISTORICAL_HASHES[
+            "raw_primary"
+        ],
+        original_raw_integrity_independent_sha256=ACTION_EQUIVALENCE_HISTORICAL_HASHES[
+            "raw_independent"
+        ],
+        corrected_raw_integrity_primary_sha256=_sha(primary_path),
+        corrected_raw_integrity_independent_sha256=_sha(independent_path),
+        route=ctx.cfg["routes"]["pass"],
+        verdict={"route": ctx.cfg["routes"]["pass"], "passed": True},
+        stop_reason="",
+    )
+    return {
+        "stage": STAGE,
+        "phase": "raw_integrity_action_equivalence_dual_authorized",
+        "raw_inventory": source["inventory"],
+        "plant_step_count": int(state["plant_step_count"]),
+        "new_tsc_count": ACTION_EQUIVALENCE_RAW_COUNT,
+        "new_raw_count": ACTION_EQUIVALENCE_RAW_COUNT,
+        "additional_tsc_count": 0,
+        "additional_raw_count": 0,
+        "additional_controller_execution_count": 0,
+        "additional_plant_step_count": 0,
+        "response_outcomes_opened": False,
+        "passed": True,
+    }
+
+
+def _primary_integrity_path(ctx: Context, state: Mapping[str, Any]) -> Path:
+    if state.get("action_equivalence_reporting_hotfix_authorized") is True:
+        return ctx.paths.analysis / ACTION_EQUIVALENCE_PRIMARY_NAME
+    return ctx.paths.analysis / "raw_integrity_primary.json"
+
+
+def _independent_integrity_path(ctx: Context, state: Mapping[str, Any]) -> Path:
+    if state.get("action_equivalence_reporting_hotfix_authorized") is True:
+        return ctx.paths.analysis / ACTION_EQUIVALENCE_INDEPENDENT_NAME
+    return ctx.paths.analysis / "raw_integrity_independent.json"
 
 
 def _formal_authority(ctx: Context) -> dict[str, Any]:
     specs = _saved_specs(ctx)
-    integrity = _read(ctx.paths.analysis / "raw_integrity_primary.json")
+    state = _read(ctx.paths.state)
+    integrity = _read(_primary_integrity_path(ctx, state))
     _, sources = r4.r51._source_baselines(ctx.r4_ctx.base_ctx)
     baseline_rows = []
     for baseline_id in ctx.cfg["matrix_contract"]["failed_source_baseline_ids"]:
@@ -1580,8 +1956,10 @@ def run_real(ctx: Context, *, backend: str, resume: bool) -> dict[str, Any]:
 
 def finalize_primary(ctx: Context) -> dict[str, Any]:
     state = _read(ctx.paths.state)
-    integrity = _read(ctx.paths.analysis / "raw_integrity_primary.json")
-    independent = _read(ctx.paths.analysis / "raw_integrity_independent.json")
+    integrity_path = _primary_integrity_path(ctx, state)
+    independent_path = _independent_integrity_path(ctx, state)
+    integrity = _read(integrity_path)
+    independent = _read(independent_path)
     if (
         state.get("phase_status") != "raw_integrity_primary_ready"
         or integrity.get("passed") is not True
@@ -1609,8 +1987,22 @@ def finalize_primary(ctx: Context) -> dict[str, Any]:
         "schema_version": 1, "stage": STAGE, "identity": IDENTITY,
         "phase": "formal_primary_summary", **{key: detailed[key] for key in keys},
         "raw_inventory": integrity["raw_inventory"],
-        "raw_integrity_primary_sha256": _sha(ctx.paths.analysis / "raw_integrity_primary.json"),
-        "raw_integrity_independent_sha256": _sha(ctx.paths.analysis / "raw_integrity_independent.json"),
+        "raw_integrity_primary_artifact": integrity_path.name,
+        "raw_integrity_independent_artifact": independent_path.name,
+        "raw_integrity_primary_sha256": _sha(integrity_path),
+        "raw_integrity_independent_sha256": _sha(independent_path),
+        "action_equivalence_reporting_hotfix_authorized": bool(
+            state.get("action_equivalence_reporting_hotfix_authorized")
+        ),
+        "action_equivalence_contract_sha256": state.get(
+            "action_equivalence_contract_sha256"
+        ),
+        "original_raw_integrity_primary_sha256": state.get(
+            "original_raw_integrity_primary_sha256"
+        ),
+        "original_raw_integrity_independent_sha256": state.get(
+            "original_raw_integrity_independent_sha256"
+        ),
         "primary_detailed_sha256": _sha(ctx.paths.analysis / "primary_detailed.json"),
         "new_tsc_count": 250, "new_raw_count": 250,
         "controller_execution_count": 250,
@@ -1703,6 +2095,10 @@ def execute(ctx: Context, *, command: str, backend: str, resume: bool) -> dict[s
         return authorize_real(ctx)
     if command == "run":
         return run_real(ctx, backend=backend, resume=resume)
+    if command == "repair-raw-primary":
+        return repair_action_equivalence_primary(ctx)
+    if command == "authorize-raw-repair":
+        return authorize_action_equivalence_raw(ctx)
     if command == "finalize-primary":
         return finalize_primary(ctx)
     if command == "postprocess":
@@ -1713,6 +2109,19 @@ def execute(ctx: Context, *, command: str, backend: str, resume: bool) -> dict[s
 def _parser() -> argparse.ArgumentParser:
     parser = d3._parser()
     parser.description = __doc__
+    for action in parser._actions:
+        if action.dest == "command":
+            action.choices = (
+                "offline",
+                "authorize-real",
+                "run",
+                "repair-raw-primary",
+                "repair-raw-independent",
+                "authorize-raw-repair",
+                "finalize-primary",
+                "postprocess",
+            )
+            break
     parser.add_argument("--r51r4d3-run", type=Path, required=True)
     parser.add_argument("--failed-r51r4d4-run", type=Path, required=True)
     return parser
