@@ -8,7 +8,7 @@
   "package_revision": "r42r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_v1",
   "design_checkpoint": "d6356ca",
   "conditional_next_design_checkpoint": "dd764cb",
-  "implementation_checkpoint": "438adab",
+  "implementation_checkpoint": "e9655cc",
   "config_path": "configs/stage4_2r3c3t13s24d1r14r8r51r4d4_center_bridged_two_pulse_response_sentinel_370ms.json",
   "design_document": "docs/codex/reports/STAGE4_2R3C3T13S24D1R14R8R51R4D4_CENTER_BRIDGED_TWO_PULSE_RESPONSE_SENTINEL_DESIGN.md",
   "design_document_sha256": "3e80d240e99f0befe48c6e96df77d1a75ac638e7272278a8fcb95d4ab78be9d7",
