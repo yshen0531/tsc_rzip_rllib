@@ -40,6 +40,41 @@ field is absent, record a blocker and stop instead of inventing a fallback.
 NR0 PASS does not authorize any NR1 action. It ends with an exact-file commit/
 push and a pause for user confirmation.
 
+### NR0 implementation checkpoint (2026-08-13)
+
+NR0 is implemented on branch `codex/rgeo-zgeo-history-control` as a pure,
+repository-local contract layer.  The implementation is intentionally not
+wired into `TscRzipEnv`, any existing controller, reward, termination,
+Card15 formatter, delay queue, runner, or TSC state transition.
+
+The contract exposes only:
+
+1. paired `state.gfile.boundary_R/boundary_Z` bounding-box geometry from one
+   state/time step, plus same-state `Ip` and paired limiter midplane
+   intersections;
+2. deterministic `HFS` for `R_geo < R_mid`, otherwise `LFS`;
+3. fixed-1100-ms relative-endpoint and ordered waypoint commands with a
+   predeclared positive duration and no user-commanded Ip field;
+4. a separate Ip soft-reference/hard-band contract;
+5. an immutable causal record for actual currents, issued action, exact
+   serialized Card15 fields, quantized target current, queue identity/age,
+   applied action identity/age, readback current delta, missing-data masks,
+   and predeclared evidence purpose.
+
+The signal parser rejects missing/non-finite/degenerate or unequal-length
+boundaries, invalid limiter midplane geometry, abnormal state, and state/gfile
+Ip disagreement.  It does not accept `xmag/zmag`, `rc/zc`, `xplot/zplot`,
+limiter traces as plasma boundaries, or split R/Z sources.  The causal history
+requires one uninterrupted belief-sequence identity across every LFS/HFS
+crossing and rejects unknown/future queue or applied-action references.
+
+Local validation uses synthetic data only.  No server access, server raw,
+TSC, Ray, plant advance, snapshot, Oracle, model fitting/training, MPC, RL, or
+data generation is part of NR0.  NR0 does not establish real-interface
+availability rates, an Ip operating band, a safe finite work domain, hold/
+abort/recovery, branch replay, prediction accuracy, or closed-loop control.
+Those remain outside the current authorization.
+
 The new practical objective is finite-envelope, approximate, causal
 `R_geo/Z_geo` path following from 1100 ms. The old 250/270 ms arrival contract,
 the old Gate A MPC-expert checkpoint, and the MPC→BC→DAgger→RL sequence do not

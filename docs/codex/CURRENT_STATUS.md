@@ -30,6 +30,32 @@
 > the top of `CURRENT_TASK.md`; it requires a new user-authorized conversation
 > and must pause before any NR1 TSC work.
 
+> **NR0 repository interface implemented locally (2026-08-13
+> Asia/Shanghai).** Branch `codex/rgeo-zgeo-history-control` adds a pure
+> fail-closed `R_geo/Z_geo` signal, command, Ip-constraint, evidence-identity,
+> and causal history/action contract plus synthetic tests.  It uses only the
+> explicit same-state `gfile.boundary_R/boundary_Z` plasma boundary and the
+> paired limiter trace; there is no magnetic-axis, centroid, historical-alias,
+> split-source, or silent fallback.  The history keeps one belief identity
+> across LFS/HFS crossings and explicitly distinguishes issued, serialized/
+> quantized, queued, applied, and measured-current stages.
+>
+> NR0 changes no existing controller, environment semantics, reward,
+> termination, Card15 formatter, queue/effect timing, runner, or TSC state.
+> It uses synthetic tests only and has not accessed the server, run TSC,
+> trained/fitted a model, tested an Oracle, implemented MPC/RL, or generated
+> any experiment/learning data.  Validation/commit/push details are recorded
+> at handoff.  NR1 remains unauthorized pending explicit user confirmation.
+>
+> Local verification: NR0 plus adjacent actuator/causal-observer tests pass
+> 25/25; repository compileall and isolated NR0 import pass.  The Windows full
+> discovery run executed 1,283 tests: 1,256 passed and 27 legacy Linux-only
+> modules failed at import because Windows has no `resource` module.  The
+> repository JSON scan parsed 28,402 UTF-8 JSON files and found four preexisting
+> evidence files outside NR0 that are non-UTF-8 or not valid JSON.  These are
+> environment/preexisting-evidence findings, not NR0 interface failures; NR0
+> did not modify them.
+
 ---
 
 ## Archived status at route supersession
