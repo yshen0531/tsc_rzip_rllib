@@ -44,6 +44,13 @@ from .rgeo_zgeo_nr1 import (
     compare_replay_records,
     quantize_card15_target,
 )
+from .rgeo_zgeo_nr2_spec import (
+    NR2_CAMPAIGN_ID,
+    NR2_CONTRACT_VERSION,
+    NR2TrajectorySpec,
+    build_nr2_specs,
+    validate_nr2_specs,
+)
 
 __all__ = [
     "AdditiveResponseTube",
@@ -79,4 +86,9 @@ __all__ = [
     "build_frozen_prefixes",
     "compare_replay_records",
     "quantize_card15_target",
+    "NR2_CAMPAIGN_ID",
+    "NR2_CONTRACT_VERSION",
+    "NR2TrajectorySpec",
+    "build_nr2_specs",
+    "validate_nr2_specs",
 ]
