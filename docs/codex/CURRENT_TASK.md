@@ -6,7 +6,27 @@
 > The authoritative new architecture is
 > `docs/codex/RGEO_ZGEO_NEW_CONTROL_ARCHITECTURE.md`.
 
-## Active task: NR1 — safety foundation and fixed-prefix replay qualification
+## Active task: NR2 — fair causal model comparison design
+
+NR1 completed at implementation checkpoint `c56a72a` with final route
+`FIXED_1100MS_PREFIX_REPLAY_QUALIFIED`; see
+`docs/codex/reports/RGEO_ZGEO_NR1_RESULT.md`. Its records are interface-only
+and forbidden from model fitting or expert data.
+
+The user has authorized continued staged development. Before any NR2 TSC,
+freeze a finite `R_geo/Z_geo/Ip` work domain, development/calibration/fresh
+holdout identities, causal excitation and history coverage, unchanged hard
+safety/abort behavior, model classes, uncertainty/coverage metrics, and stop
+routes. Compare explicit actuator/queue plus low-order memory against
+GRU/LSTM/TCN residual candidates fairly; do not preselect a recurrent model
+or reuse old probes, sentinels, NR1 validation raw, or forbidden labels.
+
+NR2 is model qualification only. It must not implement or claim NMPC/RL,
+create expert data, or change the existing runner, queue, Card15, reward, or
+termination semantics. If the required causal excitation campaign would be
+unsafe or cannot support a genuine fresh holdout, stop before TSC.
+
+## Completed task: NR1 — safety foundation and fixed-prefix replay qualification
 
 The user explicitly authorized continued staged development and new server
 TSC on 2026-08-13. NR0 is complete at `a5257ee`. NR1 is frozen prospectively

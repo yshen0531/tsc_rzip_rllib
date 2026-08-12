@@ -1,5 +1,24 @@
 # Current status
 
+> **NR1 fixed-1100-ms prefix replay qualified (2026-08-13
+> Asia/Shanghai).** At implementation checkpoint `c56a72a`, server staging,
+> installed tests, public imports, source hashes, and the offline gate passed
+> before real TSC. The frozen campaign completed 4/4 short trajectories and
+> 32/32 plant advances with every safety gate passing. Independent raw
+> reprocessing authenticated 36/36 states, 32/32 exact Card15 targets, and
+> 36/36 safety checks. Both the center-hold and small nonzero reversible-pulse
+> replay pairs had exactly zero parsed difference in boundary geometry, Ip,
+> 14 coil currents, and the full wire-current vector. Total campaign wall
+> time was 462.572410909 s.
+>
+> This is only fixed-source exact-prefix replay qualification. It is not an
+> arbitrary-state snapshot/branch Oracle, controller, model, MPC, tracking,
+> teacher-data, or deployment result. All NR1 raw is
+> `interface_validation` and forbidden from fitting/expert use. A transported
+> trailing CR produced an odd but unique run-directory name; raw was preserved
+> in place and the independent audit selected it exactly. Full details and
+> report hashes are in `docs/codex/reports/RGEO_ZGEO_NR1_RESULT.md`.
+
 > **NR1 prospectively frozen before plant advance (2026-08-13
 > Asia/Shanghai).** The user authorized continued staged development and
 > server TSC. Work moved to branch `codex/rgeo-zgeo-nr1-safety-oracle` from
