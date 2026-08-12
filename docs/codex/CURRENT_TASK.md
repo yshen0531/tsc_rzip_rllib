@@ -6,7 +6,25 @@
 > The authoritative new architecture is
 > `docs/codex/RGEO_ZGEO_NEW_CONTROL_ARCHITECTURE.md`.
 
-## Active task: NR0 — signal, command, and causal-state interface
+## Active task: NR1 — safety foundation and fixed-prefix replay qualification
+
+The user explicitly authorized continued staged development and new server
+TSC on 2026-08-13. NR0 is complete at `a5257ee`. NR1 is frozen prospectively
+in `docs/codex/reports/RGEO_ZGEO_NR1_SAFETY_ORACLE_QUALIFICATION_DESIGN.md`.
+
+NR1 must implement and validate a fail-closed hold/abort/recovery boundary,
+then run only the frozen four-rollout, 32-advance fixed-1100-ms qualification
+after local and server offline gates pass. It may qualify deterministic
+fixed-start prefix replay and measure its cost; it may not call that result an
+arbitrary-state Oracle, create expert/learning data, implement MPC/RL, or
+silently expand the matrix. A safety failure stops the stage. A replay failure
+rejects the optional Oracle route without being recast as a plant or global
+model failure.
+
+NR2 and later work require their own prospective stage definitions and must
+not reuse NR1 interface-validation records as fitting or expert data.
+
+## Completed task: NR0 — signal, command, and causal-state interface
 
 NR0 begins only when the user opens the planned new conversation and sends
 the handoff prompt in `docs/codex/NEW_CHAT_RGEO_ZGEO_START_PROMPT.md`.

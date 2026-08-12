@@ -1,5 +1,24 @@
 # Current status
 
+> **NR1 prospectively frozen before plant advance (2026-08-13
+> Asia/Shanghai).** The user authorized continued staged development and
+> server TSC. Work moved to branch `codex/rgeo-zgeo-nr1-safety-oracle` from
+> NR0 checkpoint `a5257ee`. A minimal read-only server interface check found
+> paired finite boundary and limiter data at the fixed 1100 ms source. The
+> accepted contract computes `R_geo=0.708635102 m`,
+> `Z_geo=0.035241343 m`, `R_mid=0.7919 m`, and `Ip=31286.4059 A`, making the
+> source HFS regardless of its legacy LFS directory label. No TSC/plant step
+> was run by that check.
+>
+> The frozen NR1 design permits only four eight-step trajectories after
+> implementation and offline qualification: a representable Card15-center
+> hold and exact replay, plus one 0.05-normalized alternating-sign pulse with
+> immediate exact-center return and exact replay. All 32 advances are
+> `interface_validation`, forbidden from expert/training use. Missing geometry,
+> safety/Ip/current/slew failure, abnormal TSC, or replay mismatch fails
+> closed. A pass can qualify only fixed-1100-ms prefix replay, not arbitrary
+> snapshot branching, a teacher dataset, a controller, MPC, or RL.
+
 > **New-route proposal recorded; no implementation or new TSC yet
 > (2026-08-12 Asia/Shanghai).** The user retired the former Stage4.2/R8
 > fixed-local-model-to-MPC-expert route as the active route. This does not
