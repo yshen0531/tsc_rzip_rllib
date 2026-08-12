@@ -90,13 +90,23 @@ safety, count, and split gates before fitting or holdout authorization.
 
 ## 5. Fair model protocol
 
-All models predict the next normalized delta of `(R_geo, Z_geo, Ip)` and are
-evaluated by recursive eight-step rollout. Input/output normalizers use only
-development trajectories. Neural candidates use PyTorch CPU, deterministic
-algorithms, five fixed seeds, at most 10,000 trainable parameters, identical
-Adam learning rate/epoch/patience/gradient-clip budgets, and no model-specific
-feature. ARX uses the same four-step padded history and five deterministic
-trajectory bootstraps. Candidate selection sees development only.
+All models predict the next normalized delta of `(R_geo, Z_geo, Ip)` **and all
+14 actual coil-current readbacks**. They are evaluated by recursive eight-step
+rollout, feeding their own predicted state/current into later history while
+using only the prospectively known future Card15 targets. Calibration or
+holdout readbacks may not be teacher-forced after the initial 1100 ms frame.
+Input/output normalizers use only development trajectories.
+
+Hyperparameter selection uses four development folds grouped by complete sign
+pairs (`pair_index mod 4`); no sign mate crosses a fold, and every fold fits
+normalization from its training trajectories only. ARX compares ridge
+`1e-6/1e-4/1e-2`. Neural classes compare hidden/channel width `8/12`, use
+PyTorch CPU deterministic algorithms, five final seeds `1701..1705`, at most
+10,000 trainable parameters, Adam `1e-3`, full-trajectory batches, at most
+2,000 epochs, patience 200, and gradient norm cap 1.0. Every class minimizes
+the same normalized 17-output one-step MSE during fitting; selection and all
+reported metrics use recursive rollouts. ARX final members use five
+deterministic trajectory bootstraps with those same seeds.
 
 Calibration may only choose one nonnegative multiplier applied to ensemble
 absolute residual quantiles. It may not change weights, architecture, input,
@@ -121,7 +131,8 @@ fresh holdout:
 2. at least 90% joint point rows with all three scaled errors `<= 1`;
 3. 95th-percentile maximum-coordinate scaled error `<= 1`;
 4. at least 90% joint interval coverage; and
-5. the same interval half-width caps.
+5. the same interval half-width caps; and
+6. 95th-percentile maximum absolute coil-current prediction error `<= 0.05 A`.
 
 Among classes that pass, choose the lowest holdout mean squared scaled error.
 A neural class can displace affine ARX only if its mean squared scaled error
