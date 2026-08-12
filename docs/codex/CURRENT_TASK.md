@@ -6,7 +6,27 @@
 > The authoritative new architecture is
 > `docs/codex/RGEO_ZGEO_NEW_CONTROL_ARCHITECTURE.md`.
 
-## Active task: NR2 — fair causal model comparison design
+## Active task: pause after NR2 causal model comparison failure
+
+NR2 completed its immutable 60-trajectory, 480-advance campaign with final
+route `CAUSAL_MODEL_COMPARISON_FAIL_REDESIGN`; see
+`docs/codex/reports/RGEO_ZGEO_NR2_RESULT.md`. All data, safety, raw, Card15,
+and `R_geo/Z_geo/Ip` holdout gates passed, but no candidate passed the frozen
+recursive coil-readback accuracy gate. GRU/LSTM/TCN did not outperform the
+simple ARX baseline in a practically useful way.
+
+Do not proceed to NR3, relax the 0.05 A gate, retrain on consumed holdout,
+increase network size, or add TSC under the NR2 identity. The leading redesign
+question is whether exact/structural Card15-actuator-readback propagation
+should be separated from the learned plasma residual and surrounded by an
+explicit uncertainty interval. That requires a new prospective NR2R1 design
+and untouched evaluation identity.
+
+The user requested a pause when a genuine unresolved architecture decision or
+need for more advanced model reasoning is reached. This is that pause gate;
+wait for explicit user direction before NR2R1 or NR3.
+
+## Completed task: NR2 — fair causal model comparison design
 
 NR1 completed at implementation checkpoint `c56a72a` with final route
 `FIXED_1100MS_PREFIX_REPLAY_QUALIFIED`; see

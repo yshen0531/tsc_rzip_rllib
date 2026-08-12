@@ -1,5 +1,25 @@
 # Current status
 
+> **NR2 finite causal model comparison completed as redesign FAIL
+> (2026-08-13 Asia/Shanghai).** The immutable 60-trajectory campaign completed
+> 480/480 authentic plant advances: development/calibration 44/44 and fresh
+> holdout 16/16. Independent audits passed 540 state checks, all 480 Card15
+> action checks, 2,700 required raw-file checks, exact split/spec/rank gates,
+> and every boundary/Ip/current/slew/TSC safety gate. Fresh holdout stayed
+> locked until four calibrated ensembles were frozen at bundle SHA-256
+> `ead32665...d9f9`.
+>
+> On one-shot fresh holdout, ARX/GRU/LSTM/TCN all passed the `R_geo/Z_geo/Ip`
+> point and interval gates: joint point success was 100%, joint coverage was
+> 97.66--100%, and p95 scaled geometry/Ip error was 0.476--0.530. All four
+> nevertheless failed the prospectively frozen `<=0.05 A` p95 recursive
+> coil-readback gate. ARX was best at 0.15677 A; neural candidates were
+> 1.03--1.31 A and provided no useful gain. Final route is
+> `CAUSAL_MODEL_COMPARISON_FAIL_REDESIGN`; there is no qualified model and NR3
+> is blocked. This is a model/state-propagation design failure, not runtime,
+> raw, Card15, safety, geometry-signal, controller, MPC, or global plant
+> failure. Full evidence is in `docs/codex/reports/RGEO_ZGEO_NR2_RESULT.md`.
+
 > **NR1 fixed-1100-ms prefix replay qualified (2026-08-13
 > Asia/Shanghai).** At implementation checkpoint `c56a72a`, server staging,
 > installed tests, public imports, source hashes, and the offline gate passed
