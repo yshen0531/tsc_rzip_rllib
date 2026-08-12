@@ -1,5 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current-route notice (2026-08-12):** the user retired the former
+> fixed-local-model-to-MPC-expert route without changing its historical
+> evidence. The active objective is approximate, safe, causal tracking of
+> user-commanded boundary-bounding-box `R_geo/Z_geo` trajectories from the
+> fixed 1100 ms start. Motion duration may be negotiated; the former 250/270
+> ms arrival gate and Gate A learning transition do not apply to this new
+> route. LFS/HFS is determined from `R_geo` relative to the midplane limiter
+> midpoint and a trajectory may cross in both directions. Ip is not a user
+> command but remains an observed coupled/safety state.
+>
+> Read `docs/codex/RGEO_ZGEO_NEW_CONTROL_ARCHITECTURE.md` and the top of
+> `docs/codex/CURRENT_TASK.md` before using the archived context below. The
+> next stage is NR0 only; no new-route implementation or TSC experiment had
+> begun when this notice was written.
+
+---
+
 ## 1. Project identity
 
 Repository:

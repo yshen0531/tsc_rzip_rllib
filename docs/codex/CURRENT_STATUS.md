@@ -1,5 +1,43 @@
 # Current status
 
+> **New-route proposal recorded; no implementation or new TSC yet
+> (2026-08-12 Asia/Shanghai).** The user retired the former Stage4.2/R8
+> fixed-local-model-to-MPC-expert route as the active route. This does not
+> invalidate or reinterpret any prior raw data, PASS/FAIL, report, or package.
+> The pre-supersession preservation checkpoint is `cbdf874`.
+>
+> The newly recorded goal is safe, causal, approximate following of user
+> `R_geo/Z_geo` endpoint/path commands from the fixed 1100 ms start, in a
+> reasonable finite work domain and with negotiable motion duration. The
+> controlled coordinates are the bounding-box center of one valid plasma
+> boundary, not `xmag/zmag` and not the current pressure-weighted `rc/zc`.
+> LFS/HFS is a deterministic label from `R_geo` relative to the midplane
+> inner/outer-limiter radial midpoint; trajectories may cross it repeatedly.
+> Ip is not user-commanded but remains a coupled observed and safety state.
+>
+> The recommended main architecture is history-conditioned,
+> uncertainty-aware constrained receding-horizon control. A branch/prefix
+> replay TSC Oracle is a future optional teacher/planner candidate, while a
+> structured probabilistic history model plus constrained NMPC is the
+> scalable main-controller candidate. It must not be called robust before
+> calibrated error, recovery, and recursive-feasibility conditions pass.
+> Outer RL is optional and must prove added value.
+> See `docs/codex/RGEO_ZGEO_NEW_CONTROL_ARCHITECTURE.md`.
+>
+> This discussion produced documents only. It changed no controller code,
+> configuration, package, server file, or TSC result and ran no feasibility
+> experiment. The next executable stage is repository-only NR0, defined at
+> the top of `CURRENT_TASK.md`; it requires a new user-authorized conversation
+> and must pause before any NR1 TSC work.
+
+---
+
+## Archived status at route supersession
+
+> All later uses of `active`, `next`, `authorized`, or equivalent imperative
+> language are preserved historical wording only and grant no current
+> authority. Do not resume R51R4D4 or any legacy conditional successor.
+
 > **Final R8R51R4D3 center-bridged two-pulse geometry PASS; R51R4D4 design
 > freeze active (2026-08-10 Asia/Shanghai).** R51R4D3 completed at prospective
 > design/implementation/package checkpoints `bdfeeae / 80e7059 / 602c8a4`.

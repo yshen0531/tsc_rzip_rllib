@@ -1,4 +1,66 @@
-# CURRENT_TASK.md — finite-horizon restart MPC architecture evidence stage
+# CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
+
+> **Route supersession (2026-08-12):** the user retired the former
+> Stage4.2/R8 fixed-local-model-to-MPC-expert route. Its raw evidence and
+> historical verdicts remain immutable, but it is no longer the active task.
+> The authoritative new architecture is
+> `docs/codex/RGEO_ZGEO_NEW_CONTROL_ARCHITECTURE.md`.
+
+## Active task: NR0 — signal, command, and causal-state interface
+
+NR0 begins only when the user opens the planned new conversation and sends
+the handoff prompt in `docs/codex/NEW_CHAT_RGEO_ZGEO_START_PROMPT.md`.
+
+The goal of NR0 is to turn the new route's definitions into a minimal,
+reviewable repository interface and tests:
+
+1. after accepting the proposed coordinate contract, expose paired,
+   same-boundary and same-step bounding-box `R_geo/Z_geo`; missing/invalid
+   boundaries fail closed, with no magnetic-axis, pressure-centroid, split-
+   source, or silent-fallback ambiguity;
+2. define the fixed-1100-ms command contract for relative endpoints and
+   full paths/waypoints, with negotiable duration;
+3. define the complete causal history/action record needed by a later
+   observer: issued, quantized, applied/readback actions, exact queue and
+   actual currents;
+4. keep HFS/LFS as a deterministic feature of `R_geo-R_mid`, with recurrent
+   history continuous across crossings;
+5. keep Ip outside the user command but inside prediction, soft regulation,
+   and hard safety contracts;
+6. limit implementation to pure interfaces, schemas/parsers/validators, and
+   synthetic or repository fixtures; add project-virtual-environment tests
+   and update the new-route documents.
+
+NR0 is repository-only. It must not change existing controller, reward,
+termination, Card15 quantization, queue/effect timing, or TSC execution
+semantics. It must not run a new TSC trajectory, deploy to or write the
+server, train/fit a world model, test a branch Oracle, implement MPC/RL, read
+server raw as a fixture, or create expert/learning data. If a required real
+field is absent, record a blocker and stop instead of inventing a fallback.
+NR0 PASS does not authorize any NR1 action. It ends with an exact-file commit/
+push and a pause for user confirmation.
+
+The new practical objective is finite-envelope, approximate, causal
+`R_geo/Z_geo` path following from 1100 ms. The old 250/270 ms arrival contract,
+the old Gate A MPC-expert checkpoint, and the MPC→BC→DAgger→RL sequence do not
+govern this route. Future accepted commands may negotiate a slower duration
+before execution; hard causality, safety, restart, action-integrity, and
+evidence requirements remain.
+
+Old probes and sentinels remain forbidden from retrospective expert or
+learning use. The last pre-supersession local preservation checkpoint was
+`cbdf874`.
+
+---
+
+# Archived legacy task — finite-horizon restart MPC architecture evidence stage
+
+> **Machine-readable legacy rule:** every later occurrence in this archived
+> section of `active`, `next`, `authorized`, `must run`, or an equivalent
+> instruction describes its historical state only. It grants no present
+> authority. R51R4D4 and every old conditional successor are retired/unrun
+> unless their historical text explicitly records completion. Do not execute
+> any archived instruction.
 
 ## 0. User-authorized final objective and learning-transition policy
 
