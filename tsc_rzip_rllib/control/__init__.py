@@ -35,6 +35,15 @@ from .rgeo_zgeo_contract import (
     WaypointPathCommand,
     parse_rgeo_zgeo_command,
 )
+from .rgeo_zgeo_nr1 import (
+    NR1_CONTRACT_VERSION,
+    NR1SafetyEnvelope,
+    FrozenPrefix,
+    QuantizedCurrentTarget,
+    build_frozen_prefixes,
+    compare_replay_records,
+    quantize_card15_target,
+)
 
 __all__ = [
     "AdditiveResponseTube",
@@ -63,4 +72,11 @@ __all__ = [
     "RGeoZGeoWaypoint",
     "WaypointPathCommand",
     "parse_rgeo_zgeo_command",
+    "NR1_CONTRACT_VERSION",
+    "NR1SafetyEnvelope",
+    "FrozenPrefix",
+    "QuantizedCurrentTarget",
+    "build_frozen_prefixes",
+    "compare_replay_records",
+    "quantize_card15_target",
 ]
