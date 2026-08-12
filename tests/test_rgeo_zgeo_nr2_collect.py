@@ -30,7 +30,7 @@ class NR2CollectorTests(unittest.TestCase):
             np.testing.assert_array_equal(hold, holds[0])
 
     def test_authorization_hash_primitives_are_exact(self) -> None:
-        with tempfile.TemporaryDirectory(dir=".codex_tmp") as name:
+        with tempfile.TemporaryDirectory(dir=".") as name:
             root = Path(name)
             bundle = root / "frozen_models.pt"
             bundle.write_bytes(b"frozen")
