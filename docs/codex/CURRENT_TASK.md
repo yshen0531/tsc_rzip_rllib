@@ -1,5 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2A authorization and prospective freeze (2026-08-13):** the user has
+> authorized continued staged development and later server TSC under the
+> revised post-NR2R1 route.  The active task is first the separately frozen
+> local, zero-TSC, zero-fit audit
+> `rgeo-zgeo-1ms-nr2r2a-identifiability-audit-v1`; see
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2A_IDENTIFIABILITY_AUDIT_DESIGN.md`.
+> It may read only the 28 already-consumed NR2R1 development/calibration
+> compact records listed by the tracked hash inventory.  Holdout access,
+> server access, model fitting, controller execution and data generation are
+> forbidden in NR2R2A.  A complete agreeing audit may authorize only design
+> of a new source q0-baseline/repeatability/hold-recovery sentinel; no TSC may
+> start until that next identity and its hard stops are prospectively frozen.
+
 > **Post-NR2R1 route reassessment (2026-08-13):** the documentation-only
 > architecture review is complete with route
 > `POST_NR2R1_REASSESSMENT_COMPLETE_NR2R2A_DESIGN_AUDIT_REQUIRED`.

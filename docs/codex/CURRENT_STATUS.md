@@ -4449,3 +4449,19 @@ diagnostic evidence and cannot qualify or tune a model.
 Final route: `ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT`. No NR3, controller,
 MPC, RL, expert-data or further TSC work is authorized pending the user's
 decision on a new prospective state/model architecture.
+
+# 2026-08-13: NR2R2A prospective identifiability audit active
+
+The user authorized continued staged development and later new TSC under the
+post-NR2R1 route.  Work has moved to branch
+`codex/rgeo-zgeo-1ms-nr2r2a-identifiability` from clean tracked checkpoint
+`ae5a614`.
+
+NR2R2A is now prospectively frozen as a local, zero-server, zero-TSC,
+zero-fit audit in
+`docs/codex/reports/RGEO_ZGEO_1MS_NR2R2A_IDENTIFIABILITY_AUDIT_DESIGN.md`.
+It uses only the 28 hashed NR2R1 development/calibration compact records and
+must independently recompute unpadded lag-support, baseline/factorization
+gaps and deployable state semantics.  It cannot read the invalidly opened
+holdout or qualify a model/controller.  A complete result may advance only to
+a separately frozen source baseline/repeatability/hold-recovery design.
