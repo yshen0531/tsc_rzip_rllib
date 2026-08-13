@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **1 ms route notice (2026-08-13):** the active route has been restarted
+> from NR0 under contract `rgeo-zgeo-1ms-nr0-v1`. Control starts at 1100 ms,
+> uses a 1 ms period, and permits each TSC-order single-turn coil current to
+> change by any value whose absolute magnitude is at most 0.3 A per step,
+> including exactly 0.3 A. Card15 remains kA-turn. Earlier 10 ms / 3 A
+> NR0--NR2 evidence is historical only and is not converted or reused to
+> qualify this route. The active stage is repository-only NR0; restarted NR1
+> and all server/TSC/model/control work remain outside this stage.
+
 > **Current-route notice (2026-08-12):** the user retired the former
 > fixed-local-model-to-MPC-expert route without changing its historical
 > evidence. The active objective is approximate, safe, causal tracking of

@@ -1,5 +1,28 @@
 # Current status
 
+> **1 ms route restarted from NR0 (2026-08-13 Asia/Shanghai).** The user
+> replaced the prior route contract with a 1 ms control period and an exact
+> hard limit `|delta I_i| <= 0.3 A` per control step for every single-turn
+> coil in TSC order. The endpoints `+0.3 A` and `-0.3 A` are permitted; no
+> smaller hidden operating cap is implied. Card15 remains serialized in
+> kA-turn, with turn conversion explicit and unchanged.
+>
+> Work started from tracked-clean checkpoint `ad4302b` on new branch
+> `codex/rgeo-zgeo-1ms-nr0`. The preservation checkpoint `cbdf874` and
+> current source checkpoint both exist locally. The prior 10 ms / 3 A NR0,
+> NR1 and NR2 results remain immutable historical evidence and do not qualify
+> the new route.
+>
+> Restarted NR0 adds only a distinct pure contract, parsers/dataclasses,
+> fail-closed timing/slew/history validation, public exports, synthetic tests,
+> and this documentation. It does not alter the runner, environment,
+> controller, reward, termination, Card15 formatting, queue/effect timing, or
+> TSC state semantics. It accesses no server/raw fixture and executes no TSC,
+> training, model, planner, Oracle, MPC, RL, or data generation. Final test,
+> commit and push evidence is recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR0_RESULT.md`. Restarted NR1 remains a
+> separate authorization boundary.
+
 > **NR2 finite causal model comparison completed as redesign FAIL
 > (2026-08-13 Asia/Shanghai).** The immutable 60-trajectory campaign completed
 > 480/480 authentic plant advances: development/calibration 44/44 and fresh

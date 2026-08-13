@@ -1,5 +1,15 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Confirmed timing/action amendment (2026-08-13):** development restarts
+> from NR0 with a 1 ms control period. For each of the 14 coils in TSC order,
+> the hard per-step limit is the single-turn-current condition
+> `|I_i[k+1] - I_i[k]| <= 0.3 A`. Equality is allowed; the architecture must
+> not invent an undisclosed headroom reservation. TSC Card15 remains in
+> kA-turn and must be converted using the explicit per-coil turn count. The
+> old 10 ms / 3 A NR0--NR2 route remains historical and cannot qualify the
+> new identity. No coordinate, Ip, queue/effect, Card15, safety, or evidence
+> rule below is weakened by this amendment.
+
 状态：**v1 已获用户确认；NR0 接口合同已实现，NR1 未授权**
 
 日期：2026-08-12

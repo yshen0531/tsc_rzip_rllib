@@ -1,12 +1,35 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Active route restart (2026-08-13):** the user replaced the route timing
+> and actuator-step contract and explicitly required a restart from NR0. The
+> new immutable NR0 identity is `rgeo-zgeo-1ms-nr0-v1`:
+>
+> ```text
+> fixed takeover time                         1100 ms
+> control period                                 1 ms
+> per-coil single-turn current step limit       0.3 A absolute
+> equivalent per-coil slew                 0.3 A/ms = 300 A/s
+> equality at +0.3 A or -0.3 A                  allowed
+> hidden reserve below the stated limit         none
+> coil vector order                              TSC
+> Card15 serialization unit                      kA-turn (unchanged)
+> ```
+>
+> The earlier 10 ms / 3 A NR0, NR1 and NR2 commits, raw and verdicts remain
+> immutable historical evidence. They are not rescaled, converted, reused as
+> qualification data, or evidence for the 1 ms route. The current task is
+> only the restarted NR0 interface/schema/validator stage. It must run no
+> TSC, server deployment, fitting/training, Oracle branch, controller, MPC,
+> RL, or data generation. A PASS requires a focused commit/push and pause;
+> it does not authorize restarted NR1.
+>
 > **Route supersession (2026-08-12):** the user retired the former
 > Stage4.2/R8 fixed-local-model-to-MPC-expert route. Its raw evidence and
 > historical verdicts remain immutable, but it is no longer the active task.
 > The authoritative new architecture is
 > `docs/codex/RGEO_ZGEO_NEW_CONTROL_ARCHITECTURE.md`.
 
-## Active task: pause after NR2 causal model comparison failure
+## Archived 10 ms route: pause after NR2 causal model comparison failure
 
 NR2 completed its immutable 60-trajectory, 480-advance campaign with final
 route `CAUSAL_MODEL_COMPARISON_FAIL_REDESIGN`; see
