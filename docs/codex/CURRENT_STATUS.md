@@ -1,5 +1,23 @@
 # Current status
 
+> **1 ms NR1R2 interface qualified (2026-08-13 Asia/Shanghai).** At
+> implementation checkpoint `8580ac1`, the fresh campaign completed 6/6
+> authentic rollouts, 24/24 plant advances and 30/30 states. Primary and
+> structurally independent raw audits passed all 24 exact Card15/command
+> checks, all 24 exact observed-slew checks, 56/56 signed pulse-effect
+> components, return/hold, geometry/Ip/current safety and three replay pairs.
+> Maximum issued and observed single-turn change was exactly 0.3 A; equality
+> was used without a hidden reserve. Replay differences were zero on paired
+> boundary geometry, R_mid, Ip, all coil currents and wire currents.
+>
+> This is fixed-source 1 ms interface qualification only, not a model,
+> controller, tracking, NMPC or RL result. The two earlier nine-advance stops
+> are preserved and independently classified as binary64 numeric and mixed
+> command/readback-coordinate defects, not physical slew or plant failures.
+> Exact evidence is in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR1_RESULT.md`. Fresh 1 ms NR2 design is
+> next; no NR2 TSC is yet authorized by this PASS alone.
+
 > **1 ms NR1R1 exposed command/readback coordinate mixing; NR1R2 frozen
 > (2026-08-13 Asia/Shanghai).** NR1R1 at `2685710` performed nine authentic
 > advances. Its two hold rollouts passed and Pattern A's first effect changed

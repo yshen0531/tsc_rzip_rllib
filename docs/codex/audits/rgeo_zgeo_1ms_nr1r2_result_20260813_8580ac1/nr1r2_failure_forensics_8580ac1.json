@@ -1,0 +1,43 @@
+{
+  "checks": {
+    "command_return_maximum_is_point_three": true,
+    "mixed_coordinate_exceeds_point_three": true,
+    "nr1r1_route_is_safety_stop": true,
+    "observed_pulse_maximum_is_point_three": true,
+    "pattern_has_one_advance": true,
+    "pf3l_mixed_coordinate_is_point_three_zero_zero_zero_one": true,
+    "plant_advances_are_nine": true,
+    "reason_is_unique_expected_reason": true
+  },
+  "created_utc": "2026-08-13T02:30:54.687909+00:00",
+  "exact_maximum_command_return_delta_a": "0.3000",
+  "exact_maximum_mixed_coordinate_delta_a": "0.30001",
+  "exact_maximum_observed_pulse_delta_a": "0.30000",
+  "new_tsc_or_plant_advance": 0,
+  "old_run_remains_incomplete": true,
+  "passed": true,
+  "route": "ONE_MS_NR1R1_COMMAND_READBACK_MIX_CONFIRMED",
+  "schema_version": "rgeo-zgeo-1ms-nr1r2-failure-forensics-v1",
+  "source_artifacts": {
+    "offline_preflight.json": {
+      "bytes": 11744,
+      "sha256": "5818c038c22afb9dda2b42d646b6d6fe24707236bfb770dc0899e4fce6038499"
+    },
+    "pattern_a_primary.json": {
+      "bytes": 6130,
+      "sha256": "8d3f793ed3ddecb4638740fba6c1d04a572731765f7a3d29bc5ba45846395da3"
+    },
+    "qualification.json": {
+      "bytes": 669,
+      "sha256": "6e7a89828786b08bf2545cb6033796bd22a93f5d4d33d441954c2344253ca132"
+    },
+    "rollouts/pattern_a_primary/1100ms/coil_currents.csv": {
+      "bytes": 671,
+      "sha256": "3936871a5dc23df8ae59eaae7fc59fe9e5a7f8f1ca68245610fdebd9f8f18ab4"
+    },
+    "rollouts/pattern_a_primary/1101ms/coil_currents.csv": {
+      "bytes": 671,
+      "sha256": "cd851ca15bf73334d5c8fbd0f002c2ff45d2cbf2073b57fbba4e5d15e3c7300d"
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "claim_boundary": "1 ms fixed-source interface only; no model or control",
+  "comparisons": {
+    "hold": {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    "pattern_a": {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    "pattern_b": {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    }
+  },
+  "kind": "authentic_qualification",
+  "output_dir": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr1_runs/rgeo_zgeo_1ms_nr1r2_command_readback_20260813_8580ac1",
+  "passed": true,
+  "plant_advances": 24,
+  "rollout_count": 6,
+  "route": "ONE_MS_NR1R2_INTERFACE_QUALIFIED",
+  "schema_version": "rgeo-zgeo-1ms-nr1r2-v1",
+  "source_revision": "8580ac1"
+}

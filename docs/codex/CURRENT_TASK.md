@@ -34,6 +34,21 @@
 
 ## Active task: 1 ms NR1 safety, Card15 and first-effect qualification
 
+### NR1 complete; next task is prospective 1 ms NR2 design (2026-08-13)
+
+NR1R2 completed 6/6 rollouts and 24/24 authentic advances at `8580ac1`.
+Primary and independent raw audits passed. Full result and the two preceding
+safe-stop classifications are in
+`docs/codex/reports/RGEO_ZGEO_1MS_NR1_RESULT.md`. NR1-family raw remains
+`interface_validation` and forbidden from model/expert use.
+
+The next active task is to prospectively define a fresh 1 ms NR2 causal
+identification and fair model-comparison campaign. No new NR2 TSC may run
+until its finite work domain, excitation/history strata, exact actuator
+coordinate, splits, uncertainty gates, abort routes and maximum plant budget
+are frozen and implementation/offline validation pass. NR2 may qualify a
+predictive model only; it may not implement NMPC/RL or claim tracking.
+
 ### NR1R1 exact-decimal repair authorization (2026-08-13)
 
 The first authentic NR1 attempt at `129a091` stopped after nine advances.

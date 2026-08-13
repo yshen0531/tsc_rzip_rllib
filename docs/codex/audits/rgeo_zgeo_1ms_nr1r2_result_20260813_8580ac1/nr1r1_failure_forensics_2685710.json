@@ -1,0 +1,51 @@
+{
+  "checks": {
+    "exact_decimal_slew_passes": true,
+    "old_pattern_has_one_advance": true,
+    "old_plant_advances_are_nine": true,
+    "old_reason_is_unique_expected_reason": true,
+    "old_route_is_safety_stop": true,
+    "pf3l_is_exact_negative_point_three": true
+  },
+  "created_utc": "2026-08-13T02:19:47.459493+00:00",
+  "exact_maximum_observed_delta_a": "0.30000",
+  "exact_observed_delta_a_tsc": [
+    "0.29166666666666666666666666",
+    "-0.29166666666666666666666666",
+    "0.29166666666666666666666667",
+    "-0.29166666666666666666666667",
+    "0.29166666666666666666666667",
+    "-0.29166666666666666666666666",
+    "0.29166666666666666666666666",
+    "-0.29166666666666666666666667",
+    "0.30000",
+    "-0.30000",
+    "0.30000",
+    "-0.30000",
+    "0.30000",
+    "-0.30000"
+  ],
+  "new_tsc_or_plant_advance": 0,
+  "old_run_remains_incomplete": true,
+  "passed": true,
+  "route": "ONE_MS_NR1_BINARY64_FALSE_SLEW_STOP_CONFIRMED",
+  "schema_version": "rgeo-zgeo-1ms-nr1r1-failure-forensics-v1",
+  "source_artifacts": {
+    "pattern_a_primary.json": {
+      "bytes": 5156,
+      "sha256": "922889493effd99a37998771a82bcc23b26ff90e7a97f63dff603b6b7c123ba2"
+    },
+    "qualification.json": {
+      "bytes": 660,
+      "sha256": "a1f164dd8e26f73cfa3303a38eaf52b40a5e050e54ba67e355df610e4d751361"
+    },
+    "rollouts/pattern_a_primary/1100ms/coil_currents.csv": {
+      "bytes": 671,
+      "sha256": "3936871a5dc23df8ae59eaae7fc59fe9e5a7f8f1ca68245610fdebd9f8f18ab4"
+    },
+    "rollouts/pattern_a_primary/1101ms/coil_currents.csv": {
+      "bytes": 671,
+      "sha256": "cd851ca15bf73334d5c8fbd0f002c2ff45d2cbf2073b57fbba4e5d15e3c7300d"
+    }
+  }
+}
