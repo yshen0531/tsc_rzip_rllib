@@ -4394,3 +4394,16 @@ after a model hash and four holdout pairs only after a tube hash. Maximum new
 raw is 1,248, with later phases fail-closed. Active work is independent R8
 implementation and full validation. MPC, expert data, BC, DAgger, and RL
 remain blocked.
+# 2026-08-13: 1 ms NR2 fail-closed; NR2R1 prospective repair
+
+NR2 implementation checkpoint `9b559ee` passed 1,684/1,684 local tests,
+1,671/1,671 installed-server tests with one expected skip, and its zero-TSC
+offline gate. The authentic campaign then stopped after one q0 plant advance
+with exact structural-current error `0.00001 A`; 447 development/calibration
+advances and all holdout work were not run. This is a q0/readback coordinate
+interface-design failure, not a TSC, safety-slew, model or controller result.
+
+NR2R1 is prospectively frozen to compute the structural bias relative to the
+exact q0 Card15 command. No failed NR2 raw may enter training. The active next
+boundary is implementation, full local/server validation and a fresh zero-TSC
+offline gate before any NR2R1 plant advance.

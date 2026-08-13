@@ -1,0 +1,17 @@
+{
+  "campaign_id": "rgeo_zgeo_1ms_nr2_structural_residual_v1",
+  "completed_trajectories": 1,
+  "expected_trajectories": 28,
+  "failures": [
+    "development_p00_plus:STRUCTURAL_CURRENT:0"
+  ],
+  "passed": false,
+  "phase": "development_calibration",
+  "plant_advances": 1,
+  "route": "ONE_MS_NR2_SAFETY_FAIL_STOP",
+  "schema_version": "rgeo-zgeo-1ms-nr2-v1",
+  "source_revision": "9b559ee",
+  "trajectory_ids": [
+    "development_p00_plus"
+  ]
+}

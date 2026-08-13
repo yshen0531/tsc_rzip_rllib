@@ -1,0 +1,82 @@
+{
+  "campaign_id": "rgeo_zgeo_1ms_nr2_structural_residual_v1",
+  "command_checks": 0,
+  "completed_trajectories": 0,
+  "expected_trajectories": 28,
+  "failures": [
+    "RAW:development_p00_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p00_plus/1102ms/inputa is missing",
+    "RAW:development_p00_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p00_minus/1100ms/inputa is missing",
+    "RAW:development_p01_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p01_plus/1100ms/inputa is missing",
+    "RAW:development_p01_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p01_minus/1100ms/inputa is missing",
+    "RAW:development_p02_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p02_plus/1100ms/inputa is missing",
+    "RAW:development_p02_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p02_minus/1100ms/inputa is missing",
+    "RAW:development_p03_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p03_plus/1100ms/inputa is missing",
+    "RAW:development_p03_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p03_minus/1100ms/inputa is missing",
+    "RAW:development_p04_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p04_plus/1100ms/inputa is missing",
+    "RAW:development_p04_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p04_minus/1100ms/inputa is missing",
+    "RAW:development_p05_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p05_plus/1100ms/inputa is missing",
+    "RAW:development_p05_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p05_minus/1100ms/inputa is missing",
+    "RAW:development_p06_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p06_plus/1100ms/inputa is missing",
+    "RAW:development_p06_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p06_minus/1100ms/inputa is missing",
+    "RAW:development_p07_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p07_plus/1100ms/inputa is missing",
+    "RAW:development_p07_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p07_minus/1100ms/inputa is missing",
+    "RAW:development_p08_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p08_plus/1100ms/inputa is missing",
+    "RAW:development_p08_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p08_minus/1100ms/inputa is missing",
+    "RAW:development_p09_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p09_plus/1100ms/inputa is missing",
+    "RAW:development_p09_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/development_p09_minus/1100ms/inputa is missing",
+    "RAW:calibration_p00_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p00_plus/1100ms/inputa is missing",
+    "RAW:calibration_p00_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p00_minus/1100ms/inputa is missing",
+    "RAW:calibration_p01_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p01_plus/1100ms/inputa is missing",
+    "RAW:calibration_p01_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p01_minus/1100ms/inputa is missing",
+    "RAW:calibration_p02_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p02_plus/1100ms/inputa is missing",
+    "RAW:calibration_p02_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p02_minus/1100ms/inputa is missing",
+    "RAW:calibration_p03_plus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p03_plus/1100ms/inputa is missing",
+    "RAW:calibration_p03_minus:FileNotFoundError:/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee/rollouts/calibration_p03_minus/1100ms/inputa is missing",
+    "COUNT_GATE"
+  ],
+  "maximum": {
+    "command_step_a": "0",
+    "ip_fraction": 0.0,
+    "observed_step_a": "0",
+    "r_displacement_m": 0.0,
+    "structural_current_error_a": "0",
+    "z_displacement_m": 0.0
+  },
+  "observed_slew_checks": 0,
+  "passed": false,
+  "phase": "development_calibration",
+  "plant_advances": 0,
+  "raw_required_file_count": 0,
+  "route": "ONE_MS_NR2_INDEPENDENT_FAIL",
+  "schema_version": "rgeo-zgeo-1ms-nr2-v1-independent-v1",
+  "source_revision": "9b559ee",
+  "spec_gate": {
+    "action_stream_sha256": "5fb7533a2c656f824f34f168285412a16a75b1fa5aec19dec142ed51830c0ada",
+    "campaign_id": "rgeo_zgeo_1ms_nr2_structural_residual_v1",
+    "plant_advances": 576,
+    "schema_version": "rgeo-zgeo-1ms-nr2-v1",
+    "splits": {
+      "calibration": {
+        "pair_count": 4,
+        "plant_advances": 128,
+        "quantized_action_rank": 14,
+        "trajectory_count": 8
+      },
+      "development": {
+        "pair_count": 10,
+        "plant_advances": 320,
+        "quantized_action_rank": 14,
+        "trajectory_count": 20
+      },
+      "holdout": {
+        "pair_count": 4,
+        "plant_advances": 128,
+        "quantized_action_rank": 14,
+        "trajectory_count": 8
+      }
+    },
+    "trajectory_count": 36
+  },
+  "state_checks": 0,
+  "structural_current_checks": 0
+}

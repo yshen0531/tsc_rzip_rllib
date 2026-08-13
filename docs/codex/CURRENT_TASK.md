@@ -55,6 +55,22 @@ implementation or NR2 TSC. It separates exact structural Card15/readback
 propagation from learned plasma dynamics, compares ARX against GRU/LSTM/TCN
 residuals, and caps the fresh campaign at 36 trajectories / 576 advances.
 
+### NR2R1 q0-readback coordinate repair (2026-08-13)
+
+NR2 at `9b559ee` stopped fail-closed after its first and only plant advance.
+The q0 issue and observed slew were safe, but the frozen structural formula
+used `source_readback-source_inputa` and missed the persistent q0-relative
+readback offset by exactly `1e-5 A`. No model was fitted and holdout was not
+authorized. Preserve the run and failure result in
+`docs/codex/reports/RGEO_ZGEO_1MS_NR2_RESULT.md`.
+
+The active new identity is prospectively frozen in
+`docs/codex/reports/RGEO_ZGEO_1MS_NR2R1_Q0_READBACK_COORDINATE_DESIGN.md`.
+It changes only the structural bias origin to
+`source_readback-q0_command`; all NR2 actions, splits, model/gate definitions,
+safety limits and the 576-advance maximum are unchanged. NR2R1 must start a
+fresh run and may not reuse NR2 raw for fitting.
+
 ### NR1R1 exact-decimal repair authorization (2026-08-13)
 
 The first authentic NR1 attempt at `129a091` stopped after nine advances.
