@@ -12,8 +12,8 @@ boundary, Ip, current, slew or Card15 failure.  Primary and independent raw
 audits agree.
 
 The frozen repeatability gate nevertheless failed because `sprsina` was not
-byte-identical across resets.  All four other required artifacts and every
-physical quantity checked were exactly repeatable at matching times:
+byte-identical across resets. All four other required artifacts and every
+checked physical observable were exactly repeatable at matching times:
 
 ```text
 R/Z/R_mid                              0 absolute difference
@@ -25,16 +25,17 @@ inputa/geqdsk/coil/wire file hashes     exact
 sprsina hashes                          different on states 1..32
 ```
 
-This is a frozen artifact/restart-identity repeatability failure until the
-semantic fields inside `sprsina` are prospectively audited.  It is not
-evidence of physical-output nondeterminism, but the result may not be
+This is a frozen exact-artifact/restart-representation repeatability failure
+until the semantic fields inside `sprsina` are prospectively audited. It is
+not evidence of physical-output nondeterminism, but the result may not be
 retrospectively relabelled PASS.
 
-More importantly for control, q0 is not a source hold.  In 32 ms it drifts by
-up to `17.60 mm R`, `23.44 mm Z` and `335.72 A Ip`; during terminal states
+More importantly for control, q0 fails the finite source short-hold gate. In
+32 ms it drifts by up to `17.60 mm R`, `23.44 mm Z` and `335.72 A Ip`; during terminal states
 24--32 it still moves up to `0.618 mm R / 0.806 mm Z` per 1 ms step, with
-`3.94/5.82 mm` net R/Z drift.  Returning coil currents to q0 therefore cannot
-serve as the required backup or recovery continuation.
+`3.94/5.82 mm` net R/Z drift. Returning coil currents to q0 therefore cannot
+serve as a qualified standalone backup or recovery continuation. Perturbation
+recovery itself was not run.
 
 ## Classification
 
@@ -66,3 +67,11 @@ safety proof.  Any successor must first freeze:
 2. a bounded source hold/recovery candidate and independent safety proof;
 3. a small recovery discriminator matrix with exact hard stops; and
 4. a rule that no position atlas/probe begins until recovery passes.
+
+## Post-result route clarification
+
+The later documentation-only deep review does not change either frozen FAIL.
+It separates canonical-source full-prefix replay from successor-snapshot
+restart: `sprsina` semantics remains a gate for the latter, but it need not
+serially block a separately qualified source-origin shooting tool. See
+`docs/codex/reports/RGEO_ZGEO_1MS_POST_NR2R2B0_DEEP_ROUTE_REVIEW.md`.

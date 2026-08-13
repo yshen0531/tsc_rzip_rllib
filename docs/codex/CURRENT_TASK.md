@@ -1,5 +1,54 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Post-NR2R2B0 deep route review (2026-08-13):** the documentation-only
+> review is complete with route
+> `POST_NR2R2B0_DEEP_REVIEW_COMPLETE_SOURCE_SHOOTING_SNAPSHOT_AND_RECOURSE_DISCRIMINATORS_REQUIRED`.
+> The high-level exact-actuator/causal-belief/uncertainty-aware constrained
+> rolling-control architecture remains. The NR0 signal contract and NR1R2
+> finite interface qualification are not rolled back, and q0's finite 32 ms
+> short-hold FAIL remains genuine.
+>
+> Two route details are corrected. First, B0's frozen whole-artifact FAIL is
+> preserved unchanged, but successor stages may not extrapolate whole-file
+> `sprsina` byte identity into a physical/behavioral-state theorem. Tracked
+> NR1R2 compact evidence shows the same `sprsina`-only cross-replay hash
+> difference at states 1--4 while every checked geometry/Ip/coil/wire
+> observable remained
+> exact. A successor must split byte/record semantics, finite common-suffix
+> snapshot-restart behavior and canonical-source full-prefix replay utility
+> into separate gates.
+> Second, requiring deployable recovery before any simulator identification
+> would create a bootstrap deadlock. A tiny prospective TSC-only discriminator
+> may precede recovery only when every issued primitive already has an
+> independent one-step worst-case successor bound inside the frozen outer
+> envelope; an outer envelope and immediate stop alone are insufficient.
+> Transport/atlas work still requires bounded-tube active recourse.
+>
+> The corrected primary dependency is `NR2R2C1a canonical-source full-prefix
+> replay -> NR2R2C2a finite nominal active hold -> NR2R2C2b bounded-tube
+> contingency -> minimal tail/response discriminator`. The parallel
+> `NR2R2C0 sprsina semantics` and `NR2R2C1b snapshot/common-suffix
+> behavior` claims jointly bound only snapshot-based moving-prefix branching.
+> The later order remains
+> per-anchor recovery-backed atlas -> structured model -> static recovery-
+> backed MPC -> controller-distribution shadow adaptation. Before any real
+> controller,
+> an end-to-end integration gate must remove legacy `magaxis/rc/zc` from the
+> controlled observation path, insert a pre-runner hard boundary that refuses
+> excess requests before plant advance without relying on or triggering legacy
+> clipping, and prove paired-boundary `R_geo/Z_geo` plus
+> requested/serialized/applied/readback fail-closed behavior. Full reasoning
+> is in
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_NR2R2B0_DEEP_ROUTE_REVIEW.md`.
+>
+> This review ran no server command, TSC, branch, model, controller, fit,
+> training or data generation. It authorizes no C-stage execution. The only
+> next candidates are separately prospective C1a canonical-source replay, C0
+> read-only semantics-audit and C1b finite snapshot-behavior designs; none is
+> authorized here. Any server-raw read requires an explicit limited boundary.
+> Atlas, model, NR3,
+> MPC, RL and learning remain blocked.
+
 > **NR2R2A authorization and prospective freeze (2026-08-13):** the user has
 > authorized continued staged development and later server TSC under the
 > revised post-NR2R1 route.  The active task is first the separately frozen
@@ -38,13 +87,15 @@
 > **NR2R2B0 final pause (2026-08-13):** the frozen 6x32 all-q0 campaign
 > completed 192/192 authentic advances without runtime/interface/safety
 > failure, but its exact artifact repeatability gate failed because `sprsina`
-> differs across independent resets.  All physical outputs, Card15 and the
-> other four artifact hashes were exactly repeatable.  The frozen route is
+> differs across independent resets. All checked physical observables,
+> Card15 and the other four artifact hashes were exactly repeatable. The
+> frozen route is
 > `ONE_MS_NR2R2B0_BASELINE_REPEATABILITY_FAIL_STOP`; see
 > `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2B0_SOURCE_BASELINE_RESULT.md`.
 > Independently, q0 is genuinely not a short hold: R/Z drifted 17.60/23.44 mm
-> in 32 ms and remained fast in the terminal window.  No source backup or
-> recovery is qualified.  Stop before any atlas, probe, replay Oracle, model,
+> in 32 ms and remained fast in the terminal window. q0 is not a qualified
+> standalone source backup/recovery; perturbation recovery itself was not run.
+> Stop before any atlas, probe, replay Oracle, model,
 > controller or new TSC pending an explicit active-recovery architecture
 > decision and prospective `sprsina` semantic audit.
 

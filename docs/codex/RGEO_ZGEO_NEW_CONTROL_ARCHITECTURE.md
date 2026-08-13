@@ -1,5 +1,24 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-NR2R2B0 route amendment (2026-08-13):** the architecture below is
+> retained. The immediate dependency chain is canonical-source full-prefix
+> replay -> finite nominal active hold -> bounded-tube contingency -> minimal
+> tail/response evidence -> recovery-backed context atlas. In parallel,
+> independent `sprsina` semantics and finite snapshot/common-suffix behavior
+> claims jointly bound only the faster snapshot-based moving-prefix route. B0's
+> frozen `sprsina` byte-hash FAIL and q0 short-hold FAIL both remain; neither
+> is a hidden-state theorem or proof that active hold is impossible. A tiny
+> TSC-only discriminator may bootstrap only when each issued primitive has an
+> independent one-step worst-case successor bound inside the frozen outer
+> envelope; an outer envelope and immediate stop alone are insufficient.
+> Transport/atlas/controller execution still requires bounded-tube active
+> recourse. Before any controller, the legacy runner's generic
+> `magaxis/rc/zc` R/Z path must be excluded; the control path must also refuse
+> excess current/delta requests before the runner without relying on or
+> triggering its silent clipping. Exact reasoning and authorization boundaries
+> are recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_NR2R2B0_DEEP_ROUTE_REVIEW.md`.
+
 > **Post-NR2R1 implementation-order amendment (2026-08-13):** the main
 > architecture below is retained, but NR2R1 showed that its execution order
 > was too aggressive.  A single-start, 16 ms model bake-off did not implement

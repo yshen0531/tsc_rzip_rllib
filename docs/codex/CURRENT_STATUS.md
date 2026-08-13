@@ -1,5 +1,41 @@
 # Current status
 
+> **Post-NR2R2B0 deep route review recorded (2026-08-13
+> Asia/Shanghai).** The high-level exact-actuator, causal-belief,
+> uncertainty-aware constrained rolling-control architecture is retained.
+> No code, server, TSC, branch replay, model fit, controller, optimizer,
+> training or data generation ran during this review. Final documentation
+> route is
+> `POST_NR2R2B0_DEEP_REVIEW_COMPLETE_SOURCE_SHOOTING_SNAPSHOT_AND_RECOURSE_DISCRIMINATORS_REQUIRED`;
+> full reasoning is in
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_NR2R2B0_DEEP_ROUTE_REVIEW.md`.
+>
+> The NR0 signal contract and NR1R2 finite interface qualification remain
+> valid, and B0's q0 short-hold FAIL remains a genuine finite result. The
+> checked observables were exactly repeatable over a 32 ms q0 continuation
+> inside the tested outer envelope, but q0 is not a qualified hold, backup or
+> perturbation recovery. The frozen B0 exact-all-artifact route remains FAIL.
+> Tracked NR1R2 primary/replay records independently show `sprsina`-only hash
+> differences at states 1--4 while all checked geometry/Ip/coil/wire
+> observables are exact along the native continuations. Whole-file byte
+> identity must therefore be split from semantic identity and finite native-
+> continuation checked-output equivalence; fresh-restart equivalence remains
+> untested.
+>
+> The corrected dependencies are parallel: canonical-source full-prefix
+> replay may qualify source shooting without first restarting a successor
+> `sprsina`; byte semantics and common-suffix restart are parallel inputs that
+> jointly bound snapshot-based moving-prefix branching. Source replay may lead
+> only to a nominal-hold discriminator and then a bounded-tube Recourse-L1
+> discriminator. Its PASS
+> may authorize only a separately frozen minimal response-tail stage; that and
+> later admission gates must pass before any atlas design. A
+> future controller additionally needs an end-to-end paired-boundary and hard-
+> action integration gate because the legacy runner defaults generic R/Z to
+> `magaxis`; the future control path must refuse excess requests before the
+> runner rather than rely on or trigger its silent clipping.
+> NR2R1 holdout reuse, NR3, model fitting, MPC, RL and learning remain blocked.
+
 > **Post-NR2R1 architecture reassessment recorded (2026-08-13
 > Asia/Shanghai).** The high-level history-conditioned, uncertainty-aware
 > constrained rolling-control architecture is retained, but the executed
@@ -4496,7 +4532,9 @@ the frozen exact-artifact gate cannot pass or be relaxed post-result.
 
 q0 also failed the independently frozen short-hold diagnostic: maximum source
 drift was `17.6013 mm R / 23.4419 mm Z / 335.723 A Ip`, and terminal-step
-drift reached `0.6177/0.8058 mm` per millisecond.  q0 is not a hold or
-recovery.  No source backup is qualified, so all atlas/probe/model/controller/
+drift reached `0.6177/0.8058 mm` per millisecond. q0 fails the finite source
+short-hold gate and is not a qualified standalone backup/recovery
+continuation; perturbation recovery was not run. No source backup is
+qualified, so all atlas/probe/model/controller/
 Oracle TSC is paused pending an explicit active-recovery architecture decision
 and prospective `sprsina` semantic audit.
