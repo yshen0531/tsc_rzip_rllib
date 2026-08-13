@@ -1,5 +1,23 @@
 # Current status
 
+> **1 ms NR1 authorized and prospectively frozen (2026-08-13
+> Asia/Shanghai).** After NR0 PASS at `34b580f`, the user explicitly authorized
+> continued development and new server TSC. Work moved to branch
+> `codex/rgeo-zgeo-1ms-nr1`. Before implementation result or plant advance,
+> the exact six-rollout/four-step interface-validation design was frozen in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR1_SAFETY_EFFECT_QUALIFICATION_DESIGN.md`.
+> It permits at most 24 authentic 1 ms advances after local, installed-server,
+> and zero-TSC offline gates pass.
+>
+> A minimal read-only server preflight verified the canonical paths, virtual
+> environment and required 1100 ms source files, with no actual related TSC
+> process. A zero-plant formatter calculation found positive and negative
+> nonzero Card15 targets within the 0.3 A hard limit for all 14 coils; the
+> coarsest local grid was 0.1 A. No historical raw was read and no server file
+> or plant state was changed. NR1 data is `interface_validation`, forbidden
+> from fitting or expert use. Model, controller, MPC and tracking conclusions
+> remain untested.
+
 > **1 ms route restarted from NR0 (2026-08-13 Asia/Shanghai).** The user
 > replaced the prior route contract with a 1 ms control period and an exact
 > hard limit `|delta I_i| <= 0.3 A` per control step for every single-turn

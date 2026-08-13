@@ -23,6 +23,26 @@
 > RL, or data generation. A PASS requires a focused commit/push and pause;
 > it does not authorize restarted NR1.
 >
+> **NR1 authorization (2026-08-13):** after NR0 PASS at `34b580f`, the user
+> explicitly authorized continued development of the complete control model
+> and new server TSC under the 1 ms route. The active stage is now the
+> prospectively frozen restarted NR1 in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR1_SAFETY_EFFECT_QUALIFICATION_DESIGN.md`.
+> No NR1 plant advance may occur until its implementation, complete local and
+> installed-server validation, and zero-TSC offline gate pass. NR1 records are
+> `interface_validation` only and remain forbidden from model/expert data.
+
+## Active task: 1 ms NR1 safety, Card15 and first-effect qualification
+
+Implement and qualify the new route's exact 1 ms runner timing, strict
+single-turn `0.3 A` step bound, nonzero Card15 representability in both
+directions on all 14 coils, direct issue-to-successor effect timing, exact
+center return, fail-closed safety/abort behavior, and fixed-prefix replay.
+The frozen maximum is six independent four-step rollouts and 24 authentic
+plant advances. Do not silently add a software queue, reuse old NR1 raw,
+train a model, optimize a trajectory, or claim arbitrary-state Oracle,
+controller, MPC, or tracking qualification.
+>
 > **Route supersession (2026-08-12):** the user retired the former
 > Stage4.2/R8 fixed-local-model-to-MPC-expert route. Its raw evidence and
 > historical verdicts remain immutable, but it is no longer the active task.

@@ -10,7 +10,7 @@
 > new identity. No coordinate, Ip, queue/effect, Card15, safety, or evidence
 > rule below is weakened by this amendment.
 
-状态：**v1 已获用户确认；NR0 接口合同已实现，NR1 未授权**
+状态：**v1 已获用户确认；1 ms NR0 已通过，1 ms NR1 已前瞻冻结并获授权**
 
 日期：2026-08-12
 
