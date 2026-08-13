@@ -58,6 +58,22 @@ class OneMsNR1Tests(unittest.TestCase):
         )
         self.assertEqual(frozen.prefixes["pattern_a"][1:], (frozen.q0,) * 3)
 
+    def test_source_readback_bias_cannot_be_hidden_by_q0_center(self) -> None:
+        source = self.source.copy()
+        source[11] = -135.00000999999997
+        frozen = build_frozen_one_ms_prefixes(
+            source_current_a_tsc=source,
+            turns_tsc=self.turns,
+            min_current_a_tsc=self.lower,
+            max_current_a_tsc=self.upper,
+        )
+        for prefix in ("pattern_a", "pattern_b"):
+            assert_exact_slew(
+                source,
+                frozen.prefixes[prefix][0].current_a_tsc,
+                name=f"source_to_{prefix}",
+            )
+
     def test_exact_point_three_is_allowed_and_any_excess_rejected(self) -> None:
         self.assertEqual(assert_exact_slew([0.0] * 14, [0.3] * 14, name="edge"), 0.3)
         with self.assertRaisesRegex(ContractError, "exceeds"):

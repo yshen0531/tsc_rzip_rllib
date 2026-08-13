@@ -92,7 +92,9 @@ def quantize_target(current_a_tsc: Sequence[float], turns_tsc: Sequence[float]) 
     return Card15Target(card15_fields=fields, current_a_tsc=quantized)
 
 
-def _signed_lattice_value(q0_a: float, turn: float, sign: int) -> tuple[str, float]:
+def _signed_lattice_value(
+    q0_a: float, source_a: float, turn: float, sign: int
+) -> tuple[str, float]:
     if sign not in (-1, 1):
         raise ContractError("lattice sign must be -1 or +1")
     candidates: dict[str, float] = {}
@@ -103,7 +105,14 @@ def _signed_lattice_value(q0_a: float, turn: float, sign: int) -> tuple[str, flo
         field = format_number(request * turn / 1000.0)
         value = float(field.strip()) * 1000.0 / turn
         delta = _decimal(value, "quantized candidate") - _decimal(q0_a, "q0")
-        if delta * sign > 0 and abs(delta) <= MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP:
+        source_delta = _decimal(value, "quantized candidate") - _decimal(
+            source_a, "source readback"
+        )
+        if (
+            delta * sign > 0
+            and abs(delta) <= MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP
+            and abs(source_delta) <= MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP
+        ):
             candidates[field] = value
     if not candidates:
         raise ContractError("no nonzero Card15 lattice target exists within 0.3 A")
@@ -151,12 +160,15 @@ def build_frozen_one_ms_prefixes(
     ):
         fields: list[str] = []
         values: list[float] = []
-        for q0_value, turn, sign in zip(q0.current_a_tsc, turns, signs):
-            field, value = _signed_lattice_value(q0_value, turn, sign)
+        for q0_value, source_value, turn, sign in zip(
+            q0.current_a_tsc, source, turns, signs
+        ):
+            field, value = _signed_lattice_value(q0_value, source_value, turn, sign)
             fields.append(field)
             values.append(value)
         target = Card15Target(tuple(fields), tuple(values))
         assert_exact_slew(q0.current_a_tsc, target.current_a_tsc, name=name)
+        assert_exact_slew(source, target.current_a_tsc, name=f"source_to_{name}")
         if any(not low <= value <= high for value, low, high in zip(target.current_a_tsc, lower, upper)):
             raise ContractError(f"{name} exceeds an absolute current limit")
         patterns[name] = target
