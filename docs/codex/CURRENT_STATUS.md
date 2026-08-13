@@ -1,5 +1,21 @@
 # Current status
 
+> **1 ms NR1R1 exposed command/readback coordinate mixing; NR1R2 frozen
+> (2026-08-13 Asia/Shanghai).** NR1R1 at `2685710` performed nine authentic
+> advances. Its two hold rollouts passed and Pattern A's first effect changed
+> every coil with exact observed maximum 0.3 A. It stopped before return
+> because the pre-issue gate subtracted PF3L's biased readback
+> `-135.30001 A` from nominal q0 `-135.0 A`. The actual successive Card15
+> commands are `-135.3 -> -135.0 A` and successive readbacks are
+> `-135.30001 -> -135.00001 A`; both changes are exactly 0.3 A. NR1R1 is
+> preserved as an incomplete interface-validation run, not a physical slew,
+> TSC, boundary, or model failure.
+>
+> NR1R2 is prospectively frozen to keep exact command and readback coordinates
+> separate. It retains the same actions and hard gates, adds no tolerance or
+> reserve, and still rejects any exact excess above 0.3 A. NR2 remains
+> blocked pending its result.
+
 > **1 ms NR1 stopped on a numeric validation defect; NR1R1 frozen
 > (2026-08-13 Asia/Shanghai).** The authentic NR1 run at `129a091` performed
 > nine advances: both four-step hold rollouts passed, then Pattern A stopped

@@ -47,6 +47,17 @@ It may change only observed-current numeric representation and reporting;
 the hard limit, actions, matrix, safety/effect/replay gates and 24-advance
 maximum remain unchanged. NR2 remains blocked until NR1R1 completes.
 
+### NR1R2 command/readback coordinate repair (2026-08-13)
+
+NR1R1 at `2685710` also stopped after nine advances. The exact pulse
+readback passed at 0.3 A, but the next pre-issue check mixed that biased
+readback with the nominal q0 command and falsely obtained 0.30001 A. Preserve
+NR1R1 unchanged. The active prospective repair is
+`docs/codex/reports/RGEO_ZGEO_1MS_NR1R2_COMMAND_READBACK_COORDINATE_DESIGN.md`:
+validate command-to-command and readback-to-readback slew independently in
+exact decimal arithmetic. Actions, hard limit, matrix and 24-step maximum are
+unchanged. NR2 remains blocked.
+
 Implement and qualify the new route's exact 1 ms runner timing, strict
 single-turn `0.3 A` step bound, nonzero Card15 representability in both
 directions on all 14 coils, direct issue-to-successor effect timing, exact
