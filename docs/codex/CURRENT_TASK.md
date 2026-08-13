@@ -1,5 +1,17 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C1a prospective freeze (2026-08-13):** following explicit user
+> authorization to continue the revised route and use server TSC, the active
+> task is the separately frozen canonical-source full-prefix replay qualifier
+> `rgeo-zgeo-1ms-nr2r2c1a-canonical-source-replay-v1`. Its exact 12-rollout,
+> 136-advance maximum matrix reuses only the already finite-safe q0 and NR1R2
+> action streams; see
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C1A_CANONICAL_SOURCE_REPLAY_DESIGN.md`.
+> C1a tests source-reset replay mechanics, causal history integrity and cost.
+> It does not restart successor `sprsina`, qualify a novel action/hold/recovery,
+> or authorize model, MPC, atlas, RL or learning. Only an agreeing C1a PASS may
+> authorize a separately prospective C2a design.
+
 > **Post-NR2R2B0 deep route review (2026-08-13):** the documentation-only
 > review is complete with route
 > `POST_NR2R2B0_DEEP_REVIEW_COMPLETE_SOURCE_SHOOTING_SNAPSHOT_AND_RECOURSE_DISCRIMINATORS_REQUIRED`.

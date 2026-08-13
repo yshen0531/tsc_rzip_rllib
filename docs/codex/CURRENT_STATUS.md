@@ -1,5 +1,16 @@
 # Current status
 
+> **NR2R2C1a design frozen; execution not yet started (2026-08-13
+> Asia/Shanghai).** The user authorized continued staged development and server
+> TSC. The active identity is
+> `rgeo-zgeo-1ms-nr2r2c1a-canonical-source-replay-v1`: 12 fresh canonical
+> resets and at most 136 advances over only the previously finite-safe q0 and
+> NR1R2 four-step action streams. It separates source full replay from
+> successor-snapshot restart and records `sprsina` only as a diagnostic.
+> Implementation, local/server validation, offline gate and real TSC remain to
+> be completed. A PASS can authorize only a separate C2a nominal-hold design;
+> it is not a hold, recovery, model, controller, MPC, atlas or learning PASS.
+
 > **Post-NR2R2B0 deep route review recorded (2026-08-13
 > Asia/Shanghai).** The high-level exact-actuator, causal-belief,
 > uncertainty-aware constrained rolling-control architecture is retained.
