@@ -140,4 +140,3 @@ finite source replay passes
 A PASS authorizes only a separately frozen C2a nominal-hold design. It does
 not qualify a novel C2a action. Any novel suffix first needs an independent,
 pre-result successor bound and hard filter; if none exists, C2a is blocked.
-
