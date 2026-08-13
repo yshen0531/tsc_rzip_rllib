@@ -1862,3 +1862,31 @@
   robust observer route
 - Next: implement, independently audit, package/deploy, and execute R8R6;
   controller, MPC, Gate A, expert data, and learning remain blocked
+
+## R_geo/Z_geo 1 ms NR2 / NR2R1 causal model qualification
+
+- Branch: `codex/rgeo-zgeo-1ms-nr2`
+- Design / implementation / NR2R1 / final correction:
+  `2404e36 / 9b559ee / 25f5b7e / 45257ba`
+- NR2 remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2_structural_residual_20260813_9b559ee`
+- NR2 result: one safe q0 advance, then fail-closed at exact structural
+  readback error `0.00001 A`; no fitting or holdout
+- NR2R1 remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e`
+- NR2R1 execution: `36/36` trajectories, `576/576` authentic plant advances
+- Dev/cal independent checks: `448/448`; holdout checks: `128/128`
+- Maximum command / observed step: `0.3 A / 0.3 A`
+- Maximum structural current error: `1e-26 A`
+- Frozen model SHA-256:
+  `73dbf615911e05f14ddc0125d5dc5d3dbaf56e3085d208921fab93db8164f916`
+- Corrected result: every model exceeds the frozen maximum-over-horizon
+  interval cap; holdout was erroneously authorized and is diagnostic only
+- Final route: `ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT`
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_nr2r1_result_20260813_25f5b7e/`
+- Classification: statistics-gate implementation error plus finite causal
+  model/uncertainty qualification failure; no controller, MPC, RL, global
+  plant-reachability or closed-loop conclusion
+- Next: pause before a new prospective model/state architecture; NR3 and new
+  TSC remain blocked
