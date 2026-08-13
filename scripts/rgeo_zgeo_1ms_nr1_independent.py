@@ -77,6 +77,11 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
     rows: dict[str, list[dict[str, Any]]] = {}
     action_checks = observed_checks = effect_checks = 0
     expected_times = tuple(range(1100, 1105))
+    source_fields = _fields(cfg.simulation_root / cfg.start_folder / "inputa")
+    source_command = decimal_single_turn_currents_a(
+        tuple(value.strip() for value in source_fields), cfg.turns_tsc,
+        name="independent.source_command",
+    )
     for rollout, prefix_name in NR1_1MS_ROLLOUTS:
         try:
             states = [_state(run_dir / "rollouts" / rollout / f"{time}ms", cfg) for time in expected_times]
@@ -86,6 +91,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                 min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc)
             targets = frozen.prefixes[prefix_name]
             source = states[0]
+            active_command = source_command
             for step, target in enumerate(targets):
                 action_checks += 1
                 observed = _fields(run_dir / "rollouts" / rollout / f"{1100+step}ms" / "inputa")
@@ -95,11 +101,12 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                     target_decimal = card15_target_decimal_a(
                         target, cfg.turns_tsc, name=f"independent.target.{rollout}.{step}"
                     )
-                    assert_exact_slew(states[step]["current_decimal_a_tsc"], target_decimal,
+                    assert_exact_slew(active_command, target_decimal,
                                       name=f"independent.issue.{rollout}.{step}")
                     assert_exact_slew(states[step]["current_decimal_a_tsc"], states[step+1]["current_decimal_a_tsc"],
                                       name=f"independent.observed.{rollout}.{step}")
                     observed_checks += 1
+                    active_command = target_decimal
                 except Exception as exc:
                     failures.append(f"SLEW:{rollout}:{step}:{exc}")
             if prefix_name != "hold":
@@ -107,7 +114,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                     targets[0], cfg.turns_tsc, name=f"independent.effect.{rollout}"
                 )
                 effect = tuple(b-a for a,b in zip(source["current_decimal_a_tsc"], states[1]["current_decimal_a_tsc"]))
-                request = tuple(b-a for a,b in zip(source["current_decimal_a_tsc"], target_decimal))
+                request = tuple(b-a for a,b in zip(source_command, target_decimal))
                 effect_checks += 14
                 if any(value == 0.0 for value in effect) or any(math.copysign(1, a) != math.copysign(1, b) for a,b in zip(effect, request)):
                     failures.append(f"FIRST_EFFECT:{rollout}")
@@ -143,7 +150,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
     failures = list(dict.fromkeys(failures))
     result = {"schema_version":f"{NR1_1MS_CONTRACT_VERSION}-independent", "created_utc":datetime.now(timezone.utc).isoformat(),
               "source_revision":source_revision, "passed":not failures,
-              "route":"ONE_MS_NR1R1_INDEPENDENT_PASS" if not failures else "ONE_MS_NR1R1_INDEPENDENT_FAIL",
+              "route":"ONE_MS_NR1R2_INDEPENDENT_PASS" if not failures else "ONE_MS_NR1R2_INDEPENDENT_FAIL",
               "failures":failures, "raw_rollouts":sum(len(v)==5 for v in rows.values()),
               "raw_states":sum(len(v) for v in rows.values()), "action_checks":action_checks,
               "observed_slew_checks":observed_checks, "first_effect_component_checks":effect_checks,

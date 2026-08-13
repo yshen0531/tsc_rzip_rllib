@@ -64,9 +64,26 @@ def _source(cfg: TSCConfig) -> dict[str, Any]:
     kat = read_coil_currents_csv(folder / "coil_currents.csv")
     current = TSCStepRunner.current_kat_to_a(kat, cfg.turns_tsc)
     exact = _exact_coil_currents_a(folder / "coil_currents.csv", cfg)
+    command_fields = _card15_fields(folder / "inputa")
+    command_exact = decimal_single_turn_currents_a(
+        tuple(value.strip() for value in command_fields), cfg.turns_tsc,
+        name=f"{folder / 'inputa'}.active_command",
+    )
     return {"folder": folder, "time_ms": 1100, "Ip": float(gfile["ip"]), "gfile": gfile,
             "currents_a_tsc": current, "currents_decimal_a_tsc": exact,
-            "currents_kat_tsc": kat, "abnormal": False}
+            "currents_kat_tsc": kat, "active_command_card15_fields": command_fields,
+            "active_command_decimal_a_tsc": command_exact, "abnormal": False}
+
+
+def _card15_fields(path: Path) -> tuple[str, ...]:
+    values = tuple(
+        line[30:40]
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line[:10].strip() == "15"
+    )
+    if len(values) != 14:
+        raise ContractError(f"expected fourteen Card15 rows in {path}, got {len(values)}")
+    return values
 
 
 def _exact_coil_currents_a(path: Path, cfg: TSCConfig) -> tuple[Any, ...]:
@@ -96,7 +113,7 @@ def offline_preflight(config_path: Path, source_revision: str) -> dict[str, Any]
                                                 cfg.min_current_a_tsc, cfg.max_current_a_tsc))
         maxima = {}
         for prefix_name, targets in frozen.prefixes.items():
-            current = source["currents_decimal_a_tsc"]
+            current = source["active_command_decimal_a_tsc"]
             local = []
             for target in targets:
                 target_decimal = card15_target_decimal_a(target, cfg.turns_tsc, name=prefix_name)
@@ -115,7 +132,7 @@ def offline_preflight(config_path: Path, source_revision: str) -> dict[str, Any]
     return {
         "schema_version": NR1_1MS_CONTRACT_VERSION, "kind": "offline_preflight",
         "created_utc": datetime.now(timezone.utc).isoformat(), "identity": identity.to_dict(),
-        "passed": passed, "route": "ONE_MS_NR1R1_OFFLINE_PASS" if passed else "ONE_MS_NR1R1_OFFLINE_FAIL_NO_TSC",
+        "passed": passed, "route": "ONE_MS_NR1R2_OFFLINE_PASS" if passed else "ONE_MS_NR1R2_OFFLINE_FAIL_NO_TSC",
         "failures": list(dict.fromkeys(failures)), "config_path": str(config_path),
         "fixed_contract": {"start_folder": cfg.start_folder, "dt_ms": cfg.dt_ms,
                            "current_slew_a_per_ms": cfg.current_slew_a_per_ms,
@@ -148,12 +165,19 @@ def _record(cfg: TSCConfig, state: dict[str, Any]) -> dict[str, Any]:
     if missing:
         raise ContractError(f"state artifacts missing: {missing}")
     exact_current = _exact_coil_currents_a(folder / "coil_currents.csv", cfg)
+    active_fields = _card15_fields(folder / "inputa")
+    active_command = decimal_single_turn_currents_a(
+        tuple(value.strip() for value in active_fields), cfg.turns_tsc,
+        name=f"{folder / 'inputa'}.active_command",
+    )
     return {"time_ms": int(state["time_ms"]), "r_geo_m": signal.boundary.r_geo_m,
             "z_geo_m": signal.boundary.z_geo_m, "r_mid_m": signal.limiter.r_mid_m,
             "r_inner_m": signal.limiter.r_inner_m, "r_outer_m": signal.limiter.r_outer_m,
             "side": signal.side, "ip_a": signal.ip_a,
             "actual_current_a_tsc": [float(v) for v in state["currents_a_tsc"]],
             "actual_current_decimal_a_tsc": [str(v) for v in exact_current],
+            "active_command_card15_fields": list(active_fields),
+            "active_command_decimal_a_tsc": [str(v) for v in active_command],
             "wire_current_a": _wire(folder / "wire_currents.csv", cfg),
             "artifact_sha256": {name: _sha(folder / name) for name in ARTIFACTS}}
 
@@ -169,6 +193,7 @@ def _run_one(cfg: TSCConfig, name: str, prefix_name: str, targets: Sequence[Any]
         state = runner.reset(episode_name=name)
         records.append(_record(cfg, state))
         source_current = tuple(records[0]["actual_current_decimal_a_tsc"])
+        source_command = tuple(Decimal(value) for value in records[0]["active_command_decimal_a_tsc"])
         for step, target in enumerate(targets):
             signal = RGeoZGeoSignal.from_tsc_state(state)
             reasons.extend(envelope.state_reasons(signal, state["currents_a_tsc"],
@@ -177,7 +202,7 @@ def _run_one(cfg: TSCConfig, name: str, prefix_name: str, targets: Sequence[Any]
                 target_decimal = card15_target_decimal_a(
                     target, cfg.turns_tsc, name=f"{name}.target.{step}"
                 )
-                maximum = assert_exact_slew(records[-1]["actual_current_decimal_a_tsc"], target_decimal,
+                maximum = assert_exact_slew(records[-1]["active_command_decimal_a_tsc"], target_decimal,
                                             name=f"{name}.issued.{step}")
             except ContractError as exc:
                 reasons.append(f"ISSUED_SLEW:{exc}")
@@ -195,6 +220,8 @@ def _run_one(cfg: TSCConfig, name: str, prefix_name: str, targets: Sequence[Any]
                 reasons.append(f"TSC_ABNORMAL:{state.get('done_reason', '')}")
             record = _record(cfg, state)
             records.append(record)
+            if tuple(record["active_command_card15_fields"]) != target.card15_fields:
+                reasons.append(f"CARD15:{step}")
             if record["time_ms"] != 1100 + step + 1:
                 reasons.append(f"TIME:{step}")
             try:
@@ -212,7 +239,7 @@ def _run_one(cfg: TSCConfig, name: str, prefix_name: str, targets: Sequence[Any]
                     record["actual_current_decimal_a_tsc"], source_current
                 ))
                 requested = tuple(value - Decimal(base) for value, base in zip(
-                    target_decimal, source_current
+                    target_decimal, source_command
                 ))
                 if any(value == 0 for value in effect) or any(
                     (value > 0) != (wanted > 0) for value, wanted in zip(effect, requested)
@@ -284,9 +311,9 @@ def run(config_path: Path, source_revision: str, output_dir: Path) -> dict[str, 
     all_pass = len(results) == 6 and all(row["passed"] for row in results.values())
     replay_pass = len(comparisons) == 3 and all(row["passed"] for row in comparisons.values())
     passed = all_pass and replay_pass
-    route = "ONE_MS_NR1R1_INTERFACE_QUALIFIED" if passed else (
-        "ONE_MS_NR1R1_EFFECT_CONTRACT_FAIL_STOP" if any("EFFECT" in reason or "CENTER_RETURN" in reason for row in results.values() for reason in row["reasons"])
-        else "ONE_MS_NR1R1_SAFETY_FAIL_STOP" if not all_pass else "ONE_MS_NR1R1_REPLAY_NOT_QUALIFIED")
+    route = "ONE_MS_NR1R2_INTERFACE_QUALIFIED" if passed else (
+        "ONE_MS_NR1R2_EFFECT_CONTRACT_FAIL_STOP" if any("EFFECT" in reason or "CENTER_RETURN" in reason for row in results.values() for reason in row["reasons"])
+        else "ONE_MS_NR1R2_SAFETY_FAIL_STOP" if not all_pass else "ONE_MS_NR1R2_REPLAY_NOT_QUALIFIED")
     final = {"schema_version": NR1_1MS_CONTRACT_VERSION, "kind": "authentic_qualification",
              "source_revision": source_revision, "passed": passed, "route": route,
              "output_dir": str(output_dir), "rollout_count": len(results),

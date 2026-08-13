@@ -17,8 +17,8 @@ from .rgeo_zgeo_1ms_contract import (
 from .rgeo_zgeo_contract import ContractError, RGeoZGeoSignal
 
 
-NR1_1MS_CONTRACT_VERSION = "rgeo-zgeo-1ms-nr1r1-v1"
-NR1_1MS_CAMPAIGN_ID = "rgeo_zgeo_1ms_nr1r1_decimal_readback_v1"
+NR1_1MS_CONTRACT_VERSION = "rgeo-zgeo-1ms-nr1r2-v1"
+NR1_1MS_CAMPAIGN_ID = "rgeo_zgeo_1ms_nr1r2_command_readback_v1"
 NR1_1MS_INTENDED_USE = "interface_validation"
 NR1_1MS_HORIZON_STEPS = 4
 NR1_1MS_ROLLOUTS = (
