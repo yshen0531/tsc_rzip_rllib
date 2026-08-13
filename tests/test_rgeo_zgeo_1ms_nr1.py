@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from decimal import Decimal
 import unittest
 
 import numpy as np
@@ -9,6 +10,7 @@ from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import (
     OneMsNR1SafetyEnvelope,
     assert_exact_slew,
     build_frozen_one_ms_prefixes,
+    decimal_single_turn_currents_a,
     validate_one_ms_config,
 )
 from tsc_rzip_rllib.control.rgeo_zgeo_contract import ContractError, RGeoZGeoSignal
@@ -32,6 +34,18 @@ class OneMsNR1Tests(unittest.TestCase):
         ):
             with self.assertRaises(ContractError):
                 validate_one_ms_config(**kwargs)
+
+    def test_contract_uses_separate_nr1r1_identity(self) -> None:
+        from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import (
+            NR1_1MS_CAMPAIGN_ID,
+            NR1_1MS_CONTRACT_VERSION,
+        )
+
+        self.assertEqual(NR1_1MS_CONTRACT_VERSION, "rgeo-zgeo-1ms-nr1r1-v1")
+        self.assertEqual(
+            NR1_1MS_CAMPAIGN_ID,
+            "rgeo_zgeo_1ms_nr1r1_decimal_readback_v1",
+        )
 
     def test_all_coils_have_both_signed_nonzero_lattice_targets(self) -> None:
         frozen = build_frozen_one_ms_prefixes(
@@ -78,6 +92,27 @@ class OneMsNR1Tests(unittest.TestCase):
         self.assertEqual(assert_exact_slew([0.0] * 14, [0.3] * 14, name="edge"), 0.3)
         with self.assertRaisesRegex(ContractError, "exceeds"):
             assert_exact_slew([0.0] * 14, [0.30000000000000004] * 14, name="over")
+
+    def test_decimal_readback_preserves_exact_point_three(self) -> None:
+        before = decimal_single_turn_currents_a(
+            ["0"] * 11 + ["-13.500001"] + ["0"] * 2,
+            self.turns,
+            name="before",
+        )
+        after = decimal_single_turn_currents_a(
+            ["0"] * 11 + ["-13.530001"] + ["0"] * 2,
+            self.turns,
+            name="after",
+        )
+        self.assertEqual(after[11] - before[11], Decimal("-0.30000"))
+        self.assertEqual(assert_exact_slew(before, after, name="observed"), 0.3)
+
+    def test_decimal_readback_rejects_real_excess(self) -> None:
+        before = [Decimal("0")] * 14
+        after = [Decimal("0")] * 14
+        after[11] = Decimal("0.300001")
+        with self.assertRaisesRegex(ContractError, "exceeds"):
+            assert_exact_slew(before, after, name="observed")
 
     def test_safety_uses_boundary_geometry_and_ip(self) -> None:
         state = {

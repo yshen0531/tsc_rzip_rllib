@@ -46,5 +46,5 @@
   "current_slew_a_per_ms": 0.3,
   "min_current_a_display_order": [-400, -400, -400, -400, -400, -400, -400, -400, -600, -600, -750, -750, -200, -200],
   "max_current_a_display_order": [400, 400, 400, 400, 400, 400, 400, 400, 600, 600, 750, 750, 200, 200],
-  "description": "Prospectively frozen 1 ms NR1 interface-validation config; no model or controller qualification."
+  "description": "Prospectively frozen 1 ms NR1R1 exact-decimal interface-validation config; no model or controller qualification."
 }

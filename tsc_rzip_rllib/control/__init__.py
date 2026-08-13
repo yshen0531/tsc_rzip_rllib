@@ -73,6 +73,8 @@ from .rgeo_zgeo_1ms_nr1 import (
     OneMsNR1SafetyEnvelope,
     assert_exact_slew,
     build_frozen_one_ms_prefixes,
+    card15_target_decimal_a,
+    decimal_single_turn_currents_a,
     quantize_target,
     validate_one_ms_config,
 )
@@ -135,6 +137,8 @@ __all__ = [
     "OneMsNR1SafetyEnvelope",
     "assert_exact_slew",
     "build_frozen_one_ms_prefixes",
+    "card15_target_decimal_a",
+    "decimal_single_turn_currents_a",
     "quantize_target",
     "validate_one_ms_config",
 ]

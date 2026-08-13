@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 from datetime import datetime, timezone
+from decimal import Decimal
 import json
 import math
 from pathlib import Path
@@ -17,7 +18,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import (  # noqa: E402
-    NR1_1MS_ROLLOUTS, assert_exact_slew, build_frozen_one_ms_prefixes,
+    NR1_1MS_CONTRACT_VERSION, NR1_1MS_ROLLOUTS, RETURN_EQUIVALENCE_A,
+    assert_exact_slew, build_frozen_one_ms_prefixes, card15_target_decimal_a,
+    decimal_single_turn_currents_a,
 )
 from tsc_rzip_rllib.control.rgeo_zgeo_contract import RGeoZGeoSignal  # noqa: E402
 from tsc_rzip_rllib.core.gfile import parse_gfile, read_coil_currents_csv  # noqa: E402
@@ -50,11 +53,17 @@ def _state(folder: Path, cfg: TSCConfig) -> dict[str, Any]:
     time_ms = int(folder.name.rstrip("ms"))
     signal = RGeoZGeoSignal.from_tsc_state({"time_ms": time_ms, "Ip": float(g["ip"]), "gfile": g, "abnormal": False})
     kat = read_coil_currents_csv(folder / "coil_currents.csv")
-    currents = tuple(float(value) * 1000.0 / float(turn) for value, turn in zip(kat, cfg.turns_tsc))
+    with (folder / "coil_currents.csv").open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle, skipinitialspace=True)
+        key = next(value for value in (reader.fieldnames or []) if "ccoil" in value.lower())
+        raw_kat = tuple(row[key].strip() for row in reader)
+    exact_currents = decimal_single_turn_currents_a(raw_kat, cfg.turns_tsc, name=str(folder))
+    currents = tuple(float(value) for value in exact_currents)
     return {"time_ms": time_ms, "r_geo_m": signal.boundary.r_geo_m, "z_geo_m": signal.boundary.z_geo_m,
             "r_mid_m": signal.limiter.r_mid_m, "r_inner_m": signal.limiter.r_inner_m,
             "r_outer_m": signal.limiter.r_outer_m, "ip_a": signal.ip_a,
-            "current_a_tsc": currents, "wire_a": _wire(folder / "wire_currents.csv", cfg),
+            "current_a_tsc": currents, "current_decimal_a_tsc": exact_currents,
+            "wire_a": _wire(folder / "wire_currents.csv", cfg),
             "abnormal": "abnormal exit" in (folder / "outputa").read_text(errors="ignore").lower() if (folder / "outputa").is_file() else False}
 
 
@@ -83,21 +92,29 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                 if observed != target.card15_fields:
                     failures.append(f"CARD15:{rollout}:{step}")
                 try:
-                    assert_exact_slew(states[step]["current_a_tsc"], target.current_a_tsc,
+                    target_decimal = card15_target_decimal_a(
+                        target, cfg.turns_tsc, name=f"independent.target.{rollout}.{step}"
+                    )
+                    assert_exact_slew(states[step]["current_decimal_a_tsc"], target_decimal,
                                       name=f"independent.issue.{rollout}.{step}")
-                    assert_exact_slew(states[step]["current_a_tsc"], states[step+1]["current_a_tsc"],
+                    assert_exact_slew(states[step]["current_decimal_a_tsc"], states[step+1]["current_decimal_a_tsc"],
                                       name=f"independent.observed.{rollout}.{step}")
                     observed_checks += 1
                 except Exception as exc:
                     failures.append(f"SLEW:{rollout}:{step}:{exc}")
             if prefix_name != "hold":
-                effect = tuple(b-a for a,b in zip(source["current_a_tsc"], states[1]["current_a_tsc"]))
-                request = tuple(b-a for a,b in zip(source["current_a_tsc"], targets[0].current_a_tsc))
+                target_decimal = card15_target_decimal_a(
+                    targets[0], cfg.turns_tsc, name=f"independent.effect.{rollout}"
+                )
+                effect = tuple(b-a for a,b in zip(source["current_decimal_a_tsc"], states[1]["current_decimal_a_tsc"]))
+                request = tuple(b-a for a,b in zip(source["current_decimal_a_tsc"], target_decimal))
                 effect_checks += 14
                 if any(value == 0.0 for value in effect) or any(math.copysign(1, a) != math.copysign(1, b) for a,b in zip(effect, request)):
                     failures.append(f"FIRST_EFFECT:{rollout}")
                 for step in (2,3,4):
-                    if _maxdiff(states[step]["current_a_tsc"], source["current_a_tsc"]) > 1e-4:
+                    if max(abs(a-b) for a,b in zip(
+                        states[step]["current_decimal_a_tsc"], source["current_decimal_a_tsc"]
+                    )) > RETURN_EQUIVALENCE_A:
                         failures.append(f"RETURN_HOLD:{rollout}:{step}")
             for step, state in enumerate(states):
                 if state["time_ms"] != 1100 + step: failures.append(f"TIME:{rollout}:{step}")
@@ -124,9 +141,9 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
     if maxima["coil_a"] > 1e-9: failures.append("REPLAY_COIL")
     if maxima["wire_a"] > 1e-9: failures.append("REPLAY_WIRE")
     failures = list(dict.fromkeys(failures))
-    result = {"schema_version":"rgeo-zgeo-1ms-nr1-independent-v1", "created_utc":datetime.now(timezone.utc).isoformat(),
+    result = {"schema_version":f"{NR1_1MS_CONTRACT_VERSION}-independent", "created_utc":datetime.now(timezone.utc).isoformat(),
               "source_revision":source_revision, "passed":not failures,
-              "route":"ONE_MS_NR1_INDEPENDENT_PASS" if not failures else "ONE_MS_NR1_INDEPENDENT_FAIL",
+              "route":"ONE_MS_NR1R1_INDEPENDENT_PASS" if not failures else "ONE_MS_NR1R1_INDEPENDENT_FAIL",
               "failures":failures, "raw_rollouts":sum(len(v)==5 for v in rows.values()),
               "raw_states":sum(len(v) for v in rows.values()), "action_checks":action_checks,
               "observed_slew_checks":observed_checks, "first_effect_component_checks":effect_checks,

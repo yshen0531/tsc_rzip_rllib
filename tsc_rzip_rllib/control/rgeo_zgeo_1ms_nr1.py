@@ -17,8 +17,8 @@ from .rgeo_zgeo_1ms_contract import (
 from .rgeo_zgeo_contract import ContractError, RGeoZGeoSignal
 
 
-NR1_1MS_CONTRACT_VERSION = "rgeo-zgeo-1ms-nr1-v1"
-NR1_1MS_CAMPAIGN_ID = "rgeo_zgeo_1ms_nr1_safety_effect_v1"
+NR1_1MS_CONTRACT_VERSION = "rgeo-zgeo-1ms-nr1r1-v1"
+NR1_1MS_CAMPAIGN_ID = "rgeo_zgeo_1ms_nr1r1_decimal_readback_v1"
 NR1_1MS_INTENDED_USE = "interface_validation"
 NR1_1MS_HORIZON_STEPS = 4
 NR1_1MS_ROLLOUTS = (
@@ -54,11 +54,48 @@ def _vector(values: Sequence[float], name: str) -> tuple[float, ...]:
     return result
 
 
+def decimal_single_turn_currents_a(
+    currents_kat_tsc: Sequence[Any], turns_tsc: Sequence[Any], *, name: str
+) -> tuple[Decimal, ...]:
+    """Convert original decimal kA-turn fields to exact single-turn amperes."""
+    try:
+        currents = tuple(currents_kat_tsc)
+        turns = tuple(turns_tsc)
+    except TypeError as exc:
+        raise ContractError(f"{name} must contain fourteen current and turn values") from exc
+    if len(currents) != N_COILS or len(turns) != N_COILS:
+        raise ContractError(f"{name} must contain fourteen current and turn values")
+    result: list[Decimal] = []
+    for index, (current, turn) in enumerate(zip(currents, turns)):
+        denominator = _decimal(turn, f"{name}.turns[{index}]")
+        if denominator <= 0:
+            raise ContractError(f"{name}.turns[{index}] must be positive")
+        result.append(
+            _decimal(current, f"{name}.currents_kat_tsc[{index}]")
+            * Decimal("1000")
+            / denominator
+        )
+    return tuple(result)
+
+
+def card15_target_decimal_a(
+    target: "Card15Target", turns_tsc: Sequence[Any], *, name: str
+) -> tuple[Decimal, ...]:
+    return decimal_single_turn_currents_a(
+        tuple(value.strip() for value in target.card15_fields), turns_tsc, name=name
+    )
+
+
 def assert_exact_slew(
-    before_a_tsc: Sequence[float], after_a_tsc: Sequence[float], *, name: str
+    before_a_tsc: Sequence[Any], after_a_tsc: Sequence[Any], *, name: str
 ) -> float:
-    before = _vector(before_a_tsc, f"{name}.before")
-    after = _vector(after_a_tsc, f"{name}.after")
+    try:
+        before = tuple(before_a_tsc)
+        after = tuple(after_a_tsc)
+    except TypeError as exc:
+        raise ContractError(f"{name} requires two finite 14-vectors") from exc
+    if len(before) != N_COILS or len(after) != N_COILS:
+        raise ContractError(f"{name} requires two finite 14-vectors")
     maximum = Decimal("0")
     for index, (left, right) in enumerate(zip(before, after)):
         delta = abs(_decimal(right, f"{name}[{index}]") - _decimal(left, f"{name}[{index}]"))
