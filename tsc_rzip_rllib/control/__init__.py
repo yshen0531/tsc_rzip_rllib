@@ -78,6 +78,21 @@ from .rgeo_zgeo_1ms_nr1 import (
     quantize_target,
     validate_one_ms_config,
 )
+from .rgeo_zgeo_1ms_nr2_spec import (
+    NR2_1MS_CAMPAIGN_ID,
+    NR2_1MS_CONTRACT_VERSION,
+    NR2_1MS_HORIZON_STEPS,
+    OneMsNR2TrajectorySpec,
+    build_one_ms_nr2_specs,
+    build_one_ms_nr2_targets,
+    validate_one_ms_nr2_specs,
+)
+from .rgeo_zgeo_1ms_nr2_models import (
+    ARXModel as OneMsNR2ARXModel,
+    Normalizer as OneMsNR2Normalizer,
+    POINT_SCALES as ONE_MS_NR2_POINT_SCALES,
+    recursive_rollout as recursive_one_ms_nr2_rollout,
+)
 
 __all__ = [
     "AdditiveResponseTube",
@@ -141,4 +156,15 @@ __all__ = [
     "decimal_single_turn_currents_a",
     "quantize_target",
     "validate_one_ms_config",
+    "NR2_1MS_CAMPAIGN_ID",
+    "NR2_1MS_CONTRACT_VERSION",
+    "NR2_1MS_HORIZON_STEPS",
+    "OneMsNR2TrajectorySpec",
+    "build_one_ms_nr2_specs",
+    "build_one_ms_nr2_targets",
+    "validate_one_ms_nr2_specs",
+    "OneMsNR2ARXModel",
+    "OneMsNR2Normalizer",
+    "ONE_MS_NR2_POINT_SCALES",
+    "recursive_one_ms_nr2_rollout",
 ]
