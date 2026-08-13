@@ -1,5 +1,34 @@
 # Current status
 
+> **Post-NR2R1 architecture reassessment recorded (2026-08-13
+> Asia/Shanghai).** The high-level history-conditioned, uncertainty-aware
+> constrained rolling-control architecture is retained, but the executed
+> stage order is corrected.  NR2 compared model classes before establishing
+> operating-point/history identifiability.  Its valid development/calibration
+> records all start from one identical 1100 ms state, remain HFS over only
+> about `9.53 mm R / 11.94 mm Z`, and are dominated by one common time path.
+> They cannot establish a position-dependent coil map or a connected work
+> domain.  Equal q0-current/zero-increment-command rows after different pulse
+> histories nevertheless show a spread among next increments up to
+> `0.8316 mm R / 0.3495 mm Z`, so
+> action-tail/history context must be represented causally.
+>
+> Final documentation route is
+> `POST_NR2R1_REASSESSMENT_COMPLETE_NR2R2A_DESIGN_AUDIT_REQUIRED`.
+> The only next candidate is a separately authorized local zero-TSC/no-fit
+> **NR2R2A design audit**.  It must design context/history anchors, independent
+> all-q0 baselines and recovery, measured memory, structured low-order/LPV
+> dynamics, whole-family uncertainty and a separate growing-prefix replay
+> gate.  Online learning is recast as shadow-qualified, bounded low-dimensional
+> adaptation; no within-run deep-model training or online RL is authorized.
+> Full reasoning and claim boundaries are in
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_NR2R1_ARCHITECTURE_REASSESSMENT.md`.
+> This review changed documentation only and ran no server/TSC/model/controller
+> work.  It authorizes no server raw read, deployment, branch replay or new
+> campaign.  NR2R1 development/calibration is now consumed architecture-
+> development evidence; its diagnostic-only holdout remains immutable.  NR3
+> is blocked.
+
 > **1 ms NR1R2 interface qualified (2026-08-13 Asia/Shanghai).** At
 > implementation checkpoint `8580ac1`, the fresh campaign completed 6/6
 > authentic rollouts, 24/24 plant advances and 30/30 states. Primary and

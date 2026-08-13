@@ -1,0 +1,81 @@
+{
+  "audit_complete": true,
+  "calibration_and_holdout_qualification": false,
+  "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+  "input": {
+    "bytes": 2431302,
+    "files": 28,
+    "inventory_sha256": "98f6bd1992b9681ec548e4bbc8f1f6b6c7332309522a81e961c8be57edbd3c49",
+    "partitions": [
+      "development",
+      "calibration"
+    ],
+    "role_after_audit": "consumed_architecture_development"
+  },
+  "model_selection_mean_recursive_scaled_mse": {
+    "arx": 1.1114761244113223,
+    "gru": 1.1710619970464813,
+    "lstm": 1.1472523611544747,
+    "tcn": 1.1199127238338726
+  },
+  "new_model_fit_or_training": 0,
+  "new_server_access": 0,
+  "new_tsc_or_plant_advances": 0,
+  "observed_envelope": {
+    "hfs_states": 476,
+    "ip_a": {
+      "maximum": 31296.2882,
+      "minimum": 31114.5605
+    },
+    "mean_horizon_16_delta": {
+      "ip_a": -165.43919286,
+      "r_geo_m": -0.00948479045,
+      "z_geo_m": 0.0118775843
+    },
+    "r_geo_m": {
+      "maximum": 0.708635102,
+      "minimum": 0.6991077385,
+      "span": 0.0095273635
+    },
+    "r_geo_minus_r_mid_m": {
+      "maximum": -0.083264898,
+      "minimum": -0.0927922615
+    },
+    "states": 476,
+    "trajectories": 28,
+    "unique_physical_starts": 1,
+    "z_geo_m": {
+      "maximum": 0.0471843925,
+      "minimum": 0.035241343,
+      "span": 0.0119430495
+    }
+  },
+  "per_time_between_sum_of_squares_fraction": {
+    "ip": 0.9727277290982201,
+    "r_geo": 0.9988263016916861,
+    "z_geo": 0.9997712876807175
+  },
+  "route": "POST_NR2R1_READ_ONLY_DESCRIPTIVE_AUDIT_COMPLETE",
+  "signed_pair_maximum_absolute_half_difference": {
+    "ip_a": 22.50995,
+    "r_geo_m": 0.0003752675,
+    "z_geo_m": 0.000219301
+  },
+  "source_revision": "25f5b7e",
+  "step_11_impulse_q0_zero_increment": {
+    "actual_current_maximum_component_range_a": 0.0,
+    "next_increment_component_range": {
+      "ip_a": 13.5499,
+      "r_geo_m": 0.0008315565,
+      "z_geo_m": 0.00034947
+    },
+    "paths": 12,
+    "state_component_range": {
+      "ip_a": 25.1849,
+      "r_geo_m": 0.000145713,
+      "z_geo_m": 0.000104099
+    },
+    "wire_current_maximum_component_range_a": 10.403
+  },
+  "tracked_reassessment_base": "fe7d9fb"
+}

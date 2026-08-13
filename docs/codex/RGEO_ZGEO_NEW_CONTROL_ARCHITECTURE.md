@@ -1,5 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-NR2R1 implementation-order amendment (2026-08-13):** the main
+> architecture below is retained, but NR2R1 showed that its execution order
+> was too aggressive.  A single-start, 16 ms model bake-off did not implement
+> the required operating-point/history coverage or explicit low-order memory.
+> Before another model comparison, the route now requires contextual
+> identifiability, independent drift/recovery baselines, repeated actions over
+> position and arrival-history anchors, and a separate growing-prefix branch-
+> replay qualification.  Within-run adaptation begins only in shadow mode and
+> may update bounded low-dimensional belief/context/gain parameters, not deep
+> weights.  The evidence and revised order are recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_NR2R1_ARCHITECTURE_REASSESSMENT.md`.
+> NR3 remains blocked.
+
 > **Confirmed timing/action amendment (2026-08-13):** development restarts
 > from NR0 with a 1 ms control period. For each of the 14 coils in TSC order,
 > the hard per-step limit is the single-turn-current condition

@@ -1,5 +1,40 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Post-NR2R1 route reassessment (2026-08-13):** the documentation-only
+> architecture review is complete with route
+> `POST_NR2R1_REASSESSMENT_COMPLETE_NR2R2A_DESIGN_AUDIT_REQUIRED`.
+> NR0/NR1 remain valid.  NR2R1 remains
+> `ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT`, and NR3 remains blocked.
+>
+> Read-only development/calibration evidence shows that all 28 valid model
+> trajectories began at one identical 1100 ms state, remained HFS and mainly
+> followed one common 16 ms drift path; the campaign did not independently
+> identify position dependence, arrival-history dependence or a connected
+> control work domain.  It does contain direct evidence of action-tail/history
+> context: at impulse step 11, equal q0 current and zero-increment command rows
+> with different preceding pulses had a `0.8316 mm R / 0.3495 mm Z` spread
+> among their next increments.  This supports a causal belief/memory model
+> but does not prove a particular coil changes sign at another position.
+>
+> The next prospective task candidate is **NR2R2A local, zero-new-TSC
+> identifiability and state-representation design/audit**, not code, TSC or
+> another network bake-off.  It must first freeze a
+> finite HFS domain, independent all-q0 baseline/recovery evidence, repeated
+> primitives across position and arrival-history anchors, measured memory
+> windows, family-wise splits/tubes and a separate growing-prefix branch-
+> replay qualification identity.  The intended later model is exact actuator
+> plus stable low-order memory, continuous contextual scheduling and only an
+> optional small residual.  Online adaptation must first be shadow-only and
+> limited to bounded low-dimensional belief/gain/context updates; deep weights
+> remain frozen within a run.  See
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_NR2R1_ARCHITECTURE_REASSESSMENT.md`.
+>
+> This record authorizes no implementation, server access/raw read, deployment,
+> snapshot/branch replay, TSC, fitting, training, Oracle experiment, MPC, RL or
+> data generation.  The consumed NR2R1 development/calibration is architecture-
+> development evidence and may not become a blind NR2R2 partition; the opened
+> holdout remains diagnostic-only and may not tune the successor.
+
 > **Active route restart (2026-08-13):** the user replaced the route timing
 > and actuator-step contract and explicitly required a restart from NR0. The
 > new immutable NR0 identity is `rgeo-zgeo-1ms-nr0-v1`:
