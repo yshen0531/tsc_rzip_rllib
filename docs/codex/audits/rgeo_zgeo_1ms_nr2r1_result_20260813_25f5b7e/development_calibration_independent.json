@@ -1,0 +1,52 @@
+{
+  "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+  "command_checks": 448,
+  "completed_trajectories": 28,
+  "expected_trajectories": 28,
+  "failures": [],
+  "maximum": {
+    "command_step_a": "0.3",
+    "ip_fraction": 0.005492653919701334,
+    "observed_step_a": "0.3",
+    "r_displacement_m": 0.009527363500000052,
+    "structural_current_error_a": "1E-26",
+    "z_displacement_m": 0.011943049499999997
+  },
+  "observed_slew_checks": 448,
+  "passed": true,
+  "phase": "development_calibration",
+  "plant_advances": 448,
+  "raw_required_file_count": 2380,
+  "route": "ONE_MS_NR2R1_DEVELOPMENT_CALIBRATION_INDEPENDENT_PASS",
+  "schema_version": "rgeo-zgeo-1ms-nr2r1-v1-independent-v1",
+  "source_revision": "25f5b7e",
+  "spec_gate": {
+    "action_stream_sha256": "5fb7533a2c656f824f34f168285412a16a75b1fa5aec19dec142ed51830c0ada",
+    "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+    "plant_advances": 576,
+    "schema_version": "rgeo-zgeo-1ms-nr2r1-v1",
+    "splits": {
+      "calibration": {
+        "pair_count": 4,
+        "plant_advances": 128,
+        "quantized_action_rank": 14,
+        "trajectory_count": 8
+      },
+      "development": {
+        "pair_count": 10,
+        "plant_advances": 320,
+        "quantized_action_rank": 14,
+        "trajectory_count": 20
+      },
+      "holdout": {
+        "pair_count": 4,
+        "plant_advances": 128,
+        "quantized_action_rank": 14,
+        "trajectory_count": 8
+      }
+    },
+    "trajectory_count": 36
+  },
+  "state_checks": 476,
+  "structural_current_checks": 448
+}

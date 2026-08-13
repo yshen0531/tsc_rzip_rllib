@@ -63,6 +63,13 @@ def _folds(rows:list[dict[str,Any]]):
     for fold in range(5): yield ([x for x in rows if x["pair_index"]%5!=fold],[x for x in rows if x["pair_index"]%5==fold])
 
 
+def within_interval_caps(half_width:Any)->bool:
+    values=np.asarray(half_width,dtype=float)
+    if values.ndim!=2 or values.shape[1]!=3 or not np.all(np.isfinite(values)):
+        return False
+    return bool(np.all(np.max(values,axis=0)<=np.asarray([.004,.004,400.0])))
+
+
 def select(rows:list[dict[str,Any]])->dict[str,Any]:
     table=[]
     for ridge in (1e-6,1e-4,1e-2):
@@ -101,7 +108,7 @@ def calibrate(models,development,calibration,normalizer):
     base=np.quantile(np.asarray(dev),.95,axis=0,method="linear"); base=np.maximum(base,np.asarray([1e-9,1e-9,1e-6]))
     ratios=[]
     for predictions,row in zip(_predictions(models,calibration,normalizer),calibration): ratios.extend(np.max(np.abs(np.mean(predictions,axis=0)[1:]-row["plasma"][1:])/base,axis=1))
-    multiplier=float(np.quantile(ratios,.90,method="higher")); half=base*multiplier; coverage=float(np.mean(np.asarray(ratios)<=multiplier+1e-12)); caps=np.asarray([.004,.004,400.0]); eligible=coverage>=.90 and bool(np.all(half[-1]<=caps))
+    multiplier=float(np.quantile(ratios,.90,method="higher")); half=base*multiplier; coverage=float(np.mean(np.asarray(ratios)<=multiplier+1e-12)); eligible=coverage>=.90 and within_interval_caps(half)
     return {"base_half_width_by_horizon":base.tolist(),"multiplier":multiplier,"half_width_by_horizon":half.tolist(),"joint_coverage":coverage,"eligible":eligible}
 
 
@@ -145,7 +152,7 @@ def evaluate(campaign:Path,revision:str)->dict[str,Any]:
             mean=np.mean(predictions,axis=0); difference=np.abs(mean[1:]-row["plasma"][1:]); values=np.max(difference/POINT_SCALES,axis=1); scaled.extend(values); coverage.extend(np.all(difference<=half,axis=1)); mse.append(np.mean((difference/POINT_SCALES)**2)); finite=finite and bool(np.all(np.isfinite(mean)))
             for h in horizon: horizon[h].append(values[h-1])
         metrics={"finite":finite,"joint_point_fraction":float(np.mean(np.asarray(scaled)<=1)),"p95_scaled_error":float(np.quantile(scaled,.95,method="linear")),"joint_interval_coverage":float(np.mean(coverage)),"mean_squared_scaled_error":float(np.mean(mse)),"p95_scaled_error_by_horizon":{str(h):float(np.quantile(v,.95,method="linear")) for h,v in horizon.items()},"maximum_structural_current_error_a":audit["maximum"]["structural_current_error_a"]}
-        metrics["passed"]=finite and metrics["joint_point_fraction"]>=.90 and metrics["p95_scaled_error"]<=1 and metrics["joint_interval_coverage"]>=.90 and all(v<=1.25 for v in metrics["p95_scaled_error_by_horizon"].values()) and float(metrics["maximum_structural_current_error_a"])<=1e-9; results[kind]=metrics
+        metrics["passed"]=finite and metrics["joint_point_fraction"]>=.90 and metrics["p95_scaled_error"]<=1 and metrics["joint_interval_coverage"]>=.90 and all(v<=1.25 for v in metrics["p95_scaled_error_by_horizon"].values()) and within_interval_caps(half) and float(metrics["maximum_structural_current_error_a"])<=1e-9; results[kind]=metrics
     passing=[k for k,v in results.items() if v["passed"]]; winner=None
     if passing:
         winner=min(passing,key=lambda k:results[k]["mean_squared_scaled_error"])

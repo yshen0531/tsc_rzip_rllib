@@ -4407,3 +4407,16 @@ NR2R1 is prospectively frozen to compute the structural bias relative to the
 exact q0 Card15 command. No failed NR2 raw may enter training. The active next
 boundary is implementation, full local/server validation and a fresh zero-TSC
 offline gate before any NR2R1 plant advance.
+
+# 2026-08-13: NR2R1 complete, model route paused
+
+NR2R1 completed 36/36 trajectories and 576/576 safe advances. Independent
+raw audits passed every Card15, command/readback slew, structural-current,
+boundary, Ip and artifact gate. A statistics implementation bug then proved
+the holdout authorization invalid: every class exceeded the frozen maximum-
+over-horizon interval cap during calibration. The holdout remains immutable
+diagnostic evidence and cannot qualify or tune a model.
+
+Final route: `ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT`. No NR3, controller,
+MPC, RL, expert-data or further TSC work is authorized pending the user's
+decision on a new prospective state/model architecture.

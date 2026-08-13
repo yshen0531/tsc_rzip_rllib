@@ -71,6 +71,20 @@ It changes only the structural bias origin to
 safety limits and the 576-advance maximum are unchanged. NR2R1 must start a
 fresh run and may not reuse NR2 raw for fitting.
 
+### NR2R1 final pause (2026-08-13)
+
+NR2R1 completed all 576 safe authentic advances at source `25f5b7e`, but a
+post-result independent audit found that calibration eligibility checked only
+horizon 16 instead of the maximum across all 16 horizons. Correct application
+of the frozen cap makes every class ineligible. The holdout was therefore
+erroneously authorized and is diagnostic only. See
+`docs/codex/reports/RGEO_ZGEO_1MS_NR2R1_RESULT.md`.
+
+The active route is `ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT`. Stop before
+NR3 or any new TSC. A successor requires an explicit new prospective model/
+state representation decision; it may not tune against or reuse the consumed
+NR2R1 holdout.
+
 ### NR1R1 exact-decimal repair authorization (2026-08-13)
 
 The first authentic NR1 attempt at `129a091` stopped after nine advances.

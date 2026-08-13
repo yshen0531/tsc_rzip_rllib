@@ -1,0 +1,51 @@
+{
+  "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+  "corrected_route": "ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT",
+  "failure_classification": [
+    "statistics_gate_implementation_error",
+    "model_uncertainty_qualification_failure"
+  ],
+  "frozen_model_sha256": "73dbf615911e05f14ddc0125d5dc5d3dbaf56e3085d208921fab93db8164f916",
+  "holdout_status": "ERRONEOUSLY_AUTHORIZED_DIAGNOSTIC_ONLY",
+  "interval_caps": {
+    "ip_a": 400.0,
+    "r_geo_m": 0.004,
+    "z_geo_m": 0.004
+  },
+  "models": {
+    "arx": {
+      "corrected_eligible": false,
+      "maximum_half_width": {
+        "ip_a": 81.88451502589547,
+        "r_geo_m": 0.0127223577948597,
+        "z_geo_m": 0.005925050312517324
+      }
+    },
+    "gru": {
+      "corrected_eligible": false,
+      "maximum_half_width": {
+        "ip_a": 73.48890510295706,
+        "r_geo_m": 0.00897927719662858,
+        "z_geo_m": 0.004577010332846421
+      }
+    },
+    "lstm": {
+      "corrected_eligible": false,
+      "maximum_half_width": {
+        "ip_a": 86.7779505588695,
+        "r_geo_m": 0.011164491251939445,
+        "z_geo_m": 0.004988132358376043
+      }
+    },
+    "tcn": {
+      "corrected_eligible": false,
+      "maximum_half_width": {
+        "ip_a": 72.17973466496176,
+        "r_geo_m": 0.012456870635453714,
+        "z_geo_m": 0.005666428241110593
+      }
+    }
+  },
+  "new_tsc_during_correction": 0,
+  "source_revision": "25f5b7e"
+}

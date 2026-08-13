@@ -1,0 +1,40 @@
+{
+  "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+  "frozen_model_sha256": "73dbf615911e05f14ddc0125d5dc5d3dbaf56e3085d208921fab93db8164f916",
+  "models": {
+    "gru": {
+      "finite": true,
+      "joint_interval_coverage": 0.84375,
+      "joint_point_fraction": 0.8046875,
+      "maximum_structural_current_error_a": "1E-26",
+      "mean_squared_scaled_error": 0.30841841799938785,
+      "p95_scaled_error": 1.951538648241975,
+      "p95_scaled_error_by_horizon": {
+        "1": 0.0011980444704490223,
+        "16": 1.8300862060865746,
+        "4": 0.31182578912191483,
+        "8": 0.32993281283725406
+      },
+      "passed": false
+    },
+    "lstm": {
+      "finite": true,
+      "joint_interval_coverage": 0.875,
+      "joint_point_fraction": 0.796875,
+      "maximum_structural_current_error_a": "1E-26",
+      "mean_squared_scaled_error": 0.32100588612744174,
+      "p95_scaled_error": 2.0233565282130566,
+      "p95_scaled_error_by_horizon": {
+        "1": 0.0009289181166726242,
+        "16": 1.6070385515457954,
+        "4": 0.4061152421637847,
+        "8": 0.3349465637937189
+      },
+      "passed": false
+    }
+  },
+  "passed": false,
+  "route": "ONE_MS_NR2R1_MODEL_COMPARISON_FAIL_REDESIGN",
+  "source_revision": "25f5b7e",
+  "winner": null
+}

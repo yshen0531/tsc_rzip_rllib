@@ -5,6 +5,7 @@ import unittest
 import numpy as np
 
 from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr2_models import Normalizer, fit_arx, q0_readback_bias, recursive_rollout
+from scripts.rgeo_zgeo_1ms_nr2_train import within_interval_caps
 
 
 def trajectory(offset:float)->dict:
@@ -22,6 +23,13 @@ class OneMsNR2ModelTests(unittest.TestCase):
         readback=tuple(Decimal("1.00001") for _ in range(14))
         q0=tuple(Decimal("1") for _ in range(14))
         self.assertEqual(q0_readback_bias(readback,q0),tuple(Decimal("0.00001") for _ in range(14)))
+
+    def test_calibration_rejects_any_horizon_above_interval_cap(self)->None:
+        values=np.zeros((16,3))
+        values[-1]=[.003,.003,300.]
+        values[12]=[.0041,.002,20.]
+        self.assertFalse(within_interval_caps(values))
+        self.assertTrue(np.all(values[-1]<=np.asarray([.004,.004,400.])))
 
     def test_structural_arx_shapes_and_recursive_causality(self)->None:
         rows=[trajectory(value) for value in (-.01,0,.01,.02)]; normalizer=Normalizer.fit(rows); model=fit_arx(rows,normalizer,1e-2); prediction=recursive_rollout(model,None,rows[0],normalizer)

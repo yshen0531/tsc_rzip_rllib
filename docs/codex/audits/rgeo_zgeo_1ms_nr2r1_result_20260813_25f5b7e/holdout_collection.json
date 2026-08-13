@@ -1,0 +1,22 @@
+{
+  "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+  "completed_trajectories": 8,
+  "expected_trajectories": 8,
+  "failures": [],
+  "passed": true,
+  "phase": "holdout",
+  "plant_advances": 128,
+  "route": "ONE_MS_NR2R1_HOLDOUT_COLLECTION_PASS",
+  "schema_version": "rgeo-zgeo-1ms-nr2r1-v1",
+  "source_revision": "25f5b7e",
+  "trajectory_ids": [
+    "holdout_p00_plus",
+    "holdout_p00_minus",
+    "holdout_p01_plus",
+    "holdout_p01_minus",
+    "holdout_p02_plus",
+    "holdout_p02_minus",
+    "holdout_p03_plus",
+    "holdout_p03_minus"
+  ]
+}

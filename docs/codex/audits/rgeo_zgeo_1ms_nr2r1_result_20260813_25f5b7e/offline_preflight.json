@@ -1,0 +1,66 @@
+{
+  "config_path": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "created_utc": "2026-08-13T03:20:22.657210+00:00",
+  "disk_free_bytes": 254175158272,
+  "failures": [],
+  "identity": {
+    "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+    "declared_before_collection": true,
+    "intended_use": "identification",
+    "source_revision": "25f5b7e"
+  },
+  "passed": true,
+  "route": "ONE_MS_NR2R1_OFFLINE_PASS",
+  "schema_version": "rgeo-zgeo-1ms-nr2r1-v1",
+  "source_signal": {
+    "boundary": {
+      "point_count": 278,
+      "r_boundary_max_m": 0.975344872,
+      "r_boundary_min_m": 0.441925332,
+      "r_geo_m": 0.708635102,
+      "source": "state.gfile.boundary_R/boundary_Z",
+      "time_ms": 1100,
+      "z_boundary_max_m": 0.345576507,
+      "z_boundary_min_m": -0.275093821,
+      "z_geo_m": 0.03524134299999998
+    },
+    "contract_version": "rgeo-zgeo-nr0-v1",
+    "ip_a": 31286.4059,
+    "limiter": {
+      "midplane_z_m": 0.0,
+      "r_inner_m": 0.39,
+      "r_mid_m": 0.7919,
+      "r_outer_m": 1.1938
+    },
+    "r_geo_minus_r_mid_m": -0.08326489800000003,
+    "side": "HFS"
+  },
+  "spec_gate": {
+    "action_stream_sha256": "5fb7533a2c656f824f34f168285412a16a75b1fa5aec19dec142ed51830c0ada",
+    "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+    "plant_advances": 576,
+    "schema_version": "rgeo-zgeo-1ms-nr2r1-v1",
+    "splits": {
+      "calibration": {
+        "pair_count": 4,
+        "plant_advances": 128,
+        "quantized_action_rank": 14,
+        "trajectory_count": 8
+      },
+      "development": {
+        "pair_count": 10,
+        "plant_advances": 320,
+        "quantized_action_rank": 14,
+        "trajectory_count": 20
+      },
+      "holdout": {
+        "pair_count": 4,
+        "plant_advances": 128,
+        "quantized_action_rank": 14,
+        "trajectory_count": 8
+      }
+    },
+    "trajectory_count": 36
+  },
+  "structural_current_error_cap_a": "1E-9"
+}

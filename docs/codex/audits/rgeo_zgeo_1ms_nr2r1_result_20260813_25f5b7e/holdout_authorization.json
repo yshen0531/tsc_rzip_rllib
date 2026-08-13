@@ -1,0 +1,10 @@
+{
+  "campaign_id": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1",
+  "eligible_classes": [
+    "gru",
+    "lstm"
+  ],
+  "frozen_model_sha256": "73dbf615911e05f14ddc0125d5dc5d3dbaf56e3085d208921fab93db8164f916",
+  "holdout_authorized": true,
+  "source_revision": "25f5b7e"
+}
