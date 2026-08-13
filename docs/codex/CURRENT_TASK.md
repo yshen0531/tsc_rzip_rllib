@@ -35,6 +35,19 @@
 > campaign may start until an active hold/recovery route is separately
 > qualified.
 
+> **NR2R2B0 final pause (2026-08-13):** the frozen 6x32 all-q0 campaign
+> completed 192/192 authentic advances without runtime/interface/safety
+> failure, but its exact artifact repeatability gate failed because `sprsina`
+> differs across independent resets.  All physical outputs, Card15 and the
+> other four artifact hashes were exactly repeatable.  The frozen route is
+> `ONE_MS_NR2R2B0_BASELINE_REPEATABILITY_FAIL_STOP`; see
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2B0_SOURCE_BASELINE_RESULT.md`.
+> Independently, q0 is genuinely not a short hold: R/Z drifted 17.60/23.44 mm
+> in 32 ms and remained fast in the terminal window.  No source backup or
+> recovery is qualified.  Stop before any atlas, probe, replay Oracle, model,
+> controller or new TSC pending an explicit active-recovery architecture
+> decision and prospective `sprsina` semantic audit.
+
 > **Post-NR2R1 route reassessment (2026-08-13):** the documentation-only
 > architecture review is complete with route
 > `POST_NR2R1_REASSESSMENT_COMPLETE_NR2R2A_DESIGN_AUDIT_REQUIRED`.

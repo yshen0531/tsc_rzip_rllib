@@ -1,0 +1,130 @@
+{
+  "failures": [],
+  "hold_metrics": [
+    {
+      "maximum_absolute_ip_from_source_a": 335.7230000000018,
+      "maximum_absolute_r_from_source_m": 0.017601295000000072,
+      "maximum_absolute_z_from_source_m": 0.023441924500000016,
+      "passed": false,
+      "terminal_absolute_r_net_drift_m": 0.0039436365000000695,
+      "terminal_absolute_z_net_drift_m": 0.0058223845,
+      "terminal_maximum_absolute_r_step_m": 0.0006176770000000387,
+      "terminal_maximum_absolute_z_step_m": 0.0008057880000000017
+    },
+    {
+      "maximum_absolute_ip_from_source_a": 335.7230000000018,
+      "maximum_absolute_r_from_source_m": 0.017601295000000072,
+      "maximum_absolute_z_from_source_m": 0.023441924500000016,
+      "passed": false,
+      "terminal_absolute_r_net_drift_m": 0.0039436365000000695,
+      "terminal_absolute_z_net_drift_m": 0.0058223845,
+      "terminal_maximum_absolute_r_step_m": 0.0006176770000000387,
+      "terminal_maximum_absolute_z_step_m": 0.0008057880000000017
+    },
+    {
+      "maximum_absolute_ip_from_source_a": 335.7230000000018,
+      "maximum_absolute_r_from_source_m": 0.017601295000000072,
+      "maximum_absolute_z_from_source_m": 0.023441924500000016,
+      "passed": false,
+      "terminal_absolute_r_net_drift_m": 0.0039436365000000695,
+      "terminal_absolute_z_net_drift_m": 0.0058223845,
+      "terminal_maximum_absolute_r_step_m": 0.0006176770000000387,
+      "terminal_maximum_absolute_z_step_m": 0.0008057880000000017
+    },
+    {
+      "maximum_absolute_ip_from_source_a": 335.7230000000018,
+      "maximum_absolute_r_from_source_m": 0.017601295000000072,
+      "maximum_absolute_z_from_source_m": 0.023441924500000016,
+      "passed": false,
+      "terminal_absolute_r_net_drift_m": 0.0039436365000000695,
+      "terminal_absolute_z_net_drift_m": 0.0058223845,
+      "terminal_maximum_absolute_r_step_m": 0.0006176770000000387,
+      "terminal_maximum_absolute_z_step_m": 0.0008057880000000017
+    },
+    {
+      "maximum_absolute_ip_from_source_a": 335.7230000000018,
+      "maximum_absolute_r_from_source_m": 0.017601295000000072,
+      "maximum_absolute_z_from_source_m": 0.023441924500000016,
+      "passed": false,
+      "terminal_absolute_r_net_drift_m": 0.0039436365000000695,
+      "terminal_absolute_z_net_drift_m": 0.0058223845,
+      "terminal_maximum_absolute_r_step_m": 0.0006176770000000387,
+      "terminal_maximum_absolute_z_step_m": 0.0008057880000000017
+    },
+    {
+      "maximum_absolute_ip_from_source_a": 335.7230000000018,
+      "maximum_absolute_r_from_source_m": 0.017601295000000072,
+      "maximum_absolute_z_from_source_m": 0.023441924500000016,
+      "passed": false,
+      "terminal_absolute_r_net_drift_m": 0.0039436365000000695,
+      "terminal_absolute_z_net_drift_m": 0.0058223845,
+      "terminal_maximum_absolute_r_step_m": 0.0006176770000000387,
+      "terminal_maximum_absolute_z_step_m": 0.0008057880000000017
+    }
+  ],
+  "passed": false,
+  "primary_result_sha256": "ed4aff78c7d5b231841d114ced259774d43cea44bab35b2456ca16ff32588595",
+  "q0_short_hold_candidate": false,
+  "raw_rollouts": 6,
+  "raw_states": 198,
+  "repeatability": [
+    {
+      "exact_artifact_sha256": false,
+      "exact_card15": true,
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": false
+    },
+    {
+      "exact_artifact_sha256": false,
+      "exact_card15": true,
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": false
+    },
+    {
+      "exact_artifact_sha256": false,
+      "exact_card15": true,
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": false
+    },
+    {
+      "exact_artifact_sha256": false,
+      "exact_card15": true,
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": false
+    },
+    {
+      "exact_artifact_sha256": false,
+      "exact_card15": true,
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": false
+    }
+  ],
+  "route": "ONE_MS_NR2R2B0_BASELINE_REPEATABILITY_FAIL_STOP",
+  "schema_version": "rgeo-zgeo-1ms-nr2r2b0-source-q0-baseline-v1-independent",
+  "source_revision": "f4b1537"
+}

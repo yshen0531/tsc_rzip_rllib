@@ -1890,3 +1890,38 @@
   plant-reachability or closed-loop conclusion
 - Next: pause before a new prospective model/state architecture; NR3 and new
   TSC remain blocked
+
+## R_geo/Z_geo 1 ms NR2R2B0 source q0 baseline
+
+- Branch: `codex/rgeo-zgeo-1ms-nr2r2a-identifiability`
+- Architecture reassessment / NR2R2A design / audit / B0 design /
+  implementation: `ae5a614 / f6d9be5 / d00ec50 / eb549fb / f4b1537`
+- Remote project: `/home/yangshen0711/tsc_all/tsc_rzip_rllib`
+- Offline gate: `artifacts/nr2r2b0_offline_f4b1537_v1.json`, PASS, zero plant
+  advances, SHA-256
+  `b6cd36efff19149d384f0a24c98c77609b289abb4b722f95e32d60377952bef1`
+- Remote run: `artifacts/nr2r2b0_run_f4b1537_v1`
+- Remote log: `logs/nr2r2b0_run_f4b1537_v1.log`
+- Fresh process PID: `3393675`, exited after final result
+- Expected/actual: `6x32 / 6x32`, 192/192 authentic advances, 198 raw states
+- Primary/independent route:
+  `ONE_MS_NR2R2B0_BASELINE_REPEATABILITY_FAIL_STOP`
+- Physical repeatability: exact zero difference in R/Z/R_mid, Ip, 14 coil
+  currents and 48 wire-current components; Card15 exact
+- Artifact repeatability: inputa/geqdsk/coil/wire exact; sprsina differs on
+  every successor state across resets, so the frozen all-artifact gate fails
+- q0 short hold: FAIL; maximum source drift `17.6013 mm R / 23.4419 mm Z /
+  335.723 A Ip`; terminal max step `0.6177/0.8058 mm`
+- Raw inventory: 990 required files / 11,660,798,952 bytes / digest
+  `c8a8de054f3cd5af9e731d46f56beb4601ee13d6176ff3029e608479076f3789`
+- Primary / independent / compact SHA-256:
+  `ed4aff78c7d5b231841d114ced259774d43cea44bab35b2456ca16ff32588595`,
+  `c2428464e97fafca794549ecbabab4e48997343764a834fc505adcf9548ec086`,
+  `3f95504d2b329f9b3e5dd937b221749351678ddade77ca10ee4add8474548bb6`
+- Classification: frozen artifact/restart-identity repeatability design FAIL
+  plus genuine finite q0-hold FAIL; not runtime, TSC, physical-output
+  nondeterminism, model, controller, MPC or reachability evidence
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_nr2r2b0_20260813_f4b1537/`
+- Next: pause for explicit active source hold/recovery architecture and
+  prospective sprsina semantic audit; no atlas/probe/model TSC

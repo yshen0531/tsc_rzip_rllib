@@ -4479,3 +4479,24 @@ maximum is six independent 32-step all-q0 rollouts / 192 advances.  It first
 requires implementation, complete validation and a zero-TSC offline gate.
 The stage distinguishes baseline repeatability from a new terminal q0-hold
 criterion and never treats coil return as plasma recovery.
+
+# 2026-08-13: NR2R2B0 final; active recovery decision required
+
+Package revision `f4b1537` passed local focused tests 18/18, the shimmed full
+Windows suite 1695/1695, server focused tests 13/13, server full suite
+1677/1677 with one expected skip, and the zero-TSC offline gate.  The real
+campaign at remote `artifacts/nr2r2b0_run_f4b1537_v1` completed all six
+rollouts and 192/192 authentic advances.
+
+Primary and independent raw audits agree on final route
+`ONE_MS_NR2R2B0_BASELINE_REPEATABILITY_FAIL_STOP`.  R/Z/Ip, coil/wire
+currents, Card15 and four artifact hashes are exactly repeatable, but
+`sprsina` differs across independent resets at all 32 successor states, so
+the frozen exact-artifact gate cannot pass or be relaxed post-result.
+
+q0 also failed the independently frozen short-hold diagnostic: maximum source
+drift was `17.6013 mm R / 23.4419 mm Z / 335.723 A Ip`, and terminal-step
+drift reached `0.6177/0.8058 mm` per millisecond.  q0 is not a hold or
+recovery.  No source backup is qualified, so all atlas/probe/model/controller/
+Oracle TSC is paused pending an explicit active-recovery architecture decision
+and prospective `sprsina` semantic audit.

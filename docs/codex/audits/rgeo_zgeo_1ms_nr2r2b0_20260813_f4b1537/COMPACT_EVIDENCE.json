@@ -1,0 +1,39 @@
+{
+  "artifact_hash_exact_all": false,
+  "card15_exact_all": true,
+  "hold_metrics": {
+    "maximum_absolute_ip_from_source_a": 335.7230000000018,
+    "maximum_absolute_r_from_source_m": 0.017601295000000072,
+    "maximum_absolute_z_from_source_m": 0.023441924500000016,
+    "passed": false,
+    "terminal_absolute_r_net_drift_m": 0.0039436365000000695,
+    "terminal_absolute_z_net_drift_m": 0.0058223845,
+    "terminal_maximum_absolute_r_step_m": 0.0006176770000000387,
+    "terminal_maximum_absolute_z_step_m": 0.0008057880000000017
+  },
+  "independent_audit_sha256": "c2428464e97fafca794549ecbabab4e48997343764a834fc505adcf9548ec086",
+  "independent_route": "ONE_MS_NR2R2B0_BASELINE_REPEATABILITY_FAIL_STOP",
+  "missing_required_artifacts": [],
+  "new_controller_or_optimizer": 0,
+  "new_model_fit_or_training": 0,
+  "physical_repeatability_maximum": {
+    "coil_a": 0.0,
+    "geometry_m": 0.0,
+    "ip_a": 0.0,
+    "wire_a": 0.0
+  },
+  "plant_advances": 192,
+  "primary_result_sha256": "ed4aff78c7d5b231841d114ced259774d43cea44bab35b2456ca16ff32588595",
+  "primary_route": "ONE_MS_NR2R2B0_BASELINE_REPEATABILITY_FAIL_STOP",
+  "q0_short_hold_candidate": false,
+  "raw_rollouts": 6,
+  "raw_state_directories": 198,
+  "raw_states": 198,
+  "required_artifact_bytes": 11660798952,
+  "required_artifact_files": 990,
+  "required_artifact_inventory_sha256": "c8a8de054f3cd5af9e731d46f56beb4601ee13d6176ff3029e608479076f3789",
+  "run_dir": "artifacts/nr2r2b0_run_f4b1537_v1",
+  "schema_version": "rgeo-zgeo-1ms-nr2r2b0-compact-evidence-v1",
+  "source_revision": "f4b1537",
+  "sprsina_only_cross_reset_hash_difference": true
+}
