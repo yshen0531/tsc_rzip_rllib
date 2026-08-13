@@ -34,6 +34,15 @@
 > reserve, and still rejects any exact excess above 0.3 A. NR2 remains
 > blocked pending its result.
 
+> **1 ms NR2 prospectively frozen (2026-08-13 Asia/Shanghai).** On branch
+> `codex/rgeo-zgeo-1ms-nr2`, the fresh model-qualification design was frozen
+> before implementation or NR2 TSC. It uses 36 independent 16-step restarts
+> with development/calibration/locked-holdout separation and at most 576
+> advances. Exact structural Card15/readback propagation is independently
+> gated; only R_geo/Z_geo/Ip dynamics are learned. Fair candidates are ridge
+> ARX and ARX plus GRU/LSTM/TCN residual ensembles. The stage cannot implement
+> or claim controller, NMPC, Oracle, RL or tracking success.
+
 > **1 ms NR1 stopped on a numeric validation defect; NR1R1 frozen
 > (2026-08-13 Asia/Shanghai).** The authentic NR1 run at `129a091` performed
 > nine advances: both four-step hold rollouts passed, then Pattern A stopped

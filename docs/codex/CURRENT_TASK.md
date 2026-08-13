@@ -49,6 +49,12 @@ coordinate, splits, uncertainty gates, abort routes and maximum plant budget
 are frozen and implementation/offline validation pass. NR2 may qualify a
 predictive model only; it may not implement NMPC/RL or claim tracking.
 
+The prospective definition is now frozen in
+`docs/codex/reports/RGEO_ZGEO_1MS_NR2_MODEL_QUALIFICATION_DESIGN.md` before
+implementation or NR2 TSC. It separates exact structural Card15/readback
+propagation from learned plasma dynamics, compares ARX against GRU/LSTM/TCN
+residuals, and caps the fresh campaign at 36 trajectories / 576 advances.
+
 ### NR1R1 exact-decimal repair authorization (2026-08-13)
 
 The first authentic NR1 attempt at `129a091` stopped after nine advances.
