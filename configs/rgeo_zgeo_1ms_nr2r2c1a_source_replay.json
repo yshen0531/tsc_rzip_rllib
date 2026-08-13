@@ -1,0 +1,25 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c1a-canonical-source-replay-v1",
+  "campaign_id": "rgeo_zgeo_1ms_nr2r2c1a_canonical_source_replay_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "intended_use": "interface_replay_qualification_only",
+  "model_or_expert_use": "forbidden",
+  "maximum_plant_advances": 136,
+  "families": [
+    {"family": "q0", "horizon_steps": 4, "repeats": 2},
+    {"family": "q0", "horizon_steps": 8, "repeats": 2},
+    {"family": "q0", "horizon_steps": 16, "repeats": 2},
+    {"family": "q0", "horizon_steps": 32, "repeats": 2},
+    {"family": "pattern_a", "horizon_steps": 4, "repeats": 2},
+    {"family": "pattern_b", "horizon_steps": 4, "repeats": 2}
+  ],
+  "outer_r_radius_m": 0.05,
+  "outer_z_radius_m": 0.05,
+  "outer_ip_fraction": 0.1,
+  "repeatability": {"geometry_m": 1e-12, "ip_a": 1e-9, "coil_a": 1e-9, "wire_a": 1e-9},
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "online_branch_deadline_s": 0.001
+}
