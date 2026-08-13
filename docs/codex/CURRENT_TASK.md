@@ -34,6 +34,19 @@
 
 ## Active task: 1 ms NR1 safety, Card15 and first-effect qualification
 
+### NR1R1 exact-decimal repair authorization (2026-08-13)
+
+The first authentic NR1 attempt at `129a091` stopped after nine advances.
+Exact raw decimal differencing proves the only reported violation was a
+binary64 subtraction artifact: PF3L changed exactly `-0.300000 A`, while the
+validator represented the difference slightly above 0.3 A. Preserve that
+incomplete run and verdict. The active task is the separately identified,
+prospectively frozen NR1R1 repair in
+`docs/codex/reports/RGEO_ZGEO_1MS_NR1R1_DECIMAL_READBACK_REPAIR_DESIGN.md`.
+It may change only observed-current numeric representation and reporting;
+the hard limit, actions, matrix, safety/effect/replay gates and 24-advance
+maximum remain unchanged. NR2 remains blocked until NR1R1 completes.
+
 Implement and qualify the new route's exact 1 ms runner timing, strict
 single-turn `0.3 A` step bound, nonzero Card15 representability in both
 directions on all 14 coils, direct issue-to-successor effect timing, exact

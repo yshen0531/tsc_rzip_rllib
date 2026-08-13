@@ -1,5 +1,22 @@
 # Current status
 
+> **1 ms NR1 stopped on a numeric validation defect; NR1R1 frozen
+> (2026-08-13 Asia/Shanghai).** The authentic NR1 run at `129a091` performed
+> nine advances: both four-step hold rollouts passed, then Pattern A stopped
+> immediately after its first pulse. The only primary failure claimed PF3L
+> exceeded 0.3 A. Exact raw `coil_currents.csv` differencing instead gives
+> `(-13.530001 - -13.500001) * 1000 / 100 = -0.300000 A`; all 14 components
+> obeyed the hard bound. The false stop came from subtracting binary64
+> reconstructions. There was no actual slew exceedance, runtime/TSC failure,
+> boundary failure, or control-model result. The old run is immutable and
+> incomplete.
+>
+> A separate NR1R1 identity is now frozen before implementation or new TSC.
+> It retains the same six prefixes and at most 24 advances, while validating
+> observed kA-turn text and turn conversion in exact decimal arithmetic.
+> It does not add a tolerance or hidden reserve and must still reject every
+> exact increment above 0.3 A. NR2 remains blocked.
+
 > **1 ms NR1 authorized and prospectively frozen (2026-08-13
 > Asia/Shanghai).** After NR0 PASS at `34b580f`, the user explicitly authorized
 > continued development and new server TSC. Work moved to branch
