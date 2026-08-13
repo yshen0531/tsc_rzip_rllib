@@ -23,8 +23,9 @@ from .rgeo_zgeo_1ms_nr1 import (
 from .rgeo_zgeo_contract import ContractError
 
 
-NR2_1MS_CONTRACT_VERSION = "rgeo-zgeo-1ms-nr2-v1"
-NR2_1MS_CAMPAIGN_ID = "rgeo_zgeo_1ms_nr2_structural_residual_v1"
+NR2_1MS_CONTRACT_VERSION = "rgeo-zgeo-1ms-nr2r1-v1"
+NR2_1MS_CAMPAIGN_ID = "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_v1"
+NR2_1MS_EXCITATION_SEED = "rgeo_zgeo_1ms_nr2_structural_residual_v1"
 NR2_1MS_HORIZON_STEPS = 16
 NR2_1MS_SPLIT_PAIRS = {"development": 10, "calibration": 4, "holdout": 4}
 NR2_1MS_AMPLITUDE_A = {"full": Decimal("0.30"), "half": Decimal("0.15")}
@@ -75,7 +76,7 @@ def _direction(split: str, pair_index: int, event_index: int) -> tuple[int, ...]
     values = []
     for coil_index in range(N_COILS):
         token = (
-            f"{NR2_1MS_CAMPAIGN_ID}:{split}:{pair_index}:{event_index}:{coil_index}"
+            f"{NR2_1MS_EXCITATION_SEED}:{split}:{pair_index}:{event_index}:{coil_index}"
         ).encode()
         values.append(1 if hashlib.sha256(token).digest()[0] & 1 else -1)
     return tuple(values)

@@ -19,6 +19,15 @@ POINT_SCALES = np.asarray([0.0015, 0.0015, 150.0], dtype=float)
 SEEDS = (1701, 1702, 1703, 1704, 1705)
 
 
+def q0_readback_bias(
+    source_readback: Sequence[Any], q0_command: Sequence[Any]
+) -> tuple[Any, ...]:
+    """Return the non-fitted readback offset in the exact q0 coordinate."""
+    if len(source_readback) != CURRENT_DIM or len(q0_command) != CURRENT_DIM:
+        raise ValueError("q0 readback bias requires fourteen coils")
+    return tuple(readback - command for readback, command in zip(source_readback, q0_command))
+
+
 @dataclass(frozen=True)
 class Normalizer:
     frame_mean: tuple[float, ...]

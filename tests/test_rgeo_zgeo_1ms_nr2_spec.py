@@ -40,6 +40,10 @@ class OneMsNR2SpecTests(unittest.TestCase):
         )
         self.assertEqual(gate["plant_advances"], 576)
         self.assertEqual(
+            gate["action_stream_sha256"],
+            "5fb7533a2c656f824f34f168285412a16a75b1fa5aec19dec142ed51830c0ada",
+        )
+        self.assertEqual(
             {name: row["quantized_action_rank"] for name, row in gate["splits"].items()},
             {"development": 14, "calibration": 14, "holdout": 14},
         )

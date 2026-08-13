@@ -35,6 +35,7 @@ from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr2_spec import (  # noqa: E402
     build_one_ms_nr2_targets,
     validate_one_ms_nr2_specs,
 )
+from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr2_models import q0_readback_bias  # noqa: E402
 from tsc_rzip_rllib.control.rgeo_zgeo_contract import ContractError, DataIdentity, RGeoZGeoSignal  # noqa: E402
 from tsc_rzip_rllib.core.runner import TSCConfig, TSCStepRunner  # noqa: E402
 
@@ -91,7 +92,7 @@ def offline(config_path: Path, source_revision: str) -> dict[str, Any]:
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "identity": identity.to_dict(),
         "passed": passed,
-        "route": "ONE_MS_NR2_OFFLINE_PASS" if passed else "ONE_MS_NR2_OFFLINE_FAIL_NO_TSC",
+        "route": "ONE_MS_NR2R1_OFFLINE_PASS" if passed else "ONE_MS_NR2R1_OFFLINE_FAIL_NO_TSC",
         "failures": list(dict.fromkeys(failures)),
         "config_path": str(config_path),
         "disk_free_bytes": disk_free_bytes,
@@ -107,8 +108,10 @@ def _run_spec(cfg: TSCConfig, spec: Any, envelope: OneMsNR1SafetyEnvelope,
     targets = build_one_ms_nr2_targets(
         spec, source_current_a_tsc=source["currents_a_tsc"], turns_tsc=cfg.turns_tsc)
     source_readback = tuple(Decimal(value) for value in source["currents_decimal_a_tsc"])
-    source_command = tuple(Decimal(value) for value in source["active_command_decimal_a_tsc"])
-    bias = tuple(readback - command for readback, command in zip(source_readback, source_command))
+    q0_command = card15_target_decimal_a(
+        targets[0], cfg.turns_tsc, name=f"{spec.trajectory_id}.q0"
+    )
+    bias = q0_readback_bias(source_readback, q0_command)
     states: list[dict[str, Any]] = []
     actions: list[dict[str, Any]] = []
     failures: list[str] = []
@@ -233,7 +236,7 @@ def collect(config_path: Path, source_revision: str, output_dir: Path, phase: st
         "phase": phase,
         "source_revision": source_revision,
         "passed": passed,
-        "route": f"ONE_MS_NR2_{phase.upper()}_COLLECTION_PASS" if passed else "ONE_MS_NR2_SAFETY_FAIL_STOP",
+        "route": f"ONE_MS_NR2R1_{phase.upper()}_COLLECTION_PASS" if passed else "ONE_MS_NR2R1_SAFETY_FAIL_STOP",
         "expected_trajectories": len(selected),
         "completed_trajectories": len(completed),
         "plant_advances": advances,

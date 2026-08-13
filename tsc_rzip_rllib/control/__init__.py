@@ -91,6 +91,7 @@ from .rgeo_zgeo_1ms_nr2_models import (
     ARXModel as OneMsNR2ARXModel,
     Normalizer as OneMsNR2Normalizer,
     POINT_SCALES as ONE_MS_NR2_POINT_SCALES,
+    q0_readback_bias,
     recursive_rollout as recursive_one_ms_nr2_rollout,
 )
 
@@ -166,5 +167,6 @@ __all__ = [
     "OneMsNR2ARXModel",
     "OneMsNR2Normalizer",
     "ONE_MS_NR2_POINT_SCALES",
+    "q0_readback_bias",
     "recursive_one_ms_nr2_rollout",
 ]

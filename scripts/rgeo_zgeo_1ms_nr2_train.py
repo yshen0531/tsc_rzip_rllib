@@ -119,7 +119,7 @@ def fit_calibrate(campaign:Path,revision:str)->dict[str,Any]:
     development=load_trajectories(campaign,{"development"}); calibration_rows=load_trajectories(campaign,{"calibration"}); normalizer=Normalizer.fit(development); selection=select(development); ensembles=fit_ensembles(development,normalizer,selection["selected"]); calibration={kind:calibrate(models,development,calibration_rows,normalizer) for kind,models in ensembles.items()}; eligible=sorted(k for k,v in calibration.items() if v["eligible"])
     bundle=campaign/"frozen_models.pt";
     if bundle.exists(): raise FileExistsError(f"refusing to overwrite {bundle}")
-    torch.save(_serialize(ensembles,selection["selected"],normalizer,calibration),bundle); digest=_sha(bundle); result={"campaign_id":NR2_1MS_CAMPAIGN_ID,"source_revision":revision,"passed":bool(eligible),"route":"ONE_MS_NR2_CALIBRATED_CANDIDATES_FROZEN_HOLDOUT_AUTHORIZED" if eligible else "ONE_MS_NR2_CALIBRATION_FAIL_NO_HOLDOUT","selection":selection,"calibration":calibration,"eligible_classes":eligible,"frozen_model_sha256":digest}; _write(campaign/"fit_calibrate.json",result)
+    torch.save(_serialize(ensembles,selection["selected"],normalizer,calibration),bundle); digest=_sha(bundle); result={"campaign_id":NR2_1MS_CAMPAIGN_ID,"source_revision":revision,"passed":bool(eligible),"route":"ONE_MS_NR2R1_CALIBRATED_CANDIDATES_FROZEN_HOLDOUT_AUTHORIZED" if eligible else "ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT","selection":selection,"calibration":calibration,"eligible_classes":eligible,"frozen_model_sha256":digest}; _write(campaign/"fit_calibrate.json",result)
     if eligible: _write(campaign/"holdout_authorization.json",{"campaign_id":NR2_1MS_CAMPAIGN_ID,"holdout_authorized":True,"source_revision":revision,"frozen_model_sha256":digest,"eligible_classes":eligible})
     return result
 
@@ -152,7 +152,7 @@ def evaluate(campaign:Path,revision:str)->dict[str,Any]:
         if winner!="arx" and "arx" in passing:
             gain=1-results[winner]["mean_squared_scaled_error"]/results["arx"]["mean_squared_scaled_error"]
             if gain<.15 or results[winner]["joint_interval_coverage"]<results["arx"]["joint_interval_coverage"] or results[winner]["p95_scaled_error"]>results["arx"]["p95_scaled_error"]: winner="arx"
-    result={"campaign_id":NR2_1MS_CAMPAIGN_ID,"source_revision":revision,"passed":winner is not None,"route":"ONE_MS_NR2_CAUSAL_MODEL_QUALIFIED" if winner else "ONE_MS_NR2_MODEL_COMPARISON_FAIL_REDESIGN","winner":winner,"models":results,"frozen_model_sha256":_sha(bundle_path)}; _write(campaign/"holdout_evaluation.json",result); return result
+    result={"campaign_id":NR2_1MS_CAMPAIGN_ID,"source_revision":revision,"passed":winner is not None,"route":"ONE_MS_NR2R1_CAUSAL_MODEL_QUALIFIED" if winner else "ONE_MS_NR2R1_MODEL_COMPARISON_FAIL_REDESIGN","winner":winner,"models":results,"frozen_model_sha256":_sha(bundle_path)}; _write(campaign/"holdout_evaluation.json",result); return result
 
 
 def main()->int:

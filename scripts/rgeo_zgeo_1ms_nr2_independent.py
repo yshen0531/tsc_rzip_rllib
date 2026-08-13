@@ -29,6 +29,7 @@ from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr2_spec import (  # noqa: E402
     build_one_ms_nr2_targets,
     validate_one_ms_nr2_specs,
 )
+from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr2_models import q0_readback_bias  # noqa: E402
 from tsc_rzip_rllib.core.runner import TSCConfig  # noqa: E402
 
 STRUCTURAL_CURRENT_ERROR_A = Decimal("1e-9")
@@ -49,7 +50,13 @@ def audit(config_path: Path, campaign_dir: Path, phase: str, source_revision: st
         name="independent.source_command",
     )
     source_readback = source_state["current_decimal_a_tsc"]
-    bias = tuple(value-command for value,command in zip(source_readback,source_command))
+    all_specs = build_one_ms_nr2_specs()
+    q0 = build_one_ms_nr2_targets(
+        all_specs[0], source_current_a_tsc=source_state["current_a_tsc"],
+        turns_tsc=cfg.turns_tsc,
+    )[0]
+    q0_command = card15_target_decimal_a(q0, cfg.turns_tsc, name="independent.q0")
+    bias = q0_readback_bias(source_readback, q0_command)
     spec_gate = validate_one_ms_nr2_specs(
         build_one_ms_nr2_specs(), source_current_a_tsc=source_state["current_a_tsc"],
         turns_tsc=cfg.turns_tsc,
@@ -99,7 +106,7 @@ def audit(config_path: Path, campaign_dir: Path, phase: str, source_revision: st
     expected_advances=len(specs)*16
     if completed!=len(specs) or command_checks!=expected_advances or observed_checks!=expected_advances or structural_checks!=expected_advances or state_checks!=len(specs)*17: failures.append("COUNT_GATE")
     failures=list(dict.fromkeys(failures)); passed=not failures
-    result={"schema_version":f"{NR2_1MS_CONTRACT_VERSION}-independent-v1","campaign_id":NR2_1MS_CAMPAIGN_ID,"phase":phase,"source_revision":source_revision,"passed":passed,"route":f"ONE_MS_NR2_{phase.upper()}_INDEPENDENT_PASS" if passed else "ONE_MS_NR2_INDEPENDENT_FAIL","failures":failures,"expected_trajectories":len(specs),"completed_trajectories":completed,"plant_advances":command_checks,"state_checks":state_checks,"command_checks":command_checks,"observed_slew_checks":observed_checks,"structural_current_checks":structural_checks,"raw_required_file_count":raw_files,"maximum":{key:str(value) if isinstance(value,Decimal) else value for key,value in maximum.items()},"spec_gate":spec_gate}
+    result={"schema_version":f"{NR2_1MS_CONTRACT_VERSION}-independent-v1","campaign_id":NR2_1MS_CAMPAIGN_ID,"phase":phase,"source_revision":source_revision,"passed":passed,"route":f"ONE_MS_NR2R1_{phase.upper()}_INDEPENDENT_PASS" if passed else "ONE_MS_NR2R1_INDEPENDENT_FAIL","failures":failures,"expected_trajectories":len(specs),"completed_trajectories":completed,"plant_advances":command_checks,"state_checks":state_checks,"command_checks":command_checks,"observed_slew_checks":observed_checks,"structural_current_checks":structural_checks,"raw_required_file_count":raw_files,"maximum":{key:str(value) if isinstance(value,Decimal) else value for key,value in maximum.items()},"spec_gate":spec_gate}
     destination.write_text(json.dumps(result,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     return result
 
