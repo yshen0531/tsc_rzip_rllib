@@ -4450,18 +4450,25 @@ Final route: `ONE_MS_NR2R1_CALIBRATION_FAIL_NO_HOLDOUT`. No NR3, controller,
 MPC, RL, expert-data or further TSC work is authorized pending the user's
 decision on a new prospective state/model architecture.
 
-# 2026-08-13: NR2R2A prospective identifiability audit active
+# 2026-08-13: NR2R2A identifiability audit complete
 
 The user authorized continued staged development and later new TSC under the
 post-NR2R1 route.  Work has moved to branch
 `codex/rgeo-zgeo-1ms-nr2r2a-identifiability` from clean tracked checkpoint
 `ae5a614`.
 
-NR2R2A is now prospectively frozen as a local, zero-server, zero-TSC,
-zero-fit audit in
+NR2R2A was prospectively frozen and then completed as a local, zero-server,
+zero-TSC, zero-fit audit in
 `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2A_IDENTIFIABILITY_AUDIT_DESIGN.md`.
-It uses only the 28 hashed NR2R1 development/calibration compact records and
-must independently recompute unpadded lag-support, baseline/factorization
-gaps and deployable state semantics.  It cannot read the invalidly opened
-holdout or qualify a model/controller.  A complete result may advance only to
-a separately frozen source baseline/repeatability/hold-recovery design.
+It used only the 28 hashed NR2R1 development/calibration compact records;
+holdout reads and all model/controller work were zero.  Primary and
+independent implementations agree.  Development lag-8 rank is `94/112` for
+both action coordinates; calibration is `40/112` and `41/112`.  There are no
+all-q0 baselines or independent position anchors.  The final route is
+`ONE_MS_NR2R2A_IDENTIFIABILITY_AUDIT_COMPLETE_SOURCE_BASELINE_RECOVERY_DESIGN_REQUIRED`.
+
+NR2R2A also corrected a reporting-only scalar: maximum signed-pair Ip
+half-difference is `30.14075 A`, not `22.50995 A`.  Raw/compact evidence and
+the architecture route are unchanged.  The active next task is to freeze a
+separate source baseline/repeatability/hold-recovery design.  No new TSC may
+start before that prospective checkpoint.

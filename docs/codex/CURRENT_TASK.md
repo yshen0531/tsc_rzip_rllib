@@ -13,6 +13,18 @@
 > of a new source q0-baseline/repeatability/hold-recovery sentinel; no TSC may
 > start until that next identity and its hard stops are prospectively frozen.
 
+> **NR2R2A result (2026-08-13):** primary and independent zero-fit audits
+> agree under the frozen tolerance.  The final route is
+> `ONE_MS_NR2R2A_IDENTIFIABILITY_AUDIT_COMPLETE_SOURCE_BASELINE_RECOVERY_DESIGN_REQUIRED`.
+> Development/calibration lag-8 action support is rank deficient, there is no
+> independent all-q0 baseline or factorizable position/history contrast, and
+> the old eight-frame model used repeated-first-frame pseudo-history.  See
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2A_IDENTIFIABILITY_AUDIT_RESULT.md`.
+> The active next task is only to prospectively freeze a separate source
+> q0-baseline, same-prefix repeatability and hold/backup/recovery sentinel.
+> No server/TSC execution is authorized until that identity, exact stop bounds
+> and maximum plant budget are committed.
+
 > **Post-NR2R1 route reassessment (2026-08-13):** the documentation-only
 > architecture review is complete with route
 > `POST_NR2R1_REASSESSMENT_COMPLETE_NR2R2A_DESIGN_AUDIT_REQUIRED`.

@@ -1,0 +1,87 @@
+{
+  "audit_complete": true,
+  "counters": {
+    "controller_or_optimizer_executions": 0,
+    "holdout_records_read": 0,
+    "model_fits_or_training_runs": 0,
+    "new_snapshots_or_replay_branches": 0,
+    "new_tsc_or_plant_advances": 0,
+    "server_accesses": 0,
+    "server_raw_reads": 0
+  },
+  "factorization_support": {
+    "independent_all_q0_baseline": false,
+    "matched_position_different_time_or_arrival_history": false,
+    "matched_time_different_position": false,
+    "position_time_history_effects_separable": false,
+    "same_primitive_repeated_across_position_anchors": false
+  },
+  "input": {
+    "bytes": 2431302,
+    "files": 28,
+    "holdout_records_read": 0,
+    "ordered_inventory_sha256": "98f6bd1992b9681ec548e4bbc8f1f6b6c7332309522a81e961c8be57edbd3c49",
+    "role": "consumed_architecture_development"
+  },
+  "lag_support": {
+    "calibration": {
+      "issued_increment": {
+        "lag_8_columns": 112,
+        "lag_8_rank": 40,
+        "largest_full_column_rank_lag": 3
+      },
+      "q0_offset": {
+        "lag_8_columns": 112,
+        "lag_8_rank": 41,
+        "largest_full_column_rank_lag": 2
+      }
+    },
+    "development": {
+      "issued_increment": {
+        "lag_7_condition_number": 14512.618587,
+        "lag_8_columns": 112,
+        "lag_8_rank": 94,
+        "largest_full_column_rank_lag": 7
+      },
+      "q0_offset": {
+        "lag_7_condition_number": 201.628970,
+        "lag_8_columns": 112,
+        "lag_8_rank": 94,
+        "largest_full_column_rank_lag": 7
+      }
+    },
+    "interpretation": "dataset_support_only_not_physical_memory_cutoff"
+  },
+  "output_identity": {
+    "independent_sha256": "d481f0aae99ef42f44fcd26f31b8c318151d6ffc433f16149d041c566a52f27b",
+    "numeric_agreement_atol": 1e-12,
+    "numeric_agreement_rtol": 1e-12,
+    "primary_sha256": "8cc6af465d9f7152d2f5f2756181ac2a41db96dd612855bf8fa87205b06e249c"
+  },
+  "previous_summary_erratum": {
+    "correct_maximum_signed_pair_ip_half_difference_a": 30.14075000000048,
+    "location": "development pair 0 horizon 6",
+    "previous_reported_a": 22.50995,
+    "type": "derived_reporting_only"
+  },
+  "route": "ONE_MS_NR2R2A_IDENTIFIABILITY_AUDIT_COMPLETE_SOURCE_BASELINE_RECOVERY_DESIGN_REQUIRED",
+  "source_representation": {
+    "absolute_step_over_16_feature": true,
+    "arx_history_steps": 8,
+    "explicit_stable_low_order_passive_innovation_state": false,
+    "short_history_repeats_first_frame": true
+  },
+  "state_geometry": {
+    "hfs_states": 476,
+    "independent_position_anchors": 1,
+    "lfs_states": 0,
+    "pearson_correlation_with_time": {
+      "ip": -0.9844749087244498,
+      "r_geo": -0.9965965457389674,
+      "z_geo": 0.999573695316219
+    },
+    "states": 476,
+    "trajectories": 28,
+    "unique_physical_starts": 1
+  }
+}
