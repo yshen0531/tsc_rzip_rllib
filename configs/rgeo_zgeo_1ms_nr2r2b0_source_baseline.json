@@ -1,0 +1,37 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-nr2r2b0-source-q0-baseline-v1",
+  "campaign_id": "rgeo_zgeo_1ms_nr2r2b0_source_q0_baseline_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "rollouts": 6,
+  "steps_per_rollout": 32,
+  "maximum_plant_advances": 192,
+  "intended_use": "interface_baseline_qualification_only",
+  "model_or_expert_use": "forbidden",
+  "outer_r_radius_m": 0.05,
+  "outer_z_radius_m": 0.05,
+  "outer_ip_fraction": 0.1,
+  "inner_r_radius_m": 0.025,
+  "inner_z_radius_m": 0.025,
+  "inner_ip_fraction": 0.05,
+  "terminal_window_start_state": 24,
+  "terminal_window_end_state": 32,
+  "terminal_max_axis_step_m": 0.0001,
+  "terminal_max_axis_net_drift_m": 0.001,
+  "repeatability": {
+    "geometry_m": 1e-12,
+    "ip_a": 1e-9,
+    "coil_a": 1e-9,
+    "wire_a": 1e-9,
+    "card15": "exact",
+    "artifact_sha256": "exact"
+  },
+  "required_artifacts": [
+    "inputa",
+    "geqdsk",
+    "coil_currents.csv",
+    "wire_currents.csv",
+    "sprsina"
+  ]
+}

@@ -25,6 +25,16 @@
 > No server/TSC execution is authorized until that identity, exact stop bounds
 > and maximum plant budget are committed.
 
+> **NR2R2B0 prospective freeze (2026-08-13):** the source q0-baseline,
+> repeatability and provisional short-hold design is frozen in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2B0_SOURCE_BASELINE_DESIGN.md` before
+> implementation or TSC.  It permits at most six independent 32-step all-q0
+> rollouts (192 advances) only after implementation, local/server validation
+> and a zero-TSC offline gate.  It contains no probe/model/controller.  A safe
+> repeatable baseline may still classify q0 as `NOT_HOLD`; no atlas or model
+> campaign may start until an active hold/recovery route is separately
+> qualified.
+
 > **Post-NR2R1 route reassessment (2026-08-13):** the documentation-only
 > architecture review is complete with route
 > `POST_NR2R1_REASSESSMENT_COMPLETE_NR2R2A_DESIGN_AUDIT_REQUIRED`.

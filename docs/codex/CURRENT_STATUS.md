@@ -4472,3 +4472,10 @@ half-difference is `30.14075 A`, not `22.50995 A`.  Raw/compact evidence and
 the architecture route are unchanged.  The active next task is to freeze a
 separate source baseline/repeatability/hold-recovery design.  No new TSC may
 start before that prospective checkpoint.
+
+NR2R2B0 is now prospectively frozen in
+`docs/codex/reports/RGEO_ZGEO_1MS_NR2R2B0_SOURCE_BASELINE_DESIGN.md`.  Its
+maximum is six independent 32-step all-q0 rollouts / 192 advances.  It first
+requires implementation, complete validation and a zero-TSC offline gate.
+The stage distinguishes baseline repeatability from a new terminal q0-hold
+criterion and never treats coil return as plasma recovery.
