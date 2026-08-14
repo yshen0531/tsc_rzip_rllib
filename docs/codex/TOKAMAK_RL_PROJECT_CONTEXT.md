@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current ID-0 result / ID-0T1 notice (2026-08-14):** ID-0 completed its
+> exact 20-rollout/400-advance fresh campaign with execution, raw,
+> repeatability, signal, Ip and source-local vector-geometry gates passing.
+> Its independent server raw audit passed. Only the frozen state20 tail-ratio
+> gate failed, so the exact route is
+> `ONE_MS_ID0_TAIL_HORIZON_INSUFFICIENT_REDESIGN`; ID-0 remains consumed design
+> evidence and no model fitting is authorized. The sole active next stage is
+> the finite ID-0T1 state32 matched-prefix tail discriminator. It must not
+> weaken the tail gate, add directions, or become an open-ended horizon ladder.
+> `docs/codex/CURRENT_TASK.md` is authoritative and all older notices below are
+> historical.
+>
 > **Current ID-0 notice (2026-08-14):** the source-local vector/tail pilot is
 > prospectively frozen at config SHA-256
 > `668b0e4bb21166dc4d92fe4381c4177b4789b5a3139a176f7ab1b109393c31eb`.

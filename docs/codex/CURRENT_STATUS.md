@@ -1,5 +1,28 @@
 # Current status
 
+> **ID-0 completed as a clean tail-horizon FAIL; ID-0T1 is active
+> (2026-08-14 Asia/Shanghai).** The complete fresh campaign produced 20/20
+> rollouts, 400/400 verified advances, 420 states and 2,100 required artifacts
+> (`24,735,028,080` bytes; inventory SHA-256
+> `ecce4ee398b99cce3c4bc822ba14f9a232f9ba7c9afcac4538f3a2af79e1b6ef`).
+> Execution, raw integrity, repeatability, signal, Ip and source-local vector
+> geometry passed; the independent server-side reparse had zero failures. The
+> six early response rays had R/Z rank 2, best pair `p03:plus`/`p07:minus`
+> condition `2.0870211406380474`, and maximum angular gap
+> `132.32694820821953 deg`.
+>
+> Tail closure alone failed: p03-plus, p04-plus and p07-minus had state20
+> terminal/peak ratios `0.2449686034`, `0.2120169068` and `0.2149836096`, above
+> the frozen `0.20` cap. The final route is
+> `ONE_MS_ID0_TAIL_HORIZON_INSUFFICIENT_REDESIGN`; no threshold was weakened
+> and no model was fit. The earlier interrupted launch is preserved separately
+> as an orchestration-incomplete attempt and is not mixed into this result.
+>
+> The next stage is only the prospectively frozen ID-0T1 state32 tail
+> discriminator. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID0_VECTOR_TAIL_RESULT.md`. All older active
+> notices below are historical.
+>
 > **ID-0 vector/tail design frozen; implementation pending (2026-08-14
 > Asia/Shanghai).** Config SHA-256 is
 > `668b0e4bb21166dc4d92fe4381c4177b4789b5a3139a176f7ab1b109393c31eb`.

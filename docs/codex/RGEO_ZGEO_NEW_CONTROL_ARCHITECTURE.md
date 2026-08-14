@@ -1,5 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-0 evidence amendment / ID-0T1 gate (2026-08-14):** ID-0 established a
+> repeatable source-local signed R/Z response set with rank 2, best two-ray
+> condition `2.0870211406380474` and maximum angular gap
+> `132.32694820821953 deg`, while respecting the exact actuator, boundary and
+> Ip interfaces. It did not close the frozen state20 tail-ratio gate, so the
+> data remain design evidence and the architecture may not select or train a
+> dynamics model yet. The next finite discriminator repeats only the same
+> early pulse-return histories through state32 and applies the unchanged tail
+> criteria. PASS may lead only to small-HFS position/time/history
+> factorization; FAIL triggers route review rather than a longer automatic
+> ladder. The eventual model/controller architecture and final two-axis path
+> goal are unchanged.
+>
 > **ID-0 prospective architecture gate (2026-08-14):** the first campaign
 > under the TSC-only identification contract is frozen to two q0 baselines and
 > actual plus/minus p03/p04/p07 pulse-return families at early and late q0

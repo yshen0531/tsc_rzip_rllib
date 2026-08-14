@@ -1,5 +1,30 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-0 final tail FAIL; ID-0T1 longer-tail design is the unique active task
+> (2026-08-14):** ID-0 completed 20/20 fresh rollouts, 400/400 verified
+> one-millisecond advances, 420 states and 2,100 required artifacts. Execution,
+> raw integrity, independent raw reparse, repeatability, signed signal, Ip and
+> source-local R/Z vector geometry all passed. The frozen tail-closure gate
+> failed only because three state20 terminal/peak ratios remained above 0.20.
+> The final route is `ONE_MS_ID0_TAIL_HORIZON_INSUFFICIENT_REDESIGN`.
+>
+> The unique active task is to prospectively freeze and implement ID-0T1: two
+> fresh q0 baselines plus one fresh replay of each six early signed p03/p04/p07
+> arms, with the unchanged issue2 pulse and exact issue3 q0 return, extended
+> through state32. The new histories must reproduce the consumed ID-0 prefix
+> through state20 at the frozen tolerances, keep every Card15/current/slew,
+> paired-boundary, Ip, limiter, outer-envelope, raw and independent-audit gate,
+> and evaluate the unchanged tail gates at state32. It is one finite tail-window
+> discriminator, not an automatic horizon ladder. A scientific FAIL at state32
+> requires route review rather than state40 or a weaker gate.
+>
+> ID-0 remains consumed design evidence only and is forbidden for fitting,
+> calibration, holdout, expert/Oracle/fixture, BC/DAgger/RL, controller safety
+> or recourse. ID-0T1 PASS may authorize only a separately frozen small-HFS
+> position/time/history factorization design; it does not itself authorize
+> model fitting, controller implementation, transport or MPC. This block is
+> the only active pointer; every notice below is historical.
+>
 > **ID-0 source-local vector/tail pilot prospectively frozen (2026-08-14):**
 > the unique active identity is `rgeo-zgeo-1ms-id0-vector-tail-v1`, defined by
 > `configs/rgeo_zgeo_1ms_id0_vector_tail.json` and
