@@ -161,7 +161,12 @@ def _route(stage: dict[str, Any], repeatable: bool, metrics: dict[str, Any]) -> 
     return stage["routes"]["pass"]
 
 
-def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
+def audit(
+    stage_path: Path,
+    run_dir: Path,
+    source_revision: str,
+    destination: Path | None = None,
+) -> dict[str, Any]:
     failures: list[str] = []
     stage_path = _inside(stage_path, "stage config")
     run_dir = _inside(run_dir, "run directory")
@@ -205,7 +210,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                 source_signal = states[0]
             stream = stream_by_id[spec["rollout_id"]]
             actions = []
-            previous_command = states[0]["active_command_decimal_a_tsc"]
+            # The retained state-0 inputa is the outgoing issue-0 command.
+            # Reconstruct the first issued slew from the authentic pre-issue
+            # source command, as the primary runner did, rather than treating
+            # that post-write artifact as the pre-issue command.
+            previous_command = source["active_command_decimal_a_tsc"]
             outer = stage["empirical_exploration"]["outer_hard_envelope"]
             inner = stage["empirical_exploration"]["inner_probe_issue_clearance"]
             caps = stage["empirical_exploration"]["post_successor_step_caps"]
@@ -320,7 +329,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
         ),
         "claim_boundary": "independent_raw_recomputation_not_model_controller_or_safety_qualification",
     }
-    destination = run_dir / "independent_audit.json"
+    destination = (
+        run_dir / "independent_audit.json"
+        if destination is None
+        else _inside(destination, "audit destination")
+    )
     if destination.exists():
         raise FileExistsError(f"refusing to overwrite {destination}")
     destination.write_text(json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
@@ -332,8 +345,9 @@ def main() -> int:
     parser.add_argument("--stage-config", type=Path, default=ROOT / "configs/rgeo_zgeo_1ms_id1b_persistent_dwell_geometry.json")
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--source-revision", required=True)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    result = audit(args.stage_config, args.run_dir, args.source_revision)
+    result = audit(args.stage_config, args.run_dir, args.source_revision, args.output)
     print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
     return 0 if result["audit_passed"] else 2
 

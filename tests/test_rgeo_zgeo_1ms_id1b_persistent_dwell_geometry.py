@@ -127,6 +127,33 @@ class TestId1bPersistentDwellGeometry(unittest.TestCase):
         self.assertEqual(primary.route_for(self.stage, True, True, True, metrics), self.stage["routes"]["pass"])
         self.assertEqual(independent._route(self.stage, True, metrics), self.stage["routes"]["pass"])
 
+    def test_raw_state0_outgoing_inputa_is_not_preissue_source_command(self) -> None:
+        with patch.object(TSCConfig, "validate", lambda self: None):
+            stage, cfg, evidence = primary.load(STAGE)
+        compact = json.loads(SOURCE.read_text(encoding="utf-8"))
+        state = compact["states"][0]
+        source_command = state["active_command_decimal_a_tsc"]
+        streams = primary.targets_and_streams(
+            stage,
+            cfg,
+            evidence,
+            {
+                "currents_a_tsc": state["actual_current_a_tsc"],
+                "active_command_decimal_a_tsc": source_command,
+            },
+        )
+        issue0 = streams[0]["actions"][0]
+        self.assertEqual(issue0["maximum_issued_delta_a"], 1.0e-5)
+        self.assertNotEqual(
+            source_command,
+            [
+                str(value)
+                for value in primary.card15_target_decimal_a(
+                    streams[0]["targets"][0], cfg.turns_tsc, name="id1b.test.issue0"
+                )
+            ],
+        )
+
     def test_safety_or_data_role_mutation_fails_closed(self) -> None:
         for path, value in (
             (("model_fit_use",), "allowed"),
