@@ -1,5 +1,12 @@
 # Current status
 
+> **NR2R2C2aA1 level-2 authority discriminator frozen; not yet implemented or
+> run (2026-08-14 Asia/Shanghai).** Two identical canonical-source 32 ms
+> schedules will ramp p07 q0 -> level1 -> level2 (maximum 0.30 A offset), hold,
+> and return level1 -> q0. Adjacent per-step slew remains <=0.15 A. The stage
+> tests exact replay and persistent same-time opposition to q0 drift; it is not
+> a nominal hold, recovery, model or controller campaign.
+
 > **NR2R2C2a constant-dwell search safely completed with no hold candidate
 > (2026-08-14 Asia/Shanghai).** Both 32 ms trajectories completed 64/64
 > advances inside all interface/current/successor bounds. Independent V2

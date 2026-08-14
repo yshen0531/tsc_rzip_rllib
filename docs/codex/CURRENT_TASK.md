@@ -1,5 +1,14 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA1 level-2 authority prospective freeze (2026-08-14):** the
+> active task is the separately frozen two-reset/64-advance discriminator in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA1_LEVEL2_AUTHORITY_DESIGN.md`.
+> It ramps through the already measured p07 level1 cell to a componentwise
+> q0+/-0.3 A level2 cell, holds it, returns exactly through level1 to q0, and
+> tests persistent same-time opposition to q0 drift. It is development-only;
+> PASS may authorize only a separate time-varying C2a search design, not
+> Nominal-H1, recovery, model, MPC, atlas or learning.
+
 > **NR2R2C2a search result (2026-08-14):** both frozen 32 ms constant-dwell
 > searches completed safely (64/64 advances), and independent V2 reproduced
 > all 330 required final-raw files, actions and metrics. Neither candidate
