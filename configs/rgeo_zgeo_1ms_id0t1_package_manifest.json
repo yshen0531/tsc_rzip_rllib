@@ -3,8 +3,8 @@
   "campaign_id": "rgeo_zgeo_1ms_id0t1_long_tail_v1",
   "implementation_revision": "18788cf46eb029821169ae252fa2429bb50e5759",
   "payload_file_count": 54,
-  "payload_inventory_sha256": "30d9cb04f586d5cba003078646677d2153eb86eb772b846549bac229876b44fe",
-  "inventory_line_format": "path\\tbytes\\tsha256\\n sorted by path, UTF-8",
+  "payload_inventory_sha256": "53318195dc8b2ec1a7db72d5c871a89e641b68c325124a1e59ebb8b040675f58",
+  "inventory_line_format": "path\\tbytes\\tsha256\\n sorted by Unicode code point, UTF-8",
   "paths": [
     "configs/rgeo_zgeo_1ms_id0t1_long_tail.json",
     "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
