@@ -2,10 +2,11 @@
 
 > **ID-1A design frozen; implementation pending (2026-08-14
 > Asia/Shanghai).** Config SHA-256 is
-> `c05c392c8ac7da93cfce9cd16bd962f60ef9c99708171501e7641fefb7c10d6c`.
-> The finite matrix has 28 rollouts and 672 maximum advances. It repeats the
+> `883945f8a15ba1d9aabe037fde6e51ba420cb7a59ba792df1064611b3ba196bf`.
+> The finite matrix has 32 rollouts and 768 maximum advances. It repeats the
 > same p03/p07 signed probes at early/late q0, after near-matched p04 histories
 > and after two bounded cumulative prefixes that return to q0 before probing.
+> Each non-q0 context also has its own no-probe matched baseline.
 > No ID-1A code, package, server deployment or TSC has run yet. A PASS is
 > development-only and cannot qualify a controller. Older notices below are
 > historical.

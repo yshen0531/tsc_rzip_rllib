@@ -4,13 +4,14 @@
 > unique active task (2026-08-14):** identity
 > `rgeo-zgeo-1ms-id1a-context-anchor-pilot-v1` is frozen by
 > `configs/rgeo_zgeo_1ms_id1a_context_anchor_pilot.json` (SHA-256
-> `c05c392c8ac7da93cfce9cd16bd962f60ef9c99708171501e7641fefb7c10d6c`)
+> `883945f8a15ba1d9aabe037fde6e51ba420cb7a59ba792df1064611b3ba196bf`)
 > and
 > `docs/codex/reports/RGEO_ZGEO_1MS_ID1A_CONTEXT_ANCHOR_PILOT_DESIGN.md`.
-> It contains 28 canonical resets, at most 672 one-ms advances, two q0
+> It contains 32 canonical resets, at most 768 one-ms advances, two q0
 > baselines, early/late q0 probes, near-matched p04 history prefixes and two
-> bounded cumulative anchor prefixes. Every contextual p03/p07 signed probe
-> starts with q0 as the active command and retains the complete causal prefix.
+> bounded cumulative anchor prefixes. Each non-q0 prefix has its own no-probe
+> matched baseline. Every contextual p03/p07 signed probe starts with q0 as
+> the active command and retains the complete causal prefix.
 >
 > This stage is TSC-only empirical identification. Implementation may add only
 > the collector, independent auditor, launcher, package identity and focused

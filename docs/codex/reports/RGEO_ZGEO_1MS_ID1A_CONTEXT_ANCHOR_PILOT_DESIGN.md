@@ -20,7 +20,7 @@ lookup.
 ## Matrix and budget
 
 Every rollout starts from the canonical 1100 ms reset, runs for 24 one-ms
-issues, and stops without retry. There are 28 rollouts and at most 672 plant
+issues, and stops without retry. There are 32 rollouts and at most 768 plant
 advances:
 
 - two all-q0 baselines;
@@ -31,11 +31,14 @@ advances:
 - the same four issue10 probes after a bounded cumulative p03-minus or
   p07-plus prefix, stepped back to q0 through an adjacent level at issue7 and
   exact q0 at issue8.
+- one no-probe matched baseline for each of the four non-q0 prefixes.
 
 All contextual probes therefore see q0 as the active command before issue10.
 They differ only in exact, fully retained causal prefix and resulting current
-R_geo/Z_geo/Ip. The probe is returned to exact q0 at issue11 and the remaining
-window is recorded; tail extinction is not a gate.
+R_geo/Z_geo/Ip. Every response is differenced against its own prefix-matched
+no-probe baseline, never silently against the global q0 path. The probe is
+returned to exact q0 at issue11 and the remaining window is recorded; tail
+extinction is not a gate.
 
 ## Why these prefixes
 
