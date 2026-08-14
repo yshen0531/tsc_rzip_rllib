@@ -1,37 +1,47 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Post-C2aA3 deep route review (2026-08-14):** the local zero-new-TSC
-> vector/value-of-information audit is complete with route
-> `POST_C2AA3_DEEP_REVIEW_A4_SINGLE_CAMPAIGN_TAIL_GATE_AND_VECTOR_RECOURSE_REQUIRED`.
-> The final goal remains approximate safe causal two-axis relative/path/
-> waypoint tracking from 1100 ms under the 1 ms and per-turn per-coil
-> `<=0.3 A/step` contract; source hold is only a bootstrap step toward a
-> qualified terminal/recoverable set.
-> A2 contains descriptive but unqualified R/Z direction separation, while A3
-> shows p03 level2 is well aligned with source-drift cancellation but its R/Z
-> response norm is only `5.07%` of q0's source-drift norm at state16. Scalar
-> `delta R-delta Z` may no longer
-> stand in for two-axis authority.
+> **A4 late-state support result and exact observation contract (2026-08-14):**
+> from the fixed 1100 ms takeover onward, before every 1 ms action issue, the
+> current same-step paired-boundary `R_geo/Z_geo` and same-step `Ip` are exact,
+> noiseless observables. Missing or invalid boundary data fails closed. The
+> complete causal observation and controller-owned issued/quantized/applied/
+> readback/queue history accumulated from takeover through the current step is
+> available, although a model may use a compressed representation. This does
+> not assert availability of any pre-1100 ms history, and post-action
+> `state[k+1]` remains unknown before issuing action `k`. Belief and uncertainty
+> therefore represent latent dynamics, future response and model mismatch, not
+> measurement uncertainty in current or past `R_geo/Z_geo/Ip`.
 >
-> A4 remains frozen, unimplemented and unrun. One campaign with its two
-> preregistered replays is retained as a late-state persistent-tail plus
-> short-hold discriminator; its action,
-> thresholds and routes are unchanged. A safe scientific FAIL ends the
-> single-p03 static dwell/level ladder and routes to time-varying nominal plus
-> matched-prefix vector/recourse design; no A5 may merely add another p03
-> static level or longer dwell. PASS still requires fresh Nominal-H1
-> validation. Any interface/support/repeatability/safety failure is a separate
-> stop and cannot be called scientific p03 failure. A4 execution is
-> conditional on a separate zero-plant late-state support/margin gate. In
-> parallel, a separately prospective p03 plus complementary-direction signed,
-> cumulative, full-vector authority design is required before recourse,
-> transport or two-axis control claims. Full evidence and reasoning are in
-> `docs/codex/reports/RGEO_ZGEO_1MS_POST_C2AA3_DEEP_ROUTE_REVIEW.md`.
-> This review wrote no code, accessed no server, ran no TSC and fit no
-> predictive plant/controller model.
+> The final goal is unchanged: from fixed 1100 ms, under the 1 ms and per-turn
+> per-coil `<=0.3 A/step` hard contract, make boundary-defined `R_geo/Z_geo`
+> safely and causally follow approximate relative displacement, path or
+> waypoint commands in a prospectively finite domain, with Ip coupled and
+> safety-constrained and with history continuous through repeated R_mid
+> crossings. Source hold, A4 or any one primitive is only a bootstrap result,
+> never a replacement for this two-axis goal.
+>
+> The committed zero-TSC A4 support gate returned
+> `ONE_MS_NR2R2C2AA4_LATE_STATE_CAUSAL_SUPPORT_FAIL_NO_TSC`: 16/32 transitions
+> are supported. The first gap is `issue16 -> effect17`, p03 level2 dwell
+> effect-age 15. State16 and its causal history are exactly known, but neither
+> the continuing-level2 same-prefix successor nor a qualified state/history
+> tube exists. State16 margins and the A3-derived empirical stop threshold are
+> descriptive only and cannot supply causal successor support.
+>
+> A4 consequently remains unimplemented, undeployed and unrun; this audit made
+> zero server accesses and zero TSC/plant advances. This is a causal-support/
+> preflight design FAIL, not a scientific p03 hold failure, runtime/deployment
+> failure or closed-loop result. Under the current strict support rule, only a
+> repeat-only source-prefix vector qualifier is immediately executable and it
+> cannot create a new signed/cumulative/action-age cell. The active task is
+> therefore a separately prospective zero-TSC decision/design between an
+> independent transition tube and an explicitly simulator-only empirical
+> exploration contract. No server deployment or TSC is authorized by this
+> result. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4_LATE_STATE_SUPPORT_RESULT.md`.
 > This top block is the unique current-route pointer; every older phrase
-> "active task" below is a chronological historical notice and cannot
-> override it.
+> "active task" below is a chronological historical notice and cannot override
+> it.
 
 > **NR2R2C2aA4 p03 level2 dwell-hold prospective freeze (2026-08-14):** the
 > active task is the two-reset/64-advance maximum persistent-level2

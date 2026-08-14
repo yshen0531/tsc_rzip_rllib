@@ -1,5 +1,25 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Exact observation and A4 support amendment (2026-08-14):** from the fixed
+> 1100 ms takeover onward, the controller observes the current true, noiseless
+> same-step paired-boundary `R_geo/Z_geo` and same-step `Ip` before every 1 ms
+> action issue. Missing/invalid boundary data fails closed. All causal
+> observations and controller-owned issued/quantized/applied/readback/queue
+> history accumulated since takeover are available, although the model may
+> compress them. This does not assert pre-1100 ms history, and the next/future
+> state remains unknown before issue. The observer/belief is therefore for
+> latent memory and future-response/model uncertainty, not current or past RZI
+> measurement.
+>
+> The separate zero-TSC A4 support audit returned
+> `ONE_MS_NR2R2C2AA4_LATE_STATE_CAUSAL_SUPPORT_FAIL_NO_TSC`: 16/32 transitions
+> have direct support and the first gap is issue16 -> effect17, level2
+> effect-age 15. A4 remains unimplemented/unrun. Exact state16 knowledge,
+> margins and empirical stop thresholds are not a pre-action bound on state17.
+> Before new TSC, the route must separately freeze either an independent
+> transition tube or a simulator-only empirical exploration contract. This
+> result authorizes neither TSC nor controller/model work.
+
 > **Post-C2aA3 route amendment (2026-08-14):** the final objective remains
 > finite-domain two-axis relative/path/waypoint tracking; source hold is only
 > a bootstrap step toward a qualified terminal/recoverable set. A2/A3 show
@@ -294,7 +314,11 @@ causal TCN、LSTM 或小型 RSSM 公平比较，选择达到门槛的最简单�
 
 ## 6. 历史如何进入模型
 
-历史不是仅把若干帧 `R/Z` 塞入网络。每步的因果输入至少包括：
+历史不是仅把若干帧 `R/Z` 塞入网络。自 1100 ms 接管后，完整因果历史由接口
+保留；模型选择有限窗或压缩 belief 是表示选择，不表示其余历史不可见。每个
+动作签发前，当前 `R_geo/Z_geo/Ip` 是无噪声真值输入，其测量协方差为零并保留
+直接通路，不由 observer 重构。observer 只表征未观测慢记忆及未来动力学不确定
+度；动作后的下一状态仍须等 TSC advance 后才能观测。每步的因果输入至少包括：
 
 - `R_geo/Z_geo/Ip` 及有效性、时间戳和必要的差分量；
 - 14 路实际线圈电流，以及部署时确实可取得的被动/结构电流；

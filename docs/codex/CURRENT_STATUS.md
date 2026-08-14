@@ -1,34 +1,39 @@
 # Current status
 
-> **Post-C2aA3 deep review recorded; no execution (2026-08-14
-> Asia/Shanghai).** The exact-actuator, causal-history, uncertainty-aware
-> constrained rolling-control architecture is retained, but the immediate
-> route is corrected from a serial single-p03 ladder to parallel nominal and
-> vector/recourse evidence. Tracked q0/A2/A3 recomputation found that p03
-> level2 is within about `3.7 deg` of the required source-drift correction at
-> state16, but supplies only `+0.440586/-0.632120 mm` against q0 drift of
-> `-9.484037/+11.876919 mm`. A2's p03/p07 responses are descriptively
-> separated (mean two-column condition about `1.97`) but are not matched-
-> history, signed or combination controllability evidence.
+> **A4 late-state support FAIL; exact observation contract frozen (2026-08-14
+> Asia/Shanghai).** From the fixed 1100 ms takeover onward, every 1 ms decision
+> sees the current same-step paired-boundary `R_geo/Z_geo` and same-step `Ip` as
+> exact, noiseless observables before action issue. Missing/invalid boundary
+> data fails closed. All causal observations and controller-owned issued/
+> quantized/applied/readback/queue history accumulated since takeover are
+> available; a model may compress them. No pre-1100 ms history is asserted,
+> and `state[k+1]` remains unknown before `u[k]`. Belief/uncertainty concerns
+> latent dynamics, future response and model mismatch, not current/past RZI
+> measurement.
 >
-> Frozen A4 remains unimplemented/unrun and will retain every existing gate.
-> Its only justified role is one campaign/two-replay bounded persistent-tail
-> plus hold discriminator, conditional on a separate zero-plant late-state
-> support/margin gate. A safe scientific FAIL terminates further single-p03
-> static level/dwell
-> escalation; PASS still needs fresh Nominal-H1. Either result leaves the
-> matched-prefix, full `[delta R,delta Z,delta Ip]`, signed/cumulative vector
-> authority and Recourse-L1 tracks blocked and required. Interface, support,
-> repeatability or safety failure remains a distinct stop and is not a p03
-> authority result. No server, TSC, controller/model code, predictive model
-> fit or training ran in this review. See
-> `docs/codex/reports/RGEO_ZGEO_1MS_POST_C2AA3_DEEP_ROUTE_REVIEW.md`.
+> The final goal remains approximate safe causal two-axis relative/path/
+> waypoint tracking from fixed 1100 ms under 1 ms and `<=0.3 A/step`, with Ip
+> coupled/safety-constrained and causal history continuous across R_mid. A
+> source hold or single p03 result is only a bootstrap and cannot replace it.
+>
+> The committed zero-TSC route is
+> `ONE_MS_NR2R2C2AA4_LATE_STATE_CAUSAL_SUPPORT_FAIL_NO_TSC`. Input integrity
+> passed, but direct support is 16/32; the first gap is issue16 -> effect17,
+> level2 effect-age 15. Exact state16/history, large margins and the A3-derived
+> empirical stop threshold do not replace a same-prefix successor or qualified
+> tube. A4 remains unimplemented, undeployed and unrun; server/TSC/plant counts
+> are zero. This is a causal-support/preflight design FAIL, not scientific p03
+> hold, runtime, deployment or closed-loop evidence. The active task is only a
+> separately prospective zero-TSC support-route design; no new TSC is unlocked.
+> See
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4_LATE_STATE_SUPPORT_RESULT.md`.
 
 > **NR2R2C2aA4 level2 dwell-hold discriminator frozen; not yet implemented
 > or run (2026-08-14 Asia/Shanghai).** Two identical 32 ms resets will hold the
 > already qualified p03 level2 from issue step2 through step31. It retains the
-> exact 0.3 A adjacent slew, 0.6 A q0-relative maximum, A3 successor bound and
-> original short-hold gates. A FAIL applies only to this maximum persistent
+> exact 0.3 A adjacent slew, 0.6 A q0-relative maximum and original A3-derived
+> empirical stop threshold, now known not to be a qualified successor tube.
+> A FAIL applies only to this maximum persistent
 > sequence, not all switching laws or larger cumulative levels.
 
 > **NR2R2C2aA3 cumulative level2 safely passes its finite gates

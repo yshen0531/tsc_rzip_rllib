@@ -1,5 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current 1 ms observation/support notice (2026-08-14):** from the fixed
+> 1100 ms takeover onward, current same-step paired-boundary `R_geo/Z_geo` and
+> same-step `Ip` are exact, noiseless observables before each action issue. The
+> complete causal observation and controller-owned action/readback/queue
+> history accumulated since takeover is available; this does not assert
+> pre-1100 ms history or reveal a future successor. Belief represents latent
+> dynamics and future-response/model uncertainty, not current/past RZI
+> measurement error. The zero-TSC A4 late-state support gate passed input
+> integrity but supported only 16/32 transitions, first failing at
+> `issue16 -> effect17` / level2 effect-age 15. A4 is unimplemented and unrun;
+> no server/TSC was used. The active route is a separately prospective
+> zero-TSC support decision/design. All older active-stage notices below are
+> historical and cannot override `docs/codex/CURRENT_TASK.md`.
+> The final two-axis relative/path/waypoint tracking goal is unchanged; A4 is
+> only a bootstrap discriminator, not a reduced objective.
+>
 > **1 ms route notice (2026-08-13):** the active route has been restarted
 > from NR0 under contract `rgeo-zgeo-1ms-nr0-v1`. Control starts at 1100 ms,
 > uses a 1 ms period, and permits each TSC-order single-turn coil current to
