@@ -71,6 +71,19 @@ def targets_for(stage: dict[str, Any], q0: Card15Target, level1: Card15Target,
     return tuple(target for target in targets if target is not None)
 
 
+def assert_exact_doubled_card15_offset(
+    q0: Card15Target, level1: Card15Target, level2: Card15Target
+) -> None:
+    for index, (q0_field, level1_field, level2_field) in enumerate(zip(
+        q0.card15_fields, level1.card15_fields, level2.card15_fields
+    )):
+        q0_value = Decimal(q0_field.strip())
+        level1_value = Decimal(level1_field.strip())
+        level2_value = Decimal(level2_field.strip())
+        if level2_value - q0_value != Decimal(2) * (level1_value - q0_value):
+            raise ContractError(f"level2 Card15 field {index} is not exactly twice the level1 q0-relative offset")
+
+
 def authority_metrics(states: Sequence[dict[str, Any]], q0_states: Sequence[dict[str, Any]],
                       stage: dict[str, Any]) -> dict[str, Any]:
     first, last = stage["authority_window_start_state"], stage["authority_window_end_state"]
@@ -120,16 +133,15 @@ def offline(stage_path: Path, source_revision: str) -> dict[str, Any]:
             min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc)
         level1 = target_from_fields(stage["level1_card15_fields"], cfg, "c2aa1.level1")
         level2 = target_from_fields(stage["level2_card15_fields"], cfg, "c2aa1.level2")
+        q0_record = json.loads((ROOT / stage["q0_comparator"]["path"]).read_text(encoding="utf-8"))
+        if list(frozen.q0.card15_fields) != q0_record["actions"][0]["expected_card15_fields"]:
+            raise ValueError("q0 target does not reproduce the tracked comparator action")
         targets = targets_for(stage, frozen.q0, level1, level2)
         q0_exact = card15_target_decimal_a(frozen.q0, cfg.turns_tsc, name="c2aa1.q0")
-        level1_exact = card15_target_decimal_a(level1, cfg.turns_tsc, name="c2aa1.level1")
         level2_exact = card15_target_decimal_a(level2, cfg.turns_tsc, name="c2aa1.level2")
         if max(abs(left - right) for left, right in zip(q0_exact, level2_exact)) > Decimal("0.3"):
             raise ContractError("level2 leaves the componentwise q0 +/- 0.3 A domain")
-        if any(level2_value - q0_value != Decimal(2) * (level1_value - q0_value)
-               for q0_value, level1_value, level2_value
-               in zip(q0_exact, level1_exact, level2_exact)):
-            raise ContractError("level2 is not exactly twice the level1 q0-relative offset")
+        assert_exact_doubled_card15_offset(frozen.q0, level1, level2)
         observed = stage["support_evidence"]["maximum_observed_axis_step_m"]
         bound = stage["support_evidence"]["prospective_successor_bound"]
         if not (bound["r_geo_m"] > observed["r_geo"]

@@ -61,6 +61,17 @@ class C2AA1AuthorityTests(unittest.TestCase):
         self.assertIs(targets[16], level1)
         self.assertTrue(all(target is q0 for target in targets[17:]))
 
+    def test_level2_is_exactly_twice_level1_in_card15_field_coordinate(self):
+        q0_record = json.loads((ROOT / self.stage["q0_comparator"]["path"]).read_text())
+        target = type("Target", (), {})
+        q0 = target()
+        q0.card15_fields = tuple(q0_record["actions"][0]["expected_card15_fields"])
+        level1 = target()
+        level1.card15_fields = tuple(self.stage["level1_card15_fields"])
+        level2 = target()
+        level2.card15_fields = tuple(self.stage["level2_card15_fields"])
+        C2AA1.assert_exact_doubled_card15_offset(q0, level1, level2)
+
     def test_authority_metrics_apply_all_frozen_gates(self):
         good, q0 = states(0.0016, ip_difference_a=99.0)
         weak, _ = states(0.0002)
