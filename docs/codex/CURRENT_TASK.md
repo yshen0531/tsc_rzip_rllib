@@ -1,5 +1,15 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2a search prospective freeze (2026-08-14):** after C1a mechanics
+> qualification, the active task is the separately frozen two-candidate,
+> 64-advance-maximum canonical-source nominal-hold search in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2A_NOMINAL_HOLD_SEARCH_DESIGN.md`.
+> It extends two already observed 0.15 A-offset constant-dwell cells to 32 ms
+> under a prospectively inflated empirical successor bound. This is TSC-only
+> development search, not a controller/model campaign. A found candidate may
+> authorize only a separately committed fresh validation; it is not
+> Nominal-H1, recovery, response/atlas, MPC or learning evidence.
+
 > **NR2R2C1a final result (2026-08-14):** canonical-source full-prefix replay
 > completed 12/12 resets and 136/136 authentic 1 ms advances. All six paired
 > families were exact on checked boundary geometry, R_mid, Ip, 14 coil and 48

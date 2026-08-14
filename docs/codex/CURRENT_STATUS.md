@@ -1,5 +1,14 @@
 # Current status
 
+> **NR2R2C2a nominal-hold search frozen; implementation/TSC not yet run
+> (2026-08-14 Asia/Shanghai).** Two exact dev-supported 0.15 A-offset dwell
+> targets (`development_p04_plus`, `development_p07_plus`) will each be
+> extended from the canonical source to a 32 ms constant-target continuation,
+> at most 64 advances total. The search uses no invalid holdout, fit, model,
+> optimizer or adaptive action. It has a pre-result 2 mm/2 mm/100 A empirical
+> successor bound derived from the consumed dev/cal envelope. Search success
+> only freezes one candidate for a separate fresh validation identity.
+
 > **NR2R2C1a canonical-source replay qualified for C2a design only
 > (2026-08-14 Asia/Shanghai).** The server completed 12/12 fresh canonical
 > resets and 136/136 authentic 1 ms advances. Independent V2 raw reparse found

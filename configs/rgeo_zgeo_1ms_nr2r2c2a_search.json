@@ -1,0 +1,63 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c2a-nominal-hold-search-v1",
+  "campaign_id": "rgeo_zgeo_1ms_nr2r2c2a_nominal_hold_search_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 32,
+  "maximum_plant_advances": 64,
+  "intended_use": "nominal_hold_candidate_search_only",
+  "model_or_expert_use": "forbidden",
+  "candidate_sequence": "q0_at_step_0_then_constant_target_through_step_31",
+  "candidates": [
+    {
+      "candidate_id": "development_p04_plus_constant_dwell",
+      "source_record": "development_p04_plus.json",
+      "source_record_sha256": "31122cccf8b95c1d98eee6d61acba6dbff0c9e983d5a888ea93cf1a9f2a9f825",
+      "source_action_index": 1,
+      "card15_fields": [
+        "-3.493E+01", "-4.493E+01", "-4.507E+01", "-3.493E+01",
+        "-4.493E+01", "-4.493E+01", "-3.207E+01", "-3.207E+01",
+        "3.000E-02 ", "-3.000E-02", "-7.485E+00", "-1.351E+01",
+        "-8.185E+00", "-8.185E+00"
+      ]
+    },
+    {
+      "candidate_id": "development_p07_plus_constant_dwell",
+      "source_record": "development_p07_plus.json",
+      "source_record_sha256": "1c5c2398320772c6d0f93d45c9a2835893b70ba56862838dbc050ea7cc44f143",
+      "source_action_index": 1,
+      "card15_fields": [
+        "-3.493E+01", "-4.507E+01", "-4.493E+01", "-3.493E+01",
+        "-4.493E+01", "-4.507E+01", "-3.207E+01", "-3.207E+01",
+        "3.000E-02 ", "3.000E-02 ", "-7.515E+00", "-1.351E+01",
+        "-8.185E+00", "-8.215E+00"
+      ]
+    }
+  ],
+  "support_evidence": {
+    "partitions": ["development", "calibration"],
+    "trajectories": 28,
+    "holdout_records_read": 0,
+    "maximum_observed_axis_step_m": {"r_geo": 0.000833656, "z_geo": 0.000855951},
+    "maximum_observed_ip_step_a": 45.9948,
+    "prospective_successor_bound": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0}
+  },
+  "q0_comparator": {
+    "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c1a_result_20260814_778b454/q0_h32_r0.json",
+    "sha256": "ee307442e0ce064fe043d51b722556a44a5be5bd5abeb848174901d2049788b7"
+  },
+  "inner_r_radius_m": 0.025,
+  "inner_z_radius_m": 0.025,
+  "inner_ip_fraction": 0.05,
+  "outer_r_radius_m": 0.05,
+  "outer_z_radius_m": 0.05,
+  "outer_ip_fraction": 0.10,
+  "terminal_window_start_state": 24,
+  "terminal_window_end_state": 32,
+  "terminal_max_source_axis_displacement_m": 0.005,
+  "terminal_max_axis_step_m": 0.0001,
+  "terminal_max_axis_net_drift_m": 0.001,
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"]
+}
