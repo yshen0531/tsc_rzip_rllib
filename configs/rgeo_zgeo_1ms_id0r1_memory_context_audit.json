@@ -1,0 +1,36 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id0r1-memory-context-audit-v1",
+  "audit_id": "rgeo_zgeo_1ms_id0r1_memory_context_audit_v1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "plant_advances": 0,
+  "model_fit_or_training": false,
+  "holdout_records_read": 0,
+  "input_role": "consumed_design_evidence_only",
+  "forbidden_uses": [
+    "model_fit",
+    "model_calibration",
+    "model_holdout",
+    "controller_qualification",
+    "expert_oracle_fixture_bc_dagger_rl"
+  ],
+  "response_state_range": [3, 32],
+  "late_windows": [[21, 32], [25, 32]],
+  "same_time_state_indices": [3, 8, 16, 20, 24, 32],
+  "descriptive_visible_match_scales": {
+    "r_geo_mm": 0.1,
+    "z_geo_mm": 0.1,
+    "ip_a": 20.0
+  },
+  "records": [
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/baseline_q0_r0.json", "sha256": "c7e0483cb9ad9f2306dddbed216fa075f904b9abd8e57164c14014f360f5ad76"},
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/baseline_q0_r1.json", "sha256": "cfe5522b9f4f84cd8ebfbfebbf9027cea76c8d43bcec106f6f4edea4647a4a93"},
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/early_p03_minus_r0.json", "sha256": "d4a277c4996e8345676d0315489a5b68dfe0d2fb54c3ee27f4059e3101dd9bde"},
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/early_p03_plus_r0.json", "sha256": "d8b36ad2d3b3829fa29ed29c99a575d79076088d5d24a43af0cb485807f7facb"},
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/early_p04_minus_r0.json", "sha256": "a4967e4a3878d5bd84aefe25d98f9b73ec73a0d24de64a90a6d52083e1df8aea"},
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/early_p04_plus_r0.json", "sha256": "57e5291d51801c87ffb1bf6d3fca593179316eec0ddafec483fe12d660f1c76f"},
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/early_p07_minus_r0.json", "sha256": "5a4116b4e16b609bd70354e0a2dd1babde7d747ae1c475442a9510f161e30850"},
+    {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/early_p07_plus_r0.json", "sha256": "a8556fbc960c6fe1de3743e142be4fd99176f3735a3415d206e57e7188ca4fbb"}
+  ],
+  "route": "ONE_MS_ID0R1_STABLE_LATENT_MEMORY_AND_ID1A_CONTEXT_PILOT_REQUIRED"
+}

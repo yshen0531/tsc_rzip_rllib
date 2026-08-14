@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round route (2026-08-14):** ID-0R1 completed a hash-bound,
+> zero-TSC/zero-fit audit of the ID-0T1 compact records. Non-monotone residuals
+> show that endpoint tail ratios do not identify memory order, while the
+> records' single source anchor cannot separate position, time and arrival
+> history. The active task is a fresh ID-1A small-HFS context/anchor pilot.
+> The prospective model uses exact current R_geo/Z_geo/Ip recentering,
+> time-indexed nominal evolution and a stable low-order latent; optional
+> recurrent residuals are later evidence-dependent. `CURRENT_TASK.md` is the
+> sole active authority; older active notices in this file are historical.
+
 > **Current ID-0T1 result notice (2026-08-14):** the state32 tail discriminator
 > completed 8/8 fresh rollouts and 256/256 advances with exact execution, raw
 > inventory and ID-0 prefix identity. Independent raw recomputation passed

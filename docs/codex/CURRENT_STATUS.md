@@ -1,5 +1,21 @@
 # Current status
 
+> **ID-0R1 route review completed; ID-1A design is active (2026-08-14
+> Asia/Shanghai).** A local hash-bound audit read the two ID-0T1 q0 baselines
+> and six signed arms, with zero server access, TSC, model fit or holdout use.
+> The maximum state32 absolute R/Z response was `0.0127813 mm`, while the
+> maximum response in states21--32 was `0.0472375 mm`; all arms were
+> non-monotone. The route is
+> `ONE_MS_ID0R1_STABLE_LATENT_MEMORY_AND_ID1A_CONTEXT_PILOT_REQUIRED`.
+>
+> Existing records contain one canonical source anchor only. Their maximum
+> same-time signed R/Z span is about `0.101 mm` at state3 and they contain no
+> useful matched-position/different-time pair under the recorded descriptive
+> scales. They remain forbidden for fitting. The next stage is a fresh
+> small-HFS context/anchor identification pilot; model training starts only
+> after that stage independently supports response, history/context contrasts
+> and grouped data roles. Older notices below are historical.
+
 > **ID-0T1 completed as a clean state32 tail FAIL; route review is active
 > (2026-08-14 Asia/Shanghai).** Eight rollouts, 256/256 advances, 264 raw states
 > and 1,320 artifacts completed. Execution, raw inventory and ID-0 prefix

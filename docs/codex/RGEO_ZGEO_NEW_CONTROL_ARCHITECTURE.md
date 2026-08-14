@@ -1,5 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-0R1 architecture amendment (2026-08-14):** current and past
+> R_geo/Z_geo/Ip remain exact observations. Finite-memory truncation is no
+> longer inferred from one terminal response ratio. The prospective backbone
+> carries a stable low-order persistent/damped-oscillatory latent and validates
+> full-horizon recursive prediction with a nonzero uncertainty floor. ID-0 and
+> ID-0T1 stay design-only; their one source anchor cannot support LPV/local or
+> recurrent model selection. A fresh ID-1A small-HFS context/anchor pilot must
+> first separate issue time, controlled position and arrival history as far as
+> the finite simulator envelope permits. This is identification, not
+> controller-grade safety or recovery.
+
 > **ID-0T1 architecture amendment (2026-08-14):** state32 does not certify
 > literal finite-memory tail closure: p03-plus remains above the frozen ratio,
 > and other arms show small delayed rebounds before their terminal PASS. The

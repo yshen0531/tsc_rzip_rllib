@@ -1,5 +1,29 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-0R1 memory/context audit complete; ID-1A context/anchor pilot is the
+> unique active task (2026-08-14):** the zero-server, zero-TSC, zero-fit audit
+> of all eight tracked ID-0T1 compact histories returned
+> `ONE_MS_ID0R1_STABLE_LATENT_MEMORY_AND_ID1A_CONTEXT_PILOT_REQUIRED`.
+> State32 absolute R/Z residuals are all below `0.013 mm`, but the complete
+> late window is non-monotone and reaches `0.04724 mm`; a single endpoint or
+> literal finite-tail extinction is therefore not a memory-order certificate.
+> The prospective model backbone is exact actuator/queue semantics,
+> time-indexed nominal evolution, a stable low-order persistent/oscillatory
+> latent, continuous context scheduling, and only then an optional small
+> recurrent residual.
+>
+> Existing ID-0/ID-0T1 records remain consumed design evidence and cannot be
+> fit. They have only one source anchor and no matched-position/different-time
+> contrast. The unique active task is to prospectively freeze, implement and
+> run an ID-1A small-HFS context/anchor pilot with matched q0 baselines,
+> repeated issue times, matched-clock different-prefix siblings,
+> near-matched-RZI different-history siblings, both signs and full tail
+> windows. No model fit begins unless its response, repeatability, context
+> contrast and data-role gates pass. Controller/MPC/recovery/transport claims
+> remain blocked. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID0R1_MEMORY_CONTEXT_AUDIT.md`. This block
+> is the only active pointer; all notices below are historical.
+
 > **ID-0T1 final state32 tail FAIL; route review required (2026-08-14):**
 > ID-0T1 completed all 8 rollouts and 256/256 verified plant advances. Exact
 > execution, raw inventory, Card15/current/boundary/Ip gates and ID-0 prefix
