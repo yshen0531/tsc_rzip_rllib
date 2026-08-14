@@ -1,25 +1,31 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **ID-1C0 direction screen PASS; ID-1C fresh persistent validation is the
-> unique active task (2026-08-14):** the server-side zero-TSC audit read only
-> the consumed NR2R1 development pairs, matched q0 and final ID-1B result. It
-> selected p01+p09 with rank two, `98.6800382 deg` maximum angular gap,
-> `0.0218296712 mm` minimum directional support, best condition `2.0015232`
-> and maximum absolute Ip response `14.2429 A`. It read no holdout and fit no
-> model.
+> **ID-1C is final as a clean duration/history basis-design FAIL; route and
+> storage review is the unique active task (2026-08-14):** the real-TSC
+> campaign completed 10/10 resets, 180/180 one-ms advances, 190 states and
+> 950/950 required raw artifacts. Independent raw recomputation passed and
+> every complete replay pair was exact in checked R/Z/Ip, 14-coil and 48-wire
+> observations. The final scientific route is
+> `ONE_MS_ID1C_SIGNAL_SYMMETRY_OR_IP_FAIL_REDESIGN`.
 >
-> ID-1C is prospectively frozen as 10 fresh rollouts and at most 180 one-ms
-> plant advances: two q0 baselines plus exact q0-centred half-amplitude p01
-> and p09, both signs and two replays, held unchanged through effects 1--4.
-> It must validate exact action centring, signal, bounded even response,
-> two-sided positive span, Ip and repeatability. Implementation, server tests,
-> packaging, zero-plant preflight and gated TSC execution are authorized.
-> ID-1C PASS selects only a temporal/action basis and does not make ID-1C or
-> older data fit eligible. No predictive-model training, context campaign,
-> controller, MPC, recovery or transport may start until the ID-1C result is
-> final. Tests run on the server; locally only edits, hashes and simple
+> p01 remained nearly odd, but exact-q0-centred half-p09 produced a fully
+> repeatable state-12 excursion (`+0.742786 mm R`, `-0.409532 mm Z` relative
+> to q0) and returned to ordinary scale at state 13. Its four-effect even norm
+> was `0.109626 mm`; the actual rays had a `180.150886 deg` angular gap and
+> failed positive span. Raw GEQDSK showed a coherent 278-point boundary
+> motion with unchanged extrema indices, not an R/Z splice or one-point
+> outlier. ID-1C is not basis-selection or model-fit eligible.
+>
+> The static persistent-mean basis ladder stops. The active task is to freeze
+> a fit-eligible duration/history-conditioned primitive campaign that retains
+> every effect state and tail, then performs grouped development/calibration/
+> whole-prefix holdout before model comparison. No new TSC or model fit should
+> start until its data identity and storage plan are frozen: only about 31 GB
+> remains on the server after the immutable 11 GB ID-1C raw tree. Existing raw
+> must not be deleted, overwritten or compressed without separate user
+> direction. Tests remain server-only; locally only edits, hashes and simple
 > calculations are allowed. See
-> `docs/codex/reports/RGEO_ZGEO_1MS_ID1C_PERSISTENT_BASIS_DESIGN.md`. This is
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID1C_PERSISTENT_BASIS_RESULT.md`. This is
 > the only active pointer; all notices below are historical.
 
 > **ID-1B is final as a clean persistent-direction design FAIL; a zero-new-TSC

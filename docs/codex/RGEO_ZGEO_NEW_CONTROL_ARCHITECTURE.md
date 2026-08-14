@@ -1,5 +1,19 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-1C duration/history amendment (2026-08-14):** a signed Card15
+> direction is no longer represented by one four-effect mean vector. ID-1C
+> found a deterministic, fully repeatable p09-minus state-12 boundary
+> excursion between otherwise ordinary states 11, 13 and 14. The fixed odd
+> persistent p01+p09 basis therefore failed, but the evidence positively
+> supports explicit effect-age/history state. The next identification data
+> design must retain the complete action-duration response and tail for each
+> signed primitive, use matched baselines and whole-prefix grouping, and only
+> then compare stable low-order latent/state-space dynamics with an optional
+> small recurrent residual. Exact current R_geo/Z_geo/Ip, actuator/queue,
+> uncertainty, Ip and later recourse requirements are unchanged. Static
+> persistent-basis screening will not continue as an automatic direction
+> ladder.
+>
 > **ID-1C exact-centred basis amendment (2026-08-14):** the next finite
 > discriminator uses p01 plus a newly reconstructed p09 pair, both exactly
 > centred on q0 in actual Card15 current coordinates and limited to 0.15 A

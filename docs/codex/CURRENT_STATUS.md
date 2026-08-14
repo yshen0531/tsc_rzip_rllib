@@ -1,16 +1,24 @@
 # Current status
 
-> **ID-1C0 complete; ID-1C design frozen (2026-08-14 Asia/Shanghai).** The
-> server-only zero-TSC direction screen passed and selected p01+p09 from all
-> ten consumed development pairs. The result SHA-256 is
-> `4f89bd34555287b236d1c22a4bfb12883dd1b603cf4a49a46bfff63a174428db`.
-> No holdout, TSC, plant advance or model fit was used by the audit.
+> **ID-1C final: exact execution/raw PASS, persistent-mean basis FAIL
+> (2026-08-14 Asia/Shanghai).** The real-TSC campaign completed 10/10
+> rollouts, 180/180 verified advances, 190 states and 950/950 required raw
+> artifacts (11,189,655,560 bytes; inventory digest
+> `a4ee5ade9db3131afa320ba59747fa6d9909c52837700636a5ed2f35be30c611`).
+> Independent raw recomputation passed with maximum metric difference
+> `1.36e-20`; all five replay families were exactly repeatable.
 >
-> The next finite campaign has 10 rollouts and 180 maximum advances. It tests
-> exact q0-centred 0.15 A-class p01/p09 targets held for four effects, with
-> two replays per signed arm and fresh q0 baselines. Code, package, deployment
-> and real TSC have not run yet. PASS is basis-selection evidence only; model
-> fitting remains blocked. Older notices below are historical.
+> The final route is `ONE_MS_ID1C_SIGNAL_SYMMETRY_OR_IP_FAIL_REDESIGN`.
+> Exact-centred half-p09 had a repeatable effect-state-12 excursion and
+> `0.109626 mm` even response, while the four actual rays had
+> `180.150886 deg` maximum angular gap and failed positive span. This is a
+> duration/history/action-basis design failure, not a runtime, raw, model,
+> controller or plant-reachability result. ID-1C is forbidden for fitting.
+>
+> The next work is a prospective duration/history-conditioned, fit-eligible
+> primitive-data design plus a storage decision. Server free space is about
+> 31 GB after the immutable 11 GB ID-1C run. No new campaign or model fit has
+> been authorized by this result alone. Older notices below are historical.
 
 > **ID-1B final: finite positive-span design FAIL; route review active
 > (2026-08-14 Asia/Shanghai).** The real-TSC campaign completed 14/14

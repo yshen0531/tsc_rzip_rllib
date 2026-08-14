@@ -1,5 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Post-ID-1C route notice (2026-08-14):** ID-1C completed 10/10 authentic
+> rollouts and 180/180 verified one-ms advances with exact raw integrity and
+> replay, but failed its frozen symmetry/positive-span gates. Exact-centred
+> half-p09 produced a deterministic state-12 boundary excursion that vanished
+> at state 13; its four-effect even R/Z norm was `0.109626 mm`. This rejects a
+> fixed odd persistent-mean p01+p09 basis, not history-conditioned dynamics or
+> eventual two-axis authority. The static basis ladder stops. The next route
+> must collect fresh fit-eligible duration/history-conditioned primitive
+> trajectories and preserve effect age rather than average it away. About
+> 31 GB remains on the server, so storage/retention must be resolved before a
+> scientifically useful new raw campaign. `CURRENT_TASK.md` is authoritative;
+> older notices below are historical.
+
 > **Active ID-1C notice (2026-08-14):** a server-side zero-TSC audit of all
 > consumed NR2R1 development directions selected p01+p09 for fresh validation.
 > The old p09 target is not silently reused: ID-1C reconstructs exact

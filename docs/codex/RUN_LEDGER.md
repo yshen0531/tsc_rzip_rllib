@@ -2067,3 +2067,30 @@
   `docs/codex/audits/rgeo_zgeo_1ms_id1c0_direction_screen_20260814_3986502f/`
 - Next: fresh exact-centred half-amplitude p01/p09 ID-1C persistent basis
   validation; PASS still does not authorize fitting from ID-1C
+
+## R_geo/Z_geo 1 ms ID-1C persistent basis validation
+
+- Implementation / package revisions: `9401377d / e7c1bba3`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id1c_runs_20260814_9401377d`
+- Remote logs: `logs/nohup/id1c_real_9401377d.log` (zero-TSC permission
+  failure) and `logs/nohup/id1c_real_9401377d_v2.log` (complete campaign)
+- Fresh/resume: fresh; first launcher attempt stopped before Python/TSC,
+  second launch used the unchanged identity after executable-bit repair
+- Execution: 10/10 rollouts, 180/180 verified one-ms advances, 190 states
+- Raw: 950/950 required files, 11,189,655,560 bytes, digest
+  `a4ee5ade9db3131afa320ba59747fa6d9909c52837700636a5ed2f35be30c611`
+- Primary / independent SHA-256:
+  `7e6bf6d535c1f4b880301c56c952f58820c354339467618ce39055946dc0a359 /`
+  `92a19f62ab9a452b5d7deba29a1b47dd96dc2701321eee88789e89b44f408aef`
+- Execution, raw, repeatability, signal, Ip and rank PASS; independent raw
+  recomputation PASS
+- Scientific FAIL: p09 even norm `0.109626 mm`; maximum angular gap
+  `180.150886 deg`; positive span FAIL
+- Final route: `ONE_MS_ID1C_SIGNAL_SYMMETRY_OR_IP_FAIL_REDESIGN`
+- Classification: finite duration/history/action-basis design FAIL; not
+  runtime, raw, model, controller, MPC, recovery or global reachability
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id1c_result_20260814_9401377d/`
+- Next: stop static mean-basis ladder; prospectively design fit-eligible
+  duration/history primitives and resolve server storage before new raw TSC
