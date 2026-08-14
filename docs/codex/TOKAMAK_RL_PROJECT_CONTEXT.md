@@ -9,6 +9,8 @@
 > evidence and no model fitting is authorized. The sole active next stage is
 > the finite ID-0T1 state32 matched-prefix tail discriminator. It must not
 > weaken the tail gate, add directions, or become an open-ended horizon ladder.
+> Its frozen config SHA-256 is
+> `cbb5647fd550e6bb89a3f102d04764ce06b4dafdcd2d5751a19e20a435faf76d`.
 > `docs/codex/CURRENT_TASK.md` is authoritative and all older notices below are
 > historical.
 >

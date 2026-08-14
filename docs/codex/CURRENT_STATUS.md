@@ -19,7 +19,9 @@
 > as an orchestration-incomplete attempt and is not mixed into this result.
 >
 > The next stage is only the prospectively frozen ID-0T1 state32 tail
-> discriminator. See
+> discriminator. Its config SHA-256 is
+> `cbb5647fd550e6bb89a3f102d04764ce06b4dafdcd2d5751a19e20a435faf76d`;
+> implementation/package/server execution are pending. See
 > `docs/codex/reports/RGEO_ZGEO_1MS_ID0_VECTOR_TAIL_RESULT.md`. All older active
 > notices below are historical.
 >

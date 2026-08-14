@@ -1,0 +1,127 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id0t1-long-tail-v1",
+  "campaign_id": "rgeo_zgeo_1ms_id0t1_long_tail_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 32,
+  "rollouts": 8,
+  "maximum_reset_calls": 8,
+  "maximum_advance_attempts": 256,
+  "maximum_gotsc_calls": 256,
+  "maximum_verified_plant_advances": 256,
+  "retry_after_any_advance_attempt": "forbidden",
+  "completed_state_count": 264,
+  "completed_required_artifact_files": 1320,
+  "experiment_contract": "tsc_only_prospective_empirical_identification",
+  "intended_use": "source_local_long_tail_window_discriminator",
+  "model_development_use": "forbidden_this_stage_is_design_evidence_only",
+  "calibration_use": "forbidden",
+  "holdout_use": "forbidden",
+  "expert_oracle_fixture_bc_dagger_rl_use": "forbidden",
+  "controller_safety_or_recourse_qualification_use": "forbidden",
+  "holdout_records_read": 0,
+  "evidence": {
+    "base_tsc_config_sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b",
+    "id0_result_report": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID0_VECTOR_TAIL_RESULT.md",
+      "sha256": "c2cc31af59e6dfa2a08c5ac19be0f2c522911451ff964eef6596131d539c3a5b"
+    },
+    "id0_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/result.json",
+      "sha256": "e8191c6dd253f0d528f9db4d9e028d7cfda53a07390c265cbd12f670e8951c4d"
+    },
+    "id0_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/independent_audit.json",
+      "sha256": "b6151817990e07c2ba56906c280f911d6a889df2554c8826c9fa66ff30146356"
+    },
+    "reference_records": [
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/baseline_q0_r0.json", "sha256": "606087e209611b2be765fd0f6d4a3406e0a6db6d5d0bcad1bc815f516611ef27"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/baseline_q0_r1.json", "sha256": "5514c499ff02717333e71c09b55f50ce611545b988a7cc7248294f7d93152023"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p03_minus_r0.json", "sha256": "48e2a74352dd43d8e6d51e1843ad2bff391a3805542ed86b70528cff2011dd13"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p03_minus_r1.json", "sha256": "af7c361ce1941607472bc26944cf1f304b05d842cc915929ad265da51323817a"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p03_plus_r0.json", "sha256": "ec1c9ed4e50b5290179c07f3cba73d05b806cc36b50261f984b9acb53ccb3683"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p03_plus_r1.json", "sha256": "3ba7c05c004ba6b9ad61508a0c085722016966a741b6d7c922b01bd774c37cd6"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p04_minus_r0.json", "sha256": "c53ab70a0b2f5f4fa57de9c5791b09d112b285c2a9eeaa0dad7dcb24ae99be0d"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p04_minus_r1.json", "sha256": "d10935ded9914fe93e2c24c1d33af159660615d21740b4c32e9dd7cc64f053df"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p04_plus_r0.json", "sha256": "f04bb83447cd1bd7bc66b3b12838dd8a56c6f5256993120326f562d2999bbbee"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p04_plus_r1.json", "sha256": "9c75f16e34f75c89dcbb031fb07438eeebdf80f1fec368985f4d42135cd5bd58"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p07_minus_r0.json", "sha256": "dc30f82be713be320c8eb63f0a646a28ea08fca514381495e8ac516e3bd0b596"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p07_minus_r1.json", "sha256": "159fa0c616ae5d66879979e222fbf2f4ca669b0af838d8ffab00a2a0dfeada66"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p07_plus_r0.json", "sha256": "7dfd6130bede6f4b764a906559c8d67b3060cbabedd557471cbc3f67849d87fa"},
+      {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0_result_20260814_38b3a22e/early_p07_plus_r1.json", "sha256": "8a7989df3792070684f35bf2af92328837879ac7230d7ebdcda28ab60c8b1435"}
+    ]
+  },
+  "baseline": {"candidate_id": "q0", "repetitions": 2, "target": "frozen_q0_for_all_32_issues"},
+  "context": {
+    "context_id": "early_long_tail",
+    "pulse_issue_step": 2,
+    "return_issue_step": 3,
+    "repetitions_per_signed_direction": 1,
+    "effect_window_states": [3, 32],
+    "reference_prefix_terminal_state": 20
+  },
+  "directions": [
+    {
+      "direction_id": "p03",
+      "plus_card15_fields": ["-3.486E+01", "-4.486E+01", "-4.486E+01", "-3.486E+01", "-4.514E+01", "-4.514E+01", "-3.214E+01", "-3.186E+01", "6.000E-02 ", "-6.000E-02", "-7.470E+00", "-1.348E+01", "-8.230E+00", "-8.170E+00"],
+      "minus_card15_fields": ["-3.514E+01", "-4.514E+01", "-4.514E+01", "-3.514E+01", "-4.486E+01", "-4.486E+01", "-3.186E+01", "-3.214E+01", "-6.000E-02", "6.000E-02 ", "-7.530E+00", "-1.353E+01", "-8.170E+00", "-8.230E+00"]
+    },
+    {
+      "direction_id": "p04",
+      "plus_card15_fields": ["-3.486E+01", "-4.486E+01", "-4.514E+01", "-3.486E+01", "-4.486E+01", "-4.486E+01", "-3.214E+01", "-3.214E+01", "6.000E-02 ", "-6.000E-02", "-7.470E+00", "-1.353E+01", "-8.170E+00", "-8.170E+00"],
+      "minus_card15_fields": ["-3.514E+01", "-4.514E+01", "-4.486E+01", "-3.514E+01", "-4.514E+01", "-4.514E+01", "-3.186E+01", "-3.186E+01", "-6.000E-02", "6.000E-02 ", "-7.530E+00", "-1.348E+01", "-8.230E+00", "-8.230E+00"]
+    },
+    {
+      "direction_id": "p07",
+      "plus_card15_fields": ["-3.486E+01", "-4.514E+01", "-4.486E+01", "-3.486E+01", "-4.486E+01", "-4.514E+01", "-3.214E+01", "-3.214E+01", "6.000E-02 ", "6.000E-02 ", "-7.530E+00", "-1.353E+01", "-8.170E+00", "-8.230E+00"],
+      "minus_card15_fields": ["-3.514E+01", "-4.486E+01", "-4.514E+01", "-3.514E+01", "-4.514E+01", "-4.486E+01", "-3.186E+01", "-3.186E+01", "-6.000E-02", "-6.000E-02", "-7.470E+00", "-1.348E+01", "-8.230E+00", "-8.170E+00"]
+    }
+  ],
+  "action_semantics": {
+    "all_nonpulse_issues": "q0",
+    "pulse_duration_issues": 1,
+    "return_target": "exact_q0",
+    "effect_state_index": "issue_step_plus_one",
+    "maximum_single_turn_adjacent_delta_a": 0.3,
+    "full_limit_allowed": true,
+    "actual_card15_vectors_not_sign_labels": true,
+    "signed_pairs_assumed_odd": false
+  },
+  "empirical_exploration": {
+    "new_states_21_through_32_are_declared_tail_exposures": true,
+    "pre_action_transition_tube_claimed": false,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_pulse_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true
+  },
+  "prefix_match": {
+    "terminal_state_index": 20,
+    "geometry_m": 1e-12,
+    "ip_a": 1e-9,
+    "coil_a": 1e-9,
+    "wire_a": 1e-9,
+    "semantic_artifact_hashes_required": true,
+    "sprsina_hash_is_diagnostic_only": true
+  },
+  "scientific_gates": {
+    "tail_terminal_state_index": 32,
+    "peak_response_states": [3, 6],
+    "tail_terminal_maximum_rz_norm_m": 0.00005,
+    "tail_terminal_maximum_peak_fraction": 0.20,
+    "tail_terminal_maximum_abs_ip_a": 10.0,
+    "no_automatic_longer_horizon_after_fail": true
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "routes": {
+    "offline_fail": "ONE_MS_ID0T1_OFFLINE_FAIL_NO_TSC",
+    "package_or_deployment_fail": "ONE_MS_ID0T1_PACKAGE_OR_DEPLOYMENT_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID0T1_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID0T1_RAW_INTEGRITY_FAIL_STOP",
+    "prefix_match_fail": "ONE_MS_ID0T1_ID0_PREFIX_MATCH_FAIL_STOP",
+    "tail_horizon_fail": "ONE_MS_ID0T1_STATE32_TAIL_INSUFFICIENT_ROUTE_REVIEW",
+    "pass": "ONE_MS_ID0T1_STATE32_TAIL_PASS_ID1_DESIGN_ONLY"
+  }
+}
