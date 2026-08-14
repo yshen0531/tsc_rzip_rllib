@@ -1,5 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA2 final result (2026-08-14):** all three frozen directions
+> completed 96/96 authentic advances. Independent raw audit passed 495/495
+> files and reproduced the primary route
+> `ONE_MS_NR2R2C2AA2_SUPPORTED_CUBE_DIRECTIONS_FAIL_REDESIGN` with zero metric
+> difference. All three opposed q0 at 14/14 states. P03-minus was strongest
+> (`0.35593 mm` mean, `0.52328 mm` maximum, `37.66 A` maximum Ip difference)
+> but failed the unchanged `1.5 mm` maximum gate; the other two also failed
+> mean and maximum gates. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA2_SUPPORTED_CUBE_DIRECTIONS_RESULT.md`.
+> This remains a finite authority FAIL, not a model/controller/reachability
+> result. The next active task is only a separately prospective repeated
+> p03-minus cumulative-domain/incremental-gain sentinel. Nominal-H1, C2b,
+> model, atlas, MPC, adaptation and learning remain blocked.
+
 > **NR2R2C2aA2 supported-cube direction prospective freeze (2026-08-14):**
 > the active task is the three-reset/96-advance maximum discriminator in
 > `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA2_SUPPORTED_CUBE_DIRECTIONS_DESIGN.md`.

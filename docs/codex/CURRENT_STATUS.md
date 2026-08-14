@@ -1,5 +1,17 @@
 # Current status
 
+> **NR2R2C2aA2 safely completed; all frozen authority routes fail
+> (2026-08-14 Asia/Shanghai).** Design/implementation checkpoints are
+> `104cfd5 / 8bd6964`. All 3 rollouts and 96 advances completed. Independent
+> raw audit passed 495 files (5,830,399,476 bytes; digest
+> `72611161f6f01e2374a89a6bfad998621b5b9103217314582a5d6e85660d0279`)
+> and exactly reproduced the primary metrics and FAIL route. P03-minus was
+> 14/14 positive with `0.35593 mm` mean opposition but only `0.52328 mm`
+> maximum, below the unchanged `1.5 mm` gate. The result is not reclassified
+> as PASS. A separately frozen cumulative p03-minus level/incremental-gain
+> sentinel is the only active design task; no Nominal-H1, model or MPC is
+> unlocked.
+
 > **NR2R2C2aA2 supported-cube direction discriminator frozen; not yet
 > implemented or run (2026-08-14 Asia/Shanghai).** The prospective candidate
 > set is p03-minus, p04-minus and p07-minus. All three had 4/4 positive but

@@ -1956,3 +1956,31 @@
   `docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa1_result_20260814_3e85a4b/`
 - Next: prospective supported-cube sign/direction discriminator only;
   Nominal-H1, C2b, model, atlas, MPC and learning remain blocked
+
+## R_geo/Z_geo 1 ms NR2R2C2aA2 supported-cube directions
+
+- Branch: `codex/rgeo-zgeo-1ms-c2a-nominal-hold`
+- Design / implementation: `104cfd5 / 8bd6964`
+- Validation: local/server focused `11/11`; server full `1697/1697`, one
+  expected skip; offline PASS with zero plant advances
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2r2c2aa2_runs/rgeo_zgeo_1ms_nr2r2c2aa2_supported_cube_directions_20260814_8bd6964`
+- Expected/actual: `3x32 / 3x32`, 96/96 authentic advances, 99 states
+- Execution/safety: PASS; maximum successor `0.79909 mm R / 0.84181 mm Z /
+  33.2962 A Ip`; maximum issued/readback step `0.3/0.3 A`
+- Raw inventory: 495 files / 5,830,399,476 bytes / digest
+  `72611161f6f01e2374a89a6bfad998621b5b9103217314582a5d6e85660d0279`
+- Primary / independent SHA-256:
+  `9e94ce75071c0b9a05d0b4f97943273d272857c1c2d4136768702efda59e096f /`
+  `c8e1a06c558531c83c222856f53d2d634aa4739372e14f413505165a64887ef9`
+- P03-minus: mean `0.355931 mm`, positive `14/14`, maximum `0.523279 mm`,
+  maximum q0-relative Ip difference `37.6619 A`; FAIL unchanged maximum gate
+- P04/P07-minus: positive `14/14`, means `0.186802/0.159783 mm`; FAIL mean
+  and maximum gates
+- Final route: `ONE_MS_NR2R2C2AA2_SUPPORTED_CUBE_DIRECTIONS_FAIL_REDESIGN`
+- Classification: finite supported-cube direction authority FAIL; not runtime,
+  interface, raw, model, controller, MPC, recovery or reachability evidence
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa2_result_20260814_8bd6964/`
+- Next: prospective repeated p03-minus cumulative-domain/incremental-gain
+  sentinel only; Nominal-H1 and later control stages remain blocked

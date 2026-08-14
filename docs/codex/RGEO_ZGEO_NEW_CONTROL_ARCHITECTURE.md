@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **NR2R2C2aA2 evidence amendment (2026-08-14):** all three minus-sign
+> directions completed safely and were positive at all 14 authority states,
+> but none passed every frozen gate. P03-minus had the strongest persistent
+> response (`0.35593 mm` mean, `0.52328 mm` maximum) and failed only the
+> unchanged maximum gate. C2aA2 remains FAIL. The architecture therefore
+> advances only to a separately frozen repeated cumulative-level safety and
+> incremental-gain discriminator along p03-minus; this is not permission to
+> lower C2aA2 gates or begin model/MPC work.
+
 > **NR2R2C2aA2 prospective amendment (2026-08-14):** after p07-plus level2
 > failed persistent authority, the next finite discriminator is frozen to
 > three development-selected minus-sign directions inside componentwise
