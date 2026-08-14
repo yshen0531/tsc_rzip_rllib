@@ -1,0 +1,52 @@
+{
+  "candidate_metrics": [
+    {
+      "candidate_id": "development_p04_plus_constant_dwell",
+      "hold_metrics": {
+        "eligible": false,
+        "endpoint_ip_from_source_a": -358.13880000000063,
+        "endpoint_r_from_source_m": -0.0176557195,
+        "endpoint_z_from_source_m": 0.02352280600000002,
+        "maximum_absolute_ip_from_source_a": 358.13880000000063,
+        "maximum_absolute_r_from_source_m": 0.0176557195,
+        "maximum_absolute_z_from_source_m": 0.02352280600000002,
+        "terminal_maximum_absolute_axis_net_drift_m": 0.005805320000000003,
+        "terminal_maximum_absolute_axis_step_m": 0.0008035455000000163,
+        "terminal_maximum_source_axis_displacement_m": 0.02352280600000002
+      },
+      "passed": true,
+      "reasons": []
+    },
+    {
+      "candidate_id": "development_p07_plus_constant_dwell",
+      "hold_metrics": {
+        "eligible": false,
+        "endpoint_ip_from_source_a": -345.13980000000083,
+        "endpoint_r_from_source_m": -0.017778638000000013,
+        "endpoint_z_from_source_m": 0.023415812500000008,
+        "maximum_absolute_ip_from_source_a": 345.13980000000083,
+        "maximum_absolute_r_from_source_m": 0.017778638000000013,
+        "maximum_absolute_z_from_source_m": 0.023415812500000008,
+        "terminal_maximum_absolute_axis_net_drift_m": 0.005780637500000005,
+        "terminal_maximum_absolute_axis_step_m": 0.0007989515000000058,
+        "terminal_maximum_source_axis_displacement_m": 0.023415812500000008
+      },
+      "passed": true,
+      "reasons": []
+    }
+  ],
+  "claim_boundary": "development_search_only_candidate_requires_separate_fresh_validation",
+  "passed": false,
+  "plant_advances": 64,
+  "required_artifact_bytes": 3886932984,
+  "required_artifact_files": 330,
+  "required_artifact_inventory_sha256": "30075aa96216d845f2de1c09d97411fbb8c504c486a1daf7cfe5e2546935f6c1",
+  "rollouts_completed": 2,
+  "route": "ONE_MS_NR2R2C2A_SEARCH_NO_NOMINAL_HOLD_CANDIDATE_REDESIGN",
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c2a-nominal-hold-search-v1",
+  "search_execution_passed": true,
+  "selected_candidate": null,
+  "source_revision": "3c03cf4",
+  "total_rollout_wall_time_s": 110.75683523155749,
+  "worst_rollout_wall_time_s": 55.472602390218526
+}

@@ -1,5 +1,16 @@
 # Current status
 
+> **NR2R2C2a constant-dwell search safely completed with no hold candidate
+> (2026-08-14 Asia/Shanghai).** Both 32 ms trajectories completed 64/64
+> advances inside all interface/current/successor bounds. Independent V2
+> authenticated 66 states and 330 files (`3,886,932,984` bytes; inventory
+> `30075aa96216d845f2de1c09d97411fbb8c504c486a1daf7cfe5e2546935f6c1`).
+> The two 0.15 A-offset schedules ended near the q0 drift path and failed all
+> terminal hold gates. Isolated state5/state12 favorable transients did not
+> persist under a constant target. No fresh candidate validation or C2b is
+> authorized. This is a finite action-schedule/authority FAIL, not a runtime,
+> interface, raw, model, controller or global reachability result.
+
 > **NR2R2C2a nominal-hold search frozen; implementation/TSC not yet run
 > (2026-08-14 Asia/Shanghai).** Two exact dev-supported 0.15 A-offset dwell
 > targets (`development_p04_plus`, `development_p07_plus`) will each be

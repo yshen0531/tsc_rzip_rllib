@@ -1,5 +1,16 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2a search result (2026-08-14):** both frozen 32 ms constant-dwell
+> searches completed safely (64/64 advances), and independent V2 reproduced
+> all 330 required final-raw files, actions and metrics. Neither candidate
+> held: terminal source-axis displacement was about 23.4--23.5 mm, maximum
+> terminal step about 0.80 mm and terminal net drift about 5.8 mm. Final route
+> is `ONE_MS_NR2R2C2A_SEARCH_NO_NOMINAL_HOLD_CANDIDATE_REDESIGN`; see
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2A_NOMINAL_HOLD_SEARCH_RESULT.md`.
+> This blocks fresh validation and C2b. The active next task is only to
+> prospectively design a cumulative/current-level authority discriminator;
+> model fitting, controller/MPC, response atlas and learning remain blocked.
+
 > **NR2R2C2a search prospective freeze (2026-08-14):** after C1a mechanics
 > qualification, the active task is the separately frozen two-candidate,
 > 64-advance-maximum canonical-source nominal-hold search in
