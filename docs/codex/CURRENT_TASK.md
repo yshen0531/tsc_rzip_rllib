@@ -1,5 +1,37 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Post-E1 route reset accepted; ID-0 design is the unique active task
+> (2026-08-14):** E1 and the A4/p03 action-age ladder are parked and must not
+> be packaged, deployed or run. Their code and frozen evidence remain
+> immutable historical checkpoints, not scientific results or a reason to
+> continue that route. The project now distinguishes (a) prospectively
+> bounded TSC-only empirical identification, which may expose a finite declared
+> set of unknown simulator transitions and produces only predeclared ID data,
+> from (b) controller-grade qualification, which still requires a calibrated
+> pre-action tube, hard margins and qualified recourse for every issued action.
+>
+> The unique next task is to prospectively freeze an ID-0 source-local
+> matched-prefix vector/tail campaign. It must use actual 14-dimensional
+> Card15 vectors, matched q0 baselines, both signs, multiple issue contexts,
+> full tail windows, exact return/cumulative semantics, whole-family data
+> splits and explicit development/calibration/unopened-holdout roles. It must
+> measure full `[delta R,delta Z,delta Ip]` response geometry, repeatability,
+> tail support, signed asymmetry, condition/SNR and Ip cost before any model is
+> selected. The existing p03/p04/p07 families are a candidate pool, not a
+> frozen controller basis. No model code or TSC may precede the committed
+> ID-0 design and its exact package/offline gates.
+>
+> If ID-0 passes, the route proceeds to a separate small-HFS matched-time/
+> different-position and matched-position/different-arrival-history design,
+> then grouped model comparison. The preferred model order is exact
+> actuator/queue, exact current R/Z/Ip recentering, time-indexed nominal
+> evolution, stable low-order latent memory, contextual LPV/local scheduling,
+> and only then an optional small recurrent residual. Controller-grade
+> nominal corridor, two-sided residual authority and Recourse-L1 remain hard
+> prerequisites for reference-governed constrained rolling control. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_E1_ROUTE_RESET.md`. This block is the
+> only active pointer; every older active-task notice below is historical.
+>
 > **NR2R2C2aA4E1 single-successor exploration prospectively frozen
 > (2026-08-14):** the unique active identity is
 > `rgeo-zgeo-1ms-nr2r2c2aa4e1-single-successor-exploration-v1`, defined in

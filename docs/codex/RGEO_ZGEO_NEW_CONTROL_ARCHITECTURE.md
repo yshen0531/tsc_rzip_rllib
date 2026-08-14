@@ -1,5 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-E1 architecture reset (2026-08-14):** the high-level exact-actuator,
+> exact-current-observation, latent-history, uncertainty-aware rolling-control
+> architecture remains. E1 and the single-p03 action-age ladder are parked.
+> They are replaced by two explicitly different evidence contracts: finite
+> TSC-only empirical identification may expose preregistered unknown simulator
+> transitions, while every controller-grade action still requires a calibrated
+> pre-action tube and qualified recourse. The next stage is a source-local
+> matched-prefix signed vector/tail design, followed only after its gates by
+> small-HFS position/time/history factorization and grouped model comparison.
+> Exact current R/Z/Ip are recentered at every decision prefix; latent belief
+> covers dynamics and future response, not measurement error. The preferred
+> model order remains stable low-order/state-space plus contextual LPV/local
+> scheduling, with a small recurrent residual only after fresh whole-family
+> benefit. See `docs/codex/reports/RGEO_ZGEO_1MS_POST_E1_ROUTE_RESET.md`.
+>
 > **Simulator-exploration separation amendment (2026-08-14):** the strict
 > pre-action transition-support rule remains mandatory for qualification and
 > control claims, but no longer makes first digital-twin observation logically

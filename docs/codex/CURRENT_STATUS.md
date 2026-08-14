@@ -1,5 +1,28 @@
 # Current status
 
+> **Post-E1 route reset accepted; ID-0 vector/tail design active (2026-08-14
+> Asia/Shanghai).** The frozen and implemented E1 single-successor identity is
+> parked without deployment or TSC. It has no raw or scientific result. Its
+> unfinished package-verifier worktree changes are preserved but excluded
+> from the active stage. A4 remains final as a zero-TSC causal-support FAIL;
+> no A4/E1 result is relabelled.
+>
+> The route now has two explicit contracts. TSC-only empirical identification
+> may expose a finite, preregistered set of unknown simulator transitions under
+> exact Card15/current/boundary/Ip/outer-envelope, no-retry, raw-integrity and
+> data-role gates. Controller-grade action claims still require a calibrated
+> pre-action tube and qualified recourse. This removes the identification-
+> recovery bootstrap loop without weakening controller safety.
+>
+> The unique active task is a prospective source-local ID-0 design with
+> matched q0 baselines, actual p03/p04/p07-class candidate vectors, both signs,
+> multiple issue contexts, exact pulse/return or separately declared
+> cumulative semantics, complete tail observation and whole-family split
+> discipline. It is not yet implemented or run. Passing signal/tail/vector/
+> Ip/repeatability gates may authorize only the next separately frozen
+> position/history-factorization or model-design stage. Full reasoning is in
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_E1_ROUTE_RESET.md`.
+>
 > **E1 simulator-only single-successor design frozen; implementation/TSC not
 > yet run (2026-08-14 Asia/Shanghai).** A new identity, separate from failed
 > A4, permits one canonical reset and at most 17 plant-advance attempts with no

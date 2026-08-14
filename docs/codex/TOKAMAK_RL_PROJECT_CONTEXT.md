@@ -1,5 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current post-E1 route notice (2026-08-14):** the user accepted the route
+> review in `docs/codex/reports/RGEO_ZGEO_1MS_POST_E1_ROUTE_RESET.md`. E1 and
+> the A4/p03 action-age ladder are parked; E1 implementation exists but is not
+> deployed or run and has no scientific result. The active stage is only the
+> prospective ID-0 source-local matched-prefix vector/tail design.
+>
+> The project now separates finite TSC-only empirical identification from
+> controller-grade safety qualification. The former may deliberately expose
+> preregistered unknown digital-twin transitions and generate only the data
+> role declared before execution. The latter continues to require a
+> calibrated pre-action tube, hard margins and qualified recourse. ID-0 must
+> establish signed full-vector response, tail/action-age support,
+> repeatability, conditioning and Ip cost before model comparison. A later
+> small-HFS campaign must separately factor position from time and arrival
+> history. All older active notices below are historical and cannot override
+> `docs/codex/CURRENT_TASK.md`.
+>
 > **Current E1 route notice (2026-08-14):** after preserving A4's strict
 > support FAIL, the project separately froze one simulator-only empirical
 > successor identity. It permits exactly one canonical reset, at most 17
