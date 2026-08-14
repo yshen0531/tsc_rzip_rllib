@@ -1,0 +1,55 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c2aa4-p03-level2-dwell-hold-v1",
+  "campaign_id": "rgeo_zgeo_1ms_nr2r2c2aa4_p03_level2_dwell_hold_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 32,
+  "rollouts": 2,
+  "maximum_plant_advances": 64,
+  "intended_use": "qualified_level_domain_maximum_dwell_hold_discriminator_only",
+  "model_or_expert_use": "forbidden",
+  "q0_comparator": {
+    "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c1a_result_20260814_778b454/q0_h32_r0.json",
+    "sha256": "ee307442e0ce064fe043d51b722556a44a5be5bd5abeb848174901d2049788b7"
+  },
+  "level1_card15_fields": [
+    "-3.514E+01", "-4.514E+01", "-4.514E+01", "-3.514E+01",
+    "-4.486E+01", "-4.486E+01", "-3.186E+01", "-3.214E+01",
+    "-6.000E-02", "6.000E-02 ", "-7.530E+00", "-1.353E+01",
+    "-8.170E+00", "-8.230E+00"
+  ],
+  "level2_card15_fields": [
+    "-3.528E+01", "-4.528E+01", "-4.528E+01", "-3.528E+01",
+    "-4.472E+01", "-4.472E+01", "-3.172E+01", "-3.228E+01",
+    "-1.200E-01", "1.200E-01 ", "-7.560E+00", "-1.356E+01",
+    "-8.140E+00", "-8.260E+00"
+  ],
+  "schedule": [
+    {"first_step": 0, "last_step": 0, "level": "q0"},
+    {"first_step": 1, "last_step": 1, "level": "level1"},
+    {"first_step": 2, "last_step": 31, "level": "level2"}
+  ],
+  "support_evidence": {
+    "qualified_source": "NR2R2C2aA3 repeated level2 PASS",
+    "source_result_path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/result.json",
+    "source_result_sha256": "1e082fda5e87e74655f53215b4815edb563ffd386516b704abd34a5393d71b76",
+    "holdout_records_read": 0,
+    "maximum_observed_successor": {"r_geo_m": 0.000803476, "z_geo_m": 0.000827237, "ip_a": 42.719},
+    "prospective_successor_bound": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0}
+  },
+  "inner_r_radius_m": 0.025,
+  "inner_z_radius_m": 0.025,
+  "inner_ip_fraction": 0.05,
+  "outer_r_radius_m": 0.05,
+  "outer_z_radius_m": 0.05,
+  "outer_ip_fraction": 0.10,
+  "terminal_window_start_state": 24,
+  "terminal_window_end_state": 32,
+  "terminal_max_source_axis_displacement_m": 0.005,
+  "terminal_max_axis_step_m": 0.0001,
+  "terminal_max_axis_net_drift_m": 0.001,
+  "repeatability": {"geometry_m": 1e-12, "ip_a": 1e-9, "coil_a": 1e-9, "wire_a": 1e-9},
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"]
+}

@@ -1,5 +1,12 @@
 # Current status
 
+> **NR2R2C2aA4 level2 dwell-hold discriminator frozen; not yet implemented
+> or run (2026-08-14 Asia/Shanghai).** Two identical 32 ms resets will hold the
+> already qualified p03 level2 from issue step2 through step31. It retains the
+> exact 0.3 A adjacent slew, 0.6 A q0-relative maximum, A3 successor bound and
+> original short-hold gates. A FAIL applies only to this maximum persistent
+> sequence, not all switching laws or larger cumulative levels.
+
 > **NR2R2C2aA3 cumulative level2 safely passes its finite gates
 > (2026-08-14 Asia/Shanghai).** Plant implementation `e01411d` completed
 > 2/2 replays and 64/64 advances. Audit-only checkpoint `134b133` repaired a

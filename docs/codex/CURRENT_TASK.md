@@ -1,5 +1,14 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA4 p03 level2 dwell-hold prospective freeze (2026-08-14):** the
+> active task is the two-reset/64-advance maximum persistent-level2
+> discriminator in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4_P03_LEVEL2_DWELL_HOLD_DESIGN.md`.
+> It ramps q0 -> p03 level1 -> qualified level2, holds level2 through state32,
+> and applies the unchanged 5 mm/0.1 mm/1 mm source short-hold gates. PASS may
+> freeze only this exact sequence for separate fresh Nominal-H1 validation.
+> C2b, recovery, model, atlas, MPC, adaptation and learning remain blocked.
+
 > **NR2R2C2aA3 final result (2026-08-14):** both cumulative p03 level2
 > replays completed 64/64 authentic advances and were exact on checked state,
 > action and semantic-artifact coordinates. After an audit-only missing-field

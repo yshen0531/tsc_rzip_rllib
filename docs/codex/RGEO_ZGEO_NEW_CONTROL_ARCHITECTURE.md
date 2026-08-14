@@ -1,5 +1,11 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **NR2R2C2aA4 prospective amendment (2026-08-14):** inside the finite
+> q0/level1/level2 domain qualified by A3, the next discriminator holds the
+> maximum p03 level continuously through 32 ms and applies the unchanged
+> source short-hold gates. This is a direct authority bound for one persistent
+> schedule, not a general proof over switching laws and not a controller.
+
 > **NR2R2C2aA3 evidence amendment (2026-08-14):** two exact p03 level2
 > replays passed the adjacent cumulative-domain gates. Total opposition
 > averaged `0.74192 mm`; incremental level2-over-level1 opposition averaged
