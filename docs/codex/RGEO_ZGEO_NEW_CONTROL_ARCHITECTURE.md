@@ -1,5 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Simulator-exploration separation amendment (2026-08-14):** the strict
+> pre-action transition-support rule remains mandatory for qualification and
+> control claims, but no longer makes first digital-twin observation logically
+> impossible. A separately frozen E1 identity exposes exactly one unknown
+> issue16 -> state17 successor after exact replay to state16, then stops
+> unconditionally. The realized transition is development-only, cannot
+> self-qualify, and cannot enter model/expert/fixture/hold/controller evidence.
+> Even an accepted result only triggers route review; it does not create an
+> automatic p03 ladder. This preserves the final two-axis goal while separating
+> exploration risk from controller safety qualification.
+
 > **Exact observation and A4 support amendment (2026-08-14):** from the fixed
 > 1100 ms takeover onward, the controller observes the current true, noiseless
 > same-step paired-boundary `R_geo/Z_geo` and same-step `Ip` before every 1 ms
@@ -16,9 +27,9 @@
 > have direct support and the first gap is issue16 -> effect17, level2
 > effect-age 15. A4 remains unimplemented/unrun. Exact state16 knowledge,
 > margins and empirical stop thresholds are not a pre-action bound on state17.
-> Before new TSC, the route must separately freeze either an independent
-> transition tube or a simulator-only empirical exploration contract. This
-> result authorizes neither TSC nor controller/model work.
+> The subsequent E1 design above selected and froze the simulator-only
+> empirical exploration branch. The A4 result itself still authorizes neither
+> TSC nor controller/model work.
 
 > **Post-C2aA3 route amendment (2026-08-14):** the final objective remains
 > finite-domain two-axis relative/path/waypoint tracking; source hold is only

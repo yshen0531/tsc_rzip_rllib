@@ -1,5 +1,35 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA4E1 single-successor exploration prospectively frozen
+> (2026-08-14):** the unique active identity is
+> `rgeo-zgeo-1ms-nr2r2c2aa4e1-single-successor-exploration-v1`, defined in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4E1_SINGLE_SUCCESSOR_EXPLORATION_DESIGN.md`.
+> It is a simulator-only bootstrap exception, not a weakening or rerun of A4.
+> One fresh canonical reset may make at most 17 plant-advance attempts/gotsc
+> calls with no retry: issues0..15 must
+> reproduce A3 exactly, issue16 holds the same p03 level2 target for the sole
+> unseen transition to state17/effect-age15, and state17 is then recorded and
+> followed by an unconditional stop with no issue17 or state18. One rollout,
+> one unknown successor and 90 required artifacts are hard maxima.
+>
+> Current same-step paired-boundary `R_geo/Z_geo` and same-step `Ip` are exact,
+> noiseless observables before every issue, and all causal history accumulated
+> since the 1100 ms takeover is available. State17 is nevertheless unknown
+> before issue16. The `2 mm/2 mm/100 A` acceptance caps and state16 outer
+> clearance are empirical exploration controls, not a plant bound or tube.
+> E1 data are forbidden from fitting, training, expert/Oracle/fixture, hold or
+> controller qualification. Even an accepted and independently audited
+> successor authorizes only a global route review and separately frozen next
+> design; it cannot start an automatic p03 ladder.
+>
+> This design checkpoint authorizes implementation and zero-plant validation.
+> Only after package, offline and installed-server gates pass may the exact
+> one-reset E1 TSC identity run. No A4, second reset, model, MPC, recovery,
+> atlas, adaptation or learning is authorized. The final goal remains safe
+> causal two-axis relative/path/waypoint tracking, not source hold. This is the
+> unique current-route pointer; all older active-task notices below are
+> historical.
+>
 > **A4 late-state support result and exact observation contract (2026-08-14):**
 > from the fixed 1100 ms takeover onward, before every 1 ms action issue, the
 > current same-step paired-boundary `R_geo/Z_geo` and same-step `Ip` are exact,
@@ -39,9 +69,8 @@
 > exploration contract. No server deployment or TSC is authorized by this
 > result. See
 > `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4_LATE_STATE_SUPPORT_RESULT.md`.
-> This top block is the unique current-route pointer; every older phrase
-> "active task" below is a chronological historical notice and cannot override
-> it.
+> This block was the unique route pointer at its checkpoint and is superseded
+> by the prospective E1 block above.
 
 > **NR2R2C2aA4 p03 level2 dwell-hold prospective freeze (2026-08-14):** the
 > active task is the two-reset/64-advance maximum persistent-level2

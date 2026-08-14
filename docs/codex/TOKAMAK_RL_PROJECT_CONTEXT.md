@@ -1,5 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current E1 route notice (2026-08-14):** after preserving A4's strict
+> support FAIL, the project separately froze one simulator-only empirical
+> successor identity. It permits exactly one canonical reset, at most 17
+> plant-advance attempts with no retry, and one unseen issue16 -> state17
+> transition after an exact A3 prefix, followed
+> by an unconditional stop. This development-only exposure is not a tube,
+> A4/hold/model/controller qualification or training datum. Implementation and
+> all zero-plant/server gates remain pending; no broader TSC is authorized.
+> The final two-axis tracking goal and exact pre-issue observation contract are
+> unchanged. `docs/codex/CURRENT_TASK.md` is authoritative.
+>
 > **Current 1 ms observation/support notice (2026-08-14):** from the fixed
 > 1100 ms takeover onward, current same-step paired-boundary `R_geo/Z_geo` and
 > same-step `Ip` are exact, noiseless observables before each action issue. The
@@ -10,8 +21,8 @@
 > measurement error. The zero-TSC A4 late-state support gate passed input
 > integrity but supported only 16/32 transitions, first failing at
 > `issue16 -> effect17` / level2 effect-age 15. A4 is unimplemented and unrun;
-> no server/TSC was used. The active route is a separately prospective
-> zero-TSC support decision/design. All older active-stage notices below are
+> no server/TSC was used. That result led to the separately frozen E1 design
+> above. All older active-stage notices below are
 > historical and cannot override `docs/codex/CURRENT_TASK.md`.
 > The final two-axis relative/path/waypoint tracking goal is unchanged; A4 is
 > only a bootstrap discriminator, not a reduced objective.

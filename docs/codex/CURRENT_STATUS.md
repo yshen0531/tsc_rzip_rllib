@@ -1,5 +1,19 @@
 # Current status
 
+> **E1 simulator-only single-successor design frozen; implementation/TSC not
+> yet run (2026-08-14 Asia/Shanghai).** A new identity, separate from failed
+> A4, permits one canonical reset and at most 17 plant-advance attempts with no
+> retry. The A3 prefix through
+> state16 must be exact; only issue16 -> state17 is unseen, and the runner must
+> stop after recording state17 without issue17/state18. Exact pre-issue
+> R_geo/Z_geo/Ip and causal history make the current state and stop auditable,
+> but do not reveal the future successor or create a pre-action tube. The one
+> E1 trajectory is development-only and forbidden from model/expert/fixture/
+> hold/controller qualification. Implementation, local/offline tests, server
+> validation and the exact E1 run remain pending. No other TSC is unlocked.
+> See
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4E1_SINGLE_SUCCESSOR_EXPLORATION_DESIGN.md`.
+>
 > **A4 late-state support FAIL; exact observation contract frozen (2026-08-14
 > Asia/Shanghai).** From the fixed 1100 ms takeover onward, every 1 ms decision
 > sees the current same-step paired-boundary `R_geo/Z_geo` and same-step `Ip` as

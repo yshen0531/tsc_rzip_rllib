@@ -1,0 +1,152 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c2aa4e1-single-successor-exploration-v1",
+  "campaign_id": "rgeo_zgeo_1ms_nr2r2c2aa4e1_single_successor_exploration_v1",
+  "design": {
+    "path": "docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4E1_SINGLE_SUCCESSOR_EXPLORATION_DESIGN.md",
+    "sha256": "2981b40c3805e59b56c5587a29d58c09d8135e705fc1df3fecb8c963bece7bb5"
+  },
+  "base_tsc_config": {
+    "path": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+    "sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b"
+  },
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 17,
+  "rollouts": 1,
+  "maximum_reset_calls": 1,
+  "maximum_plant_advances": 17,
+  "maximum_advance_attempts": 17,
+  "maximum_plant_advance_gotsc_calls": 17,
+  "retry_after_any_advance_attempt": "forbidden",
+  "completed_execution_required_state_count": 18,
+  "completed_execution_required_artifact_files": 90,
+  "known_prefix_last_issue_step": 15,
+  "known_prefix_last_state_index": 16,
+  "empirical_exploration_issue_step": 16,
+  "empirical_exploration_effect_state_index": 17,
+  "empirical_exploration_level2_effect_age": 15,
+  "unknown_successor_count": 1,
+  "intended_use": "simulator_only_single_unknown_successor_development_exploration",
+  "model_or_expert_use": "forbidden",
+  "qualification_use": "forbidden",
+  "holdout_records_read": 0,
+  "raw_records_used_as_fixture": 0,
+  "observation_contract": {
+    "r_geo_z_geo_ip_exact_noiseless_before_issue": true,
+    "same_state_paired_boundary_required": true,
+    "invalid_or_missing_boundary_fails_closed": true,
+    "complete_causal_history_since_takeover_available": true,
+    "pre_takeover_history_asserted_available": false,
+    "future_successor_observed_before_issue": false
+  },
+  "evidence": {
+    "a3_config": {
+      "path": "configs/rgeo_zgeo_1ms_nr2r2c2aa3_p03_cumulative_level2.json",
+      "sha256": "7e397f02e8d8e5b46d33034eea90e8aebbb8acfc98a17f1199d2181fa228e300"
+    },
+    "a3_primary": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/result.json",
+      "sha256": "1e082fda5e87e74655f53215b4815edb563ffd386516b704abd34a5393d71b76",
+      "expected_route": "ONE_MS_NR2R2C2AA3_P03_CUMULATIVE_LEVEL2_PASS_TIME_VARYING_C2A_DESIGN_ONLY"
+    },
+    "a3_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/independent_audit.json",
+      "sha256": "12be18d78acb1fe373bb975e8153f41e1802bc56ff872c8400cacb9ed24834c1",
+      "expected_route": "ONE_MS_NR2R2C2AA3_INDEPENDENT_AUDIT_PASS"
+    },
+    "a3_replay_0": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/p03_cumulative_level2_r0.json",
+      "sha256": "7d4433d0ee5922909dad950b5f4b42ade86e282c54422d442cbac60ffa77a4c7"
+    },
+    "a3_replay_1": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/p03_cumulative_level2_r1.json",
+      "sha256": "942fc39d126da72313d9a18320c40bfb422986771284577993b671013ff1babe"
+    },
+    "a4_config": {
+      "path": "configs/rgeo_zgeo_1ms_nr2r2c2aa4_p03_level2_dwell_hold.json",
+      "sha256": "8afd00a1714e29f97a81794a07f2e7f1c47c69b518e868abfd28f22714770c35"
+    },
+    "a4_design": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA4_P03_LEVEL2_DWELL_HOLD_DESIGN.md",
+      "sha256": "243e4bbd52e958dc122bf5a7700be9d108c7e0be8f05ff4c55a68f4087f4584c"
+    },
+    "a4_support_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa4_support_20260814_49faa8b9/result.json",
+      "sha256": "e2548f668e8a0438668cb86f0e3d00dfc3c570773f8aa4302f71cfbee1066b42",
+      "expected_route": "ONE_MS_NR2R2C2AA4_LATE_STATE_CAUSAL_SUPPORT_FAIL_NO_TSC",
+      "expected_supported_transitions": 16,
+      "expected_required_transitions": 32,
+      "expected_first_unsupported_issue_step": 16,
+      "expected_first_unsupported_effect_state_index": 17,
+      "expected_first_unsupported_level2_effect_age": 15
+    }
+  },
+  "level1_card15_fields": [
+    "-3.514E+01", "-4.514E+01", "-4.514E+01", "-3.514E+01",
+    "-4.486E+01", "-4.486E+01", "-3.186E+01", "-3.214E+01",
+    "-6.000E-02", "6.000E-02 ", "-7.530E+00", "-1.353E+01",
+    "-8.170E+00", "-8.230E+00"
+  ],
+  "level2_card15_fields": [
+    "-3.528E+01", "-4.528E+01", "-4.528E+01", "-3.528E+01",
+    "-4.472E+01", "-4.472E+01", "-3.172E+01", "-3.228E+01",
+    "-1.200E-01", "1.200E-01 ", "-7.560E+00", "-1.356E+01",
+    "-8.140E+00", "-8.260E+00"
+  ],
+  "schedule": [
+    {"first_step": 0, "last_step": 0, "level": "q0"},
+    {"first_step": 1, "last_step": 1, "level": "level1"},
+    {"first_step": 2, "last_step": 16, "level": "level2"}
+  ],
+  "prefix_match_tolerance": {
+    "geometry_m": 1e-12,
+    "ip_a": 1e-9,
+    "coil_a": 1e-9,
+    "wire_a": 1e-9
+  },
+  "empirical_successor_acceptance": {
+    "r_geo_m": 0.002,
+    "z_geo_m": 0.002,
+    "ip_a": 100.0,
+    "state17_must_remain_in_inner_envelope": true,
+    "is_preaction_transition_bound": false
+  },
+  "preissue16_outer_clearance": {
+    "r_geo_m": 0.020,
+    "z_geo_m": 0.020,
+    "ip_a": 1000.0,
+    "is_qualified_transition_tube": false
+  },
+  "inner_r_radius_m": 0.025,
+  "inner_z_radius_m": 0.025,
+  "inner_ip_fraction": 0.05,
+  "outer_r_radius_m": 0.05,
+  "outer_z_radius_m": 0.05,
+  "outer_ip_fraction": 0.10,
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "post_state17_policy": {
+    "unconditional_stop": true,
+    "issue17_forbidden": true,
+    "state18_forbidden": true,
+    "return_or_cleanup_plant_action_forbidden": true
+  },
+  "result_counter_contract": {
+    "record_reset_calls_separately": true,
+    "record_advance_attempts_separately": true,
+    "record_verified_successful_plant_advances_separately": true,
+    "partial_failure_raw_must_be_preserved_and_reported": true
+  },
+  "routes": {
+    "input_fail": "ONE_MS_NR2R2C2AA4E1_INPUT_INTEGRITY_FAIL_NO_TSC",
+    "offline_fail": "ONE_MS_NR2R2C2AA4E1_OFFLINE_PREFLIGHT_FAIL_NO_TSC",
+    "package_or_deployment_fail": "ONE_MS_NR2R2C2AA4E1_PACKAGE_OR_DEPLOYMENT_FAIL_NO_TSC",
+    "known_prefix_fail": "ONE_MS_NR2R2C2AA4E1_KNOWN_PREFIX_REPLAY_FAIL_STOP",
+    "clearance_fail": "ONE_MS_NR2R2C2AA4E1_PREISSUE_EXPLORATION_CLEARANCE_FAIL_STOP_BEFORE_ISSUE16",
+    "novel_execution_fail": "ONE_MS_NR2R2C2AA4E1_NOVEL_SUCCESSOR_EXECUTION_FAIL_STOP",
+    "hard_safety_fail": "ONE_MS_NR2R2C2AA4E1_HARD_SAFETY_FAIL_STOP",
+    "acceptance_fail": "ONE_MS_NR2R2C2AA4E1_SUCCESSOR_ACCEPTANCE_FAIL_REDESIGN",
+    "raw_reporting_fail": "ONE_MS_NR2R2C2AA4E1_RAW_OR_REPORTING_INTEGRITY_FAIL_PRESERVE_RAW",
+    "observed": "ONE_MS_NR2R2C2AA4E1_SINGLE_SUCCESSOR_OBSERVED_WITHIN_EMPIRICAL_ENVELOPE_DEVELOPMENT_ONLY"
+  }
+}
