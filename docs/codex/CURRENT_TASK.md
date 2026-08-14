@@ -1,5 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-1A is final as a clean history-contrast design FAIL; ID-1B temporal
+> primitive design is the unique active task (2026-08-14):** ID-1A completed
+> 32/32 resets, 768/768 verified plant advances, 800 states and 4,000/4,000
+> required raw artifacts. Independent raw recomputation passed. The frozen
+> route is `ONE_MS_ID1A_HISTORY_CONTRAST_FAIL_REDESIGN` and
+> `development_data_eligible=false`; these trajectories must not be fit.
+>
+> A post-result zero-TSC causal audit found that the preregistered effect-age
+> 1--4 response mean mixed the issue-10 probe with the issue-11 q0-return
+> edge. It is not a clean one-action vector. The unique active task is to
+> prospectively freeze and implement ID-1B: a matched-q0, signed p03/p04/p07
+> four-issue persistent-dwell discriminator whose effect-age 1--4 window sees
+> one unchanged active target and whose gates include positive spanning and
+> directional support, not numerical rank alone. ID-1B PASS may select only a
+> temporal/action basis. It does not authorize model fitting from ID-1A,
+> controller/MPC, recovery, transport, calibration or holdout. Older notices
+> below are historical.
+
 > **ID-1A context/anchor pilot prospectively frozen; implementation is the
 > unique active task (2026-08-14):** identity
 > `rgeo-zgeo-1ms-id1a-context-anchor-pilot-v1` is frozen by

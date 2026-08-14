@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active post-ID-1A notice (2026-08-14):** ID-1A completed with exact
+> execution/raw/repeatability but its frozen history contrast failed, so its
+> trajectories are not model-fit eligible. The post-result causal audit found
+> that averaging effect ages 1--4 after a one-issue pulse crossed the q0-return
+> action edge. ID-1B must first identify a clean persistent temporal primitive
+> and require positive R/Z spanning, not rank alone. A PASS selects only the
+> prospective action/memory basis; fresh context data and all controller-grade
+> stages remain separate. `CURRENT_TASK.md` is authoritative.
+
 > **Active ID-1A notice (2026-08-14):** the 32-rollout small-HFS
 > context/anchor pilot is prospectively frozen. Its same p03/p07 signed probes
 > compare early/late q0, near-matched visible states with different p04

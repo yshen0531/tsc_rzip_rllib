@@ -1,5 +1,23 @@
 # Current status
 
+> **ID-1A completed as a clean identification-design FAIL; ID-1B design is
+> active (2026-08-14 Asia/Shanghai).** Execution, exact actuator/timing,
+> boundary/Ip/current safety, 4,000-file raw inventory and repeatability all
+> passed over 32 rollouts and 768 advances. Independent raw audit passed. The
+> final route is `ONE_MS_ID1A_HISTORY_CONTRAST_FAIL_REDESIGN`; the frozen data
+> eligibility flag is false. No model has been fit.
+>
+> The failure includes one sub-threshold history contrast and one anchor that
+> missed its position-separation gate. A separate zero-TSC audit also found
+> that the response-vector mean mixed the probe first effect with the next
+> q0-return effect. Pure effect age 1 positively spans R/Z in the checked
+> late-q0 p03/p07 set, whereas the mixed age 1--4 mean does not. The next
+> prospective discriminator must hold each signed target unchanged through
+> the measured window and explicitly gate positive spanning/directional
+> support. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID1A_CONTEXT_ANCHOR_RESULT.md`. Older
+> notices below are historical.
+
 > **ID-1A design frozen; implementation pending (2026-08-14
 > Asia/Shanghai).** Config SHA-256 is
 > `883945f8a15ba1d9aabe037fde6e51ba420cb7a59ba792df1064611b3ba196bf`.

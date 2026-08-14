@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-1A temporal-primitive amendment (2026-08-14):** a local action
+> column may not average across a later issued action edge. With `issue+1`
+> effect timing, an issue-10 pulse followed by issue-11 q0 return has only one
+> pure probe-effect state. ID-1B holds the target unchanged through the full
+> measurement window, keeps later return/tail states separate, and requires a
+> positively spanning R/Z response cone plus minimum directional support.
+> Numerical rank two is necessary but not sufficient. ID-1A remains a frozen
+> clean design FAIL and is forbidden for fitting.
+
 > **ID-1A prospective factorization amendment (2026-08-14):** before model
 > selection, identical q0-centered p03/p07 signed probes are repeated across
 > issue time, near-matched visible state/different history, and displaced
