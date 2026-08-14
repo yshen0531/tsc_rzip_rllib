@@ -2,8 +2,8 @@
   "schema_version": "rgeo-zgeo-1ms-id1a-package-manifest-v1",
   "campaign_id": "rgeo_zgeo_1ms_id1a_context_anchor_pilot_v1",
   "implementation_revision": "8dcd072076fe505e7c9e7432210fec858985926b",
-  "payload_file_count": 41,
-  "payload_inventory_sha256": "e89115c0f57459a7891ba7a478402d67f188c10f18ec7a953f05858aa3e42834",
+  "payload_file_count": 42,
+  "payload_inventory_sha256": "37c86fa43827898cc37f68b4293d744b032b59c65d5fc505effef9c3b25eaa9e",
   "inventory_line_format": "path\\tbytes\\tsha256\\n sorted by Unicode code point, UTF-8",
   "paths": [
     "configs/rgeo_zgeo_1ms_id0_vector_tail.json",
@@ -12,6 +12,7 @@
     "configs/rgeo_zgeo_1ms_nr2r2c2aa1_level2_authority.json",
     "configs/rgeo_zgeo_1ms_nr2r2c2aa3_p03_cumulative_level2.json",
     "docs/codex/audits/rgeo_zgeo_1ms_id0r1_memory_context_audit_result.json",
+    "docs/codex/audits/rgeo_zgeo_1ms_id0t1_result_20260814_18788cf4/baseline_q0_r0.json",
     "docs/codex/reports/RGEO_ZGEO_1MS_ID0R1_MEMORY_CONTEXT_AUDIT.md",
     "docs/codex/reports/RGEO_ZGEO_1MS_ID1A_CONTEXT_ANCHOR_PILOT_DESIGN.md",
     "run_rgeo_zgeo_1ms_id1a_context_anchor_pilot.sh",
