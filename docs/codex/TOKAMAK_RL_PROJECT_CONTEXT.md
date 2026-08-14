@@ -1,5 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active ID-1A notice (2026-08-14):** the 28-rollout small-HFS
+> context/anchor pilot is prospectively frozen. Its same p03/p07 signed probes
+> compare early/late q0, near-matched visible states with different p04
+> histories, and two displaced cumulative-prefix anchors, always after the
+> active command has returned to q0. Implementation and TSC are pending. PASS
+> permits development structure/anchor work only; calibration, holdout and
+> controller claims remain separate. `CURRENT_TASK.md` is authoritative.
+
 > **Active new-round route (2026-08-14):** ID-0R1 completed a hash-bound,
 > zero-TSC/zero-fit audit of the ID-0T1 compact records. Non-monotone residuals
 > show that endpoint tail ratios do not identify memory order, while the

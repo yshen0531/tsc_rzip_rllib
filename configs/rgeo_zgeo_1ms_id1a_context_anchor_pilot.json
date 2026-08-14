@@ -1,0 +1,112 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id1a-context-anchor-pilot-v1",
+  "campaign_id": "rgeo_zgeo_1ms_id1a_context_anchor_pilot_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 24,
+  "rollouts": 28,
+  "maximum_reset_calls": 28,
+  "maximum_advance_attempts": 672,
+  "maximum_gotsc_calls": 672,
+  "maximum_verified_plant_advances": 672,
+  "completed_state_count": 700,
+  "completed_required_artifact_files": 3500,
+  "retry_after_any_advance_attempt": "forbidden",
+  "experiment_contract": "tsc_only_prospective_empirical_identification",
+  "intended_use": "small_hfs_time_history_anchor_development_pilot",
+  "development_use_after_all_gates_pass": "allowed_for_structure_and_anchor_design_only",
+  "calibration_use": "forbidden",
+  "holdout_use": "forbidden",
+  "expert_oracle_fixture_bc_dagger_rl_use": "forbidden",
+  "controller_safety_or_recourse_qualification_use": "forbidden",
+  "holdout_records_read": 0,
+  "evidence": {
+    "base_tsc_config_sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b",
+    "id0_direction_config": {"path": "configs/rgeo_zgeo_1ms_id0_vector_tail.json", "sha256": "668b0e4bb21166dc4d92fe4381c4177b4789b5a3139a176f7ab1b109393c31eb"},
+    "p07_anchor_config": {"path": "configs/rgeo_zgeo_1ms_nr2r2c2aa1_level2_authority.json", "sha256": "d3d08caf4fc4040caf0deb4471543552a5ffc957d0c4f5beca58ed00ded274f3"},
+    "p03_anchor_config": {"path": "configs/rgeo_zgeo_1ms_nr2r2c2aa3_p03_cumulative_level2.json", "sha256": "7e397f02e8d8e5b46d33034eea90e8aebbb8acfc98a17f1199d2181fa228e300"},
+    "id0r1_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id0r1_memory_context_audit_result.json", "sha256": "c12602e1853baa3c5ac98df2ab85eec4d899bdd94fb5c10a3ed2481653f70799"},
+    "id0r1_report": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID0R1_MEMORY_CONTEXT_AUDIT.md", "sha256": "95f68df25f8533a56f78820bf55fcb6b9554da1bc4943ce5f509bdaff961d0e0"}
+  },
+  "baseline": {"prefix_id": "q0_baseline", "repetitions": 2, "probe": null},
+  "probe_directions": ["p03", "p07"],
+  "probe_signs": ["plus", "minus"],
+  "contexts": [
+    {"context_id": "early_q0", "prefix_id": "q0", "probe_issue_step": 2, "repetitions": {"p03:plus": 1, "p03:minus": 1, "p07:plus": 1, "p07:minus": 1}},
+    {"context_id": "late_q0", "prefix_id": "q0", "probe_issue_step": 10, "repetitions": {"p03:plus": 2, "p03:minus": 1, "p07:plus": 1, "p07:minus": 2}},
+    {"context_id": "history_p04_plus", "prefix_id": "short_p04_plus", "probe_issue_step": 10, "repetitions": {"p03:plus": 1, "p03:minus": 1, "p07:plus": 1, "p07:minus": 1}},
+    {"context_id": "history_p04_minus", "prefix_id": "short_p04_minus", "probe_issue_step": 10, "repetitions": {"p03:plus": 1, "p03:minus": 1, "p07:plus": 1, "p07:minus": 1}},
+    {"context_id": "anchor_p03_minus", "prefix_id": "cumulative_p03_minus", "probe_issue_step": 10, "repetitions": {"p03:plus": 1, "p03:minus": 1, "p07:plus": 1, "p07:minus": 1}},
+    {"context_id": "anchor_p07_plus", "prefix_id": "cumulative_p07_plus", "probe_issue_step": 10, "repetitions": {"p03:plus": 1, "p03:minus": 1, "p07:plus": 1, "p07:minus": 1}}
+  ],
+  "prefix_schedules": {
+    "q0": [],
+    "short_p04_plus": [{"first_issue": 6, "last_issue": 6, "target": "p04:plus"}],
+    "short_p04_minus": [{"first_issue": 6, "last_issue": 6, "target": "p04:minus"}],
+    "cumulative_p03_minus": [
+      {"first_issue": 1, "last_issue": 1, "target": "p03_anchor_level1"},
+      {"first_issue": 2, "last_issue": 6, "target": "p03_anchor_level2"},
+      {"first_issue": 7, "last_issue": 7, "target": "p03_anchor_level1"}
+    ],
+    "cumulative_p07_plus": [
+      {"first_issue": 1, "last_issue": 1, "target": "p07_anchor_level1"},
+      {"first_issue": 2, "last_issue": 6, "target": "p07_anchor_level2"},
+      {"first_issue": 7, "last_issue": 7, "target": "p07_anchor_level1"}
+    ]
+  },
+  "action_semantics": {
+    "unspecified_issues_are_q0": true,
+    "prefix_returns_to_q0_no_later_than_issue8": true,
+    "all_contexts_active_command_is_q0_before_probe": true,
+    "probe_duration_issues": 1,
+    "probe_return_target": "exact_q0_on_next_issue",
+    "effect_state_index": "issue_step_plus_one",
+    "maximum_single_turn_adjacent_delta_a": 0.3,
+    "full_limit_allowed": true,
+    "actual_card15_vectors_not_sign_labels": true,
+    "signed_pairs_assumed_odd": false
+  },
+  "empirical_exploration": {
+    "novel_context_successors_are_declared_tsc_only_exposures": true,
+    "pre_action_transition_tube_claimed": false,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_probe_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true
+  },
+  "repeatability": {"geometry_m": 1e-12, "ip_a": 1e-9, "coil_a": 1e-9, "wire_a": 1e-9},
+  "scientific_gates": {
+    "response_mean_effect_age_states": [1, 4],
+    "minimum_peak_rz_response_norm_m_per_arm": 0.00001,
+    "maximum_absolute_ip_response_a": 150.0,
+    "minimum_rz_response_rank_per_context": 2,
+    "maximum_best_pair_condition_per_context": 20.0,
+    "history_preprobe_maximum_rz_distance_from_late_q0_m": 0.0001,
+    "history_preprobe_maximum_ip_distance_from_late_q0_a": 20.0,
+    "minimum_history_conditioned_response_difference_m": 0.000002,
+    "minimum_anchor_preprobe_rz_distance_from_late_q0_m": 0.0001,
+    "minimum_anchor_conditioned_response_difference_m": 0.000005,
+    "time_conditioned_response_difference_is_reported_not_required": true,
+    "tail_extinction_is_not_a_gate": true
+  },
+  "data_grouping": {
+    "atomic_group": "complete_prefix_context_family",
+    "step_level_random_split": "forbidden",
+    "this_stage_role": "development_only",
+    "fresh_calibration_and_holdout_required_later": true
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "routes": {
+    "offline_fail": "ONE_MS_ID1A_OFFLINE_FAIL_NO_TSC",
+    "package_or_deployment_fail": "ONE_MS_ID1A_PACKAGE_OR_DEPLOYMENT_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID1A_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID1A_RAW_INTEGRITY_FAIL_STOP",
+    "repeatability_fail": "ONE_MS_ID1A_REPEATABILITY_FAIL_REDESIGN",
+    "signal_or_vector_fail": "ONE_MS_ID1A_SIGNAL_OR_VECTOR_FAIL_REDESIGN",
+    "history_contrast_fail": "ONE_MS_ID1A_HISTORY_CONTRAST_FAIL_REDESIGN",
+    "anchor_contrast_fail": "ONE_MS_ID1A_ANCHOR_CONTRAST_FAIL_REDESIGN",
+    "pass": "ONE_MS_ID1A_CONTEXT_ANCHOR_DEVELOPMENT_PASS_MODEL_DESIGN_ONLY"
+  }
+}

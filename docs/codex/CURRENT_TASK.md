@@ -1,5 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-1A context/anchor pilot prospectively frozen; implementation is the
+> unique active task (2026-08-14):** identity
+> `rgeo-zgeo-1ms-id1a-context-anchor-pilot-v1` is frozen by
+> `configs/rgeo_zgeo_1ms_id1a_context_anchor_pilot.json` (SHA-256
+> `c05c392c8ac7da93cfce9cd16bd962f60ef9c99708171501e7641fefb7c10d6c`)
+> and
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID1A_CONTEXT_ANCHOR_PILOT_DESIGN.md`.
+> It contains 28 canonical resets, at most 672 one-ms advances, two q0
+> baselines, early/late q0 probes, near-matched p04 history prefixes and two
+> bounded cumulative anchor prefixes. Every contextual p03/p07 signed probe
+> starts with q0 as the active command and retains the complete causal prefix.
+>
+> This stage is TSC-only empirical identification. Implementation may add only
+> the collector, independent auditor, launcher, package identity and focused
+> tests without changing the frozen matrix or gates. Real TSC is allowed only
+> after local, package, server-installed and zero-plant preflights pass. A
+> complete scientific PASS opens these fresh records only for development
+> model structure/anchor design; fresh calibration and holdout are still
+> required. A history/anchor contrast FAIL stops before model fitting.
+> Controller/MPC/recovery/transport/adaptation remain blocked. This is the only
+> active pointer; all notices below are historical.
+
 > **ID-0R1 memory/context audit complete; ID-1A context/anchor pilot is the
 > unique active task (2026-08-14):** the zero-server, zero-TSC, zero-fit audit
 > of all eight tracked ID-0T1 compact histories returned

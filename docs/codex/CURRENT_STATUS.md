@@ -1,5 +1,15 @@
 # Current status
 
+> **ID-1A design frozen; implementation pending (2026-08-14
+> Asia/Shanghai).** Config SHA-256 is
+> `c05c392c8ac7da93cfce9cd16bd962f60ef9c99708171501e7641fefb7c10d6c`.
+> The finite matrix has 28 rollouts and 672 maximum advances. It repeats the
+> same p03/p07 signed probes at early/late q0, after near-matched p04 histories
+> and after two bounded cumulative prefixes that return to q0 before probing.
+> No ID-1A code, package, server deployment or TSC has run yet. A PASS is
+> development-only and cannot qualify a controller. Older notices below are
+> historical.
+
 > **ID-0R1 route review completed; ID-1A design is active (2026-08-14
 > Asia/Shanghai).** A local hash-bound audit read the two ID-0T1 q0 baselines
 > and six signed arms, with zero server access, TSC, model fit or holdout use.

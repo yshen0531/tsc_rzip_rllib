@@ -1,5 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-1A prospective factorization amendment (2026-08-14):** before model
+> selection, identical q0-centered p03/p07 signed probes are repeated across
+> issue time, near-matched visible state/different history, and displaced
+> cumulative-prefix contexts. This is a finite empirical factorization pilot,
+> not a claim of perfect orthogonality or controller safety. Whole causal
+> prefix families stay grouped. Only a PASS can open structured development
+> fitting; calibration, holdout and control qualification remain fresh stages.
+
 > **Post-ID-0R1 architecture amendment (2026-08-14):** current and past
 > R_geo/Z_geo/Ip remain exact observations. Finite-memory truncation is no
 > longer inferred from one terminal response ratio. The prospective backbone
