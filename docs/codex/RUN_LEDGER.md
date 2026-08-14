@@ -1984,3 +1984,31 @@
   `docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa2_result_20260814_8bd6964/`
 - Next: prospective repeated p03-minus cumulative-domain/incremental-gain
   sentinel only; Nominal-H1 and later control stages remain blocked
+
+## R_geo/Z_geo 1 ms NR2R2C2aA3 p03 cumulative level2
+
+- Branch: `codex/rgeo-zgeo-1ms-c2a-nominal-hold`
+- Design / plant implementation / audit-only fix:
+  `0821c78 / e01411d / 134b133`
+- Validation: focused `15/15` before plant; server full `1701/1701`; after
+  audit fix focused `5/5`, server full `1702/1702`; one expected skip
+- Offline: PASS, zero plant advances, maximum adjacent issue `0.3 A`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2r2c2aa3_runs/rgeo_zgeo_1ms_nr2r2c2aa3_p03_cumulative_level2_20260814_e01411d`
+- Expected/actual: `2x32 / 2x32`, 64/64 advances, 66 states
+- Maximum successor: `0.803476 mm R / 0.827237 mm Z / 42.7190 A Ip`
+- Raw inventory: 330 files / 3,886,932,984 bytes / digest
+  `08749807d68650a23d7575aad66c4fe15919ab9e7ce7d4caa898837b0b3e5fa4`
+- Primary / independent SHA-256:
+  `1e082fda5e87e74655f53215b4815edb563ffd386516b704abd34a5393d71b76 /`
+  `12be18d78acb1fe373bb975e8153f41e1802bc56ff872c8400cacb9ed24834c1`
+- Total opposition: mean `0.741923 mm`, positive `14/14`, maximum
+  `1.072706 mm`; maximum q0-relative Ip `75.758 A`
+- Incremental over p03 level1: mean `0.385992 mm`, positive `14/14`
+- Final route:
+  `ONE_MS_NR2R2C2AA3_P03_CUMULATIVE_LEVEL2_PASS_TIME_VARYING_C2A_DESIGN_ONLY`
+- Classification: finite adjacent cumulative-level authority PASS; not hold,
+  recovery, model, controller, MPC or reachability evidence
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/`
+- Next: prospective time-varying q0/p03-level1/level2 C2a search only

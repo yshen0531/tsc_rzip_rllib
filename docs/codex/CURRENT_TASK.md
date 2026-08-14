@@ -1,5 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA3 final result (2026-08-14):** both cumulative p03 level2
+> replays completed 64/64 authentic advances and were exact on checked state,
+> action and semantic-artifact coordinates. After an audit-only missing-field
+> fix at `134b133`, independent raw audit passed 330/330 files and reproduced
+> every metric exactly. Total opposition was `0.74192 mm` mean and
+> `1.07271 mm` maximum; level2-minus-level1 opposition averaged `0.38599 mm`
+> and was positive 14/14. Final route is
+> `ONE_MS_NR2R2C2AA3_P03_CUMULATIVE_LEVEL2_PASS_TIME_VARYING_C2A_DESIGN_ONLY`.
+> See
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA3_P03_CUMULATIVE_LEVEL2_RESULT.md`.
+> The active next task is only a prospective time-varying nominal C2a search
+> inside q0/p03 levels1--2. Nominal-H1, C2b, model, atlas, MPC and learning
+> remain blocked.
+
 > **NR2R2C2aA3 p03 cumulative-level2 prospective freeze (2026-08-14):** the
 > active task is the two-reset/64-advance maximum adjacent-level discriminator
 > in

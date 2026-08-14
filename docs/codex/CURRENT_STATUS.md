@@ -1,5 +1,17 @@
 # Current status
 
+> **NR2R2C2aA3 cumulative level2 safely passes its finite gates
+> (2026-08-14 Asia/Shanghai).** Plant implementation `e01411d` completed
+> 2/2 replays and 64/64 advances. Audit-only checkpoint `134b133` repaired a
+> missing local artifact-hash field after the first independent attempt
+> stopped; zero new TSC was run. Corrected independent audit passed all 330
+> files (3,886,932,984 bytes; digest
+> `08749807d68650a23d7575aad66c4fe15919ab9e7ce7d4caa898837b0b3e5fa4`)
+> and matched all metrics exactly. Mean total/incremental opposition was
+> `0.74192/0.38599 mm`, both positive at 14/14 states. This is finite
+> cumulative authority only, not hold. Only a separately frozen time-varying
+> q0/level1/level2 C2a search is active.
+
 > **NR2R2C2aA3 p03 cumulative-level2 discriminator frozen; not yet
 > implemented or run (2026-08-14 Asia/Shanghai).** Two identical 32 ms
 > canonical resets will issue q0 -> p03 level1 -> p03 level2, hold, and return

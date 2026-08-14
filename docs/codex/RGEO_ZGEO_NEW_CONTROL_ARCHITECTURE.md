@@ -1,5 +1,12 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **NR2R2C2aA3 evidence amendment (2026-08-14):** two exact p03 level2
+> replays passed the adjacent cumulative-domain gates. Total opposition
+> averaged `0.74192 mm`; incremental level2-over-level1 opposition averaged
+> `0.38599 mm`, with both signs positive at all 14 states. This supports one
+> finite time-varying q0/level1/level2 C2a design. It does not establish hold,
+> linear scaling, arbitrary cumulative range, recovery or a model/controller.
+
 > **NR2R2C2aA3 prospective amendment (2026-08-14):** the user's cumulative
 > `0.3 A/step` authority is now tested explicitly rather than keeping every
 > target within q0+/-0.3 A. The first expansion is only one additional exact
