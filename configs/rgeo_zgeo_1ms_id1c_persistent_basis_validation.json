@@ -1,0 +1,113 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id1c-persistent-basis-validation-v1",
+  "campaign_id": "rgeo_zgeo_1ms_id1c_persistent_basis_validation_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 18,
+  "rollouts": 10,
+  "maximum_reset_calls": 10,
+  "maximum_advance_attempts": 180,
+  "maximum_gotsc_calls": 180,
+  "maximum_verified_plant_advances": 180,
+  "completed_state_count": 190,
+  "completed_required_artifact_files": 950,
+  "retry_after_any_advance_attempt": "forbidden",
+  "experiment_contract": "tsc_only_prospective_empirical_identification",
+  "intended_use": "fresh_exact_q0_centered_half_amplitude_p01_p09_persistent_basis_validation",
+  "development_use_after_all_gates_pass": "allowed_for_temporal_action_basis_selection_only",
+  "model_fit_use": "forbidden",
+  "calibration_use": "forbidden",
+  "holdout_use": "forbidden",
+  "expert_oracle_fixture_bc_dagger_rl_use": "forbidden",
+  "controller_safety_or_recourse_qualification_use": "forbidden",
+  "holdout_records_read": 0,
+  "server_tests_and_execution_required": true,
+  "local_nontrivial_tests_forbidden": true,
+  "evidence": {
+    "base_tsc_config_sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b",
+    "id1c0_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id1c0_direction_screen_20260814_3986502f/result.json",
+      "sha256": "4f89bd34555287b236d1c22a4bfb12883dd1b603cf4a49a46bfff63a174428db"
+    },
+    "id1b_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id1b_result_20260814_bd1b5802/result.json",
+      "sha256": "54ed170bc628237d6d7b8828f6dc3c77b06e549f064a63ae4281af9aea0d0db8"
+    }
+  },
+  "baseline_repetitions": 2,
+  "arm_repetitions": 2,
+  "directions": [
+    {
+      "direction_id": "p01",
+      "plus_card15_fields": ["-3.493E+01", "-4.493E+01", "-4.493E+01", "-3.507E+01", "-4.493E+01", "-4.507E+01", "-3.193E+01", "-3.193E+01", "3.000E-02 ", "3.000E-02 ", "-7.515E+00", "-1.351E+01", "-8.185E+00", "-8.185E+00"],
+      "minus_card15_fields": ["-3.507E+01", "-4.507E+01", "-4.507E+01", "-3.493E+01", "-4.507E+01", "-4.493E+01", "-3.207E+01", "-3.207E+01", "-3.000E-02", "-3.000E-02", "-7.485E+00", "-1.349E+01", "-8.215E+00", "-8.215E+00"]
+    },
+    {
+      "direction_id": "p09_half_exact_center",
+      "plus_card15_fields": ["-3.507E+01", "-4.493E+01", "-4.493E+01", "-3.507E+01", "-4.507E+01", "-4.493E+01", "-3.207E+01", "-3.207E+01", "3.000E-02 ", "-3.000E-02", "-7.485E+00", "-1.349E+01", "-8.215E+00", "-8.185E+00"],
+      "minus_card15_fields": ["-3.493E+01", "-4.507E+01", "-4.507E+01", "-3.493E+01", "-4.493E+01", "-4.507E+01", "-3.193E+01", "-3.193E+01", "-3.000E-02", "3.000E-02 ", "-7.515E+00", "-1.351E+01", "-8.185E+00", "-8.215E+00"]
+    }
+  ],
+  "dwell": {
+    "first_issue": 10,
+    "last_issue": 13,
+    "return_issue": 14,
+    "pure_effect_state_indices": [11, 12, 13, 14],
+    "return_effect_state_index": 15,
+    "reported_tail_state_indices": [15, 18]
+  },
+  "action_semantics": {
+    "unspecified_issues_are_q0": true,
+    "same_target_held_through_measurement_window": true,
+    "probe_return_target": "exact_q0_at_issue14",
+    "effect_state_index": "issue_step_plus_one",
+    "maximum_single_turn_adjacent_delta_a": 0.3,
+    "maximum_designed_probe_component_a": 0.15,
+    "full_0p3_limit_remains_allowed_but_unused": true,
+    "actual_card15_vectors_not_sign_labels": true,
+    "each_signed_pair_must_be_exactly_centered_on_q0": true,
+    "signed_pairs_assumed_odd": false
+  },
+  "empirical_exploration": {
+    "novel_persistent_successors_are_declared_tsc_only_exposures": true,
+    "pre_action_transition_tube_claimed": false,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_probe_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true
+  },
+  "repeatability": {"geometry_m": 1e-12, "ip_a": 1e-9, "coil_a": 1e-9, "wire_a": 1e-9},
+  "scientific_gates": {
+    "response_state_indices": [11, 12, 13, 14],
+    "minimum_peak_rz_response_norm_m_per_signed_arm": 0.00001,
+    "minimum_pair_odd_rz_norm_m": 0.00001,
+    "maximum_pair_even_rz_norm_m": 0.000005,
+    "maximum_absolute_ip_response_a": 100.0,
+    "minimum_rz_response_rank": 2,
+    "maximum_best_pair_condition": 20.0,
+    "maximum_angular_gap_deg": 175.0,
+    "directional_support_angle_samples": 360,
+    "minimum_directional_support_m": 0.000005,
+    "tail_extinction_is_not_a_gate": true
+  },
+  "data_grouping": {
+    "atomic_group": "complete_signed_dwell_replay_pair",
+    "step_level_random_split": "forbidden",
+    "this_stage_role": "temporal_action_basis_selection_only",
+    "fresh_context_development_calibration_and_holdout_required_later": true
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "routes": {
+    "offline_fail": "ONE_MS_ID1C_OFFLINE_FAIL_NO_TSC",
+    "package_or_deployment_fail": "ONE_MS_ID1C_PACKAGE_OR_DEPLOYMENT_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID1C_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID1C_RAW_INTEGRITY_FAIL_STOP",
+    "repeatability_fail": "ONE_MS_ID1C_REPEATABILITY_FAIL_REDESIGN",
+    "signal_symmetry_or_ip_fail": "ONE_MS_ID1C_SIGNAL_SYMMETRY_OR_IP_FAIL_REDESIGN",
+    "positive_span_fail": "ONE_MS_ID1C_PERSISTENT_BASIS_GEOMETRY_FAIL_REDESIGN",
+    "pass": "ONE_MS_ID1C_PERSISTENT_BASIS_PASS_FRESH_CONTEXT_DATA_REQUIRED"
+  },
+  "claim_boundary": "fresh_persistent_basis_validation_only_not_model_not_controller_not_recovery_not_global_authority"
+}

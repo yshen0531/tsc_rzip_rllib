@@ -1,5 +1,17 @@
 # Current status
 
+> **ID-1C0 complete; ID-1C design frozen (2026-08-14 Asia/Shanghai).** The
+> server-only zero-TSC direction screen passed and selected p01+p09 from all
+> ten consumed development pairs. The result SHA-256 is
+> `4f89bd34555287b236d1c22a4bfb12883dd1b603cf4a49a46bfff63a174428db`.
+> No holdout, TSC, plant advance or model fit was used by the audit.
+>
+> The next finite campaign has 10 rollouts and 180 maximum advances. It tests
+> exact q0-centred 0.15 A-class p01/p09 targets held for four effects, with
+> two replays per signed arm and fresh q0 baselines. Code, package, deployment
+> and real TSC have not run yet. PASS is basis-selection evidence only; model
+> fitting remains blocked. Older notices below are historical.
+
 > **ID-1B final: finite positive-span design FAIL; route review active
 > (2026-08-14 Asia/Shanghai).** The real-TSC campaign completed 14/14
 > rollouts and 336/336 verified advances. Raw integrity covered 350 states,

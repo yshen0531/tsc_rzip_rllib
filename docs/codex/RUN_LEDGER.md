@@ -2045,3 +2045,25 @@
   `docs/codex/audits/rgeo_zgeo_1ms_id1b_result_20260814_bd1b5802/`
 - Next: zero-new-TSC direction/active-nominal-centre design review; no fit
   or further TSC until prospectively frozen
+
+## R_geo/Z_geo 1 ms ID-1C0 consumed-development direction screen
+
+- Implementation / identity fix: `51dcc7b5 / 3986502f`
+- Execution: server project virtual environment only; focused `2/2`; zero
+  TSC, plant advance, reset, `gotsc`, fit and training
+- Inputs: 23 files / 1,854,612 bytes / digest
+  `d60600155c8261913580ac4962dced57bf4ea8e10d800c934c64a4bfe066e4a6`;
+  NR2R1 development only, no holdout
+- Final result SHA-256:
+  `4f89bd34555287b236d1c22a4bfb12883dd1b603cf4a49a46bfff63a174428db`
+- Selected directions: p01+p09; rank 2; maximum angular gap
+  `98.6800382 deg`; minimum directional support `0.0218296712 mm`; best
+  two-ray condition `2.0015232`; maximum absolute Ip response `14.2429 A`
+- Final route:
+  `ONE_MS_ID1C0_DIRECTION_SCREEN_PASS_FRESH_PERSISTENT_VALIDATION_REQUIRED`
+- Classification: retrospective consumed-development direction screen only;
+  not persistent validation, fit, controller or authority qualification
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id1c0_direction_screen_20260814_3986502f/`
+- Next: fresh exact-centred half-amplitude p01/p09 ID-1C persistent basis
+  validation; PASS still does not authorize fitting from ID-1C

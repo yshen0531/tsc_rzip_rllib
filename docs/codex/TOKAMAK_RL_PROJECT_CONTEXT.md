@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active ID-1C notice (2026-08-14):** a server-side zero-TSC audit of all
+> consumed NR2R1 development directions selected p01+p09 for fresh validation.
+> The old p09 target is not silently reused: ID-1C reconstructs exact
+> q0-centred half-amplitude Card15 pairs and holds each target unchanged
+> through four late-q0 effects. The 10-rollout/180-advance stage remains
+> basis-selection-only; model fitting starts only after a PASS and a separate
+> fresh context/history/anchor design. `CURRENT_TASK.md` is authoritative and
+> older notices are historical.
+
 > **Active post-ID-1B notice (2026-08-14):** ID-1B completed its exact
 > 14-rollout/336-advance persistent-dwell campaign. Execution, raw,
 > repeatability, signal, Ip and numerical rank passed, but all six measured

@@ -1,0 +1,1592 @@
+{
+  "audit_config_sha256": "7843e46228d6e24f709ccf811a5a33afedde5fc97e07fb926db8156d95c7fd08",
+  "candidate_subsets": [
+    {
+      "directions": [
+        "p00",
+        "p01"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          107.19100540338938,
+          180.0878880338717,
+          287.37031846545017
+        ],
+        "best_two_ray_condition": 1.6506464621341561,
+        "maximum_angular_gap_deg": 107.28243043157846,
+        "minimum_directional_support_m": 1.856984623722695e-05,
+        "minimum_ray_norm_m": 2.6116541870044774e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 11.287400000001071,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p00",
+        "p02"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          68.64331919999269,
+          180.0878880338717,
+          248.95259999415663
+        ],
+        "best_two_ray_condition": 5.718637081757856,
+        "maximum_angular_gap_deg": 112.20133435897782,
+        "minimum_directional_support_m": 6.325838670892574e-06,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 6.94380000000092,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p00",
+        "p03"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          161.5751621655735,
+          180.0878880338717,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 6.00674472416203,
+        "maximum_angular_gap_deg": 162.19202440772102,
+        "minimum_directional_support_m": 6.908438644450995e-06,
+        "minimum_ray_norm_m": 3.9327475691325555e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p00",
+        "p04"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          1.4707372230999205,
+          180.0878880338717,
+          326.7617926840679
+        ],
+        "best_two_ray_condition": 5.861062868072226,
+        "maximum_angular_gap_deg": 178.6171508107718,
+        "minimum_directional_support_m": 6.278495766979332e-07,
+        "minimum_ray_norm_m": 3.9327475691325555e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p00",
+        "p05"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          54.18961426707904,
+          180.0878880338717,
+          234.24146524514214
+        ],
+        "best_two_ray_condition": 3.6906861745502115,
+        "maximum_angular_gap_deg": 126.91246910799231,
+        "minimum_directional_support_m": 8.854622886183254e-06,
+        "minimum_ray_norm_m": 1.3706628419272913e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 6.94380000000092,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p00",
+        "p06"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          167.2288145227221,
+          180.0878880338717,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 13.828369963482432,
+        "maximum_angular_gap_deg": 169.81149224837213,
+        "minimum_directional_support_m": 1.8174682415905531e-06,
+        "minimum_ray_norm_m": 1.2897900914523095e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 10.533300000002782,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p00",
+        "p07"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          11.422762312326885,
+          180.0878880338717,
+          324.67701085363456
+        ],
+        "best_two_ray_condition": 4.739349338294435,
+        "maximum_angular_gap_deg": 168.66512572154483,
+        "minimum_directional_support_m": 4.746599731027613e-06,
+        "minimum_ray_norm_m": 3.9327475691325555e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 13.508449999999357,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p00",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          139.5371972280313,
+          180.0878880338717,
+          319.39823567137773
+        ],
+        "best_two_ray_condition": 17.784589627355547,
+        "maximum_angular_gap_deg": 139.31034763750603,
+        "minimum_directional_support_m": 2.063788516907981e-06,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 6.94380000000092,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p00",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.1539343531344435,
+          26.050356665350794,
+          180.0878880338717,
+          205.25229932561643
+        ],
+        "best_two_ray_condition": 4.516662374406346,
+        "maximum_angular_gap_deg": 155.901635027518,
+        "minimum_directional_support_m": 9.411622189521015e-06,
+        "minimum_ray_norm_m": 3.9327475691325555e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 14.2429000000011,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p01",
+        "p02"
+      ],
+      "geometry": {
+        "angles_deg": [
+          68.64331919999269,
+          107.19100540338938,
+          248.95259999415663,
+          287.37031846545017
+        ],
+        "best_two_ray_condition": 5.892243365234176,
+        "maximum_angular_gap_deg": 141.76159459076723,
+        "minimum_directional_support_m": 3.7265419827999572e-06,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 11.287400000001071,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p01",
+        "p03"
+      ],
+      "geometry": {
+        "angles_deg": [
+          107.19100540338938,
+          161.5751621655735,
+          287.37031846545017,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 2.6149516826715735,
+        "maximum_angular_gap_deg": 125.79515629987668,
+        "minimum_directional_support_m": 1.55821914811619e-05,
+        "minimum_ray_norm_m": 2.6116541870044774e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p01",
+        "p04"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          107.19100540338938,
+          287.37031846545017,
+          326.7617926840679
+        ],
+        "best_two_ray_condition": 2.214899200460717,
+        "maximum_angular_gap_deg": 180.17931306206077,
+        "minimum_directional_support_m": 8.719548228690457e-08,
+        "minimum_ray_norm_m": 2.6116541870044774e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p01",
+        "p05"
+      ],
+      "geometry": {
+        "angles_deg": [
+          54.18961426707904,
+          107.19100540338938,
+          234.24146524514214,
+          287.37031846545017
+        ],
+        "best_two_ray_condition": 2.647203704560348,
+        "maximum_angular_gap_deg": 127.05045984175275,
+        "minimum_directional_support_m": 8.00974999992654e-06,
+        "minimum_ray_norm_m": 1.3706628419272913e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 11.287400000001071,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p01",
+        "p06"
+      ],
+      "geometry": {
+        "angles_deg": [
+          107.19100540338938,
+          167.2288145227221,
+          287.37031846545017,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 2.424343455138359,
+        "maximum_angular_gap_deg": 120.14150394272806,
+        "minimum_directional_support_m": 8.601407851504994e-06,
+        "minimum_ray_norm_m": 1.2897900914523095e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 11.287400000001071,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p01",
+        "p07"
+      ],
+      "geometry": {
+        "angles_deg": [
+          11.422762312326885,
+          107.19100540338938,
+          287.37031846545017,
+          324.67701085363456
+        ],
+        "best_two_ray_condition": 2.063915154981624,
+        "maximum_angular_gap_deg": 180.17931306206077,
+        "minimum_directional_support_m": 8.719548228690457e-08,
+        "minimum_ray_norm_m": 2.6116541870044774e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 13.508449999999357,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p01",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          107.19100540338938,
+          139.5371972280313,
+          287.37031846545017,
+          319.39823567137773
+        ],
+        "best_two_ray_condition": 14.79458553952975,
+        "maximum_angular_gap_deg": 147.83312123741888,
+        "minimum_directional_support_m": 1.6237541535781813e-06,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 11.287400000001071,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p01",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          26.050356665350794,
+          107.19100540338938,
+          205.25229932561643,
+          287.37031846545017
+        ],
+        "best_two_ray_condition": 2.0015232020688383,
+        "maximum_angular_gap_deg": 98.68003819990065,
+        "minimum_directional_support_m": 2.1829671231583984e-05,
+        "minimum_ray_norm_m": 2.6116541870044774e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 14.2429000000011,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p02",
+        "p03"
+      ],
+      "geometry": {
+        "angles_deg": [
+          68.64331919999269,
+          161.5751621655735,
+          248.95259999415663,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 6.840790160913267,
+        "maximum_angular_gap_deg": 93.3273124474361,
+        "minimum_directional_support_m": 7.246781781139134e-06,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p02",
+        "p04"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          68.64331919999269,
+          248.95259999415663,
+          326.7617926840679
+        ],
+        "best_two_ray_condition": 5.861062868072226,
+        "maximum_angular_gap_deg": 180.30928079416395,
+        "minimum_directional_support_m": 6.108355617225876e-09,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p02",
+        "p05"
+      ],
+      "geometry": {
+        "angles_deg": [
+          54.18961426707904,
+          68.64331919999269,
+          234.24146524514214,
+          248.95259999415663
+        ],
+        "best_two_ray_condition": 9.32408234372232,
+        "maximum_angular_gap_deg": 165.59814604514946,
+        "minimum_directional_support_m": 1.2473656218190866e-06,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 1.3065000000005966,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p02",
+        "p06"
+      ],
+      "geometry": {
+        "angles_deg": [
+          68.64331919999269,
+          167.2288145227221,
+          248.95259999415663,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 1.7912926676194243,
+        "maximum_angular_gap_deg": 100.94678028808721,
+        "minimum_directional_support_m": 5.875697264570145e-06,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 10.533300000002782,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p02",
+        "p07"
+      ],
+      "geometry": {
+        "angles_deg": [
+          11.422762312326885,
+          68.64331919999269,
+          248.95259999415663,
+          324.67701085363456
+        ],
+        "best_two_ray_condition": 4.739349338294435,
+        "maximum_angular_gap_deg": 180.30928079416395,
+        "minimum_directional_support_m": 6.108355617225876e-09,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 13.508449999999357,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p02",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          68.64331919999269,
+          139.5371972280313,
+          248.95259999415663,
+          319.39823567137773
+        ],
+        "best_two_ray_condition": 2.406292939344035,
+        "maximum_angular_gap_deg": 109.41540276612534,
+        "minimum_directional_support_m": 2.580975608403257e-06,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 4.742999999998574,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p02",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          26.050356665350794,
+          68.64331919999269,
+          205.25229932561643,
+          248.95259999415663
+        ],
+        "best_two_ray_condition": 10.177025201917676,
+        "maximum_angular_gap_deg": 137.09775667119416,
+        "minimum_directional_support_m": 4.540987654017951e-06,
+        "minimum_ray_norm_m": 7.383607455876117e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 14.2429000000011,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p03",
+        "p04"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          161.5751621655735,
+          326.7617926840679,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 5.715233263439942,
+        "maximum_angular_gap_deg": 165.18663051849444,
+        "minimum_directional_support_m": 9.241057770784274e-06,
+        "minimum_ray_norm_m": 5.0831719548475126e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p03",
+        "p05"
+      ],
+      "geometry": {
+        "angles_deg": [
+          54.18961426707904,
+          161.5751621655735,
+          234.24146524514214,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 3.906370117149038,
+        "maximum_angular_gap_deg": 108.03844719645059,
+        "minimum_directional_support_m": 1.1778520288675422e-05,
+        "minimum_ray_norm_m": 1.3706628419272913e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p03",
+        "p06"
+      ],
+      "geometry": {
+        "angles_deg": [
+          161.5751621655735,
+          167.2288145227221,
+          342.2799124415927,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 29.060370162048194,
+        "maximum_angular_gap_deg": 175.05109791887062,
+        "minimum_directional_support_m": 9.623678367388263e-07,
+        "minimum_ray_norm_m": 1.2897900914523095e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p03",
+        "p07"
+      ],
+      "geometry": {
+        "angles_deg": [
+          11.422762312326885,
+          161.5751621655735,
+          324.67701085363456,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 3.7568315018968117,
+        "maximum_angular_gap_deg": 163.10184868806107,
+        "minimum_directional_support_m": 1.1987409765775323e-05,
+        "minimum_ray_norm_m": 5.0831719548475126e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p03",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          139.5371972280313,
+          161.5751621655735,
+          319.39823567137773,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 39.47573898275886,
+        "maximum_angular_gap_deg": 157.82307350580425,
+        "minimum_directional_support_m": 1.2178006937055627e-06,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p03",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          26.050356665350794,
+          161.5751621655735,
+          205.25229932561643,
+          342.2799124415927
+        ],
+        "best_two_ray_condition": 2.4461360516219264,
+        "maximum_angular_gap_deg": 137.0276131159763,
+        "minimum_directional_support_m": 1.881142066229157e-05,
+        "minimum_ray_norm_m": 5.0831719548475126e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 20.599500000000262,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p04",
+        "p05"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          54.18961426707904,
+          234.24146524514214,
+          326.7617926840679
+        ],
+        "best_two_ray_condition": 5.096649834014439,
+        "maximum_angular_gap_deg": 180.0518509780631,
+        "minimum_directional_support_m": 4.5647232711248754e-08,
+        "minimum_ray_norm_m": 1.3706628419272913e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p04",
+        "p06"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          167.2288145227221,
+          326.7617926840679,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 5.861062868072226,
+        "maximum_angular_gap_deg": 165.7580772996222,
+        "minimum_directional_support_m": 2.6624263714011275e-06,
+        "minimum_ray_norm_m": 1.2897900914523095e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p04",
+        "p07"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          11.422762312326885,
+          324.67701085363456,
+          326.7617926840679
+        ],
+        "best_two_ray_condition": 4.739349338294435,
+        "maximum_angular_gap_deg": 313.2542485413077,
+        "minimum_directional_support_m": -5.35401898026391e-05,
+        "minimum_ray_norm_m": 5.3541647297483674e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p04",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          139.5371972280313,
+          319.39823567137773,
+          326.7617926840679
+        ],
+        "best_two_ray_condition": 5.861062868072226,
+        "maximum_angular_gap_deg": 179.86103844334644,
+        "minimum_directional_support_m": 3.134370595186096e-08,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p04",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          1.4707372230999205,
+          26.050356665350794,
+          205.25229932561643,
+          326.7617926840679
+        ],
+        "best_two_ray_condition": 3.9197764662733707,
+        "maximum_angular_gap_deg": 179.20194266026564,
+        "minimum_directional_support_m": 6.718592028487993e-07,
+        "minimum_ray_norm_m": 5.148556192025047e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 22.590424999999414,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p05",
+        "p06"
+      ],
+      "geometry": {
+        "angles_deg": [
+          54.18961426707904,
+          167.2288145227221,
+          234.24146524514214,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 1.5151106615129224,
+        "maximum_angular_gap_deg": 115.6579150371017,
+        "minimum_directional_support_m": 7.108886702358015e-06,
+        "minimum_ray_norm_m": 1.2897900914523095e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 10.533300000002782,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p05",
+        "p07"
+      ],
+      "geometry": {
+        "angles_deg": [
+          11.422762312326885,
+          54.18961426707904,
+          234.24146524514214,
+          324.67701085363456
+        ],
+        "best_two_ray_condition": 4.739349338294435,
+        "maximum_angular_gap_deg": 180.0518509780631,
+        "minimum_directional_support_m": 4.5647232711248754e-08,
+        "minimum_ray_norm_m": 1.3706628419272913e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 13.508449999999357,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p05",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          54.18961426707904,
+          139.5371972280313,
+          234.24146524514214,
+          319.39823567137773
+        ],
+        "best_two_ray_condition": 4.115619232905433,
+        "maximum_angular_gap_deg": 94.7913785957013,
+        "minimum_directional_support_m": 3.1529943763279793e-06,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 4.742999999998574,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p05",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          26.050356665350794,
+          54.18961426707904,
+          205.25229932561643,
+          234.24146524514214
+        ],
+        "best_two_ray_condition": 8.145385507880937,
+        "maximum_angular_gap_deg": 151.80889142020865,
+        "minimum_directional_support_m": 5.3642122302615984e-06,
+        "minimum_ray_norm_m": 1.3706628419272913e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 14.2429000000011,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p06",
+        "p07"
+      ],
+      "geometry": {
+        "angles_deg": [
+          11.422762312326885,
+          167.2288145227221,
+          324.67701085363456,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 4.739349338294435,
+        "maximum_angular_gap_deg": 157.44819633091245,
+        "minimum_directional_support_m": 4.4146486503492445e-06,
+        "minimum_ray_norm_m": 1.2897900914523095e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 13.508449999999357,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p06",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          139.5371972280313,
+          167.2288145227221,
+          319.39823567137773,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 8.020894379424217,
+        "maximum_angular_gap_deg": 152.16942114865563,
+        "minimum_directional_support_m": 1.271290734085459e-06,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 10.533300000002782,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p06",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          26.050356665350794,
+          167.2288145227221,
+          205.25229932561643,
+          349.89938028224384
+        ],
+        "best_two_ray_condition": 6.575523774351986,
+        "maximum_angular_gap_deg": 144.6470809566274,
+        "minimum_directional_support_m": 6.272827443316146e-06,
+        "minimum_ray_norm_m": 1.2897900914523095e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 14.2429000000011,
+      "passed": true
+    },
+    {
+      "directions": [
+        "p07",
+        "p08"
+      ],
+      "geometry": {
+        "angles_deg": [
+          11.422762312326885,
+          139.5371972280313,
+          319.39823567137773,
+          324.67701085363456
+        ],
+        "best_two_ray_condition": 4.739349338294435,
+        "maximum_angular_gap_deg": 179.86103844334644,
+        "minimum_directional_support_m": 3.134370595186096e-08,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 13.508449999999357,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p07",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          11.422762312326885,
+          26.050356665350794,
+          205.25229932561643,
+          324.67701085363456
+        ],
+        "best_two_ray_condition": 3.974602909212063,
+        "maximum_angular_gap_deg": 179.20194266026564,
+        "minimum_directional_support_m": 6.718592028487993e-07,
+        "minimum_ray_norm_m": 5.148556192025047e-05,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 14.2429000000011,
+      "passed": false
+    },
+    {
+      "directions": [
+        "p08",
+        "p09"
+      ],
+      "geometry": {
+        "angles_deg": [
+          26.050356665350794,
+          139.5371972280313,
+          205.25229932561643,
+          319.39823567137773
+        ],
+        "best_two_ray_condition": 16.8896435086607,
+        "maximum_angular_gap_deg": 114.1459363457613,
+        "minimum_directional_support_m": 2.9368195023027264e-06,
+        "minimum_ray_norm_m": 3.3078640861849806e-06,
+        "rank": 2
+      },
+      "maximum_absolute_ip_response_a": 14.2429000000011,
+      "passed": false
+    }
+  ],
+  "claim_boundary": "retrospective_consumed_development_screen_only_not_model_fit_not_persistent_validation_not_controller_authority",
+  "directions": [
+    {
+      "action_axis_l2_norm_a": 1.0922708251873965,
+      "direction_id": "p00",
+      "even_mean_response_rzi": [
+        -6.074999997496278e-08,
+        3.657499999670799e-07,
+        0.09170000000085565
+      ],
+      "maximum_action_axis_component_a": 0.3,
+      "maximum_action_center_bias_a": 0.05000000000001137,
+      "maximum_signed_absolute_ip_response_a": 6.94380000000092,
+      "minus_mean_response_rzi": [
+        -3.9440999999973414e-05,
+        -6.050000003754441e-08,
+        -6.760399999999208
+      ],
+      "odd_half_difference_rzi": [
+        3.938024999999845e-05,
+        4.262500000046243e-07,
+        6.852100000000064
+      ],
+      "odd_rz_norm_m": 3.938255678755357e-05,
+      "plus_mean_response_rzi": [
+        3.931950000002349e-05,
+        7.919999999717042e-07,
+        6.94380000000092
+      ],
+      "pure_effect_state_indices": [
+        2
+      ],
+      "schedule_type": "impulse",
+      "signed_event_tsc": [
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 0.5409610789039171,
+      "direction_id": "p01",
+      "even_mean_response_rzi": [
+        3.3187500012021864e-08,
+        3.100000000449965e-08,
+        0.00823750000063228
+      ],
+      "maximum_action_axis_component_a": 0.15000000000000568,
+      "maximum_action_center_bias_a": 7.105427357601002e-15,
+      "maximum_signed_absolute_ip_response_a": 11.287400000001071,
+      "minus_mean_response_rzi": [
+        7.797000000003829e-06,
+        -2.4925499999994827e-05,
+        11.287400000001071
+      ],
+      "odd_half_difference_rzi": [
+        -7.763812499991807e-06,
+        2.4956499999999326e-05,
+        -11.279162500000439
+      ],
+      "odd_rz_norm_m": 2.6136252156439634e-05,
+      "plus_mean_response_rzi": [
+        -7.730624999979785e-06,
+        2.4987500000003826e-05,
+        -11.270924999999806
+      ],
+      "pure_effect_state_indices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "schedule_type": "dwell",
+      "signed_event_tsc": [
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 0.5409610789039171,
+      "direction_id": "p02",
+      "even_mean_response_rzi": [
+        3.00000000119649e-08,
+        2.199999998842017e-08,
+        0.000249999999141437
+      ],
+      "maximum_action_axis_component_a": 0.15000000000000568,
+      "maximum_action_center_bias_a": 7.105427357601002e-15,
+      "maximum_signed_absolute_ip_response_a": 0.7637999999988097,
+      "minus_mean_response_rzi": [
+        -2.651749999971198e-06,
+        -6.891000000008862e-06,
+        0.7637999999988097
+      ],
+      "odd_half_difference_rzi": [
+        2.681749999983163e-06,
+        6.9129999999972824e-06,
+        -0.7635499999996682
+      ],
+      "odd_rz_norm_m": 7.414941136811008e-06,
+      "plus_mean_response_rzi": [
+        2.7117499999951278e-06,
+        6.934999999985703e-06,
+        -0.7633000000005268
+      ],
+      "pure_effect_state_indices": [
+        2,
+        3
+      ],
+      "schedule_type": "switch",
+      "signed_event_tsc": [
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 1.0922708251873965,
+      "direction_id": "p03",
+      "even_mean_response_rzi": [
+        -1.649999997743734e-08,
+        3.3500000000408203e-07,
+        0.09209999999984575
+      ],
+      "maximum_action_axis_component_a": 0.3,
+      "maximum_action_center_bias_a": 0.05000000000001137,
+      "maximum_signed_absolute_ip_response_a": 20.599500000000262,
+      "minus_mean_response_rzi": [
+        4.842000000004898e-05,
+        -1.5471500000002747e-05,
+        20.599500000000262
+      ],
+      "odd_half_difference_rzi": [
+        -4.843650000002642e-05,
+        1.580650000000683e-05,
+        -20.507400000000416
+      ],
+      "odd_rz_norm_m": 5.09503677563055e-05,
+      "plus_mean_response_rzi": [
+        -4.8453000000003854e-05,
+        1.614150000001091e-05,
+        -20.41530000000057
+      ],
+      "pure_effect_state_indices": [
+        2
+      ],
+      "schedule_type": "impulse",
+      "signed_event_tsc": [
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 0.5409610789039171,
+      "direction_id": "p04",
+      "even_mean_response_rzi": [
+        9.838681250001757e-05,
+        -4.5889312500005386e-05,
+        -0.5910749999993641
+      ],
+      "maximum_action_axis_component_a": 0.15000000000000568,
+      "maximum_action_center_bias_a": 7.105427357601002e-15,
+      "maximum_signed_absolute_ip_response_a": 22.590424999999414,
+      "minus_mean_response_rzi": [
+        5.458650000003673e-05,
+        1.4014999999908961e-06,
+        21.408275000000685
+      ],
+      "odd_half_difference_rzi": [
+        4.380031249998084e-05,
+        -4.729081249999628e-05,
+        -21.99935000000005
+      ],
+      "odd_rz_norm_m": 6.4458423204464e-05,
+      "plus_mean_response_rzi": [
+        0.00014218712499999842,
+        -9.318012500000167e-05,
+        -22.590424999999414
+      ],
+      "pure_effect_state_indices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "schedule_type": "dwell",
+      "signed_event_tsc": [
+        1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 0.5409610789039171,
+      "direction_id": "p05",
+      "even_mean_response_rzi": [
+        3.037500004299254e-08,
+        3.1499999990358685e-08,
+        0.0
+      ],
+      "maximum_action_axis_component_a": 0.15000000000000568,
+      "maximum_action_center_bias_a": 7.105427357601002e-15,
+      "maximum_signed_absolute_ip_response_a": 1.3065000000005966,
+      "minus_mean_response_rzi": [
+        8.070500000012526e-06,
+        1.1185749999989558e-05,
+        -1.3065000000005966
+      ],
+      "odd_half_difference_rzi": [
+        -8.040124999969533e-06,
+        -1.11542499999992e-05,
+        1.3065000000005966
+      ],
+      "odd_rz_norm_m": 1.3749941929972549e-05,
+      "plus_mean_response_rzi": [
+        -8.009749999926541e-06,
+        -1.112275000000884e-05,
+        1.3065000000005966
+      ],
+      "pure_effect_state_indices": [
+        2,
+        3
+      ],
+      "schedule_type": "switch",
+      "signed_event_tsc": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 1.0922708251873965,
+      "direction_id": "p06",
+      "even_mean_response_rzi": [
+        -1.4999999964349087e-08,
+        3.115000000025736e-07,
+        0.09380000000237487
+      ],
+      "maximum_action_axis_component_a": 0.3,
+      "maximum_action_center_bias_a": 0.05000000000001137,
+      "maximum_signed_absolute_ip_response_a": 10.533300000002782,
+      "minus_mean_response_rzi": [
+        -1.2727999999961881e-05,
+        2.88500000000802e-06,
+        -10.345699999998033
+      ],
+      "odd_half_difference_rzi": [
+        1.2712999999997532e-05,
+        -2.5735000000054464e-06,
+        10.439500000000407
+      ],
+      "odd_rz_norm_m": 1.2970862394226734e-05,
+      "plus_mean_response_rzi": [
+        1.2698000000033183e-05,
+        -2.262000000002873e-06,
+        10.533300000002782
+      ],
+      "pure_effect_state_indices": [
+        2
+      ],
+      "schedule_type": "impulse",
+      "signed_event_tsc": [
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 0.5409610789039171,
+      "direction_id": "p07",
+      "even_mean_response_rzi": [
+        9.837862500000627e-05,
+        -4.581818750000813e-05,
+        -0.623337499999252
+      ],
+      "maximum_action_axis_component_a": 0.15000000000000568,
+      "maximum_action_center_bias_a": 7.105427357601002e-15,
+      "maximum_signed_absolute_ip_response_a": 13.508449999999357,
+      "minus_mean_response_rzi": [
+        5.248112500000346e-05,
+        1.0603749999983647e-05,
+        12.261775000000853
+      ],
+      "odd_half_difference_rzi": [
+        4.589750000000281e-05,
+        -5.6421937499991776e-05,
+        -12.885112500000105
+      ],
+      "odd_rz_norm_m": 7.273249299661903e-05,
+      "plus_mean_response_rzi": [
+        0.00014427612500000908,
+        -0.0001022401249999999,
+        -13.508449999999357
+      ],
+      "pure_effect_state_indices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "schedule_type": "dwell",
+      "signed_event_tsc": [
+        1,
+        -1,
+        1,
+        1,
+        1,
+        -1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 0.5409610789039171,
+      "direction_id": "p08",
+      "even_mean_response_rzi": [
+        -1.5999999991578306e-08,
+        8.374999992122323e-09,
+        -0.0011499999991428922
+      ],
+      "maximum_action_axis_component_a": 0.15000000000000568,
+      "maximum_action_center_bias_a": 7.105427357601002e-15,
+      "maximum_signed_absolute_ip_response_a": 4.742999999998574,
+      "minus_mean_response_rzi": [
+        -2.5435000000073593e-06,
+        2.1694999999960496e-06,
+        4.740700000000288
+      ],
+      "odd_half_difference_rzi": [
+        2.527500000015781e-06,
+        -2.1611250000039273e-06,
+        -4.741849999999431
+      ],
+      "odd_rz_norm_m": 3.325465007442079e-06,
+      "plus_mean_response_rzi": [
+        2.5115000000242027e-06,
+        -2.152750000011805e-06,
+        -4.742999999998574
+      ],
+      "pure_effect_state_indices": [
+        2,
+        3
+      ],
+      "schedule_type": "switch",
+      "signed_event_tsc": [
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        -1,
+        1,
+        1
+      ]
+    },
+    {
+      "action_axis_l2_norm_a": 1.0922708251873965,
+      "direction_id": "p09",
+      "even_mean_response_rzi": [
+        -3.599999998105119e-08,
+        3.8149999999348427e-07,
+        0.09160000000156288
+      ],
+      "maximum_action_axis_component_a": 0.3,
+      "maximum_action_center_bias_a": 0.05000000000001137,
+      "maximum_signed_absolute_ip_response_a": 14.2429000000011,
+      "minus_mean_response_rzi": [
+        -4.656549999992876e-05,
+        -2.1964000000013195e-05,
+        -14.059699999997974
+      ],
+      "odd_half_difference_rzi": [
+        4.652949999994771e-05,
+        2.234550000000668e-05,
+        14.151299999999537
+      ],
+      "odd_rz_norm_m": 5.161701018555252e-05,
+      "plus_mean_response_rzi": [
+        4.649349999996666e-05,
+        2.2727000000000164e-05,
+        14.2429000000011
+      ],
+      "pure_effect_state_indices": [
+        2
+      ],
+      "schedule_type": "impulse",
+      "signed_event_tsc": [
+        -1,
+        1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        -1,
+        1
+      ]
+    }
+  ],
+  "eligible_subset_count": 15,
+  "holdout_records_read": 0,
+  "input_inventory": [
+    {
+      "bytes": 1569,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/development_calibration_independent.json",
+      "sha256": "8d1f1b0cc82ed77ef0731054ca804cd4f9883f0ef8fa884b98b9579e5b8312e1"
+    },
+    {
+      "bytes": 87058,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p00_plus.json",
+      "sha256": "937e09024e7164ecabbe1dfe00d0aac4e35a9780376a410be234aab9a35bfe44"
+    },
+    {
+      "bytes": 86889,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p00_minus.json",
+      "sha256": "6ed8b4f2edfa62283c15f1bdd12e515add52ad754ed7f007e58556bb3dd591c4"
+    },
+    {
+      "bytes": 86029,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p01_plus.json",
+      "sha256": "d3c696b3a1ad6f340a7a6572eea7f610aac667adb25e39dab57e277199ba2d42"
+    },
+    {
+      "bytes": 86087,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p01_minus.json",
+      "sha256": "0ec748ecd1d989737a388a9f72bd11ba218e85bba82c887d28b63a9c2c3a4f18"
+    },
+    {
+      "bytes": 87089,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p02_plus.json",
+      "sha256": "09e5d44fbb279d8b6ea59c0e7acbe39369785c8558f2cba4163f01664e3e2f2a"
+    },
+    {
+      "bytes": 86936,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p02_minus.json",
+      "sha256": "0579ad776c3958f765d10945015a882cc9340cca820408a5821d25662808b30e"
+    },
+    {
+      "bytes": 87047,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p03_plus.json",
+      "sha256": "8bbd3304a48ee9b5daa0a0eee56b075308c6325970fa5a890d619ce0f7d82c3b"
+    },
+    {
+      "bytes": 87242,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p03_minus.json",
+      "sha256": "1ddf411a9c58b285ba744c58138e81c1d0081e910c266209defdd2742b84d88c"
+    },
+    {
+      "bytes": 86483,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p04_plus.json",
+      "sha256": "31122cccf8b95c1d98eee6d61acba6dbff0c9e983d5a888ea93cf1a9f2a9f825"
+    },
+    {
+      "bytes": 85864,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p04_minus.json",
+      "sha256": "ef777014b35bebcae389b718b00ac3874e48f6916726c8daea78d106638d44f2"
+    },
+    {
+      "bytes": 86967,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p05_plus.json",
+      "sha256": "b2f6fc8fd49ebbec6860bb20b8434f17d558910a42c61241456ec629743bdd46"
+    },
+    {
+      "bytes": 87039,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p05_minus.json",
+      "sha256": "9f868528916b24b4494e8e0ead82432db3a459893df6ecbb78fc0c5aea5b42ea"
+    },
+    {
+      "bytes": 87116,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p06_plus.json",
+      "sha256": "76b19ad7f4034dc9805a73ba24fb3f53ba4633ffc857e8037d9baa6fafa49ffd"
+    },
+    {
+      "bytes": 87067,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p06_minus.json",
+      "sha256": "038f06aecb652a77181b25663e2fc87903358429228b5455dc5ae7f7f3b2f601"
+    },
+    {
+      "bytes": 86057,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p07_plus.json",
+      "sha256": "1c5c2398320772c6d0f93d45c9a2835893b70ba56862838dbc050ea7cc44f143"
+    },
+    {
+      "bytes": 86453,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p07_minus.json",
+      "sha256": "47f1fa0d5de78cf7659274db96da1924e8102d2fb87393e07e9f86ff542f945b"
+    },
+    {
+      "bytes": 87103,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p08_plus.json",
+      "sha256": "693d3c665ec7e4f5be167439ff9d14f600633794aec0c4365fc0f77377d3349b"
+    },
+    {
+      "bytes": 86908,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p08_minus.json",
+      "sha256": "4aaba7c4a7da344fb0bb2457c36f94be5130c19e8da08a2bf233959e0000acbf"
+    },
+    {
+      "bytes": 87063,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p09_plus.json",
+      "sha256": "adb0768b250c0ab22076594d20a3c6dcadcb632579cdad50b05aa61e9545fae7"
+    },
+    {
+      "bytes": 87195,
+      "path": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e/records/development_p09_minus.json",
+      "sha256": "802bc6afa7916904dc60379c018df10f0ad8245a74b5903350fc0cfa8679e0ad"
+    },
+    {
+      "bytes": 102966,
+      "path": "rgeo_zgeo_1ms_id0_runs_20260814_38b3a22e_v2/baseline_q0_r0.json",
+      "sha256": "606087e209611b2be765fd0f6d4a3406e0a6db6d5d0bcad1bc815f516611ef27"
+    },
+    {
+      "bytes": 14385,
+      "path": "rgeo_zgeo_1ms_id1b_runs_20260814_bd1b5802/result.json",
+      "sha256": "54ed170bc628237d6d7b8828f6dc3c77b06e549f064a63ae4281af9aea0d0db8"
+    }
+  ],
+  "input_inventory_sha256": "d60600155c8261913580ac4962dced57bf4ea8e10d800c934c64a4bfe066e4a6",
+  "new_model_fit_or_training": 0,
+  "new_tsc_or_plant_advances": 0,
+  "passed": true,
+  "route": "ONE_MS_ID1C0_DIRECTION_SCREEN_PASS_FRESH_PERSISTENT_VALIDATION_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id1c0-direction-screen-audit-result-v1",
+  "selected_candidate": {
+    "directions": [
+      "p01",
+      "p09"
+    ],
+    "geometry": {
+      "angles_deg": [
+        26.050356665350794,
+        107.19100540338938,
+        205.25229932561643,
+        287.37031846545017
+      ],
+      "best_two_ray_condition": 2.0015232020688383,
+      "maximum_angular_gap_deg": 98.68003819990065,
+      "minimum_directional_support_m": 2.1829671231583984e-05,
+      "minimum_ray_norm_m": 2.6116541870044774e-05,
+      "rank": 2
+    },
+    "maximum_absolute_ip_response_a": 14.2429000000011,
+    "passed": true
+  },
+  "source_revision": "3986502f9d538021f2ef3e5fcd51b9cf82644ead"
+}

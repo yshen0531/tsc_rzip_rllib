@@ -1,5 +1,15 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-1C exact-centred basis amendment (2026-08-14):** the next finite
+> discriminator uses p01 plus a newly reconstructed p09 pair, both exactly
+> centred on q0 in actual Card15 current coordinates and limited to 0.15 A
+> designed components. It measures four persistent effects and gates the even
+> pair midpoint as well as full-ray positive span. This tests whether the
+> useful first-effect differential geometry survives persistence without the
+> 0.05 A midpoint bias of the old full-amplitude p09 pair. A PASS still does
+> not authorize model fitting; it only selects the basis for a fresh
+> context/history/anchor campaign.
+
 > **Post-ID-1B action-centre amendment (2026-08-14):** a numerically rank-two
 > response set is not a usable two-axis basis when its positive cone omits a
 > half-plane. ID-1B found that all six persistent q0-centred signed rays had

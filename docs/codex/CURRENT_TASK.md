@@ -1,5 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-1C0 direction screen PASS; ID-1C fresh persistent validation is the
+> unique active task (2026-08-14):** the server-side zero-TSC audit read only
+> the consumed NR2R1 development pairs, matched q0 and final ID-1B result. It
+> selected p01+p09 with rank two, `98.6800382 deg` maximum angular gap,
+> `0.0218296712 mm` minimum directional support, best condition `2.0015232`
+> and maximum absolute Ip response `14.2429 A`. It read no holdout and fit no
+> model.
+>
+> ID-1C is prospectively frozen as 10 fresh rollouts and at most 180 one-ms
+> plant advances: two q0 baselines plus exact q0-centred half-amplitude p01
+> and p09, both signs and two replays, held unchanged through effects 1--4.
+> It must validate exact action centring, signal, bounded even response,
+> two-sided positive span, Ip and repeatability. Implementation, server tests,
+> packaging, zero-plant preflight and gated TSC execution are authorized.
+> ID-1C PASS selects only a temporal/action basis and does not make ID-1C or
+> older data fit eligible. No predictive-model training, context campaign,
+> controller, MPC, recovery or transport may start until the ID-1C result is
+> final. Tests run on the server; locally only edits, hashes and simple
+> calculations are allowed. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID1C_PERSISTENT_BASIS_DESIGN.md`. This is
+> the only active pointer; all notices below are historical.
+
 > **ID-1B is final as a clean persistent-direction design FAIL; a zero-new-TSC
 > direction/centre review is the unique active task (2026-08-14):** ID-1B
 > completed 14/14 resets, 336/336 verified one-ms plant advances, 350 states
