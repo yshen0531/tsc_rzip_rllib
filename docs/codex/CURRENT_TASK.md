@@ -1,5 +1,38 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Post-C2aA3 deep route review (2026-08-14):** the local zero-new-TSC
+> vector/value-of-information audit is complete with route
+> `POST_C2AA3_DEEP_REVIEW_A4_SINGLE_CAMPAIGN_TAIL_GATE_AND_VECTOR_RECOURSE_REQUIRED`.
+> The final goal remains approximate safe causal two-axis relative/path/
+> waypoint tracking from 1100 ms under the 1 ms and per-turn per-coil
+> `<=0.3 A/step` contract; source hold is only a bootstrap step toward a
+> qualified terminal/recoverable set.
+> A2 contains descriptive but unqualified R/Z direction separation, while A3
+> shows p03 level2 is well aligned with source-drift cancellation but its R/Z
+> response norm is only `5.07%` of q0's source-drift norm at state16. Scalar
+> `delta R-delta Z` may no longer
+> stand in for two-axis authority.
+>
+> A4 remains frozen, unimplemented and unrun. One campaign with its two
+> preregistered replays is retained as a late-state persistent-tail plus
+> short-hold discriminator; its action,
+> thresholds and routes are unchanged. A safe scientific FAIL ends the
+> single-p03 static dwell/level ladder and routes to time-varying nominal plus
+> matched-prefix vector/recourse design; no A5 may merely add another p03
+> static level or longer dwell. PASS still requires fresh Nominal-H1
+> validation. Any interface/support/repeatability/safety failure is a separate
+> stop and cannot be called scientific p03 failure. A4 execution is
+> conditional on a separate zero-plant late-state support/margin gate. In
+> parallel, a separately prospective p03 plus complementary-direction signed,
+> cumulative, full-vector authority design is required before recourse,
+> transport or two-axis control claims. Full evidence and reasoning are in
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_C2AA3_DEEP_ROUTE_REVIEW.md`.
+> This review wrote no code, accessed no server, ran no TSC and fit no
+> predictive plant/controller model.
+> This top block is the unique current-route pointer; every older phrase
+> "active task" below is a chronological historical notice and cannot
+> override it.
+
 > **NR2R2C2aA4 p03 level2 dwell-hold prospective freeze (2026-08-14):** the
 > active task is the two-reset/64-advance maximum persistent-level2
 > discriminator in

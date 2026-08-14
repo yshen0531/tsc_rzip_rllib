@@ -8,6 +8,17 @@ Prospective identity:
 rgeo-zgeo-1ms-nr2r2c2aa4-p03-level2-dwell-hold-v1
 ```
 
+Post-C2aA3 review clarification, frozen before implementation or execution:
+A3 measured this level2 action only through state16 in the relevant prefix.
+A4 states17--32 are a prospective late-state/history extension, not an
+already qualified state domain. The `2 mm / 2 mm / 100 A` values below are
+empirical stop thresholds and not a proved worst-case theorem for those
+unseen successors. The sequence, thresholds and PASS/FAIL routes are
+unchanged. A safe scientific FAIL ends further single-p03 static level/dwell
+escalation as a prospectively recorded program/value-of-information decision;
+it may not be followed by another such ladder stage. This is not a physical
+claim that every higher level, longer dwell or switching law is impossible.
+
 ## Question and scope
 
 C2aA3 qualified the p03 level2 cell only for a time-varying C2a design inside
@@ -41,8 +52,11 @@ qualified stop, return or recovery action.
 ## Safety and scientific gates
 
 A3 observed maximum successors of `0.803476 mm R / 0.827237 mm Z / 42.719 A
-Ip`. A4 retains the pre-result `2 mm / 2 mm / 100 A` successor bound and the
-`25/50 mm R,Z`, `5/10% Ip` inner/outer source envelopes. Every NR0/NR1 paired
+Ip`. A4 retains the pre-result `2 mm / 2 mm / 100 A` prospectively frozen
+empirical finite-sentinel threshold/envelope and the `25/50 mm R,Z`, `5/10% Ip`
+inner/outer source envelopes. This threshold is not a strict plant bound;
+the frozen config field name `prospective_successor_bound` is retained only
+as experiment identity. Every NR0/NR1 paired
 boundary, limiter, exact Card15, command/readback slew, absolute-current and
 Ip rule remains fail closed. Legacy runner clipping may not be relied on.
 

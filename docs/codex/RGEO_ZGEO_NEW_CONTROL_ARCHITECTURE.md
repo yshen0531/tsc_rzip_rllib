@@ -1,5 +1,23 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-C2aA3 route amendment (2026-08-14):** the final objective remains
+> finite-domain two-axis relative/path/waypoint tracking; source hold is only
+> a bootstrap step toward a qualified terminal/recoverable set. A2/A3 show
+> that p03 is aligned with the
+> source-drift correction and that cumulative `0.3 A/step` authority matters,
+> but the qualified level2 R/Z response norm is only `5.07%` of q0's source-
+> drift norm at state16.
+> Scalar `delta R-delta Z` is henceforth only a source-drift diagnostic, not a
+> two-axis authority claim. The already frozen A4 campaign is retained once,
+> unchanged, as a late-tail plus hold discriminator, conditional on a separate
+> zero-plant late-state support/margin gate. A safe scientific FAIL ends the
+> single-p03 static dwell/level ladder; PASS still requires fresh Nominal-H1. In
+> parallel, matched-prefix signed/cumulative vector authority and local
+> recourse must qualify before transport, atlas or controller work. The
+> structured causal-model, recovery-backed constrained-MPC and later shadow-
+> adaptation architecture is unchanged. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_C2AA3_DEEP_ROUTE_REVIEW.md`.
+
 > **NR2R2C2aA4 prospective amendment (2026-08-14):** inside the finite
 > q0/level1/level2 domain qualified by A3, the next discriminator holds the
 > maximum p03 level continuously through 32 ms and applies the unchanged
