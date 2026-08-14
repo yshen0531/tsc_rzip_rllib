@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -18,6 +19,19 @@ def load_module():
 
 
 C1A = load_module()
+
+
+def load_independent_module():
+    spec = importlib.util.spec_from_file_location(
+        "c1a_independent", ROOT / "scripts/rgeo_zgeo_1ms_nr2r2c1a_independent.py"
+    )
+    assert spec and spec.loader
+    value = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(value)
+    return value
+
+
+C1A_INDEPENDENT = load_independent_module()
 STAGE = {"repeatability": {"geometry_m": 1e-12, "ip_a": 1e-9, "coil_a": 1e-9, "wire_a": 1e-9},
          "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"]}
 
@@ -37,6 +51,10 @@ class C1ATests(unittest.TestCase):
         specs = C1A.matrix(stage)
         self.assertEqual(len(specs), 12)
         self.assertEqual(sum(x["horizon_steps"] for x in specs), 136)
+
+    def test_inventory_digest_is_order_independent_and_line_delimited(self):
+        expected = hashlib.sha256(b"a\t1\tx\nb\t2\ty\n").hexdigest()
+        self.assertEqual(C1A_INDEPENDENT.inventory_digest(["b\t2\ty", "a\t1\tx"]), expected)
 
     def test_sprsina_is_diagnostic_only(self):
         left, right = row(), copy.deepcopy(row())
