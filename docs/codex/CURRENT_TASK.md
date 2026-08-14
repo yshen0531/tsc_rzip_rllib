@@ -1,5 +1,16 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA3 p03 cumulative-level2 prospective freeze (2026-08-14):** the
+> active task is the two-reset/64-advance maximum adjacent-level discriminator
+> in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA3_P03_CUMULATIVE_LEVEL2_DESIGN.md`.
+> It repeats the exact p03-minus increment once beyond the previously measured
+> q0+/-0.3 A cube, reaching at most 0.6 A q0-relative offset while retaining
+> the 0.3 A per-step limit. It has separate total and incremental opposition
+> gates against tracked q0 and C2aA2-p03 comparators. PASS may authorize only
+> a separate time-varying C2a design inside levels 0--2. Nominal-H1, C2b,
+> model, atlas, MPC, adaptation and learning remain blocked.
+
 > **NR2R2C2aA2 final result (2026-08-14):** all three frozen directions
 > completed 96/96 authentic advances. Independent raw audit passed 495/495
 > files and reproduced the primary route

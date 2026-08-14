@@ -1,5 +1,14 @@
 # Current status
 
+> **NR2R2C2aA3 p03 cumulative-level2 discriminator frozen; not yet
+> implemented or run (2026-08-14 Asia/Shanghai).** Two identical 32 ms
+> canonical resets will issue q0 -> p03 level1 -> p03 level2, hold, and return
+> level2 -> level1 -> q0. Each adjacent single-turn change remains <=0.3 A;
+> level2 reaches <=0.6 A from q0. Frozen gates require persistent total
+> opposition and positive incremental gain over the audited C2aA2 p03 path.
+> This is a finite cumulative-domain sentinel, not a threshold change, hold,
+> model, controller or MPC campaign.
+
 > **NR2R2C2aA2 safely completed; all frozen authority routes fail
 > (2026-08-14 Asia/Shanghai).** Design/implementation checkpoints are
 > `104cfd5 / 8bd6964`. All 3 rollouts and 96 advances completed. Independent

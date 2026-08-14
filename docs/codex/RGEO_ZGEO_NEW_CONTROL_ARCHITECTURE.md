@@ -1,5 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **NR2R2C2aA3 prospective amendment (2026-08-14):** the user's cumulative
+> `0.3 A/step` authority is now tested explicitly rather than keeping every
+> target within q0+/-0.3 A. The first expansion is only one additional exact
+> p03-minus level, repeated twice with a pre-result successor bound and
+> incremental comparison against the frozen level1 path. This adjacent-level
+> sentinel does not assume linear scaling or authorize a general cumulative
+> action domain.
+
 > **NR2R2C2aA2 evidence amendment (2026-08-14):** all three minus-sign
 > directions completed safely and were positive at all 14 authority states,
 > but none passed every frozen gate. P03-minus had the strongest persistent
