@@ -2012,3 +2012,36 @@
 - Compact evidence:
   `docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/`
 - Next: prospective time-varying q0/p03-level1/level2 C2a search only
+
+## R_geo/Z_geo 1 ms ID-1B persistent-dwell geometry
+
+- Branch: `codex/rgeo-zgeo-1ms-id0-vector-tail`
+- Design / plant implementation / audit-only fix:
+  `4d079502 / bd1b5802 / 666c8e06`
+- Package / audit-hotfix package: `4d7a3a55 / 6b920f4e`
+- Server validation: pre-run focused `31/31`; audit-hotfix focused `32/32`;
+  zero-plant offline preflight PASS
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id1b_runs_20260814_bd1b5802`
+- Expected/actual: `14x24 / 14x24`, 336/336 verified advances, 350 states
+- Raw inventory: 1,750 files / 20,612,523,400 bytes / digest
+  `31170185118b0c8d5698db80bd9f3862823602b95247216a42479ac657a0975d`
+- Primary / final independent SHA-256:
+  `54ed170bc628237d6d7b8828f6dc3c77b06e549f064a63ae4281af9aea0d0db8 /`
+  `4eb32fd6021f8d30c20103ada2530c444d73ad7c38707441f77f7e227c6c6791`
+- Exact replay, per-arm signal, Ip and rank gates PASS; best pair condition
+  `1.8089786595722026`
+- Positive span FAIL: all six persistent means have positive dR; maximum
+  angular gap `299.72069139587876 deg`; minimum directional support
+  `-0.089323963 mm`
+- Initial independent audit FAIL was an issue-0 inputa reconstruction bug;
+  the preserved raw were re-audited after a zero-TSC reporting-only fix and
+  passed with maximum metric difference `6.78e-21`
+- Final route:
+  `ONE_MS_ID1B_PERSISTENT_POSITIVE_SPAN_FAIL_DIRECTION_REDESIGN`
+- Classification: finite q0-centred action-direction design FAIL; not
+  runtime, raw, model, controller, MPC, recovery or global reachability
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id1b_result_20260814_bd1b5802/`
+- Next: zero-new-TSC direction/active-nominal-centre design review; no fit
+  or further TSC until prospectively frozen

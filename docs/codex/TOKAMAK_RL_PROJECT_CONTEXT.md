@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active post-ID-1B notice (2026-08-14):** ID-1B completed its exact
+> 14-rollout/336-advance persistent-dwell campaign. Execution, raw,
+> repeatability, signal, Ip and numerical rank passed, but all six measured
+> signed p03/p04/p07 mean responses had positive R components. Their angular
+> gap was `299.72069139587876 deg`, so the q0-centred response cone did not
+> positively span R/Z. The final independent audit passed after a zero-TSC
+> reporting-only reconstruction fix. ID-1B is not fit eligible and does not
+> establish global lack of authority. The active task is a zero-TSC review of
+> new directions versus signed residuals around a nonzero/time-varying nominal
+> centre. `CURRENT_TASK.md` is authoritative; all older active notices are
+> historical.
+
 > **Active post-ID-1A notice (2026-08-14):** ID-1A completed with exact
 > execution/raw/repeatability but its frozen history contrast failed, so its
 > trajectories are not model-fit eligible. The post-result causal audit found

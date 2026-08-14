@@ -1,5 +1,33 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-1B is final as a clean persistent-direction design FAIL; a zero-new-TSC
+> direction/centre review is the unique active task (2026-08-14):** ID-1B
+> completed 14/14 resets, 336/336 verified one-ms plant advances, 350 states
+> and 1,750/1,750 required raw artifacts. The reporting-only action audit was
+> corrected without rerunning TSC; the final independent raw audit passed.
+> The frozen scientific route is
+> `ONE_MS_ID1B_PERSISTENT_POSITIVE_SPAN_FAIL_DIRECTION_REDESIGN`.
+>
+> All six persistent p03/p04/p07 signed response rays had positive R
+> components. R/Z numerical rank was two and the best pair condition was
+> `1.8089786595722026`, but the maximum angular gap was
+> `299.72069139587876 deg` and minimum directional support was negative.
+> Therefore rank alone cannot select a control basis. ID-1B data are not
+> eligible for basis selection or model fitting.
+>
+> The unique active task is a zero-new-TSC, zero-fit design review that decides
+> whether the next empirical identification stage should search new action
+> directions or measure signed residual authority around a prospectively
+> frozen nonzero/time-varying nominal centre. It must stop the q0-centred
+> p03/p04/p07 ladder, retain exact/noiseless current R_geo/Z_geo/Ip and full
+> post-1100-ms causal history, and keep controller-grade tubes/recourse
+> separate from simulator-only identification. Tests and nontrivial analysis
+> run on the server; locally only documentation, hashes and simple
+> calculations are allowed. No model fit, calibration, holdout, controller,
+> MPC, recovery, transport or new TSC is yet authorized by this result. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID1B_PERSISTENT_DWELL_RESULT.md`. This is
+> the only active pointer; all notices below are historical.
+
 > **ID-1A is final as a clean history-contrast design FAIL; ID-1B temporal
 > primitive design is the unique active task (2026-08-14):** ID-1A completed
 > 32/32 resets, 768/768 verified plant advances, 800 states and 4,000/4,000

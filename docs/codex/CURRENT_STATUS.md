@@ -1,5 +1,25 @@
 # Current status
 
+> **ID-1B final: finite positive-span design FAIL; route review active
+> (2026-08-14 Asia/Shanghai).** The real-TSC campaign completed 14/14
+> rollouts and 336/336 verified advances. Raw integrity covered 350 states,
+> 1,750 files and 20,612,523,400 bytes with digest
+> `31170185118b0c8d5698db80bd9f3862823602b95247216a42479ac657a0975d`.
+> Exact replay, signal, Ip and R/Z rank gates passed. The final independent
+> raw audit passed after an audit-only issue-0 reconstruction correction; no
+> TSC was rerun.
+>
+> Every persistent signed mean response had positive dR. Consequently the
+> six-column response set, despite rank two and best pair condition
+> `1.8089786595722026`, had a `299.72069139587876 deg` maximum angular gap and
+> negative minimum directional support. The final route is
+> `ONE_MS_ID1B_PERSISTENT_POSITIVE_SPAN_FAIL_DIRECTION_REDESIGN`.
+> `basis_selection_data_eligible=false` and `model_fit_data_eligible=false`.
+> This rejects only the measured q0-centred directions, not global plant
+> authority. The active work is zero-TSC direction/nominal-centre design
+> review; model training and further TSC remain pending its prospective
+> result. Older notices below are historical.
+
 > **ID-1A completed as a clean identification-design FAIL; ID-1B design is
 > active (2026-08-14 Asia/Shanghai).** Execution, exact actuator/timing,
 > boundary/Ip/current safety, 4,000-file raw inventory and repeatability all

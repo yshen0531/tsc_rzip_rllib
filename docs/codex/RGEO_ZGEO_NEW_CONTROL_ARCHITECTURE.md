@@ -1,5 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-1B action-centre amendment (2026-08-14):** a numerically rank-two
+> response set is not a usable two-axis basis when its positive cone omits a
+> half-plane. ID-1B found that all six persistent q0-centred signed rays had
+> positive R components and failed the frozen positive-span/support gates.
+> The p03/p04/p07 q0-centred ladder therefore stops. This finite result does
+> not prove absence of negative-R authority: q0 is not a hold command, and a
+> future controller is expected to operate around an active time-varying
+> nominal continuation. Before fitting dynamics, the next design audit must
+> decide whether to add genuinely new action directions or identify
+> two-sided residual authority around a prospectively frozen nominal centre.
+> Controller-grade tubes and recourse still require separate fresh evidence;
+> natural drift and rank may not substitute for them.
+
 > **Post-ID-1A temporal-primitive amendment (2026-08-14):** a local action
 > column may not average across a later issued action edge. With `issue+1`
 > effect timing, an issue-10 pulse followed by issue-11 q0 return has only one
