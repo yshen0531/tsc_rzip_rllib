@@ -91,6 +91,22 @@ class ID0T1LongTailTests(unittest.TestCase):
         comparisons = primary.prefix_comparisons(rows, self.stage)
         self.assertEqual(len(comparisons), 16)
         self.assertTrue(all(row["passed"] for row in comparisons))
+        source_command = independent._source_preissue_active_command(references)
+        self.assertEqual(source_command, references["baseline_q0_r0"]["states"][0]["active_command_decimal_a_tsc"])
+        self.assertEqual(len(source_command), 14)
+
+    def test_independent_prefix_treats_raw_inputa_as_outgoing_action(self):
+        reference_path = ROOT / next(
+            row["path"] for row in self.stage["evidence"]["reference_records"]
+            if Path(row["path"]).stem == "baseline_q0_r0"
+        )
+        reference = json.loads(reference_path.read_text(encoding="utf-8"))
+        raw_view = copy.deepcopy(reference)
+        for state in raw_view["states"]:
+            state["artifact_sha256"]["inputa"] = "outgoing-rewrite"
+        self.assertTrue(independent._compare_prefix(raw_view, reference, self.stage)["passed"])
+        raw_view["states"][4]["artifact_sha256"]["geqdsk"] = "changed-physical-state"
+        self.assertFalse(independent._compare_prefix(raw_view, reference, self.stage)["passed"])
 
     def test_tail_metric_boundaries_and_independent_agreement(self):
         rows = self._synthetic_rows()

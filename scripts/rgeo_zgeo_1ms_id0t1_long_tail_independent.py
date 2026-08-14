@@ -91,12 +91,31 @@ def _compare_prefix(left: dict[str, Any], right: dict[str, Any], stage: dict[str
         maxima["coil_a"] = max(maxima["coil_a"], raw._maxdiff(a["actual_current_decimal_a_tsc"], b["actual_current_decimal_a_tsc"]))
         maxima["wire_a"] = max(maxima["wire_a"], raw._maxdiff(a["wire_current_a"], b["wire_current_a"]))
         for name in stage["semantic_artifacts"]:
+            # The raw state directory's inputa has been rewritten to the
+            # outgoing issue at that state, while the compact reference hash
+            # was captured before that rewrite.  Outgoing inputa is audited
+            # independently against the frozen Card15 stream below.
+            if name == "inputa":
+                continue
             if a["artifact_sha256"].get(name) != b["artifact_sha256"].get(name):
                 failures.append(f"SEMANTIC_ARTIFACT:{index}:{name}")
     for key, value in maxima.items():
         if value > stage["prefix_match"][key]:
             failures.append(key.upper())
     return {"passed": not failures, "failures": list(dict.fromkeys(failures)), "maximum_absolute_difference": maxima}
+
+
+def _source_preissue_active_command(references: dict[str, dict[str, Any]]) -> list[str]:
+    commands = {
+        tuple(row["states"][0]["active_command_decimal_a_tsc"])
+        for row in references.values()
+    }
+    if len(commands) != 1:
+        raise ValueError("reference source active command is not unique")
+    command = list(next(iter(commands)))
+    if len(command) != 14:
+        raise ValueError("reference source active command is not length 14")
+    return command
 
 
 def _baseline(rows: Sequence[dict[str, Any]]) -> list[dict[str, float]]:
@@ -144,7 +163,7 @@ def _expected_route(stage: dict[str, Any], prefix_ok: bool, metrics: dict[str, A
     return stage["routes"]["pass"] if metrics["tail_passed"] else stage["routes"]["tail_horizon_fail"]
 
 
-def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
+def audit(stage_path: Path, run_dir: Path, source_revision: str, *, output_name: str = "independent_audit.json") -> dict[str, Any]:
     failures: list[str] = []
     stage_path = _inside_root(stage_path, "stage config")
     run_dir = _inside_root(run_dir, "run dir")
@@ -163,6 +182,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             failures.append(f"REFERENCE_HASH:{path.name}")
         else:
             references[path.stem] = json.loads(path.read_text(encoding="utf-8"))
+    source_preissue_active_command = _source_preissue_active_command(references)
     base = _inside_root(ROOT / stage["base_tsc_config"], "base config")
     if _sha(base) != stage["evidence"]["base_tsc_config_sha256"]:
         failures.append("BASE_IDENTITY")
@@ -189,7 +209,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             q0 = quantize_target(tuple(float(value) for value in states[0]["actual_current_decimal_a_tsc"]), cfg.turns_tsc)
             targets = _stream(stage, cfg, spec, q0)
             actions = []
-            previous_command = states[0]["active_command_decimal_a_tsc"]
+            # state1100/inputa in the retained raw tree is the outgoing issue0
+            # q0 command.  The pre-issue source command is recoverable from the
+            # frozen source compacts and is required to preserve the real
+            # 1e-5 A source-to-q0 settling action.
+            previous_command = source_preissue_active_command
             source = states[0]
             outer = stage["empirical_exploration"]["outer_hard_envelope"]
             inner = stage["empirical_exploration"]["inner_pulse_issue_clearance"]
@@ -281,9 +305,13 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
         "failures": failures, "raw_rollouts": len(rows), "raw_states": sum(len(row["states"]) for row in rows),
         "recomputed_scientific_route": expected_route, "prefix_comparisons": comparisons,
         "scientific_metrics": metrics, "primary_scientific_passed": primary.get("passed"),
+        "raw_inputa_semantics": "outgoing_issue_verified_against_card15_not_compared_to_prewrite_compact_hash",
+        "issue0_previous_command_semantics": "frozen_unique_preissue_source_command_from_id0_reference_compacts",
         "claim_boundary": "independent_raw_state32_tail_recomputation_not_model_controller_or_safety_qualification",
     }
-    destination = run_dir / "independent_audit.json"
+    if output_name not in ("independent_audit.json", "independent_audit_hotfix.json"):
+        raise ValueError("invalid independent audit output name")
+    destination = run_dir / output_name
     if destination.exists():
         raise FileExistsError(f"refusing to overwrite {destination}")
     destination.write_text(json.dumps(result, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
@@ -295,8 +323,9 @@ def main() -> int:
     parser.add_argument("--stage-config", type=Path, required=True)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--source-revision", required=True)
+    parser.add_argument("--output-name", default="independent_audit.json")
     args = parser.parse_args()
-    result = audit(args.stage_config.resolve(), args.run_dir.resolve(), args.source_revision)
+    result = audit(args.stage_config.resolve(), args.run_dir.resolve(), args.source_revision, output_name=args.output_name)
     print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
     return 0 if result["audit_passed"] else 2
 
