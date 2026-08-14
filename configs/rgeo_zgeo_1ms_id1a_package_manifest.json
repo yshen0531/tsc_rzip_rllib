@@ -3,7 +3,7 @@
   "campaign_id": "rgeo_zgeo_1ms_id1a_context_anchor_pilot_v1",
   "implementation_revision": "8dcd072076fe505e7c9e7432210fec858985926b",
   "payload_file_count": 41,
-  "payload_inventory_sha256": "271cbea2a97679b40b208c4f9dc0c8ccbe49adae367df6b54f9532156cce7f67",
+  "payload_inventory_sha256": "e89115c0f57459a7891ba7a478402d67f188c10f18ec7a953f05858aa3e42834",
   "inventory_line_format": "path\\tbytes\\tsha256\\n sorted by Unicode code point, UTF-8",
   "paths": [
     "configs/rgeo_zgeo_1ms_id0_vector_tail.json",
