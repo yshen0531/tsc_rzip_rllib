@@ -65,6 +65,11 @@ class C2AA3CumulativeTests(unittest.TestCase):
         self.assertEqual(metrics["window_states"], list(range(3, 17)))
         self.assertEqual(len(metrics["incremental_opposition_m"]), 14)
 
+    def test_independent_auditor_populates_artifact_hashes_for_pair_compare(self):
+        source = (ROOT / "scripts/rgeo_zgeo_1ms_nr2r2c2aa3_independent.py").read_text()
+        self.assertIn('state["artifact_sha256"] = {}', source)
+        self.assertIn('state["artifact_sha256"][name] = digest', source)
+
 
 if __name__ == "__main__":
     unittest.main()

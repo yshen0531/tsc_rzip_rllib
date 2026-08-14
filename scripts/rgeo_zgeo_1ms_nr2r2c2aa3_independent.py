@@ -98,11 +98,13 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                 state["outgoing_command_card15_fields"] = list(_fields(folder / "inputa"))
                 state["actual_current_decimal_a_tsc"] = state["current_decimal_a_tsc"]
                 state["wire_current_a"] = tuple(state["wire_a"])
+                state["artifact_sha256"] = {}
                 if state["abnormal"]:
                     failures.append(f"ABNORMAL:{rollout_id}:{state_index}")
                 for name in tuple(stage["semantic_artifacts"]) + tuple(stage["diagnostic_artifacts"]):
                     path = folder / name
                     size, digest = path.stat().st_size, sha256(path)
+                    state["artifact_sha256"][name] = digest
                     artifact_bytes += size
                     inventory.append(f"{path.relative_to(run_dir).as_posix()}\t{size}\t{digest}")
                 recorded = compact["states"][state_index]
