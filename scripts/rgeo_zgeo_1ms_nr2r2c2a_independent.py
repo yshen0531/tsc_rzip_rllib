@@ -111,7 +111,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                     Decimal(str(value)) for value in recorded["actual_current_decimal_a_tsc"]
                 ):
                     failures.append(f"PRIMARY_COIL:{spec['candidate_id']}:{state_index}")
-                if state["wire_current_a"] != recorded["wire_current_a"]:
+                if tuple(state["wire_current_a"]) != tuple(recorded["wire_current_a"]):
                     failures.append(f"PRIMARY_WIRE:{spec['candidate_id']}:{state_index}")
                 if any(not low <= value <= high for value, low, high in zip(
                     state["current_a_tsc"], cfg.min_current_a_tsc, cfg.max_current_a_tsc
@@ -194,7 +194,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     if primary["required_artifact_inventory_sha256"] != digest:
         failures.append("PRIMARY_ARTIFACT_DIGEST")
     audit_passed = not failures
-    result = {"schema_version": SCHEMA + "-independent-v1", "source_revision": source_revision,
+    result = {"schema_version": SCHEMA + "-independent-v2", "source_revision": source_revision,
               "audit_passed": audit_passed,
               "route": "ONE_MS_NR2R2C2A_SEARCH_INDEPENDENT_AUDIT_PASS" if audit_passed else
                        "ONE_MS_NR2R2C2A_SEARCH_INDEPENDENT_AUDIT_FAIL_STOP",
@@ -207,7 +207,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
               "candidate_metrics": [{"candidate_id": row["candidate_id"],
                                      "hold_metrics": row["hold_metrics"]} for row in rows],
               "primary_result_sha256": sha256(run_dir / "result.json")}
-    write_new(run_dir / "independent_audit.json", result)
+    write_new(run_dir / "independent_audit_v2.json", result)
     return result
 
 
