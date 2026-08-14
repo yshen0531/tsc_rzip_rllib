@@ -1,0 +1,52 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id1c0-direction-screen-audit-v1",
+  "audit_id": "rgeo_zgeo_1ms_id1c0_direction_screen_audit_v1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "experiment_contract": "zero_tsc_consumed_development_direction_screen",
+  "intended_use": "select_candidates_for_fresh_persistent_validation_only",
+  "model_fit_use": "forbidden",
+  "calibration_use": "forbidden",
+  "holdout_use": "forbidden",
+  "holdout_records_read": 0,
+  "server_execution_required": true,
+  "local_nontrivial_execution_forbidden": true,
+  "input_inventory": {
+    "files": 23,
+    "bytes": 1854612,
+    "digest_sha256": "03497b6635efa83ca62a4bdc6bdfaf35765e330de0fd199304b225afb82359c0",
+    "nr2r1_root": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e",
+    "nr2r1_independent": "development_calibration_independent.json",
+    "nr2r1_record_pattern": "records/development_p{pair_index:02d}_{sign}.json",
+    "pair_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "signs": ["plus", "minus"],
+    "q0_baseline": "rgeo_zgeo_1ms_id0_runs_20260814_38b3a22e_v2/baseline_q0_r0.json",
+    "id1b_result": "rgeo_zgeo_1ms_id1b_runs_20260814_bd1b5802/result.json",
+    "id1b_result_sha256": "54ed170bc628237d6d7b8828f6dc3c77b06e549f064a63ae4281af9aea0d0db8"
+  },
+  "causal_window": {
+    "first_non_q0_issue": 1,
+    "first_effect_state": 2,
+    "rule": "maximal_contiguous_first_event_target_before_next_action_edge"
+  },
+  "geometry_gates": {
+    "minimum_each_ray_rz_norm_m": 0.00001,
+    "maximum_absolute_ip_response_a": 150.0,
+    "maximum_angular_gap_deg": 175.0,
+    "minimum_directional_support_m": 0.000005,
+    "maximum_best_two_ray_condition": 20.0,
+    "directional_support_angle_samples": 360
+  },
+  "selection": {
+    "subset_size": 2,
+    "ranking": ["maximum_minimum_directional_support", "minimum_maximum_angular_gap", "minimum_best_two_ray_condition"],
+    "fresh_campaign_must_reconstruct_exact_q0_centered_half_amplitude_targets": true,
+    "old_action_targets_may_not_be_silently_reused": true
+  },
+  "routes": {
+    "input_fail": "ONE_MS_ID1C0_INPUT_INTEGRITY_FAIL_NO_TSC",
+    "no_candidate": "ONE_MS_ID1C0_DIRECTION_SCREEN_FAIL_NEW_DIRECTIONS_REQUIRED",
+    "candidate": "ONE_MS_ID1C0_DIRECTION_SCREEN_PASS_FRESH_PERSISTENT_VALIDATION_REQUIRED"
+  },
+  "claim_boundary": "retrospective_consumed_development_screen_only_not_model_fit_not_persistent_validation_not_controller_authority"
+}
