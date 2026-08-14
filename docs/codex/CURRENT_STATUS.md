@@ -1,5 +1,27 @@
 # Current status
 
+> **C2aA1 level-2 direction safely fails persistent authority (2026-08-14).**
+> Design/implementation/audit-fix checkpoints are `64c2983 / 4845004 /
+> 3e85a4b`. The first offline attempt stopped with zero plant advances on an
+> over-strong post-conversion exact-equality predicate; the audit-only
+> coordinate correction changed no action or threshold. Accepted local/server
+> tests and the fresh zero-TSC gate passed before real execution.
+>
+> The campaign completed 2/2 rollouts, 64/64 advances and 66 states with no
+> runtime/interface/safety failure. Independent audit passed 330/330 required
+> artifacts (3,886,932,984 bytes; digest
+> `e297d26c2eb13d85dc10ced2a8dc7a954fbbbf31b8477e0ac6cba90ad169c594`)
+> and reproduced every metric exactly. Paired checked observables, actions and
+> semantic hashes were exact; `sprsina` remained a non-identical diagnostic.
+>
+> Final route is `ONE_MS_NR2R2C2AA1_LEVEL2_AUTHORITY_FAIL_REDESIGN`: mean
+> opposition was 0.00708 mm, only 2/14 states were positive and the maximum
+> was 1.01563 mm. Level2 was worse than level1 at every measured state. This
+> rejects only the frozen p07-plus static direction. The active task is a new
+> prospective supported q0+/-0.3 A cube direction/sign discriminator design.
+> Nominal-H1, C2b, response atlas, model, MPC, adaptation and learning remain
+> blocked.
+
 > **NR2R2C2aA1 level-2 authority discriminator frozen; not yet implemented or
 > run (2026-08-14 Asia/Shanghai).** Two identical canonical-source 32 ms
 > schedules will ramp p07 q0 -> level1 -> level2 (maximum 0.30 A offset), hold,

@@ -1,5 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA1 final result (2026-08-14):** the frozen level-2 authority
+> discriminator completed 2/2 canonical resets and 64/64 safe authentic
+> 1 ms advances. Independent raw audit passed all 330 required artifacts and
+> exactly reproduced the primary route
+> `ONE_MS_NR2R2C2AA1_LEVEL2_AUTHORITY_FAIL_REDESIGN`. Mean opposition to q0
+> drift was only `0.00708 mm`, positive at 2/14 states, with a maximum
+> `1.01563 mm`; doubling p07-plus made opposition worse than level1 at all
+> 14 measured states. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA1_LEVEL2_AUTHORITY_RESULT.md`.
+> This is an action-direction/schedule authority FAIL, not runtime, model,
+> controller or global reachability evidence. The next active task is only a
+> separately prospective supported-cube sign/direction discriminator design;
+> Nominal-H1, C2b, model, atlas, MPC and learning remain blocked.
+
 > **NR2R2C2aA1 level-2 authority prospective freeze (2026-08-14):** the
 > active task is the separately frozen two-reset/64-advance discriminator in
 > `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA1_LEVEL2_AUTHORITY_DESIGN.md`.

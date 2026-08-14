@@ -1925,3 +1925,34 @@
   `docs/codex/audits/rgeo_zgeo_1ms_nr2r2b0_20260813_f4b1537/`
 - Next: pause for explicit active source hold/recovery architecture and
   prospective sprsina semantic audit; no atlas/probe/model TSC
+
+## R_geo/Z_geo 1 ms NR2R2C2aA1 level-2 authority discriminator
+
+- Branch: `codex/rgeo-zgeo-1ms-c2a-nominal-hold`
+- Design / implementation / offline-audit correction:
+  `64c2983 / 4845004 / 3e85a4b`
+- First offline result: zero plant advances; exact doubled-offset check used
+  the wrong post-conversion coordinate and failed closed. The file is retained.
+- Accepted offline result: PASS, 32 action steps, maximum adjacent exact issue
+  delta `0.15 A`, zero plant advances
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_nr2r2c2aa1_runs/rgeo_zgeo_1ms_nr2r2c2aa1_level2_authority_20260814_3e85a4b`
+- Remote log:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/rgeo_zgeo_1ms_nr2r2c2aa1_level2_authority_20260814_3e85a4b.log`
+- Expected/actual: `2x32 / 2x32`, 64/64 authentic advances, 66 states
+- Execution/replay: PASS; exact checked geometry, Ip, 14 coil, 48 wire,
+  actions and semantic hashes; `sprsina` non-identical diagnostic
+- Raw inventory: 330 required files / 3,886,932,984 bytes / digest
+  `e297d26c2eb13d85dc10ced2a8dc7a954fbbbf31b8477e0ac6cba90ad169c594`
+- Primary / independent SHA-256:
+  `f069c33191a13f03c872c52e54d72d0ff40c1019e504b0e8337a435f60e36cd6 /`
+  `286a96b7e3ce5162a6adaa92dc424f05280b671b1bfe79d971c3250dc44ade15`
+- Authority: mean `0.0070801 mm`, positive `2/14`, maximum `1.0156325 mm`;
+  maximum q0-relative Ip deviation `32.4491 A`
+- Final route: `ONE_MS_NR2R2C2AA1_LEVEL2_AUTHORITY_FAIL_REDESIGN`
+- Classification: finite action-direction/schedule authority FAIL; not a
+  runtime, interface, model, controller, recovery, MPC or reachability result
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa1_result_20260814_3e85a4b/`
+- Next: prospective supported-cube sign/direction discriminator only;
+  Nominal-H1, C2b, model, atlas, MPC and learning remain blocked

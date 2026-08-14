@@ -1,0 +1,108 @@
+{
+  "authority_metrics": [
+    {
+      "maximum_absolute_ip_deviation_from_q0_a": 32.449099999998,
+      "maximum_opposition_m": 0.001015632499999919,
+      "mean_opposition_m": 7.080107142856673e-06,
+      "opposition_m": [
+        -5.917699999996584e-05,
+        -6.886299999997458e-05,
+        0.001015632499999919,
+        -0.000143484999999971,
+        -0.00015859400000003965,
+        -0.00015068250000005445,
+        -0.00017130300000006704,
+        -0.00013500649999992342,
+        -0.00016347500000007953,
+        0.0009530150000000015,
+        -0.000190051500000038,
+        -0.0002116579999999202,
+        -0.00021899349999995876,
+        -0.0001982369999999345
+      ],
+      "passed": false,
+      "positive_opposition_fraction": 0.14285714285714285,
+      "window_states": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "maximum_absolute_ip_deviation_from_q0_a": 32.449099999998,
+      "maximum_opposition_m": 0.001015632499999919,
+      "mean_opposition_m": 7.080107142856673e-06,
+      "opposition_m": [
+        -5.917699999996584e-05,
+        -6.886299999997458e-05,
+        0.001015632499999919,
+        -0.000143484999999971,
+        -0.00015859400000003965,
+        -0.00015068250000005445,
+        -0.00017130300000006704,
+        -0.00013500649999992342,
+        -0.00016347500000007953,
+        0.0009530150000000015,
+        -0.000190051500000038,
+        -0.0002116579999999202,
+        -0.00021899349999995876,
+        -0.0001982369999999345
+      ],
+      "passed": false,
+      "positive_opposition_fraction": 0.14285714285714285,
+      "window_states": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    }
+  ],
+  "claim_boundary": "level2_development_authority_only_not_hold_recovery_model_or_control",
+  "execution_passed": true,
+  "pair_comparison": {
+    "failures": [],
+    "maximum_absolute_difference": {
+      "coil_a": 0.0,
+      "geometry_m": 0.0,
+      "ip_a": 0.0,
+      "wire_a": 0.0
+    },
+    "pair_id": "level2_authority",
+    "passed": true,
+    "sprsina_hash_exact_all_states": false
+  },
+  "passed": false,
+  "plant_advances": 64,
+  "repeatability_passed": true,
+  "required_artifact_bytes": 3886932984,
+  "required_artifact_files": 330,
+  "required_artifact_inventory_sha256": "e297d26c2eb13d85dc10ced2a8dc7a954fbbbf31b8477e0ac6cba90ad169c594",
+  "rollouts_completed": 2,
+  "route": "ONE_MS_NR2R2C2AA1_LEVEL2_AUTHORITY_FAIL_REDESIGN",
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c2aa1-level2-authority-v1",
+  "source_revision": "3e85a4b85c3e39b7ab33d217df159c7079b2f8c4",
+  "total_rollout_wall_time_s": 110.05075764190406,
+  "worst_rollout_wall_time_s": 55.17986047593877
+}

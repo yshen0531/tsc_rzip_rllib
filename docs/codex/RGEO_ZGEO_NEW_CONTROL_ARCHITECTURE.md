@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **NR2R2C2aA1 evidence amendment (2026-08-14):** a componentwise q0+/-0.3 A
+> p07-plus level safely completed 64/64 authentic 1 ms advances and exact
+> paired replay, but failed persistent authority. Mean q0-drift opposition was
+> `0.00708 mm`, only 2/14 states were positive, and level2 was worse than
+> level1 at all 14 measured states. This rejects that static direction, not
+> cumulative-slew control or global reachability. The next discriminator must
+> first compare a small prospectively frozen sign/direction family inside the
+> already supported cube; it may not unlock hold/recovery/model/MPC stages.
+
 > **NR2R2C1a evidence amendment (2026-08-14):** canonical-source full-prefix
 > replay mechanics passed its finite 12-reset/136-advance envelope, while the
 > 56.54 s worst complete branch rejects 1 ms online-Oracle use. Generated
