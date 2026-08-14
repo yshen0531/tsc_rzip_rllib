@@ -1,5 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **NR2R2C1a evidence amendment (2026-08-14):** canonical-source full-prefix
+> replay mechanics passed its finite 12-reset/136-advance envelope, while the
+> 56.54 s worst complete branch rejects 1 ms online-Oracle use. Generated
+> `sprsina` remained non-hash-identical, so snapshot restart is still a
+> separate claim. C1a permits prospective C2a nominal active-hold design only;
+> it supplies neither novel-action successor safety nor hold/recourse/model/
+> controller evidence. See the tracked C1a result report.
+>
 > **Post-NR2R2B0 route amendment (2026-08-13):** the architecture below is
 > retained. The immediate dependency chain is canonical-source full-prefix
 > replay -> finite nominal active hold -> bounded-tube contingency -> minimal

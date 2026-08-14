@@ -1,0 +1,26 @@
+{
+  "failures": [
+    "CARD15:pattern_a_h04_r0:0",
+    "FIRST_EFFECT_SIGN:pattern_a_h04_r0",
+    "CARD15:pattern_a_h04_r1:0",
+    "FIRST_EFFECT_SIGN:pattern_a_h04_r1",
+    "CARD15:pattern_b_h04_r0:0",
+    "FIRST_EFFECT_SIGN:pattern_b_h04_r0",
+    "CARD15:pattern_b_h04_r1:0",
+    "FIRST_EFFECT_SIGN:pattern_b_h04_r1",
+    "PRIMARY_ARTIFACT_BYTE_COUNT"
+  ],
+  "pair_comparisons": [],
+  "passed": false,
+  "plant_advances": 136,
+  "primary_result_sha256": "0b8eda34bd730aa59e2d3151ab69d445d4e5aeefa8bac6485c1161fecb86cebd",
+  "primary_route": "ONE_MS_NR2R2C1A_CANONICAL_SOURCE_REPLAY_QUALIFIED_C2A_DESIGN_ONLY",
+  "raw_rollouts": 12,
+  "raw_states": 148,
+  "required_artifact_bytes": 8716152752,
+  "required_artifact_files": 740,
+  "required_artifact_inventory_sha256": "5b00be299251c019c7c4a9cc55d06bf224cd8c8668b11439671770734c6ec12e",
+  "route": "ONE_MS_NR2R2C1A_INDEPENDENT_FAIL_STOP",
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c1a-canonical-source-replay-v1-independent",
+  "source_revision": "de6f41a"
+}

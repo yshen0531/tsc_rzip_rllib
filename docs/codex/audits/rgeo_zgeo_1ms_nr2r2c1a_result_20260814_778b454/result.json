@@ -1,0 +1,89 @@
+{
+  "claim_boundary": "canonical_source_full_replay_mechanics_only_c2a_design_not_action_authority",
+  "offline_source_shooting_usable": true,
+  "online_1ms_oracle_eligible": false,
+  "pair_comparisons": [
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "pair_id": "q0_h04",
+      "passed": true,
+      "sprsina_hash_exact_all_states": false
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "pair_id": "q0_h08",
+      "passed": true,
+      "sprsina_hash_exact_all_states": false
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "pair_id": "q0_h16",
+      "passed": true,
+      "sprsina_hash_exact_all_states": false
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "pair_id": "q0_h32",
+      "passed": true,
+      "sprsina_hash_exact_all_states": false
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "pair_id": "pattern_a_h04",
+      "passed": true,
+      "sprsina_hash_exact_all_states": false
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "pair_id": "pattern_b_h04",
+      "passed": true,
+      "sprsina_hash_exact_all_states": false
+    }
+  ],
+  "passed": true,
+  "plant_advances": 136,
+  "required_artifact_bytes": 8716155272,
+  "required_artifact_files": 740,
+  "rollouts_completed": 12,
+  "route": "ONE_MS_NR2R2C1A_CANONICAL_SOURCE_REPLAY_QUALIFIED_C2A_DESIGN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c1a-canonical-source-replay-v1",
+  "source_revision": "778b454",
+  "total_rollout_wall_time_s": 241.4732376965694,
+  "worst_rollout_wall_time_s": 56.535548300947994
+}

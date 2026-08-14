@@ -1,5 +1,23 @@
 # Current status
 
+> **NR2R2C1a canonical-source replay qualified for C2a design only
+> (2026-08-14 Asia/Shanghai).** The server completed 12/12 fresh canonical
+> resets and 136/136 authentic 1 ms advances. Independent V2 raw reparse found
+> 148 states and 740 required files (`8,716,152,752` final-raw bytes; digest
+> `5b00be299251c019c7c4a9cc55d06bf224cd8c8668b11439671770734c6ec12e`).
+> All six replay pairs had exactly zero checked R_geo/Z_geo/R_mid, Ip, 14-coil
+> and 48-wire difference. `sprsina` was non-exact in every pair, so snapshot
+> identity remains unqualified. Worst complete branch time was 56.54 s:
+> offline source shooting mechanics PASS, online 1 ms Oracle FAIL.
+>
+> The original independent-audit FAIL remains tracked and is classified as an
+> audit/reporting-coordinate error: final raw stores an outgoing issue in
+> `state[k]/inputa`, and each state0 inputa legitimately changed from the
+> reset template. V2 corrected no physical action and ran zero new TSC. C1a
+> authorizes only prospective C2a design; nominal hold, bounded recourse,
+> response/atlas work, model fitting, MPC, adaptation and RL are not yet
+> qualified.
+
 > **NR2R2C1a design frozen; execution not yet started (2026-08-13
 > Asia/Shanghai).** The user authorized continued staged development and server
 > TSC. The active identity is

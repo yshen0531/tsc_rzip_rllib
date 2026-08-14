@@ -1,5 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C1a final result (2026-08-14):** canonical-source full-prefix replay
+> completed 12/12 resets and 136/136 authentic 1 ms advances. All six paired
+> families were exact on checked boundary geometry, R_mid, Ip, 14 coil and 48
+> wire currents, Card15/history/effect semantics and the four semantic
+> artifacts. The independent V2 raw audit passed 740/740 required final-raw
+> files with inventory digest
+> `5b00be299251c019c7c4a9cc55d06bf224cd8c8668b11439671770734c6ec12e`.
+> The original independent FAIL is preserved: it used the wrong retained
+> `inputa` issue-state coordinate and compared pre-issue state0 size with final
+> raw; V2 corrected only the auditor/reporting coordinate with zero new TSC.
+> `sprsina` remained non-identical and the 56.54 s worst rollout rejects a 1 ms
+> online Oracle. Final route is
+> `ONE_MS_NR2R2C1A_CANONICAL_SOURCE_REPLAY_QUALIFIED_C2A_DESIGN_ONLY`; see
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C1A_CANONICAL_SOURCE_REPLAY_RESULT.md`.
+> The active next task is only a separately prospective C2a nominal active-
+> hold design. C1a supplies replay mechanics, not novel-action safety,
+> hold/recovery, model, atlas, controller, MPC or learning authority.
+
 > **NR2R2C1a prospective freeze (2026-08-13):** following explicit user
 > authorization to continue the revised route and use server TSC, the active
 > task is the separately frozen canonical-source full-prefix replay qualifier
