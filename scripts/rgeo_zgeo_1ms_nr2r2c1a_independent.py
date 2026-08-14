@@ -40,20 +40,21 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     rows = []
     inventory: list[str] = []
     required_artifact_bytes = 0
+    artifact_size_mutations: list[dict[str, Any]] = []
     frozen = None
     for spec in matrix(stage):
         states = []
         actions = []
         try:
+            primary_rollout = json.loads(
+                (run_dir / f"{spec['rollout_id']}.json").read_text(encoding="utf-8")
+            )
             for state_index in range(spec["horizon_steps"] + 1):
                 folder = run_dir / "rollouts" / spec["rollout_id"] / f"{1100 + state_index}ms"
                 state = _state(folder, cfg)
                 state["actual_current_decimal_a_tsc"] = state["current_decimal_a_tsc"]
                 state["wire_current_a"] = state["wire_a"]
-                state["active_command_card15_fields"] = list(_fields(folder / "inputa"))
-                state["active_command_decimal_a_tsc"] = list(decimal_single_turn_currents_a(
-                    state["active_command_card15_fields"], cfg.turns_tsc,
-                    name=f"independent.command.{spec['rollout_id']}.{state_index}"))
+                state["outgoing_command_card15_fields"] = list(_fields(folder / "inputa"))
                 state["artifact_sha256"] = {}
                 for name in tuple(stage["semantic_artifacts"]) + tuple(stage["diagnostic_artifacts"]):
                     path = folder / name
@@ -63,6 +64,14 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                     required_artifact_bytes += size
                     relative = path.relative_to(run_dir).as_posix()
                     inventory.append(f"{relative}\t{size}\t{digest}")
+                    recorded_size = primary_rollout["states"][state_index]["artifact_size_bytes"][name]
+                    if recorded_size != size:
+                        mutation = {"rollout_id": spec["rollout_id"], "state_index": state_index,
+                                    "artifact": name, "recorded_bytes": recorded_size,
+                                    "final_raw_bytes": size, "difference_bytes": size - recorded_size}
+                        artifact_size_mutations.append(mutation)
+                        if state_index != 0 or name != "inputa":
+                            failures.append(f"UNEXPECTED_ARTIFACT_SIZE_MUTATION:{spec['rollout_id']}:{state_index}:{name}")
                 if state["abnormal"]:
                     failures.append(f"ABNORMAL:{spec['rollout_id']}:{state_index}")
                 states.append(state)
@@ -71,14 +80,24 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                     source_current_a_tsc=states[0]["current_a_tsc"], turns_tsc=cfg.turns_tsc,
                     min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc)
             targets = targets_for(spec, frozen)
+            source_fields = tuple(_fields(cfg.simulation_root / cfg.start_folder / "inputa"))
+            source_command = decimal_single_turn_currents_a(
+                tuple(value.strip() for value in source_fields), cfg.turns_tsc,
+                name=f"independent.source_command.{spec['rollout_id']}")
+            for state_index, state in enumerate(states):
+                active_fields = source_fields if state_index == 0 else targets[state_index - 1].card15_fields
+                state["active_command_card15_fields"] = list(active_fields)
+                state["active_command_decimal_a_tsc"] = list(decimal_single_turn_currents_a(
+                    active_fields, cfg.turns_tsc,
+                    name=f"independent.active_command.{spec['rollout_id']}.{state_index}"))
             source_r = states[0]["r_geo_m"]
             source_z = states[0]["z_geo_m"]
             source_ip = states[0]["ip_a"]
             source_current = tuple(states[0]["current_decimal_a_tsc"])
-            source_command = tuple(Decimal(value) for value in states[0]["active_command_decimal_a_tsc"])
+            source_command = tuple(Decimal(value) for value in source_command)
             for step, target in enumerate(targets):
                 expected = list(target.card15_fields)
-                if states[step + 1]["active_command_card15_fields"] != expected:
+                if states[step]["outgoing_command_card15_fields"] != expected:
                     failures.append(f"CARD15:{spec['rollout_id']}:{step}")
                 exact = card15_target_decimal_a(target, cfg.turns_tsc,
                                                 name=f"independent.{spec['rollout_id']}.{step}")
@@ -88,7 +107,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                     "expected_card15_fields": expected, "target_current_a_tsc": list(target.current_a_tsc),
                     "maximum_issued_delta_a": assert_exact_slew(
                         card15_target_decimal_a(targets[step - 1], cfg.turns_tsc, name="previous") if step else
-                        states[0]["active_command_decimal_a_tsc"], exact, name="issued"),
+                        source_command, exact, name="issued"),
                     "effect_state_index": step + 1, "effect_age_steps": 1})
                 if states[step + 1]["time_ms"] != 1101 + step:
                     failures.append(f"TIME:{spec['rollout_id']}:{step}")
@@ -114,6 +133,8 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                     abs(x - y) for x, y in zip(current["current_decimal_a_tsc"], source_current)
                 ) > RETURN_EQUIVALENCE_A:
                     failures.append(f"CENTER_RETURN:{spec['rollout_id']}:{step}")
+            if actions != primary_rollout["actions"]:
+                failures.append(f"PRIMARY_ACTION_RECOMPUTE:{spec['rollout_id']}")
             rows.append({**spec, "passed": True, "states": states, "actions": actions})
         except Exception as exc:
             failures.append(f"RAW:{spec['rollout_id']}:{type(exc).__name__}:{exc}")
@@ -131,10 +152,22 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
         failures.append("PRIMARY_ADVANCE_COUNT")
     if primary.get("required_artifact_files") != expected_files:
         failures.append("PRIMARY_ARTIFACT_FILE_COUNT")
-    if primary.get("required_artifact_bytes") != required_artifact_bytes:
-        failures.append("PRIMARY_ARTIFACT_BYTE_COUNT")
+    expected_size_mutations = len(artifact_size_mutations) == 12 and all(
+        item["state_index"] == 0 and item["artifact"] == "inputa"
+        for item in artifact_size_mutations
+    )
+    if not expected_size_mutations:
+        failures.append("STATE0_INPUTA_MUTATION_ACCOUNTING")
+    compact_rollouts = [json.loads((run_dir / f"{spec['rollout_id']}.json").read_text(encoding="utf-8"))
+                        for spec in matrix(stage)]
+    recomputed_worst_wall_s = max(row["wall_time_s"] for row in compact_rollouts)
+    recomputed_total_wall_s = sum(row["wall_time_s"] for row in compact_rollouts)
+    if primary.get("worst_rollout_wall_time_s") != recomputed_worst_wall_s:
+        failures.append("PRIMARY_WORST_WALL_TIME")
+    if primary.get("total_rollout_wall_time_s") != recomputed_total_wall_s:
+        failures.append("PRIMARY_TOTAL_WALL_TIME")
     passed = not failures and len(rows) == 12 and len(pairs) == 6 and all(x["passed"] for x in pairs)
-    result = {"schema_version": SCHEMA + "-independent", "source_revision": source_revision,
+    result = {"schema_version": SCHEMA + "-independent-v2", "source_revision": source_revision,
               "passed": passed, "route": PASS_ROUTE if passed else "ONE_MS_NR2R2C1A_INDEPENDENT_FAIL_STOP",
               "failures": failures, "raw_rollouts": len(rows),
               "raw_states": sum(len(row["states"]) for row in rows),
@@ -142,9 +175,14 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
               "required_artifact_files": expected_files,
               "required_artifact_bytes": required_artifact_bytes,
               "required_artifact_inventory_sha256": inventory_digest(inventory),
+              "primary_recorded_artifact_bytes": primary.get("required_artifact_bytes"),
+              "primary_to_final_raw_byte_difference": required_artifact_bytes - primary.get("required_artifact_bytes", 0),
+              "artifact_size_mutations": artifact_size_mutations,
+              "recomputed_worst_rollout_wall_time_s": recomputed_worst_wall_s,
+              "recomputed_total_rollout_wall_time_s": recomputed_total_wall_s,
               "pair_comparisons": pairs, "primary_result_sha256": sha(run_dir / "result.json"),
               "primary_route": primary.get("route")}
-    write_new(run_dir / "independent_audit.json", result)
+    write_new(run_dir / "independent_audit_v2.json", result)
     return result
 
 
