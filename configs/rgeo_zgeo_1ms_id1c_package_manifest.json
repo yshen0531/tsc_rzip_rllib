@@ -1,9 +1,9 @@
 {
   "schema_version": "rgeo-zgeo-1ms-id1c-package-manifest-v1",
   "campaign_id": "rgeo_zgeo_1ms_id1c_persistent_basis_validation_v1",
-  "implementation_revision": "853c579be3d4055dcd89de2d2f4b63527a42789a",
+  "implementation_revision": "9401377d179632a73cc2cf035e5b95691e0ab308",
   "payload_file_count": 52,
-  "payload_inventory_sha256": "4d0602626003b9b9505ff6d51b19673dc242fde52306eca008ab5f93817d0843",
+  "payload_inventory_sha256": "09d010b9a1f4958eef34bfecd47a2013477d7979bffc57a524a3a767c0eb5475",
   "inventory_line_format": "path\\tbytes\\tsha256\\n sorted by Unicode code point, UTF-8",
   "paths": [
     "configs/rgeo_zgeo_1ms_id0_vector_tail.json",
