@@ -1,0 +1,14 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id0t1-audit-hotfix-manifest-v1",
+  "campaign_id": "rgeo_zgeo_1ms_id0t1_long_tail_v1",
+  "plant_implementation_revision": "18788cf46eb029821169ae252fa2429bb50e5759",
+  "reporting_hotfix_revision": "273427f97e9a3e96a12c9084491f416daba6274a",
+  "real_tsc_or_plant_rerun_authorized": false,
+  "payload_file_count": 2,
+  "payload_inventory_sha256": "23f2338cc5e5b5a33ae1cc52c256fadfdb5a3d69f80353660bcd487043012d66",
+  "inventory_line_format": "path\\tbytes\\tsha256\\n sorted by Unicode code point, UTF-8",
+  "paths": [
+    "scripts/rgeo_zgeo_1ms_id0t1_long_tail_independent.py",
+    "tests/test_rgeo_zgeo_1ms_id0t1_long_tail.py"
+  ]
+}
