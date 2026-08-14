@@ -4,6 +4,12 @@ Date: 2026-08-14 Asia/Shanghai
 
 Frozen identity: `rgeo-zgeo-1ms-id0t1-long-tail-v1`
 
+Before implementation or TSC, the peak-window wording was corrected from an
+accidental states 3--6 draft to states 3--32. This preserves ID-0's original
+full effect-to-terminal peak definition; no result had been observed and no
+plant advance had occurred. The final config SHA-256 is
+`2b5137284435845587e6d93ed9f1cc9736e4bef43ded17da26c6e02cf5356df3`.
+
 ## 1. Question and evidence role
 
 ID-0 passed execution, raw integrity, independent reparse, repeatability,
@@ -67,7 +73,9 @@ used to retroactively weaken the prefix gate.
 
 For each signed arm, subtract the matched mean of the two fresh q0 baselines
 at the same state. Let the peak response be the maximum R/Z Euclidean norm
-over states 3 through 6. At state32 require all three clauses:
+over the full first-effect-through-terminal window, states 3 through 32,
+exactly preserving ID-0's peak definition while moving the terminal state.
+At state32 require all three clauses:
 
 ```text
 terminal R/Z response norm        <= 0.05 mm

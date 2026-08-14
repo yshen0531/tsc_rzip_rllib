@@ -107,7 +107,7 @@
   },
   "scientific_gates": {
     "tail_terminal_state_index": 32,
-    "peak_response_states": [3, 6],
+    "peak_response_states": [3, 32],
     "tail_terminal_maximum_rz_norm_m": 0.00005,
     "tail_terminal_maximum_peak_fraction": 0.20,
     "tail_terminal_maximum_abs_ip_a": 10.0,

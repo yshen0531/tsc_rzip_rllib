@@ -12,7 +12,7 @@
 > factorization; FAIL triggers route review rather than a longer automatic
 > ladder. The eventual model/controller architecture and final two-axis path
 > goal are unchanged. The ID-0T1 config SHA-256 is
-> `cbb5647fd550e6bb89a3f102d04764ce06b4dafdcd2d5751a19e20a435faf76d`.
+> `2b5137284435845587e6d93ed9f1cc9736e4bef43ded17da26c6e02cf5356df3`.
 >
 > **ID-0 prospective architecture gate (2026-08-14):** the first campaign
 > under the TSC-only identification contract is frozen to two q0 baselines and

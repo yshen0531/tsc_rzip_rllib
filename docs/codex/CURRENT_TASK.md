@@ -19,7 +19,7 @@
 > requires route review rather than state40 or a weaker gate.
 > The prospective identity is now frozen by
 > `configs/rgeo_zgeo_1ms_id0t1_long_tail.json` (SHA-256
-> `cbb5647fd550e6bb89a3f102d04764ce06b4dafdcd2d5751a19e20a435faf76d`)
+> `2b5137284435845587e6d93ed9f1cc9736e4bef43ded17da26c6e02cf5356df3`)
 > and `docs/codex/reports/RGEO_ZGEO_1MS_ID0T1_LONG_TAIL_DESIGN.md`.
 >
 > ID-0 remains consumed design evidence only and is forbidden for fitting,
