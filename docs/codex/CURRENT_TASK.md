@@ -1,5 +1,16 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **NR2R2C2aA2 supported-cube direction prospective freeze (2026-08-14):**
+> the active task is the three-reset/96-advance maximum discriminator in
+> `docs/codex/reports/RGEO_ZGEO_1MS_NR2R2C2AA2_SUPPORTED_CUBE_DIRECTIONS_DESIGN.md`.
+> It tests p03-minus, p04-minus and p07-minus at prospectively frozen Card15
+> targets inside the already supported componentwise `q0+/-0.3 A` cube. The
+> selection uses only consumed development evidence; no holdout, fit or model
+> is used. C2aA1 authority thresholds, paired-boundary/current/slew/successor
+> gates and independent raw audit remain unchanged. A PASS may authorize only
+> separate fresh validation of a frozen candidate. Nominal-H1, C2b, response
+> atlas, model, MPC, adaptation and learning remain blocked.
+
 > **NR2R2C2aA1 final result (2026-08-14):** the frozen level-2 authority
 > discriminator completed 2/2 canonical resets and 64/64 safe authentic
 > 1 ms advances. Independent raw audit passed all 330 required artifacts and

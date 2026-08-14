@@ -1,5 +1,15 @@
 # Current status
 
+> **NR2R2C2aA2 supported-cube direction discriminator frozen; not yet
+> implemented or run (2026-08-14 Asia/Shanghai).** The prospective candidate
+> set is p03-minus, p04-minus and p07-minus. All three had 4/4 positive but
+> small first-event opposition values in already consumed development data;
+> this selected the candidates but does not qualify persistent authority or a
+> model. Three fresh canonical resets will test common states 3--16 with the
+> unchanged C2aA1 authority and safety gates. Every target remains inside
+> componentwise `q0+/-0.3 A`. No cumulative migration beyond that cube,
+> Nominal-H1, recovery, model, MPC, adaptation or learning is authorized.
+
 > **C2aA1 level-2 direction safely fails persistent authority (2026-08-14).**
 > Design/implementation/audit-fix checkpoints are `64c2983 / 4845004 /
 > 3e85a4b`. The first offline attempt stopped with zero plant advances on an

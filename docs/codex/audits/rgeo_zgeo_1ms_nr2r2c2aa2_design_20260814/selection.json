@@ -1,0 +1,92 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-nr2r2c2aa2-development-selection-v1",
+  "created_date": "2026-08-14 Asia/Shanghai",
+  "intended_use": "prospective_candidate_selection_only",
+  "model_or_expert_use": "forbidden",
+  "source_campaign": "rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e",
+  "source_partition": "development",
+  "holdout_records_read": 0,
+  "q0_comparator": {
+    "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c1a_result_20260814_778b454/q0_h32_r0.json",
+    "sha256": "ee307442e0ce064fe043d51b722556a44a5be5bd5abeb848174901d2049788b7"
+  },
+  "selection_rule": {
+    "window_states": [2, 3, 4, 5],
+    "opposition_definition": "((R_candidate-R_q0)-(Z_candidate-Z_q0))*1000 mm",
+    "required_positive_states": 4,
+    "candidate_count": 3,
+    "ranking_use": "none; all qualifying minus-sign directions are retained",
+    "warning": "Descriptive first-event evidence only; not persistent authority, a Jacobian, or a model fit."
+  },
+  "candidates": [
+    {
+      "candidate_id": "p03_minus",
+      "source_record": "development_p03_minus.json",
+      "source_sha256": "1ddf411a9c58b285ba744c58138e81c1d0081e910c266209defdd2742b84d88c",
+      "source_schedule": "impulse",
+      "source_first_event_level": "full",
+      "source_first_event_card15_fields": [
+        "-3.514E+01", "-4.514E+01", "-4.514E+01", "-3.514E+01",
+        "-4.486E+01", "-4.486E+01", "-3.186E+01", "-3.214E+01",
+        "-6.000E-02", "6.000E-02 ", "-7.530E+00", "-1.353E+01",
+        "-8.170E+00", "-8.230E+00"
+      ],
+      "development_opposition_mm": [
+        0.06389150000005173,
+        0.09172000000010061,
+        0.06251199999995904,
+        0.04666899999994367
+      ],
+      "mean_opposition_mm": 0.06619812500001376,
+      "positive_states": 4,
+      "maximum_opposition_mm": 0.09172000000010061,
+      "maximum_absolute_ip_deviation_from_q0_a": 20.599500000000262
+    },
+    {
+      "candidate_id": "p04_minus",
+      "source_record": "development_p04_minus.json",
+      "source_sha256": "ef777014b35bebcae389b718b00ac3874e48f6916726c8daea78d106638d44f2",
+      "source_schedule": "dwell",
+      "source_first_event_level": "half",
+      "source_first_event_card15_fields": [
+        "-3.507E+01", "-4.507E+01", "-4.493E+01", "-3.507E+01",
+        "-4.507E+01", "-4.507E+01", "-3.193E+01", "-3.193E+01",
+        "-3.000E-02", "3.000E-02 ", "-7.515E+00", "-1.349E+01",
+        "-8.215E+00", "-8.215E+00"
+      ],
+      "development_opposition_mm": [
+        0.025004500000119778,
+        0.05065200000001213,
+        0.06483400000006911,
+        0.07224949999998231
+      ],
+      "mean_opposition_mm": 0.053185000000045835,
+      "positive_states": 4,
+      "maximum_opposition_mm": 0.07224949999998231,
+      "maximum_absolute_ip_deviation_from_q0_a": 25.310600000000704
+    },
+    {
+      "candidate_id": "p07_minus",
+      "source_record": "development_p07_minus.json",
+      "source_sha256": "47f1fa0d5de78cf7659274db96da1924e8102d2fb87393e07e9f86ff542f945b",
+      "source_schedule": "dwell",
+      "source_first_event_level": "half",
+      "source_first_event_card15_fields": [
+        "-3.507E+01", "-4.493E+01", "-4.507E+01", "-3.507E+01",
+        "-4.507E+01", "-4.493E+01", "-3.193E+01", "-3.193E+01",
+        "-3.000E-02", "-3.000E-02", "-7.485E+00", "-1.349E+01",
+        "-8.215E+00", "-8.185E+00"
+      ],
+      "development_opposition_mm": [
+        0.020145000000054702,
+        0.039825500000062464,
+        0.050723999999974234,
+        0.05681499999998785
+      ],
+      "mean_opposition_mm": 0.04187737500001981,
+      "positive_states": 4,
+      "maximum_opposition_mm": 0.05681499999998785,
+      "maximum_absolute_ip_deviation_from_q0_a": 13.881700000001729
+    }
+  ]
+}

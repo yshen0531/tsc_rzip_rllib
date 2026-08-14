@@ -1,5 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **NR2R2C2aA2 prospective amendment (2026-08-14):** after p07-plus level2
+> failed persistent authority, the next finite discriminator is frozen to
+> three development-selected minus-sign directions inside componentwise
+> `q0+/-0.3 A`. It retains the same persistent opposition and hard interface
+> gates; it does not lower thresholds, fit a response model, move the command
+> center beyond the independently supported cube, or authorize Nominal-H1.
+> Any passing candidate still requires a separate fresh repeated validation.
+
 > **NR2R2C2aA1 evidence amendment (2026-08-14):** a componentwise q0+/-0.3 A
 > p07-plus level safely completed 64/64 authentic 1 ms advances and exact
 > paired replay, but failed persistent authority. Mean q0-drift opposition was
