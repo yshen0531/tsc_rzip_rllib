@@ -1,5 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-0T1 final state32 tail FAIL; route review required (2026-08-14):**
+> ID-0T1 completed all 8 rollouts and 256/256 verified plant advances. Exact
+> execution, raw inventory, Card15/current/boundary/Ip gates and ID-0 prefix
+> identity passed. A reporting-only independent-audit timing bug was repaired
+> without TSC rerun; the hotfix independently reparsed all 264 raw states with
+> zero failures and reproduced the final route
+> `ONE_MS_ID0T1_STATE32_TAIL_INSUFFICIENT_ROUTE_REVIEW`.
+>
+> Five signed arms passed the unchanged state32 terminal/peak ratio `<=0.20`;
+> p03-plus remained at `0.2308867771`. Its terminal response is only
+> `0.012781 mm` and `0.337 A` Ip, but the frozen relative gate is not weakened.
+> A compact forensic also found delayed non-monotone rebounds, including
+> p04-minus rising to `0.8700` of its peak at state24 before passing at state32.
+>
+> No state40 campaign, model fitting/training, ID-1, controller, MPC, Oracle,
+> transport or additional TSC is authorized by this result. The active task is
+> paused route review: replace endpoint-only tail closure with a prospective
+> whole-terminal-window/memory representation decision, then separately ask
+> whether to freeze small-HFS position/time/history factorization. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID0T1_LONG_TAIL_RESULT.md`. This block is
+> the only active pointer; all notices below are historical.
+>
 > **ID-0 final tail FAIL; ID-0T1 longer-tail design is the unique active task
 > (2026-08-14):** ID-0 completed 20/20 fresh rollouts, 400/400 verified
 > one-millisecond advances, 420 states and 2,100 required artifacts. Execution,

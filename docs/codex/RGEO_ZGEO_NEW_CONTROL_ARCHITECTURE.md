@@ -1,5 +1,15 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-0T1 architecture amendment (2026-08-14):** state32 does not certify
+> literal finite-memory tail closure: p03-plus remains above the frozen ratio,
+> and other arms show small delayed rebounds before their terminal PASS. The
+> preferred architecture should therefore represent persistent/oscillatory
+> low-order memory explicitly and judge adequacy over a whole terminal window,
+> rather than assume an endpoint or a larger GRU erases history. This is a
+> route recommendation, not authorization to fit a model. State40 and ID-1 are
+> blocked pending review; exact actuator/queue, exact current R_geo/Z_geo/Ip,
+> uncertainty and recovery requirements remain unchanged.
+>
 > **ID-0 evidence amendment / ID-0T1 gate (2026-08-14):** ID-0 established a
 > repeatable source-local signed R/Z response set with rank 2, best two-ray
 > condition `2.0870211406380474` and maximum angular gap

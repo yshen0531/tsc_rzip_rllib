@@ -1,0 +1,278 @@
+{
+  "advance_attempts": 256,
+  "claim_boundary": "state32_tail_design_evidence_only_not_model_controller_safety_or_recourse",
+  "execution_passed": true,
+  "id0_prefix_match_passed": true,
+  "missing_required_artifacts": [],
+  "passed": false,
+  "plant_advance_gotsc_calls": 256,
+  "prefix_comparisons": [
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "baseline_q0_r0",
+      "passed": true,
+      "reference_rollout_id": "baseline_q0_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "baseline_q0_r0",
+      "passed": true,
+      "reference_rollout_id": "baseline_q0_r1"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "baseline_q0_r1",
+      "passed": true,
+      "reference_rollout_id": "baseline_q0_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "baseline_q0_r1",
+      "passed": true,
+      "reference_rollout_id": "baseline_q0_r1"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p03_plus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p03_plus_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p03_plus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p03_plus_r1"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p03_minus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p03_minus_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p03_minus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p03_minus_r1"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p04_plus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p04_plus_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p04_plus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p04_plus_r1"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p04_minus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p04_minus_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p04_minus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p04_minus_r1"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p07_plus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p07_plus_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p07_plus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p07_plus_r1"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p07_minus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p07_minus_r0"
+    },
+    {
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "new_rollout_id": "early_p07_minus_r0",
+      "passed": true,
+      "reference_rollout_id": "early_p07_minus_r1"
+    }
+  ],
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 15547731936,
+  "required_artifact_files": 1320,
+  "required_artifact_inventory_sha256": "893c920b48c85156d27b8c97f8ab4301e92c5327060bbc99f086efb7b848a607",
+  "reset_calls": 8,
+  "rollouts_completed": 8,
+  "route": "ONE_MS_ID0T1_STATE32_TAIL_INSUFFICIENT_ROUTE_REVIEW",
+  "schema_version": "rgeo-zgeo-1ms-id0t1-long-tail-v1",
+  "scientific_metrics": {
+    "arm_metrics": [
+      {
+        "direction_id": "p03",
+        "peak_rz_norm_m_states_3_32": 5.535726912518921e-05,
+        "rollout_id": "early_p03_plus_r0",
+        "sign": "plus",
+        "terminal_absolute_ip_response_a": 0.33699999999953434,
+        "terminal_peak_fraction": 0.23088677714109074,
+        "terminal_rz_norm_m": 1.2781261459646944e-05,
+        "terminal_state_index": 32
+      },
+      {
+        "direction_id": "p03",
+        "peak_rz_norm_m_states_3_32": 6.493067903931523e-05,
+        "rollout_id": "early_p03_minus_r0",
+        "sign": "minus",
+        "terminal_absolute_ip_response_a": 0.355199999998149,
+        "terminal_peak_fraction": 0.1756073682682711,
+        "terminal_rz_norm_m": 1.1402305665965943e-05,
+        "terminal_state_index": 32
+      },
+      {
+        "direction_id": "p04",
+        "peak_rz_norm_m_states_3_32": 4.851700545166721e-05,
+        "rollout_id": "early_p04_plus_r0",
+        "sign": "plus",
+        "terminal_absolute_ip_response_a": 0.4455999999991036,
+        "terminal_peak_fraction": 0.175862149407058,
+        "terminal_rz_norm_m": 8.532304861524147e-06,
+        "terminal_state_index": 32
+      },
+      {
+        "direction_id": "p04",
+        "peak_rz_norm_m_states_3_32": 5.4296212487655716e-05,
+        "rollout_id": "early_p04_minus_r0",
+        "sign": "minus",
+        "terminal_absolute_ip_response_a": 0.4351999999998952,
+        "terminal_peak_fraction": 0.1631362526077921,
+        "terminal_rz_norm_m": 8.85768063603256e-06,
+        "terminal_state_index": 32
+      },
+      {
+        "direction_id": "p07",
+        "peak_rz_norm_m_states_3_32": 4.548189232265547e-05,
+        "rollout_id": "early_p07_plus_r0",
+        "sign": "plus",
+        "terminal_absolute_ip_response_a": 0.2010999999984051,
+        "terminal_peak_fraction": 0.1450468911821346,
+        "terminal_rz_norm_m": 6.5970070864817705e-06,
+        "terminal_state_index": 32
+      },
+      {
+        "direction_id": "p07",
+        "peak_rz_norm_m_states_3_32": 5.289818731532036e-05,
+        "rollout_id": "early_p07_minus_r0",
+        "sign": "minus",
+        "terminal_absolute_ip_response_a": 0.20869999999922584,
+        "terminal_peak_fraction": 0.11864299028522322,
+        "terminal_rz_norm_m": 6.275999123757472e-06,
+        "terminal_state_index": 32
+      }
+    ],
+    "tail_passed": false
+  },
+  "source_revision": "18788cf46eb029821169ae252fa2429bb50e5759",
+  "verified_plant_advances": 256
+}

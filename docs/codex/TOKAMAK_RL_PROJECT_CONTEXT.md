@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current ID-0T1 result notice (2026-08-14):** the state32 tail discriminator
+> completed 8/8 fresh rollouts and 256/256 advances with exact execution, raw
+> inventory and ID-0 prefix identity. Independent raw recomputation passed
+> after a reporting-only `inputa` timing correction. P03-plus still failed the
+> unchanged relative tail gate at `0.2308867771`; all absolute terminal caps
+> passed. Delayed rebound in other arms proves endpoint-only closure is not a
+> sufficient memory criterion. The route is paused for review: no state40,
+> model fitting, ID-1 or controller work is currently authorized. All older
+> notices below are historical and `CURRENT_TASK.md` is authoritative.
+>
 > **Current ID-0 result / ID-0T1 notice (2026-08-14):** ID-0 completed its
 > exact 20-rollout/400-advance fresh campaign with execution, raw,
 > repeatability, signal, Ip and source-local vector-geometry gates passing.

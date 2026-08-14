@@ -1,5 +1,19 @@
 # Current status
 
+> **ID-0T1 completed as a clean state32 tail FAIL; route review is active
+> (2026-08-14 Asia/Shanghai).** Eight rollouts, 256/256 advances, 264 raw states
+> and 1,320 artifacts completed. Execution, raw inventory and ID-0 prefix
+> identity passed. The reporting-hotfix independent audit passed with zero
+> failures and reproduced
+> `ONE_MS_ID0T1_STATE32_TAIL_INSUFFICIENT_ROUTE_REVIEW`.
+>
+> Only p03-plus missed terminal/peak `<=0.20` (`0.2308867771`); all absolute
+> state32 R/Z and Ip caps passed. Non-monotone late rebounds show that a single
+> endpoint is not a sufficient memory criterion. ID-0T1 is design evidence
+> only; no model was fit and no automatic longer horizon or ID-1 is open. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID0T1_LONG_TAIL_RESULT.md`. Older active
+> notices below are historical.
+>
 > **ID-0 completed as a clean tail-horizon FAIL; ID-0T1 is active
 > (2026-08-14 Asia/Shanghai).** The complete fresh campaign produced 20/20
 > rollouts, 400/400 verified advances, 420 states and 2,100 required artifacts
