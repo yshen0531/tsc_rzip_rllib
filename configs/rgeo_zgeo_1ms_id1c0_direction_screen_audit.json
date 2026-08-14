@@ -14,7 +14,8 @@
   "input_inventory": {
     "files": 23,
     "bytes": 1854612,
-    "digest_sha256": "03497b6635efa83ca62a4bdc6bdfaf35765e330de0fd199304b225afb82359c0",
+    "digest_sha256": "d60600155c8261913580ac4962dced57bf4ea8e10d800c934c64a4bfe066e4a6",
+    "digest_line_format": "repo_relative_path<TAB>bytes<TAB>sha256<LF>",
     "nr2r1_root": "rgeo_zgeo_1ms_nr2_runs/rgeo_zgeo_1ms_nr2r1_q0_structural_residual_20260813_25f5b7e",
     "nr2r1_independent": "development_calibration_independent.json",
     "nr2r1_record_pattern": "records/development_p{pair_index:02d}_{sign}.json",
