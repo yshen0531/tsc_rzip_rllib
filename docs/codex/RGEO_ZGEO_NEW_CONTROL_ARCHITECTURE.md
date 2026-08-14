@@ -1,5 +1,15 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-0 prospective architecture gate (2026-08-14):** the first campaign
+> under the TSC-only identification contract is frozen to two q0 baselines and
+> actual plus/minus p03/p04/p07 pulse-return families at early and late q0
+> contexts, with 20 resets and 400 maximum attempts. Its gates measure exact
+> execution/raw identity, finite repeatability, full-vector signed signal,
+> R/Z response-cone geometry, Ip cost and early tail closure. A PASS is only
+> source-local development evidence and cannot skip position/history
+> factorization, fresh calibration, controller-grade tubes or recourse. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID0_VECTOR_TAIL_DESIGN.md`.
+>
 > **Post-E1 architecture reset (2026-08-14):** the high-level exact-actuator,
 > exact-current-observation, latent-history, uncertainty-aware rolling-control
 > architecture remains. E1 and the single-p03 action-age ladder are parked.

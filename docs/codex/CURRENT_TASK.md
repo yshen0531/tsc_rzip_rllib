@@ -1,5 +1,32 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-0 source-local vector/tail pilot prospectively frozen (2026-08-14):**
+> the unique active identity is `rgeo-zgeo-1ms-id0-vector-tail-v1`, defined by
+> `configs/rgeo_zgeo_1ms_id0_vector_tail.json` and
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID0_VECTOR_TAIL_DESIGN.md`. Twenty fresh
+> canonical resets and at most 400 one-millisecond advance attempts are frozen:
+> two all-q0 baselines, plus/minus actual p03/p04/p07 Card15 pulses at early
+> and late q0 contexts, with early arms repeated twice and late arms once.
+> Pulse returns exactly to q0 on the next issue; every complete rollout has a
+> 20 ms horizon. No retry is allowed.
+>
+> This is TSC-only empirical identification. Unknown pulse/return/tail
+> successors are declared digital-twin exposures and do not have or create a
+> controller-grade pre-action tube. Exact Card15/current/slew, paired boundary,
+> Ip, limiter, outer envelope, post-successor stop, raw inventory and
+> independent audit remain hard. Development use opens only after execution,
+> raw, repeatability, signed-signal, R/Z response-cone, Ip-cost and tail-closure
+> gates pass; calibration, holdout, expert/BC/RL and controller qualification
+> remain forbidden.
+>
+> The active implementation may add only the ID-0 collector, independent raw
+> auditor, launcher, package identity and focused tests without changing the
+> frozen config/gates. Real TSC is allowed only after local, package,
+> installed-server and zero-plant gates pass. PASS authorizes only a separate
+> next design; any interface/deployment/raw/scientific failure stops under its
+> own frozen route. E1 remains parked. This is the only active pointer; all
+> notices below are historical.
+>
 > **Post-E1 route reset accepted; ID-0 design is the unique active task
 > (2026-08-14):** E1 and the A4/p03 action-age ladder are parked and must not
 > be packaged, deployed or run. Their code and frozen evidence remain

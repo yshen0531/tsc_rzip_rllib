@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current ID-0 notice (2026-08-14):** the source-local vector/tail pilot is
+> prospectively frozen at config SHA-256
+> `668b0e4bb21166dc4d92fe4381c4177b4789b5a3139a176f7ab1b109393c31eb`.
+> It has 20 canonical resets and at most 400 one-millisecond attempts over two
+> q0 baselines and actual plus/minus p03/p04/p07 pulse-return families at two
+> q0 issue contexts. It is a TSC-only empirical-identification campaign, not
+> a controller-safety campaign. Implementation/package/server/TSC remain
+> pending and E1 remains parked. `docs/codex/CURRENT_TASK.md` is authoritative.
+>
 > **Current post-E1 route notice (2026-08-14):** the user accepted the route
 > review in `docs/codex/reports/RGEO_ZGEO_1MS_POST_E1_ROUTE_RESET.md`. E1 and
 > the A4/p03 action-age ladder are parked; E1 implementation exists but is not

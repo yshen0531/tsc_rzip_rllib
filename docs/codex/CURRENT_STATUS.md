@@ -1,5 +1,19 @@
 # Current status
 
+> **ID-0 vector/tail design frozen; implementation pending (2026-08-14
+> Asia/Shanghai).** Config SHA-256 is
+> `668b0e4bb21166dc4d92fe4381c4177b4789b5a3139a176f7ab1b109393c31eb`.
+> The matrix contains 20 canonical resets, 400 maximum attempts, 420 complete
+> states and 2,100 complete required artifacts. It has two q0 baselines;
+> p03/p04/p07 actual Card15 directions at plus/minus signs; early issue2 arms
+> repeated twice; and late issue10 arms once. Every pulse lasts one issue and
+> returns exactly to q0. All records are development-only unless every frozen
+> execution/raw/repeatability/vector/Ip/tail gate passes.
+>
+> No ID-0 implementation, package, server deployment or TSC exists yet. E1
+> remains parked. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID0_VECTOR_TAIL_DESIGN.md`.
+>
 > **Post-E1 route reset accepted; ID-0 vector/tail design active (2026-08-14
 > Asia/Shanghai).** The frozen and implemented E1 single-successor identity is
 > parked without deployment or TSC. It has no raw or scientific result. Its
