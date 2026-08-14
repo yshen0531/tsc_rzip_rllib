@@ -224,7 +224,11 @@ def _targets(stage: dict[str, Any], cfg: TSCConfig, evidence: dict[str, Any], so
             )
         plus = tuple(card15_target_decimal_a(result[f"{direction}:plus"], cfg.turns_tsc, name=f"id1c.{direction}.plus"))
         minus = tuple(card15_target_decimal_a(result[f"{direction}:minus"], cfg.turns_tsc, name=f"id1c.{direction}.minus"))
-        if any((left + right) / Decimal(2) != center for left, right, center in zip(plus, minus, q0)):
+        # Compare the exact sum, not a rounded Decimal half.  Several TSC
+        # turns are repeating rationals in amperes; division by two can add a
+        # final-context 2e-26 artifact even when the two Card15 fields are
+        # exactly symmetric around q0.
+        if any(left + right != Decimal(2) * center for left, right, center in zip(plus, minus, q0)):
             raise InputIntegrityError(f"{direction} is not exactly centred on q0")
         if max(abs(value - center) for values in (plus, minus) for value, center in zip(values, q0)) > Decimal("0.15"):
             raise InputIntegrityError(f"{direction} exceeds designed 0.15 A component")
