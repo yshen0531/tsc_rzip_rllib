@@ -1,5 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-15, post-ID-2B0):** ID-2B0 completed
+> its server-side read-only reparse with zero model fit and zero plant work.
+> It found no exact same-complete-prefix/action response collision, so the
+> three-context ID-2A development set can support a limited structured model
+> comparison. It did not establish position/history factorization or context
+> robustness. The active ID-2B1 design uses direct rolling finite-horizon
+> prediction, stable fixed-pole command/history memory and complete-context
+> LOCO evaluation. Absolute drift and paired action response are separate
+> gates. Neural residuals and every control/safety claim remain later stages.
+> `CURRENT_TASK.md` is the sole active authority; older notices are historical.
+
 > **Active new-round context (2026-08-15, post-ID-2A):** ID-2A is final as a
 > clean development-data PASS: 42/42 rollouts, 1,344/1,344 one-ms advances,
 > exact critical replay and independent raw recomputation all passed. The

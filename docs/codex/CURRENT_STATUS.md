@@ -1,5 +1,22 @@
 # Current status
 
+> **ID-2B0 final PASS; ID-2B1 structured model design frozen (2026-08-15
+> Asia/Shanghai).** The valid ID-2B0 identity is implementation revision
+> `7ffc89e8f80525b80d91ab6740237f40d95c0ad7`, result SHA-256
+> `2a3211b601bdfffba232b1d4c6f95350b8824e3037f57c7ba7de17db0174eec7`
+> and independent SHA-256
+> `99d40de6fc9b45fd945e14e3bab43e895e1bc30e4d0c97ba012f2c3128009868`.
+> Independent raw reparse covered all 42 rollouts and 1,386 states, found no
+> exact causal collision and reproduced primary metrics exactly. The result
+> permits only the newly frozen ID-2B1 development comparison.
+>
+> ID-2B1 uses 39 uniquely weighted development cells and three atomic context
+> folds. Its fixed stable-memory models use poles strictly inside the unit
+> circle and known future issued Card15 actions, never future readback or
+> matched future baseline. Absolute-state and action-response gates must both
+> pass. No ID-2B1 implementation, model artifact or fit exists yet; no new
+> TSC is part of this stage. Older notices below are historical.
+
 > **ID-2A final PASS; ID-2B0 readiness audit active (2026-08-15
 > Asia/Shanghai).** ID-2A completed 42/42 rollouts and 1,344/1,344 verified
 > plant advances. Its 1,386 raw states occupy 6,930 required artifacts and

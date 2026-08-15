@@ -1,5 +1,23 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2B1 structured model development
+
+- Date: 2026-08-15 Asia/Shanghai.
+- Identity: `rgeo-zgeo-1ms-id2b1-structured-model-development-v1`.
+- Source ID-2B0 result / independent SHA-256:
+  `2a3211b601bdfffba232b1d4c6f95350b8824e3037f57c7ba7de17db0174eec7 /
+  99d40de6fc9b45fd945e14e3bab43e895e1bc30e4d0c97ba012f2c3128009868`.
+- Config / design SHA-256:
+  `4943910eb23bb6de3a5ee8798f20a44096934df2300bbe09a940893f5b9eda74 /
+  c1428dfe6b7d5ed73364b850270677972ce9150423e3b3bdf9d72ea3607b5821`.
+- Data: 39 uniquely weighted ID-2A development cells in three complete LOCO
+  context folds; three exact critical replays remain integrity-only.
+- Models: persistence, damped last velocity, action-blind history and three
+  fixed-pole stable lifted action models. No neural residual in this stage.
+- Evaluation: absolute rolling finite-horizon R/Z/Ip plus evaluator-only
+  matched-baseline action response. Future readback/baseline leakage forbidden.
+- Status: design frozen; implementation/server fit pending. Zero new TSC.
+
 ## R_geo/Z_geo 1 ms ID-2B0 model-readiness audit
 
 - Date: 2026-08-15 Asia/Shanghai.
@@ -32,7 +50,23 @@
   SHA-256 and JSON parsing confirmed the source independent audit has
   `audit_passed=true` and 1,386 reparsed states. The corrected hashes above
   are an input/authentication-only hotfix; no scientific contract changed.
-- Status: hotfix frozen; fresh server validation/readiness execution pending.
+- Valid execution revision:
+  `7ffc89e8f80525b80d91ab6740237f40d95c0ad7`; output directory
+  `rgeo_zgeo_1ms_id2b0_readiness_7ffc89e8_verified`.
+- Server focused tests passed 5/5 and all one-ms regression tests passed
+  109/109. Validation/regression log SHA-256 values are
+  `306a56132cc80f155f654ad07fe3d1744eb6377d11d3707c90456b110ce45296 /
+  0c00ad2060e3b8d4cb2170a9b224b431eacd01f0dc53819df67bb4fc036be48f`.
+- Final primary / independent SHA-256:
+  `2a3211b601bdfffba232b1d4c6f95350b8824e3037f57c7ba7de17db0174eec7 /
+  99d40de6fc9b45fd945e14e3bab43e895e1bc30e4d0c97ba012f2c3128009868`.
+  Both route to `ONE_MS_ID2B0_READINESS_COMPLETE_ID2B1_REDESIGN_REQUIRED`;
+  independent reparse covered 42 rollouts/1,386 states and maximum metric
+  difference was zero. Counters remained zero TSC, plant, fit and holdout.
+- An accidentally launched result using a non-Git 40-character revision was
+  terminated before independent audit and is invalid evidence. It is kept in
+  `rgeo_zgeo_1ms_id2b0_readiness_7ffc89e8` and is not used by ID-2B1.
+- Status: final readiness PASS; only ID-2B1 structured development unlocked.
 
 ## Stage4.2R3c3T13S24D1R14R8R8 prospective causal discrete-pulse MPC core
 

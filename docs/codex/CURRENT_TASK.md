@@ -1,5 +1,29 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2B1 structured development model is the unique active task
+> (2026-08-15):** the corrected ID-2B0 server audit completed with zero TSC,
+> zero plant advances, zero fit and zero holdout reads. Primary result
+> `2a3211b...` and independent result `99d40de6...` agree with maximum numeric
+> difference zero and route
+> `ONE_MS_ID2B0_READINESS_COMPLETE_ID2B1_REDESIGN_REQUIRED`. ID-2A contains
+> no exact complete-prefix/action collision, but has only three independent
+> context families and 39 unique trajectory cells.
+>
+> ID-2B1 therefore compares persistence, damped last velocity, action-blind
+> history and fixed-pole stable lifted action models under three complete
+> leave-one-context-out folds. It must evaluate both absolute R/Z/Ip and
+> evaluator-only matched-baseline response; future baseline and future actual
+> current are forbidden predictor inputs. The config/design SHA-256 values are
+> `4943910eb23bb6de3a5ee8798f20a44096934df2300bbe09a940893f5b9eda74 /
+> c1428dfe6b7d5ed73364b850270677972ce9150423e3b3bdf9d72ea3607b5821`.
+> This stage runs only on the server, uses ID-2A development data, and runs
+> zero new TSC. A PASS authorizes only fresh calibration design; a FAIL stops
+> model escalation and requires targeted matched-history/context data. Neural
+> residuals, calibration, holdout, controller/MPC, uncertainty tubes,
+> recovery, transport and online adaptation remain blocked. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2B1_STRUCTURED_MODEL_DEVELOPMENT_DESIGN.md`.
+> This block is the only active pointer; every notice below is historical.
+
 > **ID-2B0 model-readiness audit is the unique active task (2026-08-15):**
 > ID-2A completed 42/42 authentic development rollouts, 1,344/1,344 verified
 > one-ms advances, 1,386 states and 6,930 required artifacts. Execution, raw,

@@ -1,4 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2B0 model amendment (2026-08-15):** the first operational model
+> candidate is a direct rolling finite-horizon lifted model with exact current
+> observation, fixed stable memory poles and future issued Card15 actions.
+> It is re-centred every 1 ms and has no unconstrained predicted-state
+> feedback. This is a deliberately narrower precursor to the eventual
+> stable latent/state-space backbone. Three whole causal contexts form atomic
+> LOCO folds. Matched baselines are evaluator-only and action-conditioned
+> response must improve over an action-blind history model in every fold.
+> A structured PASS still requires fresh grouped calibration before any tube
+> or planner; a FAIL routes to targeted context/history data rather than a
+> larger network. The final two-axis/path/crossing goal is unchanged.
+>
 > **Post-ID-2A readiness amendment (2026-08-15):** ID-2A is the first
 > development-fit-eligible dataset, and its deterministic factor-of-8.09
 > p09-minus context difference confirms that causal history cannot be reduced

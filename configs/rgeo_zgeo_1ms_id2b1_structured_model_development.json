@@ -1,0 +1,109 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2b1-structured-model-development-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2b1_structured_model_development_v1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "plant_advances": 0,
+  "tsc_calls": 0,
+  "holdout_records_read": 0,
+  "calibration_records_read": 0,
+  "source_id2a_run_directory": "rgeo_zgeo_1ms_id2a_runs_20260815_d25ee2a9",
+  "source_id2a_config": {
+    "path": "configs/rgeo_zgeo_1ms_id2a_duration_history_development.json",
+    "sha256": "2e2d2fc284203438e57355262241e629f57113e3583557070284c53a8767f52f"
+  },
+  "source_id2a_primary_sha256": "163080f641a5063b965738b20d233e77e1c29861643f12aca2788548abf0fe1a",
+  "source_id2a_independent_sha256": "b9655ecfae6993b1802b14ebaf4ebc6d54185435379f00a834a4802cade3fe31",
+  "source_id2b0": {
+    "config_sha256": "7294f89182e709ec0e52fc2ac0be1192ef4473bc521ee87539f98297cad3b6b6",
+    "result_path": "docs/codex/audits/rgeo_zgeo_1ms_id2b0_readiness_20260815_7ffc89e8/result.json",
+    "result_sha256": "2a3211b601bdfffba232b1d4c6f95350b8824e3037f57c7ba7de17db0174eec7",
+    "independent_path": "docs/codex/audits/rgeo_zgeo_1ms_id2b0_readiness_20260815_7ffc89e8/independent_audit.json",
+    "independent_sha256": "99d40de6fc9b45fd945e14e3bab43e895e1bc30e4d0c97ba012f2c3128009868",
+    "required_route": "ONE_MS_ID2B0_READINESS_COMPLETE_ID2B1_REDESIGN_REQUIRED"
+  },
+  "data_contract": {
+    "whole_trajectory_records": 42,
+    "unique_whole_trajectory_cells": 39,
+    "critical_replays_for_integrity_only": 3,
+    "contexts": ["late_q0", "history_p04_plus", "anchor_p03_minus"],
+    "outer_split": "leave_one_complete_context_family_out",
+    "step_random_split": "forbidden",
+    "context_id_as_predictor": "forbidden",
+    "matched_future_baseline_as_predictor": "forbidden",
+    "wire_current_as_predictor": "forbidden",
+    "future_actual_current_readback_as_predictor": "forbidden",
+    "pre_takeover_history_claimed": false,
+    "state_history_available_from_index": 0,
+    "action_history_available_from_issue": 0
+  },
+  "prediction_contract": {
+    "current_r_geo_z_geo_ip": "exact_noiseless_at_each_origin",
+    "current_actual_coil_current": "exact_observed_at_each_origin",
+    "future_issued_card15_actions": "known",
+    "future_actual_current": "derived_only_from_issued_target_and_issue_plus_one_contract",
+    "fit_origin_indices": [10, 31],
+    "evaluation_origin_indices": [10, 12, 14, 16, 20, 24, 28, 31],
+    "horizons_steps": [1, 2, 4, 8, 16, 22],
+    "maximum_state_index": 32,
+    "prediction_form": "direct_finite_horizon_recentered_each_origin",
+    "recursive_predicted_state_feedback": false
+  },
+  "scales": {
+    "r_geo_m": 0.001,
+    "z_geo_m": 0.001,
+    "ip_a": 100.0,
+    "coil_command_offset_a": 0.3,
+    "response_floor_mm": 0.05
+  },
+  "stable_memory": {
+    "poles": [0.25, 0.65, 0.9, 0.98],
+    "require_all_absolute_poles_below_one": true,
+    "history_inputs": ["issued_14_coil_q0_offset", "absolute_issued_14_coil_q0_offset", "observed_rzi_innovation"],
+    "future_inputs": ["issued_14_coil_q0_offset", "absolute_issued_14_coil_q0_offset", "probe_virtual_action"],
+    "future_readback_truth": "forbidden"
+  },
+  "candidates": [
+    {"model_id": "persistence", "kind": "baseline"},
+    {"model_id": "last_velocity", "kind": "baseline", "velocity_decay": 0.9},
+    {"model_id": "action_blind_history", "kind": "ridge_direct", "feature_set": "causal_history_only", "ridge": 0.1},
+    {"model_id": "stable_exp_signed", "kind": "ridge_direct", "feature_set": "causal_history_plus_signed_stable_future", "ridge": 0.1},
+    {"model_id": "stable_exp_signed_even", "kind": "ridge_direct", "feature_set": "causal_history_plus_signed_even_stable_future", "ridge": 0.1},
+    {"model_id": "stable_exp_contextual", "kind": "ridge_direct", "feature_set": "signed_even_stable_future_with_fixed_causal_context_interactions", "ridge": 1.0}
+  ],
+  "selection": {
+    "eligible_kinds": ["ridge_direct"],
+    "neural_residual_in_this_stage": false,
+    "score": "worst_fold_action_response_scaled_rmse_then_absolute_scaled_rmse",
+    "no_seed_or_hyperparameter_shopping": true,
+    "require_finite_coefficients": true,
+    "require_action_conditioned_candidate": true
+  },
+  "eligibility_gates": {
+    "maximum_absolute_geometry_p95_mm_each_fold": 1.0,
+    "maximum_absolute_geometry_max_mm_each_fold": 2.0,
+    "maximum_absolute_ip_p95_a_each_fold": 75.0,
+    "maximum_absolute_ip_max_a_each_fold": 150.0,
+    "maximum_signal_arm_response_scaled_rmse_each_fold": 1.0,
+    "maximum_signal_arm_response_scaled_rmse_p90_each_fold": 0.75,
+    "minimum_action_response_improvement_vs_action_blind_each_fold": 0.10,
+    "minimum_peak_vector_direction_pass_fraction_each_fold": 0.75,
+    "peak_vector_direction_cosine_threshold": 0.5,
+    "signal_arm_peak_threshold_mm": 0.05
+  },
+  "output_role": "development_model_selection_only",
+  "forbidden_uses": [
+    "calibration",
+    "holdout",
+    "uncertainty_tube_qualification",
+    "controller_or_mpc",
+    "recovery_or_transport",
+    "online_adaptation",
+    "expert_oracle_bc_dagger_rl"
+  ],
+  "routes": {
+    "input_fail": "ONE_MS_ID2B1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL_CLAIM",
+    "no_action_model": "ONE_MS_ID2B1_NO_CONTEXT_ROBUST_ACTION_MODEL_TARGETED_DATA_REQUIRED",
+    "structured_pass": "ONE_MS_ID2B1_STABLE_LIFTED_MODEL_PASS_FRESH_CALIBRATION_REQUIRED"
+  }
+}
