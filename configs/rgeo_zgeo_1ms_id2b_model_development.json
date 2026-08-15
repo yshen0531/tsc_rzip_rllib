@@ -1,0 +1,46 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2b-model-development-v1",
+  "id2a_remote_run_directory": "rgeo_zgeo_1ms_id2a_runs_20260815_d25ee2a9",
+  "id2a_primary_result_sha256": "163080f641a5063b965738b20d233e77e1c29861643f12aca2788548abf0fe1a",
+  "id2a_independent_audit_sha256": "b9655ecfae6993b1802b14eba4ebc6d54185435379f00a834a4802cade3fe31",
+  "takeover_time_ms": 1100,
+  "prediction_start_state_index": 10,
+  "prediction_end_state_index": 32,
+  "history_steps": 10,
+  "future_action_known": true,
+  "current_r_geo_z_geo_ip_exact_noiseless": true,
+  "pre_takeover_history_claimed": false,
+  "development_contexts": ["late_q0", "history_p04_plus", "anchor_p03_minus"],
+  "outer_split": "leave_one_complete_context_family_out",
+  "step_level_random_split": "forbidden",
+  "candidates": [
+    {"model_id": "last_delta", "kind": "baseline"},
+    {"model_id": "ridge_arx_l4", "kind": "structured", "history_lags": 4, "ridge": 1e-6},
+    {"model_id": "ridge_arx_l8", "kind": "structured", "history_lags": 8, "ridge": 1e-6},
+    {"model_id": "ridge_arx_l16", "kind": "structured", "history_lags": 16, "ridge": 1e-6},
+    {"model_id": "gru_h16", "kind": "residual", "hidden_size": 16, "epochs": 300, "learning_rate": 0.003, "seeds": [13, 29, 47]},
+    {"model_id": "tcn_c16", "kind": "residual", "channels": 16, "kernel_size": 3, "epochs": 300, "learning_rate": 0.003, "seeds": [13, 29, 47]}
+  ],
+  "features": ["r_geo_m", "z_geo_m", "ip_a", "actual_current_a_tsc", "issued_current_a_tsc", "probe_virtual_action", "absolute_time_ms"],
+  "forbidden_features": ["wire_current_a", "sprsina", "magaxis", "rc", "zc", "future_r_geo_z_geo_ip"],
+  "recursive_rollout": true,
+  "scales": {"r_geo_m": 0.004, "z_geo_m": 0.004, "ip_a": 150.0},
+  "eligibility_gates": {
+    "maximum_r_geo_point_error_m_each_fold": 0.004,
+    "maximum_z_geo_point_error_m_each_fold": 0.004,
+    "maximum_ip_point_error_a_each_fold": 150.0,
+    "minimum_scaled_rmse_improvement_vs_last_delta_each_fold": 0.10,
+    "structured_candidate_must_be_evaluated": true,
+    "residual_candidate_requires_improvement_over_best_structured_each_fold": true
+  },
+  "output_role": "development_model_selection_only",
+  "calibration_use": "forbidden",
+  "holdout_use": "forbidden",
+  "controller_use": "forbidden",
+  "routes": {
+    "input_fail": "ONE_MS_ID2B_INPUT_FAIL_NO_FIT",
+    "no_candidate": "ONE_MS_ID2B_NO_CONTEXT_ROBUST_MODEL_REDESIGN",
+    "structured_pass": "ONE_MS_ID2B_STRUCTURED_MODEL_PASS_FRESH_CALIBRATION_REQUIRED",
+    "residual_pass": "ONE_MS_ID2B_RESIDUAL_MODEL_PASS_FRESH_CALIBRATION_REQUIRED"
+  }
+}

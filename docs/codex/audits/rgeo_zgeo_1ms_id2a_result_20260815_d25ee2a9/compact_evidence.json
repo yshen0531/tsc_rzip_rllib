@@ -1,0 +1,44 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2a-compact-evidence-v1",
+  "source_revision": "d25ee2a9e6112f9da25014b5349888298e1bd500",
+  "stage_config_sha256": "2e2d2fc284203438e57355262241e629f57113e3583557070284c53a8767f52f",
+  "primary_result_sha256": "163080f641a5063b965738b20d233e77e1c29861643f12aca2788548abf0fe1a",
+  "independent_audit_sha256": "b9655ecfae6993b1802b14eba4ebc6d54185435379f00a834a4802cade3fe31",
+  "server_log_sha256": "a4561869957179e5cc6da861b7f8156fd2b41e32b00c264b828c8584048ca23c",
+  "remote_run_directory": "rgeo_zgeo_1ms_id2a_runs_20260815_d25ee2a9",
+  "route": "ONE_MS_ID2A_DURATION_HISTORY_DEVELOPMENT_PASS_MODEL_FIT_ONLY",
+  "passed": true,
+  "execution_passed": true,
+  "raw_integrity_passed": true,
+  "repeatability_passed": true,
+  "input_support_passed": true,
+  "signal_passed": true,
+  "duration_separation_passed": true,
+  "ip_passed": true,
+  "independent_audit_passed": true,
+  "rollouts": 42,
+  "verified_plant_advances": 1344,
+  "states": 1386,
+  "required_artifact_files": 6930,
+  "required_artifact_bytes": 81625592664,
+  "required_artifact_inventory_sha256": "f4cfca3dc0a6a408e4cbe42d8fefc47fca2a91915643bba4f9c8c534dea4f420",
+  "virtual_action_lag_support": {
+    "rows": 858,
+    "columns": 32,
+    "rank": 32,
+    "condition": 4.946485507638086
+  },
+  "critical_repeatability_maxima": {
+    "geometry_m": 0.0,
+    "ip_a": 0.0,
+    "coil_a": 0.0,
+    "wire_a": 0.0
+  },
+  "p09_minus_duration4_peak_rz_response_m": {
+    "late_q0": 0.000848202073821055,
+    "history_p04_plus": 0.0008453073942456126,
+    "anchor_p03_minus": 0.00010484657923011403
+  },
+  "model_fit_data_eligible": true,
+  "calibration_holdout_controller_or_recovery_qualified": false
+}
