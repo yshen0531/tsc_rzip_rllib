@@ -1,5 +1,29 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2B1 final structured model result
+
+- Date: 2026-08-15 Asia/Shanghai.
+- Implementation revision:
+  `1e223619e2f6ac9685012665502a924744bd9bcd`.
+- Server validation: 7/7 focused and 116/116 all one-ms tests; log SHA-256
+  `208cc4924535551a2bd971bd1388242376ad76d28da034f4be1832a0bb18dcbb /
+  e1924e9a5c7187195ba863e04ec67e12f839a52adf23a5d8a0e802470fb7e87d`.
+- Output directory: `rgeo_zgeo_1ms_id2b1_model_1e223619`.
+- Primary / model artifact / independent SHA-256:
+  `20441c50e20bcd4fb25c498904ebc35d5337b5cc067a3f16fac1d6383d9e2984 /
+  ae79b79e64b13b0db248ffad7f8017a62875b842b32a179c9cba2dc70dca2379 /
+  ef38f236f2dfa93f5ccb9a9aa6d73d669a7c94e14abcf2a9398a4e170a77be01`.
+- Independent deterministic refit passed with maximum metric and artifact
+  differences zero. Twelve fold models were fit; zero TSC, plant advances,
+  calibration records and holdout records were used.
+- Best diagnostic `stable_exp_signed`: paired-response improvement
+  `+43.0%/+44.3%/-32.3%` for late-q0/p04-arrival/p03-arrival folds; direction
+  fractions `5/6, 5/6, 1/4`. No candidate passed all folds.
+- Final route:
+  `ONE_MS_ID2B1_NO_CONTEXT_ROBUST_ACTION_MODEL_TARGETED_DATA_REQUIRED`.
+- Status: clean model/support FAIL. Context-bridge design review required;
+  no automatic new TSC or larger neural model.
+
 ## R_geo/Z_geo 1 ms ID-2B1 structured model development
 
 - Date: 2026-08-15 Asia/Shanghai.

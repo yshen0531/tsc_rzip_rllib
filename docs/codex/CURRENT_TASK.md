@@ -1,5 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2B1 is final as a context-generalization model FAIL; route review is
+> the unique active task (2026-08-15):** server tests passed 7/7 focused and
+> 116/116 one-ms regression tests. Twelve deterministic LOCO models were fit
+> with zero TSC/plant work and zero calibration/holdout reads. Independent
+> refit reproduced every coefficient and metric exactly. Final route:
+> `ONE_MS_ID2B1_NO_CONTEXT_ROBUST_ACTION_MODEL_TARGETED_DATA_REQUIRED`.
+>
+> The signed stable-memory model improved paired response error by 43.0% and
+> 44.3% in the `late_q0` and `history_p04_plus` folds, but regressed 32.3% in
+> the unseen `anchor_p03_minus` fold and passed peak direction only 1/4.
+> Even/context interactions overfit more severely. No candidate is selected;
+> calibration, holdout, neural residual, controller/MPC and new TSC are not
+> unlocked by this result. The recommended next decision is a separately
+> frozen context-bridge design audit before any fresh fit-eligible TSC. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2B1_STRUCTURED_MODEL_DEVELOPMENT_RESULT.md`.
+> This block is the only active pointer; every notice below is historical.
+
 > **ID-2B1 structured development model is the unique active task
 > (2026-08-15):** the corrected ID-2B0 server audit completed with zero TSC,
 > zero plant advances, zero fit and zero holdout reads. Primary result

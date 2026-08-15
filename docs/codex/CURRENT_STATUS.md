@@ -1,5 +1,19 @@
 # Current status
 
+> **ID-2B1 final: clean model/support FAIL (2026-08-15 Asia/Shanghai).** The
+> primary/independent/model-artifact SHA-256 values are
+> `20441c50e20bcd4fb25c498904ebc35d5337b5cc067a3f16fac1d6383d9e2984 /
+> ef38f236f2dfa93f5ccb9a9aa6d73d669a7c94e14abcf2a9398a4e170a77be01 /
+> ae79b79e64b13b0db248ffad7f8017a62875b842b32a179c9cba2dc70dca2379`.
+> Independent audit passed with zero numeric difference. No structured model
+> passed all three context folds, so no development model was selected.
+>
+> The failure is concentrated in extrapolation to the distinct p03-arrival
+> history; the simple signed model was useful in the two related folds. This
+> makes targeted independent context coverage the next scientific need, not
+> a larger recurrent network. A context-bridge stage is only a recommendation
+> pending user approval and prospective design. Older notices are historical.
+
 > **ID-2B0 final PASS; ID-2B1 structured model design frozen (2026-08-15
 > Asia/Shanghai).** The valid ID-2B0 identity is implementation revision
 > `7ffc89e8f80525b80d91ab6740237f40d95c0ad7`, result SHA-256

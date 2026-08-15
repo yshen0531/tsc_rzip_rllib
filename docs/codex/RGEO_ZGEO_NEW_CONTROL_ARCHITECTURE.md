@@ -1,4 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2B1 support amendment (2026-08-15):** a stable signed lifted
+> model produced real development gain between two related histories but did
+> not generalize to the unseen p03-arrival history; richer fixed interactions
+> overfit. The architecture remains exact actuator + explicit stable memory +
+> later residual, but the next dependency is context coverage, not model
+> capacity. History interpolation must be established in a source-local HFS
+> bridge before multi-anchor position scheduling. No calibration, tube,
+> planner, controller or neural residual is authorized by ID-2B1.
+>
 > **Post-ID-2B0 model amendment (2026-08-15):** the first operational model
 > candidate is a direct rolling finite-horizon lifted model with exact current
 > observation, fixed stable memory poles and future issued Card15 actions.

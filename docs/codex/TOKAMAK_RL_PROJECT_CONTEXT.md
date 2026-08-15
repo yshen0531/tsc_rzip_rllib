@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-15, post-ID-2B1):** fixed-pole signed
+> memory learned useful action response across the two closely related ID-2A
+> contexts but failed the distinct p03-arrival LOCO fold. Added even/context
+> capacity overfit. No model is selected and calibration/holdout remain fresh.
+> The evidence now supports adding independent arrival-history contexts before
+> adding neural capacity. A source-local context bridge should precede later
+> multi-position factorization; it has not yet been designed or authorized.
+> `CURRENT_TASK.md` is the sole active authority.
+
 > **Active new-round context (2026-08-15, post-ID-2B0):** ID-2B0 completed
 > its server-side read-only reparse with zero model fit and zero plant work.
 > It found no exact same-complete-prefix/action response collision, so the
