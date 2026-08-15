@@ -20,7 +20,7 @@
 > causal history and context support, report descriptive Hankel/SVD order
 > evidence, and freeze leak-free rolling/recursive prediction semantics.
 > Config SHA-256 is
-> `c0a8d05dab66412617d4f8a18e4ceb151a622f86f7fcfc944fad1b6e70e72f93`;
+> `7294f89182e709ec0e52fc2ac0be1192ef4473bc521ee87539f98297cad3b6b6`;
 > design-report SHA-256 is
 > `e8cea2321808deb01d3bd94ebbb6a9eda07af79fd9df388d7d7602ea0eaee166`.
 > A clean completion authorizes only a new ID-2B1 design. Calibration,

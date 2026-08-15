@@ -12,7 +12,7 @@
   `ONE_MS_ID2A_DURATION_HISTORY_DEVELOPMENT_PASS_MODEL_FIT_ONLY`.
 - ID-2A primary / independent SHA-256:
   `163080f641a5063b965738b20d233e77e1c29861643f12aca2788548abf0fe1a /
-  b9655ecfae6993b1802b14eba4ebc6d54185435379f00a834a4802cade3fe31`.
+  b9655ecfae6993b1802b14ebaf4ebc6d54185435379f00a834a4802cade3fe31`.
 - ID-2B v1 is preserved as an unexecuted superseded design checkpoint; no
   model fit or training has occurred.
 - ID-2B0 counters are frozen at zero TSC, zero plant advances, zero model fit
@@ -21,9 +21,18 @@
 - Design:
   `docs/codex/reports/RGEO_ZGEO_1MS_ID2B0_MODEL_READINESS_AUDIT_DESIGN.md`.
 - Config / design SHA-256:
-  `c0a8d05dab66412617d4f8a18e4ceb151a622f86f7fcfc944fad1b6e70e72f93 /
+  `7294f89182e709ec0e52fc2ac0be1192ef4473bc521ee87539f98297cad3b6b6 /
   e8cea2321808deb01d3bd94ebbb6a9eda07af79fd9df388d7d7602ea0eaee166`.
-- Status: design frozen; implementation/server execution pending.
+- Initial implementation revision `f0c3876f7f95a91180cb74f3e1eacde94e611e51`
+  stopped before raw readiness analysis because the locally transcribed
+  independent-audit SHA had one wrong nibble (`...eba4e...` rather than the
+  server file's `...ebaf4...`). The preserved route is
+  `ONE_MS_ID2B0_INPUT_OR_RAW_INTEGRITY_FAIL_STOP`; counters are zero TSC,
+  zero plant advances, zero model fits and zero holdout reads. Direct server
+  SHA-256 and JSON parsing confirmed the source independent audit has
+  `audit_passed=true` and 1,386 reparsed states. The corrected hashes above
+  are an input/authentication-only hotfix; no scientific contract changed.
+- Status: hotfix frozen; fresh server validation/readiness execution pending.
 
 ## Stage4.2R3c3T13S24D1R14R8R8 prospective causal discrete-pulse MPC core
 

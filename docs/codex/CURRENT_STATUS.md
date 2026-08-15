@@ -14,7 +14,14 @@
 > future-current and response-metric contracts are incomplete. The active
 > stage is the separately frozen, server-side read-only ID-2B0 audit. It runs
 > zero TSC/plant advances, fits zero models and reads no calibration or
-> holdout. Older notices below are historical.
+> holdout. Its first implementation attempt at `f0c3876f` stopped before the
+> scientific audit because the frozen ID-2A independent-audit SHA-256 had one
+> mistyped nibble. The preserved result is
+> `ONE_MS_ID2B0_INPUT_OR_RAW_INTEGRITY_FAIL_STOP` with all execution counters
+> zero. Direct server hashing and JSON parsing confirmed the actual audit is
+> intact and has `audit_passed=true`; an authentication-only hotfix corrects
+> the exact hash without changing any scientific gate. Older notices below
+> are historical.
 
 > **ID-2A duration/history development design frozen; implementation pending
 > (2026-08-15 Asia/Shanghai).** The fixed campaign contains 42 canonical

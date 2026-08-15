@@ -2,7 +2,7 @@
   "schema_version": "rgeo-zgeo-1ms-id2b-model-development-v1",
   "id2a_remote_run_directory": "rgeo_zgeo_1ms_id2a_runs_20260815_d25ee2a9",
   "id2a_primary_result_sha256": "163080f641a5063b965738b20d233e77e1c29861643f12aca2788548abf0fe1a",
-  "id2a_independent_audit_sha256": "b9655ecfae6993b1802b14eba4ebc6d54185435379f00a834a4802cade3fe31",
+  "id2a_independent_audit_sha256": "b9655ecfae6993b1802b14ebaf4ebc6d54185435379f00a834a4802cade3fe31",
   "takeover_time_ms": 1100,
   "prediction_start_state_index": 10,
   "prediction_end_state_index": 32,
