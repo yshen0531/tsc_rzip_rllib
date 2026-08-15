@@ -1,5 +1,21 @@
 # Current status
 
+> **ID-2A duration/history development design frozen; implementation pending
+> (2026-08-15 Asia/Shanghai).** The fixed campaign contains 42 canonical
+> resets, 1,344 maximum one-ms advances and 1,386 states. It crosses three
+> complete causal contexts with actual signed p01/p09 primitives at one-,
+> two- and four-issue durations, retains every effect/tail state through state
+> 32 and keeps siblings inside whole-context groups. Config SHA-256 is
+> `2e2d2fc284203438e57355262241e629f57113e3583557070284c53a8767f52f`.
+>
+> A complete PASS may authorize only development fitting of exact-actuator,
+> time-indexed nominal plus stable low-order latent models and an optional
+> small recurrent residual. Calibration and whole-prefix holdout remain fresh
+> later identities. No ID-2A code, package, server deployment, TSC or model
+> fit exists yet. Server free space was approximately 175 GB at the design
+> checkpoint; the run has a 90 GB estimate cap and 50 GB reserve. Older
+> notices below are historical.
+
 > **ID-1C final: exact execution/raw PASS, persistent-mean basis FAIL
 > (2026-08-14 Asia/Shanghai).** The real-TSC campaign completed 10/10
 > rollouts, 180/180 verified advances, 190 states and 950/950 required raw

@@ -1,4 +1,17 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2A duration/history architecture gate (2026-08-15):** model fitting no
+> longer starts from a static response vector. The prospective development
+> dataset retains exact actuator/readback history and every state for signed
+> p01/p09 primitives held one, two or four issues in three whole causal
+> contexts. Context families, not time steps, are the model-selection unit. A
+> PASS first compares exact actuator/queue plus time-indexed nominal
+> continuation and stable low-order latent/state-space response; a small
+> GRU/TCN may learn only a residual and must improve every held-out context.
+> Fresh grouped calibration and unopened whole-prefix holdout remain required
+> before any uncertainty tube or controller use. The data identity, storage
+> cap and claim boundary are frozen in
+> `RGEO_ZGEO_1MS_ID2A_DURATION_HISTORY_DEVELOPMENT_DESIGN.md`.
+>
 
 > **Post-ID-1C duration/history amendment (2026-08-14):** a signed Card15
 > direction is no longer represented by one four-effect mean vector. ID-1C

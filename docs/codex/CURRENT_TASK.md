@@ -1,5 +1,31 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2A duration/history development is the unique active task
+> (2026-08-15):** after ID-1C's clean persistent-mean basis FAIL, the next
+> identity is prospectively frozen as
+> `rgeo-zgeo-1ms-id2a-duration-history-development-v1`. It uses three whole
+> causal prefix families (`late_q0`, `history_p04_plus`,
+> `anchor_p03_minus`), exact p01/p09 signed Card15 primitives held for one,
+> two or four issues, matched no-probe baselines and one critical p09-minus
+> four-issue replay per context. The fixed matrix is 42 resets, at most 1,344
+> one-ms advances, 1,386 states and 6,930 required artifacts through state
+> 32. Config SHA-256 is
+> `2e2d2fc284203438e57355262241e629f57113e3583557070284c53a8767f52f`;
+> the design report SHA-256 is
+> `617ae5c1434b66a259b40767690f3b94dd7b44f642cfb2227f9629db79cbb446`.
+>
+> ID-2A is the first fresh stage whose records may become development-model
+> fit data, and only after execution/raw/replay, 16-step two-coordinate input
+> support, response signal/duration separation and Ip gates all pass. Whole
+> prefix contexts are atomic leave-one-context-out groups. Calibration,
+> unopened holdout, controller/MPC, recovery, transport, online adaptation
+> and expert/RL use remain blocked. Server tests and execution are required;
+> local work is limited to edits, hashes and simple calculations. The storage
+> preflight requires at least 150 GB free, caps estimated new raw at 90 GB and
+> reserves at least 50 GB. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2A_DURATION_HISTORY_DEVELOPMENT_DESIGN.md`.
+> This block is the only active pointer; all notices below are historical.
+
 > **ID-1C is final as a clean duration/history basis-design FAIL; route and
 > storage review is the unique active task (2026-08-14):** the real-TSC
 > campaign completed 10/10 resets, 180/180 one-ms advances, 190 states and

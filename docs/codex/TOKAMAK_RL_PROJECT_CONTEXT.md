@@ -1,5 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-15):** ID-1C ended the static
+> persistent-mean action-basis ladder after a deterministic p09-minus
+> effect-age event showed that time-resolved history cannot be averaged away.
+> The prospective ID-2A identity now collects development-fit data over three
+> complete causal prefixes and exact signed p01/p09 primitives of one, two
+> and four issues, retaining all states through 32 ms. Only a full
+> execution/raw/replay/input-support/response-support/Ip PASS permits model
+> development. Calibration, holdout and all controller claims remain
+> separate. Its config SHA-256 is
+> `2e2d2fc284203438e57355262241e629f57113e3583557070284c53a8767f52f`.
+> Current exact R_geo/Z_geo/Ip remain noiseless pre-issue observations; latent
+> state represents unobserved memory and future-response/model uncertainty.
+> Older active notices below are historical.
+
 > **Post-ID-1C route notice (2026-08-14):** ID-1C completed 10/10 authentic
 > rollouts and 180/180 verified one-ms advances with exact raw integrity and
 > replay, but failed its frozen symmetry/positive-span gates. Exact-centred
