@@ -14,8 +14,8 @@
 > leave-one-context-out folds. It must evaluate both absolute R/Z/Ip and
 > evaluator-only matched-baseline response; future baseline and future actual
 > current are forbidden predictor inputs. The config/design SHA-256 values are
-> `4943910eb23bb6de3a5ee8798f20a44096934df2300bbe09a940893f5b9eda74 /
-> c1428dfe6b7d5ed73364b850270677972ce9150423e3b3bdf9d72ea3607b5821`.
+> `de37d8f84eab8acf9eda018336d0c31e74d7f1e7e7100800d54091acd7efe112 /
+> 270d1c6ce096c0746e9347d25bb7826b8da4a262d38bada49ff1190817ee4eb9`.
 > This stage runs only on the server, uses ID-2A development data, and runs
 > zero new TSC. A PASS authorizes only fresh calibration design; a FAIL stops
 > model escalation and requires targeted matched-history/context data. Neural

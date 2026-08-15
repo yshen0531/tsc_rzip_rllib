@@ -62,6 +62,10 @@ state-32 motion is about 11--16 mm while measured action response is only
 - evaluator-only paired response: predicted action minus predicted matched
   baseline versus measured action minus measured matched baseline.
 
+Absolute evaluation uses the frozen rolling origins and sparse horizons.
+Paired response uses the complete dense state-10-to-state-11--32 curve so a
+one-ms action-age event cannot disappear between sparse evaluation horizons.
+
 The matched future baseline is never a predictor feature.  Signal arms have
 at least 0.05 mm measured peak response.  Every complete context fold must
 meet the frozen absolute caps, paired scaled-error caps, peak-vector direction

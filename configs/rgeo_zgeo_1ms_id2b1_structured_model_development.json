@@ -45,6 +45,8 @@
     "fit_origin_indices": [10, 31],
     "evaluation_origin_indices": [10, 12, 14, 16, 20, 24, 28, 31],
     "horizons_steps": [1, 2, 4, 8, 16, 22],
+    "paired_response_origin_state_index": 10,
+    "paired_response_dense_horizons": [1, 22],
     "maximum_state_index": 32,
     "prediction_form": "direct_finite_horizon_recentered_each_origin",
     "recursive_predicted_state_feedback": false
