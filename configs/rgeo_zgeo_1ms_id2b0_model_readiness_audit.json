@@ -1,0 +1,112 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2b0-model-readiness-audit-v1",
+  "audit_id": "rgeo_zgeo_1ms_id2b0_model_readiness_audit_v1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "plant_advances": 0,
+  "model_fit_or_training": false,
+  "holdout_records_read": 0,
+  "server_raw_read_only": true,
+  "id2a_remote_run_directory": "rgeo_zgeo_1ms_id2a_runs_20260815_d25ee2a9",
+  "id2a_stage_config": {
+    "path": "configs/rgeo_zgeo_1ms_id2a_duration_history_development.json",
+    "sha256": "2e2d2fc284203438e57355262241e629f57113e3583557070284c53a8767f52f"
+  },
+  "id2a_primary_result_sha256": "163080f641a5063b965738b20d233e77e1c29861643f12aca2788548abf0fe1a",
+  "id2a_independent_audit_sha256": "b9655ecfae6993b1802b14eba4ebc6d54185435379f00a834a4802cade3fe31",
+  "id2a_compact_evidence": {
+    "path": "docs/codex/audits/rgeo_zgeo_1ms_id2a_result_20260815_d25ee2a9/compact_evidence.json",
+    "sha256": "4e37b64bf0d4d9932d8f2975f1c7789e6aab58bfdf5074d581e9fc865f5653ef"
+  },
+  "superseded_unexecuted_id2b_v1": {
+    "path": "configs/rgeo_zgeo_1ms_id2b_model_development.json",
+    "sha256": "2b73ccb4c4fdb01f8524cbbc69997f1d197cef53f200d644d6ecd0a73b364242"
+  },
+  "required_id2a_identity": {
+    "route": "ONE_MS_ID2A_DURATION_HISTORY_DEVELOPMENT_PASS_MODEL_FIT_ONLY",
+    "rollouts": 42,
+    "verified_plant_advances": 1344,
+    "states": 1386,
+    "required_artifact_files": 6930,
+    "required_artifact_bytes": 81625592664,
+    "required_artifact_inventory_sha256": "f4cfca3dc0a6a408e4cbe42d8fefc47fca2a91915643bba4f9c8c534dea4f420"
+  },
+  "contexts": ["late_q0", "history_p04_plus", "anchor_p03_minus"],
+  "prediction_origin_state_index": 10,
+  "prediction_end_state_index": 32,
+  "available_takeover_history": {
+    "state_indices": [0, 10],
+    "issue_indices": [0, 9],
+    "maximum_true_explicit_action_lag_at_origin": 10,
+    "padding_or_repeated_history": "forbidden",
+    "pre_takeover_history_claimed": false
+  },
+  "allowed_causal_features": [
+    "r_geo_m",
+    "z_geo_m",
+    "ip_a",
+    "actual_current_a_tsc",
+    "issued_card15_fields",
+    "issued_current_a_tsc",
+    "probe_virtual_action",
+    "duration_effect_age",
+    "absolute_time_ms"
+  ],
+  "forbidden_features": [
+    "wire_current_a",
+    "sprsina",
+    "magaxis",
+    "rc",
+    "zc",
+    "context_id_as_predictor",
+    "future_r_geo_z_geo_ip",
+    "future_actual_current_readback",
+    "matched_baseline_future_as_predictor"
+  ],
+  "descriptive_scales": {
+    "r_geo_m": 0.001,
+    "z_geo_m": 0.001,
+    "ip_a": 100.0,
+    "coil_current_a": 0.3
+  },
+  "response_state_range": [11, 32],
+  "rolling_horizons_steps": [1, 2, 4, 8, 16, 22],
+  "output_response_hankel": {
+    "block_rows": 6,
+    "energy_fractions": [0.95, 0.99, 0.999],
+    "descriptive_only_not_plant_order": true
+  },
+  "readiness_checks": {
+    "reparse_all_id2a_raw_states": true,
+    "recompute_id2a_compact_equality": true,
+    "matched_baseline_response_required": true,
+    "whole_context_group_is_independent_unit": true,
+    "step_random_split_forbidden": true,
+    "exact_full_causal_prefix_collision_with_material_response_difference_forbidden": true,
+    "future_actual_current_truth_as_input_forbidden": true,
+    "stable_low_order_state_space_candidate_required_for_id2b1": true,
+    "action_conditioned_evaluation_required_for_id2b1": true
+  },
+  "current_id2b_v1_known_defects": [
+    "lag16_exceeds_true_state10_history",
+    "stable_low_order_state_space_candidate_missing",
+    "future_actual_current_propagation_undefined",
+    "absolute_error_gate_can_mask_action_response",
+    "residual_backbone_and_seed_aggregation_undefined"
+  ],
+  "data_role": "id2a_development_model_design_readiness_only",
+  "forbidden_uses": [
+    "model_fit",
+    "model_training",
+    "model_calibration",
+    "model_holdout",
+    "controller_qualification",
+    "uncertainty_tube_qualification",
+    "expert_oracle_fixture_bc_dagger_rl"
+  ],
+  "routes": {
+    "input_or_raw_fail": "ONE_MS_ID2B0_INPUT_OR_RAW_INTEGRITY_FAIL_STOP",
+    "causal_support_fail": "ONE_MS_ID2B0_CAUSAL_SUPPORT_FAIL_TARGETED_TSC_REQUIRED",
+    "complete": "ONE_MS_ID2B0_READINESS_COMPLETE_ID2B1_REDESIGN_REQUIRED"
+  }
+}

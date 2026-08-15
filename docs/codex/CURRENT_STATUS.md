@@ -1,5 +1,21 @@
 # Current status
 
+> **ID-2A final PASS; ID-2B0 readiness audit active (2026-08-15
+> Asia/Shanghai).** ID-2A completed 42/42 rollouts and 1,344/1,344 verified
+> plant advances. Its 1,386 raw states occupy 6,930 required artifacts and
+> 81,625,592,664 bytes with inventory digest
+> `f4cfca3dc0a6a408e4cbe42d8fefc47fca2a91915643bba4f9c8c534dea4f420`.
+> Primary and independent routes agree, and the critical replay is exact in
+> checked geometry, Ip, 14-coil and 48-wire observations. The final route is
+> `ONE_MS_ID2A_DURATION_HISTORY_DEVELOPMENT_PASS_MODEL_FIT_ONLY`.
+>
+> No predictive model has yet been fit. The committed ID-2B v1 config is an
+> unexecuted, superseded design checkpoint because its history, stable-model,
+> future-current and response-metric contracts are incomplete. The active
+> stage is the separately frozen, server-side read-only ID-2B0 audit. It runs
+> zero TSC/plant advances, fits zero models and reads no calibration or
+> holdout. Older notices below are historical.
+
 > **ID-2A duration/history development design frozen; implementation pending
 > (2026-08-15 Asia/Shanghai).** The fixed campaign contains 42 canonical
 > resets, 1,344 maximum one-ms advances and 1,386 states. It crosses three

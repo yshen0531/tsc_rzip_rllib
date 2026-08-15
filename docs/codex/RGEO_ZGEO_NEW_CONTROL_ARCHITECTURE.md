@@ -1,4 +1,21 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2A readiness amendment (2026-08-15):** ID-2A is the first
+> development-fit-eligible dataset, and its deterministic factor-of-8.09
+> p09-minus context difference confirms that causal history cannot be reduced
+> to current R_geo/Z_geo/Ip and one instantaneous action. It still covers only
+> three small-HFS contexts and two future primitive coordinates. Therefore an
+> input-rank PASS is not a model-order, uncertainty, authority or controller
+> qualification. The unexecuted ID-2B v1 config is superseded before fit.
+> ID-2B0 first audits true state-10 history, matched-baseline response,
+> descriptive low-order temporal structure, context support and future-current
+> leakage with zero TSC and zero fit. The subsequent structured backbone must
+> contain an explicitly stable low-order innovation/state-space model; ARX is
+> only a baseline, and a small GRU/TCN may learn only a prospectively frozen
+> residual. Exact current R_geo/Z_geo/Ip are re-centred every real cycle, but
+> future actual current inside a planning rollout is propagated rather than
+> read from future truth. Fresh grouped calibration, blind whole-prefix
+> holdout and independent authority/recourse remain mandatory before control.
+>
 > **ID-2A duration/history architecture gate (2026-08-15):** model fitting no
 > longer starts from a static response vector. The prospective development
 > dataset retains exact actuator/readback history and every state for signed

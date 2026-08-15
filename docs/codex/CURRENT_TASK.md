@@ -1,5 +1,34 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2B0 model-readiness audit is the unique active task (2026-08-15):**
+> ID-2A completed 42/42 authentic development rollouts, 1,344/1,344 verified
+> one-ms advances, 1,386 states and 6,930 required artifacts. Execution, raw,
+> exact critical replay, 32-column virtual-input lag support, signal,
+> duration-separation, Ip and independent audit gates all passed. The final
+> route is `ONE_MS_ID2A_DURATION_HISTORY_DEVELOPMENT_PASS_MODEL_FIT_ONLY`.
+> The same p09-minus four-issue primitive peaked at `0.848202`, `0.845307`
+> and `0.104847 mm` across the three whole causal contexts, so history/context
+> is load-bearing but position, time and history are not yet fully separated.
+>
+> The tracked `rgeo-zgeo-1ms-id2b-model-development-v1` config has never been
+> executed and is superseded before fit. It inconsistently combines a state-10
+> origin and ten real history steps with lag 16, omits the promised stable
+> low-order state-space candidate, leaves future actual-current propagation
+> undefined and can let nominal drift mask the smaller action response.
+> ID-2B0 is a server-side read-only, zero-TSC, zero-fit audit of the immutable
+> ID-2A raw. It must separate baseline drift from paired response, audit true
+> causal history and context support, report descriptive Hankel/SVD order
+> evidence, and freeze leak-free rolling/recursive prediction semantics.
+> Config SHA-256 is
+> `c0a8d05dab66412617d4f8a18e4ceb151a622f86f7fcfc944fad1b6e70e72f93`;
+> design-report SHA-256 is
+> `e8cea2321808deb01d3bd94ebbb6a9eda07af79fd9df388d7d7602ea0eaee166`.
+> A clean completion authorizes only a new ID-2B1 design. Calibration,
+> holdout, controller/MPC, recovery, transport, online adaptation and new TSC
+> remain blocked. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2B0_MODEL_READINESS_AUDIT_DESIGN.md`.
+> This block is the only active pointer; every notice below is historical.
+
 > **ID-2A duration/history development is the unique active task
 > (2026-08-15):** after ID-1C's clean persistent-mean basis FAIL, the next
 > identity is prospectively frozen as

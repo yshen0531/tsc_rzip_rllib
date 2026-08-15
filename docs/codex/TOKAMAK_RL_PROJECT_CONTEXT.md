@@ -1,5 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-15, post-ID-2A):** ID-2A is final as a
+> clean development-data PASS: 42/42 rollouts, 1,344/1,344 one-ms advances,
+> exact critical replay and independent raw recomputation all passed. The
+> same p09-minus four-issue primitive changed peak R/Z response by a factor of
+> about 8.09 across the three complete causal prefixes. This establishes that
+> history/context is load-bearing in the tested small-HFS domain, not that
+> position dependence, arbitrary 14-coil authority or crossing is qualified.
+> The unexecuted ID-2B v1 config is superseded before fit. The unique active
+> task is a server-side read-only ID-2B0 readiness audit that uses only ID-2A
+> development raw, runs zero TSC and fits zero models. A clean result permits
+> only a new leak-free structured ID-2B1 design. `CURRENT_TASK.md` remains the
+> sole active authority; all notices below are historical.
+
 > **Active new-round context (2026-08-15):** ID-1C ended the static
 > persistent-mean action-basis ladder after a deterministic p09-minus
 > effect-age event showed that time-resolved history cannot be averaged away.

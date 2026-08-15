@@ -1,5 +1,30 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2B0 model-readiness audit
+
+- Date: 2026-08-15 Asia/Shanghai.
+- Active identity: `rgeo-zgeo-1ms-id2b0-model-readiness-audit-v1`.
+- Source: immutable ID-2A server run
+  `rgeo_zgeo_1ms_id2a_runs_20260815_d25ee2a9` at implementation revision
+  `d25ee2a9e6112f9da25014b5349888298e1bd500`.
+- ID-2A result: 42/42 rollouts, 1,344/1,344 verified advances, 1,386 states,
+  6,930 artifacts and final route
+  `ONE_MS_ID2A_DURATION_HISTORY_DEVELOPMENT_PASS_MODEL_FIT_ONLY`.
+- ID-2A primary / independent SHA-256:
+  `163080f641a5063b965738b20d233e77e1c29861643f12aca2788548abf0fe1a /
+  b9655ecfae6993b1802b14eba4ebc6d54185435379f00a834a4802cade3fe31`.
+- ID-2B v1 is preserved as an unexecuted superseded design checkpoint; no
+  model fit or training has occurred.
+- ID-2B0 counters are frozen at zero TSC, zero plant advances, zero model fit
+  and zero holdout reads. It reparses ID-2A raw read-only and writes a new
+  compact audit identity only.
+- Design:
+  `docs/codex/reports/RGEO_ZGEO_1MS_ID2B0_MODEL_READINESS_AUDIT_DESIGN.md`.
+- Config / design SHA-256:
+  `c0a8d05dab66412617d4f8a18e4ceb151a622f86f7fcfc944fad1b6e70e72f93 /
+  e8cea2321808deb01d3bd94ebbb6a9eda07af79fd9df388d7d7602ea0eaee166`.
+- Status: design frozen; implementation/server execution pending.
+
 ## Stage4.2R3c3T13S24D1R14R8R8 prospective causal discrete-pulse MPC core
 
 - Date: 2026-08-07 Asia/Shanghai.
