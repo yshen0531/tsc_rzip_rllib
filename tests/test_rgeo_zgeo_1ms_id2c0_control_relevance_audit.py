@@ -18,7 +18,7 @@ class Id2C0ContractTests(unittest.TestCase):
         config, bound = primary.load_stage(ROOT, CONFIG)
         self.assertEqual(primary.sha256_file(CONFIG), primary.CONFIG_SHA256)
         self.assertEqual(len(bound), 14)
-        self.assertEqual(config["routes"]["audit_complete"], primary.PASS)
+        self.assertEqual(config["routes"]["pass"], primary.PASS)
         self.assertEqual(config["plant_advances"], 0)
         self.assertEqual(config["tsc_calls"], 0)
         self.assertEqual(config["models_fit_or_trained"], 0)
@@ -29,7 +29,11 @@ class Id2C0ContractTests(unittest.TestCase):
         config = json.loads((ROOT / "configs/rgeo_zgeo_1ms_id2b1_structured_model_development.json").read_text())
         rows = []
         # Synthetic feature test: the real server test exercises all 39 trajectories.
-        for context, offset in (("a", 0.0), ("b", 0.2), ("c", -0.1)):
+        for context, offset in (
+            ("anchor_p03_minus", 0.0),
+            ("history_p04_plus", 0.2),
+            ("late_q0", -0.1),
+        ):
             states = [
                 {"r_geo_m": offset, "z_geo_m": 0.0, "ip_a": 0.0, "actual_current_a_tsc": [0.0] * 14}
                 for _ in range(33)

@@ -78,9 +78,9 @@ def load_stage(repo_root: Path, config_path: Path) -> tuple[dict[str, Any], dict
     ):
         raise ValueError("ID2C0 zero-execution/data counters changed")
     if config.get("routes") != {
-        "input_or_evidence_fail": INPUT_FAIL,
-        "audit_incomplete": INCOMPLETE,
-        "audit_complete": PASS,
+        "input_fail": INPUT_FAIL,
+        "method_fail": INCOMPLETE,
+        "pass": PASS,
     }:
         raise ValueError("ID2C0 route contract mismatch")
     required = config.get("required_findings", [])
