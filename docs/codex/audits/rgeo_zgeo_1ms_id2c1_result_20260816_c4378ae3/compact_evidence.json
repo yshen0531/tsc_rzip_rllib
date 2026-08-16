@@ -1,0 +1,64 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2c1-tracked-compact-evidence-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2c1_active_nominal_vector_search_v1",
+  "result_identity": "rgeo_zgeo_1ms_id2c1_runs_20260816_c4378ae3",
+  "source_revision": "c4378ae3136f65f0553105f53248157cba7b32d1",
+  "independent_audit_revision": "e2b2a1d3178d31ff105ec0cd1473d36846d0d457",
+  "stage_config_sha256": "955c5e69664f955b315bac6cbad559e55eb04bf0abea59295ef60041e5982547",
+  "design_sha256": "c3d50c1af73034b95ebfe02fb5c765bc6de7f24fd7ab6e5472a045a6c7591a24",
+  "primary_result_sha256": "eb3ee5d73dcc05f8cccdc551291b2df9a4ef1b34310454a98ddd53f88ad41d42",
+  "independent_audit_v2_sha256": "7065a8af5677dd89c9f01c35e468ebe8b7a000b93e6a8992732f0e7749e02454",
+  "primary_route": "ONE_MS_ID2C1_ACTIVE_NOMINAL_AND_LOCAL_VECTOR_DEVELOPMENT_COMPLETE_ID2C2_DESIGN_REQUIRED",
+  "primary_passed": true,
+  "independent_audit_passed": true,
+  "execution": {
+    "rollouts_completed": 11,
+    "reset_calls": 11,
+    "advance_attempts": 352,
+    "plant_advance_gotsc_calls": 352,
+    "verified_plant_advances": 352,
+    "raw_states": 363,
+    "required_artifact_files": 1815,
+    "required_artifact_bytes": 21378131412,
+    "required_artifact_inventory_sha256": "54b5f7c8b55ca10f000fe2eb4a9b6667351c0b5e55c2f76fde7def22cd8d4d47",
+    "missing_required_artifacts": []
+  },
+  "phase_a": {
+    "selected_nominal_candidate_id": "p03_minus_stride1",
+    "fresh_q0_terminal_source_rz_norm_m": 0.02931432090191974,
+    "selected_terminal_source_rz_norm_m": 0.019292294758661708,
+    "selected_terminal_rz_norm_reduction_fraction_vs_q0": 0.3418815730642325,
+    "selected_maximum_absolute_ip_from_source_a": 722.7428999999975,
+    "stride4_reduction_fraction": 0.08107737041642982,
+    "stride2_reduction_fraction": 0.1745476486193367
+  },
+  "phase_b": {
+    "complete_signed_arms": 6,
+    "p04_plus_peak_rz_response_norm_m": 0.000051990055299098805,
+    "p04_minus_peak_rz_response_norm_m": 0.00005133098494329202,
+    "p07_plus_peak_rz_response_norm_m": 0.00004980764507837636,
+    "p07_minus_peak_rz_response_norm_m": 0.000049477770892627254,
+    "p09_plus_peak_rz_response_norm_m": 0.00003500075619543814,
+    "p09_minus_peak_rz_response_norm_m": 0.00003499044714275782,
+    "maximum_absolute_ip_response_a": 28.98439999999755,
+    "descriptive_peak_rz_rank": 2,
+    "best_descriptive_pair_condition": 2.706229655461913,
+    "positive_span_or_superposition_claimed": false,
+    "p09_pooled_as_smooth_gain": false
+  },
+  "data_roles": {
+    "postcampaign_design_analysis_eligible": true,
+    "model_fit_data_eligible": false,
+    "calibration_use": false,
+    "holdout_use": false,
+    "controller_safety_or_recourse_qualification_use": false
+  },
+  "server": {
+    "remote_project": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+    "remote_run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2c1_runs_20260816_c4378ae3",
+    "raw_retained_remotely": true,
+    "separate_run_log": null
+  },
+  "classification": "finite_tsc_empirical_development_pass_only",
+  "next_authority": "prospectively_freeze_id2c2_fresh_validation_only"
+}
