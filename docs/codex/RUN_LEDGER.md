@@ -2186,3 +2186,54 @@
   `docs/codex/audits/rgeo_zgeo_1ms_id1c_result_20260814_9401377d/`
 - Next: stop static mean-basis ladder; prospectively design fit-eligible
   duration/history primitives and resolve server storage before new raw TSC
+
+## R_geo/Z_geo 1 ms ID-2C1 active nominal/vector development
+
+- Branch: `codex/rgeo-zgeo-1ms-duration-history-model`
+- Design / implementation / independent ordering fix:
+  `63f5ab56 / c4378ae3 / e2b2a1d3`
+- Server validation: focused `6/6`, complete one-ms `126/126`, zero-plant
+  offline preflight PASS
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2c1_runs_20260816_c4378ae3`
+- Expected/actual: 11/11 rollouts, 352/352 verified advances, 363 states
+- Raw: 1,815 required files / 21,378,131,412 bytes / digest
+  `54b5f7c8b55ca10f000fe2eb4a9b6667351c0b5e55c2f76fde7def22cd8d4d47`
+- Primary / final independent SHA-256:
+  `eb3ee5d73dcc05f8cccdc551291b2df9a4ef1b34310454a98ddd53f88ad41d42 /`
+  `7065a8af5677dd89c9f01c35e468ebe8b7a000b93e6a8992732f0e7749e02454`
+- Selected exact `p03_minus_stride1`; terminal R/Z norm reduction 34.188%;
+  maximum source-relative Ip 722.743 A
+- Six signed residual arms complete, peak R/Z 35--52 um, descriptive rank 2,
+  best-pair condition 2.70623
+- Initial independent FAIL was alphabetical campaign-row ordering only; the
+  v2 auditor reparsed unchanged raw and reproduced all metrics without TSC
+- Final route:
+  `ONE_MS_ID2C1_ACTIVE_NOMINAL_AND_LOCAL_VECTOR_DEVELOPMENT_COMPLETE_ID2C2_DESIGN_REQUIRED`
+- Classification: finite development search PASS; not repeatability, fit,
+  calibration, holdout, tube, recourse, controller or reachability evidence
+
+## R_geo/Z_geo 1 ms ID-2C2 fresh nominal/vector validation
+
+- Design / implementation: `15e80345 / 58f24fc0`
+- Server validation: focused `7/7`, complete one-ms `133/133`, `bash -n`,
+  compile and zero-plant 18-stream offline preflight PASS
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2c2_runs_20260817_58f24fc0`
+- Remote log:
+  `logs/nohup/rgeo_zgeo_1ms_id2c2_20260817_58f24fc0.log`
+- Expected/actual: 18/18 rollouts, 576/576 verified advances, 594 states
+- Raw: 2,970 required files / 34,982,396,856 bytes / digest
+  `ace05c327380a5945fecad6b9c5e1576543b852a58e85e08b0b687b020389ad5`
+- Primary / independent SHA-256:
+  `3d665ba7044ae3dca0635987249c241a5d2559764437de802737580ae933a925 /`
+  `a4f693915a001d31a64954f30c31d1b3ba345ed6cd8cc4f85d9c0751b3051976`
+- Nine fresh whole-trajectory replay pairs exact in checked geometry, Ip,
+  14-coil, 48-wire, action and semantic-artifact fields
+- Both nominal replays reduce terminal R/Z norm 34.188%; all signal/Ip/tail/
+  two-sided geometry gates PASS; rank 2, condition 2.70623, maximum angular
+  gap 136.40943 degrees
+- Final route:
+  `ONE_MS_ID2C2_FRESH_NOMINAL_VECTOR_VALIDATION_PASS_STRUCTURED_MODEL_DESIGN_REQUIRED`
+- Classification: finite fresh source-local empirical validation PASS only;
+  evaluator-only, not fit/calibration/holdout/tube/controller data

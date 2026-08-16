@@ -1,0 +1,76 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2c2-tracked-compact-evidence-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2c2_fresh_nominal_vector_validation_v1",
+  "result_identity": "rgeo_zgeo_1ms_id2c2_runs_20260817_58f24fc0",
+  "source_revision": "58f24fc0266259a166288bb60a8f413cc6edd424",
+  "stage_config_sha256": "cf68e47b430782fee27241bdd6b79b16d71bb3988c18046b0d341053bc5f6f2e",
+  "design_sha256": "f617f22f5d8f42e571d8f57dd10004e0e29e631efe230a5cba77daeb7796f472",
+  "primary_result_sha256": "3d665ba7044ae3dca0635987249c241a5d2559764437de802737580ae933a925",
+  "independent_audit_sha256": "a4f693915a001d31a64954f30c31d1b3ba345ed6cd8cc4f85d9c0751b3051976",
+  "offline_preflight_sha256": "b340683737c50d1ed0f57fb176b62433dc61b68525e406a904ffd7ed4e22803a",
+  "server_log_sha256": "3fe725d418cfd96951963ec3ddd14fe31befbce45a4e59bc79cb40df8af6fe46",
+  "primary_route": "ONE_MS_ID2C2_FRESH_NOMINAL_VECTOR_VALIDATION_PASS_STRUCTURED_MODEL_DESIGN_REQUIRED",
+  "primary_passed": true,
+  "independent_audit_passed": true,
+  "execution": {
+    "rollouts_completed": 18,
+    "reset_calls": 18,
+    "advance_attempts": 576,
+    "plant_advance_gotsc_calls": 576,
+    "verified_plant_advances": 576,
+    "raw_states": 594,
+    "required_artifact_files": 2970,
+    "required_artifact_bytes": 34982396856,
+    "required_artifact_inventory_sha256": "ace05c327380a5945fecad6b9c5e1576543b852a58e85e08b0b687b020389ad5",
+    "missing_required_artifacts": []
+  },
+  "repeatability": {
+    "pairs_passed": 9,
+    "pairs_required": 9,
+    "maximum_geometry_m": 0.0,
+    "maximum_ip_a": 0.0,
+    "maximum_coil_a": 0.0,
+    "maximum_wire_a": 0.0
+  },
+  "nominal": {
+    "replay_count": 2,
+    "terminal_rz_norm_reduction_fraction_vs_matched_q0": 0.3418815730642325,
+    "maximum_absolute_ip_from_source_a": 722.7428999999975
+  },
+  "residual": {
+    "replay_sets": 2,
+    "minimum_peak_rz_response_norm_m": 0.00003499044714275782,
+    "maximum_peak_rz_response_norm_m": 0.000051990055299098805,
+    "maximum_absolute_ip_response_a": 28.98439999999755,
+    "maximum_terminal_to_peak_rz_ratio": 0.3527708116112185,
+    "peak_rz_rank": 2,
+    "best_pair_condition": 2.706229655461913,
+    "circular_maximum_angular_gap_deg": 136.40942923624453,
+    "minimum_opposition_magnitude": 0.999606780579407,
+    "positive_span_claim_scope": "finite_one_issue_return_peak_response_rays_only",
+    "p09_pooled_as_smooth_gain": false
+  },
+  "gate_passes": {
+    "repeatability": true,
+    "nominal_authority": true,
+    "residual_signal_and_ip": true,
+    "residual_tail": true,
+    "two_sided_vector_geometry": true
+  },
+  "data_roles": {
+    "immutable_evaluation_data_eligible": true,
+    "model_fit_data_eligible": false,
+    "calibration_use": false,
+    "blind_holdout_use": false,
+    "controller_safety_or_recourse_qualification_use": false
+  },
+  "server": {
+    "remote_project": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+    "remote_run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2c2_runs_20260817_58f24fc0",
+    "remote_log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/rgeo_zgeo_1ms_id2c2_20260817_58f24fc0.log",
+    "raw_retained_remotely": true,
+    "free_bytes_after_run": 522126667776
+  },
+  "classification": "finite_fresh_source_local_empirical_validation_pass_only",
+  "next_authority": "prospectively_freeze_structured_model_or_model_identifiability_design_only"
+}
