@@ -178,6 +178,78 @@ def _numeric_difference(left: Any, right: Any) -> float:
     return abs(float(left) - float(right))
 
 
+def _schedule_key(row: dict[str, Any]) -> str:
+    return f"i{int(row['probe_issue_step'])}_d{int(row['probe_duration_issues'])}"
+
+
+def _recompute_development(
+    nominal: np.ndarray,
+    smooth_rows: Sequence[dict[str, Any]],
+    event_rows: Sequence[dict[str, Any]],
+    config: dict[str, Any],
+) -> dict[str, Any]:
+    fold_keys = [
+        f"i{int(row['probe_issue_step'])}_d{int(row['probe_duration_issues'])}"
+        for row in config["smooth_channel"]["fold_schedule_cells"]
+    ]
+    gates = config["development_gates"]
+    candidate_results: dict[str, Any] = {}
+    selected: str | None = None
+    for model_id in config["smooth_channel"]["candidate_order"]:
+        folds: list[dict[str, Any]] = []
+        all_reasons: list[str] = []
+        for held in fold_keys:
+            training = [row for row in smooth_rows if _schedule_key(row) != held]
+            testing = [row for row in smooth_rows if _schedule_key(row) == held]
+            model = _refit(training, nominal, "development", model_id, config, False)
+            metrics = _aggregate([
+                _arm(row, nominal, _predict(model, _features(row, "development", model_id, config, False)), config)
+                for row in testing
+            ], config)
+            metrics.update({
+                "held_schedule_cell": held,
+                "training_cells": len(training),
+                "model_support": {
+                    "feature_count": model["feature_count"],
+                    "feature_rank": model["feature_rank"],
+                    "feature_condition_nonzero": model["feature_condition_nonzero"],
+                },
+            })
+            reasons: list[str] = []
+            if metrics["response_improvement_vs_zero"] < gates["minimum_response_rmse_improvement_vs_zero_each_fold"]:
+                reasons.append("RESPONSE_IMPROVEMENT")
+            if metrics["response_nrmse"] > gates["maximum_response_nrmse_each_fold"]:
+                reasons.append("RESPONSE_NRMSE")
+            if metrics["arm_response_nrmse_p90"] > gates["maximum_arm_response_nrmse_p90_each_fold"]:
+                reasons.append("ARM_P90")
+            if metrics["peak_direction_pass_fraction"] < gates["minimum_peak_direction_pass_fraction_each_fold"]:
+                reasons.append("PEAK_DIRECTION")
+            if metrics["r_z_response_error_p95_mm"] > gates["maximum_r_z_response_error_p95_mm_each_fold"]:
+                reasons.append("RZ_P95")
+            if metrics["ip_response_error_p95_a"] > gates["maximum_ip_response_error_p95_a_each_fold"]:
+                reasons.append("IP_P95")
+            metrics["passed"] = not reasons
+            metrics["failure_reasons"] = reasons
+            all_reasons.extend(f"{held}:{reason}" for reason in reasons)
+            folds.append(metrics)
+        eligible = not all_reasons
+        candidate_results[model_id] = {"eligible": eligible, "failure_reasons": all_reasons, "folds": folds}
+        if selected is None and eligible:
+            selected = model_id
+    event_model = _refit(event_rows, nominal, "development", "fixed_pole_signed_even", config, True)
+    event_metrics = _aggregate([
+        _arm(row, nominal, _predict(event_model, _features(row, "development", "fixed_pole_signed_even", config, True)), config)
+        for row in event_rows
+    ], config)
+    return {
+        "candidate_order": config["smooth_channel"]["candidate_order"],
+        "candidate_results": candidate_results,
+        "selected_model_id": selected,
+        "event_development_metrics": event_metrics,
+        "evaluator_open_authorized": selected is not None,
+    }
+
+
 def audit(repo_root: Path, config_path: Path, development_run: Path, evaluator_run: Path, model_dir: Path, output_path: Path) -> dict[str, Any]:
     config = load_config(repo_root, config_path)
     result_path, artifact_path = model_dir / "result.json", model_dir / "model_artifact.json"
@@ -186,10 +258,24 @@ def audit(repo_root: Path, config_path: Path, development_run: Path, evaluator_r
     if result.get("route") not in (DEVELOPMENT_FAIL_ROUTE, EVALUATOR_FAIL_ROUTE, PASS_ROUTE):
         failures.append("PRIMARY_ROUTE_NOT_A_SCIENTIFIC_RESULT")
     if result.get("route") == DEVELOPMENT_FAIL_ROUTE:
+        nominal, smooth_rows, event_rows, _ = load_development(repo_root, config, development_run)
+        recomputed = _recompute_development(nominal, smooth_rows, event_rows, config)
+        development_difference = _numeric_difference(recomputed, result.get("development", {}))
+        if development_difference > 1e-12:
+            failures.append("DEVELOPMENT_METRIC_DIFFERENCE")
+        if recomputed.get("selected_model_id") is not None:
+            failures.append("INDEPENDENT_MODEL_SELECTION_DISAGREES")
+        if result.get("evaluator_opened") is not False or (model_dir / "model_artifact.json").exists():
+            failures.append("EVALUATOR_OR_ARTIFACT_OPENED_AFTER_DEVELOPMENT_FAIL")
         audit_value = {
             "schema_version": SCHEMA, "audit_passed": not failures, "failures": failures,
             "primary_route": result.get("route"), "primary_result_sha256": sha256_file(result_path),
-            "selection_recomputed": False, "reason": "no artifact/evaluator by frozen development-fail route",
+            "selection_recomputed": True,
+            "independent_selected_model_id": recomputed.get("selected_model_id"),
+            "maximum_development_metric_difference": development_difference,
+            "independent_development": recomputed,
+            "evaluator_confirmed_unopened": result.get("evaluator_opened") is False,
+            "reason": "independent grouped-fold recomputation confirms no eligible candidate",
             "counters": {"plant_advances": 0, "tsc_calls": 0},
         }
     else:
