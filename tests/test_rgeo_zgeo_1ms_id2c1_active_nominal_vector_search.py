@@ -65,6 +65,11 @@ class Id2C1Tests(unittest.TestCase):
 
     def test_independent_schema_is_distinct(self):
         self.assertNotEqual(independent.SCHEMA, stage.SCHEMA)
+        order = independent._campaign_order(self.config)
+        self.assertEqual(order["fresh_q0_baseline"], 0)
+        self.assertEqual(order["p03_minus_stride1"], 3)
+        self.assertEqual(order["selected_nominal_probe_baseline"], 4)
+        self.assertEqual(order["selected_nominal_p09_half_exact_center_minus"], 10)
 
 
 if __name__ == "__main__":

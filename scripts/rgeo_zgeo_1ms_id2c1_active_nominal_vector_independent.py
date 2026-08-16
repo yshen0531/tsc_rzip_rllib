@@ -39,6 +39,17 @@ def _inside(path: Path, label: str) -> Path:
     return result
 
 
+def _campaign_order(stage: dict[str, Any]) -> dict[str, int]:
+    ids = [row["candidate_id"] for row in stage["phase_a"]["candidates_in_order"]]
+    ids.append("selected_nominal_probe_baseline")
+    ids.extend(
+        f"selected_nominal_{direction}_{sign}"
+        for direction in stage["phase_b"]["directions"]
+        for sign in stage["phase_b"]["signs"]
+    )
+    return {rollout_id: index for index, rollout_id in enumerate(ids)}
+
+
 def audit(stage_path: Path, run_dir: Path, destination: Path | None = None) -> dict[str, Any]:
     failures: list[str] = []
     stage_path = _inside(stage_path, "stage config")
@@ -59,6 +70,10 @@ def audit(stage_path: Path, run_dir: Path, destination: Path | None = None) -> d
         path for path in run_dir.glob("*.json") if path.name not in ("result.json", "offline_preflight.json", "independent_audit.json")
     )
     compact_rows = [json.loads(path.read_text(encoding="utf-8")) for path in compact_paths]
+    order = _campaign_order(stage)
+    if any(row.get("rollout_id") not in order for row in compact_rows):
+        failures.append("UNKNOWN_COMPACT_ROLLOUT")
+    compact_rows.sort(key=lambda row: order.get(row.get("rollout_id"), len(order)))
     actual_ids = sorted(path.name for path in (run_dir / "rollouts").iterdir() if path.is_dir()) if (run_dir / "rollouts").is_dir() else []
     expected_ids = sorted(row["rollout_id"] for row in compact_rows)
     if actual_ids != expected_ids:
