@@ -84,7 +84,7 @@ def load_stage(repo_root: Path, config_path: Path) -> tuple[dict[str, Any], dict
     }:
         raise ValueError("ID2C0 route contract mismatch")
     required = config.get("required_findings", [])
-    if not isinstance(required, list) or len(required) < 5:
+    if not isinstance(required, dict) or len(required) < 9:
         raise ValueError("ID2C0 required findings are incomplete")
     bound: dict[str, dict[str, Any]] = {}
     for item in config.get("bound_inputs", []):
