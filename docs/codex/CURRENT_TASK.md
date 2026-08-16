@@ -1,5 +1,31 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2D1R1 model-aligned duration/time development is the unique active
+> task (2026-08-17):** ID-2D1 v1 stopped in server focused tests before the
+> full suite, offline run, TSC reset or plant advance. Its forced combined
+> three-coordinate lag-16 matrix was rank `42/48`. Read-only factorization
+> proved p04/p07 full rank `32/32` through 16 ages and the separate p09 event
+> full rank `10/10` through all ten ages observable after issue22. The v1
+> route remains `ZERO_TSC_LAG_SUPPORT_DESIGN_FAIL`; rank42 is not re-labelled
+> as its original PASS.
+>
+> The active R1 identity keeps all 24 physical rollouts, 768-advance budget,
+> evaluator-cell exclusions, Card15 actions, safety stops and signal/Ip gates
+> unchanged. It freezes model-aligned support gates: p04/p07 lag16 rank32 and
+> separate p09 event lag10 rank10. Config/design are
+> `configs/rgeo_zgeo_1ms_id2d1r1_active_nominal_duration_time_development.json`
+> and
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_DESIGN.md`.
+> Their SHA-256 values are
+> `856b2f3c5baeff4526a918e617db3cf62d7773442cd5f8d2965fa4344eef8ed7 /`
+> `fbcdf3f9671e5634654f80d065d356a2255ebc6609b281a7357cc92c31fed298`.
+>
+> Only a complete R1 PASS may authorize the separately frozen structured
+> model. ID-2C2 remains evaluator-only; calibration, blind holdout, neural
+> residual, tube, recourse, controller/MPC, transport/crossing, online
+> adaptation and RL remain blocked. This is the sole active pointer; all
+> notices below are historical.
+
 > **ID-2D1 active-nominal duration/time development is the unique active
 > task (2026-08-17):** ID-2C2 completed 18/18 authentic rollouts and 576/576
 > verified one-ms TSC advances. Its nine whole-trajectory replay pairs were

@@ -1,4 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2D1R1 model-aligned support amendment (2026-08-17):** a smooth
+> fixed-pole/low-order residual and a separately labelled event residual must
+> not be given the same artificial memory-order gate. The unchanged campaign
+> supports p04/p07 through 16 lags and the issue22 p09 event through its ten
+> observed ages. R1 freezes those as separate full-rank blocks. This does not
+> shorten physical memory by assumption: the later ID-2C2 evaluator retains
+> the longer issue16 p09 tail, and failure there must reject or extend the
+> event representation rather than leak evaluator data into fitting.
+
 > **Post-ID-2C2 duration/time amendment (2026-08-17):** exact fresh replay
 > validates the finite active-nominal/vector cells but cannot distinguish a
 > causal dynamics model from a trajectory lookup. ID-2D1 therefore withholds

@@ -2237,3 +2237,17 @@
   `ONE_MS_ID2C2_FRESH_NOMINAL_VECTOR_VALIDATION_PASS_STRUCTURED_MODEL_DESIGN_REQUIRED`
 - Classification: finite fresh source-local empirical validation PASS only;
   evaluator-only, not fit/calibration/holdout/tube/controller data
+
+## R_geo/Z_geo 1 ms ID-2D1 v1 zero-TSC preflight
+
+- Design / implementation: `8ef69732 / 1ba484eb`
+- Server: exact patch deployment; no run directory or raw tree created
+- Validation: `bash -n` and Python compile PASS; focused tests `6/7`
+- Failure: frozen combined three-coordinate lag-16 matrix rank `42/48`
+- Zero-plant factorization: p04/p07 lag16 rank `32/32`, condition `14.73875`;
+  p09 event lag10 rank `10/10`, condition 1; p09 forced lag16 rank `10/16`
+- Execution: zero resets, zero `gotsc`, zero TSC and zero plant advances
+- Final classification: `ZERO_TSC_LAG_SUPPORT_DESIGN_FAIL`; the original
+  rank48 gate was not weakened or re-labelled as PASS
+- Next: new ID-2D1R1 identity with unchanged physical campaign and separate
+  smooth/event lag-support gates

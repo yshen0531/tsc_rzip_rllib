@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-17, ID-2D1R1):** ID-2D1 v1 stopped
+> before TSC because it incorrectly demanded 16 smooth lag ages from the
+> separately declared p09 issue22 event, for which only ten ages exist before
+> the horizon. R1 retains the unchanged 24-rollout physical campaign but
+> requires p04/p07 lag16 rank32 and p09 event lag10 rank10 separately. This is
+> a new prospective identity, not a post-result weakening. A PASS opens only
+> a structured zero-new-TSC development model; every later calibration,
+> holdout, uncertainty, recovery and control gate remains closed. Older
+> notices below are historical.
+
 > **Active new-round context (2026-08-17, ID-2D1):** ID-2C2 independently
 > passed its 18-rollout/576-advance fresh validation. The exact p03-minus
 > active nominal and signed p04/p07/p09 one-issue residual family are

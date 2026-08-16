@@ -1,5 +1,20 @@
 # Current status
 
+> **ID-2D1 v1 final zero-TSC preflight FAIL; ID-2D1R1 frozen
+> (2026-08-17 Asia/Shanghai).** The server compiled the v1 implementation and
+> passed six focused tests before the seventh exposed rank `42/48` instead of
+> the frozen combined lag-16 rank48. No full suite, offline campaign, reset,
+> `gotsc`, TSC or plant advance occurred. Factorization gave p04/p07 lag16
+> rank32 with condition `14.73875`, and p09 event lag10 rank10 with condition
+> 1. The missing six columns were unobservable p09 ages 11--16 after its
+> issue22 event, not deficient p04/p07 support.
+>
+> R1 is a new identity with the same 24 physical rollouts and empirical
+> gates. It requires the model-aligned smooth/event support blocks separately
+> and preserves p09 as a hybrid/event residual. ID-2C2 remains evaluator-only.
+> No model, calibration, holdout, controller or MPC is authorized yet. Older
+> notices below are historical.
+
 > **ID-2C2 final finite source-local PASS; ID-2D1 duration/time campaign
 > frozen (2026-08-17 Asia/Shanghai).** ID-2C2 completed 18/18 rollouts,
 > 576/576 verified one-ms advances, 594 states and 2,970 required raw
