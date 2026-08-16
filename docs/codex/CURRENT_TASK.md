@@ -20,8 +20,8 @@
 > `configs/rgeo_zgeo_1ms_id2c0_control_relevance_audit.json` and
 > `docs/codex/reports/RGEO_ZGEO_1MS_ID2C0_CONTROL_RELEVANCE_AUDIT_DESIGN.md`.
 > Their SHA-256 values are
-> `3dfbad26408704e697619fe01623d73c6005a8de493c1873f0c46aeab59dd26e /`
-> `df41f721d7fe9e9a0988cbee3b824c2d41e21a0511f81cc5f946704390f2b1df`.
+> `e4cc745ccc8b013f5021d43b90ef2af1540cb11bcb7161113f92c34a7ec23123 /`
+> `9b8ab60c7f93162a6e6b2df1cda58c279599a5bf4d4bb3f947f9f0f5eed96c3e`.
 >
 > A PASS authorizes ID-2C1 **design only**. It does not itself authorize any
 > TSC, model, calibration, holdout, tube, recovery, controller, MPC,

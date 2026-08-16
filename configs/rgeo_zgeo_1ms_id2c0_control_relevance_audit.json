@@ -59,6 +59,14 @@
     {
       "path": "docs/codex/audits/rgeo_zgeo_1ms_id1b_result_20260814_bd1b5802/result.json",
       "sha256": "54ed170bc628237d6d7b8828f6dc3c77b06e549f064a63ae4281af9aea0d0db8"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c1a_result_20260814_778b454/q0_h32_r0.json",
+      "sha256": "ee307442e0ce064fe043d51b722556a44a5be5bd5abeb848174901d2049788b7"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/p03_cumulative_level2_r0.json",
+      "sha256": "7d4433d0ee5922909dad950b5f4b42ade86e282c54422d442cbac60ffa77a4c7"
     }
   ],
   "audit_questions": {

@@ -5,7 +5,11 @@ Date: 2026-08-16 Asia/Shanghai
 Identity: `rgeo-zgeo-1ms-id2c0-control-relevance-audit-v1`
 
 Frozen config SHA-256:
-`3dfbad26408704e697619fe01623d73c6005a8de493c1873f0c46aeab59dd26e`.
+`e4cc745ccc8b013f5021d43b90ef2af1540cb11bcb7161113f92c34a7ec23123`.
+
+The bound evidence set includes the compact q0 and A3 level-two trajectories
+used to recompute the approximately five-percent state-16 response ratio; it
+does not rely on that number as an unbound narrative constant.
 
 ## Decision
 
