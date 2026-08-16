@@ -1,5 +1,33 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2C0 control-relevance/method audit is the unique active task
+> (2026-08-16):** the user accepted the post-ID-2B1 route review. ID-2B1
+> remains final as a clean failure of its frozen candidates, but its result
+> does not prove that missing contexts are the only cause. The signed/even
+> paired-response features are structurally context invariant, the contextual
+> candidate has a narrow interaction and only two independent training
+> contexts per fold, and the factor-of-eight p09 contrast changes current
+> R/Z/Ip together with arrival history.
+>
+> The active identity is
+> `rgeo-zgeo-1ms-id2c0-control-relevance-audit-v1`. It is a server-side,
+> zero-TSC, zero-plant, zero-fit, zero-calibration and zero-holdout audit. It
+> must recompute the ID-2B1 paired-feature cancellation, correct the
+> position/history claim boundary, separate time-indexed nominal evolution
+> from action response, audit every critical one-ms peak, and determine
+> whether a bounded low-dimensional time-varying Card15 sequence search is
+> worth a separately frozen ID-2C1 design. Config/design are
+> `configs/rgeo_zgeo_1ms_id2c0_control_relevance_audit.json` and
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2C0_CONTROL_RELEVANCE_AUDIT_DESIGN.md`.
+> Their SHA-256 values are
+> `3dfbad26408704e697619fe01623d73c6005a8de493c1873f0c46aeab59dd26e /`
+> `df41f721d7fe9e9a0988cbee3b824c2d41e21a0511f81cc5f946704390f2b1df`.
+>
+> A PASS authorizes ID-2C1 **design only**. It does not itself authorize any
+> TSC, model, calibration, holdout, tube, recovery, controller, MPC,
+> transport, crossing, online adaptation or learning. E1/A4 remain parked.
+> This block is the only active pointer; every notice below is historical.
+
 > **ID-2B1 is final as a context-generalization model FAIL; route review is
 > the unique active task (2026-08-15):** server tests passed 7/7 focused and
 > 116/116 one-ms regression tests. Twelve deterministic LOCO models were fit

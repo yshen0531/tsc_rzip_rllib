@@ -1,5 +1,25 @@
 # Current status
 
+> **Post-ID-2B1 route accepted; ID-2C0 audit active (2026-08-16
+> Asia/Shanghai).** ID-2B1's exact route and artifacts remain unchanged, but
+> the attribution has been narrowed. Three contexts are insufficient, and
+> the tested model family also lacked a clean time-indexed nominal/action-
+> residual decomposition. Its signed/even response is structurally
+> context-invariant in matched-baseline differencing; the only contextual
+> candidate used an undersupported narrow interaction. The p03-arrival
+> context differs from late q0 by about `-0.150 mm R / +0.288 mm Z / -9.47 A
+> Ip`, so the p09 factor-of-eight result is context dependence, not isolated
+> pure-history evidence.
+>
+> The next work is the tracked zero-TSC ID-2C0 method/control-relevance audit.
+> It precedes any ordinary context bridge or larger model. Its intended next
+> route is a finite canonical-source development search for a time-varying
+> active nominal corridor and two-axis residual-action evidence, using actual
+> Card15 vectors and the full allowed `0.3 A` adjacent per-coil slew. A search
+> result would still require a fresh validation identity and later fresh
+> model-development/calibration/holdout identities. E1/A4 remain parked and
+> no controller-grade recourse exists.
+
 > **ID-2B1 final: clean model/support FAIL (2026-08-15 Asia/Shanghai).** The
 > primary/independent/model-artifact SHA-256 values are
 > `20441c50e20bcd4fb25c498904ebc35d5337b5cc067a3f16fac1d6383d9e2984 /

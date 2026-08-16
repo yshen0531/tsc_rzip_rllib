@@ -1,4 +1,24 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2C0 route amendment (2026-08-16):** control relevance now precedes
+> a generic context bridge. ID-2B1's frozen FAIL is valid, but the signed and
+> signed/even paired-response models structurally cancel their causal-history
+> base and therefore cannot schedule response by context. The sole contextual
+> candidate is too narrowly parameterized and undersupported to isolate model
+> class from data coverage. The factor-of-eight p09 contrast also changes
+> current R/Z/Ip with arrival history, so it is context evidence rather than a
+> pure hidden-history theorem.
+>
+> The next dependency is a zero-TSC audit followed, only if prospectively
+> authorized, by a bounded canonical-source time-varying sequence search for
+> an active nominal corridor. A useful nominal must materially suppress the
+> full R/Z drift and preserve Ip/current headroom; later fresh evidence must
+> show two-sided, non-collinear residual action around it. P09 is an event or
+> hybrid candidate until recurrence is measured, not a preselected smooth
+> control basis. Only after this control-relevance gate should matched
+> position/history development data and a nominal-plus-residual model be
+> collected. Fresh calibration, blind holdout, tube and recourse still
+> precede any controller TSC.
+>
 > **Post-ID-2B1 support amendment (2026-08-15):** a stable signed lifted
 > model produced real development gain between two related histories but did
 > not generalize to the unseen p03-arrival history; richer fixed interactions

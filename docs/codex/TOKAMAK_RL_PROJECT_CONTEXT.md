@@ -1,5 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-16, ID-2C0):** the accepted route no
+> longer sends ID-2B1 directly into a generic context bridge. ID-2B1 is a
+> valid candidate-set FAIL, but the evidence attributes it jointly to three-
+> context support, paired-response feature structure, nominal/response
+> entanglement and unresolved position/Ip/history confounding. The immediate
+> task is a zero-TSC, zero-fit control-relevance/method audit. Only its PASS
+> may authorize a separately frozen finite time-varying Card15 development-
+> search design. The search must first find meaningful R/Z drift suppression
+> and later two-axis residual-action headroom before further model capacity is
+> justified. Calibration, holdout, recovery, controller/MPC, crossing,
+> online adaptation and RL remain blocked. `CURRENT_TASK.md` is the sole
+> active authority; all notices below are historical.
+
 > **Active new-round context (2026-08-15, post-ID-2B1):** fixed-pole signed
 > memory learned useful action response across the two closely related ID-2A
 > contexts but failed the distinct p03-arrival LOCO fold. Added even/context

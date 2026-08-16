@@ -1,0 +1,132 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2c0-control-relevance-audit-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2c0_control_relevance_audit_v1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "plant_advances": 0,
+  "tsc_calls": 0,
+  "models_fit_or_trained": 0,
+  "calibration_records_read": 0,
+  "holdout_records_read": 0,
+  "server_tests_and_execution_required": true,
+  "local_nontrivial_tests_forbidden": true,
+  "source_id2a_run_directory": "rgeo_zgeo_1ms_id2a_runs_20260815_d25ee2a9",
+  "bound_inputs": [
+    {
+      "path": "configs/rgeo_zgeo_1ms_id2a_duration_history_development.json",
+      "sha256": "2e2d2fc284203438e57355262241e629f57113e3583557070284c53a8767f52f"
+    },
+    {
+      "path": "configs/rgeo_zgeo_1ms_id2b1_structured_model_development.json",
+      "sha256": "de37d8f84eab8acf9eda018336d0c31e74d7f1e7e7100800d54091acd7efe112"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2a_result_20260815_d25ee2a9/compact_evidence.json",
+      "sha256": "3c33950938e4ec7c47d7bd0d0a5770a64d208cd43c5a9d95a6ee34c303efe480"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2b0_readiness_20260815_7ffc89e8/result.json",
+      "sha256": "2a3211b601bdfffba232b1d4c6f95350b8824e3037f57c7ba7de17db0174eec7"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2b0_readiness_20260815_7ffc89e8/independent_audit.json",
+      "sha256": "99d40de6fc9b45fd945e14e3bab43e895e1bc30e4d0c97ba012f2c3128009868"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2b1_model_20260815_1e223619/result.json",
+      "sha256": "20441c50e20bcd4fb25c498904ebc35d5337b5cc067a3f16fac1d6383d9e2984"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2b1_model_20260815_1e223619/model_artifact.json",
+      "sha256": "ae79b79e64b13b0db248ffad7f8017a62875b842b32a179c9cba2dc70dca2379"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2b1_model_20260815_1e223619/independent_audit.json",
+      "sha256": "ef38f236f2dfa93f5ccb9a9aa6d73d669a7c94e14abcf2a9398a4e170a77be01"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c1a_result_20260814_778b454/result.json",
+      "sha256": "0b8eda34bd730aa59e2d3151ab69d445d4e5aeefa8bac6485c1161fecb86cebd"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2a_search_result_20260814_3c03cf4/result.json",
+      "sha256": "a96bfffd0f8a115e9d42a50aed2c58de637a3bc6d38a321b6f32db44f3421021"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_nr2r2c2aa3_result_20260814_e01411d/result.json",
+      "sha256": "1e082fda5e87e74655f53215b4815edb563ffd386516b704abd34a5393d71b76"
+    },
+    {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id1b_result_20260814_bd1b5802/result.json",
+      "sha256": "54ed170bc628237d6d7b8828f6dc3c77b06e549f064a63ae4281af9aea0d0db8"
+    }
+  ],
+  "audit_questions": {
+    "id2b1_paired_response_context_scheduling": "recompute_feature_difference_across_complete_contexts",
+    "id2b1_nominal_response_separation": "audit_against_id2b0_required_time_indexed_nominal_plus_action_residual",
+    "factor_eight_attribution": "report_position_ip_history_confounding_without_hidden_history_claim",
+    "critical_one_ms_event": "audit_each_signal_arm_peak_and_horizon_one_not_only_aggregate_fraction",
+    "control_relevance": "compare_full_r_z_ip_action_response_with_matched_q0_drift_and_existing_nominal_authority_evidence",
+    "next_tsc_identity": "design_only_low_dimensional_time_varying_actual_card15_sequence_search"
+  },
+  "required_findings": {
+    "id2a_complete_contexts": 3,
+    "id2a_unique_trajectory_cells": 39,
+    "id2a_integrity_only_replays": 3,
+    "no_exact_complete_prefix_action_collision": true,
+    "stable_signed_response_feature_delta_context_invariance_max_abs": 1e-12,
+    "stable_signed_even_response_feature_delta_context_invariance_max_abs": 1e-12,
+    "factor_eight_must_not_be_labeled_pure_history": true,
+    "p09_must_be_treated_as_event_or_hybrid_candidate": true,
+    "active_nominal_and_two_sided_residual_authority_remain_unqualified": true
+  },
+  "prospective_id2c1_design_constraints": {
+    "experiment_contract": "tsc_only_prospective_empirical_development",
+    "canonical_source_full_replay": true,
+    "online_one_ms_oracle_claimed": false,
+    "actual_fourteen_dimensional_card15_vectors": true,
+    "maximum_single_turn_adjacent_delta_a": 0.3,
+    "full_allowed_slew_may_be_used": true,
+    "unstructured_random_fourteen_dimensional_search": "forbidden",
+    "candidate_families": [
+      "drift_opposing_cumulative_or_time_varying_p03_class",
+      "complementary_p04_or_p07_class",
+      "p09_event_recurrence_diagnostic",
+      "p01_smooth_weak_control"
+    ],
+    "full_vector_metrics": [
+      "matched_baseline_r_geo_z_geo_drift_reduction",
+      "terminal_corridor_and_step_motion",
+      "two_axis_directional_support",
+      "ip_cost",
+      "absolute_current_and_slew_headroom",
+      "complete_tail_and_event_age"
+    ],
+    "discovery_records_role": "development_search_only",
+    "fresh_candidate_validation_required": true,
+    "fresh_calibration_and_blind_holdout_required_later": true,
+    "controller_safety_or_recourse_claimed": false
+  },
+  "observability": {
+    "current_same_step_paired_boundary_r_geo_z_geo_and_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_history": "available",
+    "future_successor_before_issue": "unknown",
+    "latent_role": "unobserved_dynamics_future_response_and_model_mismatch_only"
+  },
+  "forbidden_uses": [
+    "model_selection",
+    "calibration",
+    "holdout",
+    "uncertainty_tube_qualification",
+    "controller_or_mpc",
+    "recovery_or_transport",
+    "online_adaptation",
+    "expert_oracle_bc_dagger_rl"
+  ],
+  "routes": {
+    "input_fail": "ONE_MS_ID2C0_INPUT_OR_EVIDENCE_INTEGRITY_FAIL_STOP",
+    "method_fail": "ONE_MS_ID2C0_METHOD_OR_CONTROL_RELEVANCE_AUDIT_INCOMPLETE_STOP",
+    "pass": "ONE_MS_ID2C0_CONTROL_RELEVANCE_AUDIT_COMPLETE_ID2C1_DESIGN_REQUIRED"
+  },
+  "claim_boundary": "zero_tsc_zero_fit_method_and_control_relevance_audit_only"
+}
