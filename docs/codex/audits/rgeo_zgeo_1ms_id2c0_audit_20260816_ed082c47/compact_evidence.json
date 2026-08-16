@@ -1,0 +1,53 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2c0-compact-evidence-v1",
+  "source_revision": "ed082c471542445afc2dcd9b356ca248c1fc041e",
+  "server_result_sha256": "b8fa6a640ca4d4be4b0060d1a9eb613497a97e92e513bd53fa56fadfa035fd3f",
+  "server_independent_sha256": "f5968cb391743079c4261654ccd82ef2f9726a68a99ff5f555d0b06d7a8a7871",
+  "passed": true,
+  "route": "ONE_MS_ID2C0_CONTROL_RELEVANCE_AUDIT_COMPLETE_ID2C1_DESIGN_REQUIRED",
+  "independent_audit_passed": true,
+  "counters": {
+    "unique_development_trajectory_cells_read": 39,
+    "plant_advances": 0,
+    "tsc_calls": 0,
+    "models_fit_or_trained": 0,
+    "calibration_records_read": 0,
+    "holdout_records_read": 0
+  },
+  "feature_cancellation": {
+    "stable_exp_signed": {
+      "features": 211,
+      "arms": 12,
+      "context_pair_comparisons": 24,
+      "maximum_cross_context_matched_baseline_feature_difference": 0.0
+    },
+    "stable_exp_signed_even": {
+      "features": 275,
+      "arms": 12,
+      "context_pair_comparisons": 24,
+      "maximum_cross_context_matched_baseline_feature_difference": 0.0
+    },
+    "stable_exp_contextual": {
+      "features": 387,
+      "independent_training_contexts_per_loco_fold": 2,
+      "unique_training_trajectory_cells_per_fold": 26
+    }
+  },
+  "context_attribution": {
+    "exact_causal_collision_count": 0,
+    "late_q0_vs_anchor_state10_r_difference_mm": -0.14964100000014469,
+    "late_q0_vs_anchor_state10_z_difference_mm": 0.28797999999999324,
+    "late_q0_vs_anchor_state10_ip_difference_a": -9.474700000002485,
+    "p09_minus_d4_peak_ratio": 8.089935599705617,
+    "factor_eight_is_not_a_pure_history_result": true
+  },
+  "control_relevance": {
+    "p03_level2_state16_response_to_q0_drift_norm_fraction": 0.05069520951804287,
+    "p03_level2_state16_response_minus_q0_m": [0.0004405855000000347, -0.0006321204999999719],
+    "q0_source_to_state16_rz_m": [-0.00948403650000007, 0.0118769185],
+    "constant_dwell_hold_candidate_found": false,
+    "id1b_positive_span_passed": false,
+    "active_nominal_and_two_axis_residual_authority_are_missing": true
+  },
+  "claim_boundary": "Derived compact identity for the server-side read-only audit. It is not a model, tube, controller, recovery, MPC or TSC result."
+}

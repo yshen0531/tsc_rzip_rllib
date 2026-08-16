@@ -1,24 +1,21 @@
 # Current status
 
-> **Post-ID-2B1 route accepted; ID-2C0 audit active (2026-08-16
-> Asia/Shanghai).** ID-2B1's exact route and artifacts remain unchanged, but
-> the attribution has been narrowed. Three contexts are insufficient, and
-> the tested model family also lacked a clean time-indexed nominal/action-
-> residual decomposition. Its signed/even response is structurally
-> context-invariant in matched-baseline differencing; the only contextual
-> candidate used an undersupported narrow interaction. The p03-arrival
-> context differs from late q0 by about `-0.150 mm R / +0.288 mm Z / -9.47 A
-> Ip`, so the p09 factor-of-eight result is context dependence, not isolated
-> pure-history evidence.
+> **ID-2C0 final PASS; ID-2C1 search frozen (2026-08-16 Asia/Shanghai).**
+> Server tests passed `4/4` focused and `120/120` one-ms regressions. Primary
+> SHA-256 `b8fa6a640ca4d4be4b0060d1a9eb613497a97e92e513bd53fa56fadfa035fd3f`
+> and independent SHA-256
+> `f5968cb391743079c4261654ccd82ef2f9726a68a99ff5f555d0b06d7a8a7871`
+> both record PASS with zero TSC, plant, model, calibration and holdout work.
+> Matched-baseline response-feature differences were exactly zero for both
+> signed candidates. A3's state-16 response/q0-drift norm ratio independently
+> recomputed to `0.0506952`; constant dwell and positive span remain absent.
 >
-> The next work is the tracked zero-TSC ID-2C0 method/control-relevance audit.
-> It precedes any ordinary context bridge or larger model. Its intended next
-> route is a finite canonical-source development search for a time-varying
-> active nominal corridor and two-axis residual-action evidence, using actual
-> Card15 vectors and the full allowed `0.3 A` adjacent per-coil slew. A search
-> result would still require a fresh validation identity and later fresh
-> model-development/calibration/holdout identities. E1/A4 remain parked and
-> no controller-grade recourse exists.
+> ID-2C1 is now the active bounded empirical search. It may use the full
+> allowed `0.3 A` adjacent per-coil slew, but only through exact actual
+> Card15 vectors, with 11-reset/352-advance ceilings and immediate stop gates.
+> A complete result still requires fresh ID-2C2 validation and later distinct
+> model/calibration/holdout identities. No controller-grade recourse exists;
+> E1/A4 remain parked.
 
 > **ID-2B1 final: clean model/support FAIL (2026-08-15 Asia/Shanghai).** The
 > primary/independent/model-artifact SHA-256 values are

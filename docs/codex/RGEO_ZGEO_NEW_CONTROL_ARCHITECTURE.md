@@ -1,4 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2C1 active-nominal amendment (2026-08-16):** ID-2C0 passed and
+> localized the immediate architecture gap to active nominal authority plus
+> residual vector evidence. The first TSC stage is therefore a bounded
+> low-dimensional Card15 staircase search, followed conditionally by a
+> matched local signed-vector family. It is not a world-model bakeoff and it
+> cannot qualify safety. A successful candidate still needs fresh replay,
+> then nominal-plus-stable-latent-plus-action-residual model development.
+> Recovery-backed constrained control remains downstream of fresh grouped
+> calibration and blind context/history holdout.
+>
 > **Post-ID-2C0 route amendment (2026-08-16):** control relevance now precedes
 > a generic context bridge. ID-2B1's frozen FAIL is valid, but the signed and
 > signed/even paired-response models structurally cancel their causal-history

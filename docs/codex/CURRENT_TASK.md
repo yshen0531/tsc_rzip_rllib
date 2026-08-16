@@ -1,31 +1,29 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **ID-2C0 control-relevance/method audit is the unique active task
-> (2026-08-16):** the user accepted the post-ID-2B1 route review. ID-2B1
-> remains final as a clean failure of its frozen candidates, but its result
-> does not prove that missing contexts are the only cause. The signed/even
-> paired-response features are structurally context invariant, the contextual
-> candidate has a narrow interaction and only two independent training
-> contexts per fold, and the factor-of-eight p09 contrast changes current
-> R/Z/Ip together with arrival history.
+> **ID-2C1 active-nominal/vector development search is the unique active task
+> (2026-08-16):** ID-2C0 passed on the server with focused tests `4/4`, all
+> one-ms tests `120/120`, and independent recomputation PASS. It read 39
+> unique development cells, fitted zero models, read no calibration/holdout,
+> and made zero TSC calls or plant advances. Signed and signed/even paired
+> response features were exactly context invariant; the contextual candidate
+> had 387 features but only two independent training contexts per fold.
 >
 > The active identity is
-> `rgeo-zgeo-1ms-id2c0-control-relevance-audit-v1`. It is a server-side,
-> zero-TSC, zero-plant, zero-fit, zero-calibration and zero-holdout audit. It
-> must recompute the ID-2B1 paired-feature cancellation, correct the
-> position/history claim boundary, separate time-indexed nominal evolution
-> from action response, audit every critical one-ms peak, and determine
-> whether a bounded low-dimensional time-varying Card15 sequence search is
-> worth a separately frozen ID-2C1 design. Config/design are
-> `configs/rgeo_zgeo_1ms_id2c0_control_relevance_audit.json` and
-> `docs/codex/reports/RGEO_ZGEO_1MS_ID2C0_CONTROL_RELEVANCE_AUDIT_DESIGN.md`.
+> `rgeo-zgeo-1ms-id2c1-active-nominal-vector-search-v1`. Phase A is a
+> maximum-four-rollout q0/p03-minus staircase discriminator; Phase B runs
+> only after at least 20% terminal R/Z drift suppression and measures a
+> matched baseline plus signed p04/p07/p09 one-issue residuals. Maximum total
+> budget is 11 resets and 352 advances. Config/design are
+> `configs/rgeo_zgeo_1ms_id2c1_active_nominal_vector_search.json` and
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2C1_ACTIVE_NOMINAL_VECTOR_SEARCH_DESIGN.md`.
 > Their SHA-256 values are
-> `e4cc745ccc8b013f5021d43b90ef2af1540cb11bcb7161113f92c34a7ec23123 /`
-> `9b8ab60c7f93162a6e6b2df1cda58c279599a5bf4d4bb3f947f9f0f5eed96c3e`.
+> `91763505d58950a4863090776869b9f075fa4b1c6609e4fc2f601fc1dac975eb /`
+> `78249a4f086ae146474f068c86a06946a548f8e2335361c04506f29ce6282757`.
 >
-> A PASS authorizes ID-2C1 **design only**. It does not itself authorize any
-> TSC, model, calibration, holdout, tube, recovery, controller, MPC,
-> transport, crossing, online adaptation or learning. E1/A4 remain parked.
+> ID-2C1 is development search, not controller safety qualification. A PASS
+> authorizes only ID-2C2 fresh validation design; it does not authorize model
+> fitting, calibration, holdout, tube, recovery, controller, MPC, transport,
+> crossing, online adaptation or learning. E1/A4 remain parked.
 > This block is the only active pointer; every notice below is historical.
 
 > **ID-2B1 is final as a context-generalization model FAIL; route review is
