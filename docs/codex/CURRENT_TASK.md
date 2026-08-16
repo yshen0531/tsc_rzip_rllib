@@ -1,5 +1,35 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2D1 active-nominal duration/time development is the unique active
+> task (2026-08-17):** ID-2C2 completed 18/18 authentic rollouts and 576/576
+> verified one-ms TSC advances. Its nine whole-trajectory replay pairs were
+> exact in all checked geometry, Ip, 14-coil, 48-wire, action and semantic-
+> artifact fields. Both nominal replays reduced terminal R/Z norm by
+> `34.1881573%`; all signed signal, Ip, tail and two-sided geometry gates
+> passed. Primary/independent SHA-256 values are
+> `3d665ba7044ae3dca0635987249c241a5d2559764437de802737580ae933a925 /`
+> `a4f693915a001d31a64954f30c31d1b3ba345ed6cd8cc4f85d9c0751b3051976`.
+>
+> ID-2C2 is immutable evaluator-only evidence, so the active ID-2D1 identity
+> excludes its exact issue-16/one-issue cells. ID-2D1 freezes 24 canonical
+> resets and at most 768 advances around the same p03-minus active nominal:
+> two held baselines; signed p04/p07 residuals at duration 2/4 at issue 16
+> and duration 1/2/4 at issue 22; and signed one-issue p09 event residuals at
+> issue 22. A PASS requires exact execution/raw/baseline repeatability,
+> rank-48 three-coordinate lag-16 input support and declared signal/Ip gates.
+> Config/design are
+> `configs/rgeo_zgeo_1ms_id2d1_active_nominal_duration_time_development.json`
+> and
+> `docs/codex/reports/RGEO_ZGEO_1MS_ID2D1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_DESIGN.md`.
+>
+> Only a complete PASS may authorize a separately frozen zero-new-TSC
+> structured model: exact actuator/queue, time-indexed active nominal, stable
+> low-order p04/p07 memory and separate p09 event channel. ID-2C2 stays
+> evaluator-only. Calibration, blind context/history holdout, neural
+> residual, tube, recourse, controller/MPC, transport/crossing, online
+> adaptation and RL remain blocked. This is the sole active pointer; all
+> notices below are historical.
+
 > **ID-2C2 fresh nominal/vector validation is the unique active task
 > (2026-08-17):** ID-2C1 completed all 11 authentic rollouts and 352/352
 > verified one-ms TSC advances. Independent raw reparse of 363 states and

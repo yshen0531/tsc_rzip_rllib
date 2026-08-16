@@ -1,4 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2C2 duration/time amendment (2026-08-17):** exact fresh replay
+> validates the finite active-nominal/vector cells but cannot distinguish a
+> causal dynamics model from a trajectory lookup. ID-2D1 therefore withholds
+> the existing issue-16/one-issue cells as immutable evaluator evidence and
+> varies p04/p07 duration and issue time around the same active nominal; p09
+> remains a separate hybrid/event coordinate. Only after execution/raw,
+> baseline repeatability, lag-support and signal/Ip gates pass may a later
+> model compare an action-blind nominal with exact-actuator, stable low-order
+> residual memory. Neural residuals, calibration, whole-context holdout,
+> tube, recourse and control remain later gates. This source-local step does
+> not replace the final multi-position/history/HFS-LFS goal.
+
 > **ID-2C2 fresh-validation amendment (2026-08-17):** ID-2C1 supplied the
 > first finite active-nominal plus signed residual evidence, not a model or
 > safety proof. The selected p03-minus staircase reduced terminal source R/Z

@@ -1,5 +1,24 @@
 # Current status
 
+> **ID-2C2 final finite source-local PASS; ID-2D1 duration/time campaign
+> frozen (2026-08-17 Asia/Shanghai).** ID-2C2 completed 18/18 rollouts,
+> 576/576 verified one-ms advances, 594 states and 2,970 required raw
+> artifacts (`34,982,396,856` bytes; digest
+> `ace05c327380a5945fecad6b9c5e1576543b852a58e85e08b0b687b020389ad5`).
+> The independent server-side raw reparse passed with no failures. Every
+> nominal, repeatability, residual signal/Ip, tail and two-sided finite-vector
+> gate passed. ID-2C2 remains evaluator-only and is not fit/calibration data.
+>
+> The active next identity is ID-2D1: 24 fixed source-local rollouts and at
+> most 768 advances that vary p04/p07 residual duration and issue time around
+> the frozen active nominal, while p09 remains a separate event coordinate.
+> The exact issue-16/one-issue cells are withheld because ID-2C2 already owns
+> them as evaluator records. ID-2D1 is the first active-nominal data stage
+> that may become model-development eligible, and only after every execution,
+> raw, baseline, lag-support, signal and Ip gate passes. No structured model,
+> calibration, holdout, controller or MPC is yet authorized. Older notices
+> below are historical.
+
 > **ID-2C1 final finite development PASS; ID-2C2 fresh validation frozen
 > (2026-08-17 Asia/Shanghai).** ID-2C1 completed 11/11 authentic rollouts,
 > 352/352 verified one-ms TSC advances, 363 states and 1,815 required raw

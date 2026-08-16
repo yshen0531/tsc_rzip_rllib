@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-17, ID-2D1):** ID-2C2 independently
+> passed its 18-rollout/576-advance fresh validation. The exact p03-minus
+> active nominal and signed p04/p07/p09 one-issue residual family are
+> repeatable in the tested source-local envelope, but this still does not
+> identify a useful dynamics model. The unique active stage is ID-2D1, a
+> 24-rollout active-nominal duration/time development campaign. It excludes
+> ID-2C2's exact issue-16/one-issue evaluator cells, varies p04/p07 duration
+> and issue time, and retains p09 as a separate event coordinate. A complete
+> PASS can open only a structured zero-new-TSC development model;
+> calibration, blind context/history holdout, uncertainty tube, recourse and
+> control stay blocked. All older active notices below are historical.
+
 > **Active new-round context (2026-08-17, ID-2C2):** the finite ID-2C1 TSC
 > search selected an exact p03-minus active nominal that suppressed terminal
 > source-relative R/Z drift by about 34%, and found a complete measurable
