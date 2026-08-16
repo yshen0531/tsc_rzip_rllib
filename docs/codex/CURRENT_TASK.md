@@ -1,5 +1,32 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2C2 fresh nominal/vector validation is the unique active task
+> (2026-08-17):** ID-2C1 completed all 11 authentic rollouts and 352/352
+> verified one-ms TSC advances. Independent raw reparse of 363 states and
+> 1,815 required artifacts passed. Exact `p03_minus_stride1` reduced terminal
+> source-relative R/Z norm by `34.1881573%` versus fresh q0 while keeping the
+> maximum source-relative Ip departure to `722.7429 A`. All six p04/p07/p09
+> signed residual arms completed; their peak R/Z responses were `35--52 um`,
+> with descriptive rank two and best-pair condition `2.70623`.
+>
+> ID-2C1 contained selection and only one realization per cell, so it remains
+> development search rather than repeatability or model qualification. The
+> active fresh identity is
+> `rgeo-zgeo-1ms-id2c2-fresh-nominal-vector-validation-v1`: nine fixed cells,
+> two fresh replays each, at most 18 resets and 576 advances. It performs no
+> selection or adaptation and freezes nominal-effect, exact replay, signed
+> signal, Ip, tail, rank/condition and positive-span gates. Config/design
+> SHA-256 values are
+> `cf68e47b430782fee27241bdd6b79b16d71bb3988c18046b0d341053bc5f6f2e /`
+> `f617f22f5d8f42e571d8f57dd10004e0e29e631efe230a5cba77daeb7796f472`.
+>
+> ID-2C2 is validation-only. PASS may authorize only a separately frozen
+> source-local structured-model design using ID-2C1 for development and
+> ID-2C2 only for immutable evaluation. Calibration, blind holdout, tube,
+> recourse, controller/MPC, transport/crossing, online adaptation and RL stay
+> blocked. This block is the sole active pointer; all notices below are
+> historical.
+
 > **ID-2C1 active-nominal/vector development search is the unique active task
 > (2026-08-16):** ID-2C0 passed on the server with focused tests `4/4`, all
 > one-ms tests `120/120`, and independent recomputation PASS. It read 39

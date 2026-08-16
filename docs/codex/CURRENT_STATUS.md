@@ -1,5 +1,28 @@
 # Current status
 
+> **ID-2C1 final finite development PASS; ID-2C2 fresh validation frozen
+> (2026-08-17 Asia/Shanghai).** ID-2C1 completed 11/11 authentic rollouts,
+> 352/352 verified one-ms TSC advances, 363 states and 1,815 required raw
+> artifacts (`21,378,131,412` bytes; digest
+> `54b5f7c8b55ca10f000fe2eb4a9b6667351c0b5e55c2f76fde7def22cd8d4d47`).
+> Primary SHA-256 is
+> `eb3ee5d73dcc05f8cccdc551291b2df9a4ef1b34310454a98ddd53f88ad41d42`;
+> independent raw-reparse v2 SHA-256 is
+> `7065a8af5677dd89c9f01c35e468ebe8b7a000b93e6a8992732f0e7749e02454`.
+>
+> The selected exact Card15 `p03_minus_stride1` nominal reduced terminal R/Z
+> norm by `34.1881573%` against fresh q0. Six signed residual arms completed
+> with `35--52 um` peak R/Z response, rank two and best-pair condition
+> `2.70623`. The initial independent report's alphabetical campaign ordering
+> was an audit-only bug; commit `e2b2a1d3` reparsed the unchanged raw and
+> reproduced every counter, inventory and metric. No TSC rerun occurred.
+>
+> ID-2C2 is now frozen as an 18-rollout/576-advance fresh validation with two
+> replays of each fixed cell. It contains no search and cannot be fit. A PASS
+> opens only a separate source-local structured-model design. It does not
+> create a tube, recourse or controller qualification. E1/A4 remain parked;
+> older notices below are historical.
+
 > **ID-2C0 final PASS; ID-2C1 search frozen (2026-08-16 Asia/Shanghai).**
 > Server tests passed `4/4` focused and `120/120` one-ms regressions. Primary
 > SHA-256 `b8fa6a640ca4d4be4b0060d1a9eb613497a97e92e513bd53fa56fadfa035fd3f`

@@ -1,0 +1,129 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2c2-fresh-nominal-vector-validation-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2c2_fresh_nominal_vector_validation_v1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 32,
+  "replays_per_cell": 2,
+  "maximum_rollouts": 18,
+  "maximum_reset_calls": 18,
+  "maximum_advance_attempts": 576,
+  "maximum_gotsc_calls": 576,
+  "maximum_verified_plant_advances": 576,
+  "retry_after_any_advance_attempt": "forbidden",
+  "experiment_contract": "tsc_only_prospective_fresh_empirical_validation",
+  "intended_use": "fresh_repeatability_nominal_authority_and_local_vector_validation",
+  "model_fit_use": "forbidden",
+  "calibration_use": "forbidden",
+  "blind_holdout_use": "forbidden",
+  "fixture_expert_oracle_bc_dagger_rl_use": "forbidden",
+  "controller_safety_or_recourse_qualification_use": "forbidden",
+  "holdout_records_read": 0,
+  "frozen_nominal": {
+    "candidate_id": "p03_minus_stride1",
+    "p03_minus_increment_issues": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31],
+    "selection_or_adaptation_during_id2c2": "forbidden"
+  },
+  "cells_in_order": [
+    {"cell_id": "fresh_q0_baseline", "kind": "q0"},
+    {"cell_id": "p03_minus_stride1_nominal", "kind": "full_nominal"},
+    {"cell_id": "selected_nominal_probe_baseline", "kind": "held_prefix_baseline"},
+    {"cell_id": "selected_nominal_p04_plus", "kind": "residual", "direction_id": "p04", "sign": "plus"},
+    {"cell_id": "selected_nominal_p04_minus", "kind": "residual", "direction_id": "p04", "sign": "minus"},
+    {"cell_id": "selected_nominal_p07_plus", "kind": "residual", "direction_id": "p07", "sign": "plus"},
+    {"cell_id": "selected_nominal_p07_minus", "kind": "residual", "direction_id": "p07", "sign": "minus"},
+    {"cell_id": "selected_nominal_p09_half_exact_center_plus", "kind": "residual", "direction_id": "p09_half_exact_center", "sign": "plus"},
+    {"cell_id": "selected_nominal_p09_half_exact_center_minus", "kind": "residual", "direction_id": "p09_half_exact_center", "sign": "minus"}
+  ],
+  "phase_b": {
+    "probe_issue_step": 16,
+    "probe_duration_issues": 1,
+    "exact_return_issue_step": 17,
+    "response_state_start": 17,
+    "response_state_end": 32,
+    "matched_baseline_by_replay_index": true,
+    "directions": ["p04", "p07", "p09_half_exact_center"],
+    "signs": ["plus", "minus"],
+    "actual_fourteen_dimensional_card15_vectors_required": true,
+    "p09_pooled_as_smooth_gain": false
+  },
+  "action_semantics": {
+    "starting_issue_is_exact_q0": true,
+    "nominal_is_exact_card15_p03_minus_stride1": true,
+    "maximum_single_turn_adjacent_delta_a": 0.3,
+    "full_0p3_a_may_be_used": true,
+    "runner_clipping_must_not_be_triggered_or_relied_on": true,
+    "effect_state_index": "issue_step_plus_one",
+    "future_actual_current_before_issue": "forbidden",
+    "no_return_or_cleanup_plant_action_after_horizon_or_stop": true
+  },
+  "observability": {
+    "current_same_step_r_geo_z_geo_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_observation_and_owned_action_history": "available",
+    "future_successor_before_issue": "unknown",
+    "pre_takeover_history": "not_claimed",
+    "latent_belief_role": "unobserved_memory_future_response_and_model_mismatch_only"
+  },
+  "empirical_exploration": {
+    "novel_successors_are_declared_tsc_only_exposures": true,
+    "pre_action_transition_tube_claimed": false,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_probe_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true,
+    "post_action_abort_is_not_a_pre_action_bound": true
+  },
+  "repeatability": {
+    "geometry_m": 1e-12,
+    "ip_a": 1e-9,
+    "coil_a": 1e-9,
+    "wire_a": 1e-9,
+    "complete_state_action_and_semantic_artifact_pairs_required": 9
+  },
+  "scientific_gates": {
+    "minimum_terminal_rz_norm_reduction_fraction_vs_matched_q0": 0.30,
+    "maximum_absolute_nominal_ip_from_source_a": 1000.0,
+    "minimum_each_arm_peak_rz_response_m": 0.000025,
+    "maximum_each_arm_absolute_ip_response_a": 50.0,
+    "maximum_each_arm_terminal_to_peak_rz_ratio": 0.50,
+    "maximum_plus_minus_peak_vector_cosine": -0.95,
+    "minimum_plus_minus_peak_norm_ratio": 0.5,
+    "maximum_plus_minus_peak_norm_ratio": 2.0,
+    "required_peak_rz_rank": 2,
+    "maximum_best_pair_condition": 5.0,
+    "maximum_circular_angular_gap_deg": 150.0,
+    "all_gates_must_pass_in_each_replay_set": true
+  },
+  "storage_gate": {
+    "minimum_free_bytes_before_run": 150000000000,
+    "maximum_estimated_raw_bytes": 45000000000,
+    "minimum_free_bytes_after_estimate": 100000000000,
+    "output_must_not_exist": true,
+    "raw_compression": "forbidden"
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "evidence": {
+    "base_tsc_config_sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b",
+    "id2c1_config": {"path": "configs/rgeo_zgeo_1ms_id2c1_active_nominal_vector_search.json", "sha256": "955c5e69664f955b315bac6cbad559e55eb04bf0abea59295ef60041e5982547"},
+    "id2c1_design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2C1_ACTIVE_NOMINAL_VECTOR_SEARCH_DESIGN.md", "sha256": "c3d50c1af73034b95ebfe02fb5c765bc6de7f24fd7ab6e5472a045a6c7591a24"},
+    "id2c1_compact": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2c1_result_20260816_c4378ae3/compact_evidence.json", "sha256": "fca60d6a1a6202a9d4754737a86d1a11c46faeb8bf3baa59ff1e96abae9020b4"},
+    "id2c1_primary_result_sha256": "eb3ee5d73dcc05f8cccdc551291b2df9a4ef1b34310454a98ddd53f88ad41d42",
+    "id2c1_independent_audit_v2_sha256": "7065a8af5677dd89c9f01c35e468ebe8b7a000b93e6a8992732f0e7749e02454",
+    "design_sha256": "f617f22f5d8f42e571d8f57dd10004e0e29e631efe230a5cba77daeb7796f472"
+  },
+  "routes": {
+    "offline_or_input_fail": "ONE_MS_ID2C2_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "storage_fail": "ONE_MS_ID2C2_STORAGE_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID2C2_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID2C2_RAW_INTEGRITY_FAIL_PRESERVE_RAW_STOP",
+    "repeatability_fail": "ONE_MS_ID2C2_FRESH_REPEATABILITY_FAIL_ROUTE_REVIEW",
+    "nominal_authority_fail": "ONE_MS_ID2C2_FRESH_NOMINAL_AUTHORITY_FAIL_ROUTE_REVIEW",
+    "residual_signal_or_ip_fail": "ONE_MS_ID2C2_FRESH_RESIDUAL_SIGNAL_OR_IP_FAIL_ROUTE_REVIEW",
+    "residual_tail_fail": "ONE_MS_ID2C2_FRESH_RESIDUAL_TAIL_FAIL_ROUTE_REVIEW",
+    "two_sided_geometry_fail": "ONE_MS_ID2C2_FRESH_TWO_SIDED_VECTOR_GEOMETRY_FAIL_ROUTE_REVIEW",
+    "pass": "ONE_MS_ID2C2_FRESH_NOMINAL_VECTOR_VALIDATION_PASS_STRUCTURED_MODEL_DESIGN_REQUIRED"
+  },
+  "claim_boundary": "Finite fresh source-local empirical validation only; not fit, calibration, blind holdout, tube, recovery, controller, MPC or reachability qualification."
+}

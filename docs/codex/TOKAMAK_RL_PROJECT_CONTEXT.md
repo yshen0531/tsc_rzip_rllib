@@ -1,5 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-17, ID-2C2):** the finite ID-2C1 TSC
+> search selected an exact p03-minus active nominal that suppressed terminal
+> source-relative R/Z drift by about 34%, and found a complete measurable
+> p04/p07/p09 signed residual family around it. Because selection and response
+> measurement shared one identity and each cell had only one realization,
+> the next stage fixes every action and performs two fresh replays per cell.
+> Only exact repeatability plus nominal, tail, two-sided signal, Ip and
+> positive-span gates can open a separate structured-model design. Fresh
+> calibration, blind whole-history holdout, controller-grade tube/recourse,
+> constrained control, crossing, adaptation and RL remain later stages.
+> `CURRENT_TASK.md` is the sole active authority; all notices below are
+> historical.
+
 > **Active new-round context (2026-08-16, ID-2C1):** ID-2C0 is final PASS and
 > confirms that the next bottleneck is control-relevant nominal/residual
 > authority rather than a larger ID-2B1 network. The active finite TSC-only

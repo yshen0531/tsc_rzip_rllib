@@ -1,4 +1,17 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2C2 fresh-validation amendment (2026-08-17):** ID-2C1 supplied the
+> first finite active-nominal plus signed residual evidence, not a model or
+> safety proof. The selected p03-minus staircase reduced terminal source R/Z
+> norm by about 34%, while p04/p07/p09 one-issue-return primitives produced
+> measurable two-axis residuals. The architecture now requires a fixed-action
+> fresh replay stage before fitting: exact whole-trajectory repeatability,
+> nominal effect, two-sided signal, tail, Ip, rank/condition and positive
+> spanning must all survive. A PASS opens only exact-actuator + time-indexed
+> active nominal + stable low-order history/action model design, with the
+> fresh ID-2C2 records kept evaluator-only. It does not skip later context/
+> position factorization, calibration, blind holdout, tube, recourse or
+> controller qualification.
+>
 > **ID-2C1 active-nominal amendment (2026-08-16):** ID-2C0 passed and
 > localized the immediate architecture gap to active nominal authority plus
 > residual vector evidence. The first TSC stage is therefore a bounded
