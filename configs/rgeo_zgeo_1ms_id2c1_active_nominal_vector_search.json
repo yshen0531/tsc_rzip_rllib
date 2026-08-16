@@ -35,11 +35,11 @@
     "enabled_only_after_phase_a_selection": true,
     "probe_issue_step": 16,
     "probe_duration_issues": 1,
-    "baseline": "selected_nominal_with_issue16_pause_and_issue17_return",
+    "baseline": "selected_nominal_prefix_through_issue15_then_held_level",
     "directions": ["p04", "p07", "p09_half_exact_center"],
     "signs": ["plus", "minus"],
     "actual_fourteen_dimensional_card15_vectors_required": true,
-    "resume_nominal_after_exact_one_issue_return": true,
+    "return_to_and_hold_selected_nominal_level_after_exact_one_issue": true,
     "complete_family_required": true
   },
   "action_semantics": {

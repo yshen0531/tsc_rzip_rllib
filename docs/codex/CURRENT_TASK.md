@@ -17,8 +17,8 @@
 > `configs/rgeo_zgeo_1ms_id2c1_active_nominal_vector_search.json` and
 > `docs/codex/reports/RGEO_ZGEO_1MS_ID2C1_ACTIVE_NOMINAL_VECTOR_SEARCH_DESIGN.md`.
 > Their SHA-256 values are
-> `91763505d58950a4863090776869b9f075fa4b1c6609e4fc2f601fc1dac975eb /`
-> `78249a4f086ae146474f068c86a06946a548f8e2335361c04506f29ce6282757`.
+> `955c5e69664f955b315bac6cbad559e55eb04bf0abea59295ef60041e5982547 /`
+> `c3d50c1af73034b95ebfe02fb5c765bc6de7f24fd7ab6e5472a045a6c7591a24`.
 >
 > ID-2C1 is development search, not controller safety qualification. A PASS
 > authorizes only ID-2C2 fresh validation design; it does not authorize model

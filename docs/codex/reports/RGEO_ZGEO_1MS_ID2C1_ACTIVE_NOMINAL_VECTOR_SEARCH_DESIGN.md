@@ -5,7 +5,7 @@ Date: 2026-08-16 Asia/Shanghai
 Identity: `rgeo-zgeo-1ms-id2c1-active-nominal-vector-search-v1`
 
 Frozen config SHA-256:
-`91763505d58950a4863090776869b9f075fa4b1c6609e4fc2f601fc1dac975eb`.
+`955c5e69664f955b315bac6cbad559e55eb04bf0abea59295ef60041e5982547`.
 
 ## Purpose
 
@@ -37,12 +37,12 @@ active nominal candidate, not Nominal-H1.
 
 ## Phase B: residual vectors
 
-If Phase A selects a candidate, replay that schedule with a pause at issue 16
-as the matched baseline.  Six sibling schedules add exactly one issue of the
-actual p04, p07 or p09 Card15 vector, with both signs, then return exactly to
-the paused nominal and resume it.  The complete seven-rollout family is
-required.  p09 is treated as an event/hybrid diagnostic; it is not pooled as
-a smooth gain with p04/p07.
+If Phase A selects a candidate, replay its exact prefix through issue 15 and
+then hold that attained Card15 level as the matched baseline. Six sibling
+schedules add exactly one issue of the actual p04, p07 or p09 Card15 vector,
+with both signs, then return exactly to and hold that nominal level. The
+complete seven-rollout family is required. p09 is treated as an event/hybrid
+diagnostic; it is not pooled as a smooth gain with p04/p07.
 
 The phase measures development response/tail/Ip geometry only.  It does not
 assume superposition, odd symmetry, positive span, repeatability or a valid
