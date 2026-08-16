@@ -1,0 +1,57 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2e1-tracked-compact-evidence-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2e1_structured_active_nominal_model_v1",
+  "design_revision": "02a7f113",
+  "implementation_revision": "59d2790a794eef4f8ff9c73f375068aed08f310c",
+  "independent_audit_revision": "d8bb8dc33f8bf09fb86e043d6645dceda06de220",
+  "config_sha256": "d80f2bca63bf035cb38edd0be663b5cf470d45bddfe96523ee9cfbd1360417ce",
+  "design_sha256": "d6719763eebfbe01d88f1c1b3b98ccfc8602cc3e5ad1511b682b7e018ae4d8c1",
+  "primary_result_sha256": "b0fb654f9f1e5a1f947740a1c5012669f863518dcfd975f00d8c8cb642e38062",
+  "independent_audit_v2_sha256": "80b31220b0d7a3d89a0652d4da2b98b6a31ff11d85bd7f9bc4a90fd2f1523078",
+  "route": "ONE_MS_ID2E1_GROUPED_DEVELOPMENT_MODEL_FAIL_ROUTE_REVIEW",
+  "passed": false,
+  "evaluator_opened": false,
+  "evaluator_unique_arms_read": 0,
+  "model_artifact_emitted": false,
+  "execution": {
+    "models_fit": 21,
+    "plant_advances": 0,
+    "tsc_calls": 0,
+    "calibration_records_read": 0,
+    "blind_holdout_records_read": 0
+  },
+  "server_validation": {
+    "focused_tests": "7/7 PASS",
+    "all_one_ms_tests": "147/147 PASS",
+    "bash_syntax": "PASS",
+    "python_compile": "PASS"
+  },
+  "independent_recomputation": {
+    "audit_passed": true,
+    "selected_model_id": null,
+    "maximum_development_metric_difference": 2.7755575615628914e-17
+  },
+  "candidate_summary": {
+    "fixed_pole_odd": {"eligible": false, "best_nrmse": 0.9674112923422304, "worst_nrmse": 1.0288414623657183},
+    "fixed_pole_signed_even": {"eligible": false, "best_nrmse": 0.9450900454148617, "worst_nrmse": 1.0410098234273386},
+    "fixed_pole_signed_even_time": {"eligible": false, "best_nrmse": 1.056053958852599, "worst_nrmse": 1.2188101384524297},
+    "fir16_signed_even": {"eligible": false, "best_nrmse": 0.805676321767386, "worst_nrmse": 1.9158575446922048}
+  },
+  "event_channel_development": {
+    "response_nrmse": 0.17171229543535688,
+    "response_improvement_vs_zero": 0.8035972697150162,
+    "r_z_response_error_p95_mm": 0.00627958597979264,
+    "ip_response_error_p95_a": 0.3530174178940189,
+    "peak_direction_pass_fraction": 1.0
+  },
+  "delayed_event_pattern": {
+    "minus_cells_above_0p3_mm": 8,
+    "plus_cells_above_0p3_mm": 0,
+    "absolute_state_indices": [19, 27],
+    "event_vector_description_mm": "approximately [-0.60 to -0.70 R, +0.25 to +0.28 Z]",
+    "classification": "descriptive authentic baseline-relative excursion; mechanism and repeatability not yet qualified"
+  },
+  "remote_output_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2e1_models_59d2790a",
+  "classification": "grouped_source_local_structured_model_development_fail_before_evaluator",
+  "next_authority": "route_review_only"
+}

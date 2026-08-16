@@ -1,4 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2E1 architecture amendment (2026-08-17):** the source-local
+> p04/p07 fixed-pole/FIR family failed grouped duration/time development
+> before evaluator open. P09's separate event channel fit well, while
+> p04/p07 minus cells showed isolated state19/state27 excursions. This
+> supports retaining the nominal/residual decomposition but rejects treating
+> all p04/p07 response as one smooth linear convolution. Before neural
+> escalation, the route must distinguish a causally separable hybrid event
+> from an unqualified/repeatability-unknown boundary or numerical branch.
+> Controller-grade stages remain blocked and the final goal is unchanged.
+>
 > **ID-2E1 structured-model amendment (2026-08-17):** ID-2D1R1 is now a
 > complete source-local fit-eligible development PASS. The immediate
 > architecture discriminator is zero-new-TSC and decomposes a time-indexed

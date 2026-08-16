@@ -2275,3 +2275,25 @@
   `ONE_MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_PASS_STRUCTURED_MODEL_ONLY`
 - Classification: finite source-local fit-eligible development PASS only;
   not calibration/holdout/tube/controller data; ID-2C2 remains evaluator-only
+
+## R_geo/Z_geo 1 ms ID-2E1 structured active-nominal model
+
+- Design / implementation / independent audit:
+  `02a7f113 / 59d2790a / d8bb8dc3`
+- Server validation: `bash -n`, compile, focused `7/7`, complete one-ms
+  `147/147`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2e1_models_59d2790a`
+- Execution: 21 development fits; zero reset, `gotsc`, TSC and plant advance
+- Primary / strengthened independent SHA-256:
+  `b0fb654f9f1e5a1f947740a1c5012669f863518dcfd975f00d8c8cb642e38062 /`
+  `80b31220b0d7a3d89a0652d4da2b98b6a31ff11d85bd7f9bc4a90fd2f1523078`
+- Independent full-fold recomputation: PASS; maximum difference `2.78e-17`
+- Candidate result: no p04/p07 fixed-pole/FIR candidate passed all five
+  whole-schedule folds; no selected artifact
+- P09 event development: NRMSE `0.1717123`, improvement `80.36%`
+- ID-2C2 evaluator: unopened, zero records read
+- Final route: `ONE_MS_ID2E1_GROUPED_DEVELOPMENT_MODEL_FAIL_ROUTE_REVIEW`
+- Classification: model/data-geometry failure before evaluator; not runtime,
+  TSC, calibration, holdout, controller or reachability evidence
+- Next: route review of the state19/state27 sign-dependent event pattern

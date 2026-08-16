@@ -1,5 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2E1 is final as grouped structured-model FAIL; route review is the
+> unique active task (2026-08-17):** server validation passed 7/7 focused and
+> 147/147 complete one-ms tests. Twenty-one deterministic development fits
+> ran with zero TSC/plant work. No p04/p07 candidate passed all five whole-
+> schedule folds; the route is
+> `ONE_MS_ID2E1_GROUPED_DEVELOPMENT_MODEL_FAIL_ROUTE_REVIEW`.
+> ID-2C2 remained unopened, no model artifact was emitted, and an independent
+> full-fold recomputation agreed within `2.78e-17`.
+>
+> The failure is concentrated in repeatability-unqualified minus-sign
+> excursions at absolute states 19 and 27, near `(-0.6..-0.7,+0.25..+0.28)`
+> mm, while the separately modelled p09 event channel achieved NRMSE 0.172.
+> The active task is therefore review/design only: first decide whether to
+> perform a zero-new-TSC raw event-attribution audit, followed either by a
+> prospectively frozen hybrid event-aware model or a small fresh matched
+> event replay sentinel. ID2C2, calibration, holdout, GRU/TCN, tube,
+> recourse, controller/MPC and later stages remain blocked. This is the sole
+> active pointer; all notices below are historical.
+
 > **ID-2E1 structured active-nominal model is the unique active task
 > (2026-08-17):** ID-2D1R1 completed 24/24 authentic rollouts, 768/768
 > verified one-ms advances and an independently authenticated 3,960-file raw

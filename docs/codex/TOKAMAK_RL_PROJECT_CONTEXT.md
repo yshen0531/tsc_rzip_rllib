@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-17, post-ID-2E1):** the frozen simple
+> structured family failed all-schedule p04/p07 development generalization
+> before evaluator open. The p09 event model worked, but p04/p07 minus cells
+> contain isolated absolute-state-19/27 excursions that linear odd/even/time
+> lifts cannot generalize. No ID2C2 data were consumed and no artifact was
+> selected. The immediate task is route review and a prospective raw event-
+> attribution design, not GRU/TCN escalation or controller work.
+> `CURRENT_TASK.md` is the sole active authority; older notices below are
+> historical.
+
 > **Active new-round context (2026-08-17, ID-2E1):** ID-2D1R1 completed its
 > authentic 24-rollout duration/time development campaign and independently
 > passed raw, repeatability, model-aligned support, signal and Ip gates. The

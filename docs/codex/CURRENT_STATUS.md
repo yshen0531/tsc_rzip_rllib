@@ -1,5 +1,20 @@
 # Current status
 
+> **ID-2E1 final grouped-development FAIL; evaluator preserved unopened
+> (2026-08-17 Asia/Shanghai).** All server validation passed. Four frozen
+> p04/p07 candidates failed whole-schedule generalization; their best/worst
+> fold NRMSE ranges were `0.967/1.029`, `0.945/1.041`, `1.056/1.219` and
+> `0.806/1.916`. The p09 event channel separately fit with NRMSE `0.1717`.
+> Independent feature construction/refit/metric recomputation selected no
+> model with maximum numeric difference `2.78e-17`.
+>
+> No ID2C2 trajectory was read, no artifact was emitted, and no TSC or plant
+> advance occurred. The route is paused at a model/experiment architecture
+> decision: audit the state19/state27 sign-dependent event pattern before
+> choosing hybrid-event modelling versus fresh matched repeatability data.
+> It is not legitimate to loosen the gates or jump directly to a larger
+> recurrent network. Older notices below are historical.
+
 > **ID-2D1R1 final finite PASS; ID-2E1 structured model frozen
 > (2026-08-17 Asia/Shanghai).** ID-2D1R1 completed 24/24 rollouts and
 > 768/768 verified TSC advances. Its raw inventory is 3,960 required files,
