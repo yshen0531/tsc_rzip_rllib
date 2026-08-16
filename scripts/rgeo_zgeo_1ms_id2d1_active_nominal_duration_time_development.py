@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run ID-2D1 active-nominal duration/time development TSC campaign."""
+"""Run ID-2D1R1 active-nominal duration/time development TSC campaign."""
 
 from __future__ import annotations
 
@@ -35,17 +35,17 @@ from scripts.rgeo_zgeo_1ms_id2c1_active_nominal_vector_search import (  # noqa: 
 )
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2d1-active-nominal-duration-time-development-result-v1"
-CONFIG_SHA256 = "04e2c4f39ea5071c06c4ae71771490540699df10142e4952d7d394e48d24fc96"
-DEFAULT_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2d1_active_nominal_duration_time_development.json"
+SCHEMA = "rgeo-zgeo-1ms-id2d1r1-active-nominal-duration-time-development-result-v1"
+CONFIG_SHA256 = "856b2f3c5baeff4526a918e617db3cf62d7773442cd5f8d2965fa4344eef8ed7"
+DEFAULT_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2d1r1_active_nominal_duration_time_development.json"
 ID2C1_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2c1_active_nominal_vector_search.json"
-DESIGN = ROOT / "docs/codex/reports/RGEO_ZGEO_1MS_ID2D1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_DESIGN.md"
+DESIGN = ROOT / "docs/codex/reports/RGEO_ZGEO_1MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_DESIGN.md"
 
 
 def _exact_stage(stage: dict[str, Any]) -> None:
     exact = {
-        "schema_version": "rgeo-zgeo-1ms-id2d1-active-nominal-duration-time-development-v1",
-        "stage_id": "rgeo_zgeo_1ms_id2d1_active_nominal_duration_time_development_v1",
+        "schema_version": "rgeo-zgeo-1ms-id2d1r1-active-nominal-duration-time-development-v1",
+        "stage_id": "rgeo_zgeo_1ms_id2d1r1_active_nominal_duration_time_development_v1",
         "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
         "takeover_time_ms": 1100,
         "control_period_ms": 1,
@@ -59,7 +59,7 @@ def _exact_stage(stage: dict[str, Any]) -> None:
         "retry_after_any_advance_attempt": "forbidden",
         "experiment_contract": "tsc_only_prospective_fit_eligible_empirical_development",
         "intended_use": "source_local_active_nominal_duration_time_and_response_memory_development",
-        "model_fit_use_after_all_gates_pass": "id2d1_development_only",
+        "model_fit_use_after_all_gates_pass": "id2d1r1_development_only",
         "calibration_use": "forbidden",
         "blind_holdout_use": "forbidden",
         "fixture_expert_oracle_bc_dagger_rl_use": "forbidden",
@@ -74,7 +74,7 @@ def _exact_stage(stage: dict[str, Any]) -> None:
         "candidate_id": "p03_minus_stride1",
         "p03_minus_increment_issues": list(range(1, 16)),
         "held_from_issue_step": 15,
-        "selection_or_adaptation_during_id2d1": "forbidden",
+        "selection_or_adaptation_during_id2d1r1": "forbidden",
     }:
         raise InputIntegrityError("frozen nominal mismatch")
     expected_schedules = [
@@ -139,9 +139,12 @@ def _exact_stage(stage: dict[str, Any]) -> None:
     }:
         raise InputIntegrityError("baseline repeatability changed")
     if stage.get("fit_eligibility_gates") != {
-        "virtual_residual_coordinates": ["p04", "p07", "p09_half_exact_center"],
-        "lag_steps": 16,
-        "required_lag_block_rank": 48,
+        "smooth_virtual_residual_coordinates": ["p04", "p07"],
+        "smooth_lag_steps": 16,
+        "required_smooth_lag_block_rank": 32,
+        "event_virtual_residual_coordinates": ["p09_half_exact_center"],
+        "event_lag_steps": 10,
+        "required_event_lag_block_rank": 10,
         "minimum_each_smooth_arm_peak_rz_response_m": 0.000025,
         "maximum_each_smooth_arm_absolute_ip_response_a": 150.0,
         "minimum_each_event_arm_peak_rz_response_m": 0.000025,
@@ -151,9 +154,9 @@ def _exact_stage(stage: dict[str, Any]) -> None:
     }:
         raise InputIntegrityError("fit eligibility gates changed")
     if stage.get("later_model_contract") != {
-        "id2d1_role": "development_fit_only_after_pass",
+        "id2d1r1_role": "development_fit_only_after_pass",
         "id2c2_role": "immutable_evaluator_only",
-        "id2c2_issue16_one_issue_cells_are_excluded_from_id2d1": True,
+        "id2c2_issue16_one_issue_cells_are_excluded_from_id2d1r1": True,
         "action_blind_nominal_baseline_required": True,
         "stable_low_order_or_fixed_pole_candidate_required_first": True,
         "p09_is_separate_hybrid_event_channel": True,
@@ -174,14 +177,14 @@ def _exact_stage(stage: dict[str, Any]) -> None:
     if stage.get("diagnostic_artifacts") != ["sprsina"]:
         raise InputIntegrityError("diagnostic artifacts changed")
     expected_routes = {
-        "offline_or_input_fail": "ONE_MS_ID2D1_OFFLINE_OR_INPUT_FAIL_NO_TSC",
-        "storage_fail": "ONE_MS_ID2D1_STORAGE_FAIL_NO_TSC",
-        "execution_or_interface_fail": "ONE_MS_ID2D1_EXECUTION_OR_INTERFACE_FAIL_STOP",
-        "raw_integrity_fail": "ONE_MS_ID2D1_RAW_INTEGRITY_FAIL_PRESERVE_RAW_STOP",
-        "baseline_repeatability_fail": "ONE_MS_ID2D1_BASELINE_REPEATABILITY_FAIL_ROUTE_REVIEW",
-        "lag_support_fail": "ONE_MS_ID2D1_VIRTUAL_LAG_SUPPORT_FAIL_ROUTE_REVIEW",
-        "signal_or_ip_fail": "ONE_MS_ID2D1_RESPONSE_SIGNAL_OR_IP_FAIL_ROUTE_REVIEW",
-        "pass": "ONE_MS_ID2D1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_PASS_STRUCTURED_MODEL_ONLY",
+        "offline_or_input_fail": "ONE_MS_ID2D1R1_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+        "storage_fail": "ONE_MS_ID2D1R1_STORAGE_FAIL_NO_TSC",
+        "execution_or_interface_fail": "ONE_MS_ID2D1R1_EXECUTION_OR_INTERFACE_FAIL_STOP",
+        "raw_integrity_fail": "ONE_MS_ID2D1R1_RAW_INTEGRITY_FAIL_PRESERVE_RAW_STOP",
+        "baseline_repeatability_fail": "ONE_MS_ID2D1R1_BASELINE_REPEATABILITY_FAIL_ROUTE_REVIEW",
+        "lag_support_fail": "ONE_MS_ID2D1R1_MODEL_ALIGNED_LAG_SUPPORT_FAIL_ROUTE_REVIEW",
+        "signal_or_ip_fail": "ONE_MS_ID2D1R1_RESPONSE_SIGNAL_OR_IP_FAIL_ROUTE_REVIEW",
+        "pass": "ONE_MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_PASS_STRUCTURED_MODEL_ONLY",
     }
     if stage.get("routes") != expected_routes:
         raise InputIntegrityError("routes changed")
@@ -190,17 +193,17 @@ def _exact_stage(stage: dict[str, Any]) -> None:
 
 
 def load(stage_path: Path) -> tuple[dict[str, Any], Any, dict[str, Any], dict[str, Any]]:
-    stage_path = inside_root(stage_path, "ID2D1 config")
+    stage_path = inside_root(stage_path, "ID2D1R1 config")
     if sha256(stage_path) != CONFIG_SHA256:
-        raise InputIntegrityError("ID2D1 config hash mismatch")
+        raise InputIntegrityError("ID2D1R1 config hash mismatch")
     stage = json.loads(stage_path.read_text(encoding="utf-8"))
     _exact_stage(stage)
-    if sha256(inside_root(DESIGN, "ID2D1 design")) != stage["evidence"]["design_sha256"]:
-        raise InputIntegrityError("ID2D1 design hash mismatch")
+    if sha256(inside_root(DESIGN, "ID2D1R1 design")) != stage["evidence"]["design_sha256"]:
+        raise InputIntegrityError("ID2D1R1 design hash mismatch")
     base = inside_root(ROOT / stage["base_tsc_config"], "base config")
     if sha256(base) != stage["evidence"]["base_tsc_config_sha256"]:
         raise InputIntegrityError("base config hash mismatch")
-    for key in ("id2c1_config", "id2c1_compact", "id2c2_config", "id2c2_compact"):
+    for key in ("id2c1_config", "id2c1_compact", "id2c2_config", "id2c2_compact", "id2d1_v1_config", "id2d1_v1_design"):
         row = stage["evidence"][key]
         path = inside_root(ROOT / row["path"], key)
         if sha256(path) != row["sha256"]:
@@ -275,14 +278,14 @@ def campaign_streams(stage: dict[str, Any], cfg: Any, targets: dict[str, Any], i
     return rows
 
 
-def lag_support(streams: Sequence[dict[str, Any]], lag_steps: int = 16) -> dict[str, Any]:
+def lag_support(streams: Sequence[dict[str, Any]], coordinates: Sequence[int], lag_steps: int) -> dict[str, Any]:
     matrix_rows = []
     for stream in streams:
-        u = np.asarray([action["probe_virtual_action"] for action in stream["actions"]], dtype=float)
+        u = np.asarray([action["probe_virtual_action"] for action in stream["actions"]], dtype=float)[:, list(coordinates)]
         for issue in range(len(u)):
             feature = []
             for lag in range(lag_steps):
-                feature.extend(u[issue - lag].tolist() if issue >= lag else [0.0, 0.0, 0.0])
+                feature.extend(u[issue - lag].tolist() if issue >= lag else [0.0] * len(coordinates))
             matrix_rows.append(feature)
     matrix = np.asarray(matrix_rows, dtype=float)
     singular = np.linalg.svd(matrix, compute_uv=False)
@@ -329,13 +332,18 @@ def development_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) -
             "terminal_to_peak_rz_ratio": float(norms[-1] / norms[peak]) if norms[peak] else math.inf,
             "complete_response": response[effect:33].tolist(),
         })
-    support = lag_support(campaign_streams(stage, load_id2c1(ID2C1_CONFIG)[1], load_id2c1(ID2C1_CONFIG)[3], load_id2c1(ID2C1_CONFIG)[0]), stage["fit_eligibility_gates"]["lag_steps"])
+    streams = campaign_streams(stage, load_id2c1(ID2C1_CONFIG)[1], load_id2c1(ID2C1_CONFIG)[3], load_id2c1(ID2C1_CONFIG)[0])
+    smooth_support = lag_support(streams, [0, 1], stage["fit_eligibility_gates"]["smooth_lag_steps"])
+    event_support = lag_support(streams, [2], stage["fit_eligibility_gates"]["event_lag_steps"])
     gates = stage["fit_eligibility_gates"]
     smooth = [row for row in arms if row["cell_kind"] == "smooth_residual"]
     event = [row for row in arms if row["cell_kind"] == "event_residual"]
     gate_passes = {
         "baseline_repeatability": repeatability["passed"],
-        "virtual_lag_support": support["rank"] == gates["required_lag_block_rank"],
+        "model_aligned_lag_support": (
+            smooth_support["rank"] == gates["required_smooth_lag_block_rank"]
+            and event_support["rank"] == gates["required_event_lag_block_rank"]
+        ),
         "response_signal_and_ip": all(
             row["peak_rz_response_norm_m"] >= gates["minimum_each_smooth_arm_peak_rz_response_m"]
             and row["maximum_absolute_ip_response_a"] <= gates["maximum_each_smooth_arm_absolute_ip_response_a"]
@@ -346,7 +354,7 @@ def development_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) -
             for row in event
         ),
     }
-    return {"baseline_repeatability": repeatability, "lag_support": support, "arm_metrics": arms, "gate_passes": gate_passes}
+    return {"baseline_repeatability": repeatability, "smooth_lag_support": smooth_support, "event_lag_support": event_support, "arm_metrics": arms, "gate_passes": gate_passes}
 
 
 def _route(stage: dict[str, Any], rows: Sequence[dict[str, Any]], raw_ok: bool, metrics: dict[str, Any] | None) -> str:
@@ -360,7 +368,7 @@ def _route(stage: dict[str, Any], rows: Sequence[dict[str, Any]], raw_ok: bool, 
     gates = metrics["gate_passes"]
     if not gates["baseline_repeatability"]:
         return stage["routes"]["baseline_repeatability_fail"]
-    if not gates["virtual_lag_support"]:
+    if not gates["model_aligned_lag_support"]:
         return stage["routes"]["lag_support_fail"]
     if not gates["response_signal_and_ip"]:
         return stage["routes"]["signal_or_ip_fail"]
@@ -374,9 +382,14 @@ def offline(stage_path: Path, source_revision: str) -> dict[str, Any]:
     try:
         stage, cfg, targets, id2c1_stage = load(stage_path)
         streams = campaign_streams(stage, cfg, targets, id2c1_stage)
-        support = lag_support(streams, stage["fit_eligibility_gates"]["lag_steps"])
-        if support["rank"] != stage["fit_eligibility_gates"]["required_lag_block_rank"]:
-            raise InputIntegrityError(f"lag support rank {support['rank']}")
+        support = {
+            "smooth": lag_support(streams, [0, 1], stage["fit_eligibility_gates"]["smooth_lag_steps"]),
+            "event": lag_support(streams, [2], stage["fit_eligibility_gates"]["event_lag_steps"]),
+        }
+        if support["smooth"]["rank"] != stage["fit_eligibility_gates"]["required_smooth_lag_block_rank"]:
+            raise InputIntegrityError(f"smooth lag support rank {support['smooth']['rank']}")
+        if support["event"]["rank"] != stage["fit_eligibility_gates"]["required_event_lag_block_rank"]:
+            raise InputIntegrityError(f"event lag support rank {support['event']['rank']}")
         if any(len(row["targets"]) != 32 or len(row["actions"]) != 32 for row in streams):
             raise InputIntegrityError("stream dimensions changed")
     except Exception as exc:
@@ -409,7 +422,7 @@ def _storage(stage: dict[str, Any], output: Path) -> dict[str, Any]:
 
 
 def run(stage_path: Path, source_revision: str, output: Path) -> dict[str, Any]:
-    output = inside_root(output, "ID2D1 output")
+    output = inside_root(output, "ID2D1R1 output")
     if output.exists():
         raise FileExistsError(f"refusing to overwrite {output}")
     stage, cfg, targets, id2c1_stage = load(stage_path)

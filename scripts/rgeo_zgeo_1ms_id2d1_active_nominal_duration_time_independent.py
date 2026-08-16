@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent raw reparse for ID-2D1 duration/time development."""
+"""Independent raw reparse for ID-2D1R1 duration/time development."""
 
 from __future__ import annotations
 
@@ -29,7 +29,7 @@ from scripts.rgeo_zgeo_1ms_id2d1_active_nominal_duration_time_development import
 )
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2d1-active-nominal-duration-time-independent-v1"
+SCHEMA = "rgeo-zgeo-1ms-id2d1r1-active-nominal-duration-time-independent-v1"
 
 
 def _inside(path: Path, label: str) -> Path:
@@ -75,14 +75,14 @@ def _repeatability(left: dict[str, Any], right: dict[str, Any], stage: dict[str,
     return {"passed": not failures, "failures": list(dict.fromkeys(failures)), "maximum_absolute_difference": maxima}
 
 
-def _lag_support(rows: Sequence[dict[str, Any]], lag_steps: int) -> dict[str, Any]:
+def _lag_support(rows: Sequence[dict[str, Any]], coordinates: Sequence[int], lag_steps: int) -> dict[str, Any]:
     matrix_rows = []
     for row in rows:
-        u = np.asarray([action["probe_virtual_action"] for action in row["actions"]], dtype=float)
+        u = np.asarray([action["probe_virtual_action"] for action in row["actions"]], dtype=float)[:, list(coordinates)]
         for issue in range(len(u)):
             feature = []
             for lag in range(lag_steps):
-                feature.extend(u[issue - lag].tolist() if issue >= lag else [0.0, 0.0, 0.0])
+                feature.extend(u[issue - lag].tolist() if issue >= lag else [0.0] * len(coordinates))
             matrix_rows.append(feature)
     matrix = np.asarray(matrix_rows, dtype=float)
     singular = np.linalg.svd(matrix, compute_uv=False)
@@ -127,13 +127,17 @@ def _metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) -> dict[str,
             "terminal_to_peak_rz_ratio": float(norms[-1] / norms[peak]) if norms[peak] else math.inf,
             "complete_response": response[effect:33].tolist(),
         })
-    support = _lag_support(rows, int(stage["fit_eligibility_gates"]["lag_steps"]))
+    smooth_support = _lag_support(rows, [0, 1], int(stage["fit_eligibility_gates"]["smooth_lag_steps"]))
+    event_support = _lag_support(rows, [2], int(stage["fit_eligibility_gates"]["event_lag_steps"]))
     gates = stage["fit_eligibility_gates"]
     smooth = [row for row in arms if row["cell_kind"] == "smooth_residual"]
     event = [row for row in arms if row["cell_kind"] == "event_residual"]
     gate_passes = {
         "baseline_repeatability": repeatability["passed"],
-        "virtual_lag_support": support["rank"] == gates["required_lag_block_rank"],
+        "model_aligned_lag_support": (
+            smooth_support["rank"] == gates["required_smooth_lag_block_rank"]
+            and event_support["rank"] == gates["required_event_lag_block_rank"]
+        ),
         "response_signal_and_ip": all(
             row["peak_rz_response_norm_m"] >= gates["minimum_each_smooth_arm_peak_rz_response_m"]
             and row["maximum_absolute_ip_response_a"] <= gates["maximum_each_smooth_arm_absolute_ip_response_a"]
@@ -144,7 +148,7 @@ def _metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) -> dict[str,
             for row in event
         ),
     }
-    return {"baseline_repeatability": repeatability, "lag_support": support, "arm_metrics": arms, "gate_passes": gate_passes}
+    return {"baseline_repeatability": repeatability, "smooth_lag_support": smooth_support, "event_lag_support": event_support, "arm_metrics": arms, "gate_passes": gate_passes}
 
 
 def audit(stage_path: Path, run_dir: Path, destination: Path | None = None) -> dict[str, Any]:

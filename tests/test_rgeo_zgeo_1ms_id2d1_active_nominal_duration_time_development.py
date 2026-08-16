@@ -5,7 +5,7 @@ import unittest
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2d1_active_nominal_duration_time_development.json"
+CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2d1r1_active_nominal_duration_time_development.json"
 
 
 class Id2D1Tests(unittest.TestCase):
@@ -47,15 +47,18 @@ class Id2D1Tests(unittest.TestCase):
             self.assertLessEqual(max(action["maximum_issued_delta_a"] for action in row["actions"]), 0.3)
             self.assertTrue(all(len(action["expected_card15_fields"]) == 14 for action in row["actions"]))
 
-    def test_virtual_lag_support_is_full(self):
-        support = self.primary.lag_support(self.streams, 16)
-        self.assertEqual((support["rows"], support["columns"], support["rank"]), (768, 48, 48))
-        self.assertGreater(support["minimum_singular_value"], 0.0)
+    def test_model_aligned_lag_support_is_full(self):
+        smooth = self.primary.lag_support(self.streams, [0, 1], 16)
+        event = self.primary.lag_support(self.streams, [2], 10)
+        self.assertEqual((smooth["rows"], smooth["columns"], smooth["rank"]), (768, 32, 32))
+        self.assertEqual((event["rows"], event["columns"], event["rank"]), (768, 10, 10))
+        self.assertGreater(smooth["minimum_singular_value"], 0.0)
+        self.assertGreater(event["minimum_singular_value"], 0.0)
 
     def test_frozen_config_mutation_fails_closed(self):
         for path, value in (
             (("maximum_rollouts",), 25),
-            (("fit_eligibility_gates", "lag_steps"), 15),
+            (("fit_eligibility_gates", "smooth_lag_steps"), 15),
             (("empirical_exploration", "post_successor_step_caps", "r_geo_m"), 0.003),
             (("later_model_contract", "id2c2_role"), "fit"),
         ):
@@ -68,7 +71,7 @@ class Id2D1Tests(unittest.TestCase):
                 self.primary._exact_stage(mutated)
 
     def test_data_roles_are_separated(self):
-        self.assertEqual(self.stage["model_fit_use_after_all_gates_pass"], "id2d1_development_only")
+        self.assertEqual(self.stage["model_fit_use_after_all_gates_pass"], "id2d1r1_development_only")
         self.assertEqual(self.stage["later_model_contract"]["id2c2_role"], "immutable_evaluator_only")
         self.assertEqual(self.stage["calibration_use"], "forbidden")
         self.assertEqual(self.stage["blind_holdout_use"], "forbidden")
