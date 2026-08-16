@@ -112,7 +112,7 @@ def _rows_by_key(rows: list[dict[str, Any]]) -> dict[tuple[str, str, str, int], 
 def _baselines(rows: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
     values: dict[str, dict[str, Any]] = {}
     for row in rows:
-        if row["direction_id"] == "baseline":
+        if row.get("is_context_baseline") is True:
             values[str(row["context_id"])] = row
     if sorted(values) != ["anchor_p03_minus", "history_p04_plus", "late_q0"]:
         raise ValueError("baseline context set mismatch")
@@ -126,7 +126,7 @@ def feature_cancellation(
     by_key = _rows_by_key(rows)
     baselines = _baselines(rows)
     contexts = sorted(baselines)
-    arms = sorted({key[1:] for key in by_key if key[1] != "baseline"})
+    arms = sorted({key[1:] for key in by_key if key[1] != "None"})
     output: dict[str, Any] = {}
     for model_id in ("stable_exp_signed", "stable_exp_signed_even"):
         maximum = 0.0
@@ -159,7 +159,7 @@ def feature_cancellation(
     contextual_lengths = {
         len(feature_vector(row, 10, 1, "stable_exp_contextual", config))
         for row in rows
-        if row["direction_id"] != "baseline"
+        if row.get("is_context_baseline") is not True
     }
     output["stable_exp_contextual"] = {
         "feature_lengths": sorted(contextual_lengths),

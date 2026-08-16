@@ -42,11 +42,11 @@ class Id2C0ContractTests(unittest.TestCase):
                 {"target_current_a_tsc": [0.0] * 14, "probe_virtual_action": [0.0, 0.0]}
                 for _ in range(32)
             ]
-            baseline = {"context_id": context, "direction_id": "baseline", "sign": "none", "duration_issues": 0, "states": states, "actions": q0_actions}
+            baseline = {"context_id": context, "is_context_baseline": True, "direction_id": None, "sign": None, "duration_issues": 0, "states": states, "actions": q0_actions}
             action_rows = json.loads(json.dumps(q0_actions))
             action_rows[10]["target_current_a_tsc"][0] = 0.3
             action_rows[10]["probe_virtual_action"][0] = 1.0
-            action = {"context_id": context, "direction_id": "p", "sign": "plus", "duration_issues": 1, "states": states, "actions": action_rows}
+            action = {"context_id": context, "is_context_baseline": False, "direction_id": "p", "sign": "plus", "duration_issues": 1, "states": states, "actions": action_rows}
             rows.extend([baseline, action])
         metrics = primary.feature_cancellation(rows, config)
         self.assertLessEqual(metrics["stable_exp_signed"]["maximum_cross_context_matched_baseline_feature_difference"], 1e-12)

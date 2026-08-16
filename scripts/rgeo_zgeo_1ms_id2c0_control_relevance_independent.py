@@ -45,12 +45,12 @@ def independent(repo_root: Path, config_path: Path, id2a_run_dir: Path, primary_
             repo_root, repo_root / "configs/rgeo_zgeo_1ms_id2b1_structured_model_development.json"
         )
         _, rows, identity = load_rows(repo_root, id2b1_config, id2a_run_dir)
-        baselines = {row["context_id"]: row for row in rows if row["direction_id"] == "baseline"}
+        baselines = {row["context_id"]: row for row in rows if row.get("is_context_baseline") is True}
         arms = sorted(
             {
                 (row["direction_id"], row["sign"], int(row["duration_issues"]))
                 for row in rows
-                if row["direction_id"] != "baseline"
+                if row.get("is_context_baseline") is not True
             }
         )
         indexed = {
