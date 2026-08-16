@@ -1,0 +1,92 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2d1r1-tracked-compact-evidence-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2d1r1_active_nominal_duration_time_development_v1",
+  "result_identity": "rgeo_zgeo_1ms_id2d1r1_runs_20260817_3e5b28b3",
+  "source_revision": "3e5b28b32c31c66546ee0e08d63fcf1531b3c613",
+  "stage_config_sha256": "856b2f3c5baeff4526a918e617db3cf62d7773442cd5f8d2965fa4344eef8ed7",
+  "design_sha256": "fbcdf3f9671e5634654f80d065d356a2255ebc6609b281a7357cc92c31fed298",
+  "offline_preflight_sha256": "79d89218eab5d3364cdca58a047c6ba4b93a36e823325ca78772fed705aaba1f",
+  "primary_result_sha256": "f68d30865ed47503f32cf830da42e829b94bb6db6a3c4165d586a19ba726a7a8",
+  "independent_audit_sha256": "85e7d598332905a6a2de11a71816a2eb3d2d374cef62ac1b5ce685084ac0ae02",
+  "server_log_sha256": "1309276253579df874708c8a9b1a4bf47cbe8d1d0ab2b28d09ed82d47b1ea64f",
+  "primary_route": "ONE_MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_PASS_STRUCTURED_MODEL_ONLY",
+  "primary_passed": true,
+  "independent_audit_passed": true,
+  "execution": {
+    "rollouts_completed": 24,
+    "reset_calls": 24,
+    "advance_attempts": 768,
+    "plant_advance_gotsc_calls": 768,
+    "verified_plant_advances": 768,
+    "raw_states": 792,
+    "required_artifact_files": 3960,
+    "required_artifact_bytes": 46643195808,
+    "required_artifact_inventory_sha256": "bd726766870f08e98ae46342c3ad41763a465e2e6e0adef832b7e295af688b50",
+    "missing_required_artifacts": []
+  },
+  "baseline_repeatability": {
+    "passed": true,
+    "maximum_geometry_m": 0.0,
+    "maximum_ip_a": 0.0,
+    "maximum_coil_a": 0.0,
+    "maximum_wire_a": 0.0
+  },
+  "input_support": {
+    "smooth_p04_p07_lag16": {
+      "rows": 768,
+      "columns": 32,
+      "rank": 32,
+      "condition": 14.73875049282496,
+      "minimum_singular_value": 0.5886130234038017
+    },
+    "event_p09_lag10": {
+      "rows": 768,
+      "columns": 10,
+      "rank": 10,
+      "condition": 1.0,
+      "minimum_singular_value": 1.4142135623730951
+    }
+  },
+  "response_summary": {
+    "smooth_minimum_peak_rz_response_um": 51.78341709706779,
+    "smooth_maximum_peak_rz_response_um": 749.7605261649384,
+    "smooth_maximum_absolute_ip_response_a": 55.065700000002835,
+    "event_minimum_peak_rz_response_um": 35.367712429591805,
+    "event_maximum_peak_rz_response_um": 37.426742741641775,
+    "event_maximum_absolute_ip_response_a": 7.167500000003201,
+    "maximum_terminal_to_peak_rz_ratio": 0.367292878723999,
+    "delayed_asymmetric_large_response_cells": [
+      "p04_minus_i16_d4",
+      "p04_minus_i22_d2",
+      "p04_minus_i22_d4",
+      "p07_minus_i16_d2",
+      "p07_minus_i16_d4",
+      "p07_minus_i22_d1",
+      "p07_minus_i22_d2",
+      "p07_minus_i22_d4"
+    ],
+    "claim": "descriptive finite responses relative to exact held-nominal baseline; not a Jacobian, superposition theorem or transition tube"
+  },
+  "gate_passes": {
+    "baseline_repeatability": true,
+    "model_aligned_lag_support": true,
+    "response_signal_and_ip": true
+  },
+  "data_roles": {
+    "id2d1r1_model_development_fit_eligible": true,
+    "id2c2_role": "immutable_evaluator_only",
+    "calibration_use": false,
+    "blind_holdout_use": false,
+    "controller_safety_or_recourse_qualification_use": false,
+    "fixture_expert_oracle_bc_dagger_rl_use": false
+  },
+  "server": {
+    "remote_project": "/home/yangshen0711/tsc_all/tsc_rzip_rllib",
+    "remote_run_directory": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2d1r1_runs_20260817_3e5b28b3",
+    "remote_log": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/logs/nohup/rgeo_zgeo_1ms_id2d1r1_20260817_3e5b28b3.log",
+    "raw_retained_remotely": true,
+    "free_bytes_after_run": 474730352640
+  },
+  "classification": "finite_source_local_active_nominal_duration_time_development_pass_only",
+  "next_authority": "prospectively_freeze_zero_new_tsc_structured_model_development_only"
+}

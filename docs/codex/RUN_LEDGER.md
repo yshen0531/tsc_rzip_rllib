@@ -2251,3 +2251,27 @@
   rank48 gate was not weakened or re-labelled as PASS
 - Next: new ID-2D1R1 identity with unchanged physical campaign and separate
   smooth/event lag-support gates
+
+## R_geo/Z_geo 1 ms ID-2D1R1 active-nominal duration/time development
+
+- Design / implementation: `7a0e9955 / 3e5b28b3`
+- Server validation: focused `7/7`, complete one-ms `140/140`, `bash -n`,
+  compile and zero-plant 24-stream preflight PASS
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2d1r1_runs_20260817_3e5b28b3`
+- Remote log:
+  `logs/nohup/rgeo_zgeo_1ms_id2d1r1_20260817_3e5b28b3.log`
+- Expected/actual: 24/24 rollouts, 768/768 verified advances, 792 states
+- Raw: 3,960 required files / 46,643,195,808 bytes / digest
+  `bd726766870f08e98ae46342c3ad41763a465e2e6e0adef832b7e295af688b50`
+- Primary / independent SHA-256:
+  `f68d30865ed47503f32cf830da42e829b94bb6db6a3c4165d586a19ba726a7a8 /`
+  `85e7d598332905a6a2de11a71816a2eb3d2d374cef62ac1b5ce685084ac0ae02`
+- Exact baseline repeatability, smooth lag16 rank32, event lag10 rank10 and
+  all signal/Ip gates PASS; independent raw recomputation PASS
+- Several minus cells have authentic delayed state27 peaks of 0.63--0.75 mm,
+  so a globally odd or instantaneous residual model is not presumed
+- Final route:
+  `ONE_MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_PASS_STRUCTURED_MODEL_ONLY`
+- Classification: finite source-local fit-eligible development PASS only;
+  not calibration/holdout/tube/controller data; ID-2C2 remains evaluator-only
