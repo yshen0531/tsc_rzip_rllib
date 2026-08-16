@@ -1,0 +1,153 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2e1-structured-active-nominal-model-v1",
+  "stage_id": "rgeo_zgeo_1ms_id2e1_structured_active_nominal_model_v1",
+  "execution_contract": "server_zero_new_tsc_development_fit_then_single_evaluator_open",
+  "plant_advances": 0,
+  "tsc_calls": 0,
+  "calibration_records_read": 0,
+  "blind_holdout_records_read": 0,
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "maximum_state_index": 32,
+  "effect_state_index": "issue_step_plus_one",
+  "observability": {
+    "current_same_step_r_geo_z_geo_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_observation_and_owned_action_history": "available",
+    "future_successor_before_issue": "unknown",
+    "future_actual_or_readback_current_as_predictor": "forbidden",
+    "pre_takeover_history": "not_claimed"
+  },
+  "development_source": {
+    "run_directory": "rgeo_zgeo_1ms_id2d1r1_runs_20260817_3e5b28b3",
+    "source_revision": "3e5b28b32c31c66546ee0e08d63fcf1531b3c613",
+    "tracked_compact_path": "docs/codex/audits/rgeo_zgeo_1ms_id2d1r1_result_20260817_3e5b28b3/compact_evidence.json",
+    "tracked_compact_sha256": "ae90a15a9c891efdedcc54758b6ff4b0f94d107d5b9bc3dd76cf44b32cd5cd7b",
+    "primary_result_sha256": "f68d30865ed47503f32cf830da42e829b94bb6db6a3c4165d586a19ba726a7a8",
+    "independent_audit_sha256": "85e7d598332905a6a2de11a71816a2eb3d2d374cef62ac1b5ce685084ac0ae02",
+    "required_route": "ONE_MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_PASS_STRUCTURED_MODEL_ONLY",
+    "rollouts": 24,
+    "held_nominal_replays": ["held_nominal_baseline_r0", "held_nominal_baseline_r1"],
+    "smooth_action_cells": 20,
+    "event_action_cells": 2,
+    "data_role": "fit_and_grouped_development_selection_only"
+  },
+  "evaluator_source": {
+    "run_directory": "rgeo_zgeo_1ms_id2c2_runs_20260817_58f24fc0",
+    "source_revision": "58f24fc0266259a166288bb60a8f413cc6edd424",
+    "tracked_compact_path": "docs/codex/audits/rgeo_zgeo_1ms_id2c2_result_20260817_58f24fc0/compact_evidence.json",
+    "tracked_compact_sha256": "ff1db7bbdf1b13b6416e2d44352b7f277923e724b70bfced2c2220bca9967770",
+    "primary_result_sha256": "3d665ba7044ae3dca0635987249c241a5d2559764437de802737580ae933a925",
+    "independent_audit_sha256": "a4f693915a001d31a64954f30c31d1b3ba345ed6cd8cc4f85d9c0751b3051976",
+    "required_route": "ONE_MS_ID2C2_FRESH_NOMINAL_VECTOR_VALIDATION_PASS_STRUCTURED_MODEL_DESIGN_REQUIRED",
+    "rollouts": 18,
+    "replays_per_pair": 2,
+    "evaluator_pairs": [
+      "selected_nominal_p04_minus",
+      "selected_nominal_p04_plus",
+      "selected_nominal_p07_minus",
+      "selected_nominal_p07_plus",
+      "selected_nominal_p09_half_exact_center_minus",
+      "selected_nominal_p09_half_exact_center_plus"
+    ],
+    "data_role": "single_open_immutable_evaluator_only"
+  },
+  "nominal_model": {
+    "kind": "time_indexed_held_active_nominal",
+    "fit_from_development_baseline_only": true,
+    "evaluator_baseline_is_truth_only_not_predictor": true,
+    "baseline_replays_must_be_exact": true
+  },
+  "smooth_channel": {
+    "virtual_coordinates": ["p04", "p07"],
+    "fixed_poles": [-0.5, 0.0, 0.5, 0.8, 0.95],
+    "ridge": 1e-6,
+    "feature_scaling": "training_fold_column_rms_no_centering",
+    "intercept": false,
+    "fir_lag_steps": 16,
+    "fold_schedule_cells": [
+      {"probe_issue_step": 16, "probe_duration_issues": 2},
+      {"probe_issue_step": 16, "probe_duration_issues": 4},
+      {"probe_issue_step": 22, "probe_duration_issues": 1},
+      {"probe_issue_step": 22, "probe_duration_issues": 2},
+      {"probe_issue_step": 22, "probe_duration_issues": 4}
+    ],
+    "candidate_order": [
+      "fixed_pole_odd",
+      "fixed_pole_signed_even",
+      "fixed_pole_signed_even_time",
+      "fir16_signed_even"
+    ],
+    "action_blind_comparator": "zero_residual_response",
+    "selection": "first_candidate_in_order_passing_every_development_fold"
+  },
+  "event_channel": {
+    "virtual_coordinate": "p09_half_exact_center",
+    "kind": "fixed_pole_signed_even",
+    "fixed_poles": [-0.5, 0.0, 0.5, 0.8, 0.95],
+    "ridge": 1e-6,
+    "training_probe_issue_step": 22,
+    "training_effect_ages": [1, 10],
+    "evaluator_probe_issue_step": 16,
+    "not_pooled_into_smooth_channel": true
+  },
+  "response_metrics": {
+    "r_z_units": "mm",
+    "ip_units": "A",
+    "r_z_rms_floor_mm": 0.025,
+    "peak_vector_direction_cosine_threshold": 0.5,
+    "only_post_effect_states_scored": true,
+    "deterministic_replays_collapsed_to_one_statistical_cell": true
+  },
+  "development_gates": {
+    "minimum_response_rmse_improvement_vs_zero_each_fold": 0.15,
+    "maximum_response_nrmse_each_fold": 0.85,
+    "maximum_arm_response_nrmse_p90_each_fold": 1.0,
+    "minimum_peak_direction_pass_fraction_each_fold": 0.75,
+    "maximum_r_z_response_error_p95_mm_each_fold": 0.15,
+    "maximum_ip_response_error_p95_a_each_fold": 15.0
+  },
+  "evaluator_gates": {
+    "minimum_aggregate_response_rmse_improvement_vs_zero": 0.20,
+    "maximum_aggregate_response_nrmse": 0.80,
+    "maximum_each_arm_response_nrmse": 1.10,
+    "minimum_peak_direction_pass_arms": 5,
+    "required_peak_direction_total_arms": 6,
+    "maximum_r_z_response_error_p95_mm": 0.025,
+    "maximum_ip_response_error_p95_a": 10.0,
+    "maximum_p09_response_nrmse": 0.80,
+    "required_p09_peak_direction_pass_arms": 2,
+    "maximum_absolute_r_z_error_p95_mm": 0.25,
+    "maximum_absolute_ip_error_p95_a": 25.0
+  },
+  "forbidden_inputs": [
+    "future_state",
+    "future_actual_current",
+    "future_readback_current",
+    "evaluator_baseline_as_prediction_input",
+    "rollout_id",
+    "sign_label",
+    "direction_label",
+    "source_or_history_id",
+    "wire_current",
+    "restart_hash",
+    "hidden_tsc_state"
+  ],
+  "selection_after_evaluator_open": "forbidden",
+  "neural_residual": "blocked_pending_id2e1_result",
+  "data_use": {
+    "id2d1r1": "development_fit_and_grouped_selection",
+    "id2c2": "single_open_evaluator_only",
+    "calibration": "unopened",
+    "blind_context_history_holdout": "unopened",
+    "fixture_expert_oracle_bc_dagger_rl": "forbidden",
+    "controller_safety_or_recourse_qualification": "forbidden"
+  },
+  "routes": {
+    "input_or_source_fail": "ONE_MS_ID2E1_INPUT_OR_SOURCE_INTEGRITY_FAIL_NO_MODEL_CLAIM",
+    "development_fail": "ONE_MS_ID2E1_GROUPED_DEVELOPMENT_MODEL_FAIL_ROUTE_REVIEW",
+    "evaluator_fail": "ONE_MS_ID2E1_IMMUTABLE_EVALUATOR_MODEL_FAIL_ROUTE_REVIEW",
+    "pass": "ONE_MS_ID2E1_STRUCTURED_SOURCE_LOCAL_MODEL_PASS_FRESH_CALIBRATION_DESIGN_REQUIRED"
+  },
+  "design_sha256": "d6719763eebfbe01d88f1c1b3b98ccfc8602cc3e5ad1511b682b7e018ae4d8c1",
+  "claim_boundary": "Finite source-local structured development/evaluation only; not calibrated uncertainty, blind context/history generalization, recourse, controller, MPC, transport, crossing, adaptation or RL."
+}

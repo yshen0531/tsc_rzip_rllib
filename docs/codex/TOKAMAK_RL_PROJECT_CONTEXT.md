@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-17, ID-2E1):** ID-2D1R1 completed its
+> authentic 24-rollout duration/time development campaign and independently
+> passed raw, repeatability, model-aligned support, signal and Ip gates. The
+> active zero-new-TSC model stage separates time-indexed active nominal from
+> residual response, uses whole-schedule development folds to select the
+> first eligible stable structured p04/p07 model, keeps p09 as a separate
+> event channel, freezes the artifact, and opens ID-2C2 exactly once as
+> evaluator. No evaluator-driven reselection or neural escalation is
+> allowed. PASS can open only fresh calibration/holdout design; failure
+> triggers route review. `CURRENT_TASK.md` is the sole active authority and
+> older notices below are historical.
+
 > **Active new-round context (2026-08-17, ID-2D1R1):** ID-2D1 v1 stopped
 > before TSC because it incorrectly demanded 16 smooth lag ages from the
 > separately declared p09 issue22 event, for which only ten ages exist before

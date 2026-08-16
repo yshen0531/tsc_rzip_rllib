@@ -1,4 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2E1 structured-model amendment (2026-08-17):** ID-2D1R1 is now a
+> complete source-local fit-eligible development PASS. The immediate
+> architecture discriminator is zero-new-TSC and decomposes a time-indexed
+> active nominal from action-conditioned response. P04/p07 first compare
+> stable fixed-pole odd, signed/even, time-scheduled and finite-FIR candidates
+> under whole-schedule folds; p09 remains a separate stable event channel.
+> The first development-eligible candidate is frozen before ID-2C2 is opened
+> once as evaluator. A failure pauses for route review before any larger
+> recurrent model. Calibration, context/history holdout, uncertainty tube,
+> recourse and constrained control remain downstream and the final two-axis
+> path/waypoint/crossing objective is unchanged.
+>
 > **ID-2D1R1 model-aligned support amendment (2026-08-17):** a smooth
 > fixed-pole/low-order residual and a separately labelled event residual must
 > not be given the same artificial memory-order gate. The unchanged campaign

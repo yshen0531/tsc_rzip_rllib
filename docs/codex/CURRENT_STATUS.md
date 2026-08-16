@@ -1,5 +1,25 @@
 # Current status
 
+> **ID-2D1R1 final finite PASS; ID-2E1 structured model frozen
+> (2026-08-17 Asia/Shanghai).** ID-2D1R1 completed 24/24 rollouts and
+> 768/768 verified TSC advances. Its raw inventory is 3,960 required files,
+> 46,643,195,808 bytes, digest
+> `bd726766870f08e98ae46342c3ad41763a465e2e6e0adef832b7e295af688b50`.
+> Primary/independent SHA-256 values are
+> `f68d30865ed47503f32cf830da42e829b94bb6db6a3c4165d586a19ba726a7a8 /`
+> `85e7d598332905a6a2de11a71816a2eb3d2d374cef62ac1b5ce685084ac0ae02`.
+> Baseline repeatability, smooth lag support, event support and response/Ip
+> gates all passed. Authentic delayed minus-sign responses reaching
+> 0.63--0.75 mm reject an assumed instantaneous/global-odd model but do not
+> identify their mechanism.
+>
+> ID-2E1 is now the only active stage. It runs zero new TSC, selects the
+> first simple stable candidate passing all five whole-schedule development
+> folds, freezes it, and then evaluates it once on immutable ID-2C2. No
+> evaluator-driven fallback is permitted. Calibration, blind holdout,
+> uncertainty, controller and recovery are still unopened. Older notices
+> below are historical.
+
 > **ID-2D1 v1 final zero-TSC preflight FAIL; ID-2D1R1 frozen
 > (2026-08-17 Asia/Shanghai).** The server compiled the v1 implementation and
 > passed six focused tests before the seventh exposed rank `42/48` instead of

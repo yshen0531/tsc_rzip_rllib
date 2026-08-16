@@ -1,5 +1,32 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **ID-2E1 structured active-nominal model is the unique active task
+> (2026-08-17):** ID-2D1R1 completed 24/24 authentic rollouts, 768/768
+> verified one-ms advances and an independently authenticated 3,960-file raw
+> inventory. Exact held-nominal repeatability, p04/p07 lag-16 support,
+> separate p09 event support and every signal/Ip gate passed. The final route
+> is
+> `ONE_MS_ID2D1R1_ACTIVE_NOMINAL_DURATION_TIME_DEVELOPMENT_PASS_STRUCTURED_MODEL_ONLY`.
+>
+> ID-2E1 is a zero-new-TSC stage. It uses ID-2D1R1 only for grouped
+> development fitting and selection, freezes the first passing simple stable
+> candidate, and only then opens ID-2C2 once as evaluator. It separates the
+> exact active nominal from response, compares fixed-pole odd/signed-even/
+> time-scheduled memory and finite FIR against a zero-response comparator,
+> and keeps p09 as a separate stable event channel. Evaluator results may
+> not change the candidate, regularization or features. Config/design
+> SHA-256 values are
+> `d80f2bca63bf035cb38edd0be663b5cf470d45bddfe96523ee9cfbd1360417ce /`
+> `d6719763eebfbe01d88f1c1b3b98ccfc8602cc3e5ad1511b682b7e018ae4d8c1`.
+>
+> A PASS authorizes only fresh calibration and separate blind context/history
+> holdout design. A grouped-development or evaluator FAIL requires route
+> review before GRU/TCN escalation. Tube, recourse, controller/MPC,
+> transport/crossing, online adaptation, expert data and RL remain blocked.
+> Tests and fitting run on the server; locally only edits, hashes and simple
+> calculations are allowed. This is the sole active pointer; all notices
+> below are historical.
+
 > **ID-2D1R1 model-aligned duration/time development is the unique active
 > task (2026-08-17):** ID-2D1 v1 stopped in server focused tests before the
 > full suite, offline run, TSC reset or plant advance. Its forced combined
