@@ -1,5 +1,20 @@
 # Current status
 
+> **Post-ID-2E1 learning route approved; repeated-context data design active
+> (2026-08-17 Asia/Shanghai).** ID-2E1 rejected only the frozen
+> action-history/time convolution family. It did not test the eventual
+> one-ms measurement-recentred history model, because the smooth candidates
+> did not use current exact R_geo/Z_geo/Ip, actual-current innovation or a
+> compressed causal belief. P09's 0.172 development NRMSE is in-sample and
+> is not an event-generalization qualification.
+>
+> The route no longer requires a complete mechanistic explanation of every
+> valid state19/state27 excursion before fitting. The active work is a new
+> fit-eligible 39-cell/78-rollout repeated-context campaign design. Raw
+> boundary/event checks remain a bounded integrity diagnostic. ID-2C2,
+> calibration, blind holdout, tube, recourse and controller remain unopened.
+> Older notices below are historical.
+
 > **ID-2E1 final grouped-development FAIL; evaluator preserved unopened
 > (2026-08-17 Asia/Shanghai).** All server validation passed. Four frozen
 > p04/p07 candidates failed whole-schedule generalization; their best/worst

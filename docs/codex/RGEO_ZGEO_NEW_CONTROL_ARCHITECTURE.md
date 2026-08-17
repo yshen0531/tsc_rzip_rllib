@@ -1,4 +1,22 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+
+> **Post-ID-2E1 learning amendment (2026-08-17):** the architecture no
+> longer treats a complete mechanistic explanation of each valid boundary
+> excursion as a prerequisite for machine learning. The hard requirement
+> is causal availability: current exact R_geo/Z_geo/Ip and takeover-to-now
+> observation/current/action history are available, while the next state and
+> future actual current are not. A predictive model may learn a conditional
+> distribution over continuous and jump responses without first naming the
+> underlying TSC mechanism.
+>
+> The immediate route is fit-eligible repeated-context data, followed by a
+> whole-history comparison of stable structured, GRU, TCN and probabilistic
+> mixture/ensemble candidates. Raw full-boundary analysis is a bounded
+> integrity diagnostic, not a universal gate. Fresh calibration, blind
+> holdout, authority, tube, recourse and controller qualification remain
+> distinct later stages. The final two-axis path/waypoint/crossing goal is
+> unchanged.
+>
 > **Post-ID-2E1 architecture amendment (2026-08-17):** the source-local
 > p04/p07 fixed-pole/FIR family failed grouped duration/time development
 > before evaluator open. P09's separate event channel fit well, while

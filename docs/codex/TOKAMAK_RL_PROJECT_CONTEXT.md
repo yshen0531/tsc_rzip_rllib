@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Post-ID-2E1 learning-route amendment (2026-08-17):** causal prediction
+> means that every input is available before the successor being predicted;
+> it does not require a complete physical explanation of every valid TSC
+> branch before machine learning. ID-2E1 rejected an action-history/time
+> convolution family, not the eventual measurement-recentred history model.
+> The next stage is a prospectively frozen fit-eligible repeated-context
+> campaign around the active nominal; bounded raw event inspection is an
+> integrity diagnostic only. ID-2C2 and all calibration/holdout/controller
+> stages remain unopened. The final fixed-1100-ms two-axis path/waypoint and
+> repeated R_mid-crossing goal is unchanged. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2E1_LEARNING_ROUTE_REVIEW.md`.
+
 > **Active new-round context (2026-08-17, post-ID-2E1):** the frozen simple
 > structured family failed all-schedule p04/p07 development generalization
 > before evaluator open. The p09 event model worked, but p04/p07 minus cells

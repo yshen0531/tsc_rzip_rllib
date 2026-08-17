@@ -1,5 +1,32 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Post-ID-2E1 learning-route amendment; fit-eligible repeated-context
+> data design is the unique active task (2026-08-17):** the user rejected
+> making a complete physical explanation of every valid TSC response a
+> prerequisite for machine learning. That correction is accepted. The
+> mandatory causal contract is no future leakage with exact one-ms
+> issue/effect semantics; detailed plasma/TSC mechanism attribution is
+> diagnostic, not a universal fit prerequisite.
+>
+> ID-2E1 remains final as
+> `ONE_MS_ID2E1_GROUPED_DEVELOPMENT_MODEL_FAIL_ROUTE_REVIEW`; ID-2C2 remains
+> unopened. The next identity must prospectively freeze a 39-cell/78-
+> rollout development campaign around the held p03-minus active nominal:
+> three whole causal contexts (none, issue-18 p04-plus conditioner, issue-18
+> p07-plus conditioner), each with a matched baseline and issue-22 p04/p07
+> probes over both signs and durations 1/2/4, with two fresh replays per
+> whole-history cell. It is fit-eligible only after execution/raw/
+> repeatability/action-support gates pass; calibration, holdout, controller,
+> recourse, expert/RL and fixture use remain forbidden.
+>
+> A data PASS may authorize a separately frozen whole-history comparison of
+> stable low-order/LPV, small GRU, causal TCN and probabilistic mixture or
+> ensemble models using current exact R_geo/Z_geo/Ip and causal current/
+> action history. Raw event inspection is a bounded integrity diagnostic,
+> not an unbounded mechanism gate. This is the sole active pointer; all
+> notices below are historical. See
+> `docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2E1_LEARNING_ROUTE_REVIEW.md`.
+
 > **ID-2E1 is final as grouped structured-model FAIL; route review is the
 > unique active task (2026-08-17):** server validation passed 7/7 focused and
 > 147/147 complete one-ms tests. Twenty-one deterministic development fits
