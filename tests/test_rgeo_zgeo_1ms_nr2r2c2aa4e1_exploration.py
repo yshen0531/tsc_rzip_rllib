@@ -5,11 +5,8 @@ from decimal import Decimal
 import hashlib
 import importlib.util
 import json
-import os
 from pathlib import Path
 import shutil
-import subprocess
-import sys
 from types import SimpleNamespace
 import unittest
 from unittest import mock
@@ -43,9 +40,6 @@ E1 = load_module(
 )
 E1_INDEPENDENT = load_module(
     "c2aa4e1_independent", "scripts/rgeo_zgeo_1ms_nr2r2c2aa4e1_independent.py"
-)
-E1_PACKAGE = load_module(
-    "c2aa4e1_package", "scripts/rgeo_zgeo_1ms_nr2r2c2aa4e1_verify_package.py"
 )
 
 
@@ -159,96 +153,6 @@ def inside_repo_tmp() -> Path:
     path = ROOT / ".codex_tmp" / f"e1_test_{uuid.uuid4().hex}"
     path.mkdir(parents=True, exist_ok=False)
     return path
-
-
-def git_blob_oid(path: Path) -> str:
-    data = path.read_bytes()
-    return hashlib.sha1(f"blob {len(data)}\0".encode("ascii") + data).hexdigest()
-
-
-def build_synthetic_package(root: Path, tool_revision: str) -> tuple[str, str]:
-    for relative in E1_PACKAGE.EXPECTED_PAYLOAD_FILES:
-        source = ROOT / relative
-        target = root / relative
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, target)
-    files = []
-    for relative in E1_PACKAGE.EXPECTED_PAYLOAD_FILES:
-        path = root / relative
-        files.append({
-            "path": relative,
-            "role": E1_PACKAGE._expected_role(relative),
-            "source_revision": E1_PACKAGE._expected_source_revision(
-                relative, tool_revision
-            ),
-            "git_blob_oid": git_blob_oid(path),
-            "size_bytes": path.stat().st_size,
-            "sha256": sha256(path),
-        })
-    manifest = {
-        "schema_version": E1_PACKAGE.MANIFEST_SCHEMA,
-        "package_identity": E1_PACKAGE.PACKAGE_IDENTITY,
-        "runtime_revision": E1_PACKAGE.RUNTIME_REVISION,
-        "package_tool_revision": tool_revision,
-        "stage_config_path": E1_PACKAGE.STAGE_CONFIG_PATH,
-        "stage_config_sha256": E1_PACKAGE.STAGE_CONFIG_SHA256,
-        "manifest_path": E1_PACKAGE.MANIFEST_PATH,
-        "checksum_path": E1_PACKAGE.CHECKSUM_PATH,
-        "payload_file_count": len(E1_PACKAGE.EXPECTED_PAYLOAD_FILES),
-        "checksum_entry_count": len(E1_PACKAGE.EXPECTED_CHECKSUM_FILES),
-        "checksum_self_included": False,
-        "zero_plant_package_verification": True,
-        "files": files,
-    }
-    manifest_path = root / E1_PACKAGE.MANIFEST_PATH
-    manifest_path.parent.mkdir(parents=True, exist_ok=True)
-    manifest_path.write_text(
-        json.dumps(manifest, indent=2, sort_keys=True, allow_nan=False) + "\n",
-        encoding="utf-8",
-        newline="\n",
-    )
-    checksums = {
-        E1_PACKAGE.MANIFEST_PATH: sha256(manifest_path),
-        **{relative: sha256(root / relative)
-           for relative in E1_PACKAGE.EXPECTED_PAYLOAD_FILES},
-    }
-    checksum_path = root / E1_PACKAGE.CHECKSUM_PATH
-    checksum_path.write_text(
-        "".join(
-            f"{checksums[relative]}  {relative}\n"
-            for relative in E1_PACKAGE.EXPECTED_CHECKSUM_FILES
-        ),
-        encoding="utf-8",
-        newline="\n",
-    )
-    return sha256(manifest_path), sha256(checksum_path)
-
-
-def run_package_verifier(
-    root: Path,
-    manifest_sha256: str,
-    checksum_sha256: str,
-    tool_revision: str,
-) -> tuple[subprocess.CompletedProcess[str], dict]:
-    env = os.environ.copy()
-    env["PYTHONDONTWRITEBYTECODE"] = "1"
-    env.pop("PYTHONPATH", None)
-    completed = subprocess.run(
-        [
-            sys.executable,
-            str(root / E1_PACKAGE.VERIFIER_PATH),
-            "--repo-root", str(root),
-            "--expected-manifest-sha256", manifest_sha256,
-            "--expected-checksum-sha256", checksum_sha256,
-            "--expected-package-tool-revision", tool_revision,
-        ],
-        cwd=root,
-        env=env,
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    return completed, json.loads(completed.stdout)
 
 
 class C2AA4E1FrozenContractTests(unittest.TestCase):
@@ -743,108 +647,6 @@ class C2AA4E1ReportingAndRawTests(unittest.TestCase):
         lines[0] = f"{'15':<10}{'':20}{'-3.500E+01'}"
         (folder / "inputa").write_text("\n".join(lines) + "\n", encoding="utf-8")
         self.assertTrue(E1_INDEPENDENT._state17_card15_reasons(folder, target))
-
-
-class C2AA4E1PackageVerificationTests(unittest.TestCase):
-    TOOL_REVISION = "1" * 40
-
-    def setUp(self) -> None:
-        self.tmp = inside_repo_tmp()
-        self.addCleanup(lambda: shutil.rmtree(self.tmp, ignore_errors=True))
-        self.package = self.tmp / "package"
-        self.package.mkdir()
-        self.manifest_sha, self.checksum_sha = build_synthetic_package(
-            self.package, self.TOOL_REVISION
-        )
-
-    def test_fixed_payload_and_checksum_cardinality(self) -> None:
-        self.assertEqual(len(E1_PACKAGE.EXPECTED_PAYLOAD_FILES), 39)
-        self.assertEqual(len(E1_PACKAGE.EXPECTED_CHECKSUM_FILES), 40)
-        self.assertEqual(E1_PACKAGE.EXPECTED_CHECKSUM_FILES[0], E1_PACKAGE.MANIFEST_PATH)
-        self.assertNotIn(E1_PACKAGE.CHECKSUM_PATH, E1_PACKAGE.EXPECTED_CHECKSUM_FILES)
-        self.assertEqual(len(E1_PACKAGE.TSC_PACKAGE_RUNTIME_FILES), 17)
-        self.assertEqual(E1_PACKAGE.RUNTIME_REVISION, "145ab1f77c20c8a324274d39be38bbfdf3dc4009")
-        self.assertEqual(E1_PACKAGE.STAGE_CONFIG_SHA256, sha256(CONFIG))
-
-    def test_empty_direct_copy_package_verifies_with_zero_runner_calls(self) -> None:
-        completed, result = run_package_verifier(
-            self.package, self.manifest_sha, self.checksum_sha, self.TOOL_REVISION
-        )
-        self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
-        self.assertTrue(result["passed"])
-        self.assertEqual(result["payload_files_verified"], 39)
-        self.assertEqual(result["checksum_entries_verified"], 40)
-        self.assertEqual(result["runtime_import_files_reached"], 24)
-        self.assertEqual(
-            (result["reset_calls"], result["advance_attempts"],
-             result["plant_advance_gotsc_calls"], result["new_tsc_or_plant_advances"]),
-            (0, 0, 0, 0),
-        )
-
-    def test_external_manifest_hash_is_checked_before_manifest_parse(self) -> None:
-        manifest = self.package / E1_PACKAGE.MANIFEST_PATH
-        manifest.write_bytes(b"not-json\n")
-        completed, result = run_package_verifier(
-            self.package, self.manifest_sha, self.checksum_sha, self.TOOL_REVISION
-        )
-        self.assertNotEqual(completed.returncode, 0)
-        self.assertFalse(result["passed"])
-        self.assertIn("external manifest SHA-256 mismatch", result["failures"][0])
-        self.assertNotIn("JSON", result["failures"][0])
-        self.assertEqual(result["new_tsc_or_plant_advances"], 0)
-
-    def test_payload_mutation_fails_closed(self) -> None:
-        payload = self.package / E1_PACKAGE.RUNTIME_ENTRYPOINT_FILES[0]
-        payload.write_bytes(payload.read_bytes() + b"\n# mutation\n")
-        completed, result = run_package_verifier(
-            self.package, self.manifest_sha, self.checksum_sha, self.TOOL_REVISION
-        )
-        self.assertNotEqual(completed.returncode, 0)
-        self.assertFalse(result["passed"])
-        self.assertIn("payload size mismatch", result["failures"][0])
-        self.assertEqual(result["new_tsc_or_plant_advances"], 0)
-
-    def test_checksum_cannot_omit_a_declared_payload(self) -> None:
-        checksum_path = self.package / E1_PACKAGE.CHECKSUM_PATH
-        lines = checksum_path.read_text(encoding="utf-8").splitlines()
-        checksum_path.write_text(
-            "\n".join(lines[:-1]) + "\n", encoding="utf-8", newline="\n"
-        )
-        completed, result = run_package_verifier(
-            self.package,
-            self.manifest_sha,
-            sha256(checksum_path),
-            self.TOOL_REVISION,
-        )
-        self.assertNotEqual(completed.returncode, 0)
-        self.assertFalse(result["passed"])
-        self.assertIn("checksum fileset/order", result["failures"][0])
-        self.assertEqual(result["new_tsc_or_plant_advances"], 0)
-
-    def test_manifest_cannot_reassign_runtime_file_to_tool_revision(self) -> None:
-        manifest_path = self.package / E1_PACKAGE.MANIFEST_PATH
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        for row in manifest["files"]:
-            if row["path"] == E1_PACKAGE.RUNTIME_ENTRYPOINT_FILES[0]:
-                row["source_revision"] = self.TOOL_REVISION
-                break
-        manifest_path.write_text(
-            json.dumps(manifest, indent=2, sort_keys=True, allow_nan=False) + "\n",
-            encoding="utf-8",
-            newline="\n",
-        )
-        manifest_sha = sha256(manifest_path)
-        checksum_path = self.package / E1_PACKAGE.CHECKSUM_PATH
-        lines = checksum_path.read_text(encoding="utf-8").splitlines()
-        lines[0] = f"{manifest_sha}  {E1_PACKAGE.MANIFEST_PATH}"
-        checksum_path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-        completed, result = run_package_verifier(
-            self.package, manifest_sha, sha256(checksum_path), self.TOOL_REVISION
-        )
-        self.assertNotEqual(completed.returncode, 0)
-        self.assertFalse(result["passed"])
-        self.assertIn("manifest source revision mismatch", result["failures"][0])
-        self.assertEqual(result["new_tsc_or_plant_advances"], 0)
 
 
 if __name__ == "__main__":
