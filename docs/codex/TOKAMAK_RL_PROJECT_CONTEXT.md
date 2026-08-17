@@ -1,11 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, ID-2G1R1):** the first grouped
-> model attempt fit zero models because virtual p03/p04/p07 coordinates were
-> incorrectly promoted to an exact rank-three executor representation.
-> ID-2G1R1 uses the full 14-dimensional readback/current and issued Card15
-> instead; future actual current is still unavailable. The data, LOCO folds,
-> ML candidates and gates remain frozen. All older notices are historical.
+> **Active new-round context (2026-08-17, post-ID-2G1R1):** full 14-coil
+> readback/current and exact issued Card15 repaired the false rank-three
+> executor assumption. The corrected server comparison selected the causal
+> TCN with mean whole-context response NRMSE `0.68097772`, a `31.9022%`
+> improvement over an action-blind comparator of `1.0`; independent raw
+> extraction/refit agreed exactly. The selected artifact is frozen before
+> any calibration data exist.
+>
+> The next route is fresh whole-history calibration only. Calibration data
+> may estimate finite prediction-error multipliers/floors but may not alter
+> model weights, features or selection. A later blind whole-context/history
+> holdout remains separate. No controller, tube, recourse, MPC, crossing,
+> adaptation or RL has been qualified. All older notices are historical.
 >
 > **Historical ID-2G1 context:** the fresh ID-2F1R1
 > repeated-context campaign and independent raw reparse passed. It provides

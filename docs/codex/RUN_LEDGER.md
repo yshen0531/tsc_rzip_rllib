@@ -2297,3 +2297,33 @@
 - Classification: model/data-geometry failure before evaluator; not runtime,
   TSC, calibration, holdout, controller or reachability evidence
 - Next: route review of the state19/state27 sign-dependent event pattern
+
+## R_geo/Z_geo 1 ms ID-2G1R1 full-Card15 grouped model comparison
+
+- Branch: `codex/rgeo-zgeo-1ms-duration-history-model`
+- Model implementation / action-blind correction:
+  `7841a173 / ebdb42a0`
+- Server validation after correction: focused `12/12`, complete one-ms
+  `169/169`; compile and zero-TSC preflight PASS
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2g1r1_models_20260817_ebdb42a0`
+- Execution: zero reset, `gotsc`, TSC and plant advance; zero ID-2C2,
+  calibration or holdout records read
+- Selected model: causal TCN; mean three-context response NRMSE
+  `0.68097772`, action-blind improvement `31.9022%`
+- Fold response NRMSE: `0.71370094 / 0.66436756 / 0.66486466`
+- Worst recursive p95: `0.359981 mm R / 0.181205 mm Z / 10.9505 A Ip`
+- Primary / independent / selected-model SHA-256:
+  `6d2389d7d7a5d86eea221cadd4fe386b6f95a734405496b36eab07a372856afa /`
+  `614b01bdc8b422bc1ced2472da1ccac3f5d9445ca8baed1c431f8a0dbc1ad83e /`
+  `14502175c95d1d0b5b36846a35af249af0041405eb6c013f099caa4dd18d176b`
+- Independent full raw re-extraction/refit: PASS; maximum numeric difference
+  zero
+- Final route:
+  `ONE_MS_ID2G1R1_GROUPED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY`
+- Classification: finite three-context development-model selection PASS;
+  not calibration, blind holdout, tube, controller or closed-loop evidence
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2g1r1_20260817_ebdb42a0/`
+- Next: separately frozen fresh whole-history calibration design for the
+  exact selected artifact; no model tuning or controller work

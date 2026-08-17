@@ -1,16 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, ID-2G1R1):** ID-2G1 stopped before any
-> fit because exact 14-dimensional Card15/readback differed from its assumed
-> rank-three executor span by as much as 0.07937753 A. Its frozen route is
-> `ONE_MS_ID2G1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL`, with zero TSC and
-> zero models. ID-2G1R1 changes only the executor representation to complete
-> current 14-coil readback and complete issued Card15 vectors; future actual
-> current remains forbidden. Data, folds, candidates, seeds, metrics and
-> gates are unchanged. Overlay/design SHA-256 are
-> `76b4dc2ca84b8c67fd9ab883c5b7e382cc622aefd5c9b38756d87524fd756746 /`
-> `22f7af3964ce0b7c99b3eb9216cebf9d2a00aeb032a0aa6ef3f00d1fa3bf878a`.
-> This is the sole active pointer; all blocks below are historical.
+> **Unique active task (2026-08-17, post-ID-2G1R1):** the corrected grouped
+> model comparison is final as
+> `ONE_MS_ID2G1R1_GROUPED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY`.
+> The causal TCN was selected with three whole-context response NRMSE values
+> `0.713701 / 0.664368 / 0.664865`, mean `0.680978`, and `31.9022%`
+> improvement over the corrected action-blind comparator (`1.0`).  The
+> independent full raw re-extraction/refit reproduced the result with maximum
+> numeric difference zero. Primary / independent / model SHA-256 values are
+> `6d2389d7... / 614b01bd... / 14502175...`.
+>
+> The only authorized successor is a separately frozen fresh whole-history
+> calibration design for this exact TCN artifact. It may collect new TSC
+> calibration histories but may not change features, weights, candidate,
+> seeds or model selection, and it must calibrate at whole-history/group
+> level rather than treating steps as independent samples. ID-2C2 and the
+> blind holdout remain unread. Controller, tube, recourse, MPC, crossing,
+> adaptation and RL remain blocked. This is the sole active pointer; all
+> blocks below are historical.
 >
 > **Historical ID-2G1 task:** ID-2F1R1 completed all
 > 78 rollouts, 2,652 verified one-ms advances and 2,730 states. Independent

@@ -1,12 +1,19 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2G1R1 active):** ID-2G1 preflight passed,
-> then its exact rank-three executor projection failed at 0.07937753 A before
-> any model fit. It is an input-representation design failure with zero TSC,
-> not a predictive model result. ID-2G1R1 prospectively retains the whole
-> scientific comparison and exposes full 14-dimensional observed current and
-> issued Card15 to every candidate. Future actual current, ID-2C2,
-> calibration and holdout remain forbidden. Older blocks are historical.
+> **Current status (2026-08-17, post-ID-2G1R1):** the corrected full-Card15
+> grouped comparison passed and selected the causal TCN. Its mean response
+> NRMSE is `0.68097772` versus the corrected action-blind value `1.0`; the
+> stable LPV and probabilistic ensemble were eligible but lost the frozen
+> selection rule, and the small GRU was ineligible. Independent raw
+> re-extraction and deterministic refit reproduced all metrics exactly.
+> Result / independent / selected-artifact SHA-256 values are
+> `6d2389d7... / 614b01bd... / 14502175...`.
+>
+> ID-2G1R1 used zero new TSC and read zero ID-2C2, calibration or holdout
+> records. This is development selection only. The next permitted work is a
+> fresh whole-history calibration design for the frozen model; it is not yet
+> a calibrated tube, blind holdout, controller or closed-loop result. Older
+> blocks are historical.
 >
 > **Historical ID-2G1 status:** ID-2F1R1 is final as
 > `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.

@@ -1,0 +1,21 @@
+{
+  "audit_passed": true,
+  "calibration_records_read": 0,
+  "claim_boundary": "Independent deterministic raw re-extraction and full refit; not calibration, holdout or control qualification.",
+  "dataset_sha256": "bfb01c258160c55533ae9ec9fc2580c2f1a556c48df3e7067f80021e5ceaaf85",
+  "failures": [],
+  "fresh_calibration_design_authorized": true,
+  "holdout_records_read": 0,
+  "id2c2_records_read": 0,
+  "maximum_numeric_difference": 0.0,
+  "plant_advances": 0,
+  "primary_passed": true,
+  "primary_route": "ONE_MS_ID2G1R1_GROUPED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY",
+  "primary_sha256": "6d2389d7d7a5d86eea221cadd4fe386b6f95a734405496b36eab07a372856afa",
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2g1r1-full-card15-model-independent-v1",
+  "selected_candidate": "causal_tcn",
+  "source_revision": "ebdb42a01e5ddcc49317df940cdec21abf698795",
+  "stage_config_sha256": "76b4dc2ca84b8c67fd9ab883c5b7e382cc622aefd5c9b38756d87524fd756746",
+  "tsc_calls": 0
+}
