@@ -1,0 +1,182 @@
+{
+  "audit_passed": true,
+  "blind_holdout_records_read": 0,
+  "claim_boundary": "Independent full raw re-extraction and frozen-TCN calibration recomputation; not holdout, tube or controller qualification.",
+  "controller_authorized": false,
+  "failures": [],
+  "id2c2_records_read": 0,
+  "maximum_numeric_difference": 0.0,
+  "models_fit_retrained_tuned_or_selected": 0,
+  "primary_calibration_sha256": "6e6e0f9fa1c263075d21169dc583bf3e23bb99fbd12afba047af93ad4f94a247",
+  "primary_passed": true,
+  "primary_route": "ONE_MS_ID2H1_GROUPED_CALIBRATION_PASS_BLIND_HOLDOUT_DESIGN_ONLY",
+  "recomputed_calibration_metrics": {
+    "finite_sample_order_index_one_based": 10,
+    "gate_passes": {
+      "absolute_width": true,
+      "matched_response_nrmse": true,
+      "paired_response_width": true,
+      "peak_direction": true
+    },
+    "group_scores": [
+      {
+        "absolute_recursive_group_max": [
+          0.00043595793943040917,
+          0.00010829696441144732,
+          19.308439292628464
+        ],
+        "group_id": "c00",
+        "paired_response_group_max": [
+          0.00013502737447868007,
+          6.832098227755462e-05,
+          2.2806742933680653
+        ],
+        "peak_direction_cosine": 0.9998048519764201
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005142840875153043,
+          0.00019346760265096657,
+          18.172519324707537
+        ],
+        "group_id": "c01",
+        "paired_response_group_max": [
+          0.00021880506088500784,
+          9.031912531025366e-05,
+          6.543075371773739
+        ],
+        "peak_direction_cosine": 0.9979194204161802
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0004763904055365975,
+          0.00023858942584612658,
+          21.82441859893879
+        ],
+        "group_id": "c02",
+        "paired_response_group_max": [
+          0.00011864919848003641,
+          7.81829764410491e-05,
+          3.7845108172077744
+        ],
+        "peak_direction_cosine": 0.98760333374268
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005200378090549629,
+          0.000159470986373908,
+          16.415116365173162
+        ],
+        "group_id": "c03",
+        "paired_response_group_max": [
+          0.0002506234207745317,
+          0.00012823225840313118,
+          2.2410762049075856
+        ],
+        "peak_direction_cosine": 0.9999954323983966
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.000462911936164212,
+          0.00021907232684963834,
+          24.0476938080501
+        ],
+        "group_id": "c04",
+        "paired_response_group_max": [
+          0.00012108799825227834,
+          4.245025928183155e-05,
+          6.703928546237876
+        ],
+        "peak_direction_cosine": 0.9970549605758982
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005522538940520016,
+          0.00022152660802333274,
+          22.632399217360216
+        ],
+        "group_id": "c05",
+        "paired_response_group_max": [
+          0.0003456252983842223,
+          0.00011965371560794524,
+          7.717859491567651
+        ],
+        "peak_direction_cosine": 0.9991615862554825
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005897185115918413,
+          0.00016487549343367075,
+          18.89345817704816
+        ],
+        "group_id": "c06",
+        "paired_response_group_max": [
+          0.00013190090407178,
+          8.625401276715627e-05,
+          5.070513671747904
+        ],
+        "peak_direction_cosine": 0.9842105808763818
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.000564501545738394,
+          0.00024051138515601006,
+          22.015662186742702
+        ],
+        "group_id": "c07",
+        "paired_response_group_max": [
+          0.00035903995912378583,
+          0.00015087712731425007,
+          6.531873057141638
+        ],
+        "peak_direction_cosine": 0.999974516888794
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005165140108120969,
+          0.00014385818241752918,
+          18.006993877679633
+        ],
+        "group_id": "c08",
+        "paired_response_group_max": [
+          0.0006950692585707685,
+          0.00023825926428221178,
+          7.6034395150709315
+        ],
+        "peak_direction_cosine": 0.9241244713142676
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005936422508353578,
+          0.00023759420407679088,
+          18.13611561277139
+        ],
+        "group_id": "c09",
+        "paired_response_group_max": [
+          0.0005709521557925035,
+          0.00018488334071411344,
+          7.273329882500548
+        ],
+        "peak_direction_cosine": 0.9880142282116101
+      }
+    ],
+    "matched_response_nrmse": 0.7295309839086964,
+    "nominal_group_coverage": 0.9,
+    "passed": true,
+    "positive_peak_direction_groups": 10,
+    "simultaneous_absolute_recursive_half_width": [
+      0.0005936422508353578,
+      0.00024051138515601006,
+      24.0476938080501
+    ],
+    "simultaneous_paired_response_half_width": [
+      0.0006950692585707685,
+      0.00023825926428221178,
+      7.717859491567651
+    ]
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2h1-independent-calibration-v1",
+  "selected_model_sha256": "14502175c95d1d0b5b36846a35af249af0041405eb6c013f099caa4dd18d176b",
+  "source_revision": "3a057ac3b21b75d44f60b0a0d6cc2f627325cdae",
+  "stage_config_sha256": "c067306fd0ce3d1e7999375138511af15d950fb9a7b50aad2da456af6715720b"
+}

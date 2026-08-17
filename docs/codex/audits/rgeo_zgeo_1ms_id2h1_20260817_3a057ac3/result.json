@@ -1,0 +1,253 @@
+{
+  "advance_attempts": 1360,
+  "blind_holdout_data_eligible": false,
+  "calibration_data_eligible": true,
+  "claim_boundary": "Finite fresh ten-group whole-history error calibration for one frozen TCN only; not a blind holdout, transition tube, authority, recourse, controller, MPC, transport, crossing, adaptation or reachability qualification.",
+  "controller_safety_data_eligible": false,
+  "id2c2_records_read": 0,
+  "missing_required_artifacts": [],
+  "model_fit_retrain_tune_or_select_use": "forbidden",
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 1360,
+  "replay_pair_checks": [
+    {
+      "cell_id": "c00__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c00__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c01__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c01__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c02__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c02__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c03__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c03__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c04__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c04__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c05__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c05__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c06__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c06__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c07__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c07__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c08__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c08__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c09__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "c09__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    }
+  ],
+  "required_artifact_bytes": 82450093600,
+  "required_artifact_files": 7000,
+  "required_artifact_inventory_sha256": "e1d0f21c48949b0b4c2c2aaba41a623f9b8d42ba62c2c3267a70cd96b6b8e66d",
+  "reset_calls": 40,
+  "rollouts_completed": 40,
+  "route": "ONE_MS_ID2H1_FRESH_HISTORY_DATA_PASS_CALIBRATION_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2h1-whole-history-calibration-result-v1",
+  "source_revision": "3a057ac3b21b75d44f60b0a0d6cc2f627325cdae",
+  "stage_config_sha256": "c067306fd0ce3d1e7999375138511af15d950fb9a7b50aad2da456af6715720b",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 221354114048,
+    "estimated_raw_bytes": 90000000000,
+    "free_bytes_before_run": 311354114048,
+    "passed": true
+  },
+  "unique_cells_completed": 20,
+  "verified_plant_advances": 1360,
+  "whole_history_groups_completed": 10
+}

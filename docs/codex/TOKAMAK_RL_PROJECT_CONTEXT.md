@@ -1,19 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, ID-2H1):** full 14-coil
-> readback/current and exact issued Card15 repaired the false rank-three
-> executor assumption. The corrected server comparison selected the causal
-> TCN with mean whole-context response NRMSE `0.68097772`, a `31.9022%`
-> improvement over an action-blind comparator of `1.0`; independent raw
-> extraction/refit agreed exactly. The selected artifact is frozen before
-> any calibration data exist.
+> **Active new-round context (2026-08-17, post-ID-2H1):** the selected causal
+> TCN has now passed a fresh ten-group whole-history calibration without any
+> weight, feature or selection change. Forty real server rollouts and 1,360
+> verified advances passed execution, exact-action, replay and independent raw
+> gates. The group-max absolute-recursive width is
+> `0.593642 mm / 0.240511 mm / 24.047694 A`; the paired-response width is
+> `0.695069 mm / 0.238259 mm / 7.717859 A`. Independent recomputation is exact.
 >
-> ID-2H1 realizes that next route with ten fresh matched-baseline/probe history
-> groups and exact replay pairs. It estimates finite group-max prediction
-> widths but may not alter model weights, features or selection. A later blind
-> whole-context/history holdout remains separate. No controller, transition
-> tube, recourse, MPC, crossing, adaptation or RL has been qualified. All
-> older notices are historical.
+> These records calibrated the widths and therefore are not blind validation.
+> The active route is a separately frozen, untouched whole-context/history
+> holdout of the same artifact and fixed widths. No controller, transition
+> tube, authority, recourse, MPC, crossing, adaptation or RL has been
+> qualified. All older notices are historical.
 >
 > **Historical ID-2G1 context:** the fresh ID-2F1R1
 > repeated-context campaign and independent raw reparse passed. It provides

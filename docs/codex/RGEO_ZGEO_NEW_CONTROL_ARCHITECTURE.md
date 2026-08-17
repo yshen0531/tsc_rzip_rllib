@@ -1,19 +1,19 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2H1 architecture note (2026-08-17):** the full-Card15 grouped
-> comparison selected a small causal TCN over stable LPV, small GRU and a
-> probabilistic ensemble. This is empirical support for history-conditioned
-> nonlinear residual modelling in the tested three-context development
-> envelope, not evidence that a TCN alone is a controller or safety layer.
-> The exact actuator/queue and noiseless current R_geo/Z_geo/Ip paths remain
-> explicit; future actual current is still forbidden.
+> **Post-ID-2H1 architecture note (2026-08-17):** the small causal TCN has
+> passed fresh whole-history calibration on ten complete conditioner/probe
+> groups with zero fitting or selection. The independently reproduced
+> group-max widths are sub-millimetre in R/Z and 24.05 A absolute / 7.72 A
+> paired in Ip. This supports the history-conditioned nonlinear residual
+> component in the tested source-local envelope; it does not turn the TCN
+> into a controller or safety layer.
 >
-> The model artifact is now frozen. ID-2H1 calibrates it on ten complete fresh
-> conditioner/probe families, with exact replay and family-max scoring; it
-> cannot tune or retrain the TCN. A later blind whole-context/history holdout,
-> authority, recourse and constrained-controller qualification remain
-> independent AND gates. The final two-axis path/waypoint and repeated
-> R_mid-crossing goal is unchanged.
+> The next AND gate is a truly blind whole-context/history holdout using the
+> exact artifact and frozen widths. Exact actuator/queue semantics and
+> noiseless current R_geo/Z_geo/Ip remain explicit, and future actual current
+> remains forbidden. Authority, controller-grade tubes, recourse and
+> constrained control are still later independent gates. The final two-axis
+> path/waypoint and repeated R_mid-crossing goal is unchanged.
 >
 > **Historical ID-2G1 architecture note (2026-08-17):** ID-2F1R1 passed its complete
 > fresh repeated-context data gates and now permits a finite development

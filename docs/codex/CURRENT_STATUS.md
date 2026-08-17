@@ -1,22 +1,19 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2H1 frozen):** the corrected full-Card15
-> grouped comparison passed and selected the causal TCN. Its mean response
-> NRMSE is `0.68097772` versus the corrected action-blind value `1.0`; the
-> stable LPV and probabilistic ensemble were eligible but lost the frozen
-> selection rule, and the small GRU was ineligible. Independent raw
-> re-extraction and deterministic refit reproduced all metrics exactly.
-> Result / independent / selected-artifact SHA-256 values are
-> `6d2389d7... / 614b01bd... / 14502175...`.
+> **Current status (2026-08-17, ID-2H1 final PASS):** the fresh whole-history
+> campaign completed 40/40 rollouts and 1,360/1,360 verified advances. The
+> independent raw audit reproduced 1,400 states, 7,000 required files,
+> 82,450,093,600 bytes, digest `e1d0f21c...`, and exact replay histories for
+> all 20 cells.
 >
-> ID-2G1R1 used zero new TSC and read zero ID-2C2, calibration or holdout
-> records. ID-2H1 now freezes ten new atomic whole-history calibration groups,
-> 20 cells and two exact replays per cell. Its maximum budget is 40 resets and
-> 1,360 advances. It cannot fit, tune, retrain or reselect the TCN. The finite
-> 90% group order statistic is the tenth (maximum) group score, with separate
-> simultaneous absolute-recursive and paired-response widths. This remains
-> model calibration, not a transition tube, blind holdout, controller or
-> closed-loop result. Older blocks are historical.
+> The already frozen causal TCN was neither fitted nor modified. The maximum
+> of ten atomic group scores gives absolute-recursive widths
+> `0.593642 mm / 0.240511 mm / 24.047694 A` and paired-response widths
+> `0.695069 mm / 0.238259 mm / 7.717859 A`. Matched-response NRMSE is
+> `0.729531`; all ten peak directions are positive. Independent full-raw
+> recomputation differs by zero. ID-2H1 authorizes only a separately frozen
+> blind whole-context/history holdout design. It is not a transition tube,
+> authority, controller or closed-loop result. Older blocks are historical.
 >
 > **Historical ID-2G1 status:** ID-2F1R1 is final as
 > `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.
