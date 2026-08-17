@@ -10,8 +10,10 @@
 > The backbone is therefore restored to the originally intended structured
 > form: exact actuator/queue; explicit time-indexed active nominal; stable
 > low-order latent action memory; and only then a small context-gated neural
-> residual if fresh whole-family evidence warrants it. The next data stage
-> factors history, direction and sign with matched baselines. It does not
+> residual if fresh whole-family evidence warrants it. ID-2K1 factors eight
+> complete histories against p04/p07 and both signs with matched baselines;
+> its three extra replays are integrity checks rather than added fit weight.
+> It does not
 > open controller work. Fresh calibration, new blind history holdout,
 > authority and recourse remain independent AND gates before constrained
 > control. The final two-axis waypoint/repeated-crossing goal is unchanged.

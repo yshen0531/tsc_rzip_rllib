@@ -7,9 +7,10 @@
 > probe prefixes outside development support. Execution, raw, actuator and
 > independent recomputation integrity passed.
 >
-> The next data stage must factor complete conditioner history, action
-> direction and sign with a matched baseline in every context. Only after
-> that prospective development data pass may the route compare explicit
+> ID-2K1 freezes the next data stage as eight complete conditioner histories,
+> each with a matched baseline and p04/p07 probes of both signs, plus three
+> critical integrity replays. Only after that prospective development data
+> pass may the route compare explicit
 > time-indexed nominal continuation + stable low-order action memory + a small
 > context-gated residual. ID-2I1/ID-2J0 remain forbidden for fitting. Fresh
 > calibration, blind whole-history holdout, authority and recovery stay

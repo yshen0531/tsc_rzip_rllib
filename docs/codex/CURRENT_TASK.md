@@ -9,12 +9,18 @@
 > negative peak cosine. Six of eight probe prefixes are outside development
 > full-feature support. The frozen TCN is not eligible for control.
 >
-> The active next stage is a separately prospective, fit-eligible factorized
-> history/sign/action development campaign. Every causal conditioner context
-> must have its own matched baseline and both signs of the selected p04/p07
-> directions; complete families remain the split unit. ID-2I1 and ID-2J0 are
+> ID-2K1 is now the active, prospectively frozen fit-eligible factorized
+> history/sign/action development campaign. It has eight causal conditioner
+> contexts, each with one matched baseline and p04/p07 probes of both signs at
+> issue 25 for three issues. Forty unique cells plus three critical integrity
+> replays give at most 43 rollouts and 1,462 one-ms advances. Complete history
+> families remain the split unit. Config/design SHA-256 are
+> `7ea0e1851104eb1c58a74fb50c8338aa16777c7c48dbfd24927b24184d78332e /`
+> `1f5fb4f0a0a0b4d2776e61340e52b2975b14d90231a297d9f1ce6fd942ab9678`.
+> ID-2I1 and ID-2J0 are
 > consumed diagnosis-only and may not be fitted or used to shrink widths.
-> A data PASS may open only a structured comparison of exact actuator/queue,
+> Only execution, independent raw, prefix, replay, signal and Ip PASS may open
+> a structured comparison of exact actuator/queue,
 > explicit time-indexed nominal continuation, stable low-order action memory
 > and an optional small context-gated neural residual. Fresh calibration and
 > a new blind whole-history holdout remain mandatory before controller work.

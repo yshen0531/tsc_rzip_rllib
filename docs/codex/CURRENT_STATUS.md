@@ -14,11 +14,13 @@
 > structure failure, not merely free-recursion drift, runtime, raw, queue or
 > reporting failure.
 >
-> ID-2J0 remains diagnosis-only and fits zero models. The next prospective
-> work is a matched-baseline factorized history/sign/action development data
-> stage, followed only after PASS by an explicit nominal + stable memory +
-> optional small neural-residual comparison. No controller or safety claim
-> is open. Older status blocks are historical.
+> ID-2J0 remains diagnosis-only and fits zero models. ID-2K1 is frozen for
+> implementation and server execution: 8 conditioner histories x
+> (baseline + p04/p07 both signs), plus three critical replays, for 43
+> rollouts/1,462 maximum advances. It is fresh development-fit data only after
+> every gate passes. A PASS opens an explicit nominal + stable memory +
+> optional small neural-residual comparison, not controller or safety work.
+> Older status blocks are historical.
 >
 > **Historical ID-2J0 implementation status:** the approved
 > attribution design is frozen. A read-only server check found that ID-2F1R1
