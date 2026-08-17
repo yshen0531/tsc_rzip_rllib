@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-17, post-ID-2J0):** the diagnostic campaign is
+> **Current status (2026-08-17, post-ID-2K1):** the factorized development
+> campaign passed with 43/43 rollouts, 40 unique fit-weighted cells, 1,462
+> verified advances and an independently reproduced 7,525-file required raw
+> inventory. All eight matched prefixes, all 32 signal/Ip cells and all three
+> critical replays passed. Primary / independent SHA-256 are
+> `a7a5f64a... / 69911aaa...`.
+>
+> Peak paired R/Z responses span `0.128188--0.690277 mm`. Matched minus tails
+> are about `1.994--2.503` times the plus-tail norm and are not odd mirrors.
+> This is valid structured-model development data, not authority or
+> controllability evidence. ID-2L1 structured whole-history model comparison
+> is next; fresh calibration and blind history holdout still precede every
+> controller/safety claim. Older status blocks are historical.
+
+> **Historical post-ID-2J0 status:** the diagnostic campaign is
 > complete and independently reproducible. It produced 16/16 rollouts,
 > 544/544 verified advances, 560 states and 2,800 required raw files
 > (`32,980,037,440` bytes; digest `fd884699...`). The attribution result and

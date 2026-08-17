@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, post-ID-2J0):** ID-2J0 is final as
+> **Unique active task (2026-08-17, post-ID-2K1):** ID-2K1 is final as
+> `ONE_MS_ID2K1_FACTORIZED_HISTORY_SIGN_DATA_PASS_STRUCTURED_MODEL_ONLY`.
+> All 43 rollouts, 1,462 advances, 1,505 states, eight matched-prefix groups,
+> 32 signal/Ip gates and three critical replays passed. Independent raw
+> reparse reproduced the 7,525-file / 88,633,850,620-byte required inventory
+> and digest `97ba08db...` exactly.
+>
+> The 40 unique cells are now development-fit eligible; the three replays
+> retain zero extra fit weight. Their finite response is strongly sign
+> asymmetric, so no odd/static local-map assumption is allowed. ID-2L1 is the
+> active zero-new-TSC task: freeze, implement and server-run a whole-history
+> comparison of explicit nominal continuation, stable low-order action
+> memory, causal sign/even/context interactions, and optional small neural
+> residuals. The simplest candidate passing every held-family gate is frozen.
+>
+> Fresh calibration and a new blind whole-history holdout remain mandatory.
+> Authority, recovery, NMPC, transport, crossing, adaptation and RL remain
+> blocked. This is the sole active pointer; every block below is historical.
+
+> **Historical post-ID-2J0/ID-2K1 task:** ID-2J0 is final as
 > `ONE_MS_ID2J0_MIXED_DATA_AND_STRUCTURED_MODEL_REQUIRED`. Its 16/16
 > diagnostic re-observations, 544/544 advances, independent raw audit and
 > independent zero-fit recomputation passed. Exact 1 ms truth recentering

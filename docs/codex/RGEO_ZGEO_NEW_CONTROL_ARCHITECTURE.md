@@ -1,6 +1,21 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2J0 architecture amendment (2026-08-17):** the frozen monolithic
+> **Post-ID-2K1 architecture amendment (2026-08-17):** the complete fresh
+> `history x direction x sign` development matrix passed its execution and
+> evidence gates. Its plus/minus responses are strongly non-odd in the finite
+> tested domain, while conditioner-history effects must still be evaluated as
+> whole-family generalization rather than inferred from labels.
+>
+> The next model is explicitly layered: exact Card15/queue/current semantics;
+> a time-indexed nominal continuation; stable low-order signed/even action
+> memory; causal interaction with exact current R_geo/Z_geo/Ip and compressed
+> takeover history; and an optional small neural residual retained only after
+> held-family gain. One-ms truth recentering is an operating mode, not a
+> substitute for credible multi-step prediction. Fresh calibration and blind
+> whole-history holdout remain separate AND gates before authority, recovery
+> and constrained control. The final waypoint/crossing goal is unchanged.
+
+> **Historical post-ID-2J0 architecture amendment:** the frozen monolithic
 > TCN remains wrong-way for three minus histories even when every prediction
 > step is recentered on exact current R_geo/Z_geo/Ip truth. Recentring reduces
 > nominal/free-recursion drift but cannot substitute for supported signed

@@ -1,5 +1,27 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2K1 factorized history/sign development
+
+- Date: 2026-08-17 Asia/Shanghai.
+- Implementation revision:
+  `8416bd6c5dd59e6b01c493aa58bf4b48a4c1433c`.
+- Server directory:
+  `rgeo_zgeo_1ms_id2k1_runs_20260817_8416bd6c`.
+- Execution: 43/43 rollouts, 40 unique cells, 1,462/1,462 verified advances,
+  1,505 retained states, eight whole-history groups and 32 probe cells.
+- Required raw inventory: 7,525 files / 88,633,850,620 bytes / digest
+  `97ba08db00d12bc604396b32dbd794d3c415d7549b3402ce59d06c78fba9f158`.
+- Primary / independent raw SHA-256:
+  `a7a5f64a86118dd5002b9da44f7cf5e126571f30d6e6ef3d3005b369eb4e6643 /`
+  `69911aaa5d16b7f52381b0f7d211d51b0eee6377a11830dd00812e7183af8444`.
+- All matched-prefix, critical-replay, signal and Ip gates passed. Peak paired
+  R/Z norm was `0.128188--0.690277 mm`; maximum paired Ip was `50.1590 A`.
+- Final route:
+  `ONE_MS_ID2K1_FACTORIZED_HISTORY_SIGN_DATA_PASS_STRUCTURED_MODEL_ONLY`.
+- Status: development data PASS only. ID-2L1 structured whole-history model
+  comparison is authorized; calibration, holdout, controller and safety work
+  are not.
+
 ## R_geo/Z_geo 1 ms ID-2B1 final structured model result
 
 - Date: 2026-08-15 Asia/Shanghai.

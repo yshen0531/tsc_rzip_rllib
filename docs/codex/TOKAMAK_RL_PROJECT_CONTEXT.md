@@ -1,6 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, post-ID-2J0):** exact 1 ms
+> **Active new-round context (2026-08-17, post-ID-2K1):** prospective
+> development data now covers eight complete conditioner histories crossed
+> with matched baseline and p04/p07 probes of both signs. Execution, prefixes,
+> three replays, signal/Ip gates and independent raw integrity all passed.
+> The finite responses are strongly sign asymmetric; a static odd map is not
+> an admissible backbone assumption.
+>
+> ID-2L1 therefore restores the intended layered model: exact actuator/queue,
+> explicit time-indexed nominal continuation, stable low-order action memory,
+> causal state/history interactions, and only then an optional small neural
+> residual. Current R_geo/Z_geo/Ip remain exact observations at every 1 ms
+> decision boundary. Fresh calibration, new blind whole-history holdout,
+> authority and recovery are independent later gates. The final two-axis
+> waypoint and repeated R_mid-crossing goal is unchanged. All older notices
+> are historical.
+
+> **Historical post-ID-2J0 context:** exact 1 ms
 > R_geo/Z_geo/Ip truth recentering improves absolute prediction drift but does
 > not repair the frozen TCN's signed paired response. ID-2J0 retains negative
 > peak response direction in three minus histories and finds six of eight
