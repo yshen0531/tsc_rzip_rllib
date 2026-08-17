@@ -47,6 +47,12 @@ class ID2J0ContractTests(unittest.TestCase):
         self.assertEqual(payload["analysis"]["support_embeddings"],
                          ["full_tcn_features", "without_absolute_time", "action_history_only"])
 
+    def test_attribution_resolves_development_config_through_real_i1_reader(self):
+        payload = json.loads(stage.CONFIG.read_text(encoding="utf-8"))
+        old = stage.i1._read_json(ROOT / payload["evidence"]["id2i1_config"]["path"])
+        resolved = ROOT / old["evidence"]["id2g1r1_config"]["path"]
+        self.assertTrue(resolved.is_file())
+
     def test_route_tokens_keep_attribution_separate_from_pass(self):
         routes = json.loads(stage.CONFIG.read_text(encoding="utf-8"))["routes"]
         self.assertIn("MIXED_DATA_AND_STRUCTURED_MODEL_REQUIRED", routes["mixed"])

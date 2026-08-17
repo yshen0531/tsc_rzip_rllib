@@ -378,7 +378,8 @@ def attribute(path: Path, source_revision: str, run_dir: Path, output: Path) -> 
         raise InputIntegrityError("diagnostic raw not independently accepted")
     if output.exists():
         raise FileExistsError(str(output))
-    development_stage = model.load_stage(ROOT / i1._json(ROOT / stage["evidence"]["id2i1_config"]["path"])["evidence"]["id2g1r1_config"]["path"])
+    id2i1_stage = i1._read_json(ROOT / stage["evidence"]["id2i1_config"]["path"])
+    development_stage = model.load_stage(ROOT / id2i1_stage["evidence"]["id2g1r1_config"]["path"])
     data = model.extract_dataset(development_stage)
     campaign = streams(stage, cfg, targets, id2c1_stage)
     cells = _cells(stage, run_dir, campaign, data, cfg)
