@@ -1,20 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, post-ID-2H1):** the selected causal
-> TCN has now passed a fresh ten-group whole-history calibration without any
-> weight, feature or selection change. Forty real server rollouts and 1,360
-> verified advances passed execution, exact-action, replay and independent raw
-> gates. The group-max absolute-recursive width is
-> `0.593642 mm / 0.240511 mm / 24.047694 A`; the paired-response width is
-> `0.695069 mm / 0.238259 mm / 7.717859 A`. Independent recomputation is exact.
+> **Active new-round context (2026-08-17, post-ID-2I1):** ID-2H1 calibrated the
+> selected causal TCN successfully, but the untouched eight-group ID-2I1 blind
+> holdout rejected it. Execution/raw/replay integrity passed; joint calibrated
+> containment was `0/8`, matched-response NRMSE `1.109016`, and peak-response
+> direction was correct in only `5/8` groups. Wider catastrophic caps passed.
 >
-> These records calibrated the widths and therefore are not blind validation.
-> ID-2I1 is now prospectively frozen as an untouched eight-group whole-history
-> holdout of the same artifact and fixed widths. It changes context composition,
-> event timing and duration inside the existing p04/p07 action family, while
-> retaining exact paired baselines and whole-cell replay. No controller,
-> transition tube, authority, recourse, MPC, crossing, adaptation or RL has
-> been qualified. All older notices are historical.
+> This is a finite source-local history-generalization failure, not evidence
+> against machine learning in general and not a controller or reachability
+> result. The active route is paused for a zero-fit attribution audit before
+> deciding between better prospectively split history coverage and a more
+> structured nominal-plus-memory model. No controller, transition tube,
+> authority, recourse, MPC, crossing, adaptation or RL is qualified. All older
+> notices are historical.
 >
 > **Historical ID-2G1 context:** the fresh ID-2F1R1
 > repeated-context campaign and independent raw reparse passed. It provides

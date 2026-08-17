@@ -1,0 +1,208 @@
+{
+  "advance_attempts": 1088,
+  "blind_holdout_data_eligible": true,
+  "claim_boundary": "Finite blind eight-group whole-history validation of one frozen TCN and fixed ID2H1 widths only; not a transition tube, authority, recourse, controller, MPC, transport, crossing, adaptation or reachability qualification.",
+  "controller_safety_data_eligible": false,
+  "id2c2_records_read": 0,
+  "missing_required_artifacts": [],
+  "model_fit_retrain_tune_select_or_recalibrate_use": "forbidden",
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 1088,
+  "replay_pair_checks": [
+    {
+      "cell_id": "h00__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h00__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h01__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h01__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h02__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h02__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h03__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h03__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h04__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h04__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h05__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h05__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h06__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h06__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h07__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h07__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    }
+  ],
+  "required_artifact_bytes": 65960074880,
+  "required_artifact_files": 5600,
+  "required_artifact_inventory_sha256": "66bf9ddcb8733183d938253c520d46b5eac5a1f6e038baf60168f13119036f78",
+  "reset_calls": 32,
+  "rollouts_completed": 32,
+  "route": "ONE_MS_ID2I1_BLIND_HISTORY_DATA_PASS_EVALUATE_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2i1-blind-whole-history-holdout-result-v1",
+  "source_revision": "ea84ad0d0d2b73b06cf3aeaaa7decb4ea147dcae",
+  "stage_config_sha256": "3af0c26743d0a027f33b3efd3b237cb776c0fbe31988fa7d3128babe32d64e8f",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 157574296576,
+    "estimated_raw_bytes": 70000000000,
+    "free_bytes_before_run": 227574296576,
+    "passed": true
+  },
+  "unique_cells_completed": 16,
+  "verified_plant_advances": 1088,
+  "whole_history_groups_completed": 8
+}

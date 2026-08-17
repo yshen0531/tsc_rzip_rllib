@@ -1,34 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, post-ID-2H1):** ID-2H1 is final as
-> `ONE_MS_ID2H1_GROUPED_CALIBRATION_PASS_BLIND_HOLDOUT_DESIGN_ONLY`.
-> The real server campaign completed 40/40 rollouts, 1,360/1,360 verified
-> one-ms advances, 1,400 states and ten atomic whole-history groups. Primary
-> and independent raw parsing agree on 7,000 required files,
-> 82,450,093,600 bytes and inventory digest `e1d0f21c...`. Every baseline/
-> probe cell's two replays were exact in checked geometry, Ip, coil and wire
-> histories.
+> **Unique active task (2026-08-17, post-ID-2I1 pause):** ID-2I1 is final as
+> `ONE_MS_ID2I1_BLIND_WHOLE_HISTORY_HOLDOUT_FAIL_ROUTE_REVIEW`. Execution and
+> evidence integrity passed: 32/32 rollouts, 1,088/1,088 advances, 1,120 states,
+> 16/16 exact replay pairs and an independently reproduced 5,600-file,
+> 65,960,074,880-byte raw inventory (`66bf9ddc...`).
 >
-> The unchanged causal TCN passed all frozen calibration gates without fitting,
-> tuning or selection. Its simultaneous absolute-recursive half-width is
-> `0.593642 mm / 0.240511 mm / 24.047694 A`; its paired-response half-width is
-> `0.695069 mm / 0.238259 mm / 7.717859 A`. Matched-response NRMSE is
-> `0.729531`, peak direction is correct in 10/10 groups, and the independent
-> recomputation has maximum numeric difference zero.
+> The unchanged TCN and ID-2H1 widths failed the blind scientific gates:
+> joint complete-group containment `0/8`, absolute containment `3/8`, paired
+> containment `4/8`, matched-response NRMSE `1.109016`, and correct peak
+> direction `5/8`. Wider catastrophic caps passed. Independent full-raw
+> recomputation reproduced every metric and the route with maximum numeric
+> difference zero.
 >
-> ID-2I1 is now prospectively frozen as that blind holdout. It uses eight new
-> complete conditioner histories, matched baseline/probe cells and two exact
-> replays per cell: at most 32 resets and 1,088 advances. The issue-18/21
-> conditioner patterns, issue-25 probe time, duration-three probes and
-> two-conditioner histories were absent as complete ID-2F1R1/ID-2H1 groups.
-> The model, widths and gates cannot change. Config/design SHA-256 values are
-> `3af0c26743d0a027f33b3efd3b237cb776c0fbe31988fa7d3128babe32d64e8f /`
-> `a22fb8ad81ced36ff1a9911a5cba6505155cce4cd095646cc6ff2241fe9f3240`.
->
-> ID-2C2 remains unread. A complete PASS may authorize only source-local
-> controller-grade authority/tube/recourse design. Controller execution, MPC,
-> crossing, adaptation and RL remain blocked. This is the sole active pointer;
-> all blocks below are historical.
+> Development pauses for route review. ID-2I1 is consumed evaluation-only and
+> must not be used to fit, tune or recalibrate. The recommended next action is
+> a separately frozen zero-new-TSC/zero-fit attribution audit of nominal versus
+> paired-response error, history support and ensemble-error correlation.
+> ID-2C2 remains unread; controller, tube, authority, recourse, MPC, crossing,
+> adaptation and RL remain blocked. This is the sole active pointer; all blocks
+> below are historical.
 >
 > **Historical ID-2G1 task:** ID-2F1R1 completed all
 > 78 rollouts, 2,652 verified one-ms advances and 2,730 states. Independent

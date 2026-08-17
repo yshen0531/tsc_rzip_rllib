@@ -1,22 +1,14 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2H1 final PASS):** the fresh whole-history
-> campaign completed 40/40 rollouts and 1,360/1,360 verified advances. The
-> independent raw audit reproduced 1,400 states, 7,000 required files,
-> 82,450,093,600 bytes, digest `e1d0f21c...`, and exact replay histories for
-> all 20 cells.
->
-> The already frozen causal TCN was neither fitted nor modified. The maximum
-> of ten atomic group scores gives absolute-recursive widths
-> `0.593642 mm / 0.240511 mm / 24.047694 A` and paired-response widths
-> `0.695069 mm / 0.238259 mm / 7.717859 A`. Matched-response NRMSE is
-> `0.729531`; all ten peak directions are positive. Independent full-raw
-> recomputation differs by zero. ID-2I1 is now frozen as the separate blind
-> whole-context/history holdout: 8 groups, 16 cells, two replays per cell and
-> at most 1,088 advances. It uses the exact model and calibrated widths, with
-> no fitting, recalibration or post-result gate changes. ID-2H1 is not a
-> transition tube, authority, controller or closed-loop result. Older blocks
-> are historical.
+> **Current status (2026-08-17, ID-2I1 final FAIL):** the blind campaign and
+> independent raw audit passed all 32 rollouts, 1,088 advances, 1,120 states,
+> 16 replay pairs and the 5,600-file inventory. The scientific holdout failed
+> with joint frozen-width containment `0/8`, response NRMSE `1.109016` and
+> positive peak direction `5/8`; independent recomputation differs by zero.
+> All catastrophic caps passed, so this is a model generalization/calibration
+> failure rather than runtime, interface, raw, reporting or plant-safety
+> failure. The route is paused before any controller work. Older blocks are
+> historical.
 >
 > **Historical ID-2G1 status:** ID-2F1R1 is final as
 > `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.

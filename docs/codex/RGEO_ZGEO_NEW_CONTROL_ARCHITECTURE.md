@@ -1,19 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2H1 architecture note (2026-08-17):** the small causal TCN has
-> passed fresh whole-history calibration on ten complete conditioner/probe
-> groups with zero fitting or selection. The independently reproduced
-> group-max widths are sub-millimetre in R/Z and 24.05 A absolute / 7.72 A
-> paired in Ip. This supports the history-conditioned nonlinear residual
-> component in the tested source-local envelope; it does not turn the TCN
-> into a controller or safety layer.
+> **Post-ID-2I1 architecture note (2026-08-17):** the small causal TCN passed
+> development and fresh calibration but failed the untouched whole-history
+> holdout. Absolute prediction remained inside wider caps, yet calibrated
+> joint coverage was `0/8`, response NRMSE exceeded action-blind normalization,
+> and three groups predicted the peak R/Z response in the wrong half-plane.
+> The current TCN/width pair is therefore not eligible for controller use.
 >
-> ID-2I1 freezes that next AND gate as a truly blind eight-group whole-context/
-> history holdout using the exact artifact and widths. Exact actuator/queue
-> semantics and noiseless current R_geo/Z_geo/Ip remain explicit, and future
-> actual current remains forbidden. Authority, controller-grade tubes,
-> recourse and constrained control are still later independent gates. The
-> final two-axis path/waypoint and repeated R_mid-crossing goal is unchanged.
+> The architecture remains exact actuator/queue plus history-conditioned
+> dynamics and uncertainty, but the next decision must separate nominal drift,
+> action-memory support and uncertainty detection before selecting new data or
+> a structured nominal-plus-stable-memory residual model. Exact/noiseless
+> current R_geo/Z_geo/Ip and the final two-axis path/waypoint/R_mid-crossing
+> goal are unchanged. Controller-grade tubes and recourse remain blocked.
 >
 > **Historical ID-2G1 architecture note (2026-08-17):** ID-2F1R1 passed its complete
 > fresh repeated-context data gates and now permits a finite development

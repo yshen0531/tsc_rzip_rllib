@@ -1,0 +1,178 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Independent full-raw blind holdout recomputation; not calibration, tube or controller qualification.",
+  "controller_authorized": false,
+  "failures": [],
+  "id2c2_records_read": 0,
+  "id2h1_calibration_sha256": "6e6e0f9fa1c263075d21169dc583bf3e23bb99fbd12afba047af93ad4f94a247",
+  "maximum_numeric_difference": 0.0,
+  "models_fit_retrained_tuned_selected_or_recalibrated": 0,
+  "primary_evaluation_sha256": "f2d9bb2f5cd17bad63277b5ba075c30de6f36a54191617551cc46539a1ab8424",
+  "primary_passed": false,
+  "primary_route": "ONE_MS_ID2I1_BLIND_WHOLE_HISTORY_HOLDOUT_FAIL_ROUTE_REVIEW",
+  "recomputed_holdout_metrics": {
+    "frozen_absolute_recursive_half_width": [
+      0.0005936422508353578,
+      0.00024051138515601006,
+      24.0476938080501
+    ],
+    "frozen_paired_response_half_width": [
+      0.0006950692585707685,
+      0.00023825926428221178,
+      7.717859491567651
+    ],
+    "gate_passes": {
+      "absolute_catastrophic_cap": true,
+      "joint_calibrated_width_coverage": false,
+      "matched_response_nrmse": false,
+      "paired_response_catastrophic_cap": true,
+      "peak_direction": false
+    },
+    "group_scores": [
+      {
+        "absolute_recursive_group_max": [
+          0.0005542304194113834,
+          0.00016506165533384382,
+          17.175649976285058
+        ],
+        "absolute_width_contained": true,
+        "group_id": "h00",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.0007016063588692889,
+          0.0002510897127240286,
+          9.489847165321407
+        ],
+        "paired_response_width_contained": false,
+        "peak_direction_cosine": -0.7520625110215425
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005360887161469652,
+          0.0002612070216007553,
+          23.299747583492717
+        ],
+        "absolute_width_contained": false,
+        "group_id": "h01",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.0002118312919247023,
+          9.060816471228444e-05,
+          3.476270403185481
+        ],
+        "paired_response_width_contained": true,
+        "peak_direction_cosine": 0.9796277219857784
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005565810635833612,
+          0.00020046411124422653,
+          16.843552685459144
+        ],
+        "absolute_width_contained": true,
+        "group_id": "h02",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.0007027979690582553,
+          0.0002565466527042204,
+          11.340054915763176
+        ],
+        "paired_response_width_contained": false,
+        "peak_direction_cosine": -0.761774364319391
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005406419679708785,
+          0.00022503149498433184,
+          22.108734275072493
+        ],
+        "absolute_width_contained": true,
+        "group_id": "h03",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.00024714920578061683,
+          6.278448192725133e-05,
+          9.64225656569397
+        ],
+        "paired_response_width_contained": false,
+        "peak_direction_cosine": 0.9933098360705439
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0005764210136497416,
+          0.0002405325207462325,
+          20.028576523091033
+        ],
+        "absolute_width_contained": false,
+        "group_id": "h04",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.0004781318193278761,
+          0.00017895640999475437,
+          7.449339269351185
+        ],
+        "paired_response_width_contained": true,
+        "peak_direction_cosine": 0.9994488640619528
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0007282761628074619,
+          0.00031102880091859325,
+          22.16624942285489
+        ],
+        "absolute_width_contained": false,
+        "group_id": "h05",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.0001430489011472469,
+          7.081353998628082e-05,
+          7.5825488011068956
+        ],
+        "paired_response_width_contained": true,
+        "peak_direction_cosine": 0.867131768866887
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.0006633164800323721,
+          0.00029387310299430064,
+          19.024755888702202
+        ],
+        "absolute_width_contained": false,
+        "group_id": "h06",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.0006778864505888604,
+          0.00027038055517136783,
+          6.003546591447957
+        ],
+        "paired_response_width_contained": false,
+        "peak_direction_cosine": -0.6422613094202859
+      },
+      {
+        "absolute_recursive_group_max": [
+          0.000656222739264023,
+          0.000231858551727325,
+          22.253594072622946
+        ],
+        "absolute_width_contained": false,
+        "group_id": "h07",
+        "joint_width_contained": false,
+        "paired_response_group_max": [
+          0.00015977916122444924,
+          8.649068281616629e-05,
+          7.06933445165123
+        ],
+        "paired_response_width_contained": true,
+        "peak_direction_cosine": 0.930048937791668
+      }
+    ],
+    "joint_width_contained_groups": 0,
+    "matched_response_nrmse": 1.109016151054222,
+    "passed": false,
+    "positive_peak_direction_groups": 5
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2i1-independent-evaluation-v1",
+  "selected_model_sha256": "14502175c95d1d0b5b36846a35af249af0041405eb6c013f099caa4dd18d176b",
+  "source_revision": "ea84ad0d0d2b73b06cf3aeaaa7decb4ea147dcae",
+  "stage_config_sha256": "3af0c26743d0a027f33b3efd3b237cb776c0fbe31988fa7d3128babe32d64e8f"
+}

@@ -1,0 +1,203 @@
+{
+  "audit_passed": true,
+  "blind_holdout_data_eligible": true,
+  "claim_boundary": "Independent raw reparse of blind ID2I1 histories; not fitting, calibration or control qualification.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "primary_sha256": "3f6f32b68005ee623586de613f5aae3da1d1fa9ac90eaeb2299b0666bf9bd310",
+  "raw_rollouts": 32,
+  "raw_states": 1120,
+  "recomputed_counters": {
+    "advance_attempts": 1088,
+    "plant_advance_gotsc_calls": 1088,
+    "reset_calls": 32,
+    "rollouts_completed": 32,
+    "unique_cells_completed": 16,
+    "verified_plant_advances": 1088,
+    "whole_history_groups_completed": 8
+  },
+  "recomputed_inventory_bytes": 65960074880,
+  "recomputed_inventory_files": 5600,
+  "recomputed_inventory_sha256": "66bf9ddcb8733183d938253c520d46b5eac5a1f6e038baf60168f13119036f78",
+  "recomputed_replay_pair_checks": [
+    {
+      "cell_id": "h00__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h00__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h01__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h01__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h02__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h02__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h03__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h03__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h04__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h04__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h05__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h05__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h06__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h06__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h07__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "cell_id": "h07__probe",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    }
+  ],
+  "schema_version": "rgeo-zgeo-1ms-id2i1-independent-raw-v1",
+  "source_revision": "ea84ad0d0d2b73b06cf3aeaaa7decb4ea147dcae",
+  "stage_config_sha256": "3af0c26743d0a027f33b3efd3b237cb776c0fbe31988fa7d3128babe32d64e8f"
+}
