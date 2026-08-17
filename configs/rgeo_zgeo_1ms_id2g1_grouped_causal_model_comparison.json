@@ -1,0 +1,147 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2g1-grouped-causal-model-comparison-config-v1",
+  "identity": "rgeo-zgeo-1ms-id2g1-grouped-causal-model-comparison-v1",
+  "stage": "ID-2G1",
+  "server_only": true,
+  "new_tsc_calls": 0,
+  "reset_calls": 0,
+  "plant_advances": 0,
+  "source_run": {
+    "path": "rgeo_zgeo_1ms_id2f1r1_runs_20260817_4e92c987",
+    "source_revision": "4e92c987f0452b23a25bb4336d8caf04c3b9173e",
+    "primary_path": "docs/codex/audits/rgeo_zgeo_1ms_id2f1r1_20260817_4e92c987/result.json",
+    "primary_sha256": "897d0a8a44c305891d77e29c728d171cd8857869a91d00b3268cac39d6d1e655",
+    "independent_path": "docs/codex/audits/rgeo_zgeo_1ms_id2f1r1_20260817_4e92c987/independent_audit.json",
+    "independent_sha256": "d08c85ec3cd3b027ec2b00f1307c2adf9fb8176d47353ce5a823000d103647e5",
+    "required_inventory_sha256": "8011fc16959bbe6caea4347b2a35140c14660c26b5f96d5db215352af1fa781f",
+    "required_rollouts": 78,
+    "required_unique_cells": 39,
+    "required_states": 2730,
+    "required_advances": 2652,
+    "required_artifact_files": 13650,
+    "required_artifact_bytes": 160777682520
+  },
+  "design": {
+    "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2G1_GROUPED_CAUSAL_MODEL_COMPARISON_DESIGN.md",
+    "sha256": "9612e93eba25172017ab68dfdab43419ef2682a300b634e00c3970d0219d1fa0"
+  },
+  "data_contract": {
+    "contexts": ["none", "p04_plus_i18_d1", "p07_plus_i18_d1"],
+    "replays_per_cell": 2,
+    "unique_cells_per_context": 13,
+    "unit_weight_per_unique_cell": true,
+    "average_exact_replays": true,
+    "state_start_index": 0,
+    "state_end_index": 34,
+    "recursive_origin_state": 16,
+    "paired_response_start_state": 23,
+    "paired_response_end_state": 34,
+    "history_receptive_field": 16,
+    "issue_to_effect_state_offset": 1,
+    "allowed_model_inputs": [
+      "current_and_past_r_geo_z_geo_ip",
+      "current_and_past_14_coil_readback",
+      "issued_card15_through_current_issue",
+      "candidate_future_issued_card15",
+      "one_ms_time_index",
+      "causal_takeover_history_mask"
+    ],
+    "forbidden_model_inputs": [
+      "future_r_geo_z_geo_ip",
+      "future_actual_or_readback_current",
+      "future_matched_baseline",
+      "wire_current",
+      "sprsina",
+      "outputa",
+      "context_id",
+      "direction_id",
+      "sign",
+      "duration_label",
+      "id2c2",
+      "calibration",
+      "holdout"
+    ],
+    "card15_span_directions": ["p03", "p04", "p07"],
+    "maximum_card15_projection_residual_a": 1e-9,
+    "id2c2_records_allowed": 0,
+    "calibration_records_allowed": 0,
+    "holdout_records_allowed": 0
+  },
+  "folds": [
+    {"fold_id": "hold_none", "held_context": "none"},
+    {"fold_id": "hold_p04", "held_context": "p04_plus_i18_d1"},
+    {"fold_id": "hold_p07", "held_context": "p07_plus_i18_d1"}
+  ],
+  "normalization": {
+    "state_scale": [0.001, 0.001, 100.0],
+    "response_scale": [0.0001, 0.0001, 25.0],
+    "time_scale_steps": 34.0,
+    "fit_from_training_contexts_only": true
+  },
+  "candidates": {
+    "action_blind": {"selectable": false},
+    "stable_lpv": {
+      "selectable": true,
+      "poles": [0.2, 0.5, 0.8, 0.95],
+      "ridge": 0.001
+    },
+    "small_gru": {
+      "selectable": true,
+      "hidden_width": 12,
+      "layers": 1,
+      "seeds": [11, 29, 47],
+      "epochs": 400,
+      "learning_rate": 0.003,
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0
+    },
+    "causal_tcn": {
+      "selectable": true,
+      "hidden_width": 12,
+      "dilations": [1, 2, 4, 8],
+      "kernel_size": 2,
+      "seeds": [11, 29, 47],
+      "epochs": 400,
+      "learning_rate": 0.003,
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0
+    },
+    "probabilistic_ensemble": {
+      "selectable": true,
+      "members": ["stable_lpv", "small_gru", "causal_tcn"],
+      "nominal_coverage": 0.9,
+      "residual_floor_from_training_only": true
+    }
+  },
+  "eligibility": {
+    "one_step_p95_abs_max": [0.0005, 0.0005, 50.0],
+    "recursive_p95_abs_max": [0.002, 0.002, 100.0],
+    "each_fold_response_nrmse_strict_max": 0.95,
+    "mean_response_nrmse_max": 0.75,
+    "minimum_action_blind_improvement_fraction": 0.2,
+    "minimum_positive_peak_cosine_total": 27,
+    "minimum_positive_peak_cosine_per_fold": 8,
+    "ensemble_minimum_marginal_coverage": 0.8,
+    "ensemble_p95_half_width_max": [0.001, 0.001, 75.0],
+    "simplicity_tie_fraction": 0.05,
+    "simplicity_order": ["stable_lpv", "small_gru", "causal_tcn", "probabilistic_ensemble"]
+  },
+  "output_contract": {
+    "emit_model_only_if_eligible": true,
+    "emit_compact_dataset": true,
+    "compact_dataset_forbidden_as_fixture": true,
+    "model_use": "development_selected_candidate_only",
+    "calibration_authorized": false,
+    "id2c2_authorized": false,
+    "holdout_authorized": false,
+    "controller_authorized": false,
+    "mpc_authorized": false,
+    "rl_authorized": false
+  },
+  "routes": {
+    "input_or_data_integrity_fail": "ONE_MS_ID2G1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL",
+    "training_or_reproducibility_fail": "ONE_MS_ID2G1_TRAINING_OR_REPRODUCIBILITY_FAIL_STOP",
+    "no_eligible_candidate": "ONE_MS_ID2G1_GROUPED_MODEL_FAIL_ROUTE_REVIEW",
+    "pass": "ONE_MS_ID2G1_GROUPED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+  }
+}

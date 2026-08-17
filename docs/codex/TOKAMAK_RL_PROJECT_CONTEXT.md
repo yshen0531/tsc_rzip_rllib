@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, ID-2F1R1):** ID-2F1 v1 failed
+> **Active new-round context (2026-08-17, ID-2G1):** the fresh ID-2F1R1
+> repeated-context campaign and independent raw reparse passed. It provides
+> 39 unique, exactly repeated, fit-eligible development cells across three
+> causal contexts, not 78 independent samples. ID-2G1 now performs the
+> machine-learning comparison that the route was designed to enable; it does
+> not require complete physical attribution of every reproducible jump.
+>
+> The predictor sees exact current R_geo/Z_geo/Ip, allowed causal history and
+> candidate issued Card15 actions. Future actual current/state, wire current,
+> context/sign/duration labels, ID-2C2, calibration and holdout are forbidden.
+> Stable low-order/LPV, small GRU, causal TCN and probabilistic ensemble models
+> use the same whole-context folds. A model PASS would authorize only fresh
+> calibration design, not a controller or safety claim. All older active
+> notices below are historical.
+>
+> **Historical ID-2F1R1 context:** ID-2F1 v1 failed
 > its prospective zero-TSC lag-support gate at rank 28/32. R1 retains the
 > unchanged repeated-context action cells and adds two terminal nominal-hold
 > issues, giving full rank-32 lag-16 support before any plant run. A PASS may

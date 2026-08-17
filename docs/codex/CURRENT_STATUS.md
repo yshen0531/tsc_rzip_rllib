@@ -1,6 +1,23 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2F1R1 prospective):** ID-2F1 v1 is a
+> **Current status (2026-08-17, ID-2G1 active):** ID-2F1R1 is final as
+> `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.
+> Primary and independent evidence agree on 78/78 rollouts, 2,652/2,652
+> verified advances, 2,730 states, 39/39 exact replay pairs, lag rank 32,
+> condition 3.1756126 and all family signal/Ip gates. The immutable server
+> raw inventory is 13,650 files / 160,777,682,520 bytes with digest
+> `8011fc16959bbe6caea4347b2a35140c14660c26b5f96d5db215352af1fa781f`.
+>
+> The active ID-2G1 stage fits no controller and runs zero TSC. It compares
+> stable low-order/LPV, small GRU, causal TCN and probabilistic ensemble
+> candidates under identical whole-context LOCO folds, with an action-blind
+> comparator and both absolute recursive and matched-baseline response
+> metrics. Replays are integrity replicates rather than extra samples.
+> ID-2C2, calibration and holdout remain at zero reads. No predictive result
+> is yet a control/authority/safety result. Older status blocks below are
+> historical.
+>
+> **Historical ID-2F1R1 prospective status:** ID-2F1 v1 is a
 > clean zero-TSC input-schedule design FAIL: server-focused tests passed
 > 9/10 and reconstructed its lag-16 block as rank 28/32, condition infinity,
 > minimum singular value zero. No plant or model conclusion was drawn.

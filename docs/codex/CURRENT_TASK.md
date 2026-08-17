@@ -1,6 +1,26 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, ID-2F1R1):** ID-2F1 v1 stopped before
+> **Unique active task (2026-08-17, ID-2G1):** ID-2F1R1 completed all
+> 78 rollouts, 2,652 verified one-ms advances and 2,730 states. Independent
+> raw reparse reproduced the 13,650-file / 160,777,682,520-byte inventory,
+> all 39 exact replay pairs, rank-32 lag support with condition 3.1756126 and
+> every signed family signal/Ip gate. Its final route is
+> `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.
+>
+> ID-2G1 is the active zero-new-TSC server stage. It gives each of the 39
+> unique cells unit weight and uses three whole-context LOCO folds to compare
+> a stable low-order/LPV model, small GRU, causal TCN and probabilistic
+> ensemble. Current R_geo/Z_geo/Ip and causal history are exact observations;
+> future issued Card15 is allowed, future actual readback/state and all
+> context/sign labels are forbidden. ID-2C2, calibration and holdout remain
+> unread. Config/design SHA-256 are
+> `aa2c11478ea5157e03702ebe1202a39bcf58245a20adb0a9afba4aa95916a6bd /`
+> `9612e93eba25172017ab68dfdab43419ef2682a300b634e00c3970d0219d1fa0`.
+> A PASS authorizes fresh calibration design only; no controller, tube,
+> recourse, MPC, crossing, adaptation or RL is authorized. This is the sole
+> active pointer; every older active-task block below is historical.
+>
+> **Historical ID-2F1R1 notice:** ID-2F1 v1 stopped before
 > TSC because its frozen 32-issue schedule produced a rank-28 rather than
 > rank-32 two-coordinate lag-16 block. The result is
 > `ONE_MS_ID2F1_ACTION_HISTORY_SUPPORT_FAIL_REDESIGN`, with zero reset,

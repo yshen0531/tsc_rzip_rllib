@@ -1,6 +1,22 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2F1R1 implementation note (2026-08-17):** the repeated-context
+> **ID-2G1 architecture note (2026-08-17):** ID-2F1R1 passed its complete
+> fresh repeated-context data gates and now permits a finite development
+> model comparison. The architecture remains exact actuator/queue plus a
+> history-conditioned dynamics model and uncertainty; current R_geo/Z_geo/Ip
+> are exact observations rather than latent noisy states. Mechanism
+> attribution is diagnostic, not a universal prerequisite for ML.
+>
+> ID-2G1 compares stable low-order/LPV, small GRU, causal TCN and a
+> probabilistic ensemble under the same three whole-context LOCO folds. It
+> evaluates rolling one-step, free recursive and evaluator-only paired
+> response prediction without future-baseline leakage. Even a PASS is only
+> a development-model result; fresh calibration, whole-context/history
+> holdout, authority and recourse remain separate AND gates before rolling
+> control. The final fixed-1100-ms, one-ms, safe two-axis path/waypoint and
+> repeated R_mid-crossing goal is unchanged.
+>
+> **Historical ID-2F1R1 implementation note (2026-08-17):** the repeated-context
 > development campaign uses a 34-issue horizon because the original 32-issue
 > schedule supported only rank 28 of the declared 32-column lag-16 input
 > block. This is a prospective data-geometry correction under a new identity,
