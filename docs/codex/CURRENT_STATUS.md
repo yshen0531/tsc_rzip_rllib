@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-17, post-ID-2K1):** the factorized development
+> **Current status (2026-08-17, post-ID-2L1):** server tests passed 10/10
+> focused and 203/203 one-ms regression tests. Twenty fold models were fitted
+> with zero TSC/plant work; independent full refit reproduced every metric
+> exactly. Final route:
+> `ONE_MS_ID2L1_STRUCTURED_MODEL_FAIL_ROUTE_REVIEW`.
+>
+> `stable_signed_even` is a meaningful but ineligible development backbone:
+> paired NRMSE `0.602347`, peak direction `32/32`, and free-rollout gates
+> passed, but the preregistered 1/2 ms absolute R recenter gates failed.
+> Contextual quadratic and GRU residual candidates were worse. No selected
+> model or calibration authorization exists. The route is paused before a
+> proposed zero-fit ID-2M0 event/nominal attribution. Older status blocks are
+> historical.
+
+> **Historical post-ID-2K1 status:** the factorized development
 > campaign passed with 43/43 rollouts, 40 unique fit-weighted cells, 1,462
 > verified advances and an independently reproduced 7,525-file required raw
 > inventory. All eight matched prefixes, all 32 signal/Ip cells and all three

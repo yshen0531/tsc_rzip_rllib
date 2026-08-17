@@ -1,5 +1,30 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2L1 structured history model comparison
+
+- Date: 2026-08-17 Asia/Shanghai.
+- Model revision:
+  `a6d509b52ed78b554317e11e05c16585129cbd3f`; reporting-only launcher
+  follow-up `1fe0a3eb`.
+- Server tests: 10/10 focused and 203/203 complete one-ms tests.
+- Output directory: `rgeo_zgeo_1ms_id2l1_model_a6d509b5`.
+- Primary / independent full-refit SHA-256:
+  `af67b3915afead8c5df2846982c90c4b41ef17aa448a0904b48e24157e7969fd /`
+  `52a5f8aedaad5a8347b0b9fca9d112c9b482f418b6e9585b563511017034176b`.
+- Twenty fold models, zero TSC/reset/plant advances, zero calibration or
+  holdout reads; independent maximum numeric difference `0.0`.
+- Best candidate `stable_signed_even`: mean response NRMSE `0.602347`, peak
+  direction `32/32`, response/free gates PASS; 1 ms and composite-history
+  2 ms absolute R recenter gates FAIL.
+- Contextual mean NRMSE `7.257824`; GRU residual `1.812266`; no model artifact
+  emitted.
+- Final route: `ONE_MS_ID2L1_STRUCTURED_MODEL_FAIL_ROUTE_REVIEW`.
+- Next recommendation: zero-fit ID-2M0 per-event nominal/innovation
+  attribution; no automatic new TSC or larger model.
+- Cleanup: exact ID-2K1 server `rollouts` subtree (90,028,813,364 bytes)
+  removed after compact/raw-audit/model evidence was preserved. Top-level
+  compact/result/audit remain.
+
 ## R_geo/Z_geo 1 ms ID-2K1 factorized history/sign development
 
 - Date: 2026-08-17 Asia/Shanghai.

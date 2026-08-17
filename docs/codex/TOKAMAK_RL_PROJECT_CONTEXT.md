@@ -1,6 +1,20 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, post-ID-2K1):** prospective
+> **Active new-round context (2026-08-17, post-ID-2L1):** the explicit
+> signed/even stable action-memory backbone materially succeeded on held
+> response geometry (`0.602347` NRMSE, `32/32` positive peak directions) but
+> missed strict one/two-ms absolute R increment gates after exact truth
+> recentering. A larger quadratic context map and a small GRU residual both
+> regressed, so model capacity is not the justified next lever.
+>
+> The next decision is diagnostic: attribute the short-time error to shared
+> nominal drift, discrete conditioner/probe issue-return edges, or missing
+> bounded innovation correction using existing development predictions only.
+> Calibration, blind holdout, authority, recovery and control remain blocked.
+> The final two-axis waypoint and repeated R_mid-crossing goal is unchanged.
+> All older notices are historical.
+
+> **Historical post-ID-2K1 context:** prospective
 > development data now covers eight complete conditioner histories crossed
 > with matched baseline and p04/p07 probes of both signs. Execution, prefixes,
 > three replays, signal/Ip gates and independent raw integrity all passed.

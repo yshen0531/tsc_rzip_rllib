@@ -1,6 +1,21 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2K1 architecture amendment (2026-08-17):** the complete fresh
+> **Post-ID-2L1 architecture amendment (2026-08-17):** the structured
+> signed/even fixed-pole action memory is retained as the leading development
+> backbone, but it is not yet a qualified model. It generalized signed
+> response direction and magnitude much better than action-blind, odd-only,
+> high-dimensional contextual, or GRU-residual alternatives, while failing
+> strict exact-observation short-horizon absolute R gates.
+>
+> The next architecture decision must separate the explicit time nominal from
+> causal issue/return-event and innovation correction. It must not replace the
+> useful backbone with a larger monolithic network. A bounded local correction
+> or hybrid event/direct-horizon head is only a candidate after zero-fit
+> per-issue attribution. Fresh calibration and blind whole-history holdout
+> remain AND gates before authority, recovery and control. The final waypoint
+> and crossing goal is unchanged.
+
+> **Historical post-ID-2K1 architecture amendment:** the complete fresh
 > `history x direction x sign` development matrix passed its execution and
 > evidence gates. Its plus/minus responses are strongly non-odd in the finite
 > tested domain, while conditioner-history effects must still be evaluated as

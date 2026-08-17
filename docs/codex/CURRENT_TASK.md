@@ -1,6 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, post-ID-2K1):** ID-2K1 is final as
+> **Unique active task (2026-08-17, post-ID-2L1):** ID-2L1 is final as
+> `ONE_MS_ID2L1_STRUCTURED_MODEL_FAIL_ROUTE_REVIEW`. Twenty whole-history
+> development fits completed with zero TSC/plant work and independent full
+> refit difference `0.0`. No candidate was selected and no model artifact,
+> calibration or holdout authorization was emitted.
+>
+> The best `stable_signed_even` backbone achieved held-family paired NRMSE
+> `0.602347` and correct peak direction `32/32`, passing response and free
+> rollout gates. It failed the frozen short-horizon absolute R gates:
+> 1 ms p95 `0.394--0.426 mm` versus `0.300 mm`, and composite-history 2 ms
+> p95 about `0.791 mm` versus `0.550 mm`. The quadratic contextual model and
+> GRU residual regressed strongly.
+>
+> Development pauses here for route review. The recommended successor is a
+> separately frozen zero-new-TSC/zero-fit ID-2M0 per-issue attribution of
+> nominal, signed/even response, innovation and issue/return edges. Do not
+> weaken ID-2L1 gates, enlarge the neural model, run fresh TSC, open
+> calibration/holdout, or start authority/controller work without a new user
+> confirmation. This is the sole active pointer; every block below is
+> historical.
+
+> **Historical post-ID-2K1 task:** ID-2K1 is final as
 > `ONE_MS_ID2K1_FACTORIZED_HISTORY_SIGN_DATA_PASS_STRUCTURED_MODEL_ONLY`.
 > All 43 rollouts, 1,462 advances, 1,505 states, eight matched-prefix groups,
 > 32 signal/Ip gates and three critical replays passed. Independent raw

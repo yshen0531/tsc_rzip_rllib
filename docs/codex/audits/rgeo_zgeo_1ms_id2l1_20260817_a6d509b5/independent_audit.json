@@ -1,0 +1,20 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Independent deterministic development-data full refit only; not calibration, holdout or control qualification.",
+  "dataset_sha256": "88137c184be6793eaa405360f51fe16773a1d671c54ee49caa243222f19ea24d",
+  "failures": [],
+  "fresh_calibration_design_authorized": false,
+  "maximum_numeric_difference": 0.0,
+  "model_payload_sha256": null,
+  "models_refit": 20,
+  "plant_advances": 0,
+  "primary_passed": false,
+  "primary_route": "ONE_MS_ID2L1_STRUCTURED_MODEL_FAIL_ROUTE_REVIEW",
+  "primary_sha256": "af67b3915afead8c5df2846982c90c4b41ef17aa448a0904b48e24157e7969fd",
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2l1-structured-history-model-independent-v1",
+  "selected_candidate": null,
+  "source_revision": "a6d509b52ed78b554317e11e05c16585129cbd3f",
+  "stage_config_sha256": "5480a8124472020c4069c0b0fb00e2be235c7657d01bd9a4c76946f9e2910efe",
+  "tsc_calls": 0
+}
