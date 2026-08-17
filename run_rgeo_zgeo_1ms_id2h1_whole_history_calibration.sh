@@ -33,12 +33,14 @@ if [[ "${primary_status}" -ne 0 ]]; then
   exit "${primary_status}"
 fi
 
+set +e
 python scripts/rgeo_zgeo_1ms_id2h1_whole_history_calibration.py calibrate \
   --stage-config configs/rgeo_zgeo_1ms_id2h1_whole_history_calibration.json \
   --source-revision "${ID2H1_SOURCE_REVISION}" \
   --run-dir "${ID2H1_OUTPUT_DIR}" \
   --output "${ID2H1_OUTPUT_DIR}/calibration_result.json"
 calibration_status=$?
+set -e
 
 python scripts/rgeo_zgeo_1ms_id2h1_whole_history_calibration_independent.py calibration \
   --stage-config configs/rgeo_zgeo_1ms_id2h1_whole_history_calibration.json \
