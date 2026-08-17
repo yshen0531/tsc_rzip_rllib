@@ -78,6 +78,13 @@ class ID2L1ContractTests(unittest.TestCase):
         self.assertGreater(gate["minimum_action_blind_improvement_fraction"], 0.0)
         self.assertGreaterEqual(gate["minimum_positive_peak_cosine_per_fold"], 7)
 
+    def test_launcher_audits_scientific_exit_two(self):
+        text = (ROOT / "run_rgeo_zgeo_1ms_id2l1_structured_history_model.sh").read_text(encoding="utf-8")
+        self.assertIn("PRIMARY_RC=$?", text)
+        self.assertIn('PRIMARY_RC" -ne 2', text)
+        self.assertLess(text.index("PRIMARY_RC=$?"), text.index("structured_history_model_independent.py"))
+        self.assertIn('exit "$PRIMARY_RC"', text)
+
 
 if __name__ == "__main__":
     unittest.main()
