@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, post-ID-2I1):** ID-2H1 calibrated the
+> **Active new-round context (2026-08-17, ID-2J0):** the route now explicitly
+> distinguishes two failure sources that ID-2I1 mixed together: local
+> action-response prediction after exact 1 ms measurement recentering, and
+> longer free-recursion drift before/after a probe. The frozen TCN is not
+> eligible for control; ID-2J0 only attributes why.
+>
+> Because cleanup removed H1/I1 raw, one diagnostic replay of each consumed
+> ID-2I1 cell is generated under a new non-blind identity. These trajectories
+> may support route diagnosis only and may not train, calibrate or qualify any
+> model/controller. The expected successor is exact actuator/queue plus an
+> explicit nominal and stable low-order action memory, with a small contextual
+> neural residual only if fresh whole-family evidence justifies it. The final
+> two-axis waypoint and repeated-crossing goal is unchanged. All older notices
+> are historical.
+>
+> **Historical post-ID-2I1 context:** ID-2H1 calibrated the
 > selected causal TCN successfully, but the untouched eight-group ID-2I1 blind
 > holdout rejected it. Execution/raw/replay integrity passed; joint calibrated
 > containment was `0/8`, matched-response NRMSE `1.109016`, and peak-response

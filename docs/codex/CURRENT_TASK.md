@@ -1,6 +1,29 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, post-ID-2I1 pause):** ID-2I1 is final as
+> **Unique active task (2026-08-17, ID-2J0):** record and execute the approved
+> post-ID-2I1 attribution route. The final goal remains safe, causal tracking
+> of finite user R_geo/Z_geo displacement/path/waypoint commands from the
+> fixed 1100 ms source at 1 ms control, including later repeated R_mid
+> crossings, with exact current R_geo/Z_geo/Ip observations and Ip/current/
+> Card15/queue constraints.
+>
+> Server cleanup removed the ID-2H1 and ID-2I1 raw directories while their
+> tracked compact results remained. Therefore the originally proposed
+> zero-new-TSC attribution cannot recover per-state/member predictions.
+> ID-2J0 is a new post-holdout diagnostic identity: re-observe the sixteen
+> unique ID-2I1 baseline/probe cells once, independently raw-audit them, then
+> evaluate the unchanged TCN under truth-recenter periods 1/2/4 ms and the
+> original free recursion. It also measures causal-prefix support, member
+> disagreement, signed paired response and next-current/effect semantics.
+>
+> ID-2J0 is not blind validation and its raw is forbidden for fitting,
+> calibration, model selection, width shrinking, controller qualification or
+> expert/RL data. ID-2I1 remains FAIL and ID-2C2 remains unread. The result
+> may authorize only the separately prospective structured-model and/or
+> factorized-history development stage selected by the frozen attribution
+> route. This is the sole active pointer; every block below is historical.
+>
+> **Historical post-ID-2I1 pause:** ID-2I1 is final as
 > `ONE_MS_ID2I1_BLIND_WHOLE_HISTORY_HOLDOUT_FAIL_ROUTE_REVIEW`. Execution and
 > evidence integrity passed: 32/32 rollouts, 1,088/1,088 advances, 1,120 states,
 > 16/16 exact replay pairs and an independently reproduced 5,600-file,

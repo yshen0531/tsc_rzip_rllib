@@ -1,6 +1,22 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2I1 architecture note (2026-08-17):** the small causal TCN passed
+> **ID-2J0 architecture amendment (2026-08-17):** a monolithic causal TCN is
+> no longer the presumed plant backbone. ID-2J0 first measures whether exact
+> 1 ms truth recentering repairs local response while free recursion fails,
+> and whether blind histories lie outside development causal-prefix support.
+> The post-holdout re-observation is diagnostic only because original raw was
+> removed during server cleanup; it cannot be used to retrain or recalibrate.
+>
+> Unless the attribution contradicts it, the next model family is
+> `exact actuator/queue + time-indexed nominal continuation + stable low-order
+> latent action memory + small context-gated residual`. Current R_geo/Z_geo/Ip
+> remain exact observed inputs, not latent estimates. Conditional uncertainty
+> and OOD are whole-history/family quantities. Authority and controller-grade
+> recourse remain independent AND gates after a fresh model holdout. The final
+> fixed-1100-ms two-axis path/waypoint and repeated R_mid-crossing goal is not
+> reduced to source holding.
+>
+> **Historical post-ID-2I1 architecture note:** the small causal TCN passed
 > development and fresh calibration but failed the untouched whole-history
 > holdout. Absolute prediction remained inside wider caps, yet calibrated
 > joint coverage was `0/8`, response NRMSE exceeded action-blind normalization,

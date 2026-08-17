@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2I1 final FAIL):** the blind campaign and
+> **Current status (2026-08-17, ID-2J0 implementation):** the approved
+> attribution design is frozen. A read-only server check found that ID-2F1R1
+> development raw remains available but the cleaned server no longer contains
+> the ID-2H1/ID-2I1 raw directories. Their tracked compact PASS/FAIL identities
+> remain intact. ID-2J0 consequently uses sixteen fresh, single-replay,
+> post-holdout diagnostic trajectories rather than pretending compact summaries
+> contain the missing per-state evidence. No old holdout verdict is reopened.
+>
+> The active implementation runs all substantive tests on the server, then at
+> most 544 diagnostic TSC advances if package, storage, interface and prefix
+> gates pass. It fits or updates zero models. Controller, MPC, authority,
+> recourse, crossing, adaptation and RL remain blocked. Older status blocks
+> are historical.
+>
+> **Historical ID-2I1 final FAIL:** the blind campaign and
 > independent raw audit passed all 32 rollouts, 1,088 advances, 1,120 states,
 > 16 replay pairs and the 5,600-file inventory. The scientific holdout failed
 > with joint frozen-width containment `0/8`, response NRMSE `1.109016` and
