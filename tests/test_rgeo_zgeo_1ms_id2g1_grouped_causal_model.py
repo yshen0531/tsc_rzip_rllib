@@ -109,6 +109,17 @@ class CausalFeatureTests(unittest.TestCase):
         actual = model.recursive(changed, data)
         np.testing.assert_allclose(actual, expected, atol=1e-12, rtol=0.0)
 
+    def test_action_blind_recursive_does_not_propagate_probe_issued_current(self) -> None:
+        baseline = synthetic_cell()
+        probe = synthetic_cell("none__probe")
+        probe.issued[22:24, 4] = 0.3
+        data = synthetic_dataset([baseline, probe])
+        model = fit_structured([baseline, probe], data,
+                               {"poles": [0.2, 0.5, 0.8, 0.95], "ridge": 0.001},
+                               action_blind=True)
+        np.testing.assert_allclose(model.recursive(baseline, data), model.recursive(probe, data),
+                                   atol=1e-12, rtol=0.0)
+
     def test_tcn_is_causal_and_shape_preserving(self) -> None:
         model = CausalTCNDelta(12, [1, 2, 4, 8], 2).eval()
         prefix = torch.randn(1, 16, len(FEATURE_NAMES))

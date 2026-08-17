@@ -374,7 +374,8 @@ class StructuredModel:
                                            states_override=states, currents_override=currents)
             delta = features[issue] @ self.coefficients
             states[issue + 1] = states[issue] + delta * data.state_scale
-            currents[issue + 1] = cell.issued[issue] + data.q0 - data.source_current
+            issued = data.nominal_issued[issue] if self.action_blind else cell.issued[issue]
+            currents[issue + 1] = issued + data.q0 - data.source_current
         return states[origin + 1:35]
 
 
