@@ -1,5 +1,22 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-2M0 architecture correction (2026-08-17):** ID-2L1's best
+> `stable_signed_even` model is retained only as a source-local probe-response
+> component. It is an exogenous time/action-memory model: one-ms truth is an
+> integration origin rather than a dynamics input, and actual-current
+> innovation is unused. This falls short of the already confirmed
+> exact-observation + low-order belief architecture.
+>
+> The short-horizon FAIL is localized to a few repeated conditioner
+> hold/return/tail events, not a universal probe-response failure. The next
+> bounded route separates nominal from matched action response, adds only
+> causally visible action-edge/dwell/return-age memory, and then tests a
+> low-dimensional stability-constrained R_geo/Z_geo/Ip/current innovation
+> state. Cell, unique-prefix and worst-event metrics are all retained; no
+> post-result deduplication changes ID-2L1. A larger recurrent network, new
+> TSC, calibration or controller remains blocked until this discriminator is
+> complete.
+
 > **Post-ID-2L1 architecture amendment (2026-08-17):** the structured
 > signed/even fixed-pole action memory is retained as the leading development
 > backbone, but it is not yet a qualified model. It generalized signed

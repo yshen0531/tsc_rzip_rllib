@@ -1,0 +1,89 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2m0-diagnostic-refit-attribution-v1",
+  "identity": "rgeo-zgeo-1ms-id2m0-diagnostic-refit-attribution-v1",
+  "stage": "ID-2M0",
+  "server_only": true,
+  "new_tsc_calls": 0,
+  "reset_calls": 0,
+  "plant_advances": 0,
+  "design": {
+    "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2M0_DIAGNOSTIC_REFIT_ATTRIBUTION_DESIGN.md",
+    "sha256": "c98f1aa72c5ea114689805d1ff24e8451bd37ef4229ff9666c0b76385759842e"
+  },
+  "source": {
+    "id2l1_config": "configs/rgeo_zgeo_1ms_id2l1_structured_history_model_comparison.json",
+    "id2l1_config_sha256": "5480a8124472020c4069c0b0fb00e2be235c7657d01bd9a4c76946f9e2910efe",
+    "id2l1_implementation": "scripts/rgeo_zgeo_1ms_id2l1_structured_history_model.py",
+    "id2l1_implementation_sha256": "667a8a3b58bc40da9348d2d29e8a9a894a956e12b4991a66cce6e456bf95f4b4",
+    "id2l1_implementation_revision": "a6d509b52ed78b554317e11e05c16585129cbd3f",
+    "id2l1_primary": "docs/codex/audits/rgeo_zgeo_1ms_id2l1_20260817_a6d509b5/result.json",
+    "id2l1_primary_sha256": "af67b3915afead8c5df2846982c90c4b41ef17aa448a0904b48e24157e7969fd",
+    "id2l1_independent": "docs/codex/audits/rgeo_zgeo_1ms_id2l1_20260817_a6d509b5/independent_audit.json",
+    "id2l1_independent_sha256": "52a5f8aedaad5a8347b0b9fca9d112c9b482f418b6e9585b563511017034176b",
+    "required_id2l1_route": "ONE_MS_ID2L1_STRUCTURED_MODEL_FAIL_ROUTE_REVIEW",
+    "required_candidate": "stable_signed_even",
+    "required_fold_models": 4,
+    "required_whole_history_families": 8,
+    "required_unique_cells": 40,
+    "required_selected_model": null,
+    "required_model_payload_sha256": null
+  },
+  "diagnostic_refit": {
+    "new_candidates": 0,
+    "hyperparameter_changes": 0,
+    "maximum_aggregate_numeric_difference": 1e-12,
+    "persist_fold_coefficients": false,
+    "persist_per_issue_predictions": true,
+    "model_artifact_authorized": false,
+    "cell_weighted_metrics_remain_authoritative_for_id2l1": true,
+    "unique_prefix_metrics_are_diagnostic_only": true,
+    "one_step_r_threshold_m": 0.0003,
+    "recenter_periods_ms": [1, 2, 4],
+    "recenter_origin_state": 16,
+    "probe_issue": 25,
+    "probe_return_issue": 28,
+    "prediction_issue_range_inclusive": [16, 33],
+    "issue_to_effect_state_offset": 1
+  },
+  "expected_attribution": {
+    "cell_rows_per_fold": 180,
+    "unique_one_step_keys_per_fold": 106,
+    "one_step_rows_over_threshold_by_fold": [15, 15, 10, 10],
+    "one_step_unique_events_over_threshold_by_fold": [3, 3, 2, 2],
+    "all_over_threshold_events_before_probe": true,
+    "maximum_probe_window_r_error_m_by_fold": [0.000274944, 0.000276108, 0.000266467, 0.000266064],
+    "maximum_numeric_tolerance": 5e-9
+  },
+  "causal_inputs": {
+    "current_same_step_r_geo_z_geo_ip": "exact_noiseless_before_issue",
+    "takeover_to_current_history_available": true,
+    "future_successor_before_issue": "unknown",
+    "future_actual_or_readback_current": "forbidden",
+    "future_candidate_issued_card15": "allowed",
+    "wire_current_as_model_input": false,
+    "evaluator_labels_as_model_inputs": false
+  },
+  "data_use": {
+    "id2i1_records_allowed": 0,
+    "id2j0_records_allowed": 0,
+    "id2c2_records_allowed": 0,
+    "calibration_records_allowed": 0,
+    "holdout_records_allowed": 0,
+    "fixture_authorized": false,
+    "expert_authorized": false,
+    "controller_authorized": false,
+    "mpc_authorized": false,
+    "authority_authorized": false,
+    "recovery_authorized": false,
+    "crossing_authorized": false,
+    "adaptation_authorized": false,
+    "rl_authorized": false
+  },
+  "routes": {
+    "input_or_evidence_fail": "ONE_MS_ID2M0_INPUT_OR_EVIDENCE_FAIL_NO_REFIT",
+    "aggregate_reproduction_fail": "ONE_MS_ID2M0_DIAGNOSTIC_REFIT_REPRODUCTION_FAIL_STOP",
+    "attribution_or_semantics_fail": "ONE_MS_ID2M0_ATTRIBUTION_OR_EVALUATOR_AUDIT_FAIL_STOP",
+    "pass": "ONE_MS_ID2M0_DIAGNOSTIC_ATTRIBUTION_PASS_ID2M1_DESIGN_ONLY"
+  },
+  "claim_boundary": "Retrospective deterministic refit and evaluator attribution of the frozen ID2L1 development result only; not a new model, calibration, holdout, uncertainty, authority, recovery, controller, MPC, transport, crossing, adaptation or reachability result."
+}

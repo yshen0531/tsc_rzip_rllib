@@ -1,5 +1,24 @@
 # Current status
 
+> **Current status (2026-08-17, ID-2M0 design frozen):** route review retained
+> ID-2L1's formal FAIL but localized its short-horizon miss. Across the four
+> folds, cell-weighted one-ms R rows above `0.300 mm` numbered
+> `15/15/10/10`; after exact causal-prefix deduplication they represent only
+> `3/3/2/2` events, all before probe issue 25. Unique-prefix 1/2/4 ms p95
+> values pass the old caps diagnostically; this does not alter ID-2L1.
+>
+> The failures are conditioner duration/hold/return/delayed-tail events.
+> Probe-window one-step R error is at most about `0.276 mm`, so the
+> signed/even probe-response backbone is retained as a development component,
+> not a qualified world model. Current exact R_geo/Z_geo/Ip and actual coil
+> current are not dynamics features in that backbone. The GRU rollout
+> evaluator also has a separate causal-history rewrite defect.
+>
+> ID-2M0 is frozen for implementation/server execution as a zero-new-TSC,
+> four-fold deterministic diagnostic refit. It changes no model, gate or
+> verdict and can authorize only a separately prospective small ID-2M1
+> structured-model design. Older status blocks are historical.
+
 > **Current status (2026-08-17, post-ID-2L1):** server tests passed 10/10
 > focused and 203/203 one-ms regression tests. Twenty fold models were fitted
 > with zero TSC/plant work; independent full refit reproduced every metric

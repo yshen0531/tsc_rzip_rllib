@@ -1,5 +1,33 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-17, ID-2M0 diagnostic attribution):** the
+> post-ID-2L1 route review found that the frozen FAIL is real under its
+> cell-weighted gates but is concentrated in a few shared conditioner
+> hold/return/tail events. The baseline plus four probe siblings repeat each
+> pre-probe causal event five times. A deterministic diagnostic refit found
+> only `3/3/2/2` unique one-ms R events above `0.300 mm`; all occurred before
+> probe issue 25, while the issue-25--28 probe-window maxima were about
+> `0.266--0.276 mm`.
+>
+> The immediate task is the separately frozen ID-2M0 deterministic diagnostic
+> refit and evaluator-semantics audit. It is not zero-fit: ID-2L1 saved no
+> coefficients or per-issue predictions, so the same four
+> `stable_signed_even` folds must be refit without any new candidate or
+> hyperparameter change. ID-2L1 remains final as FAIL; unique-prefix metrics
+> are diagnostic and may not replace its frozen cell-weighted gate.
+>
+> ID-2M0 also records that `stable_signed_even` uses exact R_geo/Z_geo/Ip only
+> as the rollout origin, not as a dynamics/innovation feature, and that the
+> GRU recenter/free evaluator rewrites prior contexts when rebuilding hidden
+> state. PASS may authorize only an ID-2M1 design with at most two small
+> structured candidates: causal event-age/return/tail memory, then an optional
+> low-dimensional stability-constrained observation/current innovation state.
+> No new TSC, calibration, holdout, authority, recovery or controller is
+> authorized by ID-2M0. Config/design SHA-256 are
+> `054c1b2a35fd317a3723db8a9d022a94350f6646d96e825f3fa9b37d8b2ad662 /`
+> `c98f1aa72c5ea114689805d1ff24e8451bd37ef4229ff9666c0b76385759842e`.
+> This is the sole active pointer; all blocks below are historical.
+
 > **Unique active task (2026-08-17, post-ID-2L1):** ID-2L1 is final as
 > `ONE_MS_ID2L1_STRUCTURED_MODEL_FAIL_ROUTE_REVIEW`. Twenty whole-history
 > development fits completed with zero TSC/plant work and independent full

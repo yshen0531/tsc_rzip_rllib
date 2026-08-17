@@ -1,5 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-17, ID-2M0):** ID-2L1's leading
+> signed/even fixed-pole model is useful for the matched issue-25 probe
+> response but is not the intended history-conditioned observer. Exact
+> current R_geo/Z_geo/Ip only resets its rollout origin; neither those values,
+> recent velocity nor actual-versus-issued current innovation changes its
+> predicted increment.
+>
+> The frozen short-horizon FAIL is concentrated in a few conditioner
+> hold/return/delayed-tail transitions that each appear in five sibling cells.
+> ID-2M0 therefore performs an explicitly named deterministic diagnostic
+> refit, records both original and unique-prefix weighting, and audits the GRU
+> causal-history evaluator. It does not reinterpret ID-2L1 or open fresh
+> data. The next model, only after ID-2M0 PASS, is limited to causal event-age
+> memory and a low-dimensional stable observation/current innovation state.
+> The final two-axis waypoint and repeated R_mid-crossing goal is unchanged;
+> all older notices are historical.
+
 > **Active new-round context (2026-08-17, post-ID-2L1):** the explicit
 > signed/even stable action-memory backbone materially succeeded on held
 > response geometry (`0.602347` NRMSE, `32/32` positive peak directions) but
