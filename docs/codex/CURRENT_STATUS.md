@@ -1,6 +1,6 @@
 # Current status
 
-> **Post-ID-2E1 learning route approved; repeated-context data design active
+> **Post-ID-2E1 learning route approved; ID-2F1 design frozen
 > (2026-08-17 Asia/Shanghai).** ID-2E1 rejected only the frozen
 > action-history/time convolution family. It did not test the eventual
 > one-ms measurement-recentred history model, because the smooth candidates
@@ -10,8 +10,9 @@
 >
 > The route no longer requires a complete mechanistic explanation of every
 > valid state19/state27 excursion before fitting. The active work is a new
-> fit-eligible 39-cell/78-rollout repeated-context campaign design. Raw
-> boundary/event checks remain a bounded integrity diagnostic. ID-2C2,
+> fit-eligible 39-cell/78-rollout repeated-context campaign. Its config and
+> design hashes are `b23e0d6d... / 78959bba...`; implementation is pending.
+> Raw boundary/event checks remain a bounded integrity diagnostic. ID-2C2,
 > calibration, blind holdout, tube, recourse and controller remain unopened.
 > Older notices below are historical.
 

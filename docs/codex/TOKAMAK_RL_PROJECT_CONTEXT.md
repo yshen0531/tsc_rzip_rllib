@@ -5,8 +5,8 @@
 > it does not require a complete physical explanation of every valid TSC
 > branch before machine learning. ID-2E1 rejected an action-history/time
 > convolution family, not the eventual measurement-recentred history model.
-> The next stage is a prospectively frozen fit-eligible repeated-context
-> campaign around the active nominal; bounded raw event inspection is an
+> ID-2F1 is prospectively frozen as a fit-eligible repeated-context campaign
+> around the active nominal; bounded raw event inspection is an
 > integrity diagnostic only. ID-2C2 and all calibration/holdout/controller
 > stages remain unopened. The final fixed-1100-ms two-axis path/waypoint and
 > repeated R_mid-crossing goal is unchanged. See
