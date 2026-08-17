@@ -1,6 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2E1 learning amendment (2026-08-17):** the architecture no
+> **ID-2F1R1 implementation note (2026-08-17):** the repeated-context
+> development campaign uses a 34-issue horizon because the original 32-issue
+> schedule supported only rank 28 of the declared 32-column lag-16 input
+> block. This is a prospective data-geometry correction under a new identity,
+> not a weakened post-result gate. It changes neither the exact/noiseless
+> current R_geo/Z_geo/Ip contract nor the separation between TSC-only
+> identification and controller-grade safety qualification.
+
+> **Historical post-ID-2E1 learning amendment (2026-08-17):** the architecture no
 > longer treats a complete mechanistic explanation of each valid boundary
 > excursion as a prerequisite for machine learning. The hard requirement
 > is causal availability: current exact R_geo/Z_geo/Ip and takeover-to-now

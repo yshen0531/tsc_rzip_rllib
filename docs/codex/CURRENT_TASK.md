@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **ID-2F1 repeated-context development design is frozen; implementation is
+> **Unique active task (2026-08-17, ID-2F1R1):** ID-2F1 v1 stopped before
+> TSC because its frozen 32-issue schedule produced a rank-28 rather than
+> rank-32 two-coordinate lag-16 block. The result is
+> `ONE_MS_ID2F1_ACTION_HISTORY_SUPPORT_FAIL_REDESIGN`, with zero reset,
+> plant advance, TSC or model fit. ID-2F1R1 is a new prospective identity
+> retaining the same 39 cells and 78 rollouts while extending only the
+> observation horizon to 34 issues, which restores the zero-plant input
+> block to rank 32 without consuming ID-2C2. The authorized task is to
+> implement, server-test, independently raw-audit and, only after every
+> preflight/storage gate passes, run ID-2F1R1. A complete PASS authorizes
+> development model comparison only; calibration, evaluator, holdout,
+> controller, recourse, MPC, crossing, adaptation and RL remain blocked.
+> All older active-task labels below are historical.
+
+> **Historical ID-2F1 v1 notice:** ID-2F1 repeated-context development design is frozen; implementation is
 > the unique active task (2026-08-17):** the user rejected
 > making a complete physical explanation of every valid TSC response a
 > prerequisite for machine learning. That correction is accepted. The

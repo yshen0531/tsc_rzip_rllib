@@ -49,28 +49,29 @@ from tsc_rzip_rllib.control.rgeo_zgeo_contract import ContractError, RGeoZGeoSig
 from tsc_rzip_rllib.core.runner import TSCStepRunner  # noqa: E402
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2f1-repeated-context-development-result-v1"
-CONFIG_SHA256 = "b23e0d6d3a83b3fb51afab7f9f40aacb613fec9ba6fab7991645a48f95ed3950"
-DEFAULT_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2f1_repeated_context_development.json"
+SCHEMA = "rgeo-zgeo-1ms-id2f1r1-repeated-context-development-result-v1"
+CONFIG_SHA256 = "2c97be4f3adbc684bcb7ed7782d76822e8071c919f92882e3141b3bf934e1831"
+DEFAULT_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2f1r1_repeated_context_development.json"
 ID2C1_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2c1_active_nominal_vector_search.json"
-DESIGN = ROOT / "docs/codex/reports/RGEO_ZGEO_1MS_ID2F1_REPEATED_CONTEXT_DEVELOPMENT_DESIGN.md"
+DESIGN = ROOT / "docs/codex/reports/RGEO_ZGEO_1MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_DESIGN.md"
 
 
 def _require_stage(stage: dict[str, Any]) -> None:
     exact = {
-        "schema_version": "rgeo-zgeo-1ms-id2f1-repeated-context-development-v1",
-        "stage_id": "rgeo_zgeo_1ms_id2f1_repeated_context_development_v1",
+        "schema_version": "rgeo-zgeo-1ms-id2f1r1-repeated-context-development-v1",
+        "stage_id": "rgeo_zgeo_1ms_id2f1r1_repeated_context_development_v1",
+        "supersedes": "rgeo_zgeo_1ms_id2f1_repeated_context_development_v1",
         "takeover_time_ms": 1100,
         "control_period_ms": 1,
-        "horizon_steps": 32,
+        "horizon_steps": 34,
         "unique_whole_history_cells": 39,
         "replays_per_cell": 2,
         "maximum_rollouts": 78,
         "maximum_reset_calls": 78,
-        "maximum_advance_attempts": 2496,
-        "maximum_gotsc_calls": 2496,
-        "maximum_verified_plant_advances": 2496,
-        "maximum_retained_states": 2574,
+        "maximum_advance_attempts": 2652,
+        "maximum_gotsc_calls": 2652,
+        "maximum_verified_plant_advances": 2652,
+        "maximum_retained_states": 2730,
         "retry_after_any_advance_attempt": "forbidden",
         "id2c2_records_read": 0,
         "probe_issue_step": 22,
@@ -117,7 +118,8 @@ def load(stage_path: Path) -> tuple[dict[str, Any], Any, dict[str, Any], dict[st
     base = inside_root(ROOT / stage["base_tsc_config"], "base config")
     if sha256(base) != stage["evidence"]["base_tsc_config_sha256"]:
         raise InputIntegrityError("base config hash mismatch")
-    for key in ("id2c1_config", "id2c1_compact", "id2d1r1_config", "id2d1r1_compact",
+    for key in ("id2f1_v1_config", "id2f1_v1_design", "id2f1_v1_offline_audit",
+                "id2c1_config", "id2c1_compact", "id2d1r1_config", "id2d1r1_compact",
                 "id2e1_compact", "id2c2_config", "route_review"):
         item = stage["evidence"][key]
         path = inside_root(ROOT / item["path"], key)
@@ -140,7 +142,7 @@ def campaign_streams(stage: dict[str, Any], cfg: Any, targets: dict[str, Any],
     selected = next(row for row in phase_a_streams(id2c1_stage, cfg, targets)
                     if row["candidate_id"] == "p03_minus_stride1")
     held = selected["targets"][15]
-    nominal = list(selected["targets"][:16]) + [held] * 16
+    nominal = list(selected["targets"][:16]) + [held] * (stage["horizon_steps"] - 16)
     translated = {
         f"{direction}:{sign}": _translated_target(
             held, targets["q0"], targets[f"{direction}:{sign}"], cfg,
@@ -370,7 +372,7 @@ def development_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any],
                                       for state in row["states"]] for row in members], dtype=float), axis=0)
         response = values - baselines[context]
         effect = int(members[0]["probe_issue_step"]) + 1
-        window = response[effect:33]
+        window = response[effect:stage["horizon_steps"] + 1]
         norms = np.linalg.norm(window[:, :2], axis=1)
         peak_offset = int(np.argmax(norms))
         event_indices = [effect + index for index, value in enumerate(norms) if value >= 0.0003]
@@ -437,7 +439,7 @@ def offline(stage_path: Path, source_revision: str) -> dict[str, Any]:
             raise InputIntegrityError(f"lag support rank {support['rank']}")
         if support["condition"] > stage["fit_eligibility_gates"]["maximum_lag_block_condition"]:
             raise InputIntegrityError(f"lag support condition {support['condition']}")
-        if any(len(row["targets"]) != 32 or len(row["actions"]) != 32 for row in streams):
+        if any(len(row["targets"]) != stage["horizon_steps"] or len(row["actions"]) != stage["horizon_steps"] for row in streams):
             raise InputIntegrityError("stream dimensions changed")
         if sum(row["reset_calls"] if "reset_calls" in row else 1 for row in streams) != 78:
             raise InputIntegrityError("reset budget changed")

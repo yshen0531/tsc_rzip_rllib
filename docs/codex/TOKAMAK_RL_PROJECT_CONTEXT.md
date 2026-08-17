@@ -1,6 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Post-ID-2E1 learning-route amendment (2026-08-17):** causal prediction
+> **Active new-round context (2026-08-17, ID-2F1R1):** ID-2F1 v1 failed
+> its prospective zero-TSC lag-support gate at rank 28/32. R1 retains the
+> unchanged repeated-context action cells and adds two terminal nominal-hold
+> issues, giving full rank-32 lag-16 support before any plant run. A PASS may
+> open development model comparison only; evaluator, calibration, holdout
+> and controller work remain separate. `CURRENT_TASK.md` is the sole active
+> authority and older notices below are historical.
+
+> **Historical post-ID-2E1 amendment (2026-08-17):** causal prediction
 > means that every input is available before the successor being predicted;
 > it does not require a complete physical explanation of every valid TSC
 > branch before machine learning. ID-2E1 rejected an action-history/time

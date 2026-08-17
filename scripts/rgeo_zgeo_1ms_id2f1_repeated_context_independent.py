@@ -30,7 +30,7 @@ from scripts.rgeo_zgeo_1ms_id2f1_repeated_context_development import (  # noqa: 
 )
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2f1-repeated-context-independent-v1"
+SCHEMA = "rgeo-zgeo-1ms-id2f1r1-repeated-context-independent-v1"
 
 
 def _inside(path: Path, label: str) -> Path:
@@ -118,7 +118,7 @@ def _metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) -> dict[str,
                                       for state in row["states"]] for row in members], dtype=float), axis=0)
         response = values - baselines[context]
         effect = int(members[0]["probe_issue_step"]) + 1
-        window = response[effect:33]
+        window = response[effect:stage["horizon_steps"] + 1]
         norms = np.linalg.norm(window[:, :2], axis=1)
         peak = int(np.argmax(norms))
         arms.append({

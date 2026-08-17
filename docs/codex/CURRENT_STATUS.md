@@ -1,6 +1,16 @@
 # Current status
 
-> **Post-ID-2E1 learning route approved; ID-2F1 design frozen
+> **Current status (2026-08-17, ID-2F1R1 prospective):** ID-2F1 v1 is a
+> clean zero-TSC input-schedule design FAIL: server-focused tests passed
+> 9/10 and reconstructed its lag-16 block as rank 28/32, condition infinity,
+> minimum singular value zero. No plant or model conclusion was drawn.
+> ID-2F1R1 keeps the physical action matrix unchanged and extends the horizon
+> from 32 to 34 issues; zero-plant design recomputation gives rank 32,
+> condition `3.1756126323207443`, minimum singular value
+> `5.099019513592783`. Implementation and server validation are in progress;
+> no ID-2F1R1 TSC has yet run. ID-2C2 remains unopened.
+
+> **Historical ID-2F1 v1 notice:** Post-ID-2E1 learning route approved; ID-2F1 design frozen
 > (2026-08-17 Asia/Shanghai).** ID-2E1 rejected only the frozen
 > action-history/time convolution family. It did not test the eventual
 > one-ms measurement-recentred history model, because the smooth candidates
