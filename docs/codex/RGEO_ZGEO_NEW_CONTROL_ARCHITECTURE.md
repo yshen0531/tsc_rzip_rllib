@@ -8,12 +8,12 @@
 > component in the tested source-local envelope; it does not turn the TCN
 > into a controller or safety layer.
 >
-> The next AND gate is a truly blind whole-context/history holdout using the
-> exact artifact and frozen widths. Exact actuator/queue semantics and
-> noiseless current R_geo/Z_geo/Ip remain explicit, and future actual current
-> remains forbidden. Authority, controller-grade tubes, recourse and
-> constrained control are still later independent gates. The final two-axis
-> path/waypoint and repeated R_mid-crossing goal is unchanged.
+> ID-2I1 freezes that next AND gate as a truly blind eight-group whole-context/
+> history holdout using the exact artifact and widths. Exact actuator/queue
+> semantics and noiseless current R_geo/Z_geo/Ip remain explicit, and future
+> actual current remains forbidden. Authority, controller-grade tubes,
+> recourse and constrained control are still later independent gates. The
+> final two-axis path/waypoint and repeated R_mid-crossing goal is unchanged.
 >
 > **Historical ID-2G1 architecture note (2026-08-17):** ID-2F1R1 passed its complete
 > fresh repeated-context data gates and now permits a finite development

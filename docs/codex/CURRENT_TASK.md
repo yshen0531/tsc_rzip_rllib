@@ -16,12 +16,19 @@
 > `0.729531`, peak direction is correct in 10/10 groups, and the independent
 > recomputation has maximum numeric difference zero.
 >
-> The next task is to prospectively freeze a genuinely blind whole-context/
-> history holdout for this exact model and these fixed widths. No calibration
-> record may tune its action matrix, gates, model or features. ID-2C2 remains
-> unread. Controller, transition tube, authority, recourse, MPC, crossing,
-> adaptation and RL remain blocked. This is the sole active pointer; all
-> blocks below are historical.
+> ID-2I1 is now prospectively frozen as that blind holdout. It uses eight new
+> complete conditioner histories, matched baseline/probe cells and two exact
+> replays per cell: at most 32 resets and 1,088 advances. The issue-18/21
+> conditioner patterns, issue-25 probe time, duration-three probes and
+> two-conditioner histories were absent as complete ID-2F1R1/ID-2H1 groups.
+> The model, widths and gates cannot change. Config/design SHA-256 values are
+> `3af0c26743d0a027f33b3efd3b237cb776c0fbe31988fa7d3128babe32d64e8f /`
+> `a22fb8ad81ced36ff1a9911a5cba6505155cce4cd095646cc6ff2241fe9f3240`.
+>
+> ID-2C2 remains unread. A complete PASS may authorize only source-local
+> controller-grade authority/tube/recourse design. Controller execution, MPC,
+> crossing, adaptation and RL remain blocked. This is the sole active pointer;
+> all blocks below are historical.
 >
 > **Historical ID-2G1 task:** ID-2F1R1 completed all
 > 78 rollouts, 2,652 verified one-ms advances and 2,730 states. Independent

@@ -11,9 +11,12 @@
 > `0.593642 mm / 0.240511 mm / 24.047694 A` and paired-response widths
 > `0.695069 mm / 0.238259 mm / 7.717859 A`. Matched-response NRMSE is
 > `0.729531`; all ten peak directions are positive. Independent full-raw
-> recomputation differs by zero. ID-2H1 authorizes only a separately frozen
-> blind whole-context/history holdout design. It is not a transition tube,
-> authority, controller or closed-loop result. Older blocks are historical.
+> recomputation differs by zero. ID-2I1 is now frozen as the separate blind
+> whole-context/history holdout: 8 groups, 16 cells, two replays per cell and
+> at most 1,088 advances. It uses the exact model and calibrated widths, with
+> no fitting, recalibration or post-result gate changes. ID-2H1 is not a
+> transition tube, authority, controller or closed-loop result. Older blocks
+> are historical.
 >
 > **Historical ID-2G1 status:** ID-2F1R1 is final as
 > `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.

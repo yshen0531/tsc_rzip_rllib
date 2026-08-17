@@ -9,10 +9,12 @@
 > `0.695069 mm / 0.238259 mm / 7.717859 A`. Independent recomputation is exact.
 >
 > These records calibrated the widths and therefore are not blind validation.
-> The active route is a separately frozen, untouched whole-context/history
-> holdout of the same artifact and fixed widths. No controller, transition
-> tube, authority, recourse, MPC, crossing, adaptation or RL has been
-> qualified. All older notices are historical.
+> ID-2I1 is now prospectively frozen as an untouched eight-group whole-history
+> holdout of the same artifact and fixed widths. It changes context composition,
+> event timing and duration inside the existing p04/p07 action family, while
+> retaining exact paired baselines and whole-cell replay. No controller,
+> transition tube, authority, recourse, MPC, crossing, adaptation or RL has
+> been qualified. All older notices are historical.
 >
 > **Historical ID-2G1 context:** the fresh ID-2F1R1
 > repeated-context campaign and independent raw reparse passed. It provides
