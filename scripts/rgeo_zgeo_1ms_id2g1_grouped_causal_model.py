@@ -150,7 +150,8 @@ class AllowedDataset:
 
 
 def _float_target(target: Sequence[Any]) -> np.ndarray:
-    value = np.asarray([float(item) for item in target], dtype=np.float64)
+    payload = target.current_a_tsc if hasattr(target, "current_a_tsc") else target
+    value = np.asarray([float(item) for item in payload], dtype=np.float64)
     if value.shape != (14,) or not np.all(np.isfinite(value)):
         raise IntegrityError("invalid Card15 target")
     return value

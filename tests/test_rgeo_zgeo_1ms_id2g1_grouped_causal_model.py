@@ -18,6 +18,7 @@ from scripts.rgeo_zgeo_1ms_id2g1_grouped_causal_model import (
     CONFIG_SHA256,
     FEATURE_NAMES,
     _eligible,
+    _float_target,
     fit_neural,
     fit_structured,
     frame,
@@ -80,6 +81,11 @@ class FrozenContractTests(unittest.TestCase):
 
 
 class CausalFeatureTests(unittest.TestCase):
+    def test_card15_target_object_is_unwrapped(self) -> None:
+        class Target:
+            current_a_tsc = tuple(range(14))
+        np.testing.assert_array_equal(_float_target(Target()), np.arange(14, dtype=float))
+
     def test_frame_has_only_frozen_dimensions_and_blind_action(self) -> None:
         cell = synthetic_cell()
         cell.issued[22] = [1.0, 2.0, -3.0]
