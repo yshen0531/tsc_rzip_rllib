@@ -1,6 +1,6 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2G1R1 architecture note (2026-08-17):** the full-Card15 grouped
+> **ID-2H1 architecture note (2026-08-17):** the full-Card15 grouped
 > comparison selected a small causal TCN over stable LPV, small GRU and a
 > probabilistic ensemble. This is empirical support for history-conditioned
 > nonlinear residual modelling in the tested three-context development
@@ -8,11 +8,12 @@
 > The exact actuator/queue and noiseless current R_geo/Z_geo/Ip paths remain
 > explicit; future actual current is still forbidden.
 >
-> The model artifact is now frozen. Fresh whole-history calibration must be
-> grouped by complete conditioner/probe family and cannot tune or retrain the
-> TCN. A later blind whole-context/history holdout, authority, recourse and
-> constrained-controller qualification remain independent AND gates. The
-> final two-axis path/waypoint and repeated R_mid-crossing goal is unchanged.
+> The model artifact is now frozen. ID-2H1 calibrates it on ten complete fresh
+> conditioner/probe families, with exact replay and family-max scoring; it
+> cannot tune or retrain the TCN. A later blind whole-context/history holdout,
+> authority, recourse and constrained-controller qualification remain
+> independent AND gates. The final two-axis path/waypoint and repeated
+> R_mid-crossing goal is unchanged.
 >
 > **Historical ID-2G1 architecture note (2026-08-17):** ID-2F1R1 passed its complete
 > fresh repeated-context data gates and now permits a finite development

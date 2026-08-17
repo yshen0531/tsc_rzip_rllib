@@ -1,6 +1,6 @@
 # Current status
 
-> **Current status (2026-08-17, post-ID-2G1R1):** the corrected full-Card15
+> **Current status (2026-08-17, ID-2H1 frozen):** the corrected full-Card15
 > grouped comparison passed and selected the causal TCN. Its mean response
 > NRMSE is `0.68097772` versus the corrected action-blind value `1.0`; the
 > stable LPV and probabilistic ensemble were eligible but lost the frozen
@@ -10,10 +10,13 @@
 > `6d2389d7... / 614b01bd... / 14502175...`.
 >
 > ID-2G1R1 used zero new TSC and read zero ID-2C2, calibration or holdout
-> records. This is development selection only. The next permitted work is a
-> fresh whole-history calibration design for the frozen model; it is not yet
-> a calibrated tube, blind holdout, controller or closed-loop result. Older
-> blocks are historical.
+> records. ID-2H1 now freezes ten new atomic whole-history calibration groups,
+> 20 cells and two exact replays per cell. Its maximum budget is 40 resets and
+> 1,360 advances. It cannot fit, tune, retrain or reselect the TCN. The finite
+> 90% group order statistic is the tenth (maximum) group score, with separate
+> simultaneous absolute-recursive and paired-response widths. This remains
+> model calibration, not a transition tube, blind holdout, controller or
+> closed-loop result. Older blocks are historical.
 >
 > **Historical ID-2G1 status:** ID-2F1R1 is final as
 > `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.

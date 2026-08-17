@@ -1,6 +1,6 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, post-ID-2G1R1):** the corrected grouped
+> **Unique active task (2026-08-17, ID-2H1):** the corrected grouped
 > model comparison is final as
 > `ONE_MS_ID2G1R1_GROUPED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY`.
 > The causal TCN was selected with three whole-context response NRMSE values
@@ -10,14 +10,19 @@
 > numeric difference zero. Primary / independent / model SHA-256 values are
 > `6d2389d7... / 614b01bd... / 14502175...`.
 >
-> The only authorized successor is a separately frozen fresh whole-history
-> calibration design for this exact TCN artifact. It may collect new TSC
-> calibration histories but may not change features, weights, candidate,
-> seeds or model selection, and it must calibrate at whole-history/group
-> level rather than treating steps as independent samples. ID-2C2 and the
-> blind holdout remain unread. Controller, tube, recourse, MPC, crossing,
-> adaptation and RL remain blocked. This is the sole active pointer; all
-> blocks below are historical.
+> ID-2H1 is now prospectively frozen: ten fresh conditioner groups, each with
+> one matched baseline, one assigned p04/p07 signed probe and two exact
+> replays, for at most 40 resets and 1,360 one-ms advances. The selected TCN
+> artifact, weights, features, seeds and prediction semantics cannot change.
+> Calibration uses complete-group maximum recursive and paired-response
+> errors; steps are not independent samples. Config/design SHA-256 values are
+> `c067306fd0ce3d1e7999375138511af15d950fb9a7b50aad2da456af6715720b /`
+> `809bcf98768da9da8dfb5aedce3d6547e0e82a26179079398019a9afc536ff51`.
+>
+> A complete PASS may authorize only a separately frozen blind whole-context/
+> history holdout design. ID-2C2 remains unread. Controller, tube, recourse,
+> MPC, crossing, adaptation and RL remain blocked. This is the sole active
+> pointer; all blocks below are historical.
 >
 > **Historical ID-2G1 task:** ID-2F1R1 completed all
 > 78 rollouts, 2,652 verified one-ms advances and 2,730 states. Independent

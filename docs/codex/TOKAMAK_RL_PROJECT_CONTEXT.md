@@ -1,6 +1,6 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, post-ID-2G1R1):** full 14-coil
+> **Active new-round context (2026-08-17, ID-2H1):** full 14-coil
 > readback/current and exact issued Card15 repaired the false rank-three
 > executor assumption. The corrected server comparison selected the causal
 > TCN with mean whole-context response NRMSE `0.68097772`, a `31.9022%`
@@ -8,11 +8,12 @@
 > extraction/refit agreed exactly. The selected artifact is frozen before
 > any calibration data exist.
 >
-> The next route is fresh whole-history calibration only. Calibration data
-> may estimate finite prediction-error multipliers/floors but may not alter
-> model weights, features or selection. A later blind whole-context/history
-> holdout remains separate. No controller, tube, recourse, MPC, crossing,
-> adaptation or RL has been qualified. All older notices are historical.
+> ID-2H1 realizes that next route with ten fresh matched-baseline/probe history
+> groups and exact replay pairs. It estimates finite group-max prediction
+> widths but may not alter model weights, features or selection. A later blind
+> whole-context/history holdout remains separate. No controller, transition
+> tube, recourse, MPC, crossing, adaptation or RL has been qualified. All
+> older notices are historical.
 >
 > **Historical ID-2G1 context:** the fresh ID-2F1R1
 > repeated-context campaign and independent raw reparse passed. It provides
