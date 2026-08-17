@@ -1,0 +1,70 @@
+{
+  "advance_attempts": 544,
+  "blind_holdout_or_calibration_use": "forbidden",
+  "claim_boundary": "Post-holdout diagnostic re-observation and zero-fit attribution of one frozen TCN; not blind validation, calibration, fitting, uncertainty qualification, authority, recourse, controller, MPC, transport, crossing, adaptation or reachability evidence.",
+  "id2c2_records_read": 0,
+  "matched_prefix_checks": [
+    {
+      "failures": [],
+      "group_id": "h00",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h01",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h02",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h03",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h04",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h05",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h06",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h07",
+      "passed": true
+    }
+  ],
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 544,
+  "required_artifact_bytes": 32980037440,
+  "required_artifact_files": 2800,
+  "required_artifact_inventory_sha256": "fd884699425916b774650c882659bff3826f41b7d8d689a093984f7fea3bd52d",
+  "reset_calls": 16,
+  "rollouts_completed": 16,
+  "route": "ONE_MS_ID2J0_DIAGNOSTIC_REOBSERVATION_COMPLETE_ATTRIBUTE_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2j0-diagnostic-reobservation-result-v1",
+  "source_revision": "2e1eaa784c98bda084206bf4b19a167a366ead01",
+  "stage_config_sha256": "bae5685d6ead9625343584472d666fb4b140168e1c5296470efe34c8bd4e1e7c",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 120540573696,
+    "estimated_raw_bytes": 40000000000,
+    "free_bytes_before_run": 160540573696,
+    "passed": true
+  },
+  "unique_cells_completed": 16,
+  "verified_plant_advances": 544,
+  "whole_history_groups_completed": 8
+}

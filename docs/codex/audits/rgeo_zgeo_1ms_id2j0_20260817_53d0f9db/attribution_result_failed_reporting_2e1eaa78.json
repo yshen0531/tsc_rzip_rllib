@@ -1,0 +1,9 @@
+{
+  "failures": [
+    "AttributeError:module 'scripts.rgeo_zgeo_1ms_id2i1_blind_whole_history_holdout' has no attribute '_json'"
+  ],
+  "passed": false,
+  "route": "ONE_MS_ID2J0_ATTRIBUTION_INPUT_FAIL_STOP",
+  "schema_version": "rgeo-zgeo-1ms-id2j0-post-holdout-attribution-result-v1",
+  "source_revision": "2e1eaa784c98bda084206bf4b19a167a366ead01"
+}

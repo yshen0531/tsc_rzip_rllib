@@ -1,6 +1,30 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, ID-2J0):** record and execute the approved
+> **Unique active task (2026-08-17, post-ID-2J0):** ID-2J0 is final as
+> `ONE_MS_ID2J0_MIXED_DATA_AND_STRUCTURED_MODEL_REQUIRED`. Its 16/16
+> diagnostic re-observations, 544/544 advances, independent raw audit and
+> independent zero-fit recomputation passed. Exact 1 ms truth recentering
+> reduced absolute drift error but left matched-response NRMSE at `1.133318`,
+> positive peak direction at `5/8`, and the same three minus histories with
+> negative peak cosine. Six of eight probe prefixes are outside development
+> full-feature support. The frozen TCN is not eligible for control.
+>
+> The active next stage is a separately prospective, fit-eligible factorized
+> history/sign/action development campaign. Every causal conditioner context
+> must have its own matched baseline and both signs of the selected p04/p07
+> directions; complete families remain the split unit. ID-2I1 and ID-2J0 are
+> consumed diagnosis-only and may not be fitted or used to shrink widths.
+> A data PASS may open only a structured comparison of exact actuator/queue,
+> explicit time-indexed nominal continuation, stable low-order action memory
+> and an optional small context-gated neural residual. Fresh calibration and
+> a new blind whole-history holdout remain mandatory before controller work.
+>
+> The final fixed-1100-ms, 1 ms, two-axis path/waypoint and repeated R_mid
+> crossing goal is unchanged. Authority, recovery, NMPC, crossing,
+> adaptation and RL remain blocked. This is the sole active pointer; every
+> block below is historical.
+>
+> **Historical ID-2J0 task:** record and execute the approved
 > post-ID-2I1 attribution route. The final goal remains safe, causal tracking
 > of finite user R_geo/Z_geo displacement/path/waypoint commands from the
 > fixed 1100 ms source at 1 ms control, including later repeated R_mid

@@ -2327,3 +2327,33 @@
   `docs/codex/audits/rgeo_zgeo_1ms_id2g1r1_20260817_ebdb42a0/`
 - Next: separately frozen fresh whole-history calibration design for the
   exact selected artifact; no model tuning or controller work
+
+## R_geo/Z_geo 1 ms ID-2J0 post-holdout attribution
+
+- Branch: `codex/rgeo-zgeo-1ms-duration-history-model`
+- Implementation / reporting-only repair:
+  `2e1eaa784c98bda084206bf4b19a167a366ead01 / 53d0f9db24a73bf85716aafb7f040dfacea07793`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2j0_runs_20260817_2e1eaa78`
+- Execution: 16/16 diagnostic rollouts, 544/544 verified one-ms advances,
+  560 states and eight exact matched baseline/probe prefixes
+- Raw: 2,800 required files / 32,980,037,440 bytes / digest
+  `fd884699425916b774650c882659bff3826f41b7d8d689a093984f7fea3bd52d`
+- Primary / independent raw SHA-256:
+  `8f473103b4b609db8845735f3ee28701ce1e74c93f65f492dd31fec4c76d31f2 /`
+  `7b4885bbc005cf2270d263d969a2332fe889b4e6b6567965ea734d9f3f63cf8f`
+- Attribution / independent audit SHA-256:
+  `fbc1a58a34e15c0c0b9f87afcc3852ccf8c09f712f1281a393e02edb49d1f02d /`
+  `f3cec48ab5102cc403b665db6bcf5f4ae3f166835c7ca22e3e83c7a534f73c65`
+- Result: exact 1 ms truth recenter paired NRMSE `1.133318`, positive peak
+  direction `5/8`; three minus histories retain negative cosine; six of eight
+  probe prefixes outside full-feature development support
+- Actuator diagnostic: maximum next-current residual `1.00000000031741e-05 A`
+- Final route: `ONE_MS_ID2J0_MIXED_DATA_AND_STRUCTURED_MODEL_REQUIRED`
+- Classification: post-holdout diagnostic re-observation and zero-fit
+  attribution; not blind validation, fitting, calibration, controller or
+  safety evidence
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2j0_20260817_53d0f9db/`
+- Next: prospective factorized history/sign/action development data, then
+  structured nominal + stable memory + optional small residual comparison

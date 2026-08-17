@@ -1,6 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, ID-2J0):** the route now explicitly
+> **Active new-round context (2026-08-17, post-ID-2J0):** exact 1 ms
+> R_geo/Z_geo/Ip truth recentering improves absolute prediction drift but does
+> not repair the frozen TCN's signed paired response. ID-2J0 retains negative
+> peak response direction in three minus histories and finds six of eight
+> probe prefixes outside development support. Execution, raw, actuator and
+> independent recomputation integrity passed.
+>
+> The next data stage must factor complete conditioner history, action
+> direction and sign with a matched baseline in every context. Only after
+> that prospective development data pass may the route compare explicit
+> time-indexed nominal continuation + stable low-order action memory + a small
+> context-gated residual. ID-2I1/ID-2J0 remain forbidden for fitting. Fresh
+> calibration, blind whole-history holdout, authority and recovery stay
+> separate. The final two-axis waypoint and repeated-crossing goal is
+> unchanged. All older notices are historical.
+>
+> **Historical ID-2J0 context:** the route explicitly
 > distinguishes two failure sources that ID-2I1 mixed together: local
 > action-response prediction after exact 1 ms measurement recentering, and
 > longer free-recursion drift before/after a probe. The frozen TCN is not

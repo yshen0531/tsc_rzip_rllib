@@ -1,0 +1,14 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Deterministic zero-fit attribution recomputation; not an independent model or control qualification.",
+  "failures": [],
+  "maximum_numeric_difference": 0.0,
+  "models_fit_retrained_tuned_selected_or_recalibrated": 0,
+  "new_tsc_calls": 0,
+  "primary_attribution_sha256": "fbc1a58a34e15c0c0b9f87afcc3852ccf8c09f712f1281a393e02edb49d1f02d",
+  "recompute_sha256": "fbc1a58a34e15c0c0b9f87afcc3852ccf8c09f712f1281a393e02edb49d1f02d",
+  "recomputed_route": "ONE_MS_ID2J0_MIXED_DATA_AND_STRUCTURED_MODEL_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2j0-independent-attribution-v1",
+  "source_revision": "2e1eaa784c98bda084206bf4b19a167a366ead01",
+  "stage_config_sha256": "bae5685d6ead9625343584472d666fb4b140168e1c5296470efe34c8bd4e1e7c"
+}

@@ -1,0 +1,66 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Independent raw reparse of diagnostic replications; not blind holdout, fitting or control qualification.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "primary_sha256": "8f473103b4b609db8845735f3ee28701ce1e74c93f65f492dd31fec4c76d31f2",
+  "raw_rollouts": 16,
+  "raw_states": 560,
+  "recomputed_counters": {
+    "advance_attempts": 544,
+    "plant_advance_gotsc_calls": 544,
+    "reset_calls": 16,
+    "rollouts_completed": 16,
+    "unique_cells_completed": 16,
+    "verified_plant_advances": 544,
+    "whole_history_groups_completed": 8
+  },
+  "recomputed_inventory_bytes": 32980037440,
+  "recomputed_inventory_files": 2800,
+  "recomputed_inventory_sha256": "fd884699425916b774650c882659bff3826f41b7d8d689a093984f7fea3bd52d",
+  "recomputed_matched_prefix_checks": [
+    {
+      "failures": [],
+      "group_id": "h00",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h01",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h02",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h03",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h04",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h05",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h06",
+      "passed": true
+    },
+    {
+      "failures": [],
+      "group_id": "h07",
+      "passed": true
+    }
+  ],
+  "schema_version": "rgeo-zgeo-1ms-id2j0-independent-raw-v1",
+  "source_revision": "2e1eaa784c98bda084206bf4b19a167a366ead01",
+  "stage_config_sha256": "bae5685d6ead9625343584472d666fb4b140168e1c5296470efe34c8bd4e1e7c"
+}

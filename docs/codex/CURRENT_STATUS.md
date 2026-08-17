@@ -1,6 +1,26 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2J0 implementation):** the approved
+> **Current status (2026-08-17, post-ID-2J0):** the diagnostic campaign is
+> complete and independently reproducible. It produced 16/16 rollouts,
+> 544/544 verified advances, 560 states and 2,800 required raw files
+> (`32,980,037,440` bytes; digest `fd884699...`). The attribution result and
+> independent recomputation are byte-identical at SHA-256 `fbc1a58a...`.
+>
+> Exact one-ms truth recentering reduced absolute p95 error to
+> `0.359755 mm R / 0.146197 mm Z / 5.89315 A Ip`, but paired-response NRMSE
+> remained `1.133318`, only `5/8` groups had positive peak direction, and the
+> three problematic minus histories remained wrong-way. The actuator/current
+> timing diagnostic passed. Thus this is a mixed data-support and model-
+> structure failure, not merely free-recursion drift, runtime, raw, queue or
+> reporting failure.
+>
+> ID-2J0 remains diagnosis-only and fits zero models. The next prospective
+> work is a matched-baseline factorized history/sign/action development data
+> stage, followed only after PASS by an explicit nominal + stable memory +
+> optional small neural-residual comparison. No controller or safety claim
+> is open. Older status blocks are historical.
+>
+> **Historical ID-2J0 implementation status:** the approved
 > attribution design is frozen. A read-only server check found that ID-2F1R1
 > development raw remains available but the cleaned server no longer contains
 > the ID-2H1/ID-2I1 raw directories. Their tracked compact PASS/FAIL identities

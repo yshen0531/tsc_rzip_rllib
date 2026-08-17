@@ -1,6 +1,22 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2J0 architecture amendment (2026-08-17):** a monolithic causal TCN is
+> **Post-ID-2J0 architecture amendment (2026-08-17):** the frozen monolithic
+> TCN remains wrong-way for three minus histories even when every prediction
+> step is recentered on exact current R_geo/Z_geo/Ip truth. Recentring reduces
+> nominal/free-recursion drift but cannot substitute for supported signed
+> action-memory dynamics. Six of eight tested probe prefixes are outside the
+> original development support.
+>
+> The backbone is therefore restored to the originally intended structured
+> form: exact actuator/queue; explicit time-indexed active nominal; stable
+> low-order latent action memory; and only then a small context-gated neural
+> residual if fresh whole-family evidence warrants it. The next data stage
+> factors history, direction and sign with matched baselines. It does not
+> open controller work. Fresh calibration, new blind history holdout,
+> authority and recourse remain independent AND gates before constrained
+> control. The final two-axis waypoint/repeated-crossing goal is unchanged.
+>
+> **Historical ID-2J0 architecture amendment:** a monolithic causal TCN is
 > no longer the presumed plant backbone. ID-2J0 first measures whether exact
 > 1 ms truth recentering repairs local response while free recursion fails,
 > and whether blind histories lie outside development causal-prefix support.
