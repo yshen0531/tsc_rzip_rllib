@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2G1 active):** ID-2F1R1 is final as
+> **Current status (2026-08-17, ID-2G1R1 active):** ID-2G1 preflight passed,
+> then its exact rank-three executor projection failed at 0.07937753 A before
+> any model fit. It is an input-representation design failure with zero TSC,
+> not a predictive model result. ID-2G1R1 prospectively retains the whole
+> scientific comparison and exposes full 14-dimensional observed current and
+> issued Card15 to every candidate. Future actual current, ID-2C2,
+> calibration and holdout remain forbidden. Older blocks are historical.
+>
+> **Historical ID-2G1 status:** ID-2F1R1 is final as
 > `ONE_MS_ID2F1R1_REPEATED_CONTEXT_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.
 > Primary and independent evidence agree on 78/78 rollouts, 2,652/2,652
 > verified advances, 2,730 states, 39/39 exact replay pairs, lag rank 32,

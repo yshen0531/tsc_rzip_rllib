@@ -1,6 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, ID-2G1):** the fresh ID-2F1R1
+> **Active new-round context (2026-08-17, ID-2G1R1):** the first grouped
+> model attempt fit zero models because virtual p03/p04/p07 coordinates were
+> incorrectly promoted to an exact rank-three executor representation.
+> ID-2G1R1 uses the full 14-dimensional readback/current and issued Card15
+> instead; future actual current is still unavailable. The data, LOCO folds,
+> ML candidates and gates remain frozen. All older notices are historical.
+>
+> **Historical ID-2G1 context:** the fresh ID-2F1R1
 > repeated-context campaign and independent raw reparse passed. It provides
 > 39 unique, exactly repeated, fit-eligible development cells across three
 > causal contexts, not 78 independent samples. ID-2G1 now performs the

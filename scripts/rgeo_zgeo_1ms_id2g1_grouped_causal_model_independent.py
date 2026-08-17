@@ -24,7 +24,7 @@ from scripts.rgeo_zgeo_1ms_id2g1_grouped_causal_model import (  # noqa: E402
 )
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2g1-grouped-causal-model-independent-v1"
+SCHEMA = "rgeo-zgeo-1ms-id2g1r1-full-card15-model-independent-v1"
 
 
 def numeric_maximum(left: Any, right: Any) -> float:
@@ -52,7 +52,7 @@ def audit(stage_path: Path, primary_path: Path, source_revision: str) -> dict[st
     for key in ("schema_version", "source_revision", "stage_config_sha256",
                 "source_primary_sha256", "source_independent_sha256", "source_inventory_sha256",
                 "dataset_sha256", "unique_cells", "contexts", "replays_counted_as_independent_samples",
-                "maximum_card15_projection_residual_a", "id2c2_records_read",
+                "executor_representation", "executor_dimension", "id2c2_records_read",
                 "calibration_records_read", "holdout_records_read", "reset_calls", "tsc_calls",
                 "plant_advances", "passed", "route", "fresh_calibration_design_authorized",
                 "controller_authorized", "claim_boundary"):

@@ -35,7 +35,7 @@ def synthetic_cell(cell_id: str = "none__baseline", context: str = "none", offse
         0.03 + 0.0005 * time - offset,
         31000.0 - 8.0 * time,
     ])
-    current = np.zeros((35, 3), dtype=float)
+    current = np.zeros((35, 14), dtype=float)
     current[:, 0] = np.minimum(time / 15.0, 1.0)
     issued = current[:-1].copy()
     return Cell(cell_id, context, "baseline", states, current, issued, None, None, 0)
@@ -47,7 +47,7 @@ def synthetic_dataset(cells: list[Cell]) -> AllowedDataset:
         source_rzi=cells[0].states[0].copy(),
         state_scale=np.asarray([0.001, 0.001, 100.0]),
         response_scale=np.asarray([0.0001, 0.0001, 25.0]),
-        basis=np.eye(14, 3), q0=np.zeros(14), maximum_projection_residual_a=0.0,
+        q0=np.zeros(14), source_current=np.zeros(14), nominal_issued=np.zeros((34, 14)),
     )
 
 
@@ -65,7 +65,7 @@ class FrozenContractTests(unittest.TestCase):
                          ["stable_lpv", "small_gru", "causal_tcn", "probabilistic_ensemble"])
 
     def test_forbidden_inputs_are_explicit(self) -> None:
-        stage = json.loads(CONFIG.read_text(encoding="utf-8"))
+        stage = load_stage(CONFIG)
         forbidden = set(stage["data_contract"]["forbidden_model_inputs"])
         self.assertTrue({"future_r_geo_z_geo_ip", "future_actual_or_readback_current",
                          "wire_current", "context_id", "id2c2", "calibration", "holdout"} <= forbidden)
@@ -73,7 +73,7 @@ class FrozenContractTests(unittest.TestCase):
         self.assertNotIn("wire_current", FEATURE_NAMES)
 
     def test_launcher_is_zero_plant_and_server_venv(self) -> None:
-        text = (ROOT / "run_rgeo_zgeo_1ms_id2g1_grouped_causal_model_comparison.sh").read_text(encoding="utf-8")
+        text = (ROOT / "run_rgeo_zgeo_1ms_id2g1r1_full_card15_model_comparison.sh").read_text(encoding="utf-8")
         self.assertIn("tsc_all/tsc_simulation/venv_simu", text)
         self.assertNotIn("gotsc", text.lower())
         self.assertNotIn("step_current", text)
@@ -88,13 +88,13 @@ class CausalFeatureTests(unittest.TestCase):
 
     def test_frame_has_only_frozen_dimensions_and_blind_action(self) -> None:
         cell = synthetic_cell()
-        cell.issued[22] = [1.0, 2.0, -3.0]
+        cell.issued[22, :3] = [1.0, 2.0, -3.0]
         data = synthetic_dataset([cell])
         actual = frame(cell, 22, data)
         blind = frame(cell, 22, data, action_blind=True)
         self.assertEqual(actual.shape, (len(FEATURE_NAMES),))
-        np.testing.assert_allclose(actual[9:12], [1.0, 2.0, -3.0])
-        np.testing.assert_allclose(blind[9:12], [1.0, 0.0, 0.0])
+        np.testing.assert_allclose(actual[20:34], cell.issued[22])
+        np.testing.assert_allclose(blind[20:34], np.zeros(14))
 
     def test_structured_recursive_does_not_read_future_actual_state_or_current(self) -> None:
         cell = synthetic_cell()
@@ -132,7 +132,7 @@ class CausalFeatureTests(unittest.TestCase):
 
 class GateAndAuditTests(unittest.TestCase):
     def test_eligibility_requires_every_fold(self) -> None:
-        stage = json.loads(CONFIG.read_text(encoding="utf-8"))
+        stage = load_stage(CONFIG)
         row = {"one_step_p95_abs": [1e-4, 1e-4, 10.0],
                "recursive_p95_abs": [5e-4, 5e-4, 20.0],
                "response_nrmse": 0.5, "positive_peak_cosine_count": 10}
@@ -145,7 +145,7 @@ class GateAndAuditTests(unittest.TestCase):
         self.assertIn("RESPONSE:b", failures)
 
     def test_probabilistic_gate_requires_coverage_and_width(self) -> None:
-        stage = json.loads(CONFIG.read_text(encoding="utf-8"))
+        stage = load_stage(CONFIG)
         row = {"one_step_p95_abs": [1e-4, 1e-4, 10.0],
                "recursive_p95_abs": [5e-4, 5e-4, 20.0],
                "response_nrmse": 0.5, "positive_peak_cosine_count": 10,

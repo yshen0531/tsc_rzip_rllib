@@ -1,6 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, ID-2G1):** ID-2F1R1 completed all
+> **Unique active task (2026-08-17, ID-2G1R1):** ID-2G1 stopped before any
+> fit because exact 14-dimensional Card15/readback differed from its assumed
+> rank-three executor span by as much as 0.07937753 A. Its frozen route is
+> `ONE_MS_ID2G1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL`, with zero TSC and
+> zero models. ID-2G1R1 changes only the executor representation to complete
+> current 14-coil readback and complete issued Card15 vectors; future actual
+> current remains forbidden. Data, folds, candidates, seeds, metrics and
+> gates are unchanged. Overlay/design SHA-256 are
+> `76b4dc2ca84b8c67fd9ab883c5b7e382cc622aefd5c9b38756d87524fd756746 /`
+> `22f7af3964ce0b7c99b3eb9216cebf9d2a00aeb032a0aa6ef3f00d1fa3bf878a`.
+> This is the sole active pointer; all blocks below are historical.
+>
+> **Historical ID-2G1 task:** ID-2F1R1 completed all
 > 78 rollouts, 2,652 verified one-ms advances and 2,730 states. Independent
 > raw reparse reproduced the 13,650-file / 160,777,682,520-byte inventory,
 > all 39 exact replay pairs, rank-32 lag support with condition 3.1756126 and

@@ -28,21 +28,23 @@ from scripts.rgeo_zgeo_1ms_id2f1_repeated_context_development import (  # noqa: 
 )
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2g1-grouped-causal-model-result-v1"
-DATASET_SCHEMA = "rgeo-zgeo-1ms-id2g1-allowed-causal-dataset-v1"
-CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2g1_grouped_causal_model_comparison.json"
-CONFIG_SHA256 = "aa2c11478ea5157e03702ebe1202a39bcf58245a20adb0a9afba4aa95916a6bd"
+SCHEMA = "rgeo-zgeo-1ms-id2g1r1-full-card15-model-result-v1"
+DATASET_SCHEMA = "rgeo-zgeo-1ms-id2g1r1-full-card15-allowed-causal-dataset-v1"
+CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2g1r1_full_card15_model_comparison.json"
+CONFIG_SHA256 = "76b4dc2ca84b8c67fd9ab883c5b7e382cc622aefd5c9b38756d87524fd756746"
+BASE_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2g1_grouped_causal_model_comparison.json"
+BASE_CONFIG_SHA256 = "aa2c11478ea5157e03702ebe1202a39bcf58245a20adb0a9afba4aa95916a6bd"
 SOURCE_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2f1r1_repeated_context_development.json"
 SOURCE_CONFIG_SHA256 = "2c97be4f3adbc684bcb7ed7782d76822e8071c919f92882e3141b3bf934e1831"
-DESIGN_SHA256 = "9612e93eba25172017ab68dfdab43419ef2682a300b634e00c3970d0219d1fa0"
-FEATURE_NAMES = (
+DESIGN_SHA256 = "22f7af3964ce0b7c99b3eb9216cebf9d2a00aeb032a0aa6ef3f00d1fa3bf878a"
+ACTION_DIM = 14
+FEATURE_NAMES = tuple([
     "rzi_relative_0", "rzi_relative_1", "rzi_relative_2",
     "last_delta_0", "last_delta_1", "last_delta_2",
-    "current_card15_span_0", "current_card15_span_1", "current_card15_span_2",
-    "issued_card15_span_0", "issued_card15_span_1", "issued_card15_span_2",
-    "issued_minus_current_0", "issued_minus_current_1", "issued_minus_current_2",
-    "time", "causal_history_fraction",
-)
+] + [f"current_card15_{index}" for index in range(ACTION_DIM)]
+  + [f"issued_card15_{index}" for index in range(ACTION_DIM)]
+  + [f"issued_minus_current_{index}" for index in range(ACTION_DIM)]
+  + ["time", "causal_history_fraction"])
 
 
 class IntegrityError(RuntimeError):
@@ -85,8 +87,17 @@ def _load_json(path: Path, expected_hash: str, label: str) -> dict[str, Any]:
 
 
 def load_stage(path: Path = CONFIG) -> dict[str, Any]:
-    stage = _load_json(path, CONFIG_SHA256, "ID2G1 config")
-    design = stage["design"]
+    overlay = _load_json(path, CONFIG_SHA256, "ID2G1R1 config")
+    base_info = overlay.get("base_config", {})
+    if base_info.get("sha256") != BASE_CONFIG_SHA256 or base_info.get("models_fit") != 0:
+        raise IntegrityError("ID2G1 frozen failure identity changed")
+    stage = _load_json(ROOT / base_info["path"], BASE_CONFIG_SHA256, "ID2G1 base config")
+    stage["identity"] = overlay["identity"]
+    stage["stage"] = overlay["stage"]
+    stage["design"] = overlay["design"]
+    stage["executor_representation"] = overlay["executor_representation"]
+    stage["routes"] = overlay["routes"]
+    design = overlay["design"]
     if design["sha256"] != DESIGN_SHA256:
         raise IntegrityError("design hash declaration changed")
     _load_json(ROOT / stage["source_run"]["primary_path"],
@@ -117,7 +128,7 @@ def load_stage(path: Path = CONFIG) -> dict[str, Any]:
     if int(independent.get("id2c2_records_read", -1)) != 0:
         raise IntegrityError("ID2C2 was read")
     if sha256(ROOT / design["path"]) != design["sha256"]:
-        raise IntegrityError("ID2G1 design hash mismatch")
+        raise IntegrityError("ID2G1R1 design hash mismatch")
     if sha256(SOURCE_CONFIG) != SOURCE_CONFIG_SHA256:
         raise IntegrityError("ID2F1R1 source config hash mismatch")
     if stage["new_tsc_calls"] != 0 or stage["reset_calls"] != 0 or stage["plant_advances"] != 0:
@@ -131,8 +142,8 @@ class Cell:
     context_id: str
     cell_kind: str
     states: np.ndarray          # [35, 3], physical units
-    currents: np.ndarray        # [35, 3], Card15-span coordinates
-    issued: np.ndarray          # [34, 3], Card15-span coordinates
+    currents: np.ndarray        # [35, 14], full readback relative to source
+    issued: np.ndarray          # [34, 14], exact Card15 target relative to q0
     direction_id: str | None
     sign: str | None
     duration: int
@@ -144,9 +155,9 @@ class AllowedDataset:
     source_rzi: np.ndarray
     state_scale: np.ndarray
     response_scale: np.ndarray
-    basis: np.ndarray
     q0: np.ndarray
-    maximum_projection_residual_a: float
+    source_current: np.ndarray
+    nominal_issued: np.ndarray
 
 
 def _float_target(target: Sequence[Any]) -> np.ndarray:
@@ -155,12 +166,6 @@ def _float_target(target: Sequence[Any]) -> np.ndarray:
     if value.shape != (14,) or not np.all(np.isfinite(value)):
         raise IntegrityError("invalid Card15 target")
     return value
-
-
-def _projection(vector: np.ndarray, basis: np.ndarray) -> tuple[np.ndarray, float]:
-    coordinate, *_ = np.linalg.lstsq(basis, vector, rcond=None)
-    residual = float(np.max(np.abs(vector - basis @ coordinate)))
-    return coordinate, residual
 
 
 def extract_dataset(stage: dict[str, Any]) -> AllowedDataset:
@@ -175,17 +180,13 @@ def extract_dataset(stage: dict[str, Any]) -> AllowedDataset:
 
     baseline = next(row for row in streams if row["cell_id"] == "none__baseline")
     q0 = _float_target(baseline["targets"][0])
-    p03 = _float_target(baseline["targets"][16]) - q0
-    p04_stream = next(row for row in streams if row["cell_id"] == "none__p04_plus_i22_d1")
-    p07_stream = next(row for row in streams if row["cell_id"] == "none__p07_plus_i22_d1")
-    p04 = _float_target(p04_stream["targets"][22]) - _float_target(baseline["targets"][22])
-    p07 = _float_target(p07_stream["targets"][22]) - _float_target(baseline["targets"][22])
-    basis = np.column_stack([p03, p04, p07])
-    if np.linalg.matrix_rank(basis) != 3:
-        raise IntegrityError("Card15 source-local span is not rank three")
+    nominal_issued = np.asarray([_float_target(target) - q0 for target in baseline["targets"]],
+                                dtype=np.float64)
+    if nominal_issued.shape != (34, ACTION_DIM):
+        raise IntegrityError("active nominal action shape changed")
 
     raw_rows: dict[str, dict[str, Any]] = {}
-    maximum_residual = 0.0
+    source_current: np.ndarray | None = None
     for rollout_id, stream in by_id.items():
         folder = run_dir / "rollouts" / rollout_id
         records = []
@@ -200,17 +201,14 @@ def extract_dataset(stage: dict[str, Any]) -> AllowedDataset:
                                      for row in records], dtype=np.float64)
         if state_values.shape != (35, 3) or current_values.shape != (35, 14):
             raise IntegrityError(f"raw shape mismatch: {rollout_id}")
-        current_origin = current_values[0]
-        current_coordinates = []
-        for value in current_values:
-            coordinate, residual = _projection(value - current_origin, basis)
-            maximum_residual = max(maximum_residual, residual)
-            current_coordinates.append(coordinate)
+        if source_current is None:
+            source_current = current_values[0].copy()
+        if not np.array_equal(current_values[0], source_current):
+            raise IntegrityError(f"source current differs: {rollout_id}")
+        current_coordinates = current_values - source_current
         issued_coordinates = []
         for issue, target in enumerate(stream["targets"]):
-            coordinate, residual = _projection(_float_target(target) - q0, basis)
-            maximum_residual = max(maximum_residual, residual)
-            issued_coordinates.append(coordinate)
+            issued_coordinates.append(_float_target(target) - q0)
             if list(records[issue]["active_command_card15_fields"]) != stream["actions"][issue]["expected_card15_fields"]:
                 raise IntegrityError(f"issued Card15 mismatch: {rollout_id}:{issue}")
         raw_rows[rollout_id] = {
@@ -219,9 +217,8 @@ def extract_dataset(stage: dict[str, Any]) -> AllowedDataset:
             "currents": np.asarray(current_coordinates, dtype=np.float64),
             "issued": np.asarray(issued_coordinates, dtype=np.float64),
         }
-    cap = float(stage["data_contract"]["maximum_card15_projection_residual_a"])
-    if maximum_residual > cap:
-        raise IntegrityError(f"Card15-span projection residual {maximum_residual} exceeds {cap}")
+    if source_current is None:
+        raise IntegrityError("source current is absent")
 
     cells: list[Cell] = []
     grouped: dict[str, list[dict[str, Any]]] = {}
@@ -256,7 +253,7 @@ def extract_dataset(stage: dict[str, Any]) -> AllowedDataset:
         cells=cells, source_rzi=source_rzi,
         state_scale=np.asarray(stage["normalization"]["state_scale"], dtype=np.float64),
         response_scale=np.asarray(stage["normalization"]["response_scale"], dtype=np.float64),
-        basis=basis, q0=q0, maximum_projection_residual_a=maximum_residual,
+        q0=q0, source_current=source_current, nominal_issued=nominal_issued,
     )
 
 
@@ -268,9 +265,10 @@ def dataset_payload(data: AllowedDataset) -> dict[str, Any]:
         "source_rzi": data.source_rzi.tolist(),
         "state_scale": data.state_scale.tolist(),
         "response_scale": data.response_scale.tolist(),
-        "card15_basis_a": data.basis.tolist(),
         "q0_a": data.q0.tolist(),
-        "maximum_projection_residual_a": data.maximum_projection_residual_a,
+        "source_current_a": data.source_current.tolist(),
+        "active_nominal_issued_relative_q0_a": data.nominal_issued.tolist(),
+        "executor_dimension": ACTION_DIM,
         "cells": [{
             "cell_id": cell.cell_id,
             "context_id": cell.context_id,
@@ -279,8 +277,8 @@ def dataset_payload(data: AllowedDataset) -> dict[str, Any]:
             "sign_evaluator_only": cell.sign,
             "duration_evaluator_only": cell.duration,
             "states_rzi": cell.states.tolist(),
-            "current_card15_span": cell.currents.tolist(),
-            "issued_card15_span": cell.issued.tolist(),
+            "current_full_card15_relative_source": cell.currents.tolist(),
+            "issued_full_card15_relative_q0": cell.issued.tolist(),
             "unit_weight": 1.0,
         } for cell in data.cells],
     }
@@ -296,14 +294,14 @@ def frame(cell: Cell, issue: int, data: AllowedDataset,
     current_coordinate = cell.currents[issue] if current_coordinate is None else current_coordinate
     issued_coordinate = cell.issued[issue] if issued_coordinate is None else issued_coordinate.copy()
     if action_blind:
-        issued_coordinate = issued_coordinate.copy()
-        issued_coordinate[1:] = 0.0
+        issued_coordinate = data.nominal_issued[issue].copy()
+    issued_as_current = issued_coordinate + data.q0 - data.source_current
     return np.concatenate([
         (current_state - data.source_rzi) / data.state_scale,
         (current_state - previous_state) / data.state_scale,
         current_coordinate,
         issued_coordinate,
-        issued_coordinate - current_coordinate,
+        issued_as_current - current_coordinate,
         np.asarray([issue / 34.0, min(issue, 16) / 16.0]),
     ]).astype(np.float64)
 
@@ -317,16 +315,17 @@ def teacher_arrays(cells: Sequence[Cell], data: AllowedDataset,
     return x, y
 
 
-def _pole_states(cell: Cell, poles: Sequence[float], action_blind: bool,
+def _pole_states(cell: Cell, data: AllowedDataset, poles: Sequence[float], action_blind: bool,
                  currents: np.ndarray | None = None) -> np.ndarray:
     currents = cell.currents if currents is None else currents
-    values = np.zeros((34, len(poles), 3), dtype=np.float64)
-    memory = np.zeros((len(poles), 3), dtype=np.float64)
+    values = np.zeros((34, len(poles), ACTION_DIM), dtype=np.float64)
+    memory = np.zeros((len(poles), ACTION_DIM), dtype=np.float64)
     for issue in range(34):
         target = cell.issued[issue].copy()
         if action_blind:
-            target[1:] = 0.0
-        delta = target - currents[issue]
+            target = data.nominal_issued[issue].copy()
+        target_as_current = target + data.q0 - data.source_current
+        delta = target_as_current - currents[issue]
         memory = np.asarray(poles)[:, None] * memory + delta[None, :]
         values[issue] = memory
     return values
@@ -338,12 +337,13 @@ def structured_features(cell: Cell, data: AllowedDataset, poles: Sequence[float]
                         currents_override: np.ndarray | None = None) -> np.ndarray:
     states = cell.states if states_override is None else states_override
     currents = cell.currents if currents_override is None else currents_override
-    pole_values = _pole_states(cell, poles, action_blind, currents)
+    pole_values = _pole_states(cell, data, poles, action_blind, currents)
     rows = []
     for issue in range(34):
         target = cell.issued[issue].copy()
         if action_blind:
-            target[1:] = 0.0
+            target = data.nominal_issued[issue].copy()
+        target_as_current = target + data.q0 - data.source_current
         state = (states[issue] - data.source_rzi) / data.state_scale
         previous = states[max(0, issue - 1)]
         velocity = (states[issue] - previous) / data.state_scale
@@ -351,7 +351,7 @@ def structured_features(cell: Cell, data: AllowedDataset, poles: Sequence[float]
         interaction = np.outer(state, target).reshape(-1)
         rows.append(np.concatenate([
             [1.0, issue / 34.0, (issue / 34.0) ** 2], state, velocity,
-            current, target, target - current, pole_values[issue].reshape(-1), interaction,
+            current, target, target_as_current - current, pole_values[issue].reshape(-1), interaction,
         ]))
     return np.asarray(rows, dtype=np.float64)
 
@@ -374,7 +374,7 @@ class StructuredModel:
                                            states_override=states, currents_override=currents)
             delta = features[issue] @ self.coefficients
             states[issue + 1] = states[issue] + delta * data.state_scale
-            currents[issue + 1] = cell.issued[issue]
+            currents[issue + 1] = cell.issued[issue] + data.q0 - data.source_current
         return states[origin + 1:35]
 
 
@@ -457,7 +457,7 @@ class NeuralModel:
             with torch.no_grad():
                 delta = self.module(sequence)[0, -1].cpu().numpy().astype(np.float64)
             states[issue + 1] = states[issue] + delta * data.state_scale
-            currents[issue + 1] = cell.issued[issue]
+            currents[issue + 1] = cell.issued[issue] + data.q0 - data.source_current
         return states[origin + 1:35]
 
 
@@ -734,7 +734,8 @@ def execute(stage_path: Path, source_revision: str, output: Path,
         "unique_cells": len(data.cells),
         "contexts": sorted({cell.context_id for cell in data.cells}),
         "replays_counted_as_independent_samples": False,
-        "maximum_card15_projection_residual_a": data.maximum_projection_residual_a,
+        "executor_representation": "full_14d_readback_and_issued_card15",
+        "executor_dimension": ACTION_DIM,
         "id2c2_records_read": 0,
         "calibration_records_read": 0,
         "holdout_records_read": 0,
@@ -769,7 +770,7 @@ def preflight(stage_path: Path, source_revision: str) -> dict[str, Any]:
     rollout_root = run / "rollouts"
     rollouts = len([path for path in rollout_root.iterdir() if path.is_dir()]) if rollout_root.is_dir() else 0
     return {
-        "schema_version": "rgeo-zgeo-1ms-id2g1-preflight-v1",
+        "schema_version": "rgeo-zgeo-1ms-id2g1r1-preflight-v1",
         "source_revision": source_revision,
         "stage_config_sha256": CONFIG_SHA256,
         "source_run_present": run.is_dir(),
@@ -803,9 +804,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             else "training_or_reproducibility_fail"
         try:
             stage = json.loads(inside(args.stage_config, "ID2G1 config").read_text(encoding="utf-8"))
-            route = stage.get("routes", {}).get(route_key, "ONE_MS_ID2G1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL")
+            route = stage.get("routes", {}).get(route_key, "ONE_MS_ID2G1R1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL")
         except Exception:
-            route = "ONE_MS_ID2G1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL"
+            route = "ONE_MS_ID2G1R1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL"
         failure = {
             "schema_version": SCHEMA,
             "source_revision": args.source_revision,

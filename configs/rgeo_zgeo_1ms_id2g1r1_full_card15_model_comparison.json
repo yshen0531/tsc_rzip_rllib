@@ -1,0 +1,32 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2g1r1-full-card15-overlay-v1",
+  "identity": "rgeo-zgeo-1ms-id2g1r1-full-card15-grouped-model-comparison-v1",
+  "stage": "ID-2G1R1",
+  "base_config": {
+    "path": "configs/rgeo_zgeo_1ms_id2g1_grouped_causal_model_comparison.json",
+    "sha256": "aa2c11478ea5157e03702ebe1202a39bcf58245a20adb0a9afba4aa95916a6bd",
+    "final_route": "ONE_MS_ID2G1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL",
+    "models_fit": 0,
+    "tsc_calls": 0,
+    "plant_advances": 0
+  },
+  "design": {
+    "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2G1R1_FULL_CARD15_MODEL_COMPARISON_DESIGN.md",
+    "sha256": "22f7af3964ce0b7c99b3eb9216cebf9d2a00aeb032a0aa6ef3f00d1fa3bf878a"
+  },
+  "executor_representation": {
+    "dimension": 14,
+    "current": "same_step_full_readback_relative_to_source",
+    "issued": "exact_full_card15_target_relative_to_q0",
+    "future_actual_current_forbidden": true,
+    "recursive_next_current": "candidate_issued_target",
+    "virtual_direction_coordinates_model_input": false,
+    "action_blind_future": "exact_time_matched_active_nominal_issued_vector"
+  },
+  "routes": {
+    "input_or_data_integrity_fail": "ONE_MS_ID2G1R1_INPUT_OR_DATA_INTEGRITY_FAIL_NO_MODEL",
+    "training_or_reproducibility_fail": "ONE_MS_ID2G1R1_TRAINING_OR_REPRODUCIBILITY_FAIL_STOP",
+    "no_eligible_candidate": "ONE_MS_ID2G1R1_GROUPED_MODEL_FAIL_ROUTE_REVIEW",
+    "pass": "ONE_MS_ID2G1R1_GROUPED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+  }
+}

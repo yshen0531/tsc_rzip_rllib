@@ -1,6 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2G1 architecture note (2026-08-17):** ID-2F1R1 passed its complete
+> **ID-2G1R1 architecture note (2026-08-17):** the architecture distinguishes
+> a low-dimensional excitation grammar from executor truth. ID-2G1's exact
+> rank-three projection assumption failed before fitting; R1 feeds complete
+> 14-coil current/readback and issued Card15 to the model and propagates only
+> candidate issued current recursively. No future actual current is exposed.
+> All model, grouping and authorization gates are otherwise unchanged.
+>
+> **Historical ID-2G1 architecture note (2026-08-17):** ID-2F1R1 passed its complete
 > fresh repeated-context data gates and now permits a finite development
 > model comparison. The architecture remains exact actuator/queue plus a
 > history-conditioned dynamics model and uncertainty; current R_geo/Z_geo/Ip
