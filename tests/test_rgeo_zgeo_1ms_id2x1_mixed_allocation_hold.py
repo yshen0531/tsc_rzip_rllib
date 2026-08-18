@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import copy
 import json
 import sys
 import unittest
@@ -15,6 +16,12 @@ SPEC = importlib.util.spec_from_file_location(
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
+AUDIT_SPEC = importlib.util.spec_from_file_location(
+    "id2x1_independent",
+    ROOT / "scripts/rgeo_zgeo_1ms_id2x1_mixed_allocation_hold_independent.py")
+AUDIT = importlib.util.module_from_spec(AUDIT_SPEC)
+assert AUDIT_SPEC.loader is not None
+AUDIT_SPEC.loader.exec_module(AUDIT)
 
 
 class ID2X1Tests(unittest.TestCase):
@@ -105,6 +112,23 @@ class ID2X1Tests(unittest.TestCase):
         self.assertIn("primary_rc=$?", text)
         self.assertIn("independent_raw_audit.json", text)
         self.assertIn('exit "$primary_rc"', text)
+
+    def test_independent_prefix_respects_inputa_lifecycle(self):
+        row = {
+            "rollout_id": "synthetic",
+            "states": copy.deepcopy(self.reference["states"][:34]),
+            "actions": copy.deepcopy(self.reference["actions"][:33]),
+        }
+        for state in row["states"]:
+            state["artifact_sha256"]["inputa"] = "outgoing-inputa-is-different"
+        result = AUDIT.independent_prefix_check(
+            row, self.reference, self.stage["semantic_artifacts"])
+        self.assertTrue(result["passed"], result)
+        row["states"][7]["artifact_sha256"]["geqdsk"] = "corrupt"
+        result = AUDIT.independent_prefix_check(
+            row, self.reference, self.stage["semantic_artifacts"])
+        self.assertFalse(result["passed"])
+        self.assertIn("STATE:7:artifact:geqdsk", result["failures"])
 
 
 if __name__ == "__main__":

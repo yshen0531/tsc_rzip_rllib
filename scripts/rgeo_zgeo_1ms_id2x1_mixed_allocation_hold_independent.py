@@ -42,6 +42,45 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def independent_prefix_check(
+        row: dict[str, Any], reference: dict[str, Any],
+        semantic_artifacts: Sequence[str]) -> dict[str, Any]:
+    """Check the retained prefix without misreading rewritten ``inputa``.
+
+    The runner rewrites state k's retained ``inputa`` with outgoing issue k.
+    The primary compact captured the preissue artifact, so those two byte
+    hashes intentionally describe different lifecycle points.  The raw audit
+    independently parses every outgoing Card15 issue above and reconstructs
+    the arrival-active command from the canonical source/preceding issue.
+    Here it compares all physical prefix fields and the semantic artifacts
+    that remain arrival-state artifacts; it must not compare the overwritten
+    raw ``inputa`` hash with the primary preissue hash.
+    """
+    failures: list[str] = []
+    if len(row.get("states", [])) < 34 or len(row.get("actions", [])) < 33:
+        failures.append("PREFIX_INCOMPLETE")
+    else:
+        for index in range(34):
+            current, expected = row["states"][index], reference["states"][index]
+            for key in ("r_geo_m", "z_geo_m", "r_mid_m", "ip_a",
+                        "actual_current_decimal_a_tsc", "wire_current_a",
+                        "active_command_card15_fields"):
+                if current[key] != expected[key]:
+                    failures.append(f"STATE:{index}:{key}")
+            for name in semantic_artifacts:
+                if name == "inputa":
+                    continue
+                if current["artifact_sha256"].get(name) != expected[
+                        "artifact_sha256"].get(name):
+                    failures.append(f"STATE:{index}:artifact:{name}")
+        for issue in range(33):
+            if (row["actions"][issue]["expected_card15_fields"]
+                    != reference["actions"][issue]["expected_card15_fields"]):
+                failures.append(f"ACTION:{issue}")
+    return {"rollout_id": row.get("rollout_id"), "passed": not failures,
+            "failures": list(dict.fromkeys(failures))}
+
+
 def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     failures: list[str] = []
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
@@ -75,6 +114,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     lines: list[str] = []
     total = 0
     if cfg is not None:
+        source_fields = list(_fields(cfg.simulation_root / cfg.start_folder / "inputa"))
         for row in compact:
             rollout_id = row["rollout_id"]
             folder = rollout_root / rollout_id
@@ -135,6 +175,8 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                     failures.append(f"FROZEN_ACTION:{rollout_id}:{issue}")
             try:
                 restore_arrival_active_commands(states, issued_fields)
+                if states:
+                    states[0]["active_command_card15_fields"] = list(source_fields)
             except Exception as exc:
                 failures.append(
                     f"ACTIVE_COMMAND_RECONSTRUCTION:{rollout_id}:{type(exc).__name__}:{exc}")
@@ -153,7 +195,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     expected_files = 5 * sum(len(row["states"]) for row in raw_rows)
     raw_ok = bool(execution and len(lines) == expected_files and not any(
         failure.startswith("MISSING_ARTIFACT") for failure in failures))
-    prefixes = [primary.common_prefix_check(row, reference, stage["semantic_artifacts"])
+    prefixes = [independent_prefix_check(row, reference, stage["semantic_artifacts"])
                 for row in raw_rows] if execution else []
     metrics = primary.scientific_metrics(raw_rows, stage) if execution else None
     expected_route = primary.route_for(stage, execution, raw_ok, prefixes, metrics)
@@ -198,6 +240,10 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
         "recomputed_counters": counters, "recomputed_inventory_sha256": inventory,
         "recomputed_inventory_files": len(lines), "recomputed_inventory_bytes": total,
         "recomputed_known_prefix_checks": prefixes,
+        "raw_inputa_lifecycle": (
+            "retained state-k inputa is outgoing issue-k; outgoing fields are "
+            "independently checked and inputa byte hashes are not compared to "
+            "the primary preissue hashes"),
         "recomputed_scientific_metrics": metrics,
         "finite_nominal_hold_candidate": bool(not failures and result.get("passed")),
         "calibration_or_holdout_records_read": 0, "models_fit_or_updated": 0,
