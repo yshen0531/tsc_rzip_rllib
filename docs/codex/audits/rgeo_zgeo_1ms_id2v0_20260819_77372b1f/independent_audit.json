@@ -1,0 +1,13 @@
+{
+  "audit_passed": true,
+  "decision": "branch_design_required",
+  "failures": [],
+  "models_fit_or_trained": 0,
+  "new_tsc_calls": 0,
+  "plant_advances": 0,
+  "primary_result_sha256": "f21c88739acdcd41ed7c1eac7c613e937c3e61c459addf09ac4c1d2e496d193e",
+  "recomputed_result_sha256": "f21c88739acdcd41ed7c1eac7c613e937c3e61c459addf09ac4c1d2e496d193e",
+  "reset_calls": 0,
+  "route": "ONE_MS_ID2V0_CURRENT_PROBE_CONTROL_UTILITY_INSUFFICIENT_BRANCH_DESIGN_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2v0-control-utility-support-independent-v1"
+}

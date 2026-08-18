@@ -1,5 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID-2U2 architecture amendment (2026-08-18):** the exact actuator,
+> **Post-ID-2V0 architecture amendment (2026-08-19):** retain the exact
+> actuator/queue, one-ms exact R_geo/Z_geo/Ip observation, causal memory,
+> uncertainty, reference-governor and constrained rolling-control backbone.
+> Change the immediate order: demonstrate a useful finite action grammar
+> before collecting more histories or fitting another response model.
+>
+> The measured p04/p07 exact-return pulses are excitation primitives. Their
+> horizon-8 effect is below `0.6%` of moving-nominal displacement and their
+> terminal effect is below `0.019 mm`. A bounded same-prefix multi-arm branch
+> campaign must therefore test sequence-level absolute progress,
+> persistence/capture, Ip/current cost, and return/resume continuity. Only
+> branch choices with real control utility become targets for a later
+> support-gated model. Authority, recourse and controller qualification
+> remain separate prospective gates.
+
+> **Historical post-ID-2U2 architecture amendment (2026-08-18):** the exact actuator,
 > moving nominal, exact one-ms observation, causal memory and constrained
 > rolling-control architecture remains unchanged, but model qualification
 > cannot proceed from a development split with zero arrival-pace variation.

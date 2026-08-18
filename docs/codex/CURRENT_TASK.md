@@ -1,21 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2V0 authorized):** preserve the clean
-> ID-2U1 data PASS and final ID-2U2 model/support FAIL. The previous automatic
-> recommendation to add four arrival histories is conditional, not active.
-> ID-2V0 is the sole active stage: a server-tested, zero-new-TSC, zero-fit
-> control-utility and support-decomposition audit over tracked U1/U2 compact
-> evidence only.
+> **Unique active task (2026-08-19, post-ID-2V0):** ID-2V0 is final as
+> `ONE_MS_ID2V0_CURRENT_PROBE_CONTROL_UTILITY_INSUFFICIENT_BRANCH_DESIGN_REQUIRED`.
+> It ran zero TSC/reset/plant work and fit no model. All four development
+> families failed sustained/terminal/directional program criteria although
+> exact action integrity passed. Horizon-8 residuals were only
+> `0.021--0.026 mm` against `4.276--5.238 mm` moving-baseline motion, and
+> state-40 residuals were only `0.0178--0.0190 mm`.
 >
-> ID-2V0 must persist the `u02` feature-block support decomposition, absolute
-> baseline-versus-residual 1--8 ms and terminal utility, direction reserve,
-> action-equivalence margin, hybrid excursion, Ip/current margin, and
-> earliest replanning semantics. It must freeze one next route: either a
-> minimal balanced history-support campaign or a fixed-budget exact-Card15
-> same-prefix action-grammar branch campaign. It may write statistical code
-> and run server tests, but it may not fit/train a model, open
-> `u01/u03/u05/u07`, run TSC/reset/plant work, or implement a controller.
-> All blocks below are historical.
+> The sole active successor is a bounded zero-new-TSC design for an
+> exact-Card15 same-prefix multi-arm sequence campaign. It must optimize
+> absolute time-resolved two-axis progress, persistence/terminal capture,
+> Ip/current cost, and an explicit return/resume continuation. Candidate
+> enumeration must be small and prospectively frozen; no clipping, transient
+> single-frame authority claim, broad shooting, model fit, calibration/blind
+> read, controller, MPC, waypoint, crossing, adaptation, expert data, or RL
+> is authorized by V0. All blocks below are historical.
 
 > **Historical task (2026-08-18, post-ID-2U2 review required):** the
 > bounded two-candidate comparison is final as

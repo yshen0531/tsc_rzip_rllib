@@ -1,5 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-19, post-ID-2V0):** the automatic
+> history-only expansion is stopped. ID-2V0 passed execution and independent
+> recomputation with zero TSC and zero fitting, but all four development
+> families failed the retrospective sustained/terminal/directional utility
+> criteria. The current p04/p07 two-issue exact-return pulse leaves only
+> `0.0178--0.0190 mm` at state 40 and all measured action rankings fall
+> inside a `0.02 mm` equivalence floor.
+>
+> The next route first freezes a small same-prefix exact-Card15 multi-arm
+> sequence campaign with absolute tracking, persistence, Ip/current and
+> return/resume objectives. Useful branch decisions may later become model
+> targets; weak excitation pulses will not be made useful merely by adding
+> model capacity or more arrival histories. No model, calibration/blind
+> read, controller, authority, recovery, waypoint, crossing, adaptation,
+> expert data, or RL is opened by this notice. All older notices are
+> historical.
+
 > **Current route notice (2026-08-19, ID-2V0 authorized):** ID-2U2 remains
 > final as `ONE_MS_ID2U2_NO_ELIGIBLE_CAUSAL_MODEL_REVIEW_REQUIRED`, but the
 > automatic four-history expansion is superseded by a bounded zero-TSC,
