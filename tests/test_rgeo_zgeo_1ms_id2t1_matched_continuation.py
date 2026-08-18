@@ -42,6 +42,10 @@ class ID2T1Tests(unittest.TestCase):
         ref = self.references[self.stage["sequence_ids"][0]]
         self.assertEqual(t1._prefix_reasons(ref["states"][30], ref["states"][30],
                                             self.stage, 30), [])
+        without_side = copy.deepcopy(ref["states"][30])
+        without_side.pop("side")
+        self.assertEqual(t1._prefix_reasons(without_side, ref["states"][30],
+                                            self.stage, 30), [])
         changed = copy.deepcopy(ref["states"][30])
         changed["r_geo_m"] += 2e-12
         self.assertTrue(t1._prefix_reasons(changed, ref["states"][30], self.stage, 30))

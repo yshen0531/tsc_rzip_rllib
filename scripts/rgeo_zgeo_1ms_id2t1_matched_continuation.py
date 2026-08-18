@@ -195,7 +195,11 @@ def _prefix_reasons(actual: dict[str, Any], expected: dict[str, Any], stage: dic
     check = id0.compare_rows({"states": [actual], "actions": []},
                              {"states": [expected], "actions": []}, shim)
     failures = [f"PREFIX_STATE:{index}:{value}" for value in check["failures"]]
-    if actual.get("side") != expected.get("side"):
+    actual_side = actual.get("side") or (
+        "HFS" if float(actual["r_geo_m"]) < float(actual["r_mid_m"]) else "LFS")
+    expected_side = expected.get("side") or (
+        "HFS" if float(expected["r_geo_m"]) < float(expected["r_mid_m"]) else "LFS")
+    if actual_side != expected_side:
         failures.append(f"PREFIX_SIDE:{index}")
     return failures
 
