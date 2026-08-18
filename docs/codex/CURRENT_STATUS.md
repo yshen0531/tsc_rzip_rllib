@@ -1,5 +1,18 @@
 # Current status
 
+> **Current status (2026-08-19, ID-2Z3 design checkpoint):** ID-2Z3 is
+> prospectively frozen as a five-decision maximum canonical-prefix braking
+> search.  It distinguishes the logically executed ID-2Z2 state-77 prefix
+> from the state-81 look-ahead hold samples and compares only hold,
+> p03-forward4 and p07-minus4 with a twelve-effect measurement horizon.
+> Terminal four-state speed, source distance and Ip now drive selection.
+>
+> To satisfy the 90-GB estimated raw budget, the already audited and pushed
+> ID-2Z1/ID-2Z2 `rollouts` subdirectories (about 31.0/67.0 GB) were deleted
+> with exact path guards.  Results, compact JSON, preflights, both ID-2Z2
+> audits and logs remain.  Server free space is 157,094,965,248 bytes.  No
+> ID-2Z3 code, test, package or TSC result exists yet.
+
 > **Current status (2026-08-19, post-ID-2Z2):** all fourteen frozen branches
 > completed with 1,106/1,106 verified advances and 1,120 states. Primary and
 > final independent full-raw audit agree on 5,600 artifacts, 65.9601 GB,

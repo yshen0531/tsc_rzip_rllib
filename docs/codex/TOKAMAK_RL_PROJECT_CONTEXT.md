@@ -1,5 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-19, ID-2Z3):** two measured
+> p03-forward decisions retain finite transport utility but do not brake the
+> source-local path.  The active bounded stage therefore performs no model
+> fit: from the exact logical state-77 prefix it compares matched hold,
+> p03-forward4 and p07-minus4 for at most five rolling decisions, using
+> terminal four-state speed, source distance and Ip.  A 25-mm/0.1-m/s/5%-Ip
+> result is only a coarse stabilization candidate and must be freshly
+> repeated before recourse design.  Calibration, controller, waypoint/path,
+> R_mid crossing, adaptation and learning remain later gates.  Older active
+> notices below are historical.
+
 > **Current route notice (2026-08-19, post-ID-2Z2):** the two-decision
 > canonical-source campaign completed fourteen branches and passed exact
 > execution, prefix, raw and independent-audit gates. At both state69 and the

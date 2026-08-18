@@ -1,5 +1,22 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-2Z3 architecture freeze (2026-08-19):** the high-level architecture
+> remains exact one-ms observation and actuation, persistent causal belief,
+> explicit uncertainty, reference governance and an independent hard safety/
+> recourse layer.  The immediate discriminator is a bounded five-decision
+> canonical-prefix braking search, not another fixed p03 depth and not a
+> learned world model.  Each round measures hold, p03-forward4 and
+> p07-minus4, observes an eight-ms tail, commits only the selected four-issue
+> macro and replans from the resulting logical prefix.
+>
+> The selector prioritizes terminal four-state speed while bounding geometry
+> regression and paired Ip.  A 25-mm/0.1-m/s/5%-Ip coarse stabilization gate
+> is intentionally weaker and differently named than the historical 5-mm
+> source short-hold gate; it can authorize only fresh repeat and recourse
+> design.  Model/calibration evidence needs a new prospective identity, and
+> no finite branch PASS may be promoted to feedback, recovery, waypoint or
+> R_mid-crossing qualification.
+
 > **Post-ID-2Z2 architecture amendment (2026-08-19):** exact one-ms
 > paired-boundary observation, exact Card15 actuation, complete post-takeover
 > causal history, explicit uncertainty and an independent hard safety layer

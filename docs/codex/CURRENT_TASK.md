@@ -1,5 +1,30 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-19, ID-2Z3 frozen):** ID-2Z2 remains final
+> as finite two-decision transport evidence.  ID-2Z3 is the only active
+> successor.  Starting from the exact logical state-77 prefix, it makes at
+> most five rolling decisions at states 77/81/85/89/93.  Each decision
+> compares only matched hold, p03-forward4 and p07-minus4, observes eight ms
+> of post-macro tail, executes only the selected first four issues in the
+> logical main path, and then replans by canonical-source full-prefix replay.
+>
+> Selection now targets braking rather than another fixed transport depth:
+> an eligible arm must improve the terminal four-state maximum R/Z speed by
+> at least 0.01 m/s, stay within 0.25 mm of matched-hold terminal source
+> distance, keep paired Ip within 150 A, and pass every exact interface/raw/
+> prefix gate.  A finite coarse stabilization candidate additionally needs
+> four terminal states within 25 mm source R/Z distance, 0.1 m/s step speed
+> and 5% source-relative Ip.  This does not replace the historical 5-mm
+> short-hold gate and is not a terminal or recoverable set.
+>
+> The campaign is capped at 15 resets, 1,455 advances, 1,470 states and an
+> estimated 90 GB.  Completed ID-2Z1/ID-2Z2 server `rollouts` subtrees were
+> irreversibly removed only after their result/compact/independent evidence
+> was tracked and pushed; all top-level evidence and logs remain.  Model
+> fitting, calibration/holdout, feedback control, recovery, waypoint/path,
+> R_mid crossing, adaptation, expert data and RL remain closed.  All blocks
+> below are historical.
+
 > **Unique active task (2026-08-19, post-ID-2Z2):** ID-2Z2 completed all
 > fourteen canonical-source branches, 1,106/1,106 verified advances and 1,120
 > states. The final independent full-raw audit reproduced all 5,600 required

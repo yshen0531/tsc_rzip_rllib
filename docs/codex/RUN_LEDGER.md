@@ -1,5 +1,27 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z3 bounded braking rolling search
+
+- Date: 2026-08-19 Asia/Shanghai.
+- Status: prospectively frozen design; implementation, server validation and
+  TSC not yet run.
+- Initial logical prefix: ID-2Z2 selected Round-B state 77, excluding its
+  four look-ahead hold states.
+- Budget: at most five decisions, 15 canonical-source branches, 1,455 plant
+  advances, 1,470 states and 90 GB estimated raw.
+- Candidate alphabet: matched hold, p03-forward4 and p07-minus4.  Each branch
+  has four active issues plus eight hold issues.
+- Selection: minimum terminal four-state maximum R/Z speed subject to paired
+  response, Ip and matched-hold geometry gates.
+- Coarse stabilization discriminator: four terminal states within 25 mm
+  source R/Z distance, 0.1 m/s step speed and 5% source-relative Ip.  This is
+  not the historical 5-mm short-hold or a recoverable set.
+- Storage cleanup: after tracked/pushed compact and independent evidence was
+  hash-verified, only the completed ID-2Z1 and ID-2Z2 remote `rollouts`
+  subtrees were irreversibly deleted (30,978,808,884 and 66,979,955,014
+  bytes).  Their top-level results, compact evidence, audits, preflights and
+  logs remain.  Free space after cleanup: 157,094,965,248 bytes.
+
 ## R_geo/Z_geo 1 ms ID-2Z2 two-decision rolling branch
 
 - Date: 2026-08-19 Asia/Shanghai.
