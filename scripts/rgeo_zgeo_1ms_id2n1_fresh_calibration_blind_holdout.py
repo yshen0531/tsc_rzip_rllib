@@ -349,6 +349,30 @@ def holdout_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any], data:
             "response_passed": response_ok, "passed": len(cells) == 12 and contained and point_ok and response_ok}
 
 
+def phase_raw_ok(inventory: dict[str, Any], rows: Sequence[dict[str, Any]], role: str) -> bool:
+    rollout_ids = {str(row["rollout_id"]) for row in rows if row.get("role") == role}
+    for label in inventory.get("missing_required_artifacts", []):
+        parts = Path(label).parts
+        if len(parts) >= 2 and parts[0] == "rollouts" and parts[1] in rollout_ids:
+            return False
+    return True
+
+
+def result_route(stage: dict[str, Any], *, calibration_interface: bool,
+                 calibration_raw_ok: bool, calibration_passed: bool,
+                 holdout_opened: bool, holdout_interface: bool,
+                 holdout_raw_ok: bool, holdout_passed: bool) -> str:
+    if not calibration_interface or not calibration_raw_ok:
+        return stage["routes"]["calibration_execution_or_raw_fail"]
+    if not calibration_passed or not holdout_opened:
+        return stage["routes"]["calibration_scientific_fail"]
+    if not holdout_interface or not holdout_raw_ok:
+        return stage["routes"]["holdout_execution_or_raw_fail"]
+    if not holdout_passed:
+        return stage["routes"]["holdout_scientific_fail"]
+    return stage["routes"]["pass"]
+
+
 def run(path: Path, source_revision: str, output: Path) -> dict[str, Any]:
     output = inside_root(output, "ID2N1 output")
     if output.exists():
@@ -402,23 +426,21 @@ def run(path: Path, source_revision: str, output: Path) -> dict[str, Any]:
     hold_replay = replay_checks(rows, stage, "holdout") if hold_complete else []
     hold_interface = hold_complete and all(row["passed"] for row in hold_prefix + hold_replay)
     holdout = holdout_metrics(rows, stage, data, model, calibration) if holdout_opened and hold_interface else None
-    raw_ok = not inventory["missing_required_artifacts"]
-    if not cal_interface or not raw_ok:
-        route = stage["routes"]["calibration_execution_or_raw_fail"]
-    elif not calibration or not calibration["passed"]:
-        route = stage["routes"]["calibration_scientific_fail"]
-    elif not hold_interface or not raw_ok:
-        route = stage["routes"]["holdout_execution_or_raw_fail"]
-    elif not holdout or not holdout["passed"]:
-        route = stage["routes"]["holdout_scientific_fail"]
-    else:
-        route = stage["routes"]["pass"]
+    cal_raw_ok = phase_raw_ok(inventory, rows, "calibration")
+    hold_raw_ok = phase_raw_ok(inventory, rows, "holdout")
+    route = result_route(
+        stage, calibration_interface=cal_interface, calibration_raw_ok=cal_raw_ok,
+        calibration_passed=bool(calibration and calibration["passed"]),
+        holdout_opened=holdout_opened, holdout_interface=hold_interface,
+        holdout_raw_ok=hold_raw_ok, holdout_passed=bool(holdout and holdout["passed"]),
+    )
     passed = route == stage["routes"]["pass"]
     result = {"schema_version": SCHEMA, "source_revision": source_revision, "stage_config_sha256": CONFIG_SHA256,
               "model_payload_sha256": stage["evidence"]["id2m1_model"]["canonical_sha256"],
               "passed": passed, "route": route, "storage_gate": storage,
               "calibration_prefix_checks": cal_prefix, "calibration_replay_checks": cal_replay,
-              "calibration": calibration, "holdout_opened": holdout_opened,
+              "calibration": calibration, "calibration_raw_ok": cal_raw_ok,
+              "holdout_opened": holdout_opened, "holdout_raw_ok": hold_raw_ok,
               "holdout_prefix_checks": hold_prefix, "holdout_replay_checks": hold_replay, "holdout": holdout,
               "rollouts_completed": len(rows), "unique_cells_completed": len({row["cell_id"] for row in rows}),
               "reset_calls": sum(row["reset_calls"] for row in rows),

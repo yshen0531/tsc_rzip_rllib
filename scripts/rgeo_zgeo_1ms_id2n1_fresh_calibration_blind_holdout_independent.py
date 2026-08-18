@@ -130,9 +130,35 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     for key, value in counters.items():
         if result.get(key) != value:
             failures.append(f"COUNTER:{key}")
-    expected_pass = (len(raw_rows) == 28 and calibration is not None and calibration["passed"]
-                     and holdout is not None and holdout["passed"] and not failures)
-    if expected_pass and (result.get("passed") is not True or result.get("route") != stage["routes"]["pass"]):
+    raw_failure_prefixes = ("MISSING_ARTIFACT:", "STATE_DIRECTORY_SET:", "RAW_STATE:")
+    role_ids = {
+        role: {str(row.get("rollout_id")) for row in compact if row.get("role") == role}
+        for role in ("calibration", "holdout")
+    }
+    role_raw_ok = {
+        role: not any(item.startswith(raw_failure_prefixes)
+                      and any(f":{rollout_id}:" in item for rollout_id in rollout_ids)
+                      for item in failures)
+        for role, rollout_ids in role_ids.items()
+    }
+    calibration_interface = (len(raw_rows) >= 14 and len(cal_prefix) == 4 and len(cal_replay) == 2
+                             and all(row["passed"] for row in cal_prefix + cal_replay))
+    holdout_interface = (len(raw_rows) == 28 and len(hold_prefix) == 4 and len(hold_replay) == 2
+                         and all(row["passed"] for row in hold_prefix + hold_replay))
+    expected_route = primary.result_route(
+        stage, calibration_interface=calibration_interface,
+        calibration_raw_ok=role_raw_ok["calibration"],
+        calibration_passed=bool(calibration and calibration["passed"]),
+        holdout_opened=bool(calibration and calibration["passed"] and len(raw_rows) > 14),
+        holdout_interface=holdout_interface, holdout_raw_ok=role_raw_ok["holdout"],
+        holdout_passed=bool(holdout and holdout["passed"]),
+    )
+    if result.get("calibration_raw_ok") != role_raw_ok["calibration"]:
+        failures.append("PRIMARY_CALIBRATION_RAW_STATUS")
+    if result.get("holdout_raw_ok") != role_raw_ok["holdout"]:
+        failures.append("PRIMARY_HOLDOUT_RAW_STATUS")
+    expected_pass = expected_route == stage["routes"]["pass"]
+    if result.get("passed") is not expected_pass or result.get("route") != expected_route:
         failures.append("PRIMARY_ROUTE_OR_VERDICT")
     return {"schema_version": SCHEMA, "source_revision": source_revision,
             "stage_config_sha256": primary.CONFIG_SHA256,

@@ -74,6 +74,47 @@ class ID2N1Tests(unittest.TestCase):
             self.assertIn(token, text)
         self.assertNotIn("cleanup", text.lower())
 
+    def test_route_precedence_separates_calibration_and_holdout_failures(self):
+        cases = [
+            ({"calibration_interface": False, "calibration_raw_ok": True,
+              "calibration_passed": False, "holdout_opened": False,
+              "holdout_interface": False, "holdout_raw_ok": True, "holdout_passed": False},
+             "calibration_execution_or_raw_fail"),
+            ({"calibration_interface": True, "calibration_raw_ok": True,
+              "calibration_passed": False, "holdout_opened": False,
+              "holdout_interface": False, "holdout_raw_ok": True, "holdout_passed": False},
+             "calibration_scientific_fail"),
+            ({"calibration_interface": True, "calibration_raw_ok": True,
+              "calibration_passed": True, "holdout_opened": True,
+              "holdout_interface": False, "holdout_raw_ok": True, "holdout_passed": False},
+             "holdout_execution_or_raw_fail"),
+            ({"calibration_interface": True, "calibration_raw_ok": True,
+              "calibration_passed": True, "holdout_opened": True,
+              "holdout_interface": True, "holdout_raw_ok": False, "holdout_passed": False},
+             "holdout_execution_or_raw_fail"),
+            ({"calibration_interface": True, "calibration_raw_ok": True,
+              "calibration_passed": True, "holdout_opened": True,
+              "holdout_interface": True, "holdout_raw_ok": True, "holdout_passed": False},
+             "holdout_scientific_fail"),
+            ({"calibration_interface": True, "calibration_raw_ok": True,
+              "calibration_passed": True, "holdout_opened": True,
+              "holdout_interface": True, "holdout_raw_ok": True, "holdout_passed": True},
+             "pass"),
+        ]
+        for arguments, route_key in cases:
+            with self.subTest(route_key=route_key):
+                self.assertEqual(stage.result_route(self.config, **arguments),
+                                 self.config["routes"][route_key])
+
+    def test_phase_raw_status_is_role_specific(self):
+        rows = [{"rollout_id": "c00__baseline__r0", "role": "calibration"},
+                {"rollout_id": "v00__baseline__r0", "role": "holdout"}]
+        inventory = {"missing_required_artifacts": [
+            "rollouts/v00__baseline__r0/1100ms/geqdsk",
+        ]}
+        self.assertTrue(stage.phase_raw_ok(inventory, rows, "calibration"))
+        self.assertFalse(stage.phase_raw_ok(inventory, rows, "holdout"))
+
 
 if __name__ == "__main__":
     unittest.main()
