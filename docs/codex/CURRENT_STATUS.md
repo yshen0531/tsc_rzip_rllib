@@ -1,5 +1,16 @@
 # Current status
 
+> **Current status (2026-08-18, post-ID-2U0):** primary and separate-process
+> recomputation both passed the zero-TSC nominal-lineage, event-map, headroom,
+> and exact Card15 campaign-construction audit. The result freezes 8 family
+> groups and 40 streams with roles 4 development / 2 calibration / 2 blind.
+> Server validation passed `7/7` focused and `310/310` one-ms tests. No TSC,
+> reset, plant advance, fit, or holdout read occurred. The server had only
+> 14 GB free, so the prospectively disposable ID-2H1 and ID-2I1 raw trees
+> were removed after their tracked compact/independent evidence was checked;
+> 155 GB is now available. ID-2U1 fresh data execution is the only active
+> successor.
+
 > **Current status (2026-08-18, ID-2U0 authorized):** ID-2T1 remains a clean
 > `ONE_MS_ID2T1_MATCHED_CONTINUATION_CONTROL_UTILITY_FAIL_REVIEW`, but its
 > contrast is now classified more precisely as a history/sign-dependent

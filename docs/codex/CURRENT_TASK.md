@@ -1,5 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, post-ID-2U0):** ID-2U0 passed exact
+> server-side and separate-process recomputation as
+> `ONE_MS_ID2U0_NOMINAL_REALIGNMENT_ACTION_GRAMMAR_PASS_U1_DESIGN_ONLY`.
+> It ran zero TSC/reset/plant work and fit no model. The selected transport
+> is again ID-2C1's time-varying p03-minus stride-one nominal, not the later
+> held-after-15 identification corridor. The state-27 contrast is a guarded
+> return-edge/history event, not a smooth-gain reversal.
+>
+> The sole active successor is the separately frozen fresh ID-2U1 campaign:
+> 8 whole-history groups and 40 baseline/p04+/p04-/p07+/p07- streams under
+> exact `pause -> probe -> return -> resume` Card15 allocation. It must use
+> the fixed development/calibration/blind family roles, server-only tests and
+> execution, complete raw preservation during the run, and an independent
+> raw audit. A data PASS may authorize only a separately designed bounded
+> model comparison. It does not authorize authority, recovery, controller,
+> MPC, waypoint, crossing, adaptation, expert data, or RL. All blocks below
+> are historical.
+
 > **Unique active task (2026-08-18, ID-2U0 nominal realignment):** the
 > post-ID-2T1 evidence review corrected two route assumptions.  First, the
 > earlier f03 p04+ result was dominated by a one-frame state-27 return-edge

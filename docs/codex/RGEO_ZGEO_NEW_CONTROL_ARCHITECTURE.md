@@ -1,4 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2U0 architecture amendment (2026-08-18):** exact Card15
+> pause/probe/return/resume allocation is the first admissible residual
+> grammar around the selected moving p03 nominal. U0 froze a fresh 8-family,
+> 40-stream campaign and separate development/calibration/blind roles without
+> fitting a model or advancing TSC. The next model must learn action-
+> conditioned deviations around the contemporaneous moving nominal, with
+> explicit absolute time/event age and persistent causal history. State 27
+> remains a guarded hybrid candidate until the fresh matched campaign decides
+> whether it needs an explicit event head or OOD refusal.
+
 
 > **ID-2U0 architecture correction (2026-08-18):** retain exact
 > actuator/queue semantics, exact one-ms R_geo/Z_geo/Ip observations, causal

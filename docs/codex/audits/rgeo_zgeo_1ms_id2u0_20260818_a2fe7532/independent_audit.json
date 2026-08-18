@@ -1,0 +1,17 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Separate-process exact ID2U0 recomputation; not a plant, model, controller or safety result.",
+  "failures": [],
+  "holdout_records_read": 0,
+  "models_fit_or_trained": 0,
+  "new_tsc_calls": 0,
+  "plant_advances": 0,
+  "primary_result_exactly_recomputed": true,
+  "primary_result_sha256": "81f5e37172d7c39d076c7161b0d1b99ab32ebf588dc2716e468226bd1a96f65a",
+  "primary_source_revision": "a2fe7532dc36332b1730355c9b701a7246ebd7e5",
+  "recomputed_family_count": 8,
+  "recomputed_route": "ONE_MS_ID2U0_NOMINAL_REALIGNMENT_ACTION_GRAMMAR_PASS_U1_DESIGN_ONLY",
+  "recomputed_stream_count": 40,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2u0-nominal-realign-independent-v1"
+}

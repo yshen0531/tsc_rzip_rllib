@@ -1,5 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-18, post-ID-2U0):** the zero-TSC
+> nominal-realignment and action-allocation preflight passed. The next fresh
+> evidence must be generated around the continuing p03 stride-one nominal
+> with exact pause/probe/return/resume Card15 actions and atomic whole-history
+> development/calibration/blind roles. The held-after-15 records remain
+> valid historical identification evidence but no longer define the central
+> transport corridor. No model or controller has been authorized by U0.
+
 > **Current route notice (2026-08-18, ID-2U0):** the next stage realigns the
 > project with ID-2C1's selected time-varying p03-minus stride-one nominal.
 > Later K1/P1/S/T work intentionally held p03 level 15 for local
