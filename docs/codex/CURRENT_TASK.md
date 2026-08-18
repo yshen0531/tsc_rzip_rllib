@@ -8,10 +8,12 @@
 > held-after-15 identification corridor. The state-27 contrast is a guarded
 > return-edge/history event, not a smooth-gain reversal.
 >
-> The sole active successor is the separately frozen fresh ID-2U1 campaign:
-> 8 whole-history groups and 40 baseline/p04+/p04-/p07+/p07- streams under
+> The sole active successor is the separately frozen fresh ID-2U1 campaign.
+> Its first phase executes only 4 development families and 20
+> baseline/p04+/p04-/p07+/p07- streams under
 > exact `pause -> probe -> return -> resume` Card15 allocation. It must use
-> the fixed development/calibration/blind family roles, server-only tests and
+> the fixed development/calibration/blind family roles, leave all four paced
+> calibration/blind families unopened, use server-only tests and
 > execution, complete raw preservation during the run, and an independent
 > raw audit. A data PASS may authorize only a separately designed bounded
 > model comparison. It does not authorize authority, recovery, controller,
