@@ -72,12 +72,12 @@ class ID2W3Tests(unittest.TestCase):
         states = []
         for index in range(97):
             if index < 88:
-                r, z, ip = source_r, source_z, 1000.0
+                r, z, ip = source_r, source_z, 3000.0
             else:
                 fraction = (index - 88) / 8.0
                 r = source_r + min(index - 88, 1) * step_r
                 z = source_z + min(index - 88, 1) * step_z
-                ip = 1000.0 + net_ip * fraction
+                ip = 3000.0 + net_ip * fraction
             states.append({"r_geo_m": r, "z_geo_m": z, "ip_a": ip})
         return {"rollout_id": "synthetic", "hold_level": 52, "states": states}
 
