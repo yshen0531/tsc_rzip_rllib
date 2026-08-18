@@ -1,6 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2R1 architecture discriminator (2026-08-18):** ID-2R0 preserved the
+> **Post-ID-2R1 architecture discriminator (2026-08-18):** exact replay
+> confirms that f03's sign/return-edge response is a repeatable finite hybrid
+> behavior, not a one-off solver sample. The same-data global model ladder
+> stays stopped. The next architecture discriminator is a bounded
+> canonical-prefix short-sequence branch test that asks whether this exact
+> action grammar supplies useful time-resolved two-axis progress.
+>
+> A fixed no-fit additive construction may nominate a small branch set, but
+> it is not a plant model and cannot certify a sequence. Only the fresh TSC
+> branches may support sequence utility, and even their PASS remains below
+> repeatability/tube, residual reserve, Recourse-L1, and controller gates.
+
+> **Historical ID-2R1 architecture discriminator (2026-08-18):** ID-2R0 preserved the
 > global Q1R1 model FAIL but found a sharp support boundary: exact-schedule
 > local causal-prefix transfer is highly accurate on `52/64` cells, while
 > `f01/f03/f05` are singleton schedule strata. The unreplayed `f03` family is

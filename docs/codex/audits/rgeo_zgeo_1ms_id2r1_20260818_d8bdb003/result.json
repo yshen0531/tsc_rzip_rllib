@@ -1,0 +1,148 @@
+{
+  "advance_attempts": 170,
+  "claim_boundary": "Finite exact f03 source/history/action replay only; zero fit weight and no model, calibration, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert-data, RL, or reachability evidence.",
+  "fit_calibration_holdout_controller_expert_or_rl_use": "forbidden",
+  "fresh_records_have_zero_fit_weight": true,
+  "matched_prefix_checks": [
+    {
+      "cell_id": "f03__p04_minus_i24_d2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p04_plus_i24_d2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_minus_i24_d2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_plus_i24_d2",
+      "failures": [],
+      "passed": true
+    }
+  ],
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "original_to_fresh_replay_checks": [
+    {
+      "cell_id": "f03__baseline",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__baseline__r0",
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p04_minus_i24_d2",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p04_minus_i24_d2__r0",
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p04_plus_i24_d2",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p04_plus_i24_d2__r0",
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_minus_i24_d2",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p07_minus_i24_d2__r0",
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_plus_i24_d2",
+      "failures": [],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p07_plus_i24_d2__r0",
+      "passed": true
+    }
+  ],
+  "paired_response_replay_checks": [
+    {
+      "cell_id": "f03__p04_minus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p04_plus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_minus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_plus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "plant_advance_gotsc_calls": 170,
+  "required_artifact_bytes": 10306261700,
+  "required_artifact_files": 875,
+  "required_artifact_inventory_sha256": "fbb43eee64d7d94e5a7d88801dce8d3d16a7b03287d70a7a4bf69fbb290f9f1b",
+  "reset_calls": 5,
+  "rollouts_completed": 5,
+  "route": "ONE_MS_ID2R1_F03_EXACT_REPLAY_PASS_SEQUENCE_AUTHORITY_DESIGN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2r1-f03-exact-replay-result-v1",
+  "source_revision": "d8bdb0030868c2cd79d81dc03d6a7f49385c1221",
+  "stage_config_sha256": "730d4e23441f97749e3d712485698944ea6397ba87c40643bef441fcfb6ecd15",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 28144175104,
+    "estimated_raw_bytes": 12000000000,
+    "free_bytes_before_run": 40144175104,
+    "passed": true
+  },
+  "verified_plant_advances": 170
+}

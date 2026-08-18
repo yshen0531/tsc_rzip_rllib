@@ -1,6 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, ID-2R1):** ID-2R0 showed that the
+> **Active new-round context (2026-08-18, post-ID-2R1):** the anomalous f03
+> response is exactly repeatable across a fresh authentic replay of the
+> matched baseline and all four signed p04/p07 cells. This supports treating
+> the finite trajectory as deterministic development evidence, but the fresh
+> replay has zero fit weight and does not establish authority or safety.
+>
+> The route now tests short time-resolved action/return sequences before
+> another model. Candidate selection may use a fixed no-fit superposition
+> heuristic only to reduce branch count; all control-utility conclusions must
+> come from fresh TSC branches. The final fixed-1100-ms two-axis waypoint and
+> later repeated R_mid-crossing goal remain unchanged and far beyond the
+> current source-local evidence. All older notices are historical.
+
+> **Historical new-round context (2026-08-18, ID-2R1):** ID-2R0 showed that the
 > current failure is not a generic absence of local learnable response:
 > within exact schedule support, its fixed no-fit causal-prefix transfer was
 > accurate on `52/52` directions. The decisive unresolved datum is the

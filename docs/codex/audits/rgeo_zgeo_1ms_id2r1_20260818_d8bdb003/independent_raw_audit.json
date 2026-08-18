@@ -1,0 +1,324 @@
+{
+  "audit_passed": false,
+  "claim_boundary": "Independent full-raw ID2R1 integrity replay audit only; no model or control qualification.",
+  "failures": [
+    "REPLAY_RECOMPUTE",
+    "PRIMARY_ROUTE_OR_VERDICT"
+  ],
+  "fresh_records_have_zero_fit_weight": true,
+  "models_fit_or_updated": 0,
+  "primary_sha256": "f71b19f0ab80f2643a3f1b369412df5a35e1995305c088653aac6e924239190f",
+  "raw_rollouts": 5,
+  "raw_states": 175,
+  "recomputed_counters": {
+    "advance_attempts": 170,
+    "plant_advance_gotsc_calls": 170,
+    "reset_calls": 5,
+    "rollouts_completed": 5,
+    "verified_plant_advances": 170
+  },
+  "recomputed_inventory_bytes": 10306261700,
+  "recomputed_inventory_files": 875,
+  "recomputed_inventory_sha256": "fbb43eee64d7d94e5a7d88801dce8d3d16a7b03287d70a7a4bf69fbb290f9f1b",
+  "recomputed_matched_prefix_checks": [
+    {
+      "cell_id": "f03__p04_minus_i24_d2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p04_plus_i24_d2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_minus_i24_d2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_plus_i24_d2",
+      "failures": [],
+      "passed": true
+    }
+  ],
+  "recomputed_original_to_fresh_replay_checks": [
+    {
+      "cell_id": "f03__baseline",
+      "failures": [
+        "SEMANTIC_ARTIFACT:0:inputa",
+        "SEMANTIC_ARTIFACT:1:inputa",
+        "SEMANTIC_ARTIFACT:2:inputa",
+        "SEMANTIC_ARTIFACT:3:inputa",
+        "SEMANTIC_ARTIFACT:4:inputa",
+        "SEMANTIC_ARTIFACT:5:inputa",
+        "SEMANTIC_ARTIFACT:6:inputa",
+        "SEMANTIC_ARTIFACT:7:inputa",
+        "SEMANTIC_ARTIFACT:8:inputa",
+        "SEMANTIC_ARTIFACT:9:inputa",
+        "SEMANTIC_ARTIFACT:10:inputa",
+        "SEMANTIC_ARTIFACT:11:inputa",
+        "SEMANTIC_ARTIFACT:12:inputa",
+        "SEMANTIC_ARTIFACT:13:inputa",
+        "SEMANTIC_ARTIFACT:14:inputa",
+        "SEMANTIC_ARTIFACT:15:inputa",
+        "SEMANTIC_ARTIFACT:16:inputa",
+        "SEMANTIC_ARTIFACT:17:inputa",
+        "SEMANTIC_ARTIFACT:18:inputa",
+        "SEMANTIC_ARTIFACT:19:inputa",
+        "SEMANTIC_ARTIFACT:20:inputa",
+        "SEMANTIC_ARTIFACT:21:inputa",
+        "SEMANTIC_ARTIFACT:22:inputa",
+        "SEMANTIC_ARTIFACT:23:inputa",
+        "SEMANTIC_ARTIFACT:24:inputa",
+        "SEMANTIC_ARTIFACT:25:inputa",
+        "SEMANTIC_ARTIFACT:26:inputa",
+        "SEMANTIC_ARTIFACT:27:inputa",
+        "SEMANTIC_ARTIFACT:28:inputa",
+        "SEMANTIC_ARTIFACT:29:inputa",
+        "SEMANTIC_ARTIFACT:30:inputa",
+        "SEMANTIC_ARTIFACT:31:inputa",
+        "SEMANTIC_ARTIFACT:32:inputa",
+        "SEMANTIC_ARTIFACT:33:inputa"
+      ],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__baseline__r0",
+      "passed": false
+    },
+    {
+      "cell_id": "f03__p04_minus_i24_d2",
+      "failures": [
+        "SEMANTIC_ARTIFACT:0:inputa",
+        "SEMANTIC_ARTIFACT:1:inputa",
+        "SEMANTIC_ARTIFACT:2:inputa",
+        "SEMANTIC_ARTIFACT:3:inputa",
+        "SEMANTIC_ARTIFACT:4:inputa",
+        "SEMANTIC_ARTIFACT:5:inputa",
+        "SEMANTIC_ARTIFACT:6:inputa",
+        "SEMANTIC_ARTIFACT:7:inputa",
+        "SEMANTIC_ARTIFACT:8:inputa",
+        "SEMANTIC_ARTIFACT:9:inputa",
+        "SEMANTIC_ARTIFACT:10:inputa",
+        "SEMANTIC_ARTIFACT:11:inputa",
+        "SEMANTIC_ARTIFACT:12:inputa",
+        "SEMANTIC_ARTIFACT:13:inputa",
+        "SEMANTIC_ARTIFACT:14:inputa",
+        "SEMANTIC_ARTIFACT:15:inputa",
+        "SEMANTIC_ARTIFACT:16:inputa",
+        "SEMANTIC_ARTIFACT:17:inputa",
+        "SEMANTIC_ARTIFACT:18:inputa",
+        "SEMANTIC_ARTIFACT:19:inputa",
+        "SEMANTIC_ARTIFACT:20:inputa",
+        "SEMANTIC_ARTIFACT:21:inputa",
+        "SEMANTIC_ARTIFACT:22:inputa",
+        "SEMANTIC_ARTIFACT:23:inputa",
+        "SEMANTIC_ARTIFACT:24:inputa",
+        "SEMANTIC_ARTIFACT:25:inputa",
+        "SEMANTIC_ARTIFACT:26:inputa",
+        "SEMANTIC_ARTIFACT:27:inputa",
+        "SEMANTIC_ARTIFACT:28:inputa",
+        "SEMANTIC_ARTIFACT:29:inputa",
+        "SEMANTIC_ARTIFACT:30:inputa",
+        "SEMANTIC_ARTIFACT:31:inputa",
+        "SEMANTIC_ARTIFACT:32:inputa",
+        "SEMANTIC_ARTIFACT:33:inputa"
+      ],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p04_minus_i24_d2__r0",
+      "passed": false
+    },
+    {
+      "cell_id": "f03__p04_plus_i24_d2",
+      "failures": [
+        "SEMANTIC_ARTIFACT:0:inputa",
+        "SEMANTIC_ARTIFACT:1:inputa",
+        "SEMANTIC_ARTIFACT:2:inputa",
+        "SEMANTIC_ARTIFACT:3:inputa",
+        "SEMANTIC_ARTIFACT:4:inputa",
+        "SEMANTIC_ARTIFACT:5:inputa",
+        "SEMANTIC_ARTIFACT:6:inputa",
+        "SEMANTIC_ARTIFACT:7:inputa",
+        "SEMANTIC_ARTIFACT:8:inputa",
+        "SEMANTIC_ARTIFACT:9:inputa",
+        "SEMANTIC_ARTIFACT:10:inputa",
+        "SEMANTIC_ARTIFACT:11:inputa",
+        "SEMANTIC_ARTIFACT:12:inputa",
+        "SEMANTIC_ARTIFACT:13:inputa",
+        "SEMANTIC_ARTIFACT:14:inputa",
+        "SEMANTIC_ARTIFACT:15:inputa",
+        "SEMANTIC_ARTIFACT:16:inputa",
+        "SEMANTIC_ARTIFACT:17:inputa",
+        "SEMANTIC_ARTIFACT:18:inputa",
+        "SEMANTIC_ARTIFACT:19:inputa",
+        "SEMANTIC_ARTIFACT:20:inputa",
+        "SEMANTIC_ARTIFACT:21:inputa",
+        "SEMANTIC_ARTIFACT:22:inputa",
+        "SEMANTIC_ARTIFACT:23:inputa",
+        "SEMANTIC_ARTIFACT:24:inputa",
+        "SEMANTIC_ARTIFACT:25:inputa",
+        "SEMANTIC_ARTIFACT:26:inputa",
+        "SEMANTIC_ARTIFACT:27:inputa",
+        "SEMANTIC_ARTIFACT:28:inputa",
+        "SEMANTIC_ARTIFACT:29:inputa",
+        "SEMANTIC_ARTIFACT:30:inputa",
+        "SEMANTIC_ARTIFACT:31:inputa",
+        "SEMANTIC_ARTIFACT:32:inputa",
+        "SEMANTIC_ARTIFACT:33:inputa"
+      ],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p04_plus_i24_d2__r0",
+      "passed": false
+    },
+    {
+      "cell_id": "f03__p07_minus_i24_d2",
+      "failures": [
+        "SEMANTIC_ARTIFACT:0:inputa",
+        "SEMANTIC_ARTIFACT:1:inputa",
+        "SEMANTIC_ARTIFACT:2:inputa",
+        "SEMANTIC_ARTIFACT:3:inputa",
+        "SEMANTIC_ARTIFACT:4:inputa",
+        "SEMANTIC_ARTIFACT:5:inputa",
+        "SEMANTIC_ARTIFACT:6:inputa",
+        "SEMANTIC_ARTIFACT:7:inputa",
+        "SEMANTIC_ARTIFACT:8:inputa",
+        "SEMANTIC_ARTIFACT:9:inputa",
+        "SEMANTIC_ARTIFACT:10:inputa",
+        "SEMANTIC_ARTIFACT:11:inputa",
+        "SEMANTIC_ARTIFACT:12:inputa",
+        "SEMANTIC_ARTIFACT:13:inputa",
+        "SEMANTIC_ARTIFACT:14:inputa",
+        "SEMANTIC_ARTIFACT:15:inputa",
+        "SEMANTIC_ARTIFACT:16:inputa",
+        "SEMANTIC_ARTIFACT:17:inputa",
+        "SEMANTIC_ARTIFACT:18:inputa",
+        "SEMANTIC_ARTIFACT:19:inputa",
+        "SEMANTIC_ARTIFACT:20:inputa",
+        "SEMANTIC_ARTIFACT:21:inputa",
+        "SEMANTIC_ARTIFACT:22:inputa",
+        "SEMANTIC_ARTIFACT:23:inputa",
+        "SEMANTIC_ARTIFACT:24:inputa",
+        "SEMANTIC_ARTIFACT:25:inputa",
+        "SEMANTIC_ARTIFACT:26:inputa",
+        "SEMANTIC_ARTIFACT:27:inputa",
+        "SEMANTIC_ARTIFACT:28:inputa",
+        "SEMANTIC_ARTIFACT:29:inputa",
+        "SEMANTIC_ARTIFACT:30:inputa",
+        "SEMANTIC_ARTIFACT:31:inputa",
+        "SEMANTIC_ARTIFACT:32:inputa",
+        "SEMANTIC_ARTIFACT:33:inputa"
+      ],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p07_minus_i24_d2__r0",
+      "passed": false
+    },
+    {
+      "cell_id": "f03__p07_plus_i24_d2",
+      "failures": [
+        "SEMANTIC_ARTIFACT:0:inputa",
+        "SEMANTIC_ARTIFACT:1:inputa",
+        "SEMANTIC_ARTIFACT:2:inputa",
+        "SEMANTIC_ARTIFACT:3:inputa",
+        "SEMANTIC_ARTIFACT:4:inputa",
+        "SEMANTIC_ARTIFACT:5:inputa",
+        "SEMANTIC_ARTIFACT:6:inputa",
+        "SEMANTIC_ARTIFACT:7:inputa",
+        "SEMANTIC_ARTIFACT:8:inputa",
+        "SEMANTIC_ARTIFACT:9:inputa",
+        "SEMANTIC_ARTIFACT:10:inputa",
+        "SEMANTIC_ARTIFACT:11:inputa",
+        "SEMANTIC_ARTIFACT:12:inputa",
+        "SEMANTIC_ARTIFACT:13:inputa",
+        "SEMANTIC_ARTIFACT:14:inputa",
+        "SEMANTIC_ARTIFACT:15:inputa",
+        "SEMANTIC_ARTIFACT:16:inputa",
+        "SEMANTIC_ARTIFACT:17:inputa",
+        "SEMANTIC_ARTIFACT:18:inputa",
+        "SEMANTIC_ARTIFACT:19:inputa",
+        "SEMANTIC_ARTIFACT:20:inputa",
+        "SEMANTIC_ARTIFACT:21:inputa",
+        "SEMANTIC_ARTIFACT:22:inputa",
+        "SEMANTIC_ARTIFACT:23:inputa",
+        "SEMANTIC_ARTIFACT:24:inputa",
+        "SEMANTIC_ARTIFACT:25:inputa",
+        "SEMANTIC_ARTIFACT:26:inputa",
+        "SEMANTIC_ARTIFACT:27:inputa",
+        "SEMANTIC_ARTIFACT:28:inputa",
+        "SEMANTIC_ARTIFACT:29:inputa",
+        "SEMANTIC_ARTIFACT:30:inputa",
+        "SEMANTIC_ARTIFACT:31:inputa",
+        "SEMANTIC_ARTIFACT:32:inputa",
+        "SEMANTIC_ARTIFACT:33:inputa"
+      ],
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "original_rollout_id": "f03__p07_plus_i24_d2__r0",
+      "passed": false
+    }
+  ],
+  "recomputed_paired_response_replay_checks": [
+    {
+      "cell_id": "f03__p04_minus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p04_plus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_minus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    },
+    {
+      "cell_id": "f03__p07_plus_i24_d2",
+      "maximum_absolute_response_difference_rzi": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    }
+  ],
+  "recomputed_route": "ONE_MS_ID2R1_F03_REPLAY_MISMATCH_DEEP_REVIEW",
+  "schema_version": "rgeo-zgeo-1ms-id2r1-f03-exact-replay-independent-v1",
+  "source_revision": "d8bdb0030868c2cd79d81dc03d6a7f49385c1221",
+  "stage_config_sha256": "730d4e23441f97749e3d712485698944ea6397ba87c40643bef441fcfb6ecd15"
+}

@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, ID-2R1 authorized):** ID-2R0 completed
+> **Unique active task (2026-08-18, post-ID-2R1):** ID-2R1 completed all
+> `5/5` fresh exact f03 rollouts and `170/170` verified one-ms advances.
+> Corrected independent full-raw audit passed over 175 states and 875 files.
+> All original-to-fresh R_geo/Z_geo/Ip, coil, wire, and paired-response
+> differences were exactly zero. The f03 hybrid response is therefore
+> repeatable in this finite source/history/action identity; all five fresh
+> records retain zero fit weight.
+>
+> The immediate task is to freeze a bounded zero-new-TSC sequence-utility
+> selector over the exact f03 time-resolved responses, then—only if its exact
+> Card15/storage gates pass—run a small canonical-prefix real-TSC branch set.
+> This stage must separate heuristic no-fit candidate selection from measured
+> sequence evidence and may not call either one authority or control. Another
+> global model, calibration, tube, recovery, controller, MPC, transport,
+> crossing, adaptation, expert data, and RL remain blocked. All blocks below
+> are historical.
+
+> **Historical task (2026-08-18, ID-2R1 authorized):** ID-2R0 completed
 > with independent exact recomputation and route
 > `ONE_MS_ID2R0_CRITICAL_SINGLETON_F03_EXACT_REPLAY_REQUIRED`. It preserved
 > Q1R1's FAIL, corrected the family mapping, and ran zero TSC/reset/plant

@@ -1,0 +1,20 @@
+{
+  "advance_attempts": 0,
+  "failures": [],
+  "kind": "offline_preflight",
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "rollout_ids": [
+    "f03__baseline__fresh_r1",
+    "f03__p04_minus_i24_d2__fresh_r1",
+    "f03__p04_plus_i24_d2__fresh_r1",
+    "f03__p07_minus_i24_d2__fresh_r1",
+    "f03__p07_plus_i24_d2__fresh_r1"
+  ],
+  "schema_version": "rgeo-zgeo-1ms-id2r1-f03-exact-replay-result-v1",
+  "source_revision": "d8bdb0030868c2cd79d81dc03d6a7f49385c1221",
+  "stage_config_sha256": "730d4e23441f97749e3d712485698944ea6397ba87c40643bef441fcfb6ecd15",
+  "verified_plant_advances": 0
+}

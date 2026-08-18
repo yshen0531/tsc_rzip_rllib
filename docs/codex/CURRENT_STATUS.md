@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2R0 complete / ID-2R1 frozen):** the
+> **Current status (2026-08-18, ID-2R1 PASS):** five authentic f03 replays
+> completed with exact execution and zero physical/paired-response difference
+> from ID-2P1. Primary PASS and corrected independent raw PASS agree on
+> `ONE_MS_ID2R1_F03_EXACT_REPLAY_PASS_SEQUENCE_AUTHORITY_DESIGN_ONLY`.
+> The initial independent audit's `inputa` hash failure was a reporting-
+> semantics bug: raw directories contain the outgoing issue while compact
+> states record the pre-issue active file. It was corrected without a TSC
+> rerun; the failed audit remains preserved.
+>
+> The next route is a small time-resolved sequence-utility selector followed,
+> only after a separate frozen design and storage gate, by a finite real-TSC
+> branch discriminator. This is earlier action-grammar evidence, not a
+> controller or authority claim. Older status blocks are historical.
+
+> **Historical status (2026-08-18, ID-2R0 complete / ID-2R1 frozen):** the
 > zero-new-TSC ID-2R0 decision audit passed execution and independent
 > recomputation. It persisted `14,080` explicit prediction rows, reproduced
 > Q1R1 exactly, and corrected the wrong family attribution. The fixed no-fit
