@@ -351,7 +351,7 @@ def execute(stage_path: Path = CONFIG, source_revision: str = "UNSPECIFIED") -> 
         "all_families_program_criteria_passed": all_utility_passed,
         "independent_history_family_count": 4,
         "probe_cell_count": 16,
-        "action_rank": int(data.action_rank),
+        "action_rank": int(data.action_basis.shape[0]),
         "new_tsc_calls": 0,
         "reset_calls": 0,
         "plant_advances": 0,
@@ -393,4 +393,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
