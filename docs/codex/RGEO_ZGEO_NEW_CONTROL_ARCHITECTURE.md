@@ -1,4 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2U2 architecture freeze (2026-08-18):** the first model comparison
+> after nominal realignment remains deliberately low capacity. Candidate A
+> is a support-gated local mixture with separated moving-nominal continuation
+> and paired action response plus stable event memory. Candidate B adds only
+> a width-three persistent causal GRU residual. Both use exact current
+> R_geo/Z_geo/Ip as a one-ms recentering anchor and share one-step dynamics
+> across horizons 1--8. Family labels, future truth/current and wire state
+> are forbidden inputs. A model PASS remains only one half of later
+> model-plus-authority/recovery AND gates.
+
 > **Post-ID-2U1 architecture amendment (2026-08-18):** the moving-nominal
 > campaign confirms that the large delayed branch is sparse and conditional,
 > not a universal smooth gain. The first candidate therefore uses explicit

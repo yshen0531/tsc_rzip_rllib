@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-18, ID-2U2):** the moving-nominal data
+> stage has passed and the next model discriminator is frozen before fitting.
+> It compares one support-gated stable local/event backbone with that same
+> backbone plus a very small persistent causal GRU residual. Whole-family
+> folds, exact one-ms truth recentering, actual/issued-current history,
+> paired-response and 1--8 ms shared-rollout gates are mandatory. All held
+> development families must be covered; OOD refusal cannot erase `u00`.
+> Paced calibration and blind families remain unopened, and model evidence
+> remains separate from authority, recovery and control evidence.
+
 > **Current route notice (2026-08-18, post-ID-2U1):** fresh development data
 > now covers the selected moving nominal at levels 18/22 and issues 24/30.
 > Complete execution/raw/prefix/signal/Ip gates passed. The exceptional large

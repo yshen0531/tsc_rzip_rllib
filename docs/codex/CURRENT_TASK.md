@@ -1,5 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, ID-2U2 frozen):** ID-2U1 remains a
+> clean development-data PASS over four independent moving-nominal families.
+> ID-2U2 is the sole active successor. It runs zero new TSC and reads only
+> the twenty development trajectories. It compares exactly
+> `stable_local_event_mixture` and the same backbone with one hidden-width-3
+> persistent causal GRU residual under four leave-one-family-out folds.
+> Exact current R_geo/Z_geo/Ip is a one-ms recentering observation; future
+> measured current and future state remain forbidden.
+>
+> All four held-family probe origins must be supported and predicted;
+> abstention cannot hide the exceptional `u00` branch. A PASS freezes one
+> model/evaluator and may authorize only a separately designed paced
+> calibration over `u01/u03`. The blind `u05/u07` families remain unopened.
+> No new TSC, uncertainty tube, authority, recovery, controller, MPC,
+> waypoint, crossing, adaptation, expert data, or RL is authorized by this
+> design. All blocks below are historical.
+
 > **Unique active task (2026-08-18, post-ID-2U1):** ID-2U1 completed
 > `20/20` development rollouts and `800/800` one-ms advances with exact
 > execution, 820 states, 4,100 raw artifacts, all 16 signal/Ip gates, and an

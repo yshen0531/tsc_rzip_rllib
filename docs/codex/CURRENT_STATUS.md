@@ -1,5 +1,15 @@
 # Current status
 
+> **Current status (2026-08-18, ID-2U2 design frozen):** the next bounded
+> discriminator is now prospectively specified before any fit. It uses only
+> the four ID-2U1 development families, four leave-one-family-out folds, a
+> support-gated stable local/event model, and one width-three persistent GRU
+> residual. The shared one-step rollout is evaluated at horizons 1--8 with
+> paired response, direction, time-resolved ranking, absolute recentered
+> error, unique-event and mandatory support gates. Calibration `u01/u03` and
+> blind `u05/u07` remain unopened. No U2 fit, server test, or result exists
+> yet.
+
 > **Current status (2026-08-18, post-ID-2U1):** the moving-nominal development
 > campaign is a clean data PASS, not a control PASS. Primary and independent
 > evidence agree on 20 rollouts, 800 advances, 820 states, 4,100 artifacts,
