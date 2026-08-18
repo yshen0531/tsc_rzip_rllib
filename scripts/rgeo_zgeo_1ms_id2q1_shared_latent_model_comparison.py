@@ -113,7 +113,7 @@ def load_dataset(stage:dict[str,Any])->Dataset:
 def action_coordinates(c:Cell,d:Dataset)->np.ndarray:return(c.issued-d.nominal_issued)@d.action_basis.T
 def memories(c:Cell,d:Dataset,poles:Sequence[float])->dict[str,np.ndarray]:
     u=action_coordinates(c,d);du=np.vstack([u[0],u[1:]-u[:-1]]);pole=np.asarray(poles)[:,None]
-    level=np.zeros((len(poles),2));edge=level.copy();el=level.copy();ee=level.copy();out={k:[] for k in ('level','edge','even_level','even_edge')}
+    level=np.zeros((len(poles),u.shape[1]));edge=level.copy();el=level.copy();ee=level.copy();out={k:[] for k in ('level','edge','even_level','even_edge')}
     for i in range(34):
         level=pole*level+u[i];edge=pole*edge+du[i];el=pole*el+np.abs(u[i]);ee=pole*ee+np.abs(du[i])
         for k,v in (('level',level),('edge',edge),('even_level',el),('even_edge',ee)):out[k].append(v.copy())
@@ -125,12 +125,12 @@ def context(c:Cell,o:int,nominal:np.ndarray,d:Dataset)->np.ndarray:
     active=d.nominal_issued[0] if o==0 else c.issued[o-1];innovation=((c.currents[o]-active)@d.action_basis.T)/d.current_scale
     return np.clip(np.concatenate([now,v1,v4,innovation]),-20,20)
 def step_features(c:Cell,o:int,d:Dataset,nominal:np.ndarray,stage:dict[str,Any])->np.ndarray:
-    mem=memories(c,d,stage['shared_latent']['fixed_poles']);u=action_coordinates(c,d);du=np.vstack([u[0],u[1:]-u[:-1]]);ctx=context(c,o,nominal,d);rows=[]
+    mem=memories(c,d,stage['shared_latent']['fixed_poles']);u=action_coordinates(c,d);du=np.vstack([u[0],u[1:]-u[:-1]]);ctx=context(c,o,nominal,d);rows=[];rank=d.action_basis.shape[0]
     for i in range(o,o+8):
-        step_ctx=ctx.copy();step_ctx[-2:]*=float(stage['shared_latent']['actual_current_innovation_decay_per_step'])**(i-o)
+        step_ctx=ctx.copy();step_ctx[-rank:]*=float(stage['shared_latent']['actual_current_innovation_decay_per_step'])**(i-o)
         m=np.concatenate([mem[k][i].reshape(-1) for k in ('level','edge','even_level','even_edge')]);rows.append(np.concatenate([step_ctx,m,u[i],du[i],np.outer(step_ctx,u[i]).reshape(-1),[i/34,(i-o+1)/8]]))
     x=np.asarray(rows)
-    rank=d.action_basis.shape[0];expected=9+rank+4*len(stage['shared_latent']['fixed_poles'])*rank+2*rank+(9+rank)*rank+2
+    expected=9+rank+4*len(stage['shared_latent']['fixed_poles'])*rank+2*rank+(9+rank)*rank+2
     if x.shape!=(8,expected):raise IntegrityError(f'feature {x.shape}')
     return x
 def sequence_input(c:Cell,d:Dataset,nominal:np.ndarray)->np.ndarray:
