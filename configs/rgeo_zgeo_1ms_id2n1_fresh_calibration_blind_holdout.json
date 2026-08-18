@@ -1,0 +1,112 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2n1-fresh-calibration-blind-holdout-v1",
+  "identity": "rgeo-zgeo-1ms-id2n1-fresh-calibration-blind-holdout-v1",
+  "stage": "ID-2N1",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 34,
+  "unique_cells": 24,
+  "critical_replay_cells": [
+    "c00__p04_minus_i24_d2",
+    "c02__p07_minus_i25_d2",
+    "v00__p04_plus_i25_d2",
+    "v02__p07_plus_i26_d1"
+  ],
+  "maximum_rollouts": 28,
+  "maximum_reset_calls": 28,
+  "maximum_advance_attempts": 952,
+  "maximum_gotsc_calls": 952,
+  "maximum_verified_plant_advances": 952,
+  "maximum_retained_states": 980,
+  "retry_after_any_advance_attempt": "forbidden",
+  "phase_order": ["calibration", "holdout"],
+  "holdout_execution_requires_written_calibration_pass": true,
+  "development_refit_forbidden": true,
+  "model_update_forbidden": true,
+  "families": [
+    {"role": "calibration", "group_id": "c00", "conditioners": [{"direction": "p04", "sign": "plus", "issue_step": 17, "duration_issues": 1}], "probe_issue_step": 24, "probe_duration_issues": 2, "probes": [{"direction": "p04", "sign": "minus"}, {"direction": "p07", "sign": "plus"}]},
+    {"role": "calibration", "group_id": "c01", "conditioners": [{"direction": "p07", "sign": "minus", "issue_step": 19, "duration_issues": 2}], "probe_issue_step": 26, "probe_duration_issues": 2, "probes": [{"direction": "p04", "sign": "plus"}, {"direction": "p07", "sign": "minus"}]},
+    {"role": "calibration", "group_id": "c02", "conditioners": [{"direction": "p04", "sign": "plus", "issue_step": 18, "duration_issues": 1}, {"direction": "p07", "sign": "plus", "issue_step": 21, "duration_issues": 1}], "probe_issue_step": 25, "probe_duration_issues": 2, "probes": [{"direction": "p04", "sign": "minus"}, {"direction": "p07", "sign": "minus"}]},
+    {"role": "calibration", "group_id": "c03", "conditioners": [{"direction": "p07", "sign": "minus", "issue_step": 17, "duration_issues": 2}, {"direction": "p04", "sign": "plus", "issue_step": 21, "duration_issues": 2}], "probe_issue_step": 26, "probe_duration_issues": 1, "probes": [{"direction": "p04", "sign": "plus"}, {"direction": "p07", "sign": "plus"}]},
+    {"role": "holdout", "group_id": "v00", "conditioners": [{"direction": "p04", "sign": "minus", "issue_step": 17, "duration_issues": 2}, {"direction": "p07", "sign": "plus", "issue_step": 21, "duration_issues": 2}], "probe_issue_step": 25, "probe_duration_issues": 2, "probes": [{"direction": "p04", "sign": "plus"}, {"direction": "p07", "sign": "minus"}]},
+    {"role": "holdout", "group_id": "v01", "conditioners": [{"direction": "p07", "sign": "plus", "issue_step": 19, "duration_issues": 1}, {"direction": "p04", "sign": "minus", "issue_step": 22, "duration_issues": 1}], "probe_issue_step": 26, "probe_duration_issues": 2, "probes": [{"direction": "p04", "sign": "minus"}, {"direction": "p07", "sign": "plus"}]},
+    {"role": "holdout", "group_id": "v02", "conditioners": [{"direction": "p04", "sign": "plus", "issue_step": 17, "duration_issues": 1}, {"direction": "p07", "sign": "minus", "issue_step": 20, "duration_issues": 2}, {"direction": "p04", "sign": "minus", "issue_step": 23, "duration_issues": 1}], "probe_issue_step": 26, "probe_duration_issues": 1, "probes": [{"direction": "p04", "sign": "minus"}, {"direction": "p07", "sign": "plus"}]},
+    {"role": "holdout", "group_id": "v03", "conditioners": [{"direction": "p07", "sign": "minus", "issue_step": 18, "duration_issues": 2}, {"direction": "p04", "sign": "plus", "issue_step": 22, "duration_issues": 2}], "probe_issue_step": 26, "probe_duration_issues": 2, "probes": [{"direction": "p04", "sign": "plus"}, {"direction": "p07", "sign": "minus"}]}
+  ],
+  "action_semantics": {
+    "starting_issue_is_exact_q0": true,
+    "nominal_is_exact_card15_p03_minus_stride1": true,
+    "all_events_are_translated_full_fourteen_dimensional_card15_targets": true,
+    "exact_return_to_nominal_after_each_event": true,
+    "maximum_single_turn_adjacent_delta_a": 0.3,
+    "runner_clipping_must_not_be_triggered_or_relied_on": true,
+    "effect_state_index": "issue_step_plus_one",
+    "future_actual_current_before_issue": "forbidden",
+    "no_return_or_cleanup_plant_action_after_horizon_or_stop": true
+  },
+  "observability": {
+    "current_same_step_r_geo_z_geo_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_history": "available",
+    "future_successor_before_issue": "unknown"
+  },
+  "empirical_exploration": {
+    "novel_successors_are_declared_tsc_only_validation_exposures": true,
+    "pre_action_transition_tube_claimed": false,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_probe_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true
+  },
+  "calibration": {
+    "prediction_horizons_ms": [1, 2, 3, 4, 5, 6, 7, 8],
+    "origin_state_range_inclusive": [16, 33],
+    "tube_multiplier": 1.25,
+    "tube_floor": [0.00005, 0.00005, 5.0],
+    "tube_caps_h1_h4": [0.0015, 0.0015, 100.0],
+    "tube_caps_h5_h8": [0.003, 0.003, 150.0],
+    "minimum_peak_paired_rz_norm_m": 0.00002,
+    "maximum_peak_paired_abs_ip_a": 100.0,
+    "maximum_combined_response_nrmse": 0.75,
+    "required_positive_peak_directions": 8
+  },
+  "holdout": {
+    "all_endpoint_rows_must_be_contained": true,
+    "endpoint_p95_caps": {
+      "1": [0.0003, 0.0003, 30.0],
+      "2": [0.00055, 0.00055, 50.0],
+      "3": [0.00075, 0.00075, 65.0],
+      "4": [0.0009, 0.0009, 75.0],
+      "5": [0.0011, 0.0011, 85.0],
+      "6": [0.00125, 0.00125, 90.0],
+      "7": [0.0014, 0.0014, 95.0],
+      "8": [0.0015, 0.0015, 100.0]
+    },
+    "maximum_each_family_response_nrmse": 0.90,
+    "maximum_combined_response_nrmse": 0.75,
+    "minimum_positive_peak_directions": 7
+  },
+  "repeatability": {"geometry_m": 1e-12, "ip_a": 1e-9, "coil_a": 1e-9, "wire_a": 1e-9, "sprsina_byte_identity_required": false},
+  "storage_gate": {"minimum_free_bytes_before_run": 135000000000, "maximum_estimated_raw_bytes": 65000000000, "minimum_free_bytes_after_estimate": 70000000000, "output_must_not_exist": true, "raw_compression": "forbidden"},
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "evidence": {
+    "base_tsc_config_sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b",
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2N1_FRESH_CALIBRATION_BLIND_HOLDOUT_DESIGN.md", "sha256": "182061258ba5ae1846ca18b10c72b6f82af18963c28cc294df8a07b33e4380c6"},
+    "id2k1_config": {"path": "configs/rgeo_zgeo_1ms_id2k1_factorized_history_sign_development.json", "sha256": "7ea0e1851104eb1c58a74fb50c8338aa16777c7c48dbfd24927b24184d78332e"},
+    "id2m1_config": {"path": "configs/rgeo_zgeo_1ms_id2m1_bounded_event_innovation_model.json", "sha256": "0ddc920f5300033d9c4c9ce3328e69f33dcc863a6634fbc7b3f19fa8ba1ebff3"},
+    "id2m1_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2m1_20260818_82fdaee2/result.json", "sha256": "a9791cd29454515aa46f80d3871ea4c2ed2e9714e11f9a660d556d9b409ddbf5", "required_route": "ONE_MS_ID2M1_BOUNDED_STRUCTURED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"},
+    "id2m1_model": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2m1_20260818_82fdaee2/model.json", "sha256": "9c177536a3cec7cb7c22ccadfd98dc7791fb45e5c81120b5020f4f59b78fb681", "canonical_sha256": "681c26da4829170ce166c86db47362f0365f6cb22a26d419463667777e6fae73", "required_candidate": "separated_event_memory"},
+    "id2m1_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2m1_20260818_82fdaee2/independent_audit.json", "sha256": "119e0001024d30e681ef670ceb7b862026f62f8afbf6085686c63ce5142ad883"}
+  },
+  "routes": {
+    "offline_or_input_fail": "ONE_MS_ID2N1_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "storage_fail": "ONE_MS_ID2N1_STORAGE_FAIL_NO_TSC",
+    "calibration_execution_or_raw_fail": "ONE_MS_ID2N1_CALIBRATION_EXECUTION_OR_RAW_FAIL_HOLDOUT_UNOPENED",
+    "calibration_scientific_fail": "ONE_MS_ID2N1_CALIBRATION_MODEL_OR_TUBE_FAIL_HOLDOUT_UNOPENED",
+    "holdout_execution_or_raw_fail": "ONE_MS_ID2N1_HOLDOUT_EXECUTION_OR_RAW_FAIL_STOP",
+    "holdout_scientific_fail": "ONE_MS_ID2N1_BLIND_HOLDOUT_FAIL_MODEL_TUBE_REDESIGN",
+    "pass": "ONE_MS_ID2N1_FRESH_MODEL_TUBE_HOLDOUT_PASS_AUTHORITY_RECOVERY_DESIGN_ONLY"
+  },
+  "claim_boundary": "Finite source-local fresh calibration and blind whole-history holdout only; not authority, recovery, controller, MPC, transport, crossing, adaptation or reachability evidence."
+}
