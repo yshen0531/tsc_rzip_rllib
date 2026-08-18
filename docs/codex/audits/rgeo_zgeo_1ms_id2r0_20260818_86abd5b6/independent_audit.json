@@ -1,0 +1,19 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Separate-process deterministic recomputation of ID2R0 only; not independent calibration, authority, recovery, model, or control evidence.",
+  "model_payloads_emitted": 0,
+  "n1_records_read": 0,
+  "new_candidate_count": 0,
+  "new_tsc_calls": 0,
+  "plant_advances": 0,
+  "primary_predictions_exactly_recomputed": true,
+  "primary_predictions_sha256": "2eda25889c53ac0b7fa32b13eb2738a33aeeaa25b7422cec79263abfea01dfab",
+  "primary_result_exactly_recomputed": true,
+  "primary_result_sha256": "0eaffe3134e2220ed1a6dfa7c127f318402709951864d5831d132d90e8cdf7f9",
+  "primary_route": "ONE_MS_ID2R0_CRITICAL_SINGLETON_F03_EXACT_REPLAY_REQUIRED",
+  "q1_original_verdict_unchanged": true,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2r0-q1r1-decision-audit-independent-v1",
+  "source_revision": "86abd5b6dba5f704913340c90fa77ecdcb177a14",
+  "stage_config_sha256": "0863c7e5e23161cba2e5c1230b2e8c99d03f34e158e34c900a5f8e63cd3dfbaa"
+}

@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, ID-2R0 authorized):** Q1R1 remains final
+> **Unique active task (2026-08-18, ID-2R1 authorized):** ID-2R0 completed
+> with independent exact recomputation and route
+> `ONE_MS_ID2R0_CRITICAL_SINGLETON_F03_EXACT_REPLAY_REQUIRED`. It preserved
+> Q1R1's FAIL, corrected the family mapping, and ran zero TSC/reset/plant
+> work. In its fixed no-fit local diagnostic, all `52/52` schedule-supported
+> probe directions were positive with response NRMSE `0.033197`; the twelve
+> unsupported cells are the singleton strata `f01/f03/f05`. Only `f03` has
+> four Q1R1 wrong-way actions and no integrity replay.
+>
+> The sole active execution is the separately frozen ID-2R1 exact `f03`
+> replay: one fresh baseline and one fresh replay of each four p04/p07 signed
+> cells, exactly five resets and at most 170 one-ms advances. Every record has
+> zero fit/calibration/holdout/expert/RL weight. A complete exact replay may
+> authorize only a separate canonical-prefix sequence-control-utility
+> shooting design; any mismatch stops for deep route review. Tests and all
+> execution run only on the server. No model, calibration, tube, authority,
+> recovery, controller, MPC, transport, crossing, adaptation, or RL is
+> authorized. All blocks below are historical.
+
+> **Historical task (2026-08-18, ID-2R0 authorized):** Q1R1 remains final
 > as `ONE_MS_ID2Q1R1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN`, but its prose
 > report mapped sorted family-metric arrays to the wrong family names. The
 > q03 ridge wrong-way responses belong to `f03`, and q01's large ridge

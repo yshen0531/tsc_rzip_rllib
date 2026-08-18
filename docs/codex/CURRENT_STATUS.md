@@ -1,6 +1,23 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2R0 design authorized):** Q1R1's overall
+> **Current status (2026-08-18, ID-2R0 complete / ID-2R1 frozen):** the
+> zero-new-TSC ID-2R0 decision audit passed execution and independent
+> recomputation. It persisted `14,080` explicit prediction rows, reproduced
+> Q1R1 exactly, and corrected the wrong family attribution. The fixed no-fit
+> local diagnostic supports `52/64` probes with `52/52` positive directions,
+> response NRMSE `0.033197`, and maximum complete-family ranking regret
+> `0.020750`. The exact route is
+> `ONE_MS_ID2R0_CRITICAL_SINGLETON_F03_EXACT_REPLAY_REQUIRED`.
+>
+> The next frozen stage is ID-2R1: five fresh exact `f03` integrity rollouts,
+> all with zero statistical weight. The server must pass the offline,
+> storage, interface, complete-raw, pairwise replay, and independent-audit
+> gates. PASS only opens a separately designed finite sequence-utility
+> shooting stage; mismatch requires review. Nothing in ID-2R0 or ID-2R1 is a
+> model, authority, recovery, closed-loop, or reachability result. Older
+> status blocks are historical.
+
+> **Historical status (2026-08-18, ID-2R0 design authorized):** Q1R1's overall
 > model/support FAIL and independent exact recomputation remain valid. A
 > reporting-only audit found that sorted family metric arrays were attributed
 > to the wrong names: the q03 ridge wrong-way family is `f03`, while q01's

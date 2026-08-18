@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, ID-2R0):** Q1R1's global
+> **Active new-round context (2026-08-18, ID-2R1):** ID-2R0 showed that the
+> current failure is not a generic absence of local learnable response:
+> within exact schedule support, its fixed no-fit causal-prefix transfer was
+> accurate on `52/52` directions. The decisive unresolved datum is the
+> unreplayed `f03` singleton, where all four Q1R1 responses were wrong-way.
+>
+> ID-2R1 therefore performs only five exact fresh TSC replays with zero fit
+> weight. If `f03` is deterministic, the route moves from another global
+> model toward time-resolved canonical-prefix sequence-utility shooting. If
+> it is not repeatable, development pauses before treating the response as a
+> learnable label. This preserves the final fixed-1100-ms two-axis waypoint,
+> history continuity, and later R_mid-crossing goal; it does not reduce that
+> goal to the source-local probe experiment. All older notices are
+> historical.
+
+> **Historical new-round context (2026-08-18, ID-2R0):** Q1R1's global
 > shared-latent ridge/GRU FAIL remains unchanged, but the result prose
 > misassigned sorted family arrays. The anomalous singleton strata are
 > `f01/f03/f05`; the q03 ridge direction reversal is `f03`, not `h03`.

@@ -1,0 +1,112 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2r1-f03-exact-replay-v1",
+  "identity": "rgeo-zgeo-1ms-id2r1-f03-exact-replay-v1",
+  "stage": "ID-2R1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 34,
+  "family_id": "f03",
+  "probe_issue_step": 24,
+  "probe_duration_issues": 2,
+  "rollout_ids": [
+    "f03__baseline__fresh_r1",
+    "f03__p04_minus_i24_d2__fresh_r1",
+    "f03__p04_plus_i24_d2__fresh_r1",
+    "f03__p07_minus_i24_d2__fresh_r1",
+    "f03__p07_plus_i24_d2__fresh_r1"
+  ],
+  "maximum_rollouts": 5,
+  "maximum_reset_calls": 5,
+  "maximum_advance_attempts": 170,
+  "maximum_gotsc_calls": 170,
+  "maximum_verified_plant_advances": 170,
+  "maximum_retained_states": 175,
+  "required_artifact_files_if_complete": 875,
+  "retry_after_any_advance_attempt": "forbidden",
+  "experiment_contract": "tsc_only_exact_f03_integrity_replay",
+  "data_use": "integrity_and_route_decision_only_zero_fit_weight",
+  "fit_calibration_holdout_controller_expert_or_rl_use": "forbidden",
+  "new_action_or_schedule_cells": 0,
+  "action_semantics": {
+    "absolute_card15_targets": true,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "issue_to_effect_state_offset": 1,
+    "software_queue_added": false,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "future_actual_current": "forbidden"
+  },
+  "observability": {
+    "current_same_step_paired_boundary_rgeo_zgeo_and_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_history": "available",
+    "future_successor": "unknown_before_issue",
+    "invalid_boundary": "fail_closed"
+  },
+  "empirical_exploration": {
+    "novel_successors": 0,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_probe_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true,
+    "post_action_abort_is_not_a_pre_action_bound": true
+  },
+  "repeatability": {
+    "geometry_m": 1e-12,
+    "ip_a": 1e-9,
+    "coil_a": 1e-9,
+    "wire_a": 1e-9,
+    "sprsina_byte_identity_required": false
+  },
+  "storage_gate": {
+    "minimum_free_bytes_before_run": 24000000000,
+    "maximum_estimated_raw_bytes": 12000000000,
+    "minimum_free_bytes_after_estimate": 12000000000,
+    "output_must_not_exist": true,
+    "raw_compression": "forbidden"
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "evidence": {
+    "design": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2R1_F03_EXACT_REPLAY_DESIGN.md",
+      "sha256": "9b9f716b4d3f639056809736c1ec7e55b1fff51ef1cef6d4cb00189baa167d8b"
+    },
+    "id2p1_config": {
+      "path": "configs/rgeo_zgeo_1ms_id2p1_matched_factorial_development.json",
+      "sha256": "9572635bb62a9e81609289b53527d329bb5b09f08e46a2cbc886eafa3e93323f"
+    },
+    "id2p1_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/result.json",
+      "sha256": "8f747e04d8fbd9114615cfa65de436191c1f3245baeb4e1b620c86de71707331",
+      "required_route": "ONE_MS_ID2P1_MATCHED_FACTORIAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY"
+    },
+    "id2p1_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/independent_raw_audit.json",
+      "sha256": "0c4364a55993d433c4ca156dc956c9bc1698efbf3888e25b87b1d246b9dd124c"
+    },
+    "id2r0_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2r0_20260818_86abd5b6/result.json",
+      "sha256": "0eaffe3134e2220ed1a6dfa7c127f318402709951864d5831d132d90e8cdf7f9",
+      "required_route": "ONE_MS_ID2R0_CRITICAL_SINGLETON_F03_EXACT_REPLAY_REQUIRED"
+    },
+    "id2r0_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2r0_20260818_86abd5b6/independent_audit.json",
+      "sha256": "9a0338d0116ed00a3703820f1888a9d74baf4d9075534c71e6b85c8726f4bab5"
+    },
+    "original_compacts": [
+      {"cell_id": "f03__baseline", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/f03__baseline__r0.json", "sha256": "2ef22a8323944decb01b049167cc4838a9863e0c5faeb40fc48034cfb39f8e40"},
+      {"cell_id": "f03__p04_minus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/f03__p04_minus_i24_d2__r0.json", "sha256": "84169923e6e18cc0c67f1c6dd8f18cbe4201d8ffbf65894ac9b8445a83ee7dac"},
+      {"cell_id": "f03__p04_plus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/f03__p04_plus_i24_d2__r0.json", "sha256": "38ac4259ab0da55e1e4f841b5b6ede2c52faa0085b734736db6648adb72aa8dc"},
+      {"cell_id": "f03__p07_minus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/f03__p07_minus_i24_d2__r0.json", "sha256": "1d49f7820eada6c224f89067ae41beb54de75747f1ce1764482f3fedee208f39"},
+      {"cell_id": "f03__p07_plus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/f03__p07_plus_i24_d2__r0.json", "sha256": "302054ff220fb42b0793b5bb455e17b565f327472480d6d6f6f609130fdad4ce"}
+    ]
+  },
+  "routes": {
+    "storage_fail": "ONE_MS_ID2R1_STORAGE_GATE_FAIL_NO_TSC",
+    "offline_or_input_fail": "ONE_MS_ID2R1_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID2R1_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID2R1_RAW_INTEGRITY_FAIL_PRESERVE_RAW",
+    "replay_mismatch": "ONE_MS_ID2R1_F03_REPLAY_MISMATCH_DEEP_REVIEW",
+    "pass": "ONE_MS_ID2R1_F03_EXACT_REPLAY_PASS_SEQUENCE_AUTHORITY_DESIGN_ONLY"
+  },
+  "claim_boundary": "Finite exact f03 source/history/action replay only; zero fit weight and no model, calibration, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert-data, RL, or reachability evidence."
+}

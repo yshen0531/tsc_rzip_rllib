@@ -1,6 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2R0 architecture correction (2026-08-18):** Q1R1's final model FAIL
+> **ID-2R1 architecture discriminator (2026-08-18):** ID-2R0 preserved the
+> global Q1R1 model FAIL but found a sharp support boundary: exact-schedule
+> local causal-prefix transfer is highly accurate on `52/64` cells, while
+> `f01/f03/f05` are singleton schedule strata. The unreplayed `f03` family is
+> uniquely decisive because all four global-model response directions fail
+> there.
+>
+> The immediate experiment is an integrity-only exact `f03` replay, not more
+> training data. A repeatable `f03` anomaly moves sequence/time-dependent
+> action utility and canonical-prefix shooting ahead of another surrogate;
+> a mismatch stops before learning from that label. Even a replay PASS does
+> not establish positive-span control authority, recovery, or a terminal
+> set. Those remain independent AND gates before constrained rolling control.
+
+> **Historical ID-2R0 architecture correction (2026-08-18):** Q1R1's final model FAIL
 > is retained, but its prose family attribution is corrected from
 > `h01/h03/h05` to the actual singleton schedule strata `f01/f03/f05`, with
 > all four q03 ridge wrong-way responses in `f03`. No Q1 gate or result is
