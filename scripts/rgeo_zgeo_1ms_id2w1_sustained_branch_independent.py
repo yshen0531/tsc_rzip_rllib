@@ -39,6 +39,26 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def restore_arrival_active_commands(
+        states: list[dict[str, Any]], issued_fields: Sequence[Sequence[str]]) -> None:
+    """Restore the command active on arrival from the preceding raw issue.
+
+    The runner retains each state directory and then rewrites that directory's
+    ``inputa`` when issuing the *outgoing* action.  Consequently, re-reading
+    state k's final raw ``inputa`` yields issue k, not the command whose effect
+    produced state k.  State 0 is special: frozen issue 0 is the canonical q0
+    command and therefore equals the source active command.  For k > 0 the
+    arrival-active command is raw issue k-1.
+    """
+    if not states:
+        return
+    if len(issued_fields) < len(states) - 1:
+        raise ValueError("insufficient raw issues to restore arrival-active commands")
+    states[0]["active_command_card15_fields"] = list(issued_fields[0])
+    for index in range(1, len(states)):
+        states[index]["active_command_card15_fields"] = list(issued_fields[index - 1])
+
+
 def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     failures: list[str] = []
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
@@ -78,6 +98,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             if any(time < 1100 or time > 1148 for time in times):
                 failures.append(f"FORBIDDEN_STATE_DIRECTORY:{row['rollout_id']}")
             states = []
+            issued_fields: list[list[str]] = []
             for index, time_ms in enumerate(times):
                 state_folder = folder / f"{time_ms}ms"
                 try:
@@ -111,8 +132,15 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                 if issue >= len(times):
                     failures.append(f"ACTION_WITHOUT_PREISSUE_STATE:{row['rollout_id']}:{issue}")
                     continue
-                if list(_fields(folder / f"{1100 + issue}ms" / "inputa")) != action["expected_card15_fields"]:
+                fields = list(_fields(folder / f"{1100 + issue}ms" / "inputa"))
+                issued_fields.append(fields)
+                if fields != action["expected_card15_fields"]:
                     failures.append(f"ISSUED_CARD15:{row['rollout_id']}:{issue}")
+            try:
+                restore_arrival_active_commands(states, issued_fields)
+            except Exception as exc:
+                failures.append(
+                    f"ACTIVE_COMMAND_RECONSTRUCTION:{row['rollout_id']}:{type(exc).__name__}:{exc}")
             raw_rows.append({**{key: value for key, value in row.items()
                                 if key not in ("states", "actions")},
                              "states": states, "actions": row.get("actions", [])})
@@ -183,4 +211,3 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

@@ -21,6 +21,11 @@ SPEC = importlib.util.spec_from_file_location(
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(MODULE)
+INDEPENDENT_SPEC = importlib.util.spec_from_file_location(
+    "id2w1_independent", SCRIPTS / "rgeo_zgeo_1ms_id2w1_sustained_branch_independent.py")
+INDEPENDENT = importlib.util.module_from_spec(INDEPENDENT_SPEC)
+assert INDEPENDENT_SPEC.loader is not None
+INDEPENDENT_SPEC.loader.exec_module(INDEPENDENT)
 
 
 class ID2W1Tests(unittest.TestCase):
@@ -158,7 +163,21 @@ class ID2W1Tests(unittest.TestCase):
         self.assertIn("independent_raw_audit.json", text)
         self.assertIn('exit "$primary_rc"', text)
 
+    def test_independent_restores_arrival_command_from_preceding_issue(self):
+        states = [
+            {"active_command_card15_fields": ["outgoing0"]},
+            {"active_command_card15_fields": ["outgoing1"]},
+            {"active_command_card15_fields": ["outgoing2"]},
+        ]
+        INDEPENDENT.restore_arrival_active_commands(
+            states, [["q0"], ["level1"], ["branch"]])
+        self.assertEqual(
+            [state["active_command_card15_fields"] for state in states],
+            [["q0"], ["q0"], ["level1"]],
+        )
+        with self.assertRaisesRegex(ValueError, "insufficient raw issues"):
+            INDEPENDENT.restore_arrival_active_commands(states, [["q0"]])
+
 
 if __name__ == "__main__":
     unittest.main()
-
