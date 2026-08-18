@@ -140,7 +140,8 @@ def load(path: Path = CONFIG) -> tuple[dict[str, Any], Any, dict[str, Any], dict
     return stage, cfg, targets, source, originals
 
 
-def campaign_streams(stage: dict[str, Any], cfg: Any, targets: dict[str, Any], source: dict[str, Any]) -> list[dict[str, Any]]:
+def campaign_streams(stage: dict[str, Any], cfg: Any, targets: dict[str, Any], source: dict[str, Any],
+                     originals: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     pstage = _json(ROOT / stage["evidence"]["id2p1_config"]["path"])
     old = [row for row in p1.campaign_streams(pstage, cfg, targets, source)
            if row["group_id"] == "f03" and int(row["replay_index"]) == 0]
@@ -148,6 +149,17 @@ def campaign_streams(stage: dict[str, Any], cfg: Any, targets: dict[str, Any], s
     streams = []
     for fresh_id, item in zip(stage["rollout_ids"], old):
         row = copy.deepcopy(item)
+        original_actions = originals[row["cell_id"]]["actions"]
+        if len(row["actions"]) != len(original_actions):
+            raise InputIntegrityError(f"original action count changed: {row['cell_id']}")
+        for issue, (generated, recorded) in enumerate(zip(row["actions"], original_actions)):
+            generated_semantics = {key: value for key, value in generated.items()
+                                   if key != "maximum_issued_delta_a"}
+            recorded_semantics = {key: value for key, value in recorded.items()
+                                  if key != "maximum_issued_delta_a"}
+            if generated_semantics != recorded_semantics:
+                raise InputIntegrityError(f"original action semantics changed: {row['cell_id']}:{issue}")
+        row["actions"] = copy.deepcopy(original_actions)
         row.update({"rollout_id": fresh_id, "replay_index": 1,
                     "integrity_only_zero_fit_weight": True,
                     "original_rollout_id": f"{row['cell_id']}__r0"})
@@ -162,7 +174,7 @@ def offline(path: Path, source_revision: str) -> dict[str, Any]:
     streams: list[dict[str, Any]] = []
     try:
         stage, cfg, targets, source, originals = load(path)
-        streams = campaign_streams(stage, cfg, targets, source)
+        streams = campaign_streams(stage, cfg, targets, source, originals)
         for stream in streams:
             original = originals[stream["cell_id"]]
             if len(stream["actions"]) != 34 or stream["actions"] != original["actions"]:
@@ -270,7 +282,7 @@ def run(path: Path, source_revision: str, output: Path) -> dict[str, Any]:
     runtime["empirical_exploration"] = dict(stage["empirical_exploration"])
     runtime["empirical_exploration"]["inner_pulse_issue_clearance"] = stage["empirical_exploration"]["inner_probe_issue_clearance"]
     rows = []
-    for stream in campaign_streams(stage, cfg, targets, source):
+    for stream in campaign_streams(stage, cfg, targets, source, originals):
         row = p1.one_rollout(cfg, runtime, stream)
         row.update({"schema_version": SCHEMA, "source_revision": source_revision})
         rows.append(row)
@@ -326,4 +338,3 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

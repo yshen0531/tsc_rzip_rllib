@@ -10,7 +10,8 @@ class ID2R1Tests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.stage, cls.cfg, cls.targets, cls.source, cls.originals = r1.load()
-        cls.streams = r1.campaign_streams(cls.stage, cls.cfg, cls.targets, cls.source)
+        cls.streams = r1.campaign_streams(
+            cls.stage, cls.cfg, cls.targets, cls.source, cls.originals)
 
     def _synthetic_exact_rows(self):
         rows = []
@@ -93,4 +94,3 @@ class ID2R1Tests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

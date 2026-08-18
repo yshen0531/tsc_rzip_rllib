@@ -44,7 +44,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
     try:
         stage, cfg, targets, source, originals = primary.load(stage_path)
-        expected = primary.campaign_streams(stage, cfg, targets, source)
+        expected = primary.campaign_streams(stage, cfg, targets, source, originals)
     except Exception as exc:
         failures.append(f"STAGE_LOAD:{type(exc).__name__}:{exc}")
         stage, cfg, originals, expected = load_json(stage_path), None, {}, []
@@ -176,4 +176,3 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
