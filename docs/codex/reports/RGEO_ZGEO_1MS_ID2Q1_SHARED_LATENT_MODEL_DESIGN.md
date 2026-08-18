@@ -17,7 +17,9 @@ response model. At every origin they consume exact current R_geo/Z_geo/Ip,
 recent one/four-step velocity, actual-versus-issued current innovation
 projected into the admitted p04/p07 action plane, and complete owned issued
 action history. Future issued Card15 actions are known to the predictor;
-future actual current/readback is forbidden.
+future actual current/readback is forbidden. The current innovation is held
+only as a causal origin feature and decays by the frozen factor `0.8` at each
+predicted step; it is never refreshed from future truth.
 
 1. `stable_shared_latent_ridge` uses fixed stable poles and a single shared
    increment map across horizons. Predictions at 1--8 ms are cumulative
@@ -45,4 +47,4 @@ result authorizes a tube, authority, recovery, controller, MPC, transport,
 crossing, adaptation, expert data or RL.
 
 Frozen config SHA-256:
-`00c1b78765fe8ac6733a82f7861a987c02add52f1a2ef9702d83bbe21ae5f79d`.
+`29b783aa311994a31d9dbfc741fa997b87f62ad468ffc5a84cd008e0f4040c05`.

@@ -65,6 +65,7 @@
     "explicit_time_indexed_nominal": true,
     "future_issued_card15_sequence_known": true,
     "future_actual_current_propagation": "forbidden_freeze_origin_innovation_with_stable_decay",
+    "actual_current_innovation_decay_per_step": 0.8,
     "outputs_are_cumulative_shared_increment_rollouts_not_independent_horizon_heads": true
   },
   "candidates": {
