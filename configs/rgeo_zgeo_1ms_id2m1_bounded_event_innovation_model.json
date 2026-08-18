@@ -1,0 +1,109 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2m1-bounded-event-innovation-model-v1",
+  "identity": "rgeo-zgeo-1ms-id2m1-bounded-event-innovation-model-v1",
+  "stage": "ID-2M1",
+  "server_only": true,
+  "new_tsc_calls": 0,
+  "reset_calls": 0,
+  "plant_advances": 0,
+  "design": {
+    "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2M1_BOUNDED_EVENT_INNOVATION_MODEL_DESIGN.md",
+    "sha256": "853d2f50748293ba32329f5c1f21e60b19b6d325f93b18e718358dd105174f75"
+  },
+  "source": {
+    "id2l1_config": "configs/rgeo_zgeo_1ms_id2l1_structured_history_model_comparison.json",
+    "id2l1_config_sha256": "5480a8124472020c4069c0b0fb00e2be235c7657d01bd9a4c76946f9e2910efe",
+    "id2m0_result": "docs/codex/audits/rgeo_zgeo_1ms_id2m0_20260818_176cf1a9/result.json",
+    "id2m0_result_sha256": "0624799999d2efca584ad2c75960e7d8e4568bb06fa4960738a963b2c4d84de1",
+    "id2m0_predictions": "docs/codex/audits/rgeo_zgeo_1ms_id2m0_20260818_176cf1a9/predictions.json",
+    "id2m0_predictions_sha256": "b842011b87231eb3fa28117191ed27be795d7c1c479f1e0548da2d461115b32d",
+    "id2m0_independent": "docs/codex/audits/rgeo_zgeo_1ms_id2m0_20260818_176cf1a9/independent_audit.json",
+    "id2m0_independent_sha256": "7aa1dc54bd8921ec01531ddab3521ebf0c26c2c05a925f3e329345b569d9bfd1",
+    "required_id2m0_route": "ONE_MS_ID2M0_DIAGNOSTIC_ATTRIBUTION_PASS_ID2M1_DESIGN_ONLY",
+    "required_unique_cells": 40,
+    "required_whole_history_families": 8,
+    "required_folds": 4
+  },
+  "model": {
+    "candidates": [
+      "separated_event_memory",
+      "separated_event_bounded_innovation"
+    ],
+    "simplicity_order": [
+      "separated_event_memory",
+      "separated_event_bounded_innovation"
+    ],
+    "ridge": 0.003,
+    "fixed_action_poles": [0.0, 0.5, 0.8, 0.95],
+    "edge_lags": [1, 2, 3, 4],
+    "maximum_dwell_age": 4,
+    "paired_loss_start_issue": 25,
+    "paired_loss_weight": 4.0,
+    "unique_causal_transition_fit_weight": true,
+    "within_issue_centered_response_fit": true,
+    "time_indexed_nominal_recovered_after_response_fit": true,
+    "innovation_dimension": 12,
+    "innovation_rollout_pole": 0.8,
+    "future_actual_current_forbidden": true,
+    "evaluator_labels_forbidden": true
+  },
+  "normalization": {
+    "state_scale": [0.001, 0.001, 100.0],
+    "response_scale": [0.0001, 0.0001, 25.0]
+  },
+  "evaluation": {
+    "recenter_periods_ms": [1, 2, 4],
+    "recenter_origin_state": 16,
+    "free_origin_state": 25,
+    "prediction_issue_range_inclusive": [16, 33],
+    "probe_issue_window_inclusive": [25, 28],
+    "issue_to_effect_state_offset": 1,
+    "report_cell_weighted": true,
+    "report_unique_causal_keys": true,
+    "report_worst_unique_events": true
+  },
+  "eligibility": {
+    "teacher_one_step_p95_abs_max": [0.0003, 0.0003, 30.0],
+    "recenter_1ms_p95_abs_max": [0.0003, 0.0003, 30.0],
+    "recenter_2ms_p95_abs_max": [0.00055, 0.00055, 50.0],
+    "recenter_4ms_p95_abs_max": [0.0009, 0.0009, 75.0],
+    "free_state25_p95_abs_max": [0.0015, 0.0015, 100.0],
+    "catastrophic_max_abs": [0.003, 0.003, 150.0],
+    "worst_unique_one_step_abs_max": [0.0006, 0.0003, 30.0],
+    "each_fold_response_nrmse_strict_max": 0.90,
+    "mean_response_nrmse_max": 0.75,
+    "minimum_positive_peak_cosine_per_fold": 7,
+    "minimum_positive_peak_cosine_total": 30,
+    "maximum_scaled_feature_condition": 1000000.0
+  },
+  "data_use": {
+    "id2m0_predictions_as_training_labels": false,
+    "id2i1_records_allowed": 0,
+    "id2j0_records_allowed": 0,
+    "id2c2_records_allowed": 0,
+    "calibration_records_allowed": 0,
+    "holdout_records_allowed": 0,
+    "fixture_authorized": false,
+    "expert_authorized": false,
+    "controller_authorized": false,
+    "mpc_authorized": false,
+    "authority_authorized": false,
+    "recovery_authorized": false,
+    "crossing_authorized": false,
+    "adaptation_authorized": false,
+    "rl_authorized": false
+  },
+  "output": {
+    "emit_selected_model_only_on_pass": true,
+    "emit_fold_coefficients": false,
+    "fresh_calibration_design_authorized_on_pass": true,
+    "fresh_holdout_design_authorized_on_pass": true
+  },
+  "routes": {
+    "input_or_evidence_fail": "ONE_MS_ID2M1_INPUT_OR_EVIDENCE_FAIL_NO_MODEL",
+    "fit_or_evaluator_fail": "ONE_MS_ID2M1_FIT_OR_EVALUATOR_FAIL_STOP",
+    "no_eligible_candidate": "ONE_MS_ID2M1_BOUNDED_STRUCTURED_MODEL_FAIL_MATCHED_TAIL_DATA_REQUIRED",
+    "pass": "ONE_MS_ID2M1_BOUNDED_STRUCTURED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+  },
+  "claim_boundary": "Finite source-local ID2K1 development model comparison only; not calibrated uncertainty, blind holdout, authority, recovery, controller, MPC, transport, crossing, adaptation or reachability evidence."
+}
