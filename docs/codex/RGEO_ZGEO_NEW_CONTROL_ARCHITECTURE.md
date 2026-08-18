@@ -1,4 +1,23 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+
+> **Post-ID-2Z2 architecture amendment (2026-08-19):** exact one-ms
+> paired-boundary observation, exact Card15 actuation, complete post-takeover
+> causal history, explicit uncertainty and an independent hard safety layer
+> remain unchanged. Two consecutive canonical-prefix decisions both select
+> p03-forward4; p07-minus4 remains a lower-Ip eligible alternate. This proves
+> finite repeated transport utility only. The selected path still has a
+> material terminal error and speed, so it cannot be promoted to hold,
+> terminal-set or recovery evidence.
+>
+> The immediate architecture task is a bounded rolling source-hold/braking
+> search that starts from the selected two-macro causal prefix and evaluates
+> a small exact action alphabet against matched hold. It must optimize
+> persistent absolute geometry together with terminal speed and Ip, stop at a
+> finite budget, and treat every rejected branch as simulator route evidence.
+> It is not another fixed manual-depth ladder. Only a separately qualified
+> hold/recourse result may open a source-local feedback controller; model and
+> calibration data need a new prospective identity.
+
 > **Post-ID-2Z1 architecture freeze (2026-08-19):** exact one-ms paired-boundary
 > observation, exact Card15 actuation, causal history, explicit uncertainty
 > and independent hard safety remain the architecture. ID-2Z1 supplied two

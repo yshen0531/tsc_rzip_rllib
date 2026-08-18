@@ -1,5 +1,20 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-19, post-ID-2Z2):** the two-decision
+> canonical-source campaign completed fourteen branches and passed exact
+> execution, prefix, raw and independent-audit gates. At both state69 and the
+> selected state73 prefix, p03-forward4 and p07-minus4 beat matched hold; the
+> exact selected sequence is `p03forward4 -> p03forward4`.
+>
+> The result validates finite repeated transport decisions, not a hold. The
+> state81 selected continuation remains about 24.35 mm from source and is
+> still moving near 0.39 m/s. The immediate route is therefore a bounded
+> source-hold/braking rolling-search design around the selected causal prefix,
+> with matched hold, exact Card15/current/Ip/boundary gates and a finite stop.
+> A fresh model/teacher data identity, uncertainty tube, recourse, waypoint,
+> crossing and learning remain later independent gates. Older notices are
+> historical.
+
 > **Current route notice (2026-08-19, post-ID-2Z1):** the seven-way exact
 > macro campaign completed 511 verified TSC advances and passed all execution,
 > prefix, storage, utility and independent full-raw gates. p03-forward4 and

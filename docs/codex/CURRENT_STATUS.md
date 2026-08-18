@@ -1,5 +1,26 @@
 # Current status
 
+> **Current status (2026-08-19, post-ID-2Z2):** all fourteen frozen branches
+> completed with 1,106/1,106 verified advances and 1,120 states. Primary and
+> final independent full-raw audit agree on 5,600 artifacts, 65.9601 GB,
+> inventory digest `fa93bf54b958b6032c7f6741529b6fe0f7b43fc73bd04eaef184096e631e0059`,
+> exact prefixes, counters, metrics and route. Server validation before
+> continuation passed 13/13 focused and 408/408 one-ms tests.
+>
+> A generic-finalizer horizon bug occurred only after the first 77-advance
+> branch was fully retained. The repaired path revalidated and compacted that
+> raw with zero TSC replay, then ran the remaining thirteen branches. The
+> initial failed reporting audit is preserved and the final audit passes.
+>
+> `p03forward4 -> p03forward4` is the selected two-macro sequence. Both rounds
+> also nominate p07-minus4. The second p03 macro gives 0.871520 mm terminal
+> improvement over hold and 144.760 A paired Ip, but the selected state81 path
+> remains 24.349695 mm from source and moves at roughly 0.39 m/s over the final
+> four steps. ID-2Z2 is therefore finite rolling transport evidence, not a
+> hold, controller or recovery PASS. The next stage must design bounded
+> rolling braking/hold search around this measured prefix without opening
+> model/calibration/waypoint claims.
+
 > **Current status (2026-08-19, post-ID-2Z1):** server validation passed 9/9
 > focused and 394/394 complete one-ms tests before the plant campaign. Seven
 > real resets then produced 511/511 verified advances, 518 states and

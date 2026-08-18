@@ -1,5 +1,34 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z2 two-decision rolling branch
+
+- Date: 2026-08-19 Asia/Shanghai.
+- Physical source revision:
+  `b7fcce9513e7284503b45bd1f3e730037cbc11ef`; reporting/recovery revision
+  `0cd4a84f318ce66edfe0ab09cdbde23adf2eacb9`.
+- Server output:
+  `rgeo_zgeo_1ms_id2z2_20260819_b7fcce95`.
+- Installed repair validation: 13/13 focused and 408/408 complete one-ms
+  tests.
+- Execution: 14/14 branches, 1,106/1,106 attempted/`gotsc`/verified
+  advances, 1,120 retained states.
+- Required raw inventory: 5,600 files / 65,960,074,880 bytes / digest
+  `fa93bf54b958b6032c7f6741529b6fe0f7b43fc73bd04eaef184096e631e0059`.
+- Primary / final independent SHA-256:
+  `15753e20d6e615591e26968f9555c29202ddb780a633c1b229b4bdd7292048d6 /`
+  `c9b640c8b25df85150b9b40b9f906ae5eb9fdb7836f37805fe84506e83cb0c51`.
+- The first complete `r0__hold` raw was compacted after a missing-horizon
+  reporting repair and never replayed; the initial failed reporting audit is
+  retained as `db3dc60a044d776d39ac772ecf7f4b6a9dbbfbe7950b7d5c9a49344d238550c3`.
+- Both rounds nominated p03-forward4 and p07-minus4. The selected sequence is
+  `p03forward4 -> p03forward4`; Round-B terminal improvement is 0.871520 mm
+  with 144.760 A maximum paired Ip.
+- Final route:
+  `ONE_MS_ID2Z2_TWO_DECISION_ROLLING_BRANCH_PASS_HOLD_CONTROLLER_DESIGN_ONLY`.
+- Status: finite repeated transport decision PASS only. The selected state81
+  path remains 24.349695 mm from source and is still moving near 0.39 m/s;
+  bounded rolling braking/hold design is next.
+
 ## R_geo/Z_geo 1 ms ID-2L1 structured history model comparison
 
 - Date: 2026-08-17 Asia/Shanghai.

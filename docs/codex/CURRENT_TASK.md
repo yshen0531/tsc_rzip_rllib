@@ -1,5 +1,30 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-19, post-ID-2Z2):** ID-2Z2 completed all
+> fourteen canonical-source branches, 1,106/1,106 verified advances and 1,120
+> states. The final independent full-raw audit reproduced all 5,600 required
+> artifacts, 65,960,074,880 bytes, inventory digest, prefix checks, utilities,
+> counters, route and selected sequence. The immutable route is
+> `ONE_MS_ID2Z2_TWO_DECISION_ROLLING_BRANCH_PASS_HOLD_CONTROLLER_DESIGN_ONLY`.
+>
+> Both rounds nominated p03-forward4 and p07-minus4; the exact selected
+> logical sequence is `p03forward4 -> p03forward4`. The second selected macro
+> improves the terminal source R/Z distance by 0.871520 mm over matched hold,
+> with 144.760 A maximum paired Ip. It is still transport, not hold: its
+> state81 distance is 24.349695 mm and its final four R/Z step speeds average
+> about 0.3907 m/s.
+>
+> The first completed `r0__hold` raw branch was compacted after a reporting-
+> only missing-horizon repair and was never replayed; thirteen remaining
+> branches then ran under unchanged physical semantics. The active successor
+> is a separately frozen bounded source-hold/braking rolling-search design,
+> not a third fixed manual-depth macro. It may use canonical-source full-prefix
+> TSC branches and the measured p03-forward/p07-minus alphabet, but must retain
+> exact Card15/current/Ip/boundary gates, matched hold comparisons and a finite
+> stop. Model fitting, calibration/holdout, recovery qualification, waypoint,
+> R_mid crossing, adaptation, expert data and RL remain closed until separately
+> designed. All blocks below are historical.
+
 > **Unique active task (2026-08-19, post-ID-2Z1):** ID-2Z1 completed all seven
 > canonical-source branches with 511/511 verified advances, 518 states and
 > 2,590 required raw artifacts. Exact boundary/Ip, Card15/current/slew,
