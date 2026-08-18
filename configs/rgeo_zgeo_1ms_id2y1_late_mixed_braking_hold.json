@@ -29,6 +29,7 @@
   "action_semantics": {
     "absolute_card15_targets": true,
     "maximum_per_coil_issue_delta_a": 0.3,
+    "minimum_absolute_current_headroom_a": 95.0,
     "full_0p3_a_allowed": true,
     "issue_to_effect_state_offset": 1,
     "software_queue_added": false,

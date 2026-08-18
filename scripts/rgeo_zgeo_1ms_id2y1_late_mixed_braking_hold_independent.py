@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent full-raw audit for ID-2X1."""
+"""Independent full-raw audit for ID-2Y1."""
 
 from __future__ import annotations
 
@@ -16,14 +16,19 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts.rgeo_zgeo_1ms_id0_vector_tail import sha256, write_new  # noqa: E402
-from scripts.rgeo_zgeo_1ms_id0_vector_tail_independent import ARTIFACTS, _fields, _state  # noqa: E402
+from scripts.rgeo_zgeo_1ms_id0_vector_tail_independent import (  # noqa: E402
+    ARTIFACTS, _fields, _state,
+)
 from scripts.rgeo_zgeo_1ms_id2w1_sustained_branch_independent import (  # noqa: E402
     restore_arrival_active_commands,
 )
-from scripts import rgeo_zgeo_1ms_id2x1_mixed_allocation_hold as primary  # noqa: E402
+from scripts.rgeo_zgeo_1ms_id2x1_mixed_allocation_hold_independent import (  # noqa: E402
+    independent_prefix_check,
+)
+from scripts import rgeo_zgeo_1ms_id2y1_late_mixed_braking_hold as primary  # noqa: E402
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2x1-independent-raw-v1"
+SCHEMA = "rgeo-zgeo-1ms-id2y1-independent-raw-v1"
 
 
 def inside(path: Path, label: str) -> Path:
@@ -42,47 +47,6 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
-def independent_prefix_check(
-        row: dict[str, Any], reference: dict[str, Any],
-        semantic_artifacts: Sequence[str], *, last_state: int = 33,
-        last_issue: int = 32) -> dict[str, Any]:
-    """Check the retained prefix without misreading rewritten ``inputa``.
-
-    The runner rewrites state k's retained ``inputa`` with outgoing issue k.
-    The primary compact captured the preissue artifact, so those two byte
-    hashes intentionally describe different lifecycle points.  The raw audit
-    independently parses every outgoing Card15 issue above and reconstructs
-    the arrival-active command from the canonical source/preceding issue.
-    Here it compares all physical prefix fields and the semantic artifacts
-    that remain arrival-state artifacts; it must not compare the overwritten
-    raw ``inputa`` hash with the primary preissue hash.
-    """
-    failures: list[str] = []
-    if (len(row.get("states", [])) <= last_state
-            or len(row.get("actions", [])) <= last_issue):
-        failures.append("PREFIX_INCOMPLETE")
-    else:
-        for index in range(last_state + 1):
-            current, expected = row["states"][index], reference["states"][index]
-            for key in ("r_geo_m", "z_geo_m", "r_mid_m", "ip_a",
-                        "actual_current_decimal_a_tsc", "wire_current_a",
-                        "active_command_card15_fields"):
-                if current[key] != expected[key]:
-                    failures.append(f"STATE:{index}:{key}")
-            for name in semantic_artifacts:
-                if name == "inputa":
-                    continue
-                if current["artifact_sha256"].get(name) != expected[
-                        "artifact_sha256"].get(name):
-                    failures.append(f"STATE:{index}:artifact:{name}")
-        for issue in range(last_issue + 1):
-            if (row["actions"][issue]["expected_card15_fields"]
-                    != reference["actions"][issue]["expected_card15_fields"]):
-                failures.append(f"ACTION:{issue}")
-    return {"rollout_id": row.get("rollout_id"), "passed": not failures,
-            "failures": list(dict.fromkeys(failures))}
-
-
 def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     failures: list[str] = []
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
@@ -96,8 +60,8 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     expected_by_id = {row["rollout_id"]: row for row in expected}
     result_path = run_dir / "result.json"
     result = load_json(result_path) if result_path.is_file() else {}
-    paths = sorted(path for path in run_dir.glob("*.json") if path.name not in
-                   ("result.json", "offline_preflight.json", "independent_raw_audit.json"))
+    excluded = {"result.json", "offline_preflight.json", "independent_raw_audit.json"}
+    paths = sorted(path for path in run_dir.glob("*.json") if path.name not in excluded)
     compact = [load_json(path) for path in paths]
     compact.sort(key=lambda row: order.get(row.get("rollout_id"), 999))
     if [row.get("rollout_id") for row in compact] != [
@@ -123,11 +87,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             times = (sorted(int(path.name[:-2]) for path in folder.iterdir()
                             if path.is_dir() and path.name.endswith("ms")
                             and path.name[:-2].isdigit()) if folder.is_dir() else [])
-            if row.get("passed") and times != list(range(1100, 1197)):
+            if row.get("passed") and times != list(range(1100, 1205)):
                 failures.append(f"STATE_DIRECTORY_SET:{rollout_id}")
             if times and times != list(range(1100, max(times) + 1)):
                 failures.append(f"NONCONTIGUOUS_STATE_DIRECTORY:{rollout_id}")
-            if any(time < 1100 or time > 1196 for time in times):
+            if any(time < 1100 or time > 1204 for time in times):
                 failures.append(f"FORBIDDEN_STATE_DIRECTORY:{rollout_id}")
             states: list[dict[str, Any]] = []
             issued_fields: list[list[str]] = []
@@ -136,7 +100,8 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                 try:
                     state = _state(state_folder, cfg)
                 except Exception as exc:
-                    failures.append(f"RAW_STATE:{rollout_id}:{time_ms}:{type(exc).__name__}:{exc}")
+                    failures.append(
+                        f"RAW_STATE:{rollout_id}:{time_ms}:{type(exc).__name__}:{exc}")
                     continue
                 states.append(state)
                 if index < len(row.get("states", [])):
@@ -197,8 +162,9 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     expected_files = 5 * sum(len(row["states"]) for row in raw_rows)
     raw_ok = bool(execution and len(lines) == expected_files and not any(
         failure.startswith("MISSING_ARTIFACT") for failure in failures))
-    prefixes = [independent_prefix_check(row, reference, stage["semantic_artifacts"])
-                for row in raw_rows] if execution else []
+    prefixes = [independent_prefix_check(
+        row, reference, stage["semantic_artifacts"], last_state=65, last_issue=64)
+        for row in raw_rows] if execution else []
     metrics = primary.scientific_metrics(raw_rows, stage) if execution else None
     expected_route = primary.route_for(stage, execution, raw_ok, prefixes, metrics)
     if prefixes != result.get("known_prefix_checks"):
@@ -233,25 +199,27 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     return {
         "schema_version": SCHEMA, "source_revision": source_revision,
         "stage_config_sha256": primary.CONFIG_SHA256,
-        "primary_sha256": sha256(result_path) if result_path.is_file() else None,
         "audit_passed": not failures, "failures": failures,
-        "primary_route": result.get("route"), "recomputed_route": expected_route,
-        "primary_scientific_passed": bool(result.get("passed")),
-        "raw_rollouts": len(raw_rows),
+        "primary_sha256": sha256(result_path) if result_path.is_file() else None,
+        "primary_route": result.get("route"),
+        "primary_scientific_passed": result.get("passed"),
+        "recomputed_route": expected_route,
+        "recomputed_counters": counters, "raw_rollouts": len(raw_rows),
         "raw_states": sum(len(row["states"]) for row in raw_rows),
-        "recomputed_counters": counters, "recomputed_inventory_sha256": inventory,
-        "recomputed_inventory_files": len(lines), "recomputed_inventory_bytes": total,
+        "recomputed_inventory_files": len(lines),
+        "recomputed_inventory_bytes": total,
+        "recomputed_inventory_sha256": inventory,
         "recomputed_known_prefix_checks": prefixes,
+        "recomputed_scientific_metrics": metrics,
+        "finite_nominal_hold_candidate": bool(not failures and metrics and metrics["passed"]),
         "raw_inputa_lifecycle": (
             "retained state-k inputa is outgoing issue-k; outgoing fields are "
             "independently checked and inputa byte hashes are not compared to "
             "the primary preissue hashes"),
-        "recomputed_scientific_metrics": metrics,
-        "finite_nominal_hold_candidate": bool(not failures and result.get("passed")),
-        "calibration_or_holdout_records_read": 0, "models_fit_or_updated": 0,
+        "models_fit_or_updated": 0, "calibration_or_holdout_records_read": 0,
         "claim_boundary": (
-            "Independent full-raw ID2X1 audit; PASS/FAIL remains finite source-local "
-            "mixed-allocation branch-shooting evidence only."),
+            "Independent full-raw ID2Y1 audit; PASS/FAIL remains finite source-local "
+            "late mixed-braking branch-shooting evidence only."),
     }
 
 
@@ -260,10 +228,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--stage-config", type=Path, default=primary.CONFIG)
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--source-revision", required=True)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
     result = audit(args.stage_config, args.run_dir, args.source_revision)
-    write_new(inside(args.output, "output"), result)
+    output = args.output or args.run_dir / "independent_raw_audit.json"
+    write_new(inside(output, "output"), result)
     print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
     return 0 if result["audit_passed"] else 2
 
