@@ -1,5 +1,14 @@
 # Current status
 
+> **Current status (2026-08-18, post-ID-2S1):** The measured four-branch TSC
+> discriminator passed execution, raw, prefix, two-dimensional time-series,
+> and Ip gates with independent exact recomputation. The primary route is
+> `ONE_MS_ID2S1_MEASURED_SEQUENCE_PASS_FRESH_REPLAY_TUBE_DESIGN_ONLY`.
+> Strong sequence-history interaction was observed in two branches, so the
+> old additive heuristic remains nomination-only. The next bounded stage is
+> a fresh exact replay of the same four streams to measure finite
+> repeatability and reserve; all records remain zero fit weight.
+
 > **Current status (2026-08-18, post-ID-2S0):** The zero-TSC ID-2S0 selector
 > passed with independent exact recomputation. All sixteen action streams
 > were exact, all `1820` four-sequence subsets were evaluated, and the chosen

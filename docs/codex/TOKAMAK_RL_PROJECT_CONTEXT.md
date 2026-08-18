@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-18, post-ID-2S1):** Four selected f03
+> two-arm sequences were measured in fresh TSC and independently audited.
+> Their combined time-resolved response passed the finite geometry/Ip gate,
+> while two sequences differed from isolated-response addition by about
+> `0.70 mm` in R. This supports history-conditioned dynamics and rejects use
+> of the additive selector as a plant model. The next stage may only replay
+> the same four streams to measure finite repeatability/residual reserve; it
+> is not yet model training or controller qualification.
+
 > **Current route notice (2026-08-18, post-ID-2S0):** ID-2S0 passed its
 > deterministic zero-TSC four-sequence nomination gate. The additive
 > shift-three construction remains explicitly non-physical and non-model.

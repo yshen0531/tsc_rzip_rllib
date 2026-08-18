@@ -1,5 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, post-ID-2S1):** ID-2S1 completed all
+> `4/4` fresh sequence branches and `136/136` verified one-ms advances.
+> Independent raw audit passed over 140 states and 700 required artifacts.
+> The measured response set passed all sixteen direction-progress, angular
+> coverage, and Ip gates, with minimum progress `0.037377 mm`, maximum gap
+> `134.432693 deg`, and maximum `|delta Ip| = 43.0516 A`. Two branches showed
+> approximately `0.70 mm` actual-minus-additive R interaction, proving that
+> the ID-2S0 additive construction is not a plant model.
+>
+> The sole active successor is a separately frozen fresh exact replay and
+> finite repeatability/residual-reserve stage for these same four sequences.
+> It must retain zero learning weight and independently audit all raw data.
+> It may not call two repeats a probabilistic or controller-grade tube. No
+> model, authority, recovery, controller, MPC, transport, crossing,
+> adaptation, expert data, or RL is yet authorized. All blocks below are
+> historical.
+
 > **Unique active task (2026-08-18, post-ID-2S0):** ID-2S0 completed with
 > separate-process exact recomputation and route
 > `ONE_MS_ID2S0_SEQUENCE_SELECTOR_PASS_FOUR_BRANCH_DESIGN_ONLY`. It ran zero

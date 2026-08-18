@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-2S1 amendment (2026-08-18):** Real two-arm sequence responses
+> passed the finite time-resolved 2-D geometry and Ip discriminator, but two
+> histories showed roughly `0.70 mm` R interaction relative to summing their
+> isolated arms. The architecture must therefore treat action age, return
+> edges, and the evolving causal state as dynamics inputs. Static pulse
+> addition remains an action-search heuristic only. Fresh exact replay and a
+> finite residual reserve are required next; neither two repeats nor exact
+> digital-twin determinism may be promoted to a probabilistic safety tube.
+
 > **Post-ID-2S0 amendment (2026-08-18):** The zero-TSC sequence selector
 > nominated four exact two-arm f03 branches and passed independent
 > recomputation. Its additive geometry is only a branch-reduction heuristic.
