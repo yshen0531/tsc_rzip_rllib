@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2W1 frozen):** ID-2V0 remains final as
+> **Unique active task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
+> 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected
+> independent full-raw audit. Its immutable route is
+> `ONE_MS_ID2W1_SUSTAINED_BRANCH_CONTROL_UTILITY_FAIL_REDESIGN`.
+> p04/p07 depth-6 responses reached `0.888--1.096 mm` peaks and left bounded
+> tails, but p04-plus failed the consecutive-state persistence gate and the
+> common-state geometry passed state 25 but failed state 26. Pausing p03 and
+> catching up also worsened the terminal source distance from `26.8068` to
+> `29.1251 mm`; no residual branch recovered that cost.
+>
+> The sole active successor is a prospectively bounded extended-p03 nominal
+> discriminator. It may run one exact stride-one p03 staircase beyond the
+> previously measured level 31 under the simulator-development contract,
+> with exact Card15/slew/current/Ip/paired-boundary monitoring and a finite
+> outer stop. Its only purpose is to locate useful transport, slowdown and
+> braking/hold design points. It may not fit a model, open calibration/blind
+> data, or claim controller/hold/recovery/waypoint authority. All blocks below
+> are historical.
+
+> **Historical task (2026-08-19, ID-2W1 frozen):** ID-2V0 remains final as
 > `ONE_MS_ID2V0_CURRENT_PROBE_CONTROL_UTILITY_INSUFFICIENT_BRANCH_DESIGN_REQUIRED`.
 > The sole active successor is the prospectively frozen ID-2W1 sustained
 > branch campaign. It replays one exact p03 level-18 prefix and executes only

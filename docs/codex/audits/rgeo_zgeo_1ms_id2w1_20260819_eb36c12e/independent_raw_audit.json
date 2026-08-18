@@ -1,0 +1,616 @@
+{
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw ID2W1 campaign audit; a scientific PASS/FAIL remains finite source-local action-grammar evidence only.",
+  "development_action_grammar_eligible": false,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "primary_route": "ONE_MS_ID2W1_SUSTAINED_BRANCH_CONTROL_UTILITY_FAIL_REDESIGN",
+  "primary_scientific_passed": false,
+  "primary_sha256": "4f0f1f2564b6974f74e8a4daf43db6f6673113bf79cdfa1ca1dd59bcc87f81e9",
+  "raw_rollouts": 6,
+  "raw_states": 294,
+  "recomputed_counters": {
+    "advance_attempts": 288,
+    "plant_advance_gotsc_calls": 288,
+    "reset_calls": 6,
+    "rollouts_completed": 6,
+    "unique_cells_completed": 6,
+    "verified_plant_advances": 288
+  },
+  "recomputed_inventory_bytes": 17314519656,
+  "recomputed_inventory_files": 1470,
+  "recomputed_inventory_sha256": "1d4fecf043a4fa41839c947bb5915b43e6d35e3f44a3912462b745783291457e",
+  "recomputed_matched_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "uninterrupted_nominal"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "pause_catchup_baseline"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04_plus_depth6"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04_minus_depth6"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p07_plus_depth6"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p07_minus_depth6"
+    }
+  ],
+  "recomputed_route": "ONE_MS_ID2W1_SUSTAINED_BRANCH_CONTROL_UTILITY_FAIL_REDESIGN",
+  "recomputed_scientific_metrics": {
+    "absolute_source_metrics": [
+      {
+        "minimum_source_rz_distance_m": 0.0,
+        "minimum_source_rz_distance_state_index": 0,
+        "rollout_id": "uninterrupted_nominal",
+        "terminal_source_rz_distance_m": 0.02680678489923107
+      },
+      {
+        "minimum_source_rz_distance_m": 0.0,
+        "minimum_source_rz_distance_state_index": 0,
+        "rollout_id": "pause_catchup_baseline",
+        "terminal_source_rz_distance_m": 0.02912509963890439
+      },
+      {
+        "minimum_source_rz_distance_m": 0.0,
+        "minimum_source_rz_distance_state_index": 0,
+        "rollout_id": "p04_plus_depth6",
+        "terminal_source_rz_distance_m": 0.029315840313588172
+      },
+      {
+        "minimum_source_rz_distance_m": 0.0,
+        "minimum_source_rz_distance_state_index": 0,
+        "rollout_id": "p04_minus_depth6",
+        "terminal_source_rz_distance_m": 0.028978339731713477
+      },
+      {
+        "minimum_source_rz_distance_m": 0.0,
+        "minimum_source_rz_distance_state_index": 0,
+        "rollout_id": "p07_plus_depth6",
+        "terminal_source_rz_distance_m": 0.029366132304317036
+      },
+      {
+        "minimum_source_rz_distance_m": 0.0,
+        "minimum_source_rz_distance_state_index": 0,
+        "rollout_id": "p07_minus_depth6",
+        "terminal_source_rz_distance_m": 0.02894634392564183
+      }
+    ],
+    "arm_metrics": [
+      {
+        "bounded_tail_passed": true,
+        "direction_id": "p04",
+        "ip_passed": true,
+        "maximum_absolute_ip_response_a": 310.2976000000017,
+        "maximum_terminal_absolute_ip_response_a": 21.087500000001455,
+        "maximum_terminal_rz_norm_m": 0.00039009693987551036,
+        "peak_rz_norm_m": 0.0009330282364293186,
+        "peak_state_index": 29,
+        "plateau_median_rz_norm_m": 0.0005004296308715758,
+        "plateau_state25_rz_m": [
+          -0.000713536499999945,
+          -1.5243499999983978e-05
+        ],
+        "plateau_state26_rz_m": [
+          -0.00012734049999996166,
+          -0.0002573815000000146
+        ],
+        "rollout_id": "p04_plus_depth6",
+        "sign": "plus",
+        "signal_and_persistence_passed": false,
+        "state25_state26_cosine": 0.462490383038845,
+        "state27_rzi_response": [
+          -0.0002572429999999626,
+          -0.00021780350000000226,
+          -310.2976000000017
+        ],
+        "terminal_rzi_response_by_state": [
+          [
+            0.00011679700000000182,
+            0.00035364350000000044,
+            18.989199999999983
+          ],
+          [
+            0.00011359950000000563,
+            0.0003731899999999816,
+            20.254499999999098
+          ],
+          [
+            0.00011788999999995387,
+            0.0003483569999999797,
+            21.087500000001455
+          ]
+        ]
+      },
+      {
+        "bounded_tail_passed": true,
+        "direction_id": "p04",
+        "ip_passed": true,
+        "maximum_absolute_ip_response_a": 308.8387999999977,
+        "maximum_terminal_absolute_ip_response_a": 20.46270000000004,
+        "maximum_terminal_rz_norm_m": 0.0003624298956436672,
+        "peak_rz_norm_m": 0.0008876018736591801,
+        "peak_state_index": 27,
+        "plateau_median_rz_norm_m": 0.0008013797235891852,
+        "plateau_state25_rz_m": [
+          0.0007469465000000675,
+          2.962700000000429e-05
+        ],
+        "plateau_state26_rz_m": [
+          0.0008549435000000383,
+          2.1964999999984913e-05
+        ],
+        "rollout_id": "p04_minus_depth6",
+        "sign": "minus",
+        "signal_and_persistence_passed": true,
+        "state25_state26_cosine": 0.9999025989431651,
+        "state27_rzi_response": [
+          0.0008875910000000209,
+          4.393500000005046e-06,
+          308.8387999999977
+        ],
+        "terminal_rzi_response_by_state": [
+          [
+            -0.0001456914999999892,
+            -0.00031274250000001835,
+            -18.18630000000121
+          ],
+          [
+            -0.00014881099999997094,
+            -0.0003065235000000166,
+            -19.579100000002654
+          ],
+          [
+            -0.00015555200000005875,
+            -0.0003273515000000171,
+            -20.46270000000004
+          ]
+        ]
+      },
+      {
+        "bounded_tail_passed": true,
+        "direction_id": "p07",
+        "ip_passed": true,
+        "maximum_absolute_ip_response_a": 166.08250000000044,
+        "maximum_terminal_absolute_ip_response_a": 13.041900000000169,
+        "maximum_terminal_rz_norm_m": 0.00038454577507916006,
+        "peak_rz_norm_m": 0.0010963275189707035,
+        "peak_state_index": 29,
+        "plateau_median_rz_norm_m": 0.0005900081924171223,
+        "plateau_state25_rz_m": [
+          -0.0007041784999999301,
+          -0.00015683800000002024
+        ],
+        "plateau_state26_rz_m": [
+          -0.00014250549999994533,
+          -0.00043587949999999986
+        ],
+        "rollout_id": "p07_plus_depth6",
+        "sign": "plus",
+        "signal_and_persistence_passed": true,
+        "state25_state26_cosine": 0.5099540792293528,
+        "state27_rzi_response": [
+          -0.00030029249999996566,
+          -0.00043591700000002176,
+          -165.2374000000018
+        ],
+        "terminal_rzi_response_by_state": [
+          [
+            -0.00038437749999997717,
+            1.1374999999980151e-05,
+            13.041900000000169
+          ],
+          [
+            -0.0003715859999999793,
+            2.040349999998803e-05,
+            12.364799999999377
+          ],
+          [
+            -0.0003657419999999467,
+            3.717999999999777e-06,
+            12.13379999999961
+          ]
+        ]
+      },
+      {
+        "bounded_tail_passed": true,
+        "direction_id": "p07",
+        "ip_passed": true,
+        "maximum_absolute_ip_response_a": 162.85609999999724,
+        "maximum_terminal_absolute_ip_response_a": 14.464500000001863,
+        "maximum_terminal_rz_norm_m": 0.0003647523317214859,
+        "peak_rz_norm_m": 0.0009899192875887902,
+        "peak_state_index": 28,
+        "plateau_median_rz_norm_m": 0.000826681715083555,
+        "plateau_state25_rz_m": [
+          0.0007392150000000708,
+          0.00017286750000000684
+        ],
+        "plateau_state26_rz_m": [
+          0.0008701215000000984,
+          0.00020613249999998362
+        ],
+        "rollout_id": "p07_minus_depth6",
+        "sign": "minus",
+        "signal_and_persistence_passed": true,
+        "state25_state26_cosine": 0.9999958296847602,
+        "state27_rzi_response": [
+          0.0009333105000000064,
+          0.00022940199999998967,
+          162.85609999999724
+        ],
+        "terminal_rzi_response_by_state": [
+          [
+            0.00036389650000001605,
+            2.497199999998423e-05,
+            -14.464500000001863
+          ],
+          [
+            0.000347737500000056,
+            3.7481999999991467e-05,
+            -12.673099999999977
+          ],
+          [
+            0.0003277310000000533,
+            4.226200000000124e-05,
+            -11.456899999997404
+          ]
+        ]
+      }
+    ],
+    "common_state_geometry": [
+      {
+        "direction_count": 64,
+        "maximum_angular_gap_deg": 169.71515381062,
+        "minimum_all_direction_best_progress_m": 8.706121931028189e-05,
+        "passed": true,
+        "primary_gate": true,
+        "response_vectors_m": [
+          [
+            -0.000713536499999945,
+            -1.5243499999983978e-05
+          ],
+          [
+            0.0007469465000000675,
+            2.962700000000429e-05
+          ],
+          [
+            -0.0007041784999999301,
+            -0.00015683800000002024
+          ],
+          [
+            0.0007392150000000708,
+            0.00017286750000000684
+          ]
+        ],
+        "state_index": 25
+      },
+      {
+        "direction_count": 64,
+        "maximum_angular_gap_deg": 230.34819989662859,
+        "minimum_all_direction_best_progress_m": -0.00016696232173411612,
+        "passed": false,
+        "primary_gate": true,
+        "response_vectors_m": [
+          [
+            -0.00012734049999996166,
+            -0.0002573815000000146
+          ],
+          [
+            0.0008549435000000383,
+            2.1964999999984913e-05
+          ],
+          [
+            -0.00014250549999994533,
+            -0.00043587949999999986
+          ],
+          [
+            0.0008701215000000984,
+            0.00020613249999998362
+          ]
+        ],
+        "state_index": 26
+      },
+      {
+        "direction_count": 64,
+        "maximum_angular_gap_deg": 206.4448485676007,
+        "minimum_all_direction_best_progress_m": -0.00010278156156744567,
+        "passed": false,
+        "primary_gate": false,
+        "response_vectors_m": [
+          [
+            -0.0002572429999999626,
+            -0.00021780350000000226
+          ],
+          [
+            0.0008875910000000209,
+            4.393500000005046e-06
+          ],
+          [
+            -0.00030029249999996566,
+            -0.00043591700000002176
+          ],
+          [
+            0.0009333105000000064,
+            0.00022940199999998967
+          ]
+        ],
+        "state_index": 27
+      }
+    ],
+    "gate_passes": {
+      "bounded_tail": true,
+      "paired_ip": true,
+      "primary_common_state_geometry": false,
+      "signal_and_persistence": false
+    },
+    "passed": false,
+    "pause_opportunity_cost_rzi_by_state": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        -4.83450000000607e-05,
+        1.597550000001502e-05,
+        -21.1163000000015
+      ],
+      [
+        -0.0001401859999999866,
+        7.888400000000129e-05,
+        -52.195599999999104
+      ],
+      [
+        -0.00026671400000000123,
+        0.00016247550000000888,
+        -85.9194000000025
+      ],
+      [
+        -0.0004442590000000024,
+        0.0003116645000000029,
+        -122.21620000000257
+      ],
+      [
+        -0.0006065494999999421,
+        0.0004349649999999816,
+        -158.61039999999775
+      ],
+      [
+        -0.0007537580000001043,
+        0.0005787675000000214,
+        -195.43930000000182
+      ],
+      [
+        -0.0009231610000000057,
+        0.0007610859999999942,
+        -232.0538000000015
+      ],
+      [
+        -0.0010689980000000432,
+        0.000959552500000016,
+        -270.53609999999753
+      ],
+      [
+        -0.001261668000000049,
+        0.0011840570000000161,
+        -307.8763999999974
+      ],
+      [
+        -0.0007631940000000226,
+        0.00116783899999999,
+        -351.08810000000085
+      ],
+      [
+        -0.0009760644999999846,
+        0.001435193000000029,
+        -388.03960000000006
+      ],
+      [
+        -0.001244971500000025,
+        0.001722885500000021,
+        -422.7360000000008
+      ],
+      [
+        -0.0014662320000000673,
+        0.0020017289999999938,
+        -458.9387999999999
+      ],
+      [
+        -0.001683016500000023,
+        0.002282902500000003,
+        -473.09100000000035
+      ],
+      [
+        -0.0018030079999999948,
+        0.0025372654999999827,
+        -457.0794999999998
+      ],
+      [
+        -0.002453952500000023,
+        0.0028769079999999697,
+        -422.063299999998
+      ],
+      [
+        -0.0023350364999998874,
+        0.0030034200000000066,
+        -384.4904999999999
+      ],
+      [
+        -0.002176673499999948,
+        0.003090831500000002,
+        -344.13790000000154
+      ],
+      [
+        -0.002008445000000081,
+        0.0031528469999999864,
+        -304.8784000000014
+      ],
+      [
+        -0.0018518909999999389,
+        0.0031795044999999855,
+        -263.9445999999989
+      ],
+      [
+        -0.0016987819999999543,
+        0.0031751349999999956,
+        -224.58789999999863
+      ],
+      [
+        -0.0008571250000000141,
+        0.00297679599999999,
+        -189.8826999999983
+      ],
+      [
+        -0.000762314499999972,
+        0.0029941170000000045,
+        -150.30199999999968
+      ],
+      [
+        -0.0006347079999999838,
+        0.0029323945000000184,
+        -109.89890000000014
+      ],
+      [
+        -0.00048473149999994636,
+        0.002862782499999994,
+        -68.67109999999957
+      ],
+      [
+        -0.00103494049999997,
+        0.00294857699999998,
+        -20.032100000000355
+      ],
+      [
+        -0.0008362325000000892,
+        0.002797285500000024,
+        22.16779999999926
+      ],
+      [
+        -0.0006684479999999882,
+        0.0026756555000000126,
+        40.22270000000208
+      ],
+      [
+        -0.0005674599999999641,
+        0.0025988075000000083,
+        47.24949999999808
+      ]
+    ]
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2w1-independent-raw-v1",
+  "source_revision": "eb36c12e8ff5d97a8aefdddce31a00948aca7169",
+  "stage_config_sha256": "7ed56032dc8bfe72d89636bf3aa76a8d75fc8ab7416ab0aacfccc680149c411c"
+}

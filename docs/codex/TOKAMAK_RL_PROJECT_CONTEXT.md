@@ -1,6 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-19, ID-2W1):** the next finite action-
+> **Current route notice (2026-08-19, post-ID-2W1):** the six-branch
+> p04/p07 depth-6 pause/return grammar completed exactly but failed its
+> sustained common-state utility gate. State 25 had finite two-axis geometry;
+> state 26 did not, and p04-plus changed direction too much across the two
+> observations. Returned tails and Ip remained bounded, so this is an
+> action-grammar result rather than an execution or safety conclusion.
+>
+> The immediate route returns to the best known moving nominal. The p03
+> stride-one path has only been measured through level 31 even though the
+> exact current lattice has much larger headroom. One bounded extended-p03
+> development trajectory will locate whether and when continued transport
+> approaches the source corridor, after which slowdown/braking/hold branches
+> can be frozen. Model fitting, calibration/blind data, authority, controller,
+> recovery and waypoint claims remain later gates. Older notices are
+> historical.
+
+> **Historical route notice (2026-08-19, ID-2W1):** the next finite action-
 > grammar discriminator is frozen. It uses one common p03 level-18 causal
 > prefix and only six branches: uninterrupted nominal, paused/catch-up
 > baseline, and four p04/p07 signed cumulative depth-6 branches with exact

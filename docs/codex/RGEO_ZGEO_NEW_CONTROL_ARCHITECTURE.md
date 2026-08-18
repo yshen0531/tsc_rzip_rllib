@@ -1,5 +1,21 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **ID-2W1 architecture freeze (2026-08-19):** before returning to model
+> **Post-ID-2W1 architecture amendment (2026-08-19):** retain exact actuation,
+> exact one-ms observations, causal history, uncertainty-aware rolling
+> control, and the separation between simulator development and controller
+> qualification. ID-2W1 shows that allocating more time to p04/p07 makes the
+> response measurable, but not persistently two-axis at adjacent common
+> states. It also exposes a material cost from pausing the selected p03
+> transport.
+>
+> Therefore the near-term nominal and residual problems must not be conflated.
+> First extend the selected p03 moving nominal beyond its previously measured
+> level-31 horizon and identify transport/slowdown/braking locations. Only
+> then design time-multiplexed residual sequences around that contemporaneous
+> nominal. A transient state-25 positive span is useful sequence evidence,
+> not a general actuator basis or recovery proof. Models resume only after a
+> useful nominal/sequence target exists.
+
+> **Historical ID-2W1 architecture freeze (2026-08-19):** before returning to model
 > comparison, test one finite cumulative residual grammar at a common causal
 > prefix. The grammar time-multiplexes p03 transport and a six-step p04/p07
 > residual ramp, then performs an exact residual return and delayed p03

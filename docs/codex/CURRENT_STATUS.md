@@ -1,6 +1,24 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2W1 design frozen):** the finite successor
+> **Current status (2026-08-19, post-ID-2W1):** all six frozen branches and
+> 288/288 plant advances completed. Exact action/current/common-prefix/raw
+> gates pass, and the corrected independent audit reproduces all 294 states,
+> 1,470 artifacts, counters, metrics and the final route. The initial audit's
+> state-19 prefix error was reporting-only: it read outgoing raw `inputa` as
+> the command active on arrival. Commit `ec0b9891` repairs that reconstruction
+> without rerunning TSC; server suites pass `10/10` focused and `346/346`
+> one-ms tests.
+>
+> ID-2W1 is a clean action-grammar FAIL. Four cumulative arms produced
+> `0.888--1.096 mm` peaks and bounded `0.362--0.390 mm` terminal tails, but
+> p04-plus persistence failed and two-axis geometry existed at state 25 only,
+> not state 26. The pause/catch-up baseline also paid a `2.318 mm` terminal
+> source-distance penalty relative to uninterrupted p03, and none of the four
+> branches recovered it. The next task is one bounded continued-p03 nominal
+> trajectory to place a later slowdown/braking/hold design; no model or
+> controller is yet qualified.
+
+> **Historical status (2026-08-19, ID-2W1 design frozen):** the finite successor
 > to V0 is now specified before implementation or plant execution. Six exact
 > source-prefix branches compare uninterrupted p03 transport, the cost of a
 > 14-issue pause/return allocation, and four cumulative p04/p07 signed arms.
