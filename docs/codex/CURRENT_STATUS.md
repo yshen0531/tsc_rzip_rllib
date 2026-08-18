@@ -14,9 +14,12 @@
 > p04-plus persistence failed and two-axis geometry existed at state 25 only,
 > not state 26. The pause/catch-up baseline also paid a `2.318 mm` terminal
 > source-distance penalty relative to uninterrupted p03, and none of the four
-> branches recovered it. The next task is one bounded continued-p03 nominal
-> trajectory to place a later slowdown/braking/hold design; no model or
-> controller is yet qualified.
+> branches recovered it. ID-2W2 is now frozen as one bounded continued-p03
+> nominal trajectory through level 79. Its pre-existing prefix ends at state
+> 32; all later effects are explicitly simulator-development exploration. A
+> finite PASS requires at least three consecutive post-state-32 observations
+> inside a 15 mm source-relative R/Z corridor. No model or controller is yet
+> qualified.
 
 > **Historical status (2026-08-19, ID-2W1 design frozen):** the finite successor
 > to V0 is now specified before implementation or plant execution. Six exact

@@ -10,11 +10,12 @@
 > catching up also worsened the terminal source distance from `26.8068` to
 > `29.1251 mm`; no residual branch recovered that cost.
 >
-> The sole active successor is a prospectively bounded extended-p03 nominal
-> discriminator. It may run one exact stride-one p03 staircase beyond the
-> previously measured level 31 under the simulator-development contract,
-> with exact Card15/slew/current/Ip/paired-boundary monitoring and a finite
-> outer stop. Its only purpose is to locate useful transport, slowdown and
+> The sole active successor is the prospectively frozen ID-2W2 extended-p03
+> nominal discriminator. It runs at most one 80-issue rollout: issue 0 is q0
+> and issues 1--79 are exact stride-one p03-minus levels. Actions 0--31 and
+> states 0--32 must reproduce ID-2W1; issue 32 is the first novel continuation.
+> Exact Card15/slew/current/Ip/paired-boundary gates and a finite empirical
+> outer stop remain active. ID-2W2 only locates transport, slowdown and
 > braking/hold design points. It may not fit a model, open calibration/blind
 > data, or claim controller/hold/recovery/waypoint authority. All blocks below
 > are historical.

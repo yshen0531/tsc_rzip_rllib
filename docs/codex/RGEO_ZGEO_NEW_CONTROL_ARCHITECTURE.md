@@ -8,8 +8,9 @@
 > transport.
 >
 > Therefore the near-term nominal and residual problems must not be conflated.
-> First extend the selected p03 moving nominal beyond its previously measured
-> level-31 horizon and identify transport/slowdown/braking locations. Only
+> ID-2W2 therefore extends the selected p03 moving nominal once, from its
+> measured level-31 horizon through level 79, and identifies transport,
+> slowdown and braking locations under finite empirical stops. Only
 > then design time-multiplexed residual sequences around that contemporaneous
 > nominal. A transient state-25 positive span is useful sequence evidence,
 > not a general actuator basis or recovery proof. Models resume only after a

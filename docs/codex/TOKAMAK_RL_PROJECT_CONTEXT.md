@@ -9,8 +9,9 @@
 >
 > The immediate route returns to the best known moving nominal. The p03
 > stride-one path has only been measured through level 31 even though the
-> exact current lattice has much larger headroom. One bounded extended-p03
-> development trajectory will locate whether and when continued transport
+> exact current lattice has much larger headroom. ID-2W2 freezes one 80-issue
+> development trajectory through p03 level 79 and a 15 mm, three-consecutive-
+> state transport gate. It will locate whether and when continued transport
 > approaches the source corridor, after which slowdown/braking/hold branches
 > can be frozen. Model fitting, calibration/blind data, authority, controller,
 > recovery and waypoint claims remain later gates. Older notices are
