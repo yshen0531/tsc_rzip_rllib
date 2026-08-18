@@ -35,14 +35,18 @@ The exact ID-2Z2 selected Round-B compact supplies states 0--77 and actions
 decision state.
 
 There are at most five decisions at states 77, 81, 85, 89 and 93.  At each
-decision the stage launches three fresh canonical-source full-prefix
+decision the stage constructs up to three fresh canonical-source full-prefix
 branches:
 
 1. hold the current exact target;
 2. apply four exact `p03-forward` increments;
 3. apply four exact `p07-minus` increments.
 
-Each branch then holds its terminal target for eight more issues, so the
+Before any reset, every constructed stream is checked for exact Card15
+representation, per-issue slew and the unchanged 95-A headroom.  Hold is
+mandatory; an inadmissible non-hold stream is recorded as an offline
+exclusion and is never issued.  Every admissible branch then holds its
+terminal target for eight more issues, so the
 branch exposes four active effects and an eight-ms tail.  Only the first four
 issues of the selected branch become part of the logical main path; the next
 decision is reconstructed by replaying the complete selected causal prefix

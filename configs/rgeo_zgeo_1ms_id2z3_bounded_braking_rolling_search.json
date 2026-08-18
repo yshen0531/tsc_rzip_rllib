@@ -114,7 +114,7 @@
   "evidence": {
     "design": {
       "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z3_BOUNDED_BRAKING_ROLLING_SEARCH_DESIGN.md",
-      "sha256": "39e3932af770194dba12c0cebc04ff5376e39f8bb54255a1ac2975475dd893b5"
+      "sha256": "2dd791778eca88b1f4fba4d80e6b83b1f7d04573124fd2502513ea4295abcd0c"
     },
     "id2z2_config": {
       "path": "configs/rgeo_zgeo_1ms_id2z2_two_decision_rolling_branch.json",
