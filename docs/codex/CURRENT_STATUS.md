@@ -1,6 +1,15 @@
 # Current status
 
-> **Current status (2026-08-18, post-ID-2S2):** the four measured f03
+> **Current status (2026-08-18, post-ID-2T1):** execution, prefix, raw,
+> action and independent-audit gates passed, but the real matched continuation
+> utility gate failed `0/4`. The p04+ response at state 30 was consistent
+> across histories (maximum R/Z spread `0.009462 mm`) yet wrong-way relative
+> to the source-error correction, with best projections near `-0.029 mm`.
+> This stops the sequence-extension ladder and triggers a zero-new-TSC
+> timing/state/history attribution and route review before any new model or
+> plant campaign.
+
+> **Historical status (2026-08-18, post-ID-2S2):** the four measured f03
 > sequence branches reproduced exactly in fresh TSC. Primary and independent
 > full-raw results agree on `4/4` rollouts, `136/136` advances, 140 states,
 > 700 artifacts and route

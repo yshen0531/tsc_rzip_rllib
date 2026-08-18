@@ -1,6 +1,17 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2S2 amendment (2026-08-18):** all four measured f03 two-arm
+> **Post-ID-2T1 amendment (2026-08-18):** a common p04+ continuation after
+> four exact state-30 histories was repeatably measurable but wrong-way for
+> source-error correction in all four cases. The small cross-history spread
+> and the contrast with its earlier issue-24 response require explicit
+> time/evolving-state/action-age conditioning; they do not prove whether time,
+> position or hidden passive memory is the isolated cause. Stop the open-loop
+> sequence-extension ladder. Next use a zero-TSC attribution only to freeze a
+> prospective fit-eligible timing/history campaign, then compare a small
+> support-gated time/state-scheduled model. Offline canonical-source shooting
+> remains a teacher/search tool, not a 1 ms online Oracle.
+
+> **Historical post-ID-2S2 amendment (2026-08-18):** all four measured f03 two-arm
 > trajectories and their paired responses reproduced exactly in a fresh TSC
 > replay and independent full-raw audit. This qualifies finite deterministic
 > canonical-source replay for bounded offline shooting design, not a 1 ms

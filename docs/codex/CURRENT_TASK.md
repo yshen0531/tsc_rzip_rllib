@@ -1,6 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2S2):** ID-2S2 completed all
+> **Unique active task (2026-08-18, post-ID-2T1 route review):** ID-2T1
+> completed `4/4` authentic continuations and `136/136` verified one-ms
+> advances with exact S2 prefixes and a corrected independent audit over 140
+> states and 700 artifacts. The common p04+ continuation had measurable
+> `0.088--0.098 mm` peak R/Z response and bounded Ip, but moved away from the
+> fixed-source correction direction after every state-30 history. The frozen
+> route is `ONE_MS_ID2T1_MATCHED_CONTINUATION_CONTROL_UTILITY_FAIL_REVIEW`.
+>
+> Development is paused for route confirmation. The recommended next stage is
+> one bounded zero-new-TSC timing/sign attribution audit comparing the same
+> exact primitive at issue 24 and issue 30 with deployable causal features.
+> It may write statistical analysis code but may not tune a model, run TSC,
+> or turn S1/S2/T1 into fitting data. Its output should freeze a small fresh
+> fit-eligible matched timing/history campaign. A continued action-arm ladder,
+> a larger global neural model, calibration, authority, recovery, controller,
+> MPC, transport, crossing, adaptation and RL are blocked pending review. All
+> blocks below are historical.
+
+> **Historical task (2026-08-18, post-ID-2S2):** ID-2S2 completed all
 > `4/4` fresh exact replays, `136/136` verified one-ms advances, and an
 > independent audit of 140 states and 700 required artifacts. All checked
 > R_geo/Z_geo/R_mid, Ip, 14-coil, 48-wire, full trajectory and paired-response

@@ -1,0 +1,232 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Independent full-raw ID2T1 matched continuation audit only.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "primary_sha256": "a53339a4bce5743562229e003bccfc16dcee70d775cd574965678d21364ff59d",
+  "raw_rollouts": 4,
+  "raw_states": 140,
+  "recomputed_counters": {
+    "advance_attempts": 136,
+    "plant_advance_gotsc_calls": 136,
+    "reset_calls": 4,
+    "rollouts_completed": 4,
+    "verified_plant_advances": 136
+  },
+  "recomputed_inventory_bytes": 8245009360,
+  "recomputed_inventory_files": 700,
+  "recomputed_inventory_sha256": "3cdb6c856db23c5112d995db16af18465fcc84375ce16bedc5dc401eb0365ee5",
+  "recomputed_matched_continuation_metrics": {
+    "history_metrics": [
+      {
+        "absolute_source_distance_improvement_m": [
+          -2.9987298431007753e-05,
+          -5.475688945141485e-05,
+          -4.242345600354719e-05,
+          -2.925107690368925e-05
+        ],
+        "best_absolute_source_distance_improvement_m": -2.925107690368925e-05,
+        "maximum_absolute_paired_ip_response_a": 42.359199999998964,
+        "paired_ip_response_a": [
+          -27.865700000002107,
+          -42.359199999998964,
+          -19.601699999999255,
+          -7.1075999999993655
+        ],
+        "paired_rz_response_m": [
+          [
+            -4.793700000005341e-05,
+            -1.1344999999995942e-06
+          ],
+          [
+            -9.04040000000439e-05,
+            -4.833500000009372e-06
+          ],
+          [
+            -7.261450000006775e-05,
+            -6.073999999994806e-06
+          ],
+          [
+            -4.421150000000207e-05,
+            7.630000000147241e-07
+          ]
+        ],
+        "passed": false,
+        "peak_paired_rz_norm_m": 9.053312067005105e-05,
+        "peak_source_correction_projection_m": -2.9228591556437053e-05,
+        "sequence_id": "p04_plus__then__p07_minus",
+        "source_correction_projection_m": [
+          -2.995563452214972e-05,
+          -5.464332731599725e-05,
+          -4.234927547267079e-05,
+          -2.9228591556437053e-05
+        ],
+        "state_indices": [
+          31,
+          32,
+          33,
+          34
+        ]
+      },
+      {
+        "absolute_source_distance_improvement_m": [
+          -2.999675534278226e-05,
+          -5.941148652379574e-05,
+          -4.371470608319217e-05,
+          -2.9552094288742142e-05
+        ],
+        "best_absolute_source_distance_improvement_m": -2.9552094288742142e-05,
+        "maximum_absolute_paired_ip_response_a": 42.624400000000605,
+        "paired_ip_response_a": [
+          -27.80749999999898,
+          -42.624400000000605,
+          -19.80489999999918,
+          -7.148600000000442
+        ],
+        "paired_rz_response_m": [
+          [
+            -4.8078999999923155e-05,
+            -1.1899999999842592e-06
+          ],
+          [
+            -9.768700000001296e-05,
+            -4.841999999977142e-06
+          ],
+          [
+            -7.414100000002755e-05,
+            -5.637499999988638e-06
+          ],
+          [
+            -4.462599999999206e-05,
+            8.199999999985996e-07
+          ]
+        ],
+        "passed": false,
+        "peak_paired_rz_norm_m": 9.780692681503857e-05,
+        "peak_source_correction_projection_m": -2.9529193077064415e-05,
+        "sequence_id": "p07_minus__then__p07_minus",
+        "source_correction_projection_m": [
+          -2.9964745825405683e-05,
+          -5.927943466603229e-05,
+          -4.363816206875322e-05,
+          -2.9529193077064415e-05
+        ],
+        "state_indices": [
+          31,
+          32,
+          33,
+          34
+        ]
+      },
+      {
+        "absolute_source_distance_improvement_m": [
+          -3.0152952821653478e-05,
+          -5.352021956480518e-05,
+          -4.448384392680485e-05,
+          -2.9194816997663714e-05
+        ],
+        "best_absolute_source_distance_improvement_m": -2.9194816997663714e-05,
+        "maximum_absolute_paired_ip_response_a": 42.83260000000155,
+        "paired_ip_response_a": [
+          -27.81880000000092,
+          -42.83260000000155,
+          -19.32259999999951,
+          -7.121600000002218
+        ],
+        "paired_rz_response_m": [
+          [
+            -4.795099999999053e-05,
+            -1.085999999983489e-06
+          ],
+          [
+            -8.822500000005284e-05,
+            -4.815000000005232e-06
+          ],
+          [
+            -7.785750000000036e-05,
+            -7.969500000010177e-06
+          ],
+          [
+            -4.39515000000279e-05,
+            8.484999999974763e-07
+          ]
+        ],
+        "passed": false,
+        "peak_paired_rz_norm_m": 8.835629490879173e-05,
+        "peak_source_correction_projection_m": -2.917273003841462e-05,
+        "sequence_id": "p07_minus__then__p07_plus",
+        "source_correction_projection_m": [
+          -3.012150103852969e-05,
+          -5.341226225215347e-05,
+          -4.43961990996911e-05,
+          -2.917273003841462e-05
+        ],
+        "state_indices": [
+          31,
+          32,
+          33,
+          34
+        ]
+      },
+      {
+        "absolute_source_distance_improvement_m": [
+          -2.9817040628227903e-05,
+          -5.5971660556330266e-05,
+          -4.608644327504935e-05,
+          -2.9110679187694527e-05
+        ],
+        "best_absolute_source_distance_improvement_m": -2.9110679187694527e-05,
+        "maximum_absolute_paired_ip_response_a": 41.97030000000086,
+        "paired_ip_response_a": [
+          -27.889600000002247,
+          -41.97030000000086,
+          -19.223000000001775,
+          -7.107499999998254
+        ],
+        "paired_rz_response_m": [
+          [
+            -4.777899999997004e-05,
+            -1.4530000000262389e-06
+          ],
+          [
+            -9.192450000006236e-05,
+            -4.83700000000753e-06
+          ],
+          [
+            -8.044849999999659e-05,
+            -8.12850000002363e-06
+          ],
+          [
+            -4.3916999999948914e-05,
+            7.479999999809861e-07
+          ]
+        ],
+        "passed": false,
+        "peak_paired_rz_norm_m": 9.205167173528972e-05,
+        "peak_source_correction_projection_m": -2.9088581283234142e-05,
+        "sequence_id": "p07_plus__then__p04_plus",
+        "source_correction_projection_m": [
+          -2.978553917970005e-05,
+          -5.585516084579553e-05,
+          -4.5993251415310146e-05,
+          -2.9088581283234142e-05
+        ],
+        "state_indices": [
+          31,
+          32,
+          33,
+          34
+        ]
+      }
+    ],
+    "maximum_cross_history_rz_response_spread_m": 9.462038522392712e-06,
+    "passed": false,
+    "passed_histories": 0
+  },
+  "recomputed_prefix_checks_passed": true,
+  "recomputed_route": "ONE_MS_ID2T1_MATCHED_CONTINUATION_CONTROL_UTILITY_FAIL_REVIEW",
+  "records_have_zero_fit_weight": true,
+  "schema_version": "rgeo-zgeo-1ms-id2t1-matched-continuation-independent-v1",
+  "source_revision": "33ae7b968a5099e5add1b7fb28aacbb6c669b913",
+  "stage_config_sha256": "49f736edb1a38bed1d2f6b41a44ebba041a4e7c836c93b5b09b9a77949f9b5d9"
+}

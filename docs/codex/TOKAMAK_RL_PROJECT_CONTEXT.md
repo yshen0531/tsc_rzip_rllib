@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-18, post-ID-2S2):** four fresh exact
+> **Current route notice (2026-08-18, post-ID-2T1):** the same p04+ pulse
+> that had useful earlier f03 response was measured after four exact state-30
+> histories and was consistently wrong-way for source-error correction. This
+> is clean time/evolving-state dependence, not nondeterminism: execution and
+> raw integrity passed and cross-history spread was only `0.009462 mm`.
+> Repeatedly extending the action sequence without a time/state-conditioned
+> representation is now stopped. The next recommendation is a bounded
+> zero-TSC attribution that designs fresh fit-eligible matched timing/history
+> data; existing S1/S2/T1 records remain zero fitting weight.
+
+> **Historical route notice (2026-08-18, post-ID-2S2):** four fresh exact
 > replays reproduced every checked S1 physical trajectory and paired response
 > with zero difference, and the independent raw audit passed. This supports
 > finite canonical-source offline shooting as the next architecture
