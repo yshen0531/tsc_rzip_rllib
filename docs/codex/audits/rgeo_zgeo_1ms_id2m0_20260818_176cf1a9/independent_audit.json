@@ -1,0 +1,18 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Separate-process deterministic replay of ID2M0 using the frozen ID2L1 implementation; not an independent model semantics theorem.",
+  "diagnostic_refits_recomputed": 4,
+  "model_payload_sha256": null,
+  "new_candidates": 0,
+  "plant_advances": 0,
+  "primary_predictions_exactly_recomputed": true,
+  "primary_predictions_sha256": "b842011b87231eb3fa28117191ed27be795d7c1c479f1e0548da2d461115b32d",
+  "primary_result_exactly_recomputed": true,
+  "primary_result_sha256": "0624799999d2efca584ad2c75960e7d8e4568bb06fa4960738a963b2c4d84de1",
+  "reset_calls": 0,
+  "route": "ONE_MS_ID2M0_DIAGNOSTIC_ATTRIBUTION_PASS_ID2M1_DESIGN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2m0-diagnostic-refit-audit-v1",
+  "source_revision": "176cf1a9169c56733cd51d7a24ac00cc9824ae50",
+  "stage_config_sha256": "054c1b2a35fd317a3723db8a9d022a94350f6646d96e825f3fa9b37d8b2ad662",
+  "tsc_calls": 0
+}

@@ -1,6 +1,29 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-17, ID-2M0 diagnostic attribution):** the
+> **Unique active task (2026-08-18, post-ID-2M0):** ID-2M0 passed as
+> `ONE_MS_ID2M0_DIAGNOSTIC_ATTRIBUTION_PASS_ID2M1_DESIGN_ONLY`. Four frozen
+> `stable_signed_even` fold refits reproduced every ID-2L1 aggregate with
+> maximum difference `0.0`; a separate process exactly reproduced the result
+> and 720 prediction rows. Server tests passed `10/10` focused and `213/213`
+> matching one-ms tests. TSC/reset/plant counts remain zero.
+>
+> The formal ID-2L1 FAIL remains unchanged. Its cell-weighted misses reduce
+> to `3/3/2/2` unique pre-probe conditioner hold/return/tail events; all
+> issue-25--28 probe-window maxima are below `0.277 mm`. The retained
+> signed/even model is therefore a response component, not a complete world
+> model. ID-2M0 also confirms that current exact R_geo/Z_geo/Ip and actual
+> current are absent from its dynamics features, and that the old GRU
+> recenter evaluator rewrites causal history.
+>
+> The immediate task is a separately frozen zero-new-TSC ID-2M1 comparison
+> of at most two small candidates: (1) separated nominal plus causal
+> edge/dwell/return/tail memory; (2) the same plus a low-dimensional bounded
+> exact-observation/current innovation state. No larger network or label
+> feature is allowed. A PASS may open only fresh calibration and a new blind
+> whole-history holdout; authority, recovery and control remain blocked.
+> All blocks below are historical.
+
+> **Historical task (2026-08-17, ID-2M0 diagnostic attribution):** the
 > post-ID-2L1 route review found that the frozen FAIL is real under its
 > cell-weighted gates but is concentrated in a few shared conditioner
 > hold/return/tail events. The baseline plus four probe siblings repeat each

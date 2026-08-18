@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-17, ID-2M0):** ID-2L1's leading
+> **Active new-round context (2026-08-18, post-ID-2M0):** the diagnostic
+> refit passed and localized ID-2L1's short-horizon failure to a small number
+> of repeated conditioner hold/return/tail events. The issue-25 probe response
+> remains useful, but the backbone omits exact current R_geo/Z_geo/Ip and
+> actual-current innovation from its dynamics. The GRU comparison also used
+> an invalid history-rewrite recenter evaluator.
+>
+> The next discriminator is deliberately small: separated nominal and causal
+> event/action memory, optionally followed by a bounded low-dimensional
+> observation/current innovation state. It is not a larger recurrent model
+> and needs no new TSC. Fresh calibration and blind whole-history holdout
+> remain mandatory before authority, recovery or control. The fixed-1100-ms
+> two-axis waypoint and repeated R_mid-crossing goal is unchanged; all older
+> notices are historical.
+
+> **Historical new-round context (2026-08-17, ID-2M0):** ID-2L1's leading
 > signed/even fixed-pole model is useful for the matched issue-25 probe
 > response but is not the intended history-conditioned observer. Exact
 > current R_geo/Z_geo/Ip only resets its rollout origin; neither those values,

@@ -1,6 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2M0 architecture correction (2026-08-17):** ID-2L1's best
+> **Post-ID-2M0 architecture amendment (2026-08-18):** exact attribution
+> retains the signed/even fixed-pole model only as an action-response head.
+> A complete candidate must separate shared nominal continuation from causal
+> edge/dwell/return/tail dynamics and consume current exact R_geo/Z_geo/Ip
+> through a small bounded innovation state. Actual-versus-issued current may
+> enter only causally; future readback remains forbidden.
+>
+> ID-2M1 is capped at two small candidates and whole-history folds. Original
+> cell weighting stays authoritative while unique-prefix and worst-event
+> metrics prevent repeated sibling prefixes from hiding the mechanism. The
+> flawed GRU recenter evaluator is not reused. A development PASS still
+> precedes fresh calibration and new blind holdout; model evidence cannot
+> substitute for two-axis authority or recovery evidence.
+
+> **Historical ID-2M0 architecture correction (2026-08-17):** ID-2L1's best
 > `stable_signed_even` model is retained only as a source-local probe-response
 > component. It is an exogenous time/action-memory model: one-ms truth is an
 > integration origin rather than a dynamics input, and actual-current

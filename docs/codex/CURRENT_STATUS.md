@@ -1,6 +1,23 @@
 # Current status
 
-> **Current status (2026-08-17, ID-2M0 design frozen):** route review retained
+> **Current status (2026-08-18, ID-2M0 PASS):** deterministic server refit
+> reproduced the four frozen ID-2L1 folds at numeric difference `0.0` and the
+> independent process reproduced result/predictions exactly. Final result /
+> predictions / audit SHA-256 are `06247999... / b842011b... / 7aa1dc54...`.
+> There were zero TSC calls, resets or plant advances.
+>
+> Each fold's 180 issue-16--33 rows contains 106 unique causal transitions.
+> Cell-weighted R misses above `0.300 mm` are `15/15/10/10`, representing
+> only `3/3/2/2` unique events, all before issue 25. Probe-window maximum R
+> errors are `0.266--0.276 mm`. This retains the signed/even response
+> backbone while rejecting it as a complete observer/world model.
+>
+> ID-2M1 is now authorized for design and server development only, with at
+> most two small structured candidates. Calibration, blind holdout,
+> uncertainty, authority, recovery, controller, MPC, crossing, adaptation
+> and RL are not yet authorized. Older status blocks are historical.
+
+> **Historical status (2026-08-17, ID-2M0 design frozen):** route review retained
 > ID-2L1's formal FAIL but localized its short-horizon miss. Across the four
 > folds, cell-weighted one-ms R rows above `0.300 mm` numbered
 > `15/15/10/10`; after exact causal-prefix deduplication they represent only
