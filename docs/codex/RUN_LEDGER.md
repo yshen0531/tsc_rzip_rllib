@@ -2404,3 +2404,48 @@
   `docs/codex/audits/rgeo_zgeo_1ms_id2j0_20260817_53d0f9db/`
 - Next: prospective factorized history/sign/action development data, then
   structured nominal + stable memory + optional small residual comparison
+
+## R_geo/Z_geo 1 ms ID-2U1 moving-nominal development
+
+- Branch: `codex/rgeo-zgeo-1ms-duration-history-model`
+- Design / implementation / result commits: `3afc52aa / 787e14b2 / e9843ea3`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2u1_20260818_63d498c5`
+- Remote log: `logs/id2u1_20260818_63d498c5_v2.log`
+- Expected/actual: 20/20 rollouts, 800/800 verified one-ms advances,
+  820 states
+- Raw: 4,100 required artifacts / 48,292,197,680 bytes / digest
+  `f42fd452c5b7fe0d718d0232371498b18b3b6068f58556f14dc859c68d979f94`
+- Primary / independent SHA-256:
+  `297d32bfb5a945238150f5a951d4de5c6df2e28f16a3d13f816778ecc27cc3b4 /`
+  `bf3c68a26d94406e8c54c4bd96b6d3e621735d923ebdf1ef28c478ac0c6ffd62`
+- First launch used system Python and stopped before output/reset/TSC;
+  corrected v2 used the server venv without changing experiment semantics
+- Result: all execution/raw/prefix and 16/16 signal/Ip gates PASS; large
+  delayed response confined to `u00` minus cells in this finite matrix
+- Final route:
+  `ONE_MS_ID2U1_MOVING_NOMINAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`
+- Classification: fit-eligible moving-nominal development data only; paced
+  calibration and blind families unopened
+
+## R_geo/Z_geo 1 ms ID-2U2 bounded causal model comparison
+
+- Branch / implementation: `codex/rgeo-zgeo-1ms-duration-history-model / 45265ef0`
+- Server validation: focused `10/10`, complete one-ms `328/328`, compile,
+  shell syntax and zero-TSC preflight PASS
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2u2_45265ef0`
+- Remote log: `logs/id2u2_20260818_45265ef0.log`
+- Execution: eight development whole-family fold fits; zero reset, `gotsc`,
+  TSC and plant advance; zero calibration or blind records read
+- Primary / independent SHA-256:
+  `30f303ecd35b21399d3c894f15dfa0f4c3e6c212d5a5f09eabe7eb647ac495a8 /`
+  `c7a92cc351ae064fb6aceb38aff215098e0c6bd0a54ad647b63754e215f27d05`
+- Local/event model mean/worst response NRMSE `1.055527/1.141862`; small
+  GRU residual regressed to `2.412078/4.119342`; no selected model artifact
+- Final route: `ONE_MS_ID2U2_NO_ELIGIBLE_CAUSAL_MODEL_REVIEW_REQUIRED`
+- Classification: finite model/support-design FAIL, not runtime, TSC,
+  controller or reachability evidence
+- Next recommendation: preserve unopened `u01/u03/u05/u07`; add one new
+  fit-eligible arrival history at each existing level/time corner before a
+  new bounded low-capacity comparison

@@ -1,4 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2U2 architecture amendment (2026-08-18):** the exact actuator,
+> moving nominal, exact one-ms observation, causal memory and constrained
+> rolling-control architecture remains unchanged, but model qualification
+> cannot proceed from a development split with zero arrival-pace variation.
+> The local/event candidate failed response and ranking and the small GRU
+> residual regressed, so capacity is not the next lever.
+>
+> Before another comparison, add one prospectively distinct development
+> arrival history at each existing nominal-level/probe-time corner. Keep the
+> original paced calibration and blind schedules unopened. The later model
+> should remain support-gated and low capacity, with a persistent causal
+> history residual retained only after whole-family gain. Authority and
+> recovery remain separate AND gates before any controller.
+
 > **ID-2U2 architecture freeze (2026-08-18):** the first model comparison
 > after nominal realignment remains deliberately low capacity. Candidate A
 > is a support-gated local mixture with separated moving-nominal continuation

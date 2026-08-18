@@ -1,0 +1,868 @@
+{
+  "action_rank": 3,
+  "blind_holdout_family_ids_read": [],
+  "calibration_family_ids_read": [],
+  "candidate_count": 2,
+  "candidate_fold_fits": 8,
+  "claim_boundary": "Finite four-family moving-nominal development model comparison only; no calibrated tube, authority, hold, recovery, controller, MPC, waypoint/path, R_mid crossing, adaptation, expert data, RL, or reachability evidence.",
+  "comparison": {
+    "candidate_results": [
+      {
+        "eligible": false,
+        "folds": [
+          {
+            "eligible": false,
+            "failures": [
+              "RESPONSE",
+              "DIRECTION",
+              "RANKING"
+            ],
+            "feature_condition": 2.1170384794893264,
+            "feature_rank": 2,
+            "fold_id": "hold_u00",
+            "held_family_ids": [
+              "u00"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.00039321506656730953,
+                  0.00014337479453361418,
+                  6.0097395734264865
+                ],
+                [
+                  0.000628849458588765,
+                  0.00021716450867558662,
+                  8.05949849542958
+                ],
+                [
+                  0.0007547934385619959,
+                  0.00031736974165046117,
+                  11.888505143109796
+                ],
+                [
+                  0.000736181782267531,
+                  0.0003377955818234246,
+                  13.139868670488795
+                ],
+                [
+                  0.0008045853959384175,
+                  0.00041538667404701635,
+                  16.63729316971876
+                ],
+                [
+                  0.0007944476905258346,
+                  0.00040260600396387763,
+                  19.513904932013247
+                ],
+                [
+                  0.0007946643692793298,
+                  0.00044556519953326684,
+                  22.139407951755857
+                ],
+                [
+                  0.0007072581474780737,
+                  0.00045684069436531527,
+                  32.9567492565111
+                ]
+              ],
+              "held_family": "u00",
+              "maximum_unique_event_abs_error": [
+                0.0008845595711826082,
+                0.0006277314634762082,
+                38.333440285921824
+              ],
+              "peak_cosines": [
+                -0.9792155214617397,
+                0.9997010465164455,
+                -0.8294173620487404,
+                0.999616226761653
+              ],
+              "positive_peak_directions": 2,
+              "response_nrmse": 0.9464113615832392,
+              "support": [
+                {
+                  "cell_id": "u00__p04_minus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                },
+                {
+                  "cell_id": "u00__p04_plus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                },
+                {
+                  "cell_id": "u00__p07_minus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                },
+                {
+                  "cell_id": "u00__p07_plus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                }
+              ],
+              "supported_probe_origins": 4,
+              "time_resolved_utility_ranking_regret_fraction": 0.9471588244774586
+            }
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "SUPPORT",
+              "RESPONSE",
+              "RANKING",
+              "ABSOLUTE_P95"
+            ],
+            "feature_condition": 1.5753162539761727,
+            "feature_rank": 2,
+            "fold_id": "hold_u02",
+            "held_family_ids": [
+              "u02"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.0003340574141844632,
+                  7.566333434797651e-05,
+                  9.330644314297388
+                ],
+                [
+                  0.0007278433228927739,
+                  0.0002957051310619671,
+                  15.605652399215614
+                ],
+                [
+                  0.0007444737418091929,
+                  0.00033914721622742977,
+                  23.394424236750638
+                ],
+                [
+                  0.0007560248267810543,
+                  0.00038766787569793904,
+                  30.32057654833261
+                ],
+                [
+                  0.0007548486280317679,
+                  0.00044240254527307815,
+                  34.72637729758935
+                ],
+                [
+                  0.0006910067671020981,
+                  0.00045520699817724886,
+                  37.617540232560714
+                ],
+                [
+                  0.0006912312646280006,
+                  0.00047756505204515215,
+                  69.76493824365389
+                ],
+                [
+                  0.0006413927647707096,
+                  0.0005249324626410076,
+                  105.77793467677111
+                ]
+              ],
+              "held_family": "u02",
+              "maximum_unique_event_abs_error": [
+                0.0008729477118406548,
+                0.0007653867331341505,
+                109.03136835480836
+              ],
+              "peak_cosines": [
+                0.9999492450113392,
+                0.9999551849008861,
+                0.9999552072121418,
+                0.9995915463473624
+              ],
+              "positive_peak_directions": 4,
+              "response_nrmse": 1.108731482287707,
+              "support": [
+                {
+                  "cell_id": "u02__p04_minus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                },
+                {
+                  "cell_id": "u02__p04_plus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                },
+                {
+                  "cell_id": "u02__p07_minus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                },
+                {
+                  "cell_id": "u02__p07_plus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                }
+              ],
+              "supported_probe_origins": 0,
+              "time_resolved_utility_ranking_regret_fraction": 1.0
+            }
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "RESPONSE",
+              "RANKING"
+            ],
+            "feature_condition": 1.9269247645974017,
+            "feature_rank": 2,
+            "fold_id": "hold_u04",
+            "held_family_ids": [
+              "u04"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.00041202169124254784,
+                  0.0001668273999757136,
+                  4.864395330208936
+                ],
+                [
+                  0.0005840918571274889,
+                  0.00020423219844579316,
+                  8.146260833334964
+                ],
+                [
+                  0.0006002531966355917,
+                  0.00031004624034574463,
+                  9.81841410634297
+                ],
+                [
+                  0.00074471958310518,
+                  0.0003452106425338719,
+                  9.596110424263316
+                ],
+                [
+                  0.0007851154924625181,
+                  0.0004455362730618473,
+                  21.03100811778495
+                ],
+                [
+                  0.0007534718497733683,
+                  0.0005712405793896341,
+                  26.159651902093174
+                ],
+                [
+                  0.0007073248551662248,
+                  0.00047856232081563976,
+                  27.225736617929215
+                ],
+                [
+                  0.0006743748860512655,
+                  0.0005314662440771695,
+                  26.58227498996348
+                ]
+              ],
+              "held_family": "u04",
+              "maximum_unique_event_abs_error": [
+                0.0008685947185639309,
+                0.0007298861605091397,
+                28.27438231441556
+              ],
+              "peak_cosines": [
+                0.9998556575695936,
+                0.9999661104216448,
+                0.9999917805573307,
+                0.999550462916277
+              ],
+              "positive_peak_directions": 4,
+              "response_nrmse": 1.025104371309494,
+              "support": [
+                {
+                  "cell_id": "u04__p04_minus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                },
+                {
+                  "cell_id": "u04__p04_plus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                },
+                {
+                  "cell_id": "u04__p07_minus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                },
+                {
+                  "cell_id": "u04__p07_plus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                }
+              ],
+              "supported_probe_origins": 4,
+              "time_resolved_utility_ranking_regret_fraction": 0.9963939863609832
+            }
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "RESPONSE",
+              "RANKING",
+              "ABSOLUTE_P95"
+            ],
+            "feature_condition": 2.2161327588451507,
+            "feature_rank": 2,
+            "fold_id": "hold_u06",
+            "held_family_ids": [
+              "u06"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.0007251291984052832,
+                  0.0002656228287051948,
+                  6.991917800518422
+                ],
+                [
+                  0.0007243224277668769,
+                  0.0003019837199593686,
+                  13.957401238381863
+                ],
+                [
+                  0.000698682649747262,
+                  0.00034763676621762246,
+                  10.592182315784157
+                ],
+                [
+                  0.0006959546667902883,
+                  0.000395704390763911,
+                  19.435387496923795
+                ],
+                [
+                  0.000617320812179023,
+                  0.0004241404130325768,
+                  19.955253627129423
+                ],
+                [
+                  0.0005653304999999609,
+                  0.000447602705032607,
+                  19.499407009458082
+                ],
+                [
+                  0.0006143045268898195,
+                  0.0004406354912474472,
+                  22.41073764857356
+                ],
+                [
+                  0.000432882999999884,
+                  0.0005029811843319035,
+                  25.528777083611203
+                ]
+              ],
+              "held_family": "u06",
+              "maximum_unique_event_abs_error": [
+                0.000847737727680542,
+                0.0005891072546534426,
+                34.33490867794899
+              ],
+              "peak_cosines": [
+                0.9997154734505916,
+                0.9998758012786795,
+                0.9998871957308173,
+                0.9995070607171244
+              ],
+              "positive_peak_directions": 4,
+              "response_nrmse": 1.1418616449402483,
+              "support": [
+                {
+                  "cell_id": "u06__p04_minus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                },
+                {
+                  "cell_id": "u06__p04_plus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                },
+                {
+                  "cell_id": "u06__p07_minus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                },
+                {
+                  "cell_id": "u06__p07_plus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                }
+              ],
+              "supported_probe_origins": 4,
+              "time_resolved_utility_ranking_regret_fraction": 1.0
+            }
+          }
+        ],
+        "kind": "stable_local_event_mixture",
+        "summary": {
+          "maximum_ranking_regret": 1.0,
+          "mean_response_nrmse": 1.0555272150301722,
+          "minimum_peak_cosine": -0.9792155214617397,
+          "worst_endpoint_p95": 105.77793467677111,
+          "worst_response_nrmse": 1.1418616449402483
+        }
+      },
+      {
+        "eligible": false,
+        "folds": [
+          {
+            "eligible": false,
+            "failures": [
+              "RESPONSE",
+              "DIRECTION",
+              "RANKING"
+            ],
+            "feature_condition": 2.1170384794893264,
+            "feature_rank": 2,
+            "fold_id": "hold_u00",
+            "held_family_ids": [
+              "u00"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.0004331051770988248,
+                  0.00011103104015210835,
+                  8.316032277398335
+                ],
+                [
+                  0.0007168207386072378,
+                  0.0002190643569333628,
+                  13.621113203153072
+                ],
+                [
+                  0.0008270250330707496,
+                  0.00034471096648389793,
+                  21.395189292557916
+                ],
+                [
+                  0.0008053606984130823,
+                  0.0004370488638916689,
+                  25.24350395399233
+                ],
+                [
+                  0.0007989403967411102,
+                  0.0005763655715481791,
+                  22.15195297327591
+                ],
+                [
+                  0.0007977547258527506,
+                  0.0006415280819776492,
+                  24.61704630667373
+                ],
+                [
+                  0.0008042616936362323,
+                  0.0006884252966778276,
+                  25.182405758838286
+                ],
+                [
+                  0.0007685863264196291,
+                  0.0007409419148853708,
+                  29.741978135611134
+                ]
+              ],
+              "held_family": "u00",
+              "maximum_unique_event_abs_error": [
+                0.0009762205107956001,
+                0.0007706131578361711,
+                36.88861708029435
+              ],
+              "peak_cosines": [
+                0.6719917277916634,
+                0.8695323299001995,
+                0.7606611204181141,
+                -0.9341564084618474
+              ],
+              "positive_peak_directions": 3,
+              "response_nrmse": 1.2369822740312073,
+              "support": [
+                {
+                  "cell_id": "u00__p04_minus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                },
+                {
+                  "cell_id": "u00__p04_plus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                },
+                {
+                  "cell_id": "u00__p07_minus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                },
+                {
+                  "cell_id": "u00__p07_plus",
+                  "distance": 6.212171256074701,
+                  "supported": true,
+                  "threshold": 11.786010894073318
+                }
+              ],
+              "supported_probe_origins": 4,
+              "time_resolved_utility_ranking_regret_fraction": 1.0
+            }
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "SUPPORT",
+              "RESPONSE",
+              "DIRECTION",
+              "RANKING",
+              "ABSOLUTE_P95",
+              "UNIQUE_EVENT"
+            ],
+            "feature_condition": 1.5753162539761727,
+            "feature_rank": 2,
+            "fold_id": "hold_u02",
+            "held_family_ids": [
+              "u02"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.00041247322956305954,
+                  0.00017164101384918584,
+                  15.445660318287992
+                ],
+                [
+                  0.0007205159624812385,
+                  0.0002620976787870155,
+                  22.83706857920697
+                ],
+                [
+                  0.0007273333409710814,
+                  0.00025799356715394683,
+                  30.54341492457752
+                ],
+                [
+                  0.0007424560985501705,
+                  0.00030082287007279773,
+                  38.80321320589064
+                ],
+                [
+                  0.0007577907380167392,
+                  0.00032542890177556655,
+                  50.112339749273815
+                ],
+                [
+                  0.0006643425963550609,
+                  0.00035630941071915223,
+                  63.5772821184255
+                ],
+                [
+                  0.0006911518849080922,
+                  0.000414492730181841,
+                  87.4723958105642
+                ],
+                [
+                  0.0007006651809741138,
+                  0.0004444974036896948,
+                  127.27977483012
+                ]
+              ],
+              "held_family": "u02",
+              "maximum_unique_event_abs_error": [
+                0.0008854585492068523,
+                0.00047521679463223554,
+                159.4671602882263
+              ],
+              "peak_cosines": [
+                -0.20891688806371123,
+                0.9032140420302878,
+                0.07281557787607565,
+                -0.05590387794628378
+              ],
+              "positive_peak_directions": 2,
+              "response_nrmse": 4.1193415077225,
+              "support": [
+                {
+                  "cell_id": "u02__p04_minus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                },
+                {
+                  "cell_id": "u02__p04_plus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                },
+                {
+                  "cell_id": "u02__p07_minus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                },
+                {
+                  "cell_id": "u02__p07_plus",
+                  "distance": 968.1761124035656,
+                  "supported": false,
+                  "threshold": 11.197205168178893
+                }
+              ],
+              "supported_probe_origins": 0,
+              "time_resolved_utility_ranking_regret_fraction": 1.0
+            }
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "RESPONSE",
+              "RANKING",
+              "ABSOLUTE_P95"
+            ],
+            "feature_condition": 1.9269247645974017,
+            "feature_rank": 2,
+            "fold_id": "hold_u04",
+            "held_family_ids": [
+              "u04"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.000386542635546272,
+                  0.0001425472379226328,
+                  8.071490580477985
+                ],
+                [
+                  0.000790527541242203,
+                  0.00024135581748299662,
+                  12.407848413975444
+                ],
+                [
+                  0.0006479215713756092,
+                  0.00021115991188644379,
+                  17.78633253211592
+                ],
+                [
+                  0.0006554522570616506,
+                  0.0002641715897738067,
+                  20.71962436684771
+                ],
+                [
+                  0.0006862815566174296,
+                  0.0003640364911923141,
+                  26.20967817907149
+                ],
+                [
+                  0.0006397774138565682,
+                  0.0004067677176394155,
+                  36.92309196205679
+                ],
+                [
+                  0.0007340432322133772,
+                  0.00048564747706177774,
+                  42.39479950849636
+                ],
+                [
+                  0.000831902309399446,
+                  0.0005639372849416124,
+                  43.53155603209598
+                ]
+              ],
+              "held_family": "u04",
+              "maximum_unique_event_abs_error": [
+                0.0009680944436500916,
+                0.0005769614046860355,
+                46.00798186652537
+              ],
+              "peak_cosines": [
+                0.9905186029370356,
+                0.5677081485099391,
+                0.9999305601228022,
+                0.23551331997768185
+              ],
+              "positive_peak_directions": 4,
+              "response_nrmse": 1.8480861841880407,
+              "support": [
+                {
+                  "cell_id": "u04__p04_minus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                },
+                {
+                  "cell_id": "u04__p04_plus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                },
+                {
+                  "cell_id": "u04__p07_minus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                },
+                {
+                  "cell_id": "u04__p07_plus",
+                  "distance": 8.559689073406668,
+                  "supported": true,
+                  "threshold": 13.093825567911633
+                }
+              ],
+              "supported_probe_origins": 4,
+              "time_resolved_utility_ranking_regret_fraction": 1.0
+            }
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "RESPONSE",
+              "RANKING",
+              "ABSOLUTE_P95"
+            ],
+            "feature_condition": 2.2161327588451507,
+            "feature_rank": 2,
+            "fold_id": "hold_u06",
+            "held_family_ids": [
+              "u06"
+            ],
+            "metrics": {
+              "all_predictions_finite": true,
+              "endpoint_p95_abs_by_horizon": [
+                [
+                  0.0008006001749675251,
+                  0.00027517680523028026,
+                  11.57082365367387
+                ],
+                [
+                  0.0008662483024302059,
+                  0.0003250877408971786,
+                  21.58147697273671
+                ],
+                [
+                  0.0008559136186561123,
+                  0.0003972515941186375,
+                  30.624720028754382
+                ],
+                [
+                  0.0009115050648274003,
+                  0.0004284680979160238,
+                  41.657658142947184
+                ],
+                [
+                  0.0006824878629877462,
+                  0.0004265584825545385,
+                  51.40037201992163
+                ],
+                [
+                  0.0006640658899046414,
+                  0.00047398047828038636,
+                  59.60465042465148
+                ],
+                [
+                  0.0007604375328490454,
+                  0.0005397160833793546,
+                  54.61721067459803
+                ],
+                [
+                  0.0008830123430526582,
+                  0.0005874474684783582,
+                  50.547629276326916
+                ]
+              ],
+              "held_family": "u06",
+              "maximum_unique_event_abs_error": [
+                0.0009622327690061994,
+                0.0006827230895477959,
+                72.23332317689346
+              ],
+              "peak_cosines": [
+                0.9807965623857813,
+                0.9999774181803491,
+                0.9599513662364854,
+                0.9668779060343394
+              ],
+              "positive_peak_directions": 4,
+              "response_nrmse": 2.4439012114012786,
+              "support": [
+                {
+                  "cell_id": "u06__p04_minus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                },
+                {
+                  "cell_id": "u06__p04_plus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                },
+                {
+                  "cell_id": "u06__p07_minus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                },
+                {
+                  "cell_id": "u06__p07_plus",
+                  "distance": 5.785521025807537,
+                  "supported": true,
+                  "threshold": 12.153765113582057
+                }
+              ],
+              "supported_probe_origins": 4,
+              "time_resolved_utility_ranking_regret_fraction": 1.0
+            }
+          }
+        ],
+        "kind": "stable_local_event_gru_residual",
+        "summary": {
+          "maximum_ranking_regret": 1.0,
+          "mean_response_nrmse": 2.4120777943357568,
+          "minimum_peak_cosine": -0.9341564084618474,
+          "worst_endpoint_p95": 127.27977483012,
+          "worst_response_nrmse": 4.1193415077225
+        }
+      }
+    ],
+    "eligible_candidate_count": 0,
+    "selected_kind": null
+  },
+  "development_cells_read": 20,
+  "development_family_ids": [
+    "u00",
+    "u02",
+    "u04",
+    "u06"
+  ],
+  "final_full_fits": 0,
+  "model_payload_sha256": null,
+  "new_tsc_calls": 0,
+  "passed": false,
+  "plant_advances": 0,
+  "reset_calls": 0,
+  "route": "ONE_MS_ID2U2_NO_ELIGIBLE_CAUSAL_MODEL_REVIEW_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2u2-bounded-causal-model-comparison-result-v1",
+  "source_revision": "45265ef072180fefe6b29de5cf7576dfe3834fa2",
+  "stage_config_sha256": "a7e8c628afeb5335baf3ed321bdf1361883ca104e3daa5731fd76036d649b681"
+}

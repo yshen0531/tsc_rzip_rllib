@@ -1,5 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-18, post-ID-2U2):** neither frozen small
+> causal candidate generalized across the four moving-nominal development
+> families. The local model failed response/ranking and placed `u02` outside
+> support; the width-three GRU residual was substantially worse. No model,
+> calibration, holdout or controller was opened.
+>
+> The missing factor is now explicit: all four development histories were
+> frontloaded, while all paced histories were reserved outside development.
+> The recommended next stage adds one new prospectively fit-eligible arrival
+> history at each level/time corner while preserving the unopened paced
+> calibration/blind families. This is a targeted support repair, not a larger
+> neural-network ladder or a retreat from machine learning.
+
 > **Current route notice (2026-08-18, ID-2U2):** the moving-nominal data
 > stage has passed and the next model discriminator is frozen before fitting.
 > It compares one support-gated stable local/event backbone with that same

@@ -1,5 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, post-ID-2U2 review required):** the
+> bounded two-candidate comparison is final as
+> `ONE_MS_ID2U2_NO_ELIGIBLE_CAUSAL_MODEL_REVIEW_REQUIRED`. Primary and
+> separate-process recomputation agree exactly. The stable local/event model
+> had mean/worst response NRMSE `1.055527/1.141862`; the width-three GRU
+> residual regressed them to `2.412078/4.119342`. No model was emitted and
+> calibration/blind families remain unopened.
+>
+> Development is paused for route confirmation. The recommended successor
+> first freezes a zero-TSC action/storage preflight for four new development
+> arrival histories, one at each existing level-18/22 × issue-24/30 corner,
+> followed only after PASS by twenty matched TSC streams. The new schedules
+> must differ from both existing frontloaded data and unopened
+> `u01/u03/u05/u07`; those original calibration/blind roles remain intact.
+> No new fit, TSC, calibration, authority, recovery, controller, MPC,
+> waypoint, crossing, adaptation, expert data, or RL is currently active.
+> All blocks below are historical.
+
 > **Unique active task (2026-08-18, ID-2U2 frozen):** ID-2U1 remains a
 > clean development-data PASS over four independent moving-nominal families.
 > ID-2U2 is the sole active successor. It runs zero new TSC and reads only

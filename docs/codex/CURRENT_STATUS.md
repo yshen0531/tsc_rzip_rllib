@@ -1,5 +1,19 @@
 # Current status
 
+> **Current status (2026-08-18, post-ID-2U2):** server validation passed
+> `10/10` focused and `328/328` one-ms tests. The zero-new-TSC comparison ran
+> eight whole-family fold fits, read only twenty U1 development trajectories,
+> and its independent deterministic recomputation passed. Both candidates
+> failed; no full model artifact exists. `u00` retained wrong-direction minus
+> predictions, `u02` was far outside causal-prefix support, and the small GRU
+> materially regressed response and absolute metrics.
+>
+> This is a model/support-design FAIL, not runtime, TSC, raw, controller or
+> reachability evidence. All development families were frontloaded, so the
+> training set contained no independent arrival-pace variation. The route is
+> paused before a prospectively new four-family arrival-history expansion;
+> original paced calibration `u01/u03` and blind `u05/u07` remain unopened.
+
 > **Current status (2026-08-18, ID-2U2 design frozen):** the next bounded
 > discriminator is now prospectively specified before any fit. It uses only
 > the four ID-2U1 development families, four leave-one-family-out folds, a
