@@ -1,5 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-19, ID-2W1):** the next finite action-
+> grammar discriminator is frozen. It uses one common p03 level-18 causal
+> prefix and only six branches: uninterrupted nominal, paused/catch-up
+> baseline, and four p04/p07 signed cumulative depth-6 branches with exact
+> return and common p03 catch-up. This tests whether more actuator-time
+> allocation produces persistent, common-state two-axis utility rather than
+> another single-frame excitation.
+>
+> The experiment remains simulator-only empirical development. State 27 is
+> guarded as a hybrid diagnostic, while states 25/26 and states 46--48 carry
+> the prospective utility/tail decisions. A PASS is not authority or control;
+> it can only nominate a future model target. All older notices are
+> historical.
+
 > **Current route notice (2026-08-19, post-ID-2V0):** the automatic
 > history-only expansion is stopped. ID-2V0 passed execution and independent
 > recomputation with zero TSC and zero fitting, but all four development

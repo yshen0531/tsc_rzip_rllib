@@ -1,4 +1,17 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2W1 architecture freeze (2026-08-19):** before returning to model
+> comparison, test one finite cumulative residual grammar at a common causal
+> prefix. The grammar time-multiplexes p03 transport and a six-step p04/p07
+> residual ramp, then performs an exact residual return and delayed p03
+> catch-up. Uninterrupted and paused baselines expose the transport cost.
+>
+> Utility must exist at the same non-hybrid states for the four signed arms,
+> persist across consecutive one-ms observations, and leave a bounded tail.
+> A state-27 spike, asynchronous per-action peaks, or action ranking below
+> the equivalence floor cannot establish authority. The result remains only
+> an action-grammar gate before model, uncertainty, recovery and controller
+> work.
+
 > **Post-ID-2V0 architecture amendment (2026-08-19):** retain the exact
 > actuator/queue, one-ms exact R_geo/Z_geo/Ip observation, causal memory,
 > uncertainty, reference-governor and constrained rolling-control backbone.

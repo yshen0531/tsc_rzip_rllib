@@ -1,5 +1,18 @@
 # Current status
 
+> **Current status (2026-08-19, ID-2W1 design frozen):** the finite successor
+> to V0 is now specified before implementation or plant execution. Six exact
+> source-prefix branches compare uninterrupted p03 transport, the cost of a
+> 14-issue pause/return allocation, and four cumulative p04/p07 signed arms.
+> Each arm ramps by six legal 0.3 A-or-smaller Card15 increments, holds for
+> two issues, returns exactly, then catches p03 up to level 31.
+>
+> The primary geometry gates use states 25 and 26; state 27 is reported as a
+> possible hybrid event but cannot create a PASS. The campaign budget is six
+> resets/288 advances/1,470 raw artifacts. No ID-2W1 TSC, model fit,
+> calibration/blind read, controller, authority, recovery, waypoint,
+> crossing, adaptation, expert data, or RL result exists yet.
+
 > **Current status (2026-08-19, post-ID-2V0):** focused server tests passed
 > `8/8`, the full one-ms suite passed `336/336`, and primary/independent V0
 > results agree exactly. V0 read only twenty U1 development trajectories and

@@ -1,21 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2V0):** ID-2V0 is final as
+> **Unique active task (2026-08-19, ID-2W1 frozen):** ID-2V0 remains final as
 > `ONE_MS_ID2V0_CURRENT_PROBE_CONTROL_UTILITY_INSUFFICIENT_BRANCH_DESIGN_REQUIRED`.
-> It ran zero TSC/reset/plant work and fit no model. All four development
-> families failed sustained/terminal/directional program criteria although
-> exact action integrity passed. Horizon-8 residuals were only
-> `0.021--0.026 mm` against `4.276--5.238 mm` moving-baseline motion, and
-> state-40 residuals were only `0.0178--0.0190 mm`.
+> The sole active successor is the prospectively frozen ID-2W1 sustained
+> branch campaign. It replays one exact p03 level-18 prefix and executes only
+> six 48-issue branches: uninterrupted nominal, paused/catch-up baseline, and
+> p04/p07 plus/minus residual ramp-6/hold-2/return-6 branches followed by the
+> same p03 catch-up.
 >
-> The sole active successor is a bounded zero-new-TSC design for an
-> exact-Card15 same-prefix multi-arm sequence campaign. It must optimize
-> absolute time-resolved two-axis progress, persistence/terminal capture,
-> Ip/current cost, and an explicit return/resume continuation. Candidate
-> enumeration must be small and prospectively frozen; no clipping, transient
-> single-frame authority claim, broad shooting, model fit, calibration/blind
-> read, controller, MPC, waypoint, crossing, adaptation, expert data, or RL
-> is authorized by V0. All blocks below are historical.
+> ID-2W1 is capped at 6 resets and 288 attempted advances. It must pass exact
+> Card15/current/prefix/raw gates, non-hybrid state-25/state-26 sustained
+> signal and common-state two-axis geometry, paired Ip limits, and bounded
+> post-return/catch-up tails. State 27 is diagnostic and cannot repair a
+> failure at states 25/26. Clean utility FAIL stops this grammar; PASS may
+> authorize only a separate model-target design. No broad shooting,
+> calibration/blind read, model fit, controller, MPC, recovery, waypoint,
+> crossing, adaptation, expert data, or RL is authorized. All blocks below
+> are historical.
 
 > **Historical task (2026-08-18, post-ID-2U2 review required):** the
 > bounded two-candidate comparison is final as

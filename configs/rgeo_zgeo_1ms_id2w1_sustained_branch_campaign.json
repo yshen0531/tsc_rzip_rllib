@@ -1,0 +1,152 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2w1-sustained-branch-campaign-v1",
+  "identity": "rgeo-zgeo-1ms-id2w1-sustained-branch-campaign-v1",
+  "stage": "ID-2W1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 48,
+  "common_prefix_last_issue": 18,
+  "common_prefix_nominal_level": 18,
+  "residual_start_issue": 19,
+  "residual_ramp_depth": 6,
+  "residual_ramp_issue_steps": [19, 20, 21, 22, 23, 24],
+  "residual_plateau_issue_steps": [25, 26],
+  "residual_return_issue_steps": [27, 28, 29, 30, 31, 32],
+  "p03_catchup_issue_steps": [33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45],
+  "terminal_hold_issue_steps": [46, 47],
+  "primary_plateau_state_indices": [25, 26],
+  "diagnostic_hybrid_state_index": 27,
+  "terminal_state_indices": [46, 47, 48],
+  "rollout_ids": [
+    "uninterrupted_nominal",
+    "pause_catchup_baseline",
+    "p04_plus_depth6",
+    "p04_minus_depth6",
+    "p07_plus_depth6",
+    "p07_minus_depth6"
+  ],
+  "residual_directions": ["p04", "p07"],
+  "residual_signs": ["plus", "minus"],
+  "maximum_rollouts": 6,
+  "maximum_reset_calls": 6,
+  "maximum_advance_attempts": 288,
+  "maximum_gotsc_calls": 288,
+  "maximum_verified_plant_advances": 288,
+  "maximum_retained_states": 294,
+  "required_artifact_files_if_complete": 1470,
+  "retry_after_any_advance_attempt": "forbidden",
+  "experiment_contract": "tsc_only_same_prefix_sustained_multi_arm_branch_development",
+  "data_use": "prospective_development_action_grammar_only_after_all_execution_raw_prefix_signal_geometry_ip_and_independent_gates_pass",
+  "calibration_holdout_controller_expert_bc_dagger_rl_use": "forbidden",
+  "models_fit_or_updated": 0,
+  "action_semantics": {
+    "absolute_card15_targets": true,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "full_0p3_a_allowed": true,
+    "maximum_residual_offset_a": 1.8,
+    "issue_to_effect_state_offset": 1,
+    "software_queue_added": false,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "future_actual_current": "forbidden",
+    "grammar": "p03_level18_pause_residual_ramp6_hold2_return6_catchup_to31"
+  },
+  "observability": {
+    "current_same_step_paired_boundary_rgeo_zgeo_and_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_history": "available",
+    "future_successor": "unknown_before_issue",
+    "invalid_boundary": "fail_closed"
+  },
+  "empirical_exploration": {
+    "novel_cumulative_branch_cells": 4,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 150.0},
+    "inner_probe_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true,
+    "post_action_abort_is_not_a_pre_action_bound": true,
+    "simulator_only_empirical_exploration_exception": true
+  },
+  "measurement_gates": {
+    "maximum_absolute_paired_ip_response_a": 350.0,
+    "minimum_each_arm_peak_rz_norm_m": 0.00025,
+    "minimum_each_arm_plateau_median_rz_norm_m": 0.00020,
+    "minimum_each_arm_state25_state26_cosine": 0.5,
+    "direction_grid_count": 64,
+    "maximum_each_primary_state_angular_gap_deg": 180.0,
+    "minimum_each_primary_state_all_direction_best_progress_m": 0.00002,
+    "maximum_each_terminal_rz_norm_m": 0.002,
+    "maximum_each_terminal_abs_ip_response_a": 350.0,
+    "state27_may_not_repair_primary_state_failure": true,
+    "absolute_source_and_uninterrupted_nominal_metrics_are_descriptive": true
+  },
+  "repeatability": {
+    "geometry_m": 1e-12,
+    "ip_a": 1e-9,
+    "coil_a": 1e-9,
+    "wire_a": 1e-9,
+    "sprsina_byte_identity_required": false
+  },
+  "storage_gate": {
+    "minimum_free_bytes_before_run": 50000000000,
+    "maximum_estimated_raw_bytes": 25000000000,
+    "minimum_free_bytes_after_estimate": 25000000000,
+    "output_must_not_exist": true,
+    "raw_compression": "forbidden"
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "evidence": {
+    "design": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2W1_SUSTAINED_BRANCH_CAMPAIGN_DESIGN.md",
+      "sha256": "f42aabdb262d084ac5ba5eac450c6d538168737e1671f1660db3e575996b0636"
+    },
+    "id2v0_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2v0_20260819_77372b1f/result.json",
+      "sha256": "f21c88739acdcd41ed7c1eac7c613e937c3e61c459addf09eabe7eb647ac495a8",
+      "required_route": "ONE_MS_ID2V0_CURRENT_PROBE_CONTROL_UTILITY_INSUFFICIENT_BRANCH_DESIGN_REQUIRED"
+    },
+    "id2v0_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2v0_20260819_77372b1f/independent_audit.json",
+      "sha256": "49ba74742a194cd0d1ba0fef7940d518e8139e2aa559e2f1ce15dcf23e3d5467"
+    },
+    "id2v0_report": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2V0_CONTROL_UTILITY_SUPPORT_AUDIT_RESULT.md",
+      "sha256": "b0319b6a7382ad4c18f5412776ced74e5b84d1976fb97309f3675d4df9cf24b0"
+    },
+    "id2u0_config": {
+      "path": "configs/rgeo_zgeo_1ms_id2u0_nominal_realign_preflight.json",
+      "sha256": "0f834ba5f2ae718ec28ad49fd958a66148009054743efdb1caa48557e243effb"
+    },
+    "id2u0_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u0_20260818_a2fe7532/result.json",
+      "sha256": "81f5e37172d7c39d076c7161b0d1b99ab32ebf588dc2716e468226bd1a96f65a",
+      "required_route": "ONE_MS_ID2U0_NOMINAL_REALIGNMENT_ACTION_GRAMMAR_PASS_U1_DESIGN_ONLY"
+    },
+    "id2u0_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u0_20260818_a2fe7532/independent_audit.json",
+      "sha256": "ad81b3a6292b0b8fedd540aafc3b86cb1b34179d278e91ce6391a2d44945c974"
+    },
+    "id2u1_config": {
+      "path": "configs/rgeo_zgeo_1ms_id2u1_moving_nominal_development.json",
+      "sha256": "21989e3502f0b8d283293af85c5442ae108bdf3333c2220bb03109c93c9b3cd5"
+    },
+    "id2u1_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u1_20260818_63d498c5/result.json",
+      "sha256": "297d32bfb5a945238150f5a951d4de5c6df2e28f16a3d13f816778ecc27cc3b4",
+      "required_route": "ONE_MS_ID2U1_MOVING_NOMINAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY"
+    },
+    "id2u1_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u1_20260818_63d498c5/independent_raw_audit.json",
+      "sha256": "bf3c68a26d94406e8c54c4bd96b6d3e621735d923ebdf1ef28c478ac0c6ffd62"
+    }
+  },
+  "routes": {
+    "storage_fail": "ONE_MS_ID2W1_STORAGE_GATE_FAIL_NO_TSC",
+    "offline_or_input_fail": "ONE_MS_ID2W1_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID2W1_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID2W1_RAW_INTEGRITY_FAIL_PRESERVE_RAW",
+    "prefix_mismatch": "ONE_MS_ID2W1_COMMON_PREFIX_FAIL_STOP",
+    "control_utility_fail": "ONE_MS_ID2W1_SUSTAINED_BRANCH_CONTROL_UTILITY_FAIL_REDESIGN",
+    "pass": "ONE_MS_ID2W1_SUSTAINED_BRANCH_PASS_MODEL_TARGET_DESIGN_ONLY"
+  },
+  "claim_boundary": "Six source-local same-prefix branches only; finite simulator development action-grammar evidence, not a transition tube, region authority, hold, recovery, controller, MPC, waypoint/path, R_mid crossing, adaptation, expert-data, RL, or reachability result."
+}
