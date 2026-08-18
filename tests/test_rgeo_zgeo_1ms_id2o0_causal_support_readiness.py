@@ -1,6 +1,8 @@
 import copy
 import importlib.util
 import json
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -57,6 +59,12 @@ class ID2O0Tests(unittest.TestCase):
                 id2o0.load_stage(path)
         finally:
             path.unlink(missing_ok=True)
+
+    def test_independent_script_imports_from_script_path(self):
+        script = ROOT / "scripts/rgeo_zgeo_1ms_id2o0_causal_support_readiness_independent.py"
+        completed = subprocess.run([sys.executable, str(script), "--help"], cwd=ROOT,
+                                   check=False, capture_output=True, text=True)
+        self.assertEqual(completed.returncode, 0, completed.stderr)
 
 
 if __name__ == "__main__":
