@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-2S0 amendment (2026-08-18):** The zero-TSC sequence selector
+> nominated four exact two-arm f03 branches and passed independent
+> recomputation. Its additive geometry is only a branch-reduction heuristic.
+> The next stage measures those four sequences in fresh TSC development
+> identities and explicitly reports interaction relative to the heuristic.
+> Even a measured positive-span time series is not yet authority or recourse:
+> a fresh replay/tube and residual-margin qualification remain separate AND
+> gates before any controller or transport claim.
+
 > **ID-2S0 architecture discriminator (2026-08-18):** the route now separates
 > three objects explicitly: measured single-sequence evidence, a fixed no-fit
 > additive branch nominator, and future real two-sequence TSC branches. Only

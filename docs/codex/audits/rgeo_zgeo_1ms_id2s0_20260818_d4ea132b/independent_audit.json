@@ -1,0 +1,44 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Separate-process deterministic ID2S0 recomputation only; no TSC, model, authority, or control evidence.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "new_tsc_calls": 0,
+  "plant_advances": 0,
+  "primary_sha256": "e0a7e86ead036c55098877304d32adcfb7274f7b5371894b2b390c5fd0807801",
+  "recomputed_route": "ONE_MS_ID2S0_SEQUENCE_SELECTOR_PASS_FOUR_BRANCH_DESIGN_ONLY",
+  "recomputed_selection": {
+    "direction_progress_m": [
+      0.0006447539999999696,
+      0.00048290300012967147,
+      0.00024753439601622783,
+      7.622721190797051e-05,
+      4.235400000000833e-05,
+      4.762437143483129e-05,
+      9.583736403469334e-05,
+      0.0001294599867281417,
+      0.00014337349999993254,
+      0.0001354596975807476,
+      0.00010692338415011022,
+      6.210895474550955e-05,
+      0.00029976249999998084,
+      0.000518992423488018,
+      0.0006642854551780317,
+      0.0007084470480798368
+    ],
+    "maximum_angular_gap_deg": 142.34385602680211,
+    "mean_direction_progress_m": 0.00027537795584210505,
+    "minimum_direction_progress_m": 4.235400000000833e-05,
+    "sequence_ids": [
+      "p04_plus__then__p07_minus",
+      "p07_minus__then__p07_minus",
+      "p07_minus__then__p07_plus",
+      "p07_plus__then__p04_plus"
+    ],
+    "subsets_evaluated": 1820
+  },
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2s0-sequence-utility-selector-independent-v1",
+  "source_revision": "d4ea132b5580414640c175b8f3d751b94f686f4a",
+  "stage_config_sha256": "aaed52b652c935bc6c8246a007af8b3be113b3489d418a236057a9f68086ecb2"
+}

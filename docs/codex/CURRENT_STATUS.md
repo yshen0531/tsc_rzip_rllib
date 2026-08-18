@@ -1,5 +1,15 @@
 # Current status
 
+> **Current status (2026-08-18, post-ID-2S0):** The zero-TSC ID-2S0 selector
+> passed with independent exact recomputation. All sixteen action streams
+> were exact, all `1820` four-sequence subsets were evaluated, and the chosen
+> subset had minimum sixteen-direction additive progress `0.042354 mm` and
+> maximum angular gap `142.343856 deg`. These are fixed no-fit nomination
+> metrics, not measured sequence authority. The only active successor is
+> ID-2S1: four fresh f03 sequence branches, zero learning weight, server-only
+> execution and independent raw audit. No model or controller stage is
+> unlocked by ID-2S0 alone.
+
 > **Current status (2026-08-18, ID-2S0 frozen):** the next bounded stage is a
 > zero-TSC selector over sixteen exact p04/p07 two-arm sequences. It chooses
 > exactly four candidates by a fixed 16-direction progress/angular-coverage

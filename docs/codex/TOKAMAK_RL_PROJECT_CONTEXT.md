@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-18, post-ID-2S0):** ID-2S0 passed its
+> deterministic zero-TSC four-sequence nomination gate. The additive
+> shift-three construction remains explicitly non-physical and non-model.
+> The active successor is only a four-branch real-TSC development
+> discriminator that measures interaction and time-resolved geometry under
+> the exact f03 causal prefix. Those branches remain forbidden from fitting,
+> calibration, holdout, expert data, and RL. Model/controller work remains
+> blocked until the measured sequence evidence is independently audited.
+
 > **Active new-round context (2026-08-18, ID-2S0):** before consuming more
 > TSC storage, a fixed zero-fit selector reduces sixteen executable f03
 > two-arm sequences to four. It uses exact measured response only as a

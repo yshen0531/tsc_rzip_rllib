@@ -1,5 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, post-ID-2S0):** ID-2S0 completed with
+> separate-process exact recomputation and route
+> `ONE_MS_ID2S0_SEQUENCE_SELECTOR_PASS_FOUR_BRANCH_DESIGN_ONLY`. It ran zero
+> TSC/reset/plant work and fit no model. Its four nominated f03 sequences are
+> `p04_plus__then__p07_minus`, `p07_minus__then__p07_minus`,
+> `p07_minus__then__p07_plus`, and `p07_plus__then__p04_plus`.
+>
+> The sole active successor is the separately frozen ID-2S1 four-branch
+> canonical-prefix development discriminator. Each branch must replay the
+> exact admitted f03 prefix, execute one frozen selected sequence, stop at
+> state 34, and be independently reconstructed from raw server evidence.
+> Every trajectory has zero fit/calibration/holdout/expert/RL weight. ID-2S1
+> measures sequence interaction, time-resolved R/Z geometry, and Ip cost; it
+> cannot by itself establish authority, a transition tube, recovery, control,
+> MPC, transport, crossing, adaptation, or reachability. All blocks below
+> are historical.
+
 > **Unique active task (2026-08-18, ID-2S0 authorized):** ID-2R1 is final as
 > `ONE_MS_ID2R1_F03_EXACT_REPLAY_PASS_SEQUENCE_AUTHORITY_DESIGN_ONLY`.
 > ID-2S0 is the sole active stage. It runs zero TSC/reset/plant work and fits
