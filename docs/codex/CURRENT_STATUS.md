@@ -1,6 +1,21 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2Q1R1 model FAIL / route review):** the
+> **Current status (2026-08-18, ID-2R0 design authorized):** Q1R1's overall
+> model/support FAIL and independent exact recomputation remain valid. A
+> reporting-only audit found that sorted family metric arrays were attributed
+> to the wrong names: the q03 ridge wrong-way family is `f03`, while q01's
+> high ranking-regret families are `f01/f05`, not the previously proposed
+> `h01/h03/h05` bridge targets.
+>
+> ID-2R0 is now the only active work. It runs zero TSC/reset/plant work and
+> compares no new models. It records explicit family/cell prediction rows,
+> one fixed no-fit local-support diagnostic, replay coverage, and
+> time-resolved action geometry. Calibration, holdout, authority, recovery,
+> controller, MPC, crossing, adaptation and RL remain blocked until its
+> frozen route chooses the next separate evidence identity. Older status
+> blocks are historical.
+
+> **Historical status (2026-08-18, ID-2Q1R1 model FAIL / route review):** the
 > zero-TSC server comparison completed and its independent deterministic
 > recomputation passed. Neither the stable ridge nor its small persistent GRU
 > residual met the frozen whole-history response, direction, ranking and

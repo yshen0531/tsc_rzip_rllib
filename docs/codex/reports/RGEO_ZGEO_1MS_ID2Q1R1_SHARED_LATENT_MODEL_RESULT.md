@@ -5,6 +5,20 @@
 ID-2Q1R1 is final as
 `ONE_MS_ID2Q1R1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN`.
 
+### Reporting erratum (2026-08-18)
+
+The evaluator stored `peak_cosines` and `family_ranking_regret` in sorted
+`family_id` order without storing those IDs beside the arrays. The original
+prose below therefore misassigned the family names. In q03 the four ridge
+wrong-way responses belong to `f03`, not `h03`. In q01 the ridge family
+ranking regrets `0.642/0.847/0.024/0.013` map to
+`f01/f05/h01/h05`. The proposed `h01/h03/h05` bridge is withdrawn.
+
+This is a reporting/attribution correction only. The result JSON, frozen
+metrics, gates, final FAIL, and absence of a model payload are unchanged.
+The separately frozen ID-2R0 audit records explicit family IDs before any
+new TSC or model decision.
+
 The server fit the two frozen candidates on the 80 primary K1+P1 cells in
 four whole-history folds. It ran zero TSC calls, resets or plant advances and
 read no N1 fit records. A separate server process retrained every frozen fold
@@ -19,8 +33,9 @@ Primary and independent SHA-256 are:
 
 The stable ridge response NRMSE by fold was `0.8813`, `1.2827`, `1.1060`,
 and `1.0552` (mean `1.0813`). Peak direction was positive for `60/64`; all
-four wrong directions occurred in held family `h03`. Maximum action-ranking
-regret reached `0.8470` in fold q01.
+four wrong directions occurred in held family `f03`. Maximum action-ranking
+regret reached `0.8470` in fold q01 and belongs to `f05` under the corrected
+sorted-family mapping.
 
 The eight-unit GRU residual did not repair generalization. Its fold response
 NRMSE was `0.6681`, `1.5627`, `0.9864`, and `1.4439` (mean `1.1653`), with
@@ -49,7 +64,7 @@ should persist per-family predictions, compute blockwise rank and causal
 history distances, and compare a support-gated local/nearest-history
 diagnostic with the failed global maps. Its result must choose prospectively
 between (a) a low-dimensional local mixture/LPV successor when nearby causal
-support is predictive, (b) a targeted matched bridge campaign around the
-failing h01/h03/h05 histories when support is absent, or (c) earlier
-qualification of canonical-prefix TSC branch shooting when neither learned
+support is predictive, (b) a targeted matched bridge campaign around
+correctly identified unsupported strata when support is absent, or (c)
+earlier qualification of canonical-prefix TSC branch shooting when neither learned
 route is reliable. This recommendation is not yet authorized or implemented.

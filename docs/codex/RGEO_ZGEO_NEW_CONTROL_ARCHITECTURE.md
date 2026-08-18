@@ -1,6 +1,23 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Q1R1 architecture amendment (2026-08-18):** neither the global
+> **ID-2R0 architecture correction (2026-08-18):** Q1R1's final model FAIL
+> is retained, but its prose family attribution is corrected from
+> `h01/h03/h05` to the actual singleton schedule strata `f01/f03/f05`, with
+> all four q03 ridge wrong-way responses in `f03`. No Q1 gate or result is
+> changed.
+>
+> The immediate architecture discriminator is one bounded zero-new-TSC
+> audit, not another learned model. It measures explicit local causal
+> support and time-resolved action geometry. If the unreplayed `f03`
+> singleton is decisive, it receives only an exact zero-weight replay. If
+> supported local prediction is stable but schedule support is missing, data
+> expansion is targeted. If supported histories still flip or the action
+> grammar lacks useful sequence authority, canonical-source finite shooting
+> moves ahead of another surrogate. A local model is considered only after
+> both support and action utility exist. Fresh calibration and independent
+> recovery remain later AND gates.
+
+> **Historical post-ID-2Q1R1 architecture amendment (2026-08-18):** neither the global
 > stable shared-response map nor its small persistent GRU residual generalized
 > across the 16 whole-history families. Absolute short-horizon prediction was
 > often adequate, but paired response, direction, action ranking and feature

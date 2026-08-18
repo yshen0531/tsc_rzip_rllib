@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2Q1R1):** ID-2Q1R1 completed its
+> **Unique active task (2026-08-18, ID-2R0 authorized):** Q1R1 remains final
+> as `ONE_MS_ID2Q1R1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN`, but its prose
+> report mapped sorted family-metric arrays to the wrong family names. The
+> q03 ridge wrong-way responses belong to `f03`, and q01's large ridge
+> ranking regrets belong to `f01/f05`; the old `h01/h03/h05` bridge
+> recommendation is withdrawn without changing any Q1 metric or verdict.
+>
+> The sole active stage is the separately frozen zero-new-TSC ID-2R0
+> erratum/decision audit. It may deterministically refit only the eight
+> already frozen Q1 folds to persist explicit per-family predictions. It
+> freezes one deployable-feature nearest-history diagnostic, schedule support,
+> replay coverage, blockwise rank, and time-resolved response geometry. It
+> may not tune Q1, add a model, read N1/holdout for selection, emit a model,
+> or authorize control. Its route must choose one of an exact `f03` replay,
+> a targeted matched bridge, canonical-prefix sequence-authority shooting,
+> or a support-gated local-model design. All blocks below are historical.
+
+> **Historical task (2026-08-18, post-ID-2Q1R1):** ID-2Q1R1 completed its
 > frozen two-candidate server comparison with zero TSC/reset/plant work, and
 > separate-process deterministic recomputation passed. Neither candidate was
 > eligible. Ridge mean response NRMSE was `1.0813`; the small GRU residual

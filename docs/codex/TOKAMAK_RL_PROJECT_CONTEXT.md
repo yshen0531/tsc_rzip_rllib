@@ -1,6 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, post-ID-2Q1R1):** the bounded
+> **Active new-round context (2026-08-18, ID-2R0):** Q1R1's global
+> shared-latent ridge/GRU FAIL remains unchanged, but the result prose
+> misassigned sorted family arrays. The anomalous singleton strata are
+> `f01/f03/f05`; the q03 ridge direction reversal is `f03`, not `h03`.
+>
+> Before any new model or TSC campaign, ID-2R0 performs one bounded
+> zero-new-TSC decision audit with explicit family IDs, a single fixed
+> deployable-history nearest transfer, replay/support coverage, and
+> time-resolved response geometry. It must choose a minimal exact replay,
+> targeted bridge, offline canonical-prefix sequence-authority shooting, or
+> a support-gated local successor. This is not another capacity ladder and
+> it does not open calibration or control. All older notices are historical.
+
+> **Historical new-round context (2026-08-18, post-ID-2Q1R1):** the bounded
 > stable-ridge/small-GRU comparison failed whole-history response and action
 > ranking despite the successful matched-factorial P1 data campaign. The GRU
 > helped one fold but regressed the others; no model was frozen and fresh
