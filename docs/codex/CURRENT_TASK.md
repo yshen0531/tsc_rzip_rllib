@@ -1,5 +1,30 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, post-ID-2N1):** ID-2N1 completed all
+> 14 fresh calibration rollouts and 476/476 verified advances with exact
+> interface/raw integrity, but failed as
+> `ONE_MS_ID2N1_CALIBRATION_MODEL_OR_TUBE_FAIL_HOLDOUT_UNOPENED`.
+> Independent raw reparse passed with zero failures over 490 states and
+> 2,450 files (`28,857,532,760` bytes; digest `30e9da0f...`). The four blind
+> holdout families were never executed.
+>
+> The fresh R tube exceeded the 1.5 mm cap at horizons 1--4
+> (`1.727/1.625/1.563/1.512 mm`). More importantly, paired-response NRMSE was
+> `2.843308`, with only `6/8` positive peak directions; c01 p04-plus and
+> p07-minus reversed direction. This is a model/history-generalization and
+> tube-calibration FAIL, not runtime, actuator, raw, controller, MPC, or
+> reachability evidence.
+>
+> Development is paused for route confirmation. Recommended next is a
+> separately frozen zero-new-TSC model redesign using K1 plus the now-consumed
+> N1 calibration as development evidence: exact R_geo/Z_geo/Ip and current/
+> action history, explicit nominal, and direct 1--8 ms causal response heads;
+> compare at most a stable low-order + TCN residual and a small correctly
+> history-preserving GRU/TCN. No label features, tube widening, old holdout
+> opening, authority, recovery, controller, adaptation, or RL are authorized.
+> A successor requires new calibration and a new blind whole-history holdout.
+> All blocks below are historical.
+
 > **Unique active task (2026-08-18, post-ID-2M1):** ID-2M1 passed as
 > `ONE_MS_ID2M1_BOUNDED_STRUCTURED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY`.
 > The simpler `separated_event_memory` model passed every whole-history

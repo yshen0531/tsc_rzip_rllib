@@ -1,5 +1,24 @@
 # Current status
 
+> **Current status (2026-08-18, ID-2N1 calibration FAIL):** the fresh
+> calibration campaign completed 14/14 rollouts and 476/476 verified TSC
+> advances. Independent raw audit passed over 490 states, 2,450 required
+> files, 28.858 GB, and exact inventory digest. There were no interface,
+> runtime, solver, raw, repeatability, or reporting failures.
+>
+> The frozen ID-2M1 model failed both the 1--4 ms R tube cap and fresh paired
+> response generalization. Combined response NRMSE was `2.843308`; only
+> `6/8` peak directions were positive. The route stopped before the blind
+> holdout, exactly as preregistered. Result/calibration/audit SHA-256 are
+> `fbb734bf... / a1001567... / e307ac02...`.
+>
+> The current decision is model representation, not more calibration or
+> control. The recommended successor consumes the failed calibration only as
+> redesign evidence and compares small causal state/current/action-history
+> models with direct 1--8 ms heads. A new calibration and genuinely new blind
+> holdout remain mandatory. Authority, recovery, controller, MPC, crossing,
+> adaptation and RL remain blocked. Older status blocks are historical.
+
 > **Current status (2026-08-18, ID-2M1 development PASS):** the selected
 > separated event-memory model passed all four held-history folds and emitted
 > development model SHA-256 `681c26da...`. Result/model/audit file SHA-256

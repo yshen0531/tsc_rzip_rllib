@@ -1,5 +1,22 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-2N1 architecture amendment (2026-08-18):** fresh calibration
+> rejected the context-invariant fixed event-memory predictor before blind
+> holdout. Exact actuator/queue semantics and exact 1 ms R_geo/Z_geo/Ip
+> observation were intact; the failure is the future response representation.
+> Two fresh histories reversed paired response direction and several
+> hold/return/tail phases were shifted relative to the frozen convolution.
+>
+> The architecture therefore keeps explicit nominal continuation but moves
+> the learned response component to a genuinely causal state/current/action-
+> history encoder with direct 1--8 ms predictions. The next bounded comparison
+> should contain at most (a) stable low-order memory plus a small TCN residual
+> and (b) a small GRU/TCN with persistent, non-rewritten history. Current truth
+> is a direct input/recentering anchor, not a latent estimate; future readback
+> and evaluator labels remain forbidden. Fresh calibration, a new blind
+> whole-history holdout, two-axis authority, and recovery remain successive
+> independent gates before constrained rolling control.
+
 > **Post-ID-2M1 architecture amendment (2026-08-18):** the selected finite
 > development predictor is now explicit time-indexed nominal plus stable
 > signed/even Card15 memory and finite causal edge/dwell/return/tail features.

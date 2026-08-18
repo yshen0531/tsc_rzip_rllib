@@ -1,5 +1,23 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Active new-round context (2026-08-18, post-ID-2N1):** the small explicit
+> nominal + fixed event-memory predictor did not survive fresh history,
+> duration and issue-time calibration. Execution and independent raw
+> integrity passed, but the 1--4 ms R tube cap failed and paired-response
+> NRMSE rose to `2.843308` with two wrong-way responses. The blind holdout
+> correctly remained unopened.
+>
+> This does not argue for hand-identifying every cause, nor does it reject
+> machine learning. It says the learned representation must actually consume
+> exact per-cycle state/current/action history and must not represent all
+> return/tail behavior by a context-invariant convolution. The recommended
+> next comparison uses explicit nominal plus direct 1--8 ms causal learned
+> response heads, with at most a stable low-order/TCN residual and a small
+> correctly history-preserving GRU/TCN. A successor needs fresh calibration
+> and a new blind whole-history holdout before authority or control. The final
+> two-axis waypoint/repeated-crossing goal is unchanged; all older notices are
+> historical.
+
 > **Active new-round context (2026-08-18, post-ID-2M1):** explicit nominal
 > separation plus causal event/action memory passed the source-local
 > whole-history development comparison. A more elaborate exact-observation
