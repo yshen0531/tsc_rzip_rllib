@@ -1,4 +1,19 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2X1 architecture freeze (2026-08-19):** exact actuation, exact
+> one-ms observation, causal history, explicit uncertainty and independent
+> hard safety remain unchanged. ID-2X1 proves only that three fixed residual
+> allocations around p03 level32 do not create a finite nominal hold. All
+> branches stopped at preissue clearance with exact execution; no actuator,
+> plant, model or global reachability theorem follows.
+>
+> ID-2Y1 performs one final hand-designed allocation test around the stronger
+> p03 level64 transport. It begins p04-minus/p07-plus braking only after p03's
+> full-slew increments finish, so the 0.3 A contract is never shared or hidden
+> by clipping. If this finite schedule set fails, the architecture must move
+> from manual ramp depth selection to bounded sequence/control-utility search
+> and eventually measured-feedback rolling control. It must not start another
+> micro-probe or network-capacity ladder.
+>
 > **ID-2X1 architecture freeze (2026-08-19):** both level52 and level64 p03
 > holds reached the finite negative-R clearance before the terminal window.
 > The p03-only allocation is therefore closed. The next bounded discriminator

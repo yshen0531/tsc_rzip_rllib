@@ -1,17 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-19, ID-2X1 frozen):** level52 and level64
-> p03 holds stopped independently at state79/state86 when R reached about
-> `-25.35/-25.32 mm`; both held constant targets with zero current delta and
-> both independent raw audits pass. P03-only hold design is closed.
+> **Current route notice (2026-08-19, post-ID-2X1):** the four level32-based
+> mixed-allocation branches completed 275 verified TSC advances and all made
+> fail-closed preissue clearance stops before the terminal window. The
+> corrected independent full-raw audit passes. P04-minus/p07-plus changed the
+> common-state path by only about 1--2 mm and did not create a nominal hold;
+> this is a finite schedule FAIL, not actuator or plant unreachability.
 >
-> ID-2X1 returns to the best-known p03 level32 transport point and allocates
-> additional legal time to the measured outward-R p04-minus direction and,
-> in two branches, the negative-Z p07-plus direction. One matched baseline and
-> three sustained mixed branches are frozen. This is finite exact-TSC branch
-> shooting, not a learned model or a superposition claim. A clean failure moves
-> to a broader bounded sequence search; PASS is still only a nominal candidate.
-> Older notices are historical.
+> The final hand-designed discriminator, ID-2Y1, keeps the stronger p03 path
+> through level64 and only then spends free slew on p04-minus depth6/12/16 and
+> optional p07-plus depth4. Four exact source branches use a 104-issue horizon
+> and states96--104 hold window. A clean failure ends manual ramp tuning and
+> routes to explicit bounded sequence/control-utility optimization. A PASS
+> remains only a finite nominal candidate. Older notices are historical.
 >
 > **Historical route notice (2026-08-19, post-ID-2W1):** the six-branch
 > p04/p07 depth-6 pause/return grammar completed exactly but failed its

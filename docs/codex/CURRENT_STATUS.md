@@ -1,18 +1,23 @@
 # Current status
 
-> **Current status (2026-08-19, post-ID-2W3R1):** server validation passed 6/6
-> focused and 364/364 one-ms tests. The level64 branch retained 87 states,
-> 86 advances and 435 artifacts, then refused issue86 because current R offset
-> was `-25.3166755 mm`. Exact action/current and independent raw gates pass;
-> no terminal hold verdict was manufactured. Both p03 holds therefore ended
-> at the same finite R clearance, and p03-only allocation is closed.
+> **Current status (2026-08-19, post-ID-2X1):** server validation passed
+> 7/7 focused and 371/371 one-ms tests for the executed implementation. Four
+> fresh resets produced 275 verified advances and 16.431 GB of raw. The p03L32
+> baseline stopped on Z at state65; p04-minus depth18 stopped on Z at state71;
+> the two p04/p07 mixed branches stopped on R at states69/70. Final source RZ
+> distances were 34.856--35.322 mm and no terminal hold row was eligible.
 >
-> ID-2X1 is frozen before implementation. It compares one p03L32 hold baseline
-> with p04-minus/p07-plus mixed sustained branches under four independent
-> resets, at most 384 advances and 1,940 artifacts. Only pre-issue clearance
-> stops may continue to the next reset. A campaign PASS requires a complete
-> mixed branch satisfying the states88--96 hold gate and remains a candidate,
-> not recovery or control qualification.
+> The first independent result was a reporting FAIL because it compared
+> outgoing rewritten raw `inputa` with preissue compact `inputa`. Commit
+> `7cf8b2e4` repaired only that lifecycle reconstruction. Server validation
+> then passed 8/8 and 372/372 tests, and the corrected independent audit passes
+> with zero failures while reproducing the immutable FAIL route exactly.
+>
+> ID-2Y1 is now frozen before implementation. It reuses no X1 raw for fitting:
+> four new exact branches keep p03 through level64, then ramp bounded p04-minus
+> and optional p07-plus corrections and hold through states96--104. A PASS is
+> only Nominal-H1 evidence; a clean FAIL ends the manual ramp ladder and moves
+> to an explicit finite sequence/control-utility search.
 >
 > **Historical status (2026-08-19, post-ID-2W1):** all six frozen branches and
 > 288/288 plant advances completed. Exact action/current/common-prefix/raw

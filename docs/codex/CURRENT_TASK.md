@@ -1,24 +1,26 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2X1 frozen):** ID-2W3R1 completed
-> 86/96 verified advances and stopped before issue86 at
-> `R_geo-R_geo(source)=-25.3166755 mm`. The level64 target was already constant;
-> last issued/readback deltas were zero, and its 87-state/435-artifact
-> independent audit passes. Together with the level52 stop, this closes the
-> p03-only hold route without claiming global unreachability.
+> **Unique active task (2026-08-19, post-ID-2X1):** ID-2X1 completed four
+> canonical-source branches, 275/275 verified advances, 279 retained states
+> and 1,395 raw artifacts. All four stopped only at a frozen preissue R/Z
+> clearance; exact action/current/raw gates pass. A reporting-only `inputa`
+> lifecycle bug in the initial independent audit was repaired at `7cf8b2e4`
+> without rerunning TSC. The corrected raw audit reproduces all counters,
+> 16,431,125,796 bytes, inventory digest, four stop states and route exactly.
+> Zero branch reached states88--96, so ID-2X1 remains final as
+> `ONE_MS_ID2X1_MIXED_ALLOCATION_HOLD_FAIL_BROADER_SEQUENCE_SEARCH_REQUIRED`.
 >
-> ID-2X1 is the sole active successor. Four canonical-source branches share
-> the exact p03 level32 prefix: one matched p03L32 hold baseline and three
-> mixed sustained allocations using p04-minus depth18 or24 and optional
-> p07-plus depth6 or8. The streams are exact Card15, use at most 0.3 A per
-> coil/step, and retain at least 98.8 A absolute-current headroom in the
-> zero-plant enumeration. A branch may stop at a frozen pre-issue clearance
-> and the next independent reset may continue; every other failure aborts the
-> campaign. At least one mixed branch must complete and pass the unchanged
-> states88--96 hold gate. PASS is only a finite nominal candidate; FAIL moves
-> to a broader bounded sequence search. No model, calibration/blind read,
-> controller, recovery, waypoint, crossing, adaptation, expert data or RL is
-> authorized. All blocks below are historical.
+> ID-2Y1 is the sole active successor. Four fresh branches retain the exact
+> p03 stride-one transport through level64, then use the newly free slew for
+> p04-minus depth6/12/16 and optional p07-plus depth4 before holding through a
+> 104-issue horizon. States0--65/actions0--64 must reproduce ID-2W3R1. Only a
+> frozen preissue clearance may continue to the next reset; any other failure
+> aborts. At least one branch must complete and pass the states96--104 nominal
+> hold gate. This is the final hand-designed ramp discriminator: clean FAIL
+> routes to bounded sequence/control-utility optimization, not another depth
+> ladder. PASS is only a finite nominal candidate. No model, calibration,
+> blind read, controller, recovery, waypoint, crossing, adaptation, expert
+> data or RL is authorized. All blocks below are historical.
 >
 > **Historical task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
 > 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected

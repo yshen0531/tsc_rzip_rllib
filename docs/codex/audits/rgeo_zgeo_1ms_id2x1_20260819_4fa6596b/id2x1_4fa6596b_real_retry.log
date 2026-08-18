@@ -1,0 +1,396 @@
+{
+  "advance_attempts": 275,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite source-local canonical branch shooting only; PASS requires fresh repeatability and bounded-perturbation qualification and is not recovery, controller, waypoint, path, crossing or reachability evidence.",
+  "complete_rollouts": 0,
+  "execution_integrity_passed": true,
+  "finite_nominal_hold_candidate_pending_independent": false,
+  "guarded_safe_stops": 4,
+  "known_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03_level32_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04_minus_depth18_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04m18_p07p6_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04m24_p07p8_hold"
+    }
+  ],
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 275,
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 16431125796,
+  "required_artifact_files": 1395,
+  "required_artifact_inventory_sha256": "bcb5db0d7bced4ed58ee11ee6293a38d36c022a5ededec7b8cb1892b4d95d3a7",
+  "reset_calls": 4,
+  "rollouts_completed": 4,
+  "route": "ONE_MS_ID2X1_MIXED_ALLOCATION_HOLD_FAIL_BROADER_SEQUENCE_SEARCH_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2x1-mixed-allocation-hold-result-v1",
+  "scientific_metrics": {
+    "branch_metrics": [
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": false,
+        "passed": false,
+        "retained_states": 66,
+        "rollout_id": "p03_level32_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_Z"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.024481506500000028,
+          0.025051706500000007,
+          173.8833999999988
+        ],
+        "terminal_source_rz_distance_m": 0.035027591396950004
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 72,
+        "rollout_id": "p04_minus_depth18_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_Z"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.024921795499999955,
+          0.025031243500000022,
+          895.6869999999981
+        ],
+        "terminal_source_rz_distance_m": 0.03532221740066882
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 70,
+        "rollout_id": "p04m18_p07p6_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.02550659750000006,
+          0.02423136750000003,
+          808.9824999999983
+        ],
+        "terminal_source_rz_distance_m": 0.03518161006757745
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 71,
+        "rollout_id": "p04m24_p07p8_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025100012000000005,
+          0.024185550000000028,
+          1027.3537999999971
+        ],
+        "terminal_source_rz_distance_m": 0.034856153419484566
+      }
+    ],
+    "minimum_passing_mixed_branches": 1,
+    "passed": false,
+    "passing_mixed_branch_count": 0,
+    "passing_mixed_branch_ids": []
+  },
+  "source_revision": "4fa6596bd57480deba7711398a4d83c1f550b94e",
+  "stage_config_sha256": "53eab001330b3d3610cc66c3280a5cbcbec899fd6302938a89a3780024861622",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 47682851840,
+    "estimated_raw_bytes": 30000000000,
+    "free_bytes_before_run": 77682851840,
+    "passed": true
+  },
+  "unique_cells_completed": 4,
+  "verified_plant_advances": 275
+}
+{
+  "audit_passed": false,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw ID2X1 audit; PASS/FAIL remains finite source-local mixed-allocation branch-shooting evidence only.",
+  "failures": [
+    "PREFIX_RECOMPUTE",
+    "PRIMARY_ROUTE_OR_VERDICT"
+  ],
+  "finite_nominal_hold_candidate": false,
+  "models_fit_or_updated": 0,
+  "primary_route": "ONE_MS_ID2X1_MIXED_ALLOCATION_HOLD_FAIL_BROADER_SEQUENCE_SEARCH_REQUIRED",
+  "primary_scientific_passed": false,
+  "primary_sha256": "cb80d56e38ceb444944cbf39f3611e254328bf76e9e8ba2b1bc783a75c404645",
+  "raw_rollouts": 4,
+  "raw_states": 279,
+  "recomputed_counters": {
+    "advance_attempts": 275,
+    "complete_rollouts": 0,
+    "guarded_safe_stops": 4,
+    "plant_advance_gotsc_calls": 275,
+    "reset_calls": 4,
+    "rollouts_completed": 4,
+    "unique_cells_completed": 4,
+    "verified_plant_advances": 275
+  },
+  "recomputed_inventory_bytes": 16431125796,
+  "recomputed_inventory_files": 1395,
+  "recomputed_inventory_sha256": "bcb5db0d7bced4ed58ee11ee6293a38d36c022a5ededec7b8cb1892b4d95d3a7",
+  "recomputed_known_prefix_checks": [
+    {
+      "failures": [
+        "STATE:0:active_command_card15_fields",
+        "STATE:0:artifact:inputa",
+        "STATE:1:artifact:inputa",
+        "STATE:2:artifact:inputa",
+        "STATE:3:artifact:inputa",
+        "STATE:4:artifact:inputa",
+        "STATE:5:artifact:inputa",
+        "STATE:6:artifact:inputa",
+        "STATE:7:artifact:inputa",
+        "STATE:8:artifact:inputa",
+        "STATE:9:artifact:inputa",
+        "STATE:10:artifact:inputa",
+        "STATE:11:artifact:inputa",
+        "STATE:12:artifact:inputa",
+        "STATE:13:artifact:inputa",
+        "STATE:14:artifact:inputa",
+        "STATE:15:artifact:inputa",
+        "STATE:16:artifact:inputa",
+        "STATE:17:artifact:inputa",
+        "STATE:18:artifact:inputa",
+        "STATE:19:artifact:inputa",
+        "STATE:20:artifact:inputa",
+        "STATE:21:artifact:inputa",
+        "STATE:22:artifact:inputa",
+        "STATE:23:artifact:inputa",
+        "STATE:24:artifact:inputa",
+        "STATE:25:artifact:inputa",
+        "STATE:26:artifact:inputa",
+        "STATE:27:artifact:inputa",
+        "STATE:28:artifact:inputa",
+        "STATE:29:artifact:inputa",
+        "STATE:30:artifact:inputa",
+        "STATE:31:artifact:inputa",
+        "STATE:32:artifact:inputa",
+        "STATE:33:artifact:inputa"
+      ],
+      "passed": false,
+      "rollout_id": "p03_level32_hold"
+    },
+    {
+      "failures": [
+        "STATE:0:active_command_card15_fields",
+        "STATE:0:artifact:inputa",
+        "STATE:1:artifact:inputa",
+        "STATE:2:artifact:inputa",
+        "STATE:3:artifact:inputa",
+        "STATE:4:artifact:inputa",
+        "STATE:5:artifact:inputa",
+        "STATE:6:artifact:inputa",
+        "STATE:7:artifact:inputa",
+        "STATE:8:artifact:inputa",
+        "STATE:9:artifact:inputa",
+        "STATE:10:artifact:inputa",
+        "STATE:11:artifact:inputa",
+        "STATE:12:artifact:inputa",
+        "STATE:13:artifact:inputa",
+        "STATE:14:artifact:inputa",
+        "STATE:15:artifact:inputa",
+        "STATE:16:artifact:inputa",
+        "STATE:17:artifact:inputa",
+        "STATE:18:artifact:inputa",
+        "STATE:19:artifact:inputa",
+        "STATE:20:artifact:inputa",
+        "STATE:21:artifact:inputa",
+        "STATE:22:artifact:inputa",
+        "STATE:23:artifact:inputa",
+        "STATE:24:artifact:inputa",
+        "STATE:25:artifact:inputa",
+        "STATE:26:artifact:inputa",
+        "STATE:27:artifact:inputa",
+        "STATE:28:artifact:inputa",
+        "STATE:29:artifact:inputa",
+        "STATE:30:artifact:inputa",
+        "STATE:31:artifact:inputa",
+        "STATE:32:artifact:inputa",
+        "STATE:33:artifact:inputa"
+      ],
+      "passed": false,
+      "rollout_id": "p04_minus_depth18_hold"
+    },
+    {
+      "failures": [
+        "STATE:0:active_command_card15_fields",
+        "STATE:0:artifact:inputa",
+        "STATE:1:artifact:inputa",
+        "STATE:2:artifact:inputa",
+        "STATE:3:artifact:inputa",
+        "STATE:4:artifact:inputa",
+        "STATE:5:artifact:inputa",
+        "STATE:6:artifact:inputa",
+        "STATE:7:artifact:inputa",
+        "STATE:8:artifact:inputa",
+        "STATE:9:artifact:inputa",
+        "STATE:10:artifact:inputa",
+        "STATE:11:artifact:inputa",
+        "STATE:12:artifact:inputa",
+        "STATE:13:artifact:inputa",
+        "STATE:14:artifact:inputa",
+        "STATE:15:artifact:inputa",
+        "STATE:16:artifact:inputa",
+        "STATE:17:artifact:inputa",
+        "STATE:18:artifact:inputa",
+        "STATE:19:artifact:inputa",
+        "STATE:20:artifact:inputa",
+        "STATE:21:artifact:inputa",
+        "STATE:22:artifact:inputa",
+        "STATE:23:artifact:inputa",
+        "STATE:24:artifact:inputa",
+        "STATE:25:artifact:inputa",
+        "STATE:26:artifact:inputa",
+        "STATE:27:artifact:inputa",
+        "STATE:28:artifact:inputa",
+        "STATE:29:artifact:inputa",
+        "STATE:30:artifact:inputa",
+        "STATE:31:artifact:inputa",
+        "STATE:32:artifact:inputa",
+        "STATE:33:artifact:inputa"
+      ],
+      "passed": false,
+      "rollout_id": "p04m18_p07p6_hold"
+    },
+    {
+      "failures": [
+        "STATE:0:active_command_card15_fields",
+        "STATE:0:artifact:inputa",
+        "STATE:1:artifact:inputa",
+        "STATE:2:artifact:inputa",
+        "STATE:3:artifact:inputa",
+        "STATE:4:artifact:inputa",
+        "STATE:5:artifact:inputa",
+        "STATE:6:artifact:inputa",
+        "STATE:7:artifact:inputa",
+        "STATE:8:artifact:inputa",
+        "STATE:9:artifact:inputa",
+        "STATE:10:artifact:inputa",
+        "STATE:11:artifact:inputa",
+        "STATE:12:artifact:inputa",
+        "STATE:13:artifact:inputa",
+        "STATE:14:artifact:inputa",
+        "STATE:15:artifact:inputa",
+        "STATE:16:artifact:inputa",
+        "STATE:17:artifact:inputa",
+        "STATE:18:artifact:inputa",
+        "STATE:19:artifact:inputa",
+        "STATE:20:artifact:inputa",
+        "STATE:21:artifact:inputa",
+        "STATE:22:artifact:inputa",
+        "STATE:23:artifact:inputa",
+        "STATE:24:artifact:inputa",
+        "STATE:25:artifact:inputa",
+        "STATE:26:artifact:inputa",
+        "STATE:27:artifact:inputa",
+        "STATE:28:artifact:inputa",
+        "STATE:29:artifact:inputa",
+        "STATE:30:artifact:inputa",
+        "STATE:31:artifact:inputa",
+        "STATE:32:artifact:inputa",
+        "STATE:33:artifact:inputa"
+      ],
+      "passed": false,
+      "rollout_id": "p04m24_p07p8_hold"
+    }
+  ],
+  "recomputed_route": "ONE_MS_ID2X1_AUDITED_PREFIX_MISMATCH_STOP",
+  "recomputed_scientific_metrics": {
+    "branch_metrics": [
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": false,
+        "passed": false,
+        "retained_states": 66,
+        "rollout_id": "p03_level32_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_Z"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.024481506500000028,
+          0.025051706500000007,
+          173.8833999999988
+        ],
+        "terminal_source_rz_distance_m": 0.035027591396950004
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 72,
+        "rollout_id": "p04_minus_depth18_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_Z"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.024921795499999955,
+          0.025031243500000022,
+          895.6869999999981
+        ],
+        "terminal_source_rz_distance_m": 0.03532221740066882
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 70,
+        "rollout_id": "p04m18_p07p6_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.02550659750000006,
+          0.02423136750000003,
+          808.9824999999983
+        ],
+        "terminal_source_rz_distance_m": 0.03518161006757745
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 71,
+        "rollout_id": "p04m24_p07p8_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025100012000000005,
+          0.024185550000000028,
+          1027.3537999999971
+        ],
+        "terminal_source_rz_distance_m": 0.034856153419484566
+      }
+    ],
+    "minimum_passing_mixed_branches": 1,
+    "passed": false,
+    "passing_mixed_branch_count": 0,
+    "passing_mixed_branch_ids": []
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2x1-independent-raw-v1",
+  "source_revision": "4fa6596bd57480deba7711398a4d83c1f550b94e",
+  "stage_config_sha256": "53eab001330b3d3610cc66c3280a5cbcbec899fd6302938a89a3780024861622"
+}

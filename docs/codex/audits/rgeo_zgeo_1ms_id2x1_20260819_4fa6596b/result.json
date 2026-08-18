@@ -1,0 +1,125 @@
+{
+  "advance_attempts": 275,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite source-local canonical branch shooting only; PASS requires fresh repeatability and bounded-perturbation qualification and is not recovery, controller, waypoint, path, crossing or reachability evidence.",
+  "complete_rollouts": 0,
+  "execution_integrity_passed": true,
+  "finite_nominal_hold_candidate_pending_independent": false,
+  "guarded_safe_stops": 4,
+  "known_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03_level32_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04_minus_depth18_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04m18_p07p6_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p04m24_p07p8_hold"
+    }
+  ],
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 275,
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 16431125796,
+  "required_artifact_files": 1395,
+  "required_artifact_inventory_sha256": "bcb5db0d7bced4ed58ee11ee6293a38d36c022a5ededec7b8cb1892b4d95d3a7",
+  "reset_calls": 4,
+  "rollouts_completed": 4,
+  "route": "ONE_MS_ID2X1_MIXED_ALLOCATION_HOLD_FAIL_BROADER_SEQUENCE_SEARCH_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2x1-mixed-allocation-hold-result-v1",
+  "scientific_metrics": {
+    "branch_metrics": [
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": false,
+        "passed": false,
+        "retained_states": 66,
+        "rollout_id": "p03_level32_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_Z"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.024481506500000028,
+          0.025051706500000007,
+          173.8833999999988
+        ],
+        "terminal_source_rz_distance_m": 0.035027591396950004
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 72,
+        "rollout_id": "p04_minus_depth18_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_Z"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.024921795499999955,
+          0.025031243500000022,
+          895.6869999999981
+        ],
+        "terminal_source_rz_distance_m": 0.03532221740066882
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 70,
+        "rollout_id": "p04m18_p07p6_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.02550659750000006,
+          0.02423136750000003,
+          808.9824999999983
+        ],
+        "terminal_source_rz_distance_m": 0.03518161006757745
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 71,
+        "rollout_id": "p04m24_p07p8_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025100012000000005,
+          0.024185550000000028,
+          1027.3537999999971
+        ],
+        "terminal_source_rz_distance_m": 0.034856153419484566
+      }
+    ],
+    "minimum_passing_mixed_branches": 1,
+    "passed": false,
+    "passing_mixed_branch_count": 0,
+    "passing_mixed_branch_ids": []
+  },
+  "source_revision": "4fa6596bd57480deba7711398a4d83c1f550b94e",
+  "stage_config_sha256": "53eab001330b3d3610cc66c3280a5cbcbec899fd6302938a89a3780024861622",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 47682851840,
+    "estimated_raw_bytes": 30000000000,
+    "free_bytes_before_run": 77682851840,
+    "passed": true
+  },
+  "unique_cells_completed": 4,
+  "verified_plant_advances": 275
+}
