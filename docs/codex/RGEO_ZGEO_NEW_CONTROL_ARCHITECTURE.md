@@ -1,11 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **ID-2W3R1 architecture freeze (2026-08-19):** ID-2W3 level52 hold
+> **ID-2X1 architecture freeze (2026-08-19):** both level52 and level64 p03
+> holds reached the finite negative-R clearance before the terminal window.
+> The p03-only allocation is therefore closed. The next bounded discriminator
+> keeps the useful p03 level32 transport prefix but allocates sustained action
+> time to p04-minus and p07-plus, whose measured signs address positive-R and
+> negative-Z needs. Exact-TSC branches test these schedules directly; no model
+> or linear superposition is presumed. Only a complete mixed branch with a
+> stable states88--96 tail can nominate the next nominal candidate.
+>
+> **Historical ID-2W3R1 architecture freeze (2026-08-19):** ID-2W3 level52 hold
 > was stopped by the finite 25 mm R clearance before its terminal window;
-> exact action/current and independent raw gates passed. This does not yet
-> decide the unstarted level64 branch. ID-2W3R1 executes that already frozen
-> branch once under a new identity, preserving its schedule and gates. A
-> guarded stop or terminal FAIL closes p03-only design; PASS remains a finite
-> nominal candidate requiring repeatability and bounded-perturbation evidence.
+> exact action/current and independent raw gates passed. This did not yet
+> decide the unstarted level64 branch, which ID-2W3R1 isolated under a new
+> identity.
 >
 > **Historical ID-2W3 architecture freeze (2026-08-19):** the high-level
 > architecture remains exact actuation plus exact one-ms observations, causal

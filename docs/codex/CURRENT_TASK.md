@@ -1,24 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2W3R1 frozen):** ID-2W3 executed only
-> its first level-52 branch and stopped fail-closed before issue79. The last
-> issued and observed coil deltas were zero; the stop reason was instead
-> `PULSE_CLEARANCE_R` because state79 had source offsets
-> `(-25.3510,+18.4870) mm` and `+507.3725 A`. The independent audit passes all
-> 80 retained states, 79 advances and 400 artifacts. The official route is
-> `ONE_MS_ID2W3_EXECUTION_OR_INTERFACE_FAIL_STOP`; it is an empirical-envelope
-> stop, not an actuator/runtime/raw or scientific hold result.
+> **Unique active task (2026-08-19, ID-2X1 frozen):** ID-2W3R1 completed
+> 86/96 verified advances and stopped before issue86 at
+> `R_geo-R_geo(source)=-25.3166755 mm`. The level64 target was already constant;
+> last issued/readback deltas were zero, and its 87-state/435-artifact
+> independent audit passes. Together with the level52 stop, this closes the
+> p03-only hold route without claiming global unreachability.
 >
-> ID-2W3 is consumed. Its already preregistered but unstarted level-64 branch
-> is separated into the new ID-2W3R1 identity. ID-2W3R1 must run exactly one
-> 96-issue branch: q0, p03 levels1--64, then the unchanged level64 Card15 target
-> through state96. Prefix states0--65/actions0--64 must match ID-2W2. The
-> empirical stops and states88--96 hold gates are unchanged. A PASS nominates
-> only a finite nominal-hold candidate; a clean FAIL or envelope stop ends
-> p03-only design and requires a different action allocation. No model,
-> calibration/blind read, controller, recovery, waypoint, crossing,
-> adaptation, expert data or RL is authorized. All blocks below are
-> historical.
+> ID-2X1 is the sole active successor. Four canonical-source branches share
+> the exact p03 level32 prefix: one matched p03L32 hold baseline and three
+> mixed sustained allocations using p04-minus depth18 or24 and optional
+> p07-plus depth6 or8. The streams are exact Card15, use at most 0.3 A per
+> coil/step, and retain at least 98.8 A absolute-current headroom in the
+> zero-plant enumeration. A branch may stop at a frozen pre-issue clearance
+> and the next independent reset may continue; every other failure aborts the
+> campaign. At least one mixed branch must complete and pass the unchanged
+> states88--96 hold gate. PASS is only a finite nominal candidate; FAIL moves
+> to a broader bounded sequence search. No model, calibration/blind read,
+> controller, recovery, waypoint, crossing, adaptation, expert data or RL is
+> authorized. All blocks below are historical.
 >
 > **Historical task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
 > 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected

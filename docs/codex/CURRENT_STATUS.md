@@ -1,20 +1,18 @@
 # Current status
 
-> **Current status (2026-08-19, post-ID-2W3):** server validation passed 6/6
-> focused and 358/358 one-ms tests. The first real level-52 hold branch reached
-> state79 with exact zero issued/readback coil change, then refused issue79
-> because `R_geo-R_geo(source)=-25.3510045 mm` exceeded the frozen 25 mm
-> pre-issue clearance. It retained 80 states/79 advances/400 artifacts, and
-> independent raw recomputation passes. The result is an empirical-envelope
-> execution stop, not an actuator, queue, Card15, runtime, raw, reporting or
-> terminal-hold conclusion. The level-64 branch was never started.
+> **Current status (2026-08-19, post-ID-2W3R1):** server validation passed 6/6
+> focused and 364/364 one-ms tests. The level64 branch retained 87 states,
+> 86 advances and 435 artifacts, then refused issue86 because current R offset
+> was `-25.3166755 mm`. Exact action/current and independent raw gates pass;
+> no terminal hold verdict was manufactured. Both p03 holds therefore ended
+> at the same finite R clearance, and p03-only allocation is closed.
 >
-> ID-2W3 is immutable. ID-2W3R1 now freezes only the unstarted level-64 branch
-> under a new identity, with the same 96-issue schedule, state65 prefix,
-> empirical envelope and states88--96 hold criteria. Its maximum is one
-> reset/96 advances/97 states/485 artifacts. PASS requires the complete
-> terminal window and only nominates fresh qualification; FAIL or a guarded
-> envelope stop ends p03-only design. No model or controller is qualified.
+> ID-2X1 is frozen before implementation. It compares one p03L32 hold baseline
+> with p04-minus/p07-plus mixed sustained branches under four independent
+> resets, at most 384 advances and 1,940 artifacts. Only pre-issue clearance
+> stops may continue to the next reset. A campaign PASS requires a complete
+> mixed branch satisfying the states88--96 hold gate and remains a candidate,
+> not recovery or control qualification.
 >
 > **Historical status (2026-08-19, post-ID-2W1):** all six frozen branches and
 > 288/288 plant advances completed. Exact action/current/common-prefix/raw

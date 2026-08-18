@@ -1,18 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-19, ID-2W3R1 frozen):** ID-2W3's level-52
-> branch stopped before issue79 because the current R offset reached
-> `-25.3510 mm`; the outgoing and readback coil deltas were both zero. Its
-> independent 80-state/400-artifact raw audit passes. Because fail-fast
-> prevented the already frozen level-64 branch from starting, no terminal
-> hold verdict exists and ID-2W3 may not resume.
+> **Current route notice (2026-08-19, ID-2X1 frozen):** level52 and level64
+> p03 holds stopped independently at state79/state86 when R reached about
+> `-25.35/-25.32 mm`; both held constant targets with zero current delta and
+> both independent raw audits pass. P03-only hold design is closed.
 >
-> ID-2W3R1 isolates that unstarted branch under a new identity without changing
-> its action stream or gates. It replays p03 levels1--64, holds level64 through
-> state96, and applies the same source envelope and states88--96 terminal hold
-> criteria. A clean FAIL or guarded envelope stop ends p03-only design and
-> moves to a different allocation; PASS remains only a finite nominal-hold
-> candidate. Older notices are historical.
+> ID-2X1 returns to the best-known p03 level32 transport point and allocates
+> additional legal time to the measured outward-R p04-minus direction and,
+> in two branches, the negative-Z p07-plus direction. One matched baseline and
+> three sustained mixed branches are frozen. This is finite exact-TSC branch
+> shooting, not a learned model or a superposition claim. A clean failure moves
+> to a broader bounded sequence search; PASS is still only a nominal candidate.
+> Older notices are historical.
 >
 > **Historical route notice (2026-08-19, post-ID-2W1):** the six-branch
 > p04/p07 depth-6 pause/return grammar completed exactly but failed its
