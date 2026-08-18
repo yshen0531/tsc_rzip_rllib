@@ -1,27 +1,23 @@
 # Current status
 
-> **Current status (2026-08-19, post-ID-2X1):** server validation passed
-> 7/7 focused and 371/371 one-ms tests for the executed implementation. Four
-> fresh resets produced 275 verified advances and 16.431 GB of raw. The p03L32
-> baseline stopped on Z at state65; p04-minus depth18 stopped on Z at state71;
-> the two p04/p07 mixed branches stopped on R at states69/70. Final source RZ
-> distances were 34.856--35.322 mm and no terminal hold row was eligible.
+> **Current status (2026-08-19, post-ID-2Y1R1):** server validation passed
+> Y1R1 focused 6/6, Y1+Y1R1 13/13, and the corrected complete one-ms suite
+> 385/385. The repaired offline action matrix retained 95.2 A minimum current
+> headroom. Four real resets then produced 350 verified advances, 354 states,
+> and 20.848 GB of raw. Exact prefix, Card15/current, boundary/Ip, counter,
+> inventory and independent full-raw gates all pass.
 >
-> The first independent result was a reporting FAIL because it compared
-> outgoing rewritten raw `inputa` with preissue compact `inputa`. Commit
-> `7cf8b2e4` repaired only that lifecycle reconstruction. Server validation
-> then passed 8/8 and 372/372 tests, and the corrected independent audit passes
-> with zero failures while reproducing the immutable FAIL route exactly.
+> All four branches stopped fail-closed on negative-R preissue clearance at
+> states85--91. Final source offsets were about -25.01 to -25.40 mm R,
+> +12.22 to +13.01 mm Z and +971.70 to +1,212.05 A Ip; no branch reached the
+> states96--104 hold window. This is a clean finite schedule/allocation FAIL,
+> not an execution, model, controller or reachability result.
 >
-> ID-2Y1 then stopped in the zero-plant preflight: two candidate combinations
-> retained only 94.0/92.8 A current headroom, below the frozen 95 A gate. This
-> is an offline action-matrix design FAIL, not plant evidence; no reset or TSC
-> occurred and the gate was not weakened.
->
-> ID-2Y1R1 is frozen as a new repair identity. Its four revised streams retain
-> 95.2--97.0 A exact headroom while preserving the level64 prefix, horizon,
-> terminal gate and safety semantics. A clean failure ends manual ramp-depth
-> selection and moves to explicit bounded sequence/control-utility search.
+> ID-2Z1 is now frozen as a seven-branch common-prefix late-macro utility
+> discriminator. It tests p03 forward/unwind and p04/p07 both signs against a
+> matched hold baseline for eight effects, with persistent absolute-progress
+> rather than peak-only selection. It is zero-fit route evidence and can only
+> nominate a macro for later rolling sequence design.
 >
 > **Historical status (2026-08-19, post-ID-2W1):** all six frozen branches and
 > 288/288 plant advances completed. Exact action/current/common-prefix/raw

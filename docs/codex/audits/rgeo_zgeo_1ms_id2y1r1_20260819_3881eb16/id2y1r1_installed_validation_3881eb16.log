@@ -1,0 +1,22 @@
+BEGIN=2026-08-19T04:20:14+0800
+PWD=/home/yangshen0711/tsc_all/tsc_rzip_rllib
+0904428058e9ca806e80f47e4b0a40442cf6fbf79218ed264d400e2d7b7679e8  configs/rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.json
+7683921df8dad7135fbff59ca6c55c15fcf130681a98f785e7eb73e22bcb1ace  docs/codex/reports/RGEO_ZGEO_1MS_ID2Y1R1_LATE_MIXED_BRAKING_HOLD_DESIGN.md
+550b28431b054594945bfe563728033e792ed9442b66423648c47bef3384a4df  docs/codex/reports/RGEO_ZGEO_1MS_ID2Y1_OFFLINE_PREFLIGHT_RESULT.md
+d22d9a1bc67d1599c38058c2ee18f1b0015743d53883cb5184f018f17ee3f21e  scripts/rgeo_zgeo_1ms_id2y1_late_mixed_braking_hold.py
+1bf9995a2b5a1d05ba86b3b6f3aabc323729acc082f8fde94487d9a46faed0bd  scripts/rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.py
+fc94198c38fbaa747043eeb494ed893a4020986b4444709f22ba675687dc093e  scripts/rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold_independent.py
+598dd81dbdc4319e9ffa95468c4044171fc1a452f908de021b28f1a91b1e1786  tests/test_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.py
+1579d7c2fe8c098cb72498f274139db2954c8a5408f97d3d5d8ce981c4bf2472  run_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.sh
+test_exact_prefix_slew_headroom_and_hold (tests.test_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.ID2Y1R1Tests.test_exact_prefix_slew_headroom_and_hold) ... ok
+test_identity_and_budget (tests.test_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.ID2Y1R1Tests.test_identity_and_budget) ... ok
+test_launcher_keeps_primary_and_independent_routes_separate (tests.test_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.ID2Y1R1Tests.test_launcher_keeps_primary_and_independent_routes_separate) ... ok
+test_only_clearance_can_continue (tests.test_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.ID2Y1R1Tests.test_only_clearance_can_continue) ... ok
+test_repaired_offline_passes_without_plant (tests.test_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.ID2Y1R1Tests.test_repaired_offline_passes_without_plant) ... ok
+test_route_precedence (tests.test_rgeo_zgeo_1ms_id2y1r1_late_mixed_braking_hold.ID2Y1R1Tests.test_route_precedence) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 3.778s
+
+OK
+END=2026-08-19T04:20:20+0800

@@ -5,6 +5,20 @@
 > only those actions with two exact combinations at 95.8/95.2 A. This is an
 > excitation-design repair, not a post-result scientific threshold change.
 >
+> **Post-ID-2Y1R1 architecture freeze (2026-08-19):** exact one-ms
+> observability, Card15 actuation, causal history, explicit uncertainty and
+> independent hard safety remain unchanged. Four late mixed ramps executed
+> exactly but all met negative-R clearance before the hold window. Manual
+> ramp-depth tuning is closed.
+>
+> The immediate architecture task is a same-prefix macro utility comparison,
+> not a larger model. ID-2Z1 compares p03 forward/unwind and p04/p07 both
+> signs against a matched hold baseline and requires persistent absolute
+> progress over states70--73. This supplies a finite action alphabet for a
+> later rolling sequence optimizer. It remains simulator-development evidence;
+> model uncertainty, recourse and controller qualification stay separate AND
+> gates.
+>
 > **Post-ID-2X1 architecture freeze (2026-08-19):** exact actuation, exact
 > one-ms observation, causal history, explicit uncertainty and independent
 > hard safety remain unchanged. ID-2X1 proves only that three fixed residual

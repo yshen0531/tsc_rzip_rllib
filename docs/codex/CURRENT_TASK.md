@@ -1,30 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2X1):** ID-2X1 completed four
-> canonical-source branches, 275/275 verified advances, 279 retained states
-> and 1,395 raw artifacts. All four stopped only at a frozen preissue R/Z
-> clearance; exact action/current/raw gates pass. A reporting-only `inputa`
-> lifecycle bug in the initial independent audit was repaired at `7cf8b2e4`
-> without rerunning TSC. The corrected raw audit reproduces all counters,
-> 16,431,125,796 bytes, inventory digest, four stop states and route exactly.
-> Zero branch reached states88--96, so ID-2X1 remains final as
-> `ONE_MS_ID2X1_MIXED_ALLOCATION_HOLD_FAIL_BROADER_SEQUENCE_SEARCH_REQUIRED`.
+> **Unique active task (2026-08-19, post-ID-2Y1R1):** ID-2Y1R1 completed four
+> canonical-source branches with 350/350 verified advances, 354 states and
+> 1,770 raw artifacts. All exact interface, common-prefix, storage and raw
+> gates pass, and the separate full-raw audit reproduces 20,848,095,096 bytes,
+> the inventory digest, counters, four stops and final route with zero
+> failures. Every branch stopped before the next issue on the frozen negative-R
+> clearance, at states85--91, so none reached states96--104. The final route is
+> `ONE_MS_ID2Y1R1_LATE_MIXED_HOLD_FAIL_SEQUENCE_OPTIMIZATION_REQUIRED`.
 >
-> ID-2Y1 failed its frozen zero-TSC absolute-current-headroom gate: its four
-> streams had 97.0/95.2/94.0/92.8 A minimum headroom against the unchanged
-> 95 A requirement. It is final with zero reset/`gotsc`/plant advance.
->
-> ID-2Y1R1 is the sole active successor under a separate identity. It retains
-> the passing p04-minus depth6/12 streams and replaces only the rejected
-> combinations by p04m6+p07p4 and p04m8+p07p4, whose exact headrooms are
-> 95.8/95.2 A. All four retain p03 through level64, use a 104-issue horizon,
-> and must reproduce states0--65/actions0--64 from ID-2W3R1. Only a frozen
-> preissue clearance may continue to the next reset. At least one branch must
-> pass states96--104. Clean FAIL ends the hand-designed ramp ladder and routes
-> to bounded sequence/control-utility optimization. PASS is only a finite
-> nominal candidate. No model, calibration, blind read, controller, recovery,
-> waypoint, crossing, adaptation, expert data or RL is authorized. All blocks
-> below are historical.
+> The manual ramp-depth ladder is closed. ID-2Z1 is the sole active successor.
+> It replays the exact p03-level64 prefix and compares one matched hold baseline
+> with six four-step exact Card15 macro-actions: p03 forward/unwind and p04/p07
+> in both signs, followed by four holds. Seven resets, 511 advances and 2,590
+> raw artifacts are the hard maxima. Utility requires a measurable response,
+> persistent source-distance improvement in at least three of states70--73,
+> at least 0.10 mm terminal improvement and bounded paired Ip. A PASS nominates
+> only one macro for a later rolling sequence design; a FAIL moves the decision
+> earlier or broadens exact allocation. No fit, calibration/blind read,
+> controller, recovery, waypoint, crossing, adaptation, expert data or RL is
+> authorized. All blocks below are historical.
 >
 > **Historical task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
 > 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected

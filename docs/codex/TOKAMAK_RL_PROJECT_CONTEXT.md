@@ -1,20 +1,20 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-19, post-ID-2X1):** the four level32-based
-> mixed-allocation branches completed 275 verified TSC advances and all made
-> fail-closed preissue clearance stops before the terminal window. The
-> corrected independent full-raw audit passes. P04-minus/p07-plus changed the
-> common-state path by only about 1--2 mm and did not create a nominal hold;
-> this is a finite schedule FAIL, not actuator or plant unreachability.
+> **Current route notice (2026-08-19, post-ID-2Y1R1):** the repaired four-
+> branch late-braking campaign completed 350 verified TSC advances and passed
+> exact execution plus independent full-raw audit. Every branch stopped on the
+> frozen negative-R preissue clearance before states96--104. Final source R/Z
+> distance remained 28.116--28.304 mm. This closes manual ramp-depth tuning;
+> it does not prove the actuator basis or plant unreachable.
 >
-> ID-2Y1's zero-TSC enumeration rejected two of four candidate streams at the
-> unchanged 95 A headroom gate (94.0/92.8 A); no reset or plant step occurred.
-> ID-2Y1R1 is a separate repair with p04m6, p04m12, p04m6+p07p4 and
-> p04m8+p07p4, all retaining 95.2--97.0 A headroom after the exact p03L64
-> prefix. The 104-issue/states96--104 hold contract is unchanged. Clean FAIL
-> ends manual ramp tuning and routes to explicit bounded sequence/control-
-> utility optimization. PASS remains only a finite nominal candidate. Older
-> notices are historical.
+> ID-2Z1 is the next bounded action/control-utility discriminator. At one exact
+> p03-level64 causal prefix it compares hold with p03 forward/unwind and
+> p04/p07 both signs as four-increment/four-hold macros. Selection requires
+> persistent absolute source progress, not a single hybrid peak. A useful
+> macro may enter a later rolling sequence optimizer; failure moves the
+> decision earlier or broadens exact allocation. Model, calibration/blind,
+> hold/recovery, controller, waypoint, crossing and learning claims remain
+> closed. Older notices are historical.
 >
 > **Historical route notice (2026-08-19, post-ID-2W1):** the six-branch
 > p04/p07 depth-6 pause/return grammar completed exactly but failed its

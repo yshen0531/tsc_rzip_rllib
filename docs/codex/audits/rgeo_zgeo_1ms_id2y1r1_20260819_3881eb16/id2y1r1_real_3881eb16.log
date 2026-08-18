@@ -1,0 +1,250 @@
+{
+  "advance_attempts": 350,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite source-local repaired late mixed braking branches only; PASS requires fresh repeatability and bounded-perturbation qualification.",
+  "complete_rollouts": 0,
+  "execution_integrity_passed": true,
+  "finite_nominal_hold_candidate_pending_independent": false,
+  "guarded_safe_stops": 4,
+  "known_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m6_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m12_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m6_p07p4_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m8_p07p4_hold"
+    }
+  ],
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 350,
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 20848095096,
+  "required_artifact_files": 1770,
+  "required_artifact_inventory_sha256": "0f3c7f8cad2a2a73205beada9f6f8df0f13662f7d9f54db5226b60ec4a7343e9",
+  "reset_calls": 4,
+  "rollouts_completed": 4,
+  "route": "ONE_MS_ID2Y1R1_LATE_MIXED_HOLD_FAIL_SEQUENCE_OPTIMIZATION_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2y1r1-late-mixed-braking-hold-result-v1",
+  "scientific_metrics": {
+    "branch_metrics": [
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 89,
+        "rollout_id": "p03l64_p04m6_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025210100999999985,
+          0.012866368500000017,
+          985.4395999999979
+        ],
+        "terminal_source_rz_distance_m": 0.028303579823195386
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 92,
+        "rollout_id": "p03l64_p04m12_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025395185499999973,
+          0.012221142500000018,
+          1212.0494999999974
+        ],
+        "terminal_source_rz_distance_m": 0.028182827583205974
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 86,
+        "rollout_id": "p03l64_p04m6_p07p4_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025010692000000057,
+          0.013011726500000015,
+          971.7003999999979
+        ],
+        "terminal_source_rz_distance_m": 0.02819290231298774
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 87,
+        "rollout_id": "p03l64_p04m8_p07p4_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025016596000000058,
+          0.01283169150000002,
+          1046.857899999999
+        ],
+        "terminal_source_rz_distance_m": 0.028115518529424132
+      }
+    ],
+    "minimum_passing_branches": 1,
+    "passed": false,
+    "passing_branch_count": 0,
+    "passing_branch_ids": []
+  },
+  "source_revision": "3881eb16a6aad1e0f372d1e7c626f19d1ef3e616",
+  "stage_config_sha256": "0904428058e9ca806e80f47e4b0a40442cf6fbf79218ed264d400e2d7b7679e8",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 150286100480,
+    "estimated_raw_bytes": 28000000000,
+    "free_bytes_before_run": 178286100480,
+    "passed": true
+  },
+  "unique_cells_completed": 4,
+  "verified_plant_advances": 350
+}
+{
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw ID2Y1R1 audit; PASS/FAIL remains finite source-local repaired late mixed-braking branch evidence only.",
+  "failures": [],
+  "finite_nominal_hold_candidate": false,
+  "models_fit_or_updated": 0,
+  "primary_route": "ONE_MS_ID2Y1R1_LATE_MIXED_HOLD_FAIL_SEQUENCE_OPTIMIZATION_REQUIRED",
+  "primary_scientific_passed": false,
+  "primary_sha256": "2a13fc42c78d1f36d778089244ac3bbdc1f26d6637cd2637de360ae7ba7877b1",
+  "raw_inputa_lifecycle": "retained state-k inputa is outgoing issue-k; outgoing fields are independently checked and inputa byte hashes are not compared to the primary preissue hashes",
+  "raw_rollouts": 4,
+  "raw_states": 354,
+  "recomputed_counters": {
+    "advance_attempts": 350,
+    "complete_rollouts": 0,
+    "guarded_safe_stops": 4,
+    "plant_advance_gotsc_calls": 350,
+    "reset_calls": 4,
+    "rollouts_completed": 4,
+    "unique_cells_completed": 4,
+    "verified_plant_advances": 350
+  },
+  "recomputed_inventory_bytes": 20848095096,
+  "recomputed_inventory_files": 1770,
+  "recomputed_inventory_sha256": "0f3c7f8cad2a2a73205beada9f6f8df0f13662f7d9f54db5226b60ec4a7343e9",
+  "recomputed_known_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m6_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m12_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m6_p07p4_hold"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "p03l64_p04m8_p07p4_hold"
+    }
+  ],
+  "recomputed_route": "ONE_MS_ID2Y1R1_LATE_MIXED_HOLD_FAIL_SEQUENCE_OPTIMIZATION_REQUIRED",
+  "recomputed_scientific_metrics": {
+    "branch_metrics": [
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 89,
+        "rollout_id": "p03l64_p04m6_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025210100999999985,
+          0.012866368500000017,
+          985.4395999999979
+        ],
+        "terminal_source_rz_distance_m": 0.028303579823195386
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 92,
+        "rollout_id": "p03l64_p04m12_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025395185499999973,
+          0.012221142500000018,
+          1212.0494999999974
+        ],
+        "terminal_source_rz_distance_m": 0.028182827583205974
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 86,
+        "rollout_id": "p03l64_p04m6_p07p4_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025010692000000057,
+          0.013011726500000015,
+          971.7003999999979
+        ],
+        "terminal_source_rz_distance_m": 0.02819290231298774
+      },
+      {
+        "execution_status": "guarded_safe_stop",
+        "mixed_candidate": true,
+        "passed": false,
+        "retained_states": 87,
+        "rollout_id": "p03l64_p04m8_p07p4_hold",
+        "stop_reasons": [
+          "PULSE_CLEARANCE_R"
+        ],
+        "terminal_source_offset_rzi": [
+          -0.025016596000000058,
+          0.01283169150000002,
+          1046.857899999999
+        ],
+        "terminal_source_rz_distance_m": 0.028115518529424132
+      }
+    ],
+    "minimum_passing_branches": 1,
+    "passed": false,
+    "passing_branch_count": 0,
+    "passing_branch_ids": []
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2y1r1-independent-raw-v1",
+  "source_revision": "3881eb16a6aad1e0f372d1e7c626f19d1ef3e616",
+  "stage_config_sha256": "0904428058e9ca806e80f47e4b0a40442cf6fbf79218ed264d400e2d7b7679e8"
+}
