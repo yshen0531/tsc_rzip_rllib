@@ -1,5 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **ID-2W3 architecture freeze (2026-08-19):** the high-level
+> **ID-2W3R1 architecture freeze (2026-08-19):** ID-2W3 level52 hold
+> was stopped by the finite 25 mm R clearance before its terminal window;
+> exact action/current and independent raw gates passed. This does not yet
+> decide the unstarted level64 branch. ID-2W3R1 executes that already frozen
+> branch once under a new identity, preserving its schedule and gates. A
+> guarded stop or terminal FAIL closes p03-only design; PASS remains a finite
+> nominal candidate requiring repeatability and bounded-perturbation evidence.
+>
+> **Historical ID-2W3 architecture freeze (2026-08-19):** the high-level
 > architecture remains exact actuation plus exact one-ms observations, causal
 > history, calibrated uncertainty and constrained rolling control. The
 > selected p03 direction is not promoted to a nominal hold model: extending it

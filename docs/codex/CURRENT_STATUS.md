@@ -1,21 +1,20 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2W3 frozen):** the sole extended-p03 rollout
-> retained 80 valid states and stopped before its 80th issue when the
-> coil-14 readback slew was `0.30001 A` versus the exact issued `0.3 A`.
-> Independent raw recomputation passes the realized 79 advances and 400 files.
-> The result is an interface-gate stop, not a TSC/runtime/raw/scientific or
-> controller failure.
+> **Current status (2026-08-19, post-ID-2W3):** server validation passed 6/6
+> focused and 358/358 one-ms tests. The first real level-52 hold branch reached
+> state79 with exact zero issued/readback coil change, then refused issue79
+> because `R_geo-R_geo(source)=-25.3510045 mm` exceeded the frozen 25 mm
+> pre-issue clearance. It retained 80 states/79 advances/400 artifacts, and
+> independent raw recomputation passes. The result is an empirical-envelope
+> execution stop, not an actuator, queue, Card15, runtime, raw, reporting or
+> terminal-hold conclusion. The level-64 branch was never started.
 >
-> Descriptively, p03 continuation did not approach the source after state32:
-> post-state32 minimum `19.6412 mm`, state79 `23.9352 mm`, and no 15 mm
-> corridor state. It did rotate the error by reducing Z while R kept moving
-> negative. ID-2W3 is now frozen before implementation at config/design
-> SHA-256 `df01e62d... / cbe6f317...`. It holds the already observed p03
-> levels52 and64 through state96 and evaluates the common terminal states
-> 88--96. The maximum is two resets, 192 attempts, 194 states and 970 required
-> raw artifacts. This is the last p03-only ladder; a clean failure moves to a
-> different action allocation. No ID-2W3 tests, deployment or TSC have yet run.
+> ID-2W3 is immutable. ID-2W3R1 now freezes only the unstarted level-64 branch
+> under a new identity, with the same 96-issue schedule, state65 prefix,
+> empirical envelope and states88--96 hold criteria. Its maximum is one
+> reset/96 advances/97 states/485 artifacts. PASS requires the complete
+> terminal window and only nominates fresh qualification; FAIL or a guarded
+> envelope stop ends p03-only design. No model or controller is qualified.
 >
 > **Historical status (2026-08-19, post-ID-2W1):** all six frozen branches and
 > 288/288 plant advances completed. Exact action/current/common-prefix/raw

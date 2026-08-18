@@ -1,29 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2W3 frozen):** ID-2W2 safely stopped
-> after 79/80 verified advances. Exact issued slew was `0.3 A`, but coil-14
-> readback changed by `-0.30001 A` at issue78 -> state79, so the frozen
-> observed-slew interface refused issue79. The partial 400-artifact raw audit
-> passes exactly. The official route remains
-> `ONE_MS_ID2W2_EXECUTION_OR_INTERFACE_FAIL_STOP`; no scientific PASS/FAIL is
-> imputed.
+> **Unique active task (2026-08-19, ID-2W3R1 frozen):** ID-2W3 executed only
+> its first level-52 branch and stopped fail-closed before issue79. The last
+> issued and observed coil deltas were zero; the stop reason was instead
+> `PULSE_CLEARANCE_R` because state79 had source offsets
+> `(-25.3510,+18.4870) mm` and `+507.3725 A`. The independent audit passes all
+> 80 retained states, 79 advances and 400 artifacts. The official route is
+> `ONE_MS_ID2W3_EXECUTION_OR_INTERFACE_FAIL_STOP`; it is an empirical-envelope
+> stop, not an actuator/runtime/raw or scientific hold result.
 >
-> The realized trajectory is nevertheless decisive route evidence: after the
-> known state32 distance `19.2923 mm`, the best later distance was
-> `19.6412 mm`, no state entered 15 mm, and state79 was `23.9352 mm` from the
-> source with R/Z offsets `(-21.1937,+11.1230) mm`. Blind p03 continuation
-> stops. ID-2W3 is prospectively frozen as the final p03-only discriminator at
-> config/design SHA-256
-> `df01e62dc7d5467ba817dd6b3f7208453a863d6d11820f008fae50d3e42e4e3c /`
-> `cbe6f3175d11a9051b16b9e0036a41ea3af99b21f2bf7a30c15bf4759ea436db`.
-> It runs exactly two 96-issue branches after all server gates: replay to
-> p03 level52 or level64, then hold that exact Card15 target through the common
-> states88--96 terminal window. At least one branch must satisfy both-axis
-> `0.1 mm/step`, `1 mm` net-motion, `100 A` net-Ip and source-envelope gates.
-> A clean failure ends p03-only nominal/hold design and requires a different
-> actuator allocation. No model, calibration/blind read, controller, recovery,
-> waypoint, crossing, adaptation, expert data or RL is authorized. All blocks
-> below are historical.
+> ID-2W3 is consumed. Its already preregistered but unstarted level-64 branch
+> is separated into the new ID-2W3R1 identity. ID-2W3R1 must run exactly one
+> 96-issue branch: q0, p03 levels1--64, then the unchanged level64 Card15 target
+> through state96. Prefix states0--65/actions0--64 must match ID-2W2. The
+> empirical stops and states88--96 hold gates are unchanged. A PASS nominates
+> only a finite nominal-hold candidate; a clean FAIL or envelope stop ends
+> p03-only design and requires a different action allocation. No model,
+> calibration/blind read, controller, recovery, waypoint, crossing,
+> adaptation, expert data or RL is authorized. All blocks below are
+> historical.
 >
 > **Historical task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
 > 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected

@@ -1,20 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-19, ID-2W3 frozen):** the extended p03
-> trajectory stopped safely before issue79 on an observed `0.30001 A` readback
-> change. Its partial raw audit passes, while its official execution route
-> remains FAIL. Across the 79 realized advances, continued p03 never improved
-> on the state32 source distance and never entered the 15 mm corridor; by
-> state79 it traded lower Z error for larger negative-R error.
+> **Current route notice (2026-08-19, ID-2W3R1 frozen):** ID-2W3's level-52
+> branch stopped before issue79 because the current R offset reached
+> `-25.3510 mm`; the outgoing and readback coil deltas were both zero. Its
+> independent 80-state/400-artifact raw audit passes. Because fail-fast
+> prevented the already frozen level-64 branch from starting, no terminal
+> hold verdict exists and ID-2W3 may not resume.
 >
-> One final two-level braking discriminator is now frozen at config/design
-> SHA-256 `df01e62d... / cbe6f317...`. The measured level52 and64 prefixes
-> occur before the interface stop and have distinct velocity directions.
-> Holding those exact targets through state96 tests whether p03 can supply a
-> finite nominal deceleration/hold tail under unchanged empirical stops.
-> Failure ends p03-only nominal design; the next actuator grammar must use
-> another allocation. Implementation/server tests/TSC remain pending. Older
-> notices are historical.
+> ID-2W3R1 isolates that unstarted branch under a new identity without changing
+> its action stream or gates. It replays p03 levels1--64, holds level64 through
+> state96, and applies the same source envelope and states88--96 terminal hold
+> criteria. A clean FAIL or guarded envelope stop ends p03-only design and
+> moves to a different allocation; PASS remains only a finite nominal-hold
+> candidate. Older notices are historical.
 >
 > **Historical route notice (2026-08-19, post-ID-2W1):** the six-branch
 > p04/p07 depth-6 pause/return grammar completed exactly but failed its
