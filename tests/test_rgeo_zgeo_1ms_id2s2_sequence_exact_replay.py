@@ -49,6 +49,10 @@ class ID2S2Tests(unittest.TestCase):
             self.assertLessEqual(max(float(row["maximum_issued_delta_a"])
                                      for row in stream["actions"]), 0.3)
 
+    def test_issue_zero_preserves_authentic_source_to_q0_slew(self):
+        for stream in self.streams:
+            self.assertEqual(stream["actions"][0]["maximum_issued_delta_a"], 1e-5)
+
     def test_offline_preflight_is_zero_plant(self):
         result = s2.offline(s2.CONFIG, "test-revision")
         self.assertTrue(result["passed"], result["failures"])

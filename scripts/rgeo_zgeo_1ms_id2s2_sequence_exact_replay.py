@@ -156,7 +156,21 @@ def campaign_streams(stage: dict[str, Any], cfg: Any, targets: dict[str, Any],
     for sequence_id, rollout_id in zip(stage["sequence_ids"], stage["rollout_ids"]):
         stream = copy.deepcopy(generated[sequence_id])
         original = originals[sequence_id]
-        if stream["actions"] != original["actions"]:
+        # The generator records issue 0 relative to q0, whereas the authentic
+        # rollout records its exact 1e-5 A source-to-q0 settling slew.  That
+        # maximum is a measured/derived field, not part of the Card15 stream.
+        # Every other action field must remain byte-for-byte identical.
+        generated_contract = [
+            {key: value for key, value in action.items()
+             if key != "maximum_issued_delta_a"}
+            for action in stream["actions"]
+        ]
+        recorded_contract = [
+            {key: value for key, value in action.items()
+             if key != "maximum_issued_delta_a"}
+            for action in original["actions"]
+        ]
+        if generated_contract != recorded_contract:
             raise InputIntegrityError(f"original action stream changed: {sequence_id}")
         stream["actions"] = copy.deepcopy(original["actions"])
         stream.update({"rollout_id": rollout_id, "replay_index": 1,
