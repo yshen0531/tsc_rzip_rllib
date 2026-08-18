@@ -1,6 +1,15 @@
 # Current status
 
-> **Current status (2026-08-18, post-ID-2S1):** The measured four-branch TSC
+> **Current status (2026-08-18, post-ID-2S2):** the four measured f03
+> sequence branches reproduced exactly in fresh TSC. Primary and independent
+> full-raw results agree on `4/4` rollouts, `136/136` advances, 140 states,
+> 700 artifacts and route
+> `ONE_MS_ID2S2_SEQUENCE_EXACT_REPLAY_PASS_SHOOTING_DESIGN_ONLY`. This is
+> finite deterministic replay evidence, not a probabilistic transition tube.
+> The next bounded work is only a zero-TSC canonical-source shooting design
+> with an absolute control-utility objective and a small branch budget.
+
+> **Historical status (2026-08-18, post-ID-2S1):** The measured four-branch TSC
 > discriminator passed execution, raw, prefix, two-dimensional time-series,
 > and Ip gates with independent exact recomputation. The primary route is
 > `ONE_MS_ID2S1_MEASURED_SEQUENCE_PASS_FRESH_REPLAY_TUBE_DESIGN_ONLY`.

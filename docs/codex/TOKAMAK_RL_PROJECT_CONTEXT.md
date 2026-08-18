@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-18, post-ID-2S1):** Four selected f03
+> **Current route notice (2026-08-18, post-ID-2S2):** four fresh exact
+> replays reproduced every checked S1 physical trajectory and paired response
+> with zero difference, and the independent raw audit passed. This supports
+> finite canonical-source offline shooting as the next architecture
+> discriminator, but it supplies neither a stochastic tube nor controller
+> safety. S1/S2 stay zero-weight route evidence. The next stage first freezes
+> an absolute tracking/hold objective and bounded candidate set with zero new
+> TSC; any execution remains a separate identity.
+
+> **Historical route notice (2026-08-18, post-ID-2S1):** Four selected f03
 > two-arm sequences were measured in fresh TSC and independently audited.
 > Their combined time-resolved response passed the finite geometry/Ip gate,
 > while two sequences differed from isolated-response addition by about

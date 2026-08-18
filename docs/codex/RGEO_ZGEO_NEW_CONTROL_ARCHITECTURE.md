@@ -1,6 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2S1 amendment (2026-08-18):** Real two-arm sequence responses
+> **Post-ID-2S2 amendment (2026-08-18):** all four measured f03 two-arm
+> trajectories and their paired responses reproduced exactly in a fresh TSC
+> replay and independent full-raw audit. This qualifies finite deterministic
+> canonical-source replay for bounded offline shooting design, not a 1 ms
+> online Oracle and not a probabilistic transition tube. The next candidate
+> search must optimize absolute time-resolved tracking/hold utility and hard
+> margins directly; it may use the old additive construction only as a
+> nomination heuristic and may not fit S1/S2. Any measured shooting PASS
+> remains below residual reserve, bounded-tube recourse and controller gates.
+
+> **Historical post-ID-2S1 amendment (2026-08-18):** Real two-arm sequence responses
 > passed the finite time-resolved 2-D geometry and Ip discriminator, but two
 > histories showed roughly `0.70 mm` R interaction relative to summing their
 > isolated arms. The architecture must therefore treat action age, return

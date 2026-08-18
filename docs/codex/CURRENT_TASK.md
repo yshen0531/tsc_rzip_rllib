@@ -1,6 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2S1):** ID-2S1 completed all
+> **Unique active task (2026-08-18, post-ID-2S2):** ID-2S2 completed all
+> `4/4` fresh exact replays, `136/136` verified one-ms advances, and an
+> independent audit of 140 states and 700 required artifacts. All checked
+> R_geo/Z_geo/R_mid, Ip, 14-coil, 48-wire, full trajectory and paired-response
+> differences from ID-2S1 were exactly zero. The final route is
+> `ONE_MS_ID2S2_SEQUENCE_EXACT_REPLAY_PASS_SHOOTING_DESIGN_ONLY`.
+>
+> The sole active successor is a separately frozen, zero-new-TSC
+> canonical-source sequence-shooting design that defines absolute
+> tracking/hold utility, finite constraint margins, and a small candidate
+> budget. S1/S2 remain zero-weight route evidence and may not be fit or called
+> a probabilistic tube. Any later candidate execution requires its own
+> storage, interface, raw and independent-audit gates. No model, authority,
+> recovery, controller, MPC, transport, crossing, adaptation, expert data, or
+> RL is authorized by S2 alone. All blocks below are historical.
+
+> **Historical task (2026-08-18, post-ID-2S1):** ID-2S1 completed all
 > `4/4` fresh sequence branches and `136/136` verified one-ms advances.
 > Independent raw audit passed over 140 states and 700 required artifacts.
 > The measured response set passed all sixteen direction-progress, angular
