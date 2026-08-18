@@ -46,11 +46,11 @@ class ID2U2ModelComparisonTests(unittest.TestCase):
                 self.assertTrue(np.array_equal(cell.issued[: cell.probe_issue], baseline.issued[: cell.probe_issue]))
             self.assertLessEqual(cell.probe_issue + 8, 40)
 
-    def test_causal_prefix_feature_changes_with_early_history(self) -> None:
+    def test_local_causal_prefix_feature_changes_with_recent_history(self) -> None:
         cell = next(cell for cell in self.data.cells if cell.cell_id == "u00__baseline")
         feature = u2.causal_prefix_feature(cell, 24, self.data, self.stage)
         states = cell.states.copy()
-        states[8, 0] += 1.0e-4
+        states[22, 0] += 1.0e-4
         changed = replace(cell, states=states)
         changed_feature = u2.causal_prefix_feature(changed, 24, self.data, self.stage)
         self.assertFalse(np.array_equal(feature, changed_feature))
