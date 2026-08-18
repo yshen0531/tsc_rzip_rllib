@@ -1,6 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, ID-2Q1R1):** ID-2P1 supplied the
+> **Active new-round context (2026-08-18, post-ID-2Q1R1):** the bounded
+> stable-ridge/small-GRU comparison failed whole-history response and action
+> ranking despite the successful matched-factorial P1 data campaign. The GRU
+> helped one fold but regressed the others; no model was frozen and fresh
+> calibration remains unopened.
+>
+> The high-level architecture is unchanged, but the next choice must separate
+> local causal support from global model-form failure. A bounded attribution
+> audit should decide among a support-gated low-dimensional local model,
+> targeted matched bridge data for the failing histories, or earlier finite
+> TSC prefix-shooting qualification. It is not another capacity increase.
+> All older notices are historical.
+
+> **Historical new-round context (2026-08-18, ID-2Q1R1):** ID-2P1 supplied the
 > prospectively fit-eligible duration/timing/history support missing at
 > ID-2O0. Its `42/42` authentic rollouts, matched prefixes, replays,
 > signal/Ip gates and independent raw audit all passed. This remains finite

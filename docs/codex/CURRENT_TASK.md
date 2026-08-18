@@ -1,6 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2P1):** ID-2P1 completed all
+> **Unique active task (2026-08-18, post-ID-2Q1R1):** ID-2Q1R1 completed its
+> frozen two-candidate server comparison with zero TSC/reset/plant work, and
+> separate-process deterministic recomputation passed. Neither candidate was
+> eligible. Ridge mean response NRMSE was `1.0813`; the small GRU residual
+> regressed it to `1.1653`. Held-history action-ranking regret reached
+> `0.9569`, and the feature condition was `6.24e9`--`8.47e9` against the
+> frozen `1e6` cap. No model payload exists and fresh calibration stays
+> unopened.
+>
+> Development is paused for route confirmation. The recommended next stage
+> is a separately frozen zero-new-TSC attribution/support audit that records
+> per-family predictions, blockwise rank and deployable causal-history
+> distances and uses a support-gated local diagnostic only to choose between
+> a low-dimensional local successor, targeted h01/h03/h05 bridge data, or
+> earlier canonical-prefix TSC branch-shooting qualification. It may not tune
+> Q1R1, open calibration/holdout or authorize control. All blocks below are
+> historical.
+
+> **Historical task (2026-08-18, post-ID-2P1):** ID-2P1 completed all
 > `42/42` authentic rollouts and `1,428/1,428` verified one-ms advances.
 > Independent server raw recomputation passed over `1,470` states and
 > `7,350` required artifacts. All `8/8` prefix, `2/2` replay and `32/32`

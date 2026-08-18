@@ -1,6 +1,19 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2P1 PASS / ID-2Q1 active):** ID-2P1 is a
+> **Current status (2026-08-18, ID-2Q1R1 model FAIL / route review):** the
+> zero-TSC server comparison completed and its independent deterministic
+> recomputation passed. Neither the stable ridge nor its small persistent GRU
+> residual met the frozen whole-history response, direction, ranking and
+> feature-support gates. No model was emitted. This is a finite model/support
+> FAIL, not a TSC, runtime, raw, controller or reachability result.
+>
+> The same-data global-model ladder is stopped. Fresh calibration, blind
+> holdout, uncertainty, authority, recovery and control remain blocked. The
+> next recommended decision is a bounded attribution/support audit before any
+> further TSC or model family is authorized. Older status blocks are
+> historical.
+
+> **Historical status (2026-08-18, ID-2P1 PASS / ID-2Q1 active):** ID-2P1 is a
 > clean matched-factorial development-data PASS, not a controller result. It
 > completed `42/42` rollouts, `1,428/1,428` advances and retained `7,350`
 > required artifacts (`86,572,598,280` bytes). Independent server raw audit

@@ -1,6 +1,21 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2P1 model amendment (2026-08-18):** the missing matched duration,
+> **Post-ID-2Q1R1 architecture amendment (2026-08-18):** neither the global
+> stable shared-response map nor its small persistent GRU residual generalized
+> across the 16 whole-history families. Absolute short-horizon prediction was
+> often adequate, but paired response, direction, action ranking and feature
+> support failed. This ends the same-data global-model ladder; it does not
+> reject exact-observation receding control or machine learning in general.
+>
+> Before another model or TSC campaign, separate local support from model
+> form. If nearby complete causal histories predict response, use a small
+> support-gated local mixture/LPV model with explicit OOD refusal. If the
+> failing histories lack neighbors, collect only a targeted matched bridge.
+> If neither route is reliable, qualify finite canonical-prefix TSC shooting
+> earlier as an Oracle/teacher candidate. Fresh calibration, authority and
+> recovery remain independent later gates.
+
+> **Historical post-ID-2P1 model amendment (2026-08-18):** the missing matched duration,
 > timing and history data passed all execution and independent raw gates.
 > ID-2Q1 v1's zero-model preflight found that exact signed Card15 execution
 > produces a rank-three subspace, not an ideal rank-two plane. ID-2Q1R1

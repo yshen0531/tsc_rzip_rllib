@@ -1,0 +1,17 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Separate-process deterministic recomputation of frozen ID2Q1; not independent calibration, uncertainty, authority or control evidence.",
+  "model_payload_exactly_recomputed": true,
+  "model_payload_sha256": null,
+  "new_tsc_calls": 0,
+  "plant_advances": 0,
+  "primary_result_exactly_recomputed": true,
+  "primary_result_sha256": "c60e79c1eeba021573d501493e4fd057132aaf438f7c0a6e159f7a0eda2d262b",
+  "primary_scientific_passed": false,
+  "reset_calls": 0,
+  "route": "ONE_MS_ID2Q1R1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN",
+  "schema_version": "rgeo-zgeo-1ms-id2q1r1-shared-latent-model-audit-v1",
+  "selected_kind": null,
+  "source_revision": "db2e79d53671399f9c293ef7214ee08f1eed4185",
+  "stage_config_sha256": "f134d194e96511105da1d32504792dd5c53869f7ece29e68afbe74a1831b198b"
+}
