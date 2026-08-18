@@ -1,5 +1,16 @@
 # Current status
 
+> **Current status (2026-08-18, ID-2U0 authorized):** ID-2T1 remains a clean
+> `ONE_MS_ID2T1_MATCHED_CONTINUATION_CONTROL_UTILITY_FAIL_REVIEW`, but its
+> contrast is now classified more precisely as a history/sign-dependent
+> return-edge/absolute-state event rather than a simple p04 gain reversal.
+> The larger route correction is that later model and sequence stages were
+> centred on a p03 level-15 hold even though ID-2C1 Phase A had selected the
+> continuing p03-minus stride-one nominal through issue 31.  ID-2U0 is the
+> only active work: zero TSC and zero model fitting, with exact Card15
+> headroom/action-grammar enumeration and a prospective fresh
+> moving-nominal campaign as its sole possible output.
+
 > **Current status (2026-08-18, post-ID-2T1):** execution, prefix, raw,
 > action and independent-audit gates passed, but the real matched continuation
 > utility gate failed `0/4`. The p04+ response at state 30 was consistent

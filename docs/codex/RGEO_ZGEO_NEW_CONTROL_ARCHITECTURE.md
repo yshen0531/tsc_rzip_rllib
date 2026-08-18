@@ -1,5 +1,17 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **ID-2U0 architecture correction (2026-08-18):** retain exact
+> actuator/queue semantics, exact one-ms R_geo/Z_geo/Ip observations, causal
+> history/belief and uncertainty-aware rolling control, but move the
+> experimental centre back to ID-2C1's selected moving p03 stride-one
+> nominal.  The held-after-issue-15 corridor was a local identification
+> device, not the best measured transport.  Residual actions must be
+> allocated by an exact Card15 grammar (for example pause/probe/return/resume)
+> because the moving nominal already consumes the full `0.3 A` slew on some
+> coils.  State-27 is treated as a guarded hybrid/return-edge event until
+> prospective matched evidence says otherwise.  ID-2U0 is zero TSC and zero
+> fit; only a fresh moving-nominal campaign may follow a passing preflight.
+
 > **Post-ID-2T1 amendment (2026-08-18):** a common p04+ continuation after
 > four exact state-30 histories was repeatably measurable but wrong-way for
 > source-error correction in all four cases. The small cross-history spread

@@ -1,5 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, ID-2U0 nominal realignment):** the
+> post-ID-2T1 evidence review corrected two route assumptions.  First, the
+> earlier f03 p04+ result was dominated by a one-frame state-27 return-edge
+> event; its direct h1/h2 pulse response is nearly the same as the later T1
+> response, so the evidence is not a smooth gain sign reversal.  Second,
+> ID-2C1 selected a p03-minus stride-one nominal that continued through issue
+> 31, but K1/P1/S1/S2/T1 inherited the Phase-B identification corridor that
+> stopped at level 15 and then held.
+>
+> The active stage is a bounded zero-new-TSC ID-2U0 nominal-realignment,
+> exact Card15 action-allocation and hybrid-event preflight.  It must
+> reproduce those lineages, enumerate moving-nominal headroom without
+> clipping, and freeze one prospective matched moving-nominal campaign with
+> whole-history development/calibration/blind roles.  Statistical code and
+> server-side tests are authorized; model fitting and plant advances are not
+> part of ID-2U0.  A PASS may authorize only that separately frozen fresh
+> campaign.  S1/S2/T1 keep zero fit weight.  All blocks below are historical.
+
 > **Unique active task (2026-08-18, post-ID-2T1 route review):** ID-2T1
 > completed `4/4` authentic continuations and `136/136` verified one-ms
 > advances with exact S2 prefixes and a corrected independent audit over 140

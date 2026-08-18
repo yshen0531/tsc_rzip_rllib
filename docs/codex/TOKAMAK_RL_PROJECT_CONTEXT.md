@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-18, ID-2U0):** the next stage realigns the
+> project with ID-2C1's selected time-varying p03-minus stride-one nominal.
+> Later K1/P1/S/T work intentionally held p03 level 15 for local
+> identification; that evidence remains valid but is no longer the centre of
+> the control route.  The apparent early-versus-late p04 contrast is also
+> narrowed to a state-27 return-edge/history-sign event, not a proved smooth
+> gain reversal.  ID-2U0 runs zero TSC and fits no model.  It freezes legal
+> moving-nominal action allocation and one fresh matched campaign; all older
+> notices are historical.
+
 > **Current route notice (2026-08-18, post-ID-2T1):** the same p04+ pulse
 > that had useful earlier f03 response was measured after four exact state-30
 > histories and was consistently wrong-way for source-error correction. This
