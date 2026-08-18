@@ -1,4 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2Z1 architecture freeze (2026-08-19):** exact one-ms paired-boundary
+> observation, exact Card15 actuation, causal history, explicit uncertainty
+> and independent hard safety remain the architecture. ID-2Z1 supplied two
+> finite useful transport macros at one late causal prefix, but neither is a
+> hold, recovery policy or two-axis authority proof.
+>
+> The immediate stage is a two-decision canonical-prefix rolling branch
+> campaign. It converts the first useful macro into measured receding-horizon
+> decisions instead of extending another manual action-depth ladder. Each
+> decision compares the same finite action alphabet against a matched hold,
+> executes only the selected first four-issue macro in the logical main path,
+> and retains all sibling branches as route evidence. A PASS can nominate a
+> finite two-macro transport sequence and define the next hold/braking search;
+> it cannot replace the future uncertainty-aware feedback model or independent
+> recourse layer.
+>
 > **ID-2Y1R1 repair freeze (2026-08-19):** the original ID-2Y1 action matrix
 > was rejected before TSC because two combinations fell below its own 95 A
 > current-headroom gate. The gate is retained. A separate R1 identity replaces

@@ -1,25 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Y1R1):** ID-2Y1R1 completed four
-> canonical-source branches with 350/350 verified advances, 354 states and
-> 1,770 raw artifacts. All exact interface, common-prefix, storage and raw
-> gates pass, and the separate full-raw audit reproduces 20,848,095,096 bytes,
-> the inventory digest, counters, four stops and final route with zero
-> failures. Every branch stopped before the next issue on the frozen negative-R
-> clearance, at states85--91, so none reached states96--104. The final route is
-> `ONE_MS_ID2Y1R1_LATE_MIXED_HOLD_FAIL_SEQUENCE_OPTIMIZATION_REQUIRED`.
+> **Unique active task (2026-08-19, post-ID-2Z1):** ID-2Z1 completed all seven
+> canonical-source branches with 511/511 verified advances, 518 states and
+> 2,590 required raw artifacts. Exact boundary/Ip, Card15/current/slew,
+> common-prefix, storage and raw gates pass. A reporting-only current-field
+> compatibility repair then allowed the structurally separate zero-new-TSC
+> raw audit to reproduce 30,506,534,632 bytes, inventory digest, counters,
+> utilities, selection and route with zero failures. The immutable route is
+> `ONE_MS_ID2Z1_LATE_MACRO_UTILITY_PASS_ROLLING_SEQUENCE_DESIGN_ONLY`.
 >
-> The manual ramp-depth ladder is closed. ID-2Z1 is the sole active successor.
-> It replays the exact p03-level64 prefix and compares one matched hold baseline
-> with six four-step exact Card15 macro-actions: p03 forward/unwind and p04/p07
-> in both signs, followed by four holds. Seven resets, 511 advances and 2,590
-> raw artifacts are the hard maxima. Utility requires a measurable response,
-> persistent source-distance improvement in at least three of states70--73,
-> at least 0.10 mm terminal improvement and bounded paired Ip. A PASS nominates
-> only one macro for a later rolling sequence design; a FAIL moves the decision
-> earlier or broadens exact allocation. No fit, calibration/blind read,
-> controller, recovery, waypoint, crossing, adaptation, expert data or RL is
-> authorized. All blocks below are historical.
+> p03-forward4 and p07-minus4 had persistent finite utility; p03-forward4 was
+> selected with 0.9465 mm terminal source-distance improvement and 145.0614 A
+> maximum paired Ip. It is a transport macro, not a hold: after its four active
+> increments the path continues moving. The sole active successor is a
+> prospectively frozen two-decision rolling branch campaign that replans at
+> state69 and once more at state73. At each decision it compares the same
+> seven exact macro alternatives against a matched hold continuation and uses
+> absolute geometry progress plus the unchanged Ip/current/safety gates.
+> This stage remains zero-model sequence-search evidence. It cannot claim
+> hold, recovery, controller, waypoint, position generalization, crossing,
+> online adaptation, expert data or RL. All blocks below are historical.
 >
 > **Historical task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
 > 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected

@@ -1,20 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-19, post-ID-2Y1R1):** the repaired four-
-> branch late-braking campaign completed 350 verified TSC advances and passed
-> exact execution plus independent full-raw audit. Every branch stopped on the
-> frozen negative-R preissue clearance before states96--104. Final source R/Z
-> distance remained 28.116--28.304 mm. This closes manual ramp-depth tuning;
-> it does not prove the actuator basis or plant unreachable.
+> **Current route notice (2026-08-19, post-ID-2Z1):** the seven-way exact
+> macro campaign completed 511 verified TSC advances and passed all execution,
+> prefix, storage, utility and independent full-raw gates. p03-forward4 and
+> p07-minus4 gave persistent finite source-distance progress; p03-forward4
+> was selected. Its improvement persisted through state73, but the trajectory
+> was still moving, so the result is transport-macro utility rather than hold,
+> recovery or controller qualification.
 >
-> ID-2Z1 is the next bounded action/control-utility discriminator. At one exact
-> p03-level64 causal prefix it compares hold with p03 forward/unwind and
-> p04/p07 both signs as four-increment/four-hold macros. Selection requires
-> persistent absolute source progress, not a single hybrid peak. A useful
-> macro may enter a later rolling sequence optimizer; failure moves the
-> decision earlier or broadens exact allocation. Model, calibration/blind,
-> hold/recovery, controller, waypoint, crossing and learning claims remain
-> closed. Older notices are historical.
+> The next route replaces manual ramp-depth choices with two actual rolling
+> decisions. Every candidate is still evaluated by canonical-source full-prefix
+> TSC replay, but the first decision is made at state69 and the second at the
+> selected state73 prefix. The same finite seven-action alphabet and matched
+> hold baseline are used with exact current/Ip/safety gates. This is bounded
+> sequence-search evidence only; model, uncertainty tube, hold/recovery,
+> waypoint, crossing and learning claims remain closed. Older notices are
+> historical.
 >
 > **Historical route notice (2026-08-19, post-ID-2W1):** the six-branch
 > p04/p07 depth-6 pause/return grammar completed exactly but failed its

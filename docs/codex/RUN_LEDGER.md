@@ -2449,3 +2449,35 @@
 - Next recommendation: preserve unopened `u01/u03/u05/u07`; add one new
   fit-eligible arrival history at each existing level/time corner before a
   new bounded low-capacity comparison
+
+## R_geo/Z_geo 1 ms ID-2Z1 late-action macro utility
+
+- Branch: `codex/rgeo-zgeo-1ms-duration-history-model`
+- Design / implementation / reporting-only audit repair:
+  `8de743bc / ecb43246de07186d7d2bcd4d0cdc5951c6398685 / 5d83301d`
+- Remote run:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_id2z1_20260819_ecb43246`
+- Server validation: pre-plant focused `9/9`, complete one-ms `394/394`;
+  post-repair focused `10/10`, complete one-ms `395/395`
+- Execution: 7/7 complete branches, 511/511 attempted, `gotsc` and verified
+  one-ms advances, 518 states
+- Raw: 2,590 required artifacts / 30,506,534,632 bytes / digest
+  `85376c20f157ef5df12d89be50e2bb9ac3b3570afd5cabbe59b8b7715d36abff`
+- Primary / independent SHA-256:
+  `c1a6f2af83fa37c06a961a8836f2cc9bca0e2a779317f59570ca27c2848943ec /`
+  `fc9eb327b6575c647b5cc2d3a7da950039c77d3e89a161c7ce958cb1934ea841`
+- Result: p03-forward4 and p07-minus4 passed persistent finite utility;
+  p03-forward4 selected with `0.9465 mm` terminal distance improvement and
+  `145.0614 A` maximum paired Ip
+- Known reporting defect: the first independent audit expected a float current
+  alias absent from its raw parser; `5d83301d` repaired only that diagnostic and
+  the zero-new-TSC full-raw rerun passed. The outer background rc helper contains
+  literal `1n`; raw, primary result and repaired audit are intact.
+- Final route:
+  `ONE_MS_ID2Z1_LATE_MACRO_UTILITY_PASS_ROLLING_SEQUENCE_DESIGN_ONLY`
+- Classification: finite source-local transport-macro utility and sequence
+  nomination only; not hold, recovery, controller, waypoint or reachability
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2z1_20260819_ecb43246/`
+- Next: prospectively frozen two-decision canonical-prefix rolling branch
+  campaign, replanning at state69 and selected state73

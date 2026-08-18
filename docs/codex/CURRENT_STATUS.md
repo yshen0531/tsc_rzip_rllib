@@ -1,23 +1,27 @@
 # Current status
 
-> **Current status (2026-08-19, post-ID-2Y1R1):** server validation passed
-> Y1R1 focused 6/6, Y1+Y1R1 13/13, and the corrected complete one-ms suite
-> 385/385. The repaired offline action matrix retained 95.2 A minimum current
-> headroom. Four real resets then produced 350 verified advances, 354 states,
-> and 20.848 GB of raw. Exact prefix, Card15/current, boundary/Ip, counter,
-> inventory and independent full-raw gates all pass.
+> **Current status (2026-08-19, post-ID-2Z1):** server validation passed 9/9
+> focused and 394/394 complete one-ms tests before the plant campaign. Seven
+> real resets then produced 511/511 verified advances, 518 states and
+> 30.5065 GB of raw. Exact prefix, Card15/current, boundary/Ip, counter,
+> inventory and utility gates pass. After a reporting-only decimal-current
+> compatibility repair, focused tests passed 10/10, the complete suite passed
+> 395/395, and the independent full-raw audit reproduced the primary result
+> exactly with zero new TSC.
 >
-> All four branches stopped fail-closed on negative-R preissue clearance at
-> states85--91. Final source offsets were about -25.01 to -25.40 mm R,
-> +12.22 to +13.01 mm Z and +971.70 to +1,212.05 A Ip; no branch reached the
-> states96--104 hold window. This is a clean finite schedule/allocation FAIL,
-> not an execution, model, controller or reachability result.
+> p03-forward4 and p07-minus4 passed finite persistent-utility gates. The
+> selected p03-forward4 branch improved terminal source R/Z distance by
+> 0.9465 mm relative to matched hold with 145.0614 A maximum paired Ip. It
+> reached 24.2239 mm source distance at state69 and 24.6361 mm at state73;
+> therefore it is useful transport but not a terminal hold. ID-2Z1 is not a
+> controller or recovery result.
 >
-> ID-2Z1 is now frozen as a seven-branch common-prefix late-macro utility
-> discriminator. It tests p03 forward/unwind and p04/p07 both signs against a
-> matched hold baseline for eight effects, with persistent absolute-progress
-> rather than peak-only selection. It is zero-fit route evidence and can only
-> nominate a macro for later rolling sequence design.
+> The next bounded stage is a two-decision rolling branch campaign. It first
+> branches from state69, selects one exact four-issue macro using matched-hold
+> absolute utility, then repeats the same seven-way decision once from the
+> selected state73 prefix. All candidates still start from the canonical
+> source and replay their complete causal prefix. The expected raw budget is
+> about 66 GB; the server retained about 126 GB free after ID-2Z1.
 >
 > **Historical status (2026-08-19, post-ID-2W1):** all six frozen branches and
 > 288/288 plant advances completed. Exact action/current/common-prefix/raw
