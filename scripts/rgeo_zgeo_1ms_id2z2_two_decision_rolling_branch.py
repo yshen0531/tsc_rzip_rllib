@@ -415,6 +415,14 @@ def _prefix_check(row: dict[str, Any], reference: dict[str, Any],
                 if current.get(key) != expected.get(key):
                     failures.append(f"STATE:{index}:{key}")
             for name in semantic_artifacts:
+                # A recovered compact row is parsed after the runner has
+                # rewritten state-k/inputa with outgoing issue k.  That raw
+                # lifecycle point cannot be byte-compared to the primary
+                # preissue hash.  The exact outgoing Card15 stream is checked
+                # below; all other semantic artifacts remain mandatory.
+                if (name == "inputa"
+                        and row.get("recovered_from_complete_raw_without_tsc")):
+                    continue
                 if (current.get("artifact_sha256", {}).get(name)
                         != expected.get("artifact_sha256", {}).get(name)):
                     failures.append(f"STATE:{index}:artifact:{name}")
@@ -670,6 +678,310 @@ def route_for(stage: dict[str, Any], execution: bool, raw_ok: bool,
     return stage["routes"]["pass"]
 
 
+def _runtime_for_round(stage: dict[str, Any], round_index: int) -> dict[str, Any]:
+    """Build the unchanged physical runtime contract for one finite round."""
+    runtime = dict(stage)
+    runtime["horizon_steps"] = int(stage["rounds"][round_index]["horizon_steps"])
+    runtime["empirical_exploration"] = dict(stage["empirical_exploration"])
+    runtime["empirical_exploration"]["inner_pulse_issue_clearance"] = (
+        stage["empirical_exploration"]["inner_novel_issue_clearance"])
+    return runtime
+
+
+def _validate_recovered_complete_row(
+        stream: dict[str, Any], states: list[dict[str, Any]],
+        issued_fields: Sequence[Sequence[str]], stage: dict[str, Any],
+        round_index: int, cfg: Any) -> None:
+    """Fail closed before accepting a compact row rebuilt from complete raw."""
+    from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import assert_exact_slew
+
+    horizon = int(stage["rounds"][round_index]["horizon_steps"])
+    if len(states) != horizon + 1 or len(issued_fields) != horizon:
+        raise z1.y1r1.y1.x1.InputIntegrityError(
+            f"complete-raw dimensions changed: {stream['rollout_id']}")
+    source = states[0]
+    outer = stage["empirical_exploration"]["outer_hard_envelope"]
+    inner = stage["empirical_exploration"]["inner_novel_issue_clearance"]
+    caps = stage["empirical_exploration"]["post_successor_step_caps"]
+    source_ip = float(source["ip_a"])
+    for index, state in enumerate(states):
+        if int(state["time_ms"]) != 1100 + index:
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw time changed: {stream['rollout_id']}:{index}")
+        currents = state.get("actual_current_decimal_a_tsc", [])
+        if len(currents) != 14 or len(state.get("wire_current_a", [])) != 48:
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw vector width changed: {stream['rollout_id']}:{index}")
+        if any(float(value) < float(low) or float(value) > float(high)
+               for value, low, high in zip(
+                   currents, cfg.min_current_a_tsc, cfg.max_current_a_tsc)):
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw current limit: {stream['rollout_id']}:{index}")
+        if not float(state["r_inner_m"]) <= float(state["r_geo_m"]) <= float(
+                state["r_outer_m"]):
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw limiter: {stream['rollout_id']}:{index}")
+        offsets = (
+            abs(float(state["r_geo_m"]) - float(source["r_geo_m"])),
+            abs(float(state["z_geo_m"]) - float(source["z_geo_m"])),
+            abs(float(state["ip_a"]) - source_ip),
+        )
+        if (offsets[0] > float(outer["r_geo_m"])
+                or offsets[1] > float(outer["z_geo_m"])
+                or source_ip * float(state["ip_a"]) <= 0
+                or offsets[2] > float(outer["ip_fraction"]) * abs(source_ip)):
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw outer envelope: {stream['rollout_id']}:{index}")
+        if index:
+            previous = states[index - 1]
+            observed = assert_exact_slew(
+                previous["actual_current_decimal_a_tsc"], currents,
+                name=f"id2z2.recover.observed.{stream['rollout_id']}.{index - 1}")
+            state["maximum_observed_delta_a"] = observed
+            if (abs(float(state["r_geo_m"]) - float(previous["r_geo_m"]))
+                    > float(caps["r_geo_m"])
+                    or abs(float(state["z_geo_m"]) - float(previous["z_geo_m"]))
+                    > float(caps["z_geo_m"])
+                    or abs(float(state["ip_a"]) - float(previous["ip_a"]))
+                    > float(caps["ip_a"])):
+                raise z1.y1r1.y1.x1.InputIntegrityError(
+                    f"complete-raw step cap: {stream['rollout_id']}:{index}")
+    novel = set(int(value) for value in stream["non_nominal_issue_steps"])
+    for issue in novel:
+        state = states[issue]
+        if (abs(float(state["r_geo_m"]) - float(source["r_geo_m"]))
+                > float(inner["r_geo_m"])
+                or abs(float(state["z_geo_m"]) - float(source["z_geo_m"]))
+                > float(inner["z_geo_m"])
+                or abs(float(state["ip_a"]) - source_ip)
+                > float(inner["ip_fraction"]) * abs(source_ip)):
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw novel clearance: {stream['rollout_id']}:{issue}")
+    for issue, (fields, expected) in enumerate(zip(
+            issued_fields, stream["actions"])):
+        if list(fields) != expected["expected_card15_fields"]:
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw Card15: {stream['rollout_id']}:{issue}")
+
+
+def recover_complete_raw_row(
+        cfg: Any, stage: dict[str, Any], stream: dict[str, Any],
+        source_revision: str, reporting_revision: str) -> dict[str, Any]:
+    """Rebuild compact evidence without a reset or plant advance.
+
+    This is intentionally limited to a byte-complete, contiguous rollout whose
+    exact outgoing Card15 stream and all safety quantities can be revalidated.
+    Partial raw is never retried or promoted to a completed row.
+    """
+    from scripts.rgeo_zgeo_1ms_id0_vector_tail_independent import (
+        ARTIFACTS, _fields, _state,
+    )
+    from scripts.rgeo_zgeo_1ms_id2w1_sustained_branch_independent import (
+        restore_arrival_active_commands,
+    )
+
+    round_index = int(stream["round_index"])
+    horizon = int(stage["rounds"][round_index]["horizon_steps"])
+    folder = cfg.run_root / stream["rollout_id"]
+    if not folder.is_dir():
+        raise FileNotFoundError(str(folder))
+    actual_directories = sorted(
+        path.name for path in folder.iterdir() if path.is_dir())
+    expected_directories = [f"{1100 + index}ms" for index in range(horizon + 1)]
+    if actual_directories != sorted(expected_directories):
+        raise z1.y1r1.y1.x1.InputIntegrityError(
+            f"complete-raw directory set changed: {stream['rollout_id']}")
+    states: list[dict[str, Any]] = []
+    issued_fields: list[list[str]] = []
+    for index, name in enumerate(expected_directories):
+        state_folder = folder / name
+        if any(not (state_folder / artifact).is_file() for artifact in ARTIFACTS):
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"complete-raw artifact missing: {stream['rollout_id']}:{name}")
+        states.append(_state(state_folder, cfg))
+        if index < horizon:
+            issued_fields.append(list(_fields(state_folder / "inputa")))
+    restore_arrival_active_commands(states, issued_fields)
+    from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import (
+        decimal_single_turn_currents_a,
+    )
+    source_fields = list(_fields(
+        cfg.simulation_root / cfg.start_folder / "inputa"))
+    states[0]["active_command_card15_fields"] = source_fields
+    for index, state in enumerate(states):
+        fields = source_fields if index == 0 else issued_fields[index - 1]
+        exact = decimal_single_turn_currents_a(
+            [value.strip() for value in fields], cfg.turns_tsc,
+            name=f"id2z2.recover.active.{stream['rollout_id']}.{index}")
+        state["active_command_decimal_a_tsc"] = [str(value) for value in exact]
+        state["actual_current_a_tsc"] = [
+            float(value) for value in state["actual_current_decimal_a_tsc"]]
+    _validate_recovered_complete_row(
+        stream, states, issued_fields, stage, round_index, cfg)
+    return {
+        **{key: value for key, value in stream.items()
+           if key not in ("targets", "actions")},
+        "schema_version": SCHEMA,
+        "source_revision": source_revision,
+        "reporting_recovery_revision": reporting_revision,
+        "passed": True,
+        "reasons": [],
+        "reset_calls": 1,
+        "advance_attempts": horizon,
+        "plant_advance_gotsc_calls": horizon,
+        "verified_plant_advances": horizon,
+        "states": states,
+        "actions": [dict(action) for action in stream["actions"]],
+        "attempted_actions": [dict(action) for action in stream["actions"]],
+        "retry_attempted": False,
+        "wall_time_s": None,
+        "recovered_from_complete_raw_without_tsc": True,
+    }
+
+
+def _load_or_execute_row(
+        cfg: Any, stage: dict[str, Any], stream: dict[str, Any],
+        source_revision: str, reporting_revision: str, output: Path,
+        *, allow_recovery: bool) -> dict[str, Any]:
+    compact_path = output / f"{stream['rollout_id']}.json"
+    raw_path = cfg.run_root / stream["rollout_id"]
+    if compact_path.is_file():
+        row = _json(compact_path)
+        if (row.get("rollout_id") != stream["rollout_id"]
+                or row.get("schema_version") != SCHEMA
+                or row.get("source_revision") != source_revision):
+            raise z1.y1r1.y1.x1.InputIntegrityError(
+                f"existing compact identity changed: {stream['rollout_id']}")
+        return row
+    if raw_path.exists():
+        if not allow_recovery:
+            raise FileExistsError(str(raw_path))
+        row = recover_complete_raw_row(
+            cfg, stage, stream, source_revision, reporting_revision)
+        z1.y1r1.y1.x1.write_new(compact_path, row)
+        return row
+    runtime = _runtime_for_round(stage, int(stream["round_index"]))
+    row = z1.y1r1.y1.x1.one_rollout(cfg, runtime, stream)
+    row.update({
+        "schema_version": SCHEMA,
+        "source_revision": source_revision,
+        "reporting_recovery_revision": reporting_revision,
+        "recovered_from_complete_raw_without_tsc": False,
+    })
+    z1.y1r1.y1.x1.write_new(compact_path, row)
+    return row
+
+
+def _execute_campaign(
+        stage: dict[str, Any], cfg: Any, targets: dict[str, Card15Target],
+        selected_reference: dict[str, Any], selected_stream: dict[str, Any],
+        source_revision: str, reporting_revision: str, output: Path,
+        storage_gate: dict[str, Any], *, allow_recovery: bool) -> dict[str, Any]:
+    cfg.run_root = output / "rollouts"
+    rows: list[dict[str, Any]] = []
+    recovered_ids: list[str] = []
+    round_a_streams = initial_round_streams(stage, cfg, targets, selected_stream)
+    for stream in round_a_streams:
+        row = _load_or_execute_row(
+            cfg, stage, stream, source_revision, reporting_revision, output,
+            allow_recovery=allow_recovery)
+        rows.append(row)
+        if row.get("recovered_from_complete_raw_without_tsc"):
+            recovered_ids.append(str(row["rollout_id"]))
+        if not row["passed"] and not safe_stop(row, stage):
+            break
+    round_a_rows = [row for row in rows if row.get("round_index") == 0]
+    round_a_execution = len(round_a_rows) == 7 and all(
+        row["passed"] or safe_stop(row, stage) for row in round_a_rows)
+    round_a_prefixes = [_prefix_check(
+        row, selected_reference,
+        int(stage["prefix_gates"]["round_a_reference_state_count"]),
+        int(stage["prefix_gates"]["round_a_reference_action_count"]),
+        stage["semantic_artifacts"]) for row in round_a_rows] if round_a_execution else []
+    round_a_science = (round_metrics(round_a_rows, stage, 0, cfg)
+                       if round_a_execution else None)
+    round_b_rows: list[dict[str, Any]] = []
+    selected_round_a_row: dict[str, Any] | None = None
+    if (round_a_execution and len(round_a_prefixes) == 7
+            and all(value["passed"] for value in round_a_prefixes)
+            and round_a_science and round_a_science["passed"]):
+        selected_arm = str(round_a_science["selected_arm_id"])
+        selected_round_a_stream = next(
+            stream for stream in round_a_streams if stream["arm_id"] == selected_arm)
+        selected_round_a_row = next(
+            row for row in round_a_rows if row["arm_id"] == selected_arm)
+        for stream in next_round_streams(
+                stage, cfg, targets, selected_round_a_stream):
+            row = _load_or_execute_row(
+                cfg, stage, stream, source_revision, reporting_revision, output,
+                allow_recovery=allow_recovery)
+            rows.append(row)
+            round_b_rows.append(row)
+            if row.get("recovered_from_complete_raw_without_tsc"):
+                recovered_ids.append(str(row["rollout_id"]))
+            if not row["passed"] and not safe_stop(row, stage):
+                break
+    round_b_execution = bool(selected_round_a_row) and len(round_b_rows) == 7 and all(
+        row["passed"] or safe_stop(row, stage) for row in round_b_rows)
+    round_b_prefixes = [_prefix_check(
+        row, selected_round_a_row or {},
+        int(stage["prefix_gates"]["round_b_reference_state_count"]),
+        int(stage["prefix_gates"]["round_b_reference_action_count"]),
+        stage["semantic_artifacts"]) for row in round_b_rows] if round_b_execution else []
+    round_b_science = (round_metrics(round_b_rows, stage, 1, cfg)
+                       if round_b_execution else None)
+    inventory = z1.y1r1.y1.x1.raw_inventory(output, rows, stage)
+    execution = bool(round_a_execution and (
+        not (round_a_science and round_a_science["passed"]) or round_b_execution))
+    expected_files = 5 * sum(len(row.get("states", [])) for row in rows)
+    raw_ok = bool(execution and not inventory["missing_required_artifacts"]
+                  and inventory["required_artifact_files"] == expected_files)
+    route = route_for(stage, execution, raw_ok, round_a_prefixes,
+                      round_a_science, round_b_prefixes, round_b_science)
+    passed = route == stage["routes"]["pass"]
+    selected_sequence = [
+        round_a_science.get("selected_arm_id") if round_a_science else None,
+        round_b_science.get("selected_arm_id") if round_b_science else None,
+    ]
+    result = {
+        "schema_version": SCHEMA,
+        "source_revision": source_revision,
+        "reporting_recovery_revision": reporting_revision,
+        "stage_config_sha256": CONFIG_SHA256,
+        "passed": passed,
+        "route": route,
+        "storage_gate": storage_gate,
+        "execution_integrity_passed": execution,
+        "raw_integrity_passed": raw_ok,
+        "round_a_prefix_checks": round_a_prefixes,
+        "round_b_prefix_checks": round_b_prefixes,
+        "round_a_metrics": round_a_science,
+        "round_b_metrics": round_b_science,
+        "selected_two_macro_sequence": selected_sequence,
+        "rollouts_completed": len(rows),
+        "unique_cells_completed": len({row["cell_id"] for row in rows}),
+        "complete_rollouts": sum(bool(row["passed"]) for row in rows),
+        "guarded_safe_stops": sum(safe_stop(row, stage) for row in rows),
+        "reset_calls": sum(int(row["reset_calls"]) for row in rows),
+        "advance_attempts": sum(int(row["advance_attempts"]) for row in rows),
+        "plant_advance_gotsc_calls": sum(
+            int(row["plant_advance_gotsc_calls"]) for row in rows),
+        "verified_plant_advances": sum(
+            int(row["verified_plant_advances"]) for row in rows),
+        **inventory,
+        "recovered_complete_raw_rollout_ids": recovered_ids,
+        "recovery_replayed_plant_rollouts": 0,
+        "sequence_nomination_pending_independent": passed,
+        "models_fit_or_updated": 0,
+        "calibration_or_holdout_records_read": 0,
+        "claim_boundary": (
+            "Finite source-local two-decision canonical-prefix branch evidence; "
+            "not hold, recovery, controller, waypoint, crossing or reachability."),
+    }
+    z1.y1r1.y1.x1.write_new(output / "result.json", result)
+    return result
+
+
 def run(path: Path, source_revision: str, output: Path) -> dict[str, Any]:
     output = z1.y1r1.y1.x1.inside_root(output, "ID2Z2 output")
     if output.exists():
@@ -701,118 +1013,56 @@ def run(path: Path, source_revision: str, output: Path) -> dict[str, Any]:
         }
         z1.y1r1.y1.x1.write_new(output / "result.json", result)
         return result
-    cfg.run_root = output / "rollouts"
-    runtime = dict(stage)
-    runtime["empirical_exploration"] = dict(stage["empirical_exploration"])
-    runtime["empirical_exploration"]["inner_pulse_issue_clearance"] = (
-        stage["empirical_exploration"]["inner_novel_issue_clearance"])
-    rows: list[dict[str, Any]] = []
-    round_a_streams = initial_round_streams(stage, cfg, targets, selected_stream)
-    for stream in round_a_streams:
-        row = z1.y1r1.y1.x1.one_rollout(cfg, runtime, stream)
-        row.update({"schema_version": SCHEMA, "source_revision": source_revision})
-        rows.append(row)
-        z1.y1r1.y1.x1.write_new(output / f"{row['rollout_id']}.json", row)
-        if not row["passed"] and not safe_stop(row, stage):
-            break
-    round_a_rows = [row for row in rows if row.get("round_index") == 0]
-    round_a_execution = len(round_a_rows) == 7 and all(
-        row["passed"] or safe_stop(row, stage) for row in round_a_rows)
-    round_a_prefixes = [_prefix_check(
-        row, selected_reference,
-        int(stage["prefix_gates"]["round_a_reference_state_count"]),
-        int(stage["prefix_gates"]["round_a_reference_action_count"]),
-        stage["semantic_artifacts"]) for row in round_a_rows] if round_a_execution else []
-    round_a_science = (round_metrics(round_a_rows, stage, 0, cfg)
-                       if round_a_execution else None)
-    round_b_rows: list[dict[str, Any]] = []
-    selected_round_a_stream: dict[str, Any] | None = None
-    selected_round_a_row: dict[str, Any] | None = None
-    if (round_a_execution and len(round_a_prefixes) == 7
-            and all(value["passed"] for value in round_a_prefixes)
-            and round_a_science and round_a_science["passed"]):
-        selected_arm = str(round_a_science["selected_arm_id"])
-        selected_round_a_stream = next(
-            stream for stream in round_a_streams if stream["arm_id"] == selected_arm)
-        selected_round_a_row = next(
-            row for row in round_a_rows if row["arm_id"] == selected_arm)
-        for stream in next_round_streams(stage, cfg, targets, selected_round_a_stream):
-            row = z1.y1r1.y1.x1.one_rollout(cfg, runtime, stream)
-            row.update({"schema_version": SCHEMA, "source_revision": source_revision})
-            rows.append(row)
-            round_b_rows.append(row)
-            z1.y1r1.y1.x1.write_new(output / f"{row['rollout_id']}.json", row)
-            if not row["passed"] and not safe_stop(row, stage):
-                break
-    round_b_execution = bool(selected_round_a_row) and len(round_b_rows) == 7 and all(
-        row["passed"] or safe_stop(row, stage) for row in round_b_rows)
-    round_b_prefixes = [_prefix_check(
-        row, selected_round_a_row or {},
-        int(stage["prefix_gates"]["round_b_reference_state_count"]),
-        int(stage["prefix_gates"]["round_b_reference_action_count"]),
-        stage["semantic_artifacts"]) for row in round_b_rows] if round_b_execution else []
-    round_b_science = (round_metrics(round_b_rows, stage, 1, cfg)
-                       if round_b_execution else None)
-    inventory = z1.y1r1.y1.x1.raw_inventory(output, rows, stage)
-    execution = bool(round_a_execution and (
-        not (round_a_science and round_a_science["passed"]) or round_b_execution))
-    expected_files = 5 * sum(len(row.get("states", [])) for row in rows)
-    raw_ok = bool(execution and not inventory["missing_required_artifacts"]
-                  and inventory["required_artifact_files"] == expected_files)
-    route = route_for(stage, execution, raw_ok, round_a_prefixes,
-                      round_a_science, round_b_prefixes, round_b_science)
-    passed = route == stage["routes"]["pass"]
-    selected_sequence = [
-        round_a_science.get("selected_arm_id") if round_a_science else None,
-        round_b_science.get("selected_arm_id") if round_b_science else None,
-    ]
-    result = {
-        "schema_version": SCHEMA,
-        "source_revision": source_revision,
-        "stage_config_sha256": CONFIG_SHA256,
-        "passed": passed,
-        "route": route,
-        "storage_gate": storage_gate,
-        "execution_integrity_passed": execution,
-        "raw_integrity_passed": raw_ok,
-        "round_a_prefix_checks": round_a_prefixes,
-        "round_b_prefix_checks": round_b_prefixes,
-        "round_a_metrics": round_a_science,
-        "round_b_metrics": round_b_science,
-        "selected_two_macro_sequence": selected_sequence,
-        "rollouts_completed": len(rows),
-        "unique_cells_completed": len({row["cell_id"] for row in rows}),
-        "complete_rollouts": sum(bool(row["passed"]) for row in rows),
-        "guarded_safe_stops": sum(safe_stop(row, stage) for row in rows),
-        "reset_calls": sum(int(row["reset_calls"]) for row in rows),
-        "advance_attempts": sum(int(row["advance_attempts"]) for row in rows),
-        "plant_advance_gotsc_calls": sum(
-            int(row["plant_advance_gotsc_calls"]) for row in rows),
-        "verified_plant_advances": sum(
-            int(row["verified_plant_advances"]) for row in rows),
-        **inventory,
-        "sequence_nomination_pending_independent": passed,
-        "models_fit_or_updated": 0,
-        "calibration_or_holdout_records_read": 0,
-        "claim_boundary": (
-            "Finite source-local two-decision canonical-prefix branch evidence; "
-            "not hold, recovery, controller, waypoint, crossing or reachability."),
-    }
-    z1.y1r1.y1.x1.write_new(output / "result.json", result)
-    return result
+    return _execute_campaign(
+        stage, cfg, targets, selected_reference, selected_stream,
+        source_revision, source_revision, output, storage_gate,
+        allow_recovery=False)
+
+
+def resume(path: Path, source_revision: str, reporting_revision: str,
+           output: Path) -> dict[str, Any]:
+    """Resume only after validating and compacting already-complete raw."""
+    output = z1.y1r1.y1.x1.inside_root(output, "ID2Z2 resume output")
+    if not output.is_dir() or (output / "result.json").exists():
+        raise z1.y1r1.y1.x1.InputIntegrityError(
+            "resume requires an unfinished existing output without result.json")
+    stage, cfg, targets, selected_reference, selected_stream = load(path)
+    existing_preflight = _json(output / "offline_preflight.json")
+    if (existing_preflight.get("passed") is not True
+            or existing_preflight.get("source_revision") != source_revision
+            or existing_preflight.get("stage_config_sha256") != CONFIG_SHA256):
+        raise z1.y1r1.y1.x1.InputIntegrityError(
+            "existing offline preflight identity changed")
+    storage_gate = z1.y1r1.y1.x1.storage(stage, output)
+    if not storage_gate["passed"]:
+        raise z1.y1r1.y1.x1.InputIntegrityError(
+            "resume storage gate failed before any new reset")
+    return _execute_campaign(
+        stage, cfg, targets, selected_reference, selected_stream,
+        source_revision, reporting_revision, output, storage_gate,
+        allow_recovery=True)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", choices=("offline", "run"))
+    parser.add_argument("mode", choices=("offline", "run", "resume"))
     parser.add_argument("--stage-config", type=Path, default=CONFIG)
     parser.add_argument("--source-revision", required=True)
+    parser.add_argument("--reporting-revision")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args(argv)
-    result = (offline(args.stage_config, args.source_revision)
-              if args.mode == "offline" else run(
-                  args.stage_config, args.source_revision,
-                  args.output or ROOT / f"rgeo_zgeo_1ms_id2z2_{args.source_revision[:8]}"))
+    if args.mode == "offline":
+        result = offline(args.stage_config, args.source_revision)
+    elif args.mode == "run":
+        result = run(
+            args.stage_config, args.source_revision,
+            args.output or ROOT / f"rgeo_zgeo_1ms_id2z2_{args.source_revision[:8]}")
+    else:
+        if not args.reporting_revision:
+            parser.error("resume requires --reporting-revision")
+        result = resume(
+            args.stage_config, args.source_revision, args.reporting_revision,
+            args.output or ROOT / f"rgeo_zgeo_1ms_id2z2_{args.source_revision[:8]}")
     print(json.dumps(result, indent=2, sort_keys=True, allow_nan=False))
     return 0 if result["passed"] else 2
 

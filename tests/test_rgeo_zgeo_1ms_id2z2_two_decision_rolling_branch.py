@@ -113,6 +113,50 @@ class ID2Z2Tests(unittest.TestCase):
         self.assertEqual(result["plant_advance_gotsc_calls"], 0)
         self.assertEqual(result["verified_plant_advances"], 0)
 
+    def test_runtime_uses_each_round_horizon_without_changing_contract(self) -> None:
+        round_a = primary._runtime_for_round(self.stage, 0)
+        round_b = primary._runtime_for_round(self.stage, 1)
+        self.assertEqual(round_a["horizon_steps"], 77)
+        self.assertEqual(round_b["horizon_steps"], 81)
+        self.assertEqual(
+            round_a["empirical_exploration"]["inner_pulse_issue_clearance"],
+            self.stage["empirical_exploration"]["inner_novel_issue_clearance"])
+        self.assertNotIn("horizon_steps", self.stage)
+
+    def test_complete_raw_recovery_row_is_zero_tsc_and_preserves_actions(self) -> None:
+        stage, cfg, targets, _, selected_stream = primary.load()
+        stream = primary.initial_round_streams(
+            stage, cfg, targets, selected_stream)[0]
+        source = {
+            "time_ms": 1100, "r_geo_m": 0.7, "z_geo_m": 0.03,
+            "r_mid_m": 0.79, "r_inner_m": 0.6, "r_outer_m": 0.9,
+            "ip_a": 30000.0,
+            "actual_current_decimal_a_tsc": ["0"] * 14,
+            "active_command_card15_fields": ["0"] * 14,
+            "wire_current_a": [0.0] * 48,
+            "artifact_sha256": {name: name for name in stage[
+                "semantic_artifacts"] + stage["diagnostic_artifacts"]},
+        }
+        states = []
+        for index in range(78):
+            row = copy.deepcopy(source)
+            row["time_ms"] = 1100 + index
+            states.append(row)
+        issued = [action["expected_card15_fields"] for action in stream["actions"]]
+        # This pure validator must neither create a runner nor consume a reset.
+        primary._validate_recovered_complete_row(
+            stream, states, issued, stage, 0, cfg)
+        self.assertEqual(len(states), 78)
+        self.assertEqual(len(issued), 77)
+
+    def test_complete_raw_recovery_rejects_wrong_horizon_or_card15(self) -> None:
+        stage, cfg, targets, _, selected_stream = primary.load()
+        stream = primary.initial_round_streams(
+            stage, cfg, targets, selected_stream)[0]
+        with self.assertRaises(primary.z1.y1r1.y1.x1.InputIntegrityError):
+            primary._validate_recovered_complete_row(
+                stream, [], [], stage, 0, cfg)
+
     @staticmethod
     def _states(*, count: int, decision: int, improvement_m: float = 0.0,
                 active_only: bool = False, ip_response_a: float = 0.0):

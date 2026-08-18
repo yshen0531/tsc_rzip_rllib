@@ -75,7 +75,10 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
         stage, cfg, selected_reference, expected = load_json(stage_path), None, {}, []
     order = {row["rollout_id"]: index for index, row in enumerate(expected)}
     expected_by_id = {row["rollout_id"]: row for row in expected}
-    excluded = {"result.json", "offline_preflight.json", "independent_raw_audit.json"}
+    excluded = {
+        "result.json", "offline_preflight.json", "independent_raw_audit.json",
+        "independent_raw_audit_repaired.json",
+    }
     compact_paths = sorted(path for path in run_dir.glob("*.json")
                            if path.name not in excluded)
     compact = [load_json(path) for path in compact_paths]
