@@ -1,6 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2M0):** ID-2M0 passed as
+> **Unique active task (2026-08-18, post-ID-2M1):** ID-2M1 passed as
+> `ONE_MS_ID2M1_BOUNDED_STRUCTURED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY`.
+> The simpler `separated_event_memory` model passed every whole-history
+> development fold: R p95 was `0.118--0.223 mm` at 1 ms and
+> `0.121--0.229 mm` at 2/4 ms; mean paired-response NRMSE was `0.055671`
+> with positive direction `32/32`. Independent recomputation was exact and
+> all `223/223` matching server tests passed.
+>
+> The bounded-innovation alternative is rejected: despite good one-step
+> error it diverged to about `9.7--10.3 mm` R at 2 ms and `45--49 mm` at
+> 4 ms. Exact observations remain available for real 1 ms replanning, but
+> this failed fitted correction is not part of the selected dynamics.
+>
+> The immediate task is to freeze a fresh TSC calibration plus unopened
+> whole-history holdout campaign over new conditioner composition, duration
+> and issue-time cells within the admitted p04/p07 Card15 family. Model
+> coefficients/features remain frozen. Calibration may set only finite
+> groupwise horizon tubes; holdout opens only after tube hashes are fixed.
+> Authority, recovery and controller work remain blocked. All blocks below
+> are historical.
+
+> **Historical task (2026-08-18, post-ID-2M0):** ID-2M0 passed as
 > `ONE_MS_ID2M0_DIAGNOSTIC_ATTRIBUTION_PASS_ID2M1_DESIGN_ONLY`. Four frozen
 > `stable_signed_even` fold refits reproduced every ID-2L1 aggregate with
 > maximum difference `0.0`; a separate process exactly reproduced the result

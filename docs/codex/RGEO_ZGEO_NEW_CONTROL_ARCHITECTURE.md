@@ -1,6 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2M0 architecture amendment (2026-08-18):** exact attribution
+> **Post-ID-2M1 architecture amendment (2026-08-18):** the selected finite
+> development predictor is now explicit time-indexed nominal plus stable
+> signed/even Card15 memory and finite causal edge/dwell/return/tail features.
+> It is re-centered on exact current R_geo/Z_geo/Ip at every real control
+> cycle. It does not use evaluator labels or future readback.
+>
+> The attempted 12-dimensional observation/current innovation correction is
+> rejected because its good one-step fit became catastrophic under 2/4 ms
+> recursion. Exact observation remains an interface fact and a replanning
+> anchor, not evidence that arbitrary state feedback features are safe.
+> Fresh groupwise calibration and blind whole-history holdout now precede all
+> use in constrained planning. Model validation still does not prove
+> authority or recovery.
+
+> **Historical post-ID-2M0 architecture amendment (2026-08-18):** exact attribution
 > retains the signed/even fixed-pole model only as an action-response head.
 > A complete candidate must separate shared nominal continuation from causal
 > edge/dwell/return/tail dynamics and consume current exact R_geo/Z_geo/Ip

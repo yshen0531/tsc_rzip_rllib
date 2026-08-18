@@ -1,6 +1,20 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, post-ID-2M0):** the diagnostic
+> **Active new-round context (2026-08-18, post-ID-2M1):** explicit nominal
+> separation plus causal event/action memory passed the source-local
+> whole-history development comparison. A more elaborate exact-observation
+> innovation correction failed multi-step recursion and is rejected. This
+> favors a small structured predictor re-centered on exact truth every 1 ms,
+> not a monolithic or automatically adaptive state model.
+>
+> The next evidence is fresh: calibration histories set finite horizon tubes,
+> then an unopened whole-history holdout tests point response, direction and
+> containment. Model coefficients stay frozen. Authority and recovery remain
+> independent AND gates after model/tube validation. The fixed-1100-ms
+> two-axis waypoint and repeated R_mid-crossing goal is unchanged; all older
+> notices are historical.
+
+> **Historical new-round context (2026-08-18, post-ID-2M0):** the diagnostic
 > refit passed and localized ID-2L1's short-horizon failure to a small number
 > of repeated conditioner hold/return/tail events. The issue-25 probe response
 > remains useful, but the backbone omits exact current R_geo/Z_geo/Ip and

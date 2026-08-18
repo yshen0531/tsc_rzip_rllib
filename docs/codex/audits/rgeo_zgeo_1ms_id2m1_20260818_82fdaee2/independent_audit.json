@@ -1,0 +1,17 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Separate-process deterministic recomputation of the frozen ID2M1 development comparison; not an independent safety or calibration claim.",
+  "model_payload_exactly_recomputed": true,
+  "model_payload_sha256": "681c26da4829170ce166c86db47362f0365f6cb22a26d419463667777e6fae73",
+  "plant_advances": 0,
+  "primary_result_exactly_recomputed": true,
+  "primary_result_sha256": "a9791cd29454515aa46f80d3871ea4c2ed2e9714e11f9a660d556d9b409ddbf5",
+  "primary_scientific_passed": true,
+  "reset_calls": 0,
+  "route": "ONE_MS_ID2M1_BOUNDED_STRUCTURED_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2m1-bounded-event-innovation-audit-v1",
+  "selected_candidate": "separated_event_memory",
+  "source_revision": "82fdaee2db58f443dfc3c292f34000e7b94380c4",
+  "stage_config_sha256": "0ddc920f5300033d9c4c9ce3328e69f33dcc863a6634fbc7b3f19fa8ba1ebff3",
+  "tsc_calls": 0
+}

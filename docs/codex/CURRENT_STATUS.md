@@ -1,6 +1,22 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2M0 PASS):** deterministic server refit
+> **Current status (2026-08-18, ID-2M1 development PASS):** the selected
+> separated event-memory model passed all four held-history folds and emitted
+> development model SHA-256 `681c26da...`. Result/model/audit file SHA-256
+> are `a9791cd2... / 9c177536... / 119e0001...`; independent recomputation
+> and `223/223` server tests passed. No TSC or plant work occurred.
+>
+> The second observation/current-innovation candidate is a genuine model
+> failure under its frozen contract: one-step improvement did not survive
+> recursion. The route therefore selects the simpler nominal + causal
+> event/action-memory model and forbids post-result repair of the second.
+>
+> Fresh calibration and a new blind whole-history holdout are next. Until
+> they pass, there is no qualified uncertainty tube, authority, recovery,
+> controller, MPC, crossing, adaptation or RL. Older status blocks are
+> historical.
+
+> **Historical status (2026-08-18, ID-2M0 PASS):** deterministic server refit
 > reproduced the four frozen ID-2L1 folds at numeric difference `0.0` and the
 > independent process reproduced result/predictions exactly. Final result /
 > predictions / audit SHA-256 are `06247999... / b842011b... / 7aa1dc54...`.
