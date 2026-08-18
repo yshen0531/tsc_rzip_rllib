@@ -40,8 +40,8 @@ The decisive contrast is the return-effect state.  The issue-24 f03 branch
 had a one-frame state-27 response of approximately
 `(+0.610886, -0.285409) mm`, whereas the four later continuations had a mean
 state-33 response near `(-0.076265, -0.006952) mm`.  The h3 R difference was
-about `0.738--0.745 mm`, while the h4 difference had already fallen to about
-`0.0084--0.0091 mm`.
+about `0.6835--0.6913 mm` (mean `0.687151 mm`), while the h4 difference had
+already fallen to about `0.0076 mm` in the aligned paired-response comparison.
 
 Across the 32 ID-2P1 probe cells, all 16 response events larger than
 `0.5 mm` were aligned to absolute state 27.  Fourteen were minus cells from

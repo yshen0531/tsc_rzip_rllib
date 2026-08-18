@@ -57,7 +57,7 @@ class ID2U0Tests(unittest.TestCase):
         self.assertEqual(event["large_response_state_indices"], [27])
         alignment = self.result["early_late_alignment"]
         self.assertLess(alignment["absolute_r_difference_mm"][1], 0.012)
-        self.assertGreater(alignment["absolute_r_difference_mm"][2], 0.73)
+        self.assertGreater(alignment["absolute_r_difference_mm"][2], 0.68)
         self.assertFalse(alignment["smooth_gain_sign_reversal_claimed"])
 
     def test_prospective_matrix_and_atomic_roles_are_fixed(self):

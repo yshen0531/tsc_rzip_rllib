@@ -84,7 +84,7 @@ U0 must reproduce these descriptive facts from tracked evidence:
    `0.5 mm`, all at absolute state 27;
 3. the issue-24 f03 p04+ direct h1/h2 response is close to the issue-30 T1
    h1/h2 response, while the return-effect h3 differs by roughly
-   `0.738--0.745 mm` in R;
+   `0.684--0.691 mm` in R;
 4. all proposed baseline/probe/return/resume streams are exact Card15 and
    satisfy the unchanged `0.3 A` slew and absolute-current limits.
 

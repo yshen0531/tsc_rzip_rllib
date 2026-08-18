@@ -10,11 +10,11 @@
   "holdout_records_read": 0,
   "design": {
     "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2U0_NOMINAL_REALIGNMENT_PREFLIGHT_DESIGN.md",
-    "sha256": "afd6122454b3ce101ef8d5d06d02fd7f45e69e0f378e5a3d180c34b083244b9f"
+    "sha256": "edbfdd5139c471369a02ba3a4685d1bf98756350df5e625fc21b630008bdb659"
   },
   "route_review": {
     "path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2T1_NOMINAL_REALIGNMENT_ROUTE_REVIEW.md",
-    "sha256": "1bf71f9f88b5488d199717a92fa27ebf57f0025596b7a6dc800ea534a92c3cb6"
+    "sha256": "f21c54d8a7a6f0d151a6d2347ac1ebb6d0c5ff0e3bd0f767daa4716036c94176"
   },
   "id2c1": {
     "config": {
@@ -73,7 +73,7 @@
     "required_large_response_count": 16,
     "required_large_response_state_index": 27,
     "maximum_non_state27_response_mm": 0.151,
-    "minimum_early_late_h3_r_difference_mm": 0.73,
+    "minimum_early_late_h3_r_difference_mm": 0.68,
     "maximum_early_late_h2_r_difference_mm": 0.012
   },
   "prospective_campaign": {

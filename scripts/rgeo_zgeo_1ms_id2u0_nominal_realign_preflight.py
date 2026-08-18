@@ -20,7 +20,7 @@ import rgeo_zgeo_1ms_id2c1_active_nominal_vector_search as c1
 
 
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2u0_nominal_realign_preflight.json"
-CONFIG_SHA256 = "b86bf6a0e3aa73c72f9e4b564da2fe356d038e4ed15ba96ba062749f666cb9ba"
+CONFIG_SHA256 = "0f834ba5f2ae718ec28ad49fd958a66148009054743efdb1caa48557e243effb"
 SCHEMA = "rgeo-zgeo-1ms-id2u0-nominal-realign-preflight-result-v1"
 
 
