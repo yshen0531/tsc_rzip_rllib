@@ -1,0 +1,120 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2r0-q1r1-decision-audit-v1",
+  "identity": "rgeo-zgeo-1ms-id2r0-q1r1-decision-audit-v1",
+  "stage": "ID-2R0",
+  "execution_contract": "server_only_zero_new_tsc_frozen_q1_diagnostic_refit_and_route_audit",
+  "new_tsc_calls": 0,
+  "reset_calls": 0,
+  "plant_advances": 0,
+  "design": {
+    "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2R0_Q1R1_DECISION_AUDIT_DESIGN.md",
+    "sha256": "00dd7d444af6153fa7d3337be6712afe2233f64115ef29acfdae343a12b2f3e7"
+  },
+  "q1": {
+    "config": {
+      "path": "configs/rgeo_zgeo_1ms_id2q1_shared_latent_model_comparison.json",
+      "sha256": "f134d194e96511105da1d32504792dd5c53869f7ece29e68afbe74a1831b198b"
+    },
+    "result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2q1r1_20260818_db2e79d5/result.json",
+      "sha256": "c60e79c1eeba021573d501493e4fd057132aaf438f7c0a6e159f7a0eda2d262b",
+      "required_route": "ONE_MS_ID2Q1R1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN"
+    },
+    "independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2q1r1_20260818_db2e79d5/independent_audit.json",
+      "sha256": "734286c62b23eee2dcda6e3ef03fe8517c4ddafc82a665fbb084108b5cfc2ee4"
+    },
+    "required_candidate_count": 2,
+    "required_fold_count": 4,
+    "required_primary_cells": 80,
+    "required_families": 16,
+    "required_no_model_payload": true
+  },
+  "diagnostic_refit": {
+    "candidates": [
+      "stable_shared_latent_ridge",
+      "stable_shared_latent_gru_residual"
+    ],
+    "prediction_origins_inclusive": [16, 26],
+    "horizons_ms": [1, 2, 3, 4, 5, 6, 7, 8],
+    "new_candidate_count": 0,
+    "new_hyperparameter_searches": 0,
+    "full_data_model_fit": false,
+    "emit_model_payload": false,
+    "require_exact_q1_aggregate_reproduction": true,
+    "prediction_key_fields": [
+      "candidate",
+      "fold_id",
+      "family_id",
+      "cell_id",
+      "origin",
+      "horizon"
+    ]
+  },
+  "causal_prefix": {
+    "feature_count": 96,
+    "state_scales": {
+      "r_geo_m": 0.001,
+      "z_geo_m": 0.001,
+      "ip_a": 100.0
+    },
+    "delta_lags": [1, 2, 4],
+    "delta_scales": {
+      "r_geo_m": 0.00025,
+      "z_geo_m": 0.00025,
+      "ip_a": 25.0
+    },
+    "actual_current_scale_a": 0.1,
+    "issued_history_lags": [1, 2, 4, 8, 16],
+    "issued_current_scale_a": 0.3,
+    "distance": "root_mean_square_of_fixed_scaled_deployable_features",
+    "nearest_k": 1,
+    "normalization_search": false,
+    "distance_weight_search": false,
+    "kernel_search": false,
+    "future_actual_current": "forbidden",
+    "future_state": "forbidden",
+    "family_sign_direction_or_schedule_names_as_features": "forbidden"
+  },
+  "exact_schedule_support": {
+    "requires_same_absolute_probe_issue": true,
+    "requires_exact_matched_baseline_relative_card15_sequence_h1_h8": true,
+    "unsupported_rows_are_abstentions": true,
+    "replay_rows_have_zero_statistical_weight": true
+  },
+  "route_gates": {
+    "minimum_exact_schedule_support_fraction": 0.75,
+    "required_positive_supported_peak_directions_fraction": 1.0,
+    "maximum_supported_response_nrmse": 0.75,
+    "maximum_supported_family_action_ranking_regret_fraction": 0.25,
+    "critical_singleton_family_id": "f03",
+    "critical_singleton_required_wrong_ridge_directions": 4,
+    "critical_singleton_required_exact_replays": 0,
+    "positive_span_maximum_angular_gap_deg": 180.0
+  },
+  "forbidden_sources": {
+    "n1_calibration_or_challenge_for_fit_distance_or_thresholds": true,
+    "n1_holdout": true,
+    "unopened_holdout": true,
+    "future_actual_current_or_state": true,
+    "new_model_or_hyperparameter": true,
+    "model_payload": true,
+    "controller_or_optimizer": true,
+    "expert_or_rl_data": true
+  },
+  "routes": {
+    "input_or_reproduction_fail": "ONE_MS_ID2R0_INPUT_OR_REPRODUCTION_FAIL_STOP",
+    "critical_singleton_f03_replay": "ONE_MS_ID2R0_CRITICAL_SINGLETON_F03_EXACT_REPLAY_REQUIRED",
+    "targeted_bridge": "ONE_MS_ID2R0_TARGETED_MATCHED_BRIDGE_REQUIRED",
+    "sequence_authority_shooting": "ONE_MS_ID2R0_CANONICAL_PREFIX_SEQUENCE_AUTHORITY_SHOOTING_REQUIRED",
+    "support_gated_local_model": "ONE_MS_ID2R0_SUPPORT_GATED_LOCAL_MODEL_DESIGN_ONLY",
+    "inconclusive": "ONE_MS_ID2R0_INCONCLUSIVE_FRESH_DISCRIMINATOR_REQUIRED"
+  },
+  "data_roles": {
+    "k1_p1_primary": "consumed_development_and_retrospective_route_evidence",
+    "k1_p1_replays": "integrity_only_zero_statistical_weight",
+    "id2r0_predictions": "diagnostic_only_not_model_or_calibration_evidence",
+    "future_f03_replay": "repeatability_only_zero_fit_weight"
+  },
+  "claim_boundary": "Retrospective source-local Q1 erratum, causal-support and time-resolved action-geometry route audit only; no new model, calibration, holdout, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert data, RL or reachability evidence."
+}
