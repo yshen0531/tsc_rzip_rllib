@@ -1,6 +1,24 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, post-ID-2N1):** the small explicit
+> **Active new-round context (2026-08-18, ID-2O0):** the final goal remains
+> safe approximate two-axis relative/path/waypoint tracking from fixed
+> 1100 ms at a 1 ms action boundary, followed later by repeated R_mid crossing
+> without belief reset. Current same-step paired-boundary R_geo/Z_geo and Ip
+> are exact/noiseless observations before every issue; belief represents
+> unobserved memory, future response and model mismatch, not measurement noise
+> on those three values.
+>
+> ID-2N1 showed that the current fixed event-memory model does not generalize
+> response across fresh histories. It did not show that machine learning is
+> unnecessary or that every causal mechanism must first be identified. The
+> next bounded audit asks the narrower machine-learning question: do the
+> existing independent history families support a causal shared-latent model
+> and control-relevant action ranking, or is a matched-factorial fit dataset
+> still missing? Only after that discriminator will the route train at most
+> two small models or run the specifically required TSC data campaign. All
+> older notices are historical.
+
+> **Historical new-round context (2026-08-18, post-ID-2N1):** the small explicit
 > nominal + fixed event-memory predictor did not survive fresh history,
 > duration and issue-time calibration. Execution and independent raw
 > integrity passed, but the 1--4 ms R tube cap failed and paired-response

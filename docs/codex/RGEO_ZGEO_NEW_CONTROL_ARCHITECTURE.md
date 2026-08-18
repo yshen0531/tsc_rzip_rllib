@@ -1,10 +1,32 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2N1 architecture amendment (2026-08-18):** fresh calibration
+> **Post-ID-2N1 readiness amendment (2026-08-18):** do not jump directly from
+> fresh calibration failure to a larger recurrent model. The architecture
+> first separates effective independent whole-history support from repeated
+> transition/end-point rows. ID-2O0 audits deployable causal history,
+> paired-response/event-age support, and action-ranking utility without fitting
+> a model or running new TSC.
+>
+> If support passes, compare only (1) an explicit nominal plus stable
+> low-order shared latent/belief response model and (2) that same backbone plus
+> a small persistent causal GRU/TCN residual. Exact current R_geo/Z_geo/Ip,
+> recent finite differences, actual/readback current and owned action/queue
+> history are causal inputs; future readback and evaluator labels are not.
+> Direct 1--8 ms outputs must share latent dynamics and obey cross-horizon
+> consistency rather than acting as eight unrelated heads. If support fails,
+> collect a single prospectively fit-eligible matched-factorial campaign
+> instead of widening the network or reusing consumed probes.
+>
+> Fresh model calibration/holdout, two-axis authority, and recovery remain
+> independent AND gates. Source-local 34 ms evidence does not establish
+> multi-position scheduling, hold, transport or R_mid crossing.
+
+> **Historical post-ID-2N1 architecture amendment (2026-08-18):** fresh calibration
 > rejected the context-invariant fixed event-memory predictor before blind
 > holdout. Exact actuator/queue semantics and exact 1 ms R_geo/Z_geo/Ip
 > observation were intact; the failure is the future response representation.
-> Two fresh histories reversed paired response direction and several
+> Two probe cells in the same fresh c01 history reversed paired response
+> direction and several
 > hold/return/tail phases were shifted relative to the frozen convolution.
 >
 > The architecture therefore keeps explicit nominal continuation but moves

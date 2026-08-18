@@ -1,0 +1,65 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2o0-causal-support-readiness-audit-v1",
+  "identity": "rgeo-zgeo-1ms-id2o0-causal-support-readiness-audit-v1",
+  "stage": "ID-2O0",
+  "execution_contract": "server_read_only_zero_tsc_zero_model_fit",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "prediction_horizons_ms": [1, 2, 3, 4, 5, 6, 7, 8],
+  "inputs": {
+    "k1_directory": "docs/codex/audits/rgeo_zgeo_1ms_id2k1_20260817_8416bd6c",
+    "k1_config": {"path": "configs/rgeo_zgeo_1ms_id2k1_factorized_history_sign_development.json", "sha256": "7ea0e1851104eb1c58a74fb50c8338aa16777c7c48dbfd24927b24184d78332e"},
+    "k1_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2k1_20260817_8416bd6c/result.json", "sha256": "a7a5f64a86118dd5002b9da44f7cf5e126571f30d6e6ef3d3005b369eb4e6643", "required_route": "ONE_MS_ID2K1_FACTORIZED_HISTORY_SIGN_DATA_PASS_STRUCTURED_MODEL_ONLY"},
+    "k1_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2k1_20260817_8416bd6c/independent_raw_audit.json", "sha256": "69911aaa5d16b7f52381b0f7d211d51b0eee6377a11830dd00812e7183af8444"},
+    "n1_raw_directory": "artifacts/server_runs/rgeo_zgeo_1ms_id2n1_20260818_410689ab",
+    "n1_config": {"path": "configs/rgeo_zgeo_1ms_id2n1_fresh_calibration_blind_holdout.json", "sha256": "4b41320e6e79840b5d2234f3bfa7a9a77e0606f0d0e9cf624274b42ed2f64d08"},
+    "n1_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2n1_20260818_410689ab/result.json", "sha256": "fbb734bf53f98f32c94e7c473d9919d900803dbdb09bbdd147efd597e1b8421e", "required_route": "ONE_MS_ID2N1_CALIBRATION_MODEL_OR_TUBE_FAIL_HOLDOUT_UNOPENED"},
+    "n1_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2n1_20260818_410689ab/independent_raw_audit.json", "sha256": "e307ac02358107e92ff2d7ce08a7e36bacf5efd684c49aea6f9dfdcfcef6f706"},
+    "n1_calibration": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2n1_20260818_410689ab/calibration.json", "sha256": "a1001567bf5b9cee81997807bf33d5f2bcb31e293d4f34783518def2f5fe5f97"}
+  },
+  "expected": {
+    "k1_rollouts": 43,
+    "k1_unique_cells": 40,
+    "k1_families": 8,
+    "n1_calibration_rollouts": 14,
+    "n1_unique_cells": 12,
+    "n1_families": 4,
+    "n1_holdout_rollouts": 0,
+    "state_count_per_rollout": 35,
+    "action_count_per_rollout": 34
+  },
+  "causal_prefix": {
+    "state_scales": {"r_geo_m": 0.001, "z_geo_m": 0.001, "ip_a": 100.0},
+    "delta_lags": [1, 2, 4],
+    "delta_scales": {"r_geo_m": 0.00025, "z_geo_m": 0.00025, "ip_a": 25.0},
+    "actual_current_scale_a": 0.1,
+    "issued_history_lags": [1, 2, 4, 8, 16],
+    "issued_current_scale_a": 0.3,
+    "distance": "root_mean_square_of_fixed_scaled_deployable_features",
+    "future_actual_current": "forbidden",
+    "labels_or_family_ids_as_features": "forbidden"
+  },
+  "response_scales": {"r_geo_m": 0.0001, "z_geo_m": 0.0001, "ip_a": 25.0},
+  "readiness_gates": {
+    "minimum_fit_eligible_independent_families": 16,
+    "minimum_exact_schedule_support_fraction": 0.75,
+    "minimum_positive_nearest_response_directions": 7,
+    "required_nearest_response_count": 8,
+    "maximum_nearest_response_nrmse": 0.75,
+    "maximum_action_ranking_regret_fraction": 0.25,
+    "minimum_fit_eligible_families_per_probe_duration": 2,
+    "required_probe_durations": [1, 2, 3]
+  },
+  "data_roles": {
+    "k1": "fit_eligible_development_and_readiness_input",
+    "n1_calibration": "consumed_redesign_challenge_evidence_not_fit_labels",
+    "n1_replays": "integrity_only_zero_statistical_weight",
+    "n1_holdout": "unopened_forbidden"
+  },
+  "routes": {
+    "input_or_integrity_fail": "ONE_MS_ID2O0_INPUT_OR_EVIDENCE_INTEGRITY_FAIL_STOP",
+    "support_sufficient": "ONE_MS_ID2O0_SUPPORT_SUFFICIENT_FOR_BOUNDED_MODEL_COMPARISON",
+    "matched_factorial_required": "ONE_MS_ID2O0_MATCHED_FACTORIAL_DEVELOPMENT_DATA_REQUIRED"
+  },
+  "claim_boundary": "Read-only source-local learnability and control-utility readiness audit only; no model fit, TSC, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert data or RL evidence."
+}

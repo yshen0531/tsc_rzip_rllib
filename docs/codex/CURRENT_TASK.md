@@ -1,6 +1,30 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2N1):** ID-2N1 completed all
+> **Unique active task (2026-08-18, post-ID-2N1 route decision):** preserve
+> ID-2N1 as the clean final calibration FAIL described below. The immediate
+> stage is ID-2O0, a bounded, zero-new-TSC and zero-model-fit readiness audit
+> over the tracked K1 development records and the retained N1 calibration
+> raw. It measures effective whole-history support, deployable causal-prefix
+> distance/collisions, event-age and paired baseline/response structure, and
+> action-ranking/control-utility support. It does not try to identify every
+> physical cause and it may not tune a model on the consumed N1 result.
+>
+> ID-2O0 has only two scientific routes:
+> `SUPPORT_SUFFICIENT_FOR_BOUNDED_MODEL_COMPARISON` or
+> `MATCHED_FACTORIAL_DEVELOPMENT_DATA_REQUIRED`. The first may authorize at
+> most two small shared-latent causal models. The second may authorize only a
+> prospectively fit-eligible matched-factorial TSC campaign covering
+> conditioner timing/order, p04/p07 sign, duration, probe time, matched
+> baseline and complete return/tail. K1 remains fit-eligible; N1 calibration
+> remains consumed redesign/challenge evidence and is not silently relabeled
+> as training data. N1 v00--v03 remain unopened and cannot run under the
+> failed N1 identity.
+>
+> No ID-2O0 result authorizes an uncertainty tube, authority, recovery,
+> controller, MPC, transport, R_mid crossing, adaptation, expert data or RL.
+> All blocks below are historical.
+
+> **Historical task (2026-08-18, post-ID-2N1):** ID-2N1 completed all
 > 14 fresh calibration rollouts and 476/476 verified advances with exact
 > interface/raw integrity, but failed as
 > `ONE_MS_ID2N1_CALIBRATION_MODEL_OR_TUBE_FAIL_HOLDOUT_UNOPENED`.

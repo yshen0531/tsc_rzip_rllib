@@ -1,6 +1,24 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2N1 calibration FAIL):** the fresh
+> **Current status (2026-08-18, ID-2O0 authorized):** the post-ID-2N1 review
+> found that the immediate uncertainty is data/support readiness, not a choice
+> between larger neural networks. K1 supplies eight independent fit-eligible
+> whole-history families (40 unique cells); N1 adds four fresh calibration
+> families (12 unique cells plus two exact replays) but is consumed challenge
+> evidence, not silently reusable fit data. Counts of transitions or
+> multi-horizon endpoints are not treated as independent histories.
+>
+> The decisive N1 failure was paired response generalization across every
+> fresh family, while the 1--4 ms R-tube maximum was localized to one c01
+> p07-minus origin. Both wrong-way probe responses were two probe cells in
+> the same c01 family, not two independent histories. The next executable
+> stage is the zero-new-TSC, zero-fit ID-2O0 readiness audit. Its result will
+> choose either a bounded two-model comparison or new matched-factorial,
+> prospectively fit-eligible data. No model training, TSC, calibration,
+> holdout, authority or control is authorized merely by this status block.
+> Older status blocks are historical.
+
+> **Historical status (2026-08-18, ID-2N1 calibration FAIL):** the fresh
 > calibration campaign completed 14/14 rollouts and 476/476 verified TSC
 > advances. Independent raw audit passed over 490 states, 2,450 required
 > files, 28.858 GB, and exact inventory digest. There were no interface,
