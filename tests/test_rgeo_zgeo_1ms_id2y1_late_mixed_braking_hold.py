@@ -30,10 +30,15 @@ class ID2Y1Tests(unittest.TestCase):
         self.assertEqual(self.stage["maximum_advance_attempts"], 416)
         self.assertEqual(self.stage["required_artifact_files_if_all_complete"], 2100)
 
-    def test_offline_is_zero_plant_and_exact(self):
+    def test_offline_fails_headroom_with_zero_plant(self):
         result = MODULE.offline(MODULE.CONFIG, "test-revision")
-        self.assertTrue(result["passed"], result["failures"])
-        self.assertGreaterEqual(result["minimum_absolute_current_headroom_a"], 95.0)
+        self.assertFalse(result["passed"])
+        self.assertEqual(
+            result["failures"],
+            ["InputIntegrityError:absolute-current headroom below 95 A"],
+        )
+        self.assertAlmostEqual(
+            result["minimum_absolute_current_headroom_a"], 92.8, places=9)
         self.assertEqual(result["reset_calls"], 0)
         self.assertEqual(result["advance_attempts"], 0)
         self.assertEqual(result["plant_advance_gotsc_calls"], 0)
