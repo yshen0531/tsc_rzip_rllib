@@ -1,6 +1,21 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2O0 data amendment (2026-08-18):** the model comparison remains
+> **Post-ID-2P1 model amendment (2026-08-18):** the missing matched duration,
+> timing and history data passed all execution and independent raw gates.
+> ID-2Q1 therefore compares exactly two small models on 16 whole-history
+> families: a stable shared-increment causal backbone and that same backbone
+> with a bounded persistent GRU residual. Exact current R_geo/Z_geo/Ip remain
+> direct noiseless inputs at each origin; the latent state represents response
+> memory and future uncertainty, not measurement noise.
+>
+> Multi-horizon outputs are cumulative shared dynamics and must pass absolute,
+> paired-response, direction and action-ranking gates. A PASS freezes one
+> development model only. Fresh calibration, blind whole-history holdout,
+> uncertainty, two-axis authority and recovery are still independent AND
+> gates before any controller. Source-local 34 ms evidence is not position,
+> transport, hold or R_mid-crossing evidence.
+
+> **Historical post-ID-2O0 data amendment (2026-08-18):** the model comparison remains
 > capped at two candidates, but it is blocked until ID-2P1 supplies the
 > missing independent history and duration support. ID-2P1 is a balanced
 > matched-baseline factorial campaign over the already admitted p04/p07

@@ -1,6 +1,21 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2O0 complete / ID-2P1 frozen):** ID-2O0
+> **Current status (2026-08-18, ID-2P1 PASS / ID-2Q1 active):** ID-2P1 is a
+> clean matched-factorial development-data PASS, not a controller result. It
+> completed `42/42` rollouts, `1,428/1,428` advances and retained `7,350`
+> required artifacts (`86,572,598,280` bytes). Independent server raw audit
+> reproduced the inventory, prefixes, replays and all response gates with
+> zero failures. Primary/independent SHA-256 are `8f747e04...` and
+> `0c4364aa...`.
+>
+> The active ID-2Q1 stage compares two small causal shared-latent predictors
+> on 80 primary cells and 16 whole-history families. It performs zero TSC,
+> reset or plant advance. N1 records stay excluded from fit and the five K1/P1
+> replays add no statistical weight. The frozen result either emits one model
+> for fresh calibration design or stops for redesign; it cannot authorize
+> uncertainty tubes or control. Older status blocks are historical.
+
+> **Historical status (2026-08-18, ID-2O0 complete / ID-2P1 frozen):** ID-2O0
 > passed execution and independent recomputation but routed to matched-
 > factorial development data. Result/audit SHA-256 are
 > `ec7eda49... / 4b064deb...`. It performed no fitting, TSC, reset, plant

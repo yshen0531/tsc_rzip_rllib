@@ -1,6 +1,29 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2O0):** ID-2O0 completed with
+> **Unique active task (2026-08-18, post-ID-2P1):** ID-2P1 completed all
+> `42/42` authentic rollouts and `1,428/1,428` verified one-ms advances.
+> Independent server raw recomputation passed over `1,470` states and
+> `7,350` required artifacts. All `8/8` prefix, `2/2` replay and `32/32`
+> signal/Ip gates passed. Its final route is
+> `ONE_MS_ID2P1_MATCHED_FACTORIAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.
+>
+> The sole active stage is the zero-new-TSC ID-2Q1 comparison. It uses only
+> the 40 primary K1 and 40 primary P1 cells, grouped into 16 whole-history
+> families. Replays have zero fit weight; N1 calibration and holdout remain
+> forbidden fit inputs. Exactly two candidates are frozen: a stable
+> shared-increment ridge backbone and the same backbone plus an eight-unit
+> persistent causal GRU residual. Every prediction uses only current/past
+> exact R_geo/Z_geo/Ip, actual-current innovation and owned issued actions;
+> future actual current/readback and evaluator labels are forbidden.
+>
+> ID-2Q1 runs training and tests only on the server. A PASS may authorize only
+> a separately frozen fresh calibration and genuinely new blind whole-history
+> holdout. A FAIL stops same-data model enlargement and triggers route review.
+> No tube, authority, recovery, controller, MPC, transport, crossing,
+> adaptation, expert data or RL is authorized. All blocks below are
+> historical.
+
+> **Historical task (2026-08-18, post-ID-2O0):** ID-2O0 completed with
 > zero model fits and zero TSC/reset/plant advances; separate-process exact
 > recomputation passed. All six readiness gates failed. K1 has eight
 > fit-eligible families and probe-duration support only at 3 ms; exact N1

@@ -1,0 +1,104 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2q1-shared-latent-model-comparison-v1",
+  "identity": "rgeo-zgeo-1ms-id2q1-shared-latent-model-comparison-v1",
+  "stage": "ID-2Q1",
+  "execution_contract": "server_only_zero_new_tsc_two_candidate_model_comparison",
+  "new_tsc_calls": 0,
+  "reset_calls": 0,
+  "plant_advances": 0,
+  "fit_sources": {
+    "k1": {
+      "directory": "docs/codex/audits/rgeo_zgeo_1ms_id2k1_20260817_8416bd6c",
+      "result": "docs/codex/audits/rgeo_zgeo_1ms_id2k1_20260817_8416bd6c/result.json",
+      "result_sha256": "a7a5f64a86118dd5002b9da44f7cf5e126571f30d6e6ef3d3005b369eb4e6643",
+      "independent": "docs/codex/audits/rgeo_zgeo_1ms_id2k1_20260817_8416bd6c/independent_raw_audit.json",
+      "independent_sha256": "69911aaa5d16b7f52381b0f7d211d51b0eee6377a11830dd00812e7183af8444",
+      "required_route": "ONE_MS_ID2K1_FACTORIZED_HISTORY_SIGN_DATA_PASS_STRUCTURED_MODEL_ONLY",
+      "implementation_revision": "8416bd6c3a1506ac23410fbaba2ce73361da6a0d",
+      "compact_files": 43,
+      "compact_bytes": 7594017,
+      "compact_digest": "912da77f0b1f96b8804cfd6db5efa96c8cda4e4af51c865d1853b5753e7b0c34",
+      "primary_cells": 40,
+      "families": ["h00", "h01", "h02", "h03", "h04", "h05", "h06", "h07"]
+    },
+    "p1": {
+      "directory": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2",
+      "result": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/result.json",
+      "result_sha256": "8f747e04d8fbd9114615cfa65de436191c1f3245baeb4e1b620c86de71707331",
+      "independent": "docs/codex/audits/rgeo_zgeo_1ms_id2p1_20260818_7c4dfcf2/independent_raw_audit.json",
+      "independent_sha256": "0c4364a55993d433c4ca156dc956c9bc1698efbf3888e25b87b1d246b9dd124c",
+      "required_route": "ONE_MS_ID2P1_MATCHED_FACTORIAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY",
+      "implementation_revision": "7c4dfcf28de3c08d63e61437c2d10497c89221fa",
+      "compact_files": 42,
+      "compact_bytes": 7424369,
+      "compact_digest": "3b866193a5a8c4481ffa5e41a18270d16c60893c2aa1362f0de75e5026e5e46a",
+      "primary_cells": 40,
+      "families": ["f00", "f01", "f02", "f03", "f04", "f05", "f06", "f07"]
+    }
+  },
+  "forbidden_sources": {
+    "n1_calibration_as_fit_labels": true,
+    "n1_holdout": true,
+    "replay_extra_weight": true,
+    "future_actual_current_or_readback": true,
+    "family_direction_sign_or_schedule_labels_as_features": true
+  },
+  "whole_family_folds": [
+    {"fold_id": "q00", "held": ["h00", "h04", "f00", "f04"]},
+    {"fold_id": "q01", "held": ["h01", "h05", "f01", "f05"]},
+    {"fold_id": "q02", "held": ["h02", "h06", "f02", "f06"]},
+    {"fold_id": "q03", "held": ["h03", "h07", "f03", "f07"]}
+  ],
+  "normalization": {
+    "state_scale": [0.001, 0.001, 100.0],
+    "response_scale": [0.0001, 0.0001, 25.0],
+    "actual_current_innovation_scale_a": 0.1
+  },
+  "shared_latent": {
+    "prediction_origins_inclusive": [16, 26],
+    "horizons_ms": [1, 2, 3, 4, 5, 6, 7, 8],
+    "fixed_poles": [0.2, 0.5, 0.8, 0.95],
+    "velocity_lags": [1, 4],
+    "ridge": 0.01,
+    "paired_loss_weight": 4.0,
+    "maximum_scaled_feature_condition": 1000000.0,
+    "explicit_time_indexed_nominal": true,
+    "future_issued_card15_sequence_known": true,
+    "future_actual_current_propagation": "forbidden_freeze_origin_innovation_with_stable_decay",
+    "outputs_are_cumulative_shared_increment_rollouts_not_independent_horizon_heads": true
+  },
+  "candidates": {
+    "stable_shared_latent_ridge": {"enabled": true},
+    "stable_shared_latent_gru_residual": {
+      "enabled": true,
+      "hidden_width": 8,
+      "seeds": [11, 23, 37],
+      "epochs": 240,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0,
+      "maximum_residual_increment_scaled": [3.0, 3.0, 2.0]
+    }
+  },
+  "eligibility": {
+    "endpoint_p95_abs_caps_by_horizon": {
+      "r_geo_m": [0.0005, 0.00075, 0.0010, 0.0012, 0.0015, 0.0018, 0.0021, 0.0024],
+      "z_geo_m": [0.0003, 0.00045, 0.0006, 0.00075, 0.0009, 0.00105, 0.0012, 0.00135],
+      "ip_a": [40.0, 50.0, 60.0, 70.0, 80.0, 90.0, 100.0, 110.0]
+    },
+    "maximum_h1_abs_error": [0.0012, 0.0008, 75.0],
+    "maximum_each_fold_response_nrmse": 0.75,
+    "maximum_mean_response_nrmse": 0.65,
+    "required_positive_peak_directions_per_fold": 16,
+    "maximum_each_fold_action_ranking_regret_fraction": 0.25,
+    "minimum_response_sse_improvement_over_zero_fraction": 0.20,
+    "minimum_gru_worst_fold_response_improvement_fraction_for_selection": 0.10,
+    "maximum_gru_endpoint_p95_regression_fraction_for_selection": 0.10
+  },
+  "routes": {
+    "input_or_integrity_fail": "ONE_MS_ID2Q1_INPUT_OR_INTEGRITY_FAIL_NO_MODEL_RESULT",
+    "no_eligible_candidate": "ONE_MS_ID2Q1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN",
+    "pass": "ONE_MS_ID2Q1_SHARED_LATENT_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+  },
+  "claim_boundary": "Finite K1+P1 source-local whole-family development model comparison only; no calibration, blind holdout, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert data, RL or reachability evidence."
+}

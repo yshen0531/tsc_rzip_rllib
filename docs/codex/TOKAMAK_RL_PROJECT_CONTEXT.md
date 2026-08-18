@@ -1,6 +1,20 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, ID-2P1):** ID-2O0 determined that
+> **Active new-round context (2026-08-18, ID-2Q1):** ID-2P1 supplied the
+> prospectively fit-eligible duration/timing/history support missing at
+> ID-2O0. Its `42/42` authentic rollouts, matched prefixes, replays,
+> signal/Ip gates and independent raw audit all passed. This remains finite
+> source-local HFS evidence.
+>
+> ID-2Q1 now performs the bounded machine-learning comparison: exact
+> actuator/action history plus exact current R_geo/Z_geo/Ip and low-order
+> stable memory, with only one optional small persistent GRU residual. The
+> comparison uses whole-history folds and shared cumulative 1--8 ms dynamics,
+> not independent horizon heads. A development PASS still requires fresh
+> calibration and a new blind whole-history holdout; authority, recovery and
+> control remain separate. All older notices are historical.
+
+> **Historical new-round context (2026-08-18, ID-2P1):** ID-2O0 determined that
 > the existing eight fit-eligible histories do not support another defensible
 > model comparison across duration/timing composition. The route therefore
 > collects one bounded matched-factorial dataset rather than increasing model
