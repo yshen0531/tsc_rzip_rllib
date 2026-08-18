@@ -1,6 +1,6 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2W2):** ID-2W2 safely stopped
+> **Unique active task (2026-08-19, ID-2W3 frozen):** ID-2W2 safely stopped
 > after 79/80 verified advances. Exact issued slew was `0.3 A`, but coil-14
 > readback changed by `-0.30001 A` at issue78 -> state79, so the frozen
 > observed-slew interface refused issue79. The partial 400-artifact raw audit
@@ -12,10 +12,16 @@
 > known state32 distance `19.2923 mm`, the best later distance was
 > `19.6412 mm`, no state entered 15 mm, and state79 was `23.9352 mm` from the
 > source with R/Z offsets `(-21.1937,+11.1230) mm`. Blind p03 continuation
-> stops. The sole successor is a separately frozen two-branch p03 braking
-> discriminator: replay to level52 or level64, hold each through a common
-> finite tail, and test terminal speed/net motion. Failure stops the p03-only
-> nominal/hold route. No model, calibration/blind read, controller, recovery,
+> stops. ID-2W3 is prospectively frozen as the final p03-only discriminator at
+> config/design SHA-256
+> `df01e62dc7d5467ba817dd6b3f7208453a863d6d11820f008fae50d3e42e4e3c /`
+> `cbe6f3175d11a9051b16b9e0036a41ea3af99b21f2bf7a30c15bf4759ea436db`.
+> It runs exactly two 96-issue branches after all server gates: replay to
+> p03 level52 or level64, then hold that exact Card15 target through the common
+> states88--96 terminal window. At least one branch must satisfy both-axis
+> `0.1 mm/step`, `1 mm` net-motion, `100 A` net-Ip and source-envelope gates.
+> A clean failure ends p03-only nominal/hold design and requires a different
+> actuator allocation. No model, calibration/blind read, controller, recovery,
 > waypoint, crossing, adaptation, expert data or RL is authorized. All blocks
 > below are historical.
 >

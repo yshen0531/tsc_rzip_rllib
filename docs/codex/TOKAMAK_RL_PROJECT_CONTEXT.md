@@ -1,18 +1,20 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-19, post-ID-2W2):** the extended p03
+> **Current route notice (2026-08-19, ID-2W3 frozen):** the extended p03
 > trajectory stopped safely before issue79 on an observed `0.30001 A` readback
 > change. Its partial raw audit passes, while its official execution route
 > remains FAIL. Across the 79 realized advances, continued p03 never improved
 > on the state32 source distance and never entered the 15 mm corridor; by
 > state79 it traded lower Z error for larger negative-R error.
 >
-> One final two-level braking discriminator is justified because the measured
-> level52 and64 prefixes occur before the interface stop and have distinct
-> velocity directions. Holding those levels will test whether p03 can supply a
-> finite nominal deceleration/hold tail. Failure ends p03-only nominal design;
-> the next actuator grammar must use another allocation. Older notices are
-> historical.
+> One final two-level braking discriminator is now frozen at config/design
+> SHA-256 `df01e62d... / cbe6f317...`. The measured level52 and64 prefixes
+> occur before the interface stop and have distinct velocity directions.
+> Holding those exact targets through state96 tests whether p03 can supply a
+> finite nominal deceleration/hold tail under unchanged empirical stops.
+> Failure ends p03-only nominal design; the next actuator grammar must use
+> another allocation. Implementation/server tests/TSC remain pending. Older
+> notices are historical.
 >
 > **Historical route notice (2026-08-19, post-ID-2W1):** the six-branch
 > p04/p07 depth-6 pause/return grammar completed exactly but failed its
