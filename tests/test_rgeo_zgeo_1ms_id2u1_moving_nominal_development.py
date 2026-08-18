@@ -82,6 +82,9 @@ class ID2U1Tests(unittest.TestCase):
         self.assertIn("ID2U1_OUTPUT", text)
         self.assertIn("matched_nominal_development_independent.py".replace("matched_nominal", "moving_nominal"), text)
         self.assertIn("test ! -e", text)
+        self.assertIn("primary_rc=$?", text)
+        self.assertIn("audit_rc=$?", text)
+        self.assertLess(text.index("primary_rc=$?"), text.index("independent.py"))
 
 
 if __name__ == "__main__":
