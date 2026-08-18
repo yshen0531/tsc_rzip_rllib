@@ -357,7 +357,16 @@ def _trajectory_diagnostics(row: dict[str, Any], source: dict[str, Any],
     ] for index in range(1, len(states))]
     headroom = math.inf
     for state in states:
-        for value, low, high in zip(state["actual_current_a_tsc"],
+        # Primary compact rows retain both the parsed float list and the exact
+        # decimal list.  The structurally separate raw parser intentionally
+        # retains only the exact decimal representation; accept either without
+        # changing the quantity used by the diagnostic.
+        actual_current = state.get(
+            "actual_current_a_tsc", state.get("actual_current_decimal_a_tsc", []))
+        if len(actual_current) != 14:
+            raise y1r1.y1.x1.InputIntegrityError(
+                f"diagnostic actual-current width: {row.get('rollout_id')}")
+        for value, low, high in zip(actual_current,
                                     cfg.min_current_a_tsc, cfg.max_current_a_tsc):
             headroom = min(headroom, float(value) - float(low),
                            float(high) - float(value))

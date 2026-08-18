@@ -101,6 +101,15 @@ class ID2Z1Tests(unittest.TestCase):
         self.assertEqual(result["models_fit_or_updated"], 0)
         self.assertAlmostEqual(result["minimum_absolute_current_headroom_a"], 97.6)
 
+    def test_raw_auditor_decimal_current_alias_is_supported(self) -> None:
+        stage, cfg, _, _ = primary.load()
+        current = [str(value) for value in cfg.min_current_a_tsc]
+        state = {"r_geo_m": 0.7, "z_geo_m": 0.03, "ip_a": 30000.0,
+                 "actual_current_decimal_a_tsc": current}
+        result = primary._trajectory_diagnostics(
+            {"rollout_id": "raw", "states": [state]}, state, cfg, stage)
+        self.assertEqual(result["minimum_actual_current_headroom_a"], 0.0)
+
     @staticmethod
     def _states(*, improvement_m: float = 0.0, transient_only: bool = False,
                 ip_response_a: float = 0.0) -> list[dict[str, float]]:
