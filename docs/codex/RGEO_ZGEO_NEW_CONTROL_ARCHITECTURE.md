@@ -1,4 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID-2U1 architecture amendment (2026-08-18):** the moving-nominal
+> campaign confirms that the large delayed branch is sparse and conditional,
+> not a universal smooth gain. The first candidate therefore uses explicit
+> time, nominal level, event age, stable action memory, and support/OOD gates;
+> the second is only a small persistent causal sequence residual that receives
+> the same deployable history and exact current observations. Both predict
+> deviation around the contemporaneous moving nominal and recenter every
+> one-ms observation. A larger global world model is not a candidate.
+
 > **Post-ID-2U0 architecture amendment (2026-08-18):** exact Card15
 > pause/probe/return/resume allocation is the first admissible residual
 > grammar around the selected moving p03 nominal. U0 froze a fresh 8-family,

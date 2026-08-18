@@ -1,5 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-18, post-ID-2U1):** ID-2U1 completed
+> `20/20` development rollouts and `800/800` one-ms advances with exact
+> execution, 820 states, 4,100 raw artifacts, all 16 signal/Ip gates, and an
+> independent full-raw PASS. The final route is
+> `ONE_MS_ID2U1_MOVING_NOMINAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.
+> The paced calibration families `u01/u03` and blind families `u05/u07`
+> remain unopened.
+>
+> The sole active successor is a separately frozen zero-new-TSC bounded
+> model comparison on the 20 development trajectories. It may compare only
+> (1) a support-gated time/nominal-level/event-age stable local model and
+> (2) one small persistent causal sequence residual, both with exact current
+> R_geo/Z_geo/Ip recentering, actual/issued-current history, whole-family
+> folds, paired-response and 1--8 ms consistency gates, and OOD refusal.
+> A development PASS may freeze one artifact/evaluator and only then design
+> fresh calibration. No authority, recovery, controller, MPC, waypoint,
+> crossing, adaptation, expert data, or RL is authorized. All blocks below
+> are historical.
+
 > **Unique active task (2026-08-18, post-ID-2U0):** ID-2U0 passed exact
 > server-side and separate-process recomputation as
 > `ONE_MS_ID2U0_NOMINAL_REALIGNMENT_ACTION_GRAMMAR_PASS_U1_DESIGN_ONLY`.

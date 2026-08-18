@@ -1,5 +1,16 @@
 # Current status
 
+> **Current status (2026-08-18, post-ID-2U1):** the moving-nominal development
+> campaign is a clean data PASS, not a control PASS. Primary and independent
+> evidence agree on 20 rollouts, 800 advances, 820 states, 4,100 artifacts,
+> exact matched prefixes, and 16/16 signal/Ip gates. The 48.292 GB raw
+> inventory is preserved on the server; 23 compact JSON files are tracked.
+> The u00 level-18/issue-24 minus branches retain a delayed ~0.71 mm event,
+> whereas the other three families have ~0.09--0.11 mm responses. This makes
+> time/level/event/history conditioning a model requirement. Calibration and
+> blind families remain unopened; bounded development-only model comparison
+> is now active.
+
 > **Current status (2026-08-18, post-ID-2U0):** primary and separate-process
 > recomputation both passed the zero-TSC nominal-lineage, event-map, headroom,
 > and exact Card15 campaign-construction audit. The result freezes 8 family

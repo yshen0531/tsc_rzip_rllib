@@ -1,5 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-18, post-ID-2U1):** fresh development data
+> now covers the selected moving nominal at levels 18/22 and issues 24/30.
+> Complete execution/raw/prefix/signal/Ip gates passed. The exceptional large
+> delayed response is confined to the level-18/issue-24 minus history in this
+> matrix; other families are much smaller and approximately two-sided. The
+> next step is a two-candidate, whole-family, development-only causal model
+> comparison. Paced calibration and blind families remain unopened.
+
 > **Current route notice (2026-08-18, post-ID-2U0):** the zero-TSC
 > nominal-realignment and action-allocation preflight passed. The next fresh
 > evidence must be generated around the continuing p03 stride-one nominal
