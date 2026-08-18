@@ -1,0 +1,98 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2v0-control-utility-support-audit-v1",
+  "identity": "rgeo-zgeo-1ms-id2v0-control-utility-support-audit-v1",
+  "stage": "ID-2V0",
+  "execution_contract": "server_only_zero_new_tsc_zero_fit_control_utility_support_decision_audit",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "development_family_ids": ["u00", "u02", "u04", "u06"],
+  "required_development_trajectories": 20,
+  "required_probe_cells": 16,
+  "unopened_calibration_family_ids": ["u01", "u03"],
+  "unopened_blind_holdout_family_ids": ["u05", "u07"],
+  "prediction_horizons_ms": [1, 2, 3, 4, 5, 6, 7, 8],
+  "direction_grid_count": 64,
+  "action_equivalence_floor_m": 0.00002,
+  "support_decomposition": {
+    "fixed_action_memory_poles": [0.25, 0.5, 0.75, 0.9],
+    "support_multiplier_over_training_leave_one_family_out_max": 1.25,
+    "feature_blocks": [
+      "time_level_age",
+      "current_rgeo_zgeo_ip",
+      "velocity_lag1",
+      "velocity_lag2",
+      "velocity_lag4",
+      "actual_current_action_coordinates",
+      "action_memory_pole_0p25",
+      "action_memory_pole_0p5",
+      "action_memory_pole_0p75",
+      "action_memory_pole_0p9"
+    ]
+  },
+  "retrospective_program_criteria": {
+    "minimum_each_family_h8_residual_to_baseline_motion_fraction": 0.05,
+    "minimum_each_family_state40_max_residual_rz_norm_m": 0.00005,
+    "minimum_each_family_h8_all_direction_best_progress_m": 0.00002,
+    "require_exact_action_current_slew_ip_integrity": true,
+    "classification": "post_observation_program_design_only_not_plant_or_safety_qualification"
+  },
+  "counts": {
+    "new_tsc_calls": 0,
+    "reset_calls": 0,
+    "plant_advances": 0,
+    "models_fit_or_trained": 0,
+    "calibration_records_read": 0,
+    "blind_holdout_records_read": 0
+  },
+  "source": {
+    "directory": "docs/codex/audits/rgeo_zgeo_1ms_id2u1_20260818_63d498c5",
+    "trajectory_glob": "u*.json",
+    "tracked_compact_inventory_files": 23,
+    "tracked_compact_inventory_digest": "d095d5042df68cf6a7d0d9d31d55f4fc0861375f8a8ffd53fd08b4e13b230074",
+    "route_review": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2U2_CONTROL_UTILITY_ROUTE_REVIEW.md",
+      "sha256": "75a88ed9ed28437ca7a2dad91ffe537efde72003ecbd9434e6e873a6f05b56eb"
+    },
+    "id2u1_config": {
+      "path": "configs/rgeo_zgeo_1ms_id2u1_moving_nominal_development.json",
+      "sha256": "21989e3502f0b8d283293af85c5442ae108bdf3333c2220bb03109c93c9b3cd5"
+    },
+    "id2u1_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u1_20260818_63d498c5/result.json",
+      "sha256": "297d32bfb5a945238150f5a951d4de5c6df2e28f16a3d13f816778ecc27cc3b4",
+      "required_route": "ONE_MS_ID2U1_MOVING_NOMINAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY"
+    },
+    "id2u1_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u1_20260818_63d498c5/independent_raw_audit.json",
+      "sha256": "bf3c68a26d94406e8c54c4bd96b6d3e621735d923ebdf1ef28c478ac0c6ffd62"
+    },
+    "id2u2_config": {
+      "path": "configs/rgeo_zgeo_1ms_id2u2_bounded_causal_model_comparison.json",
+      "sha256": "a7e8c628afeb5335baf3ed321bdf1361883ca104e3daa5731fd76036d649b681"
+    },
+    "id2u2_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u2_20260818_45265ef0/result.json",
+      "sha256": "30f303ecd35b21399d3c894f15dfa0f4c3e6c212d5a5f09eabe7eb647ac495a8",
+      "required_route": "ONE_MS_ID2U2_NO_ELIGIBLE_CAUSAL_MODEL_REVIEW_REQUIRED"
+    },
+    "id2u2_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2u2_20260818_45265ef0/independent_audit.json",
+      "sha256": "c7a92cc351ae064fb6aceb38aff215098e0c6bd0a54ad647b63754e215f27d05"
+    },
+    "id2u2_report": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2U2_BOUNDED_CAUSAL_MODEL_COMPARISON_RESULT.md",
+      "sha256": "aa22693587ee8d9ebe58100c0631c9072eefaab67f6d90fb0c0b10c10673ae94"
+    },
+    "design": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2V0_CONTROL_UTILITY_SUPPORT_AUDIT_DESIGN.md",
+      "sha256": "ebcb205430d5e0a23774c1ba821f3c2f9515caabd0a50b8bbe811ef109a74ca3"
+    }
+  },
+  "routes": {
+    "input_or_contract_fail": "ONE_MS_ID2V0_INPUT_OR_CONTRACT_FAIL_NO_ANALYSIS",
+    "metric_reproduction_fail": "ONE_MS_ID2V0_METRIC_REPRODUCTION_FAIL_STOP",
+    "history_support_extension": "ONE_MS_ID2V0_CURRENT_PROBE_UTILITY_ADEQUATE_HISTORY_SUPPORT_DESIGN_ONLY",
+    "branch_design_required": "ONE_MS_ID2V0_CURRENT_PROBE_CONTROL_UTILITY_INSUFFICIENT_BRANCH_DESIGN_REQUIRED"
+  },
+  "claim_boundary": "Retrospective zero-new-TSC zero-fit development decision audit only; not a transition tube, authority, hold, recovery, controller, MPC, waypoint/path, R_mid crossing, adaptation, expert-data, RL, or reachability result."
+}
