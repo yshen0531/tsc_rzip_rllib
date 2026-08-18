@@ -1,5 +1,19 @@
 # Current status
 
+> **Current status (2026-08-19, ID-2V0 authorized):** the post-U2 route
+> review is complete. Four new arrival histories are no longer an automatic
+> next run. U2 has a real corner/support gap, but supported folds also fail
+> response and ranking, while the width-three GRU regresses. Separately, U1
+> shows only `0.021--0.026 mm` residual effect at horizon 8 against
+> `4.276--5.238 mm` common moving-baseline motion, and only
+> `0.011--0.019 mm` remains at state 40.
+>
+> The sole active work is a bounded server-side zero-TSC/zero-fit ID-2V0
+> decision audit. It will select either one targeted history-support repair
+> or one finite same-prefix multi-arm action-grammar branch campaign. No
+> calibration/blind data, model, TSC, authority, recovery, controller,
+> waypoint, crossing, adaptation, expert data, or RL is currently active.
+
 > **Current status (2026-08-18, post-ID-2U2):** server validation passed
 > `10/10` focused and `328/328` one-ms tests. The zero-new-TSC comparison ran
 > eight whole-family fold fits, read only twenty U1 development trajectories,

@@ -1,5 +1,23 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-19, ID-2V0 authorized):** ID-2U2 remains
+> final as `ONE_MS_ID2U2_NO_ELIGIBLE_CAUSAL_MODEL_REVIEW_REQUIRED`, but the
+> automatic four-history expansion is superseded by a bounded zero-TSC,
+> zero-fit control-utility and support-decomposition audit. U2 contained
+> three separate failures: one held corner was outside support, supported
+> folds still failed response/ranking, and the small GRU regressed.
+>
+> Read-only U1 recomputation also shows that the two-issue p04/p07
+> exact-return grammar is presently an excitation grammar rather than a
+> proved control grammar: at horizon 8 its largest residual effect is only
+> `0.021--0.026 mm` against `4.276--5.238 mm` moving-baseline motion, and
+> state-40 residuals are only `0.011--0.019 mm`. ID-2V0 must choose exactly
+> one next route: a minimal history-support extension if sustained utility is
+> adequate, or a finite same-prefix multi-arm action-grammar branch campaign
+> if it is not. No model, calibration, holdout, TSC, authority, recovery,
+> controller, waypoint, crossing, adaptation, expert data, or RL is opened
+> by this notice. All older notices are historical.
+
 > **Current route notice (2026-08-18, post-ID-2U2):** neither frozen small
 > causal candidate generalized across the four moving-nominal development
 > families. The local model failed response/ranking and placed `u02` outside

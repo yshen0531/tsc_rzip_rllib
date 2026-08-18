@@ -13,6 +13,23 @@
 > history residual retained only after whole-family gain. Authority and
 > recovery remain separate AND gates before any controller.
 
+> **Post-ID-2U2 control-utility amendment (2026-08-19; supersedes the
+> automatic expansion above):** the exact actuator/queue, exact one-ms
+> R_geo/Z_geo/Ip observation, causal memory, uncertainty,
+> reference-governor, and constrained rolling-control backbone remains
+> unchanged. The immediate order changes: an action grammar must show
+> persistent, distinguishable control utility before more history data are
+> collected solely to predict it.
+>
+> ID-2V0 is a zero-TSC/zero-fit decision audit. If the existing p04/p07
+> exact-return grammar has adequate sustained utility, it may freeze one
+> minimal history-support extension. Otherwise it must move finite
+> same-prefix multi-arm TSC branch evaluation ahead of another model. p03 is
+> a transport primitive, p04/p07 pulses are excitation primitives, and none
+> is presumed to be the final control action. A later learned model amortizes
+> useful branch decisions; it does not replace independent authority,
+> recourse, calibration, or hard-safety gates.
+
 > **ID-2U2 architecture freeze (2026-08-18):** the first model comparison
 > after nominal realignment remains deliberately low capacity. Candidate A
 > is a support-gated local mixture with separated moving-nominal continuation
