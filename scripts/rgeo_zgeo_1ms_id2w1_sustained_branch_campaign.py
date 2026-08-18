@@ -28,7 +28,7 @@ from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import Card15Target  # noqa: E402
 
 
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2w1_sustained_branch_campaign.json"
-CONFIG_SHA256 = "bff3a6c24edd43bbb5590f64e9b0de4ea23a55892546dd5b6e83ec948236bd6f"
+CONFIG_SHA256 = "7ed56032dc8bfe72d89636bf3aa76a8d75fc8ab7416ab0aacfccc680149c411c"
 SCHEMA = "rgeo-zgeo-1ms-id2w1-sustained-branch-result-v1"
 KINDS = (
     "uninterrupted_nominal", "pause_catchup_baseline",
@@ -504,4 +504,3 @@ def main(argv: Sequence[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
