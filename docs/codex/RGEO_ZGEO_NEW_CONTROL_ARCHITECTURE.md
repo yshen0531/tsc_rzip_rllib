@@ -1,5 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID-2W1 architecture amendment (2026-08-19):** retain exact actuation,
+> **Post-ID-2W2 architecture amendment (2026-08-19):** the high-level
+> architecture remains exact actuation plus exact one-ms observations, causal
+> history, calibrated uncertainty and constrained rolling control. The
+> selected p03 direction is not promoted to a nominal hold model: extending it
+> through level78 did not improve the source distance after state32 and
+> increasingly exchanged Z correction for negative-R drift.
+>
+> Before replacing the actuator basis, run one finite two-level braking test
+> at the already observed level52 and64 prefixes. This distinguishes a delayed
+> useful hold tail from a permanently moving p03-only path. It is the final
+> p03-only discriminator. If it fails, later models must learn/control a new
+> multi-direction allocation rather than approximate the rejected p03 ladder.
+
+> **Historical post-ID-2W1 architecture amendment (2026-08-19):** retain exact actuation,
 > exact one-ms observations, causal history, uncertainty-aware rolling
 > control, and the separation between simulator development and controller
 > qualification. ID-2W1 shows that allocating more time to p04/p07 makes the

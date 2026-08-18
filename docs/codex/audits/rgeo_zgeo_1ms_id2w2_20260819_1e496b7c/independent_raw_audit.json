@@ -1,0 +1,30 @@
+{
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw ID2W2 audit; a finite PASS/FAIL remains source-local transport design evidence only.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "primary_route": "ONE_MS_ID2W2_EXECUTION_OR_INTERFACE_FAIL_STOP",
+  "primary_scientific_passed": false,
+  "primary_sha256": "3b60b1f59ac71aa2b5bc3f5b97163053b1af330665a720d90bdc3fa18c68e398",
+  "raw_rollouts": 1,
+  "raw_states": 80,
+  "recomputed_counters": {
+    "advance_attempts": 79,
+    "plant_advance_gotsc_calls": 79,
+    "reset_calls": 1,
+    "rollouts_completed": 1,
+    "unique_cells_completed": 1,
+    "verified_plant_advances": 79
+  },
+  "recomputed_inventory_bytes": 4711433920,
+  "recomputed_inventory_files": 400,
+  "recomputed_inventory_sha256": "223730fa0a78c4af255f15d3f00882bcfad6c21baa793f95c1caf31354531213",
+  "recomputed_known_prefix_check": null,
+  "recomputed_route": "ONE_MS_ID2W2_EXECUTION_OR_INTERFACE_FAIL_STOP",
+  "recomputed_scientific_metrics": null,
+  "schema_version": "rgeo-zgeo-1ms-id2w2-independent-raw-v1",
+  "source_revision": "1e496b7cb8920d8deabfad4df765056c86ae9e69",
+  "stage_config_sha256": "ac695e3ee86a7ec960d9f4375a71af830a6b50b154bdc8a00d59767941abc9b4",
+  "transport_design_eligible": false
+}

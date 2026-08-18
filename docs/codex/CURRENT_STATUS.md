@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-19, post-ID-2W1):** all six frozen branches and
+> **Current status (2026-08-19, post-ID-2W2):** the sole extended-p03 rollout
+> retained 80 valid states and stopped before its 80th issue when the
+> coil-14 readback slew was `0.30001 A` versus the exact issued `0.3 A`.
+> Independent raw recomputation passes the realized 79 advances and 400 files.
+> The result is an interface-gate stop, not a TSC/runtime/raw/scientific or
+> controller failure.
+>
+> Descriptively, p03 continuation did not approach the source after state32:
+> post-state32 minimum `19.6412 mm`, state79 `23.9352 mm`, and no 15 mm
+> corridor state. It did rotate the error by reducing Z while R kept moving
+> negative. The next bounded discriminator holds the already observed p03
+> levels52 and64 to test deceleration/finite hold tails. This is the last
+> p03-only ladder; a clean failure moves to a different action allocation.
+>
+> **Historical status (2026-08-19, post-ID-2W1):** all six frozen branches and
 > 288/288 plant advances completed. Exact action/current/common-prefix/raw
 > gates pass, and the corrected independent audit reproduces all 294 states,
 > 1,470 artifacts, counters, metrics and the final route. The initial audit's

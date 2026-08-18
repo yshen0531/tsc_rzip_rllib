@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
+> **Unique active task (2026-08-19, post-ID-2W2):** ID-2W2 safely stopped
+> after 79/80 verified advances. Exact issued slew was `0.3 A`, but coil-14
+> readback changed by `-0.30001 A` at issue78 -> state79, so the frozen
+> observed-slew interface refused issue79. The partial 400-artifact raw audit
+> passes exactly. The official route remains
+> `ONE_MS_ID2W2_EXECUTION_OR_INTERFACE_FAIL_STOP`; no scientific PASS/FAIL is
+> imputed.
+>
+> The realized trajectory is nevertheless decisive route evidence: after the
+> known state32 distance `19.2923 mm`, the best later distance was
+> `19.6412 mm`, no state entered 15 mm, and state79 was `23.9352 mm` from the
+> source with R/Z offsets `(-21.1937,+11.1230) mm`. Blind p03 continuation
+> stops. The sole successor is a separately frozen two-branch p03 braking
+> discriminator: replay to level52 or level64, hold each through a common
+> finite tail, and test terminal speed/net motion. Failure stops the p03-only
+> nominal/hold route. No model, calibration/blind read, controller, recovery,
+> waypoint, crossing, adaptation, expert data or RL is authorized. All blocks
+> below are historical.
+>
+> **Historical task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
 > 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected
 > independent full-raw audit. Its immutable route is
 > `ONE_MS_ID2W1_SUSTAINED_BRANCH_CONTROL_UTILITY_FAIL_REDESIGN`.

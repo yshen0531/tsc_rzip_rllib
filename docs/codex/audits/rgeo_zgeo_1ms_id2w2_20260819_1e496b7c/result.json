@@ -1,0 +1,31 @@
+{
+  "advance_attempts": 79,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite source-local extended-p03 transport development only; not hold, recovery, controller, waypoint, path, crossing or reachability evidence.",
+  "execution_passed": false,
+  "known_prefix_check": null,
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 79,
+  "raw_integrity_passed": false,
+  "required_artifact_bytes": 4711433920,
+  "required_artifact_files": 400,
+  "required_artifact_inventory_sha256": "223730fa0a78c4af255f15d3f00882bcfad6c21baa793f95c1caf31354531213",
+  "reset_calls": 1,
+  "rollouts_completed": 1,
+  "route": "ONE_MS_ID2W2_EXECUTION_OR_INTERFACE_FAIL_STOP",
+  "schema_version": "rgeo-zgeo-1ms-id2w2-extended-nominal-transport-result-v1",
+  "scientific_metrics": null,
+  "source_revision": "1e496b7cb8920d8deabfad4df765056c86ae9e69",
+  "stage_config_sha256": "ac695e3ee86a7ec960d9f4375a71af830a6b50b154bdc8a00d59767941abc9b4",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 84463353856,
+    "estimated_raw_bytes": 8000000000,
+    "free_bytes_before_run": 92463353856,
+    "passed": true
+  },
+  "transport_design_eligible_pending_independent": false,
+  "unique_cells_completed": 1,
+  "verified_plant_advances": 79
+}
