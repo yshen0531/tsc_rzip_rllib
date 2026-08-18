@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from decimal import Decimal
 import json
 import math
 import statistics
@@ -235,8 +236,14 @@ def _increment_target(q0: Card15Target, targets: dict[str, Card15Target],
                       spec: dict[str, Any], cfg: Any, name: str) -> Card15Target:
     coordinate = str(spec["coordinate"])
     if coordinate == "p03":
-        level = 1 if int(spec["level_delta"]) > 0 else -1
-        return z1.c1._offset_target(q0, targets["p03:minus"], level, cfg, name)
+        if int(spec["level_delta"]) > 0:
+            return targets["p03:minus"]
+        fields = [z1.c1.format_number(float(
+            Decimal(q0_field.strip()) * Decimal(2)
+            - Decimal(direction_field.strip())))
+                  for q0_field, direction_field in zip(
+                      q0.card15_fields, targets["p03:minus"].card15_fields)]
+        return z1.c1.target_from_fields(fields, cfg, name)
     return targets[coordinate]
 
 

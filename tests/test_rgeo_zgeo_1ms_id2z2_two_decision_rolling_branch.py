@@ -78,6 +78,11 @@ class ID2Z2Tests(unittest.TestCase):
                                  row["actions"][72]["expected_card15_fields"])
                 self.assertEqual(float(row["actions"][issue][
                     "maximum_issued_delta_a"]), 0.0)
+        by_arm = {row["arm_id"]: row for row in round_a}
+        self.assertEqual(by_arm["p03forward4"]["actions"][72][
+            "probe_virtual_action"], [72.0, 0.0, 0.0, 1.0])
+        self.assertEqual(by_arm["p03unwind4"]["actions"][72][
+            "probe_virtual_action"], [64.0, 0.0, 0.0, 1.0])
         combinations = []
         for parent in round_a:
             children = primary.next_round_streams(stage, cfg, targets, parent)
