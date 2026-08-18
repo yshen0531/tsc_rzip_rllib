@@ -17,6 +17,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+if str(ROOT / "scripts") not in sys.path:
+    sys.path.insert(0, str(ROOT / "scripts"))
 
 from scripts.rgeo_zgeo_1ms_id0_vector_tail import (  # noqa: E402
     InputIntegrityError, compare_rows, inside_root, raw_inventory, sha256, write_new,
