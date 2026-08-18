@@ -49,8 +49,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     order = {row["rollout_id"]: index for index, row in enumerate(expected)}
     result_path = run_dir / "result.json"
     result = load_json(result_path) if result_path.is_file() else {}
-    paths = sorted(path for path in run_dir.glob("*.json") if path.name not in
-                   ("result.json", "offline_preflight.json", "independent_raw_audit.json"))
+    paths = [run_dir / f"{row['rollout_id']}.json" for row in expected]
+    missing_compacts = [path.name for path in paths if not path.is_file()]
+    if missing_compacts:
+        failures.extend(f"MISSING_COMPACT:{name}" for name in missing_compacts)
+    paths = [path for path in paths if path.is_file()]
     compact = [load_json(path) for path in paths]
     compact.sort(key=lambda row: order.get(row.get("rollout_id"), 999))
     if [row.get("rollout_id") for row in compact] != [row["rollout_id"] for row in expected[:len(compact)]]:
