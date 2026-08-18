@@ -10,17 +10,21 @@
 > Zero branch reached states88--96, so ID-2X1 remains final as
 > `ONE_MS_ID2X1_MIXED_ALLOCATION_HOLD_FAIL_BROADER_SEQUENCE_SEARCH_REQUIRED`.
 >
-> ID-2Y1 is the sole active successor. Four fresh branches retain the exact
-> p03 stride-one transport through level64, then use the newly free slew for
-> p04-minus depth6/12/16 and optional p07-plus depth4 before holding through a
-> 104-issue horizon. States0--65/actions0--64 must reproduce ID-2W3R1. Only a
-> frozen preissue clearance may continue to the next reset; any other failure
-> aborts. At least one branch must complete and pass the states96--104 nominal
-> hold gate. This is the final hand-designed ramp discriminator: clean FAIL
-> routes to bounded sequence/control-utility optimization, not another depth
-> ladder. PASS is only a finite nominal candidate. No model, calibration,
-> blind read, controller, recovery, waypoint, crossing, adaptation, expert
-> data or RL is authorized. All blocks below are historical.
+> ID-2Y1 failed its frozen zero-TSC absolute-current-headroom gate: its four
+> streams had 97.0/95.2/94.0/92.8 A minimum headroom against the unchanged
+> 95 A requirement. It is final with zero reset/`gotsc`/plant advance.
+>
+> ID-2Y1R1 is the sole active successor under a separate identity. It retains
+> the passing p04-minus depth6/12 streams and replaces only the rejected
+> combinations by p04m6+p07p4 and p04m8+p07p4, whose exact headrooms are
+> 95.8/95.2 A. All four retain p03 through level64, use a 104-issue horizon,
+> and must reproduce states0--65/actions0--64 from ID-2W3R1. Only a frozen
+> preissue clearance may continue to the next reset. At least one branch must
+> pass states96--104. Clean FAIL ends the hand-designed ramp ladder and routes
+> to bounded sequence/control-utility optimization. PASS is only a finite
+> nominal candidate. No model, calibration, blind read, controller, recovery,
+> waypoint, crossing, adaptation, expert data or RL is authorized. All blocks
+> below are historical.
 >
 > **Historical task (2026-08-19, post-ID-2W1):** ID-2W1 completed all
 > 6/6 real-TSC branches, 288/288 verified advances, and a passing corrected

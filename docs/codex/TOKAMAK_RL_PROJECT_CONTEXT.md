@@ -7,12 +7,14 @@
 > common-state path by only about 1--2 mm and did not create a nominal hold;
 > this is a finite schedule FAIL, not actuator or plant unreachability.
 >
-> The final hand-designed discriminator, ID-2Y1, keeps the stronger p03 path
-> through level64 and only then spends free slew on p04-minus depth6/12/16 and
-> optional p07-plus depth4. Four exact source branches use a 104-issue horizon
-> and states96--104 hold window. A clean failure ends manual ramp tuning and
-> routes to explicit bounded sequence/control-utility optimization. A PASS
-> remains only a finite nominal candidate. Older notices are historical.
+> ID-2Y1's zero-TSC enumeration rejected two of four candidate streams at the
+> unchanged 95 A headroom gate (94.0/92.8 A); no reset or plant step occurred.
+> ID-2Y1R1 is a separate repair with p04m6, p04m12, p04m6+p07p4 and
+> p04m8+p07p4, all retaining 95.2--97.0 A headroom after the exact p03L64
+> prefix. The 104-issue/states96--104 hold contract is unchanged. Clean FAIL
+> ends manual ramp tuning and routes to explicit bounded sequence/control-
+> utility optimization. PASS remains only a finite nominal candidate. Older
+> notices are historical.
 >
 > **Historical route notice (2026-08-19, post-ID-2W1):** the six-branch
 > p04/p07 depth-6 pause/return grammar completed exactly but failed its

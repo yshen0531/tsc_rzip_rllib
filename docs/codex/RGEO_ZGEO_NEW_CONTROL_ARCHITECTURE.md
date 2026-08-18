@@ -1,4 +1,10 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2Y1R1 repair freeze (2026-08-19):** the original ID-2Y1 action matrix
+> was rejected before TSC because two combinations fell below its own 95 A
+> current-headroom gate. The gate is retained. A separate R1 identity replaces
+> only those actions with two exact combinations at 95.8/95.2 A. This is an
+> excitation-design repair, not a post-result scientific threshold change.
+>
 > **Post-ID-2X1 architecture freeze (2026-08-19):** exact actuation, exact
 > one-ms observation, causal history, explicit uncertainty and independent
 > hard safety remain unchanged. ID-2X1 proves only that three fixed residual

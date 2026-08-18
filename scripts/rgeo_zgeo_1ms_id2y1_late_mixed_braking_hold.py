@@ -161,7 +161,8 @@ def load(path: Path = CONFIG) -> tuple[
 
 
 def campaign_streams(stage: dict[str, Any], cfg: Any,
-                     targets: dict[str, Card15Target]) -> list[dict[str, Any]]:
+                     targets: dict[str, Card15Target], *,
+                     expected_ids: Sequence[str] = ROLLOUT_IDS) -> list[dict[str, Any]]:
     q0 = targets["q0"]
     streams: list[dict[str, Any]] = []
     for spec in stage["branch_specs"]:
@@ -200,7 +201,7 @@ def campaign_streams(stage: dict[str, Any], cfg: Any,
             "non_nominal_issue_steps": list(range(65, stage["horizon_steps"])),
             "targets": sequence, "actions": actions,
         })
-    if [row["rollout_id"] for row in streams] != list(ROLLOUT_IDS):
+    if [row["rollout_id"] for row in streams] != list(expected_ids):
         raise x1.InputIntegrityError("stream order changed")
     return streams
 

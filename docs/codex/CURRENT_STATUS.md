@@ -13,11 +13,15 @@
 > then passed 8/8 and 372/372 tests, and the corrected independent audit passes
 > with zero failures while reproducing the immutable FAIL route exactly.
 >
-> ID-2Y1 is now frozen before implementation. It reuses no X1 raw for fitting:
-> four new exact branches keep p03 through level64, then ramp bounded p04-minus
-> and optional p07-plus corrections and hold through states96--104. A PASS is
-> only Nominal-H1 evidence; a clean FAIL ends the manual ramp ladder and moves
-> to an explicit finite sequence/control-utility search.
+> ID-2Y1 then stopped in the zero-plant preflight: two candidate combinations
+> retained only 94.0/92.8 A current headroom, below the frozen 95 A gate. This
+> is an offline action-matrix design FAIL, not plant evidence; no reset or TSC
+> occurred and the gate was not weakened.
+>
+> ID-2Y1R1 is frozen as a new repair identity. Its four revised streams retain
+> 95.2--97.0 A exact headroom while preserving the level64 prefix, horizon,
+> terminal gate and safety semantics. A clean failure ends manual ramp-depth
+> selection and moves to explicit bounded sequence/control-utility search.
 >
 > **Historical status (2026-08-19, post-ID-2W1):** all six frozen branches and
 > 288/288 plant advances completed. Exact action/current/common-prefix/raw
