@@ -216,6 +216,29 @@ class ID2Z2Tests(unittest.TestCase):
         self.assertFalse(primary._prefix_check(
             row, reference, 2, 1, self.stage["semantic_artifacts"])["passed"])
 
+    def test_independent_prefix_ignores_only_rewritten_inputa_hash(self) -> None:
+        state = {
+            "r_geo_m": 1.0, "z_geo_m": 2.0, "r_mid_m": 3.0, "ip_a": 4.0,
+            "actual_current_decimal_a_tsc": ["0"] * 14,
+            "wire_current_a": [0.0] * 48,
+            "active_command_card15_fields": ["0"] * 14,
+            "artifact_sha256": {name: name for name in self.stage[
+                "semantic_artifacts"]},
+        }
+        action = {"expected_card15_fields": ["0"] * 14}
+        reference = {"states": [copy.deepcopy(state)],
+                     "actions": [copy.deepcopy(action)]}
+        raw = copy.deepcopy(reference)
+        raw["rollout_id"] = "raw"
+        raw["states"][0]["artifact_sha256"]["inputa"] = "outgoing"
+        self.assertTrue(independent.independent_prefix_check(
+            raw, reference, self.stage["semantic_artifacts"],
+            last_state=0, last_issue=0)["passed"])
+        raw["states"][0]["artifact_sha256"]["geqdsk"] = "wrong"
+        self.assertFalse(independent.independent_prefix_check(
+            raw, reference, self.stage["semantic_artifacts"],
+            last_state=0, last_issue=0)["passed"])
+
     def test_independent_identity_and_launcher(self) -> None:
         self.assertEqual(independent.SCHEMA,
                          "rgeo-zgeo-1ms-id2z2-independent-raw-v1")

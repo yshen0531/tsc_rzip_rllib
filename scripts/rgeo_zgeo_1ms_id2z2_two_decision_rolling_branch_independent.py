@@ -22,6 +22,9 @@ from scripts.rgeo_zgeo_1ms_id0_vector_tail_independent import (  # noqa: E402
 from scripts.rgeo_zgeo_1ms_id2w1_sustained_branch_independent import (  # noqa: E402
     restore_arrival_active_commands,
 )
+from scripts.rgeo_zgeo_1ms_id2x1_mixed_allocation_hold_independent import (  # noqa: E402
+    independent_prefix_check,
+)
 from scripts import rgeo_zgeo_1ms_id2z2_two_decision_rolling_branch as primary  # noqa: E402
 
 
@@ -186,11 +189,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     round_b = [row for row in raw_rows if row.get("round_index") == 1]
     round_a_execution = len(round_a) == 7 and all(
         row.get("passed") or primary.safe_stop(row, stage) for row in round_a)
-    round_a_prefixes = [primary._prefix_check(
-        row, selected_reference,
-        int(stage["prefix_gates"]["round_a_reference_state_count"]),
-        int(stage["prefix_gates"]["round_a_reference_action_count"]),
-        stage["semantic_artifacts"]) for row in round_a] if round_a_execution else []
+    round_a_prefixes = [independent_prefix_check(
+        row, selected_reference, stage["semantic_artifacts"],
+        last_state=int(stage["prefix_gates"]["round_a_reference_state_count"]) - 1,
+        last_issue=int(stage["prefix_gates"]["round_a_reference_action_count"]) - 1)
+        for row in round_a] if round_a_execution else []
     round_a_metrics = (primary.round_metrics(round_a, stage, 0, cfg)
                        if round_a_execution else None)
     selected_round_a = None
@@ -200,11 +203,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
              if row.get("arm_id") == round_a_metrics["selected_arm_id"]), None)
     round_b_execution = bool(selected_round_a) and len(round_b) == 7 and all(
         row.get("passed") or primary.safe_stop(row, stage) for row in round_b)
-    round_b_prefixes = [primary._prefix_check(
-        row, selected_round_a or {},
-        int(stage["prefix_gates"]["round_b_reference_state_count"]),
-        int(stage["prefix_gates"]["round_b_reference_action_count"]),
-        stage["semantic_artifacts"]) for row in round_b] if round_b_execution else []
+    round_b_prefixes = [independent_prefix_check(
+        row, selected_round_a or {}, stage["semantic_artifacts"],
+        last_state=int(stage["prefix_gates"]["round_b_reference_state_count"]) - 1,
+        last_issue=int(stage["prefix_gates"]["round_b_reference_action_count"]) - 1)
+        for row in round_b] if round_b_execution else []
     round_b_metrics = (primary.round_metrics(round_b, stage, 1, cfg)
                        if round_b_execution else None)
     execution = bool(round_a_execution and (
