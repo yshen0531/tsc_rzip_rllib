@@ -1,6 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, post-ID-2R1):** the anomalous f03
+> **Active new-round context (2026-08-18, ID-2S0):** before consuming more
+> TSC storage, a fixed zero-fit selector reduces sixteen executable f03
+> two-arm sequences to four. It uses exact measured response only as a
+> nomination heuristic; the later fresh branch response, not the additive
+> construction, decides sequence utility. This keeps machine learning and
+> model calibration blocked until the action grammar itself has measured
+> time-resolved utility. All older notices are historical.
+
+> **Historical new-round context (2026-08-18, post-ID-2R1):** the anomalous f03
 > response is exactly repeatable across a fresh authentic replay of the
 > matched baseline and all four signed p04/p07 cells. This supports treating
 > the finite trajectory as deterministic development evidence, but the fresh

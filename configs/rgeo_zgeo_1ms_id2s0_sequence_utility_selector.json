@@ -1,0 +1,61 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2s0-sequence-utility-selector-v1",
+  "identity": "rgeo-zgeo-1ms-id2s0-sequence-utility-selector-v1",
+  "stage": "ID-2S0",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 34,
+  "family_id": "f03",
+  "first_arm_issue_steps": [24, 25],
+  "first_return_issue_step": 26,
+  "second_arm_issue_steps": [27, 28],
+  "second_return_issue_step": 29,
+  "arms": ["p04_minus", "p04_plus", "p07_minus", "p07_plus"],
+  "ordered_candidate_count": 16,
+  "selected_candidate_count": 4,
+  "target_direction_count": 16,
+  "minimum_sample_norm_m": 0.00002,
+  "minimum_each_direction_progress_m": 0.00002,
+  "maximum_selected_angular_gap_deg": 180.0,
+  "selector": "fixed_additive_shift3_exhaustive_four_subset_lexicographic",
+  "selection_order": [
+    "maximize_minimum_direction_progress",
+    "maximize_mean_direction_progress",
+    "minimize_maximum_angular_gap",
+    "lexicographic_sequence_ids"
+  ],
+  "new_tsc_calls": 0,
+  "reset_calls": 0,
+  "plant_advances": 0,
+  "models_fit_or_updated": 0,
+  "data_use": "no_fit_candidate_nomination_only",
+  "action_semantics": {
+    "absolute_card15_targets": true,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "issue_to_effect_state_offset": 1,
+    "software_queue_added": false,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "future_actual_current": "forbidden"
+  },
+  "evidence": {
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2S0_SEQUENCE_UTILITY_SELECTOR_DESIGN.md", "sha256": "25f585f4526e9c563474d54e4ed670c30a9a00de6bda6293b7287229bded948b"},
+    "id2p1_config": {"path": "configs/rgeo_zgeo_1ms_id2p1_matched_factorial_development.json", "sha256": "9572635bb62a9e81609289b53527d329bb5b09f08e46a2cbc886eafa3e93323f"},
+    "id2r0_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2r0_20260818_86abd5b6/result.json", "sha256": "0eaffe3134e2220ed1a6dfa7c127f318402709951864d5831d132d90e8cdf7f9", "required_route": "ONE_MS_ID2R0_CRITICAL_SINGLETON_F03_EXACT_REPLAY_REQUIRED"},
+    "id2r1_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2r1_20260818_d8bdb003/result.json", "sha256": "f71b19f0ab80f2643a3f1b369412df5a35e1995305c088653aac6e924239190f", "required_route": "ONE_MS_ID2R1_F03_EXACT_REPLAY_PASS_SEQUENCE_AUTHORITY_DESIGN_ONLY"},
+    "id2r1_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2r1_20260818_d8bdb003/independent_raw_audit_v2.json", "sha256": "a79a26cdaf36255232897281a9307c46f0f0ffc43fc5040e4735dc29727b9c34"},
+    "fresh_compacts": [
+      {"cell_id": "f03__baseline", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2r1_20260818_d8bdb003/f03__baseline__fresh_r1.json", "sha256": "df3a0709f73a36113f65d9c5f6af865206bbf5679bc7ba2d416bd9d27df121aa"},
+      {"cell_id": "f03__p04_minus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2r1_20260818_d8bdb003/f03__p04_minus_i24_d2__fresh_r1.json", "sha256": "3bd7bf4dbbe594ec1013fdd823d4683f48dd2b3567e9f78feb5ab1bace507fd7"},
+      {"cell_id": "f03__p04_plus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2r1_20260818_d8bdb003/f03__p04_plus_i24_d2__fresh_r1.json", "sha256": "74d4751fc56c753c91123fd9cd04c6b62b26e5b75cba82d7cde574d7f5f5f3a5"},
+      {"cell_id": "f03__p07_minus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2r1_20260818_d8bdb003/f03__p07_minus_i24_d2__fresh_r1.json", "sha256": "be9f2d389b28ad351f157452f3e6fe8a1fbab0939775e1b6a0c027c6fdd4cebd"},
+      {"cell_id": "f03__p07_plus_i24_d2", "path": "docs/codex/audits/rgeo_zgeo_1ms_id2r1_20260818_d8bdb003/f03__p07_plus_i24_d2__fresh_r1.json", "sha256": "046d109f83d7ee8f4061e43caf88fc37da6a7cde7b41dfba1a688a51f102cd94"}
+    ]
+  },
+  "routes": {
+    "input_or_reproduction_fail": "ONE_MS_ID2S0_INPUT_OR_REPRODUCTION_FAIL_NO_TSC",
+    "action_stream_fail": "ONE_MS_ID2S0_ACTION_STREAM_FAIL_NO_TSC",
+    "utility_fail": "ONE_MS_ID2S0_SEQUENCE_GRAMMAR_UTILITY_FAIL_NO_TSC",
+    "pass": "ONE_MS_ID2S0_SEQUENCE_SELECTOR_PASS_FOUR_BRANCH_DESIGN_ONLY"
+  },
+  "claim_boundary": "Fixed no-fit additive candidate nomination only; no plant prediction, TSC branch, model, authority, tube, recovery, controller, MPC, transport, crossing, adaptation, expert-data, RL, or reachability evidence."
+}

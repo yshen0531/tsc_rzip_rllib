@@ -1,6 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2R1 architecture discriminator (2026-08-18):** exact replay
+> **ID-2S0 architecture discriminator (2026-08-18):** the route now separates
+> three objects explicitly: measured single-sequence evidence, a fixed no-fit
+> additive branch nominator, and future real two-sequence TSC branches. Only
+> the third can test sequence interaction. ID-2S0 chooses four branches under
+> exact Card15 and directional-coverage gates while running zero plant work.
+> It cannot establish authority or revive model calibration.
+
+> **Historical post-ID-2R1 architecture discriminator (2026-08-18):** exact replay
 > confirms that f03's sign/return-edge response is a repeatable finite hybrid
 > behavior, not a one-off solver sample. The same-data global model ladder
 > stays stopped. The next architecture discriminator is a bounded

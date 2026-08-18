@@ -1,6 +1,16 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2R1):** ID-2R1 completed all
+> **Unique active task (2026-08-18, ID-2S0 authorized):** ID-2R1 is final as
+> `ONE_MS_ID2R1_F03_EXACT_REPLAY_PASS_SEQUENCE_AUTHORITY_DESIGN_ONLY`.
+> ID-2S0 is the sole active stage. It runs zero TSC/reset/plant work and fits
+> no model. It enumerates the sixteen exact two-arm f03 sequences, uses one
+> frozen additive shift-three construction only to nominate four branches,
+> and validates every Card15/slew stream and sixteen-direction heuristic
+> progress gate. PASS may authorize only a separately frozen four-branch
+> real-TSC development discriminator with a storage gate. All blocks below
+> are historical.
+
+> **Historical task (2026-08-18, post-ID-2R1):** ID-2R1 completed all
 > `5/5` fresh exact f03 rollouts and `170/170` verified one-ms advances.
 > Corrected independent full-raw audit passed over 175 states and 875 files.
 > All original-to-fresh R_geo/Z_geo/Ip, coil, wire, and paired-response

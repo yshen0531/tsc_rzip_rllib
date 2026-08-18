@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2R1 PASS):** five authentic f03 replays
+> **Current status (2026-08-18, ID-2S0 frozen):** the next bounded stage is a
+> zero-TSC selector over sixteen exact p04/p07 two-arm sequences. It chooses
+> exactly four candidates by a fixed 16-direction progress/angular-coverage
+> objective and cannot fit or emit a model. The additive shift is a branch-
+> count heuristic, not a plant prediction. Only a server-tested, independently
+> reproduced PASS can open a separate four-branch TSC design. Older status
+> blocks are historical.
+
+> **Historical status (2026-08-18, ID-2R1 PASS):** five authentic f03 replays
 > completed with exact execution and zero physical/paired-response difference
 > from ID-2P1. Primary PASS and corrected independent raw PASS agree on
 > `ONE_MS_ID2R1_F03_EXACT_REPLAY_PASS_SEQUENCE_AUTHORITY_DESIGN_ONLY`.
