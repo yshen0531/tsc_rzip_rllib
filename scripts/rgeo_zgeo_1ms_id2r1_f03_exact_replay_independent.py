@@ -39,6 +39,22 @@ def load_json(path: Path) -> dict[str, Any]:
     return value
 
 
+def raw_replay_checks(raw_rows: Sequence[dict[str, Any]], originals: dict[str, dict[str, Any]],
+                      stage: dict[str, Any]) -> list[dict[str, Any]]:
+    """Compare raw physical state without confusing outgoing inputa with pre-issue inputa.
+
+    The runner rewrites each retained state directory's inputa with that state's
+    outgoing issue. Compact states were recorded immediately before that rewrite.
+    Outgoing inputa is therefore audited separately against the frozen action
+    stream; the remaining semantic artifacts retain state-to-state hash meaning.
+    """
+    raw_stage = dict(stage)
+    raw_stage["semantic_artifacts"] = [
+        name for name in stage["semantic_artifacts"] if name != "inputa"
+    ]
+    return primary.replay_checks(raw_rows, originals, raw_stage)
+
+
 def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     failures: list[str] = []
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
@@ -103,6 +119,13 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             for issue, action in enumerate(row.get("actions", [])):
                 if list(_fields(folder / f"{1100 + issue}ms" / "inputa")) != action["expected_card15_fields"]:
                     failures.append(f"ISSUED_CARD15:{row['rollout_id']}:{issue}")
+            if row.get("actions"):
+                final_inputa = folder / "1134ms" / "inputa"
+                if list(_fields(final_inputa)) != row["actions"][-1]["expected_card15_fields"]:
+                    failures.append(f"FINAL_ACTIVE_CARD15:{row['rollout_id']}")
+                original_final_hash = originals[row["cell_id"]]["states"][-1]["artifact_sha256"]["inputa"]
+                if sha256(final_inputa) != original_final_hash:
+                    failures.append(f"FINAL_ACTIVE_INPUTA_HASH:{row['rollout_id']}")
             raw_rows.append({**{key: value for key, value in row.items() if key not in ("states", "actions")},
                              "states": states, "actions": row.get("actions", [])})
     inventory = hashlib.sha256("".join(f"{line}\n" for line in sorted(lines)).encode()).hexdigest()
@@ -112,7 +135,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
         failures.append("INVENTORY_COUNT_OR_BYTES")
     execution = len(raw_rows) == 5 and all(row.get("passed") for row in compact)
     prefixes = primary.matched_prefix_checks(raw_rows, stage) if execution else []
-    replays = primary.replay_checks(raw_rows, originals, stage) if execution else []
+    replays = raw_replay_checks(raw_rows, originals, stage) if execution else []
     responses = primary.response_checks(raw_rows, originals, stage) if execution else []
     if prefixes != result.get("matched_prefix_checks"):
         failures.append("PREFIX_RECOMPUTE")

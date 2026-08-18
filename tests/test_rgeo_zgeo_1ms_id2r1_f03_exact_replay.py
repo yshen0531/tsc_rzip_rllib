@@ -4,6 +4,7 @@ import copy
 import unittest
 
 from scripts import rgeo_zgeo_1ms_id2r1_f03_exact_replay as r1
+from scripts import rgeo_zgeo_1ms_id2r1_f03_exact_replay_independent as r1a
 
 
 class ID2R1Tests(unittest.TestCase):
@@ -72,6 +73,16 @@ class ID2R1Tests(unittest.TestCase):
         checks = r1.response_checks(rows, self.originals, self.stage)
         changed = next(row for row in checks if row["cell_id"] == rows[2]["cell_id"])
         self.assertFalse(changed["passed"])
+
+    def test_raw_audit_separates_outgoing_inputa_from_state_artifacts(self):
+        rows = self._synthetic_exact_rows()
+        for row in rows:
+            for state in row["states"][:-1]:
+                state["artifact_sha256"]["inputa"] = "outgoing-inputa-rewrite"
+        self.assertTrue(all(check["passed"] for check in
+                            r1a.raw_replay_checks(rows, self.originals, self.stage)))
+        rows[0]["states"][0]["artifact_sha256"]["geqdsk"] = "changed"
+        self.assertFalse(r1a.raw_replay_checks(rows, self.originals, self.stage)[0]["passed"])
 
     def test_data_use_is_integrity_only(self):
         self.assertEqual(self.stage["data_use"], "integrity_and_route_decision_only_zero_fit_weight")
