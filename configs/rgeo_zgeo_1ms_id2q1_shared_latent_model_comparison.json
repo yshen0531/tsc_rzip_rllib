@@ -1,7 +1,7 @@
 {
-  "schema_version": "rgeo-zgeo-1ms-id2q1-shared-latent-model-comparison-v1",
-  "identity": "rgeo-zgeo-1ms-id2q1-shared-latent-model-comparison-v1",
-  "stage": "ID-2Q1",
+  "schema_version": "rgeo-zgeo-1ms-id2q1r1-shared-latent-model-comparison-v1",
+  "identity": "rgeo-zgeo-1ms-id2q1r1-shared-latent-model-comparison-v1",
+  "stage": "ID-2Q1R1",
   "execution_contract": "server_only_zero_new_tsc_two_candidate_model_comparison",
   "new_tsc_calls": 0,
   "reset_calls": 0,
@@ -66,6 +66,7 @@
     "future_issued_card15_sequence_known": true,
     "future_actual_current_propagation": "forbidden_freeze_origin_innovation_with_stable_decay",
     "actual_current_innovation_decay_per_step": 0.8,
+    "executed_action_subspace_rank": 3,
     "outputs_are_cumulative_shared_increment_rollouts_not_independent_horizon_heads": true
   },
   "candidates": {
@@ -97,9 +98,9 @@
     "maximum_gru_endpoint_p95_regression_fraction_for_selection": 0.10
   },
   "routes": {
-    "input_or_integrity_fail": "ONE_MS_ID2Q1_INPUT_OR_INTEGRITY_FAIL_NO_MODEL_RESULT",
-    "no_eligible_candidate": "ONE_MS_ID2Q1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN",
-    "pass": "ONE_MS_ID2Q1_SHARED_LATENT_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+    "input_or_integrity_fail": "ONE_MS_ID2Q1R1_INPUT_OR_INTEGRITY_FAIL_NO_MODEL_RESULT",
+    "no_eligible_candidate": "ONE_MS_ID2Q1R1_NO_ELIGIBLE_SHARED_LATENT_MODEL_REDESIGN",
+    "pass": "ONE_MS_ID2Q1R1_SHARED_LATENT_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
   },
   "claim_boundary": "Finite K1+P1 source-local whole-family development model comparison only; no calibration, blind holdout, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert data, RL or reachability evidence."
 }

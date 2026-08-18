@@ -1,4 +1,12 @@
-# ID-2Q1 shared-latent model comparison design
+# ID-2Q1R1 shared-latent model comparison design
+
+ID-2Q1 v1 stopped in zero-model server preflight. The four exact executed
+p04/p07 signed Card15 vectors have rank three, not the idealized rank-two
+plane: the two odd directions are accompanied by a shared `0.05 A` even
+component. Singular values were `6.53890`, `5.79770`, and `0.380757` A.
+No model was fit and no TSC/reset/plant advance occurred. R1 prospectively
+uses the complete rank-three executed action subspace; it does not project
+away the real even component or use sign/direction labels.
 
 ## Scope
 
@@ -15,7 +23,7 @@ No new TSC, reset or plant advance is allowed.
 Both candidates separate a time-indexed nominal continuation from a causal
 response model. At every origin they consume exact current R_geo/Z_geo/Ip,
 recent one/four-step velocity, actual-versus-issued current innovation
-projected into the admitted p04/p07 action plane, and complete owned issued
+projected into the exact rank-three executed p04/p07 subspace, and complete owned issued
 action history. Future issued Card15 actions are known to the predictor;
 future actual current/readback is forbidden. The current innovation is held
 only as a causal origin feature and decays by the frozen factor `0.8` at each
@@ -47,4 +55,4 @@ result authorizes a tube, authority, recovery, controller, MPC, transport,
 crossing, adaptation, expert data or RL.
 
 Frozen config SHA-256:
-`29b783aa311994a31d9dbfc741fa997b87f62ad468ffc5a84cd008e0f4040c05`.
+`f134d194e96511105da1d32504792dd5c53869f7ece29e68afbe74a1831b198b`.

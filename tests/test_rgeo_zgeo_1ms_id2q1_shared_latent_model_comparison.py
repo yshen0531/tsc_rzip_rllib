@@ -40,6 +40,7 @@ class ID2Q1Tests(unittest.TestCase):
         ])
         self.assertEqual((self.stage["new_tsc_calls"], self.stage["reset_calls"], self.stage["plant_advances"]), (0, 0, 0))
         self.assertEqual(self.stage["shared_latent"]["actual_current_innovation_decay_per_step"], 0.8)
+        self.assertEqual(self.stage["shared_latent"]["executed_action_subspace_rank"], 3)
 
     def test_exact_fit_data_roles(self):
         self.assertEqual(len(self.data.cells), 80)
@@ -54,9 +55,9 @@ class ID2Q1Tests(unittest.TestCase):
         cell = next(cell for cell in self.data.cells if cell.cell_kind == "probe")
         nominal, _ = q1.nominal_training(self.data.cells)
         features = q1.step_features(cell, 16, self.data, nominal, self.stage)
-        self.assertEqual(features.shape, (8, 71))
+        self.assertEqual(features.shape, (8, 104))
         self.assertTrue(np.all(np.isfinite(features)))
-        self.assertTrue(np.allclose(features[1, 9:11], 0.8 * features[0, 9:11]))
+        self.assertTrue(np.allclose(features[1, 9:12], 0.8 * features[0, 9:12]))
 
     def test_labels_do_not_enter_feature_api(self):
         cell = next(cell for cell in self.data.cells if cell.cell_kind == "probe")
@@ -73,11 +74,11 @@ class ID2Q1Tests(unittest.TestCase):
 
     def test_gru_hidden_state_is_causal_at_origin(self):
         q1.seed_all(123)
-        module = q1.GRUResidual(12, 71, 8, np.asarray([3.0, 3.0, 2.0])).eval()
-        sequence = torch.randn(1, 34, 12)
+        module = q1.GRUResidual(15, 104, 8, np.asarray([3.0, 3.0, 2.0])).eval()
+        sequence = torch.randn(1, 34, 15)
         altered = sequence.clone()
         altered[:, 17:, :] += 1000.0
-        feature = torch.randn(8, 71)
+        feature = torch.randn(8, 104)
         index = torch.zeros(8, dtype=torch.long)
         origin = torch.full((8,), 16, dtype=torch.long)
         with torch.no_grad():
@@ -90,7 +91,7 @@ class ID2Q1Tests(unittest.TestCase):
         train = [cell for cell in self.data.cells if cell.group_id not in held]
         test = [cell for cell in self.data.cells if cell.group_id in held]
         model = q1.fit_ridge(train, self.data, self.stage)
-        self.assertEqual(model.coef.shape, (71, 3))
+        self.assertEqual(model.coef.shape, (104, 3))
         self.assertTrue(np.all(np.isfinite(model.coef)))
         metrics = q1.evaluate(model, test, self.data, self.stage)
         self.assertEqual(metrics["probe_count"], 16)

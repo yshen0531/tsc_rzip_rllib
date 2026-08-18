@@ -12,9 +12,9 @@ from torch import nn
 ROOT=Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path: sys.path.insert(0,str(ROOT))
 CONFIG=ROOT/"configs/rgeo_zgeo_1ms_id2q1_shared_latent_model_comparison.json"
-CONFIG_SHA256="29b783aa311994a31d9dbfc741fa997b87f62ad468ffc5a84cd008e0f4040c05"
-SCHEMA="rgeo-zgeo-1ms-id2q1-shared-latent-model-comparison-result-v1"
-MODEL_SCHEMA="rgeo-zgeo-1ms-id2q1-shared-latent-model-v1"
+CONFIG_SHA256="f134d194e96511105da1d32504792dd5c53869f7ece29e68afbe74a1831b198b"
+SCHEMA="rgeo-zgeo-1ms-id2q1r1-shared-latent-model-comparison-result-v1"
+MODEL_SCHEMA="rgeo-zgeo-1ms-id2q1r1-shared-latent-model-v1"
 
 class IntegrityError(RuntimeError): pass
 def sha256(path:Path)->str:
@@ -42,12 +42,13 @@ def load_stage(path:Path=CONFIG)->dict[str,Any]:
     path=inside(path,'config')
     if sha256(path)!=CONFIG_SHA256:raise IntegrityError('config hash mismatch')
     s=read_json(path)
-    if s.get('schema_version')!='rgeo-zgeo-1ms-id2q1-shared-latent-model-comparison-v1' or s.get('identity')!=s.get('schema_version'):raise IntegrityError('identity changed')
+    if s.get('schema_version')!='rgeo-zgeo-1ms-id2q1r1-shared-latent-model-comparison-v1' or s.get('identity')!=s.get('schema_version'):raise IntegrityError('identity changed')
     if s.get('execution_contract')!='server_only_zero_new_tsc_two_candidate_model_comparison':raise IntegrityError('execution contract changed')
     if any(int(s[k]) for k in ('new_tsc_calls','reset_calls','plant_advances')):raise IntegrityError('zero plant changed')
     if list(s['candidates'])!=['stable_shared_latent_ridge','stable_shared_latent_gru_residual']:raise IntegrityError('candidate set changed')
     if not all(s['forbidden_sources'].values()):raise IntegrityError('forbidden gate weakened')
     if float(s['shared_latent']['actual_current_innovation_decay_per_step'])!=0.8:raise IntegrityError('innovation decay changed')
+    if int(s['shared_latent']['executed_action_subspace_rank'])!=3:raise IntegrityError('executed action rank changed')
     for name,src in s['fit_sources'].items():
         rp,ap=inside(ROOT/src['result'],name+' result'),inside(ROOT/src['independent'],name+' audit')
         if sha256(rp)!=src['result_sha256'] or sha256(ap)!=src['independent_sha256']:raise IntegrityError(name+' evidence hash')
@@ -71,11 +72,11 @@ def _state(x:dict[str,Any])->tuple[np.ndarray,np.ndarray]:
     a=np.asarray([x['r_geo_m'],x['z_geo_m'],x['ip_a']],float);b=np.asarray(x['actual_current_a_tsc'],float)
     if a.shape!=(3,) or b.shape!=(14,) or not np.all(np.isfinite(a)) or not np.all(np.isfinite(b)):raise IntegrityError('state')
     return a,b
-def stable_basis(v:np.ndarray)->np.ndarray:
+def stable_basis(v:np.ndarray,expected_rank:int)->np.ndarray:
     _,_,vt=np.linalg.svd(v,full_matrices=False);rank=int(np.linalg.matrix_rank(v,tol=1e-12))
-    if rank!=2:raise IntegrityError(f'action rank {rank}')
-    b=vt[:2].copy()
-    for i in range(2):
+    if rank!=expected_rank:raise IntegrityError(f'action rank {rank}')
+    b=vt[:expected_rank].copy()
+    for i in range(expected_rank):
         if b[i,int(np.argmax(np.abs(b[i])))]<0:b[i]*=-1
     return b
 
@@ -104,7 +105,7 @@ def load_dataset(stage:dict[str,Any])->Dataset:
     families=sorted({c.group_id for c in cells});expected=sorted(stage['fit_sources']['k1']['families']+stage['fit_sources']['p1']['families'])
     if families!=expected or any(sum(c.group_id==g for c in cells)!=5 for g in families):raise IntegrityError('families')
     ref=next(c for c in cells if c.group_id=='h00' and c.cell_kind=='baseline');nominal=ref.issued.copy();nominal[18:]=ref.issued[17]
-    vectors=[c.issued[int(c.probe_issue)]-nominal[int(c.probe_issue)] for c in cells if c.cell_kind=='probe'];basis=stable_basis(np.asarray(vectors))
+    vectors=[c.issued[int(c.probe_issue)]-nominal[int(c.probe_issue)] for c in cells if c.cell_kind=='probe'];basis=stable_basis(np.asarray(vectors),int(stage['shared_latent']['executed_action_subspace_rank']))
     residual=max(float(np.max(np.abs((c.issued-nominal)-((c.issued-nominal)@basis.T)@basis))) for c in cells)
     if residual>1e-9:raise IntegrityError(f'basis residual {residual}')
     n=stage['normalization'];return Dataset(cells,nominal,basis,np.asarray(n['state_scale']),np.asarray(n['response_scale']),float(n['actual_current_innovation_scale_a']))
@@ -129,7 +130,8 @@ def step_features(c:Cell,o:int,d:Dataset,nominal:np.ndarray,stage:dict[str,Any])
         step_ctx=ctx.copy();step_ctx[-2:]*=float(stage['shared_latent']['actual_current_innovation_decay_per_step'])**(i-o)
         m=np.concatenate([mem[k][i].reshape(-1) for k in ('level','edge','even_level','even_edge')]);rows.append(np.concatenate([step_ctx,m,u[i],du[i],np.outer(step_ctx,u[i]).reshape(-1),[i/34,(i-o+1)/8]]))
     x=np.asarray(rows)
-    if x.shape!=(8,71):raise IntegrityError(f'feature {x.shape}')
+    rank=d.action_basis.shape[0];expected=9+rank+4*len(stage['shared_latent']['fixed_poles'])*rank+2*rank+(9+rank)*rank+2
+    if x.shape!=(8,expected):raise IntegrityError(f'feature {x.shape}')
     return x
 def sequence_input(c:Cell,d:Dataset,nominal:np.ndarray)->np.ndarray:
     u=action_coordinates(c,d);du=np.vstack([u[0],u[1:]-u[:-1]]);rows=[]

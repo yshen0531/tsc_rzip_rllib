@@ -7,7 +7,12 @@
 > signal/Ip gates passed. Its final route is
 > `ONE_MS_ID2P1_MATCHED_FACTORIAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY`.
 >
-> The sole active stage is the zero-new-TSC ID-2Q1 comparison. It uses only
+> ID-2Q1 v1 then stopped in zero-model server preflight because the exact
+> executed p04/p07 Card15 action family is rank three, not the assumed ideal
+> rank-two plane. No model/TSC/reset/plant work occurred. The sole active
+> stage is ID-2Q1R1, which retains every cell, fold, candidate and gate but
+> consumes the complete rank-three executed subspace instead of discarding
+> its shared even component. It uses only
 > the 40 primary K1 and 40 primary P1 cells, grouped into 16 whole-history
 > families. Replays have zero fit weight; N1 calibration and holdout remain
 > forbidden fit inputs. Exactly two candidates are frozen: a stable
@@ -16,7 +21,7 @@
 > exact R_geo/Z_geo/Ip, actual-current innovation and owned issued actions;
 > future actual current/readback and evaluator labels are forbidden.
 >
-> ID-2Q1 runs training and tests only on the server. A PASS may authorize only
+> ID-2Q1R1 runs training and tests only on the server. A PASS may authorize only
 > a separately frozen fresh calibration and genuinely new blind whole-history
 > holdout. A FAIL stops same-data model enlargement and triggers route review.
 > No tube, authority, recovery, controller, MPC, transport, crossing,

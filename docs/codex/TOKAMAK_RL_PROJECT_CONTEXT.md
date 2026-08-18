@@ -1,12 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, ID-2Q1):** ID-2P1 supplied the
+> **Active new-round context (2026-08-18, ID-2Q1R1):** ID-2P1 supplied the
 > prospectively fit-eligible duration/timing/history support missing at
 > ID-2O0. Its `42/42` authentic rollouts, matched prefixes, replays,
 > signal/Ip gates and independent raw audit all passed. This remains finite
 > source-local HFS evidence.
 >
-> ID-2Q1 now performs the bounded machine-learning comparison: exact
+> ID-2Q1 v1 stopped before fitting because the exact signed Card15 actions
+> span three dimensions: two odd directions plus a shared finite even
+> component. ID-2Q1R1 now performs the bounded machine-learning comparison
+> without projecting away that executed component: exact
 > actuator/action history plus exact current R_geo/Z_geo/Ip and low-order
 > stable memory, with only one optional small persistent GRU residual. The
 > comparison uses whole-history folds and shared cumulative 1--8 ms dynamics,

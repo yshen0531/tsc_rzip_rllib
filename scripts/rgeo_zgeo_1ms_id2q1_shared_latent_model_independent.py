@@ -16,7 +16,7 @@ if str(SCRIPTS) not in sys.path:
 import rgeo_zgeo_1ms_id2q1_shared_latent_model_comparison as primary
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2q1-shared-latent-model-audit-v1"
+SCHEMA = "rgeo-zgeo-1ms-id2q1r1-shared-latent-model-audit-v1"
 
 
 def without_revision(value: dict[str, Any]) -> dict[str, Any]:

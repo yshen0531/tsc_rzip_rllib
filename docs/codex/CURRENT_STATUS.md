@@ -8,7 +8,11 @@
 > zero failures. Primary/independent SHA-256 are `8f747e04...` and
 > `0c4364aa...`.
 >
-> The active ID-2Q1 stage compares two small causal shared-latent predictors
+> ID-2Q1 v1 stopped during zero-model preflight when exact Card15 action
+> vectors proved rank three rather than the assumed rank two. ID-2Q1R1 is the
+> active corrected identity; it preserves the same data, folds, candidates
+> and scientific gates while retaining the real shared even component.
+> ID-2Q1R1 compares two small causal shared-latent predictors
 > on 80 primary cells and 16 whole-history families. It performs zero TSC,
 > reset or plant advance. N1 records stay excluded from fit and the five K1/P1
 > replays add no statistical weight. The frozen result either emits one model

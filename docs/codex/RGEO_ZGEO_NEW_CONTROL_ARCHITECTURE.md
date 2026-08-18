@@ -2,7 +2,10 @@
 
 > **Post-ID-2P1 model amendment (2026-08-18):** the missing matched duration,
 > timing and history data passed all execution and independent raw gates.
-> ID-2Q1 therefore compares exactly two small models on 16 whole-history
+> ID-2Q1 v1's zero-model preflight found that exact signed Card15 execution
+> produces a rank-three subspace, not an ideal rank-two plane. ID-2Q1R1
+> preserves the same evidence split and gates while retaining all three
+> executed coordinates. It compares exactly two small models on 16 whole-history
 > families: a stable shared-increment causal backbone and that same backbone
 > with a bounded persistent GRU residual. Exact current R_geo/Z_geo/Ip remain
 > direct noiseless inputs at each origin; the latent state represents response
