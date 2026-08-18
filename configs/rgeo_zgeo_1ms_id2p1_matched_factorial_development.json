@@ -1,0 +1,92 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2p1-matched-factorial-development-v1",
+  "identity": "rgeo-zgeo-1ms-id2p1-matched-factorial-development-v1",
+  "stage": "ID-2P1",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "horizon_steps": 34,
+  "whole_history_groups": 8,
+  "unique_cells_per_group": 5,
+  "unique_whole_history_cells": 40,
+  "critical_replay_cells": ["f01__p07_minus_i26_d1", "f04__p04_plus_i25_d3"],
+  "maximum_rollouts": 42,
+  "maximum_reset_calls": 42,
+  "maximum_advance_attempts": 1428,
+  "maximum_gotsc_calls": 1428,
+  "maximum_verified_plant_advances": 1428,
+  "maximum_retained_states": 1470,
+  "retry_after_any_advance_attempt": "forbidden",
+  "experiment_contract": "tsc_only_matched_factorial_fit_eligible_development",
+  "data_use": "development_fit_only_after_all_execution_raw_prefix_replay_signal_and_ip_gates_pass",
+  "calibration_holdout_controller_expert_or_rl_use": "forbidden",
+  "source_model_or_response_labels_used": 0,
+  "probe_directions": ["p04", "p07"],
+  "probe_signs": ["plus", "minus"],
+  "groups": [
+    {"group_id": "f00", "conditioners": [{"direction": "p04", "sign": "plus", "issue_step": 17, "duration_issues": 1}], "probe_issue_step": 24, "probe_duration_issues": 1},
+    {"group_id": "f01", "conditioners": [{"direction": "p04", "sign": "minus", "issue_step": 19, "duration_issues": 2}], "probe_issue_step": 26, "probe_duration_issues": 1},
+    {"group_id": "f02", "conditioners": [{"direction": "p07", "sign": "plus", "issue_step": 18, "duration_issues": 1}], "probe_issue_step": 25, "probe_duration_issues": 2},
+    {"group_id": "f03", "conditioners": [{"direction": "p07", "sign": "minus", "issue_step": 17, "duration_issues": 2}], "probe_issue_step": 24, "probe_duration_issues": 2},
+    {"group_id": "f04", "conditioners": [{"direction": "p04", "sign": "plus", "issue_step": 17, "duration_issues": 2}, {"direction": "p07", "sign": "minus", "issue_step": 21, "duration_issues": 1}], "probe_issue_step": 25, "probe_duration_issues": 3},
+    {"group_id": "f05", "conditioners": [{"direction": "p04", "sign": "minus", "issue_step": 18, "duration_issues": 1}, {"direction": "p07", "sign": "plus", "issue_step": 21, "duration_issues": 2}], "probe_issue_step": 26, "probe_duration_issues": 3},
+    {"group_id": "f06", "conditioners": [{"direction": "p07", "sign": "plus", "issue_step": 17, "duration_issues": 2}, {"direction": "p04", "sign": "minus", "issue_step": 21, "duration_issues": 1}], "probe_issue_step": 24, "probe_duration_issues": 1},
+    {"group_id": "f07", "conditioners": [{"direction": "p07", "sign": "minus", "issue_step": 19, "duration_issues": 1}, {"direction": "p04", "sign": "plus", "issue_step": 21, "duration_issues": 2}], "probe_issue_step": 25, "probe_duration_issues": 2}
+  ],
+  "action_semantics": {
+    "absolute_card15_targets": true,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "issue_to_effect_state_offset": 1,
+    "software_queue_added": false,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "future_actual_current": "forbidden"
+  },
+  "observability": {
+    "current_same_step_paired_boundary_rgeo_zgeo_and_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_history": "available",
+    "future_successor": "unknown_before_issue",
+    "invalid_boundary": "fail_closed"
+  },
+  "empirical_exploration": {
+    "novel_successors_are_declared_tsc_only_development_exposures": true,
+    "pre_action_transition_tube_claimed": false,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_probe_issue_clearance": {"r_geo_m": 0.025, "z_geo_m": 0.025, "ip_fraction": 0.05},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "stop_before_next_issue_after_any_failure": true,
+    "post_action_abort_is_not_a_pre_action_bound": true
+  },
+  "data_gates": {
+    "minimum_peak_paired_rz_norm_m": 0.00002,
+    "maximum_peak_paired_abs_ip_a": 100.0,
+    "all_32_probe_cells_required": true,
+    "all_8_by_4_factor_cells_required": true,
+    "two_critical_replay_pairs_required": true,
+    "complete_horizon_through_state34_required": true
+  },
+  "repeatability": {"geometry_m": 1e-12, "ip_a": 1e-9, "coil_a": 1e-9, "wire_a": 1e-9, "sprsina_byte_identity_required": false},
+  "storage_gate": {
+    "minimum_free_bytes_before_run": 118000000000,
+    "maximum_estimated_raw_bytes": 95000000000,
+    "minimum_free_bytes_after_estimate": 23000000000,
+    "output_must_not_exist": true,
+    "raw_compression": "forbidden"
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "evidence": {
+    "id2k1_config": {"path": "configs/rgeo_zgeo_1ms_id2k1_factorized_history_sign_development.json", "sha256": "7ea0e1851104eb1c58a74fb50c8338aa16777c7c48dbfd24927b24184d78332e"},
+    "id2k1_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2k1_20260817_8416bd6c/result.json", "sha256": "a7a5f64a86118dd5002b9da44f7cf5e126571f30d6e6ef3d3005b369eb4e6643", "required_route": "ONE_MS_ID2K1_FACTORIZED_HISTORY_SIGN_DATA_PASS_STRUCTURED_MODEL_ONLY"},
+    "id2o0_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2o0_20260818_58269fab/result.json", "sha256": "ec7eda499a025b15a25f152291f72e87dbf4fa144e8f4168166d593cd3369e71", "required_route": "ONE_MS_ID2O0_MATCHED_FACTORIAL_DEVELOPMENT_DATA_REQUIRED"},
+    "id2o0_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2o0_20260818_58269fab/independent_audit.json", "sha256": "4b064debfd4aa3e3e27de3383ef03162cc474503bde13eb908a37f0e23e473a6"}
+  },
+  "routes": {
+    "storage_fail": "ONE_MS_ID2P1_STORAGE_GATE_FAIL_NO_TSC",
+    "offline_or_input_fail": "ONE_MS_ID2P1_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID2P1_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID2P1_RAW_INTEGRITY_FAIL_PRESERVE_RAW",
+    "prefix_or_replay_fail": "ONE_MS_ID2P1_PREFIX_OR_REPLAY_FAIL_STOP",
+    "signal_or_ip_fail": "ONE_MS_ID2P1_SIGNAL_OR_IP_FAIL_REDESIGN",
+    "pass": "ONE_MS_ID2P1_MATCHED_FACTORIAL_DEVELOPMENT_PASS_MODEL_COMPARISON_ONLY"
+  },
+  "claim_boundary": "Finite source-local matched-factorial fit-eligible development data only; no calibration, holdout, uncertainty tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert data, RL or reachability evidence."
+}

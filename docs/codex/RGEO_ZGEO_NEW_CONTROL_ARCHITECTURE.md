@@ -1,6 +1,19 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2N1 readiness amendment (2026-08-18):** do not jump directly from
+> **Post-ID-2O0 data amendment (2026-08-18):** the model comparison remains
+> capped at two candidates, but it is blocked until ID-2P1 supplies the
+> missing independent history and duration support. ID-2P1 is a balanced
+> matched-baseline factorial campaign over the already admitted p04/p07
+> Card15 action family; it is not a random 14-dimensional sweep and is not
+> controller safety evidence.
+>
+> On PASS, K1 and P1 may train the shared-latent candidates. N1 calibration
+> remains consumed challenge evidence and cannot become fit labels. A new
+> calibration and genuinely new blind whole-history holdout remain mandatory
+> after model freeze. Authority and recovery are still independent later AND
+> gates.
+
+> **Historical post-ID-2N1 readiness amendment (2026-08-18):** do not jump directly from
 > fresh calibration failure to a larger recurrent model. The architecture
 > first separates effective independent whole-history support from repeated
 > transition/end-point rows. ID-2O0 audits deployable causal history,

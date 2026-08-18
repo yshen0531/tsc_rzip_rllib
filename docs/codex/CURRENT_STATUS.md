@@ -1,6 +1,19 @@
 # Current status
 
-> **Current status (2026-08-18, ID-2O0 authorized):** the post-ID-2N1 review
+> **Current status (2026-08-18, ID-2O0 complete / ID-2P1 frozen):** ID-2O0
+> passed execution and independent recomputation but routed to matched-
+> factorial development data. Result/audit SHA-256 are
+> `ec7eda49... / 4b064deb...`. It performed no fitting, TSC, reset, plant
+> advance or holdout access.
+>
+> ID-2P1 is now the only active execution candidate. Its 42-rollout maximum
+> is guarded by exact action/interface checks and a storage estimate of 95 GB;
+> the server must have at least 118 GB free and retain at least 23 GB after
+> estimate. The records become development-fit eligible only after complete
+> execution/raw, matched-prefix, replay, signal and Ip PASS. Older status
+> blocks are historical.
+
+> **Historical status (2026-08-18, ID-2O0 authorized):** the post-ID-2N1 review
 > found that the immediate uncertainty is data/support readiness, not a choice
 > between larger neural networks. K1 supplies eight independent fit-eligible
 > whole-history families (40 unique cells); N1 adds four fresh calibration

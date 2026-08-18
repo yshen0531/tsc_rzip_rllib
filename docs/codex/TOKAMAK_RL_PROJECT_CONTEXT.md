@@ -1,6 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-18, ID-2O0):** the final goal remains
+> **Active new-round context (2026-08-18, ID-2P1):** ID-2O0 determined that
+> the existing eight fit-eligible histories do not support another defensible
+> model comparison across duration/timing composition. The route therefore
+> collects one bounded matched-factorial dataset rather than increasing model
+> capacity or repurposing the failed N1 calibration.
+>
+> ID-2P1 crosses eight new histories with matched baseline and all four
+> p04/p07 signed probes, including probe durations 1/2/3 and complete frozen
+> 1--8 ms return/tail windows. Only a fully gated PASS makes these new records
+> fit-eligible. This remains source-local HFS identification; the final goal
+> and all later model/tube/authority/recovery/crossing gates are unchanged.
+> All older notices are historical.
+
+> **Historical new-round context (2026-08-18, ID-2O0):** the final goal remains
 > safe approximate two-axis relative/path/waypoint tracking from fixed
 > 1100 ms at a 1 ms action boundary, followed later by repeated R_mid crossing
 > without belief reset. Current same-step paired-boundary R_geo/Z_geo and Ip

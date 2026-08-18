@@ -1,0 +1,222 @@
+{
+  "action_ranking_metrics": {
+    "angle_count_per_family": 16,
+    "family_metrics": [
+      {
+        "group_id": "c00",
+        "maximum_regret_fraction": 0.8765434403357841,
+        "mean_regret_fraction": 0.49529928525017375
+      },
+      {
+        "group_id": "c01",
+        "maximum_regret_fraction": 0.0,
+        "mean_regret_fraction": 0.0
+      },
+      {
+        "group_id": "c02",
+        "maximum_regret_fraction": 0.0,
+        "mean_regret_fraction": 0.0
+      },
+      {
+        "group_id": "c03",
+        "maximum_regret_fraction": 0.0,
+        "mean_regret_fraction": 0.0
+      }
+    ],
+    "maximum_regret_fraction": 0.8765434403357841,
+    "mean_regret_fraction": 0.12382482131254344
+  },
+  "claim_boundary": "Read-only source-local learnability and control-utility readiness audit only; no model fit, TSC, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert data or RL evidence.",
+  "holdout_opened": false,
+  "input_evidence": {
+    "k1_config": "7ea0e1851104eb1c58a74fb50c8338aa16777c7c48dbfd24927b24184d78332e",
+    "k1_independent": "69911aaa5d16b7f52381b0f7d211d51b0eee6377a11830dd00812e7183af8444",
+    "k1_result": "a7a5f64a86118dd5002b9da44f7cf5e126571f30d6e6ef3d3005b369eb4e6643",
+    "n1_calibration": "a1001567bf5b9cee81997807bf33d5f2bcb31e293d4f34783518def2f5fe5f97",
+    "n1_config": "4b41320e6e79840b5d2234f3bfa7a9a77e0606f0d0e9cf624274b42ed2f64d08",
+    "n1_independent": "e307ac02358107e92ff2d7ce08a7e36bacf5efd684c49aea6f9dfdcfcef6f706",
+    "n1_result": "fbb734bf53f98f32c94e7c473d9919d900803dbdb09bbdd147efd597e1b8421e"
+  },
+  "models_fit_or_updated": 0,
+  "n1_calibration_route_preserved": "ONE_MS_ID2N1_CALIBRATION_MODEL_OR_TUBE_FAIL_HOLDOUT_UNOPENED",
+  "passed": true,
+  "plant_advances": 0,
+  "readiness_gates": {
+    "action_ranking_regret": false,
+    "duration_support": false,
+    "exact_schedule_support": false,
+    "independent_family_support": false,
+    "nearest_response_direction": false,
+    "nearest_response_nrmse": false
+  },
+  "reset_calls": 0,
+  "route": "ONE_MS_ID2O0_MATCHED_FACTORIAL_DEVELOPMENT_DATA_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2o0-causal-support-readiness-result-v1",
+  "source_revision": "58269fabc012cafc6026cf07b15d1afc15ef4c28",
+  "stage_config_sha256": "2dbf33e6a3480de1592fc38a38869804523be34772391f605e1bc2f25e29928e",
+  "structure_metrics": {
+    "combined_independent_families_descriptive_only": 12,
+    "consumed_challenge_families": 4,
+    "fit_eligible_families_by_probe_duration": {
+      "1": 0,
+      "2": 0,
+      "3": 8
+    },
+    "fit_eligible_independent_families": 8,
+    "primary_transition_rows": 1768,
+    "probe_prefix_condition": 1293843727608.1902,
+    "probe_prefix_feature_count": 96,
+    "probe_prefix_rank": 12,
+    "unique_exact_causal_transition_keys": 563
+  },
+  "support_metrics": {
+    "exact_schedule_support_fraction": 0.0,
+    "exact_schedule_supported": 0,
+    "nearest_response_nrmse": 1.0626532568948137,
+    "positive_nearest_response_directions": 5,
+    "prefix_distance_maximum": 0.5552722998010083,
+    "prefix_distance_median": 0.3859562402212833,
+    "prefix_distance_minimum": 0.10638563372412238,
+    "probe_count": 8,
+    "probe_metrics": [
+      {
+        "cell_id": "c00__p04_minus_i24_d2",
+        "exact_schedule_supported": false,
+        "group_id": "c00",
+        "nearest_k1_cell_id": "h00__p04_minus_i25_d3",
+        "nearest_peak_rz_mm": [
+          0.13760600000001233,
+          0.024774500000004918
+        ],
+        "peak_horizon_ms": 3,
+        "peak_rz_cosine": -0.8436771943776171,
+        "prefix_rms_distance": 0.38567276051902477,
+        "truth_peak_rz_mm": [
+          -0.6378159999999022,
+          0.2611110000000083
+        ]
+      },
+      {
+        "cell_id": "c00__p07_plus_i24_d2",
+        "exact_schedule_supported": false,
+        "group_id": "c00",
+        "nearest_k1_cell_id": "h00__p07_plus_i25_d3",
+        "nearest_peak_rz_mm": [
+          -0.14414949999996818,
+          -0.022022999999996018
+        ],
+        "peak_horizon_ms": 3,
+        "peak_rz_cosine": 0.9725199889736525,
+        "prefix_rms_distance": 0.38567276051902477,
+        "truth_peak_rz_mm": [
+          -0.11076600000003989,
+          -0.04508899999998428
+        ]
+      },
+      {
+        "cell_id": "c01__p04_plus_i26_d2",
+        "exact_schedule_supported": false,
+        "group_id": "c01",
+        "nearest_k1_cell_id": "h01__p04_plus_i25_d3",
+        "nearest_peak_rz_mm": [
+          -0.04752450000000685,
+          -0.0012554999999636607
+        ],
+        "peak_horizon_ms": 1,
+        "peak_rz_cosine": -0.91071523801102,
+        "prefix_rms_distance": 0.3862397199235417,
+        "truth_peak_rz_mm": [
+          0.6631129999998819,
+          -0.27986900000000203
+        ]
+      },
+      {
+        "cell_id": "c01__p07_minus_i26_d2",
+        "exact_schedule_supported": false,
+        "group_id": "c01",
+        "nearest_k1_cell_id": "h01__p07_minus_i25_d3",
+        "nearest_peak_rz_mm": [
+          -0.6275709999999934,
+          0.27435150000000574
+        ],
+        "peak_horizon_ms": 2,
+        "peak_rz_cosine": -0.7487429456715756,
+        "prefix_rms_distance": 0.3862397199235417,
+        "truth_peak_rz_mm": [
+          0.09779599999992783,
+          0.031596999999994324
+        ]
+      },
+      {
+        "cell_id": "c02__p04_minus_i25_d2",
+        "exact_schedule_supported": false,
+        "group_id": "c02",
+        "nearest_k1_cell_id": "h05__p04_minus_i25_d3",
+        "nearest_peak_rz_mm": [
+          -0.6151044999999078,
+          0.28125499999998027
+        ],
+        "peak_horizon_ms": 2,
+        "peak_rz_cosine": 0.9999999810154121,
+        "prefix_rms_distance": 0.10638563372412238,
+        "truth_peak_rz_mm": [
+          -0.6159500000000317,
+          0.2814965000000058
+        ]
+      },
+      {
+        "cell_id": "c02__p07_minus_i25_d2",
+        "exact_schedule_supported": false,
+        "group_id": "c02",
+        "nearest_k1_cell_id": "h05__p07_minus_i25_d3",
+        "nearest_peak_rz_mm": [
+          -0.6239649999999486,
+          0.29521199999998915
+        ],
+        "peak_horizon_ms": 2,
+        "peak_rz_cosine": 0.9999998931710369,
+        "prefix_rms_distance": 0.10638563372412238,
+        "truth_peak_rz_mm": [
+          -0.6236345000000254,
+          0.29540849999998287
+        ]
+      },
+      {
+        "cell_id": "c03__p04_plus_i26_d1",
+        "exact_schedule_supported": false,
+        "group_id": "c03",
+        "nearest_k1_cell_id": "h07__p04_plus_i25_d3",
+        "nearest_peak_rz_mm": [
+          -0.04752200000002205,
+          -0.0012564999999631343
+        ],
+        "peak_horizon_ms": 1,
+        "peak_rz_cosine": 0.9279444878764974,
+        "prefix_rms_distance": 0.5552722998010083,
+        "truth_peak_rz_mm": [
+          -0.06149699999991043,
+          -0.026609499999982744
+        ]
+      },
+      {
+        "cell_id": "c03__p07_plus_i26_d1",
+        "exact_schedule_supported": false,
+        "group_id": "c03",
+        "nearest_k1_cell_id": "h07__p07_plus_i25_d3",
+        "nearest_peak_rz_mm": [
+          -0.04355000000000331,
+          -0.006724999999985215
+        ],
+        "peak_horizon_ms": 1,
+        "peak_rz_cosine": 0.9384957145813249,
+        "prefix_rms_distance": 0.5552722998010083,
+        "truth_peak_rz_mm": [
+          -0.057524000000030995,
+          -0.03185700000001013
+        ]
+      }
+    ]
+  },
+  "support_ready_for_model_comparison": false,
+  "tsc_calls": 0
+}

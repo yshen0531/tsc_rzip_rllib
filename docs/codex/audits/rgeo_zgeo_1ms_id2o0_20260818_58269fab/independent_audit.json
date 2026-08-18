@@ -1,0 +1,23 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Read-only source-local learnability and control-utility readiness audit only; no model fit, TSC, tube, authority, recovery, controller, MPC, transport, crossing, adaptation, expert data or RL evidence.",
+  "failures": [],
+  "holdout_opened": false,
+  "models_fit_or_updated": 0,
+  "plant_advances": 0,
+  "primary_sha256": "ec7eda499a025b15a25f152291f72e87dbf4fa144e8f4168166d593cd3369e71",
+  "recomputed_readiness_gates": {
+    "action_ranking_regret": false,
+    "duration_support": false,
+    "exact_schedule_support": false,
+    "independent_family_support": false,
+    "nearest_response_direction": false,
+    "nearest_response_nrmse": false
+  },
+  "recomputed_route": "ONE_MS_ID2O0_MATCHED_FACTORIAL_DEVELOPMENT_DATA_REQUIRED",
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2o0-causal-support-readiness-independent-v1",
+  "source_revision": "58269fabc012cafc6026cf07b15d1afc15ef4c28",
+  "stage_config_sha256": "2dbf33e6a3480de1592fc38a38869804523be34772391f605e1bc2f25e29928e",
+  "tsc_calls": 0
+}

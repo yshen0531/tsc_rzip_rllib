@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-18, post-ID-2N1 route decision):** preserve
+> **Unique active task (2026-08-18, post-ID-2O0):** ID-2O0 completed with
+> zero model fits and zero TSC/reset/plant advances; separate-process exact
+> recomputation passed. All six readiness gates failed. K1 has eight
+> fit-eligible families and probe-duration support only at 3 ms; exact N1
+> schedule support is 0/8, nearest-prefix direction is 5/8, response NRMSE is
+> 1.06265, and maximum two-action ranking regret is 0.87654. The route is
+> `ONE_MS_ID2O0_MATCHED_FACTORIAL_DEVELOPMENT_DATA_REQUIRED`.
+>
+> The immediate task is the prospectively frozen ID-2P1 campaign: eight new
+> matched-baseline history families, each crossed with p04/p07 plus/minus,
+> balanced conditioner timing/order and probe durations 1/2/3. It contains 40
+> unique fit cells and two zero-weight replays. Offline action and storage
+> gates precede any TSC. A PASS may authorize only a separately frozen
+> at-most-two-model shared-latent comparison using K1+P1. No calibration,
+> holdout, tube, authority, recovery or control is authorized. All blocks
+> below are historical.
+
+> **Historical task (2026-08-18, post-ID-2N1 route decision):** preserve
 > ID-2N1 as the clean final calibration FAIL described below. The immediate
 > stage is ID-2O0, a bounded, zero-new-TSC and zero-model-fit readiness audit
 > over the tracked K1 development records and the retained N1 calibration
