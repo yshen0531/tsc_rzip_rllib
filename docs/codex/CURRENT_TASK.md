@@ -1,6 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2Z4R1 route freeze):** ID-2Z4 was
+> **Unique active task (2026-08-19, post-ID-2Z4R1 route review):** the
+> accepted `3834a952` v3 campaign completed 12/12 classified branches,
+> 1,290/1,290 verified advances and 1,302 states. All exact interface,
+> prefix and raw gates passed after a separately frozen reporting-only
+> independent-audit correction at `32ef0a76`. No candidate reached the full
+> terminal window; all twelve stopped prospectively on `PULSE_CLEARANCE_R`.
+> The final route is
+> `ONE_MS_ID2Z4R1_EARLIER_SWITCH_FRONTIER_FAIL_ACTION_BASIS_REVIEW_REQUIRED`.
+>
+> Do not rerun ID-2Z4R1, weaken its 100 A reserve or append another manual
+> B/U depth. The next work requires user confirmation of a reserve-aware
+> nominal/capture co-design: use the prospective compact data only to develop
+> a small short-horizon candidate nominator, search a richer exact-Card15
+> allocation under explicit headroom/capture constraints, and verify only a
+> fixed shortlist by canonical-source TSC. Fresh calibration, blind
+> holdout, repeatability and Recourse-L1 remain separate. All older active
+> blocks below are historical.
+
+> **Historical task (2026-08-19, ID-2Z4R1 route freeze):** ID-2Z4 was
 > prospectively designed but never implemented, deployed or run. A route
 > review paused it before any plant advance because its state-97-only fixed
 > matrix inherited a thin capture margin, required a full matched-hold path

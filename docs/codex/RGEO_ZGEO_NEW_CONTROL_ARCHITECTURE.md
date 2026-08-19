@@ -1,6 +1,25 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2Z4R1 architecture freeze (2026-08-19):** exact one-ms observation,
+> **Post-ID-2Z4R1 architecture amendment (2026-08-19):** exact one-ms
+> observation, exact Card15 execution, persistent causal history and the
+> independent hard layer remain valid. What failed is the decomposition
+> “finish transport first, then allocate a late capture grammar.” The
+> retained 100 A target reserve is first recovered at state 93, while the
+> R-axis successor-clearance runway is already essentially exhausted. All
+> twelve B/U sequences therefore stopped safely before a complete terminal
+> window.
+>
+> The immediate architecture must co-design a reserve-aware moving nominal
+> and capture allocation. A small truth-recentered history model may now be
+> trained on prospectively designated compact data to nominate short action
+> sequences, but it cannot replace hard gates or certify safety. Candidate
+> generation must use exact 14-D Card15 increments, explicit headroom and a
+> capture/terminal objective; canonical-source TSC replay verifies only a
+> bounded shortlist. Fresh calibration/holdout, repeated capture and
+> Recourse-L1 remain mandatory before source-local feedback or waypoint work.
+> Do not continue a manual B/U depth ladder or silently weaken the reserve.
+>
+> **Historical ID-2Z4R1 architecture freeze (2026-08-19):** exact one-ms observation,
 > exact Card15 execution, persistent causal history and independent hard
 > gates remain unchanged. The immediate finite search is moved upstream from
 > state 97 to the exact state-93 prefix so that capture-switch timing is part

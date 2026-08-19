@@ -1,0 +1,124 @@
+{
+  "admissible_candidate_ids": [
+    "hold12",
+    "b4_h8",
+    "b8_h4",
+    "b12",
+    "u2_h10",
+    "b4_u2_h6",
+    "b8_u2_h2",
+    "b4_u4_h4",
+    "b6_u4_h2",
+    "b8_u4",
+    "b4_u4_b4",
+    "b4_u2_b4_u2"
+  ],
+  "candidate_checks": [
+    {
+      "candidate_id": "hold12",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.0,
+      "non_hold_issue_count": 0,
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_h8",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 4,
+      "passed": true
+    },
+    {
+      "candidate_id": "b8_h4",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 8,
+      "passed": true
+    },
+    {
+      "candidate_id": "b12",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 12,
+      "passed": true
+    },
+    {
+      "candidate_id": "u2_h10",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 2,
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u2_h6",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 6,
+      "passed": true
+    },
+    {
+      "candidate_id": "b8_u2_h2",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 10,
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u4_h4",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 8,
+      "passed": true
+    },
+    {
+      "candidate_id": "b6_u4_h2",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 10,
+      "passed": true
+    },
+    {
+      "candidate_id": "b8_u4",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 12,
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u4_b4",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 12,
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u2_b4_u2",
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 100.3,
+      "non_hold_issue_count": 12,
+      "passed": true
+    }
+  ],
+  "excluded_candidate_ids": [],
+  "failures": [],
+  "minimum_constructed_headroom_a": 100.0,
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z4r1-offline-v1",
+  "source_revision": "3834a952fceb8f96aec625e73ac082733842839f",
+  "stage_config_sha256": "1e0be886b8787966549d7925cf37d4eeac22379bf9770e9ba28ccf3b1ae63cbd"
+}

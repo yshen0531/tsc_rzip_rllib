@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, ID-2Z4R1):** the next finite
+> **Active new-round context (2026-08-19, post-ID-2Z4R1):** the finite
+> state-93 B/U capture frontier is final as an execution-clean scientific
+> FAIL. Twelve branches and 1,290 verified advances all passed exact
+> prefix/interface/raw gates, but every branch safely reached the R clearance
+> boundary before a complete capture window. A corrected independent audit
+> reproduced 1,302 states, 6,510 artifacts and the final route exactly.
+>
+> The failure reveals a nominal/capture sequencing conflict: the selected
+> prefix first meets the 100 A target-reserve floor at state 93, when it is
+> already almost out of R-axis exploration runway. The next route must
+> jointly design nominal transport, reserved action authority and terminal
+> capture. Compact v3 trajectories may train only a development candidate
+> nominator; safety, calibration, blind holdout, replay and recourse remain
+> fresh identities. Older active notices below are historical.
+
+> **Historical new-round context (2026-08-19, ID-2Z4R1):** the next finite
 > discriminator is an earlier-switch, two-axis capture frontier rooted at
 > the exact state-93 prefix. The initial state-89 proposal was rejected before
 > TSC because its exact target headroom was 98.8 A, below the unchanged 100-A

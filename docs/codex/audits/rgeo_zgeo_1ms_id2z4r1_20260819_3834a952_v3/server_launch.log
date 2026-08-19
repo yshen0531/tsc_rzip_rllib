@@ -1,0 +1,511 @@
+{
+  "advance_attempts": 1290,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite source-local earlier-switch capture frontier; not hold, recovery, controller, waypoint or reachability qualification.",
+  "compact_data_role": "prospective_short_horizon_model_development_and_capture_route_evidence_only",
+  "complete_rollouts": 0,
+  "execution_integrity_passed": true,
+  "guarded_safe_stops": 12,
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "offline_exclusions": [],
+  "passed": false,
+  "plant_advance_gotsc_calls": 1290,
+  "prefix_checks": [
+    {
+      "candidate_id": "hold12",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_h8",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b8_h4",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b12",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "u2_h10",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u2_h6",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b8_u2_h2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u4_h4",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b6_u4_h2",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b8_u4",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u4_b4",
+      "failures": [],
+      "passed": true
+    },
+    {
+      "candidate_id": "b4_u2_b4_u2",
+      "failures": [],
+      "passed": true
+    }
+  ],
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 76678587048,
+  "required_artifact_files": 6510,
+  "required_artifact_inventory_sha256": "1883a7a926ebeb2b6698c410a986b0e87418c1e121d395e0c73d5344440eaf4f",
+  "reset_calls": 12,
+  "rollouts_completed": 12,
+  "route": "ONE_MS_ID2Z4R1_EARLIER_SWITCH_FRONTIER_FAIL_ACTION_BASIS_REVIEW_REQUIRED",
+  "schema_version": "rgeo-zgeo-1ms-id2z4r1-earlier-switch-capture-frontier-result-v1",
+  "scientific_metrics": {
+    "candidate_metrics": [
+      {
+        "candidate_id": "hold12",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_h8",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 108,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b8_h4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 112,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b12",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 117,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "u2_h10",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 105,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u2_h6",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b8_u2_h2",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 110,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u4_h4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 105,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b6_u4_h2",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b8_u4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 109,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u4_b4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u2_b4_u2",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 108,
+        "safe_stop": true
+      }
+    ],
+    "capture_candidate_count": 0,
+    "capture_candidate_ids": [],
+    "negative_control_complete": false,
+    "negative_control_observed_state_count": 107,
+    "nondominated_complete_candidate_ids": [],
+    "passed": false,
+    "selected_candidate_id": null
+  },
+  "selected_candidate_id": null,
+  "source_revision": "3834a952fceb8f96aec625e73ac082733842839f",
+  "stage_config_sha256": "1e0be886b8787966549d7925cf37d4eeac22379bf9770e9ba28ccf3b1ae63cbd",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 59259214848,
+    "estimated_raw_bytes": 90000000000,
+    "free_bytes_before_run": 149259214848,
+    "passed": true
+  },
+  "verified_plant_advances": 1290
+}
+{
+  "audit_passed": false,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw finite ID2Z4R1 audit; not hold, recovery, controller, waypoint or reachability qualification.",
+  "failures": [
+    "RECOMPUTE:PREFIX_CHECKS",
+    "PRIMARY_ROUTE_OR_VERDICT"
+  ],
+  "finite_capture_candidate": false,
+  "models_fit_or_updated": 0,
+  "primary_route": "ONE_MS_ID2Z4R1_EARLIER_SWITCH_FRONTIER_FAIL_ACTION_BASIS_REVIEW_REQUIRED",
+  "primary_scientific_passed": false,
+  "primary_sha256": "8781643403a4e4c0d056097089aa78d1ca45fd171603d4af9c0cc32c504284fc",
+  "raw_rollouts": 12,
+  "raw_states": 1302,
+  "recomputed_counters": {
+    "advance_attempts": 1290,
+    "complete_rollouts": 0,
+    "guarded_safe_stops": 12,
+    "plant_advance_gotsc_calls": 1290,
+    "reset_calls": 12,
+    "rollouts_completed": 12,
+    "verified_plant_advances": 1290
+  },
+  "recomputed_inventory_bytes": 76678587048,
+  "recomputed_inventory_files": 6510,
+  "recomputed_inventory_sha256": "1883a7a926ebeb2b6698c410a986b0e87418c1e121d395e0c73d5344440eaf4f",
+  "recomputed_prefix_checks": [
+    {
+      "candidate_id": "hold12",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b4_h8",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b8_h4",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b12",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "u2_h10",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b4_u2_h6",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b8_u2_h2",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b4_u4_h4",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b6_u4_h2",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b8_u4",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b4_u4_b4",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    },
+    {
+      "candidate_id": "b4_u2_b4_u2",
+      "failures": [
+        "STATE:0:side",
+        "STATE:32:side",
+        "STATE:64:side",
+        "STATE:69:side",
+        "STATE:73:side",
+        "STATE:77:side",
+        "STATE:81:side",
+        "STATE:85:side",
+        "STATE:89:side",
+        "STATE:93:side"
+      ],
+      "passed": false
+    }
+  ],
+  "recomputed_route": "ONE_MS_ID2Z4R1_PREFIX_MISMATCH_STOP",
+  "recomputed_scientific_metrics": {
+    "candidate_metrics": [
+      {
+        "candidate_id": "hold12",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_h8",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 108,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b8_h4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 112,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b12",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 117,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "u2_h10",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 105,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u2_h6",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b8_u2_h2",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 110,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u4_h4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 105,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b6_u4_h2",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b8_u4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 109,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u4_b4",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 107,
+        "safe_stop": true
+      },
+      {
+        "candidate_id": "b4_u2_b4_u2",
+        "capture_passed": false,
+        "execution_status": "incomplete_or_excluded",
+        "observed_state_count": 108,
+        "safe_stop": true
+      }
+    ],
+    "capture_candidate_count": 0,
+    "capture_candidate_ids": [],
+    "negative_control_complete": false,
+    "negative_control_observed_state_count": 107,
+    "nondominated_complete_candidate_ids": [],
+    "passed": false,
+    "selected_candidate_id": null
+  },
+  "recomputed_selected_candidate_id": null,
+  "schema_version": "rgeo-zgeo-1ms-id2z4r1-earlier-switch-capture-frontier-independent-raw-v1",
+  "source_revision": "3834a952fceb8f96aec625e73ac082733842839f",
+  "stage_config_sha256": "1e0be886b8787966549d7925cf37d4eeac22379bf9770e9ba28ccf3b1ae63cbd"
+}

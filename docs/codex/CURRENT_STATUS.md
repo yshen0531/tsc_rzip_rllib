@@ -1,6 +1,26 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z4R1 design active):** ID-2Z4 was
+> **Current status (2026-08-19, ID-2Z4R1 final):** the accepted v3 run used
+> 12 resets and completed 1,290 verified TSC advances. It retained 1,302
+> states and 6,510 required artifacts totalling 76,678,587,048 bytes. All
+> twelve prefixes and every execution/raw gate passed; every branch ended in
+> an allowed `PULSE_CLEARANCE_R` safe stop and zero candidates reached the
+> full six-state capture window. Corrected independent raw recomputation
+> passes and exactly reproduces the primary finite FAIL route.
+>
+> The first independent audit's only discrepancy was a reporting omission:
+> it parsed R_geo/R_mid but did not populate the derived `side` string. The
+> original failure remains preserved; correction commit `32ef0a76` adds only
+> the contract derivation and ran zero TSC. Server tests pass `9/9` focused
+> and `425/425` complete one-ms tests.
+>
+> The late route is now structurally blocked: exact target headroom first
+> reaches the retained 100 A floor at state 93, when the 2 mm successor
+> allowance leaves only about 0.0145 mm of R-axis clearance. The next stage
+> must co-design nominal transport, action reserve and capture; another
+> state-93 B/U ladder is closed. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z4R1 design active):** ID-2Z4 was
 > superseded before implementation, deployment or TSC and is not an
 > experimental FAIL. The first ID-2Z4R1 implementation draft also ran zero
 > TSC: server tests showed that state 89 had only 98.8 A exact target
