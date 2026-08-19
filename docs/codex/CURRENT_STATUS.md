@@ -1,6 +1,18 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z14 design frozen):** a zero-new-TSC,
+> **Current status (2026-08-20, ID-2Z14 final):** server focused `10/10`
+> and all one-ms `512/512` tests passed after a pre-TSC horizon-completeness
+> implementation fix. All `10/10` authentic rollouts, `650/650` advances,
+> `660` states and `3300` artifacts completed; selected `f4b4` replay and
+> independent raw audit passed. Six-state capture failed at terminal maxima
+> `32.258942 mm / 0.490628 m/s / 1.51172% Ip`. P01 and p09 did not improve
+> hold. The final route closes the measured B/F/p04/p01/p09 source-local
+> macro family, not global reachability. After compact/hash recovery, only
+> the exact `39.471 GB` remote raw tree was removed; free space is
+> `118108672000` bytes. A bounded zero-TSC nominal/authority/reachability
+> review is now active; no model or controller route is open.
+
+> **Historical status (2026-08-20, ID-2Z14 design frozen):** a zero-new-TSC,
 > zero-fit audit moved the last remaining-basis test to exact state33
 > (`19.641166 mm / 0.354401 m/s / 2.3712% Ip`). It freezes one `9 + 1`
 > hold/B/F/p01/p09 campaign with common terminal states60--65. P09 uses an

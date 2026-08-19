@@ -1,6 +1,19 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Z13 remaining-basis amendment (2026-08-20):** before declaring a
+> **Post-ID-2Z14 architecture amendment (2026-08-20):** exact observation,
+> exact Card15 execution, persistent causal history, uncertainty refusal and
+> the independent hard/recourse layers remain the intended architecture.
+> ID-2Z14 cleanly rejected the last frozen source-local cumulative-p01 and
+> dwell/return-p09 macros; the selected B/F arm still failed sustained
+> capture. Therefore actuator rank and finite pulse response must not be
+> promoted to terminal authority. The measured B/F/p04/p01/p09 macro family
+> is closed. Before any new model or controller, perform one bounded
+> zero-TSC nominal/authority/reachability review and permit only a materially
+> different construction. No nearby root, added macro depth, larger model or
+> relaxed capture gate may reopen the closed route. Older amendments are
+> historical.
+
+> **Historical post-ID-2Z13 remaining-basis amendment (2026-08-20):** before declaring a
 > source-local action-family blocker, test the last two prospectively measured
 > Card15 directions once at an earlier exact prefix. B/F/p01/p09 have input
 > rank four and condition `2.735112`, but the p09 response is a hybrid event;

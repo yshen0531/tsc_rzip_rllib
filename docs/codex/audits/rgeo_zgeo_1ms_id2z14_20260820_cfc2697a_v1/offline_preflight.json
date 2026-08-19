@@ -1,0 +1,78 @@
+{
+  "advance_attempts": 0,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z14-offline-v1",
+  "sequence_checks": [
+    {
+      "arm_id": "h8",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 108.4,
+      "passed": true,
+      "rollout_id": "branch__h8"
+    },
+    {
+      "arm_id": "b8",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 108.4,
+      "passed": true,
+      "rollout_id": "branch__b8"
+    },
+    {
+      "arm_id": "f8",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 106.0,
+      "passed": true,
+      "rollout_id": "branch__f8"
+    },
+    {
+      "arm_id": "b4f4",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 108.4,
+      "passed": true,
+      "rollout_id": "branch__b4f4"
+    },
+    {
+      "arm_id": "f4b4",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 107.2,
+      "passed": true,
+      "rollout_id": "branch__f4b4"
+    },
+    {
+      "arm_id": "i4h4",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 108.4,
+      "passed": true,
+      "rollout_id": "branch__i4h4"
+    },
+    {
+      "arm_id": "j4h4",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 107.8,
+      "passed": true,
+      "rollout_id": "branch__j4h4"
+    },
+    {
+      "arm_id": "k4r3",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 108.4,
+      "passed": true,
+      "rollout_id": "branch__k4r3"
+    },
+    {
+      "arm_id": "l4r3",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 108.25,
+      "passed": true,
+      "rollout_id": "branch__l4r3"
+    }
+  ],
+  "source_revision": "cfc2697a714a8431c132b3c8139063619286abd1",
+  "stage_config_sha256": "a7084ee9817eb3fb6e7567f812b3909cb84215a471ab10f44a4126e8af19ca31",
+  "static_sequence_count": 9,
+  "static_sequences_passed": 9
+}

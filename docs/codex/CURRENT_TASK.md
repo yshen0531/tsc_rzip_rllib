@@ -1,6 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID-2Z14 frozen):** the bounded
+> **Unique active task (2026-08-20, post-ID-2Z14):** ID-2Z14 completed
+> `10/10` authentic rollouts, `650/650` advances, `3300/3300` artifacts,
+> exact selected-arm replay and an independent raw audit. The selected
+> `f4b4` arm remained at terminal maxima `32.258942 mm / 0.490628 m/s /
+> 1.51172% Ip`; p01 and exact-return p09 arms did not improve hold. Final
+> route: `ONE_MS_ID2Z14_REMAINING_MEASURED_BASIS_NO_CAPTURE_CLOSE_SOURCE_LOCAL_GRAMMAR`.
+>
+> The measured B/F/p04/p01/p09 source-local macro family is closed. Perform
+> one bounded zero-new-TSC nominal/authority/reachability review before any
+> further plant campaign. It must select a materially different nominal or
+> action construction, or record a finite blocker. Do not add nearby roots,
+> macro depth, a second decision, denser mixtures, model capacity or relaxed
+> capture gates. Model, calibration/holdout, controller, Recourse-L1,
+> waypoint/path and R_mid crossing remain blocked. Older blocks are
+> historical.
+>
+> **Historical active task (2026-08-20, ID-2Z14 frozen):** the bounded
 > post-ID-2Z13 review selected one final state33 remaining-basis discriminator.
 > P01 and exact-centred half-p09 each extend B/F actuator rank from two to
 > three; together B/F/p01/p09 have rank four and condition `2.735112`. P09 is

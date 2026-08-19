@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID-2Z14 frozen):** the final bounded
+> **Current NR route notice (2026-08-20, post-ID-2Z14):** the final measured
+> source-local remaining-basis campaign completed `10/10` authentic runs,
+> exact replay and independent raw audit, but selected `f4b4` still failed
+> capture at `32.258942 mm / 0.490628 m/s / 1.51172%` Ip. P01 and p09 did not
+> improve hold. The official route closes the measured B/F/p04/p01/p09
+> source-local macro family. The next permitted work is one bounded zero-TSC
+> nominal/authority/reachability review; it may open only a materially
+> different construction. Models, recourse, controllers, waypoint/path and
+> R_mid crossing remain unqualified. Older notices are historical.
+
+> **Historical NR route notice (2026-08-20, ID-2Z14 frozen):** the final bounded
 > source-local remaining-basis discriminator starts at exact state33 and uses
 > nine fixed hold/B/F/p01/p09 arms plus one fresh replay. P01/p09 add genuine
 > 14-D input rank, but p09 remains a scheduled event and neither direction is
