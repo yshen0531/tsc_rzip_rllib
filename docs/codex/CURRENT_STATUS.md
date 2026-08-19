@@ -19,6 +19,11 @@
 > allowance leaves only about 0.0145 mm of R-axis clearance. The next stage
 > must co-design nominal transport, action reserve and capture; another
 > state-93 B/U ladder is closed. Older status blocks are historical.
+>
+> After compact evidence and the corrected audit were pushed, only the exact
+> accepted v3 `rollouts/` subtree was irreversibly removed under path/hash/
+> audit guards (`77,859,319,851` bytes). Top-level evidence and logs remain;
+> server free space is now `144,295,432,192` bytes.
 
 > **Historical status (2026-08-19, ID-2Z4R1 design active):** ID-2Z4 was
 > superseded before implementation, deployment or TSC and is not an

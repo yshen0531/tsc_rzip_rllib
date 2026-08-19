@@ -114,3 +114,13 @@ reserve-aware nominal/capture co-design stage:
 
 Whether the 100 A engineering reserve itself should be prospectively changed
 is a separate design decision. This result does not authorize weakening it.
+
+## Server cleanup
+
+After the corrected raw audit, compact evidence, logs and this result were
+tracked and pushed, the exact accepted v3 `rollouts/` subtree was removed
+under an absolute-path guard. The irreversible deletion removed
+`77,859,319,851` bytes and restored server free space to
+`144,295,432,192` bytes. All top-level compact JSON, both independent
+audits, preflight and logs remain on the server and in the tracked evidence
+directory; neither zero-advance diagnostic directory was touched.
