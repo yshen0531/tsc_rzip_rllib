@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-2Z13 remaining-basis amendment (2026-08-20):** before declaring a
+> source-local action-family blocker, test the last two prospectively measured
+> Card15 directions once at an earlier exact prefix. B/F/p01/p09 have input
+> rank four and condition `2.735112`, but the p09 response is a hybrid event;
+> the architecture must encode it as exact dwell/return timing and judge only
+> sustained six-state capture. The ID-2Z14 `9 + 1` matrix is the sole reopened
+> campaign. It does not reopen model fitting or weaken the hard/recourse
+> layers. Older amendments below are historical.
+
 > **Post-ID-2Z13 amendment (2026-08-20):** a third independent 14-D Card15
 > direction (p04) was added prospectively to the early state49/state53 B/F
 > grammar. All `19/19` runs, fresh replay and independent raw audit passed,

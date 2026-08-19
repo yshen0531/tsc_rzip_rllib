@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, post-ID-2Z13):** the fixed
+> **Current NR route notice (2026-08-20, ID-2Z14 frozen):** the final bounded
+> source-local remaining-basis discriminator starts at exact state33 and uses
+> nine fixed hold/B/F/p01/p09 arms plus one fresh replay. P01/p09 add genuine
+> 14-D input rank, but p09 remains a scheduled event and neither direction is
+> presumed to provide capture. Unchanged six-state capture is required.
+> Scientific FAIL closes this measured source-local macro family; no second
+> decision, added direction, model or gate relaxation is allowed. Older route
+> notices below are historical.
+
+> **Historical NR route notice (2026-08-20, post-ID-2Z13):** the fixed
 > state49/state53 p04-augmented nine-arm teacher completed `19/19` authentic
 > rollouts and independent raw audit, but selected the existing
 > `b8 -> b4f4` path and failed six-state capture at

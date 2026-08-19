@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z13):** ID-2Z13 completed all
+> **Unique active task (2026-08-20, ID-2Z14 frozen):** the bounded
+> post-ID-2Z13 review selected one final state33 remaining-basis discriminator.
+> P01 and exact-centred half-p09 each extend B/F actuator rank from two to
+> three; together B/F/p01/p09 have rank four and condition `2.735112`. P09 is
+> frozen as a dwell/return event, not a smooth accumulated gain.
+>
+> Implement and server-validate exactly nine one-round arms plus one fresh
+> selected-arm replay: hold/B/F controls, cumulative p01 signed arms, and
+> exact-return p09 signed dwell arms. Budget is `10` resets, `650` advances
+> and `3300` artifacts; common terminal states are 60--65 with unchanged
+> `25 mm / 0.1 m/s / 5% Ip` capture. PASS authorizes only recourse design;
+> scientific FAIL closes the measured p01/p09/B/F/p04 source-local grammar.
+> No extra arm, second decision, model or relaxed gate is authorized. Older
+> blocks below are historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z13):** ID-2Z13 completed all
 > `19/19` rollouts, `1463/1463` advances and `7410/7410` artifacts with exact
 > fresh replay and independent raw audit, but the selected `b8 -> b4f4` path
 > failed capture at terminal maxima `29.665859 mm / 0.331634 m/s / 2.74480%`

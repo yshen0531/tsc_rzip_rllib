@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z13 final):** server focused `10/10` and
+> **Current status (2026-08-20, ID-2Z14 design frozen):** a zero-new-TSC,
+> zero-fit audit moved the last remaining-basis test to exact state33
+> (`19.641166 mm / 0.354401 m/s / 2.3712% Ip`). It freezes one `9 + 1`
+> hold/B/F/p01/p09 campaign with common terminal states60--65. P09 uses an
+> exact signed dwell and return because its prior response was a deterministic
+> one-state event. Implementation, server tests and TSC have not run. ID-2Z13
+> remains final FAIL; no model/controller route is open.
+
+> **Historical status (2026-08-20, ID-2Z13 final):** server focused `10/10` and
 > all one-ms `502/502` tests passed. All `19/19` authentic rollouts,
 > `1463/1463` advances, `1482` states and `7410` artifacts completed; fresh
 > replay and independent raw audit passed. Root selected `b8`, main selected
