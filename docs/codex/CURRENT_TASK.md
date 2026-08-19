@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2Z5 joint nominal/capture
+> **Unique active task (2026-08-19, post-ID-2Z5 route review):** ID-2Z5
+> completed 13/13 canonical-source paths, 1,243/1,243 verified advances and
+> an independent full-raw audit over 1,256 states / 6,280 artifacts. Every
+> path ended in a prospective `PULSE_CLEARANCE_R` safe stop. The final route
+> is
+> `ONE_MS_ID2Z5_DEVELOPMENT_DATA_INSUFFICIENT_ACTION_SUPPORT_REVIEW_REQUIRED`.
+> Zero complete families and an incomplete critical replay mean that the
+> prospective data-readiness AND gate failed; no model comparison, fit,
+> calibration or holdout is authorized.
+>
+> The result closes this exact state-61, 24-slot open-loop B/F/H family under
+> the 25-mm development corridor. It does not prove global action-basis or
+> plant unreachability. The next work is paused for a prospective separation
+> of simulator-development, terminal-capture and physical-hard envelopes,
+> plus a truth-recentered state-dependent allocation design. Do not widen
+> ID-2Z5 post hoc, fit its partial paths, append another hand depth, or run a
+> successor until that route is separately recorded and authorized. All
+> older active blocks below are historical.
+
+> **Historical task (2026-08-19, ID-2Z5 joint nominal/capture
 > development):** ID-2Z4R1 remains final and may not be rerun. Its evidence
 > has two reporting clarifications without a verdict change: state 93 has
 > 2.0145 mm of actual R-axis distance to the 25 mm development boundary;

@@ -1,5 +1,28 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-2Z5 architecture amendment (2026-08-19):** exact one-ms truth
+> observation, exact Card15 execution, persistent causal history and an
+> independent hard layer remain the correct backbone. ID-2Z5 did not reach
+> model training: all thirteen finite B/F/H paths stopped at the 25-mm
+> development boundary before a complete training horizon, despite exact
+> execution and an independently clean raw audit.
+>
+> The immediate correction is contractual and algorithmic. Simulator-only
+> development clearance, terminal capture and physical hard safety must be
+> separately defined. Long fixed schedules give way to measurement-
+> recentered short-horizon allocation with a prospectively qualified stop or
+> continuation rule. A learned nominator remains optional and subordinate:
+> it may be trained only on a new fit-eligible identity and may shortlist
+> actions only inside exact Card15/support/hard gates. ID-2Z5 partial paths
+> are design evidence, not retrofit training data. Fresh calibration,
+> holdout, replay and Recourse-L1 remain independent AND gates.
+>
+> The observed `B12-F12` near-braking point (0.112947 m/s at 25.665515 mm)
+> supports investigating state-dependent switching, but it is not a capture,
+> controller or safety certificate. Another manual B/F depth ladder or a
+> post-hoc widening of ID-2Z5 is prohibited. Older amendments below are
+> historical.
+
 > **ID-2Z5 architecture freeze (2026-08-19):** exact one-ms truth
 > observation, exact Card15 execution, persistent post-takeover causal history
 > and the independent hard layer remain unchanged. The immediate correction

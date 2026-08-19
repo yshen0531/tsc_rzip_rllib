@@ -1,6 +1,23 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z5 frozen for implementation):** the
+> **Current status (2026-08-19, ID-2Z5 final):** the accepted server run
+> completed 13 resets and 1,243 verified TSC advances. Exact execution,
+> prefix and raw gates passed; the independent audit reproduced 1,256 states,
+> 6,280 artifacts, 73,969,512,544 required bytes and inventory digest
+> `8b247193c1e599155843a6ad54f0d4fdadcabdb75213acd0d8d87aa8d46072bc`.
+> All thirteen paths ended in the same prospective R-clearance safe-stop
+> class. The immutable route is
+> `ONE_MS_ID2Z5_DEVELOPMENT_DATA_INSUFFICIENT_ACTION_SUPPORT_REVIEW_REQUIRED`.
+>
+> No model was fit. Zero complete non-replay families, zero complete token
+> schedules and an incomplete zero-weight replay failed the frozen data gate.
+> `B12-F12` reached a descriptive minimum speed of 0.112947 m/s at state 75,
+> but source distance was already 25.665515 mm and the path did not remain
+> captured. Work is paused for a route-level separation of simulator
+> development, terminal capture and hard safety, and for state-dependent
+> truth-recentered allocation. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z5 frozen for implementation):** the
 > route review has corrected the next experiment's control relevance without
 > changing any completed verdict. The actual state-93 R-axis clearance to the
 > 25 mm development boundary is 2.0145 mm; 0.0145 mm is only a conservative

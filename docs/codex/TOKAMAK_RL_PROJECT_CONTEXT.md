@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, ID-2Z5):** the project has stopped
+> **Active new-round context (2026-08-19, post-ID-2Z5):** the finite
+> state-61 B/F/H campaign is final as an execution-clean development-data
+> FAIL. Thirteen canonical paths and 1,243 verified advances passed exact
+> interface, prefix and raw-integrity gates; all stopped prospectively at the
+> R-axis development boundary and none completed the frozen horizon. The
+> independent audit passed exactly. No model was trained.
+>
+> The next route must no longer treat the 25-mm simulator-development
+> corridor, the descriptive 25-mm capture set and the 50-mm physical hard
+> envelope as interchangeable. It must prospectively define a development
+> envelope and state-dependent stop/recourse rule, then collect genuinely
+> fit-eligible truth-recentered sequence outcomes. ID-2Z5 partial paths are
+> route evidence only and may not be fitted post hoc. Older notices below
+> are historical.
+
+> **Historical new-round context (2026-08-19, ID-2Z5):** the project has stopped
 > decomposing source-local control into distance-first transport followed by
 > late braking/capture. The frozen next campaign begins from audited state 61
 > and jointly varies p07-minus braking (`B`), p03-forward transport (`F`) and
