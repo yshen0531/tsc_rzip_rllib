@@ -33,6 +33,12 @@ class ID2Z4R1Tests(unittest.TestCase):
     def test_frozen_identity_budget_and_routes(self) -> None:
         primary._require(self.stage)
         self.assertIsNotNone(primary.CountingRunner)
+        for name in (
+                "_record", "_validate_record", "RGeoZGeoSignal",
+                "OneMsNR1SafetyEnvelope", "_outer_reasons",
+                "_pulse_clearance", "card15_target_decimal_a",
+                "assert_exact_slew", "_action", "_step_cap_reasons"):
+            self.assertTrue(hasattr(primary.id0, name), name)
         self.assertEqual(primary.CONFIG_SHA256, primary.sha256(primary.CONFIG))
         self.assertEqual(self.stage["maximum_rollouts"], 12)
         self.assertEqual(self.stage["maximum_advance_attempts"], 12 * 117)
