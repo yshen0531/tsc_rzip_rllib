@@ -25,7 +25,14 @@ from scripts.rgeo_zgeo_1ms_id2w1_sustained_branch_independent import (  # noqa: 
 from scripts import rgeo_zgeo_1ms_id2z4r1_earlier_switch_capture_frontier as primary  # noqa: E402
 
 
-SCHEMA = "rgeo-zgeo-1ms-id2z4r1-earlier-switch-capture-frontier-independent-raw-v1"
+SCHEMA = (
+    "rgeo-zgeo-1ms-id2z4r1-earlier-switch-capture-frontier-"
+    "independent-raw-reporting-r1")
+
+
+def _side_from_geometry(state: dict[str, Any]) -> str:
+    """Reconstruct the contract side from independently parsed raw geometry."""
+    return "HFS" if float(state["r_geo_m"]) < float(state["r_mid_m"]) else "LFS"
 
 
 def inside(path: Path, label: str) -> Path:
@@ -125,6 +132,7 @@ def audit(stage_path: Path, run_dir: Path,
                 state_folder = folder / f"{time_ms}ms"
                 try:
                     state = _state(state_folder, cfg)
+                    state["side"] = _side_from_geometry(state)
                 except Exception as exc:
                     failures.append(
                         f"RAW_STATE:{rollout_id}:{time_ms}:"

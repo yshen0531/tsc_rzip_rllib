@@ -182,7 +182,14 @@ class ID2Z4R1Tests(unittest.TestCase):
     def test_independent_identity_and_launcher(self) -> None:
         self.assertEqual(
             independent.SCHEMA,
-            "rgeo-zgeo-1ms-id2z4r1-earlier-switch-capture-frontier-independent-raw-v1")
+            "rgeo-zgeo-1ms-id2z4r1-earlier-switch-capture-frontier-"
+            "independent-raw-reporting-r1")
+        self.assertEqual(independent._side_from_geometry({
+            "r_geo_m": 0.70, "r_mid_m": 0.80}), "HFS")
+        self.assertEqual(independent._side_from_geometry({
+            "r_geo_m": 0.80, "r_mid_m": 0.80}), "LFS")
+        self.assertEqual(independent._side_from_geometry({
+            "r_geo_m": 0.81, "r_mid_m": 0.80}), "LFS")
         launcher = (ROOT /
                     "run_rgeo_zgeo_1ms_id2z4r1_earlier_switch_capture_frontier.sh").read_text(
                         encoding="utf-8")
