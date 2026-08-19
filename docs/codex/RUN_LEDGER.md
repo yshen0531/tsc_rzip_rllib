@@ -1,5 +1,31 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z17 remaining-basis beam
+
+- Date: 2026-08-20 Asia/Shanghai.
+- Design / implementation revisions: `3545fc9c` /
+  `4bfcca2d7c7185dd4a08ef76db7a352005836f91`.
+- Server output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z17_20260820_4bfcca2d_v1`.
+- Validation: focused `13/13`; all one-ms `548/548`; offline static tree
+  `121/121`; storage and shell/compile gates PASS.
+- Execution: `18/18` complete rollouts, `1170/1170` verified advances,
+  `1188` states, zero safe stops and exact selected replay.
+- Raw: `5940` required artifacts / `69,964,793,712` bytes / digest
+  `07fe40a1a22e844c007f0ad2852e81d8c123a63b7c2ad154c0e5305339baed1e`.
+- Selected path: `f100__f8__f8__p08_plus4__p08_plus4`; terminal maxima
+  `28.167666 mm / 0.377144 m/s / 2.12136% Ip`; no capture.
+- Final route:
+  `ONE_MS_ID2Z17_NEW_BASIS_BEAM_NO_CAPTURE_PHYSICAL_REACHABILITY_REDESIGN_REQUIRED`.
+- Primary / independent SHA-256:
+  `58e89a7292b8f256bb58d1e633d0e46794852727675f9db79da188da13f37994 /`
+  `ad86d43a83dec29bf6b2d37f69a01c44518c548b7bb5cd53cf5ce9f70cbb1419`.
+- Cleanup: after independent audit and 22/22 compact/log hash recovery,
+  removed only the exact run's raw `rollouts/` subtree (`71,071,432,704`
+  filesystem bytes); free space `118,093,258,752` bytes.
+- Next: one bounded full-horizon reachability/learning-contract redesign;
+  ID-2Z17 remains zero fit weight and no controller/Recourse-L1 is open.
+
 ## R_geo/Z_geo 1 ms ID-2Z10 five-context model comparison
 
 - Date: 2026-08-19 Asia/Shanghai.

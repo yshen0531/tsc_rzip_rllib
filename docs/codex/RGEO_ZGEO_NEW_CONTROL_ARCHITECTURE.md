@@ -1,5 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **ID-2Z17 new-basis amendment (2026-08-20):** the single permitted
+> **Post-ID-2Z17 architecture amendment (2026-08-20):** exact execution,
+> raw audit and replay prove that two late cumulative layers of the remaining
+> first-event basis alter the trajectory but do not create sustained capture.
+> The selected p08+p08 branch retained `0.377144 m/s` terminal speed. Close
+> that late macro ladder and do not train on its zero-weight evidence. The
+> architecture now returns to its intended split: a newly declared,
+> fit-eligible full-horizon development campaign must learn control-relevant
+> increment/velocity and short-horizon value around a time-varying transport
+> allocation, while exact 1 ms R_geo/Z_geo/Ip observations recenter every
+> decision and the hard/recourse layer remains independent. Model PASS alone
+> still cannot authorize control; fresh calibration, whole-history holdout,
+> finite authority and Recourse-L1 remain separate gates.
+
+> **Historical ID-2Z17 new-basis amendment (2026-08-20):** the single permitted
 > post-ID-2Z16 discriminator is now prospectively frozen. It keeps the exact
 > full-F transient prefix and tests ten signed cumulative first-event Card15
 > arms from five actuator-space directions, followed by a bounded width-two

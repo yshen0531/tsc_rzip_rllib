@@ -1,6 +1,18 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z17 design frozen):** the bounded
+> **Current status (2026-08-20, ID-2Z17 final):** server validation passed
+> `13/13` focused and `548/548` complete 1 ms tests. All `18/18` authentic
+> rollouts, `1170/1170` advances, `1188` states and `5940` artifacts
+> completed with zero safe stops. Independent raw audit reproduced the
+> primary route and exact replay with no failures. The selected p08+p08 path
+> remained at `28.167666 mm / 0.377144 m/s / 2.12136% Ip`, so the route is
+> `ONE_MS_ID2Z17_NEW_BASIS_BEAM_NO_CAPTURE_PHYSICAL_REACHABILITY_REDESIGN_REQUIRED`.
+> After 22/22 compact/log hash recovery, only the exact audited raw subtree
+> was removed; free space is `118093258752` bytes. The next work is a bounded
+> full-horizon reachability/learning-contract redesign; no model/controller
+> route is yet open.
+
+> **Historical status (2026-08-20, ID-2Z17 design frozen):** the bounded
 > zero-TSC physical-basis review corrected an important label assumption:
 > the historical switch identifiers contain multiple event vectors, so
 > ID-2Z17 explicitly binds only their ID-1C0 first signed events. The exact

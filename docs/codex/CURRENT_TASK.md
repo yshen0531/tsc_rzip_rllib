@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID-2Z17 frozen):** the bounded
+> **Unique active task (2026-08-20, post-ID-2Z17):** ID-2Z17 completed
+> `18/18` authentic rollouts, `1170/1170` verified advances and an exact
+> selected replay. Independent raw recomputation passed with no failures.
+> The best `f100__f8__f8__p08_plus4__p08_plus4` path improved the inherited
+> terminal score by `9.44%`, but capture still failed at `28.167666 mm /
+> 0.377144 m/s / 2.12136% Ip`. The exact state-48 two-layer first-event
+> grammar is closed; all ID-2Z17 data retain zero fit weight.
+>
+> Perform one bounded zero-new-TSC full-horizon reachability and learning-
+> contract redesign. It must jointly allocate transport and capture from
+> takeover, keep exact Card15/headroom/Ip gates, define complete causal
+> windows as prospective fit units, and freeze a finite fresh development /
+> calibration / whole-history holdout split before new TSC. No third late
+> layer, denser state-48 amplitude grid, nearby root, retrospective fit,
+> controller, Recourse-L1 or relaxed capture gate is authorized. Older
+> blocks are historical.
+
+> **Historical active task (2026-08-20, ID-2Z17 frozen):** the bounded
 > post-ID-2Z16 physical-basis review is complete. At the exact selected
 > state-48 transient, the five remaining ID-1C0 first-event increment
 > columns are rank five with condition `3.90781`; together with `B/F` they

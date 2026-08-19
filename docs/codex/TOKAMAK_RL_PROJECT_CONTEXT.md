@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID-2Z17 frozen):** one bounded
+> **Current NR route notice (2026-08-20, post-ID-2Z17):** the remaining-basis
+> beam completed cleanly (`18/18`, exact replay and independent raw PASS),
+> but the best p08+p08 continuation still failed sustained capture at
+> `28.167666 mm / 0.377144 m/s / 2.12136% Ip`. This closes the exact late
+> state-48 two-layer grammar, not global reachability. The active work is one
+> bounded zero-TSC redesign that realigns data/model targets with full-horizon
+> transport plus velocity capture. New learning may use only a prospectively
+> frozen fit-eligible identity; ID-2Z17 remains zero-weight route evidence.
+> Older notices are historical.
+
+> **Historical NR route notice (2026-08-20, ID-2Z17 frozen):** one bounded
 > new-basis discriminator is now fixed at the exact selected ID-2Z16 state-48
 > transient. It uses the actual first signed Card15 events of p00/p02/p05/
 > p06/p08, not the full historical switch labels, in a maximum-18-rollout
