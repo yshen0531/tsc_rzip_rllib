@@ -60,7 +60,10 @@ model comparison. It is not a model, tube, authority, capture, recovery,
 controller, MPC, waypoint/path or R_mid result.
 
 Any interface, prefix, raw, replay or horizon failure is inconclusive and
-preserves raw. A complete scientific signal/support FAIL closes this exact
+preserves raw. Because the data gate requires all sixteen complete rollouts,
+the campaign aborts after the first rollout failure rather than consuming
+additional resets that cannot restore eligibility. A complete scientific
+signal/support FAIL closes this exact
 token campaign and prevents model fitting. Gates are not changed after TSC.
 
 ## Budget and cleanup

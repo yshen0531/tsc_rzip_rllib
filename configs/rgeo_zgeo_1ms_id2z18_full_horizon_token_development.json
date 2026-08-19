@@ -110,6 +110,7 @@
     "development_to_hard_ip_fraction_guard": 0.01,
     "allowed_safe_stop_reasons": ["PULSE_CLEARANCE_R", "PULSE_CLEARANCE_Z", "PULSE_CLEARANCE_IP", "EMPIRICAL_STEP_R", "EMPIRICAL_STEP_Z", "EMPIRICAL_STEP_IP"],
     "all_sixteen_rollouts_complete_required_for_data_pass": true,
+    "abort_campaign_after_any_rollout_failure": true,
     "stop_before_next_issue_after_any_failure": true,
     "post_action_abort_is_not_a_pre_action_bound": true,
     "simulator_only_empirical_identification_exception": true
@@ -134,7 +135,7 @@
     "delete_only_after_independent_audit_and_compact_hash_recovery": true
   },
   "evidence": {
-    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z18_FULL_HORIZON_TOKEN_DEVELOPMENT_DESIGN.md", "sha256": "f4bcbdc27c0c2a0d66ad9db61676ae53fc7299ac38289d48c14584e0410aaa24"},
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z18_FULL_HORIZON_TOKEN_DEVELOPMENT_DESIGN.md", "sha256": "dd03529e0d4fcdc87c522911cca263e61038e716f4f7dd00192b00cd89bdf5da"},
     "route_review": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2Z17_FULL_HORIZON_LEARNING_ROUTE_REVIEW.md", "sha256": "173833fd8d70b7eda2383cbcbacff63164cc6bda77ac70eaecf5aabfcbc06c5e"},
     "id2z17_config": {"path": "configs/rgeo_zgeo_1ms_id2z17_full_f_transient_remaining_basis_beam.json", "sha256": "4308452e9480574a13703b41816c6fc7145a4b559992aac86e2ced58a612486a"},
     "id2z17_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z17_20260820_4bfcca2d_v1/result.json", "sha256": "58e89a7292b8f256bb58d1e633d0e46794852727675f9db79da188da13f37994", "required_route": "ONE_MS_ID2Z17_NEW_BASIS_BEAM_NO_CAPTURE_PHYSICAL_REACHABILITY_REDESIGN_REQUIRED"},
