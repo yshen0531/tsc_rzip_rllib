@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z12):** ID-2Z12 completed all
+> **Unique active task (2026-08-20, ID-2Z13 frozen):** the bounded
+> post-ID-2Z12 audit selected p04 as the single new actuator-space direction.
+> Its actual B/F/p04 14-coil matrix is rank three with condition `1.2840447`,
+> while its known late-state output remains compatible with the B/F cone;
+> therefore usefulness must be decided prospectively at the earlier state-49
+> and state-53 histories, not inferred from the old response.
+>
+> Implement and server-validate one fixed nine-arm, two-round branch teacher:
+> the seven ID-2Z11 B/F arms plus p04-minus and p04-plus four-step/hold arms,
+> followed by one fresh selected-path replay. Maximum budget is `19` resets,
+> `1463` advances and `7410` artifacts. PASS authorizes only recourse design;
+> scientific FAIL closes this exact early p04-augmented grammar. No extra
+> direction, third round, model, calibration, controller or gate relaxation
+> is authorized. Older blocks below are historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z12):** ID-2Z12 completed all
 > `19/19` rollouts and `1463/1463` advances with exact prefix, Card15, raw,
 > fresh replay and independent audit, but the selected `b4 -> pf4` path did
 > not capture. Its terminal maxima were `28.769669 mm / 0.298367 m/s`.

@@ -1,5 +1,12 @@
 # Current status
 
+> **Current status (2026-08-20, ID-2Z13 design frozen):** the zero-TSC action
+> audit selected one bounded earlier-history discriminator. The p04 direction
+> adds independent 14-D actuator geometry (B/F/p04 rank `3`, condition
+> `1.2840447`) but has not shown capture authority. A fixed `9 + 9 + 1`
+> state49/state53/fresh-replay campaign is designed; implementation, server
+> tests and TSC execution have not yet occurred. ID-2Z12 remains final FAIL.
+
 > **Current status (2026-08-20, ID-2Z12 final):** server focused `10/10`
 > and all one-ms `492/492` tests passed. All `19/19` rollouts, `1463/1463`
 > advances and `7410/7410` artifacts completed; fresh replay and independent

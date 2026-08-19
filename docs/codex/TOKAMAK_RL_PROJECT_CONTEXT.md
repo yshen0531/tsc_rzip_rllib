@@ -1,5 +1,12 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-20, ID-2Z13 frozen):** the post-ID-2Z12
+> zero-TSC audit selected p04 as one genuinely new Card15 actuator direction
+> and moved the branch root back to states 49/53. The next campaign is exactly
+> nine fixed arms per round plus one fresh replay (`19` rollouts maximum).
+> This is a finite capture discriminator, not a model or controller stage;
+> no denser B/F/p04 grid or third round may be added after outcomes.
+
 > **Current route notice (2026-08-20, post-ID-2Z12):** the final signed B/F
 > convex-allocation discriminator completed cleanly. Exact execution, all
 > `7410` raw artifacts, independent audit and fresh replay passed, but the
