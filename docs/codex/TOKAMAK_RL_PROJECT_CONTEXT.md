@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, post-ID-2Z16):** the bounded
+> **Current NR route notice (2026-08-20, ID-2Z17 frozen):** one bounded
+> new-basis discriminator is now fixed at the exact selected ID-2Z16 state-48
+> transient. It uses the actual first signed Card15 events of p00/p02/p05/
+> p06/p08, not the full historical switch labels, in a maximum-18-rollout
+> two-layer beam with fresh replay and unchanged capture/safety gates. The
+> five new plus columns are rank five and extend B/F input rank to seven;
+> this is static input geometry only. Capture may open Recourse-L1 design;
+> FAIL closes the exact grammar and forbids another manual layer. All data
+> have zero fit weight; models/controllers remain blocked. Older notices
+> are historical.
+
+> **Historical NR route notice (2026-08-20, post-ID-2Z16):** the bounded
 > full-F-prefix B/F/H beam completed `16/16` authentic runs and exact replay,
 > but selected `f100__f8__f8` still failed six-state capture at
 > `28.254919 mm / 0.416472 m/s / 2.44142% Ip`. A reporting-only replay

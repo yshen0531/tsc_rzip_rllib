@@ -1,6 +1,17 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z16 final):** server validation passed
+> **Current status (2026-08-20, ID-2Z17 design frozen):** the bounded
+> zero-TSC physical-basis review corrected an important label assumption:
+> the historical switch identifiers contain multiple event vectors, so
+> ID-2Z17 explicitly binds only their ID-1C0 first signed events. The exact
+> state-48 translated candidates are statically representable; the five
+> plus columns are rank five/condition `3.90781`, and `B/F` plus those columns
+> are rank seven/condition `4.29494`. A single maximum-18-rollout two-layer
+> discriminator is frozen. No implementation, server test or new TSC has
+> yet run for ID-2Z17; ID-2Z16 remains final FAIL and no model/controller
+> route is open.
+
+> **Historical status (2026-08-20, ID-2Z16 final):** server validation passed
 > `11/11` focused and `534/534` complete 1 ms tests. All `16/16` authentic
 > rollouts, `1040/1040` advances, `1056` states and `5280` artifacts completed.
 > The chosen `f100__f8__f8` replay was exact, but six-state capture failed at

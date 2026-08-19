@@ -1,5 +1,17 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID-2Z16 reachability amendment (2026-08-20):** the exact full-F
+> **ID-2Z17 new-basis amendment (2026-08-20):** the single permitted
+> post-ID-2Z16 discriminator is now prospectively frozen. It keeps the exact
+> full-F transient prefix and tests ten signed cumulative first-event Card15
+> arms from five actuator-space directions, followed by a bounded width-two
+> second layer and fresh replay. This corrects the mistaken shorthand that
+> each old switch trajectory label denoted only one physical direction; the
+> frozen arms bind exact first-event fields. Static rank/headroom cannot be
+> promoted to response or safety evidence. Capture still connects only to
+> Recourse-L1 design, while FAIL closes the exact grammar and forbids another
+> manual layer. The exact-observation/history/uncertainty/hard-layer rolling
+> architecture and final waypoint/R_mid goal are unchanged.
+
+> **Historical post-ID-2Z16 reachability amendment (2026-08-20):** the exact full-F
 > two-layer B/F/H beam completed cleanly and replayed exactly, but its best
 > branch did not sustain capture. The transient state-48 minimum followed by
 > hold rebound confirms that transport response and terminal authority are

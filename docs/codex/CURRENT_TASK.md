@@ -1,6 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z16):** ID-2Z16 completed all
+> **Unique active task (2026-08-20, ID-2Z17 frozen):** the bounded
+> post-ID-2Z16 physical-basis review is complete. At the exact selected
+> state-48 transient, the five remaining ID-1C0 first-event increment
+> columns are rank five with condition `3.90781`; together with `B/F` they
+> extend exact 14-coil increment rank to seven with condition `4.29494`.
+> All ten translated signed first targets obey `<=0.3 A` and retain at least
+> `103.6 A` static headroom. These are input-geometry facts, not response or
+> safety evidence.
+>
+> Implement, server-test and, only after all offline, package, storage and
+> hard gates pass, run the single frozen ID-2Z17 campaign. It replays the
+> exact `f100__f8__f8` prefix to state 48, evaluates hold plus ten signed
+> four-issue cumulative arms, selects two complete parents from distinct
+> direction IDs, evaluates six fixed second-layer continuations, and makes
+> one fresh selected-path replay. Maximum budget is `18` resets / `1170`
+> advances / `5940` artifacts. Capture plus exact replay authorizes only
+> Recourse-L1 design. Scientific FAIL closes this exact state-48 two-layer
+> first-event grammar: no third layer, denser amplitudes, nearby root, model,
+> controller, calibration/holdout or relaxed gate is authorized. All data
+> have zero fit weight. Older blocks are historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z16):** ID-2Z16 completed all
 > `16/16` authentic rollouts, `1040/1040` advances and `5280/5280` artifacts.
 > The selected `f100__f8__f8` path replayed exactly but did not capture;
 > terminal maxima were `28.254919 mm / 0.416472 m/s / 2.44142% Ip`. The
