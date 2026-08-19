@@ -19,7 +19,7 @@ zero-advance diagnostics. They are not part of this scientific result.
 ## Execution and raw integrity
 
 The final server preflight admitted all twelve frozen candidates with the
-unchanged 100 A target-headroom floor and used zero reset/TSC calls. The
+within-stage frozen 100 A target-headroom floor and used zero reset/TSC calls. The
 accepted campaign then produced:
 
 ```text
@@ -72,8 +72,11 @@ depth ladder is not justified:
 
 - source-relative state 93 is approximately `R=-22.9855 mm`,
   `Z=+8.4939 mm`, distance `24.5047 mm` and one-step speed `0.1887 m/s`;
-- the 2 mm empirical successor allowance leaves only about `0.0145 mm` of
-  R-axis pre-issue clearance at that checkpoint;
+- the actual R-axis distance to the 25 mm development boundary is about
+  `2.0145 mm`; subtracting the separately frozen 2 mm empirical
+  post-successor trip value leaves a conservative remainder of about
+  `0.0145 mm`. The runtime pre-issue gate used the former boundary and did
+  not implement the latter subtraction as a plant bound;
 - pure `B12` gave the best observed distance, `24.445 mm` at state 105, but
   speed was still about `0.195 m/s`; its best speed was `0.1717 m/s` at
   state 102, followed by renewed drift;
@@ -86,7 +89,7 @@ depth ladder is not justified:
 The same selected prefix also exposes a route-level conflict. Exact active
 target headroom at states `77/81/85/89/93` is respectively
 `95.2/96.4/97.6/98.8/100.0 A`. Thus state 93 is the first listed checkpoint
-that satisfies the retained 100 A design reserve, but it is already at the
+that satisfies the Z4/Z4R1 100 A engineering design reserve, but it is already at the
 R-axis exploration boundary. Starting the same late-capture search earlier
 would silently weaken the reserve gate; starting at state 93 leaves no useful
 capture runway. The transport nominal and capture allocation must be
@@ -112,8 +115,11 @@ reserve-aware nominal/capture co-design stage:
 5. retain fresh whole-prefix calibration, blind holdout, repeatability and
    Recourse-L1 identities before any feedback controller or waypoint claim.
 
-Whether the 100 A engineering reserve itself should be prospectively changed
-is a separate design decision. This result does not authorize weakening it.
+The earlier Z1/Z2/Z3 stages used a 95 A action-selection floor; 100 A was
+introduced for the unrun Z4 design and then frozen in Z4R1. It is not a
+physical current limit or a qualified recovery reserve. Whether it should be
+prospectively changed remains a separate new-stage design decision. This
+result does not authorize changing the completed Z4R1 gate.
 
 ## Server cleanup
 

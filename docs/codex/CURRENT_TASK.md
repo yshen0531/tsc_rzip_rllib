@@ -1,6 +1,33 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Z4R1 route review):** the
+> **Unique active task (2026-08-19, ID-2Z5 joint nominal/capture
+> development):** ID-2Z4R1 remains final and may not be rerun. Its evidence
+> has two reporting clarifications without a verdict change: state 93 has
+> 2.0145 mm of actual R-axis distance to the 25 mm development boundary;
+> 0.0145 mm is only the conservative remainder after subtracting the separate
+> 2 mm empirical post-successor trip. Also, 100 A first became a frozen
+> engineering target-headroom floor in Z4/Z4R1; Z1--Z3 used 95 A. It is not a
+> physical current limit or qualified recourse reserve.
+>
+> The prospectively frozen successor is ID-2Z5. It replays the independently
+> audited p03 stride-one prefix through state 61, where newly constructed
+> targets have exactly 100 A headroom, and runs twelve fit-eligible B/F/H
+> allocation families plus one zero-fit-weight critical replay. Novel issues
+> 61--84 jointly vary p07-minus braking, p03-forward transport and dwell;
+> issues 85--116 hold the attained exact Card15 target. The full-path target
+> reserve remains at least 100 A, every non-hold stream begins with B, and
+> every prefix keeps B-minus-F balance nonnegative.
+>
+> ID-2Z5 may run only after its config/design/source hashes, 13-stream static
+> action matrix, server tests, storage and exact prefix gates pass. A clean
+> development PASS authorizes only a small truth-recentered short-horizon
+> model comparison. Descriptive capture does not bypass fresh replay,
+> calibration, blind holdout or Recourse-L1. One bounded model comparison and
+> one fixed canonical-source shortlist are the maximum before this B/F basis
+> is closed and authority/reachability is reviewed. All older active blocks
+> below are historical.
+
+> **Historical task (2026-08-19, post-ID-2Z4R1 route review):** the
 > accepted `3834a952` v3 campaign completed 12/12 classified branches,
 > 1,290/1,290 verified advances and 1,302 states. All exact interface,
 > prefix and raw gates passed after a separately frozen reporting-only

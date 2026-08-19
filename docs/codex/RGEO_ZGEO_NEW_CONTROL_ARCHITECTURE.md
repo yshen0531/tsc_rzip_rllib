@@ -1,6 +1,30 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Z4R1 architecture amendment (2026-08-19):** exact one-ms
+> **ID-2Z5 architecture freeze (2026-08-19):** exact one-ms truth
+> observation, exact Card15 execution, persistent post-takeover causal history
+> and the independent hard layer remain unchanged. The immediate correction
+> is not a larger network: transport and capture are co-designed from the
+> audited state-61 prefix with a finite B/F/H action grammar and prospectively
+> fit-eligible whole-history data.
+>
+> The next learned component is a small truth-recentered short-horizon
+> sequence nominator, not an autonomous world model and not a safety layer.
+> It consumes exact R_geo/Z_geo/Ip, actual/issued action history and a compact
+> causal memory; it predicts candidate-conditioned finite outcomes and
+> uncertainty. Exact Card15/headroom/outer-envelope gates remain outside it,
+> and only a bounded canonical-source TSC shortlist may be verified. Four
+> distinct contracts are retained: physical hard envelope, simulator
+> development corridor, descriptive capture, and separately qualified
+> Recourse/terminal set.
+>
+> The 100 A value is prospectively retained over ID-2Z5's newly constructed
+> paths because B-first B/F allocations can satisfy it from state 61. It is an
+> engineering allocation floor, not a physical limit or recovery theorem; Z1
+> through Z3 used 95 A. If one bounded model comparison and one fixed shortlist
+> fail, the B/F basis closes and the route moves to authority/reachability
+> review rather than another hand schedule or capacity ladder.
+>
+> **Historical post-ID-2Z4R1 architecture amendment (2026-08-19):** exact one-ms
 > observation, exact Card15 execution, persistent causal history and the
 > independent hard layer remain valid. What failed is the decomposition
 > “finish transport first, then allocate a late capture grammar.” The

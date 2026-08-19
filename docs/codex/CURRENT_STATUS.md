@@ -1,6 +1,22 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z4R1 final):** the accepted v3 run used
+> **Current status (2026-08-19, ID-2Z5 frozen for implementation):** the
+> route review has corrected the next experiment's control relevance without
+> changing any completed verdict. The actual state-93 R-axis clearance to the
+> 25 mm development boundary is 2.0145 mm; 0.0145 mm is only a conservative
+> remainder after subtracting the separate 2 mm empirical trip value. The
+> 100 A floor is a Z4/Z4R1 engineering choice, not a Z1--Z3 invariant or a
+> qualified recovery reserve.
+>
+> ID-2Z5 is now the sole active identity. It starts at the audited state-61
+> p03 prefix and freezes 12 unique B/F/H development schedules plus one
+> zero-weight replay over 117 issues. Its compact outputs are prospectively
+> fit-eligible development data only. Implementation, server-only tests,
+> package/source validation, zero-TSC offline action admission and the finite
+> real-TSC campaign are next. No ID-2Z5 TSC advance, model fit, calibration,
+> controller or recourse result exists yet. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z4R1 final):** the accepted v3 run used
 > 12 resets and completed 1,290 verified TSC advances. It retained 1,302
 > states and 6,510 required artifacts totalling 76,678,587,048 bytes. All
 > twelve prefixes and every execution/raw gate passed; every branch ended in

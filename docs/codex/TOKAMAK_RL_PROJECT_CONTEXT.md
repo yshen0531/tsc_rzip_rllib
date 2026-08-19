@@ -1,6 +1,23 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, post-ID-2Z4R1):** the finite
+> **Active new-round context (2026-08-19, ID-2Z5):** the project has stopped
+> decomposing source-local control into distance-first transport followed by
+> late braking/capture. The frozen next campaign begins from audited state 61
+> and jointly varies p07-minus braking (`B`), p03-forward transport (`F`) and
+> dwell (`H`) while every newly constructed target retains at least 100 A of
+> engineering headroom. Twelve unique whole-history families are fit-eligible
+> development data; one exact schedule replay has fit weight zero.
+>
+> Four meanings stay separate: physical outer safety, simulator-development
+> corridor, descriptive capture, and future Recourse/terminal set. The 100 A
+> value belongs only to the finite-stage action-allocation rule. It was not a
+> Z1--Z3 invariant and is not a physical or recovery theorem. A model may
+> nominate a bounded shortlist only after ID-2Z5 data readiness; canonical-
+> source TSC verifies the shortlist, while calibration, blind holdout,
+> repeatability and Recourse-L1 remain fresh AND gates. Older notices below
+> are historical.
+
+> **Historical new-round context (2026-08-19, post-ID-2Z4R1):** the finite
 > state-93 B/U capture frontier is final as an execution-clean scientific
 > FAIL. Twelve branches and 1,290 verified advances all passed exact
 > prefix/interface/raw gates, but every branch safely reached the R clearance
@@ -8,8 +25,9 @@
 > reproduced 1,302 states, 6,510 artifacts and the final route exactly.
 >
 > The failure reveals a nominal/capture sequencing conflict: the selected
-> prefix first meets the 100 A target-reserve floor at state 93, when it is
-> already almost out of R-axis exploration runway. The next route must
+> prefix first meets the Z4/Z4R1 100 A target-reserve floor at state 93, when
+> only a conservative 0.0145 mm remains after subtracting the separate 2 mm
+> empirical trip from the actual 2.0145 mm axis clearance. The next route must
 > jointly design nominal transport, reserved action authority and terminal
 > capture. Compact v3 trajectories may train only a development candidate
 > nominator; safety, calibration, blind holdout, replay and recourse remain
