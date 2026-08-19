@@ -1,6 +1,22 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z6 design authorized):** the accepted
+> **Current status (2026-08-19, ID-2Z6R1 hotfix required):** deployed ID-2Z6
+> bytes exactly matched implementation commit `39a2c3ac`; 7/7 focused tests,
+> 438/438 one-ms server tests and the 125/125 zero-TSC sequence gate passed.
+> Its authorized run completed the five state-49 branches with 5 resets,
+> 345 verified advances, 350 retained states and 1,750 required artifacts.
+> A post-trajectory descriptive report then raised `KeyError` because the
+> inherited diagnostic expected the old single-inner-envelope field. Round 1
+> never started, and no result or independent audit was produced.
+>
+> The separately recorded ID-2Z6R1 repair may authenticate and reuse those five
+> paths without rerun, map only the descriptive field, then continue the same
+> frozen selection/task. It may not change config, actions, scores, gates,
+> budgets or data roles. Server-only hotfix tests and an explicit zero-TSC
+> resume preflight are required before another plant advance. Older status
+> blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z6 design authorized):** the accepted
 > route review keeps the exact-observation/history-conditioned architecture
 > but moves the immediate discriminator from state-61 fixed open-loop depth
 > to an earlier state-49 finite branch teacher.  ID-2Z5 remains final with
@@ -10,10 +26,9 @@
 >
 > Capture, simulator development and hard safety are now separate contracts.
 > Complete causal windows are prospectively development-eligible; censored
-> windows and the critical replay have zero fit weight.  No ID-2Z6 code,
-> server package, TSC result, model, controller, recovery or waypoint result
-> exists yet.  The next work is implementation followed by server-only tests
-> and zero-plant admission.  Older status blocks are historical.
+> windows and the critical replay have zero fit weight. At that point no
+> ID-2Z6 code, server package, TSC result, model, controller, recovery or
+> waypoint result existed. Older status blocks are historical.
 
 > **Historical status (2026-08-19, ID-2Z5 final):** the accepted server run
 > completed 13 resets and 1,243 verified TSC advances. Exact execution,

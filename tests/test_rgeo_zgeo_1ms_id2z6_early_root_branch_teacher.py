@@ -23,6 +23,11 @@ primary = _module(
 independent = _module(
     "id2z6_independent",
     "scripts/rgeo_zgeo_1ms_id2z6_early_root_branch_teacher_independent.py")
+resume = _module(
+    "id2z6r1_resume", "scripts/rgeo_zgeo_1ms_id2z6r1_resume.py")
+resume_independent = _module(
+    "id2z6r1_resume_independent",
+    "scripts/rgeo_zgeo_1ms_id2z6r1_resume_independent.py")
 
 
 class ID2Z6Tests(unittest.TestCase):
@@ -137,6 +142,18 @@ class ID2Z6Tests(unittest.TestCase):
         by_arm = {row["arm_id"]: row for row in value["branch_metrics"]}
         self.assertGreater(by_arm["b4"]["score_improvement_over_hold"], 0.02)
 
+    def test_round_descriptive_diagnostics_adapt_split_envelope_schema(self) -> None:
+        stage, cfg, _, _, _ = primary.load()
+        rows = [self._row("hold4", 0.030)]
+        rows.extend(self._row(arm, value) for arm, value in (
+            ("b4", 0.024), ("f4", 0.028),
+            ("b2f2", 0.026), ("f2b2", 0.027)))
+        value = primary.round_metrics(rows, stage, 0, cfg)
+        self.assertTrue(value["passed"])
+        for branch in value["branch_metrics"]:
+            self.assertIn("minimum_inner_margin_r_z_ip", branch)
+            self.assertIn("minimum_outer_margin_r_z_ip", branch)
+
     def test_replay_and_final_data_readiness_are_separate(self) -> None:
         rows = []
         rounds = []
@@ -188,6 +205,14 @@ class ID2Z6Tests(unittest.TestCase):
         self.assertIn("ID2Z6_SOURCE_REVISION", launcher)
         self.assertIn("ID2Z6_OUTPUT", launcher)
         self.assertIn("early_root_branch_teacher_independent.py", launcher)
+        resume_launcher = (ROOT / "run_rgeo_zgeo_1ms_id2z6r1_resume.sh").read_text(
+            encoding="utf-8")
+        self.assertIn("ID2Z6R1_EXPERIMENT_SOURCE_REVISION", resume_launcher)
+        self.assertIn("ID2Z6R1_HOTFIX_SOURCE_REVISION", resume_launcher)
+        self.assertIn("--preflight-only", resume_launcher)
+        self.assertIn("id2z6r1_resume_independent.py", resume_launcher)
+        self.assertIn("reporting-resume-v1", resume.SCHEMA)
+        self.assertIn("id2z6r1-independent-raw-v1", resume_independent.SCHEMA)
 
 
 if __name__ == "__main__":

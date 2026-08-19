@@ -507,7 +507,23 @@ def round_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any],
             "eligible": False,
         }
         if cfg is not None:
-            value.update(z5.z3.z1._trajectory_diagnostics(row, source, cfg, stage))
+            # ID2Z6 deliberately split the old single ``inner`` envelope into
+            # a simulator-development preissue shell and a terminal capture
+            # set.  The inherited helper is descriptive only, but still uses
+            # the old key name.  Adapt that reporting input explicitly; the
+            # values below do not participate in branch selection.
+            diagnostic_stage = {
+                "empirical_exploration": {
+                    "inner_novel_issue_clearance": stage[
+                        "empirical_exploration"
+                    ]["simulator_development_preissue_clearance"],
+                    "outer_hard_envelope": stage[
+                        "empirical_exploration"
+                    ]["outer_hard_envelope"],
+                }
+            }
+            value.update(z5.z3.z1._trajectory_diagnostics(
+                row, source, cfg, diagnostic_stage))
         values.append(value)
     baseline_value = next(
         (value for value in values if value["arm_id"] == gates["baseline_arm_id"]),

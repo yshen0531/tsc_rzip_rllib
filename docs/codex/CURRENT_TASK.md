@@ -1,6 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2Z6 authorized):** ID-2Z5 remains
+> **Unique active task (2026-08-19, ID-2Z6R1 reporting-only resume):** the
+> accepted ID-2Z6 implementation `39a2c3ac` passed server package, focused,
+> full-suite and zero-TSC gates, then completed all five round-0 trajectories
+> (350 states / 1,750 artifacts). It raised only after those trajectories,
+> while an inherited descriptive-margin helper looked up the retired
+> `inner_novel_issue_clearance` key. No round-1 action, final result or
+> independent audit occurred. This is an implementation/reporting exception,
+> not a plant, interface or scientific branch verdict.
+>
+> ID-2Z6R1 may adapt that descriptive key, independently authenticate all five
+> immutable round-0 compact/raw paths, recompute the unchanged frozen winner,
+> and continue at round 1 without replaying round 0. It must bind the original
+> experiment revision and a distinct hotfix revision, preserve the unchanged
+> config/hash/actions/gates/budgets, and finish with a combined full-raw audit.
+> Any resume-preflight failure stops with zero additional TSC. The scientific
+> routes and claim boundaries remain exactly ID-2Z6's. All active blocks below
+> are historical.
+
+> **Historical task (2026-08-19, ID-2Z6 authorized):** ID-2Z5 remains
 > immutable and zero-fit.  The authorized successor is the separately
 > designed ID-2Z6 early-root truth-recentered branch teacher.  It starts from
 > the exact ID-2W2 state-49 prefix and makes at most three four-ms macro

@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, ID-2Z6):** the final goal remains
+> **Active new-round context (2026-08-19, ID-2Z6R1):** ID-2Z6's first five
+> complete state-49 branches are preserved after a post-trajectory descriptive
+> reporting exception. The only active work is a reporting-only, separately
+> versioned in-place resume: independently reparse those raw paths, recompute
+> the unchanged frozen F4 round-0 selection, and continue from round 1 without
+> rerunning any completed trajectory. Config, actions, selection, safety,
+> budget, data-role and final scientific gates do not change. The final goal
+> and model/controller architecture below remain unchanged.
+
+> **Historical new-round context (2026-08-19, ID-2Z6):** the final goal remains
 > fixed-1100-ms, one-ms, exact-observation, slew-limited safe two-axis
 > waypoint/path control and later repeated bidirectional R_mid crossing with
 > continuous belief.  The project is not trying to identify every physical
