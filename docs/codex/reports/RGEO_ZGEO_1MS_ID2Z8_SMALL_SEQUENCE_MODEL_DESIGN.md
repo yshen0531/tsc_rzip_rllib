@@ -27,8 +27,9 @@ zero fit/evaluation weight. Interrupted ID-2Z6 round-1 paths, ID-2Z5, all
 calibration/holdout records and all expert/RL records are forbidden.
 
 Each context uses its matched `hold4` as the zero-response baseline. The four
-non-hold siblings provide action-conditioned responses for horizons 1--16
-after the context's decision issue. Responses are scaled as
+non-hold siblings provide action-conditioned responses from the decision
+through common state 69: horizons 1--20 at state 49, 1--16 at state 53 and
+1--12 at state 57. Responses are scaled as
 `[R/1 mm, Z/1 mm, Ip/100 A]`. Future actual current and future truth are never
 features.
 
@@ -80,7 +81,8 @@ under this identity.
 There are exactly three leave-one-context-out folds. Every sibling from a
 decision context stays in the same fold. Normalization/PCA/ridge/GRU fitting
 uses only the two training contexts. Each held context evaluates its four
-non-hold cells over horizons 1--16.
+non-hold cells through common state 69. Variable-length sequences are masked;
+padding is neither a feature nor a target.
 
 For each candidate report:
 

@@ -1,0 +1,108 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z8-small-sequence-model-v1",
+  "identity": "rgeo-zgeo-1ms-id2z8-small-sequence-model-v1",
+  "stage": "ID-2Z8",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "decision_contexts": [
+    {"context_id": "state49", "decision_state_index": 49, "source": "id2z6_round0"},
+    {"context_id": "state53", "decision_state_index": 53, "source": "id2z7_round1"},
+    {"context_id": "state57", "decision_state_index": 57, "source": "id2z7_round2"}
+  ],
+  "arm_ids": ["hold4", "b4", "f4", "b2f2", "f2b2"],
+  "nonhold_arm_ids": ["b4", "f4", "b2f2", "f2b2"],
+  "common_response_terminal_state_index": 69,
+  "response_horizons_by_context": {
+    "state49": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    "state53": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "state57": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  },
+  "response_scale": {"r_geo_m": 0.001, "z_geo_m": 0.001, "ip_a": 100.0},
+  "history_steps": 8,
+  "whole_context_folds": true,
+  "sibling_split_forbidden": true,
+  "future_actual_current_forbidden": true,
+  "future_truth_forbidden": true,
+  "critical_replay_fit_and_evaluation_weight": 0,
+  "interrupted_id2z6_round1_weight": 0,
+  "id2z5_weight": 0,
+  "calibration_holdout_expert_bc_dagger_rl_weight": 0,
+  "candidate_specs": [
+    {
+      "candidate_id": "stable_local_memory",
+      "stable_action_memory_poles": [0.0, 0.5, 0.8, 0.95],
+      "fold_local_context_pca_dimensions": 1,
+      "ridge_lambda": 1.0,
+      "intercept": false
+    },
+    {
+      "candidate_id": "stable_local_memory_plus_gru4",
+      "backbone": "stable_local_memory",
+      "hidden_size": 4,
+      "layers": 1,
+      "seeds": [17, 29, 43],
+      "epochs": 300,
+      "learning_rate": 0.01,
+      "weight_decay": 0.01,
+      "residual_bound_scaled": [1.0, 1.0, 1.0]
+    }
+  ],
+  "selection_gates": {
+    "maximum_response_nrmse_each_fold": 0.75,
+    "maximum_r_p95_m": 0.0003,
+    "maximum_z_p95_m": 0.0003,
+    "maximum_ip_p95_a": 50.0,
+    "minimum_peak_vector_cosine_each_cell_exclusive": 0.0,
+    "maximum_best_arm_normalized_score_regret_each_fold": 0.1,
+    "nrmse_tie_margin": 0.01,
+    "tie_preference": "stable_local_memory",
+    "all_three_folds_required": true,
+    "all_predictions_finite": true
+  },
+  "data_contract": {
+    "fit_weight_windows": 15,
+    "independent_causal_contexts": 3,
+    "siblings_per_context": 5,
+    "nonhold_evaluation_cells": 12,
+    "matched_hold_response_baseline": true,
+    "current_rgeo_zgeo_ip_exact_before_issue": true,
+    "models_fit_only_on_training_contexts": true,
+    "normalization_and_pca_fold_local": true,
+    "model_artifact_only_if_eligible": true,
+    "development_only": true
+  },
+  "routes": {
+    "input_or_causality_fail": "ONE_MS_ID2Z8_INPUT_OR_CAUSALITY_FAIL_NO_MODEL",
+    "small_model_fail": "ONE_MS_ID2Z8_SMALL_MODEL_FAIL_TARGETED_DATA_OR_BASIS_REVIEW",
+    "pass": "ONE_MS_ID2Z8_SMALL_SEQUENCE_MODEL_PASS_FRESH_CALIBRATION_HOLDOUT_ONLY"
+  },
+  "evidence": {
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z8_SMALL_SEQUENCE_MODEL_DESIGN.md", "sha256": "c8b4ac6d753710759a829bdb9f352194699ed92eb4e2f1a34fb1ce1edd2316bb"},
+    "id2z7_result_report": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z7_BRANCH_CONTINUATION_RESULT.md", "sha256": "10b71797cc04443d9fca81248a3e392ff10a35b97dfd3599d8b831974785a0e1"},
+    "id2z7_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/result.json", "sha256": "d4cf6c2d2328a1b58c24c5a07a69150c13e559c740a3fe9842e347cbac9ed54a"},
+    "id2z7_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/independent_raw_audit.json", "sha256": "a46fd35ce6a197817334864b9e3dfd01da51e8448ec1b877d058237ee9fbebd1"}
+  },
+  "context_cells": {
+    "state49": {
+      "hold4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z6_20260819_39a2c3ac_v1/r0__hold4.json", "sha256": "156813390685c4c1b7e27d8e59d3d6736d5d3a16d7bbcca0e984346ca5b63e5c"},
+      "b4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z6_20260819_39a2c3ac_v1/r0__b4.json", "sha256": "e99e30b5f28473e4a1579d384b05f2b95db6e40caa51520247c262d40b2bbe91"},
+      "f4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z6_20260819_39a2c3ac_v1/r0__f4.json", "sha256": "872b74fbf784cb2f952243de3b97ed24f9aa55a0dfea7e0d82ee38724a30d3f4"},
+      "b2f2": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z6_20260819_39a2c3ac_v1/r0__b2f2.json", "sha256": "921f2d0ffdf9082e2a7faba15a570de23fac199efda518cccf0baf4fff126bc2"},
+      "f2b2": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z6_20260819_39a2c3ac_v1/r0__f2b2.json", "sha256": "8251aa2023d6f6167d103a11d46b037b1d7c2134fda38472afe3bc3c85fd8afa"}
+    },
+    "state53": {
+      "hold4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r1__hold4.json", "sha256": "da346411f4890b65ab801ae051181a45fb5e990dcc14df3cd914387a438fc101"},
+      "b4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r1__b4.json", "sha256": "f020dfa21336c9fe36a44b3ded043b474b012667edc35a95d393cb6cb77c238c"},
+      "f4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r1__f4.json", "sha256": "fb06eb3327f305d6b07cd239885d2858979709277817f55d09ec5435fdb2905e"},
+      "b2f2": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r1__b2f2.json", "sha256": "7af516175fddb54c6b1be966e99ce4015221248d41671d1cc4bbbb1b14f0db59"},
+      "f2b2": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r1__f2b2.json", "sha256": "453b8c9cf2a660879085ac28a2888d24d4130e606bbef94e1e5f3b3f00b118b5"}
+    },
+    "state57": {
+      "hold4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r2__hold4.json", "sha256": "d0902bbe34ca69f7a3890dddbf0a8c0bfe5fad311fcafbd1867d03a2effbb49f"},
+      "b4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r2__b4.json", "sha256": "5595599131377023fd91ff795960a1c5b6f894fd60ed28d7fb5b52026c0d0d4a"},
+      "f4": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r2__f4.json", "sha256": "1be0cc4c7e66f69fdbaee5a0c1b695d9daf722629ddf02538bb2da69155c5fd4"},
+      "b2f2": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r2__b2f2.json", "sha256": "6756072491a371eb64d9cddb94d663f4ad9cbbc36a06f3af412f75a60702e9a2"},
+      "f2b2": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/r2__f2b2.json", "sha256": "582670401f86a8b6b924b65ff1e143b53c1d57a39171c8560fa8af010aa4b42b"}
+    }
+  }
+}
