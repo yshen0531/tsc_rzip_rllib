@@ -1,5 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **ID-2Z16 bounded-beam amendment (2026-08-20):** the one permitted
+> **Post-ID-2Z16 reachability amendment (2026-08-20):** the exact full-F
+> two-layer B/F/H beam completed cleanly and replayed exactly, but its best
+> branch did not sustain capture. The transient state-48 minimum followed by
+> hold rebound confirms that transport response and terminal authority are
+> different objects. This exact B/F/H beam is closed. Before another model or
+> real campaign, perform one bounded zero-TSC physical-basis/reachability
+> review using exact Card15 geometry, moving-prefix headroom and measured
+> transient-versus-terminal evidence. It may freeze one materially different
+> finite discriminator or record a finite blocker; it may not add beam depth,
+> another F rate, a nearby root, neural capacity or a relaxed capture gate.
+> The intended exact-observation/history/uncertainty/recourse/controller stack
+> is unchanged. Older amendments are historical.
+
+> **Historical ID-2Z16 bounded-beam amendment (2026-08-20):** the one permitted
 > post-frontier authority test is an exact-TSC, truth-recentered two-layer
 > beam from the full-F state32 prefix. It tests whether measured transport
 > and braking primitives can be sequenced into sustained capture without

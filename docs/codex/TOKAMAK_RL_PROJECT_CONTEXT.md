@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID-2Z16 frozen):** one bounded
+> **Current NR route notice (2026-08-20, post-ID-2Z16):** the bounded
+> full-F-prefix B/F/H beam completed `16/16` authentic runs and exact replay,
+> but selected `f100__f8__f8` still failed six-state capture at
+> `28.254919 mm / 0.416472 m/s / 2.44142% Ip`. A reporting-only replay
+> population bug was fixed and immutable raw re-audit passed without changing
+> the result. This exact two-layer grammar is closed. The sole active work is
+> a bounded zero-TSC physical-basis/reachability review; models, recourse,
+> controllers, waypoint/path and R_mid crossing remain unqualified. Older
+> notices are historical.
+
+> **Historical NR route notice (2026-08-20, ID-2Z16 frozen):** one bounded
 > sequence/reachability discriminator is now prospectively fixed around the
 > exact full-F state32 prefix. A two-layer, width-two measured TSC beam uses
 > only h8/b8/f8/b4f4/f4b4 and ends in a common six-state capture test plus

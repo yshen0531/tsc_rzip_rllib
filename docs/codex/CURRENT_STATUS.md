@@ -1,6 +1,19 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z16 design frozen):** the post-ID-2Z15
+> **Current status (2026-08-20, ID-2Z16 final):** server validation passed
+> `11/11` focused and `534/534` complete 1 ms tests. All `16/16` authentic
+> rollouts, `1040/1040` advances, `1056` states and `5280` artifacts completed.
+> The chosen `f100__f8__f8` replay was exact, but six-state capture failed at
+> terminal maxima `28.254919 mm / 0.416472 m/s / 2.44142% Ip`. A
+> reporting-only auditor bug had counted the fresh replay as an eleventh
+> search child; revision `2360a847` repaired only that population. Server
+> tests then passed `12/12` and `535/535`, and immutable raw re-audit passed
+> with zero failures and the unchanged FAIL route. The audited 63.155 GB raw
+> tree was removed after compact hash recovery; free space is
+> `118100652032` bytes. A bounded new physical-basis/reachability review is
+> active; no model or controller route is open.
+
+> **Historical status (2026-08-20, ID-2Z16 design frozen):** the post-ID-2Z15
 > review selected one bounded algorithmic sequence discriminator rather than
 > another nominal rate or predictor. ID-2Z16 uses the exact selected full-F
 > state32 prefix, a fixed five-arm B/F/H matrix, beam width two, two measured

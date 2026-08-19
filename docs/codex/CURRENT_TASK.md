@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID-2Z16 frozen):** the bounded
+> **Unique active task (2026-08-20, post-ID-2Z16):** ID-2Z16 completed all
+> `16/16` authentic rollouts, `1040/1040` advances and `5280/5280` artifacts.
+> The selected `f100__f8__f8` path replayed exactly but did not capture;
+> terminal maxima were `28.254919 mm / 0.416472 m/s / 2.44142% Ip`. The
+> reporting-only replay-population audit fix passed server tests `12/12` and
+> `535/535`; immutable raw re-audit passed with no failures and did not alter
+> the scientific route.
+>
+> The exact two-layer B/F/H beam is closed. The active work is one bounded
+> zero-new-TSC physical-action-basis/reachability review. It must inventory
+> materially different exact Card15 directions, moving-prefix headroom and
+> measured transient-versus-terminal utility, then either freeze one finite
+> new-basis discriminator or record a finite blocker. No third B/F/H round,
+> wider beam, extra F rate, nearby root, model fit, controller, calibration,
+> holdout, Recourse-L1 or relaxed capture gate is authorized. ID-2Z16 has
+> zero fit weight. Older blocks are historical.
+
+> **Historical active task (2026-08-20, ID-2Z16 frozen):** the bounded
 > post-ID-2Z15 sequence review freezes one exact full-F-prefix, two-layer
 > beam discriminator. Replay full-F through issue31/state32; branch
 > `h8/b8/f8/b4f4/f4b4` at issue32, retain the best two measured parents,
