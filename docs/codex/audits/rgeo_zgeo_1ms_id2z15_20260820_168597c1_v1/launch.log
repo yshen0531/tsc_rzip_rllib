@@ -1,0 +1,668 @@
+{
+  "advance_attempts": 336,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite canonical-source p03 nominal-allocation frontier only; not a model, tube, controller, MPC, recovery, waypoint, path, R_mid-crossing or global-reachability result.",
+  "complete_rollouts": 7,
+  "execution_integrity_passed": true,
+  "guarded_safe_stops": 0,
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 336,
+  "prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__q0"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f25"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f50"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f75"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f100"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__duty50"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "critical_replay"
+    }
+  ],
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 20200272932,
+  "required_artifact_files": 1715,
+  "required_artifact_inventory_sha256": "705dc016d5c2bddf07ea2ff3ebc1239773ddb3750067a299fecead8744208ac1",
+  "reset_calls": 7,
+  "rollouts_completed": 7,
+  "route": "ONE_MS_ID2Z15_CONSTANT_HEADROOM_NOMINAL_INSUFFICIENT_SEQUENCE_REACHABILITY_REQUIRED",
+  "run_root_isolation": {
+    "configured_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z15_20260820_168597c1_v1/rollouts",
+    "historical_default_forbidden": true,
+    "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z15_20260820_168597c1_v1",
+    "passed": true,
+    "required_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z15_20260820_168597c1_v1/rollouts",
+    "verified_before_runner_construction": true
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2z15-headroom-nominal-frontier-result-v1",
+  "scientific_metrics": {
+    "frontier_metrics": {
+      "branch_metrics": [
+        {
+          "arm_id": "q0",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.01368949828781709,
+            0.013982174922815315,
+            0.014205278209984542,
+            0.014443640520562389,
+            0.014692387533078777,
+            0.014843855874157874
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.014843855874157874,
+          "terminal_max_rz_step_speed_m_per_s": 0.9526816995971491,
+          "terminal_max_source_rz_distance_m": 0.04313262812534041,
+          "terminal_rz_step_speed_m_per_s": [
+            0.8951215654336216,
+            0.9514439312971777,
+            0.8811901400147363,
+            0.9526816995971491,
+            0.8675522438807192,
+            0.8531212804163338
+          ],
+          "terminal_source_rz_distance_m": [
+            0.03863230560956479,
+            0.03958237781042663,
+            0.040462590704750154,
+            0.0414133109589503,
+            0.042280086642165926,
+            0.04313262812534041
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 9.52681699597149
+        },
+        {
+          "arm_id": "f25",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.006505442032892687,
+            0.006872147624985023,
+            0.007205883626281347,
+            0.00754220541516412,
+            0.007860257288294028,
+            0.008176100534449721
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.008176100534449721,
+          "terminal_max_rz_step_speed_m_per_s": 0.8571507783944438,
+          "terminal_max_source_rz_distance_m": 0.039691386771545746,
+          "terminal_rz_step_speed_m_per_s": [
+            0.8360099012218649,
+            0.8571507783944438,
+            0.8162055888483613,
+            0.8131441997071026,
+            0.8526667316637971,
+            0.811051265945172
+          ],
+          "terminal_source_rz_distance_m": [
+            0.035542898718036876,
+            0.036399037724193915,
+            0.03721510335766008,
+            0.03802808937943548,
+            0.038880605274944205,
+            0.039691386771545746
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 8.571507783944437
+        },
+        {
+          "arm_id": "f50",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.002458428758031233,
+            0.00201216465071811,
+            0.001571577130244866,
+            0.0011772013735843949,
+            0.0006291933967397608,
+            0.00023413683321153825
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.002458428758031233,
+          "terminal_max_rz_step_speed_m_per_s": 0.7496521978790951,
+          "terminal_max_source_rz_distance_m": 0.03513765710188507,
+          "terminal_rz_step_speed_m_per_s": [
+            0.7104724685828597,
+            0.7134396089680834,
+            0.7496521978790951,
+            0.7098567187610895,
+            0.37617380206498396,
+            0.7421721130186292
+          ],
+          "terminal_source_rz_distance_m": [
+            0.03206830912354414,
+            0.03278159112629789,
+            0.033531133608909164,
+            0.034240870624851996,
+            0.034395837691182034,
+            0.03513765710188507
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 7.496521978790951
+        },
+        {
+          "arm_id": "f75",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.008297169090937324,
+            0.007812923631474013,
+            0.007290885400166688,
+            0.0068219117492175204,
+            0.006310239042190511,
+            0.005852698471830523
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.008297169090937324,
+          "terminal_max_rz_step_speed_m_per_s": 0.6634834843645634,
+          "terminal_max_source_rz_distance_m": 0.03144197822854183,
+          "terminal_rz_step_speed_m_per_s": [
+            0.6634834843645634,
+            0.6285170772916815,
+            0.6468019364009486,
+            0.6291255908488755,
+            0.6137241374145871,
+            0.6556418605536652
+          ],
+          "terminal_source_rz_distance_m": [
+            0.0282738885057792,
+            0.028900954264295516,
+            0.029547044345459426,
+            0.030174750219989634,
+            0.03078787209830623,
+            0.03144197822854183
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 6.634834843645634
+        },
+        {
+          "arm_id": "f100",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.01735692497679952,
+            0.016743859990642075,
+            0.01592150922007945,
+            0.01529218477600842,
+            0.01471603358569218,
+            0.014159919851963533
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.01735692497679952,
+          "terminal_max_rz_step_speed_m_per_s": 0.613146763440167,
+          "terminal_max_source_rz_distance_m": 0.026806784899231075,
+          "terminal_rz_step_speed_m_per_s": [
+            0.5648200314197691,
+            0.5429352391372345,
+            0.3240677533518152,
+            0.613146763440167,
+            0.5896501307006617,
+            0.5874004416990984
+          ],
+          "terminal_source_rz_distance_m": [
+            0.024529931840004706,
+            0.02506935002562382,
+            0.02502822191327568,
+            0.025638705720894092,
+            0.026222992655306285,
+            0.026806784899231075
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 6.1314676344016705
+        },
+        {
+          "arm_id": "duty50",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.002299516289277532,
+            0.0018593378921801516,
+            0.0014201727146932583,
+            0.0009750400892164894,
+            0.000583857412653385,
+            5.208012723500419e-05
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.002299516289277532,
+          "terminal_max_rz_step_speed_m_per_s": 0.7292881078732091,
+          "terminal_max_source_rz_distance_m": 0.03423067958888686,
+          "terminal_rz_step_speed_m_per_s": [
+            0.6811871753997238,
+            0.6843186463369726,
+            0.7292881078732091,
+            0.6823992920799307,
+            0.6846498957987399,
+            0.3644087985902978
+          ],
+          "terminal_source_rz_distance_m": [
+            0.031320696157408644,
+            0.03200472659276899,
+            0.03273370009782528,
+            0.033416069736365545,
+            0.034100632698537005,
+            0.03423067958888686
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 7.292881078732091
+        }
+      ],
+      "frontier_complete": true,
+      "passed": true,
+      "selected_arm_id": "f100",
+      "selected_capture_passed": false,
+      "selected_headroom_development_passed": false,
+      "selected_score_improvement_over_f100": 0.0,
+      "selected_score_improvement_over_q0": 3.39534936156982
+    },
+    "selected_arm_id": "f100",
+    "selected_capture_passed": false,
+    "selected_headroom_development_passed": false,
+    "selected_replay_exact_passed": true
+  },
+  "source_revision": "168597c10b76be25aeeabe627e725269149ca0c2",
+  "stage_config_sha256": "ca04d4060bdb6fa1552ecf67044857d22b67e5f965ed6fa2de14fe5987ff73ea",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 88108491776,
+    "estimated_raw_bytes": 30000000000,
+    "free_bytes_before_run": 118108491776,
+    "passed": true
+  },
+  "verified_plant_advances": 336
+}
+{
+  "advance_attempts": 336,
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw audit of finite ID2Z15 only.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "plant_advance_gotsc_calls": 336,
+  "primary_sha256": "4041dd1443e1438a77074047643a709bc69abd88db5e63546b853c2f5a98f1e9",
+  "recomputed_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__q0"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f25"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f50"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f75"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__f100"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "branch__duty50"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "critical_replay"
+    }
+  ],
+  "recomputed_required_artifact_bytes": 20200272932,
+  "recomputed_required_artifact_files": 1715,
+  "recomputed_required_artifact_inventory_sha256": "705dc016d5c2bddf07ea2ff3ebc1239773ddb3750067a299fecead8744208ac1",
+  "recomputed_route": "ONE_MS_ID2Z15_CONSTANT_HEADROOM_NOMINAL_INSUFFICIENT_SEQUENCE_REACHABILITY_REQUIRED",
+  "recomputed_scientific_metrics": {
+    "frontier_metrics": {
+      "branch_metrics": [
+        {
+          "arm_id": "q0",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.01368949828781709,
+            0.013982174922815315,
+            0.014205278209984542,
+            0.014443640520562389,
+            0.014692387533078777,
+            0.014843855874157874
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.014843855874157874,
+          "terminal_max_rz_step_speed_m_per_s": 0.9526816995971491,
+          "terminal_max_source_rz_distance_m": 0.04313262812534041,
+          "terminal_rz_step_speed_m_per_s": [
+            0.8951215654336216,
+            0.9514439312971777,
+            0.8811901400147363,
+            0.9526816995971491,
+            0.8675522438807192,
+            0.8531212804163338
+          ],
+          "terminal_source_rz_distance_m": [
+            0.03863230560956479,
+            0.03958237781042663,
+            0.040462590704750154,
+            0.0414133109589503,
+            0.042280086642165926,
+            0.04313262812534041
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 9.52681699597149
+        },
+        {
+          "arm_id": "f25",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.006505442032892687,
+            0.006872147624985023,
+            0.007205883626281347,
+            0.00754220541516412,
+            0.007860257288294028,
+            0.008176100534449721
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.008176100534449721,
+          "terminal_max_rz_step_speed_m_per_s": 0.8571507783944438,
+          "terminal_max_source_rz_distance_m": 0.039691386771545746,
+          "terminal_rz_step_speed_m_per_s": [
+            0.8360099012218649,
+            0.8571507783944438,
+            0.8162055888483613,
+            0.8131441997071026,
+            0.8526667316637971,
+            0.811051265945172
+          ],
+          "terminal_source_rz_distance_m": [
+            0.035542898718036876,
+            0.036399037724193915,
+            0.03721510335766008,
+            0.03802808937943548,
+            0.038880605274944205,
+            0.039691386771545746
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 8.571507783944437
+        },
+        {
+          "arm_id": "f50",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.002458428758031233,
+            0.00201216465071811,
+            0.001571577130244866,
+            0.0011772013735843949,
+            0.0006291933967397608,
+            0.00023413683321153825
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.002458428758031233,
+          "terminal_max_rz_step_speed_m_per_s": 0.7496521978790951,
+          "terminal_max_source_rz_distance_m": 0.03513765710188507,
+          "terminal_rz_step_speed_m_per_s": [
+            0.7104724685828597,
+            0.7134396089680834,
+            0.7496521978790951,
+            0.7098567187610895,
+            0.37617380206498396,
+            0.7421721130186292
+          ],
+          "terminal_source_rz_distance_m": [
+            0.03206830912354414,
+            0.03278159112629789,
+            0.033531133608909164,
+            0.034240870624851996,
+            0.034395837691182034,
+            0.03513765710188507
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 7.496521978790951
+        },
+        {
+          "arm_id": "f75",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.008297169090937324,
+            0.007812923631474013,
+            0.007290885400166688,
+            0.0068219117492175204,
+            0.006310239042190511,
+            0.005852698471830523
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.008297169090937324,
+          "terminal_max_rz_step_speed_m_per_s": 0.6634834843645634,
+          "terminal_max_source_rz_distance_m": 0.03144197822854183,
+          "terminal_rz_step_speed_m_per_s": [
+            0.6634834843645634,
+            0.6285170772916815,
+            0.6468019364009486,
+            0.6291255908488755,
+            0.6137241374145871,
+            0.6556418605536652
+          ],
+          "terminal_source_rz_distance_m": [
+            0.0282738885057792,
+            0.028900954264295516,
+            0.029547044345459426,
+            0.030174750219989634,
+            0.03078787209830623,
+            0.03144197822854183
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 6.634834843645634
+        },
+        {
+          "arm_id": "f100",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.01735692497679952,
+            0.016743859990642075,
+            0.01592150922007945,
+            0.01529218477600842,
+            0.01471603358569218,
+            0.014159919851963533
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.01735692497679952,
+          "terminal_max_rz_step_speed_m_per_s": 0.613146763440167,
+          "terminal_max_source_rz_distance_m": 0.026806784899231075,
+          "terminal_rz_step_speed_m_per_s": [
+            0.5648200314197691,
+            0.5429352391372345,
+            0.3240677533518152,
+            0.613146763440167,
+            0.5896501307006617,
+            0.5874004416990984
+          ],
+          "terminal_source_rz_distance_m": [
+            0.024529931840004706,
+            0.02506935002562382,
+            0.02502822191327568,
+            0.025638705720894092,
+            0.026222992655306285,
+            0.026806784899231075
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 6.1314676344016705
+        },
+        {
+          "arm_id": "duty50",
+          "capture_passed": false,
+          "execution_status": "complete",
+          "headroom_development_passed": false,
+          "terminal_absolute_source_ip_fraction": [
+            0.002299516289277532,
+            0.0018593378921801516,
+            0.0014201727146932583,
+            0.0009750400892164894,
+            0.000583857412653385,
+            5.208012723500419e-05
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.002299516289277532,
+          "terminal_max_rz_step_speed_m_per_s": 0.7292881078732091,
+          "terminal_max_source_rz_distance_m": 0.03423067958888686,
+          "terminal_rz_step_speed_m_per_s": [
+            0.6811871753997238,
+            0.6843186463369726,
+            0.7292881078732091,
+            0.6823992920799307,
+            0.6846498957987399,
+            0.3644087985902978
+          ],
+          "terminal_source_rz_distance_m": [
+            0.031320696157408644,
+            0.03200472659276899,
+            0.03273370009782528,
+            0.033416069736365545,
+            0.034100632698537005,
+            0.03423067958888686
+          ],
+          "terminal_state_indices": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "terminal_worst_normalized_score": 7.292881078732091
+        }
+      ],
+      "frontier_complete": true,
+      "passed": true,
+      "selected_arm_id": "f100",
+      "selected_capture_passed": false,
+      "selected_headroom_development_passed": false,
+      "selected_score_improvement_over_f100": 0.0,
+      "selected_score_improvement_over_q0": 3.39534936156982
+    },
+    "selected_arm_id": "f100",
+    "selected_capture_passed": false,
+    "selected_headroom_development_passed": false,
+    "selected_replay_exact_passed": true
+  },
+  "reset_calls": 7,
+  "schema_version": "rgeo-zgeo-1ms-id2z15-independent-raw-v1",
+  "source_revision": "168597c10b76be25aeeabe627e725269149ca0c2",
+  "stage_config_sha256": "ca04d4060bdb6fa1552ecf67044857d22b67e5f965ed6fa2de14fe5987ff73ea",
+  "verified_plant_advances": 336
+}

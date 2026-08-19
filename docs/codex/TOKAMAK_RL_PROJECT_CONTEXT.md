@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID-2Z15 frozen):** the final
+> **Current NR route notice (2026-08-20, post-ID-2Z15):** the canonical-source
+> fractional/duty frontier completed cleanly. Full-F was the best branch but
+> still failed capture at terminal maxima `26.806785 mm / 0.613147 m/s`;
+> no headroom arm beat both q0 and full-F. The official result closes the
+> constant-rate/duty p03 family, not sequential reachability. The next
+> permitted work is one bounded algorithmic sequence/reachability design
+> around the exact full-F prefix. ID-2Z15 stays zero fit weight; models,
+> recourse, controller, waypoint/path and R_mid crossing remain unqualified.
+> Older notices are historical.
+
+> **Historical NR route notice (2026-08-20, ID-2Z15 frozen):** the final
 > source-local pulse-macro family remains closed. A bounded zero-TSC review
 > instead returned to the strongest measured takeover nominal: p03-forward
 > stride1. Because full stride consumes the complete per-issue slew budget,

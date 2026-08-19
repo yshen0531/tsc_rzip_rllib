@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID-2Z15 frozen):** the bounded
+> **Unique active task (2026-08-20, post-ID-2Z15):** ID-2Z15 completed all
+> `7/7` authentic rollouts, `336/336` advances and `1715/1715` artifacts;
+> selected `f100` replay and independent raw audit passed. No branch
+> captured. No fractional/duty arm beat both q0 and f100, so the official
+> route is
+> `ONE_MS_ID2Z15_CONSTANT_HEADROOM_NOMINAL_INSUFFICIENT_SEQUENCE_REACHABILITY_REQUIRED`.
+>
+> Constant fractional/duty p03 nominal allocation is closed. The active work
+> is one bounded zero-new-TSC full-F-prefix sequence/reachability design,
+> followed by at most one prospectively frozen finite teacher campaign. It
+> must use algorithmic sequence selection rather than another constant rate,
+> nearby root or manually extended late pulse. ID-2Z15 remains zero fit
+> weight. Model, calibration/holdout, controller, Recourse-L1, waypoint/path
+> and R_mid crossing remain blocked. Older blocks are historical.
+
+> **Historical active task (2026-08-20, ID-2Z15 frozen):** the bounded
 > post-ID-2Z14 review is complete. It closes the measured
 > B/F/p04/p01/p09 source-local pulse-macro family and freezes exactly one
 > materially different discriminator: a canonical-source p03-forward

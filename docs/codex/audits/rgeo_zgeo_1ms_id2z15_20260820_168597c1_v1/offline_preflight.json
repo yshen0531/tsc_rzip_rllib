@@ -1,0 +1,63 @@
+{
+  "advance_attempts": 0,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z15-offline-v1",
+  "sequence_checks": [
+    {
+      "arm_id": "q0",
+      "attained_f_level": "0",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 118.0,
+      "passed": true,
+      "rollout_id": "branch__q0"
+    },
+    {
+      "arm_id": "f25",
+      "attained_f_level": "7.75",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 115.83,
+      "passed": true,
+      "rollout_id": "branch__f25"
+    },
+    {
+      "arm_id": "f50",
+      "attained_f_level": "15.5",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 113.35,
+      "passed": true,
+      "rollout_id": "branch__f50"
+    },
+    {
+      "arm_id": "f75",
+      "attained_f_level": "23.25",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 110.87,
+      "passed": true,
+      "rollout_id": "branch__f75"
+    },
+    {
+      "arm_id": "f100",
+      "attained_f_level": "31.0",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "branch__f100"
+    },
+    {
+      "arm_id": "duty50",
+      "attained_f_level": "16",
+      "failures": [],
+      "minimum_absolute_current_headroom_a": 113.2,
+      "passed": true,
+      "rollout_id": "branch__duty50"
+    }
+  ],
+  "source_revision": "168597c10b76be25aeeabe627e725269149ca0c2",
+  "stage_config_sha256": "ca04d4060bdb6fa1552ecf67044857d22b67e5f965ed6fa2de14fe5987ff73ea",
+  "static_sequence_count": 6,
+  "static_sequences_passed": 6
+}

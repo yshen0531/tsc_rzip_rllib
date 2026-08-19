@@ -1,6 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Z14 nominal-frontier amendment (2026-08-20):** the measured
+> **Post-ID-2Z15 sequence amendment (2026-08-20):** exact execution and
+> independent audit showed a monotone finite nominal frontier: full-F was
+> best, while every reserved-headroom fraction lost terminal utility and no
+> branch captured. The architecture must therefore stop treating nominal
+> rate as the remaining degree of freedom. Keep full-F as the measured
+> transport prefix and move to one bounded, truth-recentered sequence/
+> reachability discriminator with explicit beam budget and fresh replay.
+> This is still authority work before model fitting: ID-2Z15 has zero fit
+> weight, and any sequence PASS must still connect to Recourse-L1 before a
+> controller. No constant-rate refinement or relaxed capture gate may reopen
+> the failed route. Older amendments are historical.
+
+> **Historical post-ID-2Z14 nominal-frontier amendment (2026-08-20):** the measured
 > B/F/p04/p01/p09 pulse-macro family remains closed, but the architecture
 > must not confuse that closure with failure of the strongest measured
 > moving nominal. Full p03-forward stride transports substantially better

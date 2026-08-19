@@ -1,6 +1,18 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z15 design frozen):** the bounded
+> **Current status (2026-08-20, ID-2Z15 final):** server focused `11/11`
+> and all one-ms `523/523` tests passed. All `7/7` authentic rollouts,
+> `336/336` advances, `343` states and `1715` artifacts completed; exact
+> selected replay and independent raw audit passed. `f100` was best, but its
+> terminal maxima remained `26.806785 mm / 0.613147 m/s / 1.73569% Ip`.
+> No fractional/duty branch captured or qualified a headroom-development
+> route. This closes the finite constant-rate/duty frontier, not sequential
+> reachability. The exact audited `20.514 GB` raw tree was removed after
+> compact hash recovery; free space is `118106660864` bytes. A bounded
+> full-F-prefix sequence/reachability design is active; no model/controller
+> route is open.
+
+> **Historical status (2026-08-20, ID-2Z15 design frozen):** the bounded
 > zero-new-TSC post-ID-2Z14 review found that the full p03-forward nominal is
 > still the strongest measured transport direction but consumes the complete
 > per-cycle slew allocation. Exact actuator geometry shows that fractional
