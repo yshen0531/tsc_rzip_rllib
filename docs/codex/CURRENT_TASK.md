@@ -1,5 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-20, post-ID-2Z11):** ID-2Z11 is final as
+> `ONE_MS_ID2Z11_BOUNDED_GRAMMAR_NO_CAPTURE_AUTHORITY_REVIEW`. All 17
+> rollouts, 1,309 advances, 6,630 artifacts, exact replay and independent raw
+> audit passed, but the selected `b8 -> b4f4` path ended with terminal maxima
+> `29.665859 mm / 0.331634 m/s` and did not capture. The non-nested `f8`
+> history confirmed finite `b4f4` utility but not capture.
+>
+> The manual H/B/F/U/P macro ladder and both rejected model classes are
+> closed. The active work is one zero-new-TSC authority/nominal/reachability
+> audit: reconstruct takeover-to-capture timing, enumerate the exact signed
+> Card15 allocation polygon, separate transport/braking/capture objectives,
+> and freeze at most one algorithmic bounded branch-search campaign. Do not
+> add hand depth, fit a model, open calibration/holdout, issue a controller or
+> claim Recourse-L1/waypoint/R_mid crossing. Older blocks are historical.
+
 > **Unique active task (2026-08-19, post-ID-2Z10 route accepted):** the user
 > accepted the bounded action/teacher-first correction recorded in
 > `RGEO_ZGEO_1MS_POST_ID2Z10_ACTION_TEACHER_ROUTE_REVIEW.md`. ID-2Z10 remains

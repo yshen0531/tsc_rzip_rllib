@@ -1,0 +1,876 @@
+{
+  "advance_attempts": 1309,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite source-local capture-teacher evidence only.",
+  "complete_rollouts": 17,
+  "execution_integrity_passed": true,
+  "guarded_safe_stops": 0,
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 1309,
+  "prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "root__h8"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "root__b8"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "root__f8"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "root__u4h4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "root__p4h4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "root__b4f4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "root__f4b4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "main__h8"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "main__b8"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "main__f8"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "main__u4h4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "main__p4h4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "main__b4f4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "main__f4b4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "alternate__h8"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "alternate__b4f4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "critical_replay"
+    }
+  ],
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 78092017224,
+  "required_artifact_files": 6630,
+  "required_artifact_inventory_sha256": "dc9c13f0e0e7e44fcfdb1a098713fcfe06616bcf11072f34331276acdc0061e2",
+  "reset_calls": 17,
+  "rollouts_completed": 17,
+  "route": "ONE_MS_ID2Z11_BOUNDED_GRAMMAR_NO_CAPTURE_AUTHORITY_REVIEW",
+  "run_root_isolation": {
+    "configured_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z11_20260819_fc926090_v1/rollouts",
+    "historical_default_forbidden": true,
+    "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z11_20260819_fc926090_v1",
+    "passed": true,
+    "required_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z11_20260819_fc926090_v1/rollouts",
+    "verified_before_runner_construction": true
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2z11-bounded-capture-teacher-result-v1",
+  "scientific_metrics": {
+    "alternate_metrics": {
+      "baseline_complete": true,
+      "baseline_terminal_worst_normalized_score": 4.110688134151481,
+      "branch_metrics": [
+        {
+          "arm_id": "h8",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "terminal_absolute_source_ip_fraction": [
+            0.021237853338724324,
+            0.02046125406817653,
+            0.01973650479296505,
+            0.019020743446916573,
+            0.018284477987930203,
+            0.017564826773534794
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.021237853338724324,
+          "terminal_max_rz_step_speed_m_per_s": 0.4110688134151481,
+          "terminal_max_source_rz_distance_m": 0.030658768031938566,
+          "terminal_rz_step_speed_m_per_s": [
+            0.4110688134151481,
+            0.38843931816686517,
+            0.40184053560751964,
+            0.39137188664007216,
+            0.3923047090343165,
+            0.36724446386366955
+          ],
+          "terminal_source_rz_distance_m": [
+            0.028857519711739155,
+            0.029213128834476593,
+            0.029582961760859103,
+            0.02994852268923977,
+            0.030318530949775022,
+            0.030658768031938566
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.110688134151481,
+          "tokens": "HHHHHHHH"
+        },
+        {
+          "arm_id": "b4f4",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.36016253895249006,
+          "terminal_absolute_source_ip_fraction": [
+            0.028979416903876388,
+            0.028188434389646484,
+            0.027383573643401448,
+            0.02659373859238971,
+            0.025607735275210982,
+            0.0247413685827044
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.028979416903876388,
+          "terminal_max_rz_step_speed_m_per_s": 0.3750525595198991,
+          "terminal_max_source_rz_distance_m": 0.028228912280766495,
+          "terminal_rz_step_speed_m_per_s": [
+            0.33902229602930195,
+            0.3144630033983185,
+            0.28807406033731703,
+            0.3374258718075267,
+            0.2938649046968604,
+            0.3750525595198991
+          ],
+          "terminal_source_rz_distance_m": [
+            0.0272635603097747,
+            0.02753768841106727,
+            0.027791684171236487,
+            0.028086430395632234,
+            0.027902290061316254,
+            0.028228912280766495
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 3.7505255951989906,
+          "tokens": "BBBBFFFF"
+        }
+      ],
+      "nominated_arm_ids": [
+        "b4f4"
+      ],
+      "passed": true,
+      "selected_arm_id": "b4f4",
+      "selected_capture_passed": false
+    },
+    "alternate_parent_arm_id": "f8",
+    "alternate_selected_arm_score_improvement_over_hold": 0.36016253895249006,
+    "alternate_support_passed": true,
+    "main_metrics": {
+      "baseline_complete": true,
+      "baseline_terminal_worst_normalized_score": 4.240326955112727,
+      "branch_metrics": [
+        {
+          "arm_id": "h8",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "terminal_absolute_source_ip_fraction": [
+            0.019585621370462353,
+            0.018898498660723347,
+            0.018223518604928608,
+            0.0175111485081129,
+            0.016841605318430014,
+            0.01616452211278117
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.019585621370462353,
+          "terminal_max_rz_step_speed_m_per_s": 0.42403269551127276,
+          "terminal_max_source_rz_distance_m": 0.031606001372954905,
+          "terminal_rz_step_speed_m_per_s": [
+            0.3816613231193671,
+            0.38931938126040716,
+            0.42403269551127276,
+            0.376854566212519,
+            0.38010519752594457,
+            0.40135422210937055
+          ],
+          "terminal_source_rz_distance_m": [
+            0.02973558422425575,
+            0.03010505123665131,
+            0.030504762207152866,
+            0.03086415554229498,
+            0.031225620451669187,
+            0.031606001372954905
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.240326955112727,
+          "tokens": "HHHHHHHH"
+        },
+        {
+          "arm_id": "b8",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.8174826268198063,
+          "terminal_absolute_source_ip_fraction": [
+            0.025943369864673303,
+            0.025151044914366465,
+            0.02436178838937831,
+            0.02360399920529063,
+            0.022827674814511013,
+            0.022074913373159206
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.025943369864673303,
+          "terminal_max_rz_step_speed_m_per_s": 0.3422844328292921,
+          "terminal_max_source_rz_distance_m": 0.03063643784212549,
+          "terminal_rz_step_speed_m_per_s": [
+            0.3422844328292921,
+            0.3192665490408546,
+            0.3286234093826192,
+            0.33873082434473445,
+            0.3203234670282344,
+            0.31006053760685615
+          ],
+          "terminal_source_rz_distance_m": [
+            0.029055296655979355,
+            0.02936546882834736,
+            0.02968918001547953,
+            0.030020554917123285,
+            0.03033300560534047,
+            0.03063643784212549
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 3.422844328292921,
+          "tokens": "BBBBBBBB"
+        },
+        {
+          "arm_id": "f8",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.8498730008580759,
+          "terminal_absolute_source_ip_fraction": [
+            0.029019731537779477,
+            0.028229442615522612,
+            0.02742312436725107,
+            0.02664135991408331,
+            0.025864472978661925,
+            0.024832970667301807
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.029019731537779477,
+          "terminal_max_rz_step_speed_m_per_s": 0.33904539542546513,
+          "terminal_max_source_rz_distance_m": 0.028422717179333767,
+          "terminal_rz_step_speed_m_per_s": [
+            0.33904539542546513,
+            0.31417250172996447,
+            0.29156490622547265,
+            0.3350442055254704,
+            0.31594711139450965,
+            0.24982050535188197
+          ],
+          "terminal_source_rz_distance_m": [
+            0.027322914308489956,
+            0.02759427894251188,
+            0.027849557316353434,
+            0.028144461937006537,
+            0.028422717179333767,
+            0.028282090958699813
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 3.3904539542546512,
+          "tokens": "FFFFFFFF"
+        },
+        {
+          "arm_id": "u4h4",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "score_improvement_over_hold": -0.012713840179433333,
+          "terminal_absolute_source_ip_fraction": [
+            0.01526279181847471,
+            0.014595898341905646,
+            0.01394905510702969,
+            0.013274190117184408,
+            0.012627270171675326,
+            0.01200766880033342
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.01526279181847471,
+          "terminal_max_rz_step_speed_m_per_s": 0.4253040795292161,
+          "terminal_max_source_rz_distance_m": 0.033307080254119104,
+          "terminal_rz_step_speed_m_per_s": [
+            0.42398805291441916,
+            0.40697340257964193,
+            0.4232233107962415,
+            0.4012378490873307,
+            0.38541345726446347,
+            0.4253040795292161
+          ],
+          "terminal_source_rz_distance_m": [
+            0.03131251247133125,
+            0.03170937709292203,
+            0.032122951466788986,
+            0.032515519581108425,
+            0.032893547032474116,
+            0.033307080254119104
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.2530407952921605,
+          "tokens": "UUUUHHHH"
+        },
+        {
+          "arm_id": "p4h4",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.019066322540647995,
+          "terminal_absolute_source_ip_fraction": [
+            0.016895600015212942,
+            0.016242719014266806,
+            0.015549280462413141,
+            0.014909018360590914,
+            0.014280058292026361,
+            0.013501828920528048
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.016895600015212942,
+          "terminal_max_rz_step_speed_m_per_s": 0.422126063257208,
+          "terminal_max_source_rz_distance_m": 0.03206151488910581,
+          "terminal_rz_step_speed_m_per_s": [
+            0.422126063257208,
+            0.40504733249744834,
+            0.4035072849840659,
+            0.3921402085022806,
+            0.39770625724026415,
+            0.2339498617225813
+          ],
+          "terminal_source_rz_distance_m": [
+            0.03054264106332498,
+            0.03092590039459885,
+            0.03131045936508479,
+            0.03168367098699476,
+            0.03206151488910581,
+            0.031970120311565105
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.221260632572079,
+          "tokens": "PPPPHHHH"
+        },
+        {
+          "arm_id": "b4f4",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.9239878491937406,
+          "terminal_absolute_source_ip_fraction": [
+            0.027447962630952026,
+            0.026669467968514642,
+            0.02587740191659406,
+            0.025085668277416207,
+            0.02434919825674185,
+            0.023606489104585727
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.027447962630952026,
+          "terminal_max_rz_step_speed_m_per_s": 0.3316339105918987,
+          "terminal_max_source_rz_distance_m": 0.029665858820339806,
+          "terminal_rz_step_speed_m_per_s": [
+            0.3316339105918987,
+            0.310316147619245,
+            0.3185774487691366,
+            0.31926497915049307,
+            0.2981602801536184,
+            0.3085819975776503
+          ],
+          "terminal_source_rz_distance_m": [
+            0.028215657455636974,
+            0.028503372402888354,
+            0.028798954801119304,
+            0.029097886463402906,
+            0.029377771979174055,
+            0.029665858820339806
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 3.3163391059189866,
+          "tokens": "BBBBFFFF"
+        },
+        {
+          "arm_id": "f4b4",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.8820413917889356,
+          "terminal_absolute_source_ip_fraction": [
+            0.027464564090437696,
+            0.026667262537816722,
+            0.025887284803141907,
+            0.025089471846301135,
+            0.024327265408264673,
+            0.02356807625512516
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.027464564090437696,
+          "terminal_max_rz_step_speed_m_per_s": 0.3358285563323792,
+          "terminal_max_source_rz_distance_m": 0.029611676712022413,
+          "terminal_rz_step_speed_m_per_s": [
+            0.3358285563323792,
+            0.31832397725030986,
+            0.3127169717640309,
+            0.31981895295187784,
+            0.2992891168435602,
+            0.3285084429528591
+          ],
+          "terminal_source_rz_distance_m": [
+            0.0281342395667412,
+            0.028430801709611864,
+            0.028722748110276496,
+            0.02902296458002357,
+            0.029304392920218678,
+            0.029611676712022413
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 3.3582855633237916,
+          "tokens": "FFFFBBBB"
+        }
+      ],
+      "nominated_arm_ids": [
+        "b4f4",
+        "f4b4",
+        "f8",
+        "b8"
+      ],
+      "passed": true,
+      "selected_arm_id": "b4f4",
+      "selected_capture_passed": false
+    },
+    "root_metrics": {
+      "baseline_complete": true,
+      "baseline_terminal_worst_normalized_score": 4.175529802411135,
+      "branch_metrics": [
+        {
+          "arm_id": "h8",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "terminal_absolute_source_ip_fraction": [
+            0.016873775840132523,
+            0.01620489747593534,
+            0.015509742523669037,
+            0.014866009265704737,
+            0.014225507443154366,
+            0.01344058826520557
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.016873775840132523,
+          "terminal_max_rz_step_speed_m_per_s": 0.4175529802411135,
+          "terminal_max_source_rz_distance_m": 0.03205967176512708,
+          "terminal_rz_step_speed_m_per_s": [
+            0.41645937995947635,
+            0.3951922356588148,
+            0.39734601050880997,
+            0.3860068889712567,
+            0.4175529802411135,
+            0.24962455473819836
+          ],
+          "terminal_source_rz_distance_m": [
+            0.030543727283058698,
+            0.030918206376959984,
+            0.031296769341024426,
+            0.03166395469690446,
+            0.03205967176512708,
+            0.031946193145136345
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.175529802411135,
+          "tokens": "HHHHHHHH"
+        },
+        {
+          "arm_id": "b8",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.22141806000540365,
+          "terminal_absolute_source_ip_fraction": [
+            0.022861456259505933,
+            0.022107518588448623,
+            0.021383271128627715,
+            0.0206641920477033,
+            0.01967072542519175,
+            0.01887856028870352
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.022861456259505933,
+          "terminal_max_rz_step_speed_m_per_s": 0.39541117424057315,
+          "terminal_max_source_rz_distance_m": 0.030806178181229174,
+          "terminal_rz_step_speed_m_per_s": [
+            0.34004488576835595,
+            0.3370499546632594,
+            0.34216510683624046,
+            0.3548028992624342,
+            0.3315748575465934,
+            0.39541117424057315
+          ],
+          "terminal_source_rz_distance_m": [
+            0.029580416889063214,
+            0.029908724632773533,
+            0.030240296870688195,
+            0.030584501445326342,
+            0.030433169618680932,
+            0.030806178181229174
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 3.9541117424057313,
+          "tokens": "BBBBBBBB"
+        },
+        {
+          "arm_id": "f8",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.09534853125917397,
+          "terminal_absolute_source_ip_fraction": [
+            0.025677334193250908,
+            0.024890887195195534,
+            0.02410868165588805,
+            0.02336014569190255,
+            0.022590773202235962,
+            0.021859209465795434
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.025677334193250908,
+          "terminal_max_rz_step_speed_m_per_s": 0.4080181271151961,
+          "terminal_max_source_rz_distance_m": 0.029004764687613697,
+          "terminal_rz_step_speed_m_per_s": [
+            0.3702022270381728,
+            0.3594641625149024,
+            0.3798985951907928,
+            0.4080181271151961,
+            0.36812017112785456,
+            0.3899314767382299
+          ],
+          "terminal_source_rz_distance_m": [
+            0.027322940951443202,
+            0.0276351505902523,
+            0.02797197450947448,
+            0.028328735325069066,
+            0.028659669642709017,
+            0.029004764687613697
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.080181271151961,
+          "tokens": "FFFFFFFF"
+        },
+        {
+          "arm_id": "u4h4",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "score_improvement_over_hold": -0.39371956511338446,
+          "terminal_absolute_source_ip_fraction": [
+            0.012696917033860928,
+            0.012080339339968669,
+            0.01147210073113575,
+            0.010646707105465256,
+            0.01006080727220885,
+            0.00949530607477022
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.012696917033860928,
+          "terminal_max_rz_step_speed_m_per_s": 0.456924936752452,
+          "terminal_max_source_rz_distance_m": 0.033758919528055494,
+          "terminal_rz_step_speed_m_per_s": [
+            0.4166890735790976,
+            0.41148290581393376,
+            0.4428002104787067,
+            0.23967976740074096,
+            0.456924936752452,
+            0.42059409512387685
+          ],
+          "terminal_source_rz_distance_m": [
+            0.032148279539906684,
+            0.032547727292422675,
+            0.032975494670053326,
+            0.03290885674931707,
+            0.03335104095273426,
+            0.033758919528055494
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.569249367524519,
+          "tokens": "UUUUHHHH"
+        },
+        {
+          "arm_id": "p4h4",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "score_improvement_over_hold": -0.5542989808665553,
+          "terminal_absolute_source_ip_fraction": [
+            0.014137788834351187,
+            0.013514773839841994,
+            0.012914778427777064,
+            0.012363663670297068,
+            0.01175710630283675,
+            0.011163391573846443
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.014137788834351187,
+          "terminal_max_rz_step_speed_m_per_s": 0.4729828783277691,
+          "terminal_max_source_rz_distance_m": 0.032973377456948755,
+          "terminal_rz_step_speed_m_per_s": [
+            0.19716357021640488,
+            0.4729828783277691,
+            0.4177627887929321,
+            0.44771353879739645,
+            0.43230490911211183,
+            0.40568870162359427
+          ],
+          "terminal_source_rz_distance_m": [
+            0.030913909764391123,
+            0.03135725929847737,
+            0.031754595376725286,
+            0.03217589616693304,
+            0.03258726350419896,
+            0.032973377456948755
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.72982878327769,
+          "tokens": "PPPPHHHH"
+        },
+        {
+          "arm_id": "b4f4",
+          "capture_passed": false,
+          "eligible": false,
+          "execution_status": "complete",
+          "score_improvement_over_hold": -0.014760113334631342,
+          "terminal_absolute_source_ip_fraction": [
+            0.024436315965586815,
+            0.023673594927054144,
+            0.0226550407312845,
+            0.021877428241126214,
+            0.02107014152111345,
+            0.02031787230632322
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.024436315965586815,
+          "terminal_max_rz_step_speed_m_per_s": 0.4190289915745766,
+          "terminal_max_source_rz_distance_m": 0.029909699303420575,
+          "terminal_rz_step_speed_m_per_s": [
+            0.3550552497295035,
+            0.3381883680177738,
+            0.25917438339517734,
+            0.3536177571280401,
+            0.3674691871884836,
+            0.4190289915745766
+          ],
+          "terminal_source_rz_distance_m": [
+            0.028676516129227354,
+            0.028990188847170747,
+            0.02884782374759516,
+            0.02917225106924437,
+            0.029518934625383398,
+            0.029909699303420575
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.190289915745766,
+          "tokens": "BBBBFFFF"
+        },
+        {
+          "arm_id": "f4b4",
+          "capture_passed": false,
+          "eligible": true,
+          "execution_status": "complete",
+          "score_improvement_over_hold": 0.16341178121519473,
+          "terminal_absolute_source_ip_fraction": [
+            0.02440418060292434,
+            0.023409010365105554,
+            0.022597389494329843,
+            0.02179110960137475,
+            0.021060661365388648,
+            0.020273492008872778
+          ],
+          "terminal_max_absolute_source_ip_fraction": 0.02440418060292434,
+          "terminal_max_rz_step_speed_m_per_s": 0.401211802119594,
+          "terminal_max_source_rz_distance_m": 0.029831723554251354,
+          "terminal_rz_step_speed_m_per_s": [
+            0.3566897443244921,
+            0.2989624059564346,
+            0.3844650696048624,
+            0.3594636035028568,
+            0.37112683436387983,
+            0.401211802119594
+          ],
+          "terminal_source_rz_distance_m": [
+            0.028604283336352714,
+            0.028432098784645258,
+            0.02878317342774597,
+            0.02911489101189725,
+            0.02945609168094239,
+            0.029831723554251354
+          ],
+          "terminal_state_indices": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "terminal_worst_normalized_score": 4.01211802119594,
+          "tokens": "FFFFBBBB"
+        }
+      ],
+      "nominated_arm_ids": [
+        "b8",
+        "f4b4",
+        "f8"
+      ],
+      "passed": true,
+      "selected_arm_id": "b8",
+      "selected_capture_passed": false
+    },
+    "selected_main_arm_id": "b4f4",
+    "selected_path_capture_passed": false,
+    "selected_path_replay_exact_passed": true,
+    "selected_root_arm_id": "b8",
+    "selected_root_committed_tokens": "BBBB"
+  },
+  "source_revision": "fc926090d57259d9410cd051b94cb26b0d5d036a",
+  "stage_config_sha256": "bbd9075f1ca47740a04779e3407856125bf235b5f0a80fc909a409465b13aafe",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 41247112192,
+    "estimated_raw_bytes": 82000000000,
+    "free_bytes_before_run": 123247112192,
+    "passed": true
+  },
+  "verified_plant_advances": 1309
+}

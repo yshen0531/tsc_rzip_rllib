@@ -1,5 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-20, post-ID-2Z11):** one bounded signed
+> capture teacher completed cleanly but did not capture. Its exact selected
+> path was `b8 -> b4f4`; the terminal six-state maxima were `29.665859 mm`
+> and `0.331634 m/s`, while Ip remained within `2.7448%`. Fresh replay and
+> independent raw audit passed. A non-nested `f8` arrival confirmed finite
+> action utility, not recovery or history generalization.
+>
+> The next route is a zero-new-TSC takeover-to-capture authority/nominal/
+> reachability audit and at most one frozen algorithmic branch-search design.
+> Manual macro depth, larger models, calibration/holdout, controller issue,
+> Recourse-L1, waypoint/path and R_mid crossing remain blocked. Older route
+> notices below are historical.
+
 > **Current route notice (2026-08-19, post-ID-2Z10 accepted):** the project
 > now puts finite capture-capable action utility before another model. The
 > five nested state49--65 contexts cleanly rejected the unchanged stable/GRU4

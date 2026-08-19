@@ -1,5 +1,17 @@
 # Current status
 
+> **Current status (2026-08-20, ID-2Z11 final):** exact execution, prefix,
+> Card15, raw, fresh replay and independent audit all passed for 17/17
+> rollouts and 1,309/1,309 advances. Root selected `b8`; main selected
+> `b4f4`; the alternate `f8` arrival also showed finite `b4f4` improvement.
+> The selected path nevertheless failed six-state capture at terminal maxima
+> `29.665859 mm / 0.331634 m/s / 2.7448% Ip`. The official route is
+> `ONE_MS_ID2Z11_BOUNDED_GRAMMAR_NO_CAPTURE_AUTHORITY_REVIEW`.
+>
+> No model, calibration, holdout, controller, recovery, waypoint or crossing
+> result was produced. The next active work is zero-new-TSC authority,
+> nominal and reachability review; older status blocks are historical.
+
 > **Current status (2026-08-19, post-ID-2Z10 route accepted):** the accepted
 > successor is one prospectively frozen action-grammar and exact-TSC capture
 > teacher. ID-2Z9 proved finite B/F/H utility but no capture; ID-2Z10 proved

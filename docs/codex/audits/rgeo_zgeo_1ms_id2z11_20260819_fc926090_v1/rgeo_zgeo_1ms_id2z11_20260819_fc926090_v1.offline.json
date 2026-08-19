@@ -1,0 +1,407 @@
+{
+  "advance_attempts": 0,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z11-offline-v1",
+  "sequence_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "f4b4"
+      ]
+    }
+  ],
+  "source_revision": "fc926090d57259d9410cd051b94cb26b0d5d036a",
+  "stage_config_sha256": "bbd9075f1ca47740a04779e3407856125bf235b5f0a80fc909a409465b13aafe",
+  "static_root_main_sequence_count": 49,
+  "static_root_main_sequences_passed": 49
+}
