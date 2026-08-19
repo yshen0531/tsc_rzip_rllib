@@ -130,3 +130,13 @@ The project pauses at this route-review boundary. The final goal remains the
 fixed-1100-ms, exact-observation, one-ms, slew-limited, safe two-axis
 waypoint/path controller and later repeated bidirectional R_mid crossing with
 continuous belief; ID-2Z5 neither achieves nor falsifies that goal.
+
+## 6. Accepted-raw cleanup
+
+After the compact evidence, hashes, result, independent audit and log were
+committed and pushed, the exact accepted run's `rollouts/` subtree was
+irreversibly removed under fixed-path, stopped-process, result-hash,
+audit-hash and raw-inventory guards. The removed tree contained
+75,108,986,121 bytes. Top-level compact evidence and logs remain on the
+server and in the tracked audit directory. Server free space after deletion
+was 144,288,649,216 bytes.

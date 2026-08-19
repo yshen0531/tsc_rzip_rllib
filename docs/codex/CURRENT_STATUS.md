@@ -16,6 +16,11 @@
 > captured. Work is paused for a route-level separation of simulator
 > development, terminal capture and hard safety, and for state-dependent
 > truth-recentered allocation. Older status blocks are historical.
+>
+> After the tracked compact evidence was pushed, only the accepted run's
+> exact `rollouts/` subtree was irreversibly removed under process/path/hash/
+> audit/inventory guards (75,108,986,121 bytes). Top-level compact evidence
+> and logs remain. Server free space is 144,288,649,216 bytes.
 
 > **Historical status (2026-08-19, ID-2Z5 frozen for implementation):** the
 > route review has corrected the next experiment's control relevance without
