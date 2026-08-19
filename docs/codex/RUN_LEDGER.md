@@ -2532,3 +2532,32 @@
   `docs/codex/audits/rgeo_zgeo_1ms_id2z1_20260819_ecb43246/`
 - Next: prospectively frozen two-decision canonical-prefix rolling branch
   campaign, replanning at state69 and selected state73
+
+## 2026-08-19 ID-2Z3 bounded braking rolling search
+
+- Physical implementation: `68dff0c7733b6ff19dacbbe2917c3c82db8e8a73`
+- Reporting-only audit repair: `54e1601836da796098fda40b2d9eea6e4472742d`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_id2z3_20260819_68dff0c7`
+- Execution: 14/14 admitted rollouts, 1,366/1,366 advances, 1,380 states,
+  zero guarded safe stops
+- Raw: 6,900 required files / 81,272,235,120 bytes / digest
+  `7978b9e074b45e233147aa64f3d181cf34eb593723d9701692ae15e4a0e5de9c`
+- Primary / repaired independent SHA-256:
+  `72ba717fb4b4ad59e35b96e8d4ee5f3689c8df4f886b1497bddfd08dc631106c /`
+  `d5bdeb5f88189e0c0617e89408441a4f7c138b0c4a983414dda03695c76f12fe`
+- Initial independent SHA-256:
+  `47420fc3ec5f7e822be084ba23d88636763abb69b67bdcfa5d1f2f3b69ddbb84`
+  (reporting-only rewritten-`inputa` lifecycle mismatch; preserved FAIL)
+- Server validation after audit repair: focused 8/8; all one-ms 416/416
+- Selected sequence: five consecutive `p07minus4` macros
+- Final held-lookahead: maximum distance `25.4024 mm`, maximum speed
+  `0.300687 m/s`, Ip inside the five-percent cap
+- Final route:
+  `ONE_MS_ID2Z3_BRAKING_SEARCH_EXHAUSTED_GRAMMAR_INSUFFICIENT`
+- Classification: finite source-local action-grammar failure; not runtime,
+  raw, actuator, prefix, plant, controller, recovery or reachability failure
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2z3_20260819_68dff0c7/`
+- Next: bounded two-axis capture-grammar design at the exact selected
+  state-97 prefix; no extension of the p07-only ladder

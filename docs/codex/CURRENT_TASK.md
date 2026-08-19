@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2Z3 frozen):** ID-2Z2 remains final
+> **Unique active task (2026-08-19, post-ID-2Z3):** ID-2Z3 completed all
+> fourteen admitted canonical-source branches and 1,366/1,366 verified
+> advances. A reporting-only raw-input lifecycle repair produced an exact
+> independent audit over 1,380 states and 6,900 artifacts. The immutable
+> route is `ONE_MS_ID2Z3_BRAKING_SEARCH_EXHAUSTED_GRAMMAR_INSUFFICIENT`.
+> Five consecutive `p07minus4` macros were the sole eligible choices, but
+> final held-tail speed was still `0.300687 m/s` and distance `25.4024 mm`.
+>
+> The p07-only braking ladder is closed. The active successor is a bounded
+> zero-model capture-grammar design around the exact selected state-97
+> prefix. It must allocate Card15 slew explicitly between further p07
+> braking and a second-axis/capture action, use finite canonical-source
+> branch search, and retain matched hold, hard current/Ip/boundary gates and
+> a fresh-repeat boundary. No model calibration/holdout, controller,
+> recovery, waypoint/path, crossing, adaptation, expert data or RL is opened
+> by ID-2Z3. All blocks below are historical.
+
+> **Historical task (2026-08-19, ID-2Z3 frozen):** ID-2Z2 remains final
 > as finite two-decision transport evidence.  ID-2Z3 is the only active
 > successor.  Starting from the exact logical state-77 prefix, it makes at
 > most five rolling decisions at states 77/81/85/89/93.  Each decision

@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, ID-2Z3):** two measured
+> **Active new-round context (2026-08-19, post-ID-2Z3):** the bounded
+> canonical-source search selected five consecutive p07-minus braking macros
+> with exact execution, but their held tails never formed a coarse stationary
+> set. Final tail speed was `0.300687 m/s` at `25.4024 mm` source distance.
+> The p07-only ladder is closed as a finite grammar failure. Work now moves
+> to an explicitly time-shared two-axis capture-sequence design at the exact
+> selected state-97 prefix; learning, calibration, feedback, recovery,
+> waypoint/path and crossing remain later gates. Older active notices below
+> are historical.
+
+> **Historical new-round context (2026-08-19, ID-2Z3):** two measured
 > p03-forward decisions retain finite transport utility but do not brake the
 > source-local path.  The active bounded stage therefore performs no model
 > fit: from the exact logical state-77 prefix it compares matched hold,

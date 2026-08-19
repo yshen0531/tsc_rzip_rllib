@@ -1,6 +1,15 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2Z3 architecture freeze (2026-08-19):** the high-level architecture
+> **Post-ID-2Z3 architecture amendment (2026-08-19):** repeated p07-minus
+> ramps provide finite braking authority but their held command is not a
+> terminal or recoverable set. The architecture must separate transport,
+> velocity arrest, and capture/hold actions. The next finite branch search
+> uses exact Card15 time allocation between a braking direction and a
+> second-axis/capture direction at the selected state-97 prefix. A branch
+> result can nominate a sequence only; fresh replay, uncertainty and
+> independent recourse remain mandatory before feedback control.
+>
+> **Historical ID-2Z3 architecture freeze (2026-08-19):** the high-level architecture
 > remains exact one-ms observation and actuation, persistent causal belief,
 > explicit uncertainty, reference governance and an independent hard safety/
 > recourse layer.  The immediate discriminator is a bounded five-decision

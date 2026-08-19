@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z3 design checkpoint):** ID-2Z3 is
+> **Current status (2026-08-19, ID-2Z3 final):** execution and raw integrity
+> passed for 14 rollouts, 1,366 advances, 1,380 states and 81.272 GB. The
+> repaired structurally separate audit reproduces every prefix, metric,
+> selected arm and inventory byte. All five decisions selected
+> `p07minus4`; no terminal four-state window met the 25-mm/0.1-m/s/5%-Ip
+> coarse stabilization gate. The route is the genuine finite grammar FAIL
+> `ONE_MS_ID2Z3_BRAKING_SEARCH_EXHAUSTED_GRAMMAR_INSUFFICIENT`, not an
+> execution, plant, controller or global-reachability conclusion.
+>
+> Next work changes the capture grammar at the exact state-97 prefix rather
+> than extending the same p07-only ladder. It remains zero-model finite TSC
+> search until a sequence is freshly repeated and recourse is separately
+> qualified. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z3 design checkpoint):** ID-2Z3 is
 > prospectively frozen as a five-decision maximum canonical-prefix braking
 > search.  It distinguishes the logically executed ID-2Z2 state-77 prefix
 > from the state-81 look-ahead hold samples and compares only hold,
