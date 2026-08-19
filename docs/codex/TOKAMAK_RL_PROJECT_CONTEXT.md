@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, post-ID-2Z17):** the remaining-basis
+> **Current NR route notice (2026-08-20, ID-2Z18 frozen):** after the clean
+> late-beam FAIL, the route now freezes one fresh full-horizon development
+> campaign instead of another hand macro. Exact full-F transport and signed
+> p06/p08 issues are interleaved across 14 unique causal histories, with two
+> zero-weight replays; future calibration/holdout schedules are declared but
+> remain unrun. PASS opens only a bounded two-model development comparison.
+> This restores the intended role of ML while preserving exact observation,
+> action, split and hard-interface contracts. Older notices are historical.
+
+> **Historical NR route notice (2026-08-20, post-ID-2Z17):** the remaining-basis
 > beam completed cleanly (`18/18`, exact replay and independent raw PASS),
 > but the best p08+p08 continuation still failed sustained capture at
 > `28.167666 mm / 0.377144 m/s / 2.12136% Ip`. This closes the exact late

@@ -1,6 +1,15 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z17 final):** server validation passed
+> **Current status (2026-08-20, ID-2Z18 design frozen):** the bounded route
+> review now gives machine learning a prospective data identity rather than
+> another late open-loop layer. The config declares `14` unique development
+> histories, two zero-weight replays and eight future unexecuted cal/holdout
+> histories. All 22 schedules are distinct and 32 issues long; F/p06/p08
+> increment geometry is rank three/condition `2.08609`. This is design and
+> input geometry only. ID-2Z18 implementation, server tests and TSC have not
+> run; ID-2Z17 remains final FAIL and zero fit weight.
+
+> **Historical status (2026-08-20, ID-2Z17 final):** server validation passed
 > `13/13` focused and `548/548` complete 1 ms tests. All `18/18` authentic
 > rollouts, `1170/1170` advances, `1188` states and `5940` artifacts
 > completed with zero safe stops. Independent raw audit reproduced the

@@ -1,6 +1,22 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z17):** ID-2Z17 completed
+> **Unique active task (2026-08-20, ID-2Z18 frozen):** the post-ID-2Z17
+> review has closed the hand-authored late macro ladder and frozen one fresh,
+> fit-eligible full-horizon development campaign. ID-2Z18 replays exact full-F
+> through state 16, executes 14 unique balanced F/p06+/p06-/p08+/p08-
+> histories through state 48, holds through state 65, and adds two zero-weight
+> exact replays. Future four-family calibration and four-family blind holdout
+> schedules are declared but forbidden from this run. Maximum budget is
+> `16` resets / `1040` advances / `5280` artifacts.
+>
+> Implement, server-test and run only after exact config/evidence, full static
+> schedule, storage and hard-interface gates pass. Development-data PASS may
+> authorize only a separately frozen two-candidate model comparison. Any
+> scientific data FAIL stops before fitting. No ID-2Z17 retrospective fit,
+> calibration/holdout read, controller, capture, Recourse-L1, waypoint/path
+> or relaxed gate is authorized. Older blocks are historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z17):** ID-2Z17 completed
 > `18/18` authentic rollouts, `1170/1170` verified advances and an exact
 > selected replay. Independent raw recomputation passed with no failures.
 > The best `f100__f8__f8__p08_plus4__p08_plus4` path improved the inherited

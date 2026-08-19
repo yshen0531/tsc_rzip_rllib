@@ -1,5 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID-2Z17 architecture amendment (2026-08-20):** exact execution,
+> **ID-2Z18 full-horizon learning amendment (2026-08-20):** the next data
+> campaign is prospectively fit-eligible and explicitly separates development
+> from unexecuted calibration and blind holdout histories. It interleaves
+> time-varying F transport with signed p06/p08 tokens, carries the complete
+> causal history, and observes a held tail. The next model comparison is
+> capped at a stable structured backbone and that same backbone plus one small
+> persistent causal residual. Targets include increment/velocity, direct
+> 2/4/8 ms outcomes and candidate value; exact 1 ms truth recenters decisions.
+> This amendment authorizes data collection only, not model qualification,
+> control, recourse or waypoint execution.
+
+> **Historical post-ID-2Z17 architecture amendment (2026-08-20):** exact execution,
 > raw audit and replay prove that two late cumulative layers of the remaining
 > first-event basis alter the trajectory but do not create sustained capture.
 > The selected p08+p08 branch retained `0.377144 m/s` terminal speed. Close
