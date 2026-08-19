@@ -1,6 +1,33 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2Z4 frozen):** ID-2Z3 remains final
+> **Unique active task (2026-08-19, ID-2Z4R1 route freeze):** ID-2Z4 was
+> prospectively designed but never implemented, deployed or run. A route
+> review paused it before any plant advance because its state-97-only fixed
+> matrix inherited a thin capture margin, required a full matched-hold path
+> that is unlikely to reach the terminal window, and could not distinguish a
+> late switch from a bad B/U dose. It is historical, not a FAIL.
+>
+> ID-2Z4R1 is the sole active successor. It starts from the exact selected
+> state-89 prefix and evaluates one finite Pareto-stratified frontier of
+> twelve complete sequences. Zero, four or eight leading p07-minus increments
+> place the capture switch near states 89/93/97; p03-unwind is limited to
+> two/four-step doses and explicit dwell. The common twelve-ms tail and six
+> terminal states retain the unchanged 25-mm / 0.1-m/s / 5%-Ip capture gate.
+> Hold is an absolute negative control and may stop safely; it is not required
+> as a complete paired baseline for another branch to be evaluated.
+>
+> The campaign is capped at twelve resets, 1,356 advances and 1,368 states.
+> At least one genuinely mixed B/U stream must pass the exact offline action
+> gate before TSC. Complete or prospectively guarded-safe-stop branches may
+> establish only this finite frontier's result. A PASS nominates one exact
+> sequence for a fresh zero-fit replay and Recourse-L1 design; a FAIL closes
+> this frozen switch-time/B/U frontier and forbids another manual depth
+> ladder. Compact trajectories are prospectively development-only for a
+> later short-horizon model; calibration, blind holdout, expert data and
+> controller qualification require fresh identities. All blocks below are
+> historical.
+
+> **Historical task (2026-08-19, ID-2Z4 frozen but unrun):** ID-2Z3 remains final
 > as an exact finite p07-only grammar failure. ID-2Z4 is the sole active
 > successor. It replays the exact selected state-97 prefix and compares eight
 > fixed twelve-slot capture sequences built only from hold, p07-minus braking

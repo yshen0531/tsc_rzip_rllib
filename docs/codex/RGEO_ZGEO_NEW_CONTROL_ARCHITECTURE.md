@@ -1,6 +1,24 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **ID-2Z4 architecture freeze (2026-08-19):** the next bounded branch set
+> **ID-2Z4R1 architecture freeze (2026-08-19):** exact one-ms observation,
+> exact Card15 execution, persistent causal history and independent hard
+> gates remain unchanged. The immediate finite search is moved upstream from
+> state 97 to the exact state-89 prefix so that capture-switch timing is part
+> of the decision rather than an unexamined consequence of five greedy
+> p07-only selections. A fixed twelve-branch frontier combines p07-minus,
+> bounded p03-unwind and dwell without clipping or simultaneous over-slew.
+>
+> The stage evaluates absolute terminal capture; matched hold is optional
+> descriptive evidence because the hold branch may legitimately leave the
+> 25-mm runtime envelope before the common terminal window. Any finite PASS
+> still requires fresh exact replay and Recourse-L1 before feedback control.
+> Any finite FAIL closes only the frozen frontier and triggers an action-basis
+> and terminal-objective review, not another manual macro-depth ladder. The
+> resulting compact data may support development of a short-horizon,
+> truth-recentered history model, while calibration/holdout and controller
+> safety evidence stay fresh and separate.
+>
+> **Historical ID-2Z4 architecture freeze (2026-08-19):** the next bounded branch set
 > time-shares p07-minus braking and p03-unwind second-axis action after the
 > exact state-97 prefix. Twelve capture issues and twelve held-tail issues
 > separate transient velocity arrest from capturable low-speed behavior.

@@ -1,6 +1,23 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, ID-2Z4):** transport, velocity
+> **Active new-round context (2026-08-19, ID-2Z4R1):** the next finite
+> discriminator is an earlier-switch, two-axis capture frontier rooted at
+> the exact state-89 prefix. It jointly tests switch time, p07-minus braking,
+> small p03-unwind doses and dwell. This corrects the state-97-only ID-2Z4
+> design before any implementation or plant advance. Twelve full sequences
+> share one twelve-ms tail and the unchanged six-state 25-mm/0.1-m/s/5%-Ip
+> capture gate. Hold is a negative control, not a mandatory complete paired
+> baseline.
+>
+> A finite PASS only nominates one exact sequence for fresh replay and
+> Recourse-L1 design. A finite FAIL closes this exact B/U switch-time frontier
+> and stops another manual depth ladder. The campaign's compact trajectories
+> are prospectively development-only for a later short-horizon model; fresh
+> calibration, blind holdout, controller qualification, waypoint/path and
+> R_mid crossing remain separate identities. Older notices below are
+> historical.
+
+> **Historical new-round context (2026-08-19, ID-2Z4):** transport, velocity
 > arrest and capture are now explicitly distinct. ID-2Z4 starts from the
 > exact selected state-97 prefix and tests a finite time-shared p07-brake /
 > p03-unwind capture grammar with a twelve-ms tail. A terminal candidate must

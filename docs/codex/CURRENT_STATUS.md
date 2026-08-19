@@ -1,6 +1,25 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z4 design checkpoint):** the exact
+> **Current status (2026-08-19, ID-2Z4R1 design active):** ID-2Z4 was
+> superseded before implementation, deployment or TSC and is not an
+> experimental FAIL. ID-2Z4R1 starts from the exact state-89 prefix and
+> freezes a twelve-branch earlier-switch capture frontier. The branches use
+> zero/four/eight leading p07-minus increments, bounded two/four-step
+> p03-unwind doses and explicit dwell, followed by a common twelve-ms tail.
+> Hold is an absolute negative control; an incomplete hold branch does not
+> invalidate an otherwise independently safe candidate.
+>
+> State 89 is `24.367235 mm` from source at about `0.203647 m/s`; state 93 is
+> `24.504659 mm` at `0.188667 m/s`; state 97 is `24.565317 mm` at
+> `0.190375 m/s`. The old state-97-only design therefore started after the
+> best observed speed reduction and with only `0.434683 mm` remaining to its
+> 25-mm capture radius. ID-2Z4R1 tests switch timing and B/U allocation in a
+> single capped campaign rather than extending another hand-tuned ladder.
+> Its budget is twelve resets, 1,356 advances and 1,368 states. No ID-2Z4R1
+> code, server validation or TSC execution has occurred yet. Older blocks
+> below are historical.
+
+> **Historical status (2026-08-19, ID-2Z4 design checkpoint):** the exact
 > ID-2Z3 selected state-97 prefix has been reduced to tracked physical/action
 > checkpoints. The frozen ID-2Z4 discriminator tests eight bounded capture
 > schedules over twelve active slots plus a common twelve-ms tail. It uses
