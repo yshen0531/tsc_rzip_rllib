@@ -8,15 +8,17 @@
 > late switch from a bad B/U dose. It is historical, not a FAIL.
 >
 > ID-2Z4R1 is the sole active successor. It starts from the exact selected
-> state-89 prefix and evaluates one finite Pareto-stratified frontier of
-> twelve complete sequences. Zero, four or eight leading p07-minus increments
-> place the capture switch near states 89/93/97; p03-unwind is limited to
+> state-93 prefix and evaluates one finite Pareto-stratified frontier of
+> twelve complete sequences. Its initial state-89 draft failed the zero-TSC
+> 100-A headroom gate at 98.8 A, so the floor was retained and the start moved
+> prospectively to exact state 93. Zero, four or eight leading p07-minus
+> increments place the capture switch near states 93/97/101; p03-unwind is limited to
 > two/four-step doses and explicit dwell. The common twelve-ms tail and six
 > terminal states retain the unchanged 25-mm / 0.1-m/s / 5%-Ip capture gate.
 > Hold is an absolute negative control and may stop safely; it is not required
 > as a complete paired baseline for another branch to be evaluated.
 >
-> The campaign is capped at twelve resets, 1,356 advances and 1,368 states.
+> The campaign is capped at twelve resets, 1,404 advances and 1,416 states.
 > At least one genuinely mixed B/U stream must pass the exact offline action
 > gate before TSC. Complete or prospectively guarded-safe-stop branches may
 > establish only this finite frontier's result. A PASS nominates one exact

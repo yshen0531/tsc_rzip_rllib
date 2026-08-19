@@ -10,7 +10,11 @@ prospective route correction, not a post-result gate change and not an
 ID-2Z4 FAIL.
 
 ID-2Z4R1 is one finite, non-greedy capture discriminator rooted at the exact
-ID-2Z3 state-89 causal prefix. It does not fit a model and does not perform a
+ID-2Z3 state-93 causal prefix. The initial state-89 proposal was rejected by
+the zero-TSC static gate because its exact attained Card15 target had only
+`98.8 A` minimum headroom, below the prospectively retained `100 A` floor.
+The floor was not weakened; the start moved to state 93 before any plant
+advance. It does not fit a model and does not perform a
 rolling online search. It evaluates a preregistered frontier of complete
 sequences so that switch time, two-axis action allocation and dwell are
 tested together once.
@@ -41,11 +45,11 @@ capture, recovery or global authority.
 
 ## Frozen action grammar
 
-The exact canonical-source prefix executes issues 0 through 88 and exposes
-state 89 before the first candidate issue. Candidate issues are 89 through
-100. Every candidate then holds its attained exact Card15 target for issues
-101 through 112. The final state is 113 and the terminal gate uses states
-108 through 113, so it observes the last six states after seven through
+The exact canonical-source prefix executes issues 0 through 92 and exposes
+state 93 before the first candidate issue. Candidate issues are 93 through
+104. Every candidate then holds its attained exact Card15 target for issues
+105 through 116. The final state is 117 and the terminal gate uses states
+112 through 117, so it observes the last six states after seven through
 twelve milliseconds of held tail following the final candidate effect.
 
 Tokens are:
@@ -58,7 +62,7 @@ No token may be clipped, combined with another token in the same issue, or
 exceed `0.3 A` on any single-turn coil in one millisecond. The twelve frozen
 candidate strings are:
 
-| id | candidate issues 89--100 |
+| id | candidate issues 93--104 |
 |---|---|
 | hold12 | `HHHHHHHHHHHH` |
 | b4_h8 | `BBBBHHHHHHHH` |
@@ -81,7 +85,7 @@ allocation, and explicit dwell.
 ## Offline and runtime gates
 
 Before any TSC advance, the resolved config, source revision, evidence
-hashes, exact state-89 prefix, issue/effect clocks, Card15 targets, absolute
+hashes, exact state-93 prefix, issue/effect clocks, Card15 targets, absolute
 current limits, per-step slew, queue semantics, storage reserve and full
 budget must pass. `hold12` and at least one candidate containing both `B`
 and `U` must be statically admissible. Failure is `NO_TSC`; thresholds or the
@@ -109,7 +113,7 @@ states.
 ## Scientific metrics and routes
 
 A capture candidate must be complete and must satisfy, for every state
-108 through 113:
+112 through 117:
 
 - source R/Z distance `<=25 mm`;
 - one-ms R/Z step speed `<=0.1 m/s`;
@@ -139,8 +143,8 @@ adaptation, expert data, imitation learning or RL.
 
 ## Budget and data role
 
-The hard maximum is twelve resets, 1,356 plant advances, 1,368 retained
-states and 6,840 required five-artifact state files. The prospective raw
+The hard maximum is twelve resets, 1,404 plant advances, 1,416 retained
+states and 7,080 required five-artifact state files. The prospective raw
 estimate is at most 90 GB. Deployment must show at least 145 GB free before
 launch and preserve at least a 55-GB residual reserve under that estimate.
 

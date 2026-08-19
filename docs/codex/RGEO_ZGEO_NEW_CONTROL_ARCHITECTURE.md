@@ -3,10 +3,12 @@
 > **ID-2Z4R1 architecture freeze (2026-08-19):** exact one-ms observation,
 > exact Card15 execution, persistent causal history and independent hard
 > gates remain unchanged. The immediate finite search is moved upstream from
-> state 97 to the exact state-89 prefix so that capture-switch timing is part
+> state 97 to the exact state-93 prefix so that capture-switch timing is part
 > of the decision rather than an unexamined consequence of five greedy
 > p07-only selections. A fixed twelve-branch frontier combines p07-minus,
 > bounded p03-unwind and dwell without clipping or simultaneous over-slew.
+> An earlier state-89 draft was rejected at zero TSC because it had only
+> 98.8 A target headroom; the 100-A floor was preserved.
 >
 > The stage evaluates absolute terminal capture; matched hold is optional
 > descriptive evidence because the hold branch may legitimately leave the

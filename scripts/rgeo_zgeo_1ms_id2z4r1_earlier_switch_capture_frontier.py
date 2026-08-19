@@ -5,6 +5,7 @@ import hashlib
 import json
 import math
 import shutil
+import sys
 import time
 from decimal import Decimal
 from pathlib import Path
@@ -12,12 +13,15 @@ from typing import Any, Sequence
 
 import numpy as np
 
-import scripts.rgeo_zgeo_1ms_id2z3_bounded_braking_rolling_search as z3
-
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+import scripts.rgeo_zgeo_1ms_id2z3_bounded_braking_rolling_search as z3  # noqa: E402
+
+
 CONFIG = ROOT / "configs" / "rgeo_zgeo_1ms_id2z4r1_earlier_switch_capture_frontier.json"
-CONFIG_SHA256 = "03392b5b418e008a5254c56bfd04788f0802bcc635f25fb225560119278f5373"
+CONFIG_SHA256 = "1e0be886b8787966549d7925cf37d4eeac22379bf9770e9ba28ccf3b1ae63cbd"
 SCHEMA = "rgeo-zgeo-1ms-id2z4r1-earlier-switch-capture-frontier-result-v1"
 TOKENS = {"H", "B", "U"}
 
@@ -43,21 +47,21 @@ def _require(stage: dict[str, Any]) -> None:
     exact = {
         "takeover_time_ms": 1100,
         "control_period_ms": 1,
-        "decision_state_index": 89,
-        "capture_first_issue": 89,
-        "capture_last_issue": 100,
-        "tail_first_issue": 101,
-        "tail_last_issue": 112,
-        "horizon_steps": 113,
+        "decision_state_index": 93,
+        "capture_first_issue": 93,
+        "capture_last_issue": 104,
+        "tail_first_issue": 105,
+        "tail_last_issue": 116,
+        "horizon_steps": 117,
         "effect_state_offset": 1,
         "maximum_candidates": 12,
         "maximum_rollouts": 12,
         "maximum_reset_calls": 12,
-        "maximum_advance_attempts": 1356,
-        "maximum_gotsc_calls": 1356,
-        "maximum_verified_plant_advances": 1356,
-        "maximum_retained_states": 1368,
-        "required_artifact_files_if_all_complete": 6840,
+        "maximum_advance_attempts": 1404,
+        "maximum_gotsc_calls": 1404,
+        "maximum_verified_plant_advances": 1404,
+        "maximum_retained_states": 1416,
+        "required_artifact_files_if_all_complete": 7080,
         "retry_after_any_advance_attempt": "forbidden",
         "models_fit_or_updated": 0,
         "replay_siblings_fit_weight": 0,
@@ -84,7 +88,7 @@ def _require(stage: dict[str, Any]) -> None:
                 for row in stage.get("candidate_specs", [])]
     if observed != candidates or any(set(tokens) - TOKENS for _, tokens in observed):
         raise z3.z1.y1r1.y1.x1.InputIntegrityError("candidate grammar changed")
-    if stage.get("terminal_state_indices") != list(range(108, 114)):
+    if stage.get("terminal_state_indices") != list(range(112, 118)):
         raise z3.z1.y1r1.y1.x1.InputIntegrityError("terminal window changed")
     action = stage.get("action_semantics", {})
     if (action.get("maximum_per_coil_issue_delta_a") != 0.3
@@ -102,7 +106,7 @@ def _require(stage: dict[str, Any]) -> None:
     }:
         raise z3.z1.y1r1.y1.x1.InputIntegrityError("token semantics changed")
     if (stage.get("experiment_contract")
-            != "tsc_only_canonical_source_state89_earlier_switch_two_axis_capture_frontier"
+            != "tsc_only_canonical_source_state93_earlier_switch_two_axis_capture_frontier"
             or stage.get("data_use")
             != "prospective_short_horizon_model_development_and_capture_route_evidence_only"):
         raise z3.z1.y1r1.y1.x1.InputIntegrityError("data-use contract changed")
@@ -120,9 +124,9 @@ def _require(stage: dict[str, Any]) -> None:
         raise z3.z1.y1r1.y1.x1.InputIntegrityError("artifact contract changed")
     prefix = stage.get("prefix_gates", {})
     if prefix != {
-        "required_state_count": 90,
-        "required_action_count": 89,
-        "checkpoint_indices": [0, 32, 64, 69, 73, 77, 81, 85, 89],
+        "required_state_count": 94,
+        "required_action_count": 93,
+        "checkpoint_indices": [0, 32, 64, 69, 73, 77, 81, 85, 89, 93],
         "exact_action_fields_all_prefix_issues": True,
         "exact_checkpoint_rgeo_zgeo_rmid_ip_coil_wire_active_command_and_semantic_hashes": True,
         "sprsina_hash_is_diagnostic_only": True,
@@ -130,7 +134,7 @@ def _require(stage: dict[str, Any]) -> None:
         raise z3.z1.y1r1.y1.x1.InputIntegrityError("prefix gates changed")
     exploration = stage.get("empirical_exploration", {})
     if exploration != {
-        "novel_issue_first": 89,
+        "novel_issue_first": 93,
         "post_successor_step_caps": {
             "r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
         "inner_novel_issue_clearance": {
@@ -152,8 +156,8 @@ def _require(stage: dict[str, Any]) -> None:
             or gates.get("negative_control_may_be_incomplete") is not True
             or gates.get("negative_control_completion_required_for_other_candidate_science") is not False
             or gates.get("paired_response_role") != "descriptive_only_on_overlapping_observed_states"
-            or gates.get("response_state_indices") != list(range(90, 114))
-            or gates.get("capture_terminal_state_indices") != list(range(108, 114))
+            or gates.get("response_state_indices") != list(range(94, 118))
+            or gates.get("capture_terminal_state_indices") != list(range(112, 118))
             or gates.get("maximum_paired_ip_response_a") != 400.0
             or gates.get("maximum_terminal_source_rz_distance_m") != 0.025
             or gates.get("maximum_terminal_rz_step_speed_m_per_s") != 0.1
@@ -193,7 +197,7 @@ def reconstruct_selected_prefix(stage: dict[str, Any], cfg: Any,
                                 id2z2_stream: dict[str, Any]) -> dict[str, Any]:
     parent = id2z2_stream
     history: list[str] = []
-    for round_index in range(3):
+    for round_index in range(4):
         streams = (z3.initial_round_streams(stage, cfg, targets, parent)
                    if round_index == 0 else z3.next_round_streams(
                        stage, cfg, targets, parent, round_index, history))
@@ -232,7 +236,7 @@ def load(path: Path = CONFIG) -> tuple[dict[str, Any], Any, dict[str, Any],
     id2z3_stage, cfg, targets, _, id2z2_stream = z3.load(
         ROOT / stage["evidence"]["id2z3_config"]["path"])
     selected = reconstruct_selected_prefix(id2z3_stage, cfg, targets, id2z2_stream)
-    if len(selected["actions"]) < 89 or len(selected["targets"]) < 89:
+    if len(selected["actions"]) < 93 or len(selected["targets"]) < 93:
         raise z3.z1.y1r1.y1.x1.InputIntegrityError("selected prefix incomplete")
     return stage, cfg, targets, reference, selected
 
@@ -273,8 +277,8 @@ def candidate_streams(stage: dict[str, Any], cfg: Any,
             "tokens": tokens,
             "arm_id": candidate_id,
             "cell_id": candidate_id,
-            "cell_kind": "state89_earlier_switch_two_axis_capture_frontier",
-            "context_id": "canonical_source_id2z3_selected_state89",
+            "cell_kind": "state93_earlier_switch_two_axis_capture_frontier",
+            "context_id": "canonical_source_id2z3_selected_state93",
             "direction_id": "p07minus__p03unwind__time_shared",
             "sign": None,
             "coordinate": "capture_grammar",
@@ -304,7 +308,12 @@ def validate_stream(stream: dict[str, Any], stage: dict[str, Any], cfg: Any) -> 
                 != actions[stage["capture_last_issue"]]["expected_card15_fields"]
                 or float(actions[issue]["maximum_issued_delta_a"]) != 0.0):
             failures.append(f"TAIL_HOLD:{issue}")
-    headroom = z3.z2._headroom(stream, cfg)
+    decision = int(stage["decision_state_index"])
+    headroom = min(
+        min(float(value) - float(low), float(high) - float(value))
+        for target in stream["targets"][decision:]
+        for value, low, high in zip(
+            target.current_a_tsc, cfg.min_current_a_tsc, cfg.max_current_a_tsc))
     if headroom < stage["action_semantics"]["minimum_absolute_current_headroom_a"] - 1e-9:
         failures.append("ABSOLUTE_CURRENT_HEADROOM")
     return {

@@ -2,7 +2,10 @@
 
 > **Current status (2026-08-19, ID-2Z4R1 design active):** ID-2Z4 was
 > superseded before implementation, deployment or TSC and is not an
-> experimental FAIL. ID-2Z4R1 starts from the exact state-89 prefix and
+> experimental FAIL. The first ID-2Z4R1 implementation draft also ran zero
+> TSC: server tests showed that state 89 had only 98.8 A exact target
+> headroom. The 100-A gate was retained, so ID-2Z4R1 now starts from the exact
+> state-93 prefix and
 > freezes a twelve-branch earlier-switch capture frontier. The branches use
 > zero/four/eight leading p07-minus increments, bounded two/four-step
 > p03-unwind doses and explicit dwell, followed by a common twelve-ms tail.
@@ -15,7 +18,7 @@
 > best observed speed reduction and with only `0.434683 mm` remaining to its
 > 25-mm capture radius. ID-2Z4R1 tests switch timing and B/U allocation in a
 > single capped campaign rather than extending another hand-tuned ladder.
-> Its budget is twelve resets, 1,356 advances and 1,368 states. No ID-2Z4R1
+> Its budget is twelve resets, 1,404 advances and 1,416 states. No ID-2Z4R1
 > code, server validation or TSC execution has occurred yet. Older blocks
 > below are historical.
 

@@ -114,11 +114,11 @@ def audit(stage_path: Path, run_dir: Path,
             folder = rollout_root / rollout_id
             times = _state_times(folder)
             if (compact_row.get("passed")
-                    and times != list(range(1100, 1214))):
+                    and times != list(range(1100, 1218))):
                 failures.append(f"STATE_DIRECTORY_SET:{rollout_id}")
             if times and times != list(range(1100, max(times) + 1)):
                 failures.append(f"NONCONTIGUOUS_STATE_DIRECTORY:{rollout_id}")
-            if any(time < 1100 or time > 1213 for time in times):
+            if any(time < 1100 or time > 1217 for time in times):
                 failures.append(f"FORBIDDEN_STATE_DIRECTORY:{rollout_id}")
             states: list[dict[str, Any]] = []
             for index, time_ms in enumerate(times):

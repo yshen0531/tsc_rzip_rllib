@@ -2,7 +2,9 @@
 
 > **Active new-round context (2026-08-19, ID-2Z4R1):** the next finite
 > discriminator is an earlier-switch, two-axis capture frontier rooted at
-> the exact state-89 prefix. It jointly tests switch time, p07-minus braking,
+> the exact state-93 prefix. The initial state-89 proposal was rejected before
+> TSC because its exact target headroom was 98.8 A, below the unchanged 100-A
+> floor. It jointly tests switch time, p07-minus braking,
 > small p03-unwind doses and dwell. This corrects the state-97-only ID-2Z4
 > design before any implementation or plant advance. Twelve full sequences
 > share one twelve-ms tail and the unchanged six-state 25-mm/0.1-m/s/5%-Ip

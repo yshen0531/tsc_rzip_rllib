@@ -34,18 +34,18 @@ class ID2Z4R1Tests(unittest.TestCase):
         primary._require(self.stage)
         self.assertEqual(primary.CONFIG_SHA256, primary.sha256(primary.CONFIG))
         self.assertEqual(self.stage["maximum_rollouts"], 12)
-        self.assertEqual(self.stage["maximum_advance_attempts"], 12 * 113)
-        self.assertEqual(self.stage["maximum_retained_states"], 12 * 114)
+        self.assertEqual(self.stage["maximum_advance_attempts"], 12 * 117)
+        self.assertEqual(self.stage["maximum_retained_states"], 12 * 118)
         self.assertEqual(
-            self.stage["required_artifact_files_if_all_complete"], 12 * 114 * 5)
-        self.assertEqual(self.stage["terminal_state_indices"], list(range(108, 114)))
+            self.stage["required_artifact_files_if_all_complete"], 12 * 118 * 5)
+        self.assertEqual(self.stage["terminal_state_indices"], list(range(112, 118)))
         self.assertTrue(
             self.stage["measurement_gates"]["negative_control_may_be_incomplete"])
 
     def test_contract_mutations_fail_closed(self) -> None:
         for path, value in (
-            (("maximum_gotsc_calls",), 1357),
-            (("decision_state_index",), 97),
+            (("maximum_gotsc_calls",), 1405),
+            (("decision_state_index",), 89),
             (("action_semantics", "maximum_per_coil_issue_delta_a"), 0.31),
             (("measurement_gates", "negative_control_may_be_incomplete"), False),
             (("measurement_gates", "capture_terminal_state_indices"), [109]),
@@ -60,26 +60,26 @@ class ID2Z4R1Tests(unittest.TestCase):
                     primary.z3.z1.y1r1.y1.x1.InputIntegrityError):
                 primary._require(mutated)
 
-    def test_exact_state89_prefix_and_candidate_frontier(self) -> None:
+    def test_exact_state93_prefix_and_candidate_frontier(self) -> None:
         stage, cfg, targets, reference, selected = primary.load()
-        self.assertGreaterEqual(reference["required_state_count"], 90)
-        self.assertGreaterEqual(reference["required_action_count"], 89)
+        self.assertGreaterEqual(reference["required_state_count"], 94)
+        self.assertGreaterEqual(reference["required_action_count"], 93)
         rows = primary.candidate_streams(stage, cfg, targets, selected)
         self.assertEqual(len(rows), 12)
         self.assertEqual([row["candidate_id"] for row in rows], [
             spec["candidate_id"] for spec in stage["candidate_specs"]])
         for row in rows:
-            self.assertEqual(len(row["actions"]), 113)
-            self.assertEqual(len(row["targets"]), 113)
+            self.assertEqual(len(row["actions"]), 117)
+            self.assertEqual(len(row["targets"]), 117)
             self.assertTrue(primary.validate_stream(row, stage, cfg)["passed"])
-            for issue in range(89):
+            for issue in range(93):
                 self.assertEqual(
                     row["actions"][issue]["expected_card15_fields"],
                     selected["actions"][issue]["expected_card15_fields"])
-            for issue in range(101, 113):
+            for issue in range(105, 117):
                 self.assertEqual(
                     row["actions"][issue]["expected_card15_fields"],
-                    row["actions"][100]["expected_card15_fields"])
+                    row["actions"][104]["expected_card15_fields"])
                 self.assertEqual(
                     float(row["actions"][issue]["maximum_issued_delta_a"]), 0.0)
 
@@ -119,21 +119,21 @@ class ID2Z4R1Tests(unittest.TestCase):
     def test_incomplete_negative_control_does_not_block_capture_science(self) -> None:
         incomplete_hold = self._row(
             "hold12", self._states(100), passed=False)
-        candidate = self._row("b4_u4_h4", self._states(114))
+        candidate = self._row("b4_u4_h4", self._states(118))
         result = primary.metrics([incomplete_hold, candidate], self.stage)
         self.assertFalse(result["negative_control_complete"])
         self.assertTrue(result["passed"])
         self.assertEqual(result["selected_candidate_id"], "b4_u4_h4")
         metric = next(value for value in result["candidate_metrics"]
                       if value["candidate_id"] == "b4_u4_h4")
-        self.assertEqual(metric["paired_response_state_indices"], list(range(90, 100)))
+        self.assertEqual(metric["paired_response_state_indices"], list(range(94, 100)))
 
     def test_terminal_speed_and_ip_remain_hard_capture_gates(self) -> None:
-        good = self._row("b4_u4_h4", self._states(114))
+        good = self._row("b4_u4_h4", self._states(118))
         fast = self._row(
-            "b6_u4_h2", self._states(114, speed_m_per_s=0.100001))
+            "b6_u4_h2", self._states(118, speed_m_per_s=0.100001))
         high_ip = self._row(
-            "b8_u4", self._states(114, ip_offset_a=1500.001))
+            "b8_u4", self._states(118, ip_offset_a=1500.001))
         result = primary.metrics([good, fast, high_ip], self.stage)
         by_id = {row["candidate_id"]: row
                  for row in result["candidate_metrics"]}
@@ -143,14 +143,14 @@ class ID2Z4R1Tests(unittest.TestCase):
 
     def test_live_checkpoint_gate_is_exact(self) -> None:
         stage, _, _, reference, _ = primary.load()
-        state89 = next(value for value in reference["state_checkpoints"]
-                       if value["state_index"] == 89)
+        state93 = next(value for value in reference["state_checkpoints"]
+                       if value["state_index"] == 93)
         self.assertEqual(primary.checkpoint_reasons(
-            copy.deepcopy(state89), 89, reference, stage), [])
-        changed = copy.deepcopy(state89)
+            copy.deepcopy(state93), 93, reference, stage), [])
+        changed = copy.deepcopy(state93)
         changed["r_geo_m"] += 1e-12
-        self.assertIn("LIVE_PREFIX:89:r_geo_m", primary.checkpoint_reasons(
-            changed, 89, reference, stage))
+        self.assertIn("LIVE_PREFIX:93:r_geo_m", primary.checkpoint_reasons(
+            changed, 93, reference, stage))
 
     def test_route_precedence_and_identity(self) -> None:
         good_prefix = [{"passed": True}]
