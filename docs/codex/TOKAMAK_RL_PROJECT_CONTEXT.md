@@ -1,6 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, post-ID-2Z9):** two additional
+> **Active new-round context (2026-08-19, post-ID-2Z10):** adding two fresh
+> late-root contexts did not rescue either unchanged small model. Both preserve
+> response direction and moderate response NRMSE, but both choose `b4` in all
+> five contexts and fail R-error/ranking eligibility. No model artifact,
+> calibration, holdout or controller claim exists.
+>
+> The next decision cannot be another capacity increment. It must review
+> whether B/F/H provides a controller-useful capture/recourse action set, and
+> whether the supervised target should be full response trajectories or a
+> support-gated candidate value/reachability object tied to real feedback.
+> Exact observation/history, exact Card15 execution, uncertainty refusal and
+> independent hard safety remain unchanged. Older notices below are historical.
+
+> **Historical new-round context (2026-08-19, post-ID-2Z9):** two additional
 > late-root five-arm matrices passed the bounded teacher-utility gates and
 > supplied ten fresh fit-eligible sibling windows. Exact replay and corrected
 > full-raw audit passed. The final sequence remains an open-loop branch seed,

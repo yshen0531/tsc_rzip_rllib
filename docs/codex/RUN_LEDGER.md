@@ -1,5 +1,29 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z10 five-context model comparison
+
+- Date: 2026-08-19 Asia/Shanghai.
+- Implementation revision: `31b90c237e0801ff4ff083343a2b8b15db19ce6b`.
+- Server output: `rgeo_zgeo_1ms_id2z10_runs/20260819_31b90c23_v1`.
+- Validation: focused 6/6; all one-ms 472/472; shell/compile/hashes PASS.
+- One pre-fit launcher attempt hit transferred execute-bit `Permission denied`;
+  output did not exist, so the server bit was restored and the unchanged
+  identity ran once.
+- Zero TSC/plant/controller/optimizer and zero calibration/holdout reads.
+- Stable: mean/max NRMSE `0.229901/0.323605`, max R p95 `0.726041 mm`,
+  min cosine `0.991803`, max regret `0.194231`.
+- Stable+GRU4: mean/max NRMSE `0.233554/0.395545`, max R p95
+  `0.873908 mm`, min cosine `0.985044`, max regret `0.194231`.
+- Both predicted `b4` in every fold; no candidate eligible and no artifact.
+- Primary / replay-audit SHA-256:
+  `eb725e6feeb3d46a04aebdd2e2bbb97ab15217db314644f466403f634b23e618 /`
+  `dac2cf62251a4f6d64d5fa1f5b92c6d950c8b10b7266fd9b9164a613a4b13c48`.
+- Final route: `ONE_MS_ID2Z10_FIVE_CONTEXT_MODEL_FAIL_ACTION_BASIS_CONTROL_REVIEW`.
+- Next: pause for action-basis/control-utility and model-target review; no
+  capacity ladder, calibration, holdout or controller execution.
+- ID-2Z9 cleanup: removed only its audited `rollouts/` subtree,
+  51,311,622,623 bytes; top-level compacts/audits/logs remain remotely.
+
 ## R_geo/Z_geo 1 ms ID-2Z9 late-root branch utility/support
 
 - Date: 2026-08-19 Asia/Shanghai.

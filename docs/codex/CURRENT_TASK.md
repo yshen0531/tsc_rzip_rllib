@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Z9):** ID-2Z9 is final as
+> **Unique active task (2026-08-19, post-ID-2Z10):** ID-2Z10 is final as
+> `ONE_MS_ID2Z10_FIVE_CONTEXT_MODEL_FAIL_ACTION_BASIS_CONTROL_REVIEW`.
+> Server focused 6/6 and all one-ms 472/472 tests passed; deterministic replay
+> audit passed. Both unchanged candidates failed all-five-fold eligibility and
+> emitted no artifact. Both still selected `b4` in every context; true best
+> arms were `f4 -> b2f2 -> f2b2 -> b2f2 -> f2b2`. Stable / GRU maximum R p95
+> was `0.726041 / 0.873908 mm`, and maximum regret remained `0.194231`.
+>
+> The current low-capacity model-form/support route is closed. Do not enlarge
+> the network, open calibration/holdout, fit a policy or execute a controller.
+> Work is paused for a new action-basis/control-utility and prediction-target
+> review that must reconnect the finite branch seed to capture/recourse and the
+> final two-axis waypoint goal. All blocks below are historical.
+
+> **Historical task (2026-08-19, post-ID-2Z9):** ID-2Z9 is final as
 > `ONE_MS_ID2Z9_LATE_ROOT_BRANCH_UTILITY_SUPPORT_PASS_FIVE_CONTEXT_MODEL_ONLY`.
 > Eleven canonical-source paths completed 847/847 verified advances and the
 > repaired independent audit reparsed 858 states / 4,290 artifacts with no

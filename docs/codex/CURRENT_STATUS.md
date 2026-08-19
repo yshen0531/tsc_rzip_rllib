@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z9 final):** physical revision
+> **Current status (2026-08-19, ID-2Z10 final):** revision `31b90c23` passed
+> server focused 6/6 and all one-ms 472/472 tests. The five-context comparison
+> ran zero TSC and read no calibration/holdout data. Deterministic replay audit
+> passed, but neither unchanged candidate was eligible and no artifact exists.
+> Both predicted `b4` in all five folds. Stable / GRU maximum R p95 was
+> `0.726041 / 0.873908 mm`; maximum ranking regret was `0.194231` for both.
+>
+> This closes the present model form under the frozen contract. Larger-network,
+> fresh-calibration, holdout and controller routes remain blocked pending an
+> action-basis/control-utility and model-target review. The ID-2Z9 raw subtree
+> was removed only after compact evidence was committed, pushed and hash-
+> verified; 51,311,622,623 bytes were irreversibly freed and server free space
+> became 125,953,089,536 bytes. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z9 final):** physical revision
 > `63f68c2b` completed all 11 rollouts and 847/847 verified TSC advances.
 > Required raw is 4,290 files / 50,530,128,792 bytes with digest
 > `308a222e8b4f6f4d40babeadc685ce7b9693f1abd8277ec90dc7c7a8c417d5fe`.

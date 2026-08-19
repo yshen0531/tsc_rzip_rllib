@@ -1,0 +1,16 @@
+{
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Same-code deterministic five-context replay; not an independent model implementation.",
+  "failures": [],
+  "model_sha256": null,
+  "new_tsc_or_plant_advances": 0,
+  "primary_passed": false,
+  "primary_route": "ONE_MS_ID2Z10_FIVE_CONTEXT_MODEL_FAIL_ACTION_BASIS_CONTROL_REVIEW",
+  "primary_sha256": "eb725e6feeb3d46a04aebdd2e2bbb97ab15217db314644f466403f634b23e618",
+  "recomputed_route": "ONE_MS_ID2Z10_FIVE_CONTEXT_MODEL_FAIL_ACTION_BASIS_CONTROL_REVIEW",
+  "recomputed_winner": null,
+  "schema_version": "rgeo-zgeo-1ms-id2z10-deterministic-replay-audit-v1",
+  "source_revision": "31b90c237e0801ff4ff083343a2b8b15db19ce6b",
+  "stage_config_sha256": "abfe3316f877119720864ca2f867646b386240e148e62a2a1db0a6701dcd9315"
+}
