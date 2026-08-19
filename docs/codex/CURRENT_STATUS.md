@@ -1,5 +1,18 @@
 # Current status
 
+> **Current status (2026-08-19, post-ID-2Z10 route accepted):** the accepted
+> successor is one prospectively frozen action-grammar and exact-TSC capture
+> teacher. ID-2Z9 proved finite B/F/H utility but no capture; ID-2Z10 proved
+> the two frozen response-model classes ineligible and emitted no artifact.
+> The next result must connect action selection directly to six-state capture,
+> speed/distance/Ip/current margins and a continuation, using at least one
+> non-nested causal history and a fresh selected-path replay.
+>
+> No successor implementation, package, server validation, TSC result,
+> capture, recovery, model, calibration, controller or waypoint result exists
+> yet. Larger networks and all holdout/controller routes remain blocked.
+> Older status blocks are historical.
+
 > **Current status (2026-08-19, ID-2Z10 final):** revision `31b90c23` passed
 > server focused 6/6 and all one-ms 472/472 tests. The five-context comparison
 > ran zero TSC and read no calibration/holdout data. Deterministic replay audit

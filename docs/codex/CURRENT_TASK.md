@@ -1,5 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-19, post-ID-2Z10 route accepted):** the user
+> accepted the bounded action/teacher-first correction recorded in
+> `RGEO_ZGEO_1MS_POST_ID2Z10_ACTION_TEACHER_ROUTE_REVIEW.md`. ID-2Z10 remains
+> final and no model artifact exists. The next work is to freeze and execute
+> one finite truth-recentered exact-TSC capture-teacher identity. H/B/F remain
+> baselines; at most two already measured exact-Card15 complementary signed
+> primitives may be added before TSC. The campaign must include a non-nested
+> arrival history, fixed branch/depth/storage budgets, direct six-state
+> capture and continuation gates, selected-path fresh replay, and independent
+> raw audit.
+>
+> Relative score improvement without capture is not PASS. Teacher FAIL closes
+> the frozen source-local grammar and routes to action-authority/nominal/
+> reachability review. Teacher PASS may authorize only new value/reachability
+> data and one two-candidate small-model comparison. Do not enlarge the
+> network, add primitives after outcomes, open calibration/holdout, fit a
+> policy, issue a controller, or claim Recourse-L1/waypoint/R_mid crossing.
+> All blocks below are historical.
+
 > **Unique active task (2026-08-19, post-ID-2Z10):** ID-2Z10 is final as
 > `ONE_MS_ID2Z10_FIVE_CONTEXT_MODEL_FAIL_ACTION_BASIS_CONTROL_REVIEW`.
 > Server focused 6/6 and all one-ms 472/472 tests passed; deterministic replay

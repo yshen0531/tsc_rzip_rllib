@@ -1,5 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-19, post-ID-2Z10 accepted):** the project
+> now puts finite capture-capable action utility before another model. The
+> five nested state49--65 contexts cleanly rejected the unchanged stable/GRU4
+> response models, while the measured five-macro Oracle path still ended at
+> `26.767972 mm / 0.2983667 m/s`. The next identity is one bounded,
+> truth-recentered exact-TSC capture teacher with H/B/F baselines, at most two
+> prospectively selected complementary signed primitives, at least one
+> non-nested arrival history, direct capture/continuation gates and fresh
+> replay. It is not a controller or recovery proof.
+>
+> Only a teacher/capture PASS may open a causal candidate-value/reachability
+> model that predicts explicit speed, distance, Ip/current margins and
+> uncertainty without future matched-hold truth. Larger networks,
+> calibration, holdout, policy/controller issue, Recourse-L1, waypoint/path
+> and R_mid crossing remain blocked. `CURRENT_TASK.md` is the sole active
+> authority; older route notices below are historical.
+
 > **Active new-round context (2026-08-19, post-ID-2Z10):** adding two fresh
 > late-root contexts did not rescue either unchanged small model. Both preserve
 > response direction and moderate response NRMSE, but both choose `b4` in all
