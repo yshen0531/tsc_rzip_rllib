@@ -1,5 +1,13 @@
 # Current status
 
+> **Current status (2026-08-20, post-ID-2Z11 review):** tracked compact
+> evidence places the closest selected-path point at state61,
+> `25.880440 mm / 0.141940 m/s`, followed by renewed acceleration. The exact
+> signed B/F slew polygon has 41 quarter-grid feasible allocations but no
+> amplitude beyond its four vertices. One final 9-by-2, four-issue receding
+> convex-allocation discriminator is selected; it is not yet implemented,
+> validated or run. No model/controller route is open.
+
 > **Current status (2026-08-20, ID-2Z11 final):** exact execution, prefix,
 > Card15, raw, fresh replay and independent audit all passed for 17/17
 > rollouts and 1,309/1,309 advances. Root selected `b8`; main selected

@@ -1,5 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-20, post-ID-2Z11 review):** the zero-new-TSC
+> authority/reachability review selected one last signed-B/F convex-allocation
+> discriminator. From the exact selected state61 history, then its selected
+> state65 successor, evaluate hold plus the eight boundary directions of the
+> exact feasible `|alpha_B|+|alpha_F|<=1` Card15 allocation polygon, four
+> issues per decision, common terminal states72--77, followed by fresh replay.
+>
+> Six-state capture and exact replay are mandatory. FAIL closes the entire
+> signed B/F convex-allocation route and sends the project to earlier
+> takeover/nominal and new physical-action-basis review. No fitting, added
+> depth, adjacent root, calibration/holdout or controller is authorized.
+> Older blocks below are historical.
+
 > **Unique active task (2026-08-20, post-ID-2Z11):** ID-2Z11 is final as
 > `ONE_MS_ID2Z11_BOUNDED_GRAMMAR_NO_CAPTURE_AUTHORITY_REVIEW`. All 17
 > rollouts, 1,309 advances, 6,630 artifacts, exact replay and independent raw
