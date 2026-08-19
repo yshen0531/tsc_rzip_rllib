@@ -1,5 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current route notice (2026-08-20, post-ID-2Z12):** the final signed B/F
+> convex-allocation discriminator completed cleanly. Exact execution, all
+> `7410` raw artifacts, independent audit and fresh replay passed, but the
+> selected `b4 -> pf4` path ended at terminal maxima `28.769669 mm` and
+> `0.298367 m/s`; capture failed. The signed B/F convex basis at this exact
+> state-61 causal history is closed.
+>
+> The next route must move earlier in the nominal trajectory and introduce a
+> genuinely new exact Card15 direction outside the B/F span. One bounded
+> zero-TSC basis/nominal audit may freeze one new joint nominal/capture
+> campaign. Denser B/F search, extra B/F depth, larger models, calibration,
+> controller issue, Recourse-L1, waypoint/path and R_mid crossing remain
+> blocked. Older route notices below are historical.
+
 > **Current route notice (2026-08-20, post-ID-2Z11):** one bounded signed
 > capture teacher completed cleanly but did not capture. Its exact selected
 > path was `b8 -> b4f4`; the terminal six-state maxima were `29.665859 mm`

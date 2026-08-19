@@ -1,0 +1,663 @@
+{
+  "advance_attempts": 0,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z12-offline-v1",
+  "sequence_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bf4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pf4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "pu4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4",
+        "bu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "bf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "pf4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "p4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "pu4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "u4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "bu4",
+        "bu4"
+      ]
+    }
+  ],
+  "source_revision": "4095655d",
+  "stage_config_sha256": "40c31d9ce3cc5924ed8c2a5cab8301437104900075a76e3df9e9687e66fa4ad2",
+  "static_root_main_sequence_count": 81,
+  "static_root_main_sequences_passed": 81
+}

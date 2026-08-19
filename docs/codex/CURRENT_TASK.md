@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z11 review):** the zero-new-TSC
+> **Unique active task (2026-08-20, post-ID-2Z12):** ID-2Z12 completed all
+> `19/19` rollouts and `1463/1463` advances with exact prefix, Card15, raw,
+> fresh replay and independent audit, but the selected `b4 -> pf4` path did
+> not capture. Its terminal maxima were `28.769669 mm / 0.298367 m/s`.
+> Final route:
+> `ONE_MS_ID2Z12_SIGNED_BF_CONVEX_BASIS_NO_CAPTURE_CLOSE_ROUTE`.
+>
+> The complete signed B/F convex-allocation route at this state-61 history is
+> closed. The active work is one zero-new-TSC earlier-takeover nominal/
+> capture and new-physical-basis audit, followed by at most one separately
+> frozen bounded campaign. Do not add a denser B/F grid, third B/F round,
+> adjacent root, relaxed capture gate or larger model. Recourse, controller,
+> calibration/holdout, waypoint/path and R_mid crossing remain blocked.
+> Older blocks below are historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z11 review):** the zero-new-TSC
 > authority/reachability review selected one last signed-B/F convex-allocation
 > discriminator. From the exact selected state61 history, then its selected
 > state65 successor, evaluate hold plus the eight boundary directions of the

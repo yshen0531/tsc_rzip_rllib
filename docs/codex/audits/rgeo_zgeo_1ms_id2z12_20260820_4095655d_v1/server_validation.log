@@ -1,0 +1,20 @@
+test_allocation_matrix_is_exact_and_statically_admissible (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_allocation_matrix_is_exact_and_statically_admissible) ... ok
+test_config_and_hull_mutations_fail_closed (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_config_and_hull_mutations_fail_closed) ... ok
+test_full_root_main_matrix_is_statically_admissible (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_full_root_main_matrix_is_statically_admissible) ... ok
+test_half_allocation_is_card15_midpoint_and_virtual_state (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_half_allocation_is_card15_midpoint_and_virtual_state) ... ok
+test_identity_budget_and_routes (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_identity_budget_and_routes) ... ok
+test_independent_reconstructs_nineteen_streams (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_independent_reconstructs_nineteen_streams) ... ok
+test_launcher_has_independent_audit_and_no_resume (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_launcher_has_independent_audit_and_no_resume) ... ok
+test_metrics_require_capture_not_only_improvement (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_metrics_require_capture_not_only_improvement) ... ok
+test_route_requires_rounds_replay_and_capture (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_route_requires_rounds_replay_and_capture) ... ok
+test_selected_parent_matches_bound_id2z11_replay (tests.test_rgeo_zgeo_1ms_id2z12_convex_allocation_capture.ID2Z12Tests.test_selected_parent_matches_bound_id2z11_replay) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 8.393s
+
+OK
+............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 492 tests in 267.213s
+
+OK

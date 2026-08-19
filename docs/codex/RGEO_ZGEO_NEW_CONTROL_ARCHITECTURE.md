@@ -1,6 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Z6 architecture amendment (2026-08-19):** the finite branch-
+> **Post-ID-2Z12 architecture amendment (2026-08-20):** exact one-ms RZI
+> observation, full takeover-era causal history, exact Card15 execution,
+> bounded TSC branch evaluation and the independent hard layer remain the
+> correct backbone. ID-2Z12 cleanly closed the complete signed B/F convex
+> allocation basis at the frozen state-61 history: local score improvement
+> persisted, but no state or terminal streak entered the capture set.
+>
+> The immediate architecture correction is earlier joint nominal/capture
+> design with a genuinely new actuator-space direction, not more B/F depth
+> or model capacity. A zero-TSC polytope/support audit must precede one
+> prospectively fixed campaign. Learning stays downstream of measured
+> capture authority and fresh replay; uncertainty, Recourse-L1 and terminal
+> continuation remain independent AND gates.
+
+> **Historical post-ID-2Z6 architecture amendment (2026-08-19):** the finite branch-
 > teacher architecture remains viable, but ID-2Z6 did not complete its
 > evidence contract. The state-49 sibling matrix selected `f4`; the later
 > reporting-only continuation was consumed by a run-root isolation defect.

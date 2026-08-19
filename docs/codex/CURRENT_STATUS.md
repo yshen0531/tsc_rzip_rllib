@@ -1,5 +1,18 @@
 # Current status
 
+> **Current status (2026-08-20, ID-2Z12 final):** server focused `10/10`
+> and all one-ms `492/492` tests passed. All `19/19` rollouts, `1463/1463`
+> advances and `7410/7410` artifacts completed; fresh replay and independent
+> raw audit passed. Root selected `b4`; main selected `pf4`. Six-state capture
+> failed at terminal maxima `28.769669 mm / 0.298367 m/s / 3.13375% Ip`.
+>
+> This closes the complete signed B/F convex span at the frozen state-61
+> history, not global reachability or every action basis. No model or
+> controller artifact exists. The exact 88.64 GB remote raw tree was removed
+> only after compact/log hash recovery; free space is `118121205760` bytes.
+> The active route moves earlier and audits a new Card15 direction before one
+> bounded nominal/capture campaign. Older status blocks are historical.
+
 > **Current status (2026-08-20, post-ID-2Z11 review):** tracked compact
 > evidence places the closest selected-path point at state61,
 > `25.880440 mm / 0.141940 m/s`, followed by renewed acceleration. The exact
