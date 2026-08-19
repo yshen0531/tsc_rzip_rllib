@@ -1,6 +1,23 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, post-ID-2Z5):** the finite
+> **Active new-round context (2026-08-19, ID-2Z6):** the final goal remains
+> fixed-1100-ms, one-ms, exact-observation, slew-limited safe two-axis
+> waypoint/path control and later repeated bidirectional R_mid crossing with
+> continuous belief.  The project is not trying to identify every physical
+> mechanism before using machine learning.  Instead, a bounded exact-TSC
+> branch teacher will first establish finite control utility and produce
+> prospective short causal development windows; a small history model may
+> later amortize the slow branch search.
+>
+> ID-2Z6 starts at the exact state-49 p03 prefix, uses H/B/F four-issue macros
+> over at most three truth-recentered decisions, and retains all sibling
+> branches.  Canonical-source shooting is causal in simulated time but is
+> wall-clock slow and is not an arbitrary-state or sub-millisecond Oracle.
+> Current R_geo/Z_geo/Ip are exact observations; belief/uncertainty applies
+> only to future response, latent history and model mismatch.  ID-2Z5 partial
+> paths remain zero-fit route evidence.  Older notices below are historical.
+
+> **Historical new-round context (2026-08-19, post-ID-2Z5):** the finite
 > state-61 B/F/H campaign is final as an execution-clean development-data
 > FAIL. Thirteen canonical paths and 1,243 verified advances passed exact
 > interface, prefix and raw-integrity gates; all stopped prospectively at the

@@ -1,6 +1,33 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Z5 route review):** ID-2Z5
+> **Unique active task (2026-08-19, ID-2Z6 authorized):** ID-2Z5 remains
+> immutable and zero-fit.  The authorized successor is the separately
+> designed ID-2Z6 early-root truth-recentered branch teacher.  It starts from
+> the exact ID-2W2 state-49 prefix and makes at most three four-ms macro
+> decisions at logical states 49/53/57.  Each round compares exactly
+> `HHHH`, `BBBB`, `FFFF`, `BBFF`, and `FFBB`, observes every branch through
+> common state 69, commits only the selected four-issue prefix, then rebuilds
+> the next round from the canonical 1100-ms source.
+>
+> ID-2Z6 explicitly separates the unchanged six-state 25-mm/0.1-m/s/5%-Ip
+> capture gate, a simulator-only 35-mm/7.5%-Ip development shell with
+> per-successor empirical trips, and the unchanged 50-mm/10%-Ip hard
+> envelope.  The former scalar 100-A heuristic is not a physical invariant;
+> offline admission instead requires exact Card15 representability, absolute
+> current limits, and full next-round H/B4/F4 action-set reserve.  The stage
+> is capped at 16 resets, 1,104 advances and one zero-fit final-sequence
+> replay.  It may create prospective complete-window development data only.
+>
+> Implementation, server-only tests, package/source validation, zero-TSC
+> offline admission, bounded TSC execution and independent full-raw audit are
+> authorized.  A clean PASS may authorize only fresh replay/Recourse-L1
+> design and a separately frozen two-candidate small-model comparison if its
+> data-readiness gate passes.  A teacher/utility FAIL closes this exact B/F/H
+> route and sends the project to one bounded action-basis/authority review;
+> it does not authorize a deeper hand ladder or larger network.  All active
+> blocks below are historical.
+
+> **Historical task (2026-08-19, post-ID-2Z5 route review):** ID-2Z5
 > completed 13/13 canonical-source paths, 1,243/1,243 verified advances and
 > an independent full-raw audit over 1,256 states / 6,280 artifacts. Every
 > path ended in a prospective `PULSE_CLEARANCE_R` safe stop. The final route

@@ -1,6 +1,21 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z5 final):** the accepted server run
+> **Current status (2026-08-19, ID-2Z6 design authorized):** the accepted
+> route review keeps the exact-observation/history-conditioned architecture
+> but moves the immediate discriminator from state-61 fixed open-loop depth
+> to an earlier state-49 finite branch teacher.  ID-2Z5 remains final with
+> no model fit.  The new identity will use exact current R_geo/Z_geo/Ip at
+> every issue, canonical-source full-prefix replay, three bounded four-ms
+> decisions and a common state-69 terminal horizon.
+>
+> Capture, simulator development and hard safety are now separate contracts.
+> Complete causal windows are prospectively development-eligible; censored
+> windows and the critical replay have zero fit weight.  No ID-2Z6 code,
+> server package, TSC result, model, controller, recovery or waypoint result
+> exists yet.  The next work is implementation followed by server-only tests
+> and zero-plant admission.  Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z5 final):** the accepted server run
 > completed 13 resets and 1,243 verified TSC advances. Exact execution,
 > prefix and raw gates passed; the independent audit reproduced 1,256 states,
 > 6,280 artifacts, 73,969,512,544 required bytes and inventory digest
