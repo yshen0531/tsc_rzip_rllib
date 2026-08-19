@@ -1,6 +1,21 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z6 final / ID-2Z7 next):** ID-2Z6 is
+> **Current status (2026-08-19, ID-2Z7 final):** the new-identity continuation
+> completed 11/11 fresh paths and 759/759 verified one-ms advances with exact
+> run-root isolation. All 15 development-weight windows are complete when the
+> five audited ID-2Z6 round-0 windows are included. The selected sequence is
+> `f4 -> b2f2 -> f2b2`; teacher utility and exact replay passed. Independent
+> raw audit passed 770 states / 3,850 files / 45,347,551,480 bytes with digest
+> `acafcc901839bb52d68d42b8fd47dc8de37a9099029a5400915951fe6990d539`.
+>
+> The selected path still fails capture (`26.38866 mm`, `0.32747 m/s` at
+> state 69). ID-2Z7 therefore opens only a bounded two-candidate small-model
+> development comparison, not Recourse-L1 or controller execution. After
+> compact evidence retrieval, the exact audited raw subtree was removed
+> (46,050,216,111 filesystem bytes); server free space is 136,051,212,288
+> bytes. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z6 final / ID-2Z7 next):** ID-2Z6 is
 > final as `ONE_MS_ID2Z6_EXECUTION_OR_INTERFACE_FAIL_STOP`. Its original
 > round-0 matrix completed, and the reporting-only resume selected `f4`, but
 > the resume driver later wrote new raw beneath the historical default root.

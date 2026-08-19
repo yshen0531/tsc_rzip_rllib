@@ -1,6 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, post-ID-2Z6):** ID-2Z6 is consumed
+> **Active new-round context (2026-08-19, post-ID-2Z7):** the finite branch
+> teacher now has a clean result. It selected `f4 -> b2f2 -> f2b2`, improved
+> the frozen terminal score, supplied 15 prospective complete development
+> windows, and reproduced the selected path exactly. It did not capture or
+> establish recovery. Exact current R_geo/Z_geo/Ip and complete takeover-era
+> history remain direct causal inputs; uncertainty remains about future
+> response and latent memory, not current measurement.
+>
+> The immediate model task is deliberately narrow: compare one strongly
+> regularized stable/local sequence-response model against that same causal
+> backbone plus a very small persistent recurrent residual, using the three
+> decision contexts as whole grouped folds. The model is an amortized branch
+> outcome/ranking aid, not a safety layer or end-to-end policy. Fresh
+> calibration, blind whole-history holdout and Recourse-L1 remain mandatory
+> before any controller action. Older notices below are historical.
+
+> **Historical new-round context (2026-08-19, post-ID-2Z6):** ID-2Z6 is consumed
 > as an implementation/driver FAIL after 485 verified TSC successors. Its
 > complete state-49 five-arm matrix selected `f4`, but a reporting-only resume
 > later omitted the run-specific raw root and was stopped during a partial

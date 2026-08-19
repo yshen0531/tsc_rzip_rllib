@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Z6):** ID-2Z6 and its
+> **Unique active task (2026-08-19, post-ID-2Z7):** ID-2Z7 is final as
+> `ONE_MS_ID2Z7_BRANCH_CONTINUATION_PASS_REPLAY_RECOURSE_AND_SMALL_MODEL_DESIGN_ONLY`.
+> Eleven fresh canonical-source paths completed 759/759 verified advances;
+> the independent audit reparsed 770 states and 3,850 artifacts with no
+> failures. The selected sequence is `f4 -> b2f2 -> f2b2`. It improves the
+> normalized terminal score from the original round-0 hold `4.40768` to
+> `3.27475`, and its exact zero-fit replay passed.
+>
+> This is not capture: terminal speed reaches `0.32747 m/s` and distance
+> `26.38866 mm`. Recourse-L1 and controller execution remain blocked. The
+> next authorized work is one prospectively bounded, server-evaluated,
+> two-candidate low-capacity development comparison using exactly the 15
+> complete fit-weight windows and whole decision-context folds. The three
+> contexts are a severe sample-size limit; no large recurrent network,
+> calibration, blind holdout, expert data or controller is authorized.
+> All blocks below are historical.
+
+> **Historical task (2026-08-19, post-ID-2Z6):** ID-2Z6 and its
 > reporting-only R1 identity are consumed and final as
 > `ONE_MS_ID2Z6_EXECUTION_OR_INTERFACE_FAIL_STOP`. Five round-0 paths and two
 > round-1 paths completed; `r1__f4` stopped after three attempts/two verified

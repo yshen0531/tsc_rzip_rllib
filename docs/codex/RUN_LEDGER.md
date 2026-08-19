@@ -2561,6 +2561,34 @@
 - Next: prospectively frozen two-decision canonical-prefix rolling branch
   campaign, replanning at state69 and selected state73
 
+## 2026-08-19 ID-2Z7 fresh branch continuation
+
+- Implementation revision: `cb5c7a40c112208d13e3f2b42ded820d445b1c90`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z7_runs/20260819_cb5c7a40_v1`
+- Server validation: focused 9/9; all one-ms 448/448; static action matrix
+  25/25; zero-TSC preflight PASS
+- Execution: 11/11 complete fresh paths; 759/759 attempts, `gotsc` calls and
+  verified advances; 770 states; zero guarded safe stops
+- Raw: 3,850 files / 45,347,551,480 logical bytes / digest
+  `acafcc901839bb52d68d42b8fd47dc8de37a9099029a5400915951fe6990d539`
+- Primary / independent SHA-256:
+  `d4cf6c2d2328a1b58c24c5a07a69150c13e559c740a3fe9842e347cbac9ed54a /`
+  `a46fd35ce6a197817334864b9e3dfd01da51e8448ec1b877d058237ee9fbebd1`
+- Selected sequence: `f4 -> b2f2 -> f2b2`; exact replay PASS; combined
+  complete development-weight windows 15/15
+- Scientific boundary: terminal score improved `4.40768 -> 3.27475`, but
+  capture failed (`26.38866 mm`, `0.32747 m/s` at state 69)
+- Final route:
+  `ONE_MS_ID2Z7_BRANCH_CONTINUATION_PASS_REPLAY_RECOURSE_AND_SMALL_MODEL_DESIGN_ONLY`
+- Cleanup: removed only the independently audited raw `rollouts/` subtree,
+  46,050,216,111 filesystem bytes; compact evidence/logs retained; free bytes
+  after cleanup 136,051,212,288
+- Compact evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2z7_20260819_cb5c7a40_v1/`
+- Next: one bounded two-candidate, whole-context small-model comparison; no
+  controller or Recourse-L1 authorization
+
 ## 2026-08-19 ID-2Z3 bounded braking rolling search
 
 - Physical implementation: `68dff0c7733b6ff19dacbbe2917c3c82db8e8a73`
