@@ -1,6 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Z3):** ID-2Z3 completed all
+> **Unique active task (2026-08-19, ID-2Z4 frozen):** ID-2Z3 remains final
+> as an exact finite p07-only grammar failure. ID-2Z4 is the sole active
+> successor. It replays the exact selected state-97 prefix and compares eight
+> fixed twelve-slot capture sequences built only from hold, p07-minus braking
+> and p03-unwind second-axis actions, followed by a common twelve-ms held
+> tail. The stage is capped at eight resets and 968 advances.
+>
+> A capture candidate requires all six terminal states within 25 mm source
+> distance, 0.1 m/s R/Z step speed and 5% source-relative Ip. Even a PASS
+> only nominates one sequence for fresh replay and Recourse-L1 design. No
+> fitting, calibration/holdout, controller, waypoint/path, crossing,
+> adaptation, expert data or RL is active. All blocks below are historical.
+
+> **Historical task (2026-08-19, post-ID-2Z3):** ID-2Z3 completed all
 > fourteen admitted canonical-source branches and 1,366/1,366 verified
 > advances. A reporting-only raw-input lifecycle repair produced an exact
 > independent audit over 1,380 states and 6,900 artifacts. The immutable

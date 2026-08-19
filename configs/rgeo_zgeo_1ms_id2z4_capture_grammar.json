@@ -1,0 +1,122 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z4-capture-grammar-v1",
+  "identity": "rgeo-zgeo-1ms-id2z4-capture-grammar-v1",
+  "stage": "ID-2Z4",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "decision_state_index": 97,
+  "capture_first_issue": 97,
+  "capture_last_issue": 108,
+  "tail_first_issue": 109,
+  "horizon_steps": 121,
+  "effect_state_offset": 1,
+  "terminal_state_indices": [116, 117, 118, 119, 120, 121],
+  "candidate_specs": [
+    {"candidate_id": "hold12", "tokens": "HHHHHHHHHHHH"},
+    {"candidate_id": "p07m4", "tokens": "BBBBHHHHHHHH"},
+    {"candidate_id": "p07m8", "tokens": "BBBBBBBBHHHH"},
+    {"candidate_id": "p07m12", "tokens": "BBBBBBBBBBBB"},
+    {"candidate_id": "p07m8_p03u4", "tokens": "BBBBBBBBUUUU"},
+    {"candidate_id": "p07m4_p03u4_p07m4", "tokens": "BBBBUUUUBBBB"},
+    {"candidate_id": "p07m4_p03u2_p07m4_p03u2", "tokens": "BBBBUUBBBBUU"},
+    {"candidate_id": "p03u2_p07m10", "tokens": "UUBBBBBBBBBB"}
+  ],
+  "token_semantics": {
+    "H": "hold exact current target",
+    "B": "one exact p07:minus increment",
+    "U": "one exact p03 unwind increment"
+  },
+  "maximum_candidates": 8,
+  "maximum_rollouts": 8,
+  "maximum_reset_calls": 8,
+  "maximum_advance_attempts": 968,
+  "maximum_gotsc_calls": 968,
+  "maximum_verified_plant_advances": 968,
+  "maximum_retained_states": 976,
+  "required_artifact_files_if_all_complete": 4880,
+  "retry_after_any_advance_attempt": "forbidden",
+  "experiment_contract": "tsc_only_canonical_source_state97_two_axis_capture_grammar",
+  "data_use": "capture_sequence_search_and_route_evidence_only",
+  "calibration_holdout_controller_expert_bc_dagger_rl_fixture_use": "forbidden",
+  "models_fit_or_updated": 0,
+  "action_semantics": {
+    "absolute_card15_targets": true,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "full_0p3_a_allowed": true,
+    "minimum_absolute_current_headroom_a": 100.0,
+    "one_coordinate_token_per_issue": true,
+    "software_queue_added": false,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "future_actual_current": "forbidden",
+    "invalid_exact_or_headroom_combination": "exclude_before_reset"
+  },
+  "observability": {
+    "current_same_step_paired_boundary_rgeo_zgeo_and_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_history": "available",
+    "future_successor": "unknown_before_issue",
+    "invalid_boundary": "fail_closed"
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "prefix_gates": {
+    "required_state_count": 98,
+    "required_action_count": 97,
+    "checkpoint_indices": [0, 32, 64, 69, 73, 77, 81, 85, 89, 93, 97],
+    "exact_action_fields_all_prefix_issues": true,
+    "exact_checkpoint_rgeo_zgeo_rmid_ip_coil_wire_active_command_and_semantic_hashes": true,
+    "sprsina_hash_is_diagnostic_only": true
+  },
+  "empirical_exploration": {
+    "novel_issue_first": 97,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 100.0},
+    "inner_novel_issue_clearance": "current_state_inside_inner_and_outer_reserve_at_least_step_cap",
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "absolute_source_ip_fraction": 0.1},
+    "allowed_branch_safe_stop_reasons": ["PREISSUE_INNER_MARGIN", "POST_SUCCESSOR_STEP_CAP", "POST_SUCCESSOR_INNER_MARGIN"],
+    "continue_next_reset_after_only_allowed_branch_safe_stop": true,
+    "abort_campaign_after_any_other_failure": true,
+    "stop_before_next_issue_after_any_failure": true,
+    "post_action_abort_is_not_a_pre_action_bound": true,
+    "simulator_only_empirical_exploration_exception": true
+  },
+  "measurement_gates": {
+    "baseline_candidate_id": "hold12",
+    "response_state_indices": [98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121],
+    "maximum_paired_ip_response_a": 400.0,
+    "capture_terminal_state_indices": [116, 117, 118, 119, 120, 121],
+    "maximum_terminal_source_rz_distance_m": 0.025,
+    "maximum_terminal_rz_step_speed_m_per_s": 0.1,
+    "maximum_terminal_absolute_source_ip_fraction": 0.05,
+    "minimum_non_hold_capture_candidates": 1,
+    "selection_order": ["minimum_terminal_max_rz_speed_m_per_s", "minimum_terminal_max_source_rz_distance_m", "minimum_terminal_max_absolute_source_ip_offset_a", "minimum_non_hold_issue_count", "candidate_id"]
+  },
+  "storage_gate": {
+    "minimum_free_bytes_before_run": 120000000000,
+    "maximum_estimated_raw_bytes": 65000000000,
+    "minimum_free_bytes_after_estimate": 55000000000,
+    "output_must_not_exist": true,
+    "raw_compression": "forbidden"
+  },
+  "server_cleanup_record": {
+    "deleted_only_completed_id2z3_rollout_subtree": true,
+    "deleted_id2z3_rollout_bytes": 82525197355,
+    "retained_id2z3_result_audits_compacts_preflight_and_logs": true,
+    "free_bytes_after_cleanup": 157079855104,
+    "deletion_is_irreversible": true
+  },
+  "evidence": {
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z4_CAPTURE_GRAMMAR_DESIGN.md", "sha256": "aeaf3e1af258ec6b2834b46e716f9db51c48d7228ad24e9642ad67163ec40a2d"},
+    "id2z3_config": {"path": "configs/rgeo_zgeo_1ms_id2z3_bounded_braking_rolling_search.json", "sha256": "434d4629362e154a9d4f26e88b677ab428e75baf26c2d0500a3f113e2baded86"},
+    "id2z3_result_report": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z3_BOUNDED_BRAKING_RESULT.md", "sha256": "eb2b8bee12ff89638881d0575e7e943d094561a9f6b407dd768e66b3834ead97"},
+    "id2z3_compact_evidence": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z3_20260819_68dff0c7/compact_evidence.json", "sha256": "65aa6aea9a232e5a8db6211ae5a136dc4c5a6cb647cecc84e513422c0c2fe165", "required_route": "ONE_MS_ID2Z3_BRAKING_SEARCH_EXHAUSTED_GRAMMAR_INSUFFICIENT", "required_repaired_audit_passed": true},
+    "id2z3_state97_reference": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z3_20260819_68dff0c7/selected_state97_reference.json", "sha256": "d0660e51c310f03c5f18db3cd3c9771d07d5c6aa5de727ba541bc2bc9cfd1cdc", "required_state_count": 98, "required_action_count": 97, "required_source_compact_sha256": "e8808d49f5ef4ba3bade67dbba2a27798030da9f19f51b58c700ae9af180b0f8"}
+  },
+  "routes": {
+    "offline_or_input_fail": "ONE_MS_ID2Z4_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "storage_fail": "ONE_MS_ID2Z4_STORAGE_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID2Z4_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID2Z4_RAW_INTEGRITY_FAIL_PRESERVE_RAW",
+    "prefix_mismatch": "ONE_MS_ID2Z4_PREFIX_MISMATCH_STOP",
+    "no_capture_candidate": "ONE_MS_ID2Z4_CAPTURE_GRAMMAR_FAIL_BROADER_ALLOCATION_REQUIRED",
+    "capture_candidate": "ONE_MS_ID2Z4_FINITE_CAPTURE_CANDIDATE_PASS_FRESH_REPLAY_AND_RECOURSE_DESIGN_ONLY"
+  }
+}

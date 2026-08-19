@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z3 final):** execution and raw integrity
+> **Current status (2026-08-19, ID-2Z4 design checkpoint):** the exact
+> ID-2Z3 selected state-97 prefix has been reduced to tracked physical/action
+> checkpoints. The frozen ID-2Z4 discriminator tests eight bounded capture
+> schedules over twelve active slots plus a common twelve-ms tail. It uses
+> explicit 1-ms Card15 time sharing; no combined/clipped action is allowed.
+> Implementation, server validation and the zero-TSC gate are next. No ID-2Z4
+> plant advance has occurred yet. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z3 final):** execution and raw integrity
 > passed for 14 rollouts, 1,366 advances, 1,380 states and 81.272 GB. The
 > repaired structurally separate audit reproduces every prefix, metric,
 > selected arm and inventory byte. All five decisions selected

@@ -1,6 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, post-ID-2Z3):** the bounded
+> **Active new-round context (2026-08-19, ID-2Z4):** transport, velocity
+> arrest and capture are now explicitly distinct. ID-2Z4 starts from the
+> exact selected state-97 prefix and tests a finite time-shared p07-brake /
+> p03-unwind capture grammar with a twelve-ms tail. A terminal candidate must
+> remain within 25 mm, 0.1 m/s and 5% Ip for six consecutive states. This is
+> sequence-search evidence only; learning and feedback remain downstream.
+> Older active notices below are historical.
+
+> **Historical new-round context (2026-08-19, post-ID-2Z3):** the bounded
 > canonical-source search selected five consecutive p07-minus braking macros
 > with exact execution, but their held tails never formed a coarse stationary
 > set. Final tail speed was `0.300687 m/s` at `25.4024 mm` source distance.

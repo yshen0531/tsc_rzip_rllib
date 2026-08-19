@@ -1,6 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Z3 architecture amendment (2026-08-19):** repeated p07-minus
+> **ID-2Z4 architecture freeze (2026-08-19):** the next bounded branch set
+> time-shares p07-minus braking and p03-unwind second-axis action after the
+> exact state-97 prefix. Twelve capture issues and twelve held-tail issues
+> separate transient velocity arrest from capturable low-speed behavior.
+> A six-state 25-mm/0.1-m/s/5%-Ip result is still only a finite sequence
+> candidate; replay, uncertainty and recourse remain separate gates.
+>
+> **Historical post-ID-2Z3 architecture amendment (2026-08-19):** repeated p07-minus
 > ramps provide finite braking authority but their held command is not a
 > terminal or recoverable set. The architecture must separate transport,
 > velocity arrest, and capture/hold actions. The next finite branch search

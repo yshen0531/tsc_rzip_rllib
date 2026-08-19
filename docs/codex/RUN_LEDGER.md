@@ -2561,3 +2561,19 @@
   `docs/codex/audits/rgeo_zgeo_1ms_id2z3_20260819_68dff0c7/`
 - Next: bounded two-axis capture-grammar design at the exact selected
   state-97 prefix; no extension of the p07-only ladder
+
+## 2026-08-19 ID-2Z3 cleanup and ID-2Z4 design
+
+- Irreversibly removed only:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_id2z3_20260819_68dff0c7/rollouts`
+- Removed bytes: `82,525,197,355`
+- Retained remotely: all per-rollout compact JSON, primary result, initial
+  independent FAIL, repaired independent PASS, offline preflight and logs
+- Free bytes after cleanup: `157,079,855,104`
+- ID-2Z4 freezes eight state-97 capture candidates, at most eight resets /
+  968 advances, with a 65-GB estimate and no model fit
+- Design:
+  `docs/codex/reports/RGEO_ZGEO_1MS_ID2Z4_CAPTURE_GRAMMAR_DESIGN.md`
+- Config: `configs/rgeo_zgeo_1ms_id2z4_capture_grammar.json`
+- Next: implementation, server-only validation, zero-TSC preflight and only
+  then the finite real-TSC discriminator
