@@ -123,6 +123,14 @@ class ID2Z16Tests(unittest.TestCase):
         self.assertEqual(len(streams), 16)
         self.assertEqual(streams[-1]["rollout_id"], "critical_replay")
 
+    def test_independent_excludes_replay_from_round1_search(self) -> None:
+        self.assertTrue(mi.is_round1_search_row(
+            {"round_index": 1, "rollout_id": "round1__f8__f8"}))
+        self.assertFalse(mi.is_round1_search_row(
+            {"round_index": 1, "rollout_id": "critical_replay"}))
+        self.assertFalse(mi.is_round1_search_row(
+            {"round_index": 0, "rollout_id": "round0__f8"}))
+
     def test_config_mutations_fail_closed(self) -> None:
         original = json.loads(m.CONFIG.read_text(encoding="utf-8"))
         for mutate in (

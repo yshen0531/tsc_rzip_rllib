@@ -70,6 +70,12 @@ def compact_rows(run_dir: Path, expected: Sequence[dict[str, Any]],
     return rows
 
 
+def is_round1_search_row(row: dict[str, Any]) -> bool:
+    """Keep the repeatability replay out of the finite search population."""
+    return (int(row.get("round_index", -1)) == 1
+            and row.get("rollout_id") != "critical_replay")
+
+
 def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     failures: list[str] = []
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
@@ -111,7 +117,11 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     root_metrics = primary._metrics(root_rows, stage)
     beam = root_metrics.get("ranked_path_ids", [])[:2] if root_metrics.get("complete") else []
     root_by_path = {row.get("path_id"): row for row in compact}
-    child_rows = [row for row in raw_rows if int(row.get("round_index", -1)) == 1]
+    # The fresh critical replay deliberately shares the selected child's
+    # round_index/path_id.  It verifies repeatability, but it is not an
+    # additional search branch and must not be inserted into the round-1
+    # ranking or its prefix-check list.
+    child_rows = [row for row in raw_rows if is_round1_search_row(row)]
     child_metrics = primary._metrics(child_rows, stage)
     selected = child_metrics.get("selected_path_id")
     replay = raw_by_id.get("critical_replay")
@@ -125,7 +135,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             prefix_values.append(primary.z6.prefix_check(
                 row, reference, 33, 32, stage["semantic_artifacts"]))
     for row in compact:
-        if int(row.get("round_index", -1)) != 1:
+        if not is_round1_search_row(row):
             continue
         parent_row = root_by_path.get(row.get("parent_path_id"))
         prefix_values.append(primary.z6.prefix_check(
