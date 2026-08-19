@@ -319,6 +319,12 @@ def route_for(stage: dict[str, Any], execution: bool, raw_ok: bool,
     return routes["data_pass" if signal_ok else "signal_or_support_fail"]
 
 
+def safe_stop(row: dict[str, Any], stage: dict[str, Any]) -> bool:
+    reasons = list(row.get("reasons", []))
+    allowed = set(stage["empirical_exploration"]["allowed_safe_stop_reasons"])
+    return bool(reasons) and set(reasons).issubset(allowed)
+
+
 def execute_row(cfg: Any, runtime: dict[str, Any], stream: dict[str, Any],
                 reference: dict[str, Any], source_revision: str,
                 output: Path, *, runner_cls: type | None = None) -> dict[str, Any]:
@@ -384,7 +390,7 @@ def execute(stage: dict[str, Any], runtime: dict[str, Any], cfg: Any,
         prefixes.append(z6.prefix_check(row, reference, 17, 16,
                                         stage["semantic_artifacts"]))
         if not row.get("passed"):
-            if not z6.safe_stop(row, runtime):
+            if not safe_stop(row, stage):
                 execution = False
             break
     counters = {key: sum(int(row.get(key, 0)) for row in rows) for key in

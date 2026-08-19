@@ -92,7 +92,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                                               stage["semantic_artifacts"])
                      for row in raw_rows]
     execution = bool(raw_rows and all(
-        row.get("passed") or primary.z6.safe_stop(row, runtime) for row in raw_rows))
+        row.get("passed") or primary.safe_stop(row, stage) for row in raw_rows))
     expected_files = 5 * sum(len(row.get("states", [])) for row in raw_rows)
     raw_ok = bool(len(inventory_lines) == expected_files
                   and not any(value.startswith("MISSING_ARTIFACT") for value in failures))
