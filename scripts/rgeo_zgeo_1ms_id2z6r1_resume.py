@@ -311,6 +311,9 @@ def resume(stage_path: Path, run_dir: Path,
 
     stage, cfg, targets = (
         context["stage"], context["cfg"], context["targets"])
+    # The loaded W2 runner retains its historical default run root.  Resume
+    # evidence must remain inside the already frozen ID2Z6 output tree.
+    cfg.run_root = run_dir / "rollouts"
     rows = list(context["compact"])
     prefix_values = list(context["prefix_values"])
     round_values: list[dict[str, Any] | None] = [context["round_value"]]

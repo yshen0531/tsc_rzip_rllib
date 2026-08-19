@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import importlib.util
+import inspect
 import json
 import unittest
 from pathlib import Path
@@ -213,6 +214,8 @@ class ID2Z6Tests(unittest.TestCase):
         self.assertIn("id2z6r1_resume_independent.py", resume_launcher)
         self.assertIn("reporting-resume-v1", resume.SCHEMA)
         self.assertIn("id2z6r1-independent-raw-v1", resume_independent.SCHEMA)
+        self.assertIn('cfg.run_root = run_dir / "rollouts"',
+                      inspect.getsource(resume.resume))
 
 
 if __name__ == "__main__":
