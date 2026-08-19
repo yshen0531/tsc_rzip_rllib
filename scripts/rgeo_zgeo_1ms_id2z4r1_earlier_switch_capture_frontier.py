@@ -18,6 +18,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 import scripts.rgeo_zgeo_1ms_id2z3_bounded_braking_rolling_search as z3  # noqa: E402
+from scripts.rgeo_zgeo_1ms_id0_vector_tail import CountingRunner  # noqa: E402
 
 
 CONFIG = ROOT / "configs" / "rgeo_zgeo_1ms_id2z4r1_earlier_switch_capture_frontier.json"
@@ -577,7 +578,7 @@ def one_rollout(cfg: Any, stage: dict[str, Any], stream: dict[str, Any],
                 *, runner_cls: type | None = None) -> dict[str, Any]:
     """Execute one branch with inner clearance before every novel issue."""
     x1 = z3.z1.y1r1.y1.x1
-    runner_type = runner_cls or x1.CountingRunner
+    runner_type = runner_cls or CountingRunner
     runner = None
     states: list[dict[str, Any]] = []
     actions: list[dict[str, Any]] = []
