@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current NR route notice (2026-08-20, ID-2Z16 frozen):** one bounded
+> sequence/reachability discriminator is now prospectively fixed around the
+> exact full-F state32 prefix. A two-layer, width-two measured TSC beam uses
+> only h8/b8/f8/b4f4/f4b4 and ends in a common six-state capture test plus
+> fresh replay. This is the sole reopening after the constant-rate failure;
+> it is zero fit weight and cannot grow a third layer, wider beam or new arm
+> after response. PASS may open only Recourse-L1 design; FAIL sends the route
+> to a new physical basis/reachability review. Older notices are historical.
+
 > **Current NR route notice (2026-08-20, post-ID-2Z15):** the canonical-source
 > fractional/duty frontier completed cleanly. Full-F was the best branch but
 > still failed capture at terminal maxima `26.806785 mm / 0.613147 m/s`;

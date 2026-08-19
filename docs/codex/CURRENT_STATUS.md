@@ -1,5 +1,14 @@
 # Current status
 
+> **Current status (2026-08-20, ID-2Z16 design frozen):** the post-ID-2Z15
+> review selected one bounded algorithmic sequence discriminator rather than
+> another nominal rate or predictor. ID-2Z16 uses the exact selected full-F
+> state32 prefix, a fixed five-arm B/F/H matrix, beam width two, two measured
+> decisions and one fresh replay. The design caps real work at `16` resets
+> and requires unchanged six-state capture. Implementation, server tests and
+> TSC have not run. ID-2Z15 remains final FAIL; no model/controller route is
+> open.
+
 > **Current status (2026-08-20, ID-2Z15 final):** server focused `11/11`
 > and all one-ms `523/523` tests passed. All `7/7` authentic rollouts,
 > `336/336` advances, `343` states and `1715` artifacts completed; exact

@@ -1,4 +1,15 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **ID-2Z16 bounded-beam amendment (2026-08-20):** the one permitted
+> post-frontier authority test is an exact-TSC, truth-recentered two-layer
+> beam from the full-F state32 prefix. It tests whether measured transport
+> and braking primitives can be sequenced into sustained capture without
+> first fitting a surrogate. The fixed beam is an authority discriminator,
+> not a deployable Oracle: every candidate restarts and replays from the
+> canonical source, and PASS still requires fresh replay then Recourse-L1.
+> FAIL closes this exact B/F/H search cell and redirects the architecture to
+> a new physical basis/reachability formulation, not more beam depth or
+> neural capacity. Older amendments are historical.
+
 
 > **Post-ID-2Z15 sequence amendment (2026-08-20):** exact execution and
 > independent audit showed a monotone finite nominal frontier: full-F was

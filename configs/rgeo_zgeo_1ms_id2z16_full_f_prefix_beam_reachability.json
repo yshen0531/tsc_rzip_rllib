@@ -1,0 +1,120 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z16-full-f-prefix-beam-reachability-v1",
+  "identity": "rgeo-zgeo-1ms-id2z16-full-f-prefix-beam-reachability-v1",
+  "stage": "ID-2Z16",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "common_horizon_steps": 65,
+  "common_terminal_state_index": 65,
+  "source_prefix_last_issue": 31,
+  "source_prefix_last_state": 32,
+  "beam_width": 2,
+  "rounds": [
+    {"round_index": 0, "round_id": "full_f_state32", "decision_state_index": 32, "macro_last_issue": 39},
+    {"round_index": 1, "round_id": "beam_state40", "decision_state_index": 40, "macro_last_issue": 47}
+  ],
+  "candidate_specs": [
+    {"arm_id": "h8", "tokens": "HHHHHHHH"},
+    {"arm_id": "b8", "tokens": "BBBBBBBB"},
+    {"arm_id": "f8", "tokens": "FFFFFFFF"},
+    {"arm_id": "b4f4", "tokens": "BBBBFFFF"},
+    {"arm_id": "f4b4", "tokens": "FFFFBBBB"}
+  ],
+  "maximum_static_sequences": 30,
+  "maximum_search_branches": 15,
+  "maximum_replay_rollouts": 1,
+  "maximum_rollouts": 16,
+  "maximum_reset_calls": 16,
+  "maximum_advance_attempts": 1040,
+  "maximum_gotsc_calls": 1040,
+  "maximum_verified_plant_advances": 1040,
+  "maximum_retained_states": 1056,
+  "required_artifact_files_if_all_complete": 5280,
+  "retry_after_any_advance_attempt": "forbidden",
+  "models_fit_or_updated": 0,
+  "data_use": "sequence_reachability_route_evidence_only_zero_fit_weight",
+  "fit_calibration_holdout_controller_expert_bc_dagger_rl_fixture_use": "forbidden",
+  "action_semantics": {
+    "absolute_card15_targets": true,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "full_0p3_a_allowed": true,
+    "issue_to_effect_state_offset": 1,
+    "software_queue_added": false,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "future_actual_current": "forbidden",
+    "tokens": {"H": "hold", "B": "p07_minus_increment", "F": "p03_forward_increment"},
+    "round0_measured_branch_ranking": "capture_first_then_terminal_score_then_arm_id",
+    "round0_selected_parent_count": 2,
+    "round1_measured_branch_ranking": "capture_first_then_terminal_score_then_path_id",
+    "no_model_selection": true
+  },
+  "observability": {
+    "current_same_step_paired_boundary_rgeo_zgeo_and_ip": "exact_noiseless_before_issue",
+    "post_takeover_causal_history": "available",
+    "future_successor": "unknown_before_issue",
+    "belief_is_not_used_for_current_or_past_rzi": true,
+    "invalid_boundary": "fail_closed"
+  },
+  "run_root_isolation": {
+    "required_value": "<new_output>/rollouts",
+    "historical_default_root_forbidden": "rgeo_zgeo_1ms_nr1_runs",
+    "verify_before_runner_construction": true,
+    "every_rollout_must_resolve_under_required_root": true,
+    "fake_runner_server_test_required": true,
+    "no_existing_output": true
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "empirical_exploration": {
+    "novel_issue_first": 32,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 150.0},
+    "simulator_development_preissue_clearance": {"r_geo_m": 0.045, "z_geo_m": 0.045, "ip_fraction": 0.09},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.1},
+    "development_to_hard_axis_guard_m": 0.005,
+    "development_to_hard_ip_fraction_guard": 0.01,
+    "allowed_branch_safe_stop_reasons": ["PULSE_CLEARANCE_R", "PULSE_CLEARANCE_Z", "PULSE_CLEARANCE_IP", "EMPIRICAL_STEP_R", "EMPIRICAL_STEP_Z", "EMPIRICAL_STEP_IP"],
+    "continue_next_sibling_after_only_allowed_branch_safe_stop": true,
+    "abort_campaign_after_any_other_failure": true,
+    "stop_before_next_issue_after_any_failure": true,
+    "post_action_abort_is_not_a_pre_action_bound": true,
+    "development_shell_is_not_capture_recovery_or_safety": true,
+    "simulator_only_empirical_exploration_exception": true,
+    "all_fifteen_search_branches_complete_required_for_scientific_verdict": true
+  },
+  "measurement_gates": {
+    "terminal_state_indices": [60, 61, 62, 63, 64, 65],
+    "maximum_capture_source_rz_distance_m": 0.025,
+    "maximum_capture_rz_step_speed_m_per_s": 0.1,
+    "maximum_capture_absolute_source_ip_fraction": 0.05,
+    "selected_path_fresh_replay_exact_required": true,
+    "capture_pass_authorizes": "recourse_l1_design_only",
+    "scientific_fail_closes": "exact_full_f_prefix_bfh_two_layer_beam_grammar"
+  },
+  "storage_gate": {
+    "minimum_free_bytes_before_run": 110000000000,
+    "maximum_estimated_raw_bytes": 70000000000,
+    "minimum_free_bytes_after_estimate": 40000000000,
+    "output_must_not_exist": true,
+    "raw_compression": "forbidden",
+    "delete_only_after_independent_audit_and_compact_hash_recovery": true
+  },
+  "evidence": {
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z16_FULL_F_PREFIX_BEAM_REACHABILITY_DESIGN.md", "sha256": "bce52f6c30e57d5504f0d192c3143ca6bccf837e265162fdafbe692673bdf00e"},
+    "id2z15_config": {"path": "configs/rgeo_zgeo_1ms_id2z15_headroom_nominal_frontier.json", "sha256": "ca04d4060bdb6fa1552ecf67044857d22b67e5f965ed6fa2de14fe5987ff73ea"},
+    "id2z15_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z15_20260820_168597c1_v1/result.json", "sha256": "4041dd1443e1438a77074047643a709bc69abd88db5e63546b853c2f5a98f1e9", "required_route": "ONE_MS_ID2Z15_CONSTANT_HEADROOM_NOMINAL_INSUFFICIENT_SEQUENCE_REACHABILITY_REQUIRED"},
+    "id2z15_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z15_20260820_168597c1_v1/independent_raw_audit.json", "sha256": "853836acb4af4e5ede983f00adeca0a924847957415e77df9cbaf36f9b320ae8"},
+    "id2z15_full_f_replay": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z15_20260820_168597c1_v1/critical_replay.json", "sha256": "f4be1cf2579d2ab14687f97cbb8fb8691d26d3c09db3517534c991780598a521"}
+  },
+  "routes": {
+    "offline_or_input_fail": "ONE_MS_ID2Z16_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "storage_fail": "ONE_MS_ID2Z16_STORAGE_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID2Z16_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID2Z16_RAW_INTEGRITY_FAIL_PRESERVE_RAW",
+    "prefix_mismatch": "ONE_MS_ID2Z16_PREFIX_MISMATCH_STOP",
+    "beam_incomplete": "ONE_MS_ID2Z16_BEAM_INCOMPLETE_INCONCLUSIVE_STOP",
+    "replay_fail": "ONE_MS_ID2Z16_SELECTED_SEQUENCE_REPLAY_FAIL_STOP",
+    "capture_pass": "ONE_MS_ID2Z16_FULL_F_PREFIX_BEAM_CAPTURE_PASS_RECOURSE_DESIGN_ONLY",
+    "no_capture": "ONE_MS_ID2Z16_FULL_F_PREFIX_BFH_BEAM_NO_CAPTURE_NEW_BASIS_REACHABILITY_REQUIRED"
+  },
+  "claim_boundary": "Finite exact-TSC two-layer beam discriminator at one full-F source history only; not a model, tube, controller, MPC, recovery, waypoint, path, R_mid-crossing or global-reachability result."
+}

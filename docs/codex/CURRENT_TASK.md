@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z15):** ID-2Z15 completed all
+> **Unique active task (2026-08-20, ID-2Z16 frozen):** the bounded
+> post-ID-2Z15 sequence review freezes one exact full-F-prefix, two-layer
+> beam discriminator. Replay full-F through issue31/state32; branch
+> `h8/b8/f8/b4f4/f4b4` at issue32, retain the best two measured parents,
+> branch the same five arms at issue40, then execute one fresh selected-path
+> replay. Offline must prove all `30` possible schedules; real maximum is
+> `16` resets / `1040` advances / `5280` artifacts.
+>
+> Implement, server-test and run only after offline, storage, package and
+> hard gates pass. Six-state capture plus exact replay authorizes only
+> Recourse-L1 design. Scientific FAIL closes this exact full-F-prefix B/F/H
+> beam grammar and requires a new physical basis or separately justified
+> reachability construction. No third round, wider beam, added rate/token,
+> nearby root, model, calibration/holdout, controller or relaxed capture gate
+> is authorized. All ID-2Z16 data have zero fit weight. Older blocks are
+> historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z15):** ID-2Z15 completed all
 > `7/7` authentic rollouts, `336/336` advances and `1715/1715` artifacts;
 > selected `f100` replay and independent raw audit passed. No branch
 > captured. No fractional/duty arm beat both q0 and f100, so the official
