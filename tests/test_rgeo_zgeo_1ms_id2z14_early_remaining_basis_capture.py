@@ -88,6 +88,9 @@ class ID2Z14Tests(unittest.TestCase):
                     for index, arm in enumerate(m.ARM_IDS[1:]))
         value = m._metrics(rows, self.stage)
         self.assertTrue(value["passed"])
+        self.assertTrue(value["baseline_complete"])
+        self.assertTrue(all(row["execution_status"] == "complete"
+                            for row in value["branch_metrics"]))
         self.assertFalse(value["selected_capture_passed"])
         self.assertEqual(m.route_for(self.stage, True, True, True, value,
                                      True, False), self.stage["routes"]["no_capture"])

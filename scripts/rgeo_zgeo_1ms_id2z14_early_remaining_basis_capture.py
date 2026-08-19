@@ -235,7 +235,93 @@ def validate_stream(stream: dict[str, Any], stage: dict[str, Any], cfg: Any) -> 
 
 
 def _metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) -> dict[str, Any]:
-    return z13.z11._metrics(rows, stage, ARM_IDS)
+    """Evaluate the frozen ID2Z14 horizon without inheriting Z11's length.
+
+    Z11 has a 77-step horizon and therefore hard-codes 78 retained states.
+    ID2Z14 ends at issue 64/state 65, so reusing that implementation would
+    classify every valid 66-state branch as incomplete.  Keep the same score
+    and ordering semantics, but derive completeness and thresholds from the
+    ID2Z14 stage contract.
+    """
+    gates = stage["measurement_gates"]
+    by_arm = {str(row.get("arm_id")): row for row in rows}
+    source_row = next((row for row in rows if row.get("states")), None)
+    terminal = [int(value) for value in gates["terminal_state_indices"]]
+    expected_state_count = int(stage["common_horizon_steps"]) + 1
+    values: list[dict[str, Any]] = []
+    if source_row is None:
+        return {"baseline_complete": False, "branch_metrics": values,
+                "selected_arm_id": None, "passed": False}
+    source = source_row["states"][0]
+    source_ip = abs(float(source["ip_a"]))
+    distance_cap = float(gates["maximum_capture_source_rz_distance_m"])
+    speed_cap = float(gates["maximum_capture_rz_step_speed_m_per_s"])
+    ip_cap = float(gates["maximum_capture_absolute_source_ip_fraction"])
+    minimum_improvement = float(gates["minimum_round_score_improvement_over_hold"])
+    for arm in ARM_IDS:
+        row = by_arm.get(arm)
+        complete = bool(row and row.get("passed") and
+                        len(row.get("states", [])) == expected_state_count)
+        if not complete:
+            values.append({"arm_id": arm, "execution_status": "incomplete",
+                           "capture_passed": False, "eligible": False})
+            continue
+        states = row["states"]
+        distances = [z6._distance(states[index], source) for index in terminal]
+        speeds = [z6._speed(states, index) for index in terminal]
+        ip_fractions = [
+            abs(float(states[index]["ip_a"]) - float(source["ip_a"])) / source_ip
+            for index in terminal
+        ]
+        score = max(max(distances) / distance_cap, max(speeds) / speed_cap,
+                    max(ip_fractions) / ip_cap)
+        capture = bool(max(distances) <= distance_cap and max(speeds) <= speed_cap
+                       and max(ip_fractions) <= ip_cap)
+        values.append({"arm_id": arm, "tokens": row["tokens"],
+                       "execution_status": "complete",
+                       "terminal_state_indices": terminal,
+                       "terminal_source_rz_distance_m": distances,
+                       "terminal_rz_step_speed_m_per_s": speeds,
+                       "terminal_absolute_source_ip_fraction": ip_fractions,
+                       "terminal_max_source_rz_distance_m": max(distances),
+                       "terminal_max_rz_step_speed_m_per_s": max(speeds),
+                       "terminal_max_absolute_source_ip_fraction": max(ip_fractions),
+                       "terminal_worst_normalized_score": score,
+                       "capture_passed": capture, "eligible": False})
+    baseline = next((value for value in values if value["arm_id"] == "h8"), None)
+    baseline_complete = bool(
+        baseline and baseline.get("execution_status") == "complete")
+    nominated: list[dict[str, Any]] = []
+    if baseline_complete:
+        baseline_score = float(baseline["terminal_worst_normalized_score"])
+        for value in values:
+            if value["arm_id"] == "h8" or value.get("execution_status") != "complete":
+                continue
+            improvement = baseline_score - float(value["terminal_worst_normalized_score"])
+            value["score_improvement_over_hold"] = improvement
+            value["eligible"] = bool(value["capture_passed"]
+                                     or improvement >= minimum_improvement)
+            if value["eligible"]:
+                nominated.append(value)
+    nominated.sort(key=lambda value: (
+        not bool(value["capture_passed"]),
+        float(value["terminal_worst_normalized_score"]),
+        float(value["terminal_max_source_rz_distance_m"]),
+        float(value["terminal_max_rz_step_speed_m_per_s"]),
+        float(value["terminal_max_absolute_source_ip_fraction"]),
+        str(value["arm_id"])))
+    return {
+        "baseline_complete": baseline_complete,
+        "baseline_terminal_worst_normalized_score": (
+            baseline.get("terminal_worst_normalized_score") if baseline else None),
+        "branch_metrics": values,
+        "nominated_arm_ids": [value["arm_id"] for value in nominated],
+        "selected_arm_id": nominated[0]["arm_id"] if nominated else None,
+        "selected_capture_passed": bool(nominated and nominated[0]["capture_passed"]),
+        "passed": bool(baseline_complete and nominated and
+                       all(value.get("execution_status") == "complete"
+                           for value in values)),
+    }
 
 
 def execute_row(cfg: Any, runtime: dict[str, Any], stream: dict[str, Any],
