@@ -1,6 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current route notice (2026-08-20, ID-2Z13 frozen):** the post-ID-2Z12
+> **Current NR route notice (2026-08-20, post-ID-2Z13):** the fixed
+> state49/state53 p04-augmented nine-arm teacher completed `19/19` authentic
+> rollouts and independent raw audit, but selected the existing
+> `b8 -> b4f4` path and failed six-state capture at
+> `29.665859 mm / 0.331634 m/s / 2.74480%` Ip. Neither p04 sign was selected.
+> The official route is
+> `ONE_MS_ID2Z13_EARLY_P04_AUGMENTED_GRAMMAR_NO_CAPTURE_NEW_BASIS_REQUIRED`.
+> This closes only that finite grammar. The next permitted work is a bounded
+> zero-TSC remaining-action-basis/earlier-nominal review; models, recourse,
+> controllers, waypoint/path and R_mid crossing remain unqualified. Any
+> older active-route notices below are historical.
+
+> **Historical route notice (2026-08-20, ID-2Z13 frozen):** the post-ID-2Z12
 > zero-TSC audit selected p04 as one genuinely new Card15 actuator direction
 > and moved the branch root back to states 49/53. The next campaign is exactly
 > nine fixed arms per round plus one fresh replay (`19` rollouts maximum).

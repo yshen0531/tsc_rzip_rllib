@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID-2Z13 frozen):** the bounded
+> **Unique active task (2026-08-20, post-ID-2Z13):** ID-2Z13 completed all
+> `19/19` rollouts, `1463/1463` advances and `7410/7410` artifacts with exact
+> fresh replay and independent raw audit, but the selected `b8 -> b4f4` path
+> failed capture at terminal maxima `29.665859 mm / 0.331634 m/s / 2.74480%`
+> Ip. Neither p04 sign was selected. Final route:
+> `ONE_MS_ID2Z13_EARLY_P04_AUGMENTED_GRAMMAR_NO_CAPTURE_NEW_BASIS_REQUIRED`.
+>
+> This exact p04-augmented early grammar is closed. The active work is one
+> bounded zero-new-TSC remaining-action-basis and earlier nominal/reachability
+> review. It may freeze at most one materially new finite campaign; it may
+> not add p04 depth, a neighbouring root, a third round, a denser B/F grid,
+> a larger model or a relaxed capture gate. Recourse, controller,
+> calibration/holdout, waypoint/path and R_mid crossing remain blocked.
+> Older blocks below are historical.
+
+> **Historical active task (2026-08-20, ID-2Z13 frozen):** the bounded
 > post-ID-2Z12 audit selected p04 as the single new actuator-space direction.
 > Its actual B/F/p04 14-coil matrix is rank three with condition `1.2840447`,
 > while its known late-state output remains compatible with the B/F cone;

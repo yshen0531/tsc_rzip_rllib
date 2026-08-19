@@ -1,0 +1,663 @@
+{
+  "advance_attempts": 0,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z13-offline-v1",
+  "sequence_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "h8",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b8",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f8",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "u4h4",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "p4h4",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4f4",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4b4",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "c4h4",
+        "d4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "h8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "b8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "f8"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "u4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "p4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "b4f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "f4b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "c4h4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "d4h4",
+        "d4h4"
+      ]
+    }
+  ],
+  "source_revision": "030d40333b07bc54adb7bf7bab37cf2d8d2bb4c3",
+  "stage_config_sha256": "2bcc3652b4b6980a5804cf97263f1148e1dae60e139916ce767207e79b95bd4b",
+  "static_root_main_sequence_count": 81,
+  "static_root_main_sequences_passed": 81
+}

@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z13 design frozen):** the zero-TSC action
+> **Current status (2026-08-20, ID-2Z13 final):** server focused `10/10` and
+> all one-ms `502/502` tests passed. All `19/19` authentic rollouts,
+> `1463/1463` advances, `1482` states and `7410` artifacts completed; fresh
+> replay and independent raw audit passed. Root selected `b8`, main selected
+> `b4f4`, and no p04 arm was selected. Six-state capture failed at terminal
+> maxima `29.665859 mm / 0.331634 m/s / 2.74480%` Ip.
+>
+> The p04-augmented state49/state53 grammar is closed, not global
+> reachability. No model or controller artifact exists. After compact/hash
+> recovery, only this stage's exact `87.279 GB` remote raw rollout tree was
+> removed; free space is `118112768000` bytes. The active route is one
+> bounded zero-TSC remaining-basis/earlier-nominal review. Older blocks are
+> historical.
+
+> **Historical status (2026-08-20, ID-2Z13 design frozen):** the zero-TSC action
 > audit selected one bounded earlier-history discriminator. The p04 direction
 > adds independent 14-D actuator geometry (B/F/p04 rank `3`, condition
 > `1.2840447`) but has not shown capture authority. A fixed `9 + 9 + 1`

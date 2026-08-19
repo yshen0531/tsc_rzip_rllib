@@ -1,5 +1,18 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
+> **Post-ID-2Z13 amendment (2026-08-20):** a third independent 14-D Card15
+> direction (p04) was added prospectively to the early state49/state53 B/F
+> grammar. All `19/19` runs, fresh replay and independent raw audit passed,
+> but no p04 arm was selected and the unchanged `b8 -> b4f4` path failed
+> capture at `29.665859 mm / 0.331634 m/s`. Therefore the architecture must
+> not treat actuator-space rank or a finite local response as sustained
+> capture authority. The exact p04-augmented grammar is closed. Before any
+> further model or controller, perform one bounded remaining-basis and
+> earlier nominal/reachability review; only a materially new, prospectively
+> bounded action construction may reopen TSC. The exact-observation,
+> history-belief, uncertainty, hard-interface and recourse layers remain
+> unchanged. Older amendments below are historical.
+
 > **Post-ID-2Z12 architecture amendment (2026-08-20):** exact one-ms RZI
 > observation, full takeover-era causal history, exact Card15 execution,
 > bounded TSC branch evaluation and the independent hard layer remain the
