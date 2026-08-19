@@ -76,6 +76,99 @@ def compact_rows(run_dir: Path, expected: Sequence[dict[str, Any]],
     return rows
 
 
+def expected_state_times(frozen: dict[str, Any]) -> list[int]:
+    return list(range(1100, 1101 + len(frozen.get("actions", []))))
+
+
+def _raw_rows(run_dir: Path, cfg: Any,
+              expected: Sequence[dict[str, Any]],
+              compact: Sequence[dict[str, Any]],
+              failures: list[str]) -> tuple[list[dict[str, Any]], list[str], int]:
+    """Reparse ID2Z9's 77-issue rollouts without ID2Z6's 69-step ceiling."""
+    expected_by_id = {row["rollout_id"]: row for row in expected}
+    rollout_root = run_dir / "rollouts"
+    raw_rows: list[dict[str, Any]] = []
+    inventory_lines: list[str] = []
+    inventory_bytes = 0
+    source_fields = list(z6i._fields(cfg.simulation_root / cfg.start_folder / "inputa"))
+    for compact_row in compact:
+        rollout_id = str(compact_row["rollout_id"])
+        frozen = expected_by_id.get(rollout_id, {})
+        folder = rollout_root / rollout_id
+        times = (sorted(int(path.name[:-2]) for path in folder.iterdir()
+                        if path.is_dir() and path.name.endswith("ms")
+                        and path.name[:-2].isdigit()) if folder.is_dir() else [])
+        expected_times = expected_state_times(frozen)
+        if compact_row.get("passed") and times != expected_times:
+            failures.append(f"STATE_DIRECTORY_SET:{rollout_id}")
+        if times and times != list(range(1100, max(times) + 1)):
+            failures.append(f"NONCONTIGUOUS_STATE_DIRECTORY:{rollout_id}")
+        maximum_time = 1100 + len(frozen.get("actions", []))
+        if any(time < 1100 or time > maximum_time for time in times):
+            failures.append(f"FORBIDDEN_STATE_DIRECTORY:{rollout_id}")
+        states: list[dict[str, Any]] = []
+        issued_fields: list[list[str]] = []
+        for index, time_ms in enumerate(times):
+            state_folder = folder / f"{time_ms}ms"
+            try:
+                state = z6i._state(state_folder, cfg)
+            except Exception as exc:
+                failures.append(
+                    f"RAW_STATE:{rollout_id}:{time_ms}:{type(exc).__name__}:{exc}")
+                continue
+            states.append(state)
+            if index < len(compact_row.get("states", [])):
+                saved = compact_row["states"][index]
+                for key, tolerance in (("r_geo_m", 1e-12), ("z_geo_m", 1e-12),
+                                       ("r_mid_m", 1e-12), ("ip_a", 1e-9)):
+                    if abs(float(state[key]) - float(saved[key])) > tolerance:
+                        failures.append(f"STATE_VALUE:{rollout_id}:{time_ms}:{key}")
+                if (len(state["actual_current_decimal_a_tsc"]) != 14
+                        or state["actual_current_decimal_a_tsc"]
+                        != saved.get("actual_current_decimal_a_tsc")):
+                    failures.append(f"COIL_VALUE:{rollout_id}:{time_ms}")
+                if (len(state["wire_current_a"]) != 48
+                        or len(saved.get("wire_current_a", [])) != 48
+                        or any(abs(float(a) - float(b)) > 1e-9
+                               for a, b in zip(state["wire_current_a"],
+                                               saved["wire_current_a"]))):
+                    failures.append(f"WIRE_VALUE:{rollout_id}:{time_ms}")
+            for name in z6i.ARTIFACTS:
+                artifact = state_folder / name
+                if not artifact.is_file():
+                    failures.append(f"MISSING_ARTIFACT:{rollout_id}:{time_ms}:{name}")
+                    continue
+                size = artifact.stat().st_size
+                inventory_bytes += size
+                inventory_lines.append(
+                    f"{artifact.relative_to(run_dir).as_posix()}\t{size}\t{z6i.sha256(artifact)}")
+        for issue, action in enumerate(compact_row.get("actions", [])):
+            if issue >= len(times):
+                failures.append(f"ACTION_WITHOUT_PREISSUE_STATE:{rollout_id}:{issue}")
+                continue
+            fields = list(z6i._fields(folder / f"{1100 + issue}ms" / "inputa"))
+            issued_fields.append(fields)
+            if fields != action.get("expected_card15_fields"):
+                failures.append(f"ISSUED_CARD15:{rollout_id}:{issue}")
+            if (issue >= len(frozen.get("actions", []))
+                    or fields != frozen["actions"][issue]["expected_card15_fields"]):
+                failures.append(f"FROZEN_ACTION:{rollout_id}:{issue}")
+        try:
+            z6i.restore_arrival_active_commands(states, issued_fields)
+            if states:
+                states[0]["active_command_card15_fields"] = source_fields
+        except Exception as exc:
+            failures.append(
+                f"ACTIVE_COMMAND_RECONSTRUCTION:{rollout_id}:{type(exc).__name__}:{exc}")
+        raw_rows.append({
+            **{key: value for key, value in compact_row.items()
+               if key not in ("states", "actions")},
+            "states": states,
+            "actions": compact_row.get("actions", []),
+        })
+    return raw_rows, inventory_lines, inventory_bytes
+
+
 def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     failures: list[str] = []
     stage_path = inside(stage_path, "config")
@@ -90,7 +183,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             load_json(stage_path), {}, None, {}, {}, {}, [])
     compact = compact_rows(run_dir, expected, failures)
     for row in compact:
-        if (row.get("schema_version") != primary.SCHEMA
+        if (row.get("schema_version") != primary.z7.SCHEMA
                 or row.get("source_revision") != source_revision):
             failures.append(f"COMPACT_IDENTITY:{row.get('rollout_id')}")
     rollout_root = run_dir / "rollouts"
@@ -102,7 +195,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     inventory_lines: list[str] = []
     inventory_bytes = 0
     if cfg is not None:
-        raw_rows, inventory_lines, inventory_bytes = z6i._raw_rows(
+        raw_rows, inventory_lines, inventory_bytes = _raw_rows(
             run_dir, cfg, expected, compact, failures)
     digest = hashlib.sha256(
         "".join(f"{line}\n" for line in sorted(inventory_lines)).encode()).hexdigest()

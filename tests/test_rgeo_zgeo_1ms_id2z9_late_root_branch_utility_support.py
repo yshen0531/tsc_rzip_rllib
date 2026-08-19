@@ -9,6 +9,7 @@ from types import SimpleNamespace
 from unittest import mock
 
 from scripts import rgeo_zgeo_1ms_id2z9_late_root_branch_utility_support as m
+from scripts import rgeo_zgeo_1ms_id2z9_late_root_branch_utility_support_independent as mi
 
 
 class ID2Z9Tests(unittest.TestCase):
@@ -29,6 +30,12 @@ class ID2Z9Tests(unittest.TestCase):
         self.assertEqual(len(self.reference["states"]), 70)
         self.assertEqual([row["expected_card15_fields"] for row in self.parent["actions"]],
                          [row["expected_card15_fields"] for row in self.reference["actions"]])
+
+    def test_independent_identity_and_extended_raw_horizon(self) -> None:
+        stream = m.build_round_streams(
+            self.stage, self.runtime, self.cfg, self.targets, self.parent, 0)[0]
+        self.assertEqual(mi.expected_state_times(stream), list(range(1100, 1178)))
+        self.assertNotEqual(m.SCHEMA, m.z7.SCHEMA)
 
     def test_all_twenty_five_sequences_are_statically_admissible(self) -> None:
         value = m.offline(m.CONFIG, "test-revision")
