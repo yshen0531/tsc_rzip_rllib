@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, post-ID-2Z8):** the first bounded
+> **Active new-round context (2026-08-19, post-ID-2Z9):** two additional
+> late-root five-arm matrices passed the bounded teacher-utility gates and
+> supplied ten fresh fit-eligible sibling windows. Exact replay and corrected
+> full-raw audit passed. The final sequence remains an open-loop branch seed,
+> not capture or recovery; its terminal speed is still about `0.298 m/s`.
+>
+> The next model step is intentionally the last comparison on this exact
+> support expansion: rerun only the same stable sequence model and the same
+> stable-plus-GRU4 residual over five whole causal contexts. Current exact
+> R_geo/Z_geo/Ip and takeover-era history remain direct inputs; future response
+> remains uncertain. A five-fold PASS may open fresh calibration design, while
+> a FAIL closes this model form instead of increasing network capacity. No
+> controller, Recourse-L1, waypoint or R_mid claim is yet authorized. Older
+> notices below are historical.
+
+> **Historical new-round context (2026-08-19, post-ID-2Z8):** the first bounded
 > amortized branch-model comparison is a clean scientific FAIL. Both small
 > candidates preserved measured response direction and low response NRMSE,
 > but neither met the R/error-and-ranking contract across three whole causal

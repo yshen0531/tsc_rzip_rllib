@@ -1,5 +1,36 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z9 late-root branch utility/support
+
+- Date: 2026-08-19 Asia/Shanghai.
+- Physical / reporting-audit revisions: `63f68c2b / 01164ef1`.
+- Server output:
+  `rgeo_zgeo_1ms_id2z9_runs/20260819_63f68c2b_v1`.
+- Validation: initial focused 9/9 and all one-ms 465/465; reporting repair
+  focused 10/10 and all one-ms 466/466; shell/compile PASS.
+- Execution: 11/11 canonical-source rollouts, 847/847 verified advances,
+  858 states, zero guarded safe stops.
+- Raw: 4,290 files / 50,530,128,792 bytes / digest
+  `308a222e8b4f6f4d40babeadc685ce7b9693f1abd8277ec90dc7c7a8c417d5fe`.
+- Round D selected `b2f2`; Round E selected `f2b2`; full sequence is
+  `f4 -> b2f2 -> f2b2 -> b2f2 -> f2b2`.
+- Score improved from matched hold `3.737459254` to `2.983667001`; exact
+  replay passed; ten new complete development-weight windows exist.
+- Capture still failed: terminal maximum distance `26.767972 mm`, speed
+  `0.298366700 m/s`, Ip fraction `0.036971927`.
+- Initial independent audit SHA-256
+  `5ea6cfec175e82a79de70f1e5b39bd9ecdc01656beffae16db1858d44b010251`
+  is preserved FAIL because it inherited ID-2Z6's 1169-ms raw horizon and
+  wrong compact schema. Repaired independent SHA-256
+  `13430405c3b1cedd092fe3408e1908b53707fc734052d1cbfdf104fa31298d97`
+  passed on the same raw with zero new TSC.
+- Primary SHA-256:
+  `c0137121efd593af6b00dd690fd0b4bec6b6f094720c40f28e99b59d2ac59d6d`.
+- Final route:
+  `ONE_MS_ID2Z9_LATE_ROOT_BRANCH_UTILITY_SUPPORT_PASS_FIVE_CONTEXT_MODEL_ONLY`.
+- Next: exactly one five-context comparison of the unchanged ID-2Z8 stable
+  and stable-plus-GRU4 candidates; no larger model or controller authorization.
+
 ## R_geo/Z_geo 1 ms ID-2Z8 bounded small sequence-model comparison
 
 - Date: 2026-08-19 Asia/Shanghai.

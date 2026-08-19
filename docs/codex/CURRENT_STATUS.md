@@ -1,6 +1,22 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z8 final):** implementation revision
+> **Current status (2026-08-19, ID-2Z9 final):** physical revision
+> `63f68c2b` completed all 11 rollouts and 847/847 verified TSC advances.
+> Required raw is 4,290 files / 50,530,128,792 bytes with digest
+> `308a222e8b4f6f4d40babeadc685ce7b9693f1abd8277ec90dc7c7a8c417d5fe`.
+> Both new late-root utility rounds passed and exact replay passed. The final
+> selected sequence is `f4 -> b2f2 -> f2b2 -> b2f2 -> f2b2`.
+>
+> The initial independent audit had a reporting-only inherited 1169-ms ceiling
+> and compact-schema mismatch. It is preserved as FAIL. Repair revision
+> `01164ef1` passed server focused 10/10 and all one-ms 466/466 tests, then
+> independently reparsed the same 858 states and reproduced inventory, metrics
+> and PASS route with no failures and zero new TSC. ID-2Z9 still is not capture
+> (`26.767972 mm`, `0.298366700 m/s`). Only the unchanged two-candidate,
+> five-whole-context model comparison is open. Older status blocks are
+> historical.
+
+> **Historical status (2026-08-19, ID-2Z8 final):** implementation revision
 > `584bc28d` passed server focused `8/8` and all one-ms `456/456` tests. The
 > zero-TSC comparison used three whole decision contexts and no calibration
 > or holdout records. Its deterministic replay audit passed exactly.

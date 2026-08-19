@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Z8):** ID-2Z8 is final as
+> **Unique active task (2026-08-19, post-ID-2Z9):** ID-2Z9 is final as
+> `ONE_MS_ID2Z9_LATE_ROOT_BRANCH_UTILITY_SUPPORT_PASS_FIVE_CONTEXT_MODEL_ONLY`.
+> Eleven canonical-source paths completed 847/847 verified advances and the
+> repaired independent audit reparsed 858 states / 4,290 artifacts with no
+> failures. The selected late macros are `b2f2 -> f2b2`, extending the full
+> sequence to `f4 -> b2f2 -> f2b2 -> b2f2 -> f2b2`. Relative to the state-61
+> matched hold, the terminal normalized score improved by `0.753792253`.
+>
+> This is not capture: the selected terminal window reaches maximum distance
+> `26.767972 mm` and speed `0.298366700 m/s`. The only next task is one
+> five-whole-context comparison of exactly the two unchanged ID-2Z8 candidate
+> classes. The ten new sibling windows are development-only; the replay has
+> zero fit weight. Larger networks, calibration, blind holdout, controller,
+> Recourse-L1 and waypoint execution remain blocked. If both candidates fail
+> any five-fold gate, stop this model-form route and return to action-basis /
+> control-authority design. All blocks below are historical.
+
+> **Historical task (2026-08-19, post-ID-2Z8):** ID-2Z8 is final as
 > `ONE_MS_ID2Z8_SMALL_MODEL_FAIL_TARGETED_DATA_OR_BASIS_REVIEW`. Server
 > focused `8/8` and all one-ms `456/456` tests passed. The comparison ran
 > zero TSC/plant advances and read no calibration/holdout data; deterministic

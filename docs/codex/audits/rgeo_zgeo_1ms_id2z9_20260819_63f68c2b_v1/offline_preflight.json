@@ -1,0 +1,215 @@
+{
+  "advance_attempts": 0,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z9-offline-v1",
+  "sequence_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "b2f2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "hold4",
+        "f2b2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "b2f2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b4",
+        "f2b2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "b2f2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f4",
+        "f2b2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b2f2",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b2f2",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b2f2",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b2f2",
+        "b2f2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "b2f2",
+        "f2b2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f2b2",
+        "hold4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f2b2",
+        "b4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f2b2",
+        "f4"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f2b2",
+        "b2f2"
+      ]
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "sequence": [
+        "f2b2",
+        "f2b2"
+      ]
+    }
+  ],
+  "source_revision": "63f68c2bef9adf91595ab5021b716c0fd088b813",
+  "stage_config_sha256": "9e520c1410a80d1a4ba79038a721bfce1e7148b033898ef534cb29914c4256b7",
+  "static_two_round_sequence_count": 25,
+  "static_two_round_sequences_passed": 25
+}
