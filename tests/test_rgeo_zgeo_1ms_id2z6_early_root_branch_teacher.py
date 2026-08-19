@@ -206,6 +206,9 @@ class ID2Z6Tests(unittest.TestCase):
         self.assertIn("ID2Z6_SOURCE_REVISION", launcher)
         self.assertIn("ID2Z6_OUTPUT", launcher)
         self.assertIn("early_root_branch_teacher_independent.py", launcher)
+        audit_source = inspect.getsource(independent.audit)
+        self.assertIn("compact_by_id", audit_source)
+        self.assertIn("parent_prefix_row", audit_source)
         resume_launcher = (ROOT / "run_rgeo_zgeo_1ms_id2z6r1_resume.sh").read_text(
             encoding="utf-8")
         self.assertIn("ID2Z6R1_EXPERIMENT_SOURCE_REVISION", resume_launcher)

@@ -202,9 +202,15 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                         if row.get("round_index") == index
                         and row.get("rollout_id") != "critical_replay"]
                 for index in range(3)}
+    compact_by_id = {row.get("rollout_id"): row for row in compact}
     prefixes: list[dict[str, Any]] = []
     round_values: list[dict[str, Any] | None] = []
-    parent_row = compact_reference
+    # Raw state-directory inputa is the outgoing issue written after the
+    # preissue state was observed.  `_raw_rows` independently authenticates
+    # that issued action above.  Causal prefix equality must use the preserved
+    # online compact state (captured before the rewrite), matching the primary
+    # execution semantics rather than comparing two different clock views.
+    parent_prefix_row = compact_reference
     selected_row: dict[str, Any] | None = None
     for round_index in range(3):
         rows = by_round[round_index]
@@ -212,7 +218,8 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             break
         decision = int(stage["rounds"][round_index]["decision_state_index"])
         prefixes.extend(primary.prefix_check(
-            row, parent_row, decision + 1, decision,
+            compact_by_id.get(row.get("rollout_id"), {}),
+            parent_prefix_row, decision + 1, decision,
             stage["semantic_artifacts"]) for row in rows)
         value = primary.round_metrics(rows, stage, round_index, cfg)
         round_values.append(value)
@@ -220,12 +227,14 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             break
         selected_row = next(row for row in rows
                             if row.get("arm_id") == value["selected_arm_id"])
-        parent_row = selected_row
+        parent_prefix_row = compact_by_id.get(
+            selected_row.get("rollout_id"), {})
     replay_row = next((row for row in raw_rows
                        if row.get("rollout_id") == "critical_replay"), None)
     if replay_row is not None:
         prefixes.append(primary.prefix_check(
-            replay_row, selected_row or {}, 70, 69,
+            compact_by_id.get(replay_row.get("rollout_id"), {}),
+            parent_prefix_row, 70, 69,
             stage["semantic_artifacts"]))
     execution = bool(raw_rows and all(
         row.get("passed") or primary.safe_stop(row, stage) for row in raw_rows))
