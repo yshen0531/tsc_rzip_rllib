@@ -1,6 +1,21 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Z5 architecture amendment (2026-08-19):** exact one-ms truth
+> **Post-ID-2Z6 architecture amendment (2026-08-19):** the finite branch-
+> teacher architecture remains viable, but ID-2Z6 did not complete its
+> evidence contract. The state-49 sibling matrix selected `f4`; the later
+> reporting-only continuation was consumed by a run-root isolation defect.
+> This is not evidence against truth-recentered branch selection or B/F/H
+> utility, and it authorizes no model.
+>
+> The successor keeps canonical-source causality and exact observation but is
+> a new identity: audited round 0 is a fixed parent, while both later sibling
+> matrices and replay are fresh. A run-root isolation gate joins Card15,
+> prefix, storage and hard-envelope gates as a pre-TSC implementation
+> requirement. Interrupted successor paths are zero-weight. Only complete
+> prospectively eligible windows may train the future small sequence-outcome
+> model; safety and recourse remain outside learning.
+
+> **Historical post-ID-2Z5 architecture amendment (2026-08-19):** exact one-ms truth
 > observation, exact Card15 execution, persistent causal history and an
 > independent hard layer remain the correct backbone. ID-2Z5 did not reach
 > model training: all thirteen finite B/F/H paths stopped at the 25-mm

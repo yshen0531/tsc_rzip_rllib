@@ -1,6 +1,21 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, ID-2Z6R1):** ID-2Z6's first five
+> **Active new-round context (2026-08-19, post-ID-2Z6):** ID-2Z6 is consumed
+> as an implementation/driver FAIL after 485 verified TSC successors. Its
+> complete state-49 five-arm matrix selected `f4`, but a reporting-only resume
+> later omitted the run-specific raw root and was stopped during a partial
+> round-1 sibling. Corrected full-raw audit passes; no completed teacher,
+> capture, model or controller claim exists.
+>
+> The next identity may reuse only the audited round-0 result and fixed `f4`
+> parent. It must create fresh complete round-1/round-2 sibling matrices and a
+> zero-fit replay, with mandatory server run-root isolation before TSC. The
+> interrupted round-1 paths are route evidence only. Exact one-ms observation,
+> complete post-takeover causal history, exact Card15 execution, separate
+> development/capture/hard envelopes and the independent recourse layer remain
+> unchanged. Older notices below are historical.
+
+> **Historical new-round context (2026-08-19, ID-2Z6R1):** ID-2Z6's first five
 > complete state-49 branches are preserved after a post-trajectory descriptive
 > reporting exception. The only active work is a reporting-only, separately
 > versioned in-place resume: independently reparse those raw paths, recompute

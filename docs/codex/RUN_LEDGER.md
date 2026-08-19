@@ -1,5 +1,29 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z6 early-root branch teacher
+
+- Date: 2026-08-19 Asia/Shanghai.
+- Original / reporting-resume / failure-finalizer / corrected-audit revisions:
+  `39a2c3ac / ce5cb4fe / c7840b55 / 6e3556bb`.
+- Server run:
+  `rgeo_zgeo_1ms_id2z6_runs/20260819_39a2c3ac_v1`.
+- Execution: 8 resets, 486 attempts/`gotsc`, 485 verified successors, seven
+  complete rollouts and one partial rollout; 493 states.
+- Required raw inventory: 2,465 files / 29,034,211,532 bytes / digest
+  `4d75fef0b3dc61cfcb3609cac87b3d6bf07745ae70ffd37637c28f2b7b498ef0`.
+- Round 0 completed all five siblings and selected `f4` with score
+  `3.676826525` versus hold `4.407677637`.
+- The original run had a post-trajectory descriptive-key exception. The
+  reporting-only resume then omitted the run-specific raw root and was
+  stopped during `r1__f4`; no retry occurred.
+- Primary / corrected independent SHA-256:
+  `6f9ebc89f9f0fb9f3666a397cdf960dfd134b3c133abcf93375aaf7b8ac6752b /`
+  `a98b9747eae86879a2e65bbf3b9e9c88e97d70d696d102acf25b2a04d66943b0`.
+- Final route: `ONE_MS_ID2Z6_EXECUTION_OR_INTERFACE_FAIL_STOP`.
+- Status: implementation/driver FAIL, not scientific teacher or control
+  evidence. ID-2Z7 must be a fresh later-round continuation with mandatory
+  run-root isolation; interrupted round-1 paths have zero weight.
+
 ## R_geo/Z_geo 1 ms ID-2Z3 bounded braking rolling search
 
 - Date: 2026-08-19 Asia/Shanghai.

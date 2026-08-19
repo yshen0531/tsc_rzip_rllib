@@ -1,6 +1,23 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z6R1 hotfix required):** deployed ID-2Z6
+> **Current status (2026-08-19, ID-2Z6 final / ID-2Z7 next):** ID-2Z6 is
+> final as `ONE_MS_ID2Z6_EXECUTION_OR_INTERFACE_FAIL_STOP`. Its original
+> round-0 matrix completed, and the reporting-only resume selected `f4`, but
+> the resume driver later wrote new raw beneath the historical default root.
+> The exact owned processes were stopped without retry. Final counters are 8
+> resets, 486 attempts/`gotsc`, 485 verified successors, 7 complete rollouts,
+> one partial rollout, 493 states and 2,465 artifacts totaling
+> 29,034,211,532 bytes. The corrected independent audit passed the complete
+> retained raw tree and reproduced route, counters and digest
+> `4d75fef0b3dc61cfcb3609cac87b3d6bf07745ae70ffd37637c28f2b7b498ef0`.
+>
+> No scientific three-round teacher verdict or model result exists. The next
+> stage is a new identity, not a resume: retain the audited state-49 round-0
+> selection, regenerate a fresh full state-53/state-57 branch matrix and
+> replay, and prove run-root isolation in server tests before any TSC. Older
+> status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z6R1 hotfix required):** deployed ID-2Z6
 > bytes exactly matched implementation commit `39a2c3ac`; 7/7 focused tests,
 > 438/438 one-ms server tests and the 125/125 zero-TSC sequence gate passed.
 > Its authorized run completed the five state-49 branches with 5 resets,

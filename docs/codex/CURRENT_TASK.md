@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, ID-2Z6R1 reporting-only resume):** the
+> **Unique active task (2026-08-19, post-ID-2Z6):** ID-2Z6 and its
+> reporting-only R1 identity are consumed and final as
+> `ONE_MS_ID2Z6_EXECUTION_OR_INTERFACE_FAIL_STOP`. Five round-0 paths and two
+> round-1 paths completed; `r1__f4` stopped after three attempts/two verified
+> successors when the resume driver omitted the run-specific raw root. The
+> final retained tree contains 8 resets, 486 attempts, 485 verified
+> successors, 493 states and 2,465 artifacts. A corrected independent audit
+> reparsed the full raw tree and passed. This is an implementation/driver
+> failure, not a teacher-utility, action-basis, plant or control result.
+>
+> The active successor is a separately frozen new-identity ID-2Z7 branch
+> continuation. It may bind the audited round-0 matrix and fixed `f4` parent,
+> but it must generate fresh round-1 and round-2 five-arm matrices plus one
+> zero-fit replay. The interrupted ID-2Z6 round-1 paths have zero fitting and
+> selection weight; round 0 must not be rerun. A server-tested run-root
+> isolation gate is mandatory before TSC. Only a complete teacher/data PASS
+> may open model comparison or replay/Recourse-L1 design. All blocks below are
+> historical.
+
+> **Historical task (2026-08-19, ID-2Z6R1 reporting-only resume):** the
 > accepted ID-2Z6 implementation `39a2c3ac` passed server package, focused,
 > full-suite and zero-TSC gates, then completed all five round-0 trajectories
 > (350 states / 1,750 artifacts). It raised only after those trajectories,

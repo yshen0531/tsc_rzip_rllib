@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/rgeo_zgeo_1ms_id2z6_early_root_branch_teacher.py", line 893, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/rgeo_zgeo_1ms_id2z6_early_root_branch_teacher.py", line 887, in main
+    result = run(args.stage_config, args.source_revision, args.output)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/rgeo_zgeo_1ms_id2z6_early_root_branch_teacher.py", line 871, in run
+    return execute(stage, cfg, targets, compact, selected,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/rgeo_zgeo_1ms_id2z6_early_root_branch_teacher.py", line 760, in execute
+    value = round_metrics(round_rows, stage, round_index, cfg)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/rgeo_zgeo_1ms_id2z6_early_root_branch_teacher.py", line 510, in round_metrics
+    value.update(z5.z3.z1._trajectory_diagnostics(row, source, cfg, stage))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yangshen0711/tsc_all/tsc_rzip_rllib/scripts/rgeo_zgeo_1ms_id2z1_late_action_macro_utility.py", line 373, in _trajectory_diagnostics
+    inner = stage["empirical_exploration"]["inner_novel_issue_clearance"]
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'inner_novel_issue_clearance'

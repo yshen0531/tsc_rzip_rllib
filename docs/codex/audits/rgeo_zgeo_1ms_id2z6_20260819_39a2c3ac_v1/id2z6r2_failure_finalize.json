@@ -1,0 +1,20 @@
+{
+  "advance_attempts": 0,
+  "complete_round0_rollouts": 5,
+  "complete_round1_rollouts": 2,
+  "experiment_source_revision": "39a2c3ac8440dff90eb673d83db36b8587edafe2",
+  "failures": [],
+  "hotfix_source_revision": "ce5cb4fe4d64682bfd6aadd63a2f3574bc3fd27a",
+  "models_fit_or_updated": 0,
+  "partial_round1_attempts": 3,
+  "partial_round1_states": 3,
+  "partial_round1_verified_advances": 2,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "primary_route": "ONE_MS_ID2Z6_EXECUTION_OR_INTERFACE_FAIL_STOP",
+  "primary_sha256": "6f9ebc89f9f0fb9f3666a397cdf960dfd134b3c133abcf93375aaf7b8ac6752b",
+  "reconstructed_partial_compact_sha256": "27a028c0ddc6ed3a002f71eafc8f2b9949edde9eb7571bba7c0d9a3a6fa5931a",
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z6r2-failure-finalize-v1",
+  "stage_config_sha256": "566e84a74d11468589cb3dd4cf87a602866aa0e4bf836519078327164ebf988a"
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "codex-direct-transfer-verification-v1",
+  "stage": "ID-2Z6",
+  "remote_run": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z6_runs/20260819_39a2c3ac_v1",
+  "local_root": "docs/codex/audits/rgeo_zgeo_1ms_id2z6_20260819_39a2c3ac_v1",
+  "transfer_method": "direct_scp_no_archive",
+  "remote_local_sha256_exact": true,
+  "json_strict_parse_passed": true,
+  "raw_tree_downloaded": false,
+  "raw_tree_independently_audited_on_server": true,
+  "corrected_independent_audit_passed": true,
+  "key_files": {
+    "result.json": "6f9ebc89f9f0fb9f3666a397cdf960dfd134b3c133abcf93375aaf7b8ac6752b",
+    "independent_raw_audit.json": "284f73576f1c0531d2a0cf274086c11ef6705154b09a0c2b2831ca79f046e0b3",
+    "independent_raw_audit_r2.json": "a98b9747eae86879a2e65bbf3b9e9c88e97d70d696d102acf25b2a04d66943b0",
+    "offline_preflight.json": "b41c3adf78df4b154ca83c414693c32461e41c520d3a94261c739d64f8813cb3",
+    "id2z6r1_resume_preflight.json": "5afff60ed8d77d5181c1e781c1555450de92373f8ac9f29d663df5414a0a6759",
+    "id2z6r2_failure_finalize.json": "2c350d9793b99a73a9765976fba4af6a039a6510c130af31bccf1f813f720a82",
+    "r0__hold4.json": "156813390685c4c1b7e27d8e59d3d6736d5d3a16d7bbcca0e984346ca5b63e5c",
+    "r0__b4.json": "e99e30b5f28473e4a1579d384b05f2b95db6e40caa51520247c262d40b2bbe91",
+    "r0__f4.json": "872b74fbf784cb2f952243de3b97ed24f9aa55a0dfea7e0d82ee38724a30d3f4",
+    "r0__b2f2.json": "921f2d0ffdf9082e2a7faba15a570de23fac199efda518cccf0baf4fff126bc2",
+    "r0__f2b2.json": "8251aa2023d6f6167d103a11d46b037b1d7c2134fda38472afe3bc3c85fd8afa",
+    "r1__hold4.json": "3818955826e55fb86ca24f23d5fbc7bcf8934a2c906373fe483c57b476a23314",
+    "r1__b4.json": "4dbf63154249251220e056278a13eaa3417baac27ba640404a51bc07d9390ef1",
+    "r1__f4.json": "27a028c0ddc6ed3a002f71eafc8f2b9949edde9eb7571bba7c0d9a3a6fa5931a"
+  },
+  "server_log_files": {
+    "id2z6_offline_39a2c3ac_v1.json": "b41c3adf78df4b154ca83c414693c32461e41c520d3a94261c739d64f8813cb3",
+    "id2z6_real_39a2c3ac_v1.log": "382628ce211921ae10b0c41d77e17927ad916d5579fe1dbd9372c553cd35ec05",
+    "id2z6r1_all_1ms_tests_uncommitted_v1.log": "e5b7accb56835018349f2142a31f56fee3642392ea11a11f9d5fe29125d41af4",
+    "id2z6r1_preflight_ce5cb4fe_v1.json": "15d93acc8280835860beff5934bb6696d165780f45b3fbbacd7916fdbdbedf5f",
+    "id2z6r1_resume_ce5cb4fe_v1.log": "da2d7b6061391d67ab754175ca00c4969423e924f670013ec7f060eb2c716bec",
+    "id2z6r2_failure_finalize_c7840b55_v1.log": "ebf1152ffaf2e3d26ce8c4d96e72715780c5041611a61a0d02213ffabe9465f0",
+    "id2z6r2_independent_c7840b55_v1.log": "284f73576f1c0531d2a0cf274086c11ef6705154b09a0c2b2831ca79f046e0b3",
+    "id2z6r2_independent_corrected_6e3556bb_v1.log": "a98b9747eae86879a2e65bbf3b9e9c88e97d70d696d102acf25b2a04d66943b0"
+  },
+  "authenticated_raw_inventory": {
+    "retained_states": 493,
+    "required_artifact_files": 2465,
+    "required_artifact_bytes": 29034211532,
+    "sha256": "4d75fef0b3dc61cfcb3609cac87b3d6bf07745ae70ffd37637c28f2b7b498ef0"
+  }
+}
