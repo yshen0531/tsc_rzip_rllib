@@ -45,6 +45,13 @@ The corrected independent raw audit SHA-256 is
 Every transferred compact/result/audit/log hash was checked against the
 server before raw cleanup.
 
+After this evidence and report were committed and pushed, the exact audited
+remote `rollouts/` subtree (`29,484,012,604` filesystem bytes) and the exact
+interrupted-run private workspace (`263,600,858` bytes) were irreversibly
+removed under canonical-path, process and hash guards. Top-level compact,
+metadata, audit and log files remain. Server free space after cleanup was
+`141,796,622,336` bytes.
+
 ## 3. What executed
 
 The original run passed its package, focused, complete one-ms and zero-TSC

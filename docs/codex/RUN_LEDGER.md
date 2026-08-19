@@ -23,6 +23,10 @@
 - Status: implementation/driver FAIL, not scientific teacher or control
   evidence. ID-2Z7 must be a fresh later-round continuation with mandatory
   run-root isolation; interrupted round-1 paths have zero weight.
+- Cleanup: after commit/push and remote/local hash equality, only the exact
+  audited `rollouts/` subtree (`29,484,012,604` bytes) and exact interrupted
+  runtime workspace (`263,600,858` bytes) were irreversibly removed. Free
+  server space became `141,796,622,336` bytes; compact evidence remains.
 
 ## R_geo/Z_geo 1 ms ID-2Z3 bounded braking rolling search
 

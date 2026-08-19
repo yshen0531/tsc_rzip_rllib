@@ -16,6 +16,11 @@
 > selection, regenerate a fresh full state-53/state-57 branch matrix and
 > replay, and prove run-root isolation in server tests before any TSC. Older
 > status blocks are historical.
+>
+> After the compact evidence was committed and pushed, only the exact audited
+> ID-2Z6 `rollouts/` subtree and its interrupted private workspace were
+> irreversibly removed (`29,484,012,604` and `263,600,858` bytes). Top-level
+> evidence and logs remain; server free space is `141,796,622,336` bytes.
 
 > **Historical status (2026-08-19, ID-2Z6R1 hotfix required):** deployed ID-2Z6
 > bytes exactly matched implementation commit `39a2c3ac`; 7/7 focused tests,
