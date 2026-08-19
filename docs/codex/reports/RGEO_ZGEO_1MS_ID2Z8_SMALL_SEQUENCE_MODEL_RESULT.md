@@ -1,7 +1,9 @@
 # ID-2Z8 bounded small sequence-model result
 
-Date: 2026-08-19 Asia/Shanghai  
-Implementation revision: `584bc28db2a000325a51d5484f63e621034a422f`  
+Date: 2026-08-19 Asia/Shanghai
+
+Implementation revision: `584bc28db2a000325a51d5484f63e621034a422f`
+
 Server output: `rgeo_zgeo_1ms_id2z8_runs/20260819_584bc28d_v1`
 
 ## Result identity
