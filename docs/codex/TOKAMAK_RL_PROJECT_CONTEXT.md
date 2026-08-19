@@ -1,6 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, post-ID-2Z14):** the final measured
+> **Current NR route notice (2026-08-20, ID-2Z15 frozen):** the final
+> source-local pulse-macro family remains closed. A bounded zero-TSC review
+> instead returned to the strongest measured takeover nominal: p03-forward
+> stride1. Because full stride consumes the complete per-issue slew budget,
+> ID-2Z15 compares q0, three fractional rates, full rate and exact 50% duty,
+> each followed by a common hold and one fresh selected replay. This is a
+> nominal/headroom discriminator only. Capture may open Recourse-L1 design;
+> a replayed fractional/duty improvement may open only fresh residual-ID
+> campaign design. Its trajectories are forbidden from fitting. No extra
+> rate, controller, waypoint/path or R_mid claim is authorized. Older notices
+> are historical.
+
+> **Historical NR route notice (2026-08-20, post-ID-2Z14):** the final measured
 > source-local remaining-basis campaign completed `10/10` authentic runs,
 > exact replay and independent raw audit, but selected `f4b4` still failed
 > capture at `32.258942 mm / 0.490628 m/s / 1.51172%` Ip. P01 and p09 did not

@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z14):** ID-2Z14 completed
+> **Unique active task (2026-08-20, ID-2Z15 frozen):** the bounded
+> post-ID-2Z14 review is complete. It closes the measured
+> B/F/p04/p01/p09 source-local pulse-macro family and freezes exactly one
+> materially different discriminator: a canonical-source p03-forward
+> nominal frontier with `q0 / 0.25 F / 0.50 F / 0.75 F / 1.00 F / 50% duty
+> F`, increments through issue 31, hold through issue 47, and one exact
+> selected replay (`7` resets / `336` advances / `1715` artifacts maximum).
+>
+> Implement, server-test and—only after every offline, storage, package and
+> safety gate passes—run that single campaign. Capture plus replay authorizes
+> only Recourse-L1 design. A non-capture fractional/duty arm may authorize
+> only a separately frozen fresh residual-identification campaign if it
+> beats both q0 and full-F terminal scores by at least `0.10`, remains inside
+> the frozen development corridor and replays exactly. Otherwise close the
+> constant-rate/duty p03 nominal family and move to algorithmic sequence/
+> reachability or a new physical basis. ID-2Z15 data have zero fit weight.
+> No extra fraction, controller, model, calibration/holdout, waypoint/path
+> or R_mid crossing is authorized. Older blocks are historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z14):** ID-2Z14 completed
 > `10/10` authentic rollouts, `650/650` advances, `3300/3300` artifacts,
 > exact selected-arm replay and an independent raw audit. The selected
 > `f4b4` arm remained at terminal maxima `32.258942 mm / 0.490628 m/s /

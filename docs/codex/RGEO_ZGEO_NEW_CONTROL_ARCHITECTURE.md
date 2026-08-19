@@ -1,6 +1,19 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
 
-> **Post-ID-2Z14 architecture amendment (2026-08-20):** exact observation,
+> **Post-ID-2Z14 nominal-frontier amendment (2026-08-20):** the measured
+> B/F/p04/p01/p09 pulse-macro family remains closed, but the architecture
+> must not confuse that closure with failure of the strongest measured
+> moving nominal. Full p03-forward stride transports substantially better
+> than q0 while consuming the whole per-cycle slew budget. ID-2Z15 therefore
+> tests a finite fractional/duty frontier from takeover, not another late
+> pulse or larger predictor. A useful fractional/duty corridor may only open
+> a fresh matched residual-identification campaign; ID-2Z15 itself has zero
+> fit weight. Capture and Recourse-L1 remain a separate route. The intended
+> stack remains exact observation/Card15, persistent history, structured
+> uncertainty, independent hard/recourse protection and then rolling
+> waypoint control. Older amendments are historical.
+
+> **Historical post-ID-2Z14 architecture amendment (2026-08-20):** exact observation,
 > exact Card15 execution, persistent causal history, uncertainty refusal and
 > the independent hard/recourse layers remain the intended architecture.
 > ID-2Z14 cleanly rejected the last frozen source-local cumulative-p01 and

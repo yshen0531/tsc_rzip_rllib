@@ -1,6 +1,19 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z14 final):** server focused `10/10`
+> **Current status (2026-08-20, ID-2Z15 design frozen):** the bounded
+> zero-new-TSC post-ID-2Z14 review found that the full p03-forward nominal is
+> still the strongest measured transport direction but consumes the complete
+> per-cycle slew allocation. Exact actuator geometry shows that fractional
+> p03-forward rates can reserve simultaneous residual slew; this is an
+> action-space fact, not a response prediction. ID-2Z15 prospectively freezes
+> six takeover-to-state48 nominal branches plus one selected replay. Its two
+> possible positive routes are strictly separated: finite capture may open
+> Recourse-L1 design, while a replayed useful headroom nominal may open only
+> a new fit-eligible residual-campaign design. Implementation, server tests
+> and TSC have not run. ID-2Z14 remains final FAIL; no model/controller route
+> is open.
+
+> **Historical status (2026-08-20, ID-2Z14 final):** server focused `10/10`
 > and all one-ms `512/512` tests passed after a pre-TSC horizon-completeness
 > implementation fix. All `10/10` authentic rollouts, `650/650` advances,
 > `660` states and `3300` artifacts completed; selected `f4b4` replay and
