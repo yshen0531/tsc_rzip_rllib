@@ -1,0 +1,16 @@
+{
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Same-code deterministic replay audit of the three-context development comparison; not an independent model implementation.",
+  "failures": [],
+  "model_sha256": null,
+  "new_tsc_or_plant_advances": 0,
+  "primary_passed": false,
+  "primary_route": "ONE_MS_ID2Z8_SMALL_MODEL_FAIL_TARGETED_DATA_OR_BASIS_REVIEW",
+  "primary_sha256": "8c7056826077b3dfd6d3aef447caf5b538d0fd28a2d7571eafa8b98da13ed11c",
+  "recomputed_route": "ONE_MS_ID2Z8_SMALL_MODEL_FAIL_TARGETED_DATA_OR_BASIS_REVIEW",
+  "recomputed_winner": null,
+  "schema_version": "rgeo-zgeo-1ms-id2z8-deterministic-replay-audit-v1",
+  "source_revision": "584bc28db2a000325a51d5484f63e621034a422f",
+  "stage_config_sha256": "9d08a97a39f9f1369ded81d412c5db1dde9ea312a7c3738341d3fd74e879a55a"
+}

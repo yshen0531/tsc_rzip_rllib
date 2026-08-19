@@ -1,5 +1,28 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z8 bounded small sequence-model comparison
+
+- Date: 2026-08-19 Asia/Shanghai.
+- Implementation revision: `584bc28db2a000325a51d5484f63e621034a422f`.
+- Server output: `rgeo_zgeo_1ms_id2z8_runs/20260819_584bc28d_v1`.
+- Validation: focused `8/8`; all one-ms `456/456`; shell/compile PASS.
+- Execution: zero TSC/plant/controller/optimizer; two candidate classes,
+  six fold-backbone fits and nine fold-GRU fits; no full-data artifact.
+- Stable candidate: max response NRMSE `0.2244456`, max R/Z/Ip p95
+  `0.460884 mm / 0.265906 mm / 28.7714 A`, minimum peak cosine `0.989965`,
+  max terminal-score regret `0.194231`.
+- GRU4 candidate: max response NRMSE `0.2196040`, max R/Z/Ip p95
+  `0.502982 mm / 0.212997 mm / 14.5225 A`, minimum peak cosine `0.982424`,
+  max regret `0.194231`.
+- Both predicted `b4` in all three held contexts; measured best arms were
+  `f4`, `b2f2`, `f2b2`. No candidate was eligible.
+- Primary / deterministic-audit SHA-256:
+  `8c7056826077b3dfd6d3aef447caf5b538d0fd28a2d7571eafa8b98da13ed11c /`
+  `5265a78921d71806976f024600232fdf911ca66fbd6086c5cb81f8a90652fb9e`.
+- Final route: `ONE_MS_ID2Z8_SMALL_MODEL_FAIL_TARGETED_DATA_OR_BASIS_REVIEW`.
+- Next boundary: at most two fresh late-root B/F/H sibling contexts as a
+  combined utility/support discriminator; no larger network or holdout.
+
 ## R_geo/Z_geo 1 ms ID-2Z6 early-root branch teacher
 
 - Date: 2026-08-19 Asia/Shanghai.

@@ -1,6 +1,20 @@
 # Current status
 
-> **Current status (2026-08-19, ID-2Z7 final):** the new-identity continuation
+> **Current status (2026-08-19, ID-2Z8 final):** implementation revision
+> `584bc28d` passed server focused `8/8` and all one-ms `456/456` tests. The
+> zero-TSC comparison used three whole decision contexts and no calibration
+> or holdout records. Its deterministic replay audit passed exactly.
+>
+> Both bounded candidates failed. The stable model had maximum response
+> NRMSE `0.22445`, minimum peak cosine `0.98997`, but maximum R p95
+> `0.46088 mm` and score regret `0.19423`. The GRU4 residual did not change
+> any selected arm and worsened maximum R p95 to `0.50298 mm`. Both selected
+> `b4` in all folds; truth selected `f4`, `b2f2`, then `f2b2`. No full-data
+> artifact exists. The next bounded route is targeted late-root
+> branch/support data plus a simultaneous B/F/H utility discriminator, not a
+> larger network or fresh holdout. Older status blocks are historical.
+
+> **Historical status (2026-08-19, ID-2Z7 final):** the new-identity continuation
 > completed 11/11 fresh paths and 759/759 verified one-ms advances with exact
 > run-root isolation. All 15 development-weight windows are complete when the
 > five audited ID-2Z6 round-0 windows are included. The selected sequence is

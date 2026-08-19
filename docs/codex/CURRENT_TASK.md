@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-19, post-ID-2Z7):** ID-2Z7 is final as
+> **Unique active task (2026-08-19, post-ID-2Z8):** ID-2Z8 is final as
+> `ONE_MS_ID2Z8_SMALL_MODEL_FAIL_TARGETED_DATA_OR_BASIS_REVIEW`. Server
+> focused `8/8` and all one-ms `456/456` tests passed. The comparison ran
+> zero TSC/plant advances and read no calibration/holdout data; deterministic
+> replay audit passed. Neither the 48-parameter stable response model nor its
+> small GRU4 residual passed all three whole-context folds, and no model
+> artifact was emitted.
+>
+> Direction, response-NRMSE, Z and Ip gates passed, but both candidates
+> selected `b4` in all folds while the measured best arms were
+> `f4 -> b2f2 -> f2b2`. R p95 and state-49 ranking regret failed. Larger
+> networks, fresh calibration/holdout and controller execution remain
+> blocked. The only next route is a separately frozen, bounded late-root
+> branch/data stage using the unchanged five-arm B/F/H alphabet at at most
+> two new decision contexts. A material teacher-utility PASS may authorize
+> one five-context rerun of the same two model classes; utility FAIL closes
+> this grammar and requires action-basis/authority redesign. All blocks
+> below are historical.
+
+> **Historical task (2026-08-19, post-ID-2Z7):** ID-2Z7 is final as
 > `ONE_MS_ID2Z7_BRANCH_CONTINUATION_PASS_REPLAY_RECOURSE_AND_SMALL_MODEL_DESIGN_ONLY`.
 > Eleven fresh canonical-source paths completed 759/759 verified advances;
 > the independent audit reparsed 770 states and 3,850 artifacts with no

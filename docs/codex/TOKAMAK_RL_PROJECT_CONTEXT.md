@@ -1,6 +1,23 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Active new-round context (2026-08-19, post-ID-2Z7):** the finite branch
+> **Active new-round context (2026-08-19, post-ID-2Z8):** the first bounded
+> amortized branch-model comparison is a clean scientific FAIL. Both small
+> candidates preserved measured response direction and low response NRMSE,
+> but neither met the R/error-and-ranking contract across three whole causal
+> contexts. The GRU residual did not improve action selection. This is a
+> support/control-ranking failure, not a TSC, interface, runtime or current-
+> observation failure.
+>
+> The route does not expand model capacity. It may add at most two
+> prospectively fit-eligible late-root sibling matrices while simultaneously
+> testing whether the existing B/F/H macro grammar still produces material
+> teacher utility. A clean utility/data PASS permits one five-context repeat
+> of the same two model classes; failure closes that grammar and returns to a
+> bounded action-basis/authority redesign. Calibration, blind holdout,
+> Recourse-L1 and controller execution remain blocked. Older notices below
+> are historical.
+
+> **Historical new-round context (2026-08-19, post-ID-2Z7):** the finite branch
 > teacher now has a clean result. It selected `f4 -> b2f2 -> f2b2`, improved
 > the frozen terminal score, supplied 15 prospective complete development
 > windows, and reproduced the selected path exactly. It did not capture or
