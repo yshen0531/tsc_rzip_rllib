@@ -178,6 +178,12 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             raw_rows.append({
                 **{key: value for key, value in compact_row.items()
                    if key not in ("states", "actions")},
+                # Raw state-k/inputa contains outgoing issue k because the
+                # runner rewrites it after the primary preissue record.  The
+                # outgoing Card15 stream is independently checked above;
+                # prefix comparison must therefore use the established raw-
+                # recovery lifecycle rule for this one artifact.
+                "recovered_from_complete_raw_without_tsc": True,
                 "states": states,
                 "actions": compact_row.get("actions", []),
             })

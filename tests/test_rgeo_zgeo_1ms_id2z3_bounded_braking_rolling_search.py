@@ -174,6 +174,12 @@ class ID2Z3Tests(unittest.TestCase):
     def test_independent_identity_and_launcher(self) -> None:
         self.assertEqual(independent.SCHEMA,
                          "rgeo-zgeo-1ms-id2z3-independent-raw-v1")
+        auditor_source = (ROOT / "scripts" /
+                          "rgeo_zgeo_1ms_id2z3_bounded_braking_rolling_search_independent.py").read_text(
+                              encoding="utf-8")
+        self.assertIn(
+            '"recovered_from_complete_raw_without_tsc": True',
+            auditor_source)
         launcher = (ROOT / "run_rgeo_zgeo_1ms_id2z3_bounded_braking_rolling_search.sh").read_text(
             encoding="utf-8")
         self.assertIn("ID2Z3_SOURCE_REVISION", launcher)
