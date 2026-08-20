@@ -1,5 +1,12 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z21 action-representation amendment (2026-08-20):** persistent
+> **Post-ID2Z22 amendment (2026-08-20):** the next data stage uses exact
+> discrete Card15 vertices as replacement/time-sharing actions at two moving-
+> nominal phases. It does not treat them as a continuous basis. Both phases
+> must independently retain persistent task-plane geometry before model
+> development and Authority-L0 design may proceed in parallel. Runtime control
+> still requires model qualification AND Recourse-L1 AND the hard interface.
+
+> **Historical post-ID2Z21 action-representation amendment (2026-08-20):** persistent
 > temporal response passed the read-only D0 signal checks, but the executed
 > F/A/a/E/e set is an ill-conditioned rank-four continuous coordinate and
 > several early response segments are duplicates. The architecture must not

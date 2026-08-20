@@ -1,6 +1,12 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID2Z21 final):** the moving-nominal
+> **Current NR route notice (2026-08-20, ID2Z22 final):** exact discrete
+> vertex preflight passed with zero TSC/fit and independent recomputation.
+> It authorizes only the frozen ten-rollout ID2Z23 simulator-development
+> campaign at moving-nominal issues 24 and 32. Positive span at the old held
+> state is nomination evidence, not authority, capture, recovery or control.
+
+> **Historical NR route notice (2026-08-20, ID2Z21 final):** the moving-nominal
 > contract audit ran with zero TSC/fit and independently reproduced a finite
 > readiness FAIL. Persistent signed response exists, but the exact executed
 > token set has rank-four condition `24.2899433 > 10`, its best task-plane

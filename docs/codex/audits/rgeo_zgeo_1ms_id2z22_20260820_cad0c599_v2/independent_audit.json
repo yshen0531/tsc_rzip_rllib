@@ -1,0 +1,119 @@
+{
+  "audit_passed": true,
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "plant_advances": 0,
+  "primary_sha256": "1faa7e4f6f478ab080f8fcce96a80496c86f3b700bdc18149c794916df34a95e",
+  "recomputed_arm_metrics": [
+    {
+      "arm_id": "p00_minus4",
+      "delta_a": [
+        0.291666666667,
+        -0.291666666667,
+        -0.291666666667,
+        0.291666666667,
+        -0.291666666667,
+        -0.291666666667,
+        0.291666666667,
+        -0.291666666667,
+        -0.3,
+        -0.3,
+        0.3,
+        0.2,
+        0.3,
+        -0.3
+      ],
+      "passed": true,
+      "state52_norm_m": 0.0002710512740594021,
+      "state52_state56_cosine": 0.9749746959527367,
+      "state56_norm_m": 0.000483276838004121
+    },
+    {
+      "arm_id": "p05_minus4",
+      "delta_a": [
+        -0.145833333333,
+        0.145833333333,
+        -0.145833333333,
+        0.145833333333,
+        -0.145833333333,
+        0.145833333333,
+        -0.145833333333,
+        -0.145833333333,
+        0.15,
+        -0.15,
+        0.15,
+        -0.1,
+        0.15,
+        0.15
+      ],
+      "passed": true,
+      "state52_norm_m": 8.683836523251624e-05,
+      "state52_state56_cosine": 0.9944764848650852,
+      "state56_norm_m": 0.0002360934901267495
+    },
+    {
+      "arm_id": "p05_plus4",
+      "delta_a": [
+        0.145833333333,
+        -0.145833333333,
+        0.145833333333,
+        -0.145833333333,
+        0.145833333333,
+        -0.145833333333,
+        0.145833333333,
+        0.145833333333,
+        -0.15,
+        0.15,
+        -0.15,
+        0.1,
+        -0.15,
+        -0.15
+      ],
+      "passed": true,
+      "state52_norm_m": 8.74381217218714e-05,
+      "state52_state56_cosine": 0.9956159149538205,
+      "state56_norm_m": 0.00023617665866103847
+    },
+    {
+      "arm_id": "p06_plus4",
+      "delta_a": [
+        -0.291666666667,
+        -0.291666666667,
+        -0.291666666667,
+        0.291666666667,
+        -0.291666666667,
+        -0.291666666667,
+        0.291666666667,
+        0.291666666667,
+        0.3,
+        0.3,
+        -0.3,
+        -0.3,
+        -0.3,
+        0.3
+      ],
+      "passed": true,
+      "state52_norm_m": 0.00013096271187250808,
+      "state52_state56_cosine": 0.9603989628835711,
+      "state56_norm_m": 0.0003418473906292302
+    }
+  ],
+  "recomputed_held_geometry": [
+    {
+      "maximum_angular_gap_deg": 110.62723696387542,
+      "passed": true,
+      "state_index": 52,
+      "weakest_best_projection_m": 6.957131668888615e-05
+    },
+    {
+      "maximum_angular_gap_deg": 108.13590986434792,
+      "passed": true,
+      "state_index": 56,
+      "weakest_best_projection_m": 0.00016819531119129913
+    }
+  ],
+  "recomputed_route": "ONE_MS_ID2Z22_DISCRETE_VERTEX_PREFLIGHT_PASS_ID2Z23_DESIGN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2z22-discrete-vertex-moving-nominal-preflight-independent-v1",
+  "stage_config_sha256": "7637570ec4568a30a250307cc71483c2efda5bcf632e423b44d8ed7d369336be",
+  "tsc_calls": 0
+}

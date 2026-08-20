@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-20, ID2Z21 final):** the zero-TSC/zero-fit audit
+> **Current status (2026-08-20, ID2Z22 final):** zero-TSC/zero-fit preflight
+> PASS, independently reproduced. The four frozen discrete Card15 vertices
+> have persistent held-state signal and positive-span geometry, while all
+> prospective moving-nominal schedules are exact and statically admissible.
+> No new plant response, authority or capture has been observed. The active
+> stage is the fixed ten-rollout ID2Z23 moving-nominal development campaign.
+> Server validation of the frozen ID2Z22 implementation passed `617/617`.
+
+> **Historical status (2026-08-20, ID2Z21 final):** the zero-TSC/zero-fit audit
 > completed and its independent recomputation passed. Readiness failed only
 > because executed F/A/a/E/e rank-four condition is `24.2899433`, above the
 > frozen `10`; no fresh campaign is authorized. Direct full-F plus residual

@@ -1,6 +1,17 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID2Z21 final):** ID2Z21 completed with
+> **Unique active task (2026-08-20, ID2Z22 final):** the bounded zero-TSC
+> discrete-vertex preflight and its independent recomputation passed. Four
+> exact vertices positively span the held-state R/Z evidence at 4 and 8 ms,
+> and all issue-24/issue-32 moving-nominal replacement schedules are exact,
+> within slew/current limits and preserve at least `103.9 A` headroom. This
+> authorizes only implementation, server qualification and the ten-rollout
+> ID2Z23 simulator-development campaign frozen in the ID2Z22 design. ID2Z23
+> must measure both phases separately; held geometry is not authority. Do not
+> add arms/phases, invert the old rank-four basis, fit a model before data PASS,
+> or claim capture/recovery/control. Older active blocks are historical.
+
+> **Historical active task (2026-08-20, ID2Z21 final):** ID2Z21 completed with
 > zero TSC, plant advances, fits and calibration/holdout reads. Independent
 > recomputation passed, but the frozen readiness route is
 > `ONE_MS_ID2Z21_SUSTAINED_ALLOCATION_NOT_READY_REDESIGN_ACTION_BASIS_OR_NOMINAL`.
