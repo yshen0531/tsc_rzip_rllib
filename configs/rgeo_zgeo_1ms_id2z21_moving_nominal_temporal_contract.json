@@ -1,0 +1,119 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z21-moving-nominal-temporal-contract-v1",
+  "identity": "rgeo-zgeo-1ms-id2z21-moving-nominal-temporal-contract-v1",
+  "stage": "ID-2Z21",
+  "execution_contract": "server_only_read_only_zero_tsc_zero_fit",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "models_fit_or_updated": 0,
+  "tsc_calls_or_plant_advances": 0,
+  "calibration_and_blind_holdout_reads": 0,
+  "development_issue_first": 16,
+  "development_issue_last": 47,
+  "terminal_state_indices": [60, 61, 62, 63, 64, 65],
+  "token_alphabet": ["F", "A", "a", "E", "e", "H"],
+  "signed_pair_ids": ["d00", "d01", "d02", "d03", "d04", "d05"],
+  "development_family_ids": [
+    "baseline_full_f", "baseline_half_f",
+    "d00_plus", "d00_minus", "d01_plus", "d01_minus",
+    "d02_plus", "d02_minus", "d03_plus", "d03_minus",
+    "d04_plus", "d04_minus", "d05_plus", "d05_minus"
+  ],
+  "forbidden_family_ids": ["c00", "c01", "c02", "c03", "v00", "v01", "v02", "v03"],
+  "action_gates": {
+    "coil_count": 14,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "full_scale_tolerance_a": 1e-9,
+    "token_reproduction_tolerance_a": 1e-9,
+    "zero_hold_tolerance_a": 1e-12,
+    "rank_relative_tolerance": 1e-10,
+    "minimum_executed_nonzero_token_rank": 4,
+    "maximum_executed_nonzero_token_condition": 10.0,
+    "unconditional_f_plus_residual_must_be_rejected": true,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "odd_symmetry_assumed": false
+  },
+  "sustained_response_gates": {
+    "horizons_ms": [2, 4, 8],
+    "minimum_four_ms_rz_separation_m": 0.0001,
+    "minimum_eight_ms_rz_separation_m": 0.0002,
+    "minimum_terminal_velocity_separation_m_per_s": 0.05,
+    "minimum_three_state_median_rz_separation_m": 0.00005,
+    "maximum_peak_to_three_state_median_ratio": 5.0,
+    "minimum_useful_distinct_pair_families": 2,
+    "minimum_task_plane_line_angle_deg": 10.0,
+    "maximum_best_two_vector_condition": 20.0,
+    "segment_origin": "first_common_prefix_divergence_only",
+    "unique_event_key": ["pair_id", "first_divergence_issue", "horizon_ms"]
+  },
+  "lineage_gates": {
+    "comparison_state_index": 48,
+    "minimum_held_minus_full_f_distance_m": 0.001,
+    "minimum_held_minus_full_f_speed_m_per_s": 0.1,
+    "held_actions_after_root_must_be_exact_hold": true
+  },
+  "stationary_capture_gate": {
+    "maximum_source_rz_distance_m": 0.025,
+    "maximum_rz_step_speed_m_per_s": 0.1,
+    "maximum_absolute_source_ip_fraction": 0.05,
+    "required_consecutive_states": 6,
+    "expected_predecessor_capture_count": 0,
+    "must_not_be_weakened": true
+  },
+  "moving_terminal_required_fields": [
+    "r_geo_m", "z_geo_m", "causal_vr_m_per_s", "causal_vz_m_per_s", "ip_a",
+    "active_target_current_a", "pending_effect", "action_age", "causal_history_summary",
+    "remaining_exact_action_reserve"
+  ],
+  "full_f_expected_metrics": {
+    "32": {"distance_m": 0.019292294758661708, "speed_m_per_s": 0.3855551438185933, "ip_fraction": 0.023100860556181605},
+    "40": {"distance_m": 0.021421356817610128, "speed_m_per_s": 0.3340751512777495, "ip_fraction": 0.027673271348819174},
+    "48": {"distance_m": 0.023207303157249573, "speed_m_per_s": 0.21801810766601612, "ip_fraction": 0.032210075622652434},
+    "60": {"distance_m": 0.026727786408394186, "speed_m_per_s": 0.41647244400947026, "ip_fraction": 0.024414200929356283},
+    "65": {"distance_m": 0.02813161495794593, "speed_m_per_s": 0.31582419569786724, "ip_fraction": 0.020735360337442898},
+    "terminal_maximum_distance_m": 0.028254918761722213,
+    "terminal_maximum_speed_m_per_s": 0.41647244400947026,
+    "terminal_maximum_ip_fraction": 0.024414200929356283,
+    "absolute_tolerance": 1e-12
+  },
+  "id2z20_dev_hold_expected_metrics": {
+    "server_relative_path": "rgeo_zgeo_1ms_id2z20_20260820_2cc758de_v1/dev_hold.json",
+    "sha256": "3605eb7c4d6e85e4ef6ac8d259b25309aa11857e667fc15be7e771bcc3c1fc18",
+    "primary_result_relative_path": "rgeo_zgeo_1ms_id2z20_20260820_2cc758de_v1/result.json",
+    "primary_result_sha256": "0d5ac5e608103b080cd0adde95eac7771b8e08f37c896d3bc0f76f4a2e587b32",
+    "required_route": "ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR"
+  },
+  "evidence": {
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z21_MOVING_NOMINAL_TEMPORAL_CONTRACT_AUDIT_DESIGN.md", "sha256": "3b4bac19d56c30673f2bdd5a895d3793c41218859465b25d225d9336d495b8f9"},
+    "route_review": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2Z20_MOVING_NOMINAL_TEMPORAL_CONTROL_ROUTE_REVIEW.md", "sha256": "f31c7d381f770baf222513e38841d40e552307ffe85046a4d302d1ac275d6f36"},
+    "id2z18_config": {"path": "configs/rgeo_zgeo_1ms_id2z18_full_horizon_token_development.json", "sha256": "93d17647efda97cfc97813f30a85b8639ccac4cae9575be4206597999137a0a6"},
+    "id2z18_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/result.json", "sha256": "5fbba54efc3ae3a921d77fc32adb31a7af59775dc677b09bfbc209807e4d4d8c", "required_route": "ONE_MS_ID2Z18_FULL_HORIZON_DEVELOPMENT_DATA_PASS_MODEL_COMPARISON_ONLY"},
+    "id2z18_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/independent_raw_audit_r1.json", "sha256": "6d7603de3e5d805082a61f1dde2a2148117105b130578f2dc98e9187a0d077b5"},
+    "id2z20_config": {"path": "configs/rgeo_zgeo_1ms_id2z20_authority_l0_feedback.json", "sha256": "a3d4d17f453184d5559f0b55a5d915dab5677ec976e0d44b6bddf3d29c6b3c0f"},
+    "id2z20_compact": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z20_20260820_2cc758de_v1/compact_evidence.json", "sha256": "76152695575142594e6f2f39415aae6052d9e1c14ac7ad8e39585da01a61eb77", "required_route": "ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR"},
+    "id2z20_result_report": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z20_AUTHORITY_L0_RESULT.md", "sha256": "cc448f328f0c62913a781e8e14f87ae325b735f489d5668a985b9df8e29c4e42"}
+  },
+  "development_trajectory_sha256": {
+    "baseline_full_f": "ea1f041b7274711f4c84ccc0584147b13b3a7a68c231bffa219d1e026aa0d32e",
+    "baseline_half_f": "7a8889771d7f061b9ef561182dc8583370c1f122d897dea7a3ea23bf35ff9211",
+    "d00_minus": "c3cec051e3eb2d6041fe72d18d69d6d23425e21112a34cf10994258fdf91e9af",
+    "d00_plus": "aeb8328f04b4a085f37b51e7849d5ff360848d612d57f14ecb01d0d07271accd",
+    "d01_minus": "635d198e531c24f0df319594ecc37ce5b3bf5da242ffd3265105a3adfbfc673c",
+    "d01_plus": "2e136c51f2d81d2d32f3effc46cf0e51ac331c78b95313390267cf7afe7810f7",
+    "d02_minus": "ca30c91710c1195d1bc3374f3bffbeae23adf8913afbf6e317fe6287ca8bea8c",
+    "d02_plus": "7c9e22abdd0a5ad68933a976eb13cec66e61770b3e5591638c2c9fa0849068ad",
+    "d03_minus": "4b6d6a91042476e8910e7cb82cca7b28af48076182d22091a71d7f82434b4a5a",
+    "d03_plus": "e5de5571804ee73f70d40c35e99af098233bd677c09498edcf7621bf5f7fc634",
+    "d04_minus": "6f5ed80ed4ea99352c4fedbccd0b7a2b94738c1c066894a7a3fdddd0f01afe1e",
+    "d04_plus": "0f1e04ac53822ee7934b9eb08d5df0d84916b666c31a1c6824a001d145ee0329",
+    "d05_minus": "0469a15d00140dfa9ec5a5520847ecae105afd1c7807ca5b20809715ba73b7d6",
+    "d05_plus": "346d70267736c1e6c647f2c104d9f2ca09eb74fcd6c24d59ca9df9c3aa2b9d0d"
+  },
+  "routes": {
+    "input_or_evidence_fail": "ONE_MS_ID2Z21_INPUT_OR_EVIDENCE_FAIL_NO_TSC",
+    "not_ready": "ONE_MS_ID2Z21_SUSTAINED_ALLOCATION_NOT_READY_REDESIGN_ACTION_BASIS_OR_NOMINAL",
+    "ready": "ONE_MS_ID2Z21_MOVING_NOMINAL_TEMPORAL_CONTRACT_READY_FRESH_D0_DESIGN_ONLY"
+  },
+  "pass_authorizes": "separately_frozen_fresh_sustained_allocation_campaign_design_only",
+  "claim_boundary": "Read-only zero-TSC zero-fit moving-nominal/action-allocation/terminal-contract readiness audit; not TSC data, model, authority, capture, recourse, controller, waypoint, path, R_mid or deployment evidence."
+}
