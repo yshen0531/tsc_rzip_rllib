@@ -1,6 +1,17 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z19R1 final):** server validation passed
+> **Current status (2026-08-20, attribution final):** zero-fit attribution
+> validation passed `4/4 + 589/589`; output SHA-256 is
+> `9d6982ccda50f7ef8981aaff1341f321c945712ccbec1316c5ff9ec415bbf882`.
+> The two candidates have `196/197` R terminal-increment rows above 0.5 mm at
+> 17 recurring endpoints and `18/22` informative wrong-direction paired
+> cells. Seven of eight folds pass support, so this is not solely an OOD
+> family. Model calibration/holdout and the capacity ladder are closed. The
+> active decision is a separately frozen exact-TSC authority/recovery
+> discriminator followed, only on utility evidence, by a fresh terminal-
+> increment/event-aware model identity. No new TSC is currently authorized.
+
+> **Historical status (2026-08-20, ID-2Z19R1 final):** server validation passed
 > `16/16 + 585/585`. The accepted v2 run used source revision
 > `4317cd2fc74d40bbe852a8aa1bea6299d79ed2db`; its independent audit passed
 > with `9,408/9,408` OOF rows and zero calibration, holdout or TSC reads.

@@ -1,6 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, post-ID-2Z19R1):** the corrected
+> **Current NR route notice (2026-08-20, post-attribution):** the bounded
+> two-model route and its one permitted zero-fit attribution are complete.
+> Terminal one-step speed/increment fails in every fold for both candidates,
+> including seven supported folds; the TCN does not repair the error. The
+> model capacity ladder, calibration and blind holdout are closed. The next
+> route must first establish finite source-local sequence authority and a
+> qualified fallback using exact TSC under a separately frozen identity.
+> Only useful matched sequence evidence may then open a fresh terminal-event/
+> value predictor. This preserves machine learning as an amortized causal
+> predictor without asking it to invent control authority absent from the
+> action grammar. No new TSC is authorized before that design is reviewed.
+
+> **Historical NR route notice (2026-08-20, post-ID-2Z19R1):** the corrected
 > rank-four development comparison completed cleanly but selected no model.
 > Both the structured stable-memory predictor and its fixed small TCN residual
 > failed terminal one-step speed/increment in all whole-history folds; seven

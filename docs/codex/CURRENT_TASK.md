@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID-2Z19R1):** accepted server
+> **Unique active task (2026-08-20, post-ID-2Z19R1 attribution):** the one
+> allowed zero-fit attribution passed its own `4/4 + 589/589` server tests and
+> authenticated all `9,408` OOF rows. Both candidates failed terminal
+> velocity/increment in `8/8` folds despite `7/8` support PASS. There were
+> `196/197` R terminal-increment over-cap rows at 17 recurring endpoints and
+> `18/22` informative paired wrong-direction cells. The TCN relative gate
+> remained failed. Final route is
+> `ONE_MS_ID2Z19R1_ATTRIBUTION_COMMON_TERMINAL_INCREMENT_MODEL_CLASS_FAIL_AUTHORITY_AXIS_AND_TARGETED_REDESIGN_REQUIRED`.
+>
+> Stop ID-2Z19R1 model work: do not add a model, tune, change a gate or open
+> c00--c03/v00--v03. The next prospectively frozen task must be a bounded
+> source-local exact-TSC authority/recovery discriminator whose matched data
+> are declared fit-eligible before execution. Only demonstrated action
+> utility may open a new terminal-increment/event-aware value-model identity.
+> No TSC is currently authorized until that exact authority design, action
+> matrix, fallback and stopping rules are frozen. Older blocks are historical.
+
+> **Historical active task (2026-08-20, post-ID-2Z19R1):** accepted server
 > validation passed `16/16` focused and `585/585` complete 1 ms tests.
 > ID-2Z19R1 then completed exactly 16 candidate folds, 8 action-blind folds
 > and 24 fixed TCN seed fits over 9,408 whole-history OOF rows with zero TSC,
