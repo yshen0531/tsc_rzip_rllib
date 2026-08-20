@@ -104,7 +104,7 @@ def load(path: Path = CONFIG) -> tuple[dict[str, Any], dict[str, Any], Any,
             or audit.get("audit_passed") is not True
             or audit.get("primary_sha256") != stage["evidence"]["preflight_result"]["sha256"]):
         raise _error("ID2Z26R1 prerequisite mismatch")
-    _, base_runtime, cfg, _, baseline = z23.load(z23.CONFIG)
+    _, base_runtime, cfg, _, _, baseline = z23.load(z23.CONFIG)
     if len(baseline.get("states", [])) != 66 or len(baseline.get("actions", [])) != 65:
         raise _error("tracked full-F prefix incomplete")
     return stage, base_runtime, cfg, preflight, baseline
