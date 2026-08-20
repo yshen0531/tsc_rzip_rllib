@@ -10,6 +10,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/rgeo_zgeo_1ms_id2z21_moving_nominal_temporal_contract.py"
+INDEPENDENT = ROOT / "scripts/rgeo_zgeo_1ms_id2z21_moving_nominal_temporal_contract_independent.py"
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2z21_moving_nominal_temporal_contract.json"
 LAUNCHER = ROOT / "run_rgeo_zgeo_1ms_id2z21_moving_nominal_temporal_contract.sh"
 
@@ -34,12 +35,17 @@ class ID2Z21Tests(unittest.TestCase):
         self.assertEqual(config["sustained_response_gates"]["horizons_ms"], [2, 4, 8])
 
     def test_no_runtime_or_training_import(self) -> None:
-        text = SCRIPT.read_text(encoding="utf-8")
-        for forbidden in (
-            "TSCStepRunner", "step_current_a", "gotsc", "torch", "sklearn",
-            "fit_ridge", "GRU", "TCN",
-        ):
-            self.assertNotIn(forbidden, text)
+        for path in (SCRIPT, INDEPENDENT):
+            text = path.read_text(encoding="utf-8")
+            for forbidden in (
+                "TSCStepRunner", "step_current_a", "gotsc", "torch", "sklearn",
+                "fit_ridge", "GRU", "TCN",
+            ):
+                self.assertNotIn(forbidden, text)
+
+    def test_independent_does_not_import_primary(self) -> None:
+        text = INDEPENDENT.read_text(encoding="utf-8")
+        self.assertNotIn("import rgeo_zgeo_1ms_id2z21_moving_nominal_temporal_contract", text)
 
     def test_launcher_is_server_read_only_entrypoint(self) -> None:
         text = LAUNCHER.read_text(encoding="utf-8")
