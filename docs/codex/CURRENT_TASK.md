@@ -1,5 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-20, ID2Z20 final):** ID2Z20 completed Phase A
+> `17/17`, `1,105/1,105` plant advances with exact execution/raw evidence and
+> independent audit PASS, then correctly stopped as
+> `ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR`. Only the b0
+> signed pair met the individual signal gate; b1/b2 were about 14--18 um and
+> b3 about 4 um. The best weakest-direction projection was only 9.88/10.32 um
+> at the two phases versus the frozen 20 um threshold, so continuous
+> two-axis geometry passed zero states. Phase B/C, model fitting,
+> calibration, holdout and Recourse-L1 all remained unrun.
+>
+> The one-issue pulse/exact-return rank-four grammar is closed. Do not weaken
+> the gate, add adjacent pulses, run the selector, or start a third model.
+> The next candidate is a bounded zero-TSC sustained-action/terminal-dynamics
+> route review around the moving nominal. It must decide whether a materially
+> different exact-return sequence grammar can directly test persistent
+> braking/capture authority; otherwise escalate the action basis, nominal or
+> terminal-set design. No new TSC/model stage is yet frozen. Older active
+> blocks below are historical.
+
 > **Unique active task (2026-08-20, post-ID2Z19R1 route decision):** the
 > failed two-model class remains closed. The next stage is one bounded,
 > model-free `Authority-L0 / capture-feasibility` campaign, not a combined

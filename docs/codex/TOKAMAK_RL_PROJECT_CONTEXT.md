@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current NR route notice (2026-08-20, ID2Z20 final):** the finite
+> two-phase signed rank-four Authority-L0 Phase A completed with exact
+> execution and independent raw audit, but failed its preregistered physical
+> signal/geometry gate. Input-space rank four did not provide sustained
+> two-axis R/Z authority: only b0 passed individually and the best
+> weakest-direction projection was roughly 10 um versus 20 um required.
+> Feedback selection, replay/validation, capture, models and Recourse were not
+> run. This exact one-issue pulse/return grammar is closed. The next route
+> decision must concern sustained exact-return sequences, moving-nominal
+> action allocation and terminal velocity/capture—not network capacity.
+> Older notices below are historical.
+
 > **Current NR route notice (2026-08-20, Authority-L0 decision):** ID2Z19R1
 > and its one attribution are final; neither model class is eligible. The
 > next route separates finite sustained Authority-L0, a repeated nominal

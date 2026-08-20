@@ -1,5 +1,18 @@
 # Current status
 
+> **Current status (2026-08-20, ID2Z20 final):** Phase A completed cleanly
+> `17/17`; independent raw audit passed and reproduced
+> `ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR`. Totals are
+> `1,105/1,105` verified advances, `1,122` states and `5,610` artifacts
+> (`66,077,860,728` bytes). A reporting-only hotfix recovered the first
+> completed hold without rerunning it; the final audit includes all 65 of its
+> real advances. Physical signed authority was too weak in b1/b2/b3 and the
+> two-axis weakest projection passed zero states. Phase B/C and all models,
+> calibration, holdout, capture and Recourse remain unrun. The current
+> one-pulse rank-four grammar is closed; the project is paused at a bounded
+> sustained-action/terminal-dynamics route decision. Older blocks below are
+> historical.
+
 > **Current status (2026-08-20, post-ID2Z19R1 review):** route analysis is
 > complete and no new TSC/model result exists yet. ID2Z19R1 remains a clean
 > two-candidate development FAIL. The next authorized work is documentation,

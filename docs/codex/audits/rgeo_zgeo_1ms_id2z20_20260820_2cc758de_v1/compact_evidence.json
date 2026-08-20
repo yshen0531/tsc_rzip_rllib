@@ -1,0 +1,78 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z20-compact-evidence-v1",
+  "stage": "ID-2Z20",
+  "source_revision": "2cc758de46c5506ee9e7c523cea7b9d3453d1da0",
+  "reporting_hotfix_revision": "31b8433bd451d1d5655069568b9b4edab91c2a69",
+  "stage_config_sha256": "a3d4d17f453184d5559f0b55a5d915dab5677ec976e0d44b6bddf3d29c6b3c0f",
+  "primary_result_sha256": "0d5ac5e608103b080cd0adde95eac7771b8e08f37c896d3bc0f76f4a2e587b32",
+  "independent_raw_audit_sha256": "bcd5073300339d6c2bcadcfe31c353587c7566929a6f5a4f5f777aa7768e95a9",
+  "reporting_recovery_audit_sha256": "0edd1768216949e2473fc4be0f4cc20cd2105c98852353d7160239e2a78f88b9",
+  "initial_reporting_failure_result_sha256": "98cc18b9b404d93f3eee08ce817ef15c3599a299aa384802efc10af34e061fdd",
+  "route": "ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR",
+  "passed": false,
+  "independent_audit_passed": true,
+  "rollouts_complete": 17,
+  "reset_calls": 17,
+  "advance_attempts": 1105,
+  "plant_advance_gotsc_calls": 1105,
+  "verified_plant_advances": 1105,
+  "states": 1122,
+  "required_artifact_files": 5610,
+  "required_artifact_bytes": 66077860728,
+  "required_artifact_inventory_sha256": "9d463067fd77c37df33bc6f3bfc9f08cc7590bae70746cacd5fe2a8b9243e7b0",
+  "guarded_safe_stops": 0,
+  "recovered_completed_rollouts_not_repeated": 1,
+  "models_fit_or_updated": 0,
+  "calibration_or_holdout_records_read": 0,
+  "phase_a": {
+    "passed": false,
+    "signed_arm_rollouts_complete": 16,
+    "signed_arm_gate_passed": 4,
+    "signed_arm_gate_failed": 12,
+    "longest_geometry_run_by_phase": {"32": 0, "40": 0},
+    "maximum_weakest_best_projection_m_by_phase": {
+      "32": 0.000009881344339370418,
+      "40": 0.000010319694037762142
+    },
+    "minimum_angular_gap_deg_by_phase": {
+      "32": 75.54824805861118,
+      "40": 76.65414716830898
+    },
+    "gate_minimum_weakest_best_projection_m": 0.00002,
+    "gate_minimum_consecutive_geometry_states": 2,
+    "b0_phase32_plus_hybrid_peak": {
+      "state_index": 35,
+      "rz_norm_m": 0.0006373300936533344,
+      "delta_r_m": -0.0006249819999999406,
+      "delta_z_m": 0.00012484849999996884
+    },
+    "arm_peak_rz_response_m": {
+      "phase32": {
+        "b0_plus": 0.0006373300936533344,
+        "b0_minus": 0.00006230343732486644,
+        "b1_plus": 0.0000173268058006117,
+        "b1_minus": 0.0000173431991425319,
+        "b2_plus": 0.0000163308909738475,
+        "b2_minus": 0.0000158919389156895,
+        "b3_plus": 0.00000425583226287561,
+        "b3_minus": 0.00000411393440027613
+      },
+      "phase40": {
+        "b0_plus": 0.0000629561544250522,
+        "b0_minus": 0.0000577208614042767,
+        "b1_plus": 0.0000183513831222343,
+        "b1_minus": 0.0000182948799190069,
+        "b2_plus": 0.0000145480240067117,
+        "b2_minus": 0.0000136432455998698,
+        "b3_plus": 0.00000433245822250818,
+        "b3_minus": 0.00000425369771492009
+      }
+    }
+  },
+  "phase_b_rollouts": 0,
+  "phase_c_rollouts": 0,
+  "authority_l0_passed": false,
+  "six_state_capture_seed_passed": false,
+  "recourse_l1_claimed": false,
+  "claim_boundary": "Finite source-local two-phase one-issue pulse/exact-return grammar FAIL. It is not a runtime, raw, actuator, global reachability, controller, recovery, MPC or plant-unreachability result."
+}
