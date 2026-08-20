@@ -66,6 +66,32 @@ class ID2Z19R1Tests(unittest.TestCase):
         self.assertEqual(value["action_geometry"]["rank"], 4)
         self.assertEqual(value["new_tsc_calls"], 0)
 
+    def test_replay_contract_uses_frozen_semantic_fields_not_diagnostics(self):
+        folder = ROOT / self.stage["source"]["directory"]
+        original = primary.read_json(folder / "baseline_half_f.json")
+        replay = primary.read_json(folder / "replay_baseline_half_f.json")
+        source_stage = primary.read_json(
+            ROOT / self.stage["source"]["id2z18_config"]["path"]
+        )
+        diagnostic_mutation = copy.deepcopy(replay)
+        diagnostic_mutation["states"][0]["artifact_sha256"]["sprsina"] = "diagnostic-only"
+        diagnostic_mutation["states"][1]["maximum_observed_delta_a"] = 999.0
+        primary.assert_replay_equivalent(
+            diagnostic_mutation,
+            original,
+            source_stage["semantic_artifacts"],
+            "diagnostic mutation",
+        )
+        physical_mutation = copy.deepcopy(replay)
+        physical_mutation["states"][17]["r_geo_m"] += 1.0e-9
+        with self.assertRaises(primary.IntegrityError):
+            primary.assert_replay_equivalent(
+                physical_mutation,
+                original,
+                source_stage["semantic_artifacts"],
+                "physical mutation",
+            )
+
     def test_future_recorded_fields_are_mutation_invariant(self):
         value = primary.causal_mutation_invariance(self.data, self.stage)
         self.assertTrue(value["passed"])

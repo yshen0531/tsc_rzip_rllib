@@ -83,6 +83,49 @@ def cosine(left: np.ndarray, right: np.ndarray) -> float:
     return float(np.dot(left, right) / denominator) if denominator > 1.0e-15 else math.nan
 
 
+def assert_replay_equivalent(
+    replay: dict[str, Any],
+    original: dict[str, Any],
+    semantic_artifacts: Iterable[str],
+    label: str,
+) -> None:
+    """Reapply the frozen ID2Z18 checked-observable replay contract.
+
+    The compact rows also retain diagnostic ``sprsina`` hashes and reporting
+    fields that were never part of the qualified replay identity.  Comparing
+    the entire JSON object would silently strengthen the already-consumed
+    source gate and reject the two replays that ID2Z18 independently passed.
+    """
+    exact(replay.get("tokens"), original.get("tokens"), f"{label} tokens")
+    replay_states = replay.get("states", [])
+    original_states = original.get("states", [])
+    exact(len(replay_states), len(original_states), f"{label} state count")
+    state_fields = (
+        "time_ms",
+        "r_geo_m",
+        "z_geo_m",
+        "r_mid_m",
+        "ip_a",
+        "actual_current_decimal_a_tsc",
+        "wire_current_a",
+        "active_command_card15_fields",
+    )
+    for index, (actual, expected) in enumerate(zip(replay_states, original_states)):
+        for field in state_fields:
+            exact(actual.get(field), expected.get(field), f"{label} state {index} {field}")
+        for artifact in semantic_artifacts:
+            exact(
+                actual.get("artifact_sha256", {}).get(artifact),
+                expected.get("artifact_sha256", {}).get(artifact),
+                f"{label} state {index} artifact {artifact}",
+            )
+    exact(
+        [row.get("expected_card15_fields") for row in replay.get("actions", [])],
+        [row.get("expected_card15_fields") for row in original.get("actions", [])],
+        f"{label} actions",
+    )
+
+
 def load_stage(path: Path = CONFIG) -> dict[str, Any]:
     path = inside(path, "stage config")
     if path != CONFIG.resolve():
@@ -276,9 +319,13 @@ def load_dataset(stage: dict[str, Any]) -> Dataset:
     ):
         value = replay_payloads[replay]
         expected = read_json(folder / f"{original}.json")
-        exact(value.get("tokens"), expected.get("tokens"), f"{replay} tokens")
-        exact(value["states"], expected["states"], f"{replay} states")
-        exact(value["actions"], expected["actions"], f"{replay} actions")
+        source_stage = read_json(ROOT / stage["source"]["id2z18_config"]["path"])
+        assert_replay_equivalent(
+            value,
+            expected,
+            source_stage["semantic_artifacts"],
+            replay,
+        )
 
     geometry = stage["action_geometry"]
     lo, hi = geometry["source_issue_range_inclusive"]
