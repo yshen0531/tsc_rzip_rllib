@@ -1,0 +1,117 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z19-two-candidate-model-comparison-v1",
+  "identity": "rgeo-zgeo-1ms-id2z19-two-candidate-model-comparison-v1",
+  "stage": "ID-2Z19",
+  "execution_contract": "server_only_zero_new_tsc_two_candidate_development_comparison",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "origin_issue_range_inclusive": [16, 57],
+  "prediction_horizons_ms": [1, 2, 4, 8],
+  "development_family_ids": [
+    "baseline_full_f", "baseline_half_f",
+    "d00_plus", "d00_minus", "d01_plus", "d01_minus",
+    "d02_plus", "d02_minus", "d03_plus", "d03_minus",
+    "d04_plus", "d04_minus", "d05_plus", "d05_minus"
+  ],
+  "zero_weight_replay_ids": ["replay_baseline_half_f", "replay_d00_plus"],
+  "unexecuted_calibration_ids": ["c00", "c01", "c02", "c03"],
+  "unexecuted_blind_holdout_ids": ["v00", "v01", "v02", "v03"],
+  "whole_history_folds": [
+    {"fold_id": "hold_baseline_full_f", "held_family_ids": ["baseline_full_f"], "kind": "baseline"},
+    {"fold_id": "hold_baseline_half_f", "held_family_ids": ["baseline_half_f"], "kind": "baseline"},
+    {"fold_id": "hold_d00", "held_family_ids": ["d00_plus", "d00_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d01", "held_family_ids": ["d01_plus", "d01_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d02", "held_family_ids": ["d02_plus", "d02_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d03", "held_family_ids": ["d03_plus", "d03_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d04", "held_family_ids": ["d04_plus", "d04_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d05", "held_family_ids": ["d05_plus", "d05_minus"], "kind": "signed_pair"}
+  ],
+  "allowed_inputs": {
+    "current_exact_rgeo_zgeo_ip": true,
+    "post_takeover_causal_rgeo_zgeo_ip_history": true,
+    "causal_difference_lags": [1, 4],
+    "issued_card15_history": true,
+    "measured_actual_14_coil_current_history": true,
+    "candidate_future_card15_targets": true,
+    "absolute_time_and_horizon": true,
+    "future_actual_current": false,
+    "wire_current": false,
+    "sprsina": false,
+    "family_pair_sign_role_or_token_labels": false,
+    "future_rgeo_zgeo_ip": false
+  },
+  "candidate_order": ["stable_regularized_lpv", "stable_regularized_lpv_plus_gru4"],
+  "stable_regularized_lpv": {
+    "fixed_action_memory_poles": [0.5, 0.8, 0.95],
+    "ridge_lambda": 0.1,
+    "state_scale": [0.025, 0.025, 1500.0],
+    "increment_scale": [0.001, 0.001, 50.0],
+    "action_coordinate_scale_a": 1.0,
+    "fold_local_center_and_scale": true,
+    "maximum_feature_condition": 1000000.0
+  },
+  "stable_regularized_lpv_plus_gru4": {
+    "base_candidate": "stable_regularized_lpv",
+    "hidden_width": 4,
+    "seeds": [1701, 2903, 4307],
+    "epochs": 500,
+    "learning_rate": 0.003,
+    "weight_decay": 0.0001,
+    "gradient_norm_cap": 1.0,
+    "maximum_residual_normalized": [1.0, 1.0, 1.0],
+    "persistent_history_without_context_rewrite": true,
+    "ensemble_aggregation": "arithmetic_mean"
+  },
+  "evaluation": {
+    "paired_response_scale": {"r_geo_m": 0.0001, "z_geo_m": 0.0001, "ip_a": 25.0},
+    "endpoint_p95_caps": {
+      "r_geo_m": [0.0005, 0.0009, 0.0016, 0.003],
+      "z_geo_m": [0.0005, 0.0009, 0.0016, 0.003],
+      "ip_a": [35.0, 60.0, 110.0, 200.0]
+    },
+    "maximum_one_step_rz_velocity_error_m_per_s": 0.5,
+    "maximum_each_fold_normalized_endpoint_rmse": 0.75,
+    "maximum_each_pair_fold_response_nrmse": 0.75,
+    "required_positive_pair_endpoint_directions": 4,
+    "required_correct_better_sign_rankings": 3,
+    "maximum_normalized_value_regret": 0.25,
+    "value_scales": {"distance_m": 0.025, "average_speed_m_per_s": 0.1, "ip_fraction": 0.05},
+    "minimum_action_blind_response_sse_improvement_fraction": 0.2,
+    "all_predictions_finite_required": true
+  },
+  "selection": {
+    "prefer_stable_lpv_if_eligible": true,
+    "minimum_gru_worst_pair_response_improvement_fraction": 0.1,
+    "maximum_gru_worst_endpoint_p95_regression_fraction": 0.1,
+    "emit_model_only_if_all_folds_eligible": true
+  },
+  "fit_and_execution_counts": {
+    "candidate_count": 2,
+    "folds_per_candidate": 8,
+    "maximum_candidate_fold_fits": 16,
+    "maximum_gru_seed_fits": 24,
+    "maximum_final_full_fits": 1,
+    "new_tsc_calls": 0,
+    "reset_calls": 0,
+    "plant_advances": 0,
+    "calibration_records_read": 0,
+    "blind_holdout_records_read": 0
+  },
+  "source": {
+    "directory": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1",
+    "trajectory_file_count": 16,
+    "trajectory_total_bytes": 5587355,
+    "trajectory_inventory_digest": "88e7b43aeb7a649744e0a786a1b2a0d251f93d2e7cabd8da189848118b32f727",
+    "id2z18_config": {"path": "configs/rgeo_zgeo_1ms_id2z18_full_horizon_token_development.json", "sha256": "93d17647efda97cfc97813f30a85b8639ccac4cae9575be4206597999137a0a6"},
+    "id2z18_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/result.json", "sha256": "5fbba54efc3ae3a921d77fc32adb31a7af59775dc677b09bfbc209807e4d4d8c", "required_route": "ONE_MS_ID2Z18_FULL_HORIZON_DEVELOPMENT_DATA_PASS_MODEL_COMPARISON_ONLY"},
+    "id2z18_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/independent_raw_audit_r1.json", "sha256": "6d7603de3e5d805082a61f1dde2a2148117105b130578f2dc98e9187a0d077b5"},
+    "id2z18_result_report": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z18_FULL_HORIZON_TOKEN_DEVELOPMENT_RESULT.md", "sha256": "e9001af26da29a1a0c9f68e1943e1b41981ff8c2c5a1b0a446cf2b3b6c7a802b"},
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z19_TWO_CANDIDATE_MODEL_COMPARISON_DESIGN.md", "sha256": "e457355e4e6e38c6d165d3c20bad218074e8fc9826028a83b336961495509671"}
+  },
+  "routes": {
+    "input_or_contract_fail": "ONE_MS_ID2Z19_INPUT_OR_CONTRACT_FAIL_NO_FIT",
+    "no_eligible_candidate": "ONE_MS_ID2Z19_NO_ELIGIBLE_DEVELOPMENT_MODEL_REVIEW_REQUIRED",
+    "pass": "ONE_MS_ID2Z19_DEVELOPMENT_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+  },
+  "claim_boundary": "Finite 14-family source-local development comparison only; not calibration, holdout, uncertainty tube, authority, capture, recovery, controller, MPC, waypoint/path, R_mid crossing, adaptation, expert data, RL or deployment evidence."
+}
