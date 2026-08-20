@@ -345,6 +345,11 @@ def _target_provider_static(spec: dict[str, Any]) -> Callable[..., tuple[Card15T
     return provider
 
 
+def compact_spec(spec: dict[str, Any]) -> dict[str, Any]:
+    """Remove live Card15Target objects before any compact JSON write."""
+    return {key: value for key, value in spec.items() if key != "targets"}
+
+
 def policy_spec(stage: dict[str, Any], reference: dict[str, Any], cfg: Any,
                 rollout_id: str, candidate_id: str, library: dict[str, Any],
                 data_role: str, fit_weight: int,
@@ -468,7 +473,8 @@ def one_rollout(cfg: Any, stage: dict[str, Any], spec: dict[str, Any],
     gotsc = 0 if runner is None else int(getattr(runner, "plant_advance_gotsc_calls", attempts))
     complete = bool(not reasons and reset_calls == 1 and attempts == successes == 65
                     and len(actions) == 65 and len(states) == 66)
-    return {**spec, "schema_version": SCHEMA, "passed": complete, "reasons": reasons,
+    return {**compact_spec(spec),
+            "schema_version": SCHEMA, "passed": complete, "reasons": reasons,
             "reset_calls": reset_calls, "advance_attempts": attempts,
             "plant_advance_gotsc_calls": gotsc, "verified_plant_advances": successes,
             "states": states, "actions": actions, "attempted_actions": attempted,
@@ -713,13 +719,23 @@ def _route(stage: dict[str, Any], execution: bool, raw_ok: bool, phase_a_ok: boo
 
 def execute(stage: dict[str, Any], runtime: dict[str, Any], cfg: Any,
             dev: dict[str, Any], validation: dict[str, Any], source_revision: str,
-            output: Path, storage_gate: dict[str, Any], *, runner_cls: type | None = None) -> dict[str, Any]:
+            output: Path, storage_gate: dict[str, Any], *, runner_cls: type | None = None,
+            recovered_dev_hold: dict[str, Any] | None = None,
+            recovery_audit: dict[str, Any] | None = None,
+            reporting_hotfix_revision: str | None = None) -> dict[str, Any]:
     isolation = z18.z17.z7.configure_run_root(cfg, output)
-    rows: list[dict[str, Any]] = []
+    rows: list[dict[str, Any]] = [] if recovered_dev_hold is None else [recovered_dev_hold]
     prefixes: list[dict[str, Any]] = []
+    if recovered_dev_hold is not None:
+        prefixes.append({"passed": bool(recovery_audit and recovery_audit.get("passed")),
+                         "reporting_recovered_physical_prefix": True,
+                         "maximum_absolute_difference": (
+                             recovery_audit or {}).get("physical_prefix_maximum_absolute_difference", {})})
     execution = True
-    phase_a_rows = []
+    phase_a_rows = [] if recovered_dev_hold is None else [recovered_dev_hold]
     for spec in phase_a_specs(stage, dev, cfg):
+        if recovered_dev_hold is not None and spec["rollout_id"] == "dev_hold":
+            continue
         row = one_rollout(cfg, runtime, spec, _target_provider_static(spec), runner_cls=runner_cls)
         _save_row(output, row, source_revision); rows.append(row); phase_a_rows.append(row)
         prefixes.append(prefix_check(row, dev, stage))
@@ -829,6 +845,8 @@ def execute(stage: dict[str, Any], runtime: dict[str, Any], cfg: Any,
               "guarded_safe_stops": sum(safe_stop(row, stage) for row in rows),
               **counters, **inventory, "models_fit_or_updated": 0,
               "calibration_or_holdout_records_read": 0,
+              "reporting_hotfix_revision": reporting_hotfix_revision,
+              "recovered_completed_rollouts_not_repeated": 1 if recovered_dev_hold else 0,
               "claim_boundary": stage["claim_boundary"]}
     io.write_new(output / "result.json", result)
     return result
@@ -886,15 +904,71 @@ def run(path: Path, source_revision: str, output: Path) -> dict[str, Any]:
         return result
 
 
+def resume_completed_dev_hold(path: Path, source_revision: str,
+                              reporting_hotfix_revision: str,
+                              output: Path) -> dict[str, Any]:
+    output = inside(output, "ID2Z20 resume output")
+    if not output.is_dir():
+        raise FileNotFoundError(str(output))
+    stage, runtime, cfg, _, dev, validation = load(path)
+    initial_path = output / "result.json"
+    audit_path = output / "reporting_recovery_audit.json"
+    row_path = output / "dev_hold.json"
+    initial = load_json(initial_path)
+    audit = load_json(audit_path)
+    recovered = load_json(row_path)
+    if (initial.get("route") != stage["routes"]["execution_or_interface_fail"]
+            or initial.get("source_revision") != source_revision
+            or audit.get("passed") is not True
+            or audit.get("source_revision") != source_revision
+            or audit.get("reporting_recovery_revision") != reporting_hotfix_revision
+            or recovered.get("passed") is not True
+            or recovered.get("rollout_id") != "dev_hold"
+            or len(recovered.get("states", [])) != 66
+            or len(recovered.get("actions", [])) != 65
+            or recovered.get("reporting_recovered_from_raw") is not True
+            or recovered.get("retry_attempted") is not False):
+        raise _error("reporting recovery is not eligible for resume")
+    initial_saved = output / "initial_reporting_failure_result.json"
+    independent = output / "independent_raw_audit.json"
+    independent_saved = output / "initial_reporting_failure_independent_audit.json"
+    if initial_saved.exists() or independent_saved.exists():
+        raise FileExistsError("initial failure preservation target exists")
+    initial_path.rename(initial_saved)
+    if independent.exists():
+        independent.rename(independent_saved)
+    storage_gate = dict(initial.get("storage_gate", {}))
+    storage_gate["resume_after_reporting_only_recovery"] = True
+    storage_gate["recovered_completed_rollouts"] = 1
+    try:
+        return execute(stage, runtime, cfg, dev, validation, source_revision, output,
+                       storage_gate, recovered_dev_hold=recovered,
+                       recovery_audit=audit,
+                       reporting_hotfix_revision=reporting_hotfix_revision)
+    except Exception as exc:
+        result = _failure_result(stage, source_revision, output, storage_gate, exc)
+        result["reporting_hotfix_revision"] = reporting_hotfix_revision
+        if not (output / "result.json").exists():
+            io.write_new(output / "result.json", result)
+        return result
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--stage-config", type=Path, default=CONFIG)
     parser.add_argument("--source-revision", required=True)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--offline-only", action="store_true")
+    parser.add_argument("--resume-completed-dev-hold", action="store_true")
+    parser.add_argument("--reporting-hotfix-revision")
     args = parser.parse_args(argv)
     if args.offline_only:
         value = offline(args.stage_config, args.source_revision)
+    elif args.resume_completed_dev_hold:
+        if args.output is None or not args.reporting_hotfix_revision:
+            parser.error("resume requires --output and --reporting-hotfix-revision")
+        value = resume_completed_dev_hold(args.stage_config, args.source_revision,
+                                          args.reporting_hotfix_revision, args.output)
     else:
         if args.output is None: parser.error("--output is required unless --offline-only")
         value = run(args.stage_config, args.source_revision, args.output)

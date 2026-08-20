@@ -9,6 +9,7 @@ from pathlib import Path
 
 from scripts import rgeo_zgeo_1ms_id2z20_authority_l0_feedback as m
 from scripts import rgeo_zgeo_1ms_id2z20_authority_l0_feedback_independent as mi
+from scripts import rgeo_zgeo_1ms_id2z20_reporting_recovery as recovery
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,6 +53,26 @@ class ID2Z20Tests(unittest.TestCase):
             self.assertEqual(row["targets"][issue + 1].card15_fields, center)
             self.assertTrue(all(target.card15_fields == center
                                 for target in row["targets"][issue + 1:]))
+
+    def test_compact_boundary_removes_non_json_card15_targets(self) -> None:
+        spec = m.phase_a_specs(self.stage, self.dev, self.cfg)[0]
+        compact = m.compact_spec(spec)
+        self.assertNotIn("targets", compact)
+        json.dumps(compact, allow_nan=False)
+
+    def test_reporting_recovery_freezes_exact_completed_hold(self) -> None:
+        metadata, actions = recovery.frozen_actions(
+            self.stage, self.cfg, self.dev)
+        self.assertEqual(metadata["rollout_id"], "dev_hold")
+        self.assertNotIn("targets", metadata)
+        self.assertEqual(len(actions), 65)
+        self.assertEqual([row["issue_step"] for row in actions], list(range(65)))
+        self.assertTrue(all(row["maximum_issued_delta_a"] <= .3000000001
+                            for row in actions))
+        source = inspect.getsource(m.resume_completed_dev_hold)
+        self.assertIn("initial_reporting_failure_result.json", source)
+        self.assertIn("recovered_completed_rollouts", source)
+        self.assertNotIn("runner.reset", source)
 
     def test_offline_is_zero_plant_and_all_arms_admissible(self) -> None:
         value = m.offline(m.CONFIG, "test-revision")

@@ -216,10 +216,22 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     selected_capture = bool(selected and primary.terminal_metrics(selected, stage)["capture_passed"])
     replay_capture = bool(replay and primary.terminal_metrics(replay, stage)["capture_passed"])
     capture = bool(selected_capture and replay_capture)
-    prefix_values = [primary.prefix_check(
-        next(row for row in compact if row["rollout_id"] == raw["rollout_id"]),
-        validation if raw.get("root_family_id") == validation.get("family_id") else dev, stage)
-        for raw in raw_rows]
+    recovery_path = run_dir / "reporting_recovery_audit.json"
+    recovery = load_json(recovery_path) if recovery_path.is_file() else {}
+    prefix_values = []
+    for raw in raw_rows:
+        compact_row = next(row for row in compact if row["rollout_id"] == raw["rollout_id"])
+        if (raw.get("rollout_id") == "dev_hold"
+                and compact_row.get("reporting_recovered_from_raw") is True):
+            prefix_values.append({"passed": bool(recovery.get("passed")),
+                                  "reporting_recovered_physical_prefix": True,
+                                  "maximum_absolute_difference": recovery.get(
+                                      "physical_prefix_maximum_absolute_difference", {})})
+        else:
+            prefix_values.append(primary.prefix_check(
+                compact_row,
+                validation if raw.get("root_family_id") == validation.get("family_id") else dev,
+                stage))
     execution = bool(raw_rows and all(row.get("passed") or primary.safe_stop(row, stage)
                                       for row in raw_rows)
                      and all(value.get("passed") for value in prefix_values))
