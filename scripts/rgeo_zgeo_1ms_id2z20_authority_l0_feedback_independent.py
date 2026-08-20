@@ -203,7 +203,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
                    if eligible else None)
     selected = raw_by_id.get(selected_id or "")
     replay = raw_by_id.get("selected_replay")
-    replay_check = (primary.z6.compare_rows(selected, replay, stage)
+    replay_check = (primary.base.compare_rows(selected, replay, stage)
                     if selected is not None and replay is not None else
                     {"passed": False, "failures": ["NOT_RUN"]})
     validation_hold = raw_by_id.get("validation_hold")

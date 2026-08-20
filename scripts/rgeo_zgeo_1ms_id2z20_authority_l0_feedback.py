@@ -20,6 +20,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts import rgeo_zgeo_1ms_id2z18_full_horizon_token_development as z18  # noqa: E402
+from scripts import rgeo_zgeo_1ms_id0_vector_tail as base  # noqa: E402
 from tsc_rzip_rllib.control.rgeo_zgeo_contract import RGeoZGeoSignal  # noqa: E402
 from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import (  # noqa: E402
     Card15Target,
@@ -148,7 +149,7 @@ def load(path: Path = CONFIG) -> tuple[dict[str, Any], dict[str, Any], Any,
 
 
 def target_from_action(action: dict[str, Any], cfg: Any, name: str) -> Card15Target:
-    return z6.target_from_fields(action["expected_card15_fields"], cfg, name)
+    return base.target_from_fields(action["expected_card15_fields"], cfg, name)
 
 
 def root_targets(reference: dict[str, Any], cfg: Any, label: str) -> list[Card15Target]:
@@ -162,7 +163,7 @@ def offset_target(center: Card15Target, delta: Sequence[float], sign: int,
         raise _error("basis sign must be +/-1")
     fields = [format_number(Decimal(field.strip()) + Decimal(str(sign)) * Decimal(str(step)))
               for field, step in zip(center.card15_fields, delta)]
-    return z6.target_from_fields(fields, cfg, name)
+    return base.target_from_fields(fields, cfg, name)
 
 
 def basis_targets(stage: dict[str, Any], center: Card15Target,
@@ -378,7 +379,7 @@ def policy_spec(stage: dict[str, Any], reference: dict[str, Any], cfg: Any,
 def one_rollout(cfg: Any, stage: dict[str, Any], spec: dict[str, Any],
                 provider: Callable[..., tuple[Card15Target, str, dict[str, Any] | None]],
                 *, runner_cls: type | None = None) -> dict[str, Any]:
-    runner_type = runner_cls or z6.CountingRunner
+    runner_type = runner_cls or base.CountingRunner
     runner = None
     states: list[dict[str, Any]] = []
     actions: list[dict[str, Any]] = []
@@ -390,7 +391,7 @@ def one_rollout(cfg: Any, stage: dict[str, Any], spec: dict[str, Any],
         runner = runner_type(cfg, worker_id=f"id2z20_{spec['rollout_id']}", keep_workspace=False)
         reset_calls += 1
         state = runner.reset(episode_name=spec["rollout_id"])
-        states.append(z6._record(cfg, state)); z6._validate_record(states[-1], "state0")
+        states.append(base._record(cfg, state)); base._validate_record(states[-1], "state0")
         if states[0]["time_ms"] != 1100 or int(state.get("returncode", 0)) != 0 or bool(state.get("abnormal", False)):
             reasons.append("SOURCE_RESET_INVALID")
         source_signal = RGeoZGeoSignal.from_tsc_state(state)
@@ -401,10 +402,10 @@ def one_rollout(cfg: Any, stage: dict[str, Any], spec: dict[str, Any],
             signal = RGeoZGeoSignal.from_tsc_state(state)
             reasons.extend(envelope.state_reasons(signal, state["currents_a_tsc"],
                                                    cfg.min_current_a_tsc, cfg.max_current_a_tsc))
-            reasons.extend(z6._outer_reasons(stage, source_signal, signal))
+            reasons.extend(base._outer_reasons(stage, source_signal, signal))
             target, arm, decision = provider(issue, states, states[0])
             if arm not in ("root", "hold"):
-                reasons.extend(z6._pulse_clearance(stage, source_signal, signal))
+                reasons.extend(base._pulse_clearance(stage, source_signal, signal))
             exact = card15_target_decimal_a(target, cfg.turns_tsc,
                                             name=f"id2z20.{spec['rollout_id']}.{issue}")
             try:
@@ -429,7 +430,7 @@ def one_rollout(cfg: Any, stage: dict[str, Any], spec: dict[str, Any],
                 reasons.append(f"STEP_EXECUTION:{issue}:{type(exc).__name__}:{exc}")
                 break
             try:
-                record = z6._record(cfg, successor); z6._validate_record(record, f"state{issue + 1}")
+                record = base._record(cfg, successor); base._validate_record(record, f"state{issue + 1}")
             except Exception as exc:
                 reasons.append(f"SUCCESSOR_RECORD:{issue}:{type(exc).__name__}:{exc}")
                 break
@@ -452,8 +453,8 @@ def one_rollout(cfg: Any, stage: dict[str, Any], spec: dict[str, Any],
             successor_signal = RGeoZGeoSignal.from_tsc_state(successor)
             reasons.extend(envelope.state_reasons(successor_signal, successor["currents_a_tsc"],
                                                    cfg.min_current_a_tsc, cfg.max_current_a_tsc))
-            reasons.extend(z6._outer_reasons(stage, source_signal, successor_signal))
-            reasons.extend(z6._step_cap_reasons(stage, states[-2], states[-1]))
+            reasons.extend(base._outer_reasons(stage, source_signal, successor_signal))
+            reasons.extend(base._step_cap_reasons(stage, states[-2], states[-1]))
             state = successor
     except Exception as exc:
         reasons.append(f"ROLLOUT_EXECUTION:{type(exc).__name__}:{exc}")
@@ -757,7 +758,7 @@ def execute(stage: dict[str, Any], runtime: dict[str, Any], cfg: Any,
         replay = one_rollout(cfg, runtime, spec, provider, runner_cls=runner_cls)
         _save_row(output, replay, source_revision); rows.append(replay)
         prefixes.append(prefix_check(replay, dev, stage))
-        replay_value = z6.compare_rows(selected_row, replay, stage)
+        replay_value = base.compare_rows(selected_row, replay, stage)
         if not replay.get("passed") and not safe_stop(replay, stage): execution = False
     if execution and replay_value.get("passed"):
         hold_spec = static_spec(stage, validation, cfg, "validation_hold", None, "hold",
