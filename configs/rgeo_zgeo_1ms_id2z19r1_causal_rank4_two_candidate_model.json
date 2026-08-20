@@ -1,0 +1,160 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z19r1-causal-rank4-two-candidate-model-v1",
+  "identity": "rgeo-zgeo-1ms-id2z19r1-causal-rank4-two-candidate-model-v1",
+  "stage": "ID-2Z19R1",
+  "execution_contract": "server_only_zero_new_tsc_prefit_readiness_then_two_candidate_development_comparison",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "origin_issue_range_inclusive": [16, 57],
+  "fit_horizons_ms": [1, 2, 3, 4, 5, 6, 7, 8],
+  "qualification_horizons_ms": [1, 2, 4, 8],
+  "development_family_ids": [
+    "baseline_full_f", "baseline_half_f",
+    "d00_plus", "d00_minus", "d01_plus", "d01_minus",
+    "d02_plus", "d02_minus", "d03_plus", "d03_minus",
+    "d04_plus", "d04_minus", "d05_plus", "d05_minus"
+  ],
+  "zero_weight_replay_ids": ["replay_baseline_half_f", "replay_d00_plus"],
+  "unexecuted_calibration_ids": ["c00", "c01", "c02", "c03"],
+  "unexecuted_blind_holdout_ids": ["v00", "v01", "v02", "v03"],
+  "whole_history_folds": [
+    {"fold_id": "hold_baseline_full_f", "held_family_ids": ["baseline_full_f"], "kind": "baseline"},
+    {"fold_id": "hold_baseline_half_f", "held_family_ids": ["baseline_half_f"], "kind": "baseline"},
+    {"fold_id": "hold_d00", "held_family_ids": ["d00_plus", "d00_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d01", "held_family_ids": ["d01_plus", "d01_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d02", "held_family_ids": ["d02_plus", "d02_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d03", "held_family_ids": ["d03_plus", "d03_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d04", "held_family_ids": ["d04_plus", "d04_minus"], "kind": "signed_pair"},
+    {"fold_id": "hold_d05", "held_family_ids": ["d05_plus", "d05_minus"], "kind": "signed_pair"}
+  ],
+  "allowed_inputs": {
+    "current_exact_rgeo_zgeo_ip": true,
+    "post_takeover_causal_rgeo_zgeo_ip_history": true,
+    "causal_difference_lags": [1, 4],
+    "issued_card15_history": true,
+    "measured_actual_14_coil_current_history": true,
+    "current_active_command": true,
+    "candidate_future_card15_targets": true,
+    "absolute_time_and_horizon": true,
+    "future_actual_current": false,
+    "future_recorded_active_command": false,
+    "wire_current": false,
+    "sprsina": false,
+    "family_pair_sign_role_or_token_labels": false,
+    "future_rgeo_zgeo_ip": false
+  },
+  "action_geometry": {
+    "source_issue_range_inclusive": [16, 47],
+    "expected_nonzero_issue_rows": 432,
+    "required_rank": 4,
+    "rank_relative_tolerance": 1e-10,
+    "maximum_rank4_l2_reconstruction_error_a": 1e-9,
+    "maximum_rank4_component_reconstruction_error_a": 1e-9,
+    "minimum_superseded_rank3_maximum_l2_residual_a": 0.05,
+    "basis_source": "full_signed_card15_issued_deltas_only_no_rzi_outcomes"
+  },
+  "candidate_order": [
+    "structured_rank4_stable_memory",
+    "structured_rank4_stable_memory_plus_tcn4"
+  ],
+  "structured_rank4_stable_memory": {
+    "fixed_action_memory_poles": [0.5, 0.8, 0.95],
+    "ridge_lambda": 0.1,
+    "state_scale": [0.025, 0.025, 1500.0],
+    "increment_scale": [0.001, 0.001, 50.0],
+    "output_scale": [0.001, 0.001, 50.0, 0.001, 0.001, 50.0],
+    "fold_local_center_scale_and_exact_svd_projection": true,
+    "svd_rank_relative_tolerance": 1e-10,
+    "maximum_projected_feature_condition": 1000000.0
+  },
+  "structured_rank4_stable_memory_plus_tcn4": {
+    "base_candidate": "structured_rank4_stable_memory",
+    "hidden_width": 4,
+    "kernel_sizes": [3, 3],
+    "dilations": [1, 2],
+    "seeds": [1701, 2903, 4307],
+    "epochs": 400,
+    "learning_rate": 0.003,
+    "weight_decay": 0.0001,
+    "gradient_norm_cap": 1.0,
+    "maximum_residual_normalized": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+    "persistent_history_without_context_rewrite": true,
+    "ensemble_aggregation": "arithmetic_mean"
+  },
+  "action_blind_baseline": {
+    "kind": "refit_same_structured_ridge_without_action_current_or_future_target_features",
+    "fits_per_fold": 1,
+    "selectable_candidate": false
+  },
+  "support": {
+    "coordinate": "fold_local_projected_structured_feature",
+    "matching_horizon_required": true,
+    "training_cross_family_nearest_distance_quantile": 0.95,
+    "threshold_multiplier": 1.5,
+    "minimum_held_row_coverage_fraction": 0.9
+  },
+  "evaluation": {
+    "paired_response_scale": {"r_geo_m": 0.0001, "z_geo_m": 0.0001, "ip_a": 25.0},
+    "endpoint_p95_caps": {
+      "r_geo_m": [0.0005, 0.0009, 0.0016, 0.003],
+      "z_geo_m": [0.0005, 0.0009, 0.0016, 0.003],
+      "ip_a": [35.0, 60.0, 110.0, 200.0]
+    },
+    "terminal_increment_p95_caps": {"r_geo_m": 0.0005, "z_geo_m": 0.0005, "ip_a": 35.0},
+    "cross_horizon_consistency_p95_caps": {"r_geo_m": 0.0005, "z_geo_m": 0.0005, "ip_a": 35.0},
+    "maximum_terminal_rz_velocity_error_m_per_s": 0.5,
+    "maximum_each_fold_normalized_endpoint_rmse": 0.75,
+    "maximum_each_fold_normalized_terminal_increment_rmse": 0.9,
+    "maximum_each_pair_fold_response_nrmse": 0.75,
+    "minimum_rz_direction_signal_m": 0.00002,
+    "minimum_direction_row_count": 4,
+    "minimum_positive_direction_fraction": 0.8,
+    "minimum_action_blind_response_sse_improvement_fraction": 0.2,
+    "ranking_tie_band_normalized": 0.02,
+    "value_scales": {"distance_m": 0.025, "terminal_speed_m_per_s": 0.1, "ip_fraction": 0.05, "current_excursion_a": 100.0},
+    "ranking_is_descriptive_not_eligibility": true,
+    "all_predictions_finite_required": true,
+    "family_equal_weight": true
+  },
+  "selection": {
+    "prefer_structured_if_eligible": true,
+    "minimum_tcn_worst_pair_response_improvement_fraction": 0.1,
+    "maximum_tcn_componentwise_critical_metric_regression_fraction": 0.1,
+    "tcn_must_independently_pass_all_gates": true,
+    "emit_model_only_if_all_folds_eligible": true
+  },
+  "fit_and_execution_counts": {
+    "candidate_count": 2,
+    "folds_per_candidate": 8,
+    "maximum_candidate_fold_fits": 16,
+    "maximum_action_blind_fold_fits": 8,
+    "maximum_tcn_seed_fits": 24,
+    "maximum_final_full_fits": 1,
+    "new_tsc_calls": 0,
+    "reset_calls": 0,
+    "plant_advances": 0,
+    "calibration_records_read": 0,
+    "blind_holdout_records_read": 0
+  },
+  "source": {
+    "directory": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1",
+    "trajectory_file_count": 16,
+    "trajectory_total_bytes": 5587355,
+    "trajectory_inventory_digest": "88e7b43aeb7a649744e0a786a1b2a0d251f93d2e7cabd8da189848118b32f727",
+    "id2z18_config": {"path": "configs/rgeo_zgeo_1ms_id2z18_full_horizon_token_development.json", "sha256": "93d17647efda97cfc97813f30a85b8639ccac4cae9575be4206597999137a0a6"},
+    "id2z18_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/result.json", "sha256": "5fbba54efc3ae3a921d77fc32adb31a7af59775dc677b09bfbc209807e4d4d8c", "required_route": "ONE_MS_ID2Z18_FULL_HORIZON_DEVELOPMENT_DATA_PASS_MODEL_COMPARISON_ONLY"},
+    "id2z18_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/independent_raw_audit_r1.json", "sha256": "6d7603de3e5d805082a61f1dde2a2148117105b130578f2dc98e9187a0d077b5"},
+    "id2z18_offline": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/offline_preflight.json", "sha256": "e248932d474c9fced76f34e2c9d7376ec1ed8f86c700690ad526cffb95785545"},
+    "id2z18_result_report": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z18_FULL_HORIZON_TOKEN_DEVELOPMENT_RESULT.md", "sha256": "e9001af26da29a1a0c9f68e1943e1b41981ff8c2c5a1b0a446cf2b3b6c7a802b"},
+    "route_review": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2Z18_MODEL_AND_AUTHORITY_ROUTE_REVIEW.md", "sha256": "c2485cf6f37c7deab3583b4e99a62e0da5b72a47c2d8adf5d06dc65fd07e1681"},
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z19R1_CAUSAL_RANK4_TWO_CANDIDATE_MODEL_DESIGN.md", "sha256": "f5c56777800113c53bc79165af966b65201faa573babcf1693db59d648f63c92"}
+  },
+  "routes": {
+    "input_or_contract_fail": "ONE_MS_ID2Z19R1_INPUT_OR_CONTRACT_FAIL_NO_FIT",
+    "prefit_pass": "ONE_MS_ID2Z19R1_PREFIT_READINESS_PASS_FIT_AUTHORIZED",
+    "prefit_readiness_fail": "ONE_MS_ID2Z19R1_PREFIT_READINESS_FAIL_NO_FIT",
+    "no_eligible_candidate": "ONE_MS_ID2Z19R1_NO_ELIGIBLE_DEVELOPMENT_MODEL_ONE_ATTRIBUTION_ONLY",
+    "pass": "ONE_MS_ID2Z19R1_DEVELOPMENT_SHADOW_MODEL_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+  },
+  "claim_boundary": "Finite 14-family source-local development shadow-model comparison only; not calibration, blind holdout, uncertainty tube, authority, capture, recovery, controller, MPC, waypoint/path, R_mid crossing, adaptation, expert data, RL or deployment evidence."
+}
