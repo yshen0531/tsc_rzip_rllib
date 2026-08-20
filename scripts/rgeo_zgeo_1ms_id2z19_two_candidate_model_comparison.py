@@ -206,11 +206,17 @@ def load_dataset(stage: dict[str, Any]) -> Dataset:
         expected = read_json(folder / f"{original}.json")
         for key in ("tokens",):
             exact(value[key], expected[key], f"{replay} {key}")
-    deltas = []
-    for cell in cells.values():
-        issued = cell.targets - cell.active[:-1]
-        deltas.extend(row for row in issued[16:48] if np.linalg.norm(row) > 1.0e-10)
-    _, singular, vt = np.linalg.svd(np.asarray(deltas), full_matrices=False)
+    # The model coordinate is the prospectively frozen F/A/E geometry from
+    # ID2Z18, not an after-the-fact SVD over both Card15 signs.  The latter has
+    # a small fourth numerical direction because signed decimal targets are
+    # not assumed odd.
+    source_result = read_json(ROOT / stage["source"]["id2z18_result"]["path"])
+    frozen_columns = np.asarray(
+        source_result["scientific_metrics"]["increment_geometry"]["columns_a_tsc"],
+        dtype=np.float64)
+    if frozen_columns.shape != (3, 14):
+        raise IntegrityError("frozen F/A/E geometry width")
+    _, singular, vt = np.linalg.svd(frozen_columns, full_matrices=False)
     rank = int(np.sum(singular > singular[0] * 1.0e-10))
     exact(rank, 3, "action rank")
     basis = vt[:3].copy()
