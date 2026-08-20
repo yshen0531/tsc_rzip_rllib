@@ -1,6 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID2Z23 route approved):** preserve
+> **Unique active task (2026-08-21, ID2Z24R1 pre-execution correction):**
+> ID2Z24 executed zero TSC/plant/model work and independently failed only its
+> prospective pure eight-plus/eight-minus byte-exact Card15 closure. All six
+> nominal shares passed local rank, condition, slew and current gates. Preserve
+> that route as `ONE_MS_ID2Z24_CENTERED_CARD15_LATTICE_FAIL_NO_TSC`; the active
+> task is the separately identified ID2Z24R1 exact cumulative-center finish.
+> Its final opposite-sign slot must target the matched center exactly and still
+> pass the unchanged per-issue slew/current gates. After server tests and dual
+> zero-TSC PASS, freeze at most the already specified fifteen-rollout centered
+> campaign. No TSC starts from a failing preflight, and no scientific/data-role
+> gate may be weakened. Every older active block below is historical.
+
+> **Historical active task (2026-08-20, post-ID2Z23 route approved):** preserve
 > ID2Z23 as the final clean full-F replacement-geometry FAIL. Read-only
 > decomposition found that the four V-for-F branches share a dominant omitted-F
 > term: 68.4114% of relative action energy and 89.7813--91.4112% of h1--h8

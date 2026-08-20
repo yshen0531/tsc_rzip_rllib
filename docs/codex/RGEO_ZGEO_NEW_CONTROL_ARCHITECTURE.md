@@ -14,6 +14,15 @@
 > it does not estimate current exact RZI or manufacture actuator authority.
 > Older amendments below are historical unless explicitly retained.
 
+> **Current exact-finish amendment (2026-08-21; supersedes the preceding
+> centered-allocation label):** symmetric intent in a quantized Card15
+> coordinate does not imply byte-exact cumulative closure. A centered signed
+> segment therefore uses an explicitly constructed final center target, whose
+> actual issued delta must pass the same hard slew and current checks. Exact
+> command closure is not plant-state return, fallback, terminal-set membership
+> or Recourse. ID2Z24 v1 remains a zero-TSC construction FAIL; only its
+> separately identified R1 correction is active.
+
 > **Historical post-ID2Z23 amendment (2026-08-20):** exact p00/p05/p06 replacement
 > vertices retained large individual signals but lost positive-span geometry
 > at both moving full-F phases, with phase-dependent direction reversal at

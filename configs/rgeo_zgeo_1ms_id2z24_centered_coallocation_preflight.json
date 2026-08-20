@@ -1,7 +1,7 @@
 {
-  "schema_version": "rgeo-zgeo-1ms-id2z24-centered-coallocation-preflight-v1",
-  "identity": "rgeo-zgeo-1ms-id2z24-centered-coallocation-preflight-v1",
-  "stage": "ID-2Z24",
+  "schema_version": "rgeo-zgeo-1ms-id2z24r1-centered-coallocation-preflight-v1",
+  "identity": "rgeo-zgeo-1ms-id2z24r1-centered-coallocation-preflight-v1",
+  "stage": "ID-2Z24R1",
   "takeover_time_ms": 1100,
   "control_period_ms": 1,
   "models_fit_or_updated": 0,
@@ -25,7 +25,8 @@
   ],
   "prospective_phase_issue_steps": [24, 32],
   "same_sign_duration_issues": 8,
-  "opposite_sign_duration_issues": 8,
+  "opposite_sign_nominal_issues_before_exact_finish": 7,
+  "exact_cumulative_center_finish_issue_offset": 15,
   "prospective_rollout_ids": [
     "baseline_center",
     "diagnostic_baseline_full_f",
@@ -63,6 +64,7 @@
     "legacy_runner_clipping_may_be_relied_on": false,
     "future_actual_current": "forbidden",
     "odd_plant_response_symmetry_assumed": false,
+    "last_opposite_sign_slot_targets_exact_center": true,
     "exact_action_closure_is_not_state_recovery": true
   },
   "static_gates": {
@@ -123,7 +125,7 @@
     "delete_only_after_independent_audit_and_compact_hash_recovery": true
   },
   "evidence": {
-    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z24_CENTERED_COALLOCATION_PREFLIGHT_DESIGN.md", "sha256": "b19060463941e3a400e65ba7ce630de0e6d30721d768fbfa39b49120474bd30c"},
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z24_CENTERED_COALLOCATION_PREFLIGHT_DESIGN.md", "sha256": "4b08b72fb33d6cd027b70e1b80572ae611ee02c150b23144191cf377a3eb6502"},
     "route_review": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2Z23_CENTERED_COALLOCATION_ROUTE_REVIEW.md", "sha256": "a128935a5f07a66e13badd093988955fa63efaf1cdadedb553c3f161c1d22f65"},
     "base_tsc_config": {"path": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json", "sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b"},
     "id2z23_config": {"path": "configs/rgeo_zgeo_1ms_id2z23_moving_nominal_discrete_vertex_campaign.json", "sha256": "b583b421a1ace59cbbcd37d04ffdb38436bae477f9c7906d691b6e74bab42561"},
@@ -140,10 +142,10 @@
     "issue32_p06_plus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z23_20260820_1870ece9_v1/issue32__p06_plus4.json", "sha256": "092191722cb679e801a3b36dfa84424f5fe8f7b50f70884ffceb811742cc5269"}
   },
   "routes": {
-    "input_or_attribution_fail": "ONE_MS_ID2Z24_INPUT_OR_ATTRIBUTION_FAIL_NO_TSC",
-    "exact_lattice_fail": "ONE_MS_ID2Z24_CENTERED_CARD15_LATTICE_FAIL_NO_TSC",
-    "static_stream_fail": "ONE_MS_ID2Z24_CENTERED_STATIC_STREAM_FAIL_NO_TSC",
-    "pass": "ONE_MS_ID2Z24_CENTERED_COALLOCATION_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY"
+    "input_or_attribution_fail": "ONE_MS_ID2Z24R1_INPUT_OR_ATTRIBUTION_FAIL_NO_TSC",
+    "exact_lattice_fail": "ONE_MS_ID2Z24R1_CENTERED_CARD15_LATTICE_FAIL_NO_TSC",
+    "static_stream_fail": "ONE_MS_ID2Z24R1_CENTERED_STATIC_STREAM_FAIL_NO_TSC",
+    "pass": "ONE_MS_ID2Z24R1_CENTERED_COALLOCATION_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY"
   },
   "claim_boundary": "Zero-TSC exact finite Card15 construction only; not plant response, D0, authority, capture, recovery, Recourse, model, controller, MPC, waypoint/path, R_mid crossing or deployment evidence."
 }

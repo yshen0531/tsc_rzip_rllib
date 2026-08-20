@@ -1,6 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-20, post-ID2Z23):** ID2Z23 remains a
+> **Unique new-round context (2026-08-21, ID2Z24R1):** the first centered
+> preflight ran zero TSC and exposed a pure Card15 cumulative-rounding defect:
+> all local action gates passed, but eight plus followed by eight minus did not
+> land on the independently generated center bytes. The frozen v1 FAIL is
+> retained. R1 replaces only the final opposite slot with a precomputed exact
+> center finish and rechecks the unchanged slew/current gates. This is not a
+> plant, model, authority, capture or recovery result.
+
+> **Historical new-round context (2026-08-20, post-ID2Z23):** ID2Z23 remains a
 > clean moving-nominal replacement-grammar FAIL, but read-only attribution
 > shows that its comparison coordinate was dominated by removing saturated
 > full-F. Common omitted-F structure accounts for 68.4114% of relative action

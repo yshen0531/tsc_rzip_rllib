@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Structurally separate audit for the ID-2Z24 zero-TSC preflight."""
+"""Structurally separate audit for the ID-2Z24R1 zero-TSC preflight."""
 
 from __future__ import annotations
 
@@ -16,8 +16,8 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2z24_centered_coallocation_preflight.json"
-CONFIG_SHA256 = "0e0fcbd80f1efb4124ebb1bedc268dc6c03431bba299844b62d4837eb081134a"
-SCHEMA = "rgeo-zgeo-1ms-id2z24-centered-coallocation-independent-v1"
+CONFIG_SHA256 = "b8d47ef096284589cf74b356a468cfb6c70fca28a8e6bbff6a935880a38b0487"
+SCHEMA = "rgeo-zgeo-1ms-id2z24r1-centered-coallocation-independent-v1"
 
 
 def _path(path: Path) -> Path:
@@ -169,6 +169,10 @@ def _candidate(stage: dict[str, Any], rows: dict[str, dict[str, Any]],
                 fields = list(center[:16])
                 current = fields[-1]
                 for issue in range(16, 65):
+                    if issue == phase + 15:
+                        current = center[issue]
+                        fields.append(current)
+                        continue
                     change = nominal
                     if phase <= issue < phase + 8:
                         change = tuple(a + Decimal(first) * b for a, b in zip(nominal, residual))
@@ -227,7 +231,7 @@ def execute(primary_path: Path, source_revision: str) -> dict[str, Any]:
         "independent_attribution": attribution,
         "audit_passed": not failures, "failures": failures,
         "models_fit_or_updated": 0, "new_tsc_or_plant_advances": 0,
-        "claim_boundary": "Independent exact-action audit of zero-TSC ID2Z24 only.",
+        "claim_boundary": "Independent exact-action audit of zero-TSC ID2Z24R1 only.",
     }
 
 

@@ -1,6 +1,15 @@
 # Current status
 
-> **Current status (2026-08-20, post-ID2Z23 route approved):** no new TSC,
+> **Current status (2026-08-21, ID2Z24 v1 final / R1 active):** server-focused
+> validation reproduced the approved ID2Z23 attribution but found zero of six
+> nominal shares with pure repeated-quantization byte-exact closure. The
+> independent audit passed; TSC calls, plant advances, fits and holdout reads
+> were all zero. This is a digital schedule-construction FAIL, not plant,
+> authority or model evidence. ID2Z24R1 is active with one semantic correction:
+> the last opposite-sign slot is an exact cumulative-center finish, still under
+> the same `0.3 A`, absolute-current, rank and condition gates.
+
+> **Historical status (2026-08-20, post-ID2Z23 route approved):** no new TSC,
 > plant advance, model fit or calibration/holdout read has occurred after
 > ID2Z23. The route review reclassified the next blocker more precisely as a
 > nominal-centering/slew-allocation gap: Z23's four replacement families share

@@ -21,7 +21,7 @@ class ID2Z24PreflightTests(unittest.TestCase):
         cls.result = p.execute(p.CONFIG, "TEST_REVISION")
 
     def test_zero_tsc_identity_and_budget(self) -> None:
-        self.assertEqual(self.stage["stage"], "ID-2Z24")
+        self.assertEqual(self.stage["stage"], "ID-2Z24R1")
         self.assertEqual(self.stage["maximum_tsc_calls"], 0)
         self.assertEqual(self.stage["maximum_plant_advances"], 0)
         self.assertEqual(self.result["tsc_calls"], 0)
@@ -57,6 +57,8 @@ class ID2Z24PreflightTests(unittest.TestCase):
             self.assertTrue(row["closure_exact"], row)
             self.assertLessEqual(row["maximum_issued_delta_a"], .3000000001)
             self.assertGreaterEqual(row["minimum_absolute_current_headroom_a"], 0.0)
+            if row["rollout_id"] != "baseline_center":
+                self.assertGreaterEqual(row["maximum_exact_finish_adjustment_a"], 0.0)
 
     def test_combined_target_semantics_and_d0_boundary(self) -> None:
         action = self.stage["action_semantics"]

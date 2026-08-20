@@ -1,0 +1,28 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z24-compact-evidence-v1",
+  "stage": "ID-2Z24",
+  "source_revision": "ae5f795c5d2fd9ba30f8447e0396afabebf50db1",
+  "stage_config_sha256": "0e0fcbd80f1efb4124ebb1bedc268dc6c03431bba299844b62d4837eb081134a",
+  "primary_result_sha256": "47aefea8a8478263bfde7679692a059a6ae9bea1d69dd7a6374a9c1e35be8a66",
+  "independent_audit_sha256": "f1eeabce229bb48378ba95d93ffdad53731e04b45396a70811c4deacf2282dd8",
+  "route": "ONE_MS_ID2Z24_CENTERED_CARD15_LATTICE_FAIL_NO_TSC",
+  "passed": false,
+  "independent_audit_passed": true,
+  "models_fit_or_updated": 0,
+  "tsc_calls": 0,
+  "plant_advances": 0,
+  "calibration_or_holdout_reads": 0,
+  "attribution": {
+    "replacement_common_action_energy_fraction": 0.6841139804096171,
+    "issue24_common_rz_response_energy_fraction": 0.914112021883035,
+    "issue32_common_rz_response_energy_fraction": 0.8978133097823958,
+    "p05_odd_cross_phase_cosine_h4": 0.9999975839709421,
+    "p05_odd_cross_phase_cosine_h8": 0.9999991376052411
+  },
+  "nominal_shares_tested": ["0.50", "0.45", "0.40", "0.35", "0.30", "0.25"],
+  "nominal_shares_passing_local_rank_condition_slew_and_current_gates": ["0.50", "0.45", "0.40", "0.35", "0.30", "0.25"],
+  "nominal_shares_passing_pure_eight_plus_eight_byte_exact_closure": [],
+  "failure_layer": "prospective_exact_action_schedule_construction",
+  "scientific_interpretation": "Repeated Card15 rounding means eight N+s*r issues followed by eight independently rounded N-s*r issues do not generally land byte-for-byte on the matched center target. This is a zero-TSC digital construction failure, not a plant-response, authority, capture, recovery, model, controller or reachability result.",
+  "route_decision": "Supersede before TSC with an exact cumulative-center finish in the final opposite-sign slot; retain every action/rank/current gate and record the actual finish adjustment."
+}
