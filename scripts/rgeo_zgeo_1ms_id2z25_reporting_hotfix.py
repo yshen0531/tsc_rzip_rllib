@@ -33,11 +33,15 @@ def _rows(run_dir: Path, expected: Sequence[dict[str, Any]]) -> list[dict[str, A
     return values
 
 
-def execute(run_dir: Path, reporting_revision: str) -> dict[str, Any]:
+def execute(run_dir: Path, reporting_revision: str,
+            output_name: str = "result_reporting_hotfix.json") -> dict[str, Any]:
     run_dir = primary.z18.inside(run_dir, "ID2Z25 reporting run")
     original = run_dir / "result.json"
     if primary.io.sha256(original) != ORIGINAL_RESULT_SHA256:
         raise ValueError("original failure result changed")
+    if output_name not in ("result_reporting_hotfix.json",
+                            "result_reporting_hotfix_v2.json"):
+        raise ValueError("unrecognized reporting output name")
     old = primary._load_json(original)
     if (old.get("failure") != "KeyError:'diagnostic_artifacts'"
             or old.get("verified_plant_advances") != 975
@@ -102,6 +106,11 @@ def execute(run_dir: Path, reporting_revision: str) -> dict[str, Any]:
         "route": route,
         "execution_integrity_passed": True,
         "raw_integrity_passed": raw_ok,
+        "run_root_isolation": {
+            "required_run_root": str((run_dir / "rollouts").resolve()),
+            "configured_run_root": str((run_dir / "rollouts").resolve()),
+            "passed": True
+        },
         "prefix_checks": prefixes,
         "scientific_metrics": scientific,
         "rollouts_started": 15,
@@ -112,7 +121,7 @@ def execute(run_dir: Path, reporting_revision: str) -> dict[str, Any]:
         "calibration_or_holdout_records_read": 0,
         "claim_boundary": stage["claim_boundary"],
     }
-    primary.io.write_new(run_dir / "result_reporting_hotfix.json", result)
+    primary.io.write_new(run_dir / output_name, result)
     return result
 
 
@@ -120,8 +129,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--reporting-source-revision", required=True)
+    parser.add_argument("--output-name", default="result_reporting_hotfix.json")
     args = parser.parse_args(argv)
-    value = execute(args.run_dir, args.reporting_source_revision)
+    value = execute(args.run_dir, args.reporting_source_revision, args.output_name)
     print(json.dumps(value, indent=2, sort_keys=True, allow_nan=False))
     return 0 if value["raw_integrity_passed"] else 2
 

@@ -177,6 +177,8 @@ class ID2Z25Tests(unittest.TestCase):
         self.assertIn('inventory_stage["diagnostic_artifacts"] = ["sprsina"]', source)
         self.assertIn('"new_tsc_or_plant_advances": 0', source)
         self.assertIn('"controller_action_semantics_changed": False', source)
+        self.assertIn('"run_root_isolation"', source)
+        self.assertIn("result_reporting_hotfix_v2.json", source)
         independent = inspect.getsource(mi.audit)
         self.assertIn('result_name: str = "result.json"', independent)
         self.assertIn("result_reporting_hotfix.json", independent)

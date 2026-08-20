@@ -172,7 +172,8 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str,
           result_name: str = "result.json") -> dict[str, Any]:
     failures: list[str] = []
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
-    if result_name not in ("result.json", "result_reporting_hotfix.json"):
+    if result_name not in ("result.json", "result_reporting_hotfix.json",
+                           "result_reporting_hotfix_v2.json"):
         raise ValueError("unrecognized primary result name")
     result_path = run_dir / result_name
     result = load_json(result_path)
