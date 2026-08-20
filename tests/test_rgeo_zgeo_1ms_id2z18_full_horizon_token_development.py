@@ -168,6 +168,7 @@ class ID2Z18Tests(unittest.TestCase):
         self.assertEqual(mi.SCHEMA, "rgeo-zgeo-1ms-id2z18-independent-raw-v1")
         source = inspect.getsource(mi.audit)
         self.assertIn("z9i._raw_rows", source)
+        self.assertIn("for row in compact", source)
         self.assertIn("calibration_or_holdout_records_read", source)
         launcher = (ROOT / "run_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.sh").read_text(
             encoding="utf-8")

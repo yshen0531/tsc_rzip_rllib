@@ -88,9 +88,16 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     if (len(inventory_lines) != result.get("required_artifact_files")
             or inventory_bytes != result.get("required_artifact_bytes")):
         failures.append("INVENTORY_COUNT_OR_BYTES")
+    # ``inputa`` in each retained raw state directory is the outgoing issue
+    # written after the preissue compact record was captured.  The raw parser
+    # above independently verifies every outgoing Card15 field against both
+    # the compact action and frozen stream.  Prefix semantic hashes must
+    # therefore use the immutable preissue compact records, as in the prior
+    # qualified auditors, rather than comparing post-write raw ``inputa`` to
+    # the preissue reference hash.
     prefix_values = [primary.z6.prefix_check(row, reference, 17, 16,
                                               stage["semantic_artifacts"])
-                     for row in raw_rows]
+                     for row in compact]
     execution = bool(raw_rows and all(
         row.get("passed") or primary.safe_stop(row, stage) for row in raw_rows))
     expected_files = 5 * sum(len(row.get("states", [])) for row in raw_rows)
