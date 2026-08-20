@@ -1,0 +1,30 @@
+{
+  "advance_attempts": 975,
+  "calibration_or_holdout_records_read": 0,
+  "campaign_aborted_after_rollout_failure": true,
+  "claim_boundary": "Best-effort execution failure; no scientific D0 verdict.",
+  "complete_rollouts": 15,
+  "failure": "KeyError:'diagnostic_artifacts'",
+  "missing_required_artifacts": [
+    "FINALIZER:KeyError:'diagnostic_artifacts'"
+  ],
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 975,
+  "required_artifact_bytes": 0,
+  "required_artifact_files": 0,
+  "required_artifact_inventory_sha256": null,
+  "reset_calls": 15,
+  "rollouts_started": 15,
+  "route": "ONE_MS_ID2Z25_EXECUTION_OR_INTERFACE_FAIL_STOP",
+  "schema_version": "rgeo-zgeo-1ms-id2z25-centered-coallocation-campaign-result-v1",
+  "source_revision": "3797062f90d1513b2c6a75891c6c0c58ea62fcb4",
+  "stage_config_sha256": "6d162606f81694a75ac4694eadf0adbd0e8d3b581c3f4b5c438ab0700e03d43a",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 99870033408,
+    "estimated_raw_bytes": 65000000000,
+    "free_bytes_before_run": 164870033408,
+    "passed": true
+  },
+  "verified_plant_advances": 975
+}

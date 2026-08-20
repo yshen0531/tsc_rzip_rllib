@@ -1,5 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique new-round context (2026-08-21, ID2Z25 final):** the exact centered
+> Card15 cell executed cleanly but failed D0 persistence: two of twelve p00
+> order/phase branches reversed h4-to-h8 direction, while all raw, prefix,
+> replay and other branch gates passed. The first finalizer had a post-run
+> inventory-key bug; a zero-TSC hotfix and independent 4,950-file reparse
+> established the final scientific FAIL. The entire `0.50F` centered cell is
+> closed, not selectively mined for learning. The next route is a bounded
+> zero-TSC redesign of transport/slack allocation and terminal velocity, not
+> another amplitude/phase/duration probe ladder. Final two-axis waypoint/path,
+> safe fallback and repeated R_mid crossing goals are unchanged.
+
 > **Unique new-round context (2026-08-21, ID2Z24R2 final):** the server and an
 > independent implementation reproduced an exact centered co-allocation cell
 > at nominal share `0.50`. The eight-slot Card15 return bridge fixes the v1

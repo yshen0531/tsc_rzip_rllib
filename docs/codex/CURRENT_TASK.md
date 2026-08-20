@@ -1,5 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-21, ID2Z25 final):** ID2Z25 completed all
+> `15/15` rollouts and `975/975` advances with exact execution, raw, prefix and
+> replay integrity. A reporting-only missing `diagnostic_artifacts` key was
+> repaired after all plant work with zero new TSC; the final independent audit
+> reparsed `990` states and `4,950` artifacts and passed. The scientific route
+> is `ONE_MS_ID2Z25_CENTERED_D0_SIGNAL_FAIL_CLOSE_CELL`: 10/12 branches passed,
+> but the issue24 p00 minus-first and issue32 p00 plus-first rows reversed
+> h4-to-h8 direction (`-0.957/-0.972` cosine). Capture was `0/15`.
+>
+> Close the entire exact `0.50F`, two-phase, three-axis centered cell. Do not
+> fit its trajectories, salvage only passing axes, or run adjacent share,
+> phase or duration variants. The active work is one bounded zero-TSC route
+> redesign of nominal transport, exact slew allocation and terminal/velocity
+> objective. It must choose a materially different state-dependent allocation
+> or Card15/takeover basis before any new TSC. Model development remains
+> blocked until a new prospective D0 identity; Authority-L0 and Recourse-L1
+> remain independent controller prerequisites. Every older active block below
+> is historical.
+
 > **Unique active task (2026-08-21, ID2Z24R2 final / ID2Z25 active):**
 > ID2Z24R2 passed server-focused `7/7`, the complete one-millisecond suite
 > `633/633`, its dual zero-TSC exact-Card15 preflight and independent

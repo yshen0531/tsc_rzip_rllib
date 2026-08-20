@@ -1,0 +1,57 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z25-compact-evidence-v1",
+  "controller_source_revision": "3797062f90d1513b2c6a75891c6c0c58ea62fcb4",
+  "reporting_source_revision": "ad68bc8b9318cd9f6ba6c9dd4d005f5ebe96c075",
+  "stage_config_sha256": "6d162606f81694a75ac4694eadf0adbd0e8d3b581c3f4b5c438ab0700e03d43a",
+  "original_result_sha256": "d9e295cf2d05ee9763bc4b86e3b65098f69e3e0f9f95077f3649d77e4af1380d",
+  "reporting_hotfix_v2_sha256": "76c35e91e94913446398914ad3fe273ceeb58d9c126d8e85f0b8d712b9f1c52b",
+  "independent_hotfix_v2_sha256": "b0b26450d87dbdda7a90454f3ec58526330252fe5a4aca313c2aa84c0503151c",
+  "route": "ONE_MS_ID2Z25_CENTERED_D0_SIGNAL_FAIL_CLOSE_CELL",
+  "passed": false,
+  "independent_audit_passed": true,
+  "execution_integrity_passed": true,
+  "raw_integrity_passed": true,
+  "rollouts": 15,
+  "verified_plant_advances": 975,
+  "states": 990,
+  "required_artifact_files": 4950,
+  "required_artifact_bytes": 58303994760,
+  "required_artifact_inventory_sha256": "8634cd56c5eedf2f46458d1ef8972701cb12e974698c574fcfb1491728d163a1",
+  "branch_signal_passed": 10,
+  "branch_signal_total": 12,
+  "replay_exact": true,
+  "capture_passed": 0,
+  "capture_total": 15,
+  "failed_branches": {
+    "issue24__p00_minus__minus_then_plus": {"h4_norm_m": 0.00013260601937032987, "h8_norm_m": 0.00029145791573826734, "h4_h8_cosine": -0.9570038860847986, "maximum_absolute_paired_ip_response_a": 34.289199999999255},
+    "issue32__p00_minus__plus_then_minus": {"h4_norm_m": 0.00014219516159319357, "h8_norm_m": 0.0003804394948402085, "h4_h8_cosine": -0.972464145893997, "maximum_absolute_paired_ip_response_a": 33.893599999999424}
+  },
+  "diagnostic_baselines": {
+    "center_0p50f": {"terminal_max_distance_m": 0.03648711855882214, "terminal_max_speed_m_per_s": 0.5477603333301468, "terminal_max_ip_fraction": 0.008554191262985561},
+    "full_f": {"terminal_max_distance_m": 0.028254918761722213, "terminal_max_speed_m_per_s": 0.41647244400947026, "terminal_max_ip_fraction": 0.024414200929356283}
+  },
+  "positive_span_diagnostic_only": {
+    "issue24_h4": {"maximum_angular_gap_deg": 93.68869431763738, "weakest_best_projection_m": 0.00005907244621382236},
+    "issue24_h8": {"maximum_angular_gap_deg": 96.88463504756561, "weakest_best_projection_m": 0.00018611750319822383},
+    "issue32_h4": {"maximum_angular_gap_deg": 95.47052372261226, "weakest_best_projection_m": 0.00005823547393949216},
+    "issue32_h8": {"maximum_angular_gap_deg": 105.49560379960121, "weakest_best_projection_m": 0.00018318522685088618}
+  },
+  "compact_sha256": {
+    "baseline_center.json": "d421844212f9499315d2a157559b38c87ca116ab0a42c9304414c77aced623e4",
+    "diagnostic_baseline_full_f.json": "e3bb0f0d1ca14dc74bb0650c8ea91b241404f84cb29afd5f070241d2809b2c32",
+    "issue24__p00_minus__minus_then_plus.json": "58b47838813e493b3c4cd649b36c03d49cae74820d99b8ded819f9d1d2349fd8",
+    "issue24__p00_minus__plus_then_minus.json": "68772e837370dc661cc65cfe35e5803a6147b089387caa5cadb4d326df5e6db9",
+    "issue24__p05_plus__minus_then_plus.json": "11f0485a0419c64f3321d89ddf86160b4594d2c9292f6a4308d103d1742dd992",
+    "issue24__p05_plus__plus_then_minus.json": "a96f394cd116592930c5ba37d8a2d18a51a1b25092367f0032b23863606ceb58",
+    "issue24__p06_plus__minus_then_plus.json": "69a0b13214bdaab4334fe57a7b9d48f0710b0fd131e4f647ade8262ffc237634",
+    "issue24__p06_plus__plus_then_minus.json": "ced5763b5ff9fcc0743a822699bf1979a931df0e4fd086e96c55154df65d84d8",
+    "issue32__p00_minus__minus_then_plus.json": "795f83955e3f143c0b470a81ac2f18c052c50bf4bf21f55ece3a8d996503eec0",
+    "issue32__p00_minus__plus_then_minus.json": "531e2eb3ff9da8f2b15a7f4ac0ebeda4a5ddc1d21272056f89bfc3cfca3891e8",
+    "issue32__p05_plus__minus_then_plus.json": "2aef53475a6d3099f2a2da89a4b45273e2d394ba348e2d5758e94dc84c622a47",
+    "issue32__p05_plus__plus_then_minus.json": "0265a02f7bf63af8b28ab953e5734f48b18e0d71ffe0fd01f1ef782fdc7b50d7",
+    "issue32__p06_plus__minus_then_plus.json": "38555ed1d135ef7f2819533415a60e2fef1768c163f98a53cb532b9fa2de3d97",
+    "issue32__p06_plus__plus_then_minus.json": "ed5327bed237e40933399c13b523bb69c95423a95856eaba0fa2734f94eaf1e1",
+    "replay_issue24__p05_plus__plus_then_minus.json": "66350a60a5bdfd53aa8d59c7d9f25b93a6f3a926a2d5f1aea735c6573a67ef27"
+  },
+  "claim_boundary": "Clean finite simulator-development D0 FAIL. The exact 0.50F centered two-phase three-axis cell is closed. This is not global action-basis failure, plant unreachability, Authority-L0, recovery, model, controller, MPC, waypoint/path, or R_mid-crossing evidence."
+}

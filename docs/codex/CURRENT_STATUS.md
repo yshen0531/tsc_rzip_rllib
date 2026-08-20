@@ -1,5 +1,15 @@
 # Current status
 
+> **Current status (2026-08-21, ID2Z25 final):** clean finite D0 signal FAIL,
+> not runtime or raw failure. `15/15`, `975/975`, 990 states and 4,950 raw
+> artifacts completed; final independent audit passed. Ten branches met all
+> gates, two p00 order/phase branches flipped direction between h4 and h8, and
+> exact replay passed. Pooled positive span is diagnostic only and capture is
+> `0/15`. The `0.50F` centered baseline is also materially worse than fresh
+> full-F at the terminal diagnostic (`36.487 mm / 0.548 m/s` versus
+> `28.255 mm / 0.416 m/s`). No model was fit. The cell is closed pending one
+> zero-TSC nominal/action/terminal route redesign.
+
 > **Current status (2026-08-21, ID2Z24R2 final):** the exact eight-slot return
 > bridge passed server focused `7/7`, full one-millisecond `633/633`, formal
 > zero-TSC preflight and independent recomputation. The selected share is

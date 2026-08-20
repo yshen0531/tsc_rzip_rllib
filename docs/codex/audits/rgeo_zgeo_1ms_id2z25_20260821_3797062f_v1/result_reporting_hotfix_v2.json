@@ -1,0 +1,476 @@
+{
+  "advance_attempts": 975,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Finite simulator-development centered response campaign only; not Authority-L0, capture, recovery, Recourse, calibrated model, controller, MPC, waypoint/path, R_mid crossing, real-plant, or deployment evidence.",
+  "complete_rollouts": 15,
+  "controller_action_semantics_changed": false,
+  "execution_integrity_passed": true,
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "new_reset_calls": 0,
+  "new_tsc_or_plant_advances": 0,
+  "original_result_sha256": "d9e295cf2d05ee9763bc4b86e3b65098f69e3e0f9f95077f3649d77e4af1380d",
+  "passed": false,
+  "plant_advance_gotsc_calls": 975,
+  "prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "baseline_center"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "diagnostic_baseline_full_f"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p00_minus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p00_minus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p05_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p05_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p06_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p06_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p00_minus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p00_minus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p05_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p05_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p06_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p06_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "replay_issue24__p05_plus__plus_then_minus"
+    }
+  ],
+  "raw_integrity_passed": true,
+  "reporting_defect": "missing diagnostic_artifacts key after all plant work completed",
+  "reporting_source_revision": "ad68bc8b9318cd9f6ba6c9dd4d005f5ebe96c075",
+  "required_artifact_bytes": 58303994760,
+  "required_artifact_files": 4950,
+  "required_artifact_inventory_sha256": "8634cd56c5eedf2f46458d1ef8972701cb12e974698c574fcfb1491728d163a1",
+  "reset_calls": 15,
+  "rollouts_started": 15,
+  "route": "ONE_MS_ID2Z25_CENTERED_D0_SIGNAL_FAIL_CLOSE_CELL",
+  "run_root_isolation": {
+    "configured_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z25_20260821_3797062f_v1/rollouts",
+    "passed": true,
+    "required_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z25_20260821_3797062f_v1/rollouts"
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2z25-reporting-hotfix-v1",
+  "scientific_metrics": {
+    "baseline_complete": true,
+    "branch_metrics": [
+      {
+        "complete": true,
+        "family_id": "issue24__p00_minus__plus_then_minus",
+        "h4_h8_cosine": 0.9921325259032614,
+        "h4_norm_m": 0.0001482311942338967,
+        "h4_response_m": [
+          -0.00014781200000002492,
+          1.1139999999992822e-05
+        ],
+        "h8_norm_m": 0.00041150779397998,
+        "h8_response_m": [
+          -0.0004032440000000248,
+          8.205449999999781e-05
+        ],
+        "maximum_absolute_paired_ip_response_a": 27.621399999999994,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue24__p00_minus__minus_then_plus",
+        "h4_h8_cosine": -0.9570038860847986,
+        "h4_norm_m": 0.00013260601937032987,
+        "h4_response_m": [
+          0.0001319484999999787,
+          -1.3188999999996787e-05
+        ],
+        "h8_norm_m": 0.00029145791573826734,
+        "h8_response_m": [
+          -0.00026913449999999006,
+          0.00011186750000000134
+        ],
+        "maximum_absolute_paired_ip_response_a": 34.289199999999255,
+        "passed": false
+      },
+      {
+        "complete": true,
+        "family_id": "issue24__p05_plus__plus_then_minus",
+        "h4_h8_cosine": 0.997632605020949,
+        "h4_norm_m": 9.696181154067222e-05,
+        "h4_response_m": [
+          -5.581649999997218e-05,
+          -7.928500000001226e-05
+        ],
+        "h8_norm_m": 0.0003638436028904015,
+        "h8_response_m": [
+          -0.00022941200000003992,
+          -0.0002824044999999997
+        ],
+        "maximum_absolute_paired_ip_response_a": 28.79660000000149,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue24__p05_plus__minus_then_plus",
+        "h4_h8_cosine": 0.9992868011386205,
+        "h4_norm_m": 9.608456060156536e-05,
+        "h4_response_m": [
+          5.6204999999920346e-05,
+          7.793100000003106e-05
+        ],
+        "h8_norm_m": 0.0003418842042746175,
+        "h8_response_m": [
+          0.0002103144999999751,
+          0.0002695414999999979
+        ],
+        "maximum_absolute_paired_ip_response_a": 30.882799999999406,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue24__p06_plus__plus_then_minus",
+        "h4_h8_cosine": 0.972809787529317,
+        "h4_norm_m": 7.219817508261394e-05,
+        "h4_response_m": [
+          6.158750000007096e-05,
+          -3.767700000001373e-05
+        ],
+        "h8_norm_m": 0.00024024885519500808,
+        "h8_response_m": [
+          0.0001703305000000377,
+          -0.0001694314999999974
+        ],
+        "maximum_absolute_paired_ip_response_a": 75.52850000000035,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue24__p06_plus__minus_then_plus",
+        "h4_h8_cosine": 0.9866641547142144,
+        "h4_norm_m": 7.638799278847995e-05,
+        "h4_response_m": [
+          -6.349350000001142e-05,
+          4.247000000001666e-05
+        ],
+        "h8_norm_m": 0.0002737204686012096,
+        "h8_response_m": [
+          -0.00019971100000004682,
+          0.00018718549999999223
+        ],
+        "maximum_absolute_paired_ip_response_a": 73.70240000000194,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue32__p00_minus__plus_then_minus",
+        "h4_h8_cosine": -0.972464145893997,
+        "h4_norm_m": 0.00014219516159319357,
+        "h4_response_m": [
+          -0.0001417795000000499,
+          1.0864500000012933e-05
+        ],
+        "h8_norm_m": 0.0003804394948402085,
+        "h8_response_m": [
+          0.00036210800000002763,
+          -0.00011667050000001289
+        ],
+        "maximum_absolute_paired_ip_response_a": 33.893599999999424,
+        "passed": false
+      },
+      {
+        "complete": true,
+        "family_id": "issue32__p00_minus__minus_then_plus",
+        "h4_h8_cosine": 0.991113975240424,
+        "h4_norm_m": 0.00014471738233013217,
+        "h4_response_m": [
+          0.00014418149999995133,
+          -1.2442499999987255e-05
+        ],
+        "h8_norm_m": 0.00032295652237448915,
+        "h8_response_m": [
+          0.00031520799999995575,
+          -7.031950000001286e-05
+        ],
+        "maximum_absolute_paired_ip_response_a": 29.52890000000116,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue32__p05_plus__plus_then_minus",
+        "h4_h8_cosine": 0.9995823434831875,
+        "h4_norm_m": 9.633339536471361e-05,
+        "h4_response_m": [
+          -5.5404499999966994e-05,
+          -7.880649999998657e-05
+        ],
+        "h8_norm_m": 0.0003460469956541885,
+        "h8_response_m": [
+          -0.00019075900000009582,
+          -0.00028872050000000593
+        ],
+        "maximum_absolute_paired_ip_response_a": 27.901699999998527,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue32__p05_plus__minus_then_plus",
+        "h4_h8_cosine": 0.9996939708028764,
+        "h4_norm_m": 9.445546114570763e-05,
+        "h4_response_m": [
+          5.4259999999972663e-05,
+          7.731550000000809e-05
+        ],
+        "h8_norm_m": 0.00035789573492321235,
+        "h8_response_m": [
+          0.00019828349999995165,
+          0.00029794799999999233
+        ],
+        "maximum_absolute_paired_ip_response_a": 27.179000000000087,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue32__p06_plus__plus_then_minus",
+        "h4_h8_cosine": 0.9661988658806611,
+        "h4_norm_m": 7.24248782964113e-05,
+        "h4_response_m": [
+          6.193150000000092e-05,
+          -3.754799999999836e-05
+        ],
+        "h8_norm_m": 0.0002398431054272287,
+        "h8_response_m": [
+          0.00016610499999991646,
+          -0.000173014000000013
+        ],
+        "maximum_absolute_paired_ip_response_a": 76.03450000000157,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "family_id": "issue32__p06_plus__minus_then_plus",
+        "h4_h8_cosine": 0.9434665469298366,
+        "h4_norm_m": 7.581917297429071e-05,
+        "h4_response_m": [
+          -6.59305000000332e-05,
+          3.743950000001384e-05
+        ],
+        "h8_norm_m": 0.00025180410670057834,
+        "h8_response_m": [
+          -0.0001653690000000818,
+          0.00018989049999999785
+        ],
+        "maximum_absolute_paired_ip_response_a": 74.75370000000112,
+        "passed": true
+      }
+    ],
+    "capture_diagnostics": [
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "baseline_center",
+        "maximum_distance_m": 0.03648711855882214,
+        "maximum_ip_fraction": 0.008554191262985561,
+        "maximum_speed_m_per_s": 0.5477603333301468
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "diagnostic_baseline_full_f",
+        "maximum_distance_m": 0.028254918761722213,
+        "maximum_ip_fraction": 0.024414200929356283,
+        "maximum_speed_m_per_s": 0.41647244400947026
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue24__p00_minus__plus_then_minus",
+        "maximum_distance_m": 0.03663669118930851,
+        "maximum_ip_fraction": 0.00862807958391917,
+        "maximum_speed_m_per_s": 0.5464160369141831
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue24__p00_minus__minus_then_plus",
+        "maximum_distance_m": 0.03630213983694452,
+        "maximum_ip_fraction": 0.008500087892805758,
+        "maximum_speed_m_per_s": 0.5542515528938533
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue24__p05_plus__plus_then_minus",
+        "maximum_distance_m": 0.036381719106701856,
+        "maximum_ip_fraction": 0.008363252104966143,
+        "maximum_speed_m_per_s": 0.5440503076086342
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue24__p05_plus__minus_then_plus",
+        "maximum_distance_m": 0.03657896145696919,
+        "maximum_ip_fraction": 0.00870488930145849,
+        "maximum_speed_m_per_s": 0.5441495941728626
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue24__p06_plus__plus_then_minus",
+        "maximum_distance_m": 0.03623467446224246,
+        "maximum_ip_fraction": 0.008316170953979676,
+        "maximum_speed_m_per_s": 0.5469854401722792
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue24__p06_plus__minus_then_plus",
+        "maximum_distance_m": 0.036772491685932614,
+        "maximum_ip_fraction": 0.00880475695675864,
+        "maximum_speed_m_per_s": 0.5464826039191387
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue32__p00_minus__plus_then_minus",
+        "maximum_distance_m": 0.036647746176038276,
+        "maximum_ip_fraction": 0.008550541115366656,
+        "maximum_speed_m_per_s": 0.5476508198443969
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue32__p00_minus__minus_then_plus",
+        "maximum_distance_m": 0.03633943571714844,
+        "maximum_ip_fraction": 0.008574756105174646,
+        "maximum_speed_m_per_s": 0.5544129375504505
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue32__p05_plus__plus_then_minus",
+        "maximum_distance_m": 0.03640056091563723,
+        "maximum_ip_fraction": 0.008498234052509029,
+        "maximum_speed_m_per_s": 0.5443306388014679
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue32__p05_plus__minus_then_plus",
+        "maximum_distance_m": 0.03659350327837996,
+        "maximum_ip_fraction": 0.008576277532728641,
+        "maximum_speed_m_per_s": 0.5426833377743893
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue32__p06_plus__plus_then_minus",
+        "maximum_distance_m": 0.03622798018223181,
+        "maximum_ip_fraction": 0.008320508301018919,
+        "maximum_speed_m_per_s": 0.5485207061281318
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "issue32__p06_plus__minus_then_plus",
+        "maximum_distance_m": 0.03677669989051941,
+        "maximum_ip_fraction": 0.008822707244873941,
+        "maximum_speed_m_per_s": 0.5445948507381301
+      },
+      {
+        "captured": false,
+        "diagnostic_only": true,
+        "family_id": "replay_issue24__p05_plus__plus_then_minus",
+        "maximum_distance_m": 0.036381719106701856,
+        "maximum_ip_fraction": 0.008363252104966143,
+        "maximum_speed_m_per_s": 0.5440503076086342
+      }
+    ],
+    "passed": false,
+    "positive_span_diagnostics": [
+      {
+        "diagnostic_only": true,
+        "horizon": 4,
+        "maximum_angular_gap_deg": 93.68869431763738,
+        "phase_issue": 24,
+        "weakest_best_projection_m": 5.907244621382236e-05
+      },
+      {
+        "diagnostic_only": true,
+        "horizon": 8,
+        "maximum_angular_gap_deg": 96.88463504756561,
+        "phase_issue": 24,
+        "weakest_best_projection_m": 0.00018611750319822383
+      },
+      {
+        "diagnostic_only": true,
+        "horizon": 4,
+        "maximum_angular_gap_deg": 95.47052372261226,
+        "phase_issue": 32,
+        "weakest_best_projection_m": 5.823547393949216e-05
+      },
+      {
+        "diagnostic_only": true,
+        "horizon": 8,
+        "maximum_angular_gap_deg": 105.49560379960121,
+        "phase_issue": 32,
+        "weakest_best_projection_m": 0.00018318522685088618
+      }
+    ],
+    "replay_metrics": {
+      "failures": [],
+      "passed": true
+    }
+  },
+  "source_revision": "3797062f90d1513b2c6a75891c6c0c58ea62fcb4",
+  "stage_config_sha256": "6d162606f81694a75ac4694eadf0adbd0e8d3b581c3f4b5c438ab0700e03d43a",
+  "verified_plant_advances": 975
+}

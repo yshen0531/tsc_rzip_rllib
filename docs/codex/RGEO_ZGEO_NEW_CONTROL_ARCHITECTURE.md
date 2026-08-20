@@ -1,5 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z24R2 amendment (2026-08-21):** exact centered action construction
+> **Post-ID2Z25 amendment (2026-08-21):** exact centered action construction
+> proved digitally executable but the real D0 campaign failed persistence and
+> capture remained zero. Two p00 order/phase branches reversed between h4 and
+> h8; pooled positive span does not override this failure. Close the whole
+> `0.50F` centered cell and forbid retrospective model fitting or adjacent
+> share/phase/duration rescue. The next architecture task is zero-TSC
+> co-design of state-dependent nominal transport/slack allocation and an
+> augmented terminal/velocity objective. A new prospective D0 campaign is
+> required before shadow learning; Authority-L0 and Recourse-L1 remain
+> parallel independent gates before real feedback.
+>
+> **Historical post-ID2Z24R2 amendment (2026-08-21):** exact centered action construction
 > is now qualified at nominal share `0.50`, including an eight-slot exact
 > Card15 return bridge. The next campaign tests only D0 simulator-development
 > signal and persistence. D0 does not require capture or positive span and may

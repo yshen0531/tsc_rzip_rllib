@@ -1,0 +1,117 @@
+{
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z25-centered-coallocation-offline-v1",
+  "source_revision": "3797062f90d1513b2c6a75891c6c0c58ea62fcb4",
+  "stage_config_sha256": "6d162606f81694a75ac4694eadf0adbd0e8d3b581c3f4b5c438ab0700e03d43a",
+  "stream_checks": [
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "baseline_center"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 103.9,
+      "passed": true,
+      "rollout_id": "diagnostic_baseline_full_f"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue24__p00_minus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue24__p00_minus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue24__p05_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue24__p05_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue24__p06_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue24__p06_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue32__p00_minus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue32__p00_minus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue32__p05_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue32__p05_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue32__p06_plus__plus_then_minus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "issue32__p06_plus__minus_then_plus"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 108.7,
+      "passed": true,
+      "rollout_id": "replay_issue24__p05_plus__plus_then_minus"
+    }
+  ]
+}
