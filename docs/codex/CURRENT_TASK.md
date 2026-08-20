@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z28 final / task and allocation
+> **Unique active task (2026-08-21, ID2Z29 final / fresh qualification
+> campaign next):** ID2Z29 passed zero-TSC eight-direction `0.10 mm`
+> moving-reference waypoint and exact-action preflight. Worst predicted path
+> and endpoint errors were `0.01751/0.01526 mm`, minimum directional progress
+> was `0.09576 mm`, and all sixteen phase-32/44 streams closed exactly with
+> `<=0.3 A` slew. Independent recomputation passed. ID2Z28 source-capture FAIL
+> remains unchanged. The sole active task is a separately frozen fresh
+> campaign in strict order: issue-36 signed calibration, issue-44 unopened
+> whole-family blind validation, then only after both PASS at most four
+> zero-fit cardinal waypoint feedback sentinels and one replay. The model may
+> not be refit after calibration. No controller qualification, Authority-L0
+> or Recourse claim is authorized by this preflight. Older blocks below are
+> historical.
+
+> **Historical active task (2026-08-21, ID2Z28 final / task and allocation
 > realignment):** ID2Z28 ran zero TSC and validated its sole frozen 1--8 ms
 > q_R/q_Z response model on the whole phase-40 family (scaled RMSE `0.0774`,
 > p95 `0.1628`, minimum R/Z cosine `0.9940`, maximum terminal velocity error

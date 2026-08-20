@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z28 final):** server validation passed
+> **Current status (2026-08-21, ID2Z29 final):** zero-TSC moving-reference
+> preflight passed after server `5/5` focused and `671/671` complete tests.
+> Eight directions satisfy the frozen `0.10 mm` predicted tracking gates and
+> sixteen exact Card15 streams pass; the independent audit agrees. This opens
+> only design/implementation of one fresh calibration->blind->zero-fit
+> cardinal sentinel campaign. Source capture, Authority, Recourse and
+> controller qualification remain open.
+
+> **Historical status (2026-08-21, ID2Z28 final):** server validation passed
 > `9/9` focused and `666/666` complete one-millisecond tests. The stage fit one
 > finite causal q-response FIR and ran zero TSC/plant advances. Whole-phase
 > internal validation and independent recomputation passed, but exhaustive

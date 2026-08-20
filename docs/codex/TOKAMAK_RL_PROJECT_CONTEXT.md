@@ -1,6 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z28 final):** the finite q_R/q_Z
+> **Unique new-round context (2026-08-21, ID2Z29 final):** a separate zero-TSC
+> audit found the frozen q model and exact Card15 cell prospectively adequate
+> for an eight-direction `0.10 mm` waypoint relative to the moving nominal.
+> This does not rescue source capture. It opens one fresh sequential
+> calibration/blind/cardinal-sentinel campaign only; source capture and
+> Recourse remain independent requirements before qualified control.
+
+> **Historical new-round context (2026-08-21, ID2Z28 final):** the finite q_R/q_Z
 > FIR generalized cleanly from issue 32 to issue 40, but the best of `390625`
 > eight-token sequences improved the matched source-capture score by only
 > `4.7500%`, below the frozen `15%` gate. Exact Card15 streams and the
