@@ -1,11 +1,12 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z24R1):** the first centered
+> **Unique new-round context (2026-08-21, ID2Z24R2):** the first centered
 > preflight ran zero TSC and exposed a pure Card15 cumulative-rounding defect:
 > all local action gates passed, but eight plus followed by eight minus did not
 > land on the independently generated center bytes. The frozen v1 FAIL is
-> retained. R1 replaces only the final opposite slot with a precomputed exact
-> center finish and rechecks the unchanged slew/current gates. This is not a
+> retained. R1 then showed that a one-slot exact finish needs `0.4--1.0 A`, so
+> it too remains zero-TSC FAIL. R2 uses an eight-slot exact Card15 bridge to the
+> same endpoint and rechecks every unchanged slew/current gate. This is not a
 > plant, model, authority, capture or recovery result.
 
 > **Historical new-round context (2026-08-20, post-ID2Z23):** ID2Z23 remains a

@@ -20,8 +20,9 @@
 > segment therefore uses an explicitly constructed final center target, whose
 > actual issued delta must pass the same hard slew and current checks. Exact
 > command closure is not plant-state return, fallback, terminal-set membership
-> or Recourse. ID2Z24 v1 remains a zero-TSC construction FAIL; only its
-> separately identified R1 correction is active.
+> or Recourse. ID2Z24 v1 and its overloaded one-slot R1 finish remain zero-TSC
+> construction FAILs; only the separately identified eight-slot R2 bridge is
+> active.
 
 > **Historical post-ID2Z23 amendment (2026-08-20):** exact p00/p05/p06 replacement
 > vertices retained large individual signals but lost positive-span geometry

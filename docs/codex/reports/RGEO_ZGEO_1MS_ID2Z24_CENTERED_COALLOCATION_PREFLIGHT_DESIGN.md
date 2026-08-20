@@ -1,10 +1,10 @@
-# ID-2Z24R1 centered co-allocation preflight design
+# ID-2Z24R2 centered co-allocation preflight design
 
 Date: 2026-08-20
 
 ## Purpose
 
-ID-2Z24R1 is a zero-TSC, zero-fit exact-Card15 preflight. It decides whether a
+ID-2Z24R2 is a zero-TSC, zero-fit exact-Card15 preflight. It decides whether a
 finite interior transition nominal and three signed residual coordinates can
 be represented jointly, accumulated and returned without clipping. It does
 not measure plant response and cannot establish authority, capture, recovery,
@@ -46,12 +46,12 @@ Every prospective stream has 65 issues and 66 states:
 - issues 48--64: hold the attained center target.
 
 At each of the two frozen phases, issues 24 and 32, a signed branch replaces
-16 center increments with eight `N+s*r` increments, seven `N-s*r`
-increments, and one exact cumulative-center finish. Its issue-39 or issue-47
-target, respectively, must equal the matched center baseline target
-byte-for-byte. The finish is constructed before any TSC and must independently
-pass the unchanged `0.3 A` slew and absolute-current gates; its difference
-from the naive eighth opposite increment is reported. This is an exact action
+16 center increments with eight `N+s*r` increments followed by an eight-slot
+exact Card15 return bridge. The bridge linearly interpolates in target-field
+space from the eighth signed target to the matched issue-39 or issue-47 center
+endpoint, formatting each intermediate target once. Every bridge issue must
+independently pass the unchanged `0.3 A` slew and absolute-current gates, and
+the final target must equal the center byte-for-byte. This is an exact action
 closure, not a plant-state return or safety fallback.
 
 If this preflight passes, it freezes a prospective campaign of exactly 15
@@ -90,7 +90,7 @@ Authority/Recourse, and the hard interface AND gate.
 
 ## Claim boundary
 
-ID2Z24R1 can certify only an exact finite digital action construction and its
+ID2Z24R2 can certify only an exact finite digital action construction and its
 prospective experiment identity. It says nothing about output authority,
 source capture, terminal viability, recovery, waypoint/path tracking,
 position/history generalization, R_mid crossing, or deployment.
@@ -101,5 +101,9 @@ The original ID2Z24 implementation-validation run executed zero TSC and found
 that pure eight-plus/eight-minus repeated quantization did not close exactly,
 although every local rank, condition, slew and current gate passed. That route
 remains frozen as `ONE_MS_ID2Z24_CENTERED_CARD15_LATTICE_FAIL_NO_TSC`.
-ID2Z24R1 changes only the final digital finish construction described above;
-it does not weaken a plant or scientific gate.
+ID2Z24R1 then showed that leaving the whole correction to the last slot can
+require `0.4--1.0 A`; its primary preflight remained FAIL, and its first
+independent implementation was rejected because it failed to check that last
+slew. ID2Z24R2 distributes the same exact endpoint correction across the
+already frozen eight return slots. It does not weaken a plant or scientific
+gate, add a slot, or add an amplitude/phase candidate.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ID-2Z24R1 zero-TSC exact centered co-allocation preflight."""
+"""ID-2Z24R2 zero-TSC exact centered co-allocation preflight."""
 
 from __future__ import annotations
 
@@ -16,11 +16,11 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2z24_centered_coallocation_preflight.json"
-SCHEMA = "rgeo-zgeo-1ms-id2z24r1-centered-coallocation-preflight-result-v1"
+SCHEMA = "rgeo-zgeo-1ms-id2z24r2-centered-coallocation-preflight-result-v1"
 
 
 def _error(message: str) -> ValueError:
-    return ValueError(f"ID2Z24R1: {message}")
+    return ValueError(f"ID2Z24R2: {message}")
 
 
 def _inside(path: Path, label: str) -> Path:
@@ -67,6 +67,13 @@ def _combined_step(current: Sequence[str], delta: Sequence[Decimal]) -> tuple[st
     return tuple(_format(value + change) for value, change in zip(values, delta))
 
 
+def _interpolate_target(start: Sequence[str], endpoint: Sequence[str],
+                        numerator: int, denominator: int) -> tuple[str, ...]:
+    left, right = _decimals(start), _decimals(endpoint)
+    weight = Decimal(numerator) / Decimal(denominator)
+    return tuple(_format(a + weight * (b - a)) for a, b in zip(left, right))
+
+
 def _field_delta(row: dict[str, Any], issue: int) -> tuple[Decimal, ...]:
     current = _decimals(row["actions"][issue - 1]["expected_card15_fields"])
     target = _decimals(row["actions"][issue]["expected_card15_fields"])
@@ -83,9 +90,9 @@ def _plus(left: Sequence[Decimal], right: Sequence[Decimal], sign: int = 1) -> t
 
 def _require(stage: dict[str, Any]) -> None:
     exact = {
-        "schema_version": "rgeo-zgeo-1ms-id2z24r1-centered-coallocation-preflight-v1",
-        "identity": "rgeo-zgeo-1ms-id2z24r1-centered-coallocation-preflight-v1",
-        "stage": "ID-2Z24R1", "takeover_time_ms": 1100,
+        "schema_version": "rgeo-zgeo-1ms-id2z24r2-centered-coallocation-preflight-v1",
+        "identity": "rgeo-zgeo-1ms-id2z24r2-centered-coallocation-preflight-v1",
+        "stage": "ID-2Z24R2", "takeover_time_ms": 1100,
         "control_period_ms": 1, "models_fit_or_updated": 0,
         "maximum_tsc_calls": 0, "maximum_plant_advances": 0,
         "calibration_or_holdout_reads": 0, "exact_prefix_last_issue": 15,
@@ -96,9 +103,8 @@ def _require(stage: dict[str, Any]) -> None:
         "nominal_share_candidates_descending": ["0.50", "0.45", "0.40", "0.35", "0.30", "0.25"],
         "selection_rule": "largest_candidate_passing_all_exact_static_gates",
         "prospective_phase_issue_steps": [24, 32],
-        "same_sign_duration_issues": 8,
-        "opposite_sign_nominal_issues_before_exact_finish": 7,
-        "exact_cumulative_center_finish_issue_offset": 15,
+        "same_sign_duration_issues": 8, "exact_card15_return_bridge_issues": 8,
+        "return_bridge_rule": "equal_fraction_target_interpolation_to_matched_center_endpoint",
         "maximum_prospective_rollouts": 15,
         "maximum_prospective_reset_calls": 15,
         "maximum_prospective_advance_attempts": 975,
@@ -132,7 +138,7 @@ def _require(stage: dict[str, Any]) -> None:
         "legacy_runner_clipping_may_be_relied_on": False,
         "future_actual_current": "forbidden",
         "odd_plant_response_symmetry_assumed": False,
-        "last_opposite_sign_slot_targets_exact_center": True,
+        "return_bridge_targets_exact_center_endpoint": True,
         "exact_action_closure_is_not_state_recovery": True,
     }
     if action != required_action:
@@ -245,18 +251,21 @@ def _build_branch(center: Sequence[tuple[str, ...]], nominal: Sequence[Decimal],
                   residual: Sequence[Decimal], phase: int, first_sign: int) -> list[tuple[str, ...]]:
     fields = list(center[:16])
     current = fields[-1]
+    return_start: tuple[str, ...] | None = None
     for issue in range(16, len(center)):
-        if issue == phase + 15:
-            current = center[issue]
-            fields.append(current)
-            continue
         delta = nominal
         if phase <= issue < phase + 8:
             delta = _plus(nominal, residual, first_sign)
-        elif phase + 8 <= issue < phase + 16:
-            delta = _plus(nominal, residual, -first_sign)
         if issue <= 47:
-            current = _combined_step(current, delta)
+            if issue == phase + 8:
+                return_start = current
+            if phase + 8 <= issue < phase + 16:
+                if return_start is None:
+                    raise _error("return bridge start missing")
+                current = _interpolate_target(
+                    return_start, center[phase + 15], issue - phase - 7, 8)
+            else:
+                current = _combined_step(current, delta)
         fields.append(current)
     return fields
 
@@ -333,18 +342,13 @@ def _candidate(stage: dict[str, Any], evidence: dict[str, dict[str, Any]],
             for first_sign, label in ((1, "plus_then_minus"), (-1, "minus_then_plus")):
                 branch = _build_branch(center, nominal, residual, int(phase), first_sign)
                 close_issue = int(phase) + 15
-                current_before_finish = branch[close_issue - 1]
-                naive_finish = _combined_step(
-                    current_before_finish, _plus(nominal, residual, -first_sign))
-                finish_adjustment = float(np.max(np.abs(
-                    _currents(center[close_issue], turns) - _currents(naive_finish, turns))))
                 prefix_exact = branch[:int(phase)] == center[:int(phase)]
                 closure = branch[close_issue] == center[close_issue]
                 row = {"rollout_id": f"issue{phase}__{axis_id}__{label}",
                        **_stream_metrics(branch, turns, lower, upper),
                        "prefix_exact": prefix_exact, "closure_issue": close_issue,
                        "closure_exact": closure,
-                       "maximum_exact_finish_adjustment_a": finish_adjustment}
+                       "return_bridge_issue_count": 8}
                 streams.append(row)
                 if (not prefix_exact or not closure
                         or row["maximum_issued_delta_a"] > gate["maximum_absolute_issued_delta_a"]

@@ -1,13 +1,15 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z24 v1 final / R1 active):** server-focused
+> **Current status (2026-08-21, ID2Z24/R1 final / R2 active):** server-focused
 > validation reproduced the approved ID2Z23 attribution but found zero of six
 > nominal shares with pure repeated-quantization byte-exact closure. The
 > independent audit passed; TSC calls, plant advances, fits and holdout reads
 > were all zero. This is a digital schedule-construction FAIL, not plant,
-> authority or model evidence. ID2Z24R1 is active with one semantic correction:
-> the last opposite-sign slot is an exact cumulative-center finish, still under
-> the same `0.3 A`, absolute-current, rank and condition gates.
+> authority or model evidence. R1 exact closure overloaded its last slot at
+> `0.4--1.0 A`, and its first independent auditor omitted that finish slew;
+> focused tests rejected both the route and auditor agreement. R2 is active:
+> the same exact endpoint is distributed across eight existing return slots,
+> each under the same `0.3 A`, current, rank and condition gates.
 
 > **Historical status (2026-08-20, post-ID2Z23 route approved):** no new TSC,
 > plant advance, model fit or calibration/holdout read has occurred after

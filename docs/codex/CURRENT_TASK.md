@@ -1,13 +1,14 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z24R1 pre-execution correction):**
+> **Unique active task (2026-08-21, ID2Z24R2 pre-execution correction):**
 > ID2Z24 executed zero TSC/plant/model work and independently failed only its
 > prospective pure eight-plus/eight-minus byte-exact Card15 closure. All six
 > nominal shares passed local rank, condition, slew and current gates. Preserve
 > that route as `ONE_MS_ID2Z24_CENTERED_CARD15_LATTICE_FAIL_NO_TSC`; the active
-> task is the separately identified ID2Z24R1 exact cumulative-center finish.
-> Its final opposite-sign slot must target the matched center exactly and still
-> pass the unchanged per-issue slew/current gates. After server tests and dual
+> task is the separately identified ID2Z24R2 eight-slot exact Card15 return
+> bridge. R1 proved that putting the whole closure correction in one final slot
+> needs `0.4--1.0 A`; R2 distributes the same endpoint across the existing
+> eight return slots and checks every issued slew. After server tests and dual
 > zero-TSC PASS, freeze at most the already specified fifteen-rollout centered
 > campaign. No TSC starts from a failing preflight, and no scientific/data-role
 > gate may be weakened. Every older active block below is historical.
