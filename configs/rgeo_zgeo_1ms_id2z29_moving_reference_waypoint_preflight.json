@@ -1,0 +1,61 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z29-moving-reference-waypoint-preflight-v1",
+  "identity": "rgeo-zgeo-1ms-id2z29-moving-reference-waypoint-preflight-v1",
+  "stage": "ID-2Z29",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "models_fit_or_updated": 0,
+  "tsc_calls": 0,
+  "plant_advances": 0,
+  "calibration_or_holdout_reads": 0,
+  "waypoint_radius_m": 0.0001,
+  "direction_count": 8,
+  "sequence_length": 8,
+  "token_ids": ["H", "R+", "R-", "Z+", "Z-"],
+  "candidate_count_per_direction": 390625,
+  "exact_action_phase_issues": [32, 44],
+  "exact_return_bridge_issues": 8,
+  "gates": {
+    "maximum_predicted_path_error_m": 0.000025,
+    "maximum_predicted_endpoint_error_m": 0.000025,
+    "minimum_predicted_directional_progress_m": 0.00008,
+    "maximum_predicted_ip_excursion_a": 100.0,
+    "maximum_issued_delta_a": 0.3,
+    "minimum_absolute_current_headroom_a": 0.0
+  },
+  "future_campaign_contract": {
+    "calibration_phase_issue": 36,
+    "blind_phase_issue": 44,
+    "maximum_cardinal_feedback_sentinels": 4,
+    "maximum_zero_fit_replays": 1,
+    "whole_trajectory_split": true,
+    "model_refit_after_calibration": false,
+    "controller_execution_authorized": false
+  },
+  "evidence": {
+    "design": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z29_MOVING_REFERENCE_WAYPOINT_PREFLIGHT_DESIGN.md",
+      "sha256": "d34f65d173fbf71f9024b7db37a02dd8d581448e7da1bc18a980a9dea6c73182"
+    },
+    "id2z28_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z28_20260821_ed316968_v1/result.json",
+      "sha256": "617d78d9177898edf677f1a5bc48ff64159effc46d7e5e39ed508c3ea2c44703",
+      "required_route": "ONE_MS_ID2Z28_MODEL_PASS_Q_CELL_CONTROL_UTILITY_FAIL_REDESIGN_ALLOCATION"
+    },
+    "id2z28_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z28_20260821_ed316968_v1/independent_audit.json",
+      "sha256": "1ee44aff9bafe6b8ec1b4d795767bf4067c33db93e30585af073a23660b22d8b"
+    },
+    "id2z26r1_preflight": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z26r1_20260821_22d203d0_v1/result.json",
+      "sha256": "44ecac05709356db147ee1867df7bf9651a2f1e7f1c2532d0e33f3aedcd946cd"
+    }
+  },
+  "routes": {
+    "input_fail": "ONE_MS_ID2Z29_INPUT_OR_IDENTITY_FAIL_NO_TSC",
+    "waypoint_fail": "ONE_MS_ID2Z29_MOVING_REFERENCE_WAYPOINT_PREFLIGHT_FAIL_ACTION_BASIS_REDESIGN",
+    "action_fail": "ONE_MS_ID2Z29_EXACT_ACTION_PREFLIGHT_FAIL_NO_TSC",
+    "pass": "ONE_MS_ID2Z29_MOVING_REFERENCE_0P1MM_PREFLIGHT_PASS_FRESH_CALIBRATION_AND_SENTINEL_DESIGN_ONLY"
+  },
+  "claim_boundary": "Zero-TSC, zero-new-fit moving-nominal-relative 0.10 mm waypoint and exact-action preflight only; not source capture, terminal viability, Authority-L0, Recourse-L1, controller qualification, arbitrary waypoint/path, position generalization or R_mid crossing."
+}
