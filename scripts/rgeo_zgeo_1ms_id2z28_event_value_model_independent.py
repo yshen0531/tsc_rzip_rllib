@@ -201,7 +201,7 @@ def _nomination(stage: dict[str, Any], evidence: dict[str, dict[str, Any]],
 
 
 def _currents(fields: Sequence[str], turns: Sequence[Decimal]) -> np.ndarray:
-    return np.asarray([float(Decimal(value) * turn * Decimal("1000"))
+    return np.asarray([float(Decimal(value.strip()) * Decimal("1000") / turn)
                        for value, turn in zip(fields, turns)], dtype=float)
 
 

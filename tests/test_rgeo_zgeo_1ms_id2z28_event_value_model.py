@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+from decimal import Decimal
 import inspect
 import json
 import tempfile
@@ -84,6 +85,11 @@ class ID2Z28Tests(unittest.TestCase):
         self.assertEqual(audit["recomputed_route"], self.stage["routes"]["utility_fail"])
         source = inspect.getsource(mi.audit)
         self.assertNotIn("m.execute", source)
+
+    def test_independent_card15_current_conversion_matches_frozen_interface(self) -> None:
+        fields = ["1.000E+00 ", "-2.000E+00"]
+        turns = [Decimal("10"), Decimal("20")]
+        self.assertEqual(mi._currents(fields, turns).tolist(), [100.0, -100.0])
 
     def test_no_tsc_or_future_actual_access(self) -> None:
         source = inspect.getsource(m)
