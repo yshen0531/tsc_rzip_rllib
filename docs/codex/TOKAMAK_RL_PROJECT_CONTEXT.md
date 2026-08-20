@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z26R1 final):** the dynamic
+> **Unique new-round context (2026-08-21, ID2Z27 final):** the fresh dynamic
+> q_R/q_Z D0 campaign is complete and independently authenticated. It proves
+> persistent, signed, two-dimensional finite response at two moving phases,
+> but capture is 0/11 and the slack nominal is worse than continuing full-F.
+> Treat the nine prospective rows as local model-development data only. The
+> active route is a bounded 1--8 ms event/velocity/value model and a separate
+> Authority-L0 design; fresh model calibration/blind holdout, Authority,
+> Recourse and hard-interface qualification remain required before any real
+> feedback controller.
+
+> **Historical new-round context (2026-08-21, ID2Z26R1 final):** the dynamic
 > full-F-to-slack output-aligned Card15 streams are statically qualified.  R1
 > replaced v1's non-closing naive inverse with an exact precomputed endpoint
 > bridge while preserving all scientific gates.  This is zero-TSC action

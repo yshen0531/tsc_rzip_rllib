@@ -1,6 +1,18 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z26R1 final):** zero-TSC preflight PASS.
+> **Current status (2026-08-21, ID2Z27 final):** clean finite D0 data PASS,
+> not Authority/capture/controller PASS. Execution was `11/11` and
+> `803/803`; repaired independent audit reparsed 814 states and 4,070
+> artifacts (47,938,840,136 bytes) and exactly reproduced the primary DATA
+> PASS route. Eight h4 responses were 0.0509--0.0624 mm, h8 responses
+> 0.1790--0.2311 mm, all persistence cosines were at least 0.9924, and both
+> phases had positive-span geometry under the frozen grid. Capture remained
+> `0/11`; full-F also remained materially better than the slack baseline.
+> The next route is bounded zero-TSC event/velocity/value modeling and a
+> separate Authority-L0 design, not another nearby D0 cell or immediate
+> feedback execution.
+
+> **Historical status (2026-08-21, ID2Z26R1 final):** zero-TSC preflight PASS.
 > Server tests were `6/6` focused and `648/648` complete.  Primary and
 > independent audit accepted all 11 prospective streams; rank is two,
 > condition `1.0507`, maximum slew `0.300000000000011 A`, minimum whole-stream

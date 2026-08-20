@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z26R1 final / fresh D0 next):** the
+> **Unique active task (2026-08-21, ID2Z27 final / bounded model and
+> Authority design next):** ID2Z27 completed `11/11`, `803/803`, 814 states
+> and 4,070 raw artifacts. Primary and repaired independent raw audit agree
+> on `ONE_MS_ID2Z27_DYNAMIC_D0_DATA_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY`.
+> All eight q_R/q_Z signed rows and both phase/horizon geometry gates passed;
+> exact replay passed; capture was `0/11`. The initial independent prefix
+> failure was an auditor-only preissue-versus-overwritten-inputa comparison
+> and is preserved separately; no plant rerun occurred. The sole active
+> work is bounded zero-new-TSC 1--8 ms event/velocity/value model development
+> plus an Authority-L0 sentinel design. Only the nine prospective fit rows
+> may train; full-F, replay and ID2Z25 remain zero-fit. No controller or new
+> real TSC is authorized until that design has its own exact Card15/support/
+> safety preflight. Older active blocks below are historical.
+
+> **Historical active task (2026-08-21, ID2Z26R1 final / fresh D0 next):** the
 > server passed focused `6/6`, full one-millisecond `648/648`, primary and
 > independent zero-TSC exact-action gates.  Eleven 73-issue streams preserve
 > the full-F prefix, rank-2/condition-1.0507 q cell, `<=0.3 A` slew, positive
