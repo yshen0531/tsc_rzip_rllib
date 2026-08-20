@@ -1,0 +1,125 @@
+{
+  "action_geometry": {
+    "nonzero_issue_rows": 432,
+    "rank": 4,
+    "rank4_maximum_component_reconstruction_error_a": 1.3877787807814457e-14,
+    "rank4_maximum_l2_reconstruction_error_a": 2.7013605015405176e-14,
+    "singular_values": [
+      17.117165413766134,
+      10.750743038721913,
+      5.19886186329839,
+      0.4427275002548976,
+      2.1775992820351196e-13,
+      1.7474359685793034e-13,
+      1.338524486144789e-13,
+      1.241085632207257e-13,
+      1.0690163855850081e-13,
+      1.0269411275280767e-13,
+      8.362442860795593e-14,
+      5.027054298971646e-14,
+      2.8753996976975085e-15,
+      2.7459224284964385e-30
+    ],
+    "superseded_rank3_maximum_l2_residual_a": 0.0892119716732613
+  },
+  "blind_holdout_records_read": 0,
+  "calibration_records_read": 0,
+  "candidate_order": [
+    "structured_rank4_stable_memory",
+    "structured_rank4_stable_memory_plus_tcn4"
+  ],
+  "causal_future_mutation_gate": {
+    "family_id": "d00_plus",
+    "future_active_actual_rzi_mutation_feature_max_abs_difference": 0.0,
+    "future_active_actual_rzi_mutation_history_max_abs_difference": 0.0,
+    "horizon_ms": 8,
+    "origin_issue": 16,
+    "passed": true
+  },
+  "families": [
+    "baseline_full_f",
+    "baseline_half_f",
+    "d00_plus",
+    "d00_minus",
+    "d01_plus",
+    "d01_minus",
+    "d02_plus",
+    "d02_minus",
+    "d03_plus",
+    "d03_minus",
+    "d04_plus",
+    "d04_minus",
+    "d05_plus",
+    "d05_minus"
+  ],
+  "folds": [
+    {
+      "fold_id": "hold_baseline_full_f",
+      "held_family_ids": [
+        "baseline_full_f"
+      ],
+      "kind": "baseline"
+    },
+    {
+      "fold_id": "hold_baseline_half_f",
+      "held_family_ids": [
+        "baseline_half_f"
+      ],
+      "kind": "baseline"
+    },
+    {
+      "fold_id": "hold_d00",
+      "held_family_ids": [
+        "d00_plus",
+        "d00_minus"
+      ],
+      "kind": "signed_pair"
+    },
+    {
+      "fold_id": "hold_d01",
+      "held_family_ids": [
+        "d01_plus",
+        "d01_minus"
+      ],
+      "kind": "signed_pair"
+    },
+    {
+      "fold_id": "hold_d02",
+      "held_family_ids": [
+        "d02_plus",
+        "d02_minus"
+      ],
+      "kind": "signed_pair"
+    },
+    {
+      "fold_id": "hold_d03",
+      "held_family_ids": [
+        "d03_plus",
+        "d03_minus"
+      ],
+      "kind": "signed_pair"
+    },
+    {
+      "fold_id": "hold_d04",
+      "held_family_ids": [
+        "d04_plus",
+        "d04_minus"
+      ],
+      "kind": "signed_pair"
+    },
+    {
+      "fold_id": "hold_d05",
+      "held_family_ids": [
+        "d05_plus",
+        "d05_minus"
+      ],
+      "kind": "signed_pair"
+    }
+  ],
+  "input_trajectory_digest": "88e7b43aeb7a649744e0a786a1b2a0d251f93d2e7cabd8da189848118b32f727",
+  "new_tsc_calls": 0,
+  "passed": true,
+  "route": "ONE_MS_ID2Z19R1_PREFIT_READINESS_PASS_FIT_AUTHORIZED",
+  "schema_version": "rgeo-zgeo-1ms-id2z19r1-prefit-readiness-v1",
+  "stage_config_sha256": "b72bffda1cc8befd67dc3945615b25cd76d1aded10d4ab9d34ae673c8a42d856"
+}

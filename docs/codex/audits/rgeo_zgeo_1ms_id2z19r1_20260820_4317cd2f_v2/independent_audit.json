@@ -1,0 +1,16 @@
+{
+  "audit_passed": true,
+  "blind_holdout_records_read": 0,
+  "calibration_records_read": 0,
+  "claim_boundary": "Finite 14-family source-local development shadow-model comparison only; not calibration, blind holdout, uncertainty tube, authority, capture, recovery, controller, MPC, waypoint/path, R_mid crossing, adaptation, expert data, RL or deployment evidence.",
+  "failure_count": 0,
+  "failures": [],
+  "new_tsc_calls": 0,
+  "oof_prediction_row_count": 9408,
+  "oof_predictions_sha256": "234e8826b93168f474c237e5a5fcf0e323083c2e311ece90124abaefb7e7358e",
+  "recomputed_passed": false,
+  "recomputed_selected_candidate_id": null,
+  "result_sha256": "2f7c0acbec9438153b9481794be45a034d347d8a39a4cb76493983c4e498a214",
+  "schema_version": "rgeo-zgeo-1ms-id2z19r1-independent-ledger-audit-v1",
+  "stage_config_sha256": "b72bffda1cc8befd67dc3945615b25cd76d1aded10d4ab9d34ae673c8a42d856"
+}

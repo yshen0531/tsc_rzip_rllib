@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID-2Z19R1):** the first ID-2Z19
+> **Current NR route notice (2026-08-20, post-ID-2Z19R1):** the corrected
+> rank-four development comparison completed cleanly but selected no model.
+> Both the structured stable-memory predictor and its fixed small TCN residual
+> failed terminal one-step speed/increment in all whole-history folds; seven
+> of eight folds were inside the frozen support gate, and the TCN did not
+> supply the required relative gain. This is a finite development model-class
+> FAIL, not a runtime, TSC, plant, authority or global controller result.
+> Calibration/holdout stay unopened. Exactly one zero-fit OOF attribution is
+> active, after which model work must stop pending a prospectively justified
+> redesign. The independently required authority/recovery axis remains open.
+
+> **Historical NR route notice (2026-08-20, ID-2Z19R1):** the first ID-2Z19
 > implementation was stopped before fitting. Complete signed Card15 actions
 > require rank four and candidate future actions must be reconstructed from
 > current active command plus proposed targets, not future recorded fields.

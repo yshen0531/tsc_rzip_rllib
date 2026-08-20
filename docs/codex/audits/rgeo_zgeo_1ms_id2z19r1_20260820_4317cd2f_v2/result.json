@@ -1,0 +1,1397 @@
+{
+  "action_basis_rank": 4,
+  "action_blind_fold_fits": 8,
+  "blind_holdout_records_read": 0,
+  "calibration_records_read": 0,
+  "candidate_count": 2,
+  "candidate_fold_fits": 16,
+  "claim_boundary": "Finite 14-family source-local development shadow-model comparison only; not calibration, blind holdout, uncertainty tube, authority, capture, recovery, controller, MPC, waypoint/path, R_mid crossing, adaptation, expert data, RL or deployment evidence.",
+  "comparison": {
+    "candidate_results": [
+      {
+        "candidate_id": "structured_rank4_stable_memory",
+        "eligible": false,
+        "folds": [
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95",
+              "HELD_SUPPORT"
+            ],
+            "feature_condition": 939.5193002791333,
+            "feature_rank": 36,
+            "fold_id": "hold_baseline_full_f",
+            "held_family_ids": [
+              "baseline_full_f"
+            ],
+            "kind": "baseline",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0012198116500000196,
+                0.0006540779250000651,
+                79.96188999999445
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00013998767538683405,
+                0.00023989531822087506,
+                11.498974566534141
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.00046143864819715995,
+                  0.00026455557013210226,
+                  15.933099299711103
+                ],
+                "2": [
+                  0.0004862241266359368,
+                  0.0003862607912343399,
+                  8.306528213164166
+                ],
+                "4": [
+                  0.0006373203725273834,
+                  0.0010258294059563137,
+                  11.208698496591568
+                ],
+                "8": [
+                  0.0010092392899469116,
+                  0.0022033668671821915,
+                  32.63172719149752
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 14.1,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 12.55882895233432,
+              "normalized_endpoint_rmse": 0.39655422556372544,
+              "normalized_terminal_increment_rmse": 0.3710796580667379,
+              "pair_metrics": null,
+              "persistence_endpoint_p95_abs": [
+                0.002512337574999996,
+                0.0022531917749999903,
+                178.54020999999995
+              ],
+              "support_coverage_fraction": 0.43452380952380953,
+              "support_threshold": 7.8634106048982995,
+              "terminal_increment_p95_abs": [
+                0.0005188722357953368,
+                9.703294445255409e-05,
+                13.752601222211535
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5188722357953368
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 7.8634106048982995,
+            "training_family_count": 13
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "ENDPOINT_P95_H1",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 1180.964686382793,
+            "feature_rank": 36,
+            "fold_id": "hold_baseline_half_f",
+            "held_family_ids": [
+              "baseline_half_f"
+            ],
+            "kind": "baseline",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0013698317000000349,
+                0.0005496463749999016,
+                121.5047699999945
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00011611551741477348,
+                0.0001689240589303521,
+                16.039616114688666
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.000622245020741996,
+                  0.0009075742896230159,
+                  17.595891982074864
+                ],
+                "2": [
+                  0.0006315107198986258,
+                  0.0008822568243415943,
+                  18.11935270896301
+                ],
+                "4": [
+                  0.0005488197482822808,
+                  0.0008804591849610972,
+                  19.247232670582704
+                ],
+                "8": [
+                  0.0006796448538187171,
+                  0.0009843017466430357,
+                  21.383197372813807
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 9.3,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 7.087719683802779,
+              "normalized_endpoint_rmse": 0.30724789473180575,
+              "normalized_terminal_increment_rmse": 0.4038239089359922,
+              "pair_metrics": null,
+              "persistence_endpoint_p95_abs": [
+                0.0030730366250000586,
+                0.0030791352750000004,
+                134.97334000000063
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 10.309582331403133,
+              "terminal_increment_p95_abs": [
+                0.0005785808465275099,
+                0.00012800064363192382,
+                12.791859156845002
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5785808465275099
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 10.309582331403133,
+            "training_family_count": 13
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "ENDPOINT_P95_H1",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 825.1251728229914,
+            "feature_rank": 36,
+            "fold_id": "hold_d00",
+            "held_family_ids": [
+              "d00_plus",
+              "d00_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0013947333750000956,
+                0.0005782764999999919,
+                128.5782749999953
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010153562525612218,
+                0.00010748283638616017,
+                10.689750646344363
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0005053280456071729,
+                  0.00041311430591026247,
+                  12.328678336319534
+                ],
+                "2": [
+                  0.00044967528022516455,
+                  0.00028527748515798395,
+                  8.428331582823738
+                ],
+                "4": [
+                  0.00033761510215075117,
+                  0.00015364669531131196,
+                  5.101401635042382
+                ],
+                "8": [
+                  0.00048663946239024255,
+                  0.0004029590863837417,
+                  11.092447394400548
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 4.347446435391553,
+              "normalized_endpoint_rmse": 0.10871957716484532,
+              "normalized_terminal_increment_rmse": 0.35644665524708746,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.3719802977106268,
+                "always_plus_accuracy": 0.9444444444444444,
+                "always_plus_correct_count": 153,
+                "direction_row_count": 165,
+                "fitted_action_blind_response_nrmse": 0.1699295945081168,
+                "informative_row_count": 165,
+                "maximum_normalized_value_regret": 0.29998602549677594,
+                "minimum_direction_cosine": -0.9737565009213409,
+                "positive_direction_count": 163,
+                "positive_direction_fraction": 0.9878787878787879,
+                "ranking_accuracy": 0.9320987654320988,
+                "ranking_correct_count": 151,
+                "ranking_non_tie_count": 162,
+                "response_nrmse": 0.13466528527039537
+              },
+              "persistence_endpoint_p95_abs": [
+                0.0030995802500000114,
+                0.0034285161250000133,
+                124.06387499999892
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.548662458004728,
+              "terminal_increment_p95_abs": [
+                0.0006016478907454087,
+                0.0001709550750234956,
+                8.422997802201307
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.6016478907454087
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.548662458004728,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 813.4199677880804,
+            "feature_rank": 36,
+            "fold_id": "hold_d01",
+            "held_family_ids": [
+              "d01_plus",
+              "d01_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.001419467250000056,
+                0.0005453670000000049,
+                106.05177500000536
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010585094401445219,
+                0.00012172354158959995,
+                10.713815122748741
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0004696541387908037,
+                  0.0004075019007682416,
+                  11.926516549946609
+                ],
+                "2": [
+                  0.0004247775306251977,
+                  0.00031068470666062366,
+                  10.400386362018613
+                ],
+                "4": [
+                  0.00033672015450099673,
+                  0.00015039977091100786,
+                  6.0316857683363185
+                ],
+                "8": [
+                  0.0004638385946092281,
+                  0.00039278069723591014,
+                  10.389702600855706
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 3.660762076236584,
+              "normalized_endpoint_rmse": 0.11032618850244684,
+              "normalized_terminal_increment_rmse": 0.34394984454874333,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.379945671256235,
+                "always_plus_accuracy": 0.9221556886227545,
+                "always_plus_correct_count": 154,
+                "direction_row_count": 167,
+                "fitted_action_blind_response_nrmse": 0.1649547637349968,
+                "informative_row_count": 167,
+                "maximum_normalized_value_regret": 0.40148775896524264,
+                "minimum_direction_cosine": -0.9703576506088026,
+                "positive_direction_count": 165,
+                "positive_direction_fraction": 0.9880239520958084,
+                "ranking_accuracy": 0.9221556886227545,
+                "ranking_correct_count": 154,
+                "ranking_non_tie_count": 167,
+                "response_nrmse": 0.12989120146507616
+              },
+              "persistence_endpoint_p95_abs": [
+                0.0031201531250000247,
+                0.0034636721249999905,
+                122.78834999999799
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.536420527964525,
+              "terminal_increment_p95_abs": [
+                0.00058203968868238,
+                0.00015433629423547266,
+                7.102105041563615
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.58203968868238
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.536420527964525,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "ENDPOINT_P95_H1",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 830.9061035946969,
+            "feature_rank": 36,
+            "fold_id": "hold_d02",
+            "held_family_ids": [
+              "d02_plus",
+              "d02_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0013787603750001487,
+                0.0005573559999998631,
+                117.41699999999946
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010638862920749974,
+                0.0001187420357077474,
+                10.815902114260737
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0005400339999642178,
+                  0.0004285158858931083,
+                  11.842107221063086
+                ],
+                "2": [
+                  0.00047774011522853097,
+                  0.000310967479472014,
+                  7.8950014674072
+                ],
+                "4": [
+                  0.00034588585420611826,
+                  0.00013633275507630782,
+                  5.844855678169731
+                ],
+                "8": [
+                  0.00041617346093786306,
+                  0.00040035849311084097,
+                  10.646091331987735
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 3.573576634140436,
+              "normalized_endpoint_rmse": 0.11152894755588122,
+              "normalized_terminal_increment_rmse": 0.331857603220487,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.40810928033768956,
+                "always_plus_accuracy": 0.9226190476190477,
+                "always_plus_correct_count": 155,
+                "direction_row_count": 168,
+                "fitted_action_blind_response_nrmse": 0.1610245808974846,
+                "informative_row_count": 168,
+                "maximum_normalized_value_regret": 0.44555497097162794,
+                "minimum_direction_cosine": -0.9109367098593446,
+                "positive_direction_count": 167,
+                "positive_direction_fraction": 0.9940476190476191,
+                "ranking_accuracy": 0.9226190476190477,
+                "ranking_correct_count": 155,
+                "ranking_non_tie_count": 168,
+                "response_nrmse": 0.12388335056028371
+              },
+              "persistence_endpoint_p95_abs": [
+                0.0031840948749999876,
+                0.003507971000000009,
+                122.5103250000011
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.543808399259419,
+              "terminal_increment_p95_abs": [
+                0.0005587529753800155,
+                0.0001495236729982546,
+                7.357861545452974
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5587529753800154
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.543808399259419,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 827.102352214251,
+            "feature_rank": 36,
+            "fold_id": "hold_d03",
+            "held_family_ids": [
+              "d03_plus",
+              "d03_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.00144893187500017,
+                0.0005788410000000591,
+                102.17565000000286
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010778089339622587,
+                0.00011777944828970013,
+                10.43082374538859
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0004760430442584562,
+                  0.0003856341932629535,
+                  11.256799112473523
+                ],
+                "2": [
+                  0.00043396302321966327,
+                  0.00031386585693743353,
+                  9.208477560212303
+                ],
+                "4": [
+                  0.0003342251743429557,
+                  0.00013756188635502192,
+                  5.551368250616906
+                ],
+                "8": [
+                  0.0005144070581914512,
+                  0.00041907835314003813,
+                  10.05155826542632
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 4.119787048563044,
+              "normalized_endpoint_rmse": 0.1093981408156339,
+              "normalized_terminal_increment_rmse": 0.3482772257924139,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.4294685642340407,
+                "always_plus_accuracy": 0.9030303030303031,
+                "always_plus_correct_count": 149,
+                "direction_row_count": 163,
+                "fitted_action_blind_response_nrmse": 0.17777989839599673,
+                "informative_row_count": 167,
+                "maximum_normalized_value_regret": 0.41518096009862154,
+                "minimum_direction_cosine": -0.7425421831213533,
+                "positive_direction_count": 162,
+                "positive_direction_fraction": 0.9938650306748467,
+                "ranking_accuracy": 0.896969696969697,
+                "ranking_correct_count": 148,
+                "ranking_non_tie_count": 165,
+                "response_nrmse": 0.1342834352825618
+              },
+              "persistence_endpoint_p95_abs": [
+                0.003124854250000003,
+                0.003416173749999977,
+                125.74742499999866
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.5667547369959,
+              "terminal_increment_p95_abs": [
+                0.0005920943769335226,
+                0.00016363494082287746,
+                6.696123069977244
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5920943769335226
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.5667547369959,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 848.0623121426345,
+            "feature_rank": 36,
+            "fold_id": "hold_d04",
+            "held_family_ids": [
+              "d04_plus",
+              "d04_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0014048660000000046,
+                0.0006412959999999648,
+                130.78275000000122
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010512032649894066,
+                0.00012945695188879933,
+                10.45701525236989
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.00041291249908821925,
+                  0.0004580165836220093,
+                  12.32014566013131
+                ],
+                "2": [
+                  0.00037320389480682836,
+                  0.00035339554236312745,
+                  9.005647583211248
+                ],
+                "4": [
+                  0.00033502591114963336,
+                  0.00017236555519750844,
+                  6.8903867805529435
+                ],
+                "8": [
+                  0.00041070198121136967,
+                  0.0004497568431438259,
+                  13.368474288321703
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 11.85,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 5.006534514359075,
+              "normalized_endpoint_rmse": 0.10958337429559932,
+              "normalized_terminal_increment_rmse": 0.33831240200753904,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.5973165832028428,
+                "always_plus_accuracy": 0.9746835443037974,
+                "always_plus_correct_count": 154,
+                "direction_row_count": 165,
+                "fitted_action_blind_response_nrmse": 0.20595185046872705,
+                "informative_row_count": 165,
+                "maximum_normalized_value_regret": 0.06495324730669841,
+                "minimum_direction_cosine": -0.9320657143217522,
+                "positive_direction_count": 163,
+                "positive_direction_fraction": 0.9878787878787879,
+                "ranking_accuracy": 0.9746835443037974,
+                "ranking_correct_count": 154,
+                "ranking_non_tie_count": 158,
+                "response_nrmse": 0.13069156871602303
+              },
+              "persistence_endpoint_p95_abs": [
+                0.003123565749999946,
+                0.003463589874999992,
+                127.21760000000086
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.435789532034558,
+              "terminal_increment_p95_abs": [
+                0.0005809011570944423,
+                0.0001373199971664807,
+                9.333579811382814
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5809011570944422
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.435789532034558,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 856.6914453385558,
+            "feature_rank": 36,
+            "fold_id": "hold_d05",
+            "held_family_ids": [
+              "d05_plus",
+              "d05_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0014326831249999172,
+                0.000614138874999965,
+                137.37617500000215
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.000111987058039491,
+                0.0001209409901197369,
+                11.223861869473437
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.000493830214198515,
+                  0.00031071912940432194,
+                  12.226088978907496
+                ],
+                "2": [
+                  0.00042202470599149157,
+                  0.00024922262777879244,
+                  7.718170641715003
+                ],
+                "4": [
+                  0.00034019842358377623,
+                  0.0001941848432175024,
+                  7.885500927113388
+                ],
+                "8": [
+                  0.0004326208809330045,
+                  0.0003288080478416898,
+                  8.459050477441632
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 10.650000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 5.912635708854067,
+              "normalized_endpoint_rmse": 0.0980393889653984,
+              "normalized_terminal_increment_rmse": 0.3488120441909403,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.6538433719438154,
+                "always_plus_accuracy": 0.8703703703703703,
+                "always_plus_correct_count": 141,
+                "direction_row_count": 165,
+                "fitted_action_blind_response_nrmse": 0.4628147309890532,
+                "informative_row_count": 165,
+                "maximum_normalized_value_regret": 0.6321612793858106,
+                "minimum_direction_cosine": -0.9857782006221373,
+                "positive_direction_count": 155,
+                "positive_direction_fraction": 0.9393939393939394,
+                "ranking_accuracy": 0.7469135802469136,
+                "ranking_correct_count": 121,
+                "ranking_non_tie_count": 162,
+                "response_nrmse": 0.2722974031467541
+              },
+              "persistence_endpoint_p95_abs": [
+                0.003078149375000061,
+                0.003127678499999998,
+                131.800049999998
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.549285046665787,
+              "terminal_increment_p95_abs": [
+                0.0005936761923239586,
+                0.00017294289249295938,
+                8.998518014425105
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5936761923239586
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.549285046665787,
+            "training_family_count": 12
+          }
+        ],
+        "summary": {
+          "mean_endpoint_nrmse": 0.168924717199417,
+          "mean_pair_response_nrmse": 0.1542853740735157,
+          "minimum_support_coverage_fraction": 0.43452380952380953,
+          "worst_endpoint_nrmse": 0.39655422556372544,
+          "worst_pair_response_nrmse": 0.2722974031467541
+        }
+      },
+      {
+        "candidate_id": "structured_rank4_stable_memory_plus_tcn4",
+        "eligible": false,
+        "folds": [
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95",
+              "HELD_SUPPORT"
+            ],
+            "feature_condition": 939.5193002791333,
+            "feature_rank": 36,
+            "fold_id": "hold_baseline_full_f",
+            "held_family_ids": [
+              "baseline_full_f"
+            ],
+            "kind": "baseline",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0012198116500000196,
+                0.0006540779250000651,
+                79.96188999999445
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00012958278302994608,
+                0.0002358243700248932,
+                15.331020184359344
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0004647991232232418,
+                  0.00026278251779317003,
+                  14.564091989569533
+                ],
+                "2": [
+                  0.00045861858855844037,
+                  0.0004281382235949059,
+                  7.967013379055605
+                ],
+                "4": [
+                  0.0006164626216699164,
+                  0.001071237772806074,
+                  13.136089982910008
+                ],
+                "8": [
+                  0.0009986240568182203,
+                  0.002292698873912702,
+                  33.78438818854756
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 14.1,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 12.55882895233432,
+              "normalized_endpoint_rmse": 0.40809255920668525,
+              "normalized_terminal_increment_rmse": 0.40208240756206204,
+              "pair_metrics": null,
+              "persistence_endpoint_p95_abs": [
+                0.002512337574999996,
+                0.0022531917749999903,
+                178.54020999999995
+              ],
+              "support_coverage_fraction": 0.43452380952380953,
+              "support_threshold": 7.8634106048982995,
+              "terminal_increment_p95_abs": [
+                0.0005222875279996774,
+                0.00013183034768324582,
+                17.01932441163222
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5222875279996774
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 7.8634106048982995,
+            "training_family_count": 13
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "ENDPOINT_P95_H1",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 1180.964686382793,
+            "feature_rank": 36,
+            "fold_id": "hold_baseline_half_f",
+            "held_family_ids": [
+              "baseline_half_f"
+            ],
+            "kind": "baseline",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0013698317000000349,
+                0.0005496463749999016,
+                121.5047699999945
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00011238231448859624,
+                0.00016680406491376956,
+                17.252438364288405
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0006518255248383508,
+                  0.0008605871167665683,
+                  16.14752466150203
+                ],
+                "2": [
+                  0.0006518794725779706,
+                  0.0008697976442188486,
+                  16.903792473165954
+                ],
+                "4": [
+                  0.000574728293863752,
+                  0.0008772103472001916,
+                  17.6646992727352
+                ],
+                "8": [
+                  0.0006752258389839727,
+                  0.0009564483494946156,
+                  20.00048860309289
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 9.3,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 7.087719683802779,
+              "normalized_endpoint_rmse": 0.30150187512646476,
+              "normalized_terminal_increment_rmse": 0.4266777026597379,
+              "pair_metrics": null,
+              "persistence_endpoint_p95_abs": [
+                0.0030730366250000586,
+                0.0030791352750000004,
+                134.97334000000063
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 10.309582331403133,
+              "terminal_increment_p95_abs": [
+                0.0005704861812502142,
+                0.00013449197153351774,
+                13.837371096181133
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5704861812502142
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 10.309582331403133,
+            "training_family_count": 13
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 825.1251728229914,
+            "feature_rank": 36,
+            "fold_id": "hold_d00",
+            "held_family_ids": [
+              "d00_plus",
+              "d00_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0013947333750000956,
+                0.0005782764999999919,
+                128.5782749999953
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010988966056533758,
+                0.00011283307527460925,
+                10.375805890820569
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0004990292112518333,
+                  0.0004132228918409288,
+                  12.20730929380461
+                ],
+                "2": [
+                  0.000423957823931137,
+                  0.000306101775914758,
+                  8.512779808098458
+                ],
+                "4": [
+                  0.00034380866303351245,
+                  0.00013854442071630218,
+                  5.344580796401533
+                ],
+                "8": [
+                  0.0005050251261241866,
+                  0.0004080392394422219,
+                  11.209917538552327
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 4.347446435391553,
+              "normalized_endpoint_rmse": 0.10783735993415423,
+              "normalized_terminal_increment_rmse": 0.3561515367912617,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.37363917080817666,
+                "always_plus_accuracy": 0.9444444444444444,
+                "always_plus_correct_count": 153,
+                "direction_row_count": 165,
+                "fitted_action_blind_response_nrmse": 0.1699295945081168,
+                "informative_row_count": 165,
+                "maximum_normalized_value_regret": 0.29998602549677594,
+                "minimum_direction_cosine": -0.9440481445478395,
+                "positive_direction_count": 163,
+                "positive_direction_fraction": 0.9878787878787879,
+                "ranking_accuracy": 0.9320987654320988,
+                "ranking_correct_count": 151,
+                "ranking_non_tie_count": 162,
+                "response_nrmse": 0.13448731288154592
+              },
+              "persistence_endpoint_p95_abs": [
+                0.0030995802500000114,
+                0.0034285161250000133,
+                124.06387499999892
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.548662458004728,
+              "terminal_increment_p95_abs": [
+                0.0006044975584636275,
+                0.0001619860154706996,
+                8.583468505250982
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.6044975584636275
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.548662458004728,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 813.4199677880804,
+            "feature_rank": 36,
+            "fold_id": "hold_d01",
+            "held_family_ids": [
+              "d01_plus",
+              "d01_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.001419467250000056,
+                0.0005453670000000049,
+                106.05177500000536
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010954488981237269,
+                0.00012310103010087196,
+                10.960573737574608
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0004819085774753484,
+                  0.00041535572751575343,
+                  12.328084923298045
+                ],
+                "2": [
+                  0.00043056077064381734,
+                  0.0003174874003435579,
+                  10.84609255539089
+                ],
+                "4": [
+                  0.00033389109015875547,
+                  0.00012527527878556028,
+                  6.389254615891876
+                ],
+                "8": [
+                  0.00046225426070460856,
+                  0.0004107112050212056,
+                  10.499459748541266
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 3.660762076236584,
+              "normalized_endpoint_rmse": 0.1086430703108246,
+              "normalized_terminal_increment_rmse": 0.34443107493753866,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.37627468880146053,
+                "always_plus_accuracy": 0.9221556886227545,
+                "always_plus_correct_count": 154,
+                "direction_row_count": 167,
+                "fitted_action_blind_response_nrmse": 0.1649547637349968,
+                "informative_row_count": 167,
+                "maximum_normalized_value_regret": 0.40148775896524264,
+                "minimum_direction_cosine": -0.8850437768126977,
+                "positive_direction_count": 165,
+                "positive_direction_fraction": 0.9880239520958084,
+                "ranking_accuracy": 0.9221556886227545,
+                "ranking_correct_count": 154,
+                "ranking_non_tie_count": 167,
+                "response_nrmse": 0.13027513931129622
+              },
+              "persistence_endpoint_p95_abs": [
+                0.0031201531250000247,
+                0.0034636721249999905,
+                122.78834999999799
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.536420527964525,
+              "terminal_increment_p95_abs": [
+                0.0005809945812963096,
+                0.00015807611018579633,
+                7.222288114468719
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5809945812963097
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.536420527964525,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "ENDPOINT_P95_H1",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 830.9061035946969,
+            "feature_rank": 36,
+            "fold_id": "hold_d02",
+            "held_family_ids": [
+              "d02_plus",
+              "d02_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0013787603750001487,
+                0.0005573559999998631,
+                117.41699999999946
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00010723678685868699,
+                0.00012138982560622741,
+                10.681725490593323
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0005358217633712523,
+                  0.0004455129742405656,
+                  11.703479508446616
+                ],
+                "2": [
+                  0.00046779858452096186,
+                  0.00034671744285945415,
+                  7.940225383034156
+                ],
+                "4": [
+                  0.000334620914504774,
+                  0.0001336500120355986,
+                  6.155366704924015
+                ],
+                "8": [
+                  0.0004319638760445997,
+                  0.00042049204717942954,
+                  10.623299601555662
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 3.573576634140436,
+              "normalized_endpoint_rmse": 0.11027484780541662,
+              "normalized_terminal_increment_rmse": 0.3325248002491176,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.3995356491588179,
+                "always_plus_accuracy": 0.9226190476190477,
+                "always_plus_correct_count": 155,
+                "direction_row_count": 168,
+                "fitted_action_blind_response_nrmse": 0.1610245808974846,
+                "informative_row_count": 168,
+                "maximum_normalized_value_regret": 0.44555497097162794,
+                "minimum_direction_cosine": -0.792462245778939,
+                "positive_direction_count": 167,
+                "positive_direction_fraction": 0.9940476190476191,
+                "ranking_accuracy": 0.9226190476190477,
+                "ranking_correct_count": 155,
+                "ranking_non_tie_count": 168,
+                "response_nrmse": 0.12477735974815643
+              },
+              "persistence_endpoint_p95_abs": [
+                0.0031840948749999876,
+                0.003507971000000009,
+                122.5103250000011
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.543808399259419,
+              "terminal_increment_p95_abs": [
+                0.0005582662197167044,
+                0.00013927037924966058,
+                7.592856695977636
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5582662197167044
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.543808399259419,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 827.102352214251,
+            "feature_rank": 36,
+            "fold_id": "hold_d03",
+            "held_family_ids": [
+              "d03_plus",
+              "d03_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.00144893187500017,
+                0.0005788410000000591,
+                102.17565000000286
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00011078735100035809,
+                0.00012770265155960672,
+                10.453414460128036
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0004602526601378609,
+                  0.0003818312140468624,
+                  11.217284293780535
+                ],
+                "2": [
+                  0.00042884493167679165,
+                  0.0003040076211762625,
+                  9.557064931949023
+                ],
+                "4": [
+                  0.00031502568579172546,
+                  0.0001340754613873052,
+                  6.169999061118505
+                ],
+                "8": [
+                  0.0005016176633523216,
+                  0.00046859274901940714,
+                  10.221664916042027
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 12.900000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 4.119787048563044,
+              "normalized_endpoint_rmse": 0.10847065079953648,
+              "normalized_terminal_increment_rmse": 0.3488403220537485,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.4288662356240559,
+                "always_plus_accuracy": 0.9030303030303031,
+                "always_plus_correct_count": 149,
+                "direction_row_count": 163,
+                "fitted_action_blind_response_nrmse": 0.17777989839599673,
+                "informative_row_count": 167,
+                "maximum_normalized_value_regret": 0.41518096009862154,
+                "minimum_direction_cosine": -0.7617717272265807,
+                "positive_direction_count": 161,
+                "positive_direction_fraction": 0.9877300613496932,
+                "ranking_accuracy": 0.9030303030303031,
+                "ranking_correct_count": 149,
+                "ranking_non_tie_count": 165,
+                "response_nrmse": 0.13435430028093923
+              },
+              "persistence_endpoint_p95_abs": [
+                0.003124854250000003,
+                0.003416173749999977,
+                125.74742499999866
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.5667547369959,
+              "terminal_increment_p95_abs": [
+                0.0005910222625591104,
+                0.00016368658919269893,
+                6.925910583631824
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5910222625591104
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.5667547369959,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 848.0623121426345,
+            "feature_rank": 36,
+            "fold_id": "hold_d04",
+            "held_family_ids": [
+              "d04_plus",
+              "d04_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0014048660000000046,
+                0.0006412959999999648,
+                130.78275000000122
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.00011277056360770117,
+                0.0001427648521738481,
+                10.359950076666166
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0004201251228625413,
+                  0.0004739723935668313,
+                  12.262751130424657
+                ],
+                "2": [
+                  0.00039162106324859276,
+                  0.00033934742090408783,
+                  8.937341963898142
+                ],
+                "4": [
+                  0.0003337073806803703,
+                  0.00016955674801588305,
+                  6.552598157614375
+                ],
+                "8": [
+                  0.00042384400942744314,
+                  0.000441205127663529,
+                  12.61413266188574
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 11.85,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 5.006534514359075,
+              "normalized_endpoint_rmse": 0.10842429998631353,
+              "normalized_terminal_increment_rmse": 0.33943868601162525,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.5970104838813185,
+                "always_plus_accuracy": 0.9746835443037974,
+                "always_plus_correct_count": 154,
+                "direction_row_count": 165,
+                "fitted_action_blind_response_nrmse": 0.20595185046872705,
+                "informative_row_count": 165,
+                "maximum_normalized_value_regret": 0.06495324730669841,
+                "minimum_direction_cosine": -0.8796753076579843,
+                "positive_direction_count": 163,
+                "positive_direction_fraction": 0.9878787878787879,
+                "ranking_accuracy": 0.9746835443037974,
+                "ranking_correct_count": 154,
+                "ranking_non_tie_count": 158,
+                "response_nrmse": 0.130741231800434
+              },
+              "persistence_endpoint_p95_abs": [
+                0.003123565749999946,
+                0.003463589874999992,
+                127.21760000000086
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.435789532034558,
+              "terminal_increment_p95_abs": [
+                0.0005755061789951528,
+                0.00013590386732023553,
+                9.826224090818732
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.5755061789951528
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.435789532034558,
+            "training_family_count": 12
+          },
+          {
+            "eligible": false,
+            "failures": [
+              "TERMINAL_VELOCITY",
+              "ENDPOINT_P95_H1",
+              "TERMINAL_INCREMENT_P95"
+            ],
+            "feature_condition": 856.6914453385558,
+            "feature_rank": 36,
+            "fold_id": "hold_d05",
+            "held_family_ids": [
+              "d05_plus",
+              "d05_minus"
+            ],
+            "kind": "signed_pair",
+            "metrics": {
+              "all_predictions_finite": true,
+              "constant_velocity_endpoint_p95_abs": [
+                0.0014326831249999172,
+                0.000614138874999965,
+                137.37617500000215
+              ],
+              "cross_horizon_consistency_p95_abs": [
+                0.0001211878308257654,
+                0.00012044692195901874,
+                10.965263658734765
+              ],
+              "endpoint_p95_abs_by_horizon": {
+                "1": [
+                  0.0005217158794581341,
+                  0.000317334566794516,
+                  12.242228758219243
+                ],
+                "2": [
+                  0.00045382329719691466,
+                  0.0002871647005974201,
+                  8.125440421563143
+                ],
+                "4": [
+                  0.00039365544663504386,
+                  0.00022721531088424477,
+                  8.182907991501088
+                ],
+                "8": [
+                  0.00039336285801675467,
+                  0.00036907193586132724,
+                  9.002695624941225
+                ]
+              },
+              "maximum_candidate_current_excursion_from_source_a": 10.650000000000006,
+              "maximum_candidate_slew_a": 0.30000000000001137,
+              "maximum_support_distance": 5.912635708854067,
+              "normalized_endpoint_rmse": 0.10514279327308199,
+              "normalized_terminal_increment_rmse": 0.35004645865044626,
+              "pair_metrics": {
+                "action_blind_response_sse_improvement_fraction": 0.5485381765916947,
+                "always_plus_accuracy": 0.8703703703703703,
+                "always_plus_correct_count": 141,
+                "direction_row_count": 165,
+                "fitted_action_blind_response_nrmse": 0.4628147309890532,
+                "informative_row_count": 165,
+                "maximum_normalized_value_regret": 0.6321612793858106,
+                "minimum_direction_cosine": -0.8258325889207117,
+                "positive_direction_count": 152,
+                "positive_direction_fraction": 0.9212121212121213,
+                "ranking_accuracy": 0.7037037037037037,
+                "ranking_correct_count": 114,
+                "ranking_non_tie_count": 162,
+                "response_nrmse": 0.31096942411190287
+              },
+              "persistence_endpoint_p95_abs": [
+                0.003078149375000061,
+                0.003127678499999998,
+                131.800049999998
+              ],
+              "support_coverage_fraction": 1.0,
+              "support_threshold": 9.549285046665787,
+              "terminal_increment_p95_abs": [
+                0.0006053785410456007,
+                0.00017733993215687658,
+                9.307844612758146
+              ],
+              "terminal_rz_velocity_error_p95_m_per_s": 0.6053785410456007
+            },
+            "raw_active_feature_dimension": 44,
+            "support_threshold": 9.549285046665787,
+            "training_family_count": 12
+          }
+        ],
+        "summary": {
+          "mean_endpoint_nrmse": 0.16979843205530967,
+          "mean_pair_response_nrmse": 0.1609341280223791,
+          "minimum_support_coverage_fraction": 0.43452380952380953,
+          "worst_endpoint_nrmse": 0.40809255920668525,
+          "worst_pair_response_nrmse": 0.31096942411190287
+        }
+      }
+    ],
+    "eligible_candidate_count": 0,
+    "selected_candidate_id": null,
+    "selection_diagnostics": {
+      "tcn_maximum_componentwise_critical_metric_regression_fraction": 0.35861431833295043,
+      "tcn_relative_selection_gate_passed": false,
+      "tcn_worst_pair_response_improvement_fraction": -0.14202126248081237
+    }
+  },
+  "fit_weight_family_count": 14,
+  "input_trajectory_count": 16,
+  "input_trajectory_digest": "88e7b43aeb7a649744e0a786a1b2a0d251f93d2e7cabd8da189848118b32f727",
+  "new_tsc_calls": 0,
+  "oof_prediction_ledger_canonical_sha256": "d0216af46d0467eea2ebbcf13592a5c60c6b6c28c4a46160da4590b791dde96d",
+  "oof_prediction_row_count": 9408,
+  "passed": false,
+  "plant_advances": 0,
+  "reset_calls": 0,
+  "route": "ONE_MS_ID2Z19R1_NO_ELIGIBLE_DEVELOPMENT_MODEL_ONE_ATTRIBUTION_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-id2z19r1-model-comparison-result-v1",
+  "source_revision": "4317cd2fc74d40bbe852a8aa1bea6299d79ed2db",
+  "stage_config_sha256": "b72bffda1cc8befd67dc3945615b25cd76d1aded10d4ab9d34ae673c8a42d856",
+  "tcn_seed_fits": 24,
+  "zero_weight_replay_count": 2
+}

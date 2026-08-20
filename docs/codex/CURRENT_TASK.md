@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID-2Z19R1 authorized):** ID-2Z19 v1 was
+> **Unique active task (2026-08-20, post-ID-2Z19R1):** accepted server
+> validation passed `16/16` focused and `585/585` complete 1 ms tests.
+> ID-2Z19R1 then completed exactly 16 candidate folds, 8 action-blind folds
+> and 24 fixed TCN seed fits over 9,408 whole-history OOF rows with zero TSC,
+> calibration or blind-holdout reads. Independent no-refit audit passed, but
+> neither candidate was eligible: both failed terminal velocity and terminal
+> increment in `8/8` folds. Only one fold also failed support; the other seven
+> supported folds still failed. No model artifact exists.
+>
+> Execute only the prospectively frozen zero-fit attribution in
+> `RGEO_ZGEO_1MS_ID2Z19R1_ZERO_FIT_ATTRIBUTION_DESIGN.md`. It may localize
+> row/event/support failure but may not fit, tune, add a model, change a gate,
+> open c00--c03/v00--v03 or run TSC. After attribution, close this two-model
+> class and continue only through the separately required bounded
+> authority/recovery design or a new prospectively justified data/model
+> identity. Older active blocks below are historical.
+
+> **Historical active task (2026-08-20, ID-2Z19R1 authorized):** ID-2Z19 v1 was
 > stopped before fitting after a prospective review found that the complete
 > signed Card15 execution space is rank four, while v1 discarded its fourth
 > non-odd direction, and that v1 read recorded future active commands when

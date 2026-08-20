@@ -1,6 +1,18 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z19R1 route):** ID-2Z19 v1 has no model
+> **Current status (2026-08-20, ID-2Z19R1 final):** server validation passed
+> `16/16 + 585/585`. The accepted v2 run used source revision
+> `4317cd2fc74d40bbe852a8aa1bea6299d79ed2db`; its independent audit passed
+> with `9,408/9,408` OOF rows and zero calibration, holdout or TSC reads.
+> Both candidates failed terminal velocity and terminal-increment p95 in all
+> eight folds; only `baseline_full_f` also failed held support. The fixed TCN
+> regressed the worst paired criterion by `14.20%` and a critical component
+> by `35.86%`, so no artifact was emitted. Final route is
+> `ONE_MS_ID2Z19R1_NO_ELIGIBLE_DEVELOPMENT_MODEL_ONE_ATTRIBUTION_ONLY`.
+> One zero-fit attribution is active; model calibration and blind holdout
+> remain closed, while authority/recovery remains an independent open axis.
+
+> **Historical status (2026-08-20, ID-2Z19R1 route):** ID-2Z19 v1 has no model
 > result and is frozen as a pre-fit design stop. The complete signed ID-2Z18
 > issue set is numerical rank four; its fourth singular value is `0.4427275`,
 > while v1's positive-only rank-three projection loses up to `0.089212 A` L2
