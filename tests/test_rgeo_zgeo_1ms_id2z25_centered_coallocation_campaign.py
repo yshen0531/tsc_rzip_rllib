@@ -12,6 +12,7 @@ from unittest import mock
 
 from scripts import rgeo_zgeo_1ms_id2z25_centered_coallocation_campaign as m
 from scripts import rgeo_zgeo_1ms_id2z25_centered_coallocation_campaign_independent as mi
+from scripts import rgeo_zgeo_1ms_id2z25_reporting_hotfix as reporting
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -169,6 +170,16 @@ class ID2Z25Tests(unittest.TestCase):
         self.assertIn("independent_raw_audit.json", launcher)
         self.assertIn("primary_rc=$?", launcher)
         self.assertNotIn("--resume", launcher)
+
+    def test_reporting_hotfix_is_zero_plant_and_preserves_original(self) -> None:
+        source = inspect.getsource(reporting.execute)
+        self.assertIn("ORIGINAL_RESULT_SHA256", source)
+        self.assertIn('inventory_stage["diagnostic_artifacts"] = ["sprsina"]', source)
+        self.assertIn('"new_tsc_or_plant_advances": 0', source)
+        self.assertIn('"controller_action_semantics_changed": False', source)
+        independent = inspect.getsource(mi.audit)
+        self.assertIn('result_name: str = "result.json"', independent)
+        self.assertIn("result_reporting_hotfix.json", independent)
 
 
 if __name__ == "__main__":

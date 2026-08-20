@@ -168,10 +168,14 @@ def scientific_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) ->
             "passed": bool(all_signal and len(branches) == 12 and replay["passed"])}
 
 
-def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
+def audit(stage_path: Path, run_dir: Path, source_revision: str,
+          result_name: str = "result.json") -> dict[str, Any]:
     failures: list[str] = []
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
-    result = load_json(run_dir / "result.json")
+    if result_name not in ("result.json", "result_reporting_hotfix.json"):
+        raise ValueError("unrecognized primary result name")
+    result_path = run_dir / result_name
+    result = load_json(result_path)
     try:
         stage, _, cfg, _, tracked = primary.load(stage_path)
         expected = primary.build_streams(stage, cfg, tracked)
@@ -262,7 +266,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
     failures = list(dict.fromkeys(failures))
     return {"schema_version": SCHEMA, "source_revision": source_revision,
             "stage_config_sha256": primary.CONFIG_SHA256,
-            "primary_sha256": primary.io.sha256(run_dir / "result.json"),
+            "primary_sha256": primary.io.sha256(result_path),
             "audit_passed": not failures, "failures": failures,
             "primary_passed": result.get("passed"), "primary_route": result.get("route"),
             "recomputed_route": route, "recomputed_scientific_metrics": scientific,
@@ -283,8 +287,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--source-revision", required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--primary-result-name", default="result.json")
     args = parser.parse_args(argv)
-    value = audit(args.stage_config, args.run_dir, args.source_revision)
+    value = audit(args.stage_config, args.run_dir, args.source_revision,
+                  args.primary_result_name)
     write_new(inside(args.output, "audit output"), value)
     print(json.dumps(value, indent=2, sort_keys=True, allow_nan=False))
     return 0 if value["audit_passed"] else 2
