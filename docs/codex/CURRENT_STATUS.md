@@ -1,6 +1,17 @@
 # Current status
 
-> **Current status (2026-08-20, ID-2Z18 design frozen):** the bounded route
+> **Current status (2026-08-20, ID-2Z18 final):** all `16/16` development
+> rollouts, `1040/1040` advances and `5280` artifacts completed. Six paired
+> histories separated by `2.715--7.465 mm`, both zero-weight replays were
+> exact, and F/A/E increment geometry was rank three with condition `2.08609`.
+> A reporting-only preissue-versus-outgoing-`inputa` audit mismatch was
+> preserved, repaired without TSC, and the corrected independent audit
+> reproduced the PASS with zero failures. Calibration/holdout reads and model
+> fits were zero. After compact recovery the exact 62.19 GB raw subtree was
+> removed; free space is `118086983680` bytes. Exactly one two-candidate
+> development model comparison is now open; no controller or safety claim is.
+
+> **Historical status (2026-08-20, ID-2Z18 design frozen):** the bounded route
 > review now gives machine learning a prospective data identity rather than
 > another late open-loop layer. The config declares `14` unique development
 > histories, two zero-weight replays and eight future unexecuted cal/holdout

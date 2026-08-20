@@ -1,0 +1,219 @@
+{
+  "advance_attempts": 1040,
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw audit of finite ID2Z18 only.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "plant_advance_gotsc_calls": 1040,
+  "primary_sha256": "5fbba54efc3ae3a921d77fc32adb31a7af59775dc677b09bfbc209807e4d4d8c",
+  "recomputed_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "baseline_full_f"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "baseline_half_f"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d00_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d00_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d01_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d01_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d02_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d02_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d03_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d03_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d04_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d04_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d05_plus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "d05_minus"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "replay_baseline_half_f"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "replay_d00_plus"
+    }
+  ],
+  "recomputed_required_artifact_bytes": 62190927744,
+  "recomputed_required_artifact_files": 5280,
+  "recomputed_required_artifact_inventory_sha256": "05dcc1f085c5696698c9deeeb7e91bf915284af18b24b648fd9537db574b3652",
+  "recomputed_route": "ONE_MS_ID2Z18_FULL_HORIZON_DEVELOPMENT_DATA_PASS_MODEL_COMPARISON_ONLY",
+  "recomputed_scientific_metrics": {
+    "blind_holdout_rollouts_executed": 0,
+    "calibration_rollouts_executed": 0,
+    "fit_weight_one_unique_history_count": 14,
+    "increment_geometry": {
+      "columns_a_tsc": [
+        [
+          -0.2916666666666572,
+          -0.2916666666666714,
+          -0.2916666666666714,
+          -0.2916666666666572,
+          0.2916666666666714,
+          0.2916666666666714,
+          0.2916666666666643,
+          -0.2916666666666572,
+          -0.2999999999999998,
+          0.2999999999999998,
+          -0.29999999999999716,
+          -0.30000000000001137,
+          0.29999999999999716,
+          -0.29999999999999716
+        ],
+        [
+          -0.2916666666666572,
+          -0.2916666666666714,
+          -0.2916666666666714,
+          0.2916666666666714,
+          -0.2916666666666714,
+          -0.2916666666666714,
+          0.2916666666666643,
+          0.2916666666666714,
+          0.2999999999999998,
+          0.2999999999999998,
+          -0.29999999999999716,
+          -0.30000000000001137,
+          -0.29999999999999716,
+          0.29999999999999716
+        ],
+        [
+          0.1458333333333428,
+          -0.1458333333333286,
+          0.1458333333333286,
+          -0.1458333333333286,
+          0.1458333333333286,
+          0.1458333333333286,
+          -0.1458333333333357,
+          0.1458333333333428,
+          0.15000000000000036,
+          0.15000000000000036,
+          0.15000000000000568,
+          -0.09999999999999432,
+          0.15000000000000568,
+          0.15000000000000568
+        ]
+      ],
+      "condition": 2.086086163909763,
+      "passed": true,
+      "rank": 3,
+      "token_order": [
+        "F",
+        "A",
+        "E"
+      ]
+    },
+    "paired_family_metrics": [
+      {
+        "complete": true,
+        "maximum_rz_separation_m": 0.007070342024532533,
+        "pair_id": "d00",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "maximum_rz_separation_m": 0.0072359241351300976,
+        "pair_id": "d01",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "maximum_rz_separation_m": 0.007464488133055949,
+        "pair_id": "d02",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "maximum_rz_separation_m": 0.006948733253658918,
+        "pair_id": "d03",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "maximum_rz_separation_m": 0.006684261726139973,
+        "pair_id": "d04",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "maximum_rz_separation_m": 0.002714653644211846,
+        "pair_id": "d05",
+        "passed": true
+      }
+    ],
+    "replay_metrics": [
+      {
+        "failures": [],
+        "passed": true,
+        "replay_family_id": "replay_baseline_half_f",
+        "source_family_id": "baseline_half_f"
+      },
+      {
+        "failures": [],
+        "passed": true,
+        "replay_family_id": "replay_d00_plus",
+        "source_family_id": "d00_plus"
+      }
+    ],
+    "signal_and_support_passed": true
+  },
+  "reset_calls": 16,
+  "schema_version": "rgeo-zgeo-1ms-id2z18-independent-raw-v1",
+  "source_revision": "dc577537f83d4a45ad34e6413fd77f963271420c",
+  "stage_config_sha256": "93d17647efda97cfc97813f30a85b8639ccac4cae9575be4206597999137a0a6",
+  "verified_plant_advances": 1040
+}

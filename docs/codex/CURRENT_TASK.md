@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID-2Z18 frozen):** the post-ID-2Z17
+> **Unique active task (2026-08-20, post-ID-2Z18):** ID-2Z18 completed all
+> `16/16` authentic full-horizon development rollouts and `1040/1040`
+> verified advances. Both zero-weight replays, all six paired signal gates,
+> rank-three increment geometry, and the corrected independent raw audit
+> passed. No model was fit and calibration/holdout remained unread. The
+> audited raw subtree was removed only after 20/20 compact/log hash recovery.
+>
+> Freeze, implement and server-run exactly one two-candidate development
+> comparison: (1) a stable regularized low-order state-space/LPV backbone and
+> (2) the same backbone plus one small persistent causal GRU or TCN residual.
+> Use exact current RZI/current/action history, whole causal-history splits,
+> direct 1/2/4/8 ms and control-value/margin targets, and no wire, future
+> current, family label, replay weight, calibration or blind-holdout data.
+> Development PASS may authorize only a separately frozen fresh-calibration
+> stage. No controller, capture, Recourse-L1, waypoint/path or relaxed gate
+> is authorized. Older active blocks are historical.
+
+> **Historical active task (2026-08-20, ID-2Z18 frozen):** the post-ID-2Z17
 > review has closed the hand-authored late macro ladder and frozen one fresh,
 > fit-eligible full-horizon development campaign. ID-2Z18 replays exact full-F
 > through state 16, executes 14 unique balanced F/p06+/p06-/p08+/p08-

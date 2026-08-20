@@ -1,0 +1,20 @@
+test_all_roles_are_static_but_only_development_executes (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_all_roles_are_static_but_only_development_executes) ... ok
+test_contract_mutations_fail_closed (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_contract_mutations_fail_closed) ... ok
+test_fail_fast_after_first_rollout_failure (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_fail_fast_after_first_rollout_failure) ... ok
+test_identity_budget_hash_and_roles (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_identity_budget_hash_and_roles) ... ok
+test_increment_geometry_is_rank_three (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_increment_geometry_is_rank_three) ... ok
+test_independent_and_launcher_contract (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_independent_and_launcher_contract) ... ok
+test_offline_is_24_of_24_zero_plant (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_offline_is_24_of_24_zero_plant) ... ok
+test_pair_signal_gate (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_pair_signal_gate) ... ok
+test_route_precedence (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_route_precedence) ... ok
+test_stream_clocks_prefix_tail_and_slew (tests.test_rgeo_zgeo_1ms_id2z18_full_horizon_token_development.ID2Z18Tests.test_stream_clocks_prefix_tail_and_slew) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 16.094s
+
+OK
+..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 558 tests in 340.913s
+
+OK

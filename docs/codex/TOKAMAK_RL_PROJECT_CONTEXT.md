@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID-2Z18 frozen):** after the clean
+> **Current NR route notice (2026-08-20, post-ID-2Z18):** the prospective
+> full-horizon development campaign completed cleanly: `16/16` authentic
+> histories, exact zero-weight replays, all paired signal gates and corrected
+> independent raw audit passed, while model/calibration/holdout counts stayed
+> zero. The active route is one frozen comparison of exactly two bounded
+> history-conditioned models using whole-family development splits and
+> 1/2/4/8 ms control-relevant targets. Only a development PASS may open a
+> separately frozen fresh-calibration identity. Authority, capture, recovery,
+> controller, waypoint/path and R_mid crossing remain unqualified. Older
+> notices are historical.
+
+> **Historical NR route notice (2026-08-20, ID-2Z18 frozen):** after the clean
 > late-beam FAIL, the route now freezes one fresh full-horizon development
 > campaign instead of another hand macro. Exact full-F transport and signed
 > p06/p08 issues are interleaved across 14 unique causal histories, with two

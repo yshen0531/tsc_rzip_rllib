@@ -1,5 +1,34 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z18 full-horizon token development
+
+- Date: 2026-08-20 Asia/Shanghai.
+- Physical / reporting-audit revisions: `dc577537` / `08e15ac0`.
+- Server output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1`.
+- Validation: focused `10/10`, all one-ms `558/558`, shell/compile, offline
+  `24/24` static streams and storage gates PASS.
+- Execution: `16/16` complete rollouts, `1040/1040` attempts/gotsc/verified
+  advances, 14 fit-weight histories and two exact zero-weight replays.
+- Raw: `5280` required artifacts / `62,190,927,744` bytes / digest
+  `05dcc1f085c5696698c9deeeb7e91bf915284af18b24b648fd9537db574b3652`.
+- Scientific gates: all six pair separations `2.715--7.465 mm`; increment
+  rank `3`, condition `2.086086164`; calibration/holdout reads `0`, models `0`.
+- Final route:
+  `ONE_MS_ID2Z18_FULL_HORIZON_DEVELOPMENT_DATA_PASS_MODEL_COMPARISON_ONLY`.
+- Primary / corrected independent SHA-256:
+  `5fbba54efc3ae3a921d77fc32adb31a7af59775dc677b09bfbc209807e4d4d8c /`
+  `6d7603de3e5d805082a61f1dde2a2148117105b130578f2dc98e9187a0d077b5`.
+- The preserved initial audit SHA
+  `60e4f8a93f5d428f799a65949620881fbbcdf2292806dccbfd991c98848a0bb1`
+  failed only because it compared post-write outgoing raw `inputa` to a
+  preissue compact hash. The reporting-only repair reran no TSC.
+- Cleanup: after independent audit and 20/20 compact/log hash recovery,
+  removed only this run's `rollouts/` subtree (`63,153,736,435` filesystem
+  bytes); free space `118,086,983,680` bytes.
+- Next: exactly one separately frozen two-candidate development model
+  comparison; calibration/holdout and controller remain closed.
+
 ## R_geo/Z_geo 1 ms ID-2Z17 remaining-basis beam
 
 - Date: 2026-08-20 Asia/Shanghai.
