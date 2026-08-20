@@ -1,0 +1,89 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z28-event-value-model-v1",
+  "identity": "rgeo-zgeo-1ms-id2z28-event-value-model-v1",
+  "stage": "ID-2Z28",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "prediction_horizons": [1, 2, 3, 4, 5, 6, 7, 8],
+  "training_phase_issue": 32,
+  "validation_phase_issue": 40,
+  "axis_ids": ["q_r", "q_z"],
+  "signs": ["plus", "minus"],
+  "response_scales": {"r_geo_m": 0.0001, "z_geo_m": 0.0001, "ip_a": 25.0},
+  "model": {
+    "class": "finite_causal_signed_odd_fir",
+    "candidate_count": 1,
+    "hyperparameter_search": false,
+    "future_actual_current": "forbidden",
+    "future_rzi": "forbidden",
+    "family_or_label_feature": "forbidden",
+    "free_rollout_world_model_claim": false
+  },
+  "validation_gates": {
+    "maximum_scaled_response_rmse": 0.12,
+    "maximum_scaled_absolute_error_p95": 0.20,
+    "minimum_rz_direction_cosine": 0.98,
+    "maximum_terminal_response_velocity_error_m_per_s": 0.05,
+    "maximum_h8_action_ranking_regret_m": 0.00002,
+    "direction_grid_count": 64
+  },
+  "sequence_search": {
+    "token_ids": ["H", "R+", "R-", "Z+", "Z-"],
+    "sequence_length": 8,
+    "candidate_count": 390625,
+    "score_horizons": [4, 5, 6, 7, 8],
+    "distance_scale_m": 0.025,
+    "speed_scale_m_per_s": 0.1,
+    "ip_fraction_scale": 0.05,
+    "minimum_relative_worst_score_improvement": 0.15,
+    "exact_return_bridge_issues": 8,
+    "maximum_issued_delta_a": 0.3,
+    "minimum_absolute_current_headroom_a": 0.0,
+    "opposite_sequence_required": true
+  },
+  "data_contract": {
+    "prospective_training_families": [
+      "baseline_transition_center",
+      "issue32__q_r__plus_then_return",
+      "issue32__q_r__minus_then_return",
+      "issue32__q_z__plus_then_return",
+      "issue32__q_z__minus_then_return"
+    ],
+    "internal_validation_families": [
+      "issue40__q_r__plus_then_return",
+      "issue40__q_r__minus_then_return",
+      "issue40__q_z__plus_then_return",
+      "issue40__q_z__minus_then_return"
+    ],
+    "zero_fit_families": [
+      "diagnostic_baseline_full_f",
+      "replay_issue32__q_z__plus_then_return"
+    ],
+    "id2z25_fit_weight": 0,
+    "calibration_or_holdout_reads": 0,
+    "models_fit_or_updated": 1
+  },
+  "evidence": {
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z28_EVENT_VALUE_MODEL_DESIGN.md", "sha256": "72de2632a3553e44222174d37fed6e3aa1a6b845703102c6982fcb83a352823b"},
+    "id2z27_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/result.json", "sha256": "c3141d347b7f510820dcd089ede8993a2037156d463d22c2613fbda00879fde0", "required_route": "ONE_MS_ID2Z27_DYNAMIC_D0_DATA_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY"},
+    "id2z27_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/independent_raw_audit_reporting_hotfix.json", "sha256": "b1ed6f5146c783b8405b820d8af8abd2a7eb84fc6e5933944556edc09e699e5d"},
+    "id2z26r1_preflight": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z26r1_20260821_22d203d0_v1/result.json", "sha256": "44ecac05709356db147ee1867df7bf9651a2f1e7f1c2532d0e33f3aedcd946cd"},
+    "baseline": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/baseline_transition_center.json", "sha256": "428512809ae20f42bfa3341bde8006b0d25c00f1d736497c672876592dbfe534"},
+    "issue32_qr_plus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue32__q_r__plus_then_return.json", "sha256": "ec46033774fd5b1900d82eb674e9e85b87e842830a1e2766d6977041a291b3cb"},
+    "issue32_qr_minus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue32__q_r__minus_then_return.json", "sha256": "8b2ae5626e36816b76be7e864f4d7e44ab8e033933449e0d6c510867e117a5f1"},
+    "issue32_qz_plus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue32__q_z__plus_then_return.json", "sha256": "295615777a2457d131bcf4d9c2d0dc634a76a554c701a6d92acdc188cc667528"},
+    "issue32_qz_minus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue32__q_z__minus_then_return.json", "sha256": "bc2d30fc9e963b80b7562ff433534bdcebc1fc83ab423d98a7262d142d413134"},
+    "issue40_qr_plus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue40__q_r__plus_then_return.json", "sha256": "6f75ef57fab7ad167bd85eef0776c8eb14a9eaa75c86533d6b2f4958efab931d"},
+    "issue40_qr_minus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue40__q_r__minus_then_return.json", "sha256": "5bffbe839ec8c50772f240a3692e775d6b0c6be8572ba1d54056ea8b2e9f2c67"},
+    "issue40_qz_plus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue40__q_z__plus_then_return.json", "sha256": "107fc1bb6962581168c7c7737c42c9e036e82f02d6c2b575bd715cec595efab4"},
+    "issue40_qz_minus": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z27_20260821_5f63e169_v1/issue40__q_z__minus_then_return.json", "sha256": "57e3bf9b49b62a558eb1bd5cb8ea63c345b8347afbfdf4dc2179e62b73123149"}
+  },
+  "routes": {
+    "input_fail": "ONE_MS_ID2Z28_INPUT_OR_IDENTITY_FAIL_NO_MODEL",
+    "model_fail": "ONE_MS_ID2Z28_EVENT_FIR_MODEL_FAIL_STOP",
+    "action_fail": "ONE_MS_ID2Z28_EXACT_ACTION_PREFLIGHT_FAIL_NO_TSC",
+    "utility_fail": "ONE_MS_ID2Z28_MODEL_PASS_Q_CELL_CONTROL_UTILITY_FAIL_REDESIGN_ALLOCATION",
+    "pass": "ONE_MS_ID2Z28_MODEL_AND_UTILITY_PASS_AUTHORITY_SENTINEL_DESIGN_ONLY"
+  },
+  "claim_boundary": "Zero-new-TSC bounded 1--8 ms development model and exact action-allocation audit only; not calibrated uncertainty, Authority-L0, capture, recovery, Recourse, controller, MPC, waypoint/path, R_mid crossing, real-plant or deployment evidence."
+}
