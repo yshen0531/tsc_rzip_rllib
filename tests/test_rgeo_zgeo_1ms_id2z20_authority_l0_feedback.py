@@ -73,6 +73,7 @@ class ID2Z20Tests(unittest.TestCase):
         self.assertIn("initial_reporting_failure_result.json", source)
         self.assertIn("recovered_completed_rollouts", source)
         self.assertNotIn("runner.reset", source)
+        self.assertIn("--dry-run", inspect.getsource(recovery.main))
 
     def test_offline_is_zero_plant_and_all_arms_admissible(self) -> None:
         value = m.offline(m.CONFIG, "test-revision")

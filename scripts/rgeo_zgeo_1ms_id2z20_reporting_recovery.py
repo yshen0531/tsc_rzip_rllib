@@ -58,7 +58,7 @@ def frozen_actions(stage: dict[str, Any], cfg: Any,
 
 
 def recover(stage_path: Path, run_dir: Path, source_revision: str,
-            recovery_revision: str) -> dict[str, Any]:
+            recovery_revision: str, *, write: bool = True) -> dict[str, Any]:
     stage_path, run_dir = inside(stage_path, "config"), inside(run_dir, "run")
     failures: list[str] = []
     initial = load_json(run_dir / "result.json")
@@ -175,9 +175,11 @@ def recover(stage_path: Path, run_dir: Path, source_revision: str,
              "required_artifact_inventory_sha256": digest,
              "resume_authorized_only_if_passed_and_dev_hold_not_repeated": True,
              "claim_boundary": "Reporting-only raw recovery; no new plant or scientific verdict."}
-    if audit["passed"]:
-        primary.io.write_new(run_dir / "dev_hold.json", row)
-    primary.io.write_new(run_dir / "reporting_recovery_audit.json", audit)
+    audit["dry_run_no_files_written"] = not write
+    if write:
+        if audit["passed"]:
+            primary.io.write_new(run_dir / "dev_hold.json", row)
+        primary.io.write_new(run_dir / "reporting_recovery_audit.json", audit)
     return audit
 
 
@@ -187,9 +189,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--source-revision", required=True)
     parser.add_argument("--recovery-revision", required=True)
+    parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
     value = recover(args.stage_config, args.run_dir, args.source_revision,
-                    args.recovery_revision)
+                    args.recovery_revision, write=not args.dry_run)
     print(json.dumps(value, indent=2, sort_keys=True, allow_nan=False))
     return 0 if value["passed"] else 2
 
