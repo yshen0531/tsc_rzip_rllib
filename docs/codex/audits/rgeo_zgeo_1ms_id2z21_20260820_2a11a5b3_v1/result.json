@@ -1,0 +1,778 @@
+{
+  "action_allocation": {
+    "allocation_semantics": "choose_replace_or_time_share_exact_increment_inside_slew_polytope",
+    "executed_nonzero_token_condition": 24.289943295208953,
+    "executed_nonzero_token_names": [
+      "F",
+      "A",
+      "a",
+      "E",
+      "e"
+    ],
+    "executed_nonzero_token_rank": 4,
+    "executed_nonzero_token_singular_values": [
+      1.5519796571427549,
+      1.1051959436299612,
+      0.7501753672460909,
+      0.06389391849460899,
+      8.388499985462115e-15
+    ],
+    "maximum_absolute_token_component_a": {
+      "A": 0.30000000000001137,
+      "E": 0.15000000000000568,
+      "F": 0.30000000000001137,
+      "H": 0.0,
+      "a": 0.30000000000001137,
+      "e": 0.15000000000000568
+    },
+    "token_vectors_a": {
+      "A": [
+        -0.2916666666666714,
+        -0.2916666666666714,
+        -0.2916666666666714,
+        0.2916666666666714,
+        -0.2916666666666572,
+        -0.2916666666666572,
+        0.2916666666666714,
+        0.2916666666666714,
+        0.2999999999999998,
+        0.3000000000000007,
+        -0.30000000000001137,
+        -0.30000000000001137,
+        -0.29999999999999716,
+        0.29999999999999716
+      ],
+      "E": [
+        0.1458333333333428,
+        -0.1458333333333286,
+        0.1458333333333286,
+        -0.1458333333333428,
+        0.1458333333333286,
+        0.1458333333333286,
+        -0.1458333333333357,
+        0.1458333333333286,
+        0.14999999999999947,
+        0.14999999999999947,
+        0.15000000000000568,
+        -0.09999999999999432,
+        0.15000000000000568,
+        0.14999999999999147
+      ],
+      "F": [
+        -0.2916666666666572,
+        -0.2916666666666714,
+        -0.2916666666666714,
+        -0.2916666666666572,
+        0.2916666666666714,
+        0.2916666666666714,
+        0.2916666666666643,
+        -0.2916666666666572,
+        -0.2999999999999998,
+        0.2999999999999998,
+        -0.29999999999999716,
+        -0.30000000000001137,
+        0.29999999999999716,
+        -0.29999999999999716
+      ],
+      "H": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "a": [
+        0.2916666666666714,
+        0.2916666666666572,
+        0.2916666666666572,
+        -0.2916666666666714,
+        0.2916666666666714,
+        0.2916666666666714,
+        -0.2916666666666643,
+        -0.2916666666666714,
+        -0.3000000000000007,
+        -0.2999999999999998,
+        0.29999999999999716,
+        0.19999999999998863,
+        0.30000000000001137,
+        -0.30000000000001137
+      ],
+      "e": [
+        -0.1458333333333428,
+        0.1458333333333428,
+        -0.1458333333333286,
+        0.1458333333333428,
+        -0.1458333333333286,
+        -0.1458333333333286,
+        0.1458333333333357,
+        -0.1458333333333286,
+        -0.14999999999999947,
+        -0.14999999999999947,
+        -0.15000000000000568,
+        0.09999999999999432,
+        -0.15000000000000568,
+        -0.14999999999999147
+      ]
+    },
+    "unconditional_f_plus_residual": {
+      "A": {
+        "maximum_absolute_component_a": 0.6000000000000227,
+        "violates_slew": true
+      },
+      "E": {
+        "maximum_absolute_component_a": 0.45000000000000284,
+        "violates_slew": true
+      },
+      "a": {
+        "maximum_absolute_component_a": 0.6000000000000085,
+        "violates_slew": true
+      },
+      "e": {
+        "maximum_absolute_component_a": 0.45000000000000284,
+        "violates_slew": true
+      }
+    },
+    "unconditional_nominal_plus_residual_rejected": true
+  },
+  "audit_completed": true,
+  "best_two_vector_geometry": {
+    "acute_line_angle_deg": 12.384450333044102,
+    "condition": 9.353883517437827,
+    "horizons_ms": [
+      8,
+      8
+    ],
+    "pair_ids": [
+      "d01",
+      "d03"
+    ],
+    "vectors_m": [
+      [
+        0.0002751014999999857,
+        -0.0002994899999999856
+      ],
+      [
+        0.0002808100000000202,
+        -0.00019696150000000912
+      ]
+    ]
+  },
+  "calibration_and_blind_holdout_records_read": 0,
+  "claim_boundary": "Read-only zero-TSC zero-fit moving-nominal/action-allocation/terminal-contract readiness audit; not TSC data, model, authority, capture, recourse, controller, waypoint, path, R_mid or deployment evidence.",
+  "development_trajectory_count": 14,
+  "full_f_metrics": {
+    "32": {
+      "distance_m": 0.019292294758661708,
+      "ip_fraction": 0.023100860556181605,
+      "speed_m_per_s": 0.3855551438185933
+    },
+    "40": {
+      "distance_m": 0.021421356817610128,
+      "ip_fraction": 0.027673271348819174,
+      "speed_m_per_s": 0.33407515127774956
+    },
+    "48": {
+      "distance_m": 0.023207303157249573,
+      "ip_fraction": 0.032210075622652434,
+      "speed_m_per_s": 0.21801810766601612
+    },
+    "60": {
+      "distance_m": 0.026727786408394186,
+      "ip_fraction": 0.024414200929356283,
+      "speed_m_per_s": 0.4164724440094703
+    },
+    "65": {
+      "distance_m": 0.02813161495794593,
+      "ip_fraction": 0.020735360337442898,
+      "speed_m_per_s": 0.31582419569786724
+    },
+    "terminal": {
+      "maximum_distance_m": 0.028254918761722213,
+      "maximum_ip_fraction": 0.024414200929356283,
+      "maximum_speed_m_per_s": 0.4164724440094703
+    }
+  },
+  "id2z20_dev_hold_metrics": {
+    "dev_hold_sha256": "3605eb7c4d6e85e4ef6ac8d259b25309aa11857e667fc15be7e771bcc3c1fc18",
+    "post_root_maximum_target_change_a": 0.0,
+    "primary_result_sha256": "0d5ac5e608103b080cd0adde95eac7771b8e08f37c896d3bc0f76f4a2e587b32",
+    "state_48": {
+      "distance_m": 0.026806784899231075,
+      "ip_fraction": 0.014159919851963533,
+      "speed_m_per_s": 0.5874004416990984
+    },
+    "terminal": {
+      "maximum_distance_m": 0.035556520192919765,
+      "maximum_ip_fraction": 0.007280660512046758,
+      "maximum_speed_m_per_s": 0.5674841214776205
+    }
+  },
+  "lineage": {
+    "comparison_state_index": 48,
+    "held_is_not_moving_nominal": true,
+    "held_minus_full_f_distance_m": 0.003599481741981502,
+    "held_minus_full_f_speed_m_per_s": 0.3693823340330823,
+    "provenance": "ID2Z20 dev_hold server compact reparsed read-only; ID2Z18 full-F tracked compact reparsed"
+  },
+  "models_fit_or_updated": 0,
+  "moving_terminal_required_fields": [
+    "r_geo_m",
+    "z_geo_m",
+    "causal_vr_m_per_s",
+    "causal_vz_m_per_s",
+    "ip_a",
+    "active_target_current_a",
+    "pending_effect",
+    "action_age",
+    "causal_history_summary",
+    "remaining_exact_action_reserve"
+  ],
+  "pass_authorizes": "action_basis_or_nominal_redesign_only",
+  "passed": false,
+  "predecessor_stationary_capture_count": 0,
+  "readiness_reasons": [
+    "EXECUTED_TOKEN_CONDITION"
+  ],
+  "route": "ONE_MS_ID2Z21_SUSTAINED_ALLOCATION_NOT_READY_REDESIGN_ACTION_BASIS_OR_NOMINAL",
+  "schema_version": "rgeo-zgeo-1ms-id2z21-moving-nominal-temporal-contract-result-v1",
+  "source_revision": "2a11a5b3ecebcb98276fd031c232f91b33657b63",
+  "stage": "ID-2Z21",
+  "sustained_segments": [
+    {
+      "first_divergence_issue": 18,
+      "horizons": [
+        {
+          "endpoint_state_index": 20,
+          "first_divergence_issue": 18,
+          "horizon_ms": 2,
+          "pair_id": "d00",
+          "peak_to_three_state_median_ratio": 1.4156922106741143,
+          "rz_separation_m": 5.8799820741590844e-05,
+          "rz_vector_m": [
+            4.945049999993678e-05,
+            -3.1812999999991654e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.03719865769418007,
+          "terminal_velocity_vector_m_per_s": [
+            0.02568199999997134,
+            -0.026910500000004722
+          ],
+          "three_state_median_rz_separation_m": 4.153432525675335e-05
+        },
+        {
+          "endpoint_state_index": 22,
+          "first_divergence_issue": 18,
+          "horizon_ms": 4,
+          "pair_id": "d00",
+          "peak_to_three_state_median_ratio": 1.494599197314752,
+          "rz_separation_m": 0.00014963792755340278,
+          "rz_vector_m": [
+            0.00010458649999989245,
+            -0.0001070194999999996
+          ],
+          "terminal_velocity_separation_m_per_s": 0.05226392386721924,
+          "terminal_velocity_vector_m_per_s": [
+            0.025506999999924673,
+            -0.045617000000025554
+          ],
+          "three_state_median_rz_separation_m": 0.00010011910070756587
+        },
+        {
+          "endpoint_state_index": 26,
+          "first_divergence_issue": 18,
+          "horizon_ms": 8,
+          "pair_id": "d00",
+          "peak_to_three_state_median_ratio": 1.1887083548722128,
+          "rz_separation_m": 0.00042035236023989843,
+          "rz_vector_m": [
+            0.00029134299999999946,
+            -0.00030301050000000607
+          ],
+          "terminal_velocity_separation_m_per_s": 0.06866442933756303,
+          "terminal_velocity_vector_m_per_s": [
+            0.03577249999997534,
+            -0.05861000000004224
+          ],
+          "three_state_median_rz_separation_m": 0.0003536211035423291
+        }
+      ],
+      "pair_id": "d00",
+      "useful": true,
+      "useful_horizon_ms": 4
+    },
+    {
+      "first_divergence_issue": 17,
+      "horizons": [
+        {
+          "endpoint_state_index": 19,
+          "first_divergence_issue": 17,
+          "horizon_ms": 2,
+          "pair_id": "d01",
+          "peak_to_three_state_median_ratio": 1.3859234452071585,
+          "rz_separation_m": 5.890114724054835e-05,
+          "rz_vector_m": [
+            5.246400000002982e-05,
+            -2.677449999999304e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.03469947335695667,
+          "terminal_velocity_vector_m_per_s": [
+            0.026798499999980407,
+            -0.022043000000027124
+          ],
+          "three_state_median_rz_separation_m": 4.249956766677268e-05
+        },
+        {
+          "endpoint_state_index": 21,
+          "first_divergence_issue": 17,
+          "horizon_ms": 4,
+          "pair_id": "d01",
+          "peak_to_three_state_median_ratio": 1.4176765434859817,
+          "rz_separation_m": 0.00012949390032458707,
+          "rz_vector_m": [
+            9.37930000001197e-05,
+            -8.928350000000917e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.03867249069116244,
+          "terminal_velocity_vector_m_per_s": [
+            0.024083500000160463,
+            -0.030258000000005225
+          ],
+          "three_state_median_rz_separation_m": 9.134234527586196e-05
+        },
+        {
+          "endpoint_state_index": 25,
+          "first_divergence_issue": 17,
+          "horizon_ms": 8,
+          "pair_id": "d01",
+          "peak_to_three_state_median_ratio": 1.24303483918671,
+          "rz_separation_m": 0.00040666336865057505,
+          "rz_vector_m": [
+            0.0002751014999999857,
+            -0.0002994899999999856
+          ],
+          "terminal_velocity_separation_m_per_s": 0.08067721092102702,
+          "terminal_velocity_vector_m_per_s": [
+            0.04491100000003634,
+            -0.06702099999994493
+          ],
+          "three_state_median_rz_separation_m": 0.00032715363707476274
+        }
+      ],
+      "pair_id": "d01",
+      "useful": true,
+      "useful_horizon_ms": 8
+    },
+    {
+      "first_divergence_issue": 16,
+      "horizons": [
+        {
+          "endpoint_state_index": 18,
+          "first_divergence_issue": 16,
+          "horizon_ms": 2,
+          "pair_id": "d02",
+          "peak_to_three_state_median_ratio": 1.4320123081977072,
+          "rz_separation_m": 6.369411812908269e-05,
+          "rz_vector_m": [
+            5.675799999993458e-05,
+            -2.8904499999982125e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.0398849360347748,
+          "terminal_velocity_vector_m_per_s": [
+            0.032019499999980106,
+            -0.023781499999986355
+          ],
+          "three_state_median_rz_separation_m": 4.447875047194701e-05
+        },
+        {
+          "endpoint_state_index": 20,
+          "first_divergence_issue": 16,
+          "horizon_ms": 4,
+          "pair_id": "d02",
+          "peak_to_three_state_median_ratio": 1.340381438638304,
+          "rz_separation_m": 0.00014103739589649026,
+          "rz_vector_m": [
+            0.00010378900000007629,
+            -9.549549999998685e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.039126719185927,
+          "terminal_velocity_vector_m_per_s": [
+            0.01781050000015938,
+            -0.034837999999981495
+          ],
+          "three_state_median_rz_separation_m": 0.00010522183598705337
+        },
+        {
+          "endpoint_state_index": 24,
+          "first_divergence_issue": 16,
+          "horizon_ms": 8,
+          "pair_id": "d02",
+          "peak_to_three_state_median_ratio": 1.2090772716170077,
+          "rz_separation_m": 0.0004204464787951321,
+          "rz_vector_m": [
+            0.0002977269999999699,
+            -0.0002968734999999889
+          ],
+          "terminal_velocity_separation_m_per_s": 0.07296426381797695,
+          "terminal_velocity_vector_m_per_s": [
+            0.04756849999998369,
+            -0.05532650000000805
+          ],
+          "three_state_median_rz_separation_m": 0.00034774161144624877
+        }
+      ],
+      "pair_id": "d02",
+      "useful": true,
+      "useful_horizon_ms": 8
+    },
+    {
+      "first_divergence_issue": 17,
+      "horizons": [
+        {
+          "endpoint_state_index": 19,
+          "first_divergence_issue": 17,
+          "horizon_ms": 2,
+          "pair_id": "d03",
+          "peak_to_three_state_median_ratio": 1.833592178324171,
+          "rz_separation_m": 1.229982479553287e-05,
+          "rz_vector_m": [
+            9.129000000052123e-06,
+            -8.242999999991119e-06
+          ],
+          "terminal_velocity_separation_m_per_s": 0.011614616933026338,
+          "terminal_velocity_vector_m_per_s": [
+            0.009170500000044157,
+            -0.007127500000009279
+          ],
+          "three_state_median_rz_separation_m": 6.708048245916064e-06
+        },
+        {
+          "endpoint_state_index": 21,
+          "first_divergence_issue": 17,
+          "horizon_ms": 4,
+          "pair_id": "d03",
+          "peak_to_three_state_median_ratio": 1.909682806751718,
+          "rz_separation_m": 9.338622338574912e-05,
+          "rz_vector_m": [
+            8.242650000001017e-05,
+            -4.389600000001548e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.0445018241901813,
+          "terminal_velocity_vector_m_per_s": [
+            0.03969000000003664,
+            -0.02012750000002228
+          ],
+          "three_state_median_rz_separation_m": 4.890143172236795e-05
+        },
+        {
+          "endpoint_state_index": 25,
+          "first_divergence_issue": 17,
+          "horizon_ms": 8,
+          "pair_id": "d03",
+          "peak_to_three_state_median_ratio": 1.3622546847926937,
+          "rz_separation_m": 0.00034299867140014545,
+          "rz_vector_m": [
+            0.0002808100000000202,
+            -0.00019696150000000912
+          ],
+          "terminal_velocity_separation_m_per_s": 0.0913520124040498,
+          "terminal_velocity_vector_m_per_s": [
+            0.072210000000128,
+            -0.055954500000010565
+          ],
+          "three_state_median_rz_separation_m": 0.000251787477943115
+        }
+      ],
+      "pair_id": "d03",
+      "useful": true,
+      "useful_horizon_ms": 8
+    },
+    {
+      "first_divergence_issue": 18,
+      "horizons": [
+        {
+          "endpoint_state_index": 20,
+          "first_divergence_issue": 18,
+          "horizon_ms": 2,
+          "pair_id": "d04",
+          "peak_to_three_state_median_ratio": 1.4156922106741143,
+          "rz_separation_m": 5.8799820741590844e-05,
+          "rz_vector_m": [
+            4.945049999993678e-05,
+            -3.1812999999991654e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.03719865769418007,
+          "terminal_velocity_vector_m_per_s": [
+            0.02568199999997134,
+            -0.026910500000004722
+          ],
+          "three_state_median_rz_separation_m": 4.153432525675335e-05
+        },
+        {
+          "endpoint_state_index": 22,
+          "first_divergence_issue": 18,
+          "horizon_ms": 4,
+          "pair_id": "d04",
+          "peak_to_three_state_median_ratio": 1.494599197314752,
+          "rz_separation_m": 0.00014963792755340278,
+          "rz_vector_m": [
+            0.00010458649999989245,
+            -0.0001070194999999996
+          ],
+          "terminal_velocity_separation_m_per_s": 0.05226392386721924,
+          "terminal_velocity_vector_m_per_s": [
+            0.025506999999924673,
+            -0.045617000000025554
+          ],
+          "three_state_median_rz_separation_m": 0.00010011910070756587
+        },
+        {
+          "endpoint_state_index": 26,
+          "first_divergence_issue": 18,
+          "horizon_ms": 8,
+          "pair_id": "d04",
+          "peak_to_three_state_median_ratio": 1.1351435175721665,
+          "rz_separation_m": 0.00037614647027987467,
+          "rz_vector_m": [
+            0.00025624800000001446,
+            -0.00027536000000000227
+          ],
+          "terminal_velocity_separation_m_per_s": 0.049646966888717246,
+          "terminal_velocity_vector_m_per_s": [
+            0.016202999999936907,
+            -0.04692850000001525
+          ],
+          "three_state_median_rz_separation_m": 0.00033136468160816613
+        }
+      ],
+      "pair_id": "d04",
+      "useful": true,
+      "useful_horizon_ms": 4
+    },
+    {
+      "first_divergence_issue": 18,
+      "horizons": [
+        {
+          "endpoint_state_index": 20,
+          "first_divergence_issue": 18,
+          "horizon_ms": 2,
+          "pair_id": "d05",
+          "peak_to_three_state_median_ratio": 1.4156922106741143,
+          "rz_separation_m": 5.8799820741590844e-05,
+          "rz_vector_m": [
+            4.945049999993678e-05,
+            -3.1812999999991654e-05
+          ],
+          "terminal_velocity_separation_m_per_s": 0.03719865769418007,
+          "terminal_velocity_vector_m_per_s": [
+            0.02568199999997134,
+            -0.026910500000004722
+          ],
+          "three_state_median_rz_separation_m": 4.153432525675335e-05
+        },
+        {
+          "endpoint_state_index": 22,
+          "first_divergence_issue": 18,
+          "horizon_ms": 4,
+          "pair_id": "d05",
+          "peak_to_three_state_median_ratio": 1.494599197314752,
+          "rz_separation_m": 0.00014963792755340278,
+          "rz_vector_m": [
+            0.00010458649999989245,
+            -0.0001070194999999996
+          ],
+          "terminal_velocity_separation_m_per_s": 0.05226392386721924,
+          "terminal_velocity_vector_m_per_s": [
+            0.025506999999924673,
+            -0.045617000000025554
+          ],
+          "three_state_median_rz_separation_m": 0.00010011910070756587
+        },
+        {
+          "endpoint_state_index": 26,
+          "first_divergence_issue": 18,
+          "horizon_ms": 8,
+          "pair_id": "d05",
+          "peak_to_three_state_median_ratio": 1.0401813599039789,
+          "rz_separation_m": 0.0001789673273533872,
+          "rz_vector_m": [
+            0.00011134600000006767,
+            -0.0001401119999999978
+          ],
+          "terminal_velocity_separation_m_per_s": 0.00756118039730907,
+          "terminal_velocity_vector_m_per_s": [
+            0.006668000000042973,
+            -0.0035650000000109205
+          ],
+          "three_state_median_rz_separation_m": 0.00017205396506038908
+        }
+      ],
+      "pair_id": "d05",
+      "useful": true,
+      "useful_horizon_ms": 4
+    }
+  ],
+  "tracked_evidence": {
+    "design": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z21_MOVING_NOMINAL_TEMPORAL_CONTRACT_AUDIT_DESIGN.md",
+      "sha256": "3b4bac19d56c30673f2bdd5a895d3793c41218859465b25d225d9336d495b8f9"
+    },
+    "id2z18_config": {
+      "path": "configs/rgeo_zgeo_1ms_id2z18_full_horizon_token_development.json",
+      "sha256": "93d17647efda97cfc97813f30a85b8639ccac4cae9575be4206597999137a0a6"
+    },
+    "id2z18_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/independent_raw_audit_r1.json",
+      "sha256": "6d7603de3e5d805082a61f1dde2a2148117105b130578f2dc98e9187a0d077b5"
+    },
+    "id2z18_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z18_20260820_dc577537_v1/result.json",
+      "route": "ONE_MS_ID2Z18_FULL_HORIZON_DEVELOPMENT_DATA_PASS_MODEL_COMPARISON_ONLY",
+      "sha256": "5fbba54efc3ae3a921d77fc32adb31a7af59775dc677b09bfbc209807e4d4d8c"
+    },
+    "id2z20_compact": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z20_20260820_2cc758de_v1/compact_evidence.json",
+      "route": "ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR",
+      "sha256": "76152695575142594e6f2f39415aae6052d9e1c14ac7ad8e39585da01a61eb77"
+    },
+    "id2z20_config": {
+      "path": "configs/rgeo_zgeo_1ms_id2z20_authority_l0_feedback.json",
+      "sha256": "a3d4d17f453184d5559f0b55a5d915dab5677ec976e0d44b6bddf3d29c6b3c0f"
+    },
+    "id2z20_result_report": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z20_AUTHORITY_L0_RESULT.md",
+      "sha256": "cc448f328f0c62913a781e8e14f87ae325b735f489d5668a985b9df8e29c4e42"
+    },
+    "route_review": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2Z20_MOVING_NOMINAL_TEMPORAL_CONTROL_ROUTE_REVIEW.md",
+      "sha256": "f31c7d381f770baf222513e38841d40e552307ffe85046a4d302d1ac275d6f36"
+    }
+  },
+  "tsc_calls_or_plant_advances": 0,
+  "useful_distinct_pair_ids": [
+    "d00",
+    "d01",
+    "d02",
+    "d03",
+    "d04",
+    "d05"
+  ],
+  "useful_segment_rows": [
+    {
+      "endpoint_state_index": 22,
+      "first_divergence_issue": 18,
+      "horizon_ms": 4,
+      "pair_id": "d00",
+      "peak_to_three_state_median_ratio": 1.494599197314752,
+      "rz_separation_m": 0.00014963792755340278,
+      "rz_vector_m": [
+        0.00010458649999989245,
+        -0.0001070194999999996
+      ],
+      "terminal_velocity_separation_m_per_s": 0.05226392386721924,
+      "terminal_velocity_vector_m_per_s": [
+        0.025506999999924673,
+        -0.045617000000025554
+      ],
+      "three_state_median_rz_separation_m": 0.00010011910070756587
+    },
+    {
+      "endpoint_state_index": 25,
+      "first_divergence_issue": 17,
+      "horizon_ms": 8,
+      "pair_id": "d01",
+      "peak_to_three_state_median_ratio": 1.24303483918671,
+      "rz_separation_m": 0.00040666336865057505,
+      "rz_vector_m": [
+        0.0002751014999999857,
+        -0.0002994899999999856
+      ],
+      "terminal_velocity_separation_m_per_s": 0.08067721092102702,
+      "terminal_velocity_vector_m_per_s": [
+        0.04491100000003634,
+        -0.06702099999994493
+      ],
+      "three_state_median_rz_separation_m": 0.00032715363707476274
+    },
+    {
+      "endpoint_state_index": 24,
+      "first_divergence_issue": 16,
+      "horizon_ms": 8,
+      "pair_id": "d02",
+      "peak_to_three_state_median_ratio": 1.2090772716170077,
+      "rz_separation_m": 0.0004204464787951321,
+      "rz_vector_m": [
+        0.0002977269999999699,
+        -0.0002968734999999889
+      ],
+      "terminal_velocity_separation_m_per_s": 0.07296426381797695,
+      "terminal_velocity_vector_m_per_s": [
+        0.04756849999998369,
+        -0.05532650000000805
+      ],
+      "three_state_median_rz_separation_m": 0.00034774161144624877
+    },
+    {
+      "endpoint_state_index": 25,
+      "first_divergence_issue": 17,
+      "horizon_ms": 8,
+      "pair_id": "d03",
+      "peak_to_three_state_median_ratio": 1.3622546847926937,
+      "rz_separation_m": 0.00034299867140014545,
+      "rz_vector_m": [
+        0.0002808100000000202,
+        -0.00019696150000000912
+      ],
+      "terminal_velocity_separation_m_per_s": 0.0913520124040498,
+      "terminal_velocity_vector_m_per_s": [
+        0.072210000000128,
+        -0.055954500000010565
+      ],
+      "three_state_median_rz_separation_m": 0.000251787477943115
+    },
+    {
+      "endpoint_state_index": 22,
+      "first_divergence_issue": 18,
+      "horizon_ms": 4,
+      "pair_id": "d04",
+      "peak_to_three_state_median_ratio": 1.494599197314752,
+      "rz_separation_m": 0.00014963792755340278,
+      "rz_vector_m": [
+        0.00010458649999989245,
+        -0.0001070194999999996
+      ],
+      "terminal_velocity_separation_m_per_s": 0.05226392386721924,
+      "terminal_velocity_vector_m_per_s": [
+        0.025506999999924673,
+        -0.045617000000025554
+      ],
+      "three_state_median_rz_separation_m": 0.00010011910070756587
+    },
+    {
+      "endpoint_state_index": 22,
+      "first_divergence_issue": 18,
+      "horizon_ms": 4,
+      "pair_id": "d05",
+      "peak_to_three_state_median_ratio": 1.494599197314752,
+      "rz_separation_m": 0.00014963792755340278,
+      "rz_vector_m": [
+        0.00010458649999989245,
+        -0.0001070194999999996
+      ],
+      "terminal_velocity_separation_m_per_s": 0.05226392386721924,
+      "terminal_velocity_vector_m_per_s": [
+        0.025506999999924673,
+        -0.045617000000025554
+      ],
+      "three_state_median_rz_separation_m": 0.00010011910070756587
+    }
+  ]
+}

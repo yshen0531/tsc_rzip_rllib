@@ -1,0 +1,63 @@
+{
+  "audit_passed": true,
+  "calibration_and_blind_holdout_records_read": 0,
+  "claim_boundary": "Independent zero-TSC zero-fit metric/route recomputation; duplicate groups are a conservative reporting diagnostic, not a new scientific gate or changed ID2Z21 verdict.",
+  "duplicate_group_interpretation": "pair IDs with identical admitted early response are not independent task-plane segments",
+  "exact_duplicate_useful_response_groups": [
+    [
+      "d00",
+      "d04",
+      "d05"
+    ]
+  ],
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "primary_result_sha256": "1898cdbfda0e7b790ae2342f7d062ca5d4e103b3b276a42da2d7f130da0a0e93",
+  "primary_source_revision": "2a11a5b3ecebcb98276fd031c232f91b33657b63",
+  "recomputed": {
+    "best_two_vector_geometry": {
+      "acute_line_angle_deg": 12.384450333044102,
+      "condition": 9.353883517437827,
+      "horizons_ms": [
+        8,
+        8
+      ],
+      "pair_ids": [
+        "d01",
+        "d03"
+      ]
+    },
+    "executed_nonzero_token_condition": 24.289943295208953,
+    "executed_nonzero_token_rank": 4,
+    "executed_nonzero_token_singular_values": [
+      1.5519796571427549,
+      1.1051959436299612,
+      0.7501753672460909,
+      0.06389391849460899,
+      8.388499985462115e-15
+    ],
+    "expected_readiness_reasons": [
+      "EXECUTED_TOKEN_CONDITION"
+    ],
+    "expected_route": "ONE_MS_ID2Z21_SUSTAINED_ALLOCATION_NOT_READY_REDESIGN_ACTION_BASIS_OR_NOMINAL",
+    "held_minus_full_f_distance_m": 0.0035994817419814987,
+    "held_minus_full_f_speed_m_per_s": 0.3693823340330822,
+    "unconditional_f_plus_residual_maximum_component_a": {
+      "A": 0.6000000000000227,
+      "E": 0.45000000000000284,
+      "a": 0.6000000000000085,
+      "e": 0.45000000000000284
+    },
+    "useful_pair_ids": [
+      "d00",
+      "d01",
+      "d02",
+      "d03",
+      "d04",
+      "d05"
+    ]
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2z21-moving-nominal-temporal-contract-independent-v1",
+  "stage": "ID-2Z21",
+  "tsc_calls_or_plant_advances": 0
+}

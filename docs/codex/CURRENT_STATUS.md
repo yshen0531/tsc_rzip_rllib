@@ -1,6 +1,15 @@
 # Current status
 
-> **Current status (2026-08-20, post-ID2Z20 route approved):** ID2Z20 remains
+> **Current status (2026-08-20, ID2Z21 final):** the zero-TSC/zero-fit audit
+> completed and its independent recomputation passed. Readiness failed only
+> because executed F/A/a/E/e rank-four condition is `24.2899433`, above the
+> frozen `10`; no fresh campaign is authorized. Direct full-F plus residual
+> addition is also impossible at `0.45--0.60 A`. Persistent response exists,
+> but its best two-vector geometry is only `12.3845 deg`, and d00/d04/d05 are
+> duplicate early segments. The active work is a bounded zero-TSC discrete-
+> vertex action/nominal redesign, not TSC or model training.
+
+> **Historical status (2026-08-20, post-ID2Z20 route approved):** ID2Z20 remains
 > final and no new TSC/model result exists. Review found that its state-32
 > held-center continuation is not the continuing full-F moving nominal: at
 > state48 the former is about `26.807 mm / 0.587 m/s`, while the tracked

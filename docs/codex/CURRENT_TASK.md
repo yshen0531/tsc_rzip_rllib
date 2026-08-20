@@ -1,6 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, post-ID2Z20 route approved):** preserve
+> **Unique active task (2026-08-20, ID2Z21 final):** ID2Z21 completed with
+> zero TSC, plant advances, fits and calibration/holdout reads. Independent
+> recomputation passed, but the frozen readiness route is
+> `ONE_MS_ID2Z21_SUSTAINED_ALLOCATION_NOT_READY_REDESIGN_ACTION_BASIS_OR_NOMINAL`.
+> F/A/a/E/e has rank four but condition `24.2899433 > 10`; full-F plus any
+> residual would require `0.45--0.60 A` and is forbidden. Sustained response
+> gates passed and the best task-plane pair has condition `9.35388`/angle
+> `12.3845 deg`, but d00/d04/d05 duplicate the same early segment and all
+> predecessor captures remain zero.
+>
+> Do not run a fresh campaign, relax the condition gate or add a third model.
+> The next task is one bounded zero-TSC action-representation/nominal redesign.
+> It may replace continuous rank-four inversion with exact discrete Card15
+> vertices and causal nominal-share allocation, but must deduplicate identical
+> segments and show a materially broader control-aligned family before any
+> TSC. Failure closes the current token/nominal route and requires a new action
+> basis or takeover nominal. Older active blocks below are historical.
+
+> **Historical active task (2026-08-20, post-ID2Z20 route approved):** preserve
 > ID2Z20 as the final clean one-issue pulse/exact-return grammar FAIL. The
 > next task is ID2Z21, one server-executed but zero-new-TSC/zero-fit
 > moving-nominal temporal-control contract audit. It must bind the tracked

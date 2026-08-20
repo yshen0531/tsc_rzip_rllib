@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, post-ID2Z20 decision):** preserve the
+> **Current NR route notice (2026-08-20, ID2Z21 final):** the moving-nominal
+> contract audit ran with zero TSC/fit and independently reproduced a finite
+> readiness FAIL. Persistent signed response exists, but the exact executed
+> token set has rank-four condition `24.2899433 > 10`, its best task-plane
+> wedge is only `12.3845 deg`, and several nominally distinct pair IDs are
+> duplicate early segments. Full-F plus residual addition would violate slew.
+> The sole active route is zero-TSC redesign of exact discrete action vertices,
+> causal nominal share and terminal viability. No fresh campaign/model/control
+> is authorized yet. Older notices below are historical.
+
+> **Historical NR route notice (2026-08-20, post-ID2Z20 decision):** preserve the
 > clean ID2Z20 one-issue held-center grammar FAIL, but do not generalize it to
 > moving-nominal temporal control. Continuing full-F and holding its state-32
 > target have materially different state48 distance/velocity. The next

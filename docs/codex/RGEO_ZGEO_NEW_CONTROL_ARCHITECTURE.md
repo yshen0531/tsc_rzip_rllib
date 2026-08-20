@@ -1,5 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z20 moving-nominal amendment (2026-08-20):** the exact held-center
+> **Post-ID2Z21 action-representation amendment (2026-08-20):** persistent
+> temporal response passed the read-only D0 signal checks, but the executed
+> F/A/a/E/e set is an ill-conditioned rank-four continuous coordinate and
+> several early response segments are duplicates. The architecture must not
+> invert that coordinate or add residuals to saturated full-F. The next
+> representation may use exact discrete Card15 vertices with causal nominal-
+> share replacement/time-sharing and a support/refusal map. It must prove a
+> materially broader control-aligned family in a bounded zero-TSC audit before
+> fresh data collection. Exact stationary capture, Recourse and real-control
+> AND gates remain unchanged.
+
+> **Historical post-ID2Z20 moving-nominal amendment (2026-08-20):** the exact held-center
 > one-issue pulse/return grammar is closed, while sustained temporal effects
 > and full-F transport remain finite measured facts. The architecture now
 > treats nominal share and residual/braking action as one exact Card15 slew-
