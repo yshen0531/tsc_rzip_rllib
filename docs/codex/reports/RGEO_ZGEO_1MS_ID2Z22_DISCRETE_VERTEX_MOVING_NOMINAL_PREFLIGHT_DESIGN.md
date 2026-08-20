@@ -85,4 +85,3 @@ ID-2Z23. If either moving-nominal phase loses the preregistered persistent
 two-axis geometry, the current exact-vertex grammar closes. The next review
 must change the Card15 action basis or takeover nominal rather than add another
 nearby amplitude, duration, phase or neural model.
-

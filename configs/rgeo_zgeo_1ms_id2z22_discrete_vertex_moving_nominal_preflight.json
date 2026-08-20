@@ -83,7 +83,7 @@
     "delete_only_after_independent_audit_and_compact_hash_recovery": true
   },
   "evidence": {
-    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z22_DISCRETE_VERTEX_MOVING_NOMINAL_PREFLIGHT_DESIGN.md", "sha256": "2ed2bfb72950aa00f8cdb68b1d9150c98570033b8120bc3e227f8d5358f23194"},
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z22_DISCRETE_VERTEX_MOVING_NOMINAL_PREFLIGHT_DESIGN.md", "sha256": "58ad2bd79b32c8d9fd8ee0a0bb76831a8e23f82e56cce6b01cbb53d94d1c6fe3"},
     "id2z21_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z21_20260820_2a11a5b3_v1/result.json", "sha256": "1898cdbfda0e7b790ae2342f7d062ca5d4e103b3b276a42da2d7f130da0a0e93", "required_route": "ONE_MS_ID2Z21_SUSTAINED_ALLOCATION_NOT_READY_REDESIGN_ACTION_BASIS_OR_NOMINAL"},
     "id2z21_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z21_20260820_2a11a5b3_v1/independent_audit.json", "sha256": "1b2608a5109464e26c3e81c56cc8b4eb7b85dea05479ffff2d9079e13a901f03"},
     "id2z17_config": {"path": "configs/rgeo_zgeo_1ms_id2z17_full_f_transient_remaining_basis_beam.json", "sha256": "4308452e9480574a13703b41816c6fc7145a4b559992aac86e2ced58a612486a"},
