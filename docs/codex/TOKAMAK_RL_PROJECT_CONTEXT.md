@@ -1,6 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID2Z20 final):** the finite
+> **Current NR route notice (2026-08-20, post-ID2Z20 decision):** preserve the
+> clean ID2Z20 one-issue held-center grammar FAIL, but do not generalize it to
+> moving-nominal temporal control. Continuing full-F and holding its state-32
+> target have materially different state48 distance/velocity. The next
+> bounded step is ID2Z21, a zero-new-TSC/zero-fit audit that co-designs
+> nominal share, exact Card15 slew allocation and an augmented moving-terminal
+> viability object. It must either freeze one materially new sustained-
+> allocation campaign or stop at action-basis/nominal redesign. D0-quality
+> data may later open shadow learning in parallel with Authority/Recourse;
+> only their AND with fresh calibration/blind and the hard interface may open
+> real feedback. Older notices below are historical.
+
+> **Historical NR route notice (2026-08-20, ID2Z20 final):** the finite
 > two-phase signed rank-four Authority-L0 Phase A completed with exact
 > execution and independent raw audit, but failed its preregistered physical
 > signal/geometry gate. Input-space rank four did not provide sustained

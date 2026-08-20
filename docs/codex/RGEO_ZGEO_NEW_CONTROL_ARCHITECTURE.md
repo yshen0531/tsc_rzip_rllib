@@ -1,5 +1,19 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **ID-2Z18 full-horizon learning amendment (2026-08-20):** the next data
+> **Post-ID2Z20 moving-nominal amendment (2026-08-20):** the exact held-center
+> one-issue pulse/return grammar is closed, while sustained temporal effects
+> and full-F transport remain finite measured facts. The architecture now
+> treats nominal share and residual/braking action as one exact Card15 slew-
+> allocation decision; residuals may not be added to a saturated full-F step
+> or produced by clipping. A moving-terminal viability state containing
+> R/Z, causal velocity, Ip, active/pending action and remaining reserve is an
+> intermediate development object, while the stationary six-state capture
+> and Recourse requirements remain unchanged. After one zero-TSC contract
+> audit, at most one bounded fresh sustained-allocation campaign may open.
+> D0-quality data can support shadow model development in parallel with
+> Authority/Recourse, but no real feedback is authorized until all fresh
+> model, authority, recourse and hard-interface gates pass.
+
+> **Historical ID-2Z18 full-horizon learning amendment (2026-08-20):** the next data
 > campaign is prospectively fit-eligible and explicitly separates development
 > from unexecuted calibration and blind holdout histories. It interleaves
 > time-varying F transport with signed p06/p08 tokens, carries the complete

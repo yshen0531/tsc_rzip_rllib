@@ -1,6 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID2Z20 final):** ID2Z20 completed Phase A
+> **Unique active task (2026-08-20, post-ID2Z20 route approved):** preserve
+> ID2Z20 as the final clean one-issue pulse/exact-return grammar FAIL. The
+> next task is ID2Z21, one server-executed but zero-new-TSC/zero-fit
+> moving-nominal temporal-control contract audit. It must bind the tracked
+> ID2Z18/ID2Z20 evidence, separate continuing full-F from the held state-32
+> center, reconstruct the exact per-issue Card15 allocation polytope, audit
+> persistent 2/4/8 ms R/Z and terminal-velocity effects, and either freeze a
+> materially new sustained-allocation campaign or record an action-basis /
+> nominal blocker. Full-F plus residual may not be implemented by addition
+> or clipping; nominal share itself is a causal control variable.
+>
+> ID2Z21 may write only its design/config/code/tests and read-only audit
+> evidence. It may not run TSC, fit a model, open old calibration/holdout,
+> claim Authority-L0/capture/Recourse or weaken the stationary six-state
+> `25 mm / 0.1 m/s / 5% Ip` gate. If readiness passes, separately freeze one
+> small fresh campaign before any TSC. D0-quality data may open bounded
+> shadow model work in parallel with Authority/Recourse; real in-loop control
+> still requires fresh model calibration/blind PASS AND Authority PASS AND
+> Recourse-L1 PASS AND the hard interface. Every older active block below is
+> historical.
+
+> **Historical active task (2026-08-20, ID2Z20 final):** ID2Z20 completed Phase A
 > `17/17`, `1,105/1,105` plant advances with exact execution/raw evidence and
 > independent audit PASS, then correctly stopped as
 > `ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR`. Only the b0

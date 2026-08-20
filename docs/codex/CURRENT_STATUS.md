@@ -1,6 +1,17 @@
 # Current status
 
-> **Current status (2026-08-20, ID2Z20 final):** Phase A completed cleanly
+> **Current status (2026-08-20, post-ID2Z20 route approved):** ID2Z20 remains
+> final and no new TSC/model result exists. Review found that its state-32
+> held-center continuation is not the continuing full-F moving nominal: at
+> state48 the former is about `26.807 mm / 0.587 m/s`, while the tracked
+> full-F reference is `23.207 mm / 0.218 m/s`. ID2Z18 nevertheless already
+> proves sustained schedule separation but has zero six-state captures, so
+> neither a third model nor more neighboring histories is the next step.
+> ID2Z21 is authorized only as a server-side zero-TSC/zero-fit contract audit
+> of exact nominal-share allocation, persistent velocity-aligned effects and
+> augmented terminal viability. No fresh campaign is yet frozen.
+
+> **Historical status (2026-08-20, ID2Z20 final):** Phase A completed cleanly
 > `17/17`; independent raw audit passed and reproduced
 > `ONE_MS_ID2Z20_PHASE_A_SIGNED_AUTHORITY_FAIL_CLOSE_GRAMMAR`. Totals are
 > `1,105/1,105` verified advances, `1,122` states and `5,610` artifacts
