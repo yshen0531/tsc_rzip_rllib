@@ -1,5 +1,20 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z23 amendment (2026-08-20):** exact p00/p05/p06 replacement
+> **Active centered-allocation amendment (2026-08-20):** full-F is a finite
+> transport action at the boundary of the one-ms slew polytope, not a qualified
+> residual-feedback center. The active design jointly selects a finite
+> transition/deceleration nominal and exact centered signed Card15 allocations.
+> Early full-F transport may remain, but direct `full-F + residual`, clipping,
+> or V-for-F replacement geometry may not be treated as local feedback. A
+> continuous half-F seed is not exact-lattice authority.
+>
+> The dependency is now `exact centered D0 data -> bounded shadow model` in
+> parallel with `fresh sequence Authority-L0 -> terminal/capture seed ->
+> Recourse-L1`; real feedback requires both branches plus the hard interface.
+> Machine learning learns latent history/event response and candidate value;
+> it does not estimate current exact RZI or manufacture actuator authority.
+> Older amendments below are historical unless explicitly retained.
+
+> **Historical post-ID2Z23 amendment (2026-08-20):** exact p00/p05/p06 replacement
 > vertices retained large individual signals but lost positive-span geometry
 > at both moving full-F phases, with phase-dependent direction reversal at
 > issue 32. This grammar is closed. The architecture remains exact observation

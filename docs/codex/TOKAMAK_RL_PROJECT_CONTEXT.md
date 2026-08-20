@@ -1,5 +1,25 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique new-round context (2026-08-20, post-ID2Z23):** ID2Z23 remains a
+> clean moving-nominal replacement-grammar FAIL, but read-only attribution
+> shows that its comparison coordinate was dominated by removing saturated
+> full-F. Common omitted-F structure accounts for 68.4114% of relative action
+> energy and about 90% of h1--h8 R/Z response energy; the p05 odd differential
+> itself transports across phases. The approved next step is a zero-TSC,
+> zero-fit exact-Card15 redesign of a reserve-aware transition nominal and
+> centered signed co-allocation cell. A numerical half-F construction is only
+> a seed and must not bypass Decimal lattice, cumulative closure, current,
+> support or storage gates.
+>
+> If the preflight passes, one prospective centered campaign may separate D0
+> learning readiness from sequence-level Authority-L0. D0 does not require
+> per-phase positive span or six-state capture before shadow learning; real
+> feedback still requires fresh model calibration/blind PASS, Authority-L0,
+> Recourse-L1 and the hard interface as an AND gate. The final fixed-1100-ms,
+> exact-observation, safe two-axis waypoint/path and repeated bidirectional
+> R_mid-crossing goal is unchanged. Older new-round notices below are
+> historical.
+
 > **Current NR route notice (2026-08-20, ID2Z23 final):** the finite
 > moving-nominal vertex campaign completed cleanly but failed persistent
 > two-axis geometry at both frozen phases. The old held-state positive span did

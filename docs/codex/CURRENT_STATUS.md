@@ -1,5 +1,16 @@
 # Current status
 
+> **Current status (2026-08-20, post-ID2Z23 route approved):** no new TSC,
+> plant advance, model fit or calibration/holdout read has occurred after
+> ID2Z23. The route review reclassified the next blocker more precisely as a
+> nominal-centering/slew-allocation gap: Z23's four replacement families share
+> a dominant omitted-F response, while the p05 signed differential survives
+> both moving phases. One bounded exact-lattice centered-coallocation
+> preflight is active. Its continuous `N ~= 0.5F` seed is not executable
+> evidence; exact Decimal/Card15 construction and cumulative closure are still
+> unresolved. No new TSC or model work is authorized until this zero-TSC gate
+> and its independent audit pass.
+
 > **Current status (2026-08-20, ID2Z23 final):** ten authentic rollouts,
 > `650/650` advances, `3300` raw artifacts and the exact replay completed; all
 > execution/evidence gates and the independent raw audit passed. Both issue-24

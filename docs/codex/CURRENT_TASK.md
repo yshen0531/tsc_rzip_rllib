@@ -1,5 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-20, post-ID2Z23 route approved):** preserve
+> ID2Z23 as the final clean full-F replacement-geometry FAIL. Read-only
+> decomposition found that the four V-for-F branches share a dominant omitted-F
+> term: 68.4114% of relative action energy and 89.7813--91.4112% of h1--h8
+> R/Z response energy are common mode. The p05 odd differential nevertheless
+> transports across both moving phases almost exactly. The next task is one
+> zero-TSC/zero-fit exact-Card15 preflight for a reserve-aware transition
+> nominal and centered signed co-allocation cell, as specified in
+> `RGEO_ZGEO_1MS_POST_ID2Z23_CENTERED_COALLOCATION_ROUTE_REVIEW.md`.
+>
+> A floating-point `0.5F` is nomination evidence only. The preflight must
+> deterministically construct and verify a source/current-specific Decimal
+> lattice, exact cumulative closure, absolute current/headroom, queue/effect,
+> input condition, evidence hashes and storage budget. It may not run TSC,
+> fit a model, read calibration/blind data, reuse the old exact `f50`, rely on
+> clipping, or silently select a neighboring share/phase after plant results.
+> PASS may authorize only one separately frozen, prospective fit-eligible
+> centered campaign. D0 learning readiness and Authority-L0 are separate; a
+> controller still requires fresh model calibration/blind PASS AND
+> Authority-L0 PASS AND Recourse-L1 PASS AND the exact hard interface. Every
+> older active block below is historical.
+
 > **Unique active task (2026-08-20, ID2Z23 final):** ID2Z23 completed all ten
 > rollouts and `650/650` advances with exact execution, prefix, raw and replay
 > integrity, and independent full-raw reproduction. Both moving-nominal phases
