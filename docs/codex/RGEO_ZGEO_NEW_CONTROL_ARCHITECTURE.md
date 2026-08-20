@@ -1,4 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID2Z25 route decision (2026-08-21):** retain early full-F transport
+> but do not add residuals to its saturated increment.  The next prospective
+> control coordinate transitions to a slack moving allocation and uses the
+> rotated task-plane seeds `q_R=(p05-p06)/2`, `q_Z=(p05+p06)/2`.  This is a new
+> basis/history identity, not a repaired ID2Z25 verdict.  It must first pass
+> zero-TSC exact Card15 switch/return/full-stream qualification and then a
+> fresh real D0 persistence campaign.  Learning and Authority-L0 may proceed
+> in parallel only after that D0; Recourse-L1 remains an independent in-loop
+> prerequisite.
+>
 > **Post-ID2Z25 amendment (2026-08-21):** exact centered action construction
 > proved digitally executable but the real D0 campaign failed persistence and
 > capture remained zero. Two p00 order/phase branches reversed between h4 and

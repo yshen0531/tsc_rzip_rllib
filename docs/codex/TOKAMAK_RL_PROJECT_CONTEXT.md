@@ -1,5 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique new-round context (2026-08-21, post-ID2Z25 redesign):** preserve
+> the clean ID2Z25 FAIL and rotate the stable p05/p06 odd-response seeds into
+> task-plane coordinates `q_R/q_Z` only under a new data identity.  The new
+> nominal lineage must keep the useful early full-F transport and enter a
+> slack allocation through a prospective causal guard; it must not rerun the
+> constant center or mine its ten passing branches.  Exact Card15/stream
+> qualification is the current zero-TSC gate.
+
 > **Unique new-round context (2026-08-21, ID2Z25 final):** the exact centered
 > Card15 cell executed cleanly but failed D0 persistence: two of twelve p00
 > order/phase branches reversed h4-to-h8 direction, while all raw, prefix,

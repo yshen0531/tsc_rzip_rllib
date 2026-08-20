@@ -1,5 +1,13 @@
 # Current status
 
+> **Current status (2026-08-21, post-ID2Z25 decision):** the next seed is a
+> new rank-2 output-aligned residual coordinate, not a reclassification of
+> ID2Z25.  Descriptive h4/h8 output conditions are `1.30--1.55`, and the
+> continuous input seed is condition `1.05` with nominal-plus-residual
+> components within 0.3 A.  Exact Card15 switching and complete streams have
+> not yet been qualified.  The only authorized next execution is a zero-TSC
+> preflight; model fitting and real TSC remain blocked until it passes.
+
 > **Current status (2026-08-21, ID2Z25 final):** clean finite D0 signal FAIL,
 > not runtime or raw failure. `15/15`, `975/975`, 990 states and 4,950 raw
 > artifacts completed; final independent audit passed. Ten branches met all

@@ -1,5 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-21, post-ID2Z25 route review):** ID2Z25 stays
+> final FAIL and all its rows stay zero-fit.  A new output-aligned seed uses
+> `q_R=(p05-p06)/2` and `q_Z=(p05+p06)/2`; old paired responses make these
+> descriptively near-axis-aligned at both phases, while the exact input seed
+> is rank two/condition about `1.05`.  This is not retrospective salvage.
+> The active task is a zero-TSC exact-Card15 preflight for a materially new
+> lineage: early full-F transport followed by one prospectively guarded
+> transition to a slack moving allocation using both signed q coordinates.
+> Any lattice, switch, return, current or complete-stream failure ends with
+> zero plant advance.  Only a preflight PASS may freeze one fresh D0 campaign;
+> no adjacent share/phase/duration/rotation ladder is permitted.  Every older
+> active block below is historical.
+
 > **Unique active task (2026-08-21, ID2Z25 final):** ID2Z25 completed all
 > `15/15` rollouts and `975/975` advances with exact execution, raw, prefix and
 > replay integrity. A reporting-only missing `diagnostic_artifacts` key was
