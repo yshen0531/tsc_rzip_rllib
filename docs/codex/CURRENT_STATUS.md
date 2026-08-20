@@ -1,5 +1,15 @@
 # Current status
 
+> **Current status (2026-08-20, post-ID2Z19R1 review):** route analysis is
+> complete and no new TSC/model result exists yet. ID2Z19R1 remains a clean
+> two-candidate development FAIL. The next authorized work is documentation,
+> implementation, server testing and zero-TSC preflight for one bounded
+> Authority-L0/capture-feasibility campaign. Authority, capture and
+> Recourse-L1 are now separate claims. TSC may run only after the exact
+> config, action matrix, deterministic selector, data roles, fallback/tail,
+> budget, package and independent audit all pass. Older active-status blocks
+> below are historical.
+
 > **Current status (2026-08-20, attribution final):** zero-fit attribution
 > validation passed `4/4 + 589/589`; output SHA-256 is
 > `9d6982ccda50f7ef8981aaff1341f321c945712ccbec1316c5ff9ec415bbf882`.

@@ -1,5 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-20, post-ID2Z19R1 route decision):** the
+> failed two-model class remains closed. The next stage is one bounded,
+> model-free `Authority-L0 / capture-feasibility` campaign, not a combined
+> authority/recovery claim and not a third model. It must use exact current
+> R_geo/Z_geo/Ip every millisecond, complete rank-four signed Card15 actions,
+> two prospectively frozen phases, a deterministic pre-result selector,
+> fresh replay and a different complete-history validation. All data roles,
+> budget, return/tail, hard gates and stopping rules must be frozen before
+> TSC. Exact return, hold and safe stop are not Recourse-L1.
+>
+> Authority-L0 FAIL closes this action/phase grammar and forbids model
+> expansion. Authority-L0 PASS may open only a new event/candidate-value
+> development identity. A repeated six-state capture seed may additionally
+> open a separate Recourse-L1 design. Only fresh model calibration/blind
+> holdout PASS AND Recourse-L1 PASS AND the exact hard interface may open a
+> first source-local feedback sentinel. No TSC is authorized until the new
+> machine config, design, implementation, independent audit, server tests and
+> zero-TSC preflight pass. Every older active block below is historical.
+
 > **Unique active task (2026-08-20, post-ID-2Z19R1 attribution):** the one
 > allowed zero-fit attribution passed its own `4/4 + 589/589` server tests and
 > authenticated all `9,408` OOF rows. Both candidates failed terminal

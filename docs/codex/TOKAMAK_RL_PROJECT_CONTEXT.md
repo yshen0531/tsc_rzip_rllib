@@ -1,5 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current NR route notice (2026-08-20, Authority-L0 decision):** ID2Z19R1
+> and its one attribution are final; neither model class is eligible. The
+> next route separates finite sustained Authority-L0, a repeated nominal
+> capture seed and bounded-tube Recourse-L1. One bounded, model-free exact-
+> TSC development campaign will test complete signed rank-four Card15 actions
+> at two phases, then validate a prospectively selected low-dimensional
+> feedback/segmented rule on a fresh replay and a different complete history.
+> Exact return, hold and simulator safe-stop are not recovery. Authority
+> failure closes this action/phase grammar; authority success may open a new
+> event/value development model, while only a repeated six-state capture may
+> open separate Recourse-L1 qualification. A real controller remains the AND
+> of fresh model calibration/blind holdout, Recourse-L1 and the hard
+> interface. Older notices below are historical.
+
 > **Current NR route notice (2026-08-20, post-attribution):** the bounded
 > two-model route and its one permitted zero-fit attribution are complete.
 > Terminal one-step speed/increment fails in every fold for both candidates,
