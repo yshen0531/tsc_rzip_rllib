@@ -22,8 +22,8 @@ from scripts import rgeo_zgeo_1ms_id2z24_centered_coallocation_preflight as z24 
 
 
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2z26_dynamic_output_aligned_preflight.json"
-CONFIG_SHA256 = "a9b4aec984c7aa23dc0437cf806f0222d9e76c8699eac9c0406a9639fd8a1283"
-SCHEMA = "rgeo-zgeo-1ms-id2z26-dynamic-output-aligned-preflight-result-v1"
+CONFIG_SHA256 = "0c843a3f4ab61e5f693d7f37aef2961ccd319d7f54d3104c70590878443d8d8d"
+SCHEMA = "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-preflight-result-v1"
 
 
 def _error(message: str) -> ValueError:
@@ -54,9 +54,9 @@ def _require(stage: dict[str, Any]) -> None:
     if _sha(CONFIG) != CONFIG_SHA256:
         raise _error("config hash mismatch")
     exact = {
-        "schema_version": "rgeo-zgeo-1ms-id2z26-dynamic-output-aligned-preflight-v1",
-        "identity": "rgeo-zgeo-1ms-id2z26-dynamic-output-aligned-preflight-v1",
-        "stage": "ID-2Z26", "takeover_time_ms": 1100,
+        "schema_version": "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-preflight-v1",
+        "identity": "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-preflight-v1",
+        "stage": "ID-2Z26R1", "takeover_time_ms": 1100,
         "control_period_ms": 1, "models_fit_or_updated": 0,
         "maximum_tsc_calls": 0, "maximum_plant_advances": 0,
         "calibration_or_holdout_reads": 0, "common_horizon_steps": 73,
@@ -66,7 +66,7 @@ def _require(stage: dict[str, Any]) -> None:
         "transition_center_last_issue": 55,
         "held_tail_first_issue": 56, "held_tail_last_issue": 72,
         "nominal_share": "0.50", "phase_issue_steps": [32, 40],
-        "same_sign_duration_issues": 8, "opposite_sign_return_issues": 8,
+        "same_sign_duration_issues": 8, "exact_return_bridge_issues": 8,
         "maximum_prospective_rollouts": 11,
         "maximum_prospective_reset_calls": 11,
         "maximum_prospective_advance_attempts": 803,
@@ -155,15 +155,19 @@ def _build_branch(center: Sequence[tuple[str, ...]], nominal: Sequence[Decimal],
                   axis: Sequence[Decimal], phase: int, first_sign: int) -> list[tuple[str, ...]]:
     fields = list(center[:phase])
     current = fields[-1]
+    return_start: tuple[str, ...] | None = None
     for issue in range(phase, len(center)):
         if issue <= 55:
-            sign = 0
             if phase <= issue < phase + 8:
-                sign = first_sign
+                current = z24._combined_step(
+                    current, _combine(nominal, axis, first_sign))
             elif phase + 8 <= issue < phase + 16:
-                sign = -first_sign
-            delta = nominal if sign == 0 else _combine(nominal, axis, sign)
-            current = z24._combined_step(current, delta)
+                if return_start is None:
+                    return_start = current
+                current = z24._interpolate_target(
+                    return_start, center[phase + 15], issue - phase - 7, 8)
+            else:
+                current = z24._combined_step(current, nominal)
         fields.append(current)
     return fields
 
@@ -241,7 +245,7 @@ def execute(config: Path = CONFIG, source_revision: str = "UNKNOWN") -> dict[str
                     **_metrics(full, turns, lower, upper)})
     for phase in stage["phase_issue_steps"]:
         for axis_id, axis in axes.items():
-            for first_sign, label in ((1, "plus_then_minus"), (-1, "minus_then_plus")):
+            for first_sign, label in ((1, "plus_then_return"), (-1, "minus_then_return")):
                 branch = _build_branch(center, nominal, axis, int(phase), first_sign)
                 close_issue = int(phase) + 15
                 prefix_exact = branch[:int(phase)] == center[:int(phase)]
@@ -257,9 +261,9 @@ def execute(config: Path = CONFIG, source_revision: str = "UNKNOWN") -> dict[str
                         or row["minimum_absolute_current_headroom_a"] < gate["minimum_absolute_current_headroom_a"]):
                     failures.append(f"STREAM:{row['rollout_id']}")
     replay_source = next(row for row in streams
-                         if row["rollout_id"] == "issue32__q_z__plus_then_minus")
+                         if row["rollout_id"] == "issue32__q_z__plus_then_return")
     streams.append({**replay_source,
-                    "rollout_id": "replay_issue32__q_z__plus_then_minus"})
+                    "rollout_id": "replay_issue32__q_z__plus_then_return"})
     if [row["rollout_id"] for row in streams] != stage["prospective_rollout_ids"]:
         failures.append("ROLLOUT_ORDER")
     if any(not row["passed"] for row in local_rows):

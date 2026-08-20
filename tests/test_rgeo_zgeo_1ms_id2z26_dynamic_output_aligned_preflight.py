@@ -33,7 +33,7 @@ class ID2Z26PreflightTests(unittest.TestCase):
         result = primary.execute(source_revision="TEST_REVISION")
         self.assertTrue(result["passed"], result["failures"])
         self.assertEqual(result["route"],
-                         "ONE_MS_ID2Z26_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY")
+                         "ONE_MS_ID2Z26R1_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY")
         self.assertEqual(result["tsc_calls"], 0)
         self.assertEqual(result["plant_advances"], 0)
         self.assertEqual(len(result["prospective_static_streams"]), 11)

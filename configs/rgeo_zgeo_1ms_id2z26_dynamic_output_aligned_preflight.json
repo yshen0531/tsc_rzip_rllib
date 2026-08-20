@@ -1,7 +1,7 @@
 {
-  "schema_version": "rgeo-zgeo-1ms-id2z26-dynamic-output-aligned-preflight-v1",
-  "identity": "rgeo-zgeo-1ms-id2z26-dynamic-output-aligned-preflight-v1",
-  "stage": "ID-2Z26",
+  "schema_version": "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-preflight-v1",
+  "identity": "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-preflight-v1",
+  "stage": "ID-2Z26R1",
   "takeover_time_ms": 1100,
   "control_period_ms": 1,
   "models_fit_or_updated": 0,
@@ -18,7 +18,7 @@
   "nominal_share": "0.50",
   "phase_issue_steps": [32, 40],
   "same_sign_duration_issues": 8,
-  "opposite_sign_return_issues": 8,
+  "exact_return_bridge_issues": 8,
   "output_aligned_axes": [
     {"axis_id": "q_r", "formula": "0.5*(r5-r6)"},
     {"axis_id": "q_z", "formula": "0.5*(r5+r6)"}
@@ -26,15 +26,15 @@
   "prospective_rollout_ids": [
     "baseline_transition_center",
     "diagnostic_baseline_full_f",
-    "issue32__q_r__plus_then_minus",
-    "issue32__q_r__minus_then_plus",
-    "issue32__q_z__plus_then_minus",
-    "issue32__q_z__minus_then_plus",
-    "issue40__q_r__plus_then_minus",
-    "issue40__q_r__minus_then_plus",
-    "issue40__q_z__plus_then_minus",
-    "issue40__q_z__minus_then_plus",
-    "replay_issue32__q_z__plus_then_minus"
+    "issue32__q_r__plus_then_return",
+    "issue32__q_r__minus_then_return",
+    "issue32__q_z__plus_then_return",
+    "issue32__q_z__minus_then_return",
+    "issue40__q_r__plus_then_return",
+    "issue40__q_r__minus_then_return",
+    "issue40__q_z__plus_then_return",
+    "issue40__q_z__minus_then_return",
+    "replay_issue32__q_z__plus_then_return"
   ],
   "maximum_prospective_rollouts": 11,
   "maximum_prospective_reset_calls": 11,
@@ -55,7 +55,7 @@
     "legacy_runner_clipping_may_be_relied_on": false,
     "future_actual_current": "forbidden",
     "odd_plant_response_symmetry_assumed": false,
-    "opposite_sign_segment_targets_exact_center_endpoint": true,
+    "equal_fraction_return_bridge_targets_exact_center_endpoint": true,
     "exact_action_closure_is_not_state_recovery": true
   },
   "static_gates": {
@@ -111,7 +111,7 @@
     "delete_only_after_independent_audit_and_compact_hash_recovery": true
   },
   "evidence": {
-    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z26_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_DESIGN.md", "sha256": "3b0705c19b542f98cc99008ec682d54520ab5a87efed63c72cfe789444fc577d"},
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z26_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_DESIGN.md", "sha256": "e96f62b81ec13aa385a084d91c2803e387ac2c1d26529b932ef4fd4936225e50"},
     "route_review": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_POST_ID2Z25_DYNAMIC_OUTPUT_ALIGNED_ROUTE_REVIEW.md", "sha256": "8296ee137fe1a21e5099a7b107455f775751cd52cc192c7aec2e89db14f7ce85"},
     "base_tsc_config": {"path": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json", "sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b"},
     "id2z24r2_compact": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z24r2_20260821_6a17ed8a_v1/compact_evidence.json", "sha256": "5fa179c7e5839264e0dbcc4488a3f4ac1c7bd740f5ee0ea88bb25440bb4e1a9a", "required_route": "ONE_MS_ID2Z24R2_CENTERED_COALLOCATION_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY"},
@@ -121,10 +121,10 @@
     "id2z25_compact": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z25_20260821_3797062f_v1/compact_evidence.json", "sha256": "6b75402d7f24d9b9a3ec135dbb5bf47d49e5d56ccd6aa9a9757062a730c9b318", "required_route": "ONE_MS_ID2Z25_CENTERED_D0_SIGNAL_FAIL_CLOSE_CELL"}
   },
   "routes": {
-    "input_or_attribution_fail": "ONE_MS_ID2Z26_INPUT_OR_ATTRIBUTION_FAIL_NO_TSC",
-    "exact_lattice_fail": "ONE_MS_ID2Z26_OUTPUT_ALIGNED_CARD15_LATTICE_FAIL_NO_TSC",
-    "static_stream_fail": "ONE_MS_ID2Z26_DYNAMIC_TRANSITION_STREAM_FAIL_NO_TSC",
-    "pass": "ONE_MS_ID2Z26_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY"
+    "input_or_attribution_fail": "ONE_MS_ID2Z26R1_INPUT_OR_ATTRIBUTION_FAIL_NO_TSC",
+    "exact_lattice_fail": "ONE_MS_ID2Z26R1_OUTPUT_ALIGNED_CARD15_LATTICE_FAIL_NO_TSC",
+    "static_stream_fail": "ONE_MS_ID2Z26R1_DYNAMIC_TRANSITION_STREAM_FAIL_NO_TSC",
+    "pass": "ONE_MS_ID2Z26R1_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY"
   },
   "claim_boundary": "Zero-TSC exact finite Card15 construction only; not plant response, D0, authority, capture, recovery, Recourse, model, controller, MPC, waypoint/path, R_mid crossing or deployment evidence."
 }

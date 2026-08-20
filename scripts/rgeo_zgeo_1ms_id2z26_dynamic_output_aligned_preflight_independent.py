@@ -23,9 +23,9 @@ from scripts import rgeo_zgeo_1ms_id2z24_centered_coallocation_preflight as z24 
 
 
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2z26_dynamic_output_aligned_preflight.json"
-CONFIG_SHA256 = "a9b4aec984c7aa23dc0437cf806f0222d9e76c8699eac9c0406a9639fd8a1283"
-SCHEMA = "rgeo-zgeo-1ms-id2z26-dynamic-output-aligned-independent-v1"
-PRIMARY_SCHEMA = "rgeo-zgeo-1ms-id2z26-dynamic-output-aligned-preflight-result-v1"
+CONFIG_SHA256 = "0c843a3f4ab61e5f693d7f37aef2961ccd319d7f54d3104c70590878443d8d8d"
+SCHEMA = "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-independent-v1"
+PRIMARY_SCHEMA = "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-preflight-result-v1"
 
 
 def _inside(path: Path) -> Path:
