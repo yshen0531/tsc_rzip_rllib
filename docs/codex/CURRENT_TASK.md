@@ -1,5 +1,30 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-20, ID-2Z19R1 authorized):** ID-2Z19 v1 was
+> stopped before fitting after a prospective review found that the complete
+> signed Card15 execution space is rank four, while v1 discarded its fourth
+> non-odd direction, and that v1 read recorded future active commands when
+> constructing candidate features. No model output, calibration read,
+> holdout read, TSC call or plant advance occurred; this is a pre-fit design
+> stop, not a model or plant result.
+>
+> Freeze, implement and server-run ID-2Z19R1 only: one zero-fit readiness gate
+> followed by exactly two development candidates, a structured rank-four
+> stable-memory multi-horizon predictor and the same backbone plus one fixed
+> small causal TCN residual. Future actions must be reconstructed only from
+> current active command and candidate targets. Whole-history folds,
+> terminal 1 ms speed, componentwise errors, full-event paired response,
+> support/OOD, cross-horizon consistency, real action-blind baselines and an
+> independently recomputed row ledger are mandatory. No third model or
+> tuning ladder is allowed. PASS may open only c00--c03 calibration design;
+> v00--v03 remain unopened.
+>
+> In parallel, freeze one separately bounded source-local authority/recovery
+> identity. Model evidence and authority/recovery are independent AND gates;
+> neither can substitute for the other. No controller, waypoint/path,
+> Recourse-L1 claim, R_mid crossing or online adaptation is authorized by this
+> active task. Every older active block below is historical.
+
 > **Unique active task (2026-08-20, post-ID-2Z18):** ID-2Z18 completed all
 > `16/16` authentic full-horizon development rollouts and `1040/1040`
 > verified advances. Both zero-weight replays, all six paired signal gates,

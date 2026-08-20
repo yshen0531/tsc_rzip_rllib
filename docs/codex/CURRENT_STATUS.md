@@ -1,5 +1,22 @@
 # Current status
 
+> **Current status (2026-08-20, ID-2Z19R1 route):** ID-2Z19 v1 has no model
+> result and is frozen as a pre-fit design stop. The complete signed ID-2Z18
+> issue set is numerical rank four; its fourth singular value is `0.4427275`,
+> while v1's positive-only rank-three projection loses up to `0.089212 A` L2
+> and `8.2457%` of one issued action. V1 also derives candidate deltas from
+> future recorded active-command rows and has first-divergence, mixed-unit,
+> terminal-speed and independent-evaluator gaps. The prior server validation
+> process ended naturally, but no complete exit log or ID-2Z19 output exists,
+> so no full-suite PASS or fit is claimed.
+>
+> ID-2Z19R1 is now authorized for implementation and server-only validation:
+> exact rank-four causal action reconstruction, one structured stable-memory
+> predictor, the same backbone plus one small fixed TCN residual, whole-family
+> OOF ledger and independent metric recomputation. Calibration and blind
+> holdout remain unread. Authority/recovery is a separately frozen parallel
+> axis; no model or controller is currently qualified.
+
 > **Current status (2026-08-20, ID-2Z18 final):** all `16/16` development
 > rollouts, `1040/1040` advances and `5280` artifacts completed. Six paired
 > histories separated by `2.715--7.465 mm`, both zero-weight replays were

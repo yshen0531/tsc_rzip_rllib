@@ -1,5 +1,22 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Current NR route notice (2026-08-20, ID-2Z19R1):** the first ID-2Z19
+> implementation was stopped before fitting. Complete signed Card15 actions
+> require rank four and candidate future actions must be reconstructed from
+> current active command plus proposed targets, not future recorded fields.
+> The next single model identity contains one readiness gate and exactly two
+> bounded candidates: a structured stable-memory multi-horizon predictor and
+> that backbone plus one small causal TCN residual. Whole-history OOF rows,
+> componentwise/terminal-speed/full-event response metrics, support/OOD and a
+> structurally independent evaluator are required. Calibration/holdout stay
+> unopened unless development passes.
+>
+> Model qualification and source-local authority/recovery are now explicit
+> independent AND gates. A model cannot prove action safety or reachability;
+> an exact-TSC branch cannot replace fresh model calibration/holdout. The
+> first real rolling controller remains blocked until both axes and the hard
+> interface pass. Older notices below are historical.
+
 > **Current NR route notice (2026-08-20, post-ID-2Z18):** the prospective
 > full-horizon development campaign completed cleanly: `16/16` authentic
 > histories, exact zero-weight replays, all paired signal gates and corrected
