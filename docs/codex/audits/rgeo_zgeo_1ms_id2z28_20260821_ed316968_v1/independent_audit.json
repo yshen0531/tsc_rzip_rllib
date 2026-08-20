@@ -1,0 +1,107 @@
+{
+  "audit_passed": true,
+  "calibration_or_holdout_reads": 0,
+  "claim_boundary": "Zero-new-TSC bounded 1--8 ms development model and exact action-allocation audit only; not calibrated uncertainty, Authority-L0, capture, recovery, Recourse, controller, MPC, waypoint/path, R_mid crossing, real-plant or deployment evidence.",
+  "failures": [],
+  "models_fit_or_updated": 1,
+  "plant_advances": 0,
+  "primary_sha256": "617d78d9177898edf677f1a5bc48ff64159effc46d7e5e39ed508c3ea2c44703",
+  "recomputed_model_validation": {
+    "maximum_h8_action_ranking_regret_m": 0.0,
+    "maximum_terminal_response_velocity_error_m_per_s": 0.02574568764496973,
+    "minimum_rz_direction_cosine": 0.9939966697407999,
+    "passed": true,
+    "scaled_absolute_error_p95": 0.16280374999986386,
+    "scaled_response_rmse": 0.0773841679246164
+  },
+  "recomputed_nomination": {
+    "baseline_worst_score": 4.88408055536856,
+    "candidate_count": 390625,
+    "relative_worst_score_improvement": 0.04750012997059916,
+    "selected_tokens": [
+      "Z+",
+      "R-",
+      "R-",
+      "Z+",
+      "R-",
+      "H",
+      "H",
+      "H"
+    ],
+    "selected_worst_score": 4.652086094201677
+  },
+  "recomputed_route": "ONE_MS_ID2Z28_MODEL_PASS_Q_CELL_CONTROL_UTILITY_FAIL_REDESIGN_ALLOCATION",
+  "recomputed_stream_checks": [
+    {
+      "closure_exact": true,
+      "maximum_issued_delta_a": 0.30000000000001137,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "phase_issue": 32,
+      "tokens": [
+        "Z+",
+        "R-",
+        "R-",
+        "Z+",
+        "R-",
+        "H",
+        "H",
+        "H"
+      ]
+    },
+    {
+      "closure_exact": true,
+      "maximum_issued_delta_a": 0.30000000000001137,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "phase_issue": 32,
+      "tokens": [
+        "Z-",
+        "R+",
+        "R+",
+        "Z-",
+        "R+",
+        "H",
+        "H",
+        "H"
+      ]
+    },
+    {
+      "closure_exact": true,
+      "maximum_issued_delta_a": 0.30000000000001137,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "phase_issue": 40,
+      "tokens": [
+        "Z+",
+        "R-",
+        "R-",
+        "Z+",
+        "R-",
+        "H",
+        "H",
+        "H"
+      ]
+    },
+    {
+      "closure_exact": true,
+      "maximum_issued_delta_a": 0.30000000000001137,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "phase_issue": 40,
+      "tokens": [
+        "Z-",
+        "R+",
+        "R+",
+        "Z-",
+        "R+",
+        "H",
+        "H",
+        "H"
+      ]
+    }
+  ],
+  "schema_version": "rgeo-zgeo-1ms-id2z28-event-value-model-independent-v1",
+  "source_revision": "ed316968f39bcb4aeb5cb94b796191a054b51a4c",
+  "tsc_calls": 0
+}

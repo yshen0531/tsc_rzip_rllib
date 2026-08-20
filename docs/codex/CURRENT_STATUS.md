@@ -1,6 +1,17 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z27 final):** clean finite D0 data PASS,
+> **Current status (2026-08-21, ID2Z28 final):** server validation passed
+> `9/9` focused and `666/666` complete one-millisecond tests. The stage fit one
+> finite causal q-response FIR and ran zero TSC/plant advances. Whole-phase
+> internal validation and independent recomputation passed, but exhaustive
+> eight-token utility was only `4.7500% < 15%`; route
+> `ONE_MS_ID2Z28_MODEL_PASS_Q_CELL_CONTROL_UTILITY_FAIL_REDESIGN_ALLOCATION`.
+> The selected stream is statically exact but must not be run. Current work is
+> a bounded zero-TSC task/terminal plus action-allocation realignment. Source
+> capture remains failed for this cell; a moving-reference local waypoint is
+> a separate prospective objective, not a retrospective reinterpretation.
+
+> **Historical status (2026-08-21, ID2Z27 final):** clean finite D0 data PASS,
 > not Authority/capture/controller PASS. Execution was `11/11` and
 > `803/803`; repaired independent audit reparsed 814 states and 4,070
 > artifacts (47,938,840,136 bytes) and exactly reproduced the primary DATA

@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z27 final):** the fresh dynamic
+> **Unique new-round context (2026-08-21, ID2Z28 final):** the finite q_R/q_Z
+> FIR generalized cleanly from issue 32 to issue 40, but the best of `390625`
+> eight-token sequences improved the matched source-capture score by only
+> `4.7500%`, below the frozen `15%` gate. Exact Card15 streams and the
+> independent evaluator passed; zero TSC was run. This cleanly separates
+> model adequacy from control utility: do not add capacity or execute the weak
+> nominee. The active zero-TSC redesign must decide between a materially new
+> source-capture allocation and a separately qualified moving-nominal-relative
+> local waypoint task. Final safe two-axis waypoint/path and repeated R_mid
+> crossing goals are unchanged; capture, Authority and Recourse remain open.
+
+> **Historical new-round context (2026-08-21, ID2Z27 final):** the fresh dynamic
 > q_R/q_Z D0 campaign is complete and independently authenticated. It proves
 > persistent, signed, two-dimensional finite response at two moving phases,
 > but capture is 0/11 and the slack nominal is worse than continuing full-F.

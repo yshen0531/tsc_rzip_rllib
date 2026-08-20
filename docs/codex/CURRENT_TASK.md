@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z27 final / bounded model and
+> **Unique active task (2026-08-21, ID2Z28 final / task and allocation
+> realignment):** ID2Z28 ran zero TSC and validated its sole frozen 1--8 ms
+> q_R/q_Z response model on the whole phase-40 family (scaled RMSE `0.0774`,
+> p95 `0.1628`, minimum R/Z cosine `0.9940`, maximum terminal velocity error
+> `0.02575 m/s`). Exact action preflight passed. Exhaustive evaluation of
+> `390625` eight-token sequences nevertheless found only `4.7500%` robust
+> source-capture score improvement versus the frozen `15%` readiness gate.
+> Independent recomputation passed. Preserve the route as
+> `ONE_MS_ID2Z28_MODEL_PASS_Q_CELL_CONTROL_UTILITY_FAIL_REDESIGN_ALLOCATION`;
+> do not run the nominated sequence, loosen the gate, lengthen the FIR or add
+> a model. The sole active work is one zero-new-TSC task/terminal and
+> action-allocation realignment: distinguish the failed source-capture task
+> from a small moving-nominal-relative two-axis waypoint, and prospectively
+> choose at most one materially different next identity. No new TSC or
+> controller is authorized until that identity has its own exact Card15,
+> support and safety contract. Older active blocks below are historical.
+
+> **Historical active task (2026-08-21, ID2Z27 final / bounded model and
 > Authority design next):** ID2Z27 completed `11/11`, `803/803`, 814 states
 > and 4,070 raw artifacts. Primary and repaired independent raw audit agree
 > on `ONE_MS_ID2Z27_DYNAMIC_D0_DATA_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY`.
