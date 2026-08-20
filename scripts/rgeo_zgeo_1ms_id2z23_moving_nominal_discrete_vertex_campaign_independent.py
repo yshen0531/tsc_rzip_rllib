@@ -97,10 +97,11 @@ def scientific_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) ->
     gates = stage["measurement_gates"]
     by_id = {str(row.get("family_id")): row for row in rows}
     baseline = by_id.get("baseline_full_f")
-    all_passed = bool(baseline and baseline.get("passed")
-                      and len(baseline.get("states", [])) == 66)
+    baseline_complete = bool(baseline and baseline.get("passed")
+                             and len(baseline.get("states", [])) == 66)
+    all_passed = baseline_complete
     phase_values: list[dict[str, Any]] = []
-    if baseline:
+    if baseline_complete:
         for phase in stage["phase_issue_steps"]:
             arms: list[dict[str, Any]] = []
             grouped: dict[int, list[np.ndarray]] = {4: [], 8: []}
@@ -161,7 +162,7 @@ def scientific_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) ->
                      stage["semantic_artifacts"])
     all_passed = all_passed and replay["passed"] and len(phase_values) == 2
     capture: list[dict[str, Any]] = []
-    if baseline:
+    if baseline_complete:
         source = baseline["states"][0]
         source_ip = abs(float(source["ip_a"]))
         for row in rows:

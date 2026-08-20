@@ -220,8 +220,10 @@ def scientific_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) ->
     by_id = {row.get("family_id"): row for row in rows}
     baseline = by_id.get("baseline_full_f")
     phase_rows: list[dict[str, Any]] = []
-    all_passed = bool(baseline and baseline.get("passed") and len(baseline.get("states", [])) == 66)
-    if baseline:
+    baseline_complete = bool(
+        baseline and baseline.get("passed") and len(baseline.get("states", [])) == 66)
+    all_passed = baseline_complete
+    if baseline_complete:
         for phase in stage["phase_issue_steps"]:
             arm_values: list[dict[str, Any]] = []
             by_horizon: dict[int, list[np.ndarray]] = {4: [], 8: []}
@@ -269,7 +271,7 @@ def scientific_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) ->
                              stage["semantic_artifacts"])
     all_passed = all_passed and replay["passed"] and len(phase_rows) == 2
     capture = []
-    if baseline:
+    if baseline_complete:
         source = baseline["states"][0]; source_ip = abs(float(source["ip_a"]))
         for row in rows:
             if not row.get("passed") or len(row.get("states", [])) != 66:
