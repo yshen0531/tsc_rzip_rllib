@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z22 amendment (2026-08-20):** the next data stage uses exact
+> **Post-ID2Z23 amendment (2026-08-20):** exact p00/p05/p06 replacement
+> vertices retained large individual signals but lost positive-span geometry
+> at both moving full-F phases, with phase-dependent direction reversal at
+> issue 32. This grammar is closed. The architecture remains exact observation
+> + causal history/belief + bounded model + hard interface, but its next action
+> coordinate or takeover nominal must be materially redesigned before more TSC
+> or model fitting. Input rank or held-state span cannot substitute for
+> control-aligned persistent output authority.
+
+> **Historical post-ID2Z22 amendment (2026-08-20):** the next data stage uses exact
 > discrete Card15 vertices as replacement/time-sharing actions at two moving-
 > nominal phases. It does not treat them as a continuous basis. Both phases
 > must independently retain persistent task-plane geometry before model

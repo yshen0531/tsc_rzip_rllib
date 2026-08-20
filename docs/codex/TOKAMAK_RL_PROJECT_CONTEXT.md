@@ -1,6 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Current NR route notice (2026-08-20, ID2Z22 final):** exact discrete
+> **Current NR route notice (2026-08-20, ID2Z23 final):** the finite
+> moving-nominal vertex campaign completed cleanly but failed persistent
+> two-axis geometry at both frozen phases. The old held-state positive span did
+> not transport to continuing full-F. No model was fit and no authority,
+> capture, recovery or control was established. The route is paused at a
+> material action-basis/takeover-nominal redesign, not another micro-probe.
+
+> **Historical NR route notice (2026-08-20, ID2Z22 final):** exact discrete
 > vertex preflight passed with zero TSC/fit and independent recomputation.
 > It authorizes only the frozen ten-rollout ID2Z23 simulator-development
 > campaign at moving-nominal issues 24 and 32. Positive span at the old held

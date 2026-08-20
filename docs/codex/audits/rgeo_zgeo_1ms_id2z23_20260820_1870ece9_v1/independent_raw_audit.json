@@ -1,0 +1,333 @@
+{
+  "advance_attempts": 650,
+  "audit_passed": true,
+  "calibration_or_holdout_records_read": 0,
+  "claim_boundary": "Independent full-raw audit of finite ID2Z23 only.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "new_tsc_or_plant_advances": 0,
+  "plant_advance_gotsc_calls": 650,
+  "primary_passed": false,
+  "primary_route": "ONE_MS_ID2Z23_MOVING_NOMINAL_VERTEX_GEOMETRY_FAIL_NEW_ACTION_BASIS_REQUIRED",
+  "primary_sha256": "b45dbb6745b68ebddc89d0a8af4a484c016c758108074ce9ffb7c3c3a7967944",
+  "raw_rollouts_reparsed": 10,
+  "raw_states_reparsed": 660,
+  "recomputed_prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "baseline_full_f"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p00_minus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p05_minus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p05_plus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue24__p06_plus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p00_minus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p05_minus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p05_plus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__p06_plus4"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "replay_issue24__p05_plus4"
+    }
+  ],
+  "recomputed_required_artifact_bytes": 38869329840,
+  "recomputed_required_artifact_files": 3300,
+  "recomputed_required_artifact_inventory_sha256": "6936d87d28bfc47b0f683a63ba5849777a77bb3e24ad72a72208575bef3e0f6d",
+  "recomputed_route": "ONE_MS_ID2Z23_MOVING_NOMINAL_VERTEX_GEOMETRY_FAIL_NEW_ACTION_BASIS_REQUIRED",
+  "recomputed_scientific_metrics": {
+    "capture_diagnostics": [
+      {
+        "captured": false,
+        "family_id": "baseline_full_f",
+        "maximum_distance_m": 0.028254918761722213,
+        "maximum_ip_fraction": 0.024414200929356283,
+        "maximum_speed_m_per_s": 0.41647244400947026
+      },
+      {
+        "captured": false,
+        "family_id": "issue24__p00_minus4",
+        "maximum_distance_m": 0.03163413782048745,
+        "maximum_ip_fraction": 0.019595724800080008,
+        "maximum_speed_m_per_s": 0.49287534558452056
+      },
+      {
+        "captured": false,
+        "family_id": "issue24__p05_minus4",
+        "maximum_distance_m": 0.031079619639886553,
+        "maximum_ip_fraction": 0.02016715828646836,
+        "maximum_speed_m_per_s": 0.43998624968067224
+      },
+      {
+        "captured": false,
+        "family_id": "issue24__p05_plus4",
+        "maximum_distance_m": 0.03044921071271723,
+        "maximum_ip_fraction": 0.021589820900456948,
+        "maximum_speed_m_per_s": 0.47273876913684665
+      },
+      {
+        "captured": false,
+        "family_id": "issue24__p06_plus4",
+        "maximum_distance_m": 0.02907811853663003,
+        "maximum_ip_fraction": 0.022641044237043502,
+        "maximum_speed_m_per_s": 0.44251414637412245
+      },
+      {
+        "captured": false,
+        "family_id": "issue32__p00_minus4",
+        "maximum_distance_m": 0.031194179953152705,
+        "maximum_ip_fraction": 0.019149531010847078,
+        "maximum_speed_m_per_s": 0.49650787332451596
+      },
+      {
+        "captured": false,
+        "family_id": "issue32__p05_minus4",
+        "maximum_distance_m": 0.030343893524622294,
+        "maximum_ip_fraction": 0.01972331695664655,
+        "maximum_speed_m_per_s": 0.4413116540759817
+      },
+      {
+        "captured": false,
+        "family_id": "issue32__p05_plus4",
+        "maximum_distance_m": 0.030214131434869507,
+        "maximum_ip_fraction": 0.0213246993640774,
+        "maximum_speed_m_per_s": 0.482404384888903
+      },
+      {
+        "captured": false,
+        "family_id": "issue32__p06_plus4",
+        "maximum_distance_m": 0.029047938688118297,
+        "maximum_ip_fraction": 0.02250848506699193,
+        "maximum_speed_m_per_s": 0.43174053474794905
+      },
+      {
+        "captured": false,
+        "family_id": "replay_issue24__p05_plus4",
+        "maximum_distance_m": 0.03044921071271723,
+        "maximum_ip_fraction": 0.021589820900456948,
+        "maximum_speed_m_per_s": 0.47273876913684665
+      }
+    ],
+    "passed": false,
+    "phase_metrics": [
+      {
+        "arm_metrics": [
+          {
+            "complete": true,
+            "h4_h8_cosine": 0.8333001028941242,
+            "h4_norm_m": 0.0007570857465235754,
+            "h4_response_m": [
+              -0.0006943644999999332,
+              0.00030172300000000374
+            ],
+            "h8_norm_m": 0.0007816400608549466,
+            "h8_response_m": [
+              -0.00042517150000009885,
+              0.0006558889999999928
+            ],
+            "maximum_absolute_paired_ip_response_a": 185.82710000000225,
+            "passed": true,
+            "vertex_id": "p00_minus4"
+          },
+          {
+            "complete": true,
+            "h4_h8_cosine": 0.9542697123099931,
+            "h4_norm_m": 0.0005107489201988236,
+            "h4_response_m": [
+              -0.0003686880000000059,
+              0.000353459500000014
+            ],
+            "h8_norm_m": 0.001014108767603975,
+            "h8_response_m": [
+              -0.0004887630000000032,
+              0.0008885535
+            ],
+            "maximum_absolute_paired_ip_response_a": 178.1293000000005,
+            "passed": true,
+            "vertex_id": "p05_minus4"
+          },
+          {
+            "complete": true,
+            "h4_h8_cosine": 0.9897838878690426,
+            "h4_norm_m": 0.0005206289021563242,
+            "h4_response_m": [
+              -0.0004812594999999975,
+              0.00019860450000000474
+            ],
+            "h8_norm_m": 0.0009201154800074431,
+            "h8_response_m": [
+              -0.0007918045000000484,
+              0.0004686770000000007
+            ],
+            "maximum_absolute_paired_ip_response_a": 136.41170000000056,
+            "passed": true,
+            "vertex_id": "p05_plus4"
+          },
+          {
+            "complete": true,
+            "h4_h8_cosine": 0.9861787659006529,
+            "h4_norm_m": 0.00035908766650014973,
+            "h4_response_m": [
+              -0.00030089850000003526,
+              0.0001959695000000039
+            ],
+            "h8_norm_m": 0.0005914043465684411,
+            "h8_response_m": [
+              -0.0004352440000000568,
+              0.00040040199999999415
+            ],
+            "maximum_absolute_paired_ip_response_a": 78.24300000000221,
+            "passed": true,
+            "vertex_id": "p06_plus4"
+          }
+        ],
+        "geometry": [
+          {
+            "horizon": 4,
+            "maximum_angular_gap_deg": 338.6328532686167,
+            "passed": false,
+            "weakest_best_projection_m": -0.00035906277991718384
+          },
+          {
+            "horizon": 8,
+            "maximum_angular_gap_deg": 329.4354075757856,
+            "passed": false,
+            "weakest_best_projection_m": -0.0005908909532714498
+          }
+        ],
+        "passed": false,
+        "phase_issue": 24
+      },
+      {
+        "arm_metrics": [
+          {
+            "complete": true,
+            "h4_h8_cosine": 0.965032827295367,
+            "h4_norm_m": 0.00021123097383253327,
+            "h4_response_m": [
+              -0.00012951999999999408,
+              0.0001668624999999757
+            ],
+            "h8_norm_m": 0.0014188532467034741,
+            "h8_response_m": [
+              -0.001133374999999992,
+              0.0008535840000000045
+            ],
+            "maximum_absolute_paired_ip_response_a": 183.91779999999926,
+            "passed": true,
+            "vertex_id": "p00_minus4"
+          },
+          {
+            "complete": true,
+            "h4_h8_cosine": 0.1251757764112319,
+            "h4_norm_m": 0.0003205798977138466,
+            "h4_response_m": [
+              0.000249413499999962,
+              0.00020140599999997344
+            ],
+            "h8_norm_m": 0.0010649215203027396,
+            "h8_response_m": [
+              -0.0005600699999999126,
+              0.0009057479999999979
+            ],
+            "maximum_absolute_paired_ip_response_a": 168.26610000000073,
+            "passed": false,
+            "vertex_id": "p05_minus4"
+          },
+          {
+            "complete": true,
+            "h4_h8_cosine": -0.6288389781975673,
+            "h4_norm_m": 0.00015230692826410924,
+            "h4_response_m": [
+              0.00014252900000000235,
+              5.369249999997994e-05
+            ],
+            "h8_norm_m": 0.0009879853216805319,
+            "h8_response_m": [
+              -0.0008522079999999654,
+              0.0004998564999999927
+            ],
+            "maximum_absolute_paired_ip_response_a": 133.16339999999764,
+            "passed": false,
+            "vertex_id": "p05_plus4"
+          },
+          {
+            "complete": true,
+            "h4_h8_cosine": -0.6458573015611182,
+            "h4_norm_m": 0.0003166169544737744,
+            "h4_response_m": [
+              0.00031246449999999815,
+              5.1109999999993105e-05
+            ],
+            "h8_norm_m": 0.000653244142308166,
+            "h8_response_m": [
+              -0.0004968759999999239,
+              0.0004240780000000083
+            ],
+            "maximum_absolute_paired_ip_response_a": 71.87330000000293,
+            "passed": false,
+            "vertex_id": "p06_plus4"
+          }
+        ],
+        "geometry": [
+          {
+            "horizon": 4,
+            "maximum_angular_gap_deg": 241.47073896229557,
+            "passed": false,
+            "weakest_best_projection_m": -0.00010414888873090857
+          },
+          {
+            "horizon": 8,
+            "maximum_angular_gap_deg": 332.12405667402203,
+            "passed": false,
+            "weakest_best_projection_m": -0.0006531225771865603
+          }
+        ],
+        "passed": false,
+        "phase_issue": 32
+      }
+    ],
+    "replay_metrics": {
+      "failures": [],
+      "passed": true
+    }
+  },
+  "reset_calls": 10,
+  "schema_version": "rgeo-zgeo-1ms-id2z23-independent-raw-v1",
+  "source_revision": "1870ece9c8ec90aebe5b4bf0d24aa046016e716c",
+  "stage_config_sha256": "b583b421a1ace59cbbcd37d04ffdb38436bae477f9c7906d691b6e74bab42561",
+  "verified_plant_advances": 650
+}

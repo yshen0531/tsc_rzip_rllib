@@ -1,6 +1,16 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-20, ID2Z22 final):** the bounded zero-TSC
+> **Unique active task (2026-08-20, ID2Z23 final):** ID2Z23 completed all ten
+> rollouts and `650/650` advances with exact execution, prefix, raw and replay
+> integrity, and independent full-raw reproduction. Both moving-nominal phases
+> failed the frozen persistent two-axis geometry gate; capture was `0/10`.
+> Route: `ONE_MS_ID2Z23_MOVING_NOMINAL_VERTEX_GEOMETRY_FAIL_NEW_ACTION_BASIS_REQUIRED`.
+> The p00/p05/p06 replacement grammar is closed. No adjacent phase, duration,
+> amplitude, added rollout, model fit or Authority-L0 stage is authorized.
+> Pause for a decision-complete redesign of the Card15 action basis or takeover
+> nominal; older active blocks below are historical.
+
+> **Historical active task (2026-08-20, ID2Z22 final):** the bounded zero-TSC
 > discrete-vertex preflight and its independent recomputation passed. Four
 > exact vertices positively span the held-state R/Z evidence at 4 and 8 ms,
 > and all issue-24/issue-32 moving-nominal replacement schedules are exact,

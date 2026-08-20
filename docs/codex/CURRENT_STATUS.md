@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-20, ID2Z22 final):** zero-TSC/zero-fit preflight
+> **Current status (2026-08-20, ID2Z23 final):** ten authentic rollouts,
+> `650/650` advances, `3300` raw artifacts and the exact replay completed; all
+> execution/evidence gates and the independent raw audit passed. Both issue-24
+> and issue-32 moving-nominal task-plane geometry gates failed, and capture was
+> `0/10`. This is a clean action-grammar/design FAIL, not a plant-unreachability
+> conclusion. The frozen stop rule now requires action-basis or takeover-nominal
+> redesign before any new TSC/model work.
+
+> **Historical status (2026-08-20, ID2Z22 final):** zero-TSC/zero-fit preflight
 > PASS, independently reproduced. The four frozen discrete Card15 vertices
 > have persistent held-state signal and positive-span geometry, while all
 > prospective moving-nominal schedules are exact and statically admissible.
