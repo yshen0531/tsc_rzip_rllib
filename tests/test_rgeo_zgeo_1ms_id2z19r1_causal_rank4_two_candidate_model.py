@@ -177,7 +177,12 @@ class ID2Z19R1Tests(unittest.TestCase):
         self.assertIn("set +e", text)
         self.assertIn("PRIMARY_STATUS=$?", text)
         self.assertIn("oof_predictions.json", text)
-        self.assertIn("independent_audit", text)
+        self.assertIn(
+            "scripts/rgeo_zgeo_1ms_id2z19r1_causal_rank4_two_candidate_model_audit.py",
+            text,
+        )
+        self.assertIn("AUDIT_STATUS=$?", text)
+        self.assertIn('test "$AUDIT_STATUS" -ne 0', text)
 
     def test_no_gru_or_tsc_in_model_identity(self):
         primary_text = PRIMARY_PATH.read_text(encoding="utf-8").lower()
