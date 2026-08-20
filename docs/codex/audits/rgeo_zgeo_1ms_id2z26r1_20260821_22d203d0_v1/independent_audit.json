@@ -1,0 +1,71 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Zero-TSC exact finite Card15 construction only; not plant response, D0, authority, capture, recovery, Recourse, model, controller, MPC, waypoint/path, R_mid crossing or deployment evidence.",
+  "expected_route": "ONE_MS_ID2Z26R1_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "plant_advances": 0,
+  "primary_route": "ONE_MS_ID2Z26R1_DYNAMIC_OUTPUT_ALIGNED_PREFLIGHT_PASS_CAMPAIGN_DESIGN_ONLY",
+  "primary_sha256": "44ecac05709356db147ee1867df7bf9651a2f1e7f1c2532d0e33f3aedcd946cd",
+  "schema_version": "rgeo-zgeo-1ms-id2z26r1-dynamic-output-aligned-independent-v1",
+  "source_revision": "22d203d078a8cb00f3f0d616ba7183c8430bddc9",
+  "stage_config_sha256": "0c843a3f4ab61e5f693d7f37aef2961ccd319d7f54d3104c70590878443d8d8d",
+  "stream_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "baseline_transition_center"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "diagnostic_baseline_full_f"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue32__q_z__minus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue40__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue40__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue40__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "issue40__q_z__minus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "replay_issue32__q_z__plus_then_return"
+    }
+  ],
+  "tsc_calls": 0
+}

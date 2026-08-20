@@ -1,5 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-21, ID2Z26R1 final / fresh D0 next):** the
+> server passed focused `6/6`, full one-millisecond `648/648`, primary and
+> independent zero-TSC exact-action gates.  Eleven 73-issue streams preserve
+> the full-F prefix, rank-2/condition-1.0507 q cell, `<=0.3 A` slew, positive
+> current headroom and exact bridge closure.  ID2Z26 v1's naive signed return
+> remains a zero-TSC design FAIL; R1 is a new return identity, not a rewritten
+> result.  The active task is now one separately frozen fresh D0 campaign over
+> exactly this matrix.  It must use matched transition-center responses,
+> both q axes/signs and phases, a common tail and zero-weight replay/full-F
+> diagnostics.  Any interface/execution/raw failure is inconclusive; any
+> frozen D0 persistence failure closes the whole grammar without adjacent
+> share/phase/duration/rotation rescue.  No model or Authority-L0 is yet
+> authorized.  Every older active block below is historical.
+
 > **Unique active task (2026-08-21, post-ID2Z25 route review):** ID2Z25 stays
 > final FAIL and all its rows stay zero-fit.  A new output-aligned seed uses
 > `q_R=(p05-p06)/2` and `q_Z=(p05+p06)/2`; old paired responses make these

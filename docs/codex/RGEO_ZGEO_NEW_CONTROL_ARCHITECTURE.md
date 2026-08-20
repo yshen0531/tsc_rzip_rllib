@@ -1,4 +1,12 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID2Z26R1 amendment (2026-08-21):** the full-F-prefix to slack-center
+> q_R/q_Z streams now pass exact Card15 construction and independent static
+> audit.  The bridge is an exact precomputed target path, not recovery.  One
+> fresh D0 campaign may now test real persistence at the two frozen phases;
+> D0 PASS may open shadow event/value learning and Authority-L0 design in
+> parallel, while real feedback still requires model calibration/holdout AND
+> Authority-L0 AND Recourse-L1 AND the hard interface.
+>
 > **Post-ID2Z25 route decision (2026-08-21):** retain early full-F transport
 > but do not add residuals to its saturated increment.  The next prospective
 > control coordinate transitions to a slack moving allocation and uses the

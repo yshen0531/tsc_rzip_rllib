@@ -1,5 +1,13 @@
 # Current status
 
+> **Current status (2026-08-21, ID2Z26R1 final):** zero-TSC preflight PASS.
+> Server tests were `6/6` focused and `648/648` complete.  Primary and
+> independent audit accepted all 11 prospective streams; rank is two,
+> condition `1.0507`, maximum slew `0.300000000000011 A`, minimum whole-stream
+> headroom `101.5 A`, and all bridge closures are exact.  TSC/plant/model/
+> calibration/holdout counts are zero.  Only a new fresh D0 campaign is now
+> eligible for implementation; no response or controller conclusion exists.
+
 > **Current status (2026-08-21, post-ID2Z25 decision):** the next seed is a
 > new rank-2 output-aligned residual coordinate, not a reclassification of
 > ID2Z25.  Descriptive h4/h8 output conditions are `1.30--1.55`, and the

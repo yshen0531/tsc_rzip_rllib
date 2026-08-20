@@ -1,5 +1,12 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique new-round context (2026-08-21, ID2Z26R1 final):** the dynamic
+> full-F-to-slack output-aligned Card15 streams are statically qualified.  R1
+> replaced v1's non-closing naive inverse with an exact precomputed endpoint
+> bridge while preserving all scientific gates.  This is zero-TSC action
+> qualification only.  The next admissible real work is one fresh D0 response
+> campaign; model fitting, Authority-L0 and Recourse remain unopened.
+
 > **Unique new-round context (2026-08-21, post-ID2Z25 redesign):** preserve
 > the clean ID2Z25 FAIL and rotate the stable p05/p06 odd-response seeds into
 > task-plane coordinates `q_R/q_Z` only under a new data identity.  The new
