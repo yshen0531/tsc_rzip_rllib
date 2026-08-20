@@ -1,6 +1,7 @@
 import copy
 import importlib.util
 import json
+import sys
 import unittest
 from dataclasses import replace
 from pathlib import Path
@@ -20,6 +21,7 @@ def load_module(name: str, path: Path):
     spec = importlib.util.spec_from_file_location(name, path)
     module = importlib.util.module_from_spec(spec)
     assert spec.loader is not None
+    sys.modules[name] = module
     spec.loader.exec_module(module)
     return module
 
