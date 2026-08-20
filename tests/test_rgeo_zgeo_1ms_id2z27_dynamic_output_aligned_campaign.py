@@ -176,6 +176,18 @@ class ID2Z27Tests(unittest.TestCase):
         self.assertIn("primary_rc=$?", launcher)
         self.assertNotIn("--resume", launcher)
 
+    def test_independent_raw_prefix_preserves_only_preissue_inputa(self) -> None:
+        raw = {"states": [self._state(1.0, 2.0)], "actions": [{"x": 1}]}
+        raw["states"][0]["artifact_sha256"]["inputa"] = "outgoing"
+        raw["states"][0]["artifact_sha256"]["geqdsk"] = "raw-geqdsk"
+        compact = copy.deepcopy(raw)
+        compact["states"][0]["artifact_sha256"]["inputa"] = "preissue"
+        compact["states"][0]["artifact_sha256"]["geqdsk"] = "compact-geqdsk"
+        value = mi._preissue_semantic_row(raw, compact)
+        self.assertEqual(value["states"][0]["artifact_sha256"]["inputa"], "preissue")
+        self.assertEqual(value["states"][0]["artifact_sha256"]["geqdsk"], "raw-geqdsk")
+        self.assertEqual(raw["states"][0]["artifact_sha256"]["inputa"], "outgoing")
+
 
 if __name__ == "__main__":
     unittest.main()

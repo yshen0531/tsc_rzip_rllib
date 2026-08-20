@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import math
@@ -93,6 +94,31 @@ def _geometry(vectors: Sequence[np.ndarray], count: int) -> dict[str, float]:
                    for v in vectors)
                for angle in (2.0 * math.pi * index / count for index in range(count)))
     return {"maximum_angular_gap_deg": gap, "weakest_best_projection_m": weak}
+
+
+def _preissue_semantic_row(raw: dict[str, Any], compact: dict[str, Any]) -> dict[str, Any]:
+    """Restore only the preissue inputa hash overwritten by the outgoing issue.
+
+    The retained state-k directory contains the post-record outgoing inputa for
+    issue k.  The primary compact captured inputa before that rewrite.  Raw RZI,
+    currents and every other artifact remain independently reparsed; rawio also
+    checks the outgoing inputa fields against the frozen action stream.
+    """
+    value = {key: copy.deepcopy(item) for key, item in raw.items()
+             if key not in ("states", "actions")}
+    states: list[dict[str, Any]] = []
+    saved_states = compact.get("states", [])
+    for index, state in enumerate(raw.get("states", [])):
+        item = copy.deepcopy(state)
+        hashes = dict(item.get("artifact_sha256", {}))
+        if index < len(saved_states):
+            hashes["inputa"] = saved_states[index].get(
+                "artifact_sha256", {}).get("inputa")
+        item["artifact_sha256"] = hashes
+        states.append(item)
+    value["states"] = states
+    value["actions"] = copy.deepcopy(raw.get("actions", []))
+    return value
 
 
 def scientific_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any]) -> dict[str, Any]:
@@ -227,7 +253,12 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             or inventory_bytes != result.get("required_artifact_bytes")):
         failures.append("INVENTORY_COUNT_OR_BYTES")
     raw_by_id = {str(row.get("rollout_id")): row for row in raw_rows}
-    centered = raw_by_id.get("baseline_transition_center")
+    compact_by_id = {str(row.get("rollout_id")): row for row in compact}
+    semantic_by_id = {
+        family: _preissue_semantic_row(row, compact_by_id.get(family, {}))
+        for family, row in raw_by_id.items()
+    }
+    centered = semantic_by_id.get("baseline_transition_center")
     prefixes: list[dict[str, Any]] = []
     for frozen in expected[:len(compact)]:
         family = str(frozen["rollout_id"])
@@ -239,7 +270,7 @@ def audit(stage_path: Path, run_dir: Path, source_revision: str) -> dict[str, An
             reference = centered or {}
             state_count = int(frozen["prefix_checkpoint_last_state"]) + 1
         prefixes.append(primary.z6.prefix_check(
-            raw_by_id.get(family, {}), reference, state_count, state_count - 1,
+            semantic_by_id.get(family, {}), reference, state_count, state_count - 1,
             stage["semantic_artifacts"]))
     execution = bool(raw_rows and all(row.get("passed") for row in raw_rows))
     expected_files = 5 * sum(len(row.get("states", [])) for row in raw_rows)
