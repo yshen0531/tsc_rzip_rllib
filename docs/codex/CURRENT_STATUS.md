@@ -1,5 +1,16 @@
 # Current status
 
+> **Current status (2026-08-21, ID2Z24R2 final):** the exact eight-slot return
+> bridge passed server focused `7/7`, full one-millisecond `633/633`, formal
+> zero-TSC preflight and independent recomputation. The selected share is
+> `0.50`; rank is three, condition is `1.1543--1.1795`, all 13 prospective
+> streams close exactly, maximum issued slew is
+> `0.30000000000001137 A`, and minimum headroom is `108.7 A`. TSC calls,
+> plant advances and model fits remain zero. This is an executable action-cell
+> PASS only. The active stage is implementation and server qualification of
+> the fixed 15-rollout ID2Z25 D0 campaign; no plant result, authority, capture,
+> recovery, calibration, holdout or controller has yet been obtained.
+
 > **Current status (2026-08-21, ID2Z24/R1 final / R2 active):** server-focused
 > validation reproduced the approved ID2Z23 attribution but found zero of six
 > nominal shares with pure repeated-quantization byte-exact closure. The

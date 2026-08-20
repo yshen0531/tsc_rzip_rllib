@@ -1,5 +1,15 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Active centered-allocation amendment (2026-08-20):** full-F is a finite
+> **Post-ID2Z24R2 amendment (2026-08-21):** exact centered action construction
+> is now qualified at nominal share `0.50`, including an eight-slot exact
+> Card15 return bridge. The next campaign tests only D0 simulator-development
+> signal and persistence. D0 does not require capture or positive span and may
+> open bounded shadow model development in parallel with Authority-L0 and
+> Recourse-L1 design. Real feedback remains gated by the conjunction of fresh
+> model calibration/blind PASS, Authority-L0, Recourse-L1 and the exact hard
+> interface. Neither input rank nor exact action return is a state-return or
+> recovery claim.
+>
+> **Historical centered-allocation amendment (2026-08-20):** full-F is a finite
 > transport action at the boundary of the one-ms slew polytope, not a qualified
 > residual-feedback center. The active design jointly selects a finite
 > transition/deceleration nominal and exact centered signed Card15 allocations.

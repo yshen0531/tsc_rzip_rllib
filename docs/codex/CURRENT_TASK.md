@@ -1,5 +1,28 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-21, ID2Z24R2 final / ID2Z25 active):**
+> ID2Z24R2 passed server-focused `7/7`, the complete one-millisecond suite
+> `633/633`, its dual zero-TSC exact-Card15 preflight and independent
+> recomputation. All six shares passed; the prospectively selected `0.50`
+> centered cell has residual rank three, condition `1.1543--1.1795`, maximum
+> issued slew `0.30000000000001137 A`, minimum headroom `108.7 A`, and exact
+> endpoint closure for all 13 static scientific streams. Preserve the v1
+> repeated-quantization FAIL and R1 overloaded-finish FAIL separately.
+>
+> The sole active task is the separately identified ID2Z25 campaign frozen by
+> the R2 config: at most fifteen 65-advance fresh rollouts, consisting of the
+> matched centered baseline, zero-fit full-F diagnostic, twelve phase/axis/
+> sign branches and one zero-fit replay. All siblings stay in one family;
+> baseline and twelve branches are prospective development-fit data, while
+> diagnostic and replay have zero fit weight. Scientific D0 gates measure
+> safe complete execution, exact return/replay, persistent h4/h8 response and
+> paired Ip. Positive span and capture remain diagnostics, not D0 prerequisites.
+> No TSC starts until implementation, full server tests, offline gates, disk
+> budget and independent-auditor readiness pass. D0 does not authorize a
+> controller: fresh model calibration/blind PASS, Authority-L0, Recourse-L1
+> and the hard interface remain an AND gate. Every older active block below is
+> historical.
+
 > **Unique active task (2026-08-21, ID2Z24R2 pre-execution correction):**
 > ID2Z24 executed zero TSC/plant/model work and independently failed only its
 > prospective pure eight-plus/eight-minus byte-exact Card15 closure. All six

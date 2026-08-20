@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique new-round context (2026-08-21, ID2Z24R2 final):** the server and an
+> independent implementation reproduced an exact centered co-allocation cell
+> at nominal share `0.50`. The eight-slot Card15 return bridge fixes the v1
+> cumulative-rounding and R1 final-slew defects without relaxing any action or
+> current gate. All six candidate shares passed, but the prospectively largest
+> share remains selected. This is zero-TSC digital executability, not measured
+> output authority. One frozen ID2Z25 fresh D0 campaign is active; model,
+> Authority-L0 and Recourse-L1 remain separate downstream claims and only
+> converge before real controller execution.
+
 > **Unique new-round context (2026-08-21, ID2Z24R2):** the first centered
 > preflight ran zero TSC and exposed a pure Card15 cumulative-rounding defect:
 > all local action gates passed, but eight plus followed by eight minus did not
