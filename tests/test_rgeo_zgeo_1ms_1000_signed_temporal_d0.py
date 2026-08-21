@@ -80,7 +80,10 @@ class Fixed1000SignedTemporalD0Test(unittest.TestCase):
             rows.append({**spec, "states": states})
         metrics = primary.scientific_metrics(rows, baseline, payload)
         self.assertTrue(metrics["passed"])
-        self.assertTrue(all(row["condition"] == 1.0 for phase in metrics["phases"] for row in phase["horizons"]))
+        self.assertTrue(all(
+            abs(row["condition"] - 1.0) < 1e-12
+            for phase in metrics["phases"] for row in phase["horizons"]
+        ))
 
     def test_scientific_metrics_reject_collinear_outputs(self) -> None:
         payload = json.loads(CONFIG.read_text(encoding="utf-8"))
