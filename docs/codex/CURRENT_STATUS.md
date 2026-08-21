@@ -1,5 +1,14 @@
 # Current status
 
+> **Current fixed-1000 status - C0 calibration PASS (2026-08-22):** all
+> `12/12` fresh negative-history/replay rollouts and `576/576` advances
+> completed. Independent raw audit passed 588 states, 576 actions and 564
+> observed-slew checks. Each history achieved `24/24` frozen-set containment,
+> zero ranking regret and h8 progress `0.277278/0.279069 mm`; both replays were
+> exact. Primary/independent SHA-256 are `c577e9ef...38288d` and
+> `bd1c6b9f...cea5d9`. This opens one mixed-history blind design only; no
+> refit, Authority, Recourse or controller is authorized.
+
 > **Current fixed-1000 status - V0 development PASS (2026-08-22):** server
 > one-ms regression passed `781/781`; V0 used zero TSC/plant advances. All
 > three held histories achieved `24/24` component containment and zero

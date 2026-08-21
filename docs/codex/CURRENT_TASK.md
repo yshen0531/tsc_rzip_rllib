@@ -1,6 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 V0 development PASS / fresh
+> **Unique active task (2026-08-22, fixed-1000 C0 fresh calibration PASS /
+> mixed-history blind next):** C0 completed `12/12` authentic rollouts and
+> `576/576` advances. Independent raw reconstruction passed 588 states, 576
+> actions and 564 observed-slew checks. In both fresh negative conditioner
+> histories, the byte-fixed V0 set contained `24/24` h4/h8 R/Z/Ip components,
+> incurred zero directional ranking regret and retained at least `0.277278 mm`
+> robust h8 progress. The sole active successor is one prospectively frozen
+> unopened mixed-history blind campaign. V0 may not be refit or widened, C0
+> rows remain zero fit weight, and no result-dependent history/candidate may
+> be added. Authority, Recourse and controller execution remain separate.
+> Every older active block below is historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 V0 development PASS / fresh
 > calibration next):** the frozen V0 direct response-set model passed all
 > three whole-history leave-one-out folds with `24/24` components contained,
 > zero maximum directional ranking regret, h8 weakest-best progress at least

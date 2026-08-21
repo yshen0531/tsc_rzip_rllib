@@ -3268,3 +3268,25 @@
 - Classification: finite development response-set/ranking PASS; opens only
   fresh fixed-model calibration, not blind history, Authority, Recourse,
   controller execution or path tracking
+
+## 2026-08-22 fixed-1000 C0 fresh fixed-model calibration
+
+- Design revision: `e9de80a8985e4a68616c186e3682065ace294a12`
+- Implementation/execution revision:
+  `5adf91d3af28d316e170b2b8527756cee9caf9e4`
+- Server validation: focused `6/6`; all one-ms `787/787`
+- Authentic execution: `12/12` rollouts, `576/576` advances, 588 raw states
+- Independent audit: 576 action and 564 observed-slew checks, zero failures
+- Frozen V0 artifact SHA-256: `7bcc8e21...68f5b`; no refit/update
+- even-minus: containment `24/24`, regret `0`, h8 progress `0.277278 mm`,
+  best h4 condition/sigma-min `1.58421 / 0.205626 mm`
+- odd-minus: containment `24/24`, regret `0`, h8 progress `0.279069 mm`,
+  best h4 condition/sigma-min `1.54009 / 0.208018 mm`
+- Primary SHA-256:
+  `c577e9efcc5f710a09b9c52f60448ae83e9f3a5541407a4d004a27754538288d`
+- Independent SHA-256:
+  `bd1c6b9f29663274f7b433c6a2179c6248bda268736dbb771916a2ed74cea5d9`
+- Routes: `ONE_MS_NR1000C0_FIXED_V0_FRESH_CALIBRATION_PASS_BLIND_DESIGN_ONLY` /
+  `ONE_MS_NR1000C0_INDEPENDENT_PASS`
+- Classification: fresh fixed-model calibration PASS; opens one mixed-history
+  blind design only, not refit, Authority, Recourse, control or path tracking

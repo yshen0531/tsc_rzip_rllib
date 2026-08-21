@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, V0 complete):** the finite direct
+> **Unique fixed-1000 context (2026-08-22, C0 complete):** the byte-fixed V0
+> finite response/ranking model survived fresh even-minus and odd-minus
+> conditioner histories without refit or interval widening. All held response
+> components, ranking, progress, signal, geometry, Ip and replay gates passed
+> under independent raw reconstruction. This removes the immediate
+> positive-versus-negative single-conditioner calibration concern, but it
+> does not test composed/mixed history, Authority or feedback. The next and
+> only opened model evidence is a prospectively frozen mixed-history blind
+> campaign; its result cannot flow back into V0.
+
+> **Historical fixed-1000 context (2026-08-22, V0 complete):** the finite direct
 > candidate-value/risk representation generalized across q0, even-plus and
 > odd-plus development histories under whole-history leave-out. Conservative
 > empirical component sets contained all held h4/h8 R/Z/Ip responses and
