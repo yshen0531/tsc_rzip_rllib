@@ -1,6 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z37 calibration FAIL / route-review
+> **Unique active task (2026-08-21, fixed-1000 R3R1):** ignore the old
+> fixed-1100 scientific lineage. R3 consumed one one-ms hold call and stopped
+> because its evaluator incorrectly treated the 8 A difference between saved
+> source actual current and successor actual readback as issued slew. The live
+> active Card15 command and issued q0 target were identical; state1 reached
+> 1.001 s normally. Preserve R3 as evaluator-wiring FAIL. The sole active work
+> is new identity R3R1: two fresh one-ms hold replays from each byte-distinct
+> R2R2 restart, four-call maximum/no retry, issued slew measured only from live
+> Card15 command to issued target, actual-current source bias descriptive, and
+> exact cross-root state/artifact comparison. PASS opens only a fresh 1000-ms
+> NR1 interface identity. All model, Authority, Recourse and feedback stages
+> remain blocked. Every older active block below is historical only.
+>
+> **Historical active task (2026-08-21, ID2Z37 calibration FAIL / route-review
 > pause):** the engineering-floor event payload completed `6/6` fresh
 > phase-48 calibration/replay rollouts and `438/438` verified advances with
 > exact execution, replay, raw and independent-audit integrity. Its fixed sole

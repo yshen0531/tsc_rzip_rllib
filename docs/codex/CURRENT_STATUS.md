@@ -1,6 +1,15 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z37 final):** fresh phase-48 calibration
+> **Current fixed-1000 status — R3R1 pending (2026-08-21):** R3 passed its
+> zero-TSC identity gate and produced one valid 1.001-s q0 successor, but its
+> legacy helper rejected an 8 A source-actual to successor-actual difference.
+> The issued Card15 delta was exactly zero, so this is an evaluator-coordinate
+> FAIL rather than restart, plant, slew or safety evidence. R3R1 is separately
+> frozen to four fresh calls over both reconstructed roots and correct command
+> coordinates. No R3R1 TSC call, model fit, Authority, Recourse or feedback
+> execution has occurred. Older current-status blocks below are historical.
+>
+> **Historical status (2026-08-21, ID2Z37 final):** fresh phase-48 calibration
 > rejected the fixed ID2Z36 engineering event-set payload and stopped before
 > phase-54 blind execution. All `6/6` rollouts, `438/438` advances, `444`
 > states and `2,220` raw artifacts independently audit; replay and all

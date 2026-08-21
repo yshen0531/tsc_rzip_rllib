@@ -1,5 +1,18 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000 R3 evaluator failure and R3R1 decision
+
+- R3 output: `rgeo_zgeo_1ms_1000_restart_dual_validation_20260821_5f7f86d5_v1`.
+- Result SHA-256: `4ae91488537dbe67d7a8201dda337b54d5e9f0887dd5d3e5c9122f2c27208fa9`.
+- One TSC invocation produced state1 at exactly 1.001 s with q0 Card15 and
+  finite R/Z/Ip. It was rejected by the legacy actual-current slew check
+  (`8 A`), although issued command delta was exactly zero.
+- Decision: freeze R3 as evaluator-wiring FAIL; do not rerun it. R3R1 uses a
+  new identity, preserves the four-call maximum/no retry, checks issued slew
+  in the Card15 command coordinate, records source actual-current bias only
+  descriptively, and requires exact state/artifact agreement across both
+  byte-distinct reconstructed restart roots.
+
 ## 2026-08-21 fixed-1000-ms restart reconstruction R2R2
 
 - Implementation revision: `ddbab85ff38cf35f63e616beeb2bcf9b5126d3c2`

@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z37 final / sparse route
+> **Unique fixed-1000 context (2026-08-21, R3R1 pending):** R3's first valid
+> 1.001-s hold successor exposed a coordinate error in the validation helper.
+> Issued slew is active Card15 command to new Card15 target; saved source actual
+> current to successor actual readback is a restart/effect diagnostic, not the
+> command. R3R1 preserves R3 raw, uses a new identity and requires two fresh
+> semantic replays from each reconstructed restart. Nothing from the old
+> 1100-ms model or controller lineage is inherited. Every older context block
+> below is historical.
+>
+> **Historical new-round context (2026-08-21, ID2Z37 final / sparse route
 > closed):** the one allowed engineering-floor successor failed fresh
 > phase-48 calibration and correctly kept phase-54 blind unopened. The fixed
 > event box contained its sole event observation, while responses classified
