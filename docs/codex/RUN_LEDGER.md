@@ -3228,3 +3228,21 @@
 - Classification: final bounded point-model development FAIL on the current
   rows; not runtime, TSC, controller, global learnability or plant-authority
   evidence
+
+## 2026-08-22 fixed-1000 D2 history-conditioned value data
+
+- Design revision: `97d07d62557868044fcc46271166d7e089d23208`
+- Implementation/execution revision: `c0e52e43e35429dde9694ef7883b04b207ff64f2`
+- Server validation: focused `6/6`; all 1 ms tests `777/777`
+- Authentic execution: `12/12` rollouts, `576/576` advances, 588 raw states
+- Independent raw audit: PASS; 576 action and 564 observed-slew checks
+- Conditioner even-plus h4 best: condition `1.51218`, sigma-min `0.213163 mm`
+- Conditioner odd-plus h4 best: condition `1.54009`, sigma-min `0.208018 mm`
+- Primary SHA-256:
+  `a2b30fc19b7cf8810b2c90418895b16b4fbf3645a186544d84d9982e24922893`
+- Independent SHA-256:
+  `6acca5029d60aabf1d3f960d6811e0ad2321367084995da033fb9c85756b856a`
+- Final routes: `ONE_MS_NR1000D2_HISTORY_CONDITIONED_VALUE_DEVELOPMENT_PASS_MODEL_ONLY` /
+  `ONE_MS_NR1000D2_INDEPENDENT_PASS`
+- Classification: finite matched-history candidate-value development PASS;
+  not a model, Authority, capture, Recourse or feedback-controller result

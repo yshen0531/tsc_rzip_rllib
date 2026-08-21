@@ -1,5 +1,14 @@
 # Current status
 
+> **Current fixed-1000 status - D2 PASS (2026-08-22):** `12/12` rollouts,
+> `576/576` advances and both zero-weight replays completed. Primary and
+> structurally independent raw audit passed. The two new conditioner histories
+> both preserve sustained h4/h8 signal, signed pairs, Ip/tail bounds and
+> well-conditioned task-plane geometry. Primary/independent SHA-256 are
+> `a2b30fc1...922893` and `6acca502...6b856a`. The data are development-only;
+> calibration, blind history, Authority, Recourse and feedback remain
+> unopened. Next is a direct candidate-value/risk model, not point prediction.
+
 > **Current fixed-1000 status - M1 FAIL / point ladder stopped (2026-08-22):**
 > server validation passed `771/771`; training used zero TSC and zero plant
 > advances. M1's event-aware q0-relative ensemble achieved mean paired NRMSE

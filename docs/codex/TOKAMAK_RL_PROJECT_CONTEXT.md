@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, D2 complete):** changing the
+> learning target is now supported by real matched-history evidence. After an
+> even-plus or odd-plus cumulative conditioner at issue 8, all four issue-24
+> sustained candidates remained safe, repeatable and two-axis informative
+> relative to their own matched baseline. The response vectors were stable
+> across these histories at h4/h8, while pointwise event prediction had failed.
+> The next model therefore estimates finite candidate response/value and an
+> empirical risk set, with whole-history leave-out and later fresh calibration.
+> It does not restore the closed point-model route or qualify control.
+
 > **Unique fixed-1000 context (2026-08-22, M1 complete):** both the smooth M0
 > and the sole nonlinear event-aware M1 failed whole-family point prediction.
 > M1 improved paired response over zero by only `2.378%`, was worse than zero

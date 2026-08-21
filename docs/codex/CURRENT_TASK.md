@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 M1 point-model ladder
+> **Unique active task (2026-08-22, fixed-1000 D2 PASS / direct value model
+> next):** D2 completed `12/12` authentic rollouts and `576/576` verified
+> advances. Independent raw reconstruction passed 588 states, 576 actions and
+> 564 observed-slew transitions. Under both preregistered conditioner
+> histories, the same four sustained candidates retained signed h4/h8 signal
+> and two-axis geometry; best h4 conditions were `1.512/1.540` with sigma
+> minima `0.213/0.208 mm`. Critical histories replayed exactly. The active
+> model work is one conservative multi-horizon candidate response-set and
+> ranking model using q0 plus the two D2 matched histories, with whole-history
+> leave-out and explicit abstention/risk bounds. It must not predict full
+> one-step trajectories or reopen M0/M1. PASS may authorize only fresh
+> calibration histories; Authority, Recourse and controller execution remain
+> separate. Every older active block below is historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 M1 point-model ladder
 > closed):** the sole event-aware M1 successor completed zero-TSC development
 > on the unchanged 25 trajectories and six whole-family folds. It failed both
 > absolute and response gates: mean paired NRMSE was `0.976217`, only `2.378%`
