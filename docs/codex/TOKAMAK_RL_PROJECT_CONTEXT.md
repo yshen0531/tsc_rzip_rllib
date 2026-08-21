@@ -1,5 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique new-round context (2026-08-21, ID2Z35 final):** the ID2Z34
+> development artifact did not pass fresh phase-52 calibration. Its one
+> q_R-minus/age-13 event set contained the R response but missed Z by about
+> `9.14 um` and Ip by `0.194 A`; the remaining response cells stayed accurate.
+> Blind phase54 was never opened, and independent raw recomputation passed.
+> Keep this as a clean sparse-event-box qualification FAIL with zero fit weight.
+> The next identity may test one engineering-floor robust event construction
+> against wholly fresh calibration and blind phases; it may not tune from
+> ID2Z35 or authorize feedback, Authority, capture, recovery or Recourse.
+
 > **Unique new-round context (2026-08-21, ID2Z34 final):** the bounded
 > two-candidate development stage rejected a smooth point response model and
 > selected a sparse set-valued successor with one q_R-minus/age-13 event cell.

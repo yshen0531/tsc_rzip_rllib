@@ -1,5 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-21, ID2Z35 calibration FAIL / one robust-event
+> successor only):** ID2Z35 completed `6/6` calibration/replay rollouts and
+> `438/438` verified advances with exact execution, replay, raw and independent
+> audit integrity. Its frozen q_R-minus/effect-age-13 box contained R but missed
+> fresh phase-52 Z by `0.009143 mm` and Ip by `0.194 A`; the other 67 cells had
+> maxima only `0.021134/0.034790 mm` R/Z and `2.23235 A`. Blind remained
+> unopened. Preserve route `ONE_MS_ID2Z35_FRESH_CALIBRATION_FAIL_STOP_BEFORE_BLIND`;
+> do not refit or widen from these calibration rows. The sole active work is
+> one separately frozen robust-event candidate using pre-existing engineering
+> width floors, followed by entirely fresh calibration then blind validation.
+> No width/model search, feedback, Authority-L0, capture or Recourse is open.
+> Older blocks below are historical.
+
 > **Unique active task (2026-08-21, ID2Z34 model PASS / fresh qualification
 > next):** two frozen zero-TSC candidates were evaluated after server
 > `697/697` regression PASS. The smooth point template failed at the isolated

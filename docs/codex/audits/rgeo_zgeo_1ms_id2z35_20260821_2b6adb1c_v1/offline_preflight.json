@@ -1,0 +1,280 @@
+{
+  "action_stream_separation": {
+    "failures": [],
+    "passed": true,
+    "rows": [
+      {
+        "differing_issue_indices": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "family_id": "cal52__q_r__plus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      },
+      {
+        "differing_issue_indices": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "family_id": "cal52__q_r__minus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      },
+      {
+        "differing_issue_indices": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "family_id": "cal52__q_z__plus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      },
+      {
+        "differing_issue_indices": [
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66
+        ],
+        "family_id": "cal52__q_z__minus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      },
+      {
+        "differing_issue_indices": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "family_id": "blind54__q_r__plus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      },
+      {
+        "differing_issue_indices": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "family_id": "blind54__q_r__minus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      },
+      {
+        "differing_issue_indices": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "family_id": "blind54__q_z__plus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      },
+      {
+        "differing_issue_indices": [
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68
+        ],
+        "family_id": "blind54__q_z__minus_then_return",
+        "first_branch_issue_nonzero": true,
+        "outside_window": [],
+        "passed": true,
+        "terminal_target_equals_center": true
+      }
+    ]
+  },
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z35-fresh-event-set-qualification-offline-v1",
+  "source_revision": "2b6adb1c311da59b66537c4f6d8a49f72d58a627",
+  "stage_config_sha256": "de8cc644cb8f205f29715d54fb662bdcb5ba38ae60f460ccf287eb65f86916af",
+  "stream_checks": [
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "baseline_transition_center"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 103.9,
+      "passed": true,
+      "rollout_id": "cal52__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "cal52__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "cal52__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "cal52__q_z__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "replay_cal52__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 103.9,
+      "passed": true,
+      "rollout_id": "blind54__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "blind54__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "blind54__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "blind54__q_z__minus_then_return"
+    }
+  ]
+}

@@ -1,5 +1,29 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z35 fresh event-set qualification
+
+- Implementation revision:
+  `2b6adb1c311da59b66537c4f6d8a49f72d58a627`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z35_20260821_2b6adb1c_v1`
+- Server validation: focused `6/6`; complete one-ms suite `703/703`
+- Execution: calibration/replay `6/6`; `438/438` verified advances; blind `0`
+- Raw: `444` states, `2,220` artifacts, `26,148,458,256` logical bytes,
+  digest `5259c835a8581b794c70f6076d8a77a3bef497ace1806b5972c39bc89a27da37`
+- Primary / independent SHA-256:
+  `f7e29710d19ffe230d8b523f431cd4d3063c61e96b911a8985acf2a17125d077 /`
+  `dbd92d91d2497cab21ce79e80474220d6d7d955214952fa1fa494b49a5d3200b`
+- Result: q_R-minus/effect-age-13 missed fresh phase-52 containment `0/1`;
+  all non-event errors stayed below `0.021134/0.034790 mm` R/Z and `2.23235 A`;
+  replay and independent audit PASS
+- Route: `ONE_MS_ID2Z35_FRESH_CALIBRATION_FAIL_STOP_BEFORE_BLIND`
+- Cleanup: after compact hash recovery and independent PASS, removed only the
+  exact run `rollouts/` subtree (`26,552,858,293` filesystem bytes)
+- Evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2z35_20260821_2b6adb1c_v1/`
+- Next: one no-search robust-event successor with fresh calibration and blind;
+  ID2Z35 rows remain zero fit and no controller/Authority/Recourse is open
+
 ## R_geo/Z_geo 1 ms ID-2Z34 event-set model development
 
 - Date: 2026-08-21 Asia/Shanghai.

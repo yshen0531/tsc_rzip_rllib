@@ -1,5 +1,15 @@
 # Current status
 
+> **Current status (2026-08-21, ID2Z35 final):** fresh phase-52 calibration
+> rejected the frozen ID2Z34 sparse event box and stopped before phase-54 blind
+> execution. All six rollouts, 438 plant advances, 444 states and 2,220 raw
+> artifacts independently audit; execution and replay passed. The lone event
+> observation missed only the frozen Z/Ip lower edges, while all non-event
+> errors remained small. This is a clean finite model-qualification FAIL, not
+> runtime, raw, nondeterminism, Authority or controller evidence. ID2Z35 rows
+> retain zero fit weight. One prospectively frozen robust-event successor is
+> allowed; failure of either new fresh layer closes this model route.
+
 > **Current status (2026-08-21, ID2Z34 final):** zero-TSC development selected
 > a sparse event-set response model after the smooth point candidate failed
 > its frozen R cap. Exactly one of 68 cells is set-valued; its R full width is
