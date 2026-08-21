@@ -1,0 +1,57 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-baseline-b0-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_baseline_b0_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 64,
+  "rollouts": 2,
+  "maximum_reset_calls": 2,
+  "maximum_advance_attempts": 128,
+  "maximum_gotsc_calls": 128,
+  "maximum_verified_plant_advances": 128,
+  "retry_after_any_advance_attempt": "forbidden",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4r1.json",
+  "base_tsc_config_sha256": "aad0465e62183ebe2f4146eabe8edcc8493c53b5c1fa6c5d8e1c58a06915e7fe",
+  "prerequisites": {
+    "primary": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_nr1_r4r1_20260821_3435b186_qualification.json",
+      "sha256": "791375f0337d2e683f3c5b33b5bae254e03cd16660632acc2f6e3b93c5300644",
+      "route": "ONE_MS_NR1000S1R4R1_INTERFACE_QUALIFIED"
+    },
+    "independent": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_nr1_r4r1_20260821_3435b186_independent.json",
+      "sha256": "934d44dc415123d8f8f04a57022500e95f8405ea3e7ea05dc3c499e48fd32827",
+      "route": "ONE_MS_NR1000S1R4R1_INDEPENDENT_PASS"
+    }
+  },
+  "action_contract": {
+    "target": "exact_source_active_card15_q0",
+    "all_issues_identical": true,
+    "first_source_to_successor_actual_delta_is_descriptive": true,
+    "later_observed_slew_hard_limit_a": 0.3,
+    "effect_state_index": "issue_step_plus_one"
+  },
+  "data_roles": {
+    "baseline_primary": "development_fit_eligible_baseline_weight_1",
+    "baseline_replay": "integrity_replay_zero_fit_weight",
+    "calibration": "unopened",
+    "holdout": "unopened",
+    "controller_or_recourse": "forbidden"
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000B0_OFFLINE_PASS_RUN_ONLY",
+    "offline_fail": "ONE_MS_NR1000B0_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000B0_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000B0_REPLAY_FAIL_STOP",
+    "pass": "ONE_MS_NR1000B0_BASELINE_COMPLETE_SIGNED_ID_DESIGN_ONLY",
+    "independent_pass": "ONE_MS_NR1000B0_INDEPENDENT_PASS",
+    "independent_fail": "ONE_MS_NR1000B0_INDEPENDENT_FAIL"
+  }
+}
