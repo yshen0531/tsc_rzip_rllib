@@ -1,6 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, fixed-1000 interface PASS / fresh ID next):**
+> **Unique active task (2026-08-21, fixed-1000 B0 PASS / signed D0 next):**
+> B0 completed two exact 64-ms q0 trajectories with `128/128` verified plant
+> advances and independent raw agreement. q0 is not a hold: at state64 R was
+> `-23.538658 mm` from source, Ip was `+825.9437 A`, and the last eight states
+> still reached `0.318027 m/s`; Z stayed exactly zero under the symmetric q0
+> command. The sole active work is a prospectively frozen fixed-1000 signed
+> temporal-response D0 around this matched baseline, using symmetry-defined
+> even/odd Card15 coordinates at multiple issue phases. It must establish
+> persistent two-axis signal before any model fit. B0 replay has zero fit
+> weight, all fixed-1100 responses remain historical, and calibration,
+> holdout, feedback, Authority and Recourse remain unopened. Every older
+> active block below is historical only.
+
+> **Historical active task (2026-08-21, fixed-1000 interface PASS / fresh ID next):**
 > the old fixed-1100 scientific lineage is no longer part of the active route.
 > R4R1 completed `6/6` authentic fixed-1000 rollouts and `24/24` plant
 > advances. Primary and independent raw audits passed all exact Card15,

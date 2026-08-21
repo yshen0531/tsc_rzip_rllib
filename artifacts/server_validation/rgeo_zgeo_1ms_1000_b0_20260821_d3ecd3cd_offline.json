@@ -1,0 +1,34 @@
+{
+  "authorized_plant_advances": 128,
+  "authorized_reset_calls": 2,
+  "created_utc": "2026-08-21T14:50:55.117866+00:00",
+  "failures": [],
+  "kind": "offline_preflight",
+  "passed": true,
+  "route": "ONE_MS_NR1000B0_OFFLINE_PASS_RUN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-1000-baseline-b0-v1",
+  "source_revision": "d3ecd3cda5253d88b8253e261ef9b8d12a7f44e8",
+  "source_signal": {
+    "boundary": {
+      "point_count": 278,
+      "r_boundary_max_m": 0.999533864,
+      "r_boundary_min_m": 0.463784469,
+      "r_geo_m": 0.7316591665,
+      "source": "state.gfile.boundary_R/boundary_Z",
+      "time_ms": 1000,
+      "z_boundary_max_m": 0.305036117,
+      "z_boundary_min_m": -0.305036117,
+      "z_geo_m": 0.0
+    },
+    "contract_version": "rgeo-zgeo-nr0-v1",
+    "ip_a": 29779.7241,
+    "limiter": {
+      "midplane_z_m": 0.0,
+      "r_inner_m": 0.39,
+      "r_mid_m": 0.7919,
+      "r_outer_m": 1.1938
+    },
+    "r_geo_minus_r_mid_m": -0.06024083350000009,
+    "side": "HFS"
+  }
+}

@@ -1,6 +1,17 @@
 # Current status
 
-> **Current fixed-1000 status — NR1 R4R1 qualified (2026-08-21):** the fresh
+> **Current fixed-1000 status — B0 complete (2026-08-21):** two q0 rollouts
+> completed `128/128` advances and 130 raw states. Independent audit rebuilt
+> 128 actions and 126 later observed-slew checks with zero failure. The
+> trajectories are exact across R/Z/Ip, 14 coils, 48 wires and semantic
+> artifacts. At 1064 ms the source-relative drift is `-23.538658/0 mm` R/Z
+> and `+825.9437 A` Ip; the last 8 ms net R drift is `-2.324410 mm` and its
+> maximum speed is `0.318027 m/s`. Primary/independent SHA-256 are
+> `d6eaa48c...868de / 585c8825...ffef74`. This is a natural-drift
+> characterization, not hold/stability. A fresh signed even/odd temporal
+> response D0 is next; no model or control is yet qualified.
+
+> **Historical fixed-1000 status — NR1 R4R1 qualified (2026-08-21):** the fresh
 > 0.299-A-reserve identity completed all six rollouts and 24 plant advances.
 > Hold, pattern A and pattern B each replayed exactly in checked R/Z/Ip,
 > 14-coil and 48-wire semantics. Independent raw parsing covered 30 states,

@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-21, interface qualified):** R4R1 is
+> **Unique fixed-1000 context (2026-08-21, B0 complete):** the exact q0
+> baseline is deterministic but drifts strongly inward. From 1000 to 1064 ms
+> it moves `23.538658 mm` in R with zero Z motion, while Ip first rises and
+> finishes `825.9437 A` above source. The late trajectory still moves around
+> `0.3 m/s`; therefore q0 is neither hold nor a terminal set. This clean
+> symmetry makes the next experiment well posed: use matched q0 continuation
+> and fresh even/odd signed Card15 coordinates to measure radial and vertical
+> temporal response at several issue phases. Only persistent two-axis signal
+> may open a bounded development model. Fixed-1100 response/model/control
+> claims remain non-transferable.
+
+> **Historical fixed-1000 context (2026-08-21, interface qualified):** R4R1 is
 > the canonical finite 1 ms interface bootstrap for the new 1000-ms route.
 > It passed `6/6` authentic rollouts, `24/24` advances and an independent raw
 > audit over 30 states. The excitation reserve is `0.299 A`, while the hard

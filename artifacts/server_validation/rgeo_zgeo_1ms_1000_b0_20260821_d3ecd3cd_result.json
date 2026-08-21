@@ -1,0 +1,45 @@
+{
+  "advance_attempts": 128,
+  "claim_boundary": "fixed-1000 q0 natural drift and replay only; no hold/model/authority/control",
+  "created_utc": "2026-08-21T14:55:30.142473+00:00",
+  "drift_metrics": {
+    "last_8ms_net_delta": {
+      "ip_a": -57.1304999999993,
+      "r_mm": -2.3244100000000545,
+      "z_mm": 0.0
+    },
+    "maximum_absolute_one_step": {
+      "ip_a": 76.95309999999881,
+      "r_mm": 1.1075170000000023,
+      "rz_speed_m_s": 1.1075170000000023,
+      "z_mm": 0.0
+    },
+    "terminal_8state_maximum_rz_speed_m_s": 0.318026999999943,
+    "terminal_source_delta": {
+      "ip_a": 825.9436999999998,
+      "r_mm": -23.53865799999999,
+      "z_mm": 0.0
+    },
+    "terminal_state_index": 64,
+    "terminal_time_ms": 1064
+  },
+  "gotsc_calls": 128,
+  "kind": "authentic_fixed_1000_baseline",
+  "passed": true,
+  "replay": {
+    "failures": [],
+    "maximum_absolute_difference": {
+      "coil_a": 0.0,
+      "geometry_m": 0.0,
+      "ip_a": 0.0,
+      "wire_a": 0.0
+    },
+    "passed": true
+  },
+  "reset_calls": 2,
+  "rollout_count": 2,
+  "route": "ONE_MS_NR1000B0_BASELINE_COMPLETE_SIGNED_ID_DESIGN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-1000-baseline-b0-v1",
+  "source_revision": "d3ecd3cda5253d88b8253e261ef9b8d12a7f44e8",
+  "verified_plant_advances": 128
+}

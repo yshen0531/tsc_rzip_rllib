@@ -3081,3 +3081,26 @@
   not a drift, model, Authority, hold, recovery or feedback result
 - Next: a new fixed-1000 matched-baseline and signed temporal-response
   development identity; no fixed-1100 model/evidence inheritance
+
+## 2026-08-21 fixed-1000 B0 natural-drift baseline
+
+- Implementation revision: `d3ecd3cda5253d88b8253e261ef9b8d12a7f44e8`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_v1`
+- Server validation: focused `5/5`; all one-ms `741/741`; offline PASS
+- Execution: `2/2` rollouts, `128/128` verified advances, 130 raw states
+- Independent audit: 128 actions and 126 later observed-slew checks; exact
+  R/Z/Ip, 14-coil, 48-wire and semantic-artifact replay
+- Terminal source delta at state64: R `-23.538658 mm`, Z `0 mm`,
+  Ip `+825.9437 A`
+- Last eight states: net R `-2.324410 mm`, maximum R/Z speed
+  `0.318027 m/s`
+- Primary / independent SHA-256:
+  `d6eaa48c4e158c48831c34aeb71c51ac455e253fab8e2868d92ec93d402868de /`
+  `585c8825de755a7b0e7ec30bcaa3a636d9023cd7e0c8e3cf96dc401203ffef74`
+- Final routes:
+  `ONE_MS_NR1000B0_BASELINE_COMPLETE_SIGNED_ID_DESIGN_ONLY` /
+  `ONE_MS_NR1000B0_INDEPENDENT_PASS`
+- Classification: deterministic q0 natural drift only; not hold, stability,
+  Authority, model, recovery or feedback
+- Next: fresh multi-phase signed even/odd temporal-response D0
