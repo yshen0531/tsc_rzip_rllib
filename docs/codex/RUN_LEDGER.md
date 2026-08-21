@@ -3134,3 +3134,33 @@
   `ONE_MS_NR1000D0R1_INDEPENDENT_PASS`
 - Classification: finite fixed-1000 signed temporal development PASS only;
   next is cumulative/sustained exact-return D1, not feedback qualification
+
+## 2026-08-22 fixed-1000 D1 cumulative temporal response
+
+- Execution revision: `66b5c2d37d050cd3371f9832ba211e76cadfe9f0`
+- Reporting-only repair revision: `464ec7dca89748b7155cf555d0a84a99184231b2`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1`
+- Server validation: focused `7/7`; the execution revision previously passed
+  all one-ms tests `755/755` and offline preflight
+- Execution: `10/10` rollouts, `480/480` verified advances, 490 raw states
+- Initial result SHA-256:
+  `1306313c534ab0a7f441b5e0f87a6668c26f15bce6dc1020bf7cca952f6ce1f4`
+  and route `ONE_MS_NR1000D1_CRITICAL_REPLAY_FAIL_STOP`
+- Reporting defect: D1 reused D0's `41-state/40-action` replay cardinality;
+  both D1 replays actually contain the required `49 states / 48 actions` and
+  have zero checked physical difference. No TSC rerun was made.
+- Repaired-primary / independent SHA-256:
+  `bb0899377b10306f373b9b72517a0458dc3498cbd21f4927298e0fb5d4580148 /`
+  `a17df1173bdd31c41893de376b4e6322a9eebfbbc9729c5dd89a3ab23c720e00`
+- Phase-best condition / sigma-min mm: phase 8
+  `1.459061971/0.6310575`; phase 24 `1.557923416/0.2071960`
+- Signed separations h4/h8 mm: phase8 even `1.07655/1.262115`, odd
+  `0.707253/1.841504`; phase24 even `0.414392/0.599565`, odd
+  `0.645591/1.827800`
+- Final routes:
+  `ONE_MS_NR1000D1_CUMULATIVE_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY` /
+  `ONE_MS_NR1000D1_INDEPENDENT_PASS`
+- Classification: finite cumulative fixed-1000 development PASS only; opens
+  a small causal short-horizon model and separate Authority design, not hold,
+  capture, recovery, feedback or path tracking

@@ -1,5 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, D1 complete):** the new source now
+> has both short signed and cumulative sustained two-axis development
+> evidence. D1's even coordinate produces predominantly radial response and
+> its odd coordinate produces signed vertical response at phases 8 and 24;
+> the two-axis geometry, signal, Ip and exact-return-tail gates all passed.
+> The response remains phase/history dependent and the odd tail is still
+> material at h16, so neither a memoryless Jacobian nor instantaneous return
+> is justified. The next work is a compact causal short-horizon model that is
+> re-centered on each exact 1 ms R/Z/Ip observation, plus a separately
+> qualified Authority/Recourse path. The fixed-1100 model lineage remains
+> excluded. The final goal is unchanged: causal two-axis waypoint/path
+> tracking from 1000 ms, hold/recovery and repeated bidirectional R_mid
+> crossing with continuous belief.
+
 > **Unique fixed-1000 context (2026-08-22, D0R1 complete):** the new source
 > has clean finite two-axis signal. Across three q0 phases, a symmetric coil
 > coordinate controls R and an antisymmetric upper/lower coordinate controls

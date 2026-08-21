@@ -1,6 +1,27 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 D0R1 PASS / cumulative D1
+> **Unique active task (2026-08-22, fixed-1000 D1 PASS / model and Authority
+> design next):** D1 completed `10/10` authentic cumulative ramp/plateau/
+> exact-return trajectories and `480/480` verified advances. Its initial
+> result incorrectly inherited D0's `41/40` replay cardinality; the original
+> FAIL is preserved. A zero-TSC reporting finalizer applied D1's frozen
+> `49/48` cardinality, found both critical replays exact, and retained every
+> scientific PASS. The independent raw audit then passed. At phases 8 and 24,
+> best two-axis conditions were `1.4591/1.5579` with sigma minima
+> `0.6311/0.2072 mm`; all h4/h8 signal, signed separation, Ip and return-tail
+> gates passed. This establishes finite sustained development labels, not a
+> point plant model, hold, capture, recovery or controller. The active route
+> now has two separate tracks: (A) a small causal, exact-observation-
+> recentered short-horizon model using only prospectively fit-eligible
+> fixed-1000 rows; and (B) a separately frozen finite Authority/feedback
+> design. Neither may inherit 1100-ms data or reinterpret integrity replays
+> as training samples. Actual controller execution still requires fresh
+> calibration/whole-history holdout AND independent safety/Recourse evidence.
+> The final goal remains finite two-axis waypoint/path tracking from 1000 ms,
+> hold/recovery and repeated bidirectional R_mid crossing with continuous
+> belief. Every older active block below is historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 D0R1 PASS / cumulative D1
 > next):** D0R1 completed `14/14` authentic rollouts and `560/560` advances;
 > the independent audit rebuilt 574 raw states, 560 actions and 546 later
 > observed-slew checks with zero failure. All signed-signal, pair-separation,

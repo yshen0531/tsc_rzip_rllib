@@ -1,5 +1,20 @@
 # Current status
 
+> **Current fixed-1000 status - D1 cumulative development PASS (2026-08-22):**
+> ten authentic rollouts completed `480/480` plant advances. A zero-TSC
+> reporting repair replaced an inherited D0 replay-cardinality check with the
+> correct D1 `49 states / 48 actions`; it changed no raw, action, metric or
+> gate. The repaired primary route is
+> `ONE_MS_NR1000D1_CUMULATIVE_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY`,
+> and the independent raw route is `ONE_MS_NR1000D1_INDEPENDENT_PASS`.
+> Repaired-primary/independent SHA-256 are `bb089937...80148 /`
+> `a17df117...20e00`. Phase-best condition/sigma-min were
+> `1.45906197/0.6310575 mm` and `1.55792342/0.2071960 mm`; all h4/h8
+> signal, signed-pair, Ip and h12/h16 tail gates passed. This opens bounded
+> model and Authority design only. It does not certify hold, capture,
+> recovery, feedback, path tracking or R_mid crossing. All older status
+> blocks below are historical.
+
 > **Current fixed-1000 status — D0R1 development PASS (2026-08-22):** the
 > fresh signed even/odd campaign completed `14/14` resets, `560/560` verified
 > advances and 574 raw states. Independent raw reconstruction passed all 560
