@@ -1,5 +1,17 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000 R3R1 zero-call text-format stop
+
+- Installed R3R1 offline passed, then execution stopped before runner step:
+  `tsc_invocations=0`, `maximum_issued_delta_a=0.0`.
+- The only reason was `LIVE_CARD15_CENTER`: two Card15 strings encoded the
+  same Decimal currents in different formats. This was not a plant, restart,
+  action or safety result.
+- Decision: preserve the zero-call output; replace byte-string equality with
+  exact parsed-Decimal command equality. No gate, target, budget or physical
+  identity changes, so a fresh output path under the same R3R1 campaign is
+  permitted after server regression.
+
 ## 2026-08-21 fixed-1000 R3 evaluator failure and R3R1 decision
 
 - R3 output: `rgeo_zgeo_1ms_1000_restart_dual_validation_20260821_5f7f86d5_v1`.

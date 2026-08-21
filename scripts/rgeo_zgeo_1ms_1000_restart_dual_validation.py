@@ -54,6 +54,10 @@ R3R1_FIELDS = BASE_FIELDS | {
 }
 
 
+def _commands_exact(left: Any, right: Any) -> bool:
+    return tuple(left) == tuple(right)
+
+
 def load_contract(path: Path) -> dict[str, Any]:
     row = json.loads(path.read_text(encoding="utf-8"))
     version = row.get("contract_version")
@@ -122,7 +126,7 @@ def _restart_once_command_coordinate(
             )
         except ContractError as exc:
             reasons.append(f"ISSUED_SLEW:{exc}")
-        if live_fields != target.card15_fields:
+        if not _commands_exact(live_command, target_decimal):
             reasons.append("LIVE_CARD15_CENTER")
         if reasons:
             return {

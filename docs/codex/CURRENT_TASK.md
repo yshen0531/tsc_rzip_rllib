@@ -1,6 +1,6 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, fixed-1000 R3R1):** ignore the old
+> **Unique active task (2026-08-21, fixed-1000 R3R1 zero-call hotfix):** ignore the old
 > fixed-1100 scientific lineage. R3 consumed one one-ms hold call and stopped
 > because its evaluator incorrectly treated the 8 A difference between saved
 > source actual current and successor actual readback as issued slew. The live
@@ -9,7 +9,10 @@
 > is new identity R3R1: two fresh one-ms hold replays from each byte-distinct
 > R2R2 restart, four-call maximum/no retry, issued slew measured only from live
 > Card15 command to issued target, actual-current source bias descriptive, and
-> exact cross-root state/artifact comparison. PASS opens only a fresh 1000-ms
+> exact cross-root state/artifact comparison. Its first installed attempt made
+> zero TSC calls because byte-different but Decimal-equivalent Card15 fields
+> tripped an unnecessary preissue text gate; preserve that result and compare
+> parsed Decimal commands exactly. PASS opens only a fresh 1000-ms
 > NR1 interface identity. All model, Authority, Recourse and feedback stages
 > remain blocked. Every older active block below is historical only.
 >

@@ -1,4 +1,5 @@
 from pathlib import Path
+from decimal import Decimal
 import unittest
 
 from scripts import rgeo_zgeo_1ms_1000_restart_dual_validation as stage
@@ -40,6 +41,15 @@ class Fixed1000DualRestartValidationTest(unittest.TestCase):
         )
         self.assertEqual(row["r3_result"]["tsc_invocations"], 1)
         self.assertEqual(len(row["r3_result"]["sha256"]), 64)
+
+    def test_equivalent_decimal_commands_do_not_require_same_text_format(self):
+        live = tuple(Decimal(value) for value in ("-35.000000", "0.0000000"))
+        target = tuple(Decimal(value) for value in ("-0.35000000E+2", "0E-7"))
+        self.assertTrue(stage._commands_exact(live, target))
+        self.assertNotEqual(
+            ("-35.000000", "0.0000000"),
+            ("-.3500000E+02", "0.000000E+00"),
+        )
 
 
 if __name__ == "__main__":

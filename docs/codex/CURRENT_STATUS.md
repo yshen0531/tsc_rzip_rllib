@@ -1,13 +1,17 @@
 # Current status
 
-> **Current fixed-1000 status — R3R1 pending (2026-08-21):** R3 passed its
+> **Current fixed-1000 status — R3R1 zero-call hotfix pending (2026-08-21):** R3 passed its
 > zero-TSC identity gate and produced one valid 1.001-s q0 successor, but its
 > legacy helper rejected an 8 A source-actual to successor-actual difference.
 > The issued Card15 delta was exactly zero, so this is an evaluator-coordinate
 > FAIL rather than restart, plant, slew or safety evidence. R3R1 is separately
 > frozen to four fresh calls over both reconstructed roots and correct command
 > coordinates. No R3R1 TSC call, model fit, Authority, Recourse or feedback
-> execution has occurred. Older current-status blocks below are historical.
+> execution has occurred. The first R3R1 installed attempt also made zero TSC
+> calls: its parsed command delta was 0 A, but equivalent Card15 text formats
+> were compared bytewise. That implementation-only preissue gate is corrected
+> without changing the experiment identity or budget. Older current-status
+> blocks below are historical.
 >
 > **Historical status (2026-08-21, ID2Z37 final):** fresh phase-48 calibration
 > rejected the fixed ID2Z36 engineering event-set payload and stopped before
