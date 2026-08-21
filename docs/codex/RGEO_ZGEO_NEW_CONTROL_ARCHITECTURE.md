@@ -1,5 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Fixed-1000 F0/F1 amendment (2026-08-22):** finite path control now has an
+> **Fixed-1000 F1 preflight amendment (2026-08-22):** acquisition progress,
+> endpoint acceptance and no-action continuation must be separate. A terminal
+> tolerance cannot automatically become the policy deadband, and no-op cannot
+> be assigned zero future response without a history-conditioned tail model.
+> The next causal learning object is support-gated candidate/no-op endpoint
+> value and risk under full recent history; a do-nothing path must fail the
+> acquisition gate. F1 is vetoed with zero TSC.
+>
+> **Historical fixed-1000 F0/F1 amendment (2026-08-22):** finite path control now has an
 > explicit abstention layer. Exact observation recentering does not imply that
 > an active macro must be issued: inside a preregistered terminal deadband the
 > controller may retain exact q0; outside it an active candidate must have

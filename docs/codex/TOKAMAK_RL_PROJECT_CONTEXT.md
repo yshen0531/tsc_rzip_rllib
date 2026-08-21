@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, F0 complete):** the first finite
+> **Unique fixed-1000 context (2026-08-22, F1 veto):** endpoint tolerance,
+> acquisition progress and no-action continuation are now explicitly distinct
+> contracts. F1 incorrectly made the 0.35-mm endpoint tolerance its no-op
+> deadband, rendering the first 0.28/0.30-mm radial request vacuous. It also
+> lacked a model/set for the history-conditioned no-action tail. The next
+> model target should therefore be direct future candidate/no-op endpoint
+> value and risk, not another open-loop point trajectory or a tuned deadband.
+> This is the current high-level route decision; no F1 TSC was run.
+
+> **Historical fixed-1000 context (2026-08-22, F0 complete):** the first finite
 > q0-relative feedback sentinel was much closer to path tracking than its FAIL
 > token alone suggests: all six commanded checkpoints were within 0.166 mm,
 > q0/replay integrity passed, and no hard failure occurred. The failure is a

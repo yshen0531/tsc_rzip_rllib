@@ -3373,3 +3373,17 @@
   33 GB was freed; the deleted raw is recoverable only by rerun.
 - Classification: finite policy scientific FAIL, not runtime, safety,
   reference, replay, raw-integrity or global path-reachability failure
+
+## 2026-08-22 fixed-1000 F1 deadband preflight veto
+
+- Design/record revision: `5201129e`
+- Implementation revision: `a64f897e`
+- Server focused validation: F0 `4/4`; F1 `4/5`
+- Failed check: initial `0.28 mm` command selected `q0_noop` because the
+  frozen deadband was `0.35 mm`
+- Offline/TSC/reset/plant advances: `0/0/0/0`
+- Classification: prospective non-vacuity/control-contract design FAIL; not
+  runtime, package, model, plant or feedback evidence
+- Route decision: do not patch or run F1. Separate acquisition progress,
+  endpoint tolerance and history-conditioned no-action/candidate endpoint
+  value before any fresh feedback identity.

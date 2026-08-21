@@ -1,6 +1,16 @@
 # Current status
 
-> **Current fixed-1000 status - F0 tracking FAIL / F1 frozen (2026-08-22):**
+> **Current fixed-1000 status - F1 pre-TSC design veto (2026-08-22):** F1
+> focused validation failed before offline/TSC because its 0.35-mm deadband
+> makes the initial 0.28/0.30-mm radial requests no-op eligible. This is a
+> non-vacuity/control-objective error. V0 also lacks a history-conditioned
+> no-action-tail endpoint prediction, so merely tightening the deadband would
+> not qualify future abstention. F1 remains frozen with zero reset/advance.
+> Work is paused for a high-level choice of a direct tail/candidate endpoint
+> value contract plus non-vacuous progress gates; no nearby parameter repair
+> is authorized.
+
+> **Historical fixed-1000 status - F0 tracking FAIL / F1 frozen (2026-08-22):**
 > F0 executed `4/4` rollouts and `256/256` advances without interface or hard-
 > safety failure. Independent audit passed 260 raw states, 256 actions and 252
 > observed slews; q0 and path replay were exact. All six position errors were

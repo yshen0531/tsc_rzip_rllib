@@ -1,6 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 F0 scientific FAIL / F1
+> **Unique active task (2026-08-22, fixed-1000 F1 veto / high-level model
+> contract review required):** server focused tests vetoed F1 before offline
+> authorization or TSC. Its 0.35-mm deadband would select q0 no-op for the
+> first 0.28/0.30-mm radial commands, so a PASS could omit the intended radial
+> segment. Moreover V0 predicts candidate response relative to matched
+> continuation, not the history-conditioned no-action tail to a future
+> checkpoint. The next route must separately define non-vacuous acquisition
+> progress, endpoint tolerance, and a support-gated no-op/candidate endpoint
+> value model before freezing fresh calibration/blind feedback evidence. F1
+> used zero resets/advances and must not be edited or run. All older active
+> blocks below are historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 F0 scientific FAIL / F1
 > deadband repair frozen):** F0 completed `4/4` authentic rollouts and
 > `256/256` advances; independent raw reconstruction passed 260 states, 256
 > actions and 252 observed slews. Fresh q0 and path-A replay were exact, and
