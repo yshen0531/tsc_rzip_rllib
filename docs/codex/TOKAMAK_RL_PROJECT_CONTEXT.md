@@ -2314,3 +2314,14 @@ from expert data.
 > then run fresh rolling waypoint/path control and expand to hold, recovery and
 > repeated bidirectional R_mid crossing.  Older context blocks below are
 > historical.
+
+> **Fixed-1000 restart-source correction (2026-08-21; current):** the 1000-ms
+> observable artifacts remain the new scientific source, but its supplied
+> restart payload is not a 1000-ms restart.  A single real hold attempt proved
+> that the byte-identical 1000/1100 `sprsina` begins at 1.1000 s.  Therefore
+> the current dependency is now
+> `authentic initial-run reconstruction -> canonical 1000 restart replay ->
+> fresh one-ms interface`, not direct interface/model work.  Only the
+> project-owned reconstructed source may open the subsequent 1000-ms lineage;
+> neither the contaminated successor nor any 1100-ms trajectory has fit or
+> qualification weight.

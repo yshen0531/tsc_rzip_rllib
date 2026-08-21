@@ -6229,3 +6229,21 @@ and prospective `sprsina` semantic audit.
 > 1000-origin safe-baseline/continuation test.  A successful interface stage
 > opens 1000-specific utility/teacher work; it does not itself authorize a
 > model or controller.  All older status blocks below are historical.
+
+> **Fixed-1000-ms restart identity finding (2026-08-21; current):** the first
+> real fixed-1000 campaign consumed one matched-hold advance and stopped
+> fail-closed.  Its successor output clock was 1.1000--1.1010 s and its R/Z/Ip
+> matched the old 1100-ms source, not a continuation of the parsed 1000-ms
+> state.  The cause is now authenticated: the nominal 1000-ms and 1100-ms
+> `sprsina` files have the same SHA-256
+> `5ead6983f17c6de77df7353f656696f927b1b2ddc05e531740c1236f748afabe`,
+> whereas the 1000-ms `inputa/outputa/geqdsk/coil/wire` artifacts are an
+> internally consistent original 0--1.0000-s run.  The failed result is
+> classified as source/restart identity, not effect physics or controller
+> failure; all model, Authority, Recourse and control counters remain zero.
+>
+> Active work is a maximum-four-call reconstruction and two-restart
+> validation in project-owned directories.  The immutable simulation source
+> is read-only.  No long baseline, primitive, teacher, fit, calibration,
+> holdout or controller work is permitted until a reconstructed source passes
+> exact semantic replay and internal-time gates.

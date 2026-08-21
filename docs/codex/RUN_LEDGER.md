@@ -1,5 +1,25 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000-ms first interface attempt
+
+- Branch/checkpoints: `codex/rgeo-zgeo-1ms-1000ms-control`,
+  `5d4e05ce / 66e3f434 / c74cc2b3`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_nr1_result_20260821_c74cc2b3`
+- Validation: fixed-1000 focused `14/14`; all one-ms `717/717`; zero-TSC
+  interface preflight PASS
+- Execution: one reset and one matched-hold plant advance; no retry and no
+  remaining rollout
+- Result: `ONE_MS_NR1000S1R1_EFFECT_CONTRACT_FAIL_STOP`
+- Forensics: successor internal time was 1.1000--1.1010 s and its R/Z/Ip
+  reproduced the historical 1100-ms source.  The nominal 1000/1100
+  `sprsina` SHA-256 values are identical (`5ead6983...afabe`), while authentic
+  1000 `outputa` spans 0--1.0000 s.
+- Classification: source/restart identity failure; not runtime, solver,
+  plant-effect, model, Authority, Recourse, controller or reachability
+- Next: maximum-four-invocation isolated initial-run restart reconstruction,
+  followed by two one-ms replay validations; immutable source remains read-only
+
 ## R_geo/Z_geo 1 ms ID-2Z37 fresh engineering-event qualification
 
 - Implementation revision:

@@ -1,0 +1,52 @@
+import json
+from pathlib import Path
+import unittest
+
+from scripts import rgeo_zgeo_1ms_1000_restart_reconstruction as stage
+
+
+ROOT = Path(__file__).resolve().parents[1]
+CONFIG = ROOT / "configs/rgeo_zgeo_1ms_1000_restart_reconstruction.json"
+
+
+class Fixed1000RestartReconstructionTest(unittest.TestCase):
+    def test_frozen_identity_and_budget(self):
+        row = stage.load_contract(CONFIG)
+        self.assertEqual(row["contract_version"], "rgeo-zgeo-1ms-1000-restart-reconstruction-v1")
+        self.assertEqual(row["initial_reconstruction_runs"], 2)
+        self.assertEqual(row["restart_validation_runs"], 2)
+        self.assertEqual(row["restart_validation_steps"], 1)
+        self.assertEqual(row["maximum_tsc_invocations"], 4)
+
+    def test_invocation_budget_is_counted_before_call(self):
+        counters = {"tsc_invocation_attempts": 0, "tsc_invocations": 0}
+        for _ in range(4):
+            stage._note_tsc_invocation(counters, 4)
+        self.assertEqual(counters, {"tsc_invocation_attempts": 4, "tsc_invocations": 4})
+        with self.assertRaises(Exception):
+            stage._note_tsc_invocation(counters, 4)
+        self.assertEqual(counters, {"tsc_invocation_attempts": 4, "tsc_invocations": 4})
+
+    def test_path_escape_is_rejected(self):
+        with self.assertRaises(Exception):
+            stage._require_inside_repo(ROOT.parent / "not_the_repo", label="test")
+
+    def test_contaminated_restart_identity_is_explicit(self):
+        row = json.loads(CONFIG.read_text(encoding="utf-8"))
+        self.assertEqual(row["source_sprsina_sha256"], row["source_1100_sprsina_sha256"])
+        self.assertEqual(len(row["source_sprsina_sha256"]), 64)
+
+    def test_output_time_parser(self):
+        text = "special R. Taylor output: cycle= 1 time = 1.0000E+00(s)\n"
+        self.assertEqual(stage.output_times_s(text), (1.0,))
+
+    def test_semantic_comparison_detects_change(self):
+        left = {"r_geo_m": 1.0, "z_geo_m": 0.0, "ip_a": 3.0,
+                "coil_a": [0.0] * 14, "wire_a": [0.0] * 48}
+        right = dict(left)
+        right["r_geo_m"] = 1.01
+        self.assertIn("R_GEO", stage.semantic_failures(left, right))
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -1,0 +1,18 @@
+{
+  "contract_version": "rgeo-zgeo-1ms-1000-restart-reconstruction-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_restart_reconstruction_v1",
+  "intended_use": "interface_validation",
+  "route_prefix": "ONE_MS_NR1000S0R1",
+  "source_config": "configs/rgeo_zgeo_1ms_1000_nr1_source_interface.json",
+  "source_sprsina_sha256": "5ead6983f17c6de77df7353f656696f927b1b2ddc05e531740c1236f748afabe",
+  "source_1100_sprsina_sha256": "5ead6983f17c6de77df7353f656696f927b1b2ddc05e531740c1236f748afabe",
+  "initial_reconstruction_runs": 2,
+  "restart_validation_runs": 2,
+  "restart_validation_steps": 1,
+  "expected_initial_start_s": 0.0,
+  "expected_initial_end_s": 1.0,
+  "expected_restart_start_s": 1.0,
+  "expected_restart_end_s": 1.001,
+  "maximum_tsc_invocations": 4,
+  "description": "Rebuild a matched 1000-ms sprsina from the authentic initial input, then qualify two fresh 1-ms hold restarts. Never modifies the immutable simulation source."
+}

@@ -1729,3 +1729,12 @@ holdout 的多步区间系统性欠覆盖；安全 hold/recovery 不成立；在
 > then hold, recover and repeatedly cross R_mid in both directions without
 > resetting belief.  Older amendments below are historical unless explicitly
 > requalified under a new 1000-ms identity.
+
+> **Restart-identity amendment (2026-08-21):** the supplied 1000-ms restart
+> payload was forensically proven to be the old 1100-ms payload.  The exact
+> observation/actuator/history architecture is unchanged, but its first gate
+> is now a project-owned canonical restart reconstructed from the authentic
+> 0--1.0000-s initial run and independently replayed twice.  A directory label
+> or correct R/Z/Ip files cannot substitute for a time-correct restart.  Until
+> this gate passes, there is no 1000-ms successor evidence and every model,
+> teacher, Authority, Recourse and feedback branch remains closed.

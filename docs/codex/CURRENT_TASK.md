@@ -11350,3 +11350,28 @@ Section 0 are genuinely qualified.
 > hold, recovery and repeated bidirectional R_mid crossing without resetting
 > belief.  Pre-1000 history is not assumed.  The old notices below are
 > historical and grant no execution permission.
+
+> **Unique active route -- reconstruct the authentic 1000-ms restart
+> (2026-08-21; supersedes the earlier fixed-1000 interface pointer):** the
+> tracked fixed-1000 interface package passed its zero-TSC source and command
+> gates, then the first real matched-hold rollout stopped after exactly one
+> plant advance with route
+> `ONE_MS_NR1000S1R1_EFFECT_CONTRACT_FAIL_STOP`.  The successor internally
+> started at `1.1000 s` and reproduced the old 1100-ms state instead of a
+> 1001-ms successor.  Forensics proved `1000ms/sprsina` and
+> `1100ms/sprsina` are byte-identical, while authentic `1000ms/outputa`
+> independently records the original initial run from 0 through 1.0000 s.
+> This is a source/restart-identity failure, not plant, control, model,
+> Authority or reachability evidence.  No remaining interface rollout may run
+> from the contaminated file.
+>
+> The sole active stage is the separately identified
+> `rgeo-zgeo-1ms-1000-restart-reconstruction-v1`: first rehash all six source
+> files and pass a zero-TSC preflight; then, in isolated project-owned TSC
+> workspaces, repeat the authentic initial input twice without `sprsina`,
+> require a deterministic 1.0000-s `sprsoua`, build a project-owned canonical
+> 1000-ms source without modifying the immutable simulation tree, and perform
+> two fresh one-ms matched-hold restarts.  Maximum budget is four TSC calls,
+> counted before invocation, with no retry.  PASS authorizes only a new
+> canonical-source interface identity; failure after authentic initial
+> reconstruction is a genuine external restart-source blocker and must stop.
