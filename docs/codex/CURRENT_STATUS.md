@@ -1,6 +1,6 @@
 # Current status
 
-> **Current fixed-1000 status — R3R2 pending (2026-08-21):** R3 passed its
+> **Current fixed-1000 status — NR1 R4 pending (2026-08-21):** R3 passed its
 > zero-TSC identity gate and produced one valid 1.001-s q0 successor, but its
 > legacy helper rejected an 8 A source-actual to successor-actual difference.
 > The issued Card15 delta was exactly zero, so this is an evaluator-coordinate
@@ -15,7 +15,10 @@
 > every rollout passed and all checked physical semantics matched, but the
 > whole-file artifact gate failed solely on state1 outputa hashes. Direct raw
 > diff shows only launch wall-clock and CPU-time lines. Preserve R3R1 FAIL;
-> R3R2 will independently verify this with zero TSC before any interface stage.
+> R3R2 independently verified this with zero TSC: four rollouts/eight states,
+> exact semantics and stable artifacts, normalized outputa exact, route
+> `ONE_MS_NR1000S0R3R2_CANONICAL_1000_RESTART_SEMANTICS_QUALIFIED`. Fresh NR1
+> R4 is frozen but has made zero TSC calls.
 >
 > **Historical status (2026-08-21, ID2Z37 final):** fresh phase-48 calibration
 > rejected the fixed ID2Z36 engineering event-set payload and stopped before

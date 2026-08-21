@@ -137,6 +137,27 @@ def offline_preflight(config_path: Path, source_revision: str) -> dict[str, Any]
     failures: list[str] = []
     source_evidence: dict[str, Any] = {}
     try:
+        prerequisite = config_payload.get("prerequisite")
+        if prerequisite is not None:
+            if set(prerequisite) != {"path", "sha256", "route", "authorization"}:
+                raise ContractError("prerequisite fields changed")
+            prerequisite_path = (ROOT / prerequisite["path"]).resolve()
+            try:
+                prerequisite_path.relative_to(ROOT)
+            except ValueError as exc:
+                raise ContractError("prerequisite escapes repository") from exc
+            if _sha(prerequisite_path) != prerequisite["sha256"]:
+                raise ContractError("prerequisite identity changed")
+            prerequisite_row = json.loads(prerequisite_path.read_text(encoding="utf-8"))
+            if (prerequisite_row.get("passed"), prerequisite_row.get("route"),
+                    prerequisite_row.get("authorization")) != (
+                    True, prerequisite["route"], prerequisite["authorization"]):
+                raise ContractError("prerequisite semantics changed")
+            source_evidence["prerequisite"] = {
+                "sha256": prerequisite["sha256"],
+                "route": prerequisite["route"],
+                "authorization": prerequisite["authorization"],
+            }
         validate_one_ms_config(start_folder=cfg.start_folder, dt_ms=cfg.dt_ms,
                                slew_a_per_ms=cfg.current_slew_a_per_ms,
                                expected_start_folder=f"{profile['takeover_time_ms']}ms")
@@ -297,13 +318,23 @@ def _run_one(cfg: TSCConfig, name: str, prefix_name: str, targets: Sequence[Any]
                 reasons.append(f"CARD15:{step}")
             if record["time_ms"] != takeover_time_ms + step + 1:
                 reasons.append(f"TIME:{step}")
-            try:
-                record["maximum_observed_delta_a"] = assert_exact_slew(
-                    records[-2]["actual_current_decimal_a_tsc"],
-                    record["actual_current_decimal_a_tsc"],
-                    name=f"{name}.observed.{step}")
-            except ContractError as exc:
-                reasons.append(f"OBSERVED_SLEW:{exc}")
+            if matched_hold_effect and step == 0:
+                record["maximum_observed_delta_a"] = float(max(
+                    abs(Decimal(after) - Decimal(before))
+                    for before, after in zip(
+                        records[-2]["actual_current_decimal_a_tsc"],
+                        record["actual_current_decimal_a_tsc"],
+                    )
+                ))
+                record["observed_delta_role"] = "source_bias_descriptive_matched_hold_reference"
+            else:
+                try:
+                    record["maximum_observed_delta_a"] = assert_exact_slew(
+                        records[-2]["actual_current_decimal_a_tsc"],
+                        record["actual_current_decimal_a_tsc"],
+                        name=f"{name}.observed.{step}")
+                except ContractError as exc:
+                    reasons.append(f"OBSERVED_SLEW:{exc}")
             reasons.extend(envelope.state_reasons(RGeoZGeoSignal.from_tsc_state(state),
                                                    state["currents_a_tsc"], cfg.min_current_a_tsc,
                                                    cfg.max_current_a_tsc))

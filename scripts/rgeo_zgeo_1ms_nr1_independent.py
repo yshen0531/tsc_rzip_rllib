@@ -130,9 +130,13 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                     )
                     assert_exact_slew(active_command, target_decimal,
                                       name=f"independent.issue.{rollout}.{step}")
-                    assert_exact_slew(states[step]["current_decimal_a_tsc"], states[step+1]["current_decimal_a_tsc"],
-                                      name=f"independent.observed.{rollout}.{step}")
-                    observed_checks += 1
+                    if not (profile["matched_hold_effect"] and step == 0):
+                        assert_exact_slew(
+                            states[step]["current_decimal_a_tsc"],
+                            states[step+1]["current_decimal_a_tsc"],
+                            name=f"independent.observed.{rollout}.{step}",
+                        )
+                        observed_checks += 1
                     active_command = target_decimal
                 except Exception as exc:
                     failures.append(f"SLEW:{rollout}:{step}:{exc}")

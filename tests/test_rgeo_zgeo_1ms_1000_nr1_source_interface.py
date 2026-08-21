@@ -10,6 +10,7 @@ from tsc_rzip_rllib.control.rgeo_zgeo_contract import ContractError
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_1000_nr1_source_interface.json"
+CONFIG_R4 = ROOT / "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4.json"
 
 
 class Fixed1000SourceInterfaceTest(unittest.TestCase):
@@ -68,6 +69,20 @@ class Fixed1000SourceInterfaceTest(unittest.TestCase):
         with self.assertRaises(ContractError):
             validate_one_ms_config(start_folder="1000ms", dt_ms=1,
                                    slew_a_per_ms=.3)
+
+    def test_r4_binds_qualified_reconstruction_and_matched_hold(self):
+        row = json.loads(CONFIG_R4.read_text(encoding="utf-8"))
+        profile = primary._profile(CONFIG_R4)
+        self.assertEqual(profile["route_prefix"], "ONE_MS_NR1000S1R4")
+        self.assertTrue(profile["matched_hold_effect"])
+        self.assertEqual(
+            row["source_identity"]["files"]["sprsina"]["sha256"],
+            "de986e49cd2466e67a89567214c3ed988f3808b36924243accd2d82709d79145",
+        )
+        self.assertEqual(
+            row["prerequisite"]["authorization"],
+            "FRESH_1000MS_NR1_INTERFACE_DESIGN_ONLY",
+        )
 
 
 if __name__ == "__main__":

@@ -1,5 +1,16 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000 R3R2 PASS and NR1 R4 freeze
+
+- R3R2 route:
+  `ONE_MS_NR1000S0R3R2_CANONICAL_1000_RESTART_SEMANTICS_QUALIFIED`.
+- Zero TSC; four rollouts/eight raw states reparsed. Stable artifacts and all
+  physical semantics were exact. Each outputa contained exactly one launch
+  wall-clock and one CPU-time line; normalized hashes were exact.
+- Decision: freeze fresh NR1 R4 on reconstructed r0. First source-to-successor
+  actual-current delta is descriptive and removed only by matched-hold
+  differencing; command slew and all later observed slew remain hard gates.
+
 ## 2026-08-21 fixed-1000 R3R1 four-call result and R3R2 decision
 
 - R3R1 v2 result SHA-256:

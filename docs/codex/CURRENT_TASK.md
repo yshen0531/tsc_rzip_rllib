@@ -1,6 +1,6 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, fixed-1000 R3R2 raw audit):** ignore the old
+> **Unique active task (2026-08-21, fixed-1000 NR1 R4):** ignore the old
 > fixed-1100 scientific lineage. R3 consumed one one-ms hold call and stopped
 > because its evaluator incorrectly treated the 8 A difference between saved
 > source actual current and successor actual readback as issued slew. The live
@@ -15,9 +15,11 @@
 > parsed Decimal commands exactly. R3R1 then completed all four calls and all
 > semantic/stable-artifact comparisons, but preserved its whole-file FAIL
 > because state1 outputa wall-clock/CPU timing lines differ. The sole active
-> work is zero-TSC R3R2: independently reparse all eight states, require exact
-> stable artifacts and allow normalization of exactly those two non-semantic
-> timing-line classes only. PASS opens only a fresh 1000-ms NR1 interface identity. All model, Authority, Recourse and feedback stages
+> work was zero-TSC R3R2: all eight states reparsed, stable artifacts were
+> exact, and outputa agreed after removing exactly one wall-clock and one CPU
+> timing line. R3R2 PASS now opens fresh NR1 R4 only: six rollouts/four steps,
+> active-command issued slew, matched-hold first-effect differential, exact
+> return/replay and hard envelopes. All model, Authority, Recourse and feedback stages
 > remain blocked. Every older active block below is historical only.
 >
 > **Historical active task (2026-08-21, ID2Z37 calibration FAIL / route-review
