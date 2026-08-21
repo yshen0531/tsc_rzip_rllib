@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z31 final / delayed-tail D0 next):**
+> **Unique active task (2026-08-21, ID2Z32 final / nominal-action redesign):**
+> ID2Z32 completed `10/10`, `730/730` with exact replay, raw integrity and
+> independent recomputation. The issue-50 q_R/q_Z family passed every signal
+> and geometry gate, while every issue-56 branch produced exactly zero paired
+> R/Z/Ip response. Preserve the clean route
+> `ONE_MS_ID2Z32_POST_EVENT_DELAYED_TAIL_D0_SIGNAL_FAIL_CLOSE_CELL` and close
+> the post-event q cell: no adjacent phase/share/duration, wider tube or
+> larger-network rescue, and no fitting of these rows. The sole active work is
+> a bounded zero-new-TSC audit of moving nominal, slew allocation and a
+> materially different Card15/action basis. Only a new prospective identity
+> with exact action/support/safety gates may authorize another campaign.
+> Authority-L0, Recourse-L1 and feedback remain closed. Older blocks below are
+> historical.
+>
+> **Historical active task (2026-08-21, ID2Z31 final / delayed-tail D0 next):**
 > ID2Z31 completed `6/6`, `438/438` with exact replay and independent raw
 > audit. qZ+ at issues 43/44 deterministically advanced the isolated R event
 > from state50 to49, while issue45 and qZ-@44 retained state50. Complete

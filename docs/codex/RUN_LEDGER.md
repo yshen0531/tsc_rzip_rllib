@@ -1,5 +1,26 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z32 post-event delayed-tail D0
+
+- Date: 2026-08-21 Asia/Shanghai.
+- Design / implementation: `99cc9bb5` /
+  `c6b1c5b9b4bf3e350c7567af2f84f070c33bf879`.
+- Server output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z32_20260821_c6b1c5b9_v1`.
+- Validation: focused `4/4`, all one-ms `686/686`, offline streams/storage PASS.
+- Execution: `10/10`, `730/730` attempts/gotsc/verified advances, 740 states.
+- Raw: 3,700 required artifacts / 43,580,763,760 bytes / digest
+  `e7601a252393b22146fb6fa5890889fa96130b80b3e73e3b3d695302136df51a`.
+- Result: issue-50 signal/geometry PASS; issue-56 four-branch response exactly
+  zero; replay and independent audit PASS.
+- Route: `ONE_MS_ID2Z32_POST_EVENT_DELAYED_TAIL_D0_SIGNAL_FAIL_CLOSE_CELL`.
+- Primary / independent SHA-256:
+  `b704bc754d537cd1c4d885541dd687b3bb359b1742f98a03b5c895398f5b0e7d /`
+  `e478e79f0d5424f2cdb867011d7eaebe909a5c280d4f7a369cf1666dd62b83a9`.
+- Cleanup: removed only this run's authenticated server `rollouts/`; compact
+  and log retained; free space `163,825,262,592` bytes.
+- Next: zero-TSC nominal/action-allocation and materially different basis audit.
+
 ## R_geo/Z_geo 1 ms ID-2Z18 full-horizon token development
 
 - Date: 2026-08-20 Asia/Shanghai.

@@ -1,0 +1,82 @@
+{
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z32-post-event-delayed-tail-d0-offline-v1",
+  "source_revision": "c6b1c5b9b4bf3e350c7567af2f84f070c33bf879",
+  "stage_config_sha256": "699e6ed1a28ba0b8926b6789d287a352782aa1d64bdcc4eb4fe625e1500bbd1b",
+  "stream_checks": [
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "baseline_transition_center"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 104.2,
+      "passed": true,
+      "rollout_id": "issue50__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 106.0,
+      "passed": true,
+      "rollout_id": "issue50__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "issue50__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "issue50__q_z__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "issue56__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "issue56__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "issue56__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "issue56__q_z__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "replay_issue50__q_z__plus_then_return"
+    }
+  ]
+}

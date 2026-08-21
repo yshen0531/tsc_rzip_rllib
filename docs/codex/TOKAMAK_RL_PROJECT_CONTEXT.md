@@ -1,6 +1,18 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z31 final):** a fresh six-row map
+> **Unique new-round context (2026-08-21, ID2Z32 final):** a fresh, complete
+> delayed-tail campaign showed that the output-aligned q coordinate is
+> phase-limited: issue-50 signed responses are persistent and two-dimensional,
+> whereas all issue-56 matched responses are exactly zero. Execution and
+> independent raw audit passed, so this is a finite scientific cell failure.
+> Close the q cell without adjacent phase/share/duration or capacity rescue.
+> The next route must redesign the moving nominal and per-step Card15/slew
+> allocation or choose a materially different basis under a new prospective
+> identity. Final exact-observation two-axis waypoint/path, safe fallback and
+> repeated bidirectional R_mid crossing remain the goal; Authority-L0 and
+> Recourse-L1 remain independent prerequisites.
+>
+> **Historical new-round context (2026-08-21, ID2Z31 final):** a fresh six-row map
 > and exact replay prove the state49/50 R event is a deterministic finite
 > action-age/phase interaction. Full ID2Z27/30 compact trajectories show that
 > positive q actions issued well before the event can also advance it, whereas

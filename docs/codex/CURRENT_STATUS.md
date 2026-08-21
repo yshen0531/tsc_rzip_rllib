@@ -1,6 +1,15 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z31 final):** the finite event-phase map
+> **Current status (2026-08-21, ID2Z32 final):** the post-event delayed-tail
+> campaign is a clean scientific signal FAIL. All `10/10` rollouts and
+> `730/730` advances completed; prefix, exact Card15, raw, replay and
+> independent-audit gates passed. Issue 50 retained persistent signed 2-D
+> response, but all four issue-56 branches had exactly zero paired R/Z/Ip
+> response and failed both phase geometry gates. The q cell is closed and no
+> model is fit. Current work is zero-TSC nominal/action-allocation and
+> action-basis redesign; no adjacent-cell ladder or controller is authorized.
+>
+> **Historical status (2026-08-21, ID2Z31 final):** the finite event-phase map
 > passed with `6/6`, `438/438`, exact issue-44 replay and independent raw
 > agreement. The event is deterministic but depends on axis/sign/issue age.
 > Older full trajectories show positive q actions can shift it even when

@@ -1,4 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
+> **Post-ID2Z32 amendment (2026-08-21):** the post-event q-cell campaign
+> completed cleanly but lost all measured paired response at issue 56 after
+> passing at issue 50. This coordinate cannot seed a smooth phase-spanning
+> model, feedback law or tube, and its rows remain unfit. Do not rescue it by
+> adjacent phases, wider uncertainty or network capacity. The architecture
+> returns to bounded zero-TSC co-design of the moving nominal and shared 14-D
+> slew allocation; a materially new prospective identity is required before
+> learning resumes. Authority-L0 and Recourse-L1 remain parallel controller
+> prerequisites.
+>
 > **Post-ID2Z26R1 amendment (2026-08-21):** the full-F-prefix to slack-center
 > q_R/q_Z streams now pass exact Card15 construction and independent static
 > audit.  The bridge is an exact precomputed target path, not recovery.  One
