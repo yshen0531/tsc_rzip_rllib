@@ -1,6 +1,17 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z36 final):** a single zero-fit robust-event
+> **Current status (2026-08-21, ID2Z37 final):** fresh phase-48 calibration
+> rejected the fixed ID2Z36 engineering event-set payload and stopped before
+> phase-54 blind execution. All `6/6` rollouts, `438/438` advances, `444`
+> states and `2,220` raw artifacts independently audit; replay and all
+> execution/interface gates passed. The sole event cell contained its one
+> observation, but ordinary non-event errors reached `0.639621/0.111249 mm`
+> R/Z versus frozen `0.05/0.05 mm` gates. This is a clean model-structure/
+> qualification FAIL. The sparse event-box route is closed, all qualification
+> rows remain zero fit, and no blind, feedback, Authority, capture or Recourse
+> stage is open. Work is paused for a higher-level route review.
+
+> **Historical status (2026-08-21, ID2Z36 final):** a single zero-fit robust-event
 > construction passed server `706/706` regression and independent payload
 > recomputation. The artifact uses only prior engineering width floors and
 > reads ID2Z35 for identity authentication, not fitting. It opens one fresh

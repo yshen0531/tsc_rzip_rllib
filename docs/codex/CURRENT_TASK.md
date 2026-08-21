@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z36 zero-TSC PASS / fresh qualification
+> **Unique active task (2026-08-21, ID2Z37 calibration FAIL / route-review
+> pause):** the engineering-floor event payload completed `6/6` fresh
+> phase-48 calibration/replay rollouts and `438/438` verified advances with
+> exact execution, replay, raw and independent-audit integrity. Its fixed sole
+> event cell contained `1/1`, but non-event R/Z errors reached
+> `0.639621/0.111249 mm`, above the frozen `0.05/0.05 mm` calibration gates;
+> Ip remained within its `25 A` gate. Phase-54 blind stayed unopened, no model
+> was fit or updated, and all qualification rows retain zero fit weight.
+> Preserve route
+> `ONE_MS_ID2Z37_FRESH_CALIBRATION_FAIL_CLOSE_EVENT_BOX_ROUTE`. The sparse
+> event-box route is closed: do not widen it, add an adjacent phase, fit a
+> third successor, or reuse calibration rows. Per the user's stop condition,
+> no new model/TSC identity is active pending a higher-level route review.
+> Older blocks below are historical.
+
+> **Historical active task (2026-08-21, ID2Z36 zero-TSC PASS / fresh qualification
 > next):** the single engineering-floor event payload was constructed with
 > zero TSC, zero fit and zero ID2Z35 rows, and independently reproduced at SHA
 > `ace09ffb...c9a8`. Its q_R-minus/age-13 half-width is fixed at

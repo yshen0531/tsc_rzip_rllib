@@ -1,6 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z36 final):** the one permitted
+> **Unique new-round context (2026-08-21, ID2Z37 final / sparse route
+> closed):** the one allowed engineering-floor successor failed fresh
+> phase-48 calibration and correctly kept phase-54 blind unopened. The fixed
+> event box contained its sole event observation, while responses classified
+> as non-events missed by as much as `0.639621/0.111249 mm` R/Z. Execution,
+> exact replay, raw inventory and independent recomputation all passed; no
+> model update occurred and no qualification row may be fit. Therefore the
+> ID2Z34--ID2Z37 sparse event-box decomposition is closed rather than widened
+> again. No new model or TSC stage is active until a higher-level route review
+> selects a materially different representation/control route. Final
+> two-axis waypoint/path, fallback and repeated R_mid-crossing goals remain
+> unchanged and unqualified.
+
+> **Historical new-round context (2026-08-21, ID2Z36 final):** the one permitted
 > engineering-floor successor is frozen and independently reproducible. It
 > changes only the sole event half-width to `0.375/0.075 mm/30 A`, with zero
 > model fit, zero TSC and zero reuse of failed ID2Z35 calibration rows. A fresh

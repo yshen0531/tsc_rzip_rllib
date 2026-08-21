@@ -1,0 +1,141 @@
+{
+  "advance_attempts": 438,
+  "blind_metrics": {
+    "opened": false,
+    "passed": false,
+    "role": "blind"
+  },
+  "blind_opened": false,
+  "calibration_metrics": {
+    "branch_metrics": [
+      {
+        "complete": true,
+        "event_cells_contained": 0,
+        "family_id": "cal48__q_r__plus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 2.4045999999998457,
+          "r_geo_m": 2.1373500000088086e-05,
+          "z_geo_m": 1.295124999998315e-05
+        }
+      },
+      {
+        "complete": true,
+        "event_cells_contained": 1,
+        "family_id": "cal48__q_r__minus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 7.105550000000221,
+          "r_geo_m": 0.0006396212500000553,
+          "z_geo_m": 0.00010835875000000245
+        }
+      },
+      {
+        "complete": true,
+        "event_cells_contained": 0,
+        "family_id": "cal48__q_z__plus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 0.8610000000007858,
+          "r_geo_m": 1.423950000006835e-05,
+          "z_geo_m": 2.641424999998837e-05
+        }
+      },
+      {
+        "complete": true,
+        "event_cells_contained": 0,
+        "family_id": "cal48__q_z__minus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 6.6296499999971275,
+          "r_geo_m": 0.0006284117500000574,
+          "z_geo_m": 0.00011124949999998662
+        }
+      }
+    ],
+    "calibrated_non_event_half_width": {
+      "ip_a": 8.882937500000276,
+      "r_geo_m": 0.0008005265625000692,
+      "z_geo_m": 0.00014006187499998328
+    },
+    "complete": true,
+    "event_cell_observations": 1,
+    "event_containment_fraction": 1.0,
+    "maximum_non_event_absolute_error": {
+      "ip_a": 7.105550000000221,
+      "r_geo_m": 0.0006396212500000553,
+      "z_geo_m": 0.00011124949999998662
+    },
+    "passed": false,
+    "phase_issue": 48,
+    "role": "calibration"
+  },
+  "calibration_replay_metrics": {
+    "failures": [],
+    "passed": true
+  },
+  "claim_boundary": "Fresh finite canonical-history phase-48/54 engineering-event response-set qualification only; not feedback, Authority-L0, capture, recovery, Recourse-L1, waypoint/path, position/history generalization, R_mid crossing, real-plant or deployment evidence.",
+  "complete_rollouts": 6,
+  "execution_integrity_passed": true,
+  "fresh_blind_records_read": 0,
+  "fresh_calibration_records_read": 4,
+  "id2z35_fit_rows": 0,
+  "missing_required_artifacts": [],
+  "model_payload_sha256": "ace09ffba98b7bf60336452c9f4765ce5b8dc6bfe5bf71e33739eeba5e22c9a8",
+  "models_fit_or_updated": 0,
+  "passed": false,
+  "plant_advance_gotsc_calls": 438,
+  "prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "baseline_transition_center"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "cal48__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "cal48__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "cal48__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "cal48__q_z__minus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "replay_cal48__q_z__plus_then_return"
+    }
+  ],
+  "raw_integrity_passed": true,
+  "required_artifact_bytes": 26148458256,
+  "required_artifact_files": 2220,
+  "required_artifact_inventory_sha256": "9ec32962eaac03627924aa4eb343dd4db4bf0ee9abae9c8ac656d8c39da12ffd",
+  "reset_calls": 6,
+  "rollouts_started": 6,
+  "route": "ONE_MS_ID2Z37_FRESH_CALIBRATION_FAIL_CLOSE_EVENT_BOX_ROUTE",
+  "run_root_isolation": {
+    "configured_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z37_20260821_d5523797_v1/rollouts",
+    "historical_default_forbidden": true,
+    "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z37_20260821_d5523797_v1",
+    "passed": true,
+    "required_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z37_20260821_d5523797_v1/rollouts",
+    "verified_before_runner_construction": true
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2z37-fresh-engineering-event-qualification-result-v1",
+  "source_revision": "d552379737c9541e8f41770a0a1af9e0bfa6dab7",
+  "stage_config_sha256": "274fe3d502217c433e2fda698e34f51b1bb49c695bda4a507732476ba538085e",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 178680513536,
+    "estimated_raw_bytes": 46000000000,
+    "free_bytes_before_run": 224680513536,
+    "passed": true
+  },
+  "verified_plant_advances": 438
+}

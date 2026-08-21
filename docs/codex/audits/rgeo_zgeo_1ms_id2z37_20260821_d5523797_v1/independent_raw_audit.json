@@ -1,0 +1,82 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Fresh finite canonical-history phase-48/54 engineering-event response-set qualification only; not feedback, Authority-L0, capture, recovery, Recourse-L1, waypoint/path, position/history generalization, R_mid crossing, real-plant or deployment evidence.",
+  "failures": [],
+  "id2z35_fit_rows": 0,
+  "models_fit_or_updated": 0,
+  "plant_advances": 438,
+  "primary_sha256": "1a14f7013726a55b13714d223102c6b2fa45a50b4ec58c3d50e3cc5c767b206d",
+  "recomputed_blind_metrics": {
+    "opened": false,
+    "passed": false,
+    "role": "blind"
+  },
+  "recomputed_calibration_metrics": {
+    "branch_metrics": [
+      {
+        "complete": true,
+        "event_cells_contained": 0,
+        "family_id": "cal48__q_r__plus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 2.4045999999998457,
+          "r_geo_m": 2.1373500000088086e-05,
+          "z_geo_m": 1.295124999998315e-05
+        }
+      },
+      {
+        "complete": true,
+        "event_cells_contained": 1,
+        "family_id": "cal48__q_r__minus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 7.105550000000221,
+          "r_geo_m": 0.0006396212500000553,
+          "z_geo_m": 0.00010835875000000245
+        }
+      },
+      {
+        "complete": true,
+        "event_cells_contained": 0,
+        "family_id": "cal48__q_z__plus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 0.8610000000007858,
+          "r_geo_m": 1.423950000006835e-05,
+          "z_geo_m": 2.641424999998837e-05
+        }
+      },
+      {
+        "complete": true,
+        "event_cells_contained": 0,
+        "family_id": "cal48__q_z__minus_then_return",
+        "maximum_non_event_absolute_error": {
+          "ip_a": 6.6296499999971275,
+          "r_geo_m": 0.0006284117500000574,
+          "z_geo_m": 0.00011124949999998662
+        }
+      }
+    ],
+    "calibrated_non_event_half_width": {
+      "ip_a": 8.882937500000276,
+      "r_geo_m": 0.0008005265625000692,
+      "z_geo_m": 0.00014006187499998328
+    },
+    "complete": true,
+    "event_cell_observations": 1,
+    "event_containment_fraction": 1.0,
+    "maximum_non_event_absolute_error": {
+      "ip_a": 7.105550000000221,
+      "r_geo_m": 0.0006396212500000553,
+      "z_geo_m": 0.00011124949999998662
+    },
+    "passed": false,
+    "phase_issue": 48,
+    "role": "calibration"
+  },
+  "recomputed_route": "ONE_MS_ID2Z37_FRESH_CALIBRATION_FAIL_CLOSE_EVENT_BOX_ROUTE",
+  "reparsed_required_artifacts": 2220,
+  "reparsed_required_bytes": 26148458256,
+  "reparsed_rollouts": 6,
+  "reparsed_states": 444,
+  "schema_version": "rgeo-zgeo-1ms-id2z37-fresh-engineering-event-qualification-independent-v1",
+  "source_revision": "d552379737c9541e8f41770a0a1af9e0bfa6dab7",
+  "tsc_calls": 438
+}

@@ -1,5 +1,32 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z37 fresh engineering-event qualification
+
+- Implementation revision:
+  `d552379737c9541e8f41770a0a1af9e0bfa6dab7`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z37_20260821_d5523797_v1`
+- Server validation: focused `6/6`; complete one-ms suite `712/712`; offline
+  preflight PASS with zero TSC
+- Execution: calibration/replay `6/6`; `438/438` attempts, TSC calls and
+  verified advances; blind `0`; models fit/updated `0`
+- Raw: `444` states, `2,220` artifacts, `26,148,458,256` logical bytes,
+  digest `9ec32962eaac03627924aa4eb343dd4db4bf0ee9abae9c8ac656d8c39da12ffd`
+- Calibration: fixed event containment `1/1`; maximum non-event R/Z/Ip error
+  `0.639621/0.111249 mm/7.10555 A`; R and Z exceed frozen
+  `0.05/0.05 mm` gates; replay and independent audit PASS
+- Route: `ONE_MS_ID2Z37_FRESH_CALIBRATION_FAIL_CLOSE_EVENT_BOX_ROUTE`
+- Primary / independent SHA-256:
+  `1a14f7013726a55b13714d223102c6b2fa45a50b4ec58c3d50e3cc5c767b206d /`
+  `d4acb6bc64d4ba120d5e8325c9f7d2c74843e50e8e72855a0e3bbe8f6e57aacc`
+- Cleanup: after matching compact hashes and independent PASS, removed only
+  the exact run `rollouts/` subtree (`26,552,831,713` filesystem bytes);
+  server available space became `224,678,121,472` bytes
+- Evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2z37_20260821_d5523797_v1/`
+- Decision: close the sparse event-box route; no adjacent widening, phase or
+  third model. Pause for higher-level route review before any new TSC/model.
+
 ## R_geo/Z_geo 1 ms ID-2Z36 engineering-floor event set
 
 - Implementation revision: `0246104bec239c0dfcb5440ea65aa71cb629211c`
