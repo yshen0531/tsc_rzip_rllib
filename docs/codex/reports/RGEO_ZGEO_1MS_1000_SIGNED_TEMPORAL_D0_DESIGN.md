@@ -33,3 +33,10 @@ all phases, signed-pair separation, and a well-conditioned two-axis odd
 response matrix at h4 or h8 in every phase. Single-frame hybrid peaks cannot
 substitute for persistent h4/h8 signal. PASS authorizes only bounded model and
 Authority design. It is not hold, capture, recovery, Recourse or feedback.
+
+Post-run audit note: the initial independent audit incorrectly required the
+final raw `1000ms/inputa` byte hash to equal the preissue source hash. The
+runner legitimately rewrites that file with the semantically identical
+outgoing issue-0 q0 command. The reporting-only correction compares its exact
+Card15 fields and retains byte-hash checks for state-0 geqdsk, coil and wire
+files. It does not change or rerun any TSC trajectory.

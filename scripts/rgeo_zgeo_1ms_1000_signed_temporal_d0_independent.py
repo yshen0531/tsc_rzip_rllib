@@ -92,7 +92,11 @@ def _source_reasons(
             reasons.append(f"{raw_key.upper()}_LENGTH")
         elif _maxdiff(left, tuple(float(value) for value in right)) > 1e-9:
             reasons.append(raw_key.upper())
-    for name in primary.SEMANTIC_ARTIFACTS:
+    # The runner rewrites state0/inputa with the outgoing issue0 command after
+    # the primary captured its preissue source hash.  Its Card15 fields are
+    # checked independently in the action loop below.  The other state0
+    # semantic artifacts remain immutable and retain byte-hash identity.
+    for name in tuple(name for name in primary.SEMANTIC_ARTIFACTS if name != "inputa"):
         if primary.b0.sha256(run_dir / "rollouts" / rollout_id / "1000ms" / name) != reference[
             "artifact_sha256"
         ][name]:

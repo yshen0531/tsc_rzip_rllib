@@ -3,8 +3,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 import unittest
+from unittest import mock
 
 from scripts import rgeo_zgeo_1ms_1000_signed_temporal_d0 as primary
+from scripts import rgeo_zgeo_1ms_1000_signed_temporal_d0_independent as independent
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -114,6 +116,23 @@ class Fixed1000SignedTemporalD0Test(unittest.TestCase):
         changed = source_record()
         changed["r_geo_m"] += 2e-12
         self.assertIn("SOURCE_R_GEO_M", primary.source_mismatch_reasons(changed, expected))
+
+    def test_raw_source_audit_uses_card15_not_rewritten_inputa_hash(self) -> None:
+        expected = source_record()
+        raw = {
+            **state(0),
+            "current_a_tsc": tuple([0.0] * 14),
+            "wire_a": tuple([0.0] * 48),
+        }
+
+        def artifact_hash(path: Path) -> str:
+            return path.name
+
+        with mock.patch.object(primary.b0, "sha256", side_effect=artifact_hash) as sha:
+            self.assertEqual(independent._source_reasons(ROOT, "rollout", raw, expected), [])
+        checked_names = {Path(call.args[0]).name for call in sha.call_args_list}
+        self.assertNotIn("inputa", checked_names)
+        self.assertEqual(checked_names, {"geqdsk", "coil_currents.csv", "wire_currents.csv"})
 
     def test_launcher_exposes_only_offline_run_and_audit(self) -> None:
         text = (ROOT / "run_rgeo_zgeo_1ms_1000_signed_temporal_d0.sh").read_text(encoding="utf-8")
