@@ -3164,3 +3164,27 @@
 - Classification: finite cumulative fixed-1000 development PASS only; opens
   a small causal short-horizon model and separate Authority design, not hold,
   capture, recovery, feedback or path tracking
+
+## 2026-08-22 fixed-1000 N0 radial nominal development
+
+- Implementation revision: `2325e0aade98c940ed257dd2b499b9bd112b417b`
+- Server validation: focused `5/5`, all one-ms `761/761`
+- One initial zero-TSC preflight used a wrongly expanded revision string;
+  it is invalid labeling evidence only and authorized no run. The corrected
+  preflight SHA-256 is
+  `53e3c00c48090e13ef524d0f06411e17e8f96b3078ad3977b6b9e1ddca9ba5c2`.
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_n0_20260822_2325e0aa_v1`
+- Execution: `5/5` rollouts, `320/320` verified advances, 325 raw states
+- Replay: depth 12 exact in R/Z/Ip, 14 coils, 48 wires and semantic artifacts
+- Terminal distance/speed by depth 4/8/12/16:
+  `23.6548/0.37945`, `24.2850/0.37825`, `24.9034/0.37965`,
+  `25.3739 mm/0.41390 m/s`; q0 is `23.5387 mm/0.31803 m/s`
+- Primary / independent SHA-256:
+  `4d769f9160e7c2f2fa7c50d7de7b83677a2387620b1239f5f06c9cba15e6893c /`
+  `3072925f59d7a0eb441bfb22cac80d318ce4399ed0f0839fbdd288c2d2d6740c`
+- Final routes:
+  `ONE_MS_NR1000N0_RADIAL_NOMINAL_UTILITY_INSUFFICIENT_REDESIGN` /
+  `ONE_MS_NR1000N0_INDEPENDENT_PASS`
+- Classification: clean static ramp-and-hold schedule FAIL; not runtime,
+  safety, raw corruption, global authority or controller evidence

@@ -1,0 +1,91 @@
+{
+  "action_checks": 320,
+  "created_utc": "2026-08-21T17:53:07.284696+00:00",
+  "critical_replay": {
+    "failures": [],
+    "maximum_absolute_difference": {
+      "coil_a": 0.0,
+      "geometry_m": 0.0,
+      "ip_a": 0.0,
+      "wire_a": 0.0
+    },
+    "passed": true
+  },
+  "failures": [],
+  "kind": "independent_raw_audit",
+  "observed_slew_checks": 315,
+  "passed": true,
+  "primary_scientific_passed": false,
+  "primary_scientific_route": "ONE_MS_NR1000N0_RADIAL_NOMINAL_UTILITY_INSUFFICIENT_REDESIGN",
+  "raw_rollouts": 5,
+  "raw_states": 325,
+  "route": "ONE_MS_NR1000N0_INDEPENDENT_PASS",
+  "schema_version": "rgeo-zgeo-1ms-1000-radial-nominal-n0-v1-independent",
+  "scientific_metrics": {
+    "baseline_terminal": {
+      "maximum_ip_source_fraction": 0.029653538663912574,
+      "maximum_source_distance_mm": 23.53865799999999,
+      "maximum_speed_m_per_s": 0.318026999999943
+    },
+    "best_candidate": {
+      "capture_diagnostic_pass": false,
+      "depth": 8,
+      "maximum_ip_source_fraction": 0.03658817644989534,
+      "maximum_source_distance_mm": 24.284961999999965,
+      "maximum_speed_m_per_s": 0.37824899999994166,
+      "rollout_id": "depth08",
+      "source_distance_improvement_fraction": -0.031705460863570734,
+      "speed_improvement_m_per_s": -0.060221999999998665,
+      "utility_pass": false
+    },
+    "candidates": [
+      {
+        "capture_diagnostic_pass": false,
+        "depth": 4,
+        "maximum_ip_source_fraction": 0.03308113589944246,
+        "maximum_source_distance_mm": 23.654814999999996,
+        "maximum_speed_m_per_s": 0.3794499999999479,
+        "rollout_id": "depth04",
+        "source_distance_improvement_fraction": -0.004934733322520035,
+        "speed_improvement_m_per_s": -0.06142300000000489,
+        "utility_pass": false
+      },
+      {
+        "capture_diagnostic_pass": false,
+        "depth": 8,
+        "maximum_ip_source_fraction": 0.03658817644989534,
+        "maximum_source_distance_mm": 24.284961999999965,
+        "maximum_speed_m_per_s": 0.37824899999994166,
+        "rollout_id": "depth08",
+        "source_distance_improvement_fraction": -0.031705460863570734,
+        "speed_improvement_m_per_s": -0.060221999999998665,
+        "utility_pass": false
+      },
+      {
+        "capture_diagnostic_pass": false,
+        "depth": 12,
+        "maximum_ip_source_fraction": 0.040362892415111415,
+        "maximum_source_distance_mm": 24.903398499999895,
+        "maximum_speed_m_per_s": 0.3796544999998819,
+        "rollout_id": "depth12",
+        "source_distance_improvement_fraction": -0.05797868765500169,
+        "speed_improvement_m_per_s": -0.061627499999938884,
+        "utility_pass": false
+      },
+      {
+        "capture_diagnostic_pass": false,
+        "depth": 16,
+        "maximum_ip_source_fraction": 0.04420296492941653,
+        "maximum_source_distance_mm": 25.373872500000004,
+        "maximum_speed_m_per_s": 0.4138954999999278,
+        "rollout_id": "depth16",
+        "source_distance_improvement_fraction": -0.07796597834931851,
+        "speed_improvement_m_per_s": -0.09586849999998481,
+        "utility_pass": false
+      }
+    ],
+    "capture_diagnostic_any": false,
+    "passed": false
+  },
+  "source_revision": "2325e0aade98c940ed257dd2b499b9bd112b417b"
+}

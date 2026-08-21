@@ -1,5 +1,18 @@
 # Current status
 
+> **Current fixed-1000 status - N0 scientific FAIL (2026-08-22):** all five
+> rollouts and 320 plant advances completed with exact Card15 execution and an
+> exact depth-12 replay. Independent raw reconstruction passed 325 states,
+> 320 action checks and 315 later observed-slew checks. The primary route is
+> `ONE_MS_NR1000N0_RADIAL_NOMINAL_UTILITY_INSUFFICIENT_REDESIGN`; independent
+> route is `ONE_MS_NR1000N0_INDEPENDENT_PASS`. Primary/independent SHA-256 are
+> `4d769f91...e6893c / 3072925f...d6740c`. Every tested static depth worsened
+> both terminal distance and speed; none met capture. This is a clean action-
+> schedule scientific FAIL, not runtime, safety, raw or global-authority
+> evidence. The next bounded step is a causal exact-observation-recentered
+> development model using all predeclared negative examples, not a deeper
+> static ramp. Older status blocks are historical.
+
 > **Current fixed-1000 status - D1 cumulative development PASS (2026-08-22):**
 > ten authentic rollouts completed `480/480` plant advances. A zero-TSC
 > reporting repair replaced an inherited D0 replay-cardinality check with the

@@ -1,5 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, N0 complete):** sustained radial
+> effect exists, but a static even-minus ramp from issue 0 followed by holding
+> the attained target is not a usable nominal. Depths 4--16 produced transient
+> relative distance improvements up to about `1.63 mm`, then rebounded and
+> all finished worse than q0 in both terminal distance and speed. The failure
+> is deterministic and independently audited. It points to switching/history
+> timing rather than lack of measurable response. The next model therefore
+> predicts causal one-step/short-horizon increments from exact current
+> observations plus issued/current memory, includes N0 failures with their
+> predeclared fit weight, and is evaluated by whole schedule/phase families.
+> A model may nominate a finite fresh feedback sentinel only after passing;
+> safety, Authority and Recourse remain separate gates. Fixed-1100 evidence
+> remains excluded from training and qualification.
+
 > **Unique fixed-1000 context (2026-08-22, D1 complete):** the new source now
 > has both short signed and cumulative sustained two-axis development
 > evidence. D1's even coordinate produces predominantly radial response and

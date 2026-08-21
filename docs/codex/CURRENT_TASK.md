@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 D1 PASS / model and Authority
+> **Unique active task (2026-08-22, fixed-1000 N0 scientific FAIL / causal
+> short-horizon M0 next):** N0 completed `5/5` authentic radial ramp-and-hold
+> trajectories and `320/320` verified advances; the depth-12 replay was
+> exact and the independent raw audit passed. All four static depths failed
+> the preregistered utility gate. Relative to q0, terminal worst source
+> distance changed by `-0.49%/-3.17%/-5.80%/-7.80%` and maximum speed changed
+> by `-0.061/-0.060/-0.062/-0.096 m/s` for depths 4/8/12/16 respectively
+> (negative means worse). This closes issue-0 even-minus ramp-then-hold as a
+> radial nominal; it does not erase its measured transient effect. All four
+> primary negative trajectories remain prospectively fit-eligible. The sole
+> active model work is a bounded, server-trained one-step/short-horizon M0
+> using fixed-1000 B0+D0R1+D1+N0 development rows, exact current R/Z/Ip
+> re-centering, causal action/current memory, whole-family folds, and an
+> action-blind comparator. No static-depth extension, 1100-ms transfer,
+> calibration, holdout, feedback, Authority, Recourse or controller execution
+> is authorized by N0. Every older active block below is historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 D1 PASS / model and Authority
 > design next):** D1 completed `10/10` authentic cumulative ramp/plateau/
 > exact-return trajectories and `480/480` verified advances. Its initial
 > result incorrectly inherited D0's `41/40` replay cardinality; the original
