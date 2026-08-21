@@ -1,0 +1,82 @@
+{
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z30-fresh-q-model-qualification-offline-v1",
+  "source_revision": "f976ea5a3d0ed8ce3469d614f67c90a24cfbf52e",
+  "stage_config_sha256": "37b0bdfeb56079cd6de9fe95805de96294848534d75cda620e5ba179049f1c95",
+  "stream_checks": [
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "fresh_baseline_transition_center"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "cal_issue36__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "cal_issue36__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "cal_issue36__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "cal_issue36__q_z__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "replay_cal_issue36__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 104.5,
+      "passed": true,
+      "rollout_id": "blind_issue44__q_r__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 106.0,
+      "passed": true,
+      "rollout_id": "blind_issue44__q_r__minus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.4,
+      "passed": true,
+      "rollout_id": "blind_issue44__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.4,
+      "passed": true,
+      "rollout_id": "blind_issue44__q_z__minus_then_return"
+    }
+  ]
+}

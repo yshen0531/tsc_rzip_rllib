@@ -7,6 +7,17 @@
 > parallel, while real feedback still requires model calibration/holdout AND
 > Authority-L0 AND Recourse-L1 AND the hard interface.
 >
+> **Post-ID2Z30 amendment (2026-08-21; supersedes the execution permission
+> above):** the finite smooth q-response model passed fresh issue-36
+> calibration and failed unopened issue-44 validation. q_Z+ advanced an
+> isolated R event by one millisecond, producing two tube misses while
+> q_R+/- and q_Z- retained their frozen branch metrics. Model/tube
+> qualification is closed and no zero-fit feedback may execute. A successor
+> must make event phase and its action guard explicit, then pass new
+> calibration and whole-family validation. Real feedback still requires the
+> conjunction of model qualification, Authority-L0, Recourse-L1 and the exact
+> hard interface.
+>
 > **Post-ID2Z25 route decision (2026-08-21):** retain early full-F transport
 > but do not add residuals to its saturated increment.  The next prospective
 > control coordinate transitions to a slack moving allocation and uses the

@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z29 final):** a separate zero-TSC
+> **Unique new-round context (2026-08-21, ID2Z30 final):** the fresh q-model
+> campaign completed cleanly, calibration passed, and blind validation failed
+> closed at `94/96` calibrated-tube containment. The failure is localized to
+> q_Z+ advancing a one-frame R event by one millisecond; it is not a generic
+> action, runtime or raw failure. The frozen model cannot enter feedback and
+> its blind rows cannot be reused to change it. A separately identified
+> event-aware/action-guard successor requires fresh calibration and blind
+> validation. Source capture, Authority, Recourse and final path control are
+> unchanged independent goals.
+
+> **Historical new-round context (2026-08-21, ID2Z29 final):** a separate zero-TSC
 > audit found the frozen q model and exact Card15 cell prospectively adequate
 > for an eight-direction `0.10 mm` waypoint relative to the moving nominal.
 > This does not rescue source capture. It opens one fresh sequential

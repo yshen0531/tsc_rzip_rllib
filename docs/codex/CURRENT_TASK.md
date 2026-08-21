@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z29 final / fresh qualification
+> **Unique active task (2026-08-21, ID2Z30 final / event-aware successor
+> design):** ID2Z30 completed `10/10` fresh trajectories and `730/730` plant
+> advances with exact execution, prefix, Card15, raw and replay integrity.
+> Issue-36 calibration passed, but the unopened issue-44 family failed at
+> `94/96` tube containment (maximum ratio `16.2864`) and route
+> `ONE_MS_ID2Z30_FRESH_BLIND_FAIL_CLOSE_Q_MODEL_ROUTE`. Both misses are the
+> q_Z+ h5 R/Z components: q_Z+ advanced a one-frame positive-R event by one
+> millisecond. Preserve the FAIL, do not refit on blind data and do not run
+> the planned zero-fit feedback sentinel. The sole active work is a bounded
+> zero-new-TSC event-phase/action-guard redesign followed, only under a new
+> identity, by fresh calibration and whole-family validation. No controller,
+> Authority-L0 or Recourse execution is currently authorized. Older blocks
+> below are historical.
+
+> **Historical active task (2026-08-21, ID2Z29 final / fresh qualification
 > campaign next):** ID2Z29 passed zero-TSC eight-direction `0.10 mm`
 > moving-reference waypoint and exact-action preflight. Worst predicted path
 > and endpoint errors were `0.01751/0.01526 mm`, minimum directional progress

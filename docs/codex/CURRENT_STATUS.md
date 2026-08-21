@@ -1,6 +1,16 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z29 final):** zero-TSC moving-reference
+> **Current status (2026-08-21, ID2Z30 final):** fresh calibration passed but
+> fresh blind validation failed closed. All `10/10` rollouts and `730/730`
+> advances completed; execution, exact action, prefix, replay, raw and
+> independent audit gates passed. Blind containment was `94/96`, with the
+> only misses caused by a q_Z+-linked one-millisecond advance of an isolated
+> event (`0.647808 mm` R error versus a `0.039776 mm` calibrated tube). The
+> model was not refit, feedback was not opened, and source capture/Authority/
+> Recourse remain open. Current work is a bounded event-aware guard/model
+> redesign; adding generic network capacity or weakening the tube is barred.
+
+> **Historical status (2026-08-21, ID2Z29 final):** zero-TSC moving-reference
 > preflight passed after server `5/5` focused and `671/671` complete tests.
 > Eight directions satisfy the frozen `0.10 mm` predicted tracking gates and
 > sixteen exact Card15 streams pass; the independent audit agrees. This opens
