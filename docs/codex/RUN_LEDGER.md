@@ -2,6 +2,13 @@
 
 ## R_geo/Z_geo 1 ms ID-2Z32 post-event delayed-tail D0
 
+> **Erratum:** server forensic SHA-256
+> `710f31b0887cc0cd834224318c6d77071d85177f09b8131db3f168bc4ea8b673`
+> proves all four issue-56 action streams are identical to baseline. The saved
+> signal-FAIL route is not a valid plant-response result. Correct classification:
+> `ACTION_STREAM_CONSTRUCTION_DESIGN_FAIL_NO_SCIENTIFIC_ISSUE56_RESPONSE_TEST`.
+> ID2Z32 remains zero fit weight; a changed stream requires a new identity.
+
 - Date: 2026-08-21 Asia/Shanghai.
 - Design / implementation: `99cc9bb5` /
   `c6b1c5b9b4bf3e350c7567af2f84f070c33bf879`.

@@ -1,18 +1,17 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z32 final / nominal-action redesign):**
-> ID2Z32 completed `10/10`, `730/730` with exact replay, raw integrity and
-> independent recomputation. The issue-50 q_R/q_Z family passed every signal
-> and geometry gate, while every issue-56 branch produced exactly zero paired
-> R/Z/Ip response. Preserve the clean route
-> `ONE_MS_ID2Z32_POST_EVENT_DELAYED_TAIL_D0_SIGNAL_FAIL_CLOSE_CELL` and close
-> the post-event q cell: no adjacent phase/share/duration, wider tube or
-> larger-network rescue, and no fitting of these rows. The sole active work is
-> a bounded zero-new-TSC audit of moving nominal, slew allocation and a
-> materially different Card15/action basis. Only a new prospective identity
-> with exact action/support/safety gates may authorize another campaign.
-> Authority-L0, Recourse-L1 and feedback remain closed. Older blocks below are
-> historical.
+> **Unique active task (2026-08-21, ID2Z32 action-stream erratum / corrected
+> D0 next):** ID2Z32 completed `10/10`, `730/730`, but a server-validated
+> zero-TSC forensic proved that all four issue-56 action streams were exactly
+> identical to baseline. The builder skipped branch construction at
+> `issue >= 56`; therefore the saved zero-response route is an action-stream
+> design/reporting FAIL, not a scientific q-cell FAIL. Preserve all raw-derived
+> compacts and do not fit any ID2Z32 row. The sole active task is a new-identity
+> exact moving-center action preflight and, only if branch/baseline separation,
+> slew/current/return/support gates pass before TSC, one corrected fresh D0
+> campaign. Thresholds and phase matrix remain unchanged; this is not an
+> adjacent-cell rescue. Authority-L0, Recourse-L1 and feedback remain closed.
+> Older blocks below are historical.
 >
 > **Historical active task (2026-08-21, ID2Z31 final / delayed-tail D0 next):**
 > ID2Z31 completed `6/6`, `438/438` with exact replay and independent raw

@@ -1,13 +1,13 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z32 final):** the post-event delayed-tail
-> campaign is a clean scientific signal FAIL. All `10/10` rollouts and
-> `730/730` advances completed; prefix, exact Card15, raw, replay and
-> independent-audit gates passed. Issue 50 retained persistent signed 2-D
-> response, but all four issue-56 branches had exactly zero paired R/Z/Ip
-> response and failed both phase geometry gates. The q cell is closed and no
-> model is fit. Current work is zero-TSC nominal/action-allocation and
-> action-basis redesign; no adjacent-cell ladder or controller is authorized.
+> **Current status (2026-08-21, ID2Z32 erratum):** execution/raw/replay passed,
+> but the issue-56 scientific comparison was never actuated. All four branch
+> action streams equal baseline at every issue because the builder guarded
+> branch construction with `issue <= 55`. Server focused tests and the full
+> `687/687` one-ms suite passed the new zero-TSC forensic. Corrected class:
+> `ACTION_STREAM_CONSTRUCTION_DESIGN_FAIL_NO_SCIENTIFIC_ISSUE56_RESPONSE_TEST`.
+> No ID2Z32 row is fit and no q-cell plant conclusion is retained. A separately
+> frozen corrected moving-center D0 identity is next; no controller is open.
 >
 > **Historical status (2026-08-21, ID2Z31 final):** the finite event-phase map
 > passed with `6/6`, `438/438`, exact issue-44 replay and independent raw
