@@ -35,7 +35,8 @@ def _select(stage: dict[str, Any], artifact: dict[str, Any], remaining: np.ndarr
 
 
 def _semantic_compare(run_dir: Path, left_id: str, right_id: str,
-                      left: list[dict[str, Any]], right: list[dict[str, Any]], count: int) -> dict[str, Any]:
+                      left: list[dict[str, Any]], right: list[dict[str, Any]], count: int,
+                      final_state_inputa_is_outgoing: bool = False) -> dict[str, Any]:
     failures = []
     maxima = {"geometry_m": 0.0, "ip_a": 0.0, "coil_a": 0.0, "wire_a": 0.0}
     if len(left) < count or len(right) < count:
@@ -47,6 +48,8 @@ def _semantic_compare(run_dir: Path, left_id: str, right_id: str,
         maxima["coil_a"] = max(maxima["coil_a"], d0audit._maxdiff(a["current_a_tsc"], b["current_a_tsc"]))
         maxima["wire_a"] = max(maxima["wire_a"], d0audit._maxdiff(a["wire_a"], b["wire_a"]))
         for name in primary.b0.SEMANTIC_ARTIFACTS:
+            if final_state_inputa_is_outgoing and index == count - 1 and name == "inputa":
+                continue
             left_path = run_dir / "rollouts" / left_id / f"{1000 + index}ms" / name
             right_path = run_dir / "rollouts" / right_id / f"{1000 + index}ms" / name
             if primary.b0.sha256(left_path) != primary.b0.sha256(right_path):
@@ -68,7 +71,8 @@ def _responses(run_dir: Path, rows: dict[str, list[dict[str, Any]]],
         ("positive_full", "positive_first_only", 37),
         ("negative_full", "negative_first_only", 37),
     ):
-        comparison = _semantic_compare(run_dir, left_id, right_id, rows[left_id], rows[right_id], count)
+        comparison = _semantic_compare(run_dir, left_id, right_id, rows[left_id], rows[right_id], count,
+                                       final_state_inputa_is_outgoing=True)
         prefix_checks.append({"left": left_id, "right": right_id, "state_count": count,
                               "action_count": count - 1, "passed": comparison["passed"],
                               "failures": comparison["failures"]})

@@ -88,6 +88,12 @@ class AuthorityA0Tests(unittest.TestCase):
                          "authority_qualification_only_zero_fit_weight")
         self.assertEqual(self.stage["data_roles"]["controller_expert_bc_dagger_rl"], "forbidden")
 
+    def test_independent_prefix_excludes_only_outgoing_inputa(self):
+        source = (ROOT / "scripts/rgeo_zgeo_1ms_1000_authority_a0_independent.py").read_text(
+            encoding="utf-8")
+        self.assertIn("final_state_inputa_is_outgoing", source)
+        self.assertIn('index == count - 1 and name == "inputa"', source)
+
 
 if __name__ == "__main__":
     unittest.main()
