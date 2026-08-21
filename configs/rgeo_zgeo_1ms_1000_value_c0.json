@@ -1,0 +1,76 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-value-c0-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_value_c0_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 48,
+  "conditioner_issue_phase": 8,
+  "candidate_issue_phase": 24,
+  "conditioners": ["even_minus", "odd_minus"],
+  "candidates": ["baseline", "even_plus", "even_minus", "odd_plus", "odd_minus"],
+  "primary_rollouts": 10,
+  "critical_replays": ["c_even_minus__even_plus", "c_odd_minus__odd_plus"],
+  "rollouts": 12,
+  "maximum_reset_calls": 12,
+  "maximum_advance_attempts": 576,
+  "maximum_gotsc_calls": 576,
+  "maximum_verified_plant_advances": 576,
+  "retry_after_any_advance_attempt": "forbidden",
+  "d2_config_path": "configs/rgeo_zgeo_1ms_1000_value_d2.json",
+  "d2_config_sha256": "20bc6f38136a7697549fe406bc45126c1cef83a05011c48f7afd0eeedf20b2c3",
+  "v0_result_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_v0_20260822_3956181e_v1/result.json",
+  "v0_result_sha256": "a66b3c7f88757348fd351513b9c6f7bbdc5268f2d5ecb24027bc159dea8a062b",
+  "v0_artifact_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_v0_20260822_3956181e_v1/model_artifact.json",
+  "v0_artifact_sha256": "7bcc8e216087479b8a90f757d198737cac759ab48327b83eac0d872bbde68f5b",
+  "action_contract": {
+    "conditioner": "one frozen D1 negative cumulative macro at issue8 then exact q0",
+    "candidate": "matched baseline or one frozen D1 cumulative macro at issue24 then exact q0",
+    "effect_state_index": "issue_step_plus_one",
+    "future": "exact q0 through state48 after candidate return",
+    "maximum_hard_command_and_readback_slew_a": 0.3,
+    "no_result_dependent_arm_addition": true
+  },
+  "data_roles": {
+    "ten_primary_conditioner_candidate_rows": "fresh_calibration_evaluation_only_zero_fit_weight",
+    "critical_replays": "integrity_only_zero_fit_weight",
+    "v0_artifact": "frozen_read_only_no_refit",
+    "d2_evidence": "design_and_action_support_only",
+    "blind_mixed_histories": "unopened",
+    "controller_or_recourse": "forbidden",
+    "fixed_1100_data": "forbidden"
+  },
+  "scientific_gates": {
+    "minimum_axis_max_h4_h8_rz_norm_mm": 0.08,
+    "minimum_signed_pair_max_h4_h8_separation_mm": 0.15,
+    "maximum_history_best_h4_h8_condition": 15.0,
+    "minimum_history_best_h4_h8_sigma_min_mm": 0.04,
+    "maximum_h4_h8_absolute_ip_response_a": 400.0,
+    "maximum_h12_h16_absolute_rz_response_mm": 3.0,
+    "maximum_h12_h16_absolute_ip_response_a": 400.0,
+    "require_both_conditioner_histories": true
+  },
+  "model_calibration_gates": {
+    "require_all_rz_ip_components_contained": true,
+    "maximum_each_history_directional_ranking_regret_mm": 0.03,
+    "minimum_each_history_h8_weakest_best_progress_mm": 0.10,
+    "direction_grid_count": 64,
+    "maximum_observed_absolute_ip_response_a": 400.0,
+    "model_updates_or_refit": "forbidden"
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000C0_OFFLINE_PASS_RUN_FRESH_CALIBRATION_ONLY",
+    "offline_fail": "ONE_MS_NR1000C0_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000C0_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000C0_CRITICAL_REPLAY_FAIL_STOP",
+    "scientific_fail": "ONE_MS_NR1000C0_FRESH_HISTORY_SIGNAL_OR_GEOMETRY_FAIL_REDESIGN",
+    "model_fail": "ONE_MS_NR1000C0_FIXED_V0_CALIBRATION_FAIL_REDESIGN",
+    "pass": "ONE_MS_NR1000C0_FIXED_V0_FRESH_CALIBRATION_PASS_BLIND_DESIGN_ONLY"
+  }
+}
