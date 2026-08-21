@@ -1,0 +1,88 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-radial-nominal-n0-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_radial_nominal_n0_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 64,
+  "candidate_depths": [4, 8, 12, 16],
+  "critical_replay_depth": 12,
+  "rollouts": 5,
+  "maximum_reset_calls": 5,
+  "maximum_advance_attempts": 320,
+  "maximum_gotsc_calls": 320,
+  "maximum_verified_plant_advances": 320,
+  "retry_after_any_advance_attempt": "forbidden",
+  "requested_single_turn_increment_a": 0.14,
+  "maximum_quantized_adjacent_increment_a": 0.21,
+  "maximum_cumulative_level": 16,
+  "terminal_state_start": 56,
+  "terminal_state_end": 64,
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4r1.json",
+  "base_tsc_config_sha256": "aad0465e62183ebe2f4146eabe8edcc8493c53b5c1fa6c5d8e1c58a06915e7fe",
+  "baseline_evidence": {
+    "primary": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_baseline_primary.json",
+      "sha256": "e225165e7cbba23b8ddac67b71fbf8422c0d1612e05455ac609b5177c1a15015"
+    },
+    "result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_result.json",
+      "sha256": "d6eaa48c4e158c48831c34aeb71c51ac455e253fab8e2868d92ec93d402868de",
+      "route": "ONE_MS_NR1000B0_BASELINE_COMPLETE_SIGNED_ID_DESIGN_ONLY"
+    }
+  },
+  "d1_evidence": {
+    "result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/result_repaired.json",
+      "sha256": "bb0899377b10306f373b9b72517a0458dc3498cbd21f4927298e0fb5d4580148",
+      "route": "ONE_MS_NR1000D1_CUMULATIVE_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY"
+    },
+    "independent": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/independent_audit.json",
+      "sha256": "a17df1173bdd31c41893de376b4e6322a9eebfbbc9729c5dd89a3ab23c720e00",
+      "route": "ONE_MS_NR1000D1_INDEPENDENT_PASS"
+    }
+  },
+  "axis_signs_tsc_order": {
+    "even": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+  },
+  "action_contract": {
+    "center": "exact_source_active_card15_q0",
+    "candidate": "even_minus_ramp_from_issue0_then_hold_attained_level",
+    "effect_state_index": "issue_step_plus_one",
+    "maximum_hard_command_and_readback_slew_a": 0.3,
+    "no_return_or_cleanup_action": true
+  },
+  "data_roles": {
+    "primary_candidates": "development_fit_eligible_weight_1",
+    "critical_replay": "integrity_only_zero_fit_weight",
+    "baseline_primary": "inherited_development_baseline_weight_1",
+    "calibration": "unopened",
+    "holdout": "unopened",
+    "controller_or_recourse": "forbidden"
+  },
+  "scientific_gates": {
+    "minimum_terminal_worst_source_distance_improvement_fraction": 0.15,
+    "minimum_terminal_max_speed_improvement_m_per_s": 0.03,
+    "capture_source_distance_mm": 5.0,
+    "capture_speed_m_per_s": 0.1,
+    "capture_ip_source_fraction": 0.05,
+    "require_one_candidate_to_pass_both_utility_gates": true
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000N0_OFFLINE_PASS_RUN_ONLY",
+    "offline_fail": "ONE_MS_NR1000N0_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000N0_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000N0_CRITICAL_REPLAY_FAIL_STOP",
+    "scientific_fail": "ONE_MS_NR1000N0_RADIAL_NOMINAL_UTILITY_INSUFFICIENT_REDESIGN",
+    "pass": "ONE_MS_NR1000N0_RADIAL_NOMINAL_DEVELOPMENT_PASS_MODEL_AND_FEEDBACK_DESIGN_ONLY",
+    "independent_pass": "ONE_MS_NR1000N0_INDEPENDENT_PASS",
+    "independent_fail": "ONE_MS_NR1000N0_INDEPENDENT_FAIL"
+  }
+}
