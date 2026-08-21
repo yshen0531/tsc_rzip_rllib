@@ -169,7 +169,7 @@ def feature_rows(
         targets = [(_target_current(action, cfg) - q0) @ basis for action in actions]
         memories = [np.zeros(action_rank) for _ in poles]
         active_age = change_age = 0
-        previous = np.zeros(2)
+        previous = np.zeros(action_rank)
         family = f"{group}:{payload.get('rollout_id', path.stem)}"
         for issue, (state, nxt, target) in enumerate(zip(states[:-1], states[1:], targets)):
             changed = not np.allclose(target, previous, atol=1e-12, rtol=0.0)
