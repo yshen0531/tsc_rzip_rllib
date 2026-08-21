@@ -47,7 +47,12 @@ def _reference_failures(run_dir: Path, rollout_id: str, states: list[dict[str, A
                 failures.append(f"{raw_key.upper()}_LENGTH:{index}")
             elif max(abs(float(a) - float(b)) for a, b in zip(actual, frozen)) > 1e-9:
                 failures.append(f"{raw_key.upper()}:{index}")
-        for name in primary.b0.SEMANTIC_ARTIFACTS:
+        # Raw state folders 0..63 contain the outgoing issue inputa after the
+        # runner rewrite, whereas the compact state captured the preissue
+        # inputa.  The outgoing Card15 fields are checked independently below;
+        # compare only the three immutable state artifacts to the frozen
+        # preissue reference here.
+        for name in tuple(name for name in primary.b0.SEMANTIC_ARTIFACTS if name != "inputa"):
             path = run_dir / "rollouts" / rollout_id / f"{1000 + index}ms" / name
             if _sha256(path) != expected["artifact_sha256"][name]:
                 failures.append(f"SEMANTIC_ARTIFACT:{name}:{index}")
@@ -77,6 +82,15 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
             states = [_state(root / f"{t}ms", cfg) for t in expected_times]
             raw_states += len(states)
             compact = json.loads((run_dir / f"{rollout_id}.json").read_text(encoding="utf-8"))
+            for index, state in enumerate(states):
+                state["actual_current_a_tsc"] = list(state["current_a_tsc"])
+                state["wire_current_a"] = list(state["wire_a"])
+                state["artifact_sha256"] = {
+                    name: (_sha256(root / f"{1000 + index}ms" / name)
+                           if name != "inputa" else
+                           compact["states"][index]["artifact_sha256"][name])
+                    for name in primary.b0.SEMANTIC_ARTIFACTS
+                }
             compact["states"] = states
             rows[rollout_id] = compact
             failures.extend(
