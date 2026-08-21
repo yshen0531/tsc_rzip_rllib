@@ -178,7 +178,11 @@ def run_one(cfg: Any, stage: dict[str, Any], spec: dict[str, Any], envelope: Any
 def metrics(rows: Mapping[str, dict[str, Any]], stage: Mapping[str, Any],
             frozen_reference: dict[str, Any], artifact: Mapping[str, Any]) -> dict[str, Any]:
     q0_replay = a0.compare_prefix(rows["q0_baseline"], frozen_reference, 65, 64)
-    path_replay = a0.compare_replay(rows["path_a"], rows["path_a_replay"])
+    path_replay = a0.compare_prefix(rows["path_a"], rows["path_a_replay"], 65, 64)
+    if rows["path_a"].get("decisions") != rows["path_a_replay"].get("decisions"):
+        path_replay["failures"].append("DECISIONS")
+        path_replay["failures"] = list(dict.fromkeys(path_replay["failures"]))
+        path_replay["passed"] = False
     paths = []
     gates = stage["scientific_gates"]
     for path_id in ("path_a", "path_b"):
