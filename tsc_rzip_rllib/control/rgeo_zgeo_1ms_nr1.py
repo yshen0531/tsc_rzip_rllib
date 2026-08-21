@@ -185,13 +185,16 @@ def build_frozen_one_ms_prefixes(
     turns_tsc: Sequence[float],
     min_current_a_tsc: Sequence[float],
     max_current_a_tsc: Sequence[float],
-    maximum_command_delta_a: float = MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP,
+    maximum_command_delta_a: Any = MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP,
 ) -> FrozenOneMsPrefixes:
     source = _vector(source_current_a_tsc, "source_current_a_tsc")
     turns = _vector(turns_tsc, "turns_tsc")
     lower = _vector(min_current_a_tsc, "min_current_a_tsc")
     upper = _vector(max_current_a_tsc, "max_current_a_tsc")
-    if not 0.0 < float(maximum_command_delta_a) <= MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP:
+    maximum_delta = _decimal(maximum_command_delta_a, "maximum_command_delta_a")
+    if not Decimal("0") < maximum_delta <= _decimal(
+        MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP, "hard command delta"
+    ):
         raise ContractError("maximum_command_delta_a must be in (0, 0.3]")
     command_center = source if source_command_a_tsc is None else _vector(
         source_command_a_tsc, "source_command_a_tsc"
@@ -209,15 +212,20 @@ def build_frozen_one_ms_prefixes(
             q0.current_a_tsc, command_center, turns, signs
         ):
             field, value = _signed_lattice_value(
-                q0_value, center_value, turn, sign, maximum_command_delta_a,
+                q0_value, center_value, turn, sign, maximum_delta,
             )
             fields.append(field)
             values.append(value)
         target = Card15Target(tuple(fields), tuple(values))
         assert_exact_slew(q0.current_a_tsc, target.current_a_tsc, name=name)
         assert_exact_slew(command_center, target.current_a_tsc, name=f"command_center_to_{name}")
-        if max(abs(value - base) for value, base in zip(
-                target.current_a_tsc, q0.current_a_tsc)) > maximum_command_delta_a + 1e-12:
+        if max(
+            abs(
+                _decimal(value, f"{name}.target")
+                - _decimal(base, f"{name}.q0")
+            )
+            for value, base in zip(target.current_a_tsc, q0.current_a_tsc)
+        ) > maximum_delta:
             raise ContractError(f"{name} exceeds reserved command slew")
         if any(not low <= value <= high for value, low, high in zip(target.current_a_tsc, lower, upper)):
             raise ContractError(f"{name} exceeds an absolute current limit")

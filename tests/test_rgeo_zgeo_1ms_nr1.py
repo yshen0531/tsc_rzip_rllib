@@ -106,6 +106,24 @@ class OneMsNR1Tests(unittest.TestCase):
                 name=f"source_to_{prefix}",
             )
 
+    def test_reserved_command_slew_accepts_decimal_contract(self) -> None:
+        frozen = build_frozen_one_ms_prefixes(
+            source_current_a_tsc=self.source,
+            turns_tsc=self.turns,
+            min_current_a_tsc=self.lower,
+            max_current_a_tsc=self.upper,
+            maximum_command_delta_a=Decimal("0.299"),
+        )
+        for prefix in ("pattern_a", "pattern_b"):
+            maximum = max(
+                abs(Decimal(str(value)) - Decimal(str(base)))
+                for value, base in zip(
+                    frozen.prefixes[prefix][0].current_a_tsc,
+                    frozen.q0.current_a_tsc,
+                )
+            )
+            self.assertLessEqual(maximum, Decimal("0.299"))
+
     def test_exact_point_three_is_allowed_and_any_excess_rejected(self) -> None:
         self.assertEqual(assert_exact_slew([0.0] * 14, [0.3] * 14, name="edge"), 0.3)
         with self.assertRaisesRegex(ContractError, "exceeds"):
