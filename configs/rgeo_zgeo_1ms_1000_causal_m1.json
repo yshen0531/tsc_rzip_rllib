@@ -1,0 +1,58 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-causal-m1-v1",
+  "model_id": "rgeo_zgeo_1ms_1000_causal_m1_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "m0_config_path": "configs/rgeo_zgeo_1ms_1000_causal_m0.json",
+  "m0_config_sha256": "47a5dbbe8f9b25068a3194751de3e707b72eb5414e6caf46f5246c892c46ae7a",
+  "m0_result_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_m0_20260822_4d12ab54_v1/result.json",
+  "m0_result_sha256": "2f1e15426c5f48597c2ebb40c1db7e2b736517a5e9f4a43259191a8ba1c2b5e6",
+  "m0_diagnostic_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_m0_diagnostic_96c050a9.json",
+  "m0_diagnostic_sha256": "70e28cf34e0a422eda53e780c85976cf76404e811f919d022f768a98a99eeab1",
+  "dataset_manifest_digest": "c7f53d08b6ce3df3ee63bb6ec3a7aaf908b758ca03dca483610c9a927e97c4f8",
+  "dataset_file_count": 25,
+  "executed_action_rank": 6,
+  "maximum_issue_index": 63,
+  "event_encoding": "absolute_issue_one_hot_0_through_63",
+  "target": "paired_response_delta_relative_to_same_issue_q0",
+  "hidden_widths": [64, 32],
+  "activation": "tanh",
+  "optimizer": "adam",
+  "learning_rate": 0.002,
+  "weight_decay": 0.0001,
+  "epochs": 1200,
+  "seeds": [11, 23, 37],
+  "output_scales": [0.1, 0.1, 25.0],
+  "whole_family_folds": [
+    {"name": "d0_phase10", "selectors": ["d0:p10_"]},
+    {"name": "d0_phase24", "selectors": ["d0:p24_"]},
+    {"name": "d1_phase08", "selectors": ["d1:p08_"]},
+    {"name": "d1_phase24", "selectors": ["d1:p24_"]},
+    {"name": "n0_shallow", "selectors": ["n0:depth04", "n0:depth08"]},
+    {"name": "n0_deep", "selectors": ["n0:depth12", "n0:depth16"]}
+  ],
+  "data_roles": {
+    "m0_development_rows": "development_fit_eligible_weight_1",
+    "critical_replays": "excluded_zero_fit_weight",
+    "m0_result_and_diagnostic": "route_and_design_evidence_only",
+    "calibration": "unopened",
+    "holdout": "unopened",
+    "controller_or_recourse": "forbidden",
+    "fixed_1100_data": "forbidden"
+  },
+  "gates": {
+    "maximum_each_fold_one_step_r_p95_mm": 0.35,
+    "maximum_each_fold_one_step_z_p95_mm": 0.15,
+    "maximum_each_fold_one_step_ip_p95_a": 40.0,
+    "maximum_each_fold_one_step_r_max_mm": 0.85,
+    "maximum_mean_paired_response_nrmse": 0.8,
+    "minimum_improvement_over_zero_response_fraction": 0.1,
+    "minimum_peak_response_direction_cosine": 0.8,
+    "require_every_fold": true
+  },
+  "routes": {
+    "input_fail": "ONE_MS_NR1000M1_INPUT_INTEGRITY_FAIL_ZERO_TSC",
+    "model_fail": "ONE_MS_NR1000M1_EVENT_AWARE_POINT_MODEL_INSUFFICIENT_STOP_POINT_MODEL_LADDER",
+    "pass": "ONE_MS_NR1000M1_EVENT_AWARE_DEVELOPMENT_PASS_FRESH_CALIBRATION_DESIGN_ONLY"
+  }
+}
