@@ -17,7 +17,6 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts import rgeo_zgeo_1ms_1000_authority_a0 as primary  # noqa: E402
-from scripts import rgeo_zgeo_1ms_1000_cumulative_d1_independent as d1audit  # noqa: E402
 from scripts import rgeo_zgeo_1ms_1000_signed_temporal_d0_independent as d0audit  # noqa: E402
 from scripts.rgeo_zgeo_1ms_nr1_independent import _fields, _state  # noqa: E402
 from tsc_rzip_rllib.control.rgeo_zgeo_1ms_nr1 import (  # noqa: E402
@@ -35,8 +34,44 @@ def _select(stage: dict[str, Any], artifact: dict[str, Any], remaining: np.ndarr
     return sorted(name for score, name in scores if abs(score - best) <= 1e-15)[0]
 
 
-def _responses(rows: dict[str, list[dict[str, Any]]], decisions: dict[str, list[dict[str, Any]]],
-               artifact: dict[str, Any]) -> dict[str, Any]:
+def _semantic_compare(run_dir: Path, left_id: str, right_id: str,
+                      left: list[dict[str, Any]], right: list[dict[str, Any]], count: int) -> dict[str, Any]:
+    failures = []
+    maxima = {"geometry_m": 0.0, "ip_a": 0.0, "coil_a": 0.0, "wire_a": 0.0}
+    if len(left) < count or len(right) < count:
+        failures.append("STATE_COUNT")
+    for index, (a, b) in enumerate(zip(left[:count], right[:count])):
+        maxima["geometry_m"] = max(maxima["geometry_m"], *(
+            abs(a[key] - b[key]) for key in ("r_geo_m", "z_geo_m", "r_mid_m")))
+        maxima["ip_a"] = max(maxima["ip_a"], abs(a["ip_a"] - b["ip_a"]))
+        maxima["coil_a"] = max(maxima["coil_a"], d0audit._maxdiff(a["current_a_tsc"], b["current_a_tsc"]))
+        maxima["wire_a"] = max(maxima["wire_a"], d0audit._maxdiff(a["wire_a"], b["wire_a"]))
+        for name in primary.b0.SEMANTIC_ARTIFACTS:
+            left_path = run_dir / "rollouts" / left_id / f"{1000 + index}ms" / name
+            right_path = run_dir / "rollouts" / right_id / f"{1000 + index}ms" / name
+            if primary.b0.sha256(left_path) != primary.b0.sha256(right_path):
+                failures.append(f"SEMANTIC_ARTIFACT:{name}:{index}")
+    for key, tolerance in (("geometry_m", 1e-12), ("ip_a", 1e-9),
+                           ("coil_a", 1e-9), ("wire_a", 1e-9)):
+        if maxima[key] > tolerance:
+            failures.append(key.upper())
+    return {"passed": not failures, "failures": list(dict.fromkeys(failures)),
+            "maximum_absolute_difference": maxima}
+
+
+def _responses(run_dir: Path, rows: dict[str, list[dict[str, Any]]],
+               decisions: dict[str, list[dict[str, Any]]], artifact: dict[str, Any]) -> dict[str, Any]:
+    prefix_checks = []
+    for left_id, right_id, count in (
+        ("positive_first_only", "q0_baseline", 25),
+        ("negative_first_only", "q0_baseline", 25),
+        ("positive_full", "positive_first_only", 37),
+        ("negative_full", "negative_first_only", 37),
+    ):
+        comparison = _semantic_compare(run_dir, left_id, right_id, rows[left_id], rows[right_id], count)
+        prefix_checks.append({"left": left_id, "right": right_id, "state_count": count,
+                              "action_count": count - 1, "passed": comparison["passed"],
+                              "failures": comparison["failures"]})
     checks = []
     definitions = [
         ("positive_first", "positive_first_only", "q0_baseline", 24, 0),
@@ -65,7 +100,8 @@ def _responses(rows: dict[str, list[dict[str, Any]]], decisions: dict[str, list[
         checks.append({"name": label, "origin_issue": origin, "candidate": candidate,
                        "horizons": horizon_rows, "h8_waypoint_projection_mm": projection,
                        "passed": passed})
-    return {"passed": all(row["passed"] for row in checks), "decision_checks": checks}
+    return {"passed": all(row["passed"] for row in prefix_checks + checks),
+            "matched_prefix_checks": prefix_checks, "decision_checks": checks}
 
 
 def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
@@ -154,11 +190,11 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
             failures.append(f"RAW:{rollout_id}:{type(exc).__name__}:{exc}")
             rows.setdefault(rollout_id, [])
             decisions.setdefault(rollout_id, [])
-    replay = d1audit.semantic_replay(run_dir, "positive_full", "positive_full_replay",
-                                     rows.get("positive_full", []), rows.get("positive_full_replay", []))
+    replay = _semantic_compare(run_dir, "positive_full", "positive_full_replay",
+                               rows.get("positive_full", []), rows.get("positive_full_replay", []), 61)
     failures.extend(f"REPLAY:{reason}" for reason in replay["failures"])
     complete = len(rows) == 6 and all(len(rows.get(spec["rollout_id"], [])) == 61 for spec in specs)
-    metrics = _responses(rows, decisions, artifact) if complete else None
+    metrics = _responses(run_dir, rows, decisions, artifact) if complete else None
     try:
         reported = json.loads((run_dir / "result.json").read_text(encoding="utf-8"))
     except Exception as exc:

@@ -216,8 +216,45 @@ def response(full: Mapping[str, Any], matched: Mapping[str, Any], origin: int, h
                        a["ip_a"] - b["ip_a"]], dtype=float)
 
 
+def compare_prefix(left: Mapping[str, Any], right: Mapping[str, Any],
+                   state_count: int, action_count: int) -> dict[str, Any]:
+    failures = []
+    if len(left["states"]) < state_count or len(right["states"]) < state_count:
+        failures.append("STATE_COUNT")
+    if len(left.get("actions", [])) < action_count or len(right.get("actions", [])) < action_count:
+        failures.append("ACTION_COUNT")
+    for index, (a, b) in enumerate(zip(left["states"][:state_count], right["states"][:state_count])):
+        for key, tolerance in (("r_geo_m", 1e-12), ("z_geo_m", 1e-12), ("ip_a", 1e-9)):
+            if abs(float(a[key]) - float(b[key])) > tolerance:
+                failures.append(f"{key.upper()}:{index}")
+        for key in ("actual_current_a_tsc", "wire_current_a"):
+            if key in a or key in b:
+                if len(a.get(key, [])) != len(b.get(key, [])) or any(
+                        abs(float(x) - float(y)) > 1e-9 for x, y in zip(a.get(key, []), b.get(key, []))):
+                    failures.append(f"{key.upper()}:{index}")
+        if "artifact_sha256" in a or "artifact_sha256" in b:
+            for name in b0.SEMANTIC_ARTIFACTS:
+                if a.get("artifact_sha256", {}).get(name) != b.get("artifact_sha256", {}).get(name):
+                    failures.append(f"SEMANTIC_ARTIFACT:{name}:{index}")
+    if left.get("actions", [])[:action_count] != right.get("actions", [])[:action_count]:
+        failures.append("ACTIONS")
+    return {"passed": not failures, "failures": list(dict.fromkeys(failures))}
+
+
 def scientific_metrics(rows: Mapping[str, dict[str, Any]], stage: Mapping[str, Any],
                        artifact: Mapping[str, Any]) -> dict[str, Any]:
+    prefix_checks = []
+    for left_id, right_id, state_count, action_count in (
+        ("positive_first_only", "q0_baseline", 25, 24),
+        ("negative_first_only", "q0_baseline", 25, 24),
+        ("positive_full", "positive_first_only", 37, 36),
+        ("negative_full", "negative_first_only", 37, 36),
+    ):
+        comparison = compare_prefix(rows[left_id], rows[right_id], state_count, action_count)
+        failures = comparison["failures"]
+        prefix_checks.append({"left": left_id, "right": right_id,
+                              "state_count": state_count, "action_count": action_count,
+                              "passed": not failures, "failures": failures})
     checks = []
     definitions = [
         ("positive_first", rows["positive_first_only"], rows["q0_baseline"], 24, 0),
@@ -245,7 +282,8 @@ def scientific_metrics(rows: Mapping[str, dict[str, Any]], stage: Mapping[str, A
         checks.append({"name": name, "origin_issue": origin, "candidate": candidate,
                        "horizons": horizons, "h8_waypoint_projection_mm": projection,
                        "passed": passed})
-    return {"passed": all(item["passed"] for item in checks), "decision_checks": checks}
+    return {"passed": all(item["passed"] for item in prefix_checks + checks),
+            "matched_prefix_checks": prefix_checks, "decision_checks": checks}
 
 
 def compare_replay(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:

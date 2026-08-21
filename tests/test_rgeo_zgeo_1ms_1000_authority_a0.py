@@ -54,7 +54,9 @@ class AuthorityA0Tests(unittest.TestCase):
                 direction = [1.0, 0.0] if candidate == "even_minus" else [0.0, 1.0] if candidate == "odd_plus" \
                     else [0.0, -1.0] if candidate == "odd_minus" else [-1.0, 0.0]
                 decisions.append({"candidate": candidate, "remaining_direction_rz": direction})
-            rows[spec["rollout_id"]] = {"states": states, "decisions": decisions}
+            rows[spec["rollout_id"]] = {"states": states,
+                                        "actions": [{"issue_step": i} for i in range(60)],
+                                        "decisions": decisions}
         for full_id, base_id, origin, ordinal in (
             ("positive_first_only", "q0_baseline", 24, 0),
             ("positive_full", "positive_first_only", 36, 1),
