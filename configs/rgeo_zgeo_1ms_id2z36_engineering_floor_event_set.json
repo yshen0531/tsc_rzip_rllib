@@ -1,0 +1,59 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z36-engineering-floor-event-set-v1",
+  "identity": "rgeo-zgeo-1ms-id2z36-engineering-floor-event-set-v1",
+  "stage": "ID-2Z36",
+  "event_coordinate": {"axis_sign": "q_r:minus", "effect_age": 13},
+  "engineering_half_width_floor": {
+    "r_geo_m": 0.000375,
+    "z_geo_m": 0.000075,
+    "ip_a": 30.0
+  },
+  "maximum_event_full_width": {
+    "r_geo_m": 0.00075,
+    "z_geo_m": 0.00015,
+    "ip_a": 60.0
+  },
+  "candidate_count": 1,
+  "hyperparameter_search": false,
+  "models_fit_or_updated": 0,
+  "plant_advance_gotsc_calls": 0,
+  "id2z35_fit_rows": 0,
+  "fresh_qualification": {
+    "calibration_phase_issue": 48,
+    "blind_phase_issue": 54,
+    "model_refit_after_calibration": false,
+    "blind_open_only_after_calibration_pass": true
+  },
+  "evidence": {
+    "design": {
+      "path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z36_ENGINEERING_FLOOR_EVENT_SET_DESIGN.md",
+      "sha256": "8793ca3d89cb1f0b8b99affc222b8978b8272e54d04404428b268a5ad8c99ed9"
+    },
+    "id2z34_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z34_20260821_e04aeb08_v1/result.json",
+      "sha256": "0c58ea1a8c1bc48c316dcf153de4ce7af326493371a6980cb707875349c6c641",
+      "required_route": "ONE_MS_ID2Z34_EVENT_SET_MODEL_PASS_FRESH_QUALIFICATION_DESIGN_ONLY",
+      "required_payload_sha256": "7f4ea48fc0117a77a23c7df378748a0cbac2f3194a6a47e254ba1bcd472df846"
+    },
+    "id2z34_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z34_20260821_e04aeb08_v1/independent_audit.json",
+      "sha256": "ecef293d6205cfbd5f1e88456e2f44f7ebc7a2b14796b975f3a61e40114e5f9d"
+    },
+    "id2z35_result": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z35_20260821_2b6adb1c_v1/result.json",
+      "sha256": "f7e29710d19ffe230d8b523f431cd4d3063c61e96b911a8985acf2a17125d077",
+      "required_route": "ONE_MS_ID2Z35_FRESH_CALIBRATION_FAIL_STOP_BEFORE_BLIND",
+      "required_blind_opened": false
+    },
+    "id2z35_independent": {
+      "path": "docs/codex/audits/rgeo_zgeo_1ms_id2z35_20260821_2b6adb1c_v1/independent_raw_audit.json",
+      "sha256": "dbd92d91d2497cab21ce79e80474220d6d7d955214952fa1fa494b49a5d3200b"
+    }
+  },
+  "routes": {
+    "input_fail": "ONE_MS_ID2Z36_INPUT_OR_IDENTITY_FAIL_NO_MODEL",
+    "construction_fail": "ONE_MS_ID2Z36_ENGINEERING_FLOOR_CONSTRUCTION_FAIL_STOP",
+    "pass": "ONE_MS_ID2Z36_ENGINEERING_FLOOR_EVENT_SET_PASS_FRESH_QUALIFICATION_ONLY"
+  },
+  "claim_boundary": "Zero-TSC deterministic engineering-floor transformation of the frozen ID2Z34 payload; ID2Z35 is authentication-only and zero fit. Not calibration, blind validation, probabilistic uncertainty, transition tube, feedback, Authority-L0, capture, recovery, Recourse-L1, waypoint/path or R_mid-crossing evidence."
+}
