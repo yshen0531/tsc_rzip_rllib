@@ -1,6 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z33 final):** the corrected
+> **Unique new-round context (2026-08-21, ID2Z34 final):** the bounded
+> two-candidate development stage rejected a smooth point response model and
+> selected a sparse set-valued successor with one q_R-minus/age-13 event cell.
+> Non-event errors remained small and an independent implementation reproduced
+> the selection. The artifact is frozen; it now requires fresh intermediate-
+> phase calibration and unopened whole-family validation. This is not yet a
+> tube, controller, Authority, capture, recovery or Recourse result.
+>
+> **Historical new-round context (2026-08-21, ID2Z33 final):** the corrected
 > moving-center D0 executed the issue-50 and issue-56 signed q_R/q_Z streams
 > that ID2Z32 failed to construct. Ten complete rollouts, 730 advances,
 > independent raw reparse, exact replay, all eight h4/h8 response gates and

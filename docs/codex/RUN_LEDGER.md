@@ -1,5 +1,24 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z34 event-set model development
+
+- Date: 2026-08-21 Asia/Shanghai.
+- Revision: `e04aeb0811dcb81d1122a29a237d4c1aeaf86a1b`.
+- Validation: focused `7/7`; complete one-ms suite `697/697`.
+- Work: two frozen models fit over eight ID2Z33 branch families; zero TSC,
+  zero plant advances and zero calibration/holdout reads.
+- Smooth candidate: FAIL, maximum R point error `0.319267 mm > 0.300 mm`.
+- Event-set candidate: PASS, one event cell, R full width `0.704388 mm`;
+  maximum non-event R/Z/Ip errors `0.019447 mm / 0.014427 mm / 0.95555 A`.
+- Selected payload SHA-256:
+  `7f4ea48fc0117a77a23c7df378748a0cbac2f3194a6a47e254ba1bcd472df846`.
+- Route: `ONE_MS_ID2Z34_EVENT_SET_MODEL_PASS_FRESH_QUALIFICATION_DESIGN_ONLY`.
+- Primary / independent SHA-256:
+  `0c58ea1a8c1bc48c316dcf153de4ce7af326493371a6980cb707875349c6c641 /`
+  `ecef293d6205cfbd5f1e88456e2f44f7ebc7a2b14796b975f3a61e40114e5f9d`.
+- Next: freeze the artifact; fresh intermediate-phase calibration, then an
+  unopened whole-phase blind family. No controller prerequisite is implied.
+
 ## R_geo/Z_geo 1 ms ID-2Z33 corrected moving-center D0
 
 - Date: 2026-08-21 Asia/Shanghai.

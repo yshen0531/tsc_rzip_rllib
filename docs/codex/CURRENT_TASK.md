@@ -1,6 +1,17 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z33 D0 PASS / bounded model next):**
+> **Unique active task (2026-08-21, ID2Z34 model PASS / fresh qualification
+> next):** two frozen zero-TSC candidates were evaluated after server
+> `697/697` regression PASS. The smooth point template failed at the isolated
+> q_R-minus age-13 event (`0.319267 mm > 0.300 mm`); the sparse event-set model
+> passed with one local cell, `0.704388 mm` R full width, and non-event maxima
+> `0.019447/0.014427 mm` R/Z. Independent recomputation passed. Freeze payload
+> `7f4ea48f...df846`; do not refit it. The sole active work is one new-identity
+> intermediate-phase calibration, followed only after calibration PASS by an
+> unopened whole-phase blind family. No feedback, Authority-L0, capture,
+> recovery or Recourse-L1 is authorized. Older blocks below are historical.
+>
+> **Historical active task (2026-08-21, ID2Z33 D0 PASS / bounded model next):**
 > the corrected moving-center campaign completed `10/10`, `730/730`, and an
 > independent raw reparse authenticated 740 states and 3,700 artifacts.
 > Every issue-50/56 q_R/q_Z signed branch passed h4/h8 signal, persistence,

@@ -1,5 +1,12 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z33 amendment (2026-08-21):** corrected moving-center D0 passed at
+> **Post-ID2Z34 amendment (2026-08-21):** development rejected the smooth
+> response point model and selected one sparse event-set successor. The
+> payload is frozen but not calibrated: it must pass a new intermediate-phase
+> calibration and unopened whole-family blind validation before any shadow
+> feedback use. A local empirical set is not a transition tube or Recourse.
+> Authority-L0 and Recourse-L1 remain the parallel controller branch.
+>
+> **Historical post-ID2Z33 amendment (2026-08-21):** corrected moving-center D0 passed at
 > two phases with persistent signed q_R/q_Z response and finite two-axis
 > geometry. It opens a bounded shadow-model comparison only. The dependency
 > graph is `D0 PASS -> at most two event-aware development candidates ->

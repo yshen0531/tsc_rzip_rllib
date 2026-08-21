@@ -1,0 +1,34 @@
+{
+  "audit_passed": true,
+  "calibration_or_holdout_reads": 0,
+  "claim_boundary": "Zero-new-TSC two-candidate development fit over eight prospective ID2Z33 branch families only; not calibration, blind validation, probabilistic uncertainty, transition tube, feedback, Authority-L0, capture, recovery, Recourse-L1, waypoint/path, position generalization, R_mid crossing, real-plant or deployment evidence.",
+  "failures": [],
+  "models_fit_or_updated": 2,
+  "plant_advances": 0,
+  "primary_sha256": "0c58ea1a8c1bc48c316dcf153de4ce7af326493371a6980cb707875349c6c641",
+  "recomputed_candidate_a_passed": false,
+  "recomputed_candidate_b_passed": true,
+  "recomputed_event_cells": [
+    {
+      "axis_sign": "q_r:minus",
+      "effect_age": 13
+    }
+  ],
+  "recomputed_maximum_absolute_error": {
+    "ip_a": 3.528999999998632,
+    "r_geo_m": 0.00031926725000003264,
+    "z_geo_m": 4.7751000000005595e-05
+  },
+  "recomputed_maximum_event_r_full_width_m": 0.0007043879500000719,
+  "recomputed_maximum_non_event_absolute_error": {
+    "ip_a": 0.955550000002404,
+    "r_geo_m": 1.944674999992957e-05,
+    "z_geo_m": 1.4426750000011423e-05
+  },
+  "recomputed_maximum_non_event_scaled_absolute_error": 0.1944674999992957,
+  "recomputed_route": "ONE_MS_ID2Z34_EVENT_SET_MODEL_PASS_FRESH_QUALIFICATION_DESIGN_ONLY",
+  "recomputed_selected_candidate": "candidate_b",
+  "schema_version": "rgeo-zgeo-1ms-id2z34-event-set-model-independent-v1",
+  "source_revision": "e04aeb0811dcb81d1122a29a237d4c1aeaf86a1b",
+  "tsc_calls": 0
+}

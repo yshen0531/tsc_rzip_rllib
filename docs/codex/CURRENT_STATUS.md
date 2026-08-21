@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z33 final):** the corrected moving-center
+> **Current status (2026-08-21, ID2Z34 final):** zero-TSC development selected
+> a sparse event-set response model after the smooth point candidate failed
+> its frozen R cap. Exactly one of 68 cells is set-valued; its R full width is
+> `0.704388 mm`, while all non-event R/Z errors are below `0.01945/0.01443 mm`.
+> Primary and independent results agree, with zero qualification reads and
+> zero plant advances. This opens one frozen calibration-to-blind design only;
+> the payload is not a calibrated tube and cannot enter feedback.
+>
+> **Historical status (2026-08-21, ID2Z33 final):** the corrected moving-center
 > D0 is a clean finite development-data PASS. All ten rollouts and 730 plant
 > advances completed; independent raw audit reproduced the result from 740
 > states and 3,700 artifacts. All eight signed branches passed at both
