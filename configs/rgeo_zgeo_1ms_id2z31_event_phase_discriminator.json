@@ -1,0 +1,96 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-id2z31-event-phase-discriminator-v1",
+  "identity": "rgeo-zgeo-1ms-id2z31-event-phase-discriminator-v1",
+  "stage": "ID-2Z31",
+  "takeover_time_ms": 1100,
+  "control_period_ms": 1,
+  "common_horizon_steps": 73,
+  "common_terminal_state_index": 73,
+  "event_window_effect_states": [47, 48, 49, 50, 51, 52],
+  "positive_r_event_threshold_m": 0.0002,
+  "branch_phase_issues": [43, 44, 45],
+  "maximum_rollouts": 6,
+  "maximum_reset_calls": 6,
+  "maximum_advance_attempts": 438,
+  "maximum_gotsc_calls": 438,
+  "maximum_verified_plant_advances": 438,
+  "maximum_retained_states": 444,
+  "required_artifact_files_if_all_complete": 2220,
+  "retry_after_any_advance_attempt": "forbidden",
+  "models_fit_or_updated": 0,
+  "rollout_specs": [
+    {"family_id": "fresh_event_baseline_transition_center", "kind": "center_baseline", "data_role": "zero_fit_event_baseline"},
+    {"family_id": "event_issue43__q_z__plus_then_return", "kind": "event_branch", "phase_issue": 43, "axis_id": "q_z", "initial_sign": "plus", "data_role": "zero_fit_event_map"},
+    {"family_id": "event_issue44__q_z__plus_then_return", "kind": "event_branch", "phase_issue": 44, "axis_id": "q_z", "initial_sign": "plus", "data_role": "zero_fit_event_map"},
+    {"family_id": "replay_event_issue44__q_z__plus_then_return", "kind": "replay", "source_family_id": "event_issue44__q_z__plus_then_return", "data_role": "zero_fit_replay"},
+    {"family_id": "event_issue45__q_z__plus_then_return", "kind": "event_branch", "phase_issue": 45, "axis_id": "q_z", "initial_sign": "plus", "data_role": "zero_fit_event_map"},
+    {"family_id": "event_issue44__q_z__minus_then_return", "kind": "event_branch", "phase_issue": 44, "axis_id": "q_z", "initial_sign": "minus", "data_role": "zero_fit_signed_control"}
+  ],
+  "event_contract": {
+    "detector_component": "r_geo_m",
+    "detector_increment_direction": "positive",
+    "exactly_one_event_per_complete_row": true,
+    "event_state_is_measured_not_targeted": true,
+    "replay_required": true,
+    "adjacent_phase_expansion_forbidden": true,
+    "all_rows_fit_weight": 0
+  },
+  "action_semantics": {
+    "absolute_card15_targets": true,
+    "maximum_per_coil_issue_delta_a": 0.3,
+    "full_0p3_a_allowed": true,
+    "issue_to_effect_state_offset": 1,
+    "software_queue_added": false,
+    "legacy_runner_clipping_may_be_relied_on": false,
+    "future_actual_current": "forbidden",
+    "odd_plant_response_symmetry_assumed": false,
+    "exact_return_bridge_is_not_state_recovery": true
+  },
+  "empirical_exploration": {
+    "novel_issue_first": 43,
+    "post_successor_step_caps": {"r_geo_m": 0.002, "z_geo_m": 0.002, "ip_a": 150.0},
+    "simulator_development_preissue_clearance": {"r_geo_m": 0.045, "z_geo_m": 0.045, "ip_fraction": 0.09},
+    "outer_hard_envelope": {"r_geo_m": 0.05, "z_geo_m": 0.05, "ip_fraction": 0.10},
+    "abort_after_any_rollout_failure": true,
+    "stop_before_next_issue_after_any_failure": true,
+    "post_action_abort_is_not_a_pre_action_bound": true,
+    "simulator_only_empirical_qualification": true
+  },
+  "semantic_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "diagnostic_artifacts": ["sprsina"],
+  "storage_gate": {
+    "minimum_free_bytes_before_run": 65000000000,
+    "maximum_estimated_raw_bytes": 30000000000,
+    "minimum_free_bytes_after_estimate": 30000000000,
+    "output_must_not_exist": true,
+    "raw_compression": "forbidden",
+    "delete_only_after_independent_audit_and_compact_hash_recovery": true
+  },
+  "data_contract": {
+    "fit_weight": 0,
+    "model_fit_or_update": false,
+    "future_feedback_records_read": 0,
+    "id2z30_blind_data_used_for_design_only": true
+  },
+  "evidence": {
+    "design": {"path": "docs/codex/reports/RGEO_ZGEO_1MS_ID2Z31_EVENT_PHASE_DISCRIMINATOR_DESIGN.md", "sha256": "2f0705921ae59df24efee3c79f63cd317512109fcc8beee59ca8a1cf2d492a8d"},
+    "base_tsc_config": {"path": "configs/rgeo_zgeo_1ms_nr1_safety_effect.json", "sha256": "2ccb736c4635adf0417fa7389f7a247ac881e12616fa7a905edadd4effe1965b"},
+    "id2z26r1_preflight": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z26r1_20260821_22d203d0_v1/result.json", "sha256": "44ecac05709356db147ee1867df7bf9651a2f1e7f1c2532d0e33f3aedcd946cd"},
+    "id2z26r1_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z26r1_20260821_22d203d0_v1/independent_audit.json", "sha256": "e9ee362fc8aed933b525521f43b08e6f9ccbb0a7dcb287faf98cefe239245192"},
+    "tracked_full_f_prefix": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z23_20260820_1870ece9_v1/baseline_full_f.json", "sha256": "9f4a25a41a05bc5da18c40111f48070d921042f08e7cfb250c9f82ca549445b7"},
+    "id2z30_config": {"path": "configs/rgeo_zgeo_1ms_id2z30_fresh_q_model_qualification.json", "sha256": "37b0bdfeb56079cd6de9fe95805de96294848534d75cda620e5ba179049f1c95"},
+    "id2z30_result": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z30_20260821_f976ea5a_v1/result.json", "sha256": "f5bd3a3a85f22f0781aa81d82e528763b9aeefd59819a72e49fac14de46d3925", "required_route": "ONE_MS_ID2Z30_FRESH_BLIND_FAIL_CLOSE_Q_MODEL_ROUTE"},
+    "id2z30_independent": {"path": "docs/codex/audits/rgeo_zgeo_1ms_id2z30_20260821_f976ea5a_v1/independent_raw_audit.json", "sha256": "75a486f2054d9f3d010b33789947b63a47b0536332f2fb626bfacb0683e4c013"}
+  },
+  "routes": {
+    "offline_or_input_fail": "ONE_MS_ID2Z31_OFFLINE_OR_INPUT_FAIL_NO_TSC",
+    "storage_fail": "ONE_MS_ID2Z31_STORAGE_FAIL_NO_TSC",
+    "execution_or_interface_fail": "ONE_MS_ID2Z31_EXECUTION_OR_INTERFACE_FAIL_STOP",
+    "raw_integrity_fail": "ONE_MS_ID2Z31_RAW_INTEGRITY_FAIL_PRESERVE_RAW",
+    "prefix_mismatch": "ONE_MS_ID2Z31_PREFIX_MISMATCH_STOP",
+    "replay_fail": "ONE_MS_ID2Z31_EVENT_REPLAY_FAIL_STOP",
+    "event_map_fail": "ONE_MS_ID2Z31_EVENT_MAP_INCOMPLETE_STOP",
+    "pass": "ONE_MS_ID2Z31_EVENT_PHASE_MAP_PASS_GUARD_DESIGN_ONLY"
+  },
+  "claim_boundary": "Finite simulator-only qZ event-phase map; zero model fitting and no feedback, model qualification, Authority-L0, Recourse-L1, source capture, arbitrary waypoint/path, position generalization or R_mid claim."
+}
