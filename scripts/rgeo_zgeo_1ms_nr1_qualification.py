@@ -42,6 +42,29 @@ DEFAULT_CONFIG = ROOT / "configs" / "rgeo_zgeo_1ms_nr1_safety_effect.json"
 ARTIFACTS = ("inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv", "sprsina")
 
 
+def _profile(config_path: Path) -> dict[str, Any]:
+    payload = json.loads(config_path.read_text(encoding="utf-8"))
+    row = payload.get("qualification_identity")
+    if row is None:
+        return {
+            "takeover_time_ms": 1100,
+            "contract_version": NR1_1MS_CONTRACT_VERSION,
+            "campaign_id": NR1_1MS_CAMPAIGN_ID,
+            "intended_use": NR1_1MS_INTENDED_USE,
+            "route_prefix": "ONE_MS_NR1R2",
+        }
+    expected = {
+        "takeover_time_ms", "contract_version", "campaign_id",
+        "intended_use", "route_prefix",
+    }
+    if set(row) != expected:
+        raise ContractError("qualification_identity fields changed")
+    takeover = int(row["takeover_time_ms"])
+    if takeover < 0 or payload.get("start_folder") != f"{takeover}ms":
+        raise ContractError("qualification identity/start_folder mismatch")
+    return dict(row)
+
+
 def _dump(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
@@ -69,7 +92,8 @@ def _source(cfg: TSCConfig) -> dict[str, Any]:
         tuple(value.strip() for value in command_fields), cfg.turns_tsc,
         name=f"{folder / 'inputa'}.active_command",
     )
-    return {"folder": folder, "time_ms": 1100, "Ip": float(gfile["ip"]), "gfile": gfile,
+    time_ms = int(cfg.start_folder.removesuffix("ms"))
+    return {"folder": folder, "time_ms": time_ms, "Ip": float(gfile["ip"]), "gfile": gfile,
             "currents_a_tsc": current, "currents_decimal_a_tsc": exact,
             "currents_kat_tsc": kat, "active_command_card15_fields": command_fields,
             "active_command_decimal_a_tsc": command_exact, "abnormal": False}
@@ -98,12 +122,47 @@ def _exact_coil_currents_a(path: Path, cfg: TSCConfig) -> tuple[Any, ...]:
 
 def offline_preflight(config_path: Path, source_revision: str) -> dict[str, Any]:
     cfg = TSCConfig.from_json(config_path)
+    profile = _profile(config_path)
+    config_payload = json.loads(config_path.read_text(encoding="utf-8"))
+    source_identity = config_payload.get("source_identity")
     failures: list[str] = []
+    source_evidence: dict[str, Any] = {}
     try:
         validate_one_ms_config(start_folder=cfg.start_folder, dt_ms=cfg.dt_ms,
-                               slew_a_per_ms=cfg.current_slew_a_per_ms)
+                               slew_a_per_ms=cfg.current_slew_a_per_ms,
+                               expected_start_folder=f"{profile['takeover_time_ms']}ms")
         source = _source(cfg)
         signal = RGeoZGeoSignal.from_tsc_state(source)
+        if source_identity is not None:
+            files = source_identity.get("files", {})
+            if set(files) != {"inputa", "geqdsk", "coil_currents.csv",
+                              "wire_currents.csv", "sprsina", "outputa"}:
+                raise ContractError("source identity file set changed")
+            source_evidence["files"] = {}
+            for name, expected in files.items():
+                item = source["folder"] / name
+                actual = {"sha256": _sha(item), "bytes": item.stat().st_size}
+                source_evidence["files"][name] = actual
+                if actual != expected:
+                    raise ContractError(f"source identity mismatch: {name}")
+            expected_state = source_identity.get("expected_state", {})
+            actual_state = {
+                "time_ms": signal.boundary.time_ms,
+                "point_count": signal.boundary.point_count,
+                "r_geo_m": signal.boundary.r_geo_m,
+                "z_geo_m": signal.boundary.z_geo_m,
+                "r_boundary_min_m": signal.boundary.r_boundary_min_m,
+                "r_boundary_max_m": signal.boundary.r_boundary_max_m,
+                "z_boundary_min_m": signal.boundary.z_boundary_min_m,
+                "z_boundary_max_m": signal.boundary.z_boundary_max_m,
+                "ip_a": signal.ip_a,
+                "wire_count": len(_wire(source["folder"] / "wire_currents.csv", cfg)),
+            }
+            source_evidence["state"] = actual_state
+            for key, expected in expected_state.items():
+                actual = actual_state.get(key)
+                if actual is None or abs(float(actual) - float(expected)) > 1e-12:
+                    raise ContractError(f"source state mismatch: {key}")
         frozen = build_frozen_one_ms_prefixes(
             source_current_a_tsc=source["currents_a_tsc"], turns_tsc=cfg.turns_tsc,
             min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc,
@@ -126,20 +185,22 @@ def offline_preflight(config_path: Path, source_revision: str) -> dict[str, Any]
         signal = None
         frozen = None
         maxima = {}
-    identity = DataIdentity(campaign_id=NR1_1MS_CAMPAIGN_ID, intended_use=NR1_1MS_INTENDED_USE,
+    identity = DataIdentity(campaign_id=profile["campaign_id"], intended_use=profile["intended_use"],
                             declared_before_collection=True, source_revision=source_revision)
     passed = not failures
     return {
-        "schema_version": NR1_1MS_CONTRACT_VERSION, "kind": "offline_preflight",
+        "schema_version": profile["contract_version"], "kind": "offline_preflight",
         "created_utc": datetime.now(timezone.utc).isoformat(), "identity": identity.to_dict(),
-        "passed": passed, "route": "ONE_MS_NR1R2_OFFLINE_PASS" if passed else "ONE_MS_NR1R2_OFFLINE_FAIL_NO_TSC",
+        "passed": passed, "route": f"{profile['route_prefix']}_OFFLINE_PASS" if passed else f"{profile['route_prefix']}_OFFLINE_FAIL_NO_TSC",
         "failures": list(dict.fromkeys(failures)), "config_path": str(config_path),
         "fixed_contract": {"start_folder": cfg.start_folder, "dt_ms": cfg.dt_ms,
+                           "takeover_time_ms": profile["takeover_time_ms"],
                            "current_slew_a_per_ms": cfg.current_slew_a_per_ms,
                            "max_delta_current_a_per_step": cfg.max_delta_current_a_per_step,
                            "rollouts": len(NR1_1MS_ROLLOUTS), "steps_per_rollout": NR1_1MS_HORIZON_STEPS,
                            "authorized_plant_advances": len(NR1_1MS_ROLLOUTS) * NR1_1MS_HORIZON_STEPS},
         "source_signal": None if signal is None else signal.to_dict(),
+        "source_evidence": source_evidence,
         "maximum_target_step_a": maxima,
         "frozen_prefixes": None if frozen is None else frozen.to_dict(),
     }
@@ -192,6 +253,7 @@ def _run_one(cfg: TSCConfig, name: str, prefix_name: str, targets: Sequence[Any]
     try:
         state = runner.reset(episode_name=name)
         records.append(_record(cfg, state))
+        takeover_time_ms = records[0]["time_ms"]
         source_current = tuple(records[0]["actual_current_decimal_a_tsc"])
         source_command = tuple(Decimal(value) for value in records[0]["active_command_decimal_a_tsc"])
         for step, target in enumerate(targets):
@@ -222,7 +284,7 @@ def _run_one(cfg: TSCConfig, name: str, prefix_name: str, targets: Sequence[Any]
             records.append(record)
             if tuple(record["active_command_card15_fields"]) != target.card15_fields:
                 reasons.append(f"CARD15:{step}")
-            if record["time_ms"] != 1100 + step + 1:
+            if record["time_ms"] != takeover_time_ms + step + 1:
                 reasons.append(f"TIME:{step}")
             try:
                 record["maximum_observed_delta_a"] = assert_exact_slew(
@@ -282,6 +344,7 @@ def _replay(left: Sequence[dict[str, Any]], right: Sequence[dict[str, Any]]) -> 
 
 
 def run(config_path: Path, source_revision: str, output_dir: Path) -> dict[str, Any]:
+    profile = _profile(config_path)
     preflight = offline_preflight(config_path, source_revision)
     if not preflight["passed"]:
         raise RuntimeError("offline gate failed; TSC forbidden")
@@ -311,11 +374,12 @@ def run(config_path: Path, source_revision: str, output_dir: Path) -> dict[str, 
     all_pass = len(results) == 6 and all(row["passed"] for row in results.values())
     replay_pass = len(comparisons) == 3 and all(row["passed"] for row in comparisons.values())
     passed = all_pass and replay_pass
-    route = "ONE_MS_NR1R2_INTERFACE_QUALIFIED" if passed else (
-        "ONE_MS_NR1R2_EFFECT_CONTRACT_FAIL_STOP" if any("EFFECT" in reason or "CENTER_RETURN" in reason for row in results.values() for reason in row["reasons"])
-        else "ONE_MS_NR1R2_SAFETY_FAIL_STOP" if not all_pass else "ONE_MS_NR1R2_REPLAY_NOT_QUALIFIED")
-    final = {"schema_version": NR1_1MS_CONTRACT_VERSION, "kind": "authentic_qualification",
+    route = f"{profile['route_prefix']}_INTERFACE_QUALIFIED" if passed else (
+        f"{profile['route_prefix']}_EFFECT_CONTRACT_FAIL_STOP" if any("EFFECT" in reason or "CENTER_RETURN" in reason for row in results.values() for reason in row["reasons"])
+        else f"{profile['route_prefix']}_SAFETY_FAIL_STOP" if not all_pass else f"{profile['route_prefix']}_REPLAY_NOT_QUALIFIED")
+    final = {"schema_version": profile["contract_version"], "kind": "authentic_qualification",
              "source_revision": source_revision, "passed": passed, "route": route,
+             "takeover_time_ms": profile["takeover_time_ms"],
              "output_dir": str(output_dir), "rollout_count": len(results),
              "plant_advances": sum(row["plant_advances"] for row in results.values()),
              "comparisons": comparisons, "claim_boundary": "1 ms fixed-source interface only; no model or control"}

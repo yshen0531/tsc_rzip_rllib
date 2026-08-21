@@ -27,6 +27,23 @@ from tsc_rzip_rllib.core.gfile import parse_gfile, read_coil_currents_csv  # noq
 from tsc_rzip_rllib.core.runner import TSCConfig  # noqa: E402
 
 
+def _profile(config_path: Path) -> dict[str, Any]:
+    payload = json.loads(config_path.read_text(encoding="utf-8"))
+    row = payload.get("qualification_identity")
+    if row is None:
+        return {"takeover_time_ms": 1100,
+                "contract_version": NR1_1MS_CONTRACT_VERSION,
+                "route_prefix": "ONE_MS_NR1R2"}
+    takeover = int(row.get("takeover_time_ms", -1))
+    if (payload.get("start_folder") != f"{takeover}ms"
+            or not isinstance(row.get("contract_version"), str)
+            or not isinstance(row.get("route_prefix"), str)):
+        raise ValueError("qualification identity/start_folder mismatch")
+    return {"takeover_time_ms": takeover,
+            "contract_version": row["contract_version"],
+            "route_prefix": row["route_prefix"]}
+
+
 def _fields(path: Path) -> tuple[str, ...]:
     values = tuple(line[30:40] for line in path.read_text(encoding="utf-8").splitlines() if line[:10].strip() == "15")
     if len(values) != 14:
@@ -73,10 +90,12 @@ def _maxdiff(a: tuple[float, ...], b: tuple[float, ...]) -> float:
 
 def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     cfg = TSCConfig.from_json(config_path)
+    profile = _profile(config_path)
+    takeover_time_ms = int(profile["takeover_time_ms"])
     failures: list[str] = []
     rows: dict[str, list[dict[str, Any]]] = {}
     action_checks = observed_checks = effect_checks = 0
-    expected_times = tuple(range(1100, 1105))
+    expected_times = tuple(range(takeover_time_ms, takeover_time_ms + 5))
     source_fields = _fields(cfg.simulation_root / cfg.start_folder / "inputa")
     source_command = decimal_single_turn_currents_a(
         tuple(value.strip() for value in source_fields), cfg.turns_tsc,
@@ -94,7 +113,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
             active_command = source_command
             for step, target in enumerate(targets):
                 action_checks += 1
-                observed = _fields(run_dir / "rollouts" / rollout / f"{1100+step}ms" / "inputa")
+                observed = _fields(run_dir / "rollouts" / rollout / f"{takeover_time_ms+step}ms" / "inputa")
                 if observed != target.card15_fields:
                     failures.append(f"CARD15:{rollout}:{step}")
                 try:
@@ -124,7 +143,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                     )) > RETURN_EQUIVALENCE_A:
                         failures.append(f"RETURN_HOLD:{rollout}:{step}")
             for step, state in enumerate(states):
-                if state["time_ms"] != 1100 + step: failures.append(f"TIME:{rollout}:{step}")
+                if state["time_ms"] != takeover_time_ms + step: failures.append(f"TIME:{rollout}:{step}")
                 if state["abnormal"]: failures.append(f"ABNORMAL:{rollout}:{step}")
                 if not state["r_inner_m"] <= state["r_geo_m"] <= state["r_outer_m"]: failures.append(f"LIMITER:{rollout}:{step}")
                 if abs(state["r_geo_m"] - source["r_geo_m"]) > .05: failures.append(f"R:{rollout}:{step}")
@@ -148,9 +167,10 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
     if maxima["coil_a"] > 1e-9: failures.append("REPLAY_COIL")
     if maxima["wire_a"] > 1e-9: failures.append("REPLAY_WIRE")
     failures = list(dict.fromkeys(failures))
-    result = {"schema_version":f"{NR1_1MS_CONTRACT_VERSION}-independent", "created_utc":datetime.now(timezone.utc).isoformat(),
+    result = {"schema_version":f"{profile['contract_version']}-independent", "created_utc":datetime.now(timezone.utc).isoformat(),
               "source_revision":source_revision, "passed":not failures,
-              "route":"ONE_MS_NR1R2_INDEPENDENT_PASS" if not failures else "ONE_MS_NR1R2_INDEPENDENT_FAIL",
+              "route":f"{profile['route_prefix']}_INDEPENDENT_PASS" if not failures else f"{profile['route_prefix']}_INDEPENDENT_FAIL",
+              "takeover_time_ms": takeover_time_ms,
               "failures":failures, "raw_rollouts":sum(len(v)==5 for v in rows.values()),
               "raw_states":sum(len(v) for v in rows.values()), "action_checks":action_checks,
               "observed_slew_checks":observed_checks, "first_effect_component_checks":effect_checks,

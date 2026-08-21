@@ -2291,3 +2291,26 @@ innovation, candidate selection, and refit on sentinel raw are forbidden. A
 PASS authorizes only a separately frozen receding-horizon MPC design. It cannot
 qualify Gate A or authorize learning, and all R8R7 trajectories are forbidden
 from expert data.
+> **Unique fixed-1000-ms new-round context (2026-08-21; supersedes all older
+> active context notices):** the final control task now starts from the
+> authentic `1000ms` TSC source, not 1100 ms.  The controller receives current
+> true noiseless paired-boundary R_geo/Z_geo and same-step Ip before each
+> one-ms action; complete causal observation and controller-owned
+> issued/quantized/applied/readback/queue history is available from 1000 ms
+> onward.  No pre-1000 history or future successor is assumed.
+>
+> This is a new scientific identity, not a time-label migration.  At 1000 ms
+> the parsed source is `0.7316591665 m/0 m/29779.7241 A`; the active coil and
+> passive-wire states differ materially from 1100 ms.  All 1100-ms response,
+> model, event, capture, Authority and qualification results are historical
+> design evidence with zero fit/qualification weight.  Interface definitions,
+> exact Card15 semantics, evidence discipline and audit implementations may be
+> reused only after fresh 1000-ms source/restart/effect/return qualification.
+>
+> The route remains: qualify the 1000-ms source and one-ms interface; establish
+> a safe long-horizon nominal/abort continuation; prove task-aligned candidate
+> utility with a sequential exact-TSC teacher; learn a support-gated candidate
+> value/risk model; qualify Authority-L0 and Recourse-L1 as independent gates;
+> then run fresh rolling waypoint/path control and expand to hold, recovery and
+> repeated bidirectional R_mid crossing.  Older context blocks below are
+> historical.

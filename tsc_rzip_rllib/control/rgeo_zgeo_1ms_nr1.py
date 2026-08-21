@@ -260,9 +260,17 @@ class OneMsNR1SafetyEnvelope:
         return tuple(reasons)
 
 
-def validate_one_ms_config(*, start_folder: str, dt_ms: int, slew_a_per_ms: float) -> None:
-    if start_folder != "1100ms":
-        raise ContractError("NR1 requires the fixed 1100 ms source")
+def validate_one_ms_config(
+    *, start_folder: str, dt_ms: int, slew_a_per_ms: float,
+    expected_start_folder: str = "1100ms",
+) -> None:
+    """Validate one-ms interface campaigns without changing legacy defaults.
+
+    The explicit override exists for separately named takeover identities.  It
+    must never be inferred from an old result or used to retime old evidence.
+    """
+    if start_folder != expected_start_folder:
+        raise ContractError(f"NR1 requires the fixed {expected_start_folder} source")
     if dt_ms != CONTROL_PERIOD_MS:
         raise ContractError("NR1 requires dt_ms=1")
     if _decimal(slew_a_per_ms, "current_slew_a_per_ms") != Decimal("0.3"):

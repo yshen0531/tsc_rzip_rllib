@@ -1708,3 +1708,24 @@ holdout 的多步区间系统性欠覆盖；安全 hold/recovery 不成立；在
    理论和证据条件前不称其为 robust。
 5. 外层 RL 可以借鉴，但必须后置并通过增益门；不做 RL 仍可完成最终任务。
 6. 本文件提出方案并等待用户通过发送配套开场词确认；没有开始实现或实验。
+> **Fixed-1000-ms architecture amendment (2026-08-21; unique active
+> amendment):** replace the fixed 1100-ms source with the authentic 1000-ms
+> source and start all causal clocks, belief history, command indices and
+> qualification families there.  Preserve the old 1100-ms architecture and
+> evidence as history; do not globally replace timestamps or inherit its
+> plant-response/model/Authority claims.
+>
+> The retained stack is exact paired-boundary observation, exact Card15 and
+> queue/effect semantics, causal history/belief, support-gated short-horizon
+> candidate value/risk, calibrated uncertainty/refusal, and a separate hard
+> interface plus Recourse-L1.  The first new dependency is
+> `1000-source audit -> fresh one-ms interface/replay -> long-horizon safe
+> nominal/abort`.  Only then may `sequential TSC teacher -> candidate Authority
+> -> value model` and `Recourse-L1` proceed, and real feedback requires their
+> AND with fresh calibration/blind and the hard interface.
+>
+> Final goal: from fixed 1000 ms, safely and causally follow finite two-axis
+> waypoint/path commands under one-ms and per-coil `<=0.3 A/step` constraints,
+> then hold, recover and repeatedly cross R_mid in both directions without
+> resetting belief.  Older amendments below are historical unless explicitly
+> requalified under a new 1000-ms identity.

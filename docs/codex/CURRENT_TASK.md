@@ -11315,3 +11315,38 @@ rerun R8R51, R8R51R1, R51R4, or any other old TSC campaign. Every D4
 trajectory is a probe forbidden from expert data, BC, DAgger, residual RL, or
 other learning. Continue autonomously; pause only after all Gate A axes in
 Section 0 are genuinely qualified.
+> **Unique active route -- fixed 1000 ms takeover (2026-08-21; supersedes all
+> older active pointers below):** the user has replaced the fixed 1100 ms
+> takeover with the authentic `1000ms` source in
+> `HH70-PCS-ENV-LOW-FIELD-SIDE-118`.  The old 1100 ms lineage remains immutable
+> historical evidence only: it has zero fit, calibration, qualification and
+> control authority for the new route.  Do not rename, retime or splice its
+> trajectories into a 1000 ms whole-history family.
+>
+> Server read-only authentication found all six source files (`inputa`,
+> `geqdsk`, `coil_currents.csv`, `wire_currents.csv`, `sprsina`, `outputa`) and
+> a valid paired boundary at 1000 ms.  The parsed source is
+> `R_geo=0.7316591665 m`, `Z_geo=0`, `Ip=29779.7241 A`; relative to 1100 ms it
+> differs by `+23.0240645 mm/-35.2413430 mm/-1506.6818 A`, with maximum
+> 14-coil and 48-wire differences of `30.00001 A` and `46.347 A`.  Directory
+> existence is not yet canonical-source qualification.
+>
+> The sole active stage is a new fixed-1000-ms source/interface qualification:
+> (1) tracked zero-TSC source inventory/hash, paired-boundary, Card15/current,
+> limiter and headroom preflight; (2) a fresh minimal one-ms authentic
+> reset/issue-to-effect/exact-return/replay campaign; and (3) a fresh
+> 1000-ms-origin baseline/continuation that is long enough to expose the
+> pre-instability drift and establish a usable intervention horizon.  It does
+> not target or preserve the old 1100-ms state.  Only after these pass may a new
+> 1000-specific signed primitive, sequential TSC teacher, candidate-value
+> model, Authority-L0, Recourse-L1 or feedback sentinel be designed.  Every
+> actual controller action remains fail-closed under exact Card15, per-coil
+> `<=0.3 A/step`, current, Ip, queue/effect and outer-envelope gates.
+>
+> Final goal: from fixed 1000 ms, observe current true noiseless R_geo/Z_geo/Ip
+> before every one-ms issue and retain the complete causal observation and
+> controller-owned action/current/queue history since takeover; safely track
+> prospectively frozen finite two-axis waypoint/path commands, then qualify
+> hold, recovery and repeated bidirectional R_mid crossing without resetting
+> belief.  Pre-1000 history is not assumed.  The old notices below are
+> historical and grant no execution permission.

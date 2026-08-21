@@ -6212,3 +6212,20 @@ continuation; perturbation recovery was not run. No source backup is
 qualified, so all atlas/probe/model/controller/
 Oracle TSC is paused pending an explicit active-recovery architecture decision
 and prospective `sprsina` semantic audit.
+> **Current fixed-1000-ms status (2026-08-21; unique active pointer):** the
+> user replaced the 1100 ms takeover with the authentic `1000ms` source and
+> authorized a clean new development lineage.  No 1000-ms TSC advance, model
+> fit, calibration, holdout, Authority, Recourse or controller has yet run.
+> Read-only server inspection confirmed the six required source files and
+> parsed `R_geo=0.7316591665 m`, `Z_geo=0`, `Ip=29779.7241 A`, 14 coil currents,
+> 48 wire currents and a non-abnormal paired boundary.  The source differs
+> materially from 1100 ms (`23.0240645/35.2413430 mm` R/Z, `1506.6818 A` Ip,
+> maximum `30.00001 A` coil and `46.347 A` wire differences), so no old plant
+> response, phase/event, nominal, model or qualification claim transfers.
+>
+> Old 1100-ms results remain historical and reproducible but have zero weight
+> in the new route.  The active work is only the tracked 1000-ms source audit
+> and fresh one-ms interface/replay qualification, followed by a long enough
+> 1000-origin safe-baseline/continuation test.  A successful interface stage
+> opens 1000-specific utility/teacher work; it does not itself authorize a
+> model or controller.  All older status blocks below are historical.

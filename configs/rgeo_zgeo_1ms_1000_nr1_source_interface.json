@@ -1,0 +1,73 @@
+{
+  "qualification_identity": {
+    "takeover_time_ms": 1000,
+    "contract_version": "rgeo-zgeo-1ms-1000-nr1-source-interface-v1",
+    "campaign_id": "rgeo_zgeo_1ms_1000_nr1_source_interface_v1",
+    "intended_use": "fixed_1000ms_source_and_interface_validation",
+    "route_prefix": "ONE_MS_NR1000S1"
+  },
+  "source_identity": {
+    "files": {
+      "inputa": {"sha256": "ae242d89cb636db0b44e308e2d6a277079d738d5e62c2dab6c796e23d3fe12b7", "bytes": 1229},
+      "geqdsk": {"sha256": "007cbba114f7b4deb1220733f8867aea8a55e286b7810b5ac64d0edc12a3b740", "bytes": 159434},
+      "coil_currents.csv": {"sha256": "33e5269025cc2a63f64698f97b7a934922db77a04c43782782b537a95814e883", "bytes": 671},
+      "wire_currents.csv": {"sha256": "dfeb6ce87cc83c7983935bf8c03874c5a980b408edc00e6900a5b482821e673a", "bytes": 4764},
+      "sprsina": {"sha256": "5ead6983f17c6de77df7353f656696f927b1b2ddc05e531740c1236f748afabe", "bytes": 58727036},
+      "outputa": {"sha256": "aec284bd99e53d4a8e0cb841d201229889c87dcda00a99ca3140fad59ef2db97", "bytes": 1233330}
+    },
+    "expected_state": {
+      "time_ms": 1000,
+      "point_count": 278,
+      "r_geo_m": 0.7316591665,
+      "z_geo_m": 0.0,
+      "r_boundary_min_m": 0.463784469,
+      "r_boundary_max_m": 0.999533864,
+      "z_boundary_min_m": -0.305036117,
+      "z_boundary_max_m": 0.305036117,
+      "ip_a": 29779.7241,
+      "wire_count": 48
+    }
+  },
+  "project_root": "/home/yangshen0711/tsc_all",
+  "simulation_root": "/home/yangshen0711/tsc_all/tsc_simulation/HH70-PCS-ENV-LOW-FIELD-SIDE-118",
+  "start_folder": "1000ms",
+  "run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_1000_nr1_runs",
+  "dt_ms": 1,
+  "state_rz_source": "magaxis",
+  "tsc_timeout_s": 180.0,
+  "isolate_tsc_workdir": true,
+  "tsc_workspace_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/tsc_workspaces",
+  "keep_episode_restart_files": true,
+  "keep_tsc_workspace": false,
+  "keep_runtime_tsc_outputs": true,
+  "runtime_only_fast_mode": false,
+  "save_step_artifacts": false,
+  "save_artifacts_on_error": true,
+  "save_artifacts_every_n_steps": 0,
+  "cleanup_episode_dir": false,
+  "keep_failed_episode_dir": true,
+  "keep_last_n_failed_episode_dirs": 6,
+  "vessel_current_column": "cwire(ka)",
+  "vessel_current_raw_to_a": 1000.0,
+  "vessel_current_aggregation": "signed_sum",
+  "vessel_current_observation_aggregation": "signed_sum",
+  "tsc": {
+    "executable": "/home/yangshen0711/tsc_all/tsc_simulation/TSC-PCS/gotsc",
+    "fortran_dir": "/home/yangshen0711/tsc_all/tsc_simulation/TSC-PCS",
+    "library_path": [
+      "/home/yangshen0711/tsc_all/pspline/pspline-2.0.0-rc.5",
+      "/home/yangshen0711/tsc_all/netcdf/netcdf-fortran-4.6.0/fortran/.libs",
+      "/home/yangshen0711/intel/oneapi/compiler/2023.2.1/linux/compiler/lib/intel64_lin",
+      "/home/yangshen0711/tsc_all/netcdf/netcdf-c-4.9.2/liblib/.libs",
+      "/home/yangshen0711/tsc_all/hdf5/hdf5-hdf5-1_12_3/src/.libs",
+      "/home/yangshen0711/tsc_all/hdf5/hdf5-hdf5-1_12_3/hl/.libs"
+    ]
+  },
+  "coil_names_display_order": ["CS1U", "CS1L", "CS2U", "CS2L", "CS3U", "CS3L", "CS4U", "CS4L", "PF2U", "PF2L", "PF3U", "PF3L", "PF4U", "PF4L"],
+  "coil_names_tsc_order": ["CS1U", "CS2U", "CS3U", "CS1L", "CS2L", "CS3L", "CS4U", "CS4L", "PF2U", "PF2L", "PF3U", "PF3L", "PF4U", "PF4L"],
+  "turns_display_order": [480, 480, 480, 480, 480, 480, 480, 480, 200, 200, 100, 100, 100, 100],
+  "current_slew_a_per_ms": 0.3,
+  "min_current_a_display_order": [-400, -400, -400, -400, -400, -400, -400, -400, -600, -600, -750, -750, -200, -200],
+  "max_current_a_display_order": [400, 400, 400, 400, 400, 400, 400, 400, 600, 600, 750, 750, 200, 200],
+  "description": "Prospectively frozen fixed-1000-ms one-ms source/interface qualification. Six rollouts, four advances each; no model, Authority, Recourse or control claim."
+}
