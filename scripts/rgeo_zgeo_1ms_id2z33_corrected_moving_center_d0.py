@@ -23,6 +23,7 @@ SCHEMA = "rgeo-zgeo-1ms-id2z33-corrected-moving-center-d0-result-v1"
 ROW_SCHEMA = "rgeo-zgeo-1ms-id2z33-corrected-moving-center-d0-row-v1"
 OFFLINE_SCHEMA = "rgeo-zgeo-1ms-id2z33-corrected-moving-center-d0-offline-v1"
 _Z32_LOAD = z32.load
+_Z32_CONFIG = z32.CONFIG
 
 
 def _require(stage: dict[str, Any]) -> None:
@@ -61,7 +62,7 @@ def load(config: Path = CONFIG):
             or forensic.get("corrected_classification")
             != stage["evidence"]["id2z32_forensic"]["required_classification"]):
         raise ValueError("ID2Z33 forensic prerequisite mismatch")
-    _, base, cfg, preflight, tracked = _Z32_LOAD(z32.CONFIG)
+    _, base, cfg, preflight, tracked = _Z32_LOAD(_Z32_CONFIG)
     return stage, base, cfg, preflight, tracked
 
 
