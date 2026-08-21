@@ -17,6 +17,7 @@ class Fixed1000SourceInterfaceTest(unittest.TestCase):
         row = primary._profile(CONFIG)
         self.assertEqual(row["takeover_time_ms"], 1000)
         self.assertEqual(row["campaign_id"], "rgeo_zgeo_1ms_1000_nr1_source_interface_v1")
+        self.assertEqual(row["intended_use"], "interface_validation")
         self.assertEqual(row["route_prefix"], "ONE_MS_NR1000S1")
         self.assertEqual(independent._profile(CONFIG)["takeover_time_ms"], 1000)
 

@@ -3,7 +3,7 @@
     "takeover_time_ms": 1000,
     "contract_version": "rgeo-zgeo-1ms-1000-nr1-source-interface-v1",
     "campaign_id": "rgeo_zgeo_1ms_1000_nr1_source_interface_v1",
-    "intended_use": "fixed_1000ms_source_and_interface_validation",
+    "intended_use": "interface_validation",
     "route_prefix": "ONE_MS_NR1000S1"
   },
   "source_identity": {
