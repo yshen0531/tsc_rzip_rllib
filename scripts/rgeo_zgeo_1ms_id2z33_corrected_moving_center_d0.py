@@ -79,11 +79,11 @@ def _corrected_branch(center: Sequence[tuple[str, ...]], axis: Sequence[Decimal]
             center_delta = _delta(center[issue], center[issue - 1])
             step = tuple(value + Decimal(first_sign) * residual
                          for value, residual in zip(center_delta, axis))
-            current = z32.z31.z30.z27.z26.z24._combined_step(current, step)
+            current = z32.z31.z30.z26.z24._combined_step(current, step)
         elif issue < phase + 16:
             if return_start is None:
                 return_start = current
-            current = z32.z31.z30.z27.z26.z24._interpolate_target(
+            current = z32.z31.z30.z26.z24._interpolate_target(
                 return_start, center[phase + 15], issue - phase - 7, 8)
         else:
             current = center[issue]
