@@ -1,0 +1,19 @@
+{
+  "contract_version": "rgeo-zgeo-1ms-1000-restart-semantic-audit-r2-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_restart_semantic_audit_r2_v1",
+  "intended_use": "interface_validation",
+  "route_prefix": "ONE_MS_NR1000S0R3R2",
+  "r3r1_result": {
+    "path": "artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_dual_validation_r1_20260821_ebcd67b0_v2/result.json",
+    "sha256": "9cc0b7ce85ad1b277d9091ff71203a127face51c0f460864b38c1dfd93fd17b0",
+    "route": "ONE_MS_NR1000S0R3R1_CROSS_RESTART_ARTIFACT_FAIL",
+    "tsc_invocations": 4
+  },
+  "raw_root": "artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_dual_validation_r1_20260821_ebcd67b0_v2/restart_validation",
+  "expected_rollouts": ["r0_replay0", "r0_replay1", "r1_replay0", "r1_replay1"],
+  "states_per_rollout": 2,
+  "stable_artifacts": ["inputa", "geqdsk", "coil_currents.csv", "wire_currents.csv"],
+  "outputa_ignored_line_classes": ["version_wall_clock", "cpu_timing"],
+  "maximum_tsc_invocations": 0,
+  "description": "Zero-TSC raw audit of the four completed R3R1 replays. Preserve R3R1 whole-file FAIL; qualify semantic restart identity only if physical states and stable artifacts are exact and outputa differs solely in frozen non-semantic wall-clock/CPU timing lines."
+}

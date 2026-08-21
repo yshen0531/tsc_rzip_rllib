@@ -1,5 +1,19 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000 R3R1 four-call result and R3R2 decision
+
+- R3R1 v2 result SHA-256:
+  `9cc0b7ce85ad1b277d9091ff71203a127face51c0f460864b38c1dfd93fd17b0`.
+- All four one-ms hold rollouts passed locally; issued delta was `0 A`, the
+  descriptive actual-current delta was `8 A`, and state semantics matched.
+- Final frozen route is
+  `ONE_MS_NR1000S0R3R1_CROSS_RESTART_ARTIFACT_FAIL`: only state1 outputa
+  hashes differ. Direct diff identified launch wall-clock and CPU-time lines.
+- Decision: no replay. R3R2 is a zero-TSC raw reparse that permits removing
+  exactly one line of each frozen non-semantic timing class and requires every
+  remaining outputa byte plus all stable artifacts and physical semantics to
+  agree.
+
 ## 2026-08-21 fixed-1000 R3R1 zero-call text-format stop
 
 - Installed R3R1 offline passed, then execution stopped before runner step:

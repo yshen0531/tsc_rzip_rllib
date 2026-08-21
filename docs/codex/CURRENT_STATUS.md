@@ -1,6 +1,6 @@
 # Current status
 
-> **Current fixed-1000 status — R3R1 zero-call hotfix pending (2026-08-21):** R3 passed its
+> **Current fixed-1000 status — R3R2 pending (2026-08-21):** R3 passed its
 > zero-TSC identity gate and produced one valid 1.001-s q0 successor, but its
 > legacy helper rejected an 8 A source-actual to successor-actual difference.
 > The issued Card15 delta was exactly zero, so this is an evaluator-coordinate
@@ -11,7 +11,11 @@
 > calls: its parsed command delta was 0 A, but equivalent Card15 text formats
 > were compared bytewise. That implementation-only preissue gate is corrected
 > without changing the experiment identity or budget. Older current-status
-> blocks below are historical.
+> blocks below are historical. After that hotfix, R3R1 completed `4/4` calls;
+> every rollout passed and all checked physical semantics matched, but the
+> whole-file artifact gate failed solely on state1 outputa hashes. Direct raw
+> diff shows only launch wall-clock and CPU-time lines. Preserve R3R1 FAIL;
+> R3R2 will independently verify this with zero TSC before any interface stage.
 >
 > **Historical status (2026-08-21, ID2Z37 final):** fresh phase-48 calibration
 > rejected the fixed ID2Z36 engineering event-set payload and stopped before
