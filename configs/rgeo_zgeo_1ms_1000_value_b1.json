@@ -1,0 +1,83 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-value-b1-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_value_b1_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 48,
+  "conditioner_phases": [0, 12],
+  "candidate_issue_phase": 24,
+  "histories": {
+    "even_plus_then_odd_minus": ["even_plus", "odd_minus"],
+    "even_minus_then_odd_plus": ["even_minus", "odd_plus"]
+  },
+  "candidates": ["baseline", "even_plus", "even_minus", "odd_plus", "odd_minus"],
+  "primary_rollouts": 10,
+  "critical_replays": [
+    "h_even_plus_then_odd_minus__even_minus",
+    "h_even_minus_then_odd_plus__odd_plus"
+  ],
+  "rollouts": 12,
+  "maximum_reset_calls": 12,
+  "maximum_advance_attempts": 576,
+  "maximum_gotsc_calls": 576,
+  "maximum_verified_plant_advances": 576,
+  "retry_after_any_advance_attempt": "forbidden",
+  "c0_config_path": "configs/rgeo_zgeo_1ms_1000_value_c0.json",
+  "c0_config_sha256": "3f140a2d834d6feead40e994c6c8979d8502de0ce0e5aa4c85c38163670c9c6c",
+  "c0_result_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_c0_20260822_5adf91d3_v1_compact/result.json",
+  "c0_result_sha256": "c577e9efcc5f710a09b9c52f60448ae83e9f3a5541407a4d004a27754538288d",
+  "c0_independent_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_c0_20260822_5adf91d3_v1_compact/independent_audit.json",
+  "c0_independent_sha256": "bd1c6b9f29663274f7b433c6a2179c6248bda268736dbb771916a2ed74cea5d9",
+  "v0_artifact_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_v0_20260822_3956181e_v1/model_artifact.json",
+  "v0_artifact_sha256": "7bcc8e216087479b8a90f757d198737cac759ab48327b83eac0d872bbde68f5b",
+  "action_contract": {
+    "history": "two frozen nonoverlapping complete D1 macros at issue0 and issue12",
+    "candidate": "matched baseline or one frozen complete D1 macro at issue24",
+    "effect_state_index": "issue_step_plus_one",
+    "future": "exact q0 through state48 after candidate return",
+    "maximum_hard_command_and_readback_slew_a": 0.3,
+    "no_result_dependent_history_arm_phase_or_horizon": true
+  },
+  "data_roles": {
+    "ten_primary_history_candidate_rows": "unopened_blind_evaluation_only_zero_fit_weight",
+    "critical_replays": "integrity_only_zero_fit_weight",
+    "v0_artifact": "frozen_read_only_no_refit_or_widening",
+    "d2_and_c0_evidence": "development_calibration_and_action_support_only",
+    "controller_or_recourse": "forbidden",
+    "fixed_1100_data": "forbidden"
+  },
+  "scientific_gates": {
+    "minimum_axis_max_h4_h8_rz_norm_mm": 0.08,
+    "minimum_signed_pair_max_h4_h8_separation_mm": 0.15,
+    "maximum_history_best_h4_h8_condition": 15.0,
+    "minimum_history_best_h4_h8_sigma_min_mm": 0.04,
+    "maximum_h4_h8_absolute_ip_response_a": 400.0,
+    "maximum_h12_h16_absolute_rz_response_mm": 3.0,
+    "maximum_h12_h16_absolute_ip_response_a": 400.0,
+    "require_both_mixed_histories": true
+  },
+  "model_blind_gates": {
+    "require_all_rz_ip_components_contained": true,
+    "maximum_each_history_directional_ranking_regret_mm": 0.03,
+    "minimum_each_history_h8_weakest_best_progress_mm": 0.10,
+    "direction_grid_count": 64,
+    "maximum_observed_absolute_ip_response_a": 400.0,
+    "model_updates_refit_or_interval_widening": "forbidden"
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000B1_OFFLINE_PASS_RUN_MIXED_HISTORY_BLIND_ONLY",
+    "offline_fail": "ONE_MS_NR1000B1_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000B1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000B1_CRITICAL_REPLAY_FAIL_STOP",
+    "scientific_fail": "ONE_MS_NR1000B1_MIXED_HISTORY_SIGNAL_OR_GEOMETRY_FAIL_REDESIGN",
+    "model_fail": "ONE_MS_NR1000B1_FIXED_V0_MIXED_HISTORY_BLIND_FAIL_REDESIGN",
+    "pass": "ONE_MS_NR1000B1_FIXED_V0_MIXED_HISTORY_BLIND_PASS_AUTHORITY_DESIGN_ONLY"
+  }
+}
