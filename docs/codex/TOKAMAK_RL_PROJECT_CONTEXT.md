@@ -2335,3 +2335,10 @@ from expert data.
 > reconstructions and may qualify only a project-owned 1000-ms restart plus
 > two one-ms replays. This correction changes no final goal and transfers no
 > 1100-ms response or model evidence.
+
+> **R2R1 runtime amendment (2026-08-21; current):** R2 authenticated the
+> corrected full input but inherited a 180-s process limit intended for short
+> restart steps. Its first full run made normal progress to 0.10253 s and was
+> then killed by that limit. R2 is final runtime-budget design evidence.
+> R2R1 preserves every scientific identity and gate while allowing 2700 s for
+> each of the two full initial runs; one-ms restart calls retain 180 s.

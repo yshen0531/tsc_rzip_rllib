@@ -1746,3 +1746,10 @@ holdout 的多步区间系统性欠覆盖；安全 hold/recovery 不成立；在
 > isolated full runs and two fresh one-ms restart replays remain necessary;
 > neither a successful full run nor a correct source label alone qualifies
 > the interface. R1 is immutable input-design evidence and is not retried.
+
+> **R2R1 runtime amendment (2026-08-21):** full 0--1 s reconstruction and
+> one-ms restart validation have different wall-clock budgets. R2 established
+> a normal 0.10253-s internal trajectory before the inherited 180-s timeout;
+> R2R1 therefore freezes 2700 s only for the two full initial calls while
+> retaining 180 s for one-ms calls. This operational correction changes no
+> plant action, gate, causal clock or downstream authorization.

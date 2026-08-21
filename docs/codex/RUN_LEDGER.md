@@ -1,5 +1,24 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000-ms restart reconstruction R2
+
+- Implementation revision: `49e3d1cb33ed3b1ce9b947e6b5cfa0d0b50c2473`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2_20260821_49e3d1cb_v1`
+- Validation: focused `22/22`; all one-ms `725/725`; zero-TSC route
+  `ONE_MS_NR1000S0R2_OFFLINE_PASS`
+- Execution: exactly one counted full-input TSC invocation; no retry
+- Result: `ONE_MS_NR1000S0R2_INITIAL_RECONSTRUCTION_FAIL`; result SHA-256
+  `b018d713b9b410b6f1dbf4288e4155def984920c4341df7d60d4e1981040f84f`
+- Forensics: normal progress reached internal time `0.10253 s` in 180 s;
+  TSC then returned the runner timeout code `-999`. No reconstructed state,
+  second initial run or restart validation was produced, and no process remains
+- Classification: inherited process-timeout budget design FAIL; not an input,
+  TSC-physics, model, Authority, Recourse or controller result
+- Decision: new R2R1 identity changes only the full initial-run timeout to
+  2700 s; scientific inputs, gates, four-call maximum and no-retry rule remain
+
+
 ## 2026-08-21 fixed-1000-ms restart reconstruction R1
 
 - Implementation revisions: `ebb5f50c / c9cf6c74 / 47b5edc3`

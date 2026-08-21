@@ -6256,3 +6256,9 @@ and prospective `sprsina` semantic audit.
 > bytes, SHA-256 `0fce4f5f...10ae`, uses `IRST1=0`, and its four saved state
 > artifacts exactly match the target 1000-ms observables. R2 is frozen to this
 > input and is the only active stage. No R2 TSC result exists yet.
+
+> **Current fixed-1000 status -- R2R1 pending (2026-08-21):** R2's input
+> integrity remained valid, but its inherited 180-s timeout stopped a normal
+> full initial calculation at 0.10253 s. It is final after one call and zero
+> completed states. R2R1 is a separately frozen runtime-budget correction;
+> no R2R1 plant call has run yet, and all downstream counters remain zero.

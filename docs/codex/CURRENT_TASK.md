@@ -11393,3 +11393,12 @@ Section 0 are genuinely qualified.
 > counted TSC invocations with no retry. Only route
 > `ONE_MS_NR1000S0R2_CANONICAL_1000_RESTART_QUALIFIED` may open a new interface
 > identity. Model, teacher, Authority, Recourse and feedback remain blocked.
+
+> **Unique active route -- R2R1 runtime-budget correction (2026-08-21):** R2
+> passed 725/725 server regression and zero-TSC preflight, then its first full
+> input call advanced normally only to internal time 0.10253 s before the
+> inherited 180-s process timeout. It made one call, created no complete state
+> and did not proceed. Freeze R2 as a runtime-budget design FAIL. R2R1 changes
+> only the full initial-run timeout to 2700 s, selected prospectively from R2
+> progress; all scientific inputs/gates, two-plus-two runs, four-call maximum
+> and no-retry semantics remain exact. No other stage is active.

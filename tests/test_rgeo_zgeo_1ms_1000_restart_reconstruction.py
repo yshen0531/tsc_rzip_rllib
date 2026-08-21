@@ -8,6 +8,7 @@ from scripts import rgeo_zgeo_1ms_1000_restart_reconstruction as stage
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_1000_restart_reconstruction.json"
 CONFIG_R2 = ROOT / "configs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2.json"
+CONFIG_R2R1 = ROOT / "configs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2r1.json"
 
 
 class Fixed1000RestartReconstructionTest(unittest.TestCase):
@@ -42,6 +43,14 @@ class Fixed1000RestartReconstructionTest(unittest.TestCase):
         self.assertEqual(row["route_prefix"], "ONE_MS_NR1000S0R2")
         self.assertEqual(row["initial_source_files"]["inputa"]["bytes"], 13800)
         self.assertEqual(len(row["initial_source_files"]["inputa"]["sha256"]), 64)
+
+    def test_r2r1_changes_only_the_initial_runtime_budget(self):
+        r2 = stage.load_contract(CONFIG_R2)
+        r2r1 = stage.load_contract(CONFIG_R2R1)
+        self.assertEqual(r2r1["route_prefix"], "ONE_MS_NR1000S0R2R1")
+        self.assertEqual(r2r1["initial_tsc_timeout_s"], 2700.0)
+        for key in set(r2) - {"contract_version", "campaign_id", "route_prefix", "description"}:
+            self.assertEqual(r2[key], r2r1[key])
 
     def test_card00_parser_distinguishes_restart(self):
         self.assertEqual(stage.card00_irst1_text("00  0.0000E+00\n"), 0)

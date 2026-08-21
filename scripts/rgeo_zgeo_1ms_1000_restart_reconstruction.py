@@ -66,6 +66,10 @@ def load_contract(path: Path) -> dict[str, Any]:
         expected = common
     elif row.get("contract_version") == "rgeo-zgeo-1ms-1000-restart-reconstruction-r2-v1":
         expected = common | {"initial_source_folder", "initial_source_files"}
+    elif row.get("contract_version") == "rgeo-zgeo-1ms-1000-restart-reconstruction-r2r1-v1":
+        expected = common | {
+            "initial_source_folder", "initial_source_files", "initial_tsc_timeout_s",
+        }
     else:
         raise ContractError("restart reconstruction contract version changed")
     if set(row) != expected:
@@ -75,6 +79,8 @@ def load_contract(path: Path) -> dict[str, Any]:
     if (row["initial_reconstruction_runs"], row["restart_validation_runs"],
             row["restart_validation_steps"], row["maximum_tsc_invocations"]) != (2, 2, 1, 4):
         raise ContractError("restart reconstruction budget changed")
+    if "initial_tsc_timeout_s" in row and row["initial_tsc_timeout_s"] != 2700.0:
+        raise ContractError("R2R1 initial TSC timeout changed")
     if row["source_sprsina_sha256"] != row["source_1100_sprsina_sha256"]:
         raise ContractError("the contaminated source identity is not reproduced")
     return row
@@ -167,6 +173,8 @@ def preflight(config_path: Path, source_revision: str) -> dict[str, Any]:
             ROOT / contract["source_config"], label="source config"
         )
         cfg = TSCConfig.from_json(source_config)
+        if "initial_tsc_timeout_s" in contract:
+            cfg.tsc_timeout_s = float(contract["initial_tsc_timeout_s"])
         source_folder = cfg.simulation_root / cfg.start_folder
         source_files = _validate_source_files(source_config, source_folder)
         source_gate = source_offline_preflight(source_config, source_revision)
