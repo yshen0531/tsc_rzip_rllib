@@ -99,7 +99,7 @@ def select(stage: Mapping[str, Any], artifact: Mapping[str, Any], current_deviat
 
 def run_one(cfg: Any, stage: dict[str, Any], spec: dict[str, Any], envelope: Any,
             source_reference: dict[str, Any], target_map: Mapping[str, Any], artifact: Mapping[str, Any],
-            reference_states: list[dict[str, Any]]) -> dict[str, Any]:
+            reference_states: list[dict[str, Any]], decision_selector: Any = select) -> dict[str, Any]:
     runner = TSCStepRunner(cfg, worker_id=f"nr1000_f0_{spec['rollout_id']}", keep_workspace=False)
     reasons, states, actions, decisions = [], [], [], []
     attempts = gotsc = verified = resets = 0
@@ -118,13 +118,19 @@ def run_one(cfg: Any, stage: dict[str, Any], spec: dict[str, Any], envelope: Any
                 ordinal = stage["decision_issues"].index(issue)
                 command = np.asarray(stage["paths_mm_relative_q0"][spec["path"]][ordinal], dtype=float)
                 deviation = _rz_mm(states[-1]) - _rz_mm(reference_states[issue])
-                candidate, before, after = select(stage, artifact, deviation, command)
-                a0.b1.c0.d2._apply_macro(sequence, issue, candidate, target_map)
+                candidate, before, after = decision_selector(stage, artifact, deviation, command)
+                if candidate is None:
+                    reasons.append(f"DECISION_REFUSAL:{issue}")
+                    break
+                center = np.zeros(2) if candidate == "q0_noop" else a0.candidate_center(
+                    artifact, candidate, 8)
+                if candidate != "q0_noop":
+                    a0.b1.c0.d2._apply_macro(sequence, issue, candidate, target_map)
                 decisions.append({"ordinal": ordinal, "issue_step": issue,
                     "endpoint_state": stage["endpoint_states"][ordinal], "candidate": candidate,
                     "current_deviation_rz_mm": deviation.tolist(), "command_rz_mm": command.tolist(),
                     "predicted_error_before_mm": before, "predicted_error_after_mm": after,
-                    "predicted_h8_center_rz_mm": a0.candidate_center(artifact, candidate, 8).tolist()})
+                    "predicted_h8_center_rz_mm": center.tolist()})
             target = sequence[issue]
             exact = card15_target_decimal_a(target, cfg.turns_tsc, name=f"f0.{spec['rollout_id']}.{issue}")
             maximum = assert_exact_slew(states[-1]["active_command_decimal_a_tsc"], exact,
