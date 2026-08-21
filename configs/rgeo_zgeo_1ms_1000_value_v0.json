@@ -1,0 +1,51 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-value-v0-v1",
+  "model_id": "rgeo_zgeo_1ms_1000_value_v0_v1",
+  "takeover_time_ms": 1000,
+  "candidate_issue_phase": 24,
+  "horizons": [4, 8],
+  "contexts": ["q0", "even_plus", "odd_plus"],
+  "candidates": ["even_plus", "even_minus", "odd_plus", "odd_minus"],
+  "direction_grid_count": 64,
+  "component_floor_rz_ip": [0.03, 0.03, 10.0],
+  "model_form": "componentwise_median_plus_max_deviation_and_fixed_floor",
+  "dataset_files": [
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_baseline_primary.json", "sha256": "e225165e7cbba23b8ddac67b71fbf8422c0d1612e05455ac609b5177c1a15015"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/p24_even_minus.json", "sha256": "d5cac842f7723ecd7b9cbe21fd289f852257e21e5e9932b1e5b84abd6506250e"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/p24_even_plus.json", "sha256": "1bb38990c9b04adff2ff7a8f07fb27a8438fd8f9e3f2a703ebae68d0bdfd0252"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/p24_odd_minus.json", "sha256": "92c184527d1f6ac28f79698dcfa0a3421e0011a66dcf952f8cbf4952bf462003"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/p24_odd_plus.json", "sha256": "9f3a0ce65df71e779963999971fde66a0576c9badaaeff6638e4cf75adcf6888"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_even_plus__baseline.json", "sha256": "7e8fd1b75f61bf56ce7f3389b9adf7ab9bccc432c2a3b9fc7c54ed3fb603a0b3"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_even_plus__even_minus.json", "sha256": "55a22e4a71564e53b3557b70d5796b6b8b8d81951848a910e5461fd13274ecbe"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_even_plus__even_plus.json", "sha256": "692c5cb6800cfcf22cf14f7e29e79617fc7f0821c30e1fe2b14005e9cd4da220"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_even_plus__odd_minus.json", "sha256": "1d2407cf3d129a8cbb3a42103c8b874f9435f22910d1aaeb3257af9128aa8164"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_even_plus__odd_plus.json", "sha256": "d8650933a73bc835777d2accba3850a93c517d7355ade6f3051a6843211fecc0"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_odd_plus__baseline.json", "sha256": "d7deaa2466b068b98e2f8801f9f91706a6dcf7233aa5ec09d7b224970a1cead0"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_odd_plus__even_minus.json", "sha256": "926716360006e699399a7684498613d682ad88c70c3a033a79629e397ac2c0cc"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_odd_plus__even_plus.json", "sha256": "dd4c276474b092c269e77d96fdf2490cf107feaf7c2f320cc82275288c0b8c0f"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_odd_plus__odd_minus.json", "sha256": "4434dcc3bfd38f53a05ab1dcd83efb51b9f05c4571470523f7dd8ba137b9a752"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact/c_odd_plus__odd_plus.json", "sha256": "9728a6608944fbedadd10185f8e6b684fac0b1a0c981bd8147d4e3e7844e99aa"}
+  ],
+  "data_roles": {
+    "listed_rows": "development_fit_eligible_weight_1",
+    "d1_and_d2_replays": "excluded_zero_fit_weight",
+    "calibration_histories": "unopened",
+    "blind_histories": "unopened",
+    "controller_or_recourse": "forbidden",
+    "fixed_1100_data": "forbidden"
+  },
+  "gates": {
+    "require_all_leave_one_history_components_contained": true,
+    "maximum_final_rz_halfwidth_mm": 0.08,
+    "maximum_final_ip_halfwidth_a": 30.0,
+    "maximum_each_fold_directional_ranking_regret_mm": 0.03,
+    "minimum_each_context_h8_weakest_best_progress_mm": 0.10,
+    "maximum_observed_absolute_ip_response_a": 400.0,
+    "require_every_context": true
+  },
+  "routes": {
+    "input_fail": "ONE_MS_NR1000V0_INPUT_INTEGRITY_FAIL_ZERO_TSC",
+    "model_fail": "ONE_MS_NR1000V0_DIRECT_VALUE_RISK_MODEL_INSUFFICIENT_REDESIGN",
+    "pass": "ONE_MS_NR1000V0_DIRECT_VALUE_RISK_DEVELOPMENT_PASS_FRESH_CALIBRATION_ONLY"
+  }
+}
