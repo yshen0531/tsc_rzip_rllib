@@ -20,7 +20,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--run-dir", type=Path, required=True)
     parser.add_argument("--source-revision", required=True)
     parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args(argv); primary.install(); old.primary = primary
+    args = parser.parse_args(argv); primary.install()
     try:
         value = old.audit(args.config, args.run_dir, args.source_revision)
         value["schema_version"] = SCHEMA

@@ -1,6 +1,7 @@
 import unittest
 
 from scripts import rgeo_zgeo_1ms_id2z33_corrected_moving_center_d0 as stage
+from scripts import rgeo_zgeo_1ms_id2z33_corrected_moving_center_d0_independent as independent
 
 
 class ID2Z33CorrectedMovingCenterTest(unittest.TestCase):
@@ -22,6 +23,12 @@ class ID2Z33CorrectedMovingCenterTest(unittest.TestCase):
         self.assertEqual(config["maximum_gotsc_calls"], 730)
         self.assertEqual(config["models_fit_or_updated"], 0)
         self.assertEqual(config["data_contract"]["id2z32_rows_fit_weight"], 0)
+
+    def test_independent_uses_patched_original_primary(self):
+        stage.install()
+        self.assertIs(independent.old.primary, stage.z32)
+        self.assertIs(independent.old.primary.load, stage.load)
+        self.assertIs(independent.old.primary.build_streams, stage.build_streams)
 
 
 if __name__ == "__main__":
