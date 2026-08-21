@@ -3060,3 +3060,24 @@
 - Config: `configs/rgeo_zgeo_1ms_id2z4_capture_grammar.json`
 - Next: implementation, server-only validation, zero-TSC preflight and only
   then the finite real-TSC discriminator
+
+## 2026-08-21 fixed-1000 NR1 R4R1 interface qualification
+
+- Implementation revision: `3435b1862cbab53484154deb584839e51b3d23a1`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_nr1_r4r1_20260821_3435b186_v1`
+- Server validation: focused `17/17`; all one-ms `736/736`; offline PASS
+- Execution: `6/6` rollouts, `24/24` plant advances, 30 raw states
+- Independent audit: 24 action checks, 56 first-effect component checks,
+  18 later observed-slew checks, zero failures
+- Maximum reserved issued excitation: `0.299 A`; unchanged hard observed
+  slew limit: `0.3 A`
+- Primary / independent SHA-256:
+  `791375f0337d2e683f3c5b33b5bae254e03cd16660632acc2f6e3b93c5300644 /`
+  `934d44dc415123d8f8f04a57022500e95f8405ea3e7ea05dc3c499e48fd32827`
+- Final routes:
+  `ONE_MS_NR1000S1R4R1_INTERFACE_QUALIFIED` / `ONE_MS_NR1000S1R4R1_INDEPENDENT_PASS`
+- Classification: finite fixed-source 1 ms interface qualification only;
+  not a drift, model, Authority, hold, recovery or feedback result
+- Next: a new fixed-1000 matched-baseline and signed temporal-response
+  development identity; no fixed-1100 model/evidence inheritance

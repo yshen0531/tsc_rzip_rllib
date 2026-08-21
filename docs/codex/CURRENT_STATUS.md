@@ -1,6 +1,18 @@
 # Current status
 
-> **Current fixed-1000 status — NR1 R4R1 pending (2026-08-21):** R3 passed its
+> **Current fixed-1000 status — NR1 R4R1 qualified (2026-08-21):** the fresh
+> 0.299-A-reserve identity completed all six rollouts and 24 plant advances.
+> Hold, pattern A and pattern B each replayed exactly in checked R/Z/Ip,
+> 14-coil and 48-wire semantics. Independent raw parsing covered 30 states,
+> 24 actions, 56 first-effect component checks and 18 later observed-slew
+> checks with zero failures and zero cross-replay difference. Primary SHA-256
+> is `791375f0...00644`; independent SHA-256 is `934d44dc...32827`.
+> This closes the fixed-1000 restart/interface bootstrap. It does not certify
+> drift cancellation, authority, a model, hold, recovery or feedback. The
+> next active work is fresh fixed-1000 baseline and signed temporal-response
+> development; all fixed-1100 evidence is historical/design-only.
+
+> **Historical fixed-1000 status — NR1 R4R1 pending (2026-08-21):** R3 passed its
 > zero-TSC identity gate and produced one valid 1.001-s q0 successor, but its
 > legacy helper rejected an 8 A source-actual to successor-actual difference.
 > The issued Card15 delta was exactly zero, so this is an evaluator-coordinate

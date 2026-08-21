@@ -1,6 +1,19 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-21, R3R1 pending):** R3's first valid
+> **Unique fixed-1000 context (2026-08-21, interface qualified):** R4R1 is
+> the canonical finite 1 ms interface bootstrap for the new 1000-ms route.
+> It passed `6/6` authentic rollouts, `24/24` advances and an independent raw
+> audit over 30 states. The excitation reserve is `0.299 A`, while the hard
+> command/readback slew contract remains `0.3 A`. Exact/noiseless current
+> R_geo/Z_geo/Ip is available before every issue and causal history accumulates
+> from 1000 ms. None of the old 1100-ms plant-response, model, event-phase,
+> calibration, authority or controller claims transfer. The next stage must
+> freshly measure 1000-ms drift and bounded signed temporal response before
+> any model is fitted. The final goal is still finite two-axis waypoint/path
+> tracking, hold/recovery and repeated bidirectional R_mid crossing with
+> continuous belief.
+
+> **Historical fixed-1000 context (2026-08-21, R3R1 pending):** R3's first valid
 > 1.001-s hold successor exposed a coordinate error in the validation helper.
 > Issued slew is active Card15 command to new Card15 target; saved source actual
 > current to successor actual readback is a restart/effect diagnostic, not the

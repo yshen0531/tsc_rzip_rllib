@@ -1,0 +1,20 @@
+{
+  "action_checks": 24,
+  "created_utc": "2026-08-21T14:24:22.651683+00:00",
+  "failures": [],
+  "first_effect_component_checks": 56,
+  "maximum_absolute_difference": {
+    "coil_a": 0.0,
+    "geometry_m": 0.0,
+    "ip_a": 0.0,
+    "wire_a": 0.0
+  },
+  "observed_slew_checks": 18,
+  "passed": true,
+  "raw_rollouts": 6,
+  "raw_states": 30,
+  "route": "ONE_MS_NR1000S1R4R1_INDEPENDENT_PASS",
+  "schema_version": "rgeo-zgeo-1ms-1000-nr1-interface-r4r1-v1-independent",
+  "source_revision": "3435b1862cbab53484154deb584839e51b3d23a1",
+  "takeover_time_ms": 1000
+}

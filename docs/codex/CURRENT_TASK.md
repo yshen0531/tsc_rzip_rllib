@@ -1,6 +1,25 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, fixed-1000 NR1 R4R1):** ignore the old
+> **Unique active task (2026-08-21, fixed-1000 interface PASS / fresh ID next):**
+> the old fixed-1100 scientific lineage is no longer part of the active route.
+> R4R1 completed `6/6` authentic fixed-1000 rollouts and `24/24` plant
+> advances. Primary and independent raw audits passed all exact Card15,
+> issued/readback slew, paired-boundary, Ip, 14-coil, 48-wire, return and
+> replay gates. The reserved excitation was at most `0.299 A`; the unchanged
+> hard observed-current gate remains `0.3 A`. Final routes are
+> `ONE_MS_NR1000S1R4R1_INTERFACE_QUALIFIED` and
+> `ONE_MS_NR1000S1R4R1_INDEPENDENT_PASS`. This is only a finite 1 ms
+> interface qualification, not a plant model or controller. The sole active
+> work is a new fixed-1000 identity for matched natural-drift baseline and
+> bounded signed temporal-response/authority development, with roles and
+> whole-history splits declared before TSC. No 1100-ms model, event map,
+> calibration, holdout, Authority, Recourse or controller result may be
+> inherited. The final goal remains causal finite two-axis waypoint/path
+> tracking from 1000 ms, including hold/recovery and repeated bidirectional
+> R_mid crossing with continuous belief. Every older active block below is
+> historical only.
+
+> **Historical active task (2026-08-21, fixed-1000 NR1 R4R1):** ignore the old
 > fixed-1100 scientific lineage. R3 consumed one one-ms hold call and stopped
 > because its evaluator incorrectly treated the 8 A difference between saved
 > source actual current and successor actual readback as issued slew. The live
