@@ -150,7 +150,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
             baseline["states"][:49], stage,
         )
     try:
-        primary_result = json.loads((run_dir / "result.json").read_text(encoding="utf-8"))
+        primary_result = json.loads((run_dir / "result_repaired.json").read_text(encoding="utf-8"))
     except Exception as exc:
         failures.append(f"PRIMARY_RESULT:{type(exc).__name__}:{exc}")
         primary_result = {}

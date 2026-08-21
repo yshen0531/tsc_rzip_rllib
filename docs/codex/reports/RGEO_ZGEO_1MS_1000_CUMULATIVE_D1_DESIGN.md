@@ -19,3 +19,10 @@ two-axis response geometry at each phase; h12/h16 return-tail response is also
 bounded. It opens a small short-horizon history-conditioned model and a
 separate Authority design only. D1 is not hold, capture, recovery, Recourse,
 feedback, waypoint tracking or R_mid crossing.
+
+Reporting erratum: after all ten real trajectories completed, the initial
+result reused D0's 41-state/40-action replay cardinality and labeled two
+otherwise exact D1 replays as failures. D1 requires 49 states and 48 actions.
+The original result is retained; a zero-TSC finalizer corrects only these
+cardinalities and recomputes the unchanged scientific metrics before the
+independent raw audit.

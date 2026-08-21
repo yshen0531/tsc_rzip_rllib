@@ -346,6 +346,18 @@ def scientific_metrics(
     }
 
 
+def compare_rows(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]:
+    comparison = d0.compare_rows(left, right)
+    failures = [reason for reason in comparison["failures"] if reason not in ("STATE_COUNT", "ACTION_COUNT")]
+    if len(left["states"]) != 49 or len(right["states"]) != 49:
+        failures.append("STATE_COUNT")
+    if len(left["actions"]) != 48 or len(right["actions"]) != 48:
+        failures.append("ACTION_COUNT")
+    comparison["failures"] = list(dict.fromkeys(failures))
+    comparison["passed"] = not comparison["failures"]
+    return comparison
+
+
 def run(config_path: Path, source_revision: str, output_dir: Path) -> dict[str, Any]:
     preflight = offline(config_path, source_revision)
     if not preflight["passed"]:
@@ -374,7 +386,7 @@ def run(config_path: Path, source_revision: str, output_dir: Path) -> dict[str, 
     if execution_pass:
         for family in stage["critical_replays"]:
             replay_rows.append({
-                "family_id": family, **d0.compare_rows(rows[family], rows[f"{family}_replay"])
+                "family_id": family, **compare_rows(rows[family], rows[f"{family}_replay"])
             })
     replay_pass = len(replay_rows) == 2 and all(row["passed"] for row in replay_rows)
     metrics = None
@@ -408,16 +420,70 @@ def run(config_path: Path, source_revision: str, output_dir: Path) -> dict[str, 
     return result
 
 
+def finalize(config_path: Path, source_revision: str, run_dir: Path) -> dict[str, Any]:
+    stage, cfg, baseline = load(config_path)
+    run_dir = b0.inside_root(run_dir, "D1 run directory")
+    original_path = run_dir / "result.json"
+    original = json.loads(original_path.read_text(encoding="utf-8"))
+    if original.get("source_revision") != source_revision:
+        raise InputIntegrityError("D1 original source revision mismatch")
+    rows = {
+        spec["rollout_id"]: json.loads((run_dir / f"{spec['rollout_id']}.json").read_text(encoding="utf-8"))
+        for spec in rollout_specs(stage)
+    }
+    execution_pass = all(row.get("passed") is True for row in rows.values())
+    replay_rows = [
+        {"family_id": family, **compare_rows(rows[family], rows[f"{family}_replay"])}
+        for family in stage["critical_replays"]
+    ]
+    replay_pass = all(row["passed"] for row in replay_rows)
+    metrics = scientific_metrics(
+        [row for row in rows.values() if row["repeat_index"] == 0],
+        baseline["states"][:49], stage,
+    )
+    passed = execution_pass and replay_pass and metrics["passed"]
+    route = stage["routes"]["pass"] if passed else (
+        stage["routes"]["execution_fail"] if not execution_pass
+        else stage["routes"]["replay_fail"] if not replay_pass
+        else stage["routes"]["scientific_fail"]
+    )
+    result = {
+        "schema_version": SCHEMA,
+        "kind": "reporting_repaired_authentic_fixed_1000_cumulative_temporal_development",
+        "created_utc": datetime.now(timezone.utc).isoformat(),
+        "source_revision": source_revision, "passed": passed, "route": route,
+        "rollout_count": len(rows),
+        "reset_calls": sum(row["reset_calls"] for row in rows.values()),
+        "advance_attempts": sum(row["advance_attempts"] for row in rows.values()),
+        "gotsc_calls": sum(row["gotsc_calls"] for row in rows.values()),
+        "verified_plant_advances": sum(row["verified_plant_advances"] for row in rows.values()),
+        "action_geometry": original["action_geometry"],
+        "critical_replays": replay_rows, "scientific_metrics": metrics,
+        "reporting_repair": {
+            "plant_advances": 0,
+            "original_result_sha256": b0.sha256(original_path),
+            "original_route": original.get("route"),
+            "repair": "replace inherited D0 41-state/40-action replay cardinality with D1 49-state/48-action cardinality",
+        },
+        "claim_boundary": "fixed-1000 cumulative temporal development only; no hold/recovery/control",
+    }
+    b0.write_new(run_dir / "result_repaired.json", result)
+    return result
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", choices=("offline", "run"))
+    parser.add_argument("mode", choices=("offline", "run", "finalize"))
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     parser.add_argument("--source-revision", required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    result = offline(args.config.resolve(), args.source_revision) if args.mode == "offline" else run(
-        args.config.resolve(), args.source_revision, args.output.resolve()
-    )
+    if args.mode == "offline":
+        result = offline(args.config.resolve(), args.source_revision)
+    elif args.mode == "run":
+        result = run(args.config.resolve(), args.source_revision, args.output.resolve())
+    else:
+        result = finalize(args.config.resolve(), args.source_revision, args.output.resolve())
     if args.mode == "offline":
         b0.write_new(args.output.resolve(), result)
     print(json.dumps(result, indent=2, sort_keys=True))

@@ -18,6 +18,16 @@ def state(index: int, r_mm: float = 0.0, z_mm: float = 0.0, ip_a: float = 0.0) -
     }
 
 
+def replay_state(index: int) -> dict:
+    row = state(index)
+    row.update({
+        "actual_current_a_tsc": [0.0] * 14,
+        "wire_current_a": [0.0] * 48,
+        "artifact_sha256": {name: "same" for name in primary.d0.SEMANTIC_ARTIFACTS},
+    })
+    return row
+
+
 class Fixed1000CumulativeD1Test(unittest.TestCase):
     def test_frozen_identity_budget_and_roles(self) -> None:
         payload = json.loads(CONFIG.read_text(encoding="utf-8"))
@@ -85,12 +95,24 @@ class Fixed1000CumulativeD1Test(unittest.TestCase):
         self.assertFalse(metrics["return_tail_pass"])
         self.assertFalse(metrics["passed"])
 
-    def test_launcher_exposes_only_offline_run_and_audit(self) -> None:
+    def test_launcher_exposes_reporting_finalize_without_new_tsc(self) -> None:
         text = (ROOT / "run_rgeo_zgeo_1ms_1000_cumulative_d1.sh").read_text(encoding="utf-8")
         self.assertIn("NR1000_D1_SOURCE_REVISION", text)
         self.assertIn("offline)", text)
         self.assertIn("run)", text)
+        self.assertIn("finalize)", text)
         self.assertIn("audit)", text)
+
+    def test_replay_comparison_uses_d1_cardinality(self) -> None:
+        row = {"states": [replay_state(index) for index in range(49)], "actions": list(range(48))}
+        comparison = primary.compare_rows(row, json.loads(json.dumps(row)))
+        self.assertTrue(comparison["passed"])
+        self.assertEqual(comparison["failures"], [])
+
+        short = {"states": row["states"][:-1], "actions": row["actions"][:-1]}
+        comparison = primary.compare_rows(short, json.loads(json.dumps(short)))
+        self.assertFalse(comparison["passed"])
+        self.assertEqual(set(comparison["failures"]), {"STATE_COUNT", "ACTION_COUNT"})
 
 
 if __name__ == "__main__":
