@@ -1,5 +1,30 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z33 corrected moving-center D0
+
+- Date: 2026-08-21 Asia/Shanghai.
+- Physical / reporting-audit revisions: `3892b0c1` / `6e9c0049`.
+- Server output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z33_20260821_3892b0c1_v1`.
+- Validation: focused `3/3`, all one-ms `690/690`, offline action separation,
+  exact return, slew/current/headroom and storage gates PASS.
+- Execution: `10/10`, `730/730` attempts/gotsc/verified advances, 740 states.
+- Raw: 3,700 required artifacts / 43,580,763,760 bytes / digest
+  `7feeaf08be6982334fbfabc5c0e7e2d860ebffcd7dda624a57f32f39d0dff83f`.
+- Result: all eight signed branches and all four phase/horizon geometry gates
+  PASS; exact replay and independent raw audit PASS.
+- Route: `ONE_MS_ID2Z33_CORRECTED_MOVING_CENTER_D0_PASS_MODEL_DESIGN_ONLY`.
+- Primary / independent SHA-256:
+  `14f0b4f081f95ff69e418ea0f9f4de6725705c963a153bd7603e324e066f29c3 /`
+  `735cd75f5d0b7636fd123e66bc0e94a9ea678a4bb9e142ac942bf89b9c469e5a`.
+- The direct independent entrypoint initially missed repository `sys.path`;
+  `6e9c0049` repaired reporting only and ran zero TSC.
+- Cleanup: after compact hash recovery, removed only this run's authenticated
+  `rollouts/` subtree (`44,254,755,926` filesystem bytes); compact and log
+  remain; free space `224,689,799,168` bytes.
+- Next: one server-only, at-most-two-candidate event-aware development model
+  comparison. Fresh qualification and control prerequisites remain closed.
+
 ## R_geo/Z_geo 1 ms ID-2Z32 post-event delayed-tail D0
 
 > **Erratum:** server forensic SHA-256

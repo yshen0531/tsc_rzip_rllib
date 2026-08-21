@@ -1,0 +1,272 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Fresh corrected moving-center simulator-development data only; not a model, feedback, Authority-L0, capture, recovery, Recourse-L1, waypoint/path, position generalization or R_mid claim.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "plant_advances": 730,
+  "primary_sha256": "14f0b4f081f95ff69e418ea0f9f4de6725705c963a153bd7603e324e066f29c3",
+  "recomputed_route": "ONE_MS_ID2Z33_CORRECTED_MOVING_CENTER_D0_PASS_MODEL_DESIGN_ONLY",
+  "recomputed_scientific_metrics": {
+    "baseline_complete": true,
+    "branch_metrics": [
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.00024258799999998804,
+            "effect_state_index": 63
+          }
+        ],
+        "family_id": "issue50__q_r__plus_then_return",
+        "h4_h8_cosine": 0.9999973790512043,
+        "h4_norm_m": 5.790092999684681e-05,
+        "h4_response_m": [
+          -5.646349999999245e-05,
+          -1.2821500000023689e-05
+        ],
+        "h8_norm_m": 0.0001917305360896947,
+        "h8_response_m": [
+          -0.0001868729999999763,
+          -4.2884500000006653e-05
+        ],
+        "maximum_absolute_paired_ip_response_a": 24.614999999997963,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.0002570594999999898,
+            "effect_state_index": 64
+          }
+        ],
+        "family_id": "issue50__q_r__minus_then_return",
+        "h4_h8_cosine": 0.9991252916702348,
+        "h4_norm_m": 5.784315975121882e-05,
+        "h4_response_m": [
+          5.6601000000044976e-05,
+          1.192299999999702e-05
+        ],
+        "h8_norm_m": 0.00018907794403168874,
+        "h8_response_m": [
+          0.00018648549999999986,
+          3.120300000000742e-05
+        ],
+        "maximum_absolute_paired_ip_response_a": 24.642400000000634,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.00022404649999996362,
+            "effect_state_index": 63
+          }
+        ],
+        "family_id": "issue50__q_z__plus_then_return",
+        "h4_h8_cosine": 0.993233384218322,
+        "h4_norm_m": 6.109020908869655e-05,
+        "h4_response_m": [
+          3.790499999989372e-06,
+          -6.097250000000609e-05
+        ],
+        "h8_norm_m": 0.0002506726069303364,
+        "h8_response_m": [
+          -1.3607499999901407e-05,
+          -0.00025030300000000727
+        ],
+        "maximum_absolute_paired_ip_response_a": 47.63069999999789,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.0002842330000000226,
+            "effect_state_index": 63
+          }
+        ],
+        "family_id": "issue50__q_z__minus_then_return",
+        "h4_h8_cosine": 0.9932875887297113,
+        "h4_norm_m": 6.103613023447162e-05,
+        "h4_response_m": [
+          -3.874999999986528e-06,
+          6.0912999999995776e-05
+        ],
+        "h8_norm_m": 0.00023738583681899765,
+        "h8_response_m": [
+          1.2433500000019748e-05,
+          0.00023706000000001115
+        ],
+        "maximum_absolute_paired_ip_response_a": 49.34830000000147,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.00021970000000004486,
+            "effect_state_index": 63
+          }
+        ],
+        "family_id": "issue56__q_r__plus_then_return",
+        "h4_h8_cosine": 0.9989983816274725,
+        "h4_norm_m": 5.895858640810398e-05,
+        "h4_response_m": [
+          -5.745699999992748e-05,
+          -1.3221500000007436e-05
+        ],
+        "h8_norm_m": 0.00021514372670506106,
+        "h8_response_m": [
+          -0.00020729550000009311,
+          -5.757950000002954e-05
+        ],
+        "maximum_absolute_paired_ip_response_a": 24.760000000002037,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.00030193549999990577,
+            "effect_state_index": 63
+          }
+        ],
+        "family_id": "issue56__q_r__minus_then_return",
+        "h4_h8_cosine": 0.9973102055905018,
+        "h4_norm_m": 5.869286776301565e-05,
+        "h4_response_m": [
+          5.718649999997272e-05,
+          1.3211999999998558e-05
+        ],
+        "h8_norm_m": 0.00019154923727651444,
+        "h8_response_m": [
+          0.00018929149999991068,
+          2.9322999999970012e-05
+        ],
+        "maximum_absolute_paired_ip_response_a": 25.995899999998073,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.00024692650000002203,
+            "effect_state_index": 63
+          }
+        ],
+        "family_id": "issue56__q_z__plus_then_return",
+        "h4_h8_cosine": 0.9913363138852843,
+        "h4_norm_m": 5.8957919656722105e-05,
+        "h4_response_m": [
+          4.602499999895038e-06,
+          -5.8777999999995445e-05
+        ],
+        "h8_norm_m": 0.00025065627567898364,
+        "h8_response_m": [
+          -1.3425000000122367e-05,
+          -0.0002502965000000107
+        ],
+        "maximum_absolute_paired_ip_response_a": 49.482200000002194,
+        "passed": true
+      },
+      {
+        "complete": true,
+        "delayed_positive_r_events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          },
+          {
+            "delta_r_m": 0.0002651104999999987,
+            "effect_state_index": 63
+          }
+        ],
+        "family_id": "issue56__q_z__minus_then_return",
+        "h4_h8_cosine": 0.9908957842015932,
+        "h4_norm_m": 5.895931154617823e-05,
+        "h4_response_m": [
+          -4.6329999999761284e-06,
+          5.877699999999597e-05
+        ],
+        "h8_norm_m": 0.00023128400087606447,
+        "h8_response_m": [
+          1.3032999999884609e-05,
+          0.00023091649999998354
+        ],
+        "maximum_absolute_paired_ip_response_a": 48.19340000000011,
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "positive_span_metrics": [
+      {
+        "horizon": 4,
+        "maximum_angular_gap_deg": 99.15355763912001,
+        "passed": true,
+        "phase_issue": 50,
+        "weakest_best_projection_m": 3.98244407115645e-05
+      },
+      {
+        "horizon": 8,
+        "maximum_angular_gap_deg": 105.92706271922239,
+        "passed": true,
+        "phase_issue": 50,
+        "weakest_best_projection_m": 0.00013155386920186103
+      },
+      {
+        "horizon": 4,
+        "maximum_angular_gap_deg": 98.53169273598377,
+        "passed": true,
+        "phase_issue": 56,
+        "weakest_best_projection_m": 4.020864306526264e-05
+      },
+      {
+        "horizon": 8,
+        "maximum_angular_gap_deg": 108.75381275227431,
+        "passed": true,
+        "phase_issue": 56,
+        "weakest_best_projection_m": 0.00013641723156397663
+      }
+    ],
+    "replay_metrics": {
+      "failures": [],
+      "passed": true
+    }
+  },
+  "reparsed_required_artifacts": 3700,
+  "reparsed_required_bytes": 43580763760,
+  "reparsed_rollouts": 10,
+  "reparsed_states": 740,
+  "schema_version": "rgeo-zgeo-1ms-id2z33-corrected-moving-center-d0-independent-v1",
+  "source_revision": "3892b0c15301a93c1a4e13c2a46b7b7c67598dc0",
+  "tsc_calls": 730
+}

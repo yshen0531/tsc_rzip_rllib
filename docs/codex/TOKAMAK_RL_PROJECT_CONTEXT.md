@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z32 erratum):** the saved
+> **Unique new-round context (2026-08-21, ID2Z33 final):** the corrected
+> moving-center D0 executed the issue-50 and issue-56 signed q_R/q_Z streams
+> that ID2Z32 failed to construct. Ten complete rollouts, 730 advances,
+> independent raw reparse, exact replay, all eight h4/h8 response gates and
+> all four two-axis geometry gates passed. This is prospective finite
+> development evidence only. The next identity may compare at most two
+> event-aware causal models; fresh calibration/blind validation, Authority-L0,
+> Recourse-L1 and the hard interface remain independent prerequisites before
+> real feedback. ID2Z32 remains immutable and zero fit weight.
+>
+> **Historical new-round context (2026-08-21, ID2Z32 erratum):** the saved
 > phase-limited q-cell conclusion is retracted. A zero-TSC forensic proved all
 > issue-56 branches executed the baseline action stream because branch
 > construction was skipped after issue55. Exact execution and independent raw

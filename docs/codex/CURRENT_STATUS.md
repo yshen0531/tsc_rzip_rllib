@@ -1,6 +1,17 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z32 erratum):** execution/raw/replay passed,
+> **Current status (2026-08-21, ID2Z33 final):** the corrected moving-center
+> D0 is a clean finite development-data PASS. All ten rollouts and 730 plant
+> advances completed; independent raw audit reproduced the result from 740
+> states and 3,700 artifacts. All eight signed branches passed at both
+> issue-50 and issue-56, with h8 response norms `0.1891--0.2507 mm`, minimum
+> h4/h8 persistence cosine `0.99090`, paired Ip below `49.49 A`, and all four
+> two-axis geometry gates passing. Physical source revision was `3892b0c1`;
+> a later `6e9c0049` repair changed only direct auditor import setup and reran
+> zero TSC. ID2Z33 opens at most two event-aware development candidates, not
+> feedback, Authority, capture, recovery or Recourse.
+>
+> **Historical status (2026-08-21, ID2Z32 erratum):** execution/raw/replay passed,
 > but the issue-56 scientific comparison was never actuated. All four branch
 > action streams equal baseline at every issue because the builder guarded
 > branch construction with `issue <= 55`. Server focused tests and the full

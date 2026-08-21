@@ -1,6 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z32 action-stream erratum / corrected
+> **Unique active task (2026-08-21, ID2Z33 D0 PASS / bounded model next):**
+> the corrected moving-center campaign completed `10/10`, `730/730`, and an
+> independent raw reparse authenticated 740 states and 3,700 artifacts.
+> Every issue-50/56 q_R/q_Z signed branch passed h4/h8 signal, persistence,
+> paired-Ip and task-plane geometry gates; exact replay passed. Route:
+> `ONE_MS_ID2Z33_CORRECTED_MOVING_CENTER_D0_PASS_MODEL_DESIGN_ONLY`.
+> Only the eight prospective branch families are fit-eligible; baseline,
+> replay and all ID2Z32 rows have zero fit weight. The sole active work is one
+> separately frozen, server-only comparison of at most two event-aware causal
+> candidates over the complete return/delayed-tail window. No gate search,
+> third model, fresh calibration/holdout read, feedback, Authority-L0 or
+> Recourse-L1 is authorized yet. Older active blocks below are historical.
+>
+> **Historical active task (2026-08-21, ID2Z32 action-stream erratum / corrected
 > D0 next):** ID2Z32 completed `10/10`, `730/730`, but a server-validated
 > zero-TSC forensic proved that all four issue-56 action streams were exactly
 > identical to baseline. The builder skipped branch construction at

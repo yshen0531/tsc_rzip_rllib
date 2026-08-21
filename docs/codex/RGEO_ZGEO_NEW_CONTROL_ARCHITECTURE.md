@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z32 erratum (2026-08-21):** issue-56 zero response was caused by
+> **Post-ID2Z33 amendment (2026-08-21):** corrected moving-center D0 passed at
+> two phases with persistent signed q_R/q_Z response and finite two-axis
+> geometry. It opens a bounded shadow-model comparison only. The dependency
+> graph is `D0 PASS -> at most two event-aware development candidates ->
+> frozen artifact -> fresh calibration -> unopened whole-family holdout`, in
+> parallel with `Authority-L0 -> Recourse-L1`. Real in-loop control requires
+> both branches and the hard interface. D0, input geometry and replay never
+> substitute for Authority, capture, recovery or recursive feasibility.
+>
+> **Historical post-ID2Z32 erratum (2026-08-21):** issue-56 zero response was caused by
 > four branch streams being identical to baseline, not by loss of plant
 > authority. The result is an action-stream construction/design failure and
 > supplies no phase-56 response evidence. A new identity may execute the
