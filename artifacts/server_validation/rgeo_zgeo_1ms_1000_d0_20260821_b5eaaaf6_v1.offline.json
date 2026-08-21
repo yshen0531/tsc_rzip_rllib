@@ -1,0 +1,15 @@
+{
+  "action_geometry": null,
+  "authorized_plant_advances": 560,
+  "authorized_reset_calls": 14,
+  "created_utc": "2026-08-21T15:25:49.629734+00:00",
+  "failures": [
+    "ContractError:even:plus exceeds quantized amplitude"
+  ],
+  "kind": "offline_preflight",
+  "passed": false,
+  "rollout_action_streams": null,
+  "route": "ONE_MS_NR1000D0_OFFLINE_FAIL_NO_TSC",
+  "schema_version": "rgeo-zgeo-1ms-1000-signed-temporal-d0-v1",
+  "source_revision": "b5eaaaf6fd54cc439a91a9399af36349f615bd3d"
+}

@@ -1,6 +1,6 @@
 {
-  "schema_version": "rgeo-zgeo-1ms-1000-signed-temporal-d0-v1",
-  "campaign_id": "rgeo_zgeo_1ms_1000_signed_temporal_d0_v1",
+  "schema_version": "rgeo-zgeo-1ms-1000-signed-temporal-d0r1-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_signed_temporal_d0r1_v1",
   "takeover_time_ms": 1000,
   "control_period_ms": 1,
   "horizon_steps": 40,
@@ -17,8 +17,8 @@
   "maximum_gotsc_calls": 560,
   "maximum_verified_plant_advances": 560,
   "retry_after_any_advance_attempt": "forbidden",
-  "requested_single_turn_amplitude_a": 0.15,
-  "maximum_quantized_single_turn_amplitude_a": 0.151,
+  "requested_single_turn_amplitude_a": 0.14,
+  "maximum_quantized_single_turn_amplitude_a": 0.146,
   "base_tsc_config": "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4r1.json",
   "base_tsc_config_sha256": "aad0465e62183ebe2f4146eabe8edcc8493c53b5c1fa6c5d8e1c58a06915e7fe",
   "baseline_evidence": {
@@ -75,13 +75,13 @@
     "stop_before_next_issue_after_failure": true
   },
   "routes": {
-    "offline_pass": "ONE_MS_NR1000D0_OFFLINE_PASS_RUN_ONLY",
-    "offline_fail": "ONE_MS_NR1000D0_OFFLINE_FAIL_NO_TSC",
-    "execution_fail": "ONE_MS_NR1000D0_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
-    "replay_fail": "ONE_MS_NR1000D0_CRITICAL_REPLAY_FAIL_STOP",
-    "scientific_fail": "ONE_MS_NR1000D0_SIGNED_TEMPORAL_AUTHORITY_INSUFFICIENT_REDESIGN",
-    "pass": "ONE_MS_NR1000D0_SIGNED_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY",
-    "independent_pass": "ONE_MS_NR1000D0_INDEPENDENT_PASS",
-    "independent_fail": "ONE_MS_NR1000D0_INDEPENDENT_FAIL"
+    "offline_pass": "ONE_MS_NR1000D0R1_OFFLINE_PASS_RUN_ONLY",
+    "offline_fail": "ONE_MS_NR1000D0R1_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000D0R1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000D0R1_CRITICAL_REPLAY_FAIL_STOP",
+    "scientific_fail": "ONE_MS_NR1000D0R1_SIGNED_TEMPORAL_AUTHORITY_INSUFFICIENT_REDESIGN",
+    "pass": "ONE_MS_NR1000D0R1_SIGNED_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY",
+    "independent_pass": "ONE_MS_NR1000D0R1_INDEPENDENT_PASS",
+    "independent_fail": "ONE_MS_NR1000D0R1_INDEPENDENT_FAIL"
   }
 }

@@ -1,4 +1,13 @@
-# Fixed-1000 signed temporal D0 design
+# Fixed-1000 signed temporal D0R1 design
+
+The original D0 identity stopped at its server zero-plant preflight with
+`ONE_MS_NR1000D0_OFFLINE_FAIL_NO_TSC`: requesting 0.15 A crossed a Card15
+decimal boundary on coils 10 and 11 and produced an exact 0.20 A increment,
+above D0's preregistered 0.151 A construction cap. It used zero resets and
+zero plant advances. D0R1 is a separate pre-execution identity; it changes
+only the requested construction amplitude to 0.14 A and freezes the measured
+quantized maximum at 0.146 A. The 0.3 A hard command/readback limit and all
+scientific gates remain unchanged.
 
 D0 is the first action-response campaign in the new fixed-1000 lineage. It
 uses the independently audited B0 q0 path as its matched baseline and does not
@@ -8,7 +17,7 @@ Two input coordinates are defined from the physical up/down coil pairing in
 TSC order. The even coordinate changes each upper/lower pair in the same
 direction; the odd coordinate changes each pair oppositely. They are tested
 with both signs. Each target is constructed by exact Card15 quantization from
-the current 1000-ms q0 center with a requested 0.15 A single-turn amplitude,
+the current 1000-ms q0 center with a requested 0.14 A single-turn amplitude,
 held for four issues, returned exactly to q0, and followed through state40.
 The four signed actions are tested at issues 8, 10 and 24. Positive even and
 odd issue-24 paths receive one integrity replay each.

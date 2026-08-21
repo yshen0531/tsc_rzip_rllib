@@ -34,8 +34,8 @@ from tsc_rzip_rllib.control.rgeo_zgeo_contract import ContractError, RGeoZGeoSig
 from tsc_rzip_rllib.core.runner import TSCConfig, TSCStepRunner  # noqa: E402
 
 
-SCHEMA = "rgeo-zgeo-1ms-1000-signed-temporal-d0-v1"
-CONFIG_SHA256 = "09b10b0a9db37decc02d71a4327ad4190405843674c3697d4c460a68b2780972"
+SCHEMA = "rgeo-zgeo-1ms-1000-signed-temporal-d0r1-v1"
+CONFIG_SHA256 = "1bd59338cf21babf2ed5b899b08201dd596987161759c25cc918db9f7fa954a3"
 DEFAULT_CONFIG = ROOT / "configs/rgeo_zgeo_1ms_1000_signed_temporal_d0.json"
 SEMANTIC_ARTIFACTS = b0.SEMANTIC_ARTIFACTS
 
@@ -51,7 +51,7 @@ def load(config_path: Path) -> tuple[dict[str, Any], TSCConfig, dict[str, Any]]:
     stage = json.loads(config_path.read_text(encoding="utf-8"))
     exact = {
         "schema_version": SCHEMA,
-        "campaign_id": "rgeo_zgeo_1ms_1000_signed_temporal_d0_v1",
+        "campaign_id": "rgeo_zgeo_1ms_1000_signed_temporal_d0r1_v1",
         "takeover_time_ms": 1000,
         "control_period_ms": 1,
         "horizon_steps": 40,
@@ -68,8 +68,8 @@ def load(config_path: Path) -> tuple[dict[str, Any], TSCConfig, dict[str, Any]]:
         "maximum_gotsc_calls": 560,
         "maximum_verified_plant_advances": 560,
         "retry_after_any_advance_attempt": "forbidden",
-        "requested_single_turn_amplitude_a": 0.15,
-        "maximum_quantized_single_turn_amplitude_a": 0.151,
+        "requested_single_turn_amplitude_a": 0.14,
+        "maximum_quantized_single_turn_amplitude_a": 0.146,
     }
     for key, expected in exact.items():
         if stage.get(key) != expected:
