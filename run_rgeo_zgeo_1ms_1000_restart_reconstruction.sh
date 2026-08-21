@@ -10,13 +10,20 @@ VENV="${NR1000_VENV:-$HOME/tsc_all/tsc_simulation/venv_simu}"
 MODE="${1:?mode must be offline or run}"
 OUTPUT="${2:?missing fresh output path}"
 case "$MODE" in
-  offline) EXTRA=(--offline) ;;
-  run) EXTRA=() ;;
+  offline) OFFLINE=1 ;;
+  run) OFFLINE=0 ;;
   *) echo "mode must be offline or run" >&2; exit 2 ;;
 esac
 
-python scripts/rgeo_zgeo_1ms_1000_restart_reconstruction.py \
-  --config configs/rgeo_zgeo_1ms_1000_restart_reconstruction.json \
-  --source-revision "$NR1000_RECON_SOURCE_REVISION" \
-  --output "$OUTPUT" \
-  "${EXTRA[@]}"
+if [[ "$OFFLINE" == 1 ]]; then
+  python scripts/rgeo_zgeo_1ms_1000_restart_reconstruction.py \
+    --config configs/rgeo_zgeo_1ms_1000_restart_reconstruction.json \
+    --source-revision "$NR1000_RECON_SOURCE_REVISION" \
+    --output "$OUTPUT" \
+    --offline
+else
+  python scripts/rgeo_zgeo_1ms_1000_restart_reconstruction.py \
+    --config configs/rgeo_zgeo_1ms_1000_restart_reconstruction.json \
+    --source-revision "$NR1000_RECON_SOURCE_REVISION" \
+    --output "$OUTPUT"
+fi
