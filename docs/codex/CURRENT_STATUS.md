@@ -1,5 +1,18 @@
 # Current status
 
+> **Current fixed-1000 status - M0 model FAIL (2026-08-22):** zero TSC was
+> used. The smooth action-aware ridge failed absolute and response gates in
+> all six whole-family folds; mean paired NRMSE was `0.929989` versus
+> `0.940124` action-blind, only `1.078%` better. R p95 was
+> `0.468--0.596 mm`; Z p95 stayed below `0.032 mm` and Ip p95 below `7.5 A`.
+> Primary SHA-256 is `2f1e1542...c2b5e6`. A bound diagnostic refit found
+> `146` large-R rows and `50` sign flips, with recurring absolute-state event
+> structure plus some deep-N0 OOD. Diagnostic SHA-256 is
+> `70e28cf3...9eeab1`. Route remains
+> `ONE_MS_NR1000M0_CAUSAL_SHORT_HORIZON_MODEL_INSUFFICIENT`; no artifact,
+> calibration, holdout or controller is open. One event-aware successor is
+> next; failure stops point-model expansion.
+
 > **Current fixed-1000 status - N0 scientific FAIL (2026-08-22):** all five
 > rollouts and 320 plant advances completed with exact Card15 execution and an
 > exact depth-12 replay. Independent raw reconstruction passed 325 states,

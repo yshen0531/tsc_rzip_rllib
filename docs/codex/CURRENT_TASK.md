@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 N0 scientific FAIL / causal
+> **Unique active task (2026-08-22, fixed-1000 M0 smooth model FAIL /
+> one event-aware M1 next):** M0 trained on exactly 25 prospectively eligible
+> fixed-1000 trajectories and evaluated six whole schedule/phase folds. It
+> failed: per-fold R p95 was `0.468--0.596 mm`, paired-response NRMSE was
+> `0.930`, and action-aware improvement over the blind comparator was only
+> `1.08%`. Z and Ip errors were small, so radial hybrid dynamics dominate.
+> A deterministic refit found 146 held rows above `0.35 mm`, including 50
+> sign flips, repeatedly concentrated at specific absolute effect states
+> across D0/D1/N0. Some are well supported; N0-deep also contains OOD rows.
+> M0 remains FAIL and emits no artifact. The sole active successor is one
+> frozen causal event-aware M1 using the same data/folds/gates, with explicit
+> absolute-time event representation and action/history interaction. No
+> hyperparameter search or second neural/smooth successor is allowed. If M1
+> fails, point-prediction model expansion stops and the route moves to
+> set-valued risk plus direct candidate-value/feedback evidence. Every older
+> active block below is historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 N0 scientific FAIL / causal
 > short-horizon M0 next):** N0 completed `5/5` authentic radial ramp-and-hold
 > trajectories and `320/320` verified advances; the depth-12 replay was
 > exact and the independent raw audit passed. All four static depths failed

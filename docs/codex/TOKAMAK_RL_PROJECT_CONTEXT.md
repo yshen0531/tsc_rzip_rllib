@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, M0 complete):** exact 1 ms
+> re-centering plus a smooth action/history ridge is insufficient for the
+> radial channel. It predicts vertical and Ip increments accurately, but
+> repeatedly averages deterministic radial event transitions into the wrong
+> sign. These failures occur at recurring absolute states across distinct
+> action schedules, while deep cumulative histories also extend beyond local
+> support. The next and final point-model trial therefore makes event phase
+> explicit and nonlinear while preserving the same causal inputs, data,
+> whole-family splits and gates. This is not an invitation to enlarge a
+> network ladder: M1 failure redirects to calibrated set/risk and direct
+> candidate-value control. Safety/Authority/Recourse remain independent.
+
 > **Unique fixed-1000 context (2026-08-22, N0 complete):** sustained radial
 > effect exists, but a static even-minus ramp from issue 0 followed by holding
 > the attained target is not a usable nominal. Depths 4--16 produced transient

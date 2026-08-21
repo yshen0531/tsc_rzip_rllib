@@ -3188,3 +3188,24 @@
   `ONE_MS_NR1000N0_INDEPENDENT_PASS`
 - Classification: clean static ramp-and-hold schedule FAIL; not runtime,
   safety, raw corruption, global authority or controller evidence
+
+## 2026-08-22 fixed-1000 M0 smooth causal model
+
+- Final implementation revision: `4d12ab540176ff3884c83ceb2c3f312fb33da069`
+- Server focused tests: `5/5`; zero TSC / zero plant advance
+- Data: 25 fixed-1000 primary trajectories, 1,184 causal transitions,
+  full executed Card15 span rank 6; replays and 1100-ms rows excluded
+- Six whole-family fold R p95: `0.5262`, `0.5274`, `0.4680`, `0.4875`,
+  `0.5956`, `0.4875 mm`; all exceed the `0.35 mm` gate
+- Mean paired NRMSE: aware `0.929989`, blind `0.940124`; aware improvement
+  only `1.078%` versus required `10%`
+- Primary SHA-256:
+  `2f1e15426c5f48597c2ebb40c1db7e2b736517a5e9f4a43259191a8ba1c2b5e6`
+- Diagnostic revision: `96c050a96f2ffdca5b22383035daa70b2ed68ccc`
+- Diagnostic: 146 held rows above `0.35 mm` R error, 50 sign flips;
+  recurring effect-state concentrations and mixed support/OOD
+- Diagnostic SHA-256:
+  `70e28cf34e0a422eda53e780c85976cf76404e811f919d022f768a98a99eeab1`
+- Final route: `ONE_MS_NR1000M0_CAUSAL_SHORT_HORIZON_MODEL_INSUFFICIENT`
+- Classification: smooth fixed-feature model FAIL, not data corruption,
+  plant execution, controller or global learnability evidence
