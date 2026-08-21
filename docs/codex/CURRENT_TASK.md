@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, fixed-1000 B0 PASS / signed D0 next):**
+> **Unique active task (2026-08-22, fixed-1000 D0R1 PASS / cumulative D1
+> next):** D0R1 completed `14/14` authentic rollouts and `560/560` advances;
+> the independent audit rebuilt 574 raw states, 560 actions and 546 later
+> observed-slew checks with zero failure. All signed-signal, pair-separation,
+> phase geometry and Ip gates passed. The odd coordinate supplies clean
+> persistent signed Z response; the even coordinate supplies R response but
+> includes deterministic phase-sensitive one-frame events. This is finite
+> development evidence only. The active work is a separately frozen
+> cumulative/sustained exact-Card15 D1 with prospective fit/replay roles and
+> exact return, followed—only if it passes—by a small history-conditioned
+> short-horizon model and an independent Authority/feedback path. No 1100-ms
+> data transfer, retrospective replay weighting, hold/capture/Recourse claim,
+> or controller execution is authorized. The final goal remains causal
+> finite two-axis waypoint/path tracking from 1000 ms, hold/recovery and
+> repeated bidirectional R_mid crossing with continuous belief. Every older
+> active block below is historical only.
+
+> **Historical active task (2026-08-21, fixed-1000 B0 PASS / signed D0 next):**
 > B0 completed two exact 64-ms q0 trajectories with `128/128` verified plant
 > advances and independent raw agreement. q0 is not a hold: at state64 R was
 > `-23.538658 mm` from source, Ip was `+825.9437 A`, and the last eight states

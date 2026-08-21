@@ -1,5 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, D0R1 complete):** the new source
+> has clean finite two-axis signal. Across three q0 phases, a symmetric coil
+> coordinate controls R and an antisymmetric upper/lower coordinate controls
+> Z; all frozen h4/h8 signal, signed-pair, condition and Ip gates passed, and
+> two critical paths replayed exactly. Radial even-minus responses contain
+> deterministic phase-sensitive one-frame events, so a single smooth point
+> map is not yet justified. The next step is cumulative/sustained exact-Card15
+> development with exact return, then a small history-conditioned short-term
+> model and a separate Authority/Recourse qualification path. The final goal
+> is unchanged: causal 1 ms two-axis waypoint/path tracking from 1000 ms,
+> including hold/recovery and repeated bidirectional R_mid crossing.
+
 > **Unique fixed-1000 context (2026-08-21, B0 complete):** the exact q0
 > baseline is deterministic but drifts strongly inward. From 1000 to 1064 ms
 > it moves `23.538658 mm` in R with zero Z motion, while Ip first rises and

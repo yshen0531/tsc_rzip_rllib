@@ -1,5 +1,18 @@
 # Current status
 
+> **Current fixed-1000 status — D0R1 development PASS (2026-08-22):** the
+> fresh signed even/odd campaign completed `14/14` resets, `560/560` verified
+> advances and 574 raw states. Independent raw reconstruction passed all 560
+> action, 546 later observed-slew, source, current, limiter, Ip, replay and
+> scientific checks. Phase-best R/Z conditions were `2.812/1.939/1.810`;
+> sigma minima were `0.14997/0.07139/0.07620 mm`. The odd coordinate gives
+> repeatable signed Z response, while even-minus contains deterministic
+> phase-sensitive radial excursions. Primary/independent SHA-256 are
+> `dba46b48...f342f / 79d670e4...77dd`. This opens cumulative/sustained
+> development and bounded model/Authority design only—not hold, recovery,
+> feedback or path tracking. All older current-status blocks below are
+> historical.
+
 > **Current fixed-1000 status — B0 complete (2026-08-21):** two q0 rollouts
 > completed `128/128` advances and 130 raw states. Independent audit rebuilt
 > 128 actions and 126 later observed-slew checks with zero failure. The

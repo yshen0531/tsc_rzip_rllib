@@ -1,0 +1,520 @@
+{
+  "action_geometry": {
+    "maximum_absolute_delta_a": 0.14583333333333334,
+    "rank": 2,
+    "singular_values_a": [
+      0.7328559051940414,
+      0.7328559051940414,
+      6.777827158232424e-17,
+      5.805495157760157e-17
+    ]
+  },
+  "advance_attempts": 560,
+  "claim_boundary": "fixed-1000 signed temporal development only; no model/hold/recovery/control",
+  "created_utc": "2026-08-21T15:50:28.602198+00:00",
+  "critical_replays": [
+    {
+      "failures": [],
+      "family_id": "p24_even_plus",
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "failures": [],
+      "family_id": "p24_odd_plus",
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    }
+  ],
+  "gotsc_calls": 560,
+  "kind": "authentic_fixed_1000_signed_temporal_development",
+  "passed": true,
+  "reset_calls": 14,
+  "rollout_count": 14,
+  "route": "ONE_MS_NR1000D0R1_SIGNED_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-1000-signed-temporal-d0r1-v1",
+  "scientific_metrics": {
+    "arms": [
+      {
+        "axis": "even",
+        "h4_ip_response_a": -30.509900000000926,
+        "h4_response_rz_mm": [
+          -0.06403799999998849,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.06403799999998849,
+        "h8_ip_response_a": -1.5756000000001222,
+        "h8_response_rz_mm": [
+          -0.005736499999908773,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.005736499999908773,
+        "issue_phase": 8,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.06403799999998849,
+        "rollout_id": "p08_even_plus",
+        "sign": "plus"
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": 25.16440000000148,
+        "h4_response_rz_mm": [
+          0.7795179999999791,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.7795179999999791,
+        "h8_ip_response_a": 1.6426999999966938,
+        "h8_response_rz_mm": [
+          0.005277500000011592,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.005277500000011592,
+        "issue_phase": 8,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.7795179999999791,
+        "rollout_id": "p08_even_minus",
+        "sign": "minus"
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": 0.10239999999976135,
+        "h4_response_rz_mm": [
+          0.0008725000000264771,
+          0.14996849999998618
+        ],
+        "h4_rz_norm_mm": 0.14997103803233444,
+        "h8_ip_response_a": 0.01329999999870779,
+        "h8_response_rz_mm": [
+          -0.00010799999994315357,
+          0.1296534999999932
+        ],
+        "h8_rz_norm_mm": 0.12965354498141662,
+        "issue_phase": 8,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.15836804203894064,
+        "rollout_id": "p08_odd_plus",
+        "sign": "plus"
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": 0.10239999999976135,
+        "h4_response_rz_mm": [
+          0.0008725000000264771,
+          -0.14996849999998618
+        ],
+        "h4_rz_norm_mm": 0.14997103803233444,
+        "h8_ip_response_a": 0.01329999999870779,
+        "h8_response_rz_mm": [
+          -0.00010799999994315357,
+          -0.1296534999999932
+        ],
+        "h8_rz_norm_mm": 0.12965354498141662,
+        "issue_phase": 8,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.15836804203894064,
+        "rollout_id": "p08_odd_minus",
+        "sign": "minus"
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": -29.294599999997445,
+        "h4_response_rz_mm": [
+          -0.0716800000000184,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.0716800000000184,
+        "h8_ip_response_a": -1.4033000000017637,
+        "h8_response_rz_mm": [
+          -0.007407999999875514,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.007407999999875514,
+        "issue_phase": 10,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.0716800000000184,
+        "rollout_id": "p10_even_plus",
+        "sign": "plus"
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": 30.21810000000187,
+        "h4_response_rz_mm": [
+          0.071095000000021,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.071095000000021,
+        "h8_ip_response_a": 1.399199999999837,
+        "h8_response_rz_mm": [
+          0.006936000000123954,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.006936000000123954,
+        "issue_phase": 10,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.755965500000011,
+        "rollout_id": "p10_even_minus",
+        "sign": "minus"
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": 0.1077000000004773,
+        "h4_response_rz_mm": [
+          -0.0006135000000240254,
+          0.1384514999999975
+        ],
+        "h4_rz_norm_mm": 0.1384528592499965,
+        "h8_ip_response_a": -0.0419000000001688,
+        "h8_response_rz_mm": [
+          5.800000002498251e-05,
+          0.12598600000002236
+        ],
+        "h8_rz_norm_mm": 0.1259860133507114,
+        "issue_phase": 10,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.15387568872714585,
+        "rollout_id": "p10_odd_plus",
+        "sign": "plus"
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": 0.1077000000004773,
+        "h4_response_rz_mm": [
+          -0.0006135000000240254,
+          -0.1384514999999975
+        ],
+        "h4_rz_norm_mm": 0.1384528592499965,
+        "h8_ip_response_a": -0.0419000000001688,
+        "h8_response_rz_mm": [
+          5.800000002498251e-05,
+          -0.12598600000002236
+        ],
+        "h8_rz_norm_mm": 0.1259860133507114,
+        "issue_phase": 10,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.15387568872714585,
+        "rollout_id": "p10_odd_minus",
+        "sign": "minus"
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": -35.46010000000024,
+        "h4_response_rz_mm": [
+          -0.07641200000008119,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.07641200000008119,
+        "h8_ip_response_a": -3.2039000000004307,
+        "h8_response_rz_mm": [
+          -0.007438499999956605,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.007438499999956605,
+        "issue_phase": 24,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.07641200000008119,
+        "rollout_id": "p24_even_plus",
+        "sign": "plus"
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": 35.42309999999998,
+        "h4_response_rz_mm": [
+          0.07599099999988645,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.07599099999988645,
+        "h8_ip_response_a": 3.200300000000425,
+        "h8_response_rz_mm": [
+          0.00700399999997714,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.00700399999997714,
+        "issue_phase": 24,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.6639029999999657,
+        "rollout_id": "p24_even_minus",
+        "sign": "minus"
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": -0.012599999998201383,
+        "h4_response_rz_mm": [
+          3.649999991139907e-05,
+          0.13794300000000148
+        ],
+        "h4_rz_norm_mm": 0.13794300482898872,
+        "h8_ip_response_a": -0.30450000000200816,
+        "h8_response_rz_mm": [
+          -0.0006104999999978489,
+          0.13364550000000142
+        ],
+        "h8_rz_norm_mm": 0.13364689439152852,
+        "issue_phase": 24,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.1569739635385486,
+        "rollout_id": "p24_odd_plus",
+        "sign": "plus"
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": -0.012599999998201383,
+        "h4_response_rz_mm": [
+          3.649999991139907e-05,
+          -0.13794300000000148
+        ],
+        "h4_rz_norm_mm": 0.13794300482898872,
+        "h8_ip_response_a": -0.30450000000200816,
+        "h8_response_rz_mm": [
+          -0.0006104999999978489,
+          -0.13364550000000142
+        ],
+        "h8_rz_norm_mm": 0.13364689439152852,
+        "issue_phase": 24,
+        "peak_rz_norm_mm_states_phase1_phase12": 0.1569739635385486,
+        "rollout_id": "p24_odd_minus",
+        "sign": "minus"
+      }
+    ],
+    "ip_pass": true,
+    "passed": true,
+    "phase_geometry_pass": true,
+    "phases": [
+      {
+        "best": {
+          "condition": 2.8124439465622624,
+          "horizon": 4,
+          "matrix_columns_even_odd_mm": [
+            [
+              -0.4217779999999838,
+              0.0
+            ],
+            [
+              0.0,
+              0.14996849999998618
+            ]
+          ],
+          "sigma_min_mm": 0.14996849999998618,
+          "singular_values_mm": [
+            0.4217779999999838,
+            0.14996849999998618
+          ]
+        },
+        "horizons": [
+          {
+            "condition": 2.8124439465622624,
+            "horizon": 4,
+            "matrix_columns_even_odd_mm": [
+              [
+                -0.4217779999999838,
+                0.0
+              ],
+              [
+                0.0,
+                0.14996849999998618
+              ]
+            ],
+            "sigma_min_mm": 0.14996849999998618,
+            "singular_values_mm": [
+              0.4217779999999838,
+              0.14996849999998618
+            ]
+          },
+          {
+            "condition": 23.543399310138124,
+            "horizon": 8,
+            "matrix_columns_even_odd_mm": [
+              [
+                -0.005506999999960183,
+                0.0
+              ],
+              [
+                0.0,
+                0.1296534999999932
+              ]
+            ],
+            "sigma_min_mm": 0.005506999999960183,
+            "singular_values_mm": [
+              0.1296534999999932,
+              0.005506999999960183
+            ]
+          }
+        ],
+        "issue_phase": 8,
+        "passed": true
+      },
+      {
+        "best": {
+          "condition": 1.9394361758005154,
+          "horizon": 4,
+          "matrix_columns_even_odd_mm": [
+            [
+              -0.0713875000000197,
+              0.0
+            ],
+            [
+              0.0,
+              0.1384514999999975
+            ]
+          ],
+          "sigma_min_mm": 0.0713875000000197,
+          "singular_values_mm": [
+            0.1384514999999975,
+            0.0713875000000197
+          ]
+        },
+        "horizons": [
+          {
+            "condition": 1.9394361758005154,
+            "horizon": 4,
+            "matrix_columns_even_odd_mm": [
+              [
+                -0.0713875000000197,
+                0.0
+              ],
+              [
+                0.0,
+                0.1384514999999975
+              ]
+            ],
+            "sigma_min_mm": 0.0713875000000197,
+            "singular_values_mm": [
+              0.1384514999999975,
+              0.0713875000000197
+            ]
+          },
+          {
+            "condition": 17.566369213612244,
+            "horizon": 8,
+            "matrix_columns_even_odd_mm": [
+              [
+                -0.007171999999999734,
+                0.0
+              ],
+              [
+                0.0,
+                0.12598600000002236
+              ]
+            ],
+            "sigma_min_mm": 0.007171999999999734,
+            "singular_values_mm": [
+              0.12598600000002236,
+              0.007171999999999734
+            ]
+          }
+        ],
+        "issue_phase": 10,
+        "passed": true
+      },
+      {
+        "best": {
+          "condition": 1.8102399559067834,
+          "horizon": 4,
+          "matrix_columns_even_odd_mm": [
+            [
+              -0.07620149999998382,
+              0.0
+            ],
+            [
+              0.0,
+              0.13794300000000148
+            ]
+          ],
+          "sigma_min_mm": 0.07620149999998382,
+          "singular_values_mm": [
+            0.13794300000000148,
+            0.07620149999998382
+          ]
+        },
+        "horizons": [
+          {
+            "condition": 1.8102399559067834,
+            "horizon": 4,
+            "matrix_columns_even_odd_mm": [
+              [
+                -0.07620149999998382,
+                0.0
+              ],
+              [
+                0.0,
+                0.13794300000000148
+              ]
+            ],
+            "sigma_min_mm": 0.07620149999998382,
+            "singular_values_mm": [
+              0.13794300000000148,
+              0.07620149999998382
+            ]
+          },
+          {
+            "condition": 18.50725289951387,
+            "horizon": 8,
+            "matrix_columns_even_odd_mm": [
+              [
+                -0.007221249999966872,
+                0.0
+              ],
+              [
+                0.0,
+                0.13364550000000142
+              ]
+            ],
+            "sigma_min_mm": 0.007221249999966872,
+            "singular_values_mm": [
+              0.13364550000000142,
+              0.007221249999966872
+            ]
+          }
+        ],
+        "issue_phase": 24,
+        "passed": true
+      }
+    ],
+    "signal_pass": true,
+    "signed_pair_pass": true,
+    "signed_pairs": [
+      {
+        "axis": "even",
+        "h4_separation_mm": 0.8435559999999676,
+        "h8_separation_mm": 0.011013999999920365,
+        "issue_phase": 8,
+        "passed": true
+      },
+      {
+        "axis": "odd",
+        "h4_separation_mm": 0.29993699999997236,
+        "h8_separation_mm": 0.2593069999999864,
+        "issue_phase": 8,
+        "passed": true
+      },
+      {
+        "axis": "even",
+        "h4_separation_mm": 0.1427750000000394,
+        "h8_separation_mm": 0.014343999999999468,
+        "issue_phase": 10,
+        "passed": true
+      },
+      {
+        "axis": "odd",
+        "h4_separation_mm": 0.276902999999995,
+        "h8_separation_mm": 0.2519720000000447,
+        "issue_phase": 10,
+        "passed": true
+      },
+      {
+        "axis": "even",
+        "h4_separation_mm": 0.15240299999996765,
+        "h8_separation_mm": 0.014442499999933744,
+        "issue_phase": 24,
+        "passed": true
+      },
+      {
+        "axis": "odd",
+        "h4_separation_mm": 0.27588600000000296,
+        "h8_separation_mm": 0.26729100000000283,
+        "issue_phase": 24,
+        "passed": true
+      }
+    ]
+  },
+  "source_revision": "6113ce54917101417553c55898d21fc30a30afac",
+  "verified_plant_advances": 560
+}

@@ -3104,3 +3104,33 @@
 - Classification: deterministic q0 natural drift only; not hold, stability,
   Authority, model, recovery or feedback
 - Next: fresh multi-phase signed even/odd temporal-response D0
+
+## 2026-08-22 fixed-1000 D0/D0R1 signed temporal response
+
+- D0 implementation revision: `b5eaaaf6fd54cc439a91a9399af36349f615bd3d`
+- D0 stopped at zero-plant preflight because requested `0.15 A` quantized to
+  `0.20 A` on two coils, above its frozen `0.151 A` construction cap
+- D0 used zero reset and zero plant advance; route:
+  `ONE_MS_NR1000D0_OFFLINE_FAIL_NO_TSC`
+- D0R1 implementation revision: `6113ce54917101417553c55898d21fc30a30afac`
+- D0R1 changed only requested amplitude to `0.14 A` and froze measured
+  quantized maximum `0.146 A`; hard `0.3 A` limit and science gates unchanged
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_d0r1_20260821_6113ce54_v1`
+- Execution: `14/14` rollouts, `560/560` advances, 574 raw states, 33 GB
+- Independent audit: 560 action checks, 546 later observed-slew checks,
+  two exact critical replays, zero failures
+- Phase-best condition / sigma-min mm: `2.81244/0.149968`,
+  `1.93944/0.071388`, `1.81024/0.076201`
+- Primary / independent SHA-256:
+  `dba46b4810ee267e36b85f4167580a517476a2d146d40f0e94323a648f6f342f /`
+  `79d670e4073273a71afbd732ed0a6902eec3fb4041408badf4d40438b94377dd`
+- Initial independent FAIL was reporting-only: raw state0 inputa had been
+  semantically reserialized by issue0; Card15 fields matched. Auditor revision
+  `4c21a85a` retained field comparison and all other source artifact hashes;
+  no TSC rerun
+- Final routes:
+  `ONE_MS_NR1000D0R1_SIGNED_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY` /
+  `ONE_MS_NR1000D0R1_INDEPENDENT_PASS`
+- Classification: finite fixed-1000 signed temporal development PASS only;
+  next is cumulative/sustained exact-return D1, not feedback qualification
