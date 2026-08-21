@@ -1,5 +1,21 @@
 # Run ledger
 
+## R_geo/Z_geo 1 ms ID-2Z36 engineering-floor event set
+
+- Implementation revision: `0246104bec239c0dfcb5440ea65aa71cb629211c`
+- Server validation: focused `3/3`; complete one-ms suite `706/706`
+- Zero TSC / plant advances / fits / ID2Z35 fit rows: `0/0/0/0`
+- Payload SHA-256:
+  `ace09ffba98b7bf60336452c9f4765ce5b8dc6bfe5bf71e33739eeba5e22c9a8`
+- Primary / independent SHA-256:
+  `e5090d4deeb804db172f039290ad0513c1314773e4973897d576bba78860242a /`
+  `9bd8335e0d894f129fb2d8a0a865060ae03550f427973eaf76aed4e7bb31145f`
+- Route:
+  `ONE_MS_ID2Z36_ENGINEERING_FLOOR_EVENT_SET_PASS_FRESH_QUALIFICATION_ONLY`
+- Evidence:
+  `docs/codex/audits/rgeo_zgeo_1ms_id2z36_20260821_0246104b_v1/`
+- Next: fresh phase48 calibration, then only after PASS unopened phase54 blind
+
 ## R_geo/Z_geo 1 ms ID-2Z35 fresh event-set qualification
 
 - Implementation revision:

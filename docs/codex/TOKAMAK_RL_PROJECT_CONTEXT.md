@@ -1,5 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique new-round context (2026-08-21, ID2Z36 final):** the one permitted
+> engineering-floor successor is frozen and independently reproducible. It
+> changes only the sole event half-width to `0.375/0.075 mm/30 A`, with zero
+> model fit, zero TSC and zero reuse of failed ID2Z35 calibration rows. A fresh
+> phase48 calibration must pass before unopened phase54 blind execution. This
+> remains response-set work; Authority, capture, Recourse and control remain
+> separate unfinished axes.
+
 > **Unique new-round context (2026-08-21, ID2Z35 final):** the ID2Z34
 > development artifact did not pass fresh phase-52 calibration. Its one
 > q_R-minus/age-13 event set contained the R response but missed Z by about

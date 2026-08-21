@@ -1,5 +1,15 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-21, ID2Z36 zero-TSC PASS / fresh qualification
+> next):** the single engineering-floor event payload was constructed with
+> zero TSC, zero fit and zero ID2Z35 rows, and independently reproduced at SHA
+> `ace09ffb...c9a8`. Its q_R-minus/age-13 half-width is fixed at
+> `0.375/0.075 mm/30 A`; point centers and non-event predictions are unchanged.
+> The sole active work is one new identity: fresh phase48 calibration, then
+> only after PASS unopened phase54 blind validation. Any failure closes this
+> sparse event-box route. No feedback, Authority-L0, capture or Recourse is
+> authorized. Older blocks below are historical.
+
 > **Unique active task (2026-08-21, ID2Z35 calibration FAIL / one robust-event
 > successor only):** ID2Z35 completed `6/6` calibration/replay rollouts and
 > `438/438` verified advances with exact execution, replay, raw and independent

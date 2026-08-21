@@ -1,5 +1,12 @@
 # Current status
 
+> **Current status (2026-08-21, ID2Z36 final):** a single zero-fit robust-event
+> construction passed server `706/706` regression and independent payload
+> recomputation. The artifact uses only prior engineering width floors and
+> reads ID2Z35 for identity authentication, not fitting. It opens one fresh
+> phase48-to-phase54 staged qualification only; it is not yet a calibrated
+> tube, model generalization result or controller prerequisite PASS.
+
 > **Current status (2026-08-21, ID2Z35 final):** fresh phase-52 calibration
 > rejected the frozen ID2Z34 sparse event box and stopped before phase-54 blind
 > execution. All six rollouts, 438 plant advances, 444 states and 2,220 raw
