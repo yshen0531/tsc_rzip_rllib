@@ -1,5 +1,15 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000 NR1 R4 FAIL and R4R1 decision
+
+- R4 route `ONE_MS_NR1000S1R4_EFFECT_CONTRACT_FAIL_STOP`; 3 rollouts and
+  10 advances. Hold primary/replay were exact.
+- Pattern-A return issued `0.30000 A`; coil 11 actual-current change was
+  `0.30001 A`, so the unchanged hard observed gate stopped before step 3.
+- Decision: no resume and no threshold relaxation. R4R1 is a fresh identity
+  with pattern command magnitude capped at `0.299 A`, leaving 1 mA reserve
+  below the same 0.3 A hard gate.
+
 ## 2026-08-21 fixed-1000 R3R2 PASS and NR1 R4 freeze
 
 - R3R2 route:

@@ -130,7 +130,8 @@ def quantize_target(current_a_tsc: Sequence[float], turns_tsc: Sequence[float]) 
 
 
 def _signed_lattice_value(
-    q0_a: float, source_a: float, turn: float, sign: int
+    q0_a: float, source_a: float, turn: float, sign: int,
+    maximum_delta_a: float = MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP,
 ) -> tuple[str, float]:
     if sign not in (-1, 1):
         raise ContractError("lattice sign must be -1 or +1")
@@ -147,8 +148,8 @@ def _signed_lattice_value(
         )
         if (
             delta * sign > 0
-            and abs(delta) <= MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP
-            and abs(source_delta) <= MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP
+            and abs(delta) <= _decimal(maximum_delta_a, "maximum_delta_a")
+            and abs(source_delta) <= _decimal(maximum_delta_a, "maximum_delta_a")
         ):
             candidates[field] = value
     if not candidates:
@@ -184,11 +185,14 @@ def build_frozen_one_ms_prefixes(
     turns_tsc: Sequence[float],
     min_current_a_tsc: Sequence[float],
     max_current_a_tsc: Sequence[float],
+    maximum_command_delta_a: float = MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP,
 ) -> FrozenOneMsPrefixes:
     source = _vector(source_current_a_tsc, "source_current_a_tsc")
     turns = _vector(turns_tsc, "turns_tsc")
     lower = _vector(min_current_a_tsc, "min_current_a_tsc")
     upper = _vector(max_current_a_tsc, "max_current_a_tsc")
+    if not 0.0 < float(maximum_command_delta_a) <= MAX_SINGLE_TURN_COIL_DELTA_A_PER_STEP:
+        raise ContractError("maximum_command_delta_a must be in (0, 0.3]")
     command_center = source if source_command_a_tsc is None else _vector(
         source_command_a_tsc, "source_command_a_tsc"
     )
@@ -204,12 +208,17 @@ def build_frozen_one_ms_prefixes(
         for q0_value, center_value, turn, sign in zip(
             q0.current_a_tsc, command_center, turns, signs
         ):
-            field, value = _signed_lattice_value(q0_value, center_value, turn, sign)
+            field, value = _signed_lattice_value(
+                q0_value, center_value, turn, sign, maximum_command_delta_a,
+            )
             fields.append(field)
             values.append(value)
         target = Card15Target(tuple(fields), tuple(values))
         assert_exact_slew(q0.current_a_tsc, target.current_a_tsc, name=name)
         assert_exact_slew(command_center, target.current_a_tsc, name=f"command_center_to_{name}")
+        if max(abs(value - base) for value, base in zip(
+                target.current_a_tsc, q0.current_a_tsc)) > maximum_command_delta_a + 1e-12:
+            raise ContractError(f"{name} exceeds reserved command slew")
         if any(not low <= value <= high for value, low, high in zip(target.current_a_tsc, lower, upper)):
             raise ContractError(f"{name} exceeds an absolute current limit")
         patterns[name] = target

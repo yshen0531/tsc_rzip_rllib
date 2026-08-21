@@ -51,6 +51,13 @@ def _profile(config_path: Path) -> dict[str, Any]:
             "route_prefix": row["route_prefix"], "matched_hold_effect": True}
 
 
+def _qualification_command_slew(payload: dict[str, Any]) -> float:
+    value = float(payload.get("qualification_command_slew_a", 0.3))
+    if not 0.0 < value <= 0.3:
+        raise ValueError("qualification_command_slew_a must be in (0, 0.3]")
+    return value
+
+
 def _fields(path: Path) -> tuple[str, ...]:
     values = tuple(line[30:40] for line in path.read_text(encoding="utf-8").splitlines() if line[:10].strip() == "15")
     if len(values) != 14:
@@ -97,6 +104,7 @@ def _maxdiff(a: tuple[float, ...], b: tuple[float, ...]) -> float:
 
 def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, Any]:
     cfg = TSCConfig.from_json(config_path)
+    config_payload = json.loads(config_path.read_text(encoding="utf-8"))
     profile = _profile(config_path)
     takeover_time_ms = int(profile["takeover_time_ms"])
     failures: list[str] = []
@@ -115,7 +123,9 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
             frozen = build_frozen_one_ms_prefixes(
                 source_current_a_tsc=states[0]["current_a_tsc"], turns_tsc=cfg.turns_tsc,
                 source_command_a_tsc=(source_command if profile["matched_hold_effect"] else None),
-                min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc)
+                min_current_a_tsc=cfg.min_current_a_tsc,
+                max_current_a_tsc=cfg.max_current_a_tsc,
+                maximum_command_delta_a=_qualification_command_slew(config_payload))
             targets = frozen.prefixes[prefix_name]
             source = states[0]
             active_command = source_command
@@ -177,6 +187,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                     source_command_a_tsc=source_command, turns_tsc=cfg.turns_tsc,
                     min_current_a_tsc=cfg.min_current_a_tsc,
                     max_current_a_tsc=cfg.max_current_a_tsc,
+                    maximum_command_delta_a=_qualification_command_slew(config_payload),
                 )
                 target = card15_target_decimal_a(
                     frozen.prefixes[prefix][0], cfg.turns_tsc,

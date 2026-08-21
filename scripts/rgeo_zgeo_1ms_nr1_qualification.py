@@ -74,6 +74,13 @@ def _profile(config_path: Path) -> dict[str, Any]:
     return {**row, "matched_hold_effect": True}
 
 
+def _qualification_command_slew(payload: dict[str, Any]) -> float:
+    value = float(payload.get("qualification_command_slew_a", 0.3))
+    if not 0.0 < value <= 0.3:
+        raise ContractError("qualification_command_slew_a must be in (0, 0.3]")
+    return value
+
+
 def _dump(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
@@ -158,6 +165,26 @@ def offline_preflight(config_path: Path, source_revision: str) -> dict[str, Any]
                 "route": prerequisite["route"],
                 "authorization": prerequisite["authorization"],
             }
+        prior_failed = config_payload.get("prior_failed_campaign")
+        if prior_failed is not None:
+            if set(prior_failed) != {"path", "sha256", "route", "plant_advances"}:
+                raise ContractError("prior failed campaign fields changed")
+            prior_path = (ROOT / prior_failed["path"]).resolve()
+            try:
+                prior_path.relative_to(ROOT)
+            except ValueError as exc:
+                raise ContractError("prior failed campaign escapes repository") from exc
+            if _sha(prior_path) != prior_failed["sha256"]:
+                raise ContractError("prior failed campaign identity changed")
+            prior_row = json.loads(prior_path.read_text(encoding="utf-8"))
+            if (prior_row.get("passed"), prior_row.get("route"),
+                    prior_row.get("plant_advances")) != (
+                    False, prior_failed["route"], prior_failed["plant_advances"]):
+                raise ContractError("prior failed campaign semantics changed")
+            source_evidence["prior_failed_campaign"] = {
+                "sha256": prior_failed["sha256"], "route": prior_failed["route"],
+                "plant_advances": prior_failed["plant_advances"],
+            }
         validate_one_ms_config(start_folder=cfg.start_folder, dt_ms=cfg.dt_ms,
                                slew_a_per_ms=cfg.current_slew_a_per_ms,
                                expected_start_folder=f"{profile['takeover_time_ms']}ms")
@@ -198,6 +225,7 @@ def offline_preflight(config_path: Path, source_revision: str) -> dict[str, Any]
             source_command_a_tsc=(source["active_command_decimal_a_tsc"]
                                   if profile["matched_hold_effect"] else None),
             min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc,
+            maximum_command_delta_a=_qualification_command_slew(config_payload),
         )
         envelope = OneMsNR1SafetyEnvelope.from_signal(signal)
         failures.extend(envelope.state_reasons(signal, source["currents_a_tsc"],
@@ -425,12 +453,17 @@ def run(config_path: Path, source_revision: str, output_dir: Path) -> dict[str, 
     cfg = TSCConfig.from_json(config_path)
     cfg.run_root = output_dir / "rollouts"
     source = _source(cfg)
+    config_payload = json.loads(config_path.read_text(encoding="utf-8"))
     signal = RGeoZGeoSignal.from_tsc_state(source)
     envelope = OneMsNR1SafetyEnvelope.from_signal(signal)
-    frozen = build_frozen_one_ms_prefixes(source_current_a_tsc=source["currents_a_tsc"], turns_tsc=cfg.turns_tsc,
-                                          source_command_a_tsc=(source["active_command_decimal_a_tsc"]
-                                                                if profile["matched_hold_effect"] else None),
-                                          min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc)
+    frozen = build_frozen_one_ms_prefixes(
+        source_current_a_tsc=source["currents_a_tsc"], turns_tsc=cfg.turns_tsc,
+        source_command_a_tsc=(source["active_command_decimal_a_tsc"]
+                              if profile["matched_hold_effect"] else None),
+        min_current_a_tsc=cfg.min_current_a_tsc,
+        max_current_a_tsc=cfg.max_current_a_tsc,
+        maximum_command_delta_a=_qualification_command_slew(config_payload),
+    )
     results = {}
     for name, prefix_name in NR1_1MS_ROLLOUTS:
         result = _run_one(cfg, name, prefix_name, frozen.prefixes[prefix_name], envelope,

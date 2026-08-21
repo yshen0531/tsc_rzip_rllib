@@ -1,6 +1,6 @@
 # Current status
 
-> **Current fixed-1000 status — NR1 R4 pending (2026-08-21):** R3 passed its
+> **Current fixed-1000 status — NR1 R4R1 pending (2026-08-21):** R3 passed its
 > zero-TSC identity gate and produced one valid 1.001-s q0 successor, but its
 > legacy helper rejected an 8 A source-actual to successor-actual difference.
 > The issued Card15 delta was exactly zero, so this is an evaluator-coordinate
@@ -18,7 +18,10 @@
 > R3R2 independently verified this with zero TSC: four rollouts/eight states,
 > exact semantics and stable artifacts, normalized outputa exact, route
 > `ONE_MS_NR1000S0R3R2_CANONICAL_1000_RESTART_SEMANTICS_QUALIFIED`. Fresh NR1
-> R4 is frozen but has made zero TSC calls.
+> R4 is final after ten advances: hold replay passed exactly, but pattern A
+> return observed `0.30001 A` on one coil and failed the unchanged `0.3 A`
+> hard limit. R4R1 is a fresh 0.299-A excitation identity and has made zero
+> TSC calls.
 >
 > **Historical status (2026-08-21, ID2Z37 final):** fresh phase-48 calibration
 > rejected the fixed ID2Z36 engineering event-set payload and stopped before

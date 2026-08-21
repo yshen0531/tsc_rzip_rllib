@@ -11,6 +11,7 @@ from tsc_rzip_rllib.control.rgeo_zgeo_contract import ContractError
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_1000_nr1_source_interface.json"
 CONFIG_R4 = ROOT / "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4.json"
+CONFIG_R4R1 = ROOT / "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4r1.json"
 
 
 class Fixed1000SourceInterfaceTest(unittest.TestCase):
@@ -83,6 +84,13 @@ class Fixed1000SourceInterfaceTest(unittest.TestCase):
             row["prerequisite"]["authorization"],
             "FRESH_1000MS_NR1_INTERFACE_DESIGN_ONLY",
         )
+
+    def test_r4r1_reserves_readback_margin_without_weakening_hard_slew(self):
+        row = json.loads(CONFIG_R4R1.read_text(encoding="utf-8"))
+        self.assertEqual(row["qualification_command_slew_a"], 0.299)
+        self.assertEqual(row["current_slew_a_per_ms"], 0.3)
+        self.assertEqual(primary._profile(CONFIG_R4R1)["route_prefix"], "ONE_MS_NR1000S1R4R1")
+        self.assertEqual(row["prior_failed_campaign"]["plant_advances"], 10)
 
 
 if __name__ == "__main__":

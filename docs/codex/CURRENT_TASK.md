@@ -1,6 +1,6 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, fixed-1000 NR1 R4):** ignore the old
+> **Unique active task (2026-08-21, fixed-1000 NR1 R4R1):** ignore the old
 > fixed-1100 scientific lineage. R3 consumed one one-ms hold call and stopped
 > because its evaluator incorrectly treated the 8 A difference between saved
 > source actual current and successor actual readback as issued slew. The live
@@ -19,7 +19,10 @@
 > exact, and outputa agreed after removing exactly one wall-clock and one CPU
 > timing line. R3R2 PASS now opens fresh NR1 R4 only: six rollouts/four steps,
 > active-command issued slew, matched-hold first-effect differential, exact
-> return/replay and hard envelopes. All model, Authority, Recourse and feedback stages
+> return/replay and hard envelopes. R4 stopped after ten advances when an
+> issued 0.30000 A return produced 0.30001 A actual change. Preserve R4 FAIL.
+> R4R1 prospectively limits command excitation to 0.299 A while retaining the
+> 0.3 A hard observed limit. All model, Authority, Recourse and feedback stages
 > remain blocked. Every older active block below is historical only.
 >
 > **Historical active task (2026-08-21, ID2Z37 calibration FAIL / route-review
