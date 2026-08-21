@@ -1,5 +1,14 @@
 # Current status
 
+> **Current fixed-1000 status - V0 development PASS (2026-08-22):** server
+> one-ms regression passed `781/781`; V0 used zero TSC/plant advances. All
+> three held histories achieved `24/24` component containment and zero
+> directional ranking regret. Final maximum R/Z and Ip uncertainty
+> halfwidths were `0.045539 mm / 12.4887 A`; weakest h8 progress was
+> `0.279069 mm`. Result/artifact SHA-256 are `a66b3c7f...8a062b` and
+> `7bcc8e21...68f5b`. This opens fresh negative-conditioner calibration only;
+> no refit, blind history, Authority, Recourse or controller is authorized.
+
 > **Current fixed-1000 status - D2 PASS (2026-08-22):** `12/12` rollouts,
 > `576/576` advances and both zero-weight replays completed. Primary and
 > structurally independent raw audit passed. The two new conditioner histories

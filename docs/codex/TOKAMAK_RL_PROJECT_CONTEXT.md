@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, D2 complete):** changing the
+> **Unique fixed-1000 context (2026-08-22, V0 complete):** the finite direct
+> candidate-value/risk representation generalized across q0, even-plus and
+> odd-plus development histories under whole-history leave-out. Conservative
+> empirical component sets contained all held h4/h8 R/Z/Ip responses and
+> selected the optimal measured candidate over the frozen direction grid.
+> This deliberately avoids reopening failed point-trajectory modelling. The
+> artifact is now frozen; the next evidence must come from fresh negative
+> conditioner histories used only for calibration. Blind mixed histories and
+> the independent Authority/Recourse/controller axes remain unopened.
+
+> **Historical fixed-1000 context (2026-08-22, D2 complete):** changing the
 > learning target is now supported by real matched-history evidence. After an
 > even-plus or odd-plus cumulative conditioner at issue 8, all four issue-24
 > sustained candidates remained safe, repeatable and two-axis informative

@@ -1,6 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 D2 PASS / direct value model
+> **Unique active task (2026-08-22, fixed-1000 V0 development PASS / fresh
+> calibration next):** the frozen V0 direct response-set model passed all
+> three whole-history leave-one-out folds with `24/24` components contained,
+> zero maximum directional ranking regret, h8 weakest-best progress at least
+> `0.279069 mm`, and final R/Z and Ip halfwidths `0.045539 mm / 12.4887 A`.
+> It ran zero TSC and emitted artifact SHA-256 `7bcc8e21...68f5b`. The sole
+> active successor is a prospectively frozen fresh calibration campaign on
+> negative conditioner histories. V0 must remain byte-fixed and receive no
+> refit; calibration may only test interval containment, ranking, progress,
+> execution and support. Blind mixed histories, Authority, Recourse and any
+> controller execution remain unopened. Every older active block below is
+> historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 D2 PASS / direct value model
 > next):** D2 completed `12/12` authentic rollouts and `576/576` verified
 > advances. Independent raw reconstruction passed 588 states, 576 actions and
 > 564 observed-slew transitions. Under both preregistered conditioner

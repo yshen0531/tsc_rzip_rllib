@@ -1,0 +1,59 @@
+{
+  "candidate_count": 4,
+  "claim_boundary": "finite fixed-1000 development response set only; fresh calibration required",
+  "containment_gate_pass": true,
+  "context_count": 3,
+  "created_utc": "2026-08-21T19:51:43.735327+00:00",
+  "final_maximum_ip_halfwidth_a": 12.4887000000017,
+  "final_maximum_rz_halfwidth_mm": 0.04553850000002299,
+  "folds": [
+    {
+      "all_components_contained": true,
+      "components": 24,
+      "contained_components": 24,
+      "held_context": "q0",
+      "maximum_component_excess": 0.0,
+      "maximum_directional_ranking_regret_mm": 0.0,
+      "weakest_best_progress_mm": {
+        "4": 0.17856729323094675,
+        "8": 0.27964810972154375
+      }
+    },
+    {
+      "all_components_contained": true,
+      "components": 24,
+      "contained_components": 24,
+      "held_context": "even_plus",
+      "maximum_component_excess": 0.0,
+      "maximum_directional_ranking_regret_mm": 0.0,
+      "weakest_best_progress_mm": {
+        "4": 0.17810941356570287,
+        "8": 0.27922992679486297
+      }
+    },
+    {
+      "all_components_contained": true,
+      "components": 24,
+      "contained_components": 24,
+      "held_context": "odd_plus",
+      "maximum_component_excess": 0.0,
+      "maximum_directional_ranking_regret_mm": 0.0,
+      "weakest_best_progress_mm": {
+        "4": 0.1775369811320045,
+        "8": 0.2790694500056743
+      }
+    }
+  ],
+  "ip_gate_pass": true,
+  "kind": "fixed_1000_direct_value_risk_development",
+  "maximum_observed_absolute_ip_response_a": 154.53640000000087,
+  "model_artifact_sha256": "7bcc8e216087479b8a90f757d198737cac759ab48327b83eac0d872bbde68f5b",
+  "passed": true,
+  "plant_advances": 0,
+  "progress_gate_pass": true,
+  "ranking_gate_pass": true,
+  "route": "ONE_MS_NR1000V0_DIRECT_VALUE_RISK_DEVELOPMENT_PASS_FRESH_CALIBRATION_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-1000-value-v0-v1",
+  "source_revision": "3956181e0c9708fd0a65cd6507ffb67ccc8f7928",
+  "width_gate_pass": true
+}

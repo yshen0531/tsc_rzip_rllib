@@ -3246,3 +3246,25 @@
   `ONE_MS_NR1000D2_INDEPENDENT_PASS`
 - Classification: finite matched-history candidate-value development PASS;
   not a model, Authority, capture, Recourse or feedback-controller result
+
+## 2026-08-22 fixed-1000 V0 direct value/risk model
+
+- Design revision: `d1157c714e9bd38c2dedd050319e9a9e225febbb`
+- Implementation revision: `3956181e0c9708fd0a65cd6507ffb67ccc8f7928`
+- Server validation: focused `4/4`; all one-ms `781/781`
+- TSC/plant advances: `0/0`
+- Whole-history folds: `3`; held component containment `72/72`
+- Maximum directional ranking regret: `0 mm` in every fold
+- Weakest h8 best-candidate progress: `0.2790694500 mm`
+- Final maximum R/Z halfwidth: `0.0455385 mm`
+- Final maximum Ip halfwidth: `12.4887 A`
+- Maximum observed absolute Ip response: `154.5364 A`
+- Result SHA-256:
+  `a66b3c7f88757348fd351513b9c6f7bbdc5268f2d5ecb24027bc159dea8a062b`
+- Model artifact SHA-256:
+  `7bcc8e216087479b8a90f757d198737cac759ab48327b83eac0d872bbde68f5b`
+- Final route:
+  `ONE_MS_NR1000V0_DIRECT_VALUE_RISK_DEVELOPMENT_PASS_FRESH_CALIBRATION_ONLY`
+- Classification: finite development response-set/ranking PASS; opens only
+  fresh fixed-model calibration, not blind history, Authority, Recourse,
+  controller execution or path tracking
