@@ -1,5 +1,14 @@
 # Current status
 
+> **Current fixed-1000 status - B1 mixed-history blind PASS (2026-08-22):**
+> `12/12` rollouts and `576/576` advances completed. Independent audit passed
+> 588 states, 576 actions and 564 observed-slew checks. Both composed histories
+> had `24/24` frozen-set containment; worst ranking regret was `0.001699 mm`
+> and minimum h8 progress `0.276302 mm`; both replays were exact. Primary and
+> independent SHA-256 are `e003bfad...3b1985` / `40b7a402...13f789`.
+> Development/calibration/blind evidence is complete for this finite V0. Next
+> is separate Authority/feedback design, not more model fitting.
+
 > **Current fixed-1000 status - C0 calibration PASS (2026-08-22):** all
 > `12/12` fresh negative-history/replay rollouts and `576/576` advances
 > completed. Independent raw audit passed 588 states, 576 actions and 564

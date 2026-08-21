@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, C0 complete):** the byte-fixed V0
+> **Unique fixed-1000 context (2026-08-22, B1 complete):** the finite direct
+> response/ranking artifact has now passed development leave-history-out,
+> fresh negative-history calibration and unopened two-conditioner mixed-
+> history blind evaluation without refit. It is intentionally a candidate
+> value/risk abstraction, not a point plant model. The next bottleneck is no
+> longer model capacity: it is whether a causal policy using exact 1 ms truth
+> observations and the frozen finite candidate set has control-aligned
+> Authority and a separately qualified continuation/Recourse. Those axes must
+> be tested independently before any feedback controller claim.
+
+> **Historical fixed-1000 context (2026-08-22, C0 complete):** the byte-fixed V0
 > finite response/ranking model survived fresh even-minus and odd-minus
 > conditioner histories without refit or interval widening. All held response
 > components, ranking, progress, signal, geometry, Ip and replay gates passed

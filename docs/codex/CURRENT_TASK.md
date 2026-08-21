@@ -1,6 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 C0 fresh calibration PASS /
+> **Unique active task (2026-08-22, fixed-1000 B1 blind PASS / Authority
+> design next):** B1 completed `12/12` authentic rollouts and `576/576`
+> advances. Independent raw reconstruction passed 588 states, 576 actions and
+> 564 observed-slew checks. Both unopened mixed histories achieved `24/24`
+> frozen V0 containment; maximum ranking regret was `0.001699 mm` and h8
+> weakest-best progress was at least `0.276302 mm`. V0 is now frozen after
+> development, fresh calibration and mixed-history blind PASS; no further
+> model capacity or data update is authorized. The sole active successor is
+> an independently frozen fixed-1000 Authority/feedback design using exact
+> current observation and hard action gates. Recourse remains a separate
+> execution prerequisite. Every older active block below is historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 C0 fresh calibration PASS /
 > mixed-history blind next):** C0 completed `12/12` authentic rollouts and
 > `576/576` advances. Independent raw reconstruction passed 588 states, 576
 > actions and 564 observed-slew checks. In both fresh negative conditioner

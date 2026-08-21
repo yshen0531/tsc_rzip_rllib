@@ -3290,3 +3290,24 @@
   `ONE_MS_NR1000C0_INDEPENDENT_PASS`
 - Classification: fresh fixed-model calibration PASS; opens one mixed-history
   blind design only, not refit, Authority, Recourse, control or path tracking
+
+## 2026-08-22 fixed-1000 B1 mixed-history blind
+
+- Design revision: `82289c13fd784c70a6ae0209af56b85312f125fa`
+- Implementation/execution revision:
+  `6646d54feec1de1fe3d3c939d81ef2e3b0be904b`
+- Server validation: focused `5/5`; all one-ms `792/792`
+- Authentic execution: `12/12` rollouts, `576/576` advances, 588 raw states
+- Independent audit: 576 action and 564 observed-slew checks, zero failures
+- `even_plus -> odd_minus`: containment `24/24`, regret `0.001699 mm`,
+  h8 progress `0.277947 mm`, best h4 condition/sigma `1.52094/0.211643 mm`
+- `even_minus -> odd_plus`: containment `24/24`, regret `0`,
+  h8 progress `0.276302 mm`, best h4 condition/sigma `1.56119/0.205992 mm`
+- Primary SHA-256:
+  `e003bfadef4d149498ebef2970bf5d0e429b76b238400ac09ed29527e63b1985`
+- Independent SHA-256:
+  `40b7a402499ebf6a27ac72b7111903ab2d7adf9a7d4a2fbb1b42ae86a213f789`
+- Routes: `ONE_MS_NR1000B1_FIXED_V0_MIXED_HISTORY_BLIND_PASS_AUTHORITY_DESIGN_ONLY` /
+  `ONE_MS_NR1000B1_INDEPENDENT_PASS`
+- Classification: finite fixed-model blind PASS; model evidence sequence
+  closes and opens separate Authority/feedback design only
