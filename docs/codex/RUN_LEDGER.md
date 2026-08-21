@@ -3311,3 +3311,18 @@
   `ONE_MS_NR1000B1_INDEPENDENT_PASS`
 - Classification: finite fixed-model blind PASS; model evidence sequence
   closes and opens separate Authority/feedback design only
+
+## 2026-08-22 fixed-1000 A0 sequential Authority design
+
+- Design SHA-256:
+  `e240ab8a8b1885cf7b3a51f4a975d58f2b559513b3b136ca33623f52a40c1023`
+- Frozen matrix: six fresh rollouts, 60 advances each; online nomination at
+  issues 24 and 36; matched q0/first-only branches; one full-path replay
+- Maximum budget: six resets / 360 attempts, no retry
+- Current execution count: zero TSC / zero plant advances
+- Remote storage decision: deleted only obsolete N0 raw tree
+  `artifacts/server_runs/rgeo_zgeo_1ms_1000_n0_20260822_2325e0aa_v1`
+  after confirming tracked compact/independent evidence; about 19 GB was
+  freed. The deleted raw is not locally recoverable except by rerun.
+- Classification: prospective Authority-L0 design only; not capture,
+  Recourse, controller qualification or path tracking

@@ -1,5 +1,16 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-22, fixed-1000 A0 design frozen):** the
+> sequential Authority-L0 design is frozen as six fresh 60-ms rollouts. At
+> issues 24 and 36 the byte-fixed V0 nominator must read the exact current
+> R/Z/Ip and causal history, recompute remaining waypoint error, and choose
+> one exact-return D1 macro without future TSC information. Matched q0 and
+> first-only branches isolate the two effects; one full path is replayed.
+> The maximum budget is 6 resets / 360 attempts with no retry. PASS is only
+> finite two-decision Authority-L0 and may open a separate feedback/Recourse
+> design; it is not capture, path tracking, recovery or controller
+> qualification. All older active blocks below are historical only.
+
 > **Unique active task (2026-08-22, fixed-1000 B1 blind PASS / Authority
 > design next):** B1 completed `12/12` authentic rollouts and `576/576`
 > advances. Independent raw reconstruction passed 588 states, 576 actions and

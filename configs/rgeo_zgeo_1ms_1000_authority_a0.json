@@ -1,0 +1,81 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-authority-a0-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_authority_a0_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 60,
+  "decision_issues": [24, 36],
+  "candidate_horizon": 8,
+  "candidates": ["even_minus", "even_plus", "odd_minus", "odd_plus"],
+  "waypoints_mm": {
+    "positive": [0.8, 0.2],
+    "negative": [-0.9, -1.0]
+  },
+  "rollout_ids": [
+    "q0_baseline",
+    "positive_first_only",
+    "positive_full",
+    "negative_first_only",
+    "negative_full",
+    "positive_full_replay"
+  ],
+  "maximum_reset_calls": 6,
+  "maximum_advance_attempts": 360,
+  "maximum_gotsc_calls": 360,
+  "maximum_verified_plant_advances": 360,
+  "retry_after_any_advance_attempt": "forbidden",
+  "design_path": "docs/codex/reports/RGEO_ZGEO_1MS_1000_AUTHORITY_A0_DESIGN.md",
+  "design_sha256": "e240ab8a8b1885cf7b3a51f4a975d58f2b559513b3b136ca33623f52a40c1023",
+  "b0_config_path": "configs/rgeo_zgeo_1ms_1000_baseline_b0.json",
+  "b0_config_sha256": "4f03648900e4793ba8b136993be01c2a77179ea6f94377de29fa15a8b3dc45d5",
+  "b0_result_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_result.json",
+  "b0_result_sha256": "d6eaa48c4e158c48831c34aeb71c51ac455e253fab8e2868d92ec93d402868de",
+  "b1_config_path": "configs/rgeo_zgeo_1ms_1000_value_b1.json",
+  "b1_config_sha256": "ef91fc5d9a01107c1263bbb75f9a77330255ffbd3aacf9ed96e369feb9dd8313",
+  "b1_result_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b1_20260822_6646d54f_v1_compact/result.json",
+  "b1_result_sha256": "e003bfadef4d149498ebef2970bf5d0e429b76b238400ac09ed29527e63b1985",
+  "b1_independent_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b1_20260822_6646d54f_v1_compact/independent_audit.json",
+  "b1_independent_sha256": "40b7a402499ebf6a27ac72b7111903ab2d7adf9a7d4a2fbb1b42ae86a213f789",
+  "v0_artifact_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_v0_20260822_3956181e_v1/model_artifact.json",
+  "v0_artifact_sha256": "7bcc8e216087479b8a90f757d198737cac759ab48327b83eac0d872bbde68f5b",
+  "decision_contract": {
+    "waypoint_anchor": "exact_current_rz_at_issue24",
+    "selection": "argmax_frozen_v0_h8_center_dot_remaining_rz_error",
+    "tie_break": "candidate_name_lexicographic",
+    "second_decision_uses_exact_state36": true,
+    "future_tsc_or_actual_current": "forbidden",
+    "effect_state_index": "issue_step_plus_one",
+    "maximum_hard_command_and_readback_slew_a": 0.3,
+    "macro_return": "exact_q0_before_next_macro"
+  },
+  "scientific_gates": {
+    "require_all_h4_h8_rz_ip_components_in_frozen_v0_interval": true,
+    "minimum_each_decision_h8_waypoint_projection_mm": 0.10,
+    "maximum_each_decision_absolute_ip_response_a": 400.0,
+    "require_positive_full_replay_exact": true,
+    "require_final_active_target_q0": true
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "data_roles": {
+    "all_primary_rows": "authority_qualification_only_zero_fit_weight",
+    "positive_full_replay": "integrity_only_zero_fit_weight",
+    "v0_artifact": "frozen_read_only_no_refit_or_widening",
+    "controller_expert_bc_dagger_rl": "forbidden",
+    "fixed_1100_data": "forbidden"
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000A0_OFFLINE_PASS_RUN_SEQUENTIAL_AUTHORITY_ONLY",
+    "offline_fail": "ONE_MS_NR1000A0_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000A0_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000A0_REPLAY_FAIL_STOP",
+    "model_interval_fail": "ONE_MS_NR1000A0_FIXED_V0_INTERVAL_FAIL_REDESIGN",
+    "authority_fail": "ONE_MS_NR1000A0_SEQUENTIAL_AUTHORITY_FAIL_REDESIGN",
+    "pass": "ONE_MS_NR1000A0_SEQUENTIAL_AUTHORITY_PASS_FEEDBACK_RECOURSE_DESIGN_ONLY"
+  }
+}

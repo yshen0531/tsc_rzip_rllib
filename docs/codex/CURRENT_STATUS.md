@@ -1,5 +1,13 @@
 # Current status
 
+> **Current fixed-1000 status - A0 design frozen (2026-08-22):** V0 remains
+> byte-fixed after B1. A0 prospectively fixes two relative waypoint commands,
+> online decisions at issues 24/36, six 60-ms fresh rollouts, matched
+> baselines, h4/h8 V0 containment/progress gates, exact q0 returns and one
+> exact replay. No A0 TSC has yet run. The remote obsolete N0 raw tree was
+> intentionally removed after its tracked compact evidence was retained,
+> freeing about 19 GB; D0/D1/D2/C0/B1 raw remain on the server.
+
 > **Current fixed-1000 status - B1 mixed-history blind PASS (2026-08-22):**
 > `12/12` rollouts and `576/576` advances completed. Independent audit passed
 > 588 states, 576 actions and 564 observed-slew checks. Both composed histories

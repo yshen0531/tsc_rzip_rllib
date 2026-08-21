@@ -1,5 +1,13 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, A0 next):** the model evidence
+> ladder is closed after V0 development/calibration/blind PASS. The project
+> now tests a two-decision sequential Authority-L0 contract: exact current
+> observation and history are used at issues 24 and 36 to nominate finite
+> exact-return macros toward two preregistered relative waypoints. This is a
+> deliberate bridge from static candidate prediction to feedback evidence,
+> while capture, Recourse and end-to-end path tracking remain separate gates.
+
 > **Unique fixed-1000 context (2026-08-22, B1 complete):** the finite direct
 > response/ranking artifact has now passed development leave-history-out,
 > fresh negative-history calibration and unopened two-conditioner mixed-
