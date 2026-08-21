@@ -6247,3 +6247,12 @@ and prospective `sprsina` semantic audit.
 > is read-only.  No long baseline, primitive, teacher, fit, calibration,
 > holdout or controller work is permitted until a reconstructed source passes
 > exact semantic replay and internal-time gates.
+
+> **Current fixed-1000 status -- R2 pending (2026-08-21):** R1 made exactly
+> one initial-run TSC call and failed before producing a state because its
+> checkpoint `inputa` requested restart (`IRST1=1`) while no restart file was
+> intentionally present. This is a frozen input-design failure, not a TSC or
+> plant conclusion. The newly authenticated full original input is 13,800
+> bytes, SHA-256 `0fce4f5f...10ae`, uses `IRST1=0`, and its four saved state
+> artifacts exactly match the target 1000-ms observables. R2 is frozen to this
+> input and is the only active stage. No R2 TSC result exists yet.

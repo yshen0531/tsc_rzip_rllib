@@ -1738,3 +1738,11 @@ holdout 的多步区间系统性欠覆盖；安全 hold/recovery 不成立；在
 > or correct R/Z/Ip files cannot substitute for a time-correct restart.  Until
 > this gate passes, there is no 1000-ms successor evidence and every model,
 > teacher, Authority, Recourse and feedback branch remains closed.
+
+> **R2 initial-input amendment (2026-08-21):** initial reconstruction must use
+> the hash-bound full non-restart 0--1.0000-s input (`IRST1=0`), not the
+> 1229-byte restart checkpoint input. The full input's saved state artifacts
+> must first equal the chosen 1000-ms observable state byte-for-byte. Two
+> isolated full runs and two fresh one-ms restart replays remain necessary;
+> neither a successful full run nor a correct source label alone qualifies
+> the interface. R1 is immutable input-design evidence and is not retried.

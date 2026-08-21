@@ -11375,3 +11375,21 @@ Section 0 are genuinely qualified.
 > counted before invocation, with no retry.  PASS authorizes only a new
 > canonical-source interface identity; failure after authentic initial
 > reconstruction is a genuine external restart-source blocker and must stop.
+
+> **Unique active route -- fixed-1000 restart reconstruction R2
+> (2026-08-21; supersedes R1):** R1 is final as
+> `ONE_MS_NR1000S0R1_INITIAL_RECONSTRUCTION_FAIL`. Its sole TSC invocation
+> received the 1229-byte restart-mode checkpoint input without a restart file
+> and stopped in `problem_size`; it created no reconstructed state and is not
+> retried. Read-only server forensics then found the original 13,800-byte
+> non-restart input (`Card00 IRST1=0`) under
+> `HH70-PCS-ENV-LOW-FIELD-SIDE/prd_2-2_1000ms`. Its saved geqdsk, output,
+> 14-coil and 48-wire artifacts are byte-identical to the selected -118/1000
+> state. R2 binds that full input and all matching artifacts by SHA-256/size.
+>
+> The sole active work is R2: server tests, a zero-TSC identity/clock/Card00
+> preflight, two isolated full initial runs, deterministic matched 1000-ms
+> restart construction, then two one-ms restart replays. Budget remains four
+> counted TSC invocations with no retry. Only route
+> `ONE_MS_NR1000S0R2_CANONICAL_1000_RESTART_QUALIFIED` may open a new interface
+> identity. Model, teacher, Authority, Recourse and feedback remain blocked.

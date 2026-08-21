@@ -2325,3 +2325,13 @@ from expert data.
 > project-owned reconstructed source may open the subsequent 1000-ms lineage;
 > neither the contaminated successor nor any 1100-ms trajectory has fit or
 > qualification weight.
+
+> **R2 reconstruction correction (2026-08-21; current):** the checkpoint
+> input used by R1 was itself restart-mode and cannot reconstruct an initial
+> trajectory without `sprsina`. R1 therefore ends as an initial-input design
+> FAIL after one call and zero reconstructed states. The original full
+> non-restart input has now been hash-bound together with four byte-identical
+> 1000-ms state artifacts. R2 may use only that full input for two isolated
+> reconstructions and may qualify only a project-owned 1000-ms restart plus
+> two one-ms replays. This correction changes no final goal and transfers no
+> 1100-ms response or model evidence.

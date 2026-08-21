@@ -7,6 +7,7 @@ from scripts import rgeo_zgeo_1ms_1000_restart_reconstruction as stage
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_1000_restart_reconstruction.json"
+CONFIG_R2 = ROOT / "configs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2.json"
 
 
 class Fixed1000RestartReconstructionTest(unittest.TestCase):
@@ -35,6 +36,16 @@ class Fixed1000RestartReconstructionTest(unittest.TestCase):
         row = json.loads(CONFIG.read_text(encoding="utf-8"))
         self.assertEqual(row["source_sprsina_sha256"], row["source_1100_sprsina_sha256"])
         self.assertEqual(len(row["source_sprsina_sha256"]), 64)
+
+    def test_r2_binds_full_nonrestart_input(self):
+        row = stage.load_contract(CONFIG_R2)
+        self.assertEqual(row["route_prefix"], "ONE_MS_NR1000S0R2")
+        self.assertEqual(row["initial_source_files"]["inputa"]["bytes"], 13800)
+        self.assertEqual(len(row["initial_source_files"]["inputa"]["sha256"]), 64)
+
+    def test_card00_parser_distinguishes_restart(self):
+        self.assertEqual(stage.card00_irst1_text("00  0.0000E+00\n"), 0)
+        self.assertEqual(stage.card00_irst1_text("00  1.0000E+00\n"), 1)
 
     def test_output_time_parser(self):
         text = "special R. Taylor output: cycle= 1 time = 1.0000E+00(s)\n"

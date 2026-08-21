@@ -54,7 +54,7 @@ def _dump(path: Path, payload: Any) -> None:
 
 def load_contract(path: Path) -> dict[str, Any]:
     row = json.loads(path.read_text(encoding="utf-8"))
-    expected = {
+    common = {
         "contract_version", "campaign_id", "intended_use", "route_prefix",
         "source_config", "source_sprsina_sha256", "source_1100_sprsina_sha256",
         "initial_reconstruction_runs", "restart_validation_runs",
@@ -62,10 +62,14 @@ def load_contract(path: Path) -> dict[str, Any]:
         "expected_initial_end_s", "expected_restart_start_s",
         "expected_restart_end_s", "maximum_tsc_invocations", "description",
     }
+    if row.get("contract_version") == "rgeo-zgeo-1ms-1000-restart-reconstruction-v1":
+        expected = common
+    elif row.get("contract_version") == "rgeo-zgeo-1ms-1000-restart-reconstruction-r2-v1":
+        expected = common | {"initial_source_folder", "initial_source_files"}
+    else:
+        raise ContractError("restart reconstruction contract version changed")
     if set(row) != expected:
         raise ContractError("restart reconstruction contract fields changed")
-    if row["contract_version"] != "rgeo-zgeo-1ms-1000-restart-reconstruction-v1":
-        raise ContractError("restart reconstruction contract version changed")
     if row["intended_use"] != "interface_validation":
         raise ContractError("restart reconstruction data role changed")
     if (row["initial_reconstruction_runs"], row["restart_validation_runs"],
@@ -74,6 +78,10 @@ def load_contract(path: Path) -> dict[str, Any]:
     if row["source_sprsina_sha256"] != row["source_1100_sprsina_sha256"]:
         raise ContractError("the contaminated source identity is not reproduced")
     return row
+
+
+def _route(contract: dict[str, Any], suffix: str) -> str:
+    return f"{contract['route_prefix']}_{suffix}"
 
 
 def _require_inside_repo(path: Path, *, label: str) -> Path:
@@ -107,6 +115,38 @@ def _validate_source_files(source_config: Path, source_folder: Path) -> dict[str
     return actual
 
 
+def _validate_file_identity(folder: Path, expected: dict[str, Any], *, label: str) -> dict[str, Any]:
+    if not isinstance(expected, dict) or not expected:
+        raise ContractError(f"{label} file identity is invalid")
+    actual: dict[str, Any] = {}
+    for name in sorted(expected):
+        item = folder / name
+        if not item.is_file():
+            raise ContractError(f"{label} file missing: {name}")
+        observed = {"sha256": _sha(item), "bytes": item.stat().st_size}
+        actual[name] = observed
+        if observed != expected[name]:
+            raise ContractError(f"{label} identity mismatch: {name}")
+    return actual
+
+
+def card00_irst1_text(text: str) -> int:
+    for line in text.splitlines():
+        if line[:2] == "00":
+            values = line[2:].split()
+            if not values:
+                break
+            return int(float(values[0]))
+    raise ContractError("Card00 IRST1 missing")
+
+
+def _card00_irst1(path: Path) -> int:
+    try:
+        return card00_irst1_text(path.read_text(encoding="utf-8"))
+    except ContractError as exc:
+        raise ContractError(f"Card00 IRST1 missing in {path}") from exc
+
+
 def preflight(config_path: Path, source_revision: str) -> dict[str, Any]:
     """Run every input/runtime/source check without invoking TSC."""
     result: dict[str, Any] = {
@@ -118,10 +158,11 @@ def preflight(config_path: Path, source_revision: str) -> dict[str, Any]:
         "failures": [],
     }
     try:
-        if re.fullmatch(r"[0-9a-f]{40}", source_revision) is None:
-            raise ContractError("source revision must be a full lowercase Git SHA-1")
         config_path = _require_inside_repo(config_path, label="config")
         contract = load_contract(config_path)
+        result["route"] = _route(contract, "INPUT_FAIL_NO_TSC")
+        if re.fullmatch(r"[0-9a-f]{40}", source_revision) is None:
+            raise ContractError("source revision must be a full lowercase Git SHA-1")
         source_config = _require_inside_repo(
             ROOT / contract["source_config"], label="source config"
         )
@@ -144,12 +185,34 @@ def preflight(config_path: Path, source_revision: str) -> dict[str, Any]:
         )
         if abs(min(original_times)) > 5e-7 or abs(max(original_times) - 1.0) > 5e-7:
             raise ContractError("authentic 1000 output internal time changed")
+        initial_source_folder = source_folder
+        initial_source_files = None
+        if "initial_source_folder" in contract:
+            initial_source_folder = Path(contract["initial_source_folder"]).resolve()
+            project_root = cfg.project_root.resolve()
+            if initial_source_folder != project_root and project_root not in initial_source_folder.parents:
+                raise ContractError("initial source folder escapes frozen project root")
+            initial_source_files = _validate_file_identity(
+                initial_source_folder, contract["initial_source_files"], label="initial source"
+            )
+            if _card00_irst1(initial_source_folder / "inputa") != 0:
+                raise ContractError("R2 initial input is not a non-restart Card00 input")
+            for name in ("geqdsk", "outputa", "coil_currents.csv", "wire_currents.csv"):
+                if _sha(initial_source_folder / name) != _sha(source_folder / name):
+                    raise ContractError(f"initial source state artifact differs: {name}")
+            initial_times = output_times_s(
+                (initial_source_folder / "outputa").read_text(errors="ignore")
+            )
+            if abs(min(initial_times)) > 5e-7 or abs(max(initial_times) - 1.0) > 5e-7:
+                raise ContractError("initial source output internal time changed")
         result.update({
             "passed": True,
-            "route": "ONE_MS_NR1000S0R1_OFFLINE_PASS",
+            "route": _route(contract, "OFFLINE_PASS"),
             "contract": contract,
             "source_config": str(source_config),
             "source_folder": str(source_folder),
+            "initial_source_folder": str(initial_source_folder),
+            "initial_source_files": initial_source_files,
             "source_files": source_files,
             "source_offline_route": source_gate["route"],
             "source_output_time_s": {
@@ -174,7 +237,8 @@ def output_times_s(text: str) -> tuple[float, ...]:
     return values
 
 
-def semantic(folder: Path, cfg: TSCConfig, *, time_ms: int = 1000) -> dict[str, Any]:
+def semantic(folder: Path, cfg: TSCConfig, *, time_ms: int = 1000,
+             require_card15: bool = True) -> dict[str, Any]:
     required = ("inputa", "geqdsk", "outputa", "coil_currents.csv", "wire_currents.csv")
     missing = [name for name in required if not (folder / name).is_file()]
     if missing:
@@ -192,7 +256,8 @@ def semantic(folder: Path, cfg: TSCConfig, *, time_ms: int = 1000) -> dict[str, 
         "ip_a": signal.ip_a,
         "coil_a": [float(value) for value in _exact_coil_currents_a(folder / "coil_currents.csv", cfg)],
         "wire_a": _wire(folder / "wire_currents.csv", cfg),
-        "card15_fields": list(_card15_fields(folder / "inputa")),
+        "card15_fields": (list(_card15_fields(folder / "inputa"))
+                          if require_card15 else None),
         "artifact_sha256": {name: _sha(folder / name) for name in required},
     }
 
@@ -224,7 +289,7 @@ def _note_tsc_invocation(counters: dict[str, Any], maximum: int) -> None:
     counters["tsc_invocations"] += 1
 
 
-def _run_initial(cfg: TSCConfig, source_folder: Path, destination: Path, name: str,
+def _run_initial(cfg: TSCConfig, initial_source_folder: Path, destination: Path, name: str,
                  counters: dict[str, Any], maximum: int) -> dict[str, Any]:
     runner = TSCStepRunner(cfg, worker_id=f"nr1000_reconstruct_{name}", keep_workspace=False)
     try:
@@ -234,7 +299,7 @@ def _run_initial(cfg: TSCConfig, source_folder: Path, destination: Path, name: s
             item = runtime / stale
             if item.exists():
                 item.unlink()
-        shutil.copy2(source_folder / "inputa", runtime / "inputa")
+        shutil.copy2(initial_source_folder / "inputa", runtime / "inputa")
         if (runtime / "sprsina").exists():
             raise ContractError("initial reconstruction must not load sprsina")
         _note_tsc_invocation(counters, maximum)
@@ -318,15 +383,18 @@ def execute(config_path: Path, source_revision: str, output_dir: Path) -> dict[s
         "route": "ONE_MS_NR1000S0R1_INPUT_FAIL_NO_TSC",
         "tsc_invocation_attempts": 0, "tsc_invocations": 0, "failures": [],
     }
+    contract: dict[str, Any] | None = None
     try:
         offline = preflight(config_path, source_revision)
         result["offline_preflight"] = offline
         if not offline["passed"]:
             raise ContractError("restart reconstruction offline preflight failed")
         contract = offline["contract"]
+        result["route"] = _route(contract, "INPUT_FAIL_NO_TSC")
         source_config = Path(offline["source_config"])
         cfg = TSCConfig.from_json(source_config)
         source_folder = cfg.simulation_root / cfg.start_folder
+        initial_source_folder = Path(offline["initial_source_folder"])
         source_state = semantic(source_folder, cfg)
 
         recon_root = output_dir / "initial_reconstruction"
@@ -334,18 +402,18 @@ def execute(config_path: Path, source_revision: str, output_dir: Path) -> dict[s
         for index in range(2):
             destination = recon_root / f"r{index}"
             row = _run_initial(
-                cfg, source_folder, destination, f"r{index}", result,
+                cfg, initial_source_folder, destination, f"r{index}", result,
                 int(contract["maximum_tsc_invocations"]),
             )
             times = output_times_s((destination / "outputa").read_text(errors="ignore"))
             if abs(min(times)) > 5e-7 or abs(max(times) - 1.0) > 5e-7:
                 raise ContractError(f"initial reconstruction r{index} internal time mismatch")
-            row["semantic"] = semantic(destination, cfg)
+            row["semantic"] = semantic(destination, cfg, require_card15=False)
             row["sprsoua_sha256"] = _sha(destination / "sprsoua")
             row["source_failures"] = semantic_failures(source_state, row["semantic"])
             recon_rows.append(row)
             if row["source_failures"]:
-                result["route"] = "ONE_MS_NR1000S0R1_SOURCE_SEMANTIC_MISMATCH"
+                result["route"] = _route(contract, "SOURCE_SEMANTIC_MISMATCH")
                 raise ContractError(f"initial reconstruction r{index} differs from source")
         if recon_rows[0]["sprsoua_sha256"] != recon_rows[1]["sprsoua_sha256"]:
             raise ContractError("reconstructed sprsoua replay mismatch")
@@ -360,7 +428,7 @@ def execute(config_path: Path, source_revision: str, output_dir: Path) -> dict[s
         _copy_canonical(source_folder, recon_root / "r0", canonical)
         canonical_state = semantic(canonical, cfg)
         if semantic_failures(source_state, canonical_state):
-            result["route"] = "ONE_MS_NR1000S0R1_SOURCE_SEMANTIC_MISMATCH"
+            result["route"] = _route(contract, "SOURCE_SEMANTIC_MISMATCH")
             raise ContractError("canonical source differs from authentic 1000 state")
 
         restart_cfg = TSCConfig.from_json(source_config)
@@ -386,11 +454,11 @@ def execute(config_path: Path, source_revision: str, output_dir: Path) -> dict[s
             )
             restart_rows.append(row)
             if not row["passed"]:
-                result["route"] = "ONE_MS_NR1000S0R1_RESTART_1MS_FAIL"
+                result["route"] = _route(contract, "RESTART_1MS_FAIL")
                 raise ContractError(f"{name} failed")
         for index in (0, 1):
             if semantic_failures(restart_rows[0]["states"][index], restart_rows[1]["states"][index]):
-                result["route"] = "ONE_MS_NR1000S0R1_RESTART_1MS_FAIL"
+                result["route"] = _route(contract, "RESTART_1MS_FAIL")
                 raise ContractError(f"restart replay state{index} mismatch")
         result["restart_validation"] = restart_rows
         result["canonical_source"] = {
@@ -399,11 +467,12 @@ def execute(config_path: Path, source_revision: str, output_dir: Path) -> dict[s
             "semantic": canonical_state,
         }
         result["passed"] = True
-        result["route"] = "ONE_MS_NR1000S0R1_CANONICAL_1000_RESTART_QUALIFIED"
+        result["route"] = _route(contract, "CANONICAL_1000_RESTART_QUALIFIED")
     except Exception as exc:
         result["failures"].append(f"{type(exc).__name__}:{exc}")
-        if result["tsc_invocations"] and result["route"] == "ONE_MS_NR1000S0R1_INPUT_FAIL_NO_TSC":
-            result["route"] = "ONE_MS_NR1000S0R1_INITIAL_RECONSTRUCTION_FAIL"
+        if (result["tsc_invocations"] and contract is not None
+                and result["route"] == _route(contract, "INPUT_FAIL_NO_TSC")):
+            result["route"] = _route(contract, "INITIAL_RECONSTRUCTION_FAIL")
     result["failures"] = list(dict.fromkeys(result["failures"]))
     _dump(output_dir / "result.json", result)
     return result

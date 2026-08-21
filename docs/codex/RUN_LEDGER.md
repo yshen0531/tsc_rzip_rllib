@@ -1,5 +1,22 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000-ms restart reconstruction R1
+
+- Implementation revisions: `ebb5f50c / c9cf6c74 / 47b5edc3`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_reconstruction_47b5edc3_v2`
+- Validation: focused `20/20`; all one-ms `723/723`; zero-TSC preflight PASS
+- Execution: exactly one counted TSC invocation; no retry
+- Result: `ONE_MS_NR1000S0R1_INITIAL_RECONSTRUCTION_FAIL`
+- Failure: full reconstruction was incorrectly seeded by the 1229-byte
+  restart checkpoint `inputa` (`IRST1=1`) without a restart file; TSC stopped
+  in `problem_size` and produced no reconstructed state
+- Classification: initial-input design FAIL; not runtime, plant, model,
+  Authority, Recourse, controller or reachability evidence
+- R2 basis: original 13,800-byte non-restart input SHA-256
+  `0fce4f5fd5da6e848d93c709fc1fc5f338a8772e27bfaf3890fbacbc36df10ae`
+  with four saved state artifacts byte-identical to the selected 1000-ms state
+
 ## 2026-08-21 fixed-1000-ms first interface attempt
 
 - Branch/checkpoints: `codex/rgeo-zgeo-1ms-1000ms-control`,
