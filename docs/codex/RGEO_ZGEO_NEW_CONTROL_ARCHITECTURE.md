@@ -18,6 +18,15 @@
 > conjunction of model qualification, Authority-L0, Recourse-L1 and the exact
 > hard interface.
 >
+> **Post-ID2Z31 amendment (2026-08-21; supersedes a narrow event guard):**
+> fresh mapping and exact replay show the R event phase is deterministic but
+> action-age dependent. Complete older trajectories show q+ actions issued
+> 9--17 ms earlier can shift the event outside the old h1--h8 evaluation.
+> Consequently the learned object must include exact-return and delayed-tail
+> outcomes plus an explicit hybrid/set-valued event representation. The next
+> D0 may isolate a post-event domain prospectively, but no smooth point-tube
+> widening or controller execution is allowed from the current evidence.
+>
 > **Post-ID2Z25 route decision (2026-08-21):** retain early full-F transport
 > but do not add residuals to its saturated increment.  The next prospective
 > control coordinate transitions to a slack moving allocation and uses the

@@ -1,0 +1,54 @@
+{
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 0,
+  "reset_calls": 0,
+  "schema_version": "rgeo-zgeo-1ms-id2z31-event-phase-discriminator-offline-v1",
+  "source_revision": "c5e8bc8f5f7ce6d0fdb3a4cde37dc77e6905703d",
+  "stage_config_sha256": "f4bec9a86014ea8edbee89d8848e768ddb2f52bbf7116c8d87119df9101c86de",
+  "stream_checks": [
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.1,
+      "passed": true,
+      "rollout_id": "fresh_event_baseline_transition_center"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.38,
+      "passed": true,
+      "rollout_id": "event_issue43__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.4,
+      "passed": true,
+      "rollout_id": "event_issue44__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.4,
+      "passed": true,
+      "rollout_id": "replay_event_issue44__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.38,
+      "passed": true,
+      "rollout_id": "event_issue45__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "maximum_issued_delta_a": 0.3,
+      "minimum_absolute_current_headroom_a": 105.4,
+      "passed": true,
+      "rollout_id": "event_issue44__q_z__minus_then_return"
+    }
+  ]
+}

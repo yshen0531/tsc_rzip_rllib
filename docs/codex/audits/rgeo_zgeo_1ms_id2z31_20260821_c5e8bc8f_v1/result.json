@@ -1,0 +1,158 @@
+{
+  "advance_attempts": 438,
+  "claim_boundary": "Finite simulator-only qZ event-phase map; zero model fitting and no feedback, model qualification, Authority-L0, Recourse-L1, source capture, arbitrary waypoint/path, position generalization or R_mid claim.",
+  "complete_rollouts": 6,
+  "event_map": {
+    "families": [
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          }
+        ],
+        "family_id": "fresh_event_baseline_transition_center",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00031817849999993264,
+            "effect_state_index": 49
+          }
+        ],
+        "family_id": "event_issue43__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00031980999999992044,
+            "effect_state_index": 49
+          }
+        ],
+        "family_id": "event_issue44__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00031980999999992044,
+            "effect_state_index": 49
+          }
+        ],
+        "family_id": "replay_event_issue44__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00033974949999993065,
+            "effect_state_index": 50
+          }
+        ],
+        "family_id": "event_issue45__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00034714400000002144,
+            "effect_state_index": 50
+          }
+        ],
+        "family_id": "event_issue44__q_z__minus_then_return",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "threshold_m": 0.0002,
+    "window_effect_states": [
+      47,
+      48,
+      49,
+      50,
+      51,
+      52
+    ]
+  },
+  "execution_integrity_passed": true,
+  "future_feedback_records_read": 0,
+  "missing_required_artifacts": [],
+  "models_fit_or_updated": 0,
+  "passed": true,
+  "plant_advance_gotsc_calls": 438,
+  "prefix_checks": [
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "fresh_event_baseline_transition_center"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "event_issue43__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "event_issue44__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "replay_event_issue44__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "event_issue45__q_z__plus_then_return"
+    },
+    {
+      "failures": [],
+      "passed": true,
+      "rollout_id": "event_issue44__q_z__minus_then_return"
+    }
+  ],
+  "raw_integrity_passed": true,
+  "replay_metrics": {
+    "failures": [],
+    "passed": true
+  },
+  "required_artifact_bytes": 26148458256,
+  "required_artifact_files": 2220,
+  "required_artifact_inventory_sha256": "7c0ba90c598d1fe01ddc9212dafb7ca818beefdd4843a1a60674fe6a52fcc087",
+  "reset_calls": 6,
+  "rollouts_started": 6,
+  "route": "ONE_MS_ID2Z31_EVENT_PHASE_MAP_PASS_GUARD_DESIGN_ONLY",
+  "run_root_isolation": {
+    "configured_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z31_20260821_c5e8bc8f_v1/rollouts",
+    "historical_default_forbidden": true,
+    "output": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z31_20260821_c5e8bc8f_v1",
+    "passed": true,
+    "required_run_root": "/home/yangshen0711/tsc_all/tsc_rzip_rllib/rgeo_zgeo_1ms_id2z31_20260821_c5e8bc8f_v1/rollouts",
+    "verified_before_runner_construction": true
+  },
+  "schema_version": "rgeo-zgeo-1ms-id2z31-event-phase-discriminator-result-v1",
+  "source_revision": "c5e8bc8f5f7ce6d0fdb3a4cde37dc77e6905703d",
+  "stage_config_sha256": "f4bec9a86014ea8edbee89d8848e768ddb2f52bbf7116c8d87119df9101c86de",
+  "storage_gate": {
+    "estimated_free_bytes_after_run": 134854337536,
+    "estimated_raw_bytes": 30000000000,
+    "free_bytes_before_run": 164854337536,
+    "passed": true
+  },
+  "verified_plant_advances": 438
+}

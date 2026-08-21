@@ -1,6 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-21, ID2Z30 final / event-aware successor
+> **Unique active task (2026-08-21, ID2Z31 final / delayed-tail D0 next):**
+> ID2Z31 completed `6/6`, `438/438` with exact replay and independent raw
+> audit. qZ+ at issues 43/44 deterministically advanced the isolated R event
+> from state50 to49, while issue45 and qZ-@44 retained state50. Complete
+> ID2Z27/30 compacts further show qR+/qZ+ issued at 32/36/40 can also shift the
+> same later event; the old h1--h8 evaluator never observed it. A narrow guard
+> is therefore rejected. The sole active task is a new, prospectively
+> fit-eligible post-event signed D0 campaign whose outcome window includes the
+> exact return and delayed tail. No model refit, feedback, Authority-L0 or
+> Recourse execution is authorized before that D0 and a new model identity.
+> Older blocks below are historical.
+
+> **Historical active task (2026-08-21, ID2Z30 final / event-aware successor
 > design):** ID2Z30 completed `10/10` fresh trajectories and `730/730` plant
 > advances with exact execution, prefix, Card15, raw and replay integrity.
 > Issue-36 calibration passed, but the unopened issue-44 family failed at

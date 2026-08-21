@@ -1,6 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique new-round context (2026-08-21, ID2Z30 final):** the fresh q-model
+> **Unique new-round context (2026-08-21, ID2Z31 final):** a fresh six-row map
+> and exact replay prove the state49/50 R event is a deterministic finite
+> action-age/phase interaction. Full ID2Z27/30 compact trajectories show that
+> positive q actions issued well before the event can also advance it, whereas
+> the former model was evaluated only through h8. Do not patch this with a
+> narrow issue guard or a larger smooth tube. The next development identity
+> must observe signed post-event actions through exact return and delayed tail
+> before fitting a hybrid/set-valued successor. Control, Authority and
+> Recourse remain closed independent gates.
+
+> **Historical new-round context (2026-08-21, ID2Z30 final):** the fresh q-model
 > campaign completed cleanly, calibration passed, and blind validation failed
 > closed at `94/96` calibrated-tube containment. The failure is localized to
 > q_Z+ advancing a one-frame R event by one millisecond; it is not a generic

@@ -1,6 +1,14 @@
 # Current status
 
-> **Current status (2026-08-21, ID2Z30 final):** fresh calibration passed but
+> **Current status (2026-08-21, ID2Z31 final):** the finite event-phase map
+> passed with `6/6`, `438/438`, exact issue-44 replay and independent raw
+> agreement. The event is deterministic but depends on axis/sign/issue age.
+> Older full trajectories show positive q actions can shift it even when
+> issued 9--17 ms earlier, outside the old h1--h8 evaluation window. Current
+> work is a fresh post-event signed D0 with return/tail outcomes, not a narrow
+> guard, wider tube or larger network. Feedback remains closed.
+
+> **Historical status (2026-08-21, ID2Z30 final):** fresh calibration passed but
 > fresh blind validation failed closed. All `10/10` rollouts and `730/730`
 > advances completed; execution, exact action, prefix, replay, raw and
 > independent audit gates passed. Blind containment was `94/96`, with the

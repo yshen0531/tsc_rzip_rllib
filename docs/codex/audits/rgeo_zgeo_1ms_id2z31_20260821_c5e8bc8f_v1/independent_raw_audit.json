@@ -1,0 +1,106 @@
+{
+  "audit_passed": true,
+  "claim_boundary": "Finite simulator-only qZ event-phase map; zero model fitting and no feedback, model qualification, Authority-L0, Recourse-L1, source capture, arbitrary waypoint/path, position generalization or R_mid claim.",
+  "failures": [],
+  "models_fit_or_updated": 0,
+  "plant_advances": 438,
+  "primary_sha256": "1a9a9cdb7754fa1c10c663cf8a4013cf8ae970dad89527e063a433e98d011f25",
+  "recomputed_event_map": {
+    "families": [
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.0003432865000000396,
+            "effect_state_index": 50
+          }
+        ],
+        "family_id": "fresh_event_baseline_transition_center",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00031817849999993264,
+            "effect_state_index": 49
+          }
+        ],
+        "family_id": "event_issue43__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00031980999999992044,
+            "effect_state_index": 49
+          }
+        ],
+        "family_id": "event_issue44__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00031980999999992044,
+            "effect_state_index": 49
+          }
+        ],
+        "family_id": "replay_event_issue44__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00033974949999993065,
+            "effect_state_index": 50
+          }
+        ],
+        "family_id": "event_issue45__q_z__plus_then_return",
+        "passed": true
+      },
+      {
+        "complete": true,
+        "event_count": 1,
+        "events": [
+          {
+            "delta_r_m": 0.00034714400000002144,
+            "effect_state_index": 50
+          }
+        ],
+        "family_id": "event_issue44__q_z__minus_then_return",
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "threshold_m": 0.0002,
+    "window_effect_states": [
+      47,
+      48,
+      49,
+      50,
+      51,
+      52
+    ]
+  },
+  "recomputed_replay_metrics": {
+    "failures": [],
+    "passed": true
+  },
+  "recomputed_route": "ONE_MS_ID2Z31_EVENT_PHASE_MAP_PASS_GUARD_DESIGN_ONLY",
+  "reparsed_required_artifacts": 2220,
+  "reparsed_required_bytes": 26148458256,
+  "reparsed_rollouts": 6,
+  "reparsed_states": 444,
+  "schema_version": "rgeo-zgeo-1ms-id2z31-event-phase-discriminator-independent-v1",
+  "source_revision": "c5e8bc8f5f7ce6d0fdb3a4cde37dc77e6905703d",
+  "tsc_calls": 438
+}
