@@ -78,7 +78,9 @@ def load(config_path: Path) -> tuple[dict[str, Any], TSCConfig, list[tuple[str, 
     files = [baseline_path]
     rows: list[tuple[str, Path, dict[str, Any]]] = []
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
-    if baseline.get("repeat_index") != 0 or not baseline.get("passed"):
+    if baseline.get("repeat_index") not in (None, 0) or not baseline.get("passed") or baseline.get(
+        "data_role"
+    ) != "development_fit_eligible_baseline_weight_1":
         raise InputIntegrityError("M0 baseline role is not primary development")
     rows.append(("b0", baseline_path, baseline))
     excluded = tuple(stage["exclude_filename_substrings"])
