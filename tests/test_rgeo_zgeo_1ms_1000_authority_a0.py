@@ -68,6 +68,12 @@ class AuthorityA0Tests(unittest.TestCase):
                 center = self.artifact["model"]["candidates"][candidate][str(horizon)]["center_rz_ip"]
                 rows[full_id]["states"][origin + horizon] = {
                     "r_geo_m": center[0] / 1000, "z_geo_m": center[1] / 1000, "ip_a": center[2]}
+        for path in ("positive", "negative"):
+            first = rows[f"{path}_first_only"]
+            full = rows[f"{path}_full"]
+            for index in range(37):
+                if index not in (40, 44):
+                    full["states"][index] = copy.deepcopy(first["states"][index])
         metrics = a0.scientific_metrics(rows, self.stage, self.artifact)
         self.assertTrue(metrics["passed"])
         broken = copy.deepcopy(rows)
