@@ -6,7 +6,12 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import sys
 from typing import Sequence
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from scripts import rgeo_zgeo_1ms_id2z33_corrected_moving_center_d0 as primary
 from scripts import rgeo_zgeo_1ms_id2z32_post_event_delayed_tail_d0_independent as old
