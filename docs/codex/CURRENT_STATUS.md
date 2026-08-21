@@ -1,6 +1,18 @@
 # Current status
 
-> **Current fixed-1000 status - A0 sequential Authority PASS (2026-08-22):**
+> **Current fixed-1000 status - F0 tracking FAIL / F1 frozen (2026-08-22):**
+> F0 executed `4/4` rollouts and `256/256` advances without interface or hard-
+> safety failure. Independent audit passed 260 raw states, 256 actions and 252
+> observed slews; q0 and path replay were exact. All six position errors were
+> only `0.0073--0.1658 mm`, but the two issue-48 choices had frozen predicted
+> progress `-0.001864/-0.003741 mm`, so the preregistered scientific route is
+> `ONE_MS_NR1000F0_FINITE_Q0_RELATIVE_TRACKING_FAIL_REDESIGN`. Primary/audit
+> SHA-256 are `ab9c16a1...248a0e` / `e78291db...f4c25`. F1 is the sole repair:
+> q0 no-op inside the unchanged 0.35-mm deadband, positive-progress active
+> macros only outside, plus a state64 persistence gate. No model refit,
+> threshold tuning, Recourse or arbitrary-path claim is open.
+
+> **Historical fixed-1000 status - A0 sequential Authority PASS (2026-08-22):**
 > six rollouts and 360/360 advances completed; independent audit passed 366
 > states, 360 actions and 354 observed slews. Four decisions all passed the
 > frozen V0 h4/h8 intervals and the 0.10-mm progress gate. Positive-path

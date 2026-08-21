@@ -1,5 +1,13 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-ID2Z34 amendment (2026-08-21):** development rejected the smooth
+> **Fixed-1000 F0/F1 amendment (2026-08-22):** finite path control now has an
+> explicit abstention layer. Exact observation recentering does not imply that
+> an active macro must be issued: inside a preregistered terminal deadband the
+> controller may retain exact q0; outside it an active candidate must have
+> strictly positive predicted progress or fail closed. F0 proved why this is
+> necessary. F1 is a single bounded repair, not a threshold ladder. Recourse-
+> L1 remains independent and is required before any longer in-loop execution.
+>
+> **Historical post-ID2Z34 amendment (2026-08-21):** development rejected the smooth
 > response point model and selected one sparse event-set successor. The
 > payload is frozen but not calibrated: it must pass a new intermediate-phase
 > calibration and unopened whole-family blind validation before any shadow

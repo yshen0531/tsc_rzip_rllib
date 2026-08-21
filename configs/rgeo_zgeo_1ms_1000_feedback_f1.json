@@ -1,0 +1,79 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-feedback-f1-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_feedback_f1_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 64,
+  "decision_issues": [24, 36, 48],
+  "endpoint_states": [32, 44, 56],
+  "terminal_state": 64,
+  "candidate_horizon": 8,
+  "active_candidates": ["even_minus", "even_plus", "odd_minus", "odd_plus"],
+  "noop_candidate": "q0_noop",
+  "paths_mm_relative_q0": {
+    "path_a": [[0.28, 0.0], [-0.12, -0.90], [-0.30, -0.75]],
+    "path_b": [[-0.30, 0.0], [0.12, 0.90], [0.30, 0.75]]
+  },
+  "rollout_ids": ["q0_baseline", "path_a", "path_b", "path_a_replay"],
+  "maximum_reset_calls": 4,
+  "maximum_advance_attempts": 256,
+  "maximum_gotsc_calls": 256,
+  "maximum_verified_plant_advances": 256,
+  "retry_after_any_advance_attempt": "forbidden",
+  "design_path": "docs/codex/reports/RGEO_ZGEO_1MS_1000_FEEDBACK_F1_DESIGN.md",
+  "design_sha256": "a31b8b2435d5491caaf1c5f3f9fcbe4625b7bcd4da3906ebb1fe3804855f60b8",
+  "f0_config_path": "configs/rgeo_zgeo_1ms_1000_feedback_f0.json",
+  "f0_config_sha256": "4774da444fb79cbd610a05aa0524cdbb5d76b0dfb12d6866b5cead1a9561a611",
+  "f0_result_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_f0_20260822_8ca2f999_v1_compact/result.json",
+  "f0_result_sha256": "ab9c16a1ebf7bf8c854d6b56e0695a461870c9258bee0c2d9a990c4f37248a0e",
+  "f0_independent_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_f0_20260822_8ca2f999_v1_compact/independent_audit.json",
+  "f0_independent_sha256": "e78291db93959bee756dea45d8be3234639a1101a29c7a4da1f11466776f4c25",
+  "decision_contract": {
+    "reference": "frozen_B0_q0_same_state",
+    "deadband_rule": "current_checkpoint_error_norm_le_0p35_mm_select_exact_q0_noop",
+    "outside_deadband_rule": "minimum_predicted_error_active_candidate_only_if_strictly_positive_progress_else_stop_before_issue",
+    "tie_break": "candidate_name_lexicographic",
+    "exact_current_observation_before_each_decision": true,
+    "future_tsc_or_actual_current": "forbidden",
+    "effect_state_index": "issue_step_plus_one",
+    "maximum_hard_command_and_readback_slew_a": 0.3,
+    "macro_return": "mandatory_exact_q0"
+  },
+  "scientific_gates": {
+    "deadband_error_norm_mm": 0.35,
+    "maximum_each_checkpoint_rz_error_norm_mm": 0.35,
+    "maximum_each_checkpoint_axis_error_mm": 0.30,
+    "maximum_selected_predicted_absolute_ip_response_a": 400.0,
+    "require_active_macro_strictly_positive_predicted_progress": true,
+    "require_noop_only_inside_deadband": true,
+    "require_final_command_at_state64": true,
+    "require_fresh_q0_exact_b0_replay": true,
+    "require_path_a_exact_replay": true,
+    "require_final_active_target_q0": true
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "data_roles": {
+    "path_rows": "finite_feedback_qualification_only_zero_fit_weight",
+    "replays": "integrity_only_zero_fit_weight",
+    "f0_evidence": "design_and_failure_diagnosis_only_zero_fit_weight",
+    "v0_artifact": "frozen_read_only_no_refit_or_widening",
+    "controller_expert_bc_dagger_rl": "forbidden",
+    "fixed_1100_data": "forbidden"
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000F1_OFFLINE_PASS_RUN_DEADBAND_FEEDBACK_ONLY",
+    "offline_fail": "ONE_MS_NR1000F1_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000F1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "decision_refusal": "ONE_MS_NR1000F1_OUTSIDE_DEADBAND_NO_POSITIVE_ACTION_STOP",
+    "reference_fail": "ONE_MS_NR1000F1_Q0_REFERENCE_REPLAY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000F1_PATH_REPLAY_FAIL_STOP",
+    "tracking_fail": "ONE_MS_NR1000F1_DEADBAND_TRACKING_FAIL_TAIL_RECOURSE_REDESIGN",
+    "pass": "ONE_MS_NR1000F1_DEADBAND_TRACKING_PASS_RECOURSE_DESIGN_ONLY"
+  }
+}

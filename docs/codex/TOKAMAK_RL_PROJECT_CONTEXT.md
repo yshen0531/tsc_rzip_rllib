@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, A0 complete):** the frozen V0
+> **Unique fixed-1000 context (2026-08-22, F0 complete):** the first finite
+> q0-relative feedback sentinel was much closer to path tracking than its FAIL
+> token alone suggests: all six commanded checkpoints were within 0.166 mm,
+> q0/replay integrity passed, and no hard failure occurred. The failure is a
+> precise policy bug: at the third decision the observed state was already in
+> the tolerance deadband, yet the finite grammar had no abstention action and
+> forced a full macro whose frozen progress was negative. One prospective F1
+> tests deadband q0-noop plus a state64 persistence gate. If it fails, this
+> local repair route closes and the project must model the no-action tail and
+> Recourse/continuation explicitly rather than tune another macro.
+
+> **Historical fixed-1000 context (2026-08-22, A0 complete):** the frozen V0
 > nominator has now survived two sequential observation-recentered decisions
 > in both preregistered waypoint directions. The second negative-path action
 > changed to positive-R after reading the actual state, which is genuine

@@ -1,0 +1,159 @@
+{
+  "advance_attempts": 256,
+  "claim_boundary": "fixed-1000 finite q0-relative three-checkpoint feedback only; no absolute hold/recourse",
+  "created_utc": "2026-08-21T23:10:56.503532+00:00",
+  "gotsc_calls": 256,
+  "kind": "authentic_fixed_1000_finite_q0_relative_feedback",
+  "metrics": {
+    "passed": false,
+    "path_a_replay": {
+      "failures": [],
+      "passed": true
+    },
+    "paths": [
+      {
+        "checkpoints": [
+          {
+            "actual_rz_mm": [
+              0.2922315000000708,
+              0.0
+            ],
+            "candidate": "even_minus",
+            "command_rz_mm": [
+              0.28,
+              0.0
+            ],
+            "error_norm_mm": 0.012231500000070783,
+            "error_rz_mm": [
+              0.012231500000070783,
+              0.0
+            ],
+            "ordinal": 0,
+            "passed": true,
+            "predicted_progress_mm": 0.26776849999998253,
+            "state_index": 32
+          },
+          {
+            "actual_rz_mm": [
+              -0.12465600000007271,
+              -0.9174150000000048
+            ],
+            "candidate": "odd_minus",
+            "command_rz_mm": [
+              -0.12,
+              -0.9
+            ],
+            "error_norm_mm": 0.018026662503104727,
+            "error_rz_mm": [
+              -0.004656000000072713,
+              -0.017415000000004732
+            ],
+            "ordinal": 1,
+            "passed": true,
+            "predicted_progress_mm": 0.7434617354397524,
+            "state_index": 44
+          },
+          {
+            "actual_rz_mm": [
+              -0.4449619999999186,
+              -0.7910510000000148
+            ],
+            "candidate": "even_plus",
+            "command_rz_mm": [
+              -0.3,
+              -0.75
+            ],
+            "error_norm_mm": 0.1506624241308284,
+            "error_rz_mm": [
+              -0.1449619999999186,
+              -0.041051000000014826
+            ],
+            "ordinal": 2,
+            "passed": false,
+            "predicted_progress_mm": -0.001864034134860637,
+            "state_index": 56
+          }
+        ],
+        "passed": false,
+        "path": "path_a"
+      },
+      {
+        "checkpoints": [
+          {
+            "actual_rz_mm": [
+              -0.3073330000000851,
+              0.0
+            ],
+            "candidate": "even_plus",
+            "command_rz_mm": [
+              -0.3,
+              0.0
+            ],
+            "error_norm_mm": 0.0073330000000851325,
+            "error_rz_mm": [
+              -0.0073330000000851325,
+              0.0
+            ],
+            "ordinal": 0,
+            "passed": true,
+            "predicted_progress_mm": 0.29266699999992374,
+            "state_index": 32
+          },
+          {
+            "actual_rz_mm": [
+              0.13522299999999632,
+              0.9104895000000002
+            ],
+            "candidate": "odd_plus",
+            "command_rz_mm": [
+              0.12,
+              0.9
+            ],
+            "error_norm_mm": 0.018487004604583492,
+            "error_rz_mm": [
+              0.015222999999996323,
+              0.010489500000000151
+            ],
+            "ordinal": 1,
+            "passed": true,
+            "predicted_progress_mm": 0.7432143898580729,
+            "state_index": 44
+          },
+          {
+            "actual_rz_mm": [
+              0.4502830000000131,
+              0.8199319999999954
+            ],
+            "candidate": "even_minus",
+            "command_rz_mm": [
+              0.3,
+              0.75
+            ],
+            "error_norm_mm": 0.16575724633633154,
+            "error_rz_mm": [
+              0.1502830000000131,
+              0.06993199999999544
+            ],
+            "ordinal": 2,
+            "passed": false,
+            "predicted_progress_mm": -0.003741086333122645,
+            "state_index": 56
+          }
+        ],
+        "passed": false,
+        "path": "path_b"
+      }
+    ],
+    "q0_reference_replay": {
+      "failures": [],
+      "passed": true
+    }
+  },
+  "passed": false,
+  "reset_calls": 4,
+  "rollout_count": 4,
+  "route": "ONE_MS_NR1000F0_FINITE_Q0_RELATIVE_TRACKING_FAIL_REDESIGN",
+  "schema_version": "rgeo-zgeo-1ms-1000-feedback-f0-v1",
+  "source_revision": "8ca2f999342693e1fa08ef506a21831e060c2a60",
+  "verified_plant_advances": 256
+}

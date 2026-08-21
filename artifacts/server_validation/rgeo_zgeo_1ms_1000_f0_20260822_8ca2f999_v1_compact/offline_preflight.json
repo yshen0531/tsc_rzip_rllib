@@ -1,0 +1,11 @@
+{
+  "authorized_plant_advances": 256,
+  "authorized_reset_calls": 4,
+  "created_utc": "2026-08-21T23:02:26.041147+00:00",
+  "failures": [],
+  "kind": "offline_preflight",
+  "passed": true,
+  "route": "ONE_MS_NR1000F0_OFFLINE_PASS_RUN_FINITE_FEEDBACK_ONLY",
+  "schema_version": "rgeo-zgeo-1ms-1000-feedback-f0-v1",
+  "source_revision": "8ca2f999342693e1fa08ef506a21831e060c2a60"
+}

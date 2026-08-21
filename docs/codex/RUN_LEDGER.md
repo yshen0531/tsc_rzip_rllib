@@ -3346,3 +3346,30 @@
   `ONE_MS_NR1000A0_INDEPENDENT_PASS`
 - Classification: finite two-decision Authority-L0 PASS; not absolute path
   tracking, hold, capture, Recourse-L1 or R_mid crossing
+
+## 2026-08-22 fixed-1000 F0 finite q0-relative feedback
+
+- Design revision: `6ac7dda28dfd4a552feeb277f9e00eb754ed1875`
+- Execution revision: `8ca2f999342693e1fa08ef506a21831e060c2a60`
+- Independent raw-schema correction: `e67da382`
+- Server validation: focused `4/4`; all one-ms `802/802`
+- Authentic execution: `4/4` rollouts, `256/256` advances, 260 states
+- Independent audit: PASS; 256 actions, 252 observed-slew checks
+- All six measured checkpoint position gates passed; error range
+  `0.007333--0.165757 mm`
+- Issue-48 predicted progress: path A `-0.001864 mm`, path B
+  `-0.003741 mm`; controller route therefore FAIL
+- Primary SHA-256:
+  `ab9c16a1ebf7bf8c854d6b56e0695a461870c9258bee0c2d9a990c4f37248a0e`
+- Independent SHA-256:
+  `e78291db93959bee756dea45d8be3234639a1101a29c7a4da1f11466776f4c25`
+- Final routes: `ONE_MS_NR1000F0_FINITE_Q0_RELATIVE_TRACKING_FAIL_REDESIGN` /
+  `ONE_MS_NR1000F0_INDEPENDENT_PASS`
+- The first independent audit used post-run outgoing inputa/raw-schema keys
+  as preissue compact fields and is preserved under its explicit `before`
+  filename. The correction was reporting-only and no TSC was rerun.
+- Storage decision: the obsolete fixed-1000 D0 raw tree was deleted only
+  after its tracked compact and independent evidence were confirmed. About
+  33 GB was freed; the deleted raw is recoverable only by rerun.
+- Classification: finite policy scientific FAIL, not runtime, safety,
+  reference, replay, raw-integrity or global path-reachability failure

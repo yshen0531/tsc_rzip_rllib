@@ -1,6 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 A0 Authority PASS / finite
+> **Unique active task (2026-08-22, fixed-1000 F0 scientific FAIL / F1
+> deadband repair frozen):** F0 completed `4/4` authentic rollouts and
+> `256/256` advances; independent raw reconstruction passed 260 states, 256
+> actions and 252 observed slews. Fresh q0 and path-A replay were exact, and
+> all six measured position checkpoints met the unchanged 0.35/0.30-mm
+> gates. F0 nevertheless failed because both issue-48 decisions were already
+> inside the 0.35-mm deadband while every full macro predicted negative
+> progress; the always-issue grammar selected a least-bad action. The sole
+> active successor is one frozen F1 repair: select exact q0 no-op inside the
+> deadband, require strictly positive progress outside it, and also validate
+> the final command at state64. F1 may not refit/widen V0 or tune a nearby
+> threshold/path. All older active blocks below are historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 A0 Authority PASS / finite
 > moving-reference feedback next):** A0 completed `6/6` authentic rollouts,
 > `360/360` advances and an independent 366-state raw audit. All four online
 > decisions passed frozen V0 h4/h8 containment and achieved `0.275--0.680 mm`
