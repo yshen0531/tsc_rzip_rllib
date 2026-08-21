@@ -6262,3 +6262,8 @@ and prospective `sprsina` semantic audit.
 > full initial calculation at 0.10253 s. It is final after one call and zero
 > completed states. R2R1 is a separately frozen runtime-budget correction;
 > no R2R1 plant call has run yet, and all downstream counters remain zero.
+
+> **Current fixed-1000 status -- R2R2 pending (2026-08-21):** R2R1 consumed
+> one call under an implementation bug: the real runner still received 180 s,
+> so the intended 2700-s contract was never tested. The failure is frozen and
+> not resumed. R2R2 is the only active identity; no R2R2 TSC call has run.

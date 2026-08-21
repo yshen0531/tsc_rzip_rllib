@@ -1,0 +1,27 @@
+{
+  "contract_version": "rgeo-zgeo-1ms-1000-restart-reconstruction-r2r2-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_restart_reconstruction_r2r2_v1",
+  "intended_use": "interface_validation",
+  "route_prefix": "ONE_MS_NR1000S0R2R2",
+  "source_config": "configs/rgeo_zgeo_1ms_1000_nr1_source_interface.json",
+  "source_sprsina_sha256": "5ead6983f17c6de77df7353f656696f927b1b2ddc05e531740c1236f748afabe",
+  "source_1100_sprsina_sha256": "5ead6983f17c6de77df7353f656696f927b1b2ddc05e531740c1236f748afabe",
+  "initial_source_folder": "/home/yangshen0711/tsc_all/tsc_simulation/HH70-PCS-ENV-LOW-FIELD-SIDE/prd_2-2_1000ms",
+  "initial_source_files": {
+    "inputa": {"sha256": "0fce4f5fd5da6e848d93c709fc1fc5f338a8772e27bfaf3890fbacbc36df10ae", "bytes": 13800},
+    "geqdsk": {"sha256": "007cbba114f7b4deb1220733f8867aea8a55e286b7810b5ac64d0edc12a3b740", "bytes": 159434},
+    "outputa": {"sha256": "aec284bd99e53d4a8e0cb841d201229889c87dcda00a99ca3140fad59ef2db97", "bytes": 1233330},
+    "coil_currents.csv": {"sha256": "33e5269025cc2a63f64698f97b7a934922db77a04c43782782b537a95814e883", "bytes": 671},
+    "wire_currents.csv": {"sha256": "dfeb6ce87cc83c7983935bf8c03874c5a980b408edc00e6900a5b482821e673a", "bytes": 4764}
+  },
+  "initial_reconstruction_runs": 2,
+  "restart_validation_runs": 2,
+  "restart_validation_steps": 1,
+  "expected_initial_start_s": 0.0,
+  "expected_initial_end_s": 1.0,
+  "expected_restart_start_s": 1.0,
+  "expected_restart_end_s": 1.001,
+  "initial_tsc_timeout_s": 2700.0,
+  "maximum_tsc_invocations": 4,
+  "description": "R2R2 fixes the execution-path application of the already frozen 2700-s initial-run budget. All R2R1 scientific inputs, gates and four-call limit remain unchanged."
+}

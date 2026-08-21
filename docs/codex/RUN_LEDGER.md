@@ -1,5 +1,24 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000-ms restart reconstruction R2R1
+
+- Implementation revision: `b63f86be7b69f93e505d2c67be31e7df40de01e1`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2r1_20260821_b63f86be_v1`
+- Validation: focused `23/23`; all one-ms `726/726`; zero-TSC route
+  `ONE_MS_NR1000S0R2R1_OFFLINE_PASS`
+- Execution: one counted call, no retry; result SHA-256
+  `7c5b98d4b5981ac2a2acaa33b171929d7d01e17d80b52a2a0cae75aff51ab497`
+- Result: `ONE_MS_NR1000S0R2R1_INITIAL_RECONSTRUCTION_FAIL`
+- Root cause: the offline path applied 2700 s, but `execute()` reloaded the
+  source config and passed 180 s to the runner; stderr and identical 0.10253-s
+  progress prove the intended R2R1 runtime budget was never exercised
+- Classification: execution-path implementation wiring FAIL; not another
+  scientific input, TSC-physics, model, Authority, Recourse or controller test
+- Decision: R2R2 uses one tested helper to apply 2700 s in both paths; no
+  R2R1 resume and no change to scientific semantics
+
+
 ## 2026-08-21 fixed-1000-ms restart reconstruction R2
 
 - Implementation revision: `49e3d1cb33ed3b1ce9b947e6b5cfa0d0b50c2473`

@@ -70,6 +70,10 @@ def load_contract(path: Path) -> dict[str, Any]:
         expected = common | {
             "initial_source_folder", "initial_source_files", "initial_tsc_timeout_s",
         }
+    elif row.get("contract_version") == "rgeo-zgeo-1ms-1000-restart-reconstruction-r2r2-v1":
+        expected = common | {
+            "initial_source_folder", "initial_source_files", "initial_tsc_timeout_s",
+        }
     else:
         raise ContractError("restart reconstruction contract version changed")
     if set(row) != expected:
@@ -88,6 +92,12 @@ def load_contract(path: Path) -> dict[str, Any]:
 
 def _route(contract: dict[str, Any], suffix: str) -> str:
     return f"{contract['route_prefix']}_{suffix}"
+
+
+def apply_initial_runtime_contract(cfg: TSCConfig, contract: dict[str, Any]) -> TSCConfig:
+    if "initial_tsc_timeout_s" in contract:
+        cfg.tsc_timeout_s = float(contract["initial_tsc_timeout_s"])
+    return cfg
 
 
 def _require_inside_repo(path: Path, *, label: str) -> Path:
@@ -172,9 +182,7 @@ def preflight(config_path: Path, source_revision: str) -> dict[str, Any]:
         source_config = _require_inside_repo(
             ROOT / contract["source_config"], label="source config"
         )
-        cfg = TSCConfig.from_json(source_config)
-        if "initial_tsc_timeout_s" in contract:
-            cfg.tsc_timeout_s = float(contract["initial_tsc_timeout_s"])
+        cfg = apply_initial_runtime_contract(TSCConfig.from_json(source_config), contract)
         source_folder = cfg.simulation_root / cfg.start_folder
         source_files = _validate_source_files(source_config, source_folder)
         source_gate = source_offline_preflight(source_config, source_revision)
@@ -400,7 +408,7 @@ def execute(config_path: Path, source_revision: str, output_dir: Path) -> dict[s
         contract = offline["contract"]
         result["route"] = _route(contract, "INPUT_FAIL_NO_TSC")
         source_config = Path(offline["source_config"])
-        cfg = TSCConfig.from_json(source_config)
+        cfg = apply_initial_runtime_contract(TSCConfig.from_json(source_config), contract)
         source_folder = cfg.simulation_root / cfg.start_folder
         initial_source_folder = Path(offline["initial_source_folder"])
         source_state = semantic(source_folder, cfg)

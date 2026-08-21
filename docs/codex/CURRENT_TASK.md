@@ -11402,3 +11402,10 @@ Section 0 are genuinely qualified.
 > only the full initial-run timeout to 2700 s, selected prospectively from R2
 > progress; all scientific inputs/gates, two-plus-two runs, four-call maximum
 > and no-retry semantics remain exact. No other stage is active.
+
+> **Unique active route -- R2R2 execution-path hotfix (2026-08-21):** R2R1's
+> contract was correct, but `execute()` reloaded the source config and silently
+> restored 180 s. Its one call repeated the same timeout at 0.10253 s; freeze
+> it as implementation wiring FAIL. R2R2 must apply the 2700-s full-run budget
+> via the same tested function in offline and run paths. It changes no input,
+> action, clock, scientific gate, four-call bound or downstream authorization.

@@ -2342,3 +2342,9 @@ from expert data.
 > then killed by that limit. R2 is final runtime-budget design evidence.
 > R2R1 preserves every scientific identity and gate while allowing 2700 s for
 > each of the two full initial runs; one-ms restart calls retain 180 s.
+
+> **R2R2 implementation amendment (2026-08-21; current):** R2R1's run path
+> failed to apply its frozen timeout after reloading the source config, so its
+> one call again ran for 180 s and did not exercise the intended correction.
+> R2R2 routes both preflight and execution through one tested runtime-contract
+> function. No plant input, action, time, semantic gate or final goal changes.

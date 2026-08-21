@@ -1753,3 +1753,9 @@ holdout 的多步区间系统性欠覆盖；安全 hold/recovery 不成立；在
 > R2R1 therefore freezes 2700 s only for the two full initial calls while
 > retaining 180 s for one-ms calls. This operational correction changes no
 > plant action, gate, causal clock or downstream authorization.
+
+> **R2R2 implementation amendment (2026-08-21):** applying a runtime budget
+> only during preflight is not an executed guarantee. The full-run runner must
+> receive the same frozen 2700-s value through a behaviorally tested shared
+> function. R2R1 did not and is therefore an implementation FAIL; R2R2 fixes
+> only this wiring and preserves the architecture and scientific identity.
