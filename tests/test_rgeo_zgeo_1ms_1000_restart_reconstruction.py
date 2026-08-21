@@ -41,7 +41,7 @@ class Fixed1000RestartReconstructionTest(unittest.TestCase):
         self.assertEqual(stage.output_times_s(text), (1.0,))
 
     def test_semantic_comparison_detects_change(self):
-        left = {"r_geo_m": 1.0, "z_geo_m": 0.0, "ip_a": 3.0,
+        left = {"r_geo_m": 1.0, "z_geo_m": 0.0, "r_mid_m": 0.8, "ip_a": 3.0,
                 "coil_a": [0.0] * 14, "wire_a": [0.0] * 48}
         right = dict(left)
         right["r_geo_m"] = 1.01
