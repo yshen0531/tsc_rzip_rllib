@@ -1,0 +1,44 @@
+{
+  "contract_version": "rgeo-zgeo-1ms-1000-restart-dual-validation-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_restart_dual_validation_v1",
+  "intended_use": "interface_validation",
+  "route_prefix": "ONE_MS_NR1000S0R3",
+  "source_config": "configs/rgeo_zgeo_1ms_1000_nr1_source_interface.json",
+  "source_config_sha256": "f9e8b2f5419ec41127b3cc6a8206f182fd045746f43ab29ed6afc21b8d639956",
+  "r2r2_result": {
+    "path": "artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2r2_20260821_ddbab85f_v1/result.json",
+    "sha256": "7182fb4a98c375a5ce07b82768d2b3b9cb451dbb56383b9e0d76fcda40829f12",
+    "route": "ONE_MS_NR1000S0R2R2_INITIAL_RECONSTRUCTION_FAIL",
+    "tsc_invocations": 2
+  },
+  "reconstructed_roots": {
+    "r0": {
+      "path": "artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2r2_20260821_ddbab85f_v1/initial_reconstruction/r0",
+      "files": {
+        "inputa": {"bytes": 13800, "sha256": "0fce4f5fd5da6e848d93c709fc1fc5f338a8772e27bfaf3890fbacbc36df10ae"},
+        "geqdsk": {"bytes": 159434, "sha256": "007cbba114f7b4deb1220733f8867aea8a55e286b7810b5ac64d0edc12a3b740"},
+        "outputa": {"bytes": 1233330, "sha256": "9762c7eeda605327b8859cb57870b62a1915944b53e10968c825b75330fc95de"},
+        "coil_currents.csv": {"bytes": 671, "sha256": "33e5269025cc2a63f64698f97b7a934922db77a04c43782782b537a95814e883"},
+        "wire_currents.csv": {"bytes": 4764, "sha256": "dfeb6ce87cc83c7983935bf8c03874c5a980b408edc00e6900a5b482821e673a"},
+        "sprsoua": {"bytes": 58727036, "sha256": "de986e49cd2466e67a89567214c3ed988f3808b36924243accd2d82709d79145"}
+      }
+    },
+    "r1": {
+      "path": "artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2r2_20260821_ddbab85f_v1/initial_reconstruction/r1",
+      "files": {
+        "inputa": {"bytes": 13800, "sha256": "0fce4f5fd5da6e848d93c709fc1fc5f338a8772e27bfaf3890fbacbc36df10ae"},
+        "geqdsk": {"bytes": 159434, "sha256": "007cbba114f7b4deb1220733f8867aea8a55e286b7810b5ac64d0edc12a3b740"},
+        "outputa": {"bytes": 1233330, "sha256": "3573910bc20b629d424ef7d23f52efb2b6fd40282a7d5743227c72976b7973ac"},
+        "coil_currents.csv": {"bytes": 671, "sha256": "33e5269025cc2a63f64698f97b7a934922db77a04c43782782b537a95814e883"},
+        "wire_currents.csv": {"bytes": 4764, "sha256": "dfeb6ce87cc83c7983935bf8c03874c5a980b408edc00e6900a5b482821e673a"},
+        "sprsoua": {"bytes": 58727036, "sha256": "283d55bd0dfb51962d8f4ed0a345151c5b15f87df79b8c79e6f4bd994bc4969d"}
+      }
+    }
+  },
+  "replays_per_root": 2,
+  "steps_per_replay": 1,
+  "maximum_tsc_invocations": 4,
+  "require_distinct_restart_hashes": true,
+  "require_exact_checked_artifacts_across_all_replays": true,
+  "description": "Validate two independently reconstructed, semantically identical but byte-distinct 1000-ms restart files with two fresh one-ms matched-hold replays each. No reconstruction rerun and no model/control claim."
+}

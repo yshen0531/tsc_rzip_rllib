@@ -1759,3 +1759,11 @@ holdout 的多步区间系统性欠覆盖；安全 hold/recovery 不成立；在
 > receive the same frozen 2700-s value through a behaviorally tested shared
 > function. R2R1 did not and is therefore an implementation FAIL; R2R2 fixes
 > only this wiring and preserves the architecture and scientific identity.
+
+> **Dual-restart semantic amendment (2026-08-21):** byte equality of a TSC
+> restart remains stronger than the controller's observable-state contract.
+> When two complete reconstructions are semantically exact but byte-distinct,
+> neither is accepted by assertion. Both must independently reproduce state0
+> and a fresh state1 under the same action, checked artifacts and hard gates.
+> This finite cross-restart test cannot establish arbitrary snapshot restart,
+> hidden-state robustness, Authority, Recourse or feedback correctness.

@@ -11409,3 +11409,13 @@ Section 0 are genuinely qualified.
 > it as implementation wiring FAIL. R2R2 must apply the 2700-s full-run budget
 > via the same tested function in offline and run paths. It changes no input,
 > action, clock, scientific gate, four-call bound or downstream authorization.
+
+> **Unique active route -- dual reconstructed-restart semantic validation
+> (2026-08-21; supersedes R2R2):** R2R2 completed both full calculations and
+> exactly reproduced R/Z/R_mid/Ip, 14 coils and 48 wires, but the two
+> `sprsoua` hashes differ. Preserve its exact-file FAIL. Do not rerun the
+> hour-long reconstruction. R3 binds both complete roots and performs two
+> fresh one-ms matched-hold replays from each, maximum four calls. Every
+> checked state0/state1 semantic and artifact, Card15, slew, clock and hard
+> envelope gate must agree. PASS opens only a separately frozen canonical
+> interface identity; all model/control work remains closed.

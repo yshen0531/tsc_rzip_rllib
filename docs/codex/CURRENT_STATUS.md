@@ -6267,3 +6267,10 @@ and prospective `sprsina` semantic audit.
 > one call under an implementation bug: the real runner still received 180 s,
 > so the intended 2700-s contract was never tested. The failure is frozen and
 > not resumed. R2R2 is the only active identity; no R2R2 TSC call has run.
+
+> **Current fixed-1000 status -- R3 pending (2026-08-21):** R2R2 successfully
+> completed two independent full 0--1 s reconstructions but failed its frozen
+> restart-file hash equality. Their checked physical/observable semantics are
+> exact; their restart bytes and full output text are not. R3 will test the
+> two immutable reconstructions separately with two one-ms replays each. No
+> R3 TSC call, model fit, Authority, Recourse or feedback has run yet.

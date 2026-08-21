@@ -2348,3 +2348,11 @@ from expert data.
 > one call again ran for 180 s and did not exercise the intended correction.
 > R2R2 routes both preflight and execution through one tested runtime-contract
 > function. No plant input, action, time, semantic gate or final goal changes.
+
+> **R3 dual-restart amendment (2026-08-21; current):** exact restart-file
+> bytes are not reproducible across the two completed initial calculations,
+> although all checked 1000-ms observables are. The file gate remains failed.
+> The next finite question is whether both hash-bound restart representations
+> independently yield the same fresh one-ms checked semantics. This does not
+> assume arbitrary restart equivalence and does not authorize a model or
+> controller.

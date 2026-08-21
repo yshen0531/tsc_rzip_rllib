@@ -1,5 +1,25 @@
 # Run ledger
 
+## 2026-08-21 fixed-1000-ms restart reconstruction R2R2
+
+- Implementation revision: `ddbab85ff38cf35f63e616beeb2bcf9b5126d3c2`
+- Remote output:
+  `/home/yangshen0711/tsc_all/tsc_rzip_rllib/artifacts/server_runs/rgeo_zgeo_1ms_1000_restart_reconstruction_r2r2_20260821_ddbab85f_v1`
+- Validation: focused `24/24`; all one-ms `727/727`; zero-TSC route
+  `ONE_MS_NR1000S0R2R2_OFFLINE_PASS`
+- Execution: two complete 0--1 s full-input calls; no restart calls; result
+  SHA-256 `7182fb4a98c375a5ce07b82768d2b3b9cb451dbb56383b9e0d76fcda40829f12`
+- Result: `ONE_MS_NR1000S0R2R2_INITIAL_RECONSTRUCTION_FAIL`
+- Exact finding: R/Z/R_mid/Ip, 14 coils and 48 wires are identical across
+  reconstructions; `sprsoua` hashes differ (`de986e49...d79145` versus
+  `283d55bd...4969d`), and complete output text hashes also differ
+- Classification: frozen exact-restart-file repeatability FAIL; not a plant,
+  model, Authority, Recourse or controller result
+- Decision: do not reconstruct again. R3 binds both complete roots and tests
+  two fresh one-ms replays from each; only checked cross-restart semantics can
+  qualify, while R2R2 remains FAIL
+
+
 ## 2026-08-21 fixed-1000-ms restart reconstruction R2R1
 
 - Implementation revision: `b63f86be7b69f93e505d2c67be31e7df40de01e1`
