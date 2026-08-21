@@ -33,15 +33,22 @@ def _profile(config_path: Path) -> dict[str, Any]:
     if row is None:
         return {"takeover_time_ms": 1100,
                 "contract_version": NR1_1MS_CONTRACT_VERSION,
-                "route_prefix": "ONE_MS_NR1R2"}
+                "route_prefix": "ONE_MS_NR1R2", "matched_hold_effect": False}
     takeover = int(row.get("takeover_time_ms", -1))
     if (payload.get("start_folder") != f"{takeover}ms"
             or not isinstance(row.get("contract_version"), str)
             or not isinstance(row.get("route_prefix"), str)):
         raise ValueError("qualification identity/start_folder mismatch")
+    contract = payload.get("source_command_contract")
+    if contract != {
+        "command_center": "active_source_card15",
+        "effect_evaluation": "matched_hold_state1_differential",
+        "return_evaluation": "exact_card15_command_center",
+    }:
+        raise ValueError("source command contract changed")
     return {"takeover_time_ms": takeover,
             "contract_version": row["contract_version"],
-            "route_prefix": row["route_prefix"]}
+            "route_prefix": row["route_prefix"], "matched_hold_effect": True}
 
 
 def _fields(path: Path) -> tuple[str, ...]:
@@ -107,6 +114,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
             rows[rollout] = states
             frozen = build_frozen_one_ms_prefixes(
                 source_current_a_tsc=states[0]["current_a_tsc"], turns_tsc=cfg.turns_tsc,
+                source_command_a_tsc=(source_command if profile["matched_hold_effect"] else None),
                 min_current_a_tsc=cfg.min_current_a_tsc, max_current_a_tsc=cfg.max_current_a_tsc)
             targets = frozen.prefixes[prefix_name]
             source = states[0]
@@ -128,7 +136,7 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
                     active_command = target_decimal
                 except Exception as exc:
                     failures.append(f"SLEW:{rollout}:{step}:{exc}")
-            if prefix_name != "hold":
+            if prefix_name != "hold" and not profile["matched_hold_effect"]:
                 target_decimal = card15_target_decimal_a(
                     targets[0], cfg.turns_tsc, name=f"independent.effect.{rollout}"
                 )
@@ -152,6 +160,35 @@ def audit(config_path: Path, run_dir: Path, source_revision: str) -> dict[str, A
         except Exception as exc:
             failures.append(f"RAW:{rollout}:{type(exc).__name__}:{exc}")
             rows.setdefault(rollout, [])
+    if profile["matched_hold_effect"]:
+        for prefix in ("pattern_a", "pattern_b"):
+            for role in ("primary", "replay"):
+                probe = rows.get(f"{prefix}_{role}", [])
+                hold = rows.get(f"hold_{role}", [])
+                if len(probe) != 5 or len(hold) != 5:
+                    failures.append(f"MATCHED_EFFECT_COUNT:{prefix}:{role}")
+                    continue
+                frozen = build_frozen_one_ms_prefixes(
+                    source_current_a_tsc=probe[0]["current_a_tsc"],
+                    source_command_a_tsc=source_command, turns_tsc=cfg.turns_tsc,
+                    min_current_a_tsc=cfg.min_current_a_tsc,
+                    max_current_a_tsc=cfg.max_current_a_tsc,
+                )
+                target = card15_target_decimal_a(
+                    frozen.prefixes[prefix][0], cfg.turns_tsc,
+                    name=f"independent.matched.{prefix}.{role}",
+                )
+                request = tuple(value - base for value, base in zip(target, source_command))
+                effect = tuple(
+                    b - a for a, b in zip(
+                        hold[1]["current_decimal_a_tsc"],
+                        probe[1]["current_decimal_a_tsc"],
+                    )
+                )
+                effect_checks += 14
+                if any(value == 0 or wanted == 0 or (value > 0) != (wanted > 0)
+                       for value, wanted in zip(effect, request)):
+                    failures.append(f"MATCHED_FIRST_EFFECT:{prefix}:{role}")
     maxima = {"geometry_m": 0.0, "ip_a": 0.0, "coil_a": 0.0, "wire_a": 0.0}
     for prefix in ("hold", "pattern_a", "pattern_b"):
         left, right = rows.get(f"{prefix}_primary", []), rows.get(f"{prefix}_replay", [])

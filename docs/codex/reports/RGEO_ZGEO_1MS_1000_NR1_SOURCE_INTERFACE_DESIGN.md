@@ -29,18 +29,23 @@ Any mismatch stops before TSC.
 
 ## Campaign
 
-The campaign uses the existing generic Card15 lattice construction under a
-new explicit qualification identity.  It executes six fresh resets:
+The first preflight identity stopped with zero TSC because the authentic PF4
+readback is `-62 A` while the active Card15 command is `-70 A`; centering a
+new command on readback would require an illegal 8 A issue.  Revision 2 keeps
+the active Card15 command as the exact command center and treats the readback
+difference as real causal plant memory.  It executes six fresh resets:
 
 1. center hold primary/replay;
 2. alternating signed pattern A primary/replay;
 3. opposite alternating signed pattern B primary/replay.
 
 Each rollout has exactly four one-ms action issues and five retained states
-(`1000..1004 ms`).  The first non-hold issue must produce the requested sign
-in all 14 observed coil-current components.  Issues one through three return
-to and remain at the source current within `0.0001 A`.  The issued and observed
-slew limits are both exactly `<=0.3 A/step`.
+(`1000..1004 ms`).  The first non-hold issue must produce the requested
+differential sign in all 14 observed coil-current components relative to its
+matched hold successor.  Issues one through three return to and remain at the
+exact source Card15 command center.  Readback tail dynamics are retained
+rather than mislabeled as instantaneous state return.  The issued and
+observed slew limits are both exactly `<=0.3 A/step`.
 
 Maximum budget is six reset calls, 24 plant advances and 30 states.  No retry
 is allowed after a plant advance.  An execution failure stops the remaining
@@ -63,15 +68,15 @@ raw-directory audit reparses every retained state.
 
 ## Routes and authorization
 
-- `ONE_MS_NR1000S1_OFFLINE_FAIL_NO_TSC`: source, config or static action gate
+- `ONE_MS_NR1000S1R1_OFFLINE_FAIL_NO_TSC`: source, config or static action gate
   failed; no TSC may run.
-- `ONE_MS_NR1000S1_EFFECT_CONTRACT_FAIL_STOP`: first-effect or exact-return
+- `ONE_MS_NR1000S1R1_EFFECT_CONTRACT_FAIL_STOP`: first-effect or exact-return
   semantics failed.
-- `ONE_MS_NR1000S1_SAFETY_FAIL_STOP`: execution or finite source envelope
+- `ONE_MS_NR1000S1R1_SAFETY_FAIL_STOP`: execution or finite source envelope
   failed.
-- `ONE_MS_NR1000S1_REPLAY_NOT_QUALIFIED`: execution completed but exact fresh
+- `ONE_MS_NR1000S1R1_REPLAY_NOT_QUALIFIED`: execution completed but exact fresh
   replay failed.
-- `ONE_MS_NR1000S1_INTERFACE_QUALIFIED`: this finite source/interface stage
+- `ONE_MS_NR1000S1R1_INTERFACE_QUALIFIED`: this finite source/interface stage
   passed.
 
 A PASS authorizes only a separately frozen 1000-ms long-baseline/continuation

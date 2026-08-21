@@ -16,9 +16,9 @@ class Fixed1000SourceInterfaceTest(unittest.TestCase):
     def test_identity_is_separate_and_exact(self):
         row = primary._profile(CONFIG)
         self.assertEqual(row["takeover_time_ms"], 1000)
-        self.assertEqual(row["campaign_id"], "rgeo_zgeo_1ms_1000_nr1_source_interface_v1")
+        self.assertEqual(row["campaign_id"], "rgeo_zgeo_1ms_1000_nr1_source_interface_v2")
         self.assertEqual(row["intended_use"], "interface_validation")
-        self.assertEqual(row["route_prefix"], "ONE_MS_NR1000S1")
+        self.assertEqual(row["route_prefix"], "ONE_MS_NR1000S1R1")
         self.assertEqual(independent._profile(CONFIG)["takeover_time_ms"], 1000)
 
     def test_source_identity_is_complete(self):
@@ -35,6 +35,31 @@ class Fixed1000SourceInterfaceTest(unittest.TestCase):
         self.assertEqual(state["point_count"], 278)
         self.assertEqual(state["wire_count"], 48)
         self.assertEqual(row["start_folder"], "1000ms")
+
+    def test_command_center_is_not_replaced_by_actual_current(self):
+        payload = json.loads(CONFIG.read_text(encoding="utf-8"))
+        self.assertEqual(payload["source_command_contract"], {
+            "command_center": "active_source_card15",
+            "effect_evaluation": "matched_hold_state1_differential",
+            "return_evaluation": "exact_card15_command_center",
+        })
+
+    def test_matched_hold_differential_checks_all_components(self):
+        state = lambda values: {
+            "actual_current_decimal_a_tsc": [str(value) for value in values]
+        }
+        hold = [state([0] * 14), state([1] * 14)] + [state([1] * 14)] * 3
+        probe = [state([0] * 14), state([2] * 14)] + [state([1] * 14)] * 3
+
+        class Target:
+            card15_fields = tuple(" 1.000E-01" for _ in range(14))
+
+        result = primary._matched_hold_effect(
+            probe, hold, Target(), tuple(0 for _ in range(14)),
+            tuple(1000 for _ in range(14)),
+        )
+        self.assertTrue(result["passed"])
+        self.assertEqual(result["component_checks"], 14)
 
     def test_explicit_takeover_override_preserves_legacy_default(self):
         validate_one_ms_config(start_folder="1000ms", dt_ms=1,

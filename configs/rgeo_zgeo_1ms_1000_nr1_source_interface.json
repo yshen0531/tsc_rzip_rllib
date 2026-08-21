@@ -1,10 +1,15 @@
 {
   "qualification_identity": {
     "takeover_time_ms": 1000,
-    "contract_version": "rgeo-zgeo-1ms-1000-nr1-source-interface-v1",
-    "campaign_id": "rgeo_zgeo_1ms_1000_nr1_source_interface_v1",
+    "contract_version": "rgeo-zgeo-1ms-1000-nr1-source-interface-v2",
+    "campaign_id": "rgeo_zgeo_1ms_1000_nr1_source_interface_v2",
     "intended_use": "interface_validation",
-    "route_prefix": "ONE_MS_NR1000S1"
+    "route_prefix": "ONE_MS_NR1000S1R1"
+  },
+  "source_command_contract": {
+    "command_center": "active_source_card15",
+    "effect_evaluation": "matched_hold_state1_differential",
+    "return_evaluation": "exact_card15_command_center"
   },
   "source_identity": {
     "files": {

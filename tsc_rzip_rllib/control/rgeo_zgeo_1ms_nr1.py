@@ -180,6 +180,7 @@ class FrozenOneMsPrefixes:
 def build_frozen_one_ms_prefixes(
     *,
     source_current_a_tsc: Sequence[float],
+    source_command_a_tsc: Sequence[Any] | None = None,
     turns_tsc: Sequence[float],
     min_current_a_tsc: Sequence[float],
     max_current_a_tsc: Sequence[float],
@@ -188,8 +189,11 @@ def build_frozen_one_ms_prefixes(
     turns = _vector(turns_tsc, "turns_tsc")
     lower = _vector(min_current_a_tsc, "min_current_a_tsc")
     upper = _vector(max_current_a_tsc, "max_current_a_tsc")
-    q0 = quantize_target(source, turns)
-    assert_exact_slew(source, q0.current_a_tsc, name="source_to_q0")
+    command_center = source if source_command_a_tsc is None else _vector(
+        source_command_a_tsc, "source_command_a_tsc"
+    )
+    q0 = quantize_target(command_center, turns)
+    assert_exact_slew(command_center, q0.current_a_tsc, name="command_center_to_q0")
     patterns: dict[str, Card15Target] = {}
     for name, signs in (
         ("pattern_a", tuple(1 if index % 2 == 0 else -1 for index in range(N_COILS))),
@@ -197,15 +201,15 @@ def build_frozen_one_ms_prefixes(
     ):
         fields: list[str] = []
         values: list[float] = []
-        for q0_value, source_value, turn, sign in zip(
-            q0.current_a_tsc, source, turns, signs
+        for q0_value, center_value, turn, sign in zip(
+            q0.current_a_tsc, command_center, turns, signs
         ):
-            field, value = _signed_lattice_value(q0_value, source_value, turn, sign)
+            field, value = _signed_lattice_value(q0_value, center_value, turn, sign)
             fields.append(field)
             values.append(value)
         target = Card15Target(tuple(fields), tuple(values))
         assert_exact_slew(q0.current_a_tsc, target.current_a_tsc, name=name)
-        assert_exact_slew(source, target.current_a_tsc, name=f"source_to_{name}")
+        assert_exact_slew(command_center, target.current_a_tsc, name=f"command_center_to_{name}")
         if any(not low <= value <= high for value, low, high in zip(target.current_a_tsc, lower, upper)):
             raise ContractError(f"{name} exceeds an absolute current limit")
         patterns[name] = target
