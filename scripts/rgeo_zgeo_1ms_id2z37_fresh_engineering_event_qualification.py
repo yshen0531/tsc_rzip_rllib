@@ -22,7 +22,7 @@ from scripts import rgeo_zgeo_1ms_id2z33_corrected_moving_center_d0 as z33  # no
 
 
 CONFIG = ROOT / "configs/rgeo_zgeo_1ms_id2z37_fresh_engineering_event_qualification.json"
-CONFIG_SHA256 = "76d3f141ee69657dc14d458cc7305a9261ed02284648dabb4d8ca16ca7c7a5a8"
+CONFIG_SHA256 = "274fe3d502217c433e2fda698e34f51b1bb49c695bda4a507732476ba538085e"
 SCHEMA = "rgeo-zgeo-1ms-id2z37-fresh-engineering-event-qualification-result-v1"
 ROW_SCHEMA = "rgeo-zgeo-1ms-id2z37-fresh-engineering-event-qualification-row-v1"
 OFFLINE_SCHEMA = "rgeo-zgeo-1ms-id2z37-fresh-engineering-event-qualification-offline-v1"
@@ -48,12 +48,12 @@ def _require(stage: dict[str, Any]) -> None:
     exact = {
         "schema_version": "rgeo-zgeo-1ms-id2z37-fresh-engineering-event-qualification-v1",
         "identity": "rgeo-zgeo-1ms-id2z37-fresh-engineering-event-qualification-v1",
-        "stage": "ID-2Z37", "common_horizon_steps": 71,
+        "stage": "ID-2Z37", "common_horizon_steps": 73,
         "calibration_phase_issue": 48, "blind_phase_issue": 54,
         "maximum_rollouts": 10, "maximum_reset_calls": 10,
-        "maximum_advance_attempts": 710, "maximum_gotsc_calls": 710,
-        "maximum_verified_plant_advances": 710,
-        "required_artifact_files_if_all_complete": 3600,
+        "maximum_advance_attempts": 730, "maximum_gotsc_calls": 730,
+        "maximum_verified_plant_advances": 730,
+        "required_artifact_files_if_all_complete": 3700,
         "models_fit_or_updated": 0,
     }
     for key, expected in exact.items():
@@ -101,8 +101,7 @@ def build_streams(stage: dict[str, Any], cfg: Any, preflight: dict[str, Any],
                   tracked: dict[str, Any]) -> list[dict[str, Any]]:
     center = next(row for row in preflight["prospective_static_streams"]
                   if row["rollout_id"] == "baseline_transition_center")
-    center_fields = [tuple(value) for value in center["card15_targets"]][
-        :int(stage["common_horizon_steps"])]
+    center_fields = [tuple(value) for value in center["card15_targets"]]
     axes = {name: tuple(Decimal(value) for value in values) for name, values in
             preflight["output_aligned_field_increments"].items()}
     rows: list[dict[str, Any]] = []
@@ -212,7 +211,7 @@ def qualification_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any],
     prefix = "cal48" if role == "calibration" else "blind54"
     by_id = {row["family_id"]: row for row in rows}
     baseline = by_id.get("baseline_transition_center")
-    complete = bool(baseline and baseline.get("passed") and len(baseline.get("states", [])) == 72)
+    complete = bool(baseline and baseline.get("passed") and len(baseline.get("states", [])) == 74)
     q = stage["qualification"]
     event_key = (q["event_axis_sign"], int(q["event_effect_age"]))
     event = next(row for row in model["event_sets"]
@@ -229,7 +228,7 @@ def qualification_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any],
         for sign in stage["initial_signs"]:
             family = f"{prefix}__{axis}__{sign}_then_return"
             row = by_id.get(family)
-            row_complete = bool(row and row.get("passed") and len(row.get("states", [])) == 72)
+            row_complete = bool(row and row.get("passed") and len(row.get("states", [])) == 74)
             complete = complete and row_complete
             if not row_complete:
                 branch_rows.append({"family_id": family, "complete": False})
@@ -325,7 +324,7 @@ def execute(stage: dict[str, Any], base: dict[str, Any], cfg: Any,
         row, prefix = _run_one(stage, base, cfg, tracked, stream, centered, revision,
                                output, runner_cls)
         rows.append(row); prefixes.append(prefix)
-        if stream["kind"] == "center_baseline" and row.get("passed") and len(row.get("states", [])) == 72:
+        if stream["kind"] == "center_baseline" and row.get("passed") and len(row.get("states", [])) == 74:
             centered = row
         if not row.get("passed"):
             execution = False
@@ -383,7 +382,7 @@ def execute(stage: dict[str, Any], base: dict[str, Any], cfg: Any,
         "prefix_checks": prefixes, "calibration_replay_metrics": replay,
         "calibration_metrics": calibration, "blind_opened": blind_opened,
         "blind_metrics": blind, "rollouts_started": len(rows),
-        "complete_rollouts": sum(bool(row.get("passed") and len(row.get("states", [])) == 72)
+        "complete_rollouts": sum(bool(row.get("passed") and len(row.get("states", [])) == 74)
                                  for row in rows),
         **counters, **inventory, "models_fit_or_updated": 0,
         "fresh_calibration_records_read": 4 if len(rows) >= 5 else 0,

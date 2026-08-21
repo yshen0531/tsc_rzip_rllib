@@ -51,7 +51,7 @@ def _phase_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any],
     prefix = "cal48" if role == "calibration" else "blind54"
     by_id = {row["family_id"]: row for row in rows}
     baseline = by_id.get("baseline_transition_center")
-    complete = bool(baseline and baseline.get("passed") and len(baseline.get("states", [])) == 72)
+    complete = bool(baseline and baseline.get("passed") and len(baseline.get("states", [])) == 74)
     contract = stage["qualification"]
     event_key = (contract["event_axis_sign"], int(contract["event_effect_age"]))
     event = next(row for row in model["event_sets"]
@@ -68,7 +68,7 @@ def _phase_metrics(rows: Sequence[dict[str, Any]], stage: dict[str, Any],
         for sign in stage["initial_signs"]:
             family = f"{prefix}__{axis}__{sign}_then_return"
             row = by_id.get(family)
-            good = bool(row and row.get("passed") and len(row.get("states", [])) == 72)
+            good = bool(row and row.get("passed") and len(row.get("states", [])) == 74)
             complete = complete and good
             if not good:
                 details.append({"family_id": family, "complete": False})

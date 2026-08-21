@@ -18,9 +18,9 @@ freeze.
 - phase48 q_R/q_Z plus/minus calibration branches;
 - one exact phase48 q_Z-plus replay;
 - four unopened phase54 q_R/q_Z plus/minus blind branches;
-- each rollout: 71 advances / 72 states;
-- maximum: 10 resets, 710 attempts/calls/verified advances, 720 states and
-  3,600 required artifacts;
+- each rollout: 73 advances / 74 states;
+- maximum: 10 resets, 730 attempts/calls/verified advances, 740 states and
+  3,700 required artifacts;
 - no retry, no resume and no cleanup/return action after the frozen stream.
 
 Each branch applies eight same-sign residual issues and eight exact opposite

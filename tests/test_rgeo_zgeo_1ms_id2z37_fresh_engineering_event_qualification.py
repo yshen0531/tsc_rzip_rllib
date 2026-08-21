@@ -37,7 +37,6 @@ class ID2Z37Tests(unittest.TestCase):
         phase = int(self.stage[f"{role}_phase_issue"])
         prefix = "cal48" if role == "calibration" else "blind54"
         baseline = copy.deepcopy(self.stage_baseline)
-        baseline["states"] = baseline["states"][:72]
         baseline.update({"family_id": "baseline_transition_center", "passed": True})
         rows = [baseline]
         for axis in self.stage["output_aligned_axis_ids"]:
