@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, A0 complete):** the frozen V0
+> nominator has now survived two sequential observation-recentered decisions
+> in both preregistered waypoint directions. The second negative-path action
+> changed to positive-R after reading the actual state, which is genuine
+> causal feedback evidence rather than a fixed macro. However the radial h8
+> effects are only about 0.28 mm while q0 drifts by millimetres. The next
+> milestone is therefore a deliberately reachable q0-relative finite path,
+> not a false claim that local Authority already stabilizes absolute R/Z.
+
 > **Unique fixed-1000 context (2026-08-22, A0 next):** the model evidence
 > ladder is closed after V0 development/calibration/blind PASS. The project
 > now tests a two-decision sequential Authority-L0 contract: exact current

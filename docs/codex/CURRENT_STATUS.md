@@ -1,5 +1,14 @@
 # Current status
 
+> **Current fixed-1000 status - A0 sequential Authority PASS (2026-08-22):**
+> six rollouts and 360/360 advances completed; independent audit passed 366
+> states, 360 actions and 354 observed slews. Four decisions all passed the
+> frozen V0 h4/h8 intervals and the 0.10-mm progress gate. Positive-path
+> selections were even-minus/even-minus; negative-path selections were
+> odd-minus/even-minus after exact state36 recentering. Result/independent
+> SHA-256 are `2fd2fadb...852e2` / `546ac5d1...e5fc7`. This opens one finite
+> q0-relative feedback sentinel, not absolute hold, Recourse or final control.
+
 > **Current fixed-1000 status - A0 design frozen (2026-08-22):** V0 remains
 > byte-fixed after B1. A0 prospectively fixes two relative waypoint commands,
 > online decisions at issues 24/36, six 60-ms fresh rollouts, matched

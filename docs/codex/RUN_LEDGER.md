@@ -3326,3 +3326,23 @@
   freed. The deleted raw is not locally recoverable except by rerun.
 - Classification: prospective Authority-L0 design only; not capture,
   Recourse, controller qualification or path tracking
+
+## 2026-08-22 fixed-1000 A0 sequential Authority result
+
+- Execution revision: `7a945d7c77172437665195659d0acdda012ea0f0`
+- Independent reporting correction: `ca9e008a59b286af90a956dc66fc924ce090f649`
+- Server validation: focused `6/6`; all one-ms `797/797`
+- Authentic execution: `6/6` rollouts, `360/360` advances, 366 states
+- Independent raw audit: PASS; 360 actions, 354 observed-slew checks
+- Decision h8 waypoint progress: `0.283506 / 0.274585 / 0.679603 /
+  0.277269 mm`; all frozen V0 h4/h8 component intervals passed
+- Full positive replay: exact checked R/Z/Ip, 14-coil, 48-wire and semantic
+  artifacts
+- Primary SHA-256:
+  `2fd2fadbbfed28d99ea9a73f153ebcfd41860f98b1373dfb9cc2e6a8399852e2`
+- Independent SHA-256:
+  `546ac5d1fe6cbadf0ad0f153bd054e198c84c6d38b6e5e07142d9657a7ae5fc7`
+- Final routes: `ONE_MS_NR1000A0_SEQUENTIAL_AUTHORITY_PASS_FEEDBACK_RECOURSE_DESIGN_ONLY` /
+  `ONE_MS_NR1000A0_INDEPENDENT_PASS`
+- Classification: finite two-decision Authority-L0 PASS; not absolute path
+  tracking, hold, capture, Recourse-L1 or R_mid crossing

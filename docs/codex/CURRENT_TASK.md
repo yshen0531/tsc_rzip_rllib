@@ -1,5 +1,17 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-22, fixed-1000 A0 Authority PASS / finite
+> moving-reference feedback next):** A0 completed `6/6` authentic rollouts,
+> `360/360` advances and an independent 366-state raw audit. All four online
+> decisions passed frozen V0 h4/h8 containment and achieved `0.275--0.680 mm`
+> waypoint-aligned h8 progress; the replay was exact. This is finite
+> Authority-L0, not absolute tracking: q0 natural drift is much larger than
+> the radial macro effect. The sole active successor is one prospectively
+> frozen q0-relative, three-decision finite feedback/path sentinel with an
+> explicit hard abort/continuation boundary. It may not be described as
+> absolute hold, Recourse-L1 or final path tracking. All older active blocks
+> below are historical only.
+
 > **Unique active task (2026-08-22, fixed-1000 A0 design frozen):** the
 > sequential Authority-L0 design is frozen as six fresh 60-ms rollouts. At
 > issues 24 and 36 the byte-fixed V0 nominator must read the exact current

@@ -1,0 +1,252 @@
+{
+  "action_checks": 360,
+  "created_utc": "2026-08-21T22:29:09.416199+00:00",
+  "failures": [],
+  "kind": "independent_raw_audit",
+  "observed_slew_checks": 354,
+  "passed": true,
+  "primary_scientific_passed": true,
+  "primary_scientific_route": "ONE_MS_NR1000A0_SEQUENTIAL_AUTHORITY_PASS_FEEDBACK_RECOURSE_DESIGN_ONLY",
+  "raw_rollouts": 6,
+  "raw_states": 366,
+  "replay": {
+    "failures": [],
+    "maximum_absolute_difference": {
+      "coil_a": 0.0,
+      "geometry_m": 0.0,
+      "ip_a": 0.0,
+      "wire_a": 0.0
+    },
+    "passed": true
+  },
+  "route": "ONE_MS_NR1000A0_INDEPENDENT_PASS",
+  "schema_version": "rgeo-zgeo-1ms-1000-authority-a0-v1-independent",
+  "scientific_metrics": {
+    "decision_checks": [
+      {
+        "candidate": "even_minus",
+        "h8_waypoint_projection_mm": 0.28350619803123656,
+        "horizons": [
+          {
+            "actual_rz_ip": [
+              0.2081584999999997,
+              0.0,
+              111.40989999999874
+            ],
+            "center_rz_ip": [
+              0.2081584999999997,
+              0.0,
+              111.87649999999849
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.03819149999997659,
+              0.032132500000001646,
+              10.466599999999744
+            ],
+            "horizon": 4
+          },
+          {
+            "actual_rz_ip": [
+              0.2922315000000175,
+              0.0,
+              151.8202999999994
+            ],
+            "center_rz_ip": [
+              0.2922315000000175,
+              0.0,
+              152.04769999999917
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.035078499999866536,
+              0.031582999999999445,
+              12.4887000000017
+            ],
+            "horizon": 8
+          }
+        ],
+        "name": "positive_first",
+        "origin_issue": 24,
+        "passed": true
+      },
+      {
+        "candidate": "even_minus",
+        "h8_waypoint_projection_mm": 0.27458549969797286,
+        "horizons": [
+          {
+            "actual_rz_ip": [
+              0.2020130000000009,
+              0.0,
+              111.03980000000229
+            ],
+            "center_rz_ip": [
+              0.2081584999999997,
+              0.0,
+              111.87649999999849
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.03819149999997659,
+              0.032132500000001646,
+              10.466599999999744
+            ],
+            "horizon": 4
+          },
+          {
+            "actual_rz_ip": [
+              0.2748689999999554,
+              0.0,
+              151.04509999999937
+            ],
+            "center_rz_ip": [
+              0.2922315000000175,
+              0.0,
+              152.04769999999917
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.035078499999866536,
+              0.031582999999999445,
+              12.4887000000017
+            ],
+            "horizon": 8
+          }
+        ],
+        "name": "positive_second",
+        "origin_issue": 36,
+        "passed": true
+      },
+      {
+        "candidate": "odd_minus",
+        "h8_waypoint_projection_mm": 0.6796025716200034,
+        "horizons": [
+          {
+            "actual_rz_ip": [
+              0.0009239999999577364,
+              -0.32279550000000046,
+              0.37080000000059954
+            ],
+            "center_rz_ip": [
+              0.0009239999999577364,
+              -0.32234100000000376,
+              0.37080000000059954
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.03125500000003331,
+              0.03228750000000333,
+              10.346500000003289
+            ],
+            "horizon": 4
+          },
+          {
+            "actual_rz_ip": [
+              -0.0004574999999951146,
+              -0.9138999999999953,
+              1.1417999999976018
+            ],
+            "center_rz_ip": [
+              -0.00015450000001582254,
+              -0.9135269999999973,
+              1.1417999999976018
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.030970499999919382,
+              0.03056049999999641,
+              11.134200000000419
+            ],
+            "horizon": 8
+          }
+        ],
+        "name": "negative_first",
+        "origin_issue": 24,
+        "passed": true
+      },
+      {
+        "candidate": "even_minus",
+        "h8_waypoint_projection_mm": 0.277268739688136,
+        "horizons": [
+          {
+            "actual_rz_ip": [
+              0.20594400000006896,
+              -0.0033570000000093803,
+              110.68439999999828
+            ],
+            "center_rz_ip": [
+              0.2081584999999997,
+              0.0,
+              111.87649999999849
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.03819149999997659,
+              0.032132500000001646,
+              10.466599999999744
+            ],
+            "horizon": 4
+          },
+          {
+            "actual_rz_ip": [
+              0.27734850000005196,
+              -0.001803499999980529,
+              149.9844000000012
+            ],
+            "center_rz_ip": [
+              0.2922315000000175,
+              0.0,
+              152.04769999999917
+            ],
+            "contained": true,
+            "halfwidth_rz_ip": [
+              0.035078499999866536,
+              0.031582999999999445,
+              12.4887000000017
+            ],
+            "horizon": 8
+          }
+        ],
+        "name": "negative_second",
+        "origin_issue": 36,
+        "passed": true
+      }
+    ],
+    "matched_prefix_checks": [
+      {
+        "action_count": 24,
+        "failures": [],
+        "left": "positive_first_only",
+        "passed": true,
+        "right": "q0_baseline",
+        "state_count": 25
+      },
+      {
+        "action_count": 24,
+        "failures": [],
+        "left": "negative_first_only",
+        "passed": true,
+        "right": "q0_baseline",
+        "state_count": 25
+      },
+      {
+        "action_count": 36,
+        "failures": [],
+        "left": "positive_full",
+        "passed": true,
+        "right": "positive_first_only",
+        "state_count": 37
+      },
+      {
+        "action_count": 36,
+        "failures": [],
+        "left": "negative_full",
+        "passed": true,
+        "right": "negative_first_only",
+        "state_count": 37
+      }
+    ],
+    "passed": true
+  },
+  "source_revision": "7a945d7c77172437665195659d0acdda012ea0f0"
+}
