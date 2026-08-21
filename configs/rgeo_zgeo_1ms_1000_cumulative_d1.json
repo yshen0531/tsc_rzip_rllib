@@ -1,0 +1,100 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-cumulative-d1-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_cumulative_d1_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 48,
+  "issue_phases": [8, 24],
+  "ramp_up_issues": 4,
+  "plateau_issues": 4,
+  "ramp_down_issues": 4,
+  "tail_states_after_return": 12,
+  "axes": ["even", "odd"],
+  "signs": ["plus", "minus"],
+  "primary_rollouts": 8,
+  "critical_replays": ["p24_even_minus", "p24_odd_plus"],
+  "rollouts": 10,
+  "maximum_reset_calls": 10,
+  "maximum_advance_attempts": 480,
+  "maximum_gotsc_calls": 480,
+  "maximum_verified_plant_advances": 480,
+  "retry_after_any_advance_attempt": "forbidden",
+  "requested_single_turn_increment_a": 0.14,
+  "maximum_quantized_adjacent_increment_a": 0.21,
+  "maximum_cumulative_level": 4,
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4r1.json",
+  "base_tsc_config_sha256": "aad0465e62183ebe2f4146eabe8edcc8493c53b5c1fa6c5d8e1c58a06915e7fe",
+  "baseline_evidence": {
+    "primary": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_baseline_primary.json",
+      "sha256": "e225165e7cbba23b8ddac67b71fbf8422c0d1612e05455ac609b5177c1a15015"
+    },
+    "result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_result.json",
+      "sha256": "d6eaa48c4e158c48831c34aeb71c51ac455e253fab8e2868d92ec93d402868de",
+      "route": "ONE_MS_NR1000B0_BASELINE_COMPLETE_SIGNED_ID_DESIGN_ONLY"
+    }
+  },
+  "d0r1_evidence": {
+    "result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d0r1_20260821_6113ce54_v1_compact/result.json",
+      "sha256": "dba46b4810ee267e36b85f4167580a517476a2d146d40f0e94323a648f6f342f",
+      "route": "ONE_MS_NR1000D0R1_SIGNED_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY"
+    },
+    "independent": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d0r1_20260821_6113ce54_v1_compact/independent_audit.json",
+      "sha256": "79d670e4073273a71afbd732ed0a6902eec3fb4041408badf4d40438b94377dd",
+      "route": "ONE_MS_NR1000D0R1_INDEPENDENT_PASS"
+    }
+  },
+  "axis_signs_tsc_order": {
+    "even": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    "odd": [1, 1, 1, -1, -1, -1, 1, -1, 1, -1, 1, -1, 1, -1]
+  },
+  "action_contract": {
+    "center": "exact_source_active_card15_q0",
+    "ramp": "four_exact_quantized_cumulative_levels",
+    "plateau": "level4_for_four_issues",
+    "return": "levels3_2_1_then_exact_q0",
+    "future": "q0_through_state48",
+    "effect_state_index": "issue_step_plus_one",
+    "signed_odd_symmetry_assumed": false,
+    "maximum_hard_command_and_readback_slew_a": 0.3
+  },
+  "data_roles": {
+    "primary_cumulative_rollouts": "development_fit_eligible_weight_1",
+    "critical_replays": "integrity_only_zero_fit_weight",
+    "baseline_primary": "inherited_development_baseline_weight_1",
+    "calibration": "unopened",
+    "holdout": "unopened",
+    "controller_or_recourse": "forbidden"
+  },
+  "scientific_gates": {
+    "minimum_axis_max_h4_h8_rz_norm_mm": 0.08,
+    "minimum_signed_pair_max_h4_h8_separation_mm": 0.15,
+    "maximum_phase_best_h4_h8_condition": 15.0,
+    "minimum_phase_best_h4_h8_sigma_min_mm": 0.04,
+    "maximum_h4_h8_absolute_ip_response_a": 400.0,
+    "maximum_h12_h16_absolute_rz_response_mm": 3.0,
+    "maximum_h12_h16_absolute_ip_response_a": 400.0,
+    "require_both_phases": true,
+    "single_frame_hybrid_peak_cannot_substitute_h4_h8": true
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000D1_OFFLINE_PASS_RUN_ONLY",
+    "offline_fail": "ONE_MS_NR1000D1_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000D1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "replay_fail": "ONE_MS_NR1000D1_CRITICAL_REPLAY_FAIL_STOP",
+    "scientific_fail": "ONE_MS_NR1000D1_CUMULATIVE_TEMPORAL_INSUFFICIENT_REDESIGN",
+    "pass": "ONE_MS_NR1000D1_CUMULATIVE_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY",
+    "independent_pass": "ONE_MS_NR1000D1_INDEPENDENT_PASS",
+    "independent_fail": "ONE_MS_NR1000D1_INDEPENDENT_FAIL"
+  }
+}
