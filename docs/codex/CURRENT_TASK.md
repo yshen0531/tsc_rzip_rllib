@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 M0 smooth model FAIL /
+> **Unique active task (2026-08-22, fixed-1000 M1 point-model ladder
+> closed):** the sole event-aware M1 successor completed zero-TSC development
+> on the unchanged 25 trajectories and six whole-family folds. It failed both
+> absolute and response gates: mean paired NRMSE was `0.976217`, only `2.378%`
+> better than a zero-response comparator, and N0 shallow/deep NRMSE was
+> `1.282669/1.300030`. R p95 reached `0.800 mm`; several D1/N0 families still
+> had reversed peak direction. M1 emitted no artifact. No further one-step
+> ridge/MLP/TCN/GRU may be tried on these rows and gates may not be widened.
+> The active route is a new direct multi-horizon candidate-value/risk data
+> identity using sustained two-axis exact-Card15 macros at prospectively
+> separated fixed-1000 phases, followed by whole-phase development,
+> calibration and blind evaluation. Point trajectory prediction is auxiliary
+> only; Authority, Recourse and controller execution remain independent.
+> Every older active block below is historical only.
+
+> **Historical active task (2026-08-22, fixed-1000 M0 smooth model FAIL /
 > one event-aware M1 next):** M0 trained on exactly 25 prospectively eligible
 > fixed-1000 trajectories and evaluated six whole schedule/phase folds. It
 > failed: per-fold R p95 was `0.468--0.596 mm`, paired-response NRMSE was

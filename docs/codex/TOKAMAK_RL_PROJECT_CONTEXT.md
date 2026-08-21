@@ -1,5 +1,16 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, M1 complete):** both the smooth M0
+> and the sole nonlinear event-aware M1 failed whole-family point prediction.
+> M1 improved paired response over zero by only `2.378%`, was worse than zero
+> on both N0 folds, and retained radial sign errors. The project therefore
+> stops asking one-step point models to solve the hybrid event and deep-history
+> problem from these 25 trajectories. The next learning object is direct
+> multi-horizon candidate value plus calibrated risk/abstention, built from a
+> fresh prospectively split sustained-action campaign. This is a change of
+> target, not a relaxed gate or a larger-network retry. Exact observation,
+> interface safety, Authority and Recourse remain separate requirements.
+
 > **Unique fixed-1000 context (2026-08-22, M0 complete):** exact 1 ms
 > re-centering plus a smooth action/history ridge is insufficient for the
 > radial channel. It predicts vertical and Ip increments accurately, but

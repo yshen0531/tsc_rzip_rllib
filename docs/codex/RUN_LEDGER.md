@@ -3209,3 +3209,22 @@
 - Final route: `ONE_MS_NR1000M0_CAUSAL_SHORT_HORIZON_MODEL_INSUFFICIENT`
 - Classification: smooth fixed-feature model FAIL, not data corruption,
   plant execution, controller or global learnability evidence
+
+## 2026-08-22 fixed-1000 M1 event-aware model
+
+- Design revision: `e7b0f7287bc24455df308b3d29f79419944ba90c`
+- Implementation revision: `62e57e8a57f26cda9e9c0a25f34c3d9be3e48aa0`
+- Server validation: focused `5/5`; all 1 ms tests `771/771`
+- TSC/plant advances: `0/0`
+- Same 25 trajectories, 1,184 rows and six M0 whole-family folds
+- Fold R p95: `0.1137`, `0.1444`, `0.2540`, `0.3688`, `0.7637`,
+  `0.8001 mm`
+- Mean paired NRMSE: `0.9762167771`; improvement over zero response:
+  `2.378322%`
+- Result SHA-256:
+  `bb144cfa82d15b51dbb37a0e76d7075820002d6fd3dacab086381373171aa914`
+- Final route:
+  `ONE_MS_NR1000M1_EVENT_AWARE_POINT_MODEL_INSUFFICIENT_STOP_POINT_MODEL_LADDER`
+- Classification: final bounded point-model development FAIL on the current
+  rows; not runtime, TSC, controller, global learnability or plant-authority
+  evidence

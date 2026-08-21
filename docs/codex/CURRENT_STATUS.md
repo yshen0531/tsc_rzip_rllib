@@ -1,5 +1,17 @@
 # Current status
 
+> **Current fixed-1000 status - M1 FAIL / point ladder stopped (2026-08-22):**
+> server validation passed `771/771`; training used zero TSC and zero plant
+> advances. M1's event-aware q0-relative ensemble achieved mean paired NRMSE
+> `0.976217` and only `2.378%` improvement over zero response. Fold R p95 was
+> `0.114/0.144/0.254/0.369/0.764/0.800 mm`; N0 maxima exceeded `1.1 mm` and
+> wrong directions remained. Result SHA-256 is
+> `bb144cfa...71aa914`; route is
+> `ONE_MS_NR1000M1_EVENT_AWARE_POINT_MODEL_INSUFFICIENT_STOP_POINT_MODEL_LADDER`.
+> No artifact/calibration/holdout/controller is open. Next work changes the
+> supervised target to sustained candidate value/risk and requires fresh,
+> prospectively split phase data.
+
 > **Current fixed-1000 status - M0 model FAIL (2026-08-22):** zero TSC was
 > used. The smooth action-aware ridge failed absolute and response gates in
 > all six whole-family folds; mean paired NRMSE was `0.929989` versus
