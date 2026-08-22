@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, G2 design frozen):** the next finite
+> **Unique fixed-1000 context (2026-08-22, G2R1 pre-execution):** G2 v1 is
+> frozen as a zero-TSC exact-lattice construction failure: one admitted joint
+> edge was `0.3 A`, above its prospective `0.25 A` issued-reserve cap. G2R1 is
+> the sole pre-response correction. It uses `0.06 A` vertical increments, an
+> enumerated maximum exact edge of `0.20833333333333333333333334 A`, a tighter
+> `0.21 A` issued cap and the unchanged `0.3 A` observed-current hard gate.
+> All rollout and scientific semantics remain G2's; another adjacent scale is
+> forbidden after G2R1. Older active notices are historical where they conflict.
+>
+> **Historical fixed-1000 context (2026-08-22, G2 design frozen):** the next finite
 > Authority discriminator is a causal two-coordinate Card15 allocator, not a
 > scalar G1 repair. It combines radial/even and vertical/odd integer levels,
 > reserves at least `0.05 A` below the observed-slew hard gate, uses current

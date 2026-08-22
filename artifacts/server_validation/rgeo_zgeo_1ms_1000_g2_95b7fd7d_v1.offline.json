@@ -1,0 +1,15 @@
+{
+  "action_geometry": null,
+  "authorized_plant_advances": 320,
+  "authorized_reset_calls": 5,
+  "created_utc": "2026-08-22T11:50:30.318205+00:00",
+  "enumerated_branch_streams": null,
+  "failures": [
+    "ContractError:G2 exact lattice transition exceeds issued reserve cap"
+  ],
+  "kind": "offline_preflight",
+  "passed": false,
+  "route": "ONE_MS_NR1000G2_OFFLINE_FAIL_NO_TSC",
+  "schema_version": "rgeo-zgeo-1ms-1000-joint-allocator-authority-g2-v1",
+  "source_revision": "95b7fd7d"
+}

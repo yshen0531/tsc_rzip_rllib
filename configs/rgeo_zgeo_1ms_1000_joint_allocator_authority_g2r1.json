@@ -1,0 +1,39 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-joint-allocator-authority-g2r1-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_joint_allocator_authority_g2r1_v1",
+  "parent_config_path": "configs/rgeo_zgeo_1ms_1000_joint_allocator_authority_g2.json",
+  "parent_config_sha256": "0582af5e37459ba6d6bfc39260eaebdd06356cb0d8299b6a071f49e6cfb02e52",
+  "design_path": "docs/codex/reports/RGEO_ZGEO_1MS_1000_JOINT_ALLOCATOR_AUTHORITY_G2R1_DESIGN.md",
+  "design_sha256": "fcd40856a9f0dbeec979fa87f0f8117141d91362744a69f6b1ded83fc4de6fd7",
+  "failed_parent_offline_path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_g2_95b7fd7d_v1.offline.json",
+  "failed_parent_offline_sha256": "0de041d22c1e0f9f3585b0954a0fbeaa1df973dfc79bdbdedaacc8789d7549de",
+  "failed_parent_route": "ONE_MS_NR1000G2_OFFLINE_FAIL_NO_TSC",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 64,
+  "rollouts": 5,
+  "maximum_reset_calls": 5,
+  "maximum_advance_attempts": 320,
+  "maximum_gotsc_calls": 320,
+  "maximum_verified_plant_advances": 320,
+  "retry_after_any_advance_attempt": "forbidden",
+  "lattice_correction": {
+    "vertical_single_turn_increment_a": 0.06,
+    "maximum_exact_issued_slew_a": 0.21,
+    "maximum_hard_observed_slew_a": 0.3,
+    "minimum_nominal_readback_reserve_a": 0.09,
+    "enumerated_maximum_exact_adjacent_slew_a": "0.20833333333333333333333334",
+    "all_other_parent_semantics_unchanged": true
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000G2R1_OFFLINE_PASS_RUN_ONLY",
+    "offline_fail": "ONE_MS_NR1000G2R1_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000G2R1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "matched_q0_fail": "ONE_MS_NR1000G2R1_MATCHED_Q0_INCOMPLETE_STOP_INCONCLUSIVE",
+    "replay_fail": "ONE_MS_NR1000G2R1_CRITICAL_REPLAY_FAIL_STOP",
+    "scientific_fail": "ONE_MS_NR1000G2R1_JOINT_ALLOCATOR_AUTHORITY_INSUFFICIENT_ACTION_BASIS_REDESIGN",
+    "pass": "ONE_MS_NR1000G2R1_JOINT_ALLOCATOR_AUTHORITY_PASS_MODEL_AND_RECOURSE_DESIGN_ONLY",
+    "independent_pass": "ONE_MS_NR1000G2R1_INDEPENDENT_PASS",
+    "independent_fail": "ONE_MS_NR1000G2R1_INDEPENDENT_FAIL"
+  }
+}
