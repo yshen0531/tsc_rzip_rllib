@@ -56,18 +56,15 @@ class Fixed1000JointAllocatorAuthorityG2Test(unittest.TestCase):
         self.assertEqual((level, phase, switched), (-3, "brake", True))
         self.assertAlmostEqual(inward, 1.1)
 
-    def test_server_exact_lattice_and_all_branch_streams(self) -> None:
+    def test_server_exact_lattice_freezes_zero_tsc_failure(self) -> None:
         stage, cfg, _ = primary.load(CONFIG)
         source = _source(cfg)
-        target_map = primary.targets(stage, cfg, source)
-        geometry = target_map["action_geometry"]
-        self.assertEqual(geometry["rank"], 2)
-        self.assertLessEqual(geometry["maximum_exact_adjacent_slew_a"], 0.25)
-        self.assertGreaterEqual(geometry["minimum_nominal_readback_reserve_a"], 0.05)
+        with self.assertRaisesRegex(primary.ContractError, "exact lattice transition"):
+            primary.targets(stage, cfg, source)
         preflight = primary.offline(CONFIG, "test-revision")
-        self.assertTrue(preflight["passed"], preflight["failures"])
-        self.assertEqual(len(preflight["enumerated_branch_streams"]), 25)
-        self.assertTrue(all(len(row["actions"]) == 64 for row in preflight["enumerated_branch_streams"]))
+        self.assertFalse(preflight["passed"])
+        self.assertEqual(preflight["route"], "ONE_MS_NR1000G2_OFFLINE_FAIL_NO_TSC")
+        self.assertIsNone(preflight["enumerated_branch_streams"])
 
     def test_launcher_exposes_only_three_modes(self) -> None:
         text = (ROOT / "run_rgeo_zgeo_1ms_1000_joint_allocator_authority_g2.sh").read_text(encoding="utf-8")
