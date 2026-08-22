@@ -1,7 +1,7 @@
 # Current status
 
-> **Current fixed-1000 status - G3 signed action-basis frozen before
-> implementation (2026-08-22):** all G2R1 `5/5` rollouts and `320/320` advances
+> **Current fixed-1000 status - G3 offline PASS / real campaign authorized
+> (2026-08-22):** all G2R1 `5/5` rollouts and `320/320` advances
 > completed; independent raw audit passed with no failures. The first mirrored
 > Z endpoint passed at `+/-0.387523 mm`, while the reversal failed at only
 > `-/+0.0685615 mm`. Terminal distance improvement was about `11.17%`, and
@@ -9,8 +9,11 @@
 > is closed as a scientific action-basis/policy FAIL. No adjacent lattice
 > scale or switch tuning is authorized. G3 freezes four input-rank-4 sign
 > coordinates at phases 8/24, 16 primary signed branches and two zero-fit
-> replays. It has no implementation, server validation, offline authorization
-> or TSC yet. Model fitting and Recourse remain closed.
+> replays. Server validation passed `19/19`; zero-TSC preflight route is
+> `ONE_MS_NR1000G3_OFFLINE_PASS_RUN_ONLY`, with exact rank 4, condition
+> `1.438375`, and maximum delta `0.145833 A`. Its SHA-256 is
+> `99e25ae6...ad4ac50e`. No G3 TSC has run yet; exactly one real campaign is
+> authorized. Model fitting and Recourse remain closed.
 >
 > **Historical fixed-1000 status - G2R1 offline PASS / real campaign authorized
 > (2026-08-22):** G2 v1 reached no reset or plant advance. Its server-side
