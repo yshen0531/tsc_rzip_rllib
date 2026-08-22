@@ -1,6 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 F1 veto / high-level model
+> **Unique active task (2026-08-22, post-F1 high-level route / absolute
+> Authority teacher next):** F1 remains a zero-TSC pre-execution veto and the
+> q0-relative deadband-repair line is closed. The next work is one bounded
+> fixed-1000 absolute-viability/nominal Authority teacher design. It must
+> freeze a sustained exact-Card15 allocation grammar, matched no-action and
+> active branches, absolute R/Z and terminal-velocity utility, continuation
+> margins, whole-history data roles and a fixed TSC/search budget. Authority
+> relative to the real matched continuation is tested before any new model is
+> fitted. FAIL redirects to nominal/action-basis co-design; PASS may open at
+> most two endpoint-value/risk models and independent Recourse-L1 work in
+> parallel. A new real feedback sentinel requires model fresh-cal/blind PASS
+> AND Authority PASS AND Recourse PASS AND the hard interface. No F1/F2
+> deadband, nearby waypoint/duration repair, q0-only tail campaign, third
+> model, fixed-1100 evidence or controller execution is currently authorized.
+> The complete route decision is recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_POST_F1_HIGH_LEVEL_ROUTE.md`; every
+> older active block below is historical only.
+>
+> **Historical active task (2026-08-22, fixed-1000 F1 veto / high-level model
 > contract review required):** server focused tests vetoed F1 before offline
 > authorization or TSC. Its 0.35-mm deadband would select q0 no-op for the
 > first 0.28/0.30-mm radial commands, so a PASS could omit the intended radial

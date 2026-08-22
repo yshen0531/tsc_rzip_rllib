@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, F1 veto):** endpoint tolerance,
+> **Unique fixed-1000 context (2026-08-22, post-F1 route reset):** the local
+> q0-relative repair ladder is closed. F0 showed promising finite tracking
+> but exposed that a differential candidate response is not an absolute
+> endpoint value; F1 then made the first radial segment vacuous. More
+> importantly, q0 drifts `23.538658 mm` inward over 64 ms while the qualified
+> radial h8 residual is only about `0.3 mm`. The next stage therefore freezes
+> and tests a sustained exact-Card15 absolute nominal/Authority teacher before
+> new model fitting. PASS may open no-action/candidate endpoint-value learning
+> and Recourse in parallel; FAIL redirects to nominal/action-basis co-design.
+> No nearby deadband, q0-only tail campaign or third-model ladder is active.
+>
+> **Historical fixed-1000 context (2026-08-22, F1 veto):** endpoint tolerance,
 > acquisition progress and no-action continuation are now explicitly distinct
 > contracts. F1 incorrectly made the 0.35-mm endpoint tolerance its no-op
 > deadband, rendering the first 0.28/0.30-mm radial request vacuous. It also

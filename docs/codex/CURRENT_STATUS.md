@@ -1,6 +1,17 @@
 # Current status
 
-> **Current fixed-1000 status - F1 pre-TSC design veto (2026-08-22):** F1
+> **Current fixed-1000 status - post-F1 route reset (2026-08-22):** F1 remains
+> frozen with zero resets/advances. The project will not tune its deadband or
+> collect an isolated q0 issue-48 tail repair. F0 is retained as a promising
+> but unqualified local residual-feedback result: all six real position
+> checkpoints passed, while its endpoint-value contract did not. The active
+> route first asks whether a sustained exact-Card15 nominal/allocation family
+> has absolute, terminal-velocity-aware Authority relative to a real matched
+> continuation. Only Authority PASS may open a bounded endpoint-value model;
+> Recourse-L1 remains a parallel independent gate before another controller.
+> No new TSC has been run for this route decision.
+>
+> **Historical fixed-1000 status - F1 pre-TSC design veto (2026-08-22):** F1
 > focused validation failed before offline/TSC because its 0.35-mm deadband
 > makes the initial 0.28/0.30-mm radial requests no-op eligible. This is a
 > non-vacuity/control-objective error. V0 also lacks a history-conditioned

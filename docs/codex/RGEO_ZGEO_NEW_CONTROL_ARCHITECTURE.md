@@ -1,5 +1,17 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Fixed-1000 F1 preflight amendment (2026-08-22):** acquisition progress,
+> **Post-F1 fixed-1000 route amendment (2026-08-22):** the q0-relative
+> threshold-repair line is closed. F0 establishes promising finite residual
+> tracking but not a valid absolute endpoint-value controller, and F1 is a
+> zero-TSC non-vacuity veto. Because q0 drifts about `23.54 mm/64 ms` while
+> the qualified radial h8 residual is about `0.3 mm`, the next dependency is
+> `sustained nominal/allocation design -> matched absolute Authority teacher`.
+> Only real Authority relative to matched continuation may open a bounded
+> history-conditioned no-action/candidate endpoint-value model. Endpoint
+> modelling and Recourse may then proceed in parallel; real feedback requires
+> their AND with Authority and the hard interface. Do not collect an
+> isolated q0-tail repair before the nominal corridor is selected.
+>
+> **Historical fixed-1000 F1 preflight amendment (2026-08-22):** acquisition progress,
 > endpoint acceptance and no-action continuation must be separate. A terminal
 > tolerance cannot automatically become the policy deadband, and no-op cannot
 > be assigned zero future response without a history-conditioned tail model.
