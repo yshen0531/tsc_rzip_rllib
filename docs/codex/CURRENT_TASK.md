@@ -1,6 +1,7 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 G2R1 pre-execution):** G2 v1
+> **Unique active task (2026-08-22, fixed-1000 G2R1 real campaign
+> authorized):** G2 v1
 > is frozen as `ONE_MS_NR1000G2_OFFLINE_FAIL_NO_TSC`: exact Card15 enumeration
 > found a `0.3 A` joint edge above its prospective `0.25 A` issued-reserve cap,
 > with zero reset and zero plant advance. G2R1 is the only successor. Before
@@ -9,11 +10,17 @@
 > `0.20833333333333333333333334 A`, below the new `0.21 A` issued cap and with
 > at least `0.09 A` reserve to the unchanged `0.3 A` observed-current hard
 > limit. The five-rollout/320-advance matrix and every scientific gate remain
-> unchanged. Server tests and a fresh zero-TSC offline PASS are mandatory.
+> unchanged. Installed server validation passed `20/20`; the fresh zero-TSC
+> preflight passed with 333 cells, 2,392 directed transitions, rank 2,
+> condition `2.02249`, maximum exact edge `0.20833333333333334 A` and minimum
+> observed-current reserve `0.09166666666666665 A`. Exactly one real
+> five-rollout/320-advance campaign at implementation revision
+> `2a559cb4386c0a6c1d6c9e4470f542668f599775` is now authorized, with no retry.
 > FAIL closes this joint lattice without another scale; PASS opens model and
 > Recourse design only. The frozen amendment is
 > `docs/codex/reports/RGEO_ZGEO_1MS_1000_JOINT_ALLOCATOR_AUTHORITY_G2R1_DESIGN.md`;
-> all older active blocks below are historical.
+> all older active blocks below are historical. The authorization evidence is
+> `artifacts/server_validation/rgeo_zgeo_1ms_1000_g2r1_2a559cb4_v2.offline.json`.
 >
 > **Historical active task (2026-08-22, fixed-1000 G2 frozen before
 > implementation):** G2 replaces the closed G1 scalar schedule with an exact

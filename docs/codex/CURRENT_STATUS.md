@@ -1,6 +1,6 @@
 # Current status
 
-> **Current fixed-1000 status - G2 offline FAIL / G2R1 frozen
+> **Current fixed-1000 status - G2R1 offline PASS / real campaign authorized
 > (2026-08-22):** G2 v1 reached no reset or plant advance. Its server-side
 > exact lattice construction contradicted the continuous-coordinate reserve
 > assumption: one admitted adjacent transition was exactly `0.3 A`, so the
@@ -8,8 +8,12 @@
 > SHA-256 is `0de041d2...d7549de`. G2R1 is a one-time, pre-response lattice
 > correction to `0.06 A` vertical increments and a tighter `0.21 A` exact
 > issued cap; all rollout, causal-policy, replay and scientific semantics are
-> unchanged. It has not yet passed server validation or offline authorization,
-> and no G2R1 TSC has run.
+> unchanged. Installed server validation passed `20/20` and zero-TSC preflight
+> route is `ONE_MS_NR1000G2R1_OFFLINE_PASS_RUN_ONLY`; exact maximum edge is
+> `0.20833333333333334 A`, minimum reserve `0.09166666666666665 A`, and the
+> preflight SHA-256 is `3050e8c5...34d65e6d`. No G2R1 TSC has run yet; exactly
+> one five-rollout campaign is authorized at implementation revision
+> `2a559cb4386c0a6c1d6c9e4470f542668f599775`.
 >
 > **Historical fixed-1000 status - G2 pre-implementation freeze (2026-08-22):**
 > the result-reporting checkpoint is `f82a00bc`. G2 has a frozen five-rollout
