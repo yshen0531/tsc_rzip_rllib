@@ -1,5 +1,18 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-22, D3 PASS / one direct model next):** D3
+> completed 16/16 authentic rollouts and 768/768 advances; independent raw
+> reconstruction passed 784 states, 768 actions, 752 observed slews and two
+> exact replays.  Both conditioner histories support all three unequal
+> candidate axes; h4 weakest task-plane projection is about `0.180 mm` and h8
+> about `0.329--0.337 mm`.  The only authorized successor is one direct,
+> support-gated candidate-value model with matched no-action, whole-history
+> splits and no recursive world-state rollout.  Development PASS may open one
+> fresh calibration and one unopened blind campaign.  Model FAIL closes this
+> library without a third model.  Authority, Recourse and feedback remain
+> closed.  The exact result is recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_DISCRETE_VALUE_D3_RESULT.md`.
+
 > **Unique active task (2026-08-22, D3 real campaign authorized):** installed
 > server focused/dependency tests passed 31/31.  The zero-TSC preflight
 > enumerated all 16x48 exact action streams and passed: input rank 3,

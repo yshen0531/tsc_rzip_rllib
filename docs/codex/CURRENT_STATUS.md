@@ -1,5 +1,11 @@
 # Current status
 
+> **2026-08-22 D3 final:** authentic execution 16/16 and independent audit
+> PASS.  The finite unequal even/odd/block4 candidate library has strong h4/h8
+> task-plane geometry in both new block4 conditioner histories.  D3 is only
+> development data.  One direct candidate-value model is next; Authority,
+> Recourse, fresh calibration/blind evidence and feedback are still absent.
+
 > **2026-08-22 D3 authorization:** server dependency tests are 31/31 and the
 > zero-plant preflight is PASS with exact rank 3, condition `1.40172`, and
 > maximum adjacent issued step `0.2 A`.  One 16-rollout/768-advance campaign
