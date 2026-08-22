@@ -1,6 +1,23 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 G2R1 real campaign
+> **Unique active task (2026-08-22, fixed-1000 G2R1 scientific FAIL / new
+> action-basis design next):** G2R1 completed `5/5` authentic rollouts and
+> `320/320` advances; independent raw audit passed. First mirrored Z
+> acquisition reached `+/-0.387523 mm`, but the reversal reached only
+> `-/+0.0685615 mm`. Active paths improved terminal distance only about
+> `11.17% < 15%` and worsened terminal maximum speed from `0.318027` to about
+> `0.5706 m/s`. The final route is
+> `ONE_MS_NR1000G2R1_JOINT_ALLOCATOR_AUTHORITY_INSUFFICIENT_ACTION_BASIS_REDESIGN`.
+> G2/G2R1's even/odd lattice and early-minus cross-zero radial policy are
+> closed without another scale, depth, phase or threshold. The sole active
+> successor is one bounded, prospectively frozen fixed-1000 action-basis
+> discovery campaign using materially different exact Card15 signed
+> directions at multiple causal phases. It must gate persistent task-plane
+> geometry, not input rank or transient peaks, and cannot claim a model,
+> Recourse or controller. The result is recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_JOINT_ALLOCATOR_AUTHORITY_G2R1_RESULT.md`.
+>
+> **Historical active task (2026-08-22, fixed-1000 G2R1 real campaign
 > authorized):** G2 v1
 > is frozen as `ONE_MS_NR1000G2_OFFLINE_FAIL_NO_TSC`: exact Card15 enumeration
 > found a `0.3 A` joint edge above its prospective `0.25 A` issued-reserve cap,

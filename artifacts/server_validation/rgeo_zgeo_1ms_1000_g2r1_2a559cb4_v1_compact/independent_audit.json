@@ -1,0 +1,127 @@
+{
+  "action_checks": 320,
+  "created_utc": "2026-08-22T12:24:42.192757+00:00",
+  "critical_replay": {
+    "failures": [],
+    "maximum_absolute_difference": {
+      "coil_a": 0.0,
+      "geometry_m": 0.0,
+      "ip_a": 0.0,
+      "wire_a": 0.0
+    },
+    "passed": true
+  },
+  "failures": [],
+  "kind": "independent_raw_audit",
+  "observed_slew_checks": 315,
+  "passed": true,
+  "primary_scientific_passed": false,
+  "primary_scientific_route": "ONE_MS_NR1000G2R1_JOINT_ALLOCATOR_AUTHORITY_INSUFFICIENT_ACTION_BASIS_REDESIGN",
+  "raw_rollouts": 5,
+  "raw_states": 325,
+  "route": "ONE_MS_NR1000G2R1_INDEPENDENT_PASS",
+  "schema_version": "rgeo-zgeo-1ms-1000-joint-allocator-authority-g2r1-v1-independent",
+  "scientific_metrics": {
+    "absolute_utility": [
+      {
+        "maximum_ip_source_fraction": 0.004866321108730425,
+        "maximum_source_distance_mm": 20.91030699999996,
+        "maximum_speed_m_per_s": 0.5705760000001003,
+        "passed": false,
+        "rollout_id": "radial_only",
+        "source_distance_improvement_fraction": 0.11166103861996002,
+        "speed_improvement_m_per_s": -0.25254900000015734
+      },
+      {
+        "maximum_ip_source_fraction": 0.0048666334017513505,
+        "maximum_source_distance_mm": 20.909149727006096,
+        "maximum_speed_m_per_s": 0.5706164939628444,
+        "passed": false,
+        "rollout_id": "path_pos_neg",
+        "source_distance_improvement_fraction": 0.11171020340216065,
+        "speed_improvement_m_per_s": -0.2525894939629014
+      },
+      {
+        "maximum_ip_source_fraction": 0.0048666334017513505,
+        "maximum_source_distance_mm": 20.909149727006096,
+        "maximum_speed_m_per_s": 0.5706164939628444,
+        "passed": false,
+        "rollout_id": "path_neg_pos",
+        "source_distance_improvement_fraction": 0.11171020340216065,
+        "speed_improvement_m_per_s": -0.2525894939629014
+      }
+    ],
+    "absolute_utility_pass": false,
+    "matched_q0_terminal": {
+      "maximum_ip_source_fraction": 0.029653538663912574,
+      "maximum_source_distance_mm": 23.53865799999999,
+      "maximum_speed_m_per_s": 0.318026999999943
+    },
+    "mirror_endpoints": [
+      {
+        "endpoint_state": 16,
+        "ordering_pass": true,
+        "ordinal": 0,
+        "passed": true,
+        "path_neg_pos_z_source_mm": -0.38752300000000073,
+        "path_pos_neg_z_source_mm": 0.38752300000000073,
+        "separation_mm": 0.7750460000000015
+      },
+      {
+        "endpoint_state": 36,
+        "ordering_pass": true,
+        "ordinal": 1,
+        "passed": false,
+        "path_neg_pos_z_source_mm": 0.06856150000000838,
+        "path_pos_neg_z_source_mm": -0.06856150000000838,
+        "separation_mm": 0.13712300000001676
+      }
+    ],
+    "mirror_separation_pass": false,
+    "passed": false,
+    "vertical_acquisition": [
+      {
+        "acquisition_progress_mm": 0.38752300000000073,
+        "endpoint_error_mm": 0.06247699999999928,
+        "endpoint_state": 16,
+        "endpoint_z_source_mm": 0.38752300000000073,
+        "ordinal": 0,
+        "passed": true,
+        "rollout_id": "path_pos_neg",
+        "target_z_source_mm": 0.45
+      },
+      {
+        "acquisition_progress_mm": 0.42304000000001335,
+        "endpoint_error_mm": 0.38143849999999163,
+        "endpoint_state": 36,
+        "endpoint_z_source_mm": -0.06856150000000838,
+        "ordinal": 1,
+        "passed": false,
+        "rollout_id": "path_pos_neg",
+        "target_z_source_mm": -0.45
+      },
+      {
+        "acquisition_progress_mm": 0.38752300000000073,
+        "endpoint_error_mm": 0.06247699999999928,
+        "endpoint_state": 16,
+        "endpoint_z_source_mm": -0.38752300000000073,
+        "ordinal": 0,
+        "passed": true,
+        "rollout_id": "path_neg_pos",
+        "target_z_source_mm": -0.45
+      },
+      {
+        "acquisition_progress_mm": 0.42304000000001335,
+        "endpoint_error_mm": 0.38143849999999163,
+        "endpoint_state": 36,
+        "endpoint_z_source_mm": 0.06856150000000838,
+        "ordinal": 1,
+        "passed": false,
+        "rollout_id": "path_neg_pos",
+        "target_z_source_mm": 0.45
+      }
+    ],
+    "vertical_acquisition_pass": false
+  },
+  "source_revision": "2a559cb4386c0a6c1d6c9e4470f542668f599775"
+}
