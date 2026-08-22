@@ -1,6 +1,32 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 G0 frozen before execution):**
+> **Unique active task (2026-08-22, fixed-1000 G1 frozen before execution):**
+> G1 is the one authorized nominal/action-semantics redesign after G0. It
+> fixes a fresh q0, four early even-minus depths `4/8/12/16` that then cross
+> zero at exactly two scalar levels per issue to final even-plus level32, and
+> one depth-12 replay: `6` resets / `384` advances, no retry. The unchanged
+> terminal absolute-distance/speed/Ip gate decides the whole matrix. PASS
+> opens only signed-Z/co-allocation design; FAIL closes this scalar even-axis
+> schedule family and requires a different action basis before model fitting.
+> The design is `docs/codex/reports/RGEO_ZGEO_1MS_1000_HYBRID_RADIAL_AUTHORITY_G1_DESIGN.md`;
+> every older active block below is historical only.
+>
+> **Historical active task (2026-08-22, fixed-1000 G0 scientific FAIL / nominal
+> schedule redesign next):** G0 completed `8/8` authentic rollouts and
+> `512/512` advances; its independent audit passed 520 states, 512 actions,
+> 504 observed slews and an exact depth-16 replay. Depth32 materially reduced
+> terminal distance and speed but achieved only `14.4616%` distance
+> improvement against the frozen `15%` gate, so the final route is
+> `ONE_MS_NR1000G0_ABSOLUTE_RADIAL_AUTHORITY_INSUFFICIENT_REDESIGN`. The exact
+> depth matrix is closed with no adjacent depth/amplitude ladder. The sole
+> active successor is one fixed-budget action-semantics redesign combining
+> the measured early even-minus benefit with late even-plus braking; it must
+> be prospectively frozen and cannot train a model or claim hold/Recourse.
+> The result is recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_ABSOLUTE_RADIAL_AUTHORITY_G0_RESULT.md`;
+> every older active block below is historical only.
+>
+> **Historical active task (2026-08-22, fixed-1000 G0 frozen before execution):**
 > the post-F1 Authority-first route is instantiated as one bounded absolute
 > radial discriminator. G0 prospectively fixes one fresh q0 continuation,
 > six issue-0 even-plus ramp-and-hold depths `4/8/12/16/24/32`, and one

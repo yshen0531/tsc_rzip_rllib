@@ -1,6 +1,22 @@
 # Current status
 
-> **Current fixed-1000 status - G0 pre-execution freeze (2026-08-22):** no G0
+> **Current fixed-1000 status - G1 pre-execution freeze (2026-08-22):** G0
+> compact/raw audit is preserved and its FAIL unchanged. G1 combines the
+> measured early benefit of even-minus with the measured late braking of
+> even-plus in one fixed cross-zero schedule matrix. It is not an adjacent
+> depth extension. Server tests, exact-Card15 static validation, commit/hash
+> deployment and storage gates remain required before any G1 advance.
+
+> **Historical fixed-1000 status - G0 scientific FAIL (2026-08-22):** execution
+> and independent raw integrity passed completely. Depth32 improved terminal
+> worst distance from `23.538658` to `20.134588 mm` and maximum speed from
+> `0.318027` to `0.141825 m/s`, with only `0.1955%` Ip offset, but its distance
+> gain was `14.4616% < 15%`. The frozen FAIL is not weakened. It rejects the
+> issue-0 ramp-then-hold depth matrix, not the measured radial action effect.
+> A finite early-minus/late-plus schedule redesign is next; no new model,
+> calibration, holdout, Recourse or feedback is open.
+
+> **Historical fixed-1000 status - G0 pre-execution freeze (2026-08-22):** no G0
 > TSC has run. The single frozen matrix is a fresh q0 plus six sustained
 > even-plus depths and one replay, with a maximum of 512 advances. The route
 > deliberately tests the previously unmeasured sustained opposite sign using
