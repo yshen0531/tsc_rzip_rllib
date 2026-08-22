@@ -1,6 +1,20 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, post-F1 high-level route / absolute
+> **Unique active task (2026-08-22, fixed-1000 G0 frozen before execution):**
+> the post-F1 Authority-first route is instantiated as one bounded absolute
+> radial discriminator. G0 prospectively fixes one fresh q0 continuation,
+> six issue-0 even-plus ramp-and-hold depths `4/8/12/16/24/32`, and one
+> depth-16 integrity replay: at most `8` resets / `512` advances, no retry.
+> The scientific gate uses only the state56--64 absolute source-distance,
+> one-step R/Z speed and Ip windows relative to the fresh matched q0. A
+> transient peak cannot PASS. G0 PASS opens only moving-allocation/signed-Z
+> co-design; G0 FAIL permanently closes this exact depth matrix and redirects
+> to nominal/action-basis redesign. It does not authorize a model, Recourse,
+> calibration, holdout or feedback. The frozen design is
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_ABSOLUTE_RADIAL_AUTHORITY_G0_DESIGN.md`;
+> every older active block below is historical only.
+>
+> **Historical active task (2026-08-22, post-F1 high-level route / absolute
 > Authority teacher next):** F1 remains a zero-TSC pre-execution veto and the
 > q0-relative deadband-repair line is closed. The next work is one bounded
 > fixed-1000 absolute-viability/nominal Authority teacher design. It must

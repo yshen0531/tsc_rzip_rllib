@@ -1,6 +1,15 @@
 # Current status
 
-> **Current fixed-1000 status - post-F1 route reset (2026-08-22):** F1 remains
+> **Current fixed-1000 status - G0 pre-execution freeze (2026-08-22):** no G0
+> TSC has run. The single frozen matrix is a fresh q0 plus six sustained
+> even-plus depths and one replay, with a maximum of 512 advances. The route
+> deliberately tests the previously unmeasured sustained opposite sign using
+> a terminal absolute-distance/speed/Ip gate; it does not reuse D1's short
+> response peak as Authority. Server-only tests, offline exact-Card15/static
+> safety validation, immutable commit/deployment identity and storage checks
+> remain mandatory before any plant advance.
+
+> **Historical fixed-1000 status - post-F1 route reset (2026-08-22):** F1 remains
 > frozen with zero resets/advances. The project will not tune its deadband or
 > collect an isolated q0 issue-48 tail repair. F0 is retained as a promising
 > but unqualified local residual-feedback result: all six real position
