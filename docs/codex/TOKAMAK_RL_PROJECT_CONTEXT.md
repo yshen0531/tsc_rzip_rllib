@@ -1,6 +1,15 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, post-G1):** G1 did not reach its
+> **Unique fixed-1000 context (2026-08-22, G2 design frozen):** the next finite
+> Authority discriminator is a causal two-coordinate Card15 allocator, not a
+> scalar G1 repair. It combines radial/even and vertical/odd integer levels,
+> reserves at least `0.05 A` below the observed-slew hard gate, uses current
+> exact R and history to trigger braking, and tests two mirrored Z waypoints
+> with reversal. Five rollouts are the complete matrix. PASS is still only
+> Authority development; models and Recourse remain independent. FAIL closes
+> the entire cell/policy rather than opening an adjacent-parameter ladder.
+>
+> **Historical fixed-1000 context (2026-08-22, post-G1):** G1 did not reach its
 > scientific matrix. After matched q0, the first novel branch stopped at
 > state1006 because exact `0.3 A` target slew became `0.30001 A` observed slew
 > on two coils; independent raw forensics confirmed no state1007. This is a

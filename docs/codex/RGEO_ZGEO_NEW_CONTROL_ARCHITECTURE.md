@@ -1,5 +1,14 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-G1 fixed-1000 route amendment (2026-08-22):** G1 stopped before
+> **Post-G1/G2 fixed-1000 architecture amendment (2026-08-22):** the first
+> concrete joint allocator is frozen as `T(r,z)` over exact Card15 radial/even
+> and vertical/odd coordinates. It preserves a `0.05 A` target/readback design
+> reserve, reads current true RZI before each decision, and tests mirrored Z
+> acquisition/reversal while requiring absolute radial terminal utility. Its
+> five-rollout matrix is a single Authority discriminator. It is not a model,
+> policy qualification or Recourse result, and it cannot grow an adjacent
+> amplitude/rate/depth ladder after FAIL.
+>
+> **Historical Post-G1 fixed-1000 route amendment (2026-08-22):** G1 stopped before
 > scientific evaluation because an exact `0.3 A` target transition yielded a
 > `0.30001 A` observed transition. The safety layer is retained unchanged.
 > Do not repair this by clipping, relaxing the limit or scanning a neighboring

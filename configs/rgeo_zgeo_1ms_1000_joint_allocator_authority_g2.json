@@ -1,0 +1,148 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-joint-allocator-authority-g2-v1",
+  "campaign_id": "rgeo_zgeo_1ms_1000_joint_allocator_authority_g2_v1",
+  "takeover_time_ms": 1000,
+  "control_period_ms": 1,
+  "horizon_steps": 64,
+  "rollout_ids": [
+    "matched_q0",
+    "radial_only",
+    "path_pos_neg",
+    "path_neg_pos",
+    "path_pos_neg_replay"
+  ],
+  "rollouts": 5,
+  "maximum_reset_calls": 5,
+  "maximum_advance_attempts": 320,
+  "maximum_gotsc_calls": 320,
+  "maximum_verified_plant_advances": 320,
+  "retry_after_any_advance_attempt": "forbidden",
+  "design_path": "docs/codex/reports/RGEO_ZGEO_1MS_1000_JOINT_ALLOCATOR_AUTHORITY_G2_DESIGN.md",
+  "design_sha256": "4cd66d9f11a1f6dbf2fba6ac252baceae41c4a7b9be958f737bace35df30f029",
+  "base_tsc_config": "configs/rgeo_zgeo_1ms_1000_nr1_interface_r4r1.json",
+  "base_tsc_config_sha256": "aad0465e62183ebe2f4146eabe8edcc8493c53b5c1fa6c5d8e1c58a06915e7fe",
+  "prior_evidence": {
+    "b0_primary": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_b0_20260821_d3ecd3cd_baseline_primary.json",
+      "sha256": "e225165e7cbba23b8ddac67b71fbf8422c0d1612e05455ac609b5177c1a15015"
+    },
+    "d1_result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/result_repaired.json",
+      "sha256": "bb0899377b10306f373b9b72517a0458dc3498cbd21f4927298e0fb5d4580148",
+      "route": "ONE_MS_NR1000D1_CUMULATIVE_TEMPORAL_PASS_MODEL_AND_AUTHORITY_DESIGN_ONLY"
+    },
+    "d1_independent": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d1_20260822_66b5c2d3_v1_compact/independent_audit.json",
+      "sha256": "a17df1173bdd31c41893de376b4e6322a9eebfbbc9729c5dd89a3ab23c720e00",
+      "route": "ONE_MS_NR1000D1_INDEPENDENT_PASS"
+    },
+    "g0_result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_g0_f0213459_v1_compact/result.json",
+      "sha256": "2c363a4631b1981aa5d86e0abd9ee1a962ceccd934c4b6a053fb9464481777c6",
+      "route": "ONE_MS_NR1000G0_ABSOLUTE_RADIAL_AUTHORITY_INSUFFICIENT_REDESIGN"
+    },
+    "g0_independent": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_g0_f0213459_v1_compact/independent_audit.json",
+      "sha256": "c658dac8f84e4c4a768232887fa9102b76659303378facb7e2db9cdbd7d136a4",
+      "route": "ONE_MS_NR1000G0_INDEPENDENT_PASS"
+    },
+    "n0_result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_n0_20260822_2325e0aa_v1_compact/result.json",
+      "sha256": "4d769f9160e7c2f2fa7c50d7de7b83677a2387620b1239f5f06c9cba15e6893c",
+      "route": "ONE_MS_NR1000N0_RADIAL_NOMINAL_UTILITY_INSUFFICIENT_REDESIGN"
+    },
+    "n0_independent": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_n0_20260822_2325e0aa_v1_compact/independent_audit.json",
+      "sha256": "3072925f59d7a0eb441bfb22cac80d318ce4399ed0f0839fbdd288c2d2d6740c",
+      "route": "ONE_MS_NR1000N0_INDEPENDENT_PASS"
+    },
+    "g1_result": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_g1_3057b6ad_v1_compact/result.json",
+      "sha256": "cf98e1236d30a70950586c9a2be793a342016ebb9bbeb0ed0ccbddc7fb9bffcd",
+      "route": "ONE_MS_NR1000G1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP"
+    },
+    "g1_forensic": {
+      "path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_g1_3057b6ad_v1_compact/failure_forensic.json",
+      "sha256": "0fd01c0bc03da31a51989bad77a805a4a38b1246e4c27ea9f1718f4adbb97bc2",
+      "route": "ONE_MS_NR1000G1_PARTIAL_RAW_FORENSIC_PASS_ACTION_ALLOCATION_MARGIN_REDESIGN"
+    }
+  },
+  "lattice": {
+    "radial_single_turn_increment_a": 0.14,
+    "vertical_single_turn_increment_a": 0.07,
+    "minimum_radial_level": -4,
+    "maximum_radial_level": 32,
+    "minimum_vertical_level": -4,
+    "maximum_vertical_level": 4,
+    "maximum_coordinate_change_per_issue": 1,
+    "maximum_exact_issued_slew_a": 0.25,
+    "maximum_hard_observed_slew_a": 0.3,
+    "minimum_nominal_readback_reserve_a": 0.05,
+    "silent_clipping": "forbidden",
+    "axis_signs_tsc_order": {
+      "even": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      "odd": [1, 1, 1, -1, -1, -1, 1, -1, 1, -1, 1, -1, 1, -1]
+    }
+  },
+  "radial_policy": {
+    "initial_minus_depth": 4,
+    "earliest_switch_issue": 4,
+    "latest_switch_issue": 8,
+    "switch_inward_source_displacement_mm": 1.0,
+    "brake_increment_levels_per_issue": 1,
+    "final_plus_level": 32,
+    "future_tsc": "forbidden"
+  },
+  "vertical_policy": {
+    "decision_issues": [8, 28],
+    "endpoint_states": [16, 36],
+    "waypoints_z_source_mm": {
+      "path_pos_neg": [0.45, -0.45],
+      "path_neg_pos": [-0.45, 0.45]
+    },
+    "macro_absolute_levels": [1, 2, 3, 4, 4, 4, 4, 4, 3, 2, 1, 0],
+    "selection": "sign_of_current_exact_z_waypoint_error",
+    "tie_break": "positive",
+    "future_tsc": "forbidden"
+  },
+  "data_roles": {
+    "matched_q0": "authority_reference_zero_fit_weight",
+    "primary_active_paths": "authority_qualification_only_zero_fit_weight",
+    "critical_replay": "integrity_only_zero_fit_weight",
+    "prior_evidence": "consumed_design_evidence_zero_fit_for_g2",
+    "calibration": "unopened",
+    "holdout": "unopened",
+    "controller_expert_bc_dagger_rl": "forbidden"
+  },
+  "scientific_gates": {
+    "terminal_state_start": 56,
+    "terminal_state_end": 64,
+    "minimum_terminal_worst_source_distance_improvement_fraction": 0.15,
+    "minimum_terminal_max_speed_improvement_m_per_s": 0.03,
+    "maximum_terminal_ip_source_fraction": 0.05,
+    "maximum_vertical_endpoint_error_mm": 0.25,
+    "minimum_vertical_acquisition_progress_mm": 0.20,
+    "minimum_mirror_endpoint_separation_mm": 0.50,
+    "require_all_three_primary_active_paths": true,
+    "single_transient_peak_cannot_pass": true,
+    "final_active_levels": [32, 0]
+  },
+  "hard_envelope": {
+    "r_geo_source_radius_m": 0.05,
+    "z_geo_source_radius_m": 0.05,
+    "ip_source_fraction": 0.10,
+    "limiter_and_absolute_current_required": true,
+    "stop_before_next_issue_after_failure": true
+  },
+  "routes": {
+    "offline_pass": "ONE_MS_NR1000G2_OFFLINE_PASS_RUN_ONLY",
+    "offline_fail": "ONE_MS_NR1000G2_OFFLINE_FAIL_NO_TSC",
+    "execution_fail": "ONE_MS_NR1000G2_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+    "matched_q0_fail": "ONE_MS_NR1000G2_MATCHED_Q0_INCOMPLETE_STOP_INCONCLUSIVE",
+    "replay_fail": "ONE_MS_NR1000G2_CRITICAL_REPLAY_FAIL_STOP",
+    "scientific_fail": "ONE_MS_NR1000G2_JOINT_ALLOCATOR_AUTHORITY_INSUFFICIENT_ACTION_BASIS_REDESIGN",
+    "pass": "ONE_MS_NR1000G2_JOINT_ALLOCATOR_AUTHORITY_PASS_MODEL_AND_RECOURSE_DESIGN_ONLY",
+    "independent_pass": "ONE_MS_NR1000G2_INDEPENDENT_PASS",
+    "independent_fail": "ONE_MS_NR1000G2_INDEPENDENT_FAIL"
+  }
+}

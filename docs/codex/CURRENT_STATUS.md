@@ -1,6 +1,15 @@
 # Current status
 
-> **Current fixed-1000 status - G1 action-allocation margin FAIL
+> **Current fixed-1000 status - G2 pre-implementation freeze (2026-08-22):**
+> the result-reporting checkpoint is `f82a00bc`. G2 has a frozen five-rollout
+> design and machine config, but no implementation, server deployment, offline
+> authorization or TSC yet. The key execution change is an exact joint even/odd
+> lattice with `0.05 A` nominal target/readback reserve; the key scientific
+> change is causal current-state allocation plus mirrored vertical reversal,
+> not a neighboring G1 scalar rate. Server-only tests and zero-TSC enumeration
+> of every admitted cell/transition are required before any advance.
+>
+> **Historical fixed-1000 status - G1 action-allocation margin FAIL
 > (2026-08-22):** matched q0 completed, but the first novel branch stopped
 > after six verified advances when a target change of exactly `0.3 A` produced
 > an independently authenticated observed change of `0.30001 A` on coils

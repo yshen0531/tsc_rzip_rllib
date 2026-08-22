@@ -1,6 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 G1 execution-margin FAIL / joint
+> **Unique active task (2026-08-22, fixed-1000 G2 frozen before
+> implementation):** G2 replaces the closed G1 scalar schedule with an exact
+> two-coordinate Card15 lattice `T(r,z)`. Radial/even and vertical/odd changes
+> are jointly quantized with exact issued slew `<=0.25 A`, while the unchanged
+> observed-current hard gate remains `<=0.3 A`. A current-R/history-triggered
+> radial phase and two mirrored vertical waypoint/reversal paths are tested
+> against fresh q0 in exactly five rollouts / 320 advances. All primary paths
+> must pass the unchanged 15% absolute-distance, 0.03-m/s speed and 5%-Ip gates
+> plus vertical acquisition and replay. FAIL closes this lattice/policy with no
+> adjacent scan; PASS opens model and Recourse design only. The frozen design
+> is `docs/codex/reports/RGEO_ZGEO_1MS_1000_JOINT_ALLOCATOR_AUTHORITY_G2_DESIGN.md`;
+> older active blocks below are historical only.
+>
+> **Historical active task (2026-08-22, fixed-1000 G1 execution-margin FAIL / joint
 > allocator next):** G1 consumed one fresh matched-q0 rollout and six advances
 > of its first novel branch, then stopped before the next issue. Independent
 > raw reconstruction found the sole failure at issue5 -> state1006: the exact
