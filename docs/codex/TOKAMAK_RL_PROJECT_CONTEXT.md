@@ -1,6 +1,17 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
-> **Unique fixed-1000 context (2026-08-22, post-F1 route reset):** the local
+> **Unique fixed-1000 context (2026-08-22, post-G1):** G1 did not reach its
+> scientific matrix. After matched q0, the first novel branch stopped at
+> state1006 because exact `0.3 A` target slew became `0.30001 A` observed slew
+> on two coils; independent raw forensics confirmed no state1007. This is a
+> readback-margin/action-allocation design failure, not a plant/control or
+> Authority result. The scalar cross-zero schedule is closed. The next route
+> constructs a readback-reserved joint radial/vertical 14D allocator using
+> current exact observations and causal history; only a new, prevalidated
+> identity may run one bounded Authority campaign. Models and Recourse remain
+> separate prerequisites before feedback.
+>
+> **Historical fixed-1000 context (2026-08-22, post-F1 route reset):** the local
 > q0-relative repair ladder is closed. F0 showed promising finite tracking
 > but exposed that a differential candidate response is not an absolute
 > endpoint value; F1 then made the first radial segment vacuous. More

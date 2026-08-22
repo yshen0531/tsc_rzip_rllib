@@ -1,5 +1,16 @@
 # R_geo/Z_geo 轨迹控制新路线：架构提案与研究边界
-> **Post-F1 fixed-1000 route amendment (2026-08-22):** the q0-relative
+> **Post-G1 fixed-1000 route amendment (2026-08-22):** G1 stopped before
+> scientific evaluation because an exact `0.3 A` target transition yielded a
+> `0.30001 A` observed transition. The safety layer is retained unchanged.
+> Do not repair this by clipping, relaxing the limit or scanning a neighboring
+> scalar rate. The control action is now a constrained joint allocation in
+> the 14D Card15 slew polytope, with explicit readback reserve and radial/even
+> plus vertical/odd coordinates. A causal allocator reads current exact RZI
+> and history before every issue. Authority must still beat matched no-action
+> on absolute distance/velocity/Ip; model qualification and Recourse remain
+> parallel, independent prerequisites before feedback.
+>
+> **Historical Post-F1 fixed-1000 route amendment (2026-08-22):** the q0-relative
 > threshold-repair line is closed. F0 establishes promising finite residual
 > tracking but not a valid absolute endpoint-value controller, and F1 is a
 > zero-TSC non-vacuity veto. Because q0 drifts about `23.54 mm/64 ms` while

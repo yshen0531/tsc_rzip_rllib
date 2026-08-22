@@ -1,0 +1,92 @@
+{
+  "candidate_issued_actions": 6,
+  "candidate_raw_states": 7,
+  "candidate_verified_plant_advances": 6,
+  "claim_boundary": "authenticates the immutable G1 partial stop only; it does not repair G1, measure hybrid radial utility, authorize a rerun, or qualify Authority/control",
+  "classification": "action_allocation_and_observed_readback_margin_design_failure",
+  "created_utc": "2026-08-22T11:09:56.352897+00:00",
+  "failures": [],
+  "first_excess": {
+    "effect_state_index": 6,
+    "effect_time_ms": 1006,
+    "exceeds_frozen_cap": true,
+    "issue_step": 5,
+    "maximum_component_indices": [
+      10,
+      11
+    ],
+    "maximum_observed_delta_a": "0.30001"
+  },
+  "forbidden_next_state_present": false,
+  "kind": "reporting_only_partial_raw_forensic",
+  "matched_q0_raw_states": 65,
+  "observed_slew_rows": [
+    {
+      "effect_state_index": 2,
+      "effect_time_ms": 1002,
+      "exceeds_frozen_cap": false,
+      "issue_step": 1,
+      "maximum_component_indices": [
+        10,
+        11
+      ],
+      "maximum_observed_delta_a": "0.20001"
+    },
+    {
+      "effect_state_index": 3,
+      "effect_time_ms": 1003,
+      "exceeds_frozen_cap": false,
+      "issue_step": 2,
+      "maximum_component_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "maximum_observed_delta_a": "0.14583333333333333333333333"
+    },
+    {
+      "effect_state_index": 4,
+      "effect_time_ms": 1004,
+      "exceeds_frozen_cap": false,
+      "issue_step": 3,
+      "maximum_component_indices": [
+        10,
+        11
+      ],
+      "maximum_observed_delta_a": "0.20000"
+    },
+    {
+      "effect_state_index": 5,
+      "effect_time_ms": 1005,
+      "exceeds_frozen_cap": false,
+      "issue_step": 4,
+      "maximum_component_indices": [
+        10,
+        11
+      ],
+      "maximum_observed_delta_a": "0.30000"
+    },
+    {
+      "effect_state_index": 6,
+      "effect_time_ms": 1006,
+      "exceeds_frozen_cap": true,
+      "issue_step": 5,
+      "maximum_component_indices": [
+        10,
+        11
+      ],
+      "maximum_observed_delta_a": "0.30001"
+    }
+  ],
+  "passed": true,
+  "primary_route_unchanged": "ONE_MS_NR1000G1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+  "route": "ONE_MS_NR1000G1_PARTIAL_RAW_FORENSIC_PASS_ACTION_ALLOCATION_MARGIN_REDESIGN",
+  "schema_version": "rgeo-zgeo-1ms-1000-hybrid-radial-authority-g1-v1-partial-failure-forensic-v1",
+  "scientific_control_result_available": false,
+  "source_revision": "3057b6ad55b83b38d99cd9c387d358c06e2783c6"
+}

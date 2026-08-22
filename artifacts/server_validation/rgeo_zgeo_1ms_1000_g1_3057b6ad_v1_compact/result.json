@@ -1,0 +1,23 @@
+{
+  "action_geometry": {
+    "maximum_level": 32,
+    "maximum_quantized_adjacent_increment_a": 0.3,
+    "minimum_level": -16,
+    "rank": 1
+  },
+  "advance_attempts": 70,
+  "claim_boundary": "fixed-1000 hybrid radial Authority development only; no 2D authority, hold, recovery, model, or controller",
+  "created_utc": "2026-08-22T05:23:28.988518+00:00",
+  "critical_replay": null,
+  "gotsc_calls": 70,
+  "kind": "authentic_fixed_1000_hybrid_radial_authority",
+  "matched_q0_complete": true,
+  "passed": false,
+  "reset_calls": 2,
+  "rollout_count": 2,
+  "route": "ONE_MS_NR1000G1_EXECUTION_OR_HARD_SAFETY_FAIL_STOP",
+  "schema_version": "rgeo-zgeo-1ms-1000-hybrid-radial-authority-g1-v1",
+  "scientific_metrics": null,
+  "source_revision": "3057b6ad55b83b38d99cd9c387d358c06e2783c6",
+  "verified_plant_advances": 70
+}

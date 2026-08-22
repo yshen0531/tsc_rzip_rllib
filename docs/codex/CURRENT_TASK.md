@@ -1,6 +1,21 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 G1 frozen before execution):**
+> **Unique active task (2026-08-22, fixed-1000 G1 execution-margin FAIL / joint
+> allocator next):** G1 consumed one fresh matched-q0 rollout and six advances
+> of its first novel branch, then stopped before the next issue. Independent
+> raw reconstruction found the sole failure at issue5 -> state1006: the exact
+> issued Card15 target change was `0.3 A`, while observed current changed
+> `0.30001 A` on coils 10/11. There is no state1007 and no scientific G1
+> terminal result. G1 is immutable and its scalar phase/depth/rate family is
+> closed. The sole active successor is a new zero-TSC action-contract design
+> with explicit readback reserve and joint 14D radial/vertical allocation,
+> followed by at most one separately frozen Authority campaign. It must use
+> exact current R/Z/Ip and causal history, cannot silently clip, and cannot
+> train a model, claim Recourse, or rerun G1. The exact result is recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_HYBRID_RADIAL_AUTHORITY_G1_RESULT.md`;
+> every older active block below is historical only.
+>
+> **Historical active task (2026-08-22, fixed-1000 G1 frozen before execution):**
 > G1 is the one authorized nominal/action-semantics redesign after G0. It
 > fixes a fresh q0, four early even-minus depths `4/8/12/16` that then cross
 > zero at exactly two scalar levels per issue to final even-plus level32, and

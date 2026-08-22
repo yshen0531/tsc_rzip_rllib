@@ -1,6 +1,16 @@
 # Current status
 
-> **Current fixed-1000 status - G1 pre-execution freeze (2026-08-22):** G0
+> **Current fixed-1000 status - G1 action-allocation margin FAIL
+> (2026-08-22):** matched q0 completed, but the first novel branch stopped
+> after six verified advances when a target change of exactly `0.3 A` produced
+> an independently authenticated observed change of `0.30001 A` on coils
+> 10/11. The hard contract worked: no next issue/state exists. G1 supplied no
+> scientific radial-utility verdict and cannot resume. The next stage must
+> reserve readback margin and move from the closed scalar schedule to a joint
+> even/odd 14D allocation selected from current truth/history. Model fitting,
+> calibration, Recourse and feedback remain closed.
+>
+> **Historical fixed-1000 status - G1 pre-execution freeze (2026-08-22):** G0
 > compact/raw audit is preserved and its FAIL unchanged. G1 combines the
 > measured early benefit of even-minus with the measured late braking of
 > even-plus in one fixed cross-zero schedule matrix. It is not an adjacent
