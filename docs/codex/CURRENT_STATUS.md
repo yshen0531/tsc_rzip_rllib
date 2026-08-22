@@ -1,6 +1,15 @@
 # Current status
 
-> **Current fixed-1000 status - G3 offline PASS / real campaign authorized
+> **Current fixed-1000 status - G3 all-basis scientific FAIL / discrete
+> candidate redesign next (2026-08-22):** G3 completed `18/18` rollouts and
+> `720/720` advances with exact replays; independent audit passed. Block2 was
+> a repeatable weak direction and failed signal/pair gates. Even/odd/block4
+> retained strong h4 task-plane geometry, but that cannot change G3's frozen
+> verdict. The next architecture treats actions as an unequal discrete library
+> with support/refusal rather than as a uniformly authoritative linear basis.
+> No new model, Authority, Recourse or feedback has yet been authorized.
+>
+> **Historical fixed-1000 status - G3 offline PASS / real campaign authorized
 > (2026-08-22):** all G2R1 `5/5` rollouts and `320/320` advances
 > completed; independent raw audit passed with no failures. The first mirrored
 > Z endpoint passed at `+/-0.387523 mm`, while the reversal failed at only

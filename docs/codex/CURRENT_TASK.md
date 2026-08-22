@@ -1,6 +1,24 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 G3 signed action-basis real
+> **Unique active task (2026-08-22, fixed-1000 G3 scientific FAIL / discrete
+> candidate-library redesign next):** G3 completed `18/18` authentic rollouts
+> and `720/720` advances; both replays and the independent raw audit passed.
+> The all-axis gate failed because block2 produced only `0.0108--0.0124 mm`
+> h4/h8 odd response and `0.0216--0.0248 mm` signed separation. Even, odd and
+> block4 retained strong two-axis geometry (weakest projection `0.1435 mm` at
+> phase8 h4 and `0.0672 mm` at phase24 h4). G3 remains
+> `ONE_MS_NR1000G3_SIGNED_ACTION_BASIS_INSUFFICIENT_ARCHITECTURE_REDESIGN`;
+> block2 stays a negative fit label and is not deleted to manufacture PASS.
+> The four-axis basis route is closed with no fifth code or adjacent
+> amplitude/phase/duration. The sole successor changes semantics to a
+> support-gated discrete candidate library with matched no-action and
+> cumulative exact-return even/odd/block4 candidates under complete causal
+> histories. It may produce development data for one direct candidate-value
+> model, but does not open Authority, Recourse or feedback. The result is
+> recorded in
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_SIGNED_BASIS_G3_RESULT.md`.
+>
+> **Historical active task (2026-08-22, fixed-1000 G3 signed action-basis real
 > campaign authorized):** G2R1 completed `5/5` authentic rollouts and
 > `320/320` advances; independent raw audit passed. First mirrored Z
 > acquisition reached `+/-0.387523 mm`, but the reversal reached only

@@ -1,0 +1,632 @@
+{
+  "action_checks": 720,
+  "created_utc": "2026-08-22T13:11:08.625402+00:00",
+  "critical_replays": [
+    {
+      "failures": [],
+      "family_id": "p24_block2_plus",
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    },
+    {
+      "failures": [],
+      "family_id": "p24_block4_minus",
+      "maximum_absolute_difference": {
+        "coil_a": 0.0,
+        "geometry_m": 0.0,
+        "ip_a": 0.0,
+        "wire_a": 0.0
+      },
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "kind": "independent_raw_audit",
+  "observed_slew_checks": 702,
+  "passed": true,
+  "primary_scientific_passed": false,
+  "primary_scientific_route": "ONE_MS_NR1000G3_SIGNED_ACTION_BASIS_INSUFFICIENT_ARCHITECTURE_REDESIGN",
+  "raw_rollouts": 18,
+  "raw_states": 738,
+  "route": "ONE_MS_NR1000G3_INDEPENDENT_PASS",
+  "schema_version": "rgeo-zgeo-1ms-1000-signed-basis-g3-v1-independent",
+  "scientific_metrics": {
+    "arms": [
+      {
+        "axis": "even",
+        "h4_ip_response_a": -30.509900000000926,
+        "h4_response_rz_mm": [
+          -0.06403799999998849,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.06403799999998849,
+        "h8_ip_response_a": -1.5756000000001222,
+        "h8_response_rz_mm": [
+          -0.005736499999908773,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.005736499999908773,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_even_plus",
+        "sign": "plus",
+        "signal_pass": true
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": 25.16440000000148,
+        "h4_response_rz_mm": [
+          0.7795179999999791,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.7795179999999791,
+        "h8_ip_response_a": 1.6426999999966938,
+        "h8_response_rz_mm": [
+          0.005277500000011592,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.005277500000011592,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_even_minus",
+        "sign": "minus",
+        "signal_pass": true
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": 0.10239999999976135,
+        "h4_response_rz_mm": [
+          0.0008725000000264771,
+          0.14996849999998618
+        ],
+        "h4_rz_norm_mm": 0.14997103803233444,
+        "h8_ip_response_a": 0.01329999999870779,
+        "h8_response_rz_mm": [
+          -0.00010799999994315357,
+          0.1296534999999932
+        ],
+        "h8_rz_norm_mm": 0.12965354498141662,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_odd_plus",
+        "sign": "plus",
+        "signal_pass": true
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": 0.10239999999976135,
+        "h4_response_rz_mm": [
+          0.0008725000000264771,
+          -0.14996849999998618
+        ],
+        "h4_rz_norm_mm": 0.14997103803233444,
+        "h8_ip_response_a": 0.01329999999870779,
+        "h8_response_rz_mm": [
+          -0.00010799999994315357,
+          -0.1296534999999932
+        ],
+        "h8_rz_norm_mm": 0.12965354498141662,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_odd_minus",
+        "sign": "minus",
+        "signal_pass": true
+      },
+      {
+        "axis": "block2",
+        "h4_ip_response_a": -10.46559999999954,
+        "h4_response_rz_mm": [
+          -0.001991500000020352,
+          -0.010447500000010379
+        ],
+        "h4_rz_norm_mm": 0.010635616037649061,
+        "h8_ip_response_a": -1.653600000001461,
+        "h8_response_rz_mm": [
+          0.00939200000005247,
+          -0.007763500000007584
+        ],
+        "h8_rz_norm_mm": 0.012185302468593192,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_block2_plus",
+        "sign": "plus",
+        "signal_pass": false
+      },
+      {
+        "axis": "block2",
+        "h4_ip_response_a": 10.483100000001286,
+        "h4_response_rz_mm": [
+          0.0020499999999756824,
+          0.010816500000010443
+        ],
+        "h4_rz_norm_mm": 0.011009049561616397,
+        "h8_ip_response_a": 1.6616999999969266,
+        "h8_response_rz_mm": [
+          -0.00938249999993257,
+          0.007909500000014003
+        ],
+        "h8_rz_norm_mm": 0.012271572698678691,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_block2_minus",
+        "sign": "minus",
+        "signal_pass": false
+      },
+      {
+        "axis": "block4",
+        "h4_ip_response_a": -8.518800000001647,
+        "h4_response_rz_mm": [
+          -0.0813625000000151,
+          0.060709000000019886
+        ],
+        "h4_rz_norm_mm": 0.10151570857386985,
+        "h8_ip_response_a": 4.584499999997206,
+        "h8_response_rz_mm": [
+          -0.03801749999998716,
+          0.049047000000024266
+        ],
+        "h8_rz_norm_mm": 0.06205593054053258,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_block4_plus",
+        "sign": "plus",
+        "signal_pass": true
+      },
+      {
+        "axis": "block4",
+        "h4_ip_response_a": 3.377199999998993,
+        "h4_response_rz_mm": [
+          0.7963845000000802,
+          -0.06763800000000875
+        ],
+        "h4_rz_norm_mm": 0.7992516317683556,
+        "h8_ip_response_a": -4.400400000002264,
+        "h8_response_rz_mm": [
+          0.036319500000048244,
+          -0.04988400000000004
+        ],
+        "h8_rz_norm_mm": 0.061705101379493,
+        "ip_pass": true,
+        "issue_phase": 8,
+        "rollout_id": "p08_block4_minus",
+        "sign": "minus",
+        "signal_pass": true
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": -35.46010000000024,
+        "h4_response_rz_mm": [
+          -0.07641200000008119,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.07641200000008119,
+        "h8_ip_response_a": -3.2039000000004307,
+        "h8_response_rz_mm": [
+          -0.007438499999956605,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.007438499999956605,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_even_plus",
+        "sign": "plus",
+        "signal_pass": true
+      },
+      {
+        "axis": "even",
+        "h4_ip_response_a": 35.42309999999998,
+        "h4_response_rz_mm": [
+          0.07599099999988645,
+          0.0
+        ],
+        "h4_rz_norm_mm": 0.07599099999988645,
+        "h8_ip_response_a": 3.200300000000425,
+        "h8_response_rz_mm": [
+          0.00700399999997714,
+          0.0
+        ],
+        "h8_rz_norm_mm": 0.00700399999997714,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_even_minus",
+        "sign": "minus",
+        "signal_pass": true
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": -0.012599999998201383,
+        "h4_response_rz_mm": [
+          3.649999991139907e-05,
+          0.13794300000000148
+        ],
+        "h4_rz_norm_mm": 0.13794300482898872,
+        "h8_ip_response_a": -0.30450000000200816,
+        "h8_response_rz_mm": [
+          -0.0006104999999978489,
+          0.13364550000000142
+        ],
+        "h8_rz_norm_mm": 0.13364689439152852,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_odd_plus",
+        "sign": "plus",
+        "signal_pass": true
+      },
+      {
+        "axis": "odd",
+        "h4_ip_response_a": -0.012599999998201383,
+        "h4_response_rz_mm": [
+          3.649999991139907e-05,
+          -0.13794300000000148
+        ],
+        "h4_rz_norm_mm": 0.13794300482898872,
+        "h8_ip_response_a": -0.30450000000200816,
+        "h8_response_rz_mm": [
+          -0.0006104999999978489,
+          -0.13364550000000142
+        ],
+        "h8_rz_norm_mm": 0.13364689439152852,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_odd_minus",
+        "sign": "minus",
+        "signal_pass": true
+      },
+      {
+        "axis": "block2",
+        "h4_ip_response_a": -10.927899999998772,
+        "h4_response_rz_mm": [
+          -0.0017825000000470936,
+          -0.010943000000013248
+        ],
+        "h4_rz_norm_mm": 0.011087224866956466,
+        "h8_ip_response_a": -1.1105999999999767,
+        "h8_response_rz_mm": [
+          0.009374500000047803,
+          -0.008145999999986664
+        ],
+        "h8_rz_norm_mm": 0.01241928203442852,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_block2_plus",
+        "sign": "plus",
+        "signal_pass": false
+      },
+      {
+        "axis": "block2",
+        "h4_ip_response_a": 10.927200000001903,
+        "h4_response_rz_mm": [
+          0.001787499999905684,
+          0.010931499999977667
+        ],
+        "h4_rz_norm_mm": 0.01107668039166855,
+        "h8_ip_response_a": 1.1084999999984575,
+        "h8_response_rz_mm": [
+          -0.00947350000002345,
+          0.007951000000006037
+        ],
+        "h8_rz_norm_mm": 0.012367926392509792,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_block2_minus",
+        "sign": "minus",
+        "signal_pass": false
+      },
+      {
+        "axis": "block4",
+        "h4_ip_response_a": -13.742600000001403,
+        "h4_response_rz_mm": [
+          -0.09443100000006144,
+          0.06102349999997925
+        ],
+        "h4_rz_norm_mm": 0.1124325634025084,
+        "h8_ip_response_a": 0.9766999999992549,
+        "h8_response_rz_mm": [
+          -0.040950000000039566,
+          0.05101550000000121
+        ],
+        "h8_rz_norm_mm": 0.06541776318595252,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_block4_plus",
+        "sign": "plus",
+        "signal_pass": true
+      },
+      {
+        "axis": "block4",
+        "h4_ip_response_a": 13.741000000001804,
+        "h4_response_rz_mm": [
+          0.09505249999997023,
+          -0.06083749999999388
+        ],
+        "h4_rz_norm_mm": 0.11285468161531269,
+        "h8_ip_response_a": -0.909300000002986,
+        "h8_response_rz_mm": [
+          0.040978499999955176,
+          -0.0515329999999925
+        ],
+        "h8_rz_norm_mm": 0.06583986293458965,
+        "ip_pass": true,
+        "issue_phase": 24,
+        "rollout_id": "p24_block4_minus",
+        "sign": "minus",
+        "signal_pass": true
+      }
+    ],
+    "ip_pass": true,
+    "passed": false,
+    "phase_geometry_pass": false,
+    "phases": [
+      {
+        "best": {
+          "column_norms_mm": [
+            0.4217779999999838,
+            0.14996849999998618,
+            0.010822331290563663,
+            0.4435405134872616
+          ],
+          "condition": 3.9061267767654497,
+          "horizon": 4,
+          "matrix_columns_mm": [
+            [
+              -0.4217779999999838,
+              0.0,
+              -0.002020749999998017,
+              -0.43887350000004766
+            ],
+            [
+              0.0,
+              0.14996849999998618,
+              -0.010632000000010411,
+              0.06417350000001432
+            ]
+          ],
+          "maximum_angular_gap_deg": 81.68098211613574,
+          "passed": false,
+          "rank": 2,
+          "singular_values_mm": [
+            0.6105728706647681,
+            0.15631158576229462
+          ],
+          "weakest_best_projection_mm": 0.14351090673924255
+        },
+        "horizons": [
+          {
+            "column_norms_mm": [
+              0.4217779999999838,
+              0.14996849999998618,
+              0.010822331290563663,
+              0.4435405134872616
+            ],
+            "condition": 3.9061267767654497,
+            "horizon": 4,
+            "matrix_columns_mm": [
+              [
+                -0.4217779999999838,
+                0.0,
+                -0.002020749999998017,
+                -0.43887350000004766
+              ],
+              [
+                0.0,
+                0.14996849999998618,
+                -0.010632000000010411,
+                0.06417350000001432
+              ]
+            ],
+            "maximum_angular_gap_deg": 81.68098211613574,
+            "passed": false,
+            "rank": 2,
+            "singular_values_mm": [
+              0.6105728706647681,
+              0.15631158576229462
+            ],
+            "weakest_best_projection_mm": 0.14351090673924255
+          },
+          {
+            "column_norms_mm": [
+              0.005506999999960183,
+              0.1296534999999932,
+              0.012228294844847694,
+              0.061873524891527865
+            ],
+            "condition": 3.879471456186473,
+            "horizon": 8,
+            "matrix_columns_mm": [
+              [
+                -0.005506999999960183,
+                0.0,
+                0.00938724999999252,
+                -0.0371685000000177
+              ],
+              [
+                0.0,
+                0.1296534999999932,
+                -0.007836500000010793,
+                0.04946550000001215
+              ]
+            ],
+            "maximum_angular_gap_deg": 90.0,
+            "passed": false,
+            "rank": 2,
+            "singular_values_mm": [
+              0.13971814516835282,
+              0.036014737251268754
+            ],
+            "weakest_best_projection_mm": 0.026804077370993662
+          }
+        ],
+        "issue_phase": 8,
+        "passed": false
+      },
+      {
+        "best": {
+          "column_norms_mm": [
+            0.07620149999998382,
+            0.13794300000000148,
+            0.011081952109728519,
+            0.11264335321408832
+          ],
+          "condition": 1.4804671815178279,
+          "horizon": 4,
+          "matrix_columns_mm": [
+            [
+              -0.07620149999998382,
+              0.0,
+              -0.0017849999999763888,
+              -0.09474175000001583
+            ],
+            [
+              0.0,
+              0.13794300000000148,
+              -0.010937249999995458,
+              0.060930499999986565
+            ]
+          ],
+          "maximum_angular_gap_deg": 80.73083468725706,
+          "passed": false,
+          "rank": 2,
+          "singular_values_mm": [
+            0.16078410158785814,
+            0.10860362431203407
+          ],
+          "weakest_best_projection_mm": 0.06720372322522691
+        },
+        "horizons": [
+          {
+            "column_norms_mm": [
+              0.07620149999998382,
+              0.13794300000000148,
+              0.011081952109728519,
+              0.11264335321408832
+            ],
+            "condition": 1.4804671815178279,
+            "horizon": 4,
+            "matrix_columns_mm": [
+              [
+                -0.07620149999998382,
+                0.0,
+                -0.0017849999999763888,
+                -0.09474175000001583
+              ],
+              [
+                0.0,
+                0.13794300000000148,
+                -0.010937249999995458,
+                0.060930499999986565
+              ]
+            ],
+            "maximum_angular_gap_deg": 80.73083468725706,
+            "passed": false,
+            "rank": 2,
+            "singular_values_mm": [
+              0.16078410158785814,
+              0.10860362431203407
+            ],
+            "weakest_best_projection_mm": 0.06720372322522691
+          },
+          {
+            "column_norms_mm": [
+              0.007221249999966872,
+              0.13364550000000142,
+              0.012393148439787716,
+              0.065628640783765
+            ],
+            "condition": 3.6407237263791057,
+            "horizon": 8,
+            "matrix_columns_mm": [
+              [
+                -0.007221249999966872,
+                0.0,
+                0.009424000000035626,
+                -0.04096424999999737
+              ],
+              [
+                0.0,
+                0.13364550000000142,
+                -0.00804849999999635,
+                0.05127424999999686
+              ]
+            ],
+            "maximum_angular_gap_deg": 90.0,
+            "passed": false,
+            "rank": 2,
+            "singular_values_mm": [
+              0.1442373307248602,
+              0.039617763270467087
+            ],
+            "weakest_best_projection_mm": 0.0301740234791206
+          }
+        ],
+        "issue_phase": 24,
+        "passed": false
+      }
+    ],
+    "signal_pass": false,
+    "signed_pair_pass": false,
+    "signed_pairs": [
+      {
+        "axis": "even",
+        "h4_separation_mm": 0.8435559999999676,
+        "h8_separation_mm": 0.011013999999920365,
+        "issue_phase": 8,
+        "passed": true
+      },
+      {
+        "axis": "odd",
+        "h4_separation_mm": 0.29993699999997236,
+        "h8_separation_mm": 0.2593069999999864,
+        "issue_phase": 8,
+        "passed": true
+      },
+      {
+        "axis": "block2",
+        "h4_separation_mm": 0.021644662581127325,
+        "h8_separation_mm": 0.02445658968969539,
+        "issue_phase": 8,
+        "passed": false
+      },
+      {
+        "axis": "block4",
+        "h4_separation_mm": 0.8870810269745232,
+        "h8_separation_mm": 0.12374704978305573,
+        "issue_phase": 8,
+        "passed": true
+      },
+      {
+        "axis": "even",
+        "h4_separation_mm": 0.15240299999996765,
+        "h8_separation_mm": 0.014442499999933744,
+        "issue_phase": 24,
+        "passed": true
+      },
+      {
+        "axis": "odd",
+        "h4_separation_mm": 0.27588600000000296,
+        "h8_separation_mm": 0.26729100000000283,
+        "issue_phase": 24,
+        "passed": true
+      },
+      {
+        "axis": "block2",
+        "h4_separation_mm": 0.022163904219457038,
+        "h8_separation_mm": 0.024786296879575433,
+        "issue_phase": 24,
+        "passed": false
+      },
+      {
+        "axis": "block4",
+        "h4_separation_mm": 0.22528670642817664,
+        "h8_separation_mm": 0.13125728156753,
+        "issue_phase": 24,
+        "passed": true
+      }
+    ]
+  },
+  "source_revision": "406b4a74215cc4fac1c085555dd1161f196a73c1"
+}
