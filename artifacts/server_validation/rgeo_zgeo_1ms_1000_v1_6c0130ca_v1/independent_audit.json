@@ -1,0 +1,10 @@
+{
+  "created_utc": "2026-08-22T14:17:25.534195+00:00",
+  "failures": [],
+  "kind": "independent_model_evidence_audit",
+  "passed": true,
+  "plant_advances": 0,
+  "route": "ONE_MS_NR1000V1_INDEPENDENT_PASS",
+  "schema_version": "rgeo-zgeo-1ms-1000-direct-value-v1-independent",
+  "source_revision": "6c0130ca25258e5e27b9747c1412ad138b4f6274"
+}

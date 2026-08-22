@@ -1,5 +1,12 @@
 # Current status
 
+> **2026-08-22 V1 final:** zero-TSC development model FAIL with independent
+> audit PASS.  Candidate endpoint/ranking evidence was strong, but one h8
+> no-action Z component missed its frozen set by `0.0109435 mm`.  The verdict
+> cannot be relaxed after the result.  No calibration, blind opening,
+> Authority, Recourse or feedback is currently authorized; route review is
+> required before more development.
+
 > **2026-08-22 D3 final:** authentic execution 16/16 and independent audit
 > PASS.  The finite unequal even/odd/block4 candidate library has strong h4/h8
 > task-plane geometry in both new block4 conditioner histories.  D3 is only

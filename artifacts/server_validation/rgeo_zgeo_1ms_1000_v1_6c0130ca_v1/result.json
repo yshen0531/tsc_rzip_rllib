@@ -1,0 +1,83 @@
+{
+  "candidate_count": 6,
+  "claim_boundary": "development direct value set only; fresh calibration/blind and Authority/Recourse required",
+  "context_count": 4,
+  "created_utc": "2026-08-22T14:16:57.518956+00:00",
+  "final_maximum_combined_ip_halfwidth_a": 38.25620000000163,
+  "final_maximum_combined_rz_halfwidth_mm": 0.17857675000000953,
+  "folds": [
+    {
+      "all_candidates_contained": true,
+      "all_no_action_contained": true,
+      "candidate_components": 24,
+      "candidate_contained": 24,
+      "held_context": "even_plus",
+      "maximum_directional_ranking_regret_mm": 0.0,
+      "no_action_components": 6,
+      "no_action_contained": 6,
+      "weakest_best_progress_mm": {
+        "4": 0.17810941356570287,
+        "8": 0.27922992679486297
+      }
+    },
+    {
+      "all_candidates_contained": true,
+      "all_no_action_contained": false,
+      "candidate_components": 24,
+      "candidate_contained": 24,
+      "held_context": "odd_plus",
+      "maximum_directional_ranking_regret_mm": 0.0,
+      "no_action_components": 6,
+      "no_action_contained": 5,
+      "weakest_best_progress_mm": {
+        "4": 0.1775369811320045,
+        "8": 0.2790694500056743
+      }
+    },
+    {
+      "all_candidates_contained": true,
+      "all_no_action_contained": true,
+      "candidate_components": 36,
+      "candidate_contained": 36,
+      "held_context": "block4_plus",
+      "maximum_directional_ranking_regret_mm": 0.012217967896888976,
+      "no_action_components": 6,
+      "no_action_contained": 6,
+      "weakest_best_progress_mm": {
+        "4": 0.1787709216470949,
+        "8": 0.3140629038127157
+      }
+    },
+    {
+      "all_candidates_contained": true,
+      "all_no_action_contained": true,
+      "candidate_components": 36,
+      "candidate_contained": 36,
+      "held_context": "block4_minus",
+      "maximum_directional_ranking_regret_mm": 0.0026473485980924583,
+      "no_action_components": 6,
+      "no_action_contained": 6,
+      "weakest_best_progress_mm": {
+        "4": 0.17890213560709667,
+        "8": 0.33493438930679137
+      }
+    }
+  ],
+  "gate_pass": {
+    "candidate_containment": true,
+    "ip": true,
+    "no_action_containment": false,
+    "progress": true,
+    "ranking": true,
+    "support": true,
+    "width": true
+  },
+  "kind": "fixed_1000_direct_candidate_value_development",
+  "maximum_development_nearest_support_distance": 0.49913616133162564,
+  "maximum_observed_absolute_ip_response_a": 154.53640000000087,
+  "passed": false,
+  "plant_advances": 0,
+  "route": "ONE_MS_NR1000V1_DIRECT_CANDIDATE_VALUE_MODEL_INSUFFICIENT_CLOSE_LIBRARY",
+  "schema_version": "rgeo-zgeo-1ms-1000-direct-value-v1",
+  "source_revision": "6c0130ca25258e5e27b9747c1412ad138b4f6274"
+}

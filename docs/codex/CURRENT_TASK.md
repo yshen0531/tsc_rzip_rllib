@@ -1,5 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-22, V1 development FAIL / high-level review
+> required):** V1 used zero plant advances and its independent audit passed.
+> All 120 candidate endpoint components, support, width, ranking, progress and
+> Ip gates passed.  The sole binding failure was one of 24 no-action
+> components: held `odd_plus` h8 Z tail exceeded its frozen halfwidth by
+> `0.0109435 mm`.  V1 is final as
+> `ONE_MS_NR1000V1_DIRECT_CANDIDATE_VALUE_MODEL_INSUFFICIENT_CLOSE_LIBRARY`.
+> The all-component gate is not widened, no third model or nearby-history
+> repair is authorized, and fresh calibration/blind, Authority, Recourse and
+> feedback remain closed.  A high-level route choice is now required.  The
+> exact result is in
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_DIRECT_VALUE_V1_RESULT.md`; all older
+> active blocks below are historical.
+
 > **Unique active task (2026-08-22, D3 PASS / one direct model next):** D3
 > completed 16/16 authentic rollouts and 768/768 advances; independent raw
 > reconstruction passed 784 states, 768 actions, 752 observed slews and two
