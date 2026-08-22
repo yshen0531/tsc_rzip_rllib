@@ -1,5 +1,11 @@
 # Current status
 
+> **2026-08-22 D3 authorization:** server dependency tests are 31/31 and the
+> zero-plant preflight is PASS with exact rank 3, condition `1.40172`, and
+> maximum adjacent issued step `0.2 A`.  One 16-rollout/768-advance campaign
+> at revision `6a2ef89b` is authorized without retry; no model, Authority,
+> Recourse or feedback is authorized by this preflight.
+
 > **2026-08-22 fixed-1000 active pointer:** G3 executed 18/18 authentic
 > rollouts and failed only its all-axis scientific gate because block2 was
 > weak.  Its exact negative result is preserved.  D3 is now prospectively

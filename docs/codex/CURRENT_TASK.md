@@ -1,5 +1,16 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-22, D3 real campaign authorized):** installed
+> server focused/dependency tests passed 31/31.  The zero-TSC preflight
+> enumerated all 16x48 exact action streams and passed: input rank 3,
+> condition `1.40172`, maximum adjacent exact issued step `0.2 A`, zero
+> reset/advance.  Exactly one D3 campaign at implementation revision
+> `6a2ef89bbbe9739b0ccf44a93b80c8f995999279` is authorized: 16 resets / 768
+> advances, no retry.  Its offline evidence SHA-256 is
+> `d5764bdddef5feafe7a666794055652f7fa7f7774eec24a806c036ff2839e0ca`.
+> PASS opens one direct candidate-value model only; FAIL closes this library.
+> The older D3-frozen block below is historical.
+
 > **Unique active task (2026-08-22, fixed-1000 D3 frozen):** G3 remains a
 > clean scientific FAIL; block2 remains a weak negative development label.
 > The next and only campaign changes semantics from a uniform action basis to
