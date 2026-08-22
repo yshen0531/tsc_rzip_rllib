@@ -1,0 +1,55 @@
+{
+  "schema_version": "rgeo-zgeo-1ms-1000-direct-value-v1",
+  "model_id": "rgeo_zgeo_1ms_1000_direct_value_v1",
+  "design_path": "docs/codex/reports/RGEO_ZGEO_1MS_1000_DIRECT_VALUE_V1_DESIGN.md",
+  "design_sha256": "6ec3ddca0a5eaeb00eea53294f0a8e8b780473784540dd1a8c6878f97be0b0ac",
+  "takeover_time_ms": 1000,
+  "candidate_issue_phase": 24,
+  "horizons": [4, 8],
+  "contexts": ["even_plus", "odd_plus", "block4_plus", "block4_minus"],
+  "candidates": ["even_plus", "even_minus", "odd_plus", "odd_minus", "block4_plus", "block4_minus"],
+  "context_candidates": {
+    "even_plus": ["even_plus", "even_minus", "odd_plus", "odd_minus"],
+    "odd_plus": ["even_plus", "even_minus", "odd_plus", "odd_minus"],
+    "block4_plus": ["even_plus", "even_minus", "odd_plus", "odd_minus", "block4_plus", "block4_minus"],
+    "block4_minus": ["even_plus", "even_minus", "odd_plus", "odd_minus", "block4_plus", "block4_minus"]
+  },
+  "dataset_roots": [
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d2_20260822_c0e52e43_v1_compact", "primary_count": 10, "primary_digest": "13ebe0a502cc3e3e55fa57da88b8cedb2930541a25a5550bf148a373c1fb7b6e"},
+    {"path": "artifacts/server_validation/rgeo_zgeo_1ms_1000_d3_6a2ef89b_v1_compact", "primary_count": 14, "primary_digest": "bf828ce76de970b9ace827eb026322ec9bbdcb2969796455bc2221e4277fd7dd"}
+  ],
+  "axis_signs_tsc_order": {
+    "even": [1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    "odd": [1,1,1,-1,-1,-1,1,-1,1,-1,1,-1,1,-1],
+    "block4": [1,1,1,1,-1,-1,-1,-1,1,1,1,1,-1,-1]
+  },
+  "feature_scales": {"rz_mm": 5.0, "ip_a": 500.0, "velocity_m_per_s": 0.5, "current_projection_a": 2.0, "recent_current_projection_a": 0.5},
+  "no_action_floor_rz_ip": [0.05, 0.05, 20.0],
+  "response_floor_rz_ip": [0.03, 0.03, 5.0],
+  "support_radius_multiplier": 1.10,
+  "direction_grid_count": 64,
+  "model_form": "candidate_specific_componentwise_median_max_deviation_direct_endpoint_set",
+  "data_roles": {
+    "listed_primary_rows": "development_fit_eligible_weight_1",
+    "replays": "excluded_zero_fit_weight",
+    "calibration": "unopened",
+    "holdout": "unopened",
+    "controller_or_recourse": "forbidden",
+    "fixed_1100_data": "forbidden"
+  },
+  "gates": {
+    "require_all_leave_one_history_no_action_components_contained": true,
+    "require_all_leave_one_history_candidate_components_contained": true,
+    "maximum_final_combined_rz_halfwidth_mm": 0.20,
+    "maximum_final_combined_ip_halfwidth_a": 50.0,
+    "maximum_each_fold_directional_ranking_regret_mm": 0.05,
+    "minimum_each_context_h8_weakest_best_progress_mm": 0.10,
+    "maximum_observed_absolute_ip_response_a": 400.0,
+    "maximum_development_nearest_support_distance": 0.55
+  },
+  "routes": {
+    "input_fail": "ONE_MS_NR1000V1_INPUT_INTEGRITY_FAIL_ZERO_TSC",
+    "model_fail": "ONE_MS_NR1000V1_DIRECT_CANDIDATE_VALUE_MODEL_INSUFFICIENT_CLOSE_LIBRARY",
+    "pass": "ONE_MS_NR1000V1_DIRECT_CANDIDATE_VALUE_DEVELOPMENT_PASS_FRESH_CALIBRATION_ONLY"
+  }
+}
