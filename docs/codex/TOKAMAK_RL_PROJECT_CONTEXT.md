@@ -1,5 +1,14 @@
 # TOKAMAK_RL_PROJECT_CONTEXT.md
 
+> **Unique fixed-1000 context (2026-08-22, D3 frozen):** G3's uniform
+> signed-basis claim is closed and its weak block2 result remains a negative
+> development label.  The active route is one unequal, support-gated
+> candidate library with exact current observation, complete causal history,
+> a measured no-action continuation, and cumulative exact-return
+> even/odd/block4 candidates.  D3 may feed one direct candidate-value model;
+> model calibration/blind evidence, Authority and Recourse remain separate
+> AND gates before feedback.  All older active notices below are historical.
+
 > **Unique fixed-1000 context (2026-08-22, G2R1 pre-execution):** G2 v1 is
 > frozen as a zero-TSC exact-lattice construction failure: one admitted joint
 > edge was `0.3 A`, above its prospective `0.25 A` issued-reserve cap. G2R1 is

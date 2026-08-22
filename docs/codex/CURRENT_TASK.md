@@ -1,5 +1,19 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
+> **Unique active task (2026-08-22, fixed-1000 D3 frozen):** G3 remains a
+> clean scientific FAIL; block2 remains a weak negative development label.
+> The next and only campaign changes semantics from a uniform action basis to
+> an unequal, support-gated discrete candidate library.  D3 uses two fresh
+> cumulative block4 conditioner histories, a real matched no-action branch,
+> and cumulative exact-return even/odd/block4 signed candidates: 14 primary
+> development rows plus two zero-fit replays, exactly 16 resets / 768
+> advances, no retry.  PASS authorizes one direct candidate-value model only;
+> FAIL closes this library without a fifth code or adjacent amplitude, phase
+> or duration.  Authority, Recourse, calibration, blind opening and feedback
+> remain closed.  The frozen design is
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_DISCRETE_VALUE_D3_DESIGN.md`; all
+> older active blocks below are historical only.
+
 > **Unique active task (2026-08-22, fixed-1000 G3 scientific FAIL / discrete
 > candidate-library redesign next):** G3 completed `18/18` authentic rollouts
 > and `720/720` advances; both replays and the independent raw audit passed.

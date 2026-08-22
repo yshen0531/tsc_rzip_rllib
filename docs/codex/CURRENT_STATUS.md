@@ -1,5 +1,13 @@
 # Current status
 
+> **2026-08-22 fixed-1000 active pointer:** G3 executed 18/18 authentic
+> rollouts and failed only its all-axis scientific gate because block2 was
+> weak.  Its exact negative result is preserved.  D3 is now prospectively
+> frozen as one 16-rollout matched-history discrete candidate-value campaign
+> with no-action and cumulative exact-return even/odd/block4 arms.  It is a
+> development-data gate, not Authority, Recourse, model qualification or
+> feedback.  No fifth action code or adjacent parameter ladder is allowed.
+
 > **Current fixed-1000 status - G3 all-basis scientific FAIL / discrete
 > candidate redesign next (2026-08-22):** G3 completed `18/18` rollouts and
 > `720/720` advances with exact replays; independent audit passed. Block2 was
