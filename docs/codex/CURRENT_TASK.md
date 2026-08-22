@@ -1,7 +1,7 @@
 # CURRENT_TASK.md — R_geo/Z_geo history-conditioned control route
 
-> **Unique active task (2026-08-22, fixed-1000 G2R1 scientific FAIL / new
-> action-basis design next):** G2R1 completed `5/5` authentic rollouts and
+> **Unique active task (2026-08-22, fixed-1000 G3 signed action-basis frozen
+> before implementation):** G2R1 completed `5/5` authentic rollouts and
 > `320/320` advances; independent raw audit passed. First mirrored Z
 > acquisition reached `+/-0.387523 mm`, but the reversal reached only
 > `-/+0.0685615 mm`. Active paths improved terminal distance only about
@@ -10,12 +10,17 @@
 > `ONE_MS_NR1000G2R1_JOINT_ALLOCATOR_AUTHORITY_INSUFFICIENT_ACTION_BASIS_REDESIGN`.
 > G2/G2R1's even/odd lattice and early-minus cross-zero radial policy are
 > closed without another scale, depth, phase or threshold. The sole active
-> successor is one bounded, prospectively frozen fixed-1000 action-basis
-> discovery campaign using materially different exact Card15 signed
-> directions at multiple causal phases. It must gate persistent task-plane
-> geometry, not input rank or transient peaks, and cannot claim a model,
-> Recourse or controller. The result is recorded in
+> successor G3 is now frozen: even, odd, block2 and block4 exact Card15 sign
+> coordinates, both signs at issues 8 and 24, plus two integrity replays;
+> exactly 18 rollouts / 720 advances. Their pre-response input rank is four
+> with condition `1.43838`. PASS requires persistent h4/h8 signed signal and a
+> positive task-plane cone at both phases; input rank or transient peaks cannot
+> pass. FAIL closes this basis without a fifth code, adjacent amplitude/phase
+> or longer pulse. G3 cannot claim a model, Recourse or controller. The G2R1
+> result is recorded in
 > `docs/codex/reports/RGEO_ZGEO_1MS_1000_JOINT_ALLOCATOR_AUTHORITY_G2R1_RESULT.md`.
+> The G3 design is
+> `docs/codex/reports/RGEO_ZGEO_1MS_1000_SIGNED_BASIS_G3_DESIGN.md`.
 >
 > **Historical active task (2026-08-22, fixed-1000 G2R1 real campaign
 > authorized):** G2 v1
